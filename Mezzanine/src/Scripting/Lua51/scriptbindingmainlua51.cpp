@@ -16241,6 +16241,36 @@ fail:
 }
 
 
+static int _wrap_WorldObject_ProtoSerializeProxies(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+  XML::Node *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::WorldObject::ProtoSerializeProxies",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldObject::ProtoSerializeProxies",1,"Mezzanine::WorldObject const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::WorldObject::ProtoSerializeProxies",2,"XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WorldObject,0))){
+    SWIG_fail_ptr("WorldObject_ProtoSerializeProxies",1,SWIGTYPE_p_Mezzanine__WorldObject);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_XML__Node,0))){
+    SWIG_fail_ptr("WorldObject_ProtoSerializeProxies",2,SWIGTYPE_p_XML__Node);
+  }
+  
+  ((Mezzanine::WorldObject const *)arg1)->ProtoSerializeProxies(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_WorldObject_ProtoDeSerialize(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
@@ -16290,6 +16320,36 @@ static int _wrap_WorldObject_ProtoDeSerializeProperties(lua_State* L) {
   }
   
   (arg1)->ProtoDeSerializeProperties((XML::Node const &)*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_WorldObject_ProtoDeSerializeProxies(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
+  XML::Node *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::WorldObject::ProtoDeSerializeProxies",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldObject::ProtoDeSerializeProxies",1,"Mezzanine::WorldObject *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::WorldObject::ProtoDeSerializeProxies",2,"XML::Node const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__WorldObject,0))){
+    SWIG_fail_ptr("WorldObject_ProtoDeSerializeProxies",1,SWIGTYPE_p_Mezzanine__WorldObject);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_XML__Node,0))){
+    SWIG_fail_ptr("WorldObject_ProtoDeSerializeProxies",2,SWIGTYPE_p_XML__Node);
+  }
+  
+  (arg1)->ProtoDeSerializeProxies((XML::Node const &)*arg2);
   
   return SWIG_arg;
   
@@ -16444,8 +16504,10 @@ static swig_lua_method swig_Mezzanine_WorldObject_methods[] = {
     {"RemoveFromWorld", _wrap_WorldObject_RemoveFromWorld}, 
     {"ProtoSerialize", _wrap_WorldObject_ProtoSerialize}, 
     {"ProtoSerializeProperties", _wrap_WorldObject_ProtoSerializeProperties}, 
+    {"ProtoSerializeProxies", _wrap_WorldObject_ProtoSerializeProxies}, 
     {"ProtoDeSerialize", _wrap_WorldObject_ProtoDeSerialize}, 
     {"ProtoDeSerializeProperties", _wrap_WorldObject_ProtoDeSerializeProperties}, 
+    {"ProtoDeSerializeProxies", _wrap_WorldObject_ProtoDeSerializeProxies}, 
     {"GetDerivedSerializableName", _wrap_WorldObject_GetDerivedSerializableName}, 
     {"_Update", _wrap_WorldObject__Update}, 
     {"_NotifyProxyDestroyed", _wrap_WorldObject__NotifyProxyDestroyed}, 

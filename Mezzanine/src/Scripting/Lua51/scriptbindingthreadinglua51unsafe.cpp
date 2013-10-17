@@ -2129,18 +2129,9 @@ static swig_lua_method swig_Mezzanine_Threading_ThreadSpecificStorage_methods[] 
 static swig_lua_attribute swig_Mezzanine_Threading_ThreadSpecificStorage_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_ThreadSpecificStorage_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_ThreadSpecificStorage_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_ThreadSpecificStorage_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_ThreadSpecificStorage_bases[] = {0};
 static const char *swig_Mezzanine_Threading_ThreadSpecificStorage_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_ThreadSpecificStorage = { "ThreadSpecificStorage", &SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,_wrap_new_ThreadSpecificStorage, swig_delete_ThreadSpecificStorage, swig_Mezzanine_Threading_ThreadSpecificStorage_methods, swig_Mezzanine_Threading_ThreadSpecificStorage_attributes, { "ThreadSpecificStorage", swig_Mezzanine_Threading_ThreadSpecificStorage_cls_methods, swig_Mezzanine_Threading_ThreadSpecificStorage_cls_attributes, swig_Mezzanine_Threading_ThreadSpecificStorage_cls_constants }, swig_Mezzanine_Threading_ThreadSpecificStorage_bases, swig_Mezzanine_Threading_ThreadSpecificStorage_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_ThreadSpecificStorage = { "ThreadSpecificStorage", &SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,_wrap_new_ThreadSpecificStorage, swig_delete_ThreadSpecificStorage, swig_Mezzanine_Threading_ThreadSpecificStorage_methods, swig_Mezzanine_Threading_ThreadSpecificStorage_attributes, swig_Mezzanine_Threading_ThreadSpecificStorage_bases, swig_Mezzanine_Threading_ThreadSpecificStorage_base_names };
 
 static int _wrap_new_DefaultThreadSpecificStorage(lua_State* L) {
   int SWIG_arg = 0;
@@ -2169,18 +2160,9 @@ static swig_lua_method swig_Mezzanine_Threading_DefaultThreadSpecificStorage_met
 static swig_lua_attribute swig_Mezzanine_Threading_DefaultThreadSpecificStorage_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_DefaultThreadSpecificStorage_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_DefaultThreadSpecificStorage_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_DefaultThreadSpecificStorage_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_DefaultThreadSpecificStorage_bases[] = {0};
 static const char *swig_Mezzanine_Threading_DefaultThreadSpecificStorage_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_DefaultThreadSpecificStorage = { "DefaultThreadSpecificStorage", &SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage,_wrap_new_DefaultThreadSpecificStorage, swig_delete_DefaultThreadSpecificStorage, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_methods, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_attributes, { "DefaultThreadSpecificStorage", swig_Mezzanine_Threading_DefaultThreadSpecificStorage_cls_methods, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_cls_attributes, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_cls_constants }, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_bases, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_DefaultThreadSpecificStorage = { "DefaultThreadSpecificStorage", &SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage,_wrap_new_DefaultThreadSpecificStorage, swig_delete_DefaultThreadSpecificStorage, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_methods, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_attributes, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_bases, swig_Mezzanine_Threading_DefaultThreadSpecificStorage_base_names };
 
 static int _wrap_GetTimeStamp(lua_State* L) {
   int SWIG_arg = 0;
@@ -2367,18 +2349,9 @@ static swig_lua_method swig_Mezzanine_Threading_Mutex_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_Mutex_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_Mutex_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_Mutex_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_Mutex_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_Mutex_bases[] = {0};
 static const char *swig_Mezzanine_Threading_Mutex_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_Mutex = { "Mutex", &SWIGTYPE_p_Mezzanine__Threading__Mutex,_wrap_new_Mutex, swig_delete_Mutex, swig_Mezzanine_Threading_Mutex_methods, swig_Mezzanine_Threading_Mutex_attributes, { "Mutex", swig_Mezzanine_Threading_Mutex_cls_methods, swig_Mezzanine_Threading_Mutex_cls_attributes, swig_Mezzanine_Threading_Mutex_cls_constants }, swig_Mezzanine_Threading_Mutex_bases, swig_Mezzanine_Threading_Mutex_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_Mutex = { "Mutex", &SWIGTYPE_p_Mezzanine__Threading__Mutex,_wrap_new_Mutex, swig_delete_Mutex, swig_Mezzanine_Threading_Mutex_methods, swig_Mezzanine_Threading_Mutex_attributes, swig_Mezzanine_Threading_Mutex_bases, swig_Mezzanine_Threading_Mutex_base_names };
 
 static int _wrap_new_SpinLock(lua_State* L) {
   int SWIG_arg = 0;
@@ -2480,18 +2453,9 @@ static swig_lua_method swig_Mezzanine_Threading_SpinLock_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_SpinLock_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_SpinLock_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_SpinLock_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_SpinLock_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_SpinLock_bases[] = {0};
 static const char *swig_Mezzanine_Threading_SpinLock_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_SpinLock = { "SpinLock", &SWIGTYPE_p_Mezzanine__Threading__SpinLock,_wrap_new_SpinLock, swig_delete_SpinLock, swig_Mezzanine_Threading_SpinLock_methods, swig_Mezzanine_Threading_SpinLock_attributes, { "SpinLock", swig_Mezzanine_Threading_SpinLock_cls_methods, swig_Mezzanine_Threading_SpinLock_cls_attributes, swig_Mezzanine_Threading_SpinLock_cls_constants }, swig_Mezzanine_Threading_SpinLock_bases, swig_Mezzanine_Threading_SpinLock_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_SpinLock = { "SpinLock", &SWIGTYPE_p_Mezzanine__Threading__SpinLock,_wrap_new_SpinLock, swig_delete_SpinLock, swig_Mezzanine_Threading_SpinLock_methods, swig_Mezzanine_Threading_SpinLock_attributes, swig_Mezzanine_Threading_SpinLock_bases, swig_Mezzanine_Threading_SpinLock_base_names };
 
 static int _wrap_new_Thread__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -2610,7 +2574,7 @@ static int _wrap_new_Thread(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_Thread'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_Thread'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::Thread::Thread()\n"
     "    Mezzanine::Threading::Thread::Thread(void (*)(void *))\n"
@@ -2775,19 +2739,9 @@ static swig_lua_method swig_Mezzanine_Threading_Thread_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_Thread_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_Thread_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_Thread_cls_methods[] = {
-    {"hardware_concurrency", _wrap_Thread_hardware_concurrency}, 
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_Thread_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_Thread_bases[] = {0};
 static const char *swig_Mezzanine_Threading_Thread_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_Thread = { "Thread", &SWIGTYPE_p_Mezzanine__Threading__Thread,_wrap_new_Thread, swig_delete_Thread, swig_Mezzanine_Threading_Thread_methods, swig_Mezzanine_Threading_Thread_attributes, { "Thread", swig_Mezzanine_Threading_Thread_cls_methods, swig_Mezzanine_Threading_Thread_cls_attributes, swig_Mezzanine_Threading_Thread_cls_constants }, swig_Mezzanine_Threading_Thread_bases, swig_Mezzanine_Threading_Thread_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_Thread = { "Thread", &SWIGTYPE_p_Mezzanine__Threading__Thread,_wrap_new_Thread, swig_delete_Thread, swig_Mezzanine_Threading_Thread_methods, swig_Mezzanine_Threading_Thread_attributes, swig_Mezzanine_Threading_Thread_bases, swig_Mezzanine_Threading_Thread_base_names };
 
 static int _wrap_new_ThreadId__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -2885,7 +2839,7 @@ static int _wrap_new_ThreadId(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ThreadId'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_ThreadId'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::ThreadId::ThreadId()\n"
     "    Mezzanine::Threading::ThreadId::ThreadId(unsigned long)\n"
@@ -2904,18 +2858,9 @@ static swig_lua_method swig_Mezzanine_Threading_ThreadId_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_ThreadId_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_ThreadId_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_ThreadId_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_ThreadId_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_ThreadId_bases[] = {0};
 static const char *swig_Mezzanine_Threading_ThreadId_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_ThreadId = { "ThreadId", &SWIGTYPE_p_Mezzanine__Threading__ThreadId,_wrap_new_ThreadId, swig_delete_ThreadId, swig_Mezzanine_Threading_ThreadId_methods, swig_Mezzanine_Threading_ThreadId_attributes, { "ThreadId", swig_Mezzanine_Threading_ThreadId_cls_methods, swig_Mezzanine_Threading_ThreadId_cls_attributes, swig_Mezzanine_Threading_ThreadId_cls_constants }, swig_Mezzanine_Threading_ThreadId_bases, swig_Mezzanine_Threading_ThreadId_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_ThreadId = { "ThreadId", &SWIGTYPE_p_Mezzanine__Threading__ThreadId,_wrap_new_ThreadId, swig_delete_ThreadId, swig_Mezzanine_Threading_ThreadId_methods, swig_Mezzanine_Threading_ThreadId_attributes, swig_Mezzanine_Threading_ThreadId_bases, swig_Mezzanine_Threading_ThreadId_base_names };
 
 static int _wrap_get_id(lua_State* L) {
   int SWIG_arg = 0;
@@ -3215,7 +3160,7 @@ static int _wrap_new_WorkUnitKey(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_WorkUnitKey'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_WorkUnitKey'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::WorkUnitKey::WorkUnitKey()\n"
     "    Mezzanine::Threading::WorkUnitKey::WorkUnitKey(Mezzanine::Whole const &,Mezzanine::Whole const &,Mezzanine::Threading::iWorkUnit *)\n");
@@ -3300,18 +3245,9 @@ static swig_lua_attribute swig_Mezzanine_Threading_WorkUnitKey_attributes[] = {
     { "Time", _wrap_WorkUnitKey_Time_get, _wrap_WorkUnitKey_Time_set},
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_WorkUnitKey_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_WorkUnitKey_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_WorkUnitKey_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_WorkUnitKey_bases[] = {0};
 static const char *swig_Mezzanine_Threading_WorkUnitKey_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_WorkUnitKey = { "WorkUnitKey", &SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,_wrap_new_WorkUnitKey, swig_delete_WorkUnitKey, swig_Mezzanine_Threading_WorkUnitKey_methods, swig_Mezzanine_Threading_WorkUnitKey_attributes, { "WorkUnitKey", swig_Mezzanine_Threading_WorkUnitKey_cls_methods, swig_Mezzanine_Threading_WorkUnitKey_cls_attributes, swig_Mezzanine_Threading_WorkUnitKey_cls_constants }, swig_Mezzanine_Threading_WorkUnitKey_bases, swig_Mezzanine_Threading_WorkUnitKey_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_WorkUnitKey = { "WorkUnitKey", &SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,_wrap_new_WorkUnitKey, swig_delete_WorkUnitKey, swig_Mezzanine_Threading_WorkUnitKey_methods, swig_Mezzanine_Threading_WorkUnitKey_attributes, swig_Mezzanine_Threading_WorkUnitKey_bases, swig_Mezzanine_Threading_WorkUnitKey_base_names };
 
 static int _wrap_RollingAverageWhole_RecordCapacity(lua_State* L) {
   int SWIG_arg = 0;
@@ -3401,18 +3337,9 @@ static swig_lua_method swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__meth
 static swig_lua_attribute swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__bases[] = {0};
 static const char *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg_ = { "RollingAverageWhole", &SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t,0, swig_delete_RollingAverageWhole, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__attributes, { "RollingAverageWhole", swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__cls_methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__cls_attributes, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__cls_constants }, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__bases, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__base_names };
+static swig_lua_class _wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg_ = { "RollingAverageWhole", &SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t,0, swig_delete_RollingAverageWhole, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__attributes, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__bases, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Whole_Sg__base_names };
 
 static int _wrap_new_WeightedRollingAverageWhole__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -3473,7 +3400,7 @@ static int _wrap_new_WeightedRollingAverageWhole(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_WeightedRollingAverageWhole'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_WeightedRollingAverageWhole'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::WeightedRollingAverage(Mezzanine::Whole const &)\n"
     "    Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole >::WeightedRollingAverage()\n");
@@ -3569,18 +3496,9 @@ static swig_lua_method swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_
 static swig_lua_attribute swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__bases[] = {0,0};
 static const char *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Whole > *",0};
-static swig_lua_class _wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg_ = { "WeightedRollingAverageWhole", &SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,_wrap_new_WeightedRollingAverageWhole, swig_delete_WeightedRollingAverageWhole, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__attributes, { "WeightedRollingAverageWhole", swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__cls_methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__cls_attributes, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__cls_constants }, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__bases, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__base_names };
+static swig_lua_class _wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg_ = { "WeightedRollingAverageWhole", &SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,_wrap_new_WeightedRollingAverageWhole, swig_delete_WeightedRollingAverageWhole, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__attributes, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__bases, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg__base_names };
 
 static int _wrap_new_BufferedRollingAverageWhole__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -3754,7 +3672,7 @@ static int _wrap_new_BufferedRollingAverageWhole(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_BufferedRollingAverageWhole'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_BufferedRollingAverageWhole'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::BufferedRollingAverage(Mezzanine::Whole const &)\n"
     "    Mezzanine::BufferedRollingAverage< Mezzanine::Whole >::BufferedRollingAverage()\n"
@@ -3776,18 +3694,9 @@ static swig_lua_method swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_
 static swig_lua_attribute swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__bases[] = {0,0};
 static const char *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Whole > *",0};
-static swig_lua_class _wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg_ = { "BufferedRollingAverageWhole", &SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,_wrap_new_BufferedRollingAverageWhole, swig_delete_BufferedRollingAverageWhole, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__attributes, { "BufferedRollingAverageWhole", swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__cls_methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__cls_attributes, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__cls_constants }, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__bases, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__base_names };
+static swig_lua_class _wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg_ = { "BufferedRollingAverageWhole", &SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,_wrap_new_BufferedRollingAverageWhole, swig_delete_BufferedRollingAverageWhole, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__attributes, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__bases, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Whole_Sg__base_names };
 
 static int _wrap_RollingAverageReal_RecordCapacity(lua_State* L) {
   int SWIG_arg = 0;
@@ -3876,18 +3785,9 @@ static swig_lua_method swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__metho
 static swig_lua_attribute swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__bases[] = {0};
 static const char *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg_ = { "RollingAverageReal", &SWIGTYPE_p_Mezzanine__RollingAverageT_float_t,0, swig_delete_RollingAverageReal, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__attributes, { "RollingAverageReal", swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__cls_methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__cls_attributes, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__cls_constants }, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__bases, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__base_names };
+static swig_lua_class _wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg_ = { "RollingAverageReal", &SWIGTYPE_p_Mezzanine__RollingAverageT_float_t,0, swig_delete_RollingAverageReal, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__attributes, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__bases, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Real_Sg__base_names };
 
 static int _wrap_new_WeightedRollingAverageReal__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -3948,7 +3848,7 @@ static int _wrap_new_WeightedRollingAverageReal(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_WeightedRollingAverageReal'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_WeightedRollingAverageReal'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::WeightedRollingAverage(Mezzanine::Whole const &)\n"
     "    Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real >::WeightedRollingAverage()\n");
@@ -4043,18 +3943,9 @@ static swig_lua_method swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_S
 static swig_lua_attribute swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__bases[] = {0,0};
 static const char *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Real > *",0};
-static swig_lua_class _wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg_ = { "WeightedRollingAverageReal", &SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t,_wrap_new_WeightedRollingAverageReal, swig_delete_WeightedRollingAverageReal, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__attributes, { "WeightedRollingAverageReal", swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__cls_methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__cls_attributes, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__cls_constants }, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__bases, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__base_names };
+static swig_lua_class _wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg_ = { "WeightedRollingAverageReal", &SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t,_wrap_new_WeightedRollingAverageReal, swig_delete_WeightedRollingAverageReal, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__attributes, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__bases, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg__base_names };
 
 static int _wrap_new_BufferedRollingAverageReal__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -4227,7 +4118,7 @@ static int _wrap_new_BufferedRollingAverageReal(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_BufferedRollingAverageReal'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_BufferedRollingAverageReal'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::BufferedRollingAverage< Mezzanine::Real >::BufferedRollingAverage(Mezzanine::Whole const &)\n"
     "    Mezzanine::BufferedRollingAverage< Mezzanine::Real >::BufferedRollingAverage()\n"
@@ -4249,18 +4140,9 @@ static swig_lua_method swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_S
 static swig_lua_attribute swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__bases[] = {0,0};
 static const char *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Real > *",0};
-static swig_lua_class _wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg_ = { "BufferedRollingAverageReal", &SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t,_wrap_new_BufferedRollingAverageReal, swig_delete_BufferedRollingAverageReal, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__attributes, { "BufferedRollingAverageReal", swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__cls_methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__cls_attributes, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__cls_constants }, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__bases, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__base_names };
+static swig_lua_class _wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg_ = { "BufferedRollingAverageReal", &SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t,_wrap_new_BufferedRollingAverageReal, swig_delete_BufferedRollingAverageReal, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__attributes, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__bases, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Real_Sg__base_names };
 
 static int _wrap_RollingAverageInteger_RecordCapacity(lua_State* L) {
   int SWIG_arg = 0;
@@ -4349,18 +4231,9 @@ static swig_lua_method swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__me
 static swig_lua_attribute swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__bases[] = {0};
 static const char *swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg_ = { "RollingAverageInteger", &SWIGTYPE_p_Mezzanine__RollingAverageT_int_t,0, swig_delete_RollingAverageInteger, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__attributes, { "RollingAverageInteger", swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__cls_methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__cls_attributes, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__cls_constants }, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__bases, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__base_names };
+static swig_lua_class _wrap_class_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg_ = { "RollingAverageInteger", &SWIGTYPE_p_Mezzanine__RollingAverageT_int_t,0, swig_delete_RollingAverageInteger, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__methods, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__attributes, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__bases, swig_Mezzanine_RollingAverage_Sl_Mezzanine_Integer_Sg__base_names };
 
 static int _wrap_new_WeightedRollingAverageInteger__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -4421,7 +4294,7 @@ static int _wrap_new_WeightedRollingAverageInteger(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_WeightedRollingAverageInteger'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_WeightedRollingAverageInteger'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::WeightedRollingAverage(Mezzanine::Whole const &)\n"
     "    Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer >::WeightedRollingAverage()\n");
@@ -4516,18 +4389,9 @@ static swig_lua_method swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Intege
 static swig_lua_attribute swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__bases[] = {0,0};
 static const char *swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Integer > *",0};
-static swig_lua_class _wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg_ = { "WeightedRollingAverageInteger", &SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t,_wrap_new_WeightedRollingAverageInteger, swig_delete_WeightedRollingAverageInteger, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__attributes, { "WeightedRollingAverageInteger", swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__cls_methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__cls_attributes, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__cls_constants }, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__bases, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__base_names };
+static swig_lua_class _wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg_ = { "WeightedRollingAverageInteger", &SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t,_wrap_new_WeightedRollingAverageInteger, swig_delete_WeightedRollingAverageInteger, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__methods, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__attributes, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__bases, swig_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg__base_names };
 
 static int _wrap_new_BufferedRollingAverageInteger__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -4700,7 +4564,7 @@ static int _wrap_new_BufferedRollingAverageInteger(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_BufferedRollingAverageInteger'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_BufferedRollingAverageInteger'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::BufferedRollingAverage(Mezzanine::Whole const &)\n"
     "    Mezzanine::BufferedRollingAverage< Mezzanine::Integer >::BufferedRollingAverage()\n"
@@ -4722,18 +4586,9 @@ static swig_lua_method swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Intege
 static swig_lua_attribute swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__bases[] = {0,0};
 static const char *swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__base_names[] = {"Mezzanine::RollingAverage< Mezzanine::Integer > *",0};
-static swig_lua_class _wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg_ = { "BufferedRollingAverageInteger", &SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,_wrap_new_BufferedRollingAverageInteger, swig_delete_BufferedRollingAverageInteger, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__attributes, { "BufferedRollingAverageInteger", swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__cls_methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__cls_attributes, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__cls_constants }, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__bases, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__base_names };
+static swig_lua_class _wrap_class_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg_ = { "BufferedRollingAverageInteger", &SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t,_wrap_new_BufferedRollingAverageInteger, swig_delete_BufferedRollingAverageInteger, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__methods, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__attributes, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__bases, swig_Mezzanine_BufferedRollingAverage_Sl_Mezzanine_Integer_Sg__base_names };
 
 static int _wrap_new_FrameScheduler__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -4933,7 +4788,7 @@ static int _wrap_new_FrameScheduler(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_FrameScheduler'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_FrameScheduler'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::FrameScheduler::FrameScheduler(std::fstream *,Mezzanine::Whole)\n"
     "    Mezzanine::Threading::FrameScheduler::FrameScheduler(std::fstream *)\n"
@@ -5136,7 +4991,7 @@ static int _wrap_FrameScheduler_SortWorkUnitsMain(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'FrameScheduler_SortWorkUnitsMain'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'FrameScheduler_SortWorkUnitsMain'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::FrameScheduler::SortWorkUnitsMain(bool)\n"
     "    Mezzanine::Threading::FrameScheduler::SortWorkUnitsMain()\n");
@@ -5234,7 +5089,7 @@ static int _wrap_FrameScheduler_SortWorkUnitsAffinity(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'FrameScheduler_SortWorkUnitsAffinity'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'FrameScheduler_SortWorkUnitsAffinity'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::FrameScheduler::SortWorkUnitsAffinity(bool)\n"
     "    Mezzanine::Threading::FrameScheduler::SortWorkUnitsAffinity()\n");
@@ -5332,7 +5187,7 @@ static int _wrap_FrameScheduler_SortWorkUnitsAll(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'FrameScheduler_SortWorkUnitsAll'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'FrameScheduler_SortWorkUnitsAll'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::FrameScheduler::SortWorkUnitsAll(bool)\n"
     "    Mezzanine::Threading::FrameScheduler::SortWorkUnitsAll()\n");
@@ -5556,7 +5411,7 @@ static int _wrap_FrameScheduler_GetDependentCountOf(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'FrameScheduler_GetDependentCountOf'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'FrameScheduler_GetDependentCountOf'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::FrameScheduler::GetDependentCountOf(Mezzanine::Threading::iWorkUnit *,bool)\n"
     "    Mezzanine::Threading::FrameScheduler::GetDependentCountOf(Mezzanine::Threading::iWorkUnit *)\n");
@@ -6271,7 +6126,7 @@ static int _wrap_FrameScheduler_GetThreadResource(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'FrameScheduler_GetThreadResource'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'FrameScheduler_GetThreadResource'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::FrameScheduler::GetThreadResource(Mezzanine::Threading::ThreadId)\n"
     "    Mezzanine::Threading::FrameScheduler::GetThreadResource()\n");
@@ -6382,7 +6237,7 @@ static int _wrap_FrameScheduler_GetThreadUsableLogger(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'FrameScheduler_GetThreadUsableLogger'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'FrameScheduler_GetThreadUsableLogger'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::FrameScheduler::GetThreadUsableLogger(Mezzanine::Threading::ThreadId)\n"
     "    Mezzanine::Threading::FrameScheduler::GetThreadUsableLogger()\n");
@@ -6480,7 +6335,7 @@ static int _wrap_FrameScheduler_DependenciesChanged(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'FrameScheduler_DependenciesChanged'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'FrameScheduler_DependenciesChanged'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::FrameScheduler::DependenciesChanged(bool)\n"
     "    Mezzanine::Threading::FrameScheduler::DependenciesChanged()\n");
@@ -6585,18 +6440,9 @@ static swig_lua_method swig_Mezzanine_Threading_FrameScheduler_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_FrameScheduler_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_FrameScheduler_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_FrameScheduler_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_FrameScheduler_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_FrameScheduler_bases[] = {0};
 static const char *swig_Mezzanine_Threading_FrameScheduler_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_FrameScheduler = { "FrameScheduler", &SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,_wrap_new_FrameScheduler, swig_delete_FrameScheduler, swig_Mezzanine_Threading_FrameScheduler_methods, swig_Mezzanine_Threading_FrameScheduler_attributes, { "FrameScheduler", swig_Mezzanine_Threading_FrameScheduler_cls_methods, swig_Mezzanine_Threading_FrameScheduler_cls_attributes, swig_Mezzanine_Threading_FrameScheduler_cls_constants }, swig_Mezzanine_Threading_FrameScheduler_bases, swig_Mezzanine_Threading_FrameScheduler_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_FrameScheduler = { "FrameScheduler", &SWIGTYPE_p_Mezzanine__Threading__FrameScheduler,_wrap_new_FrameScheduler, swig_delete_FrameScheduler, swig_Mezzanine_Threading_FrameScheduler_methods, swig_Mezzanine_Threading_FrameScheduler_attributes, swig_Mezzanine_Threading_FrameScheduler_bases, swig_Mezzanine_Threading_FrameScheduler_base_names };
 
 static int _wrap_iWorkUnit_GetDependentCount(lua_State* L) {
   int SWIG_arg = 0;
@@ -7026,18 +6872,9 @@ static swig_lua_method swig_Mezzanine_Threading_iWorkUnit_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_iWorkUnit_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_iWorkUnit_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_iWorkUnit_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_iWorkUnit_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_iWorkUnit_bases[] = {0};
 static const char *swig_Mezzanine_Threading_iWorkUnit_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_iWorkUnit = { "iWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0, swig_delete_iWorkUnit, swig_Mezzanine_Threading_iWorkUnit_methods, swig_Mezzanine_Threading_iWorkUnit_attributes, { "iWorkUnit", swig_Mezzanine_Threading_iWorkUnit_cls_methods, swig_Mezzanine_Threading_iWorkUnit_cls_attributes, swig_Mezzanine_Threading_iWorkUnit_cls_constants }, swig_Mezzanine_Threading_iWorkUnit_bases, swig_Mezzanine_Threading_iWorkUnit_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_iWorkUnit = { "iWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__iWorkUnit,0, swig_delete_iWorkUnit, swig_Mezzanine_Threading_iWorkUnit_methods, swig_Mezzanine_Threading_iWorkUnit_attributes, swig_Mezzanine_Threading_iWorkUnit_bases, swig_Mezzanine_Threading_iWorkUnit_base_names };
 
 static int _wrap_DefaultWorkUnit_GetDependentCount(lua_State* L) {
   int SWIG_arg = 0;
@@ -7461,18 +7298,9 @@ static swig_lua_method swig_Mezzanine_Threading_DefaultWorkUnit_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_DefaultWorkUnit_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_DefaultWorkUnit_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_DefaultWorkUnit_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_DefaultWorkUnit_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_DefaultWorkUnit_bases[] = {0,0};
 static const char *swig_Mezzanine_Threading_DefaultWorkUnit_base_names[] = {"Mezzanine::Threading::iWorkUnit *",0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_DefaultWorkUnit = { "DefaultWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0, swig_delete_DefaultWorkUnit, swig_Mezzanine_Threading_DefaultWorkUnit_methods, swig_Mezzanine_Threading_DefaultWorkUnit_attributes, { "DefaultWorkUnit", swig_Mezzanine_Threading_DefaultWorkUnit_cls_methods, swig_Mezzanine_Threading_DefaultWorkUnit_cls_attributes, swig_Mezzanine_Threading_DefaultWorkUnit_cls_constants }, swig_Mezzanine_Threading_DefaultWorkUnit_bases, swig_Mezzanine_Threading_DefaultWorkUnit_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_DefaultWorkUnit = { "DefaultWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0, swig_delete_DefaultWorkUnit, swig_Mezzanine_Threading_DefaultWorkUnit_methods, swig_Mezzanine_Threading_DefaultWorkUnit_attributes, swig_Mezzanine_Threading_DefaultWorkUnit_bases, swig_Mezzanine_Threading_DefaultWorkUnit_base_names };
 
 static int _wrap_iAsynchronousWorkUnit_IsWorkDone(lua_State* L) {
   int SWIG_arg = 0;
@@ -7509,18 +7337,9 @@ static swig_lua_method swig_Mezzanine_Threading_iAsynchronousWorkUnit_methods[] 
 static swig_lua_attribute swig_Mezzanine_Threading_iAsynchronousWorkUnit_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_iAsynchronousWorkUnit_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_iAsynchronousWorkUnit_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_iAsynchronousWorkUnit_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_iAsynchronousWorkUnit_bases[] = {0,0};
 static const char *swig_Mezzanine_Threading_iAsynchronousWorkUnit_base_names[] = {"Mezzanine::Threading::DefaultWorkUnit *",0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_iAsynchronousWorkUnit = { "iAsynchronousWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit,0, swig_delete_iAsynchronousWorkUnit, swig_Mezzanine_Threading_iAsynchronousWorkUnit_methods, swig_Mezzanine_Threading_iAsynchronousWorkUnit_attributes, { "iAsynchronousWorkUnit", swig_Mezzanine_Threading_iAsynchronousWorkUnit_cls_methods, swig_Mezzanine_Threading_iAsynchronousWorkUnit_cls_attributes, swig_Mezzanine_Threading_iAsynchronousWorkUnit_cls_constants }, swig_Mezzanine_Threading_iAsynchronousWorkUnit_bases, swig_Mezzanine_Threading_iAsynchronousWorkUnit_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_iAsynchronousWorkUnit = { "iAsynchronousWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit,0, swig_delete_iAsynchronousWorkUnit, swig_Mezzanine_Threading_iAsynchronousWorkUnit_methods, swig_Mezzanine_Threading_iAsynchronousWorkUnit_attributes, swig_Mezzanine_Threading_iAsynchronousWorkUnit_bases, swig_Mezzanine_Threading_iAsynchronousWorkUnit_base_names };
 
 static int _wrap_new_AsynchronousFileLoadWorkUnit(lua_State* L) {
   int SWIG_arg = 0;
@@ -7727,7 +7546,7 @@ static int _wrap_AsynchronousFileLoadWorkUnit_GetFile(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'AsynchronousFileLoadWorkUnit_GetFile'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'AsynchronousFileLoadWorkUnit_GetFile'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile(Mezzanine::String const &) const\n"
     "    Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile(Mezzanine::Whole const &) const\n");
@@ -7773,18 +7592,9 @@ static swig_lua_method swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_met
 static swig_lua_attribute swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_bases[] = {0,0};
 static const char *swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_base_names[] = {"Mezzanine::Threading::iAsynchronousWorkUnit *",0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_AsynchronousFileLoadWorkUnit = { "AsynchronousFileLoadWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,_wrap_new_AsynchronousFileLoadWorkUnit, swig_delete_AsynchronousFileLoadWorkUnit, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_methods, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_attributes, { "AsynchronousFileLoadWorkUnit", swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_cls_methods, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_cls_attributes, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_cls_constants }, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_bases, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_AsynchronousFileLoadWorkUnit = { "AsynchronousFileLoadWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit,_wrap_new_AsynchronousFileLoadWorkUnit, swig_delete_AsynchronousFileLoadWorkUnit, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_methods, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_attributes, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_bases, swig_Mezzanine_Threading_AsynchronousFileLoadWorkUnit_base_names };
 
 static int _wrap_new_Barrier(lua_State* L) {
   int SWIG_arg = 0;
@@ -7869,18 +7679,9 @@ static swig_lua_method swig_Mezzanine_Threading_Barrier_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_Barrier_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_Barrier_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_Barrier_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_Barrier_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_Barrier_bases[] = {0};
 static const char *swig_Mezzanine_Threading_Barrier_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_Barrier = { "Barrier", &SWIGTYPE_p_Mezzanine__Threading__Barrier,_wrap_new_Barrier, swig_delete_Barrier, swig_Mezzanine_Threading_Barrier_methods, swig_Mezzanine_Threading_Barrier_attributes, { "Barrier", swig_Mezzanine_Threading_Barrier_cls_methods, swig_Mezzanine_Threading_Barrier_cls_attributes, swig_Mezzanine_Threading_Barrier_cls_constants }, swig_Mezzanine_Threading_Barrier_bases, swig_Mezzanine_Threading_Barrier_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_Barrier = { "Barrier", &SWIGTYPE_p_Mezzanine__Threading__Barrier,_wrap_new_Barrier, swig_delete_Barrier, swig_Mezzanine_Threading_Barrier_methods, swig_Mezzanine_Threading_Barrier_attributes, swig_Mezzanine_Threading_Barrier_bases, swig_Mezzanine_Threading_Barrier_base_names };
 
 static int _wrap_new_LogAggregator(lua_State* L) {
   int SWIG_arg = 0;
@@ -7996,18 +7797,9 @@ static swig_lua_method swig_Mezzanine_Threading_LogAggregator_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_LogAggregator_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_LogAggregator_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_LogAggregator_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_LogAggregator_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_LogAggregator_bases[] = {0,0};
 static const char *swig_Mezzanine_Threading_LogAggregator_base_names[] = {"Mezzanine::Threading::DefaultWorkUnit *",0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_LogAggregator = { "LogAggregator", &SWIGTYPE_p_Mezzanine__Threading__LogAggregator,_wrap_new_LogAggregator, swig_delete_LogAggregator, swig_Mezzanine_Threading_LogAggregator_methods, swig_Mezzanine_Threading_LogAggregator_attributes, { "LogAggregator", swig_Mezzanine_Threading_LogAggregator_cls_methods, swig_Mezzanine_Threading_LogAggregator_cls_attributes, swig_Mezzanine_Threading_LogAggregator_cls_constants }, swig_Mezzanine_Threading_LogAggregator_bases, swig_Mezzanine_Threading_LogAggregator_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_LogAggregator = { "LogAggregator", &SWIGTYPE_p_Mezzanine__Threading__LogAggregator,_wrap_new_LogAggregator, swig_delete_LogAggregator, swig_Mezzanine_Threading_LogAggregator_methods, swig_Mezzanine_Threading_LogAggregator_attributes, swig_Mezzanine_Threading_LogAggregator_bases, swig_Mezzanine_Threading_LogAggregator_base_names };
 
 static int _wrap_new_WorkSorter(lua_State* L) {
   int SWIG_arg = 0;
@@ -8120,18 +7912,9 @@ static swig_lua_method swig_Mezzanine_Threading_WorkSorter_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_WorkSorter_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_WorkSorter_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_WorkSorter_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_WorkSorter_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_WorkSorter_bases[] = {0,0};
 static const char *swig_Mezzanine_Threading_WorkSorter_base_names[] = {"Mezzanine::Threading::DefaultWorkUnit *",0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_WorkSorter = { "WorkSorter", &SWIGTYPE_p_Mezzanine__Threading__WorkSorter,_wrap_new_WorkSorter, swig_delete_WorkSorter, swig_Mezzanine_Threading_WorkSorter_methods, swig_Mezzanine_Threading_WorkSorter_attributes, { "WorkSorter", swig_Mezzanine_Threading_WorkSorter_cls_methods, swig_Mezzanine_Threading_WorkSorter_cls_attributes, swig_Mezzanine_Threading_WorkSorter_cls_constants }, swig_Mezzanine_Threading_WorkSorter_bases, swig_Mezzanine_Threading_WorkSorter_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_WorkSorter = { "WorkSorter", &SWIGTYPE_p_Mezzanine__Threading__WorkSorter,_wrap_new_WorkSorter, swig_delete_WorkSorter, swig_Mezzanine_Threading_WorkSorter_methods, swig_Mezzanine_Threading_WorkSorter_attributes, swig_Mezzanine_Threading_WorkSorter_bases, swig_Mezzanine_Threading_WorkSorter_base_names };
 
 static int _wrap_new_ScopedTimer__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -8362,7 +8145,7 @@ static int _wrap_new_ScopedTimer(lua_State* L) {
     }
   }
   
-  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ScopedTimer'\n"
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_ScopedTimer'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Threading::ScopedTimer::ScopedTimer(std::ostream &,Mezzanine::String,Mezzanine::String,Mezzanine::Whole)\n"
     "    Mezzanine::Threading::ScopedTimer::ScopedTimer(std::ostream &,Mezzanine::String,Mezzanine::String)\n"
@@ -8383,18 +8166,9 @@ static swig_lua_method swig_Mezzanine_Threading_ScopedTimer_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_ScopedTimer_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_ScopedTimer_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_ScopedTimer_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_ScopedTimer_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_ScopedTimer_bases[] = {0};
 static const char *swig_Mezzanine_Threading_ScopedTimer_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_ScopedTimer = { "ScopedTimer", &SWIGTYPE_p_Mezzanine__Threading__ScopedTimer,_wrap_new_ScopedTimer, swig_delete_ScopedTimer, swig_Mezzanine_Threading_ScopedTimer_methods, swig_Mezzanine_Threading_ScopedTimer_attributes, { "ScopedTimer", swig_Mezzanine_Threading_ScopedTimer_cls_methods, swig_Mezzanine_Threading_ScopedTimer_cls_attributes, swig_Mezzanine_Threading_ScopedTimer_cls_constants }, swig_Mezzanine_Threading_ScopedTimer_bases, swig_Mezzanine_Threading_ScopedTimer_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_ScopedTimer = { "ScopedTimer", &SWIGTYPE_p_Mezzanine__Threading__ScopedTimer,_wrap_new_ScopedTimer, swig_delete_ScopedTimer, swig_Mezzanine_Threading_ScopedTimer_methods, swig_Mezzanine_Threading_ScopedTimer_attributes, swig_Mezzanine_Threading_ScopedTimer_bases, swig_Mezzanine_Threading_ScopedTimer_base_names };
 
 static int _wrap_MonopolyWorkUnit_UseThreads(lua_State* L) {
   int SWIG_arg = 0;
@@ -8460,18 +8234,9 @@ static swig_lua_method swig_Mezzanine_Threading_MonopolyWorkUnit_methods[] = {
 static swig_lua_attribute swig_Mezzanine_Threading_MonopolyWorkUnit_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_Threading_MonopolyWorkUnit_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_MonopolyWorkUnit_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_MonopolyWorkUnit_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
 static swig_lua_class *swig_Mezzanine_Threading_MonopolyWorkUnit_bases[] = {0,0};
 static const char *swig_Mezzanine_Threading_MonopolyWorkUnit_base_names[] = {"Mezzanine::Threading::DefaultWorkUnit *",0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_MonopolyWorkUnit = { "MonopolyWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit,0, swig_delete_MonopolyWorkUnit, swig_Mezzanine_Threading_MonopolyWorkUnit_methods, swig_Mezzanine_Threading_MonopolyWorkUnit_attributes, { "MonopolyWorkUnit", swig_Mezzanine_Threading_MonopolyWorkUnit_cls_methods, swig_Mezzanine_Threading_MonopolyWorkUnit_cls_attributes, swig_Mezzanine_Threading_MonopolyWorkUnit_cls_constants }, swig_Mezzanine_Threading_MonopolyWorkUnit_bases, swig_Mezzanine_Threading_MonopolyWorkUnit_base_names };
+static swig_lua_class _wrap_class_Mezzanine_Threading_MonopolyWorkUnit = { "MonopolyWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit,0, swig_delete_MonopolyWorkUnit, swig_Mezzanine_Threading_MonopolyWorkUnit_methods, swig_Mezzanine_Threading_MonopolyWorkUnit_attributes, swig_Mezzanine_Threading_MonopolyWorkUnit_bases, swig_Mezzanine_Threading_MonopolyWorkUnit_base_names };
 
 #ifdef __cplusplus
 }
