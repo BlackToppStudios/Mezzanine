@@ -594,9 +594,7 @@ namespace Mezzanine
         this->PreMainLoopInit();
 
         while(!ManualLoopBreak)
-        {
-            DoOneFrame();
-        }//End of main loop
+            { DoOneFrame(); } //Main loop
 
         ManualLoopBreak = 0;
     }
@@ -611,7 +609,7 @@ namespace Mezzanine
     void Entresol::DoOneFrame()
     {
         #ifdef MEZZDEBUG
-        WorkScheduler.GetLog() << "<FrameCounterStart StartingFrame=\" Time=\"" << GetTimeStamp()<< "\" />" << endl;
+        WorkScheduler.GetLog() << "<FrameCounterStart Frame=\"" << WorkScheduler.GetFrameCount() << "\" Time=\"" << GetTimeStamp()<< "\" />" << endl;
         #endif
         WorkScheduler.RunAllMonopolies(); //1
         WorkScheduler.CreateThreads();    //2
@@ -623,7 +621,7 @@ namespace Mezzanine
         #endif
         WorkScheduler.WaitUntilNextFrame(); //6
         #ifdef MEZZDEBUG
-        WorkScheduler.GetLog() << "<FrameCounterEnd Frame=\"" << WorkScheduler.GetFrameCount() << "\"Time=\"" << GetTimeStamp()<< "\" />" << endl;
+        WorkScheduler.GetLog() << "<FrameCounterEnd Frame=\"" << WorkScheduler.GetFrameCount() << "\" Time=\"" << GetTimeStamp()<< "\" />" << endl;
         #endif
     }
 
@@ -662,16 +660,10 @@ namespace Mezzanine
         { return WorkScheduler.GetFrameLength(); }
 
     Whole Entresol::GetLastFrameTimeMilliseconds() const
-    {
-        return WorkScheduler.GetLastFrameTime()/1000;
-        //return 16; //temporary, until FrameScheduler time is integrated
-    }
+        { return WorkScheduler.GetLastFrameTime()/1000; }
 
     Whole Entresol::GetLastFrameTimeMicroseconds() const
-    {
-        return WorkScheduler.GetLastFrameTime();
-        //return 16666;//temporary, until FrameScheduler time is integrated
-    }
+        { return WorkScheduler.GetLastFrameTime(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Factory Management
