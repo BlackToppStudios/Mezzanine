@@ -30,8 +30,8 @@ const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1
 Audio::SoundSet* Announcer = NULL;
 Audio::SoundSet* Soundtrack = NULL;
 
-ActorBase* Robot7 = NULL;
-ActorBase* Robot8 = NULL;
+RigidDebris* Robot7 = NULL;
+RigidDebris* Robot8 = NULL;
 
 DemoPreEventWorkUnit* DemoPreEventWork = NULL;
 DemoPostInputWorkUnit* DemoPostInputWork = NULL;
@@ -171,32 +171,32 @@ class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
                     }
                 }else{
                     Ray MouseRay = RayQueryTool::GetMouseRay(5000);
-                    RayCaster.GetFirstActorOnRayByPolygon(MouseRay,Mezzanine::WSO_ActorRigid);
+                    RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid);
 
                     bool firstframe=false;
-                    if (0 == RayCaster.LastQueryResultsActorPtr())
+                    if (0 == RayCaster.LastQueryResultsObjectPtr())
                     {
                         #ifdef MEZZDEBUG
-                        //TheEntresol->Log("No Actor Clicked on");
+                        //TheEntresol->Log("No Object Clicked on");
                         #endif
                     }else{
                         #ifdef MEZZDEBUG
-                        //TheEntresol->Log("Actor Clicked on"); TheEntresol->Log(*ClickOnActor);
+                        //TheEntresol->Log("Object Clicked on"); TheEntresol->Log(*ClickOnActor);
                         //TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
                         //TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
                         //TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
                         #endif
-                        if(!(RayCaster.LastQueryResultsActorPtr()->IsStaticOrKinematic()))
+                        if( !( RayCaster.LastQueryResultsObjectPtr()->IsStatic() || RayCaster.LastQueryResultsObjectPtr()->IsKinematic() ) )
                         {
                             if(!Dragger) //If we have a dragger, then this is dragging, not clicking
                             {
-                                if(RayCaster.LastQueryResultsActorPtr()->GetType()==Mezzanine::WSO_ActorRigid) //This is Dragging let's do some checks for sanity
+                                if(RayCaster.LastQueryResultsObjectPtr()->GetType() == Mezzanine::WO_DebrisRigid) //This is Dragging let's do some checks for sanity
                                 {
                                     Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
-                                    ActorRigid* rigid = static_cast<ActorRigid*>(RayCaster.LastQueryResultsActorPtr());
-                                    rigid->GetPhysicsSettings()->SetActivationState(Physics::AS_DisableDeactivation);
+                                    RigidDebris* rigid = static_cast<RigidDebris*>(RayCaster.LastQueryResultsObjectPtr());
+                                    rigid->GetRigidProxy()->SetActivationState(Physics::AS_DisableDeactivation);
                                     //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
-                                    Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
+                                    Dragger = new Physics::Point2PointConstraint(rigid->GetRigidProxy(), LocalPivot);
                                     Dragger->SetTAU(0.001);
                                     TheEntresol->GetPhysicsManager()->AddConstraint(Dragger);
                                     Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
@@ -204,13 +204,13 @@ class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
                                     firstframe=true;
                                 }else{  // since we don't
                                     #ifdef MEZZDEBUG
-                                    //TheEntresol->Log("Actor is not an ActorRigid.  Aborting.");
+                                    //TheEntresol->Log("Object is not an ActorRigid.  Aborting.");
                                     #endif
                                 }
                             }
                         }else{
                             #ifdef MEZZDEBUG
-                            //TheEntresol->Log("Actor is Static/Kinematic.  Aborting.");
+                            //TheEntresol->Log("Object is Static/Kinematic.  Aborting.");
                             #endif
                         }
                     }
@@ -226,11 +226,11 @@ class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
             }else{  //Since we are no longer clicking we need to setup for the next clicking
                 if(Dragger)
                 {
-                    ActorRigid* Act = Dragger->GetActorA();
+                    Physics::RigidProxy* Prox = Dragger->GetProxyA();
                     TheEntresol->GetPhysicsManager()->RemoveConstraint(Dragger);
                     delete Dragger;
                     Dragger = NULL;
-                    Act->GetPhysicsSettings()->SetActivationState(Physics::AS_Active);
+                    Prox->SetActivationState(Physics::AS_Active);
                 }
             }
         }
@@ -244,16 +244,16 @@ public:
 
     void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
     {
-        ActorBase* Act1 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontLeft");
-        ActorBase* Act2 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontRight");
-        if (Act1->IsAnimated())
+        /*RigidDebris* Deb1 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontLeft");
+        RigidDebris* Deb2 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontRight");
+        if( Deb1->IsAnimated() )
         {
-            Act1->AdvanceAnimation((Real)0.001 * TheEntresol->GetLastFrameTimeMilliseconds() );
+            Deb1->AdvanceAnimation((Real)0.001 * TheEntresol->GetLastFrameTimeMilliseconds() );
         }
 
-        if (Act2->IsAnimated())
+        if( Deb2->IsAnimated() )
         {
-            Act2->AdvanceAnimation((Real)0.0001 * TheEntresol->GetLastFrameTimeMilliseconds() );
+            Deb2->AdvanceAnimation((Real)0.0001 * TheEntresol->GetLastFrameTimeMilliseconds() );
         }//*/
 
         static bool notplayed = true;
@@ -436,9 +436,13 @@ void LoadContent()
 {
     TheEntresol->GetSceneManager()->SetAmbientLight(0.10,0.10,0.10,0.10);
 
-    ActorRigid *object1, *object2, *object3, *object4;
-    ActorRigid *object5, *object6;
-    ActorRigid *object7;
+    RigidDebris* object1;
+    RigidDebris* object2;
+    RigidDebris* object3;
+    RigidDebris* object4;
+    RigidDebris* object5;
+    RigidDebris* object6;
+    RigidDebris* object7;
     //Ogre Setup Code
     String groupname ("Group1");
     String filerobot ("robot.mesh");
@@ -466,98 +470,103 @@ void LoadContent()
 
     // Now Lets make some bowling pins
     Real PinSpacing=75.0;           //This is how far apart we want the pins
-    ActorRigid* ActRig = NULL;
+    RigidDebris* RigDeb = NULL;
     for(unsigned int c=0; c<4; c++)     //make the back row
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        ActRig = new ActorRigid(mass,namestream.str(),filerobot,groupname);
-        ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCD);
-        //TheEntresol->GetResourceManager()->ImportShapeData(ActRig, "data/common/RobotDecomp3.bullet");
-        ActRig->SetLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
-        TheEntresol->GetActorManager()->AddActor( ActRig );
+        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass);
+        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCD);
+        RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+        //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
+        RigDeb->SetLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
+        RigDeb->AddToWorld();
     }
 
     for(unsigned int c=0; c<3; c++)     //the row with three pins
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        ActRig = new ActorRigid(mass,namestream.str(),filerobot,groupname);
-        ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCD);
-        //TheEntresol->GetResourceManager()->ImportShapeData(ActRig, "data/common/RobotDecomp3.bullet");
-        ActRig->SetLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
-        TheEntresol->GetActorManager()->AddActor( ActRig );
+        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass);
+        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCD);
+        RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+        //TheEntresol->GetResourceManager()->ImportShapeData(RigDeb, "data/common/RobotDecomp3.bullet");
+        RigDeb->SetLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
+        RigDeb->AddToWorld();
     }
-    //TheEntresol->Resources->ImportShapeData(ActRig, "RobotDecomp3.bullet");
+    //TheEntresol->Resources->ImportShapeData(RigDeb, "RobotDecomp3.bullet");
 
     for(unsigned int c=0; c<2; c++)     //the row with 2 pins
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        ActRig = new ActorRigid(mass,namestream.str(),filerobot,groupname);
-        ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCH);
-        ActRig->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
-        TheEntresol->GetActorManager()->AddActor( ActRig );
+        RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass);
+        RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
+        RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+        RigDeb->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
         if (c+7==7)
-            {Robot7=ActRig;}
+            {Robot7=RigDeb;}
         if (c+7==8)
-            {Robot8=ActRig;}
+            {Robot8=RigDeb;}
+        RigDeb->AddToWorld();
     }
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
-    ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCH);
-    ActRig->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
-    TheEntresol->GetActorManager()->AddActor( ActRig );
+    RigDeb = TheEntresol->GetDebrisManager()->CreateRigidDebris(namestream.str(),mass);
+    RigDeb->GetRigidProxy()->SetCollisionShape(RobitCH);
+    RigDeb->GetEntityProxy()->SetMesh(filerobot,groupname);
+    RigDeb->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+    RigDeb->AddToWorld();
 
-    object5 = new ActorRigid(0,"Plane","Plane.mesh",groupname);
-    object5->GetPhysicsSettings()->SetCollisionShape(PlaneStatic);
+    object5 = TheEntresol->GetDebrisManager()->CreateRigidDebris("Plane",0);
+    object5->GetRigidProxy()->SetCollisionShape(PlaneStatic);
+    object5->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
     object5->SetLocation(Vector3(0.0,-100,-300.0));
+    object5->AddToWorld();
 
-    object6 = new ActorRigid(0,"Ramp","Plane.mesh",groupname);
-    object6->GetPhysicsSettings()->SetCollisionShape(PlaneStatic);
+    object6 = TheEntresol->GetDebrisManager()->CreateRigidDebris("Ramp",0);
+    object6->GetRigidProxy()->SetCollisionShape(PlaneStatic);
+    object6->GetEntityProxy()->SetMesh("Plane.mesh",groupname);
     object6->SetLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
+    object6->AddToWorld();
 
-    object1 = new ActorRigid(mass,"RobotWayUpFrontRight",filerobot,groupname);
-    object1->GetPhysicsSettings()->SetCollisionShape(RobitCH);
+    object1 = TheEntresol->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontRight",mass);
+    object1->GetRigidProxy()->SetCollisionShape(RobitCH);
+    object1->GetEntityProxy()->SetMesh(filerobot,groupname);
     object1->SetLocation(Vector3(400,70,100));
     object1->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
-    object1->SetAnimation("Idle", true);
-    object1->EnableAnimation(true);
+    object1->AddToWorld();
 
-    object2 = new ActorRigid(150.0f,"WoodSphere","Sphere_Wood.mesh",groupname);
-    object2->GetPhysicsSettings()->SetCollisionShape(WoodenSphere);
-    object2->SetScaling(Vector3(0.5,0.5,0.5));
+    object2 = TheEntresol->GetDebrisManager()->CreateRigidDebris("WoodSphere",150.0);
+    object2->GetRigidProxy()->SetCollisionShape(WoodenSphere);
+    object2->GetEntityProxy()->SetMesh("Sphere_Wood.mesh",groupname);
+    object2->SetScale(Vector3(0.5,0.5,0.5));
     object2->SetLocation(Vector3(-140.0,2800.0,-1150.0));
+    object2->AddToWorld();
 
-    object3 = new ActorRigid(200.0f,"MetalSphere","Sphere_Metal.mesh",groupname);
-    object3->GetPhysicsSettings()->SetCollisionShape(MetalSphere);
-    object3->SetScaling(Vector3(0.7,0.7,0.7));
+    object3 = TheEntresol->GetDebrisManager()->CreateRigidDebris("MetalSphere",200.0);
+    object3->GetRigidProxy()->SetCollisionShape(MetalSphere);
+    object3->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
+    object3->SetScale(Vector3(0.7,0.7,0.7));
     object3->SetLocation(Vector3(150.0,1800.0,-1300.0));
+    object3->AddToWorld();
 
-    object4 = new ActorRigid(mass,"RobotWayUpFrontLeft",filerobot,groupname);
-    object4->GetPhysicsSettings()->SetCollisionShape(RobitCD);
+    object4 = TheEntresol->GetDebrisManager()->CreateRigidDebris("RobotWayUpFrontLeft",mass);
+    object4->GetRigidProxy()->SetCollisionShape(RobitCD);
+    object4->GetEntityProxy()->SetMesh(filerobot,groupname);
     object4->SetLocation(Vector3(-400,10, 100));
     object4->SetOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
-    object4->SetAnimation("Idle", true);
-    object4->EnableAnimation(true);
+    object4->AddToWorld();
 
-    object7 = new ActorRigid(800.0f,"MetalSphere2","Sphere_Metal.mesh",groupname);
-    object7->GetPhysicsSettings()->SetCollisionShape(MetalSphere2);
-    object7->SetScaling(Vector3(0.3,0.3,0.3));
+    object7 = TheEntresol->GetDebrisManager()->CreateRigidDebris("MetalSphere2",800.0);
+    object7->GetRigidProxy()->SetCollisionShape(MetalSphere2);
+    object7->GetEntityProxy()->SetMesh("Sphere_Metal.mesh",groupname);
+    object7->SetScale(Vector3(0.3,0.3,0.3));
     object7->SetLocation(Vector3(10.0,25000.0,-1300.0));
-    object7->GetPhysicsSettings()->SetDamping(0.3,0.0);
-
-    TheEntresol->GetActorManager()->AddActor(object1);
-    TheEntresol->GetActorManager()->AddActor(object2);
-    TheEntresol->GetActorManager()->AddActor(object3);
-    TheEntresol->GetActorManager()->AddActor(object4);
-    TheEntresol->GetActorManager()->AddActor(object5);
-    TheEntresol->GetActorManager()->AddActor(object6);
-    TheEntresol->GetActorManager()->AddActor(object7);
-    //TheEntresol->GetActorManager()->AddActor(Act9);
+    object7->GetRigidProxy()->SetDamping(0.3,0.0);
+    object7->AddToWorld();
 
     //GravityField
     /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
@@ -576,9 +585,9 @@ void LoadContent()
 
     //Final Steps
     Vector3 grav;
-    grav.X=0.0;
-    grav.Y=-400.0;
-    grav.Z=0.0;
+    grav.X = 0.0;
+    grav.Y = -400.0;
+    grav.Z = 0.0;
 
     Audio::iSound *sound1 = NULL, *music1 = NULL, *music2 = NULL;
     Announcer = new Audio::SoundSet();
@@ -592,8 +601,8 @@ void LoadContent()
     music2 = AudioMan->CreateMusicSound("cAudioTheme2.ogg", groupname);
     Soundtrack->push_back(music2);
 
-    TheEntresol->Log("Actor Count");
-    TheEntresol->Log( TheEntresol->GetActorManager()->GetNumActors() );
+    TheEntresol->Log("Debris Count");
+    TheEntresol->Log( TheEntresol->GetDebrisManager()->GetNumDebris() );
 
     TheEntresol->GetPhysicsManager()->SetGravity(grav);
     TheEntresol->GetPhysicsManager()->SetSoftGravity(grav);

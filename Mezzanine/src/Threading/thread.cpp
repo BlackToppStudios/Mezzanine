@@ -264,7 +264,7 @@ namespace Mezzanine
           if(!joinable())
             return ThreadId();
         #if defined(_MEZZ_THREAD_WIN32_)
-          return id((unsigned long int) mWin32ThreadID);
+          return ThreadId((unsigned long int) mWin32ThreadID);
         #elif defined(_MEZZ_THREAD_POSIX_)
           return _pthread_t_to_ID(mHandle);
         #endif
@@ -295,7 +295,7 @@ namespace Mezzanine
         ThreadId this_thread::get_id()
         {
         #if defined(_MEZZ_THREAD_WIN32_)
-          return Thread::id((unsigned long int) GetCurrentThreadId());
+          return ThreadId((unsigned long int) GetCurrentThreadId());
         #elif defined(_MEZZ_THREAD_POSIX_)
           return _pthread_t_to_ID(pthread_self());
         #endif

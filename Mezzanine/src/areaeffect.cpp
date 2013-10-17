@@ -49,6 +49,8 @@
 
 #include "Graphics/mesh.h"
 #include "Graphics/meshmanager.h"
+#include "Graphics/entityproxy.h"
+#include "Graphics/particlesystemproxy.h"
 #include "Graphics/scenemanager.h"
 
 #include "serialization.h"
@@ -132,12 +134,14 @@ namespace Mezzanine
 
     void AreaEffect::AddToWorld()
     {
-        this->Ghost->AddToWorld();
+        if( this->Ghost )
+            this->Ghost->AddToWorld();
     }
 
     void AreaEffect::RemoveFromWorld()
     {
-        this->Ghost->RemoveFromWorld();
+        if( this->Ghost )
+            this->Ghost->RemoveFromWorld();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -265,9 +269,19 @@ namespace Mezzanine
         this->WorldObject::ProtoSerializeProperties(SelfRoot);
     }
 
+    void AreaEffect::ProtoSerializeProxies(XML::Node& SelfRoot) const
+    {
+
+    }
+
     void AreaEffect::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
     {
         this->WorldObject::ProtoDeSerializeProperties(SelfRoot);
+    }
+
+    void AreaEffect::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
+    {
+
     }
 
     String AreaEffect::GetDerivedSerializableName() const

@@ -653,15 +653,15 @@ namespace Mezzanine
             /// @brief This removes a manager by finding the matching pointer.
             /// @param ManagerToRemove A pointer to the manager to be removed.
             void RemoveManager(ManagerBase* ManagerToRemove);
+            /// @brief This is will find the manager of a given type.
+            /// @param RetrieveType The ManagerBase::ManagerTypeName of the manager to get.
+            /// @param WhichOne If not getting the first/only manager of the given type, get one.
+            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists.
+            ManagerBase* GetManager(const ManagerBase::ManagerType RetrieveType, UInt16 WhichOne = 0);
             /// @brief This removes a manager of a specific type from the list
             /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.
             /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
             void RemoveManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne = 0);
-            /// @brief This is will find the manager of a given type.
-            /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to get.
-            /// @param WhichOne If not getting the first/only manager of the given type, get one.
-            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists.
-            ManagerBase* GetManager(const ManagerBase::ManagerType ManagersToRemoveType, UInt16 WhichOne = 0);
 
             /// @brief This gets the ActorManager from the manager list.
             /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.

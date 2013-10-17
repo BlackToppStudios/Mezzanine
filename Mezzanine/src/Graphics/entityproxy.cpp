@@ -59,22 +59,44 @@ namespace Mezzanine
 {
     namespace Graphics
     {
+        EntityProxy::EntityProxy(SceneManager* Creator) :
+            RenderableProxy(Creator),
+            GraphicsEntity(NULL),
+            ProxyMesh(NULL),
+            RenderDist(0),
+            LightMask(0xFFFFFFFF),
+            SceneVisible(true),
+            CanCastShadows(true)
+            { this->CreateEntity(NULL); }
+
         EntityProxy::EntityProxy(Mesh* TheMesh, SceneManager* Creator) :
             RenderableProxy(Creator),
             GraphicsEntity(NULL),
-            ProxyMesh(NULL)
+            ProxyMesh(NULL),
+            RenderDist(0),
+            LightMask(0xFFFFFFFF),
+            SceneVisible(true),
+            CanCastShadows(true)
             { this->CreateEntity(TheMesh); }
 
         EntityProxy::EntityProxy(const String& MeshName, const String& GroupName, SceneManager* Creator) :
             RenderableProxy(Creator),
             GraphicsEntity(NULL),
-            ProxyMesh(NULL)
+            ProxyMesh(NULL),
+            RenderDist(0),
+            LightMask(0xFFFFFFFF),
+            SceneVisible(true),
+            CanCastShadows(true)
             { this->CreateEntity(MeshName,GroupName); }
 
         EntityProxy::EntityProxy(const XML::Node& SelfRoot, SceneManager* Creator) :
             RenderableProxy(Creator),
             GraphicsEntity(NULL),
-            ProxyMesh(NULL)
+            ProxyMesh(NULL),
+            RenderDist(0),
+            LightMask(0xFFFFFFFF),
+            SceneVisible(true),
+            CanCastShadows(true)
             { this->ProtoDeSerialize(SelfRoot); }
 
         EntityProxy::~EntityProxy()
@@ -88,11 +110,9 @@ namespace Mezzanine
                 this->GraphicsEntity->setUserAny( Ogre::Any( static_cast<RenderableProxy*>( this ) ) );
                 this->GraphicsEntity->setVisibilityFlags(0);
                 this->GraphicsEntity->setQueryFlags(0);
-
-                this->ProxyMesh = ObjectMesh;
-            }else{
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to create internal entity with NULL Mesh.  This may be caused by an invalid mesh name or resource group being provided.");
             }
+
+            this->ProxyMesh = ObjectMesh;
         }
 
         void EntityProxy::CreateEntity(const String& MeshName, const String& GroupName)
@@ -114,7 +134,25 @@ namespace Mezzanine
 
         Mezzanine::ProxyType EntityProxy::GetProxyType() const
         {
-            return PT_Graphics_EntityProxy;
+            return Mezzanine::PT_Graphics_EntityProxy;
+        }
+
+        void EntityProxy::AddToWorld()
+        {
+            if( this->GraphicsEntity && !this->InWorld ) {
+                this->GraphicsEntity->setVisibilityFlags( this->VisibilityMask );
+                this->GraphicsEntity->setQueryFlags( this->QueryMask );
+                this->InWorld = true;
+            }
+        }
+
+        void EntityProxy::RemoveFromWorld()
+        {
+            if( this->GraphicsEntity && this->InWorld ) {
+                this->GraphicsEntity->setVisibilityFlags(0);
+                this->GraphicsEntity->setQueryFlags(0);
+                this->InWorld = false;
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -123,54 +161,122 @@ namespace Mezzanine
         void EntityProxy::SetMesh(const String& MeshName, const String& Group)
         {
             if( this->GraphicsEntity ) {
-                Bool Visible = this->GetVisible();
-                Bool CastShadow = this->GetCastShadows();
-                UInt32 LMask = this->GetLightMask();
-                UInt32 VMask = this->GetVisibilityMask();
-                UInt32 QMask = this->GetQueryMask();
-                Real RenderDist = this->GetRenderDistance();
-
                 this->DestroyEntity();
-                this->CreateEntity(MeshName,Group);
-
-                this->SetVisible( Visible );
-                this->SetCastShadows( CastShadow );
-                this->SetLightMask( LMask );
-                this->SetVisibilityMask( VMask );
-                this->SetQueryMask( QMask );
-                this->SetRenderDistance( RenderDist );
-            }else{
-                this->CreateEntity(MeshName,Group);
             }
+            this->CreateEntity(MeshName,Group);
+
+            this->GraphicsEntity->setVisible( this->SceneVisible );
+            this->GraphicsEntity->setCastShadows( this->CanCastShadows );
+            this->GraphicsEntity->setLightMask( this->LightMask );
+            this->GraphicsEntity->setVisibilityFlags( this->VisibilityMask );
+            this->GraphicsEntity->setQueryFlags( this->QueryMask );
+            this->GraphicsEntity->setRenderingDistance( this->RenderDist );
         }
 
         void EntityProxy::SetMesh(Mesh* ObjectMesh)
         {
             if( this->GraphicsEntity ) {
-                Bool Visible = this->GetVisible();
-                Bool CastShadow = this->GetCastShadows();
-                UInt32 LMask = this->GetLightMask();
-                UInt32 VMask = this->GetVisibilityMask();
-                UInt32 QMask = this->GetQueryMask();
-                Real RenderDist = this->GetRenderDistance();
-
                 this->DestroyEntity();
-                this->CreateEntity(ObjectMesh);
-
-                this->SetVisible( Visible );
-                this->SetCastShadows( CastShadow );
-                this->SetLightMask( LMask );
-                this->SetVisibilityMask( VMask );
-                this->SetQueryMask( QMask );
-                this->SetRenderDistance( RenderDist );
-            }else{
-                this->CreateEntity(ObjectMesh);
             }
+            this->CreateEntity(ObjectMesh);
+
+            this->GraphicsEntity->setVisible( this->SceneVisible );
+            this->GraphicsEntity->setCastShadows( this->CanCastShadows );
+            this->GraphicsEntity->setLightMask( this->LightMask );
+            this->GraphicsEntity->setVisibilityFlags( this->VisibilityMask );
+            this->GraphicsEntity->setQueryFlags( this->QueryMask );
+            this->GraphicsEntity->setRenderingDistance( this->RenderDist );
         }
 
         Mesh* EntityProxy::GetMesh() const
         {
             return this->ProxyMesh;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // RenderableProxy Properties
+
+        void EntityProxy::SetVisible(const Bool Visible)
+        {
+            this->SceneVisible = Visible;
+            if( this->GraphicsEntity ) {
+                this->GraphicsEntity->setVisible( this->SceneVisible );
+            }
+        }
+
+        Bool EntityProxy::GetVisible() const
+        {
+            return this->SceneVisible;
+        }
+
+        void EntityProxy::SetCastShadows(const Bool CastShadows)
+        {
+            this->CanCastShadows = CastShadows;
+            if( this->GraphicsEntity ) {
+                this->GraphicsEntity->setCastShadows( this->CanCastShadows );
+            }
+        }
+
+        Bool EntityProxy::GetCastShadows() const
+        {
+            return this->CanCastShadows;
+        }
+
+        Bool EntityProxy::GetReceiveShadows() const
+        {
+            return ( this->GraphicsEntity ? this->GraphicsEntity->getReceivesShadows() : false );
+        }
+
+        void EntityProxy::SetLightMask(const UInt32 Mask)
+        {
+            this->LightMask = Mask;
+            if( this->GraphicsEntity ) {
+                this->GraphicsEntity->setLightMask( this->LightMask );
+            }
+        }
+
+        UInt32 EntityProxy::GetLightMask() const
+        {
+            return this->LightMask;
+        }
+
+        void EntityProxy::SetVisibilityMask(const UInt32 Mask)
+        {
+            this->VisibilityMask = Mask;
+            if( this->GraphicsEntity && this->InWorld ) {
+                this->GraphicsEntity->setVisibilityFlags( this->VisibilityMask );
+            }
+        }
+
+        UInt32 EntityProxy::GetVisibilityMask() const
+        {
+            return this->VisibilityMask;
+        }
+
+        void EntityProxy::SetQueryMask(const UInt32 Mask)
+        {
+            this->QueryMask = Mask;
+            if( this->GraphicsEntity && this->InWorld ) {
+                this->GraphicsEntity->setQueryFlags( this->QueryMask );
+            }
+        }
+
+        UInt32 EntityProxy::GetQueryMask() const
+        {
+            return this->QueryMask;
+        }
+
+        void EntityProxy::SetRenderDistance(const Real Distance)
+        {
+            this->RenderDist = Distance;
+            if( this->GraphicsEntity ) {
+                this->GraphicsEntity->setRenderingDistance( this->RenderDist );
+            }
+        }
+
+        Real EntityProxy::GetRenderDistance() const
+        {
+            return this->RenderDist;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -200,8 +306,8 @@ namespace Mezzanine
             XML::Node MeshNode = SelfRoot.AppendChild( EntityProxy::GetSerializableName() + "Mesh" );
 
             if( MeshNode.AppendAttribute("Version").SetValue("1") &&
-                MeshNode.AppendAttribute("ProxyMeshName").SetValue( this->ProxyMesh->GetName() ) &&
-                MeshNode.AppendAttribute("ProxyMeshGroup").SetValue( this->ProxyMesh->GetGroup() ) )
+                MeshNode.AppendAttribute("ProxyMeshName").SetValue( this->ProxyMesh ? this->ProxyMesh->GetName() : "" ) &&
+                MeshNode.AppendAttribute("ProxyMeshGroup").SetValue( this->ProxyMesh ? this->ProxyMesh->GetGroup() : "" ) )
             {
                 return;
             }else{
@@ -247,8 +353,12 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         MeshGroup = CurrAttrib.AsString();
 
-                    Mesh* NewMesh = MeshManager::GetSingletonPtr()->LoadMesh( MeshName, MeshGroup );
-                    this->SetMesh( NewMesh );
+                    if( !MeshName.empty() && !MeshGroup.empty() ) {
+                        Mesh* NewMesh = MeshManager::GetSingletonPtr()->LoadMesh( MeshName, MeshGroup );
+                        this->SetMesh( NewMesh );
+                    }else{
+                        this->SetMesh( NULL );
+                    }
                 }
             }
         }

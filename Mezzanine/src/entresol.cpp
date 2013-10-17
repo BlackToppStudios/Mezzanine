@@ -855,6 +855,19 @@ namespace Mezzanine
         this->ManagerList.push_back(ManagerToAdd);
     }
 
+    ManagerBase* Entresol::GetManager(const ManagerBase::ManagerType RetrieveType, UInt16 WhichOne)
+    {
+        for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+        {
+            if( (*ManIter)->GetInterfaceType() == RetrieveType )
+            {
+                if( 0 == WhichOne ) return *ManIter; // we use our copy of WhichOne as a countdown to 0
+                else --WhichOne;
+            }
+        }
+        return NULL;
+    }
+
     void Entresol::RemoveManager(ManagerBase* ManagerToRemove)
     {
         for( std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin() ; ManIter != this->ManagerList.end() ; ++ManIter )
@@ -882,19 +895,6 @@ namespace Mezzanine
                 }
             }
         }
-    }
-
-    ManagerBase* Entresol::GetManager(const ManagerBase::ManagerType ManagersToGet, UInt16 WhichOne)
-    {
-        for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
-        {
-            if( (*ManIter)->GetInterfaceType() == ManagersToGet )
-            {
-                if( 0 == WhichOne ) return *ManIter; // we use our copy of WhichOne as a countdown to 0
-                else --WhichOne;
-            }
-        }
-        return NULL;
     }
 
     ActorManager* Entresol::GetActorManager(const UInt16 WhichOne)

@@ -62,12 +62,28 @@ namespace Mezzanine
         class MEZZ_LIB EntityProxy : public RenderableProxy
         {
         protected:
+            // We want to be able to preserve all our settings and set a mesh seemlessly, but the underlying implementation doesn't support that.
+            // So we need a cache of all the settings we can access.  Our base class already handles two such settings, so we can skip those.
+
             /// @internal
             /// @brief A pointer to the internal Entity this proxy is based on.
             Ogre::Entity* GraphicsEntity;
             /// @internal
             /// @brief A pointer to the mesh being used by this proxy.
             Mesh* ProxyMesh;
+
+            /// @internal
+            /// @brief Stores the maximum distance this object can be from the camera before it is clipped/culled.
+            Real RenderDist;
+            /// @internal
+            /// @brief A bitmask which will be compared against to determine which lights apply to this object.
+            UInt32 LightMask;
+            /// @internal
+            /// @brief Stores whether or not this object should be rendered, regardless of other criteria.
+            Bool SceneVisible;
+            /// @internal
+            /// @brief Stores whether or not this object can cast shadows on other objects.
+            Bool CanCastShadows;
 
             /// @internal
             /// @brief Creates an internal entity based on the provided mesh.
@@ -82,6 +98,9 @@ namespace Mezzanine
             /// @brief Destroys the internal entity in use by this proxy.
             virtual void DestroyEntity();
         public:
+            /// @brief Blank constructor.
+            /// @param Creator A pointer to the manager that created this proxy.
+            EntityProxy(SceneManager* Creator);
             /// @brief Loaded Mesh constructor.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
             /// @param Creator A pointer to the manager that created this proxy.
@@ -108,6 +127,11 @@ namespace Mezzanine
             /// @copydoc WorldProxy::GetProxyType() const
             virtual Mezzanine::ProxyType GetProxyType() const;
 
+            /// @copydoc WorldProxy::AddToWorld()
+            virtual void AddToWorld();
+            /// @copydoc WorldProxy::RemoveFromWorld()
+            virtual void RemoveFromWorld();
+
             ///////////////////////////////////////////////////////////////////////////////
             // Mesh Management
 
@@ -121,6 +145,38 @@ namespace Mezzanine
             /// @brief Gets the mesh currently being used by this proxy.
             /// @return Returns a pointer to the mesh currently being used by this proxy.
             virtual Mesh* GetMesh() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // RenderableProxy Properties
+
+            /// @copydoc RenderableProxy::SetVisible(const Bool)
+            virtual void SetVisible(const Bool Visible);
+            /// @copydoc RenderableProxy::GetVisible() const
+            virtual Bool GetVisible() const;
+            /// @copydoc RenderableProxy::SetCastShadows(const Bool)
+            virtual void SetCastShadows(const Bool CastShadows);
+            /// @copydoc RenderableProxy::GetCastShadows() const
+            virtual Bool GetCastShadows() const;
+            /// @copydoc RenderableProxy::GetReceiveShadows() const
+            virtual Bool GetReceiveShadows() const;
+
+            /// @copydoc RenderableProxy::SetLightMask(const UInt32)
+            virtual void SetLightMask(const UInt32 Mask);
+            /// @copydoc RenderableProxy::GetLightMask() const
+            virtual UInt32 GetLightMask() const;
+            /// @copydoc RenderableProxy::SetVisibilityMask(const UInt32)
+            virtual void SetVisibilityMask(const UInt32 Mask);
+            /// @copydoc RenderableProxy::GetVisibilityMask() const
+            virtual UInt32 GetVisibilityMask() const;
+            /// @copydoc RenderableProxy::SetQueryMask(const UInt32)
+            virtual void SetQueryMask(const UInt32 Mask);
+            /// @copydoc RenderableProxy::GetQueryMask() const
+            virtual UInt32 GetQueryMask() const;
+
+            /// @copydoc RenderableProxy::SetRenderDistance(const Real)
+            virtual void SetRenderDistance(const Real Distance);
+            /// @copydoc RenderableProxy::GetRenderDistance() const
+            virtual Real GetRenderDistance() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Entity Properties

@@ -81,6 +81,7 @@ namespace Mezzanine
         XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
 
         this->ProtoSerializeProperties(SelfRoot);
+        this->ProtoSerializeProxies(SelfRoot);
     }
 
     void WorldObject::ProtoSerializeProperties(XML::Node& SelfRoot) const
@@ -106,6 +107,7 @@ namespace Mezzanine
     void WorldObject::ProtoDeSerialize(const XML::Node& SelfRoot)
     {
         this->ProtoDeSerializeProperties(SelfRoot);
+        this->ProtoDeSerializeProxies(SelfRoot);
     }
 
     void WorldObject::ProtoDeSerializeProperties(const XML::Node& SelfRoot)

@@ -258,6 +258,9 @@ namespace Mezzanine
             /// @return Returns a pointer to the created proxy.
             BillboardSetProxy* CreateBillboardSetProxy(const XML::Node& SelfRoot);
             /// @brief Creates a new EntityProxy.
+            /// @return Returns a pointer to the created proxy.
+            EntityProxy* CreateEntityProxy();
+            /// @brief Creates a new EntityProxy.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
             /// @return Returns a pointer to the created proxy.
             EntityProxy* CreateEntityProxy(Mesh* TheMesh);

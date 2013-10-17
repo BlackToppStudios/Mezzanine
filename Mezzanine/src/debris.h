@@ -48,7 +48,7 @@
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @brief A simple world object without a large structure.
+    /// @brief A simple world object without a large structure ideal for representing loose small objects.
     /// @details
     ///////////////////////////////////////
     class MEZZ_LIB Debris : public WorldObject
@@ -63,7 +63,29 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         Debris(const String& Name, World* TheWorld);
         /// @brief Class destructor.
-        ~Debris();
+        virtual ~Debris();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility and Configuration
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Working with the World
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        /// @copydoc Mezzanine::WorldObject::ProtoSerializeProperties(XML::Node&) const
+        virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+        /// @copydoc Mezzanine::WorldObject::ProtoDeSerializeProperties(const XML::Node&)
+        virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+        /// @copydoc Mezzanine::WorldObject::GetDerivedSerializableName() const
+        virtual String GetDerivedSerializableName() const;
+        /// @copydoc Mezzanine::WorldObject::GetSerializableName()
+        static String GetSerializableName();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
     };//Debris
 
     ///////////////////////////////////////////////////////////////////////////////
