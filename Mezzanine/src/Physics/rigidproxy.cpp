@@ -84,7 +84,7 @@ namespace Mezzanine
         void RigidProxy::CreateRigidObject(const Real Mass)
         {
             this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
-            this->PhysicsRigidBody->setMotionState( new Internal::MultiProxyMotionState() );
+            this->PhysicsRigidBody->setMotionState( new Internal::MultiProxyMotionState( this ) );
             this->PhysicsRigidBody->setUserPointer( this );
             if(0.0 == Mass) {
                 this->PhysicsRigidBody->setCollisionFlags( btCollisionObject::CF_STATIC_OBJECT );
