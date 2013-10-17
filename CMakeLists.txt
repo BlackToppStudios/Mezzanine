@@ -571,8 +571,8 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 Message(STATUS "Starting Subproject Configuration.")
 add_subdirectory (Mezzanine)
-#add_subdirectory (EngineDemo)
-#add_subdirectory (Catch)
+add_subdirectory (EngineDemo)
+add_subdirectory (Catch)
 add_subdirectory (UnitTests)
 Message(STATUS "Finishing Subproject Configuration.")
 

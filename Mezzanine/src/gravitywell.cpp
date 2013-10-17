@@ -154,7 +154,7 @@ namespace Mezzanine
 
         if( !this->AllowWorldGrav && !this->RemovedObjects.empty() )
         {
-            const Vector3 WorldGravity = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetGravity();
+            const Vector3 WorldGravity = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetWorldGravity();
             for( ObjectIterator RemovedIt = this->RemovedObjects.begin() ; RemovedIt != this->RemovedObjects.end() ; ++RemovedIt )
             {
                 ProxyContainer RigidProxies;

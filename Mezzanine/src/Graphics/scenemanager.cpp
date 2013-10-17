@@ -42,12 +42,16 @@
 
 #include "Graphics/cameramanager.h"
 #include "Graphics/scenemanager.h"
-#include "areaeffectmanager.h"
-#include "entresol.h"
-#include "plane.h"
-#include "UI/uimanager.h"
+
 #include "Physics/physicsmanager.h"
+
+#include "UI/uimanager.h"
+
+#include "areaeffectmanager.h"
+#include "plane.h"
+#include "worldobject.h"
 #include "stringtool.h"
+#include "entresol.h"
 
 #include "Graphics/billboardsetproxy.h"
 #include "Graphics/entityproxy.h"
@@ -492,6 +496,10 @@ namespace Mezzanine
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
+                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    if( Parent )
+                        Parent->_NotifyProxyDestroyed( (*ProxIt) );
+
                     this->Proxies.erase(ProxIt);
                     delete (*ProxIt);
                     return;
@@ -503,6 +511,10 @@ namespace Mezzanine
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
+                WorldObject* Parent = (*ProxIt)->GetParentObject();
+                if( Parent )
+                    Parent->_NotifyProxyDestroyed( (*ProxIt) );
+
                 delete (*ProxIt);
             }
             this->Proxies.clear();

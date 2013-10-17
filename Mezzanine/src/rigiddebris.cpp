@@ -87,11 +87,13 @@ namespace Mezzanine
         Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
         if( SceneMan ) {
             this->EntProx = SceneMan->CreateEntityProxy();
+            this->EntProx->_Bind( this );
         }
 
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
         if( PhysMan ) {
             this->RigProx = PhysMan->CreateRigidProxy(Mass);
+            this->RigProx->_Bind( this );
         }
 
         if( this->EntProx && this->RigProx ) {
@@ -106,6 +108,7 @@ namespace Mezzanine
             Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
             if( SceneMan ) {
                 SceneMan->DestroyProxy( this->EntProx );
+                this->EntProx = NULL;
             }
         }
 
@@ -335,6 +338,7 @@ namespace Mezzanine
                     Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
                     if( SceneMan ) {
                         this->EntProx = SceneMan->CreateEntityProxy( EntProxNode );
+                        this->EntProx->_Bind( this );
                     }
                 }
 
@@ -343,6 +347,7 @@ namespace Mezzanine
                     Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
                     if( PhysMan ) {
                         this->RigProx = PhysMan->CreateRigidProxy(RigProxNode);
+                        this->RigProx->_Bind( this );
                     }
                 }
 
@@ -377,23 +382,15 @@ namespace Mezzanine
             return;
 
         if( this->EntProx == ToBeDestroyed ) {
-            Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
-            if( SceneMan != NULL ) {
-                if( this->RigProx ) {
-                    this->RigProx->RemoveSyncProxy( this->EntProx );
-                }
-
-                SceneMan->DestroyProxy( this->EntProx );
-                this->EntProx = NULL;
+            if( this->RigProx ) {
+                this->RigProx->RemoveSyncProxy( this->EntProx );
             }
+
+            this->EntProx = NULL;
         }
 
         if( this->RigProx == ToBeDestroyed ) {
-            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-            if( PhysMan != NULL ) {
-                PhysMan->DestroyProxy( this->RigProx );
-                this->RigProx = NULL;
-            }
+            this->RigProx = NULL;
         }
     }
 

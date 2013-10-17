@@ -91,6 +91,7 @@ namespace Mezzanine
             }else{
                 this->PhysicsRigidBody->setCollisionFlags( this->PhysicsRigidBody->getCollisionFlags() & (~btCollisionObject::CF_STATIC_OBJECT) );
             }
+            this->SetGravity( this->Manager->GetWorldGravity() );
         }
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -205,7 +205,7 @@ namespace Mezzanine
                 try
                 {
                     WorldObject* HitMetaInfo = Ogre::any_cast<Graphics::RenderableProxy*>(pentity->getUserAny())->GetParentObject();
-                    if(HitMetaInfo->GetType() & ObjectFlags)
+                    if( HitMetaInfo && ( HitMetaInfo->GetType() & ObjectFlags ) )
                     {
                         // mesh data to retrieve
                         size_t vertex_count;

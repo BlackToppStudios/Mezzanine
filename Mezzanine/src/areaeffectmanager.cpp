@@ -345,7 +345,6 @@ namespace Mezzanine
             if( PhysicsMan ) {
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetSimulationWork() );
                 this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetWorldTriggerUpdateWork() );
-                this->AreaEffectUpdateWork->AddDependency( PhysicsMan->GetDebugDrawWork() );
             }
 
             Mezzanine::ActorManager* ActorMan = this->TheEntresol->GetActorManager();
