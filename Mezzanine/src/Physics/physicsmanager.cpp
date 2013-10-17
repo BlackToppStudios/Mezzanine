@@ -731,7 +731,7 @@ namespace Mezzanine
                     }
                 }
 
-                if( ProxA->GetCollisionResponse() && ProxB->GetCollisionResponse() )
+                if( ( ProxA != NULL && ProxA->GetCollisionResponse() ) && ( ProxB != NULL && ProxB->GetCollisionResponse() ) )
                 {
                     // Create the collision
                     CollidablePair NewPair(ProxA,ProxB);

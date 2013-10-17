@@ -85,11 +85,14 @@ namespace Mezzanine
         {
             this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
             this->PhysicsRigidBody->setMotionState( new Internal::MultiProxyMotionState( this ) );
-            this->PhysicsRigidBody->setUserPointer( this );
+            this->PhysicsRigidBody->setUserPointer( static_cast<CollidableProxy*>( this ) );
             if(0.0 == Mass) {
                 this->PhysicsRigidBody->setCollisionFlags( btCollisionObject::CF_STATIC_OBJECT );
+                this->CollisionGroup = Physics::CF_StaticFilter;
+                this->CollisionMask = Physics::CF_AllFilter & ~Physics::CF_StaticFilter;
             }else{
                 this->PhysicsRigidBody->setCollisionFlags( this->PhysicsRigidBody->getCollisionFlags() & (~btCollisionObject::CF_STATIC_OBJECT) );
+                // Use default group and mask
             }
             this->SetGravity( this->Manager->GetWorldGravity() );
         }

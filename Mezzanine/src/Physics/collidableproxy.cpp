@@ -274,11 +274,12 @@ namespace Mezzanine
         // CollidableProxy Methods
 
         CollidableProxy::CollidableProxy(PhysicsManager* Creator) :
+            BodyScale(1,1,1),
             ProxyShape(NULL),
             ScalerShape(NULL),
             Manager(Creator),
-            CollisionGroup(0),
-            CollisionMask(0)
+            CollisionGroup(Physics::CF_GenericFilter),
+            CollisionMask(Physics::CF_AllFilter)
             {  }
 
         CollidableProxy::~CollidableProxy()
