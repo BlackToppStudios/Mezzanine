@@ -76,8 +76,9 @@
 #include "attachable.h"                 // Target for output only
 #endif
 
-#ifndef SWIG
 #include "axisalignedbox.h"
+
+#ifndef SWIG
 #include "binarybuffer.h"
 #include "cameracontroller.h"
 #include "colourvalue.h"                // done

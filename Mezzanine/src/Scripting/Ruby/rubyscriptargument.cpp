@@ -37,115 +37,115 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _lua51scriptargument_cpp
-#define _lua51scriptargument_cpp
+#ifndef _rubyscriptargument_cpp
+#define _rubyscriptargument_cpp
 
 #include "datatypes.h"
-#include "lua51scriptargument.h"
+#include "rubyscriptargument.h"
 
-#ifdef MEZZLUA51
+#ifdef MEZZRUBY
 
-#include "lua51script.h"
-#include "lua51scriptingengine.h"
+#include "rubyscript.h"
+#include "rubyscriptingengine.h"
 #include "exception.h"
 
 #include <algorithm>
 
 /// @file
-/// @brief This file has the implementation for the Lua script argument.
+/// @brief This file has the implementation for the Ruby script argument.
 
 extern "C"
 {
-    #include "lua.h"            // Lua Core
-    #include "lualib.h"         // for opening the base state
-    #include "lauxlib.h"        // Extra Lua Goodies like lua_open()
+    #include "ruby.h"            // Ruby Core
+    #include "rubylib.h"         // for opening the base state
+    #include "lauxlib.h"        // Extra Ruby Goodies like ruby_open()
 }
 
 namespace Mezzanine
 {
     namespace Scripting
     {
-        namespace Lua
+        namespace Ruby
         {
 
 
-            void Lua51IntegerArgument::Push(lua_State* TargetState) const
-                { lua_pushinteger(TargetState, this->Datum); }
+            void RubyIntegerArgument::Push(ruby_State* TargetState) const
+                { ruby_pushinteger(TargetState, this->Datum); }
 
-            void Lua51IntegerArgument::Pop(lua_State* TargetState)
+            void RubyIntegerArgument::Pop(ruby_State* TargetState)
             {
-                int Top = lua_gettop(TargetState);
-                if(LUA_TNUMBER==lua_type(TargetState,Top))
-                    { Datum = lua_tointeger(TargetState,Top); }
+                int Top = ruby_gettop(TargetState);
+                if(RUBY_TNUMBER==ruby_type(TargetState,Top))
+                    { Datum = ruby_tointeger(TargetState,Top); }
                 else
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Integer), but found something else.") }
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby number(Integer), but found something else.") }
             }
 
-            void Lua51RealArgument::Push(lua_State* TargetState) const
-                { lua_pushnumber(TargetState, this->Datum); }
-            void Lua51RealArgument::Pop(lua_State* TargetState)
+            void RubyRealArgument::Push(ruby_State* TargetState) const
+                { ruby_pushnumber(TargetState, this->Datum); }
+            void RubyRealArgument::Pop(ruby_State* TargetState)
             {
-                int Top = lua_gettop(TargetState);
-                if(LUA_TNUMBER==lua_type(TargetState,Top))
-                    { Datum = lua_tonumber(TargetState,Top); }
+                int Top = ruby_gettop(TargetState);
+                if(RUBY_TNUMBER==ruby_type(TargetState,Top))
+                    { Datum = ruby_tonumber(TargetState,Top); }
                 else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Real), but found something else.") }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby number(Real), but found something else.") }
             }
 
-            void Lua51WholeArgument::Push(lua_State* TargetState) const
-                { lua_pushnumber(TargetState, this->Datum); }
-            void Lua51WholeArgument::Pop(lua_State* TargetState)
+            void RubyWholeArgument::Push(ruby_State* TargetState) const
+                { ruby_pushnumber(TargetState, this->Datum); }
+            void RubyWholeArgument::Pop(ruby_State* TargetState)
             {
-                int Top = lua_gettop(TargetState);
-                if(LUA_TNUMBER==lua_type(TargetState,Top))
-                    { Datum = lua_tointeger(TargetState,Top); }
+                int Top = ruby_gettop(TargetState);
+                if(RUBY_TNUMBER==ruby_type(TargetState,Top))
+                    { Datum = ruby_tointeger(TargetState,Top); }
                 else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Whole), but found something else.") }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby number(Whole), but found something else.") }
             }
 
-            void Lua51StringArgument::Push(lua_State *TargetState) const
-                { lua_pushlstring(TargetState, this->Datum.c_str(), this->Datum.size() ); }
-            void Lua51StringArgument::Pop(lua_State *TargetState)
+            void RubyStringArgument::Push(ruby_State *TargetState) const
+                { ruby_pushlstring(TargetState, this->Datum.c_str(), this->Datum.size() ); }
+            void RubyStringArgument::Pop(ruby_State *TargetState)
             {
-                int Top = lua_gettop(TargetState);
-                if(LUA_TSTRING==lua_type(TargetState,Top))
-                    { Datum = lua_tostring(TargetState,Top); }
+                int Top = ruby_gettop(TargetState);
+                if(RUBY_TSTRING==ruby_type(TargetState,Top))
+                    { Datum = ruby_tostring(TargetState,Top); }
                 else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby string(String), but found something else.") }
             }
 
-            void Lua51BoolArgument::Push(lua_State *TargetState) const
-                { lua_pushboolean(TargetState, this->Datum); }
-            void Lua51BoolArgument::Pop(lua_State *TargetState)
+            void RubyBoolArgument::Push(ruby_State *TargetState) const
+                { ruby_pushboolean(TargetState, this->Datum); }
+            void RubyBoolArgument::Pop(ruby_State *TargetState)
             {
-                int Top = lua_gettop(TargetState);
-                if(LUA_TBOOLEAN==lua_type(TargetState,Top))
-                    { Datum = lua_toboolean(TargetState,Top); }
+                int Top = ruby_gettop(TargetState);
+                if(RUBY_TBOOLEAN==ruby_type(TargetState,Top))
+                    { Datum = ruby_toboolean(TargetState,Top); }
                 else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby string(String), but found something else.") }
             }
 
-            void Lua51NilArgument::Push(lua_State *TargetState) const
-                { lua_pushnil(TargetState); }
-            void Lua51NilArgument::Pop(lua_State *TargetState)
+            void RubyNilArgument::Push(ruby_State *TargetState) const
+                { ruby_pushnil(TargetState); }
+            void RubyNilArgument::Pop(ruby_State *TargetState)
             {
-                int Top = lua_gettop(TargetState);
-                if(LUA_TNIL==lua_type(TargetState,Top))
-                    { lua_pop(TargetState,1); }
+                int Top = ruby_gettop(TargetState);
+                if(RUBY_TNIL==ruby_type(TargetState,Top))
+                    { ruby_pop(TargetState,1); }
                 else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
-                // It seems Lua Nils never go on the stack when being returned sometimes.
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby string(String), but found something else.") }
+                // It seems Ruby Nils never go on the stack when being returned sometimes.
             }
 
 
 
 
-        } // Lua
+        } // Ruby
     } // Scripting
 } // Mezzanine
 
 
 
 
-#endif //  MEZZLUA51
+#endif //  MEZZRUBY
 #endif

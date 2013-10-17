@@ -552,6 +552,16 @@ class lua51tests : public UnitTestGroup
                               "end",
                               "Threading::ScopedTimer", "TestFuncScop", 100, 100,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestAABB(x)\n"
+                              "   aabb=MezzanineSafe.AxisAlignedBox("
+                              "     MezzanineSafe.Vector3(0,0,0),"
+                              "     MezzanineSafe.Vector3(x,x,x)"
+                              "     )\n"
+                              "   return aabb:GetVolume()\n"
+                              "end",
+                              "AABB", "TestAABB", 2, 8,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
             }
 
         }

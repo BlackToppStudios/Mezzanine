@@ -215,5 +215,5 @@ namespace Mezzanine
 } // Mezzanine
 
 
-#endif // MEZZLUA
+#endif // MEZZRUBY
 #endif // \_scriptingRuby_h
