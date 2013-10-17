@@ -945,7 +945,7 @@ endif(${Mezz_SWIG})
 
 #######################################
 # Library Link Dependencies
-add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames} ${LuaProject} ${SDLLibraryNames} ${SoundLibraryNames} ${SWIG_PROJECT} )
+add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames} ${LuaProject} ${RubyProject} ${SDLLibraryNames} ${SoundLibraryNames} ${SWIG_PROJECT} )
 
 find_package(Threads)
 
