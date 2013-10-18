@@ -87,11 +87,13 @@ namespace Mezzanine
         Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
         if( SceneMan ) {
             this->EntProx = SceneMan->CreateEntityProxy();
+            this->EntProx->_Bind( this );
         }
 
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
         if( PhysMan ) {
             this->SofProx = PhysMan->CreateSoftProxy(Mass);
+            this->SofProx->_Bind( this );
         }
     }
 
@@ -102,6 +104,7 @@ namespace Mezzanine
             Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
             if( SceneMan ) {
                 SceneMan->DestroyProxy( this->EntProx );
+                this->EntProx = NULL;
             }
         }
 
@@ -332,6 +335,7 @@ namespace Mezzanine
                     Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
                     if( SceneMan ) {
                         this->EntProx = SceneMan->CreateEntityProxy( EntProxNode );
+                        this->EntProx->_Bind( this );
                     }
                 }
 
@@ -340,6 +344,7 @@ namespace Mezzanine
                     Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
                     if( PhysMan ) {
                         this->SofProx = PhysMan->CreateSoftProxy(SofProxNode);
+                        this->SofProx->_Bind( this );
                     }
                 }
             }else{
@@ -370,19 +375,11 @@ namespace Mezzanine
             return;
 
         if( this->EntProx == ToBeDestroyed ) {
-            Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
-            if( SceneMan != NULL ) {
-                SceneMan->DestroyProxy( this->EntProx );
-                this->EntProx = NULL;
-            }
+            this->EntProx = NULL;
         }
 
         if( this->SofProx == ToBeDestroyed ) {
-            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-            if( PhysMan != NULL ) {
-                PhysMan->DestroyProxy( this->SofProx );
-                this->SofProx = NULL;
-            }
+            this->SofProx = NULL;
         }
     }
 

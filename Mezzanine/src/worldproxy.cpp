@@ -50,7 +50,8 @@
 
 namespace Mezzanine
 {
-    WorldProxy::WorldProxy()
+    WorldProxy::WorldProxy() :
+        ParentObject(NULL)
         {  }
 
     WorldProxy::~WorldProxy()

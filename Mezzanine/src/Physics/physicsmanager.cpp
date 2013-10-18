@@ -632,8 +632,8 @@ namespace Mezzanine
             //this->BulletDynamicsWorld->getSolverInfo().m_globalCfm = 0.15;
             //this->BulletDynamicsWorld->getSolverInfo().m_erp = 0.4;
 
-            this->SetGravity(Info.Gravity);
-            this->SetSoftGravity(Info.Gravity);
+            this->SetWorldGravity(Info.Gravity);
+            this->SetWorldSoftGravity(Info.Gravity);
             this->WorldConstructionInfo = Info;
         }
 
@@ -731,7 +731,7 @@ namespace Mezzanine
                     }
                 }
 
-                if( ProxA->GetCollisionResponse() && ProxB->GetCollisionResponse() )
+                if( ( ProxA != NULL && ProxA->GetCollisionResponse() ) && ( ProxB != NULL && ProxB->GetCollisionResponse() ) )
                 {
                     // Create the collision
                     CollidablePair NewPair(ProxA,ProxB);
@@ -771,23 +771,23 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Gravity Management
 
-        void PhysicsManager::SetGravity(const Vector3& pgrav)
+        void PhysicsManager::SetWorldGravity(const Vector3& pgrav)
         {
             this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
         }
 
-        Vector3 PhysicsManager::GetGravity()
+        Vector3 PhysicsManager::GetWorldGravity()
         {
             Vector3 grav(this->BulletDynamicsWorld->getGravity());
             return grav;
         }
 
-        void PhysicsManager::SetSoftGravity(const Vector3& sgrav)
+        void PhysicsManager::SetWorldSoftGravity(const Vector3& sgrav)
         {
             this->BulletDynamicsWorld->getWorldInfo().m_gravity = sgrav.GetBulletVector3();
         }
 
-        Vector3 PhysicsManager::GetSoftGravity()
+        Vector3 PhysicsManager::GetWorldSoftGravity()
         {
             Vector3 sgrav(this->BulletDynamicsWorld->getWorldInfo().m_gravity);
             return sgrav;
@@ -852,6 +852,10 @@ namespace Mezzanine
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
                 if( ToBeDestroyed == (*ProxIt) ) {
+                    WorldObject* Parent = (*ProxIt)->GetParentObject();
+                    if( Parent )
+                        Parent->_NotifyProxyDestroyed( (*ProxIt) );
+
                     this->Proxies.erase(ProxIt);
                     delete (*ProxIt);
                     return;
@@ -863,6 +867,10 @@ namespace Mezzanine
         {
             for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
             {
+                WorldObject* Parent = (*ProxIt)->GetParentObject();
+                if( Parent )
+                    Parent->_NotifyProxyDestroyed( (*ProxIt) );
+
                 delete (*ProxIt);
             }
             this->Proxies.clear();
@@ -1134,9 +1142,9 @@ namespace Mezzanine
 
                 // Simulation work configuration
                 if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
-                    this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ), "RenderWorkMonopoly"   );
+                    this->TheEntresol->GetScheduler().AddWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ), "SimulationWorkMonopoly" );
                 }else{
-                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->SimulationWork, "RenderWorkMain" );
+                    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->SimulationWork, "SimulationWorkMain" );
                 }
                 Graphics::GraphicsManager* GraphicsMan = this->TheEntresol->GetGraphicsManager();
                 if( GraphicsMan )

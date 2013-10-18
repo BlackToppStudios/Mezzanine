@@ -357,20 +357,20 @@ namespace Mezzanine
             /// @brief Sets the gravity.
             /// @details Sets the strength and direction of gravity within the world.
             /// @param pgrav Vector3 representing the strength and direction of gravity.
-            void SetGravity(const Vector3& pgrav);
+            void SetWorldGravity(const Vector3& pgrav);
             /// @brief Gets the gravity.
             /// @details Gets the currently set world gravity.
             /// @return Returns the currently set world gravity.
-            Vector3 GetGravity();
+            Vector3 GetWorldGravity();
             /// @brief Sets the gravity for soft bodies.
             /// @details Gravity for soft bodies is stored separately from rigid bodies.  So if you plan to use soft bodies in your game/simulation
             /// you need to call this function otherwise they won't fall.
             /// @param sgrav Vector3 representing the strength and direction of gravity.
-            void SetSoftGravity(const Vector3& sgrav);
+            void SetWorldSoftGravity(const Vector3& sgrav);
             /// @brief Gets the soft body gravity.
             /// @details Gets the currently set soft body world gravity.
             /// @return Returns the currently set soft body world gravity.
-            Vector3 GetSoftGravity();
+            Vector3 GetWorldSoftGravity();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Creating Proxies

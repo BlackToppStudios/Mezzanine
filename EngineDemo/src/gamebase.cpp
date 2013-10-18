@@ -395,12 +395,9 @@ int main(int argc, char **argv)
     MakeGUI();
 
     //Configure the wireframe Drawer
-    //TheEntresol->GetPhysicsManager()->SetDebugPhysicsWireCount(2);
-    //TheEntresol->GetPhysicsManager()->SetDebugPhysicsRendering(0);
+    //TheEntresol->GetPhysicsManager()->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
 
     //Setup some camera tricks
-    //WorldNode* CameraNode = TheEntresol->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
-    //CameraNode->AttachElement(TheEntresol->GetCameraManager()->GetDefaultCamera());
     TheEntresol->GetCameraManager()->GetCamera(0)->SetLocation(Vector3(0.0,200.0,450.0));
     //CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
     //DefaultControl->SetMovementMode(CameraController::CCM_Walk);
@@ -444,11 +441,11 @@ void LoadContent()
     RigidDebris* object6;
     RigidDebris* object7;
     //Ogre Setup Code
-    String groupname ("Group1");
-    String filerobot ("robot.mesh");
-    String robotprefix ("Robot");
+    String groupname("Group1");
+    String filerobot("robot.mesh");
+    String robotprefix("Robot");
 
-    Real mass=15.0;
+    Real mass = 15.0;
     /// @todo Figure why the EngineDemo fails on Linux when trying to find items in the
     TheEntresol->GetResourceManager()->AddAssetLocation("data/common", AT_FileSystem, groupname, false);
     TheEntresol->GetResourceManager()->AddAssetLocation("data/common/music", AT_FileSystem, groupname, false);
@@ -456,6 +453,10 @@ void LoadContent()
     //TheEntresol->GetResourceManager()->AddAssetLocation(zipname.str(), "Zip", groupname, false);
     TheEntresol->GetResourceManager()->AddAssetLocation("", AT_FileSystem, groupname, false);
     TheEntresol->GetResourceManager()->InitAssetGroup(groupname);
+
+    Vector3 grav( 0.0, -400.0, 0.0 );
+    TheEntresol->GetPhysicsManager()->SetWorldGravity(grav);
+    TheEntresol->GetPhysicsManager()->SetWorldSoftGravity(grav);
 
     //ParticleEffect *GreenPart = TheEntresol->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
     //GreenPart->SetLocation(Vector3(-70,70,-100));
@@ -584,11 +585,6 @@ void LoadContent()
     TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
     //Final Steps
-    Vector3 grav;
-    grav.X = 0.0;
-    grav.Y = -400.0;
-    grav.Z = 0.0;
-
     Audio::iSound *sound1 = NULL, *music1 = NULL, *music2 = NULL;
     Announcer = new Audio::SoundSet();
     Soundtrack = new Audio::SoundSet();
@@ -601,11 +597,8 @@ void LoadContent()
     music2 = AudioMan->CreateMusicSound("cAudioTheme2.ogg", groupname);
     Soundtrack->push_back(music2);
 
-    TheEntresol->Log("Debris Count");
+    TheEntresol->Log("Debris Count ");
     TheEntresol->Log( TheEntresol->GetDebrisManager()->GetNumDebris() );
-
-    TheEntresol->GetPhysicsManager()->SetGravity(grav);
-    TheEntresol->GetPhysicsManager()->SetSoftGravity(grav);
 }
 
 void MakeGUI()
