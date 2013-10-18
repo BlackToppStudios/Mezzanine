@@ -69,13 +69,13 @@ namespace Mezzanine
 
                 /// @brief The type of data this buffer can hold, it is intended to be some type one byte in length, but doesn't have to be
                 typedef Int8 Byte;
-
+#ifndef SWIG
                 /// @brief How many bytes is @ref Binary in size. This is set to 0 if @ref Binary is invalid and should be a null pointer.
                 Whole Size;
 
                 /// @brief A pointer to the actual binary data.
                 Byte* Binary;
-
+#endif
                 /// @brief Default constructor, set everything to zero. Doesn't allocate anything
                 BinaryBuffer() :
                     Size(0),
@@ -167,6 +167,10 @@ namespace Mezzanine
                 /// @param RH The other Buffer to copy/append.
                 /// @return A Reference to this buffer to allow operator chaining.
                 BinaryBuffer& operator+=(const BinaryBuffer& RH);
+
+                /// @brief Even though this class is intended to have its internals modifieddirectly in some cases, In normal cases accessor are nice to have.
+                /// @return Get the size as a whole
+                Whole GetSize() const;
 
         };
 

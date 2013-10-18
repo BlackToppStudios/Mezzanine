@@ -273,6 +273,9 @@ namespace Mezzanine
             return *this;
         }
 
+        Whole BinaryBuffer::GetSize() const
+            { return Size; }
+
         // Code change to Match BTS naming conventions and formatting
         bool IsBase64(unsigned char Character)
             { return (isalnum(Character) || (Character == '+') || (Character == '/') || (Character == '=')); }
@@ -350,9 +353,8 @@ namespace Mezzanine
         }
 
         Whole PredictBase64StringSizeFromBinarySize(Whole Length)
-        {
-            return (Length+2)/3*4;
-        }
+            { return (Length+2)/3*4; }
+
 
     } // BinaryTools
 }//Mezzanine

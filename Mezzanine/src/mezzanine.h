@@ -77,9 +77,9 @@
 #endif
 
 #include "axisalignedbox.h"
+#include "binarybuffer.h"
 
 #ifndef SWIG
-#include "binarybuffer.h"
 #include "cameracontroller.h"
 #include "colourvalue.h"                // done
 #include "countedptr.h"
