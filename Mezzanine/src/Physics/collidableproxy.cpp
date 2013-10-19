@@ -97,9 +97,11 @@ namespace Mezzanine
 {
     namespace Physics
     {
+/*
+/// @cond 0
         ///////////////////////////////////////////////////////////////////////////////
         // ScalingShape Methods
-/// @cond 0
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @class ScalingShape
         /// @brief This is a custom scaling shape that permits scaling specific to the object it is applied to.
@@ -189,7 +191,7 @@ namespace Mezzanine
                 this->ChildConvexShape->batchedUnitVectorGetSupportingVertexWithoutMargin(vectors,supportVerticesOut,numVectors);
                 for( int i = 0 ; i < numVectors ; i++ )
                 {
-                    supportVerticesOut[i] = supportVerticesOut[i] * this->ChildScaling;
+                    supportVerticesOut[i] *= this->ChildScaling;
                 }
             }
             /// @brief Calculates the local inertia for this shape and it's child shape.
@@ -239,15 +241,19 @@ namespace Mezzanine
                 this->batchedUnitVectorGetSupportingVertexWithoutMargin(_directions, _supporting, 6);
 
                 btVector3 aabbMin1(0,0,0),aabbMax1(0,0,0);
-
                 for ( int i = 0; i < 3; ++i )
                 {
                     aabbMax1[i] = t(_supporting[i])[i];
                     aabbMin1[i] = t(_supporting[i + 3])[i];
                 }
+
                 btVector3 marginVec(this->getMargin(),this->getMargin(),this->getMargin());
-                aabbMin = aabbMin1-marginVec;
-                aabbMax = aabbMax1+marginVec;
+                // convert to local to scale
+                aabbMin1 = ( aabbMin1 - t.getOrigin() ) * this->ChildScaling;
+                aabbMax1 = ( aabbMax1 - t.getOrigin() ) * this->ChildScaling;
+
+                aabbMin = ( aabbMin1 + t.getOrigin() ) - marginVec;
+                aabbMax = ( aabbMax1 + t.getOrigin() ) + marginVec;
             }
 
             /// @brief Sets the scaling to be applied to the sharable/global child collision shape.
@@ -270,11 +276,12 @@ namespace Mezzanine
                 { this->ChildConvexShape->getPreferredPenetrationDirection(index,penetrationVector); }
         };//ScalingShape
 /// @endcond
+//*/
         ///////////////////////////////////////////////////////////////////////////////
         // CollidableProxy Methods
 
         CollidableProxy::CollidableProxy(PhysicsManager* Creator) :
-            BodyScale(1,1,1),
+            //BodyScale(1,1,1),
             ProxyShape(NULL),
             ScalerShape(NULL),
             Manager(Creator),
@@ -287,9 +294,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
-
-        Bool CollidableProxy::CanLocallyScale() const
-            { return ( this->ScalerShape != NULL ); }
 
         AxisAlignedBox CollidableProxy::GetAABB() const
             { return ( this->IsInWorld() ? AxisAlignedBox( Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMin ), Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMax ) ) : AxisAlignedBox() ); }
@@ -333,7 +337,7 @@ namespace Mezzanine
         {
             if( this->ProxyShape != Shape )
             {
-                if( Shape != NULL )
+                /*if( Shape != NULL )
                 {
                     switch( Shape->GetType() )
                     {
@@ -392,7 +396,10 @@ namespace Mezzanine
                         this->ScalerShape = NULL;
                     }
                     this->ProxyShape = NULL;
-                }
+                }//*/
+
+                this->ProxyShape = Shape;
+                this->_GetBasePhysicsObject()->setCollisionShape( this->ProxyShape->_GetInternalShape() );
 
                 // Gotta flicker to update the AABB appropriately
                 if( this->IsInWorld() ) {
@@ -575,10 +582,10 @@ namespace Mezzanine
 
         void CollidableProxy::SetScale(const Vector3& Sc)
         {
-            this->BodyScale = Sc;
+            /*this->BodyScale = Sc;
             if( this->ScalerShape != NULL ) {
                 this->ScalerShape->setLocalScaling(Sc.GetBulletVector3());
-            }else if( this->ProxyShape != NULL ) {
+            }else*/ if( this->ProxyShape != NULL ) {
                 this->ProxyShape->SetScaling(Sc);
             }
         }
@@ -590,7 +597,7 @@ namespace Mezzanine
 
         Vector3 CollidableProxy::GetScale() const
         {
-            return this->BodyScale;
+            return this->ProxyShape->GetScaling();//this->BodyScale;
         }
 
         void CollidableProxy::Translate(const Vector3& Trans)
