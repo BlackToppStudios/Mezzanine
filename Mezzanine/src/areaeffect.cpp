@@ -344,44 +344,6 @@ namespace Mezzanine
             }
         }
     }
-
-    ///////////////////////////////////
-    // TestAE functions
-
-    TestAE::TestAE(World* TheWorld) :
-        AreaEffect(TheWorld)
-        {  }
-
-    TestAE::TestAE(const String& Name, World* TheWorld) :
-        AreaEffect(Name,TheWorld)
-        {  }
-
-    TestAE::~TestAE()
-        {  }
-
-    void TestAE::ApplyEffect()
-    {
-        Entresol* TheEntresol = Entresol::GetSingletonPtr();
-        ObjectIterator ObjIt;
-
-        if ( !AddedObjects.empty() ) {
-            TheEntresol->Log("Objects Added to field this frame:");
-            for ( ObjIt = AddedObjects.begin() ; ObjIt != AddedObjects.end() ; ObjIt++ )
-                { TheEntresol->Log( (*ObjIt) ); }
-        }
-
-        if ( !RemovedObjects.empty() ) {
-            TheEntresol->Log("Objects Removed from field this frame:");
-            for ( ObjIt = RemovedObjects.begin() ; ObjIt != RemovedObjects.end() ; ObjIt++ )
-                { TheEntresol->Log( (*ObjIt) ); }
-        }
-
-        if ( !OverlappingObjects.empty() ) {
-            TheEntresol->Log("Objects Currently in field this frame:");
-            for ( ObjIt = OverlappingObjects.begin() ; ObjIt != OverlappingObjects.end() ; ObjIt++ )
-                { TheEntresol->Log( (*ObjIt) ); }
-        }
-    }
 }
 
 #endif

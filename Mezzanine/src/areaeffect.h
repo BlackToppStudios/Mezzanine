@@ -81,6 +81,9 @@ namespace Mezzanine
         /// @brief Container of actors that have been removed since last frame.
         ObjectContainer RemovedObjects;
         /// @internal
+        /// @brief Container of proxies that representing this AE field.
+        ProxyContainer AEProxies;
+        /// @internal
         /// @brief A pointer to the ghost powering this AE field.
         Physics::GhostProxy* Ghost;
 
@@ -258,27 +261,7 @@ namespace Mezzanine
         /// @brief Destroys a AreaEffect created by this factory.
         /// @param ToBeDestroyed A pointer to the AreaEffect to be destroyed.
         virtual void DestroyAreaEffect(AreaEffect* ToBeDestroyed) = 0;
-    };//DebrisFactory
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a dummy class to test if the AE field works.  Details will be output to the log.
-    ///////////////////////////////////////
-    class MEZZ_LIB TestAE : public AreaEffect
-    {
-    public:
-        /// @brief Blank constructor.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        TestAE(World* TheWorld);
-        /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        TestAE(const String& Name, World* TheWorld);
-        /// @brief Class destructor.
-        virtual ~TestAE();
-
-        /// @brief Applies the effect this field has to object inside.
-        virtual void ApplyEffect();
-    };//testAE
+    };//AreaEffectFactory
 }//Mezzanine
 
 #endif
