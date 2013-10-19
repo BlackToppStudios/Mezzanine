@@ -789,11 +789,6 @@ if(${Mezz_Lua51})
         include_directories( libincludes/common/lua51/lua5.1/src )
 endif(${Mezz_Lua51})
 
-if(${Mezz_Ruby})
-message(xxxxxxxxxxxxxxxxxxxxxxx)
-        include_directories( libincludes/common/ruby/src )
-endif(${Mezz_Ruby})
-
 link_directories(
         "${ProjectBinaryDir}Mezzanine/bin"
 )
@@ -844,6 +839,10 @@ set(SDL_STATIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 if(${Mezz_Lua51})
         add_subdirectory (libincludes/common/lua51)
 endif(${Mezz_Lua51})
+
+if(${Mezz_Ruby})
+        add_subdirectory (libincludes/common/ruby200)
+endif(${Mezz_Ruby})
 
 ###############################################################################
 # Swig binding generation

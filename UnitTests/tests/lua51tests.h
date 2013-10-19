@@ -562,6 +562,16 @@ class lua51tests : public UnitTestGroup
                               "end",
                               "AABB", "TestAABB", 2, 8,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestBinaryBuffer(x)\n"
+                              "   bb=MezzanineSafe.BinaryBuffer(x)\n"
+                              "   return bb:GetSize()\n"
+                              "end",
+                              "BinaryBuffer", "TestBinaryBuffer", 2, 2,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+
+                //BinaryBuffer
             }
 
         }

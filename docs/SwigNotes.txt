@@ -8,7 +8,7 @@ rules for wrapping swig
     #ifndef SWIG
         const static POD in a namespace breaks SWIG
         operator << and >> for streaming should be excluded.
-        blck constructors of abstract classes, these make no sense to scripting languages
+        block constructors of abstract classes, these make no sense to scripting languages
          
 	Threading/workunit.h:158: Warning 403: Class 'Mezzanine::Threading::DefaultWorkUnit' might be abstract, no constructors generated,
 Threading/workunit.h:149: Warning 403: Method Mezzanine::Threading::iWorkUnit::DoWork(Mezzanine::Threading::DefaultThreadSpecificStorage::Type &) might not be implemented.
@@ -21,11 +21,14 @@ Threading/workunit.h:149: Warning 403: Method Mezzanine::Threading::iWorkUnit::D
       for that matter just exclude char*
   Lua Can't
     bool operator==(const Node& r) const;
-    handle overloaded functions
+    handle any overloaded functions
       Node GetChild(const Char8* Name) const;
       Node GetChild(const String& Name) const
 
   Ruby Can't
+    handle function overloads that differ only by const
+    assignment operator
+
 
   each major namespace gets its own module
   actively exclude the std headers

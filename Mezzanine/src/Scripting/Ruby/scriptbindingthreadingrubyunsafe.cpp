@@ -11402,6 +11402,6 @@ SWIGEXPORT void Init_MezzanineThreading(void) {
   SwigClassMonopolyWorkUnit.trackObjects = 0;
   rb_define_const(mMezzanineThreading, "MEZZ_DAGFRAMESCHEDULER_MAJOR_VERSION", SWIG_From_int(static_cast< int >(1)));
   rb_define_const(mMezzanineThreading, "MEZZ_DAGFRAMESCHEDULER_MINOR_VERSION", SWIG_From_int(static_cast< int >(11)));
-  rb_define_const(mMezzanineThreading, "MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION", SWIG_From_int(static_cast< int >(0)));
+  rb_define_const(mMezzanineThreading, "MEZZ_DAGFRAMESCHEDULER_REVISION_VERSION", SWIG_From_int(static_cast< int >(1)));
 }
 

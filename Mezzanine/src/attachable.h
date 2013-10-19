@@ -184,7 +184,8 @@ namespace Mezzanine
             /// @return An Iterator to one past the last object.
             AttachableIterator EndChild();
 
-#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
+//#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
+#ifndef SWIG // Since these functions differ only by constness, they make no sense to most(all?) scripting languages
             /// @brief Get a ConstAttachableIterator to the first object.
             /// @return An Iterator to the first object.
             ConstAttachableIterator BeginChild() const;
