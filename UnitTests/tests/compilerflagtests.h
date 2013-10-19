@@ -94,6 +94,14 @@ class compilerflagtests : public UnitTestGroup
             #endif
             TEST_RESULT(temp, "CompilerFlag::MEZZNETWORK");
 
+            #ifdef MEZZRUBY
+                temp = GetTestAnswerFromStdin( "Was MEZZRUBY set to True when this was configured with CMake(where it is called Mezz_Ruby) or other config tool? ");
+            #else
+                temp = GetTestAnswerFromStdin( "Was MEZZRUBY set to False when this was configured with CMake(where it is called Mezz_Ruby) or other config tool? ");
+            #endif
+            TEST_RESULT(temp, "CompilerFlag::MEZZRUBY");
+
+
             #ifdef MEZZLUA51
                 temp = GetTestAnswerFromStdin( "Was MEZZLUA51 set to True when this was configured with CMake(where it is called Mezz_Lua51) or other config tool? ");
             #else

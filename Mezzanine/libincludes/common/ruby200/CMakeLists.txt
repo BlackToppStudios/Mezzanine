@@ -40,7 +40,7 @@
 cmake_minimum_required(VERSION 2.8)
 project (${RubyProject})
 message ("${RubyProject} - Begin")
-message(zzzzzzzzzzzzzZZZZZ)
+
 #check for new builds at: https://www.ruby-lang.org/en/downloads/
 include(ExternalProject)
 set(RubyDir "ruby-2.0.0-p247")

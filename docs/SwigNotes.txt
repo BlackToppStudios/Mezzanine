@@ -21,12 +21,12 @@ Threading/workunit.h:149: Warning 403: Method Mezzanine::Threading::iWorkUnit::D
       for that matter just exclude char*
   Lua Can't
     bool operator==(const Node& r) const;
-    handle overloaded functions
+    handle any overloaded functions
       Node GetChild(const Char8* Name) const;
       Node GetChild(const String& Name) const
 
   Ruby Can't
-
+    handle function overloads that differ only by const
   each major namespace gets its own module
   actively exclude the std headers
 	swig blows up on them
