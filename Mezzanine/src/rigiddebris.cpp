@@ -144,14 +144,12 @@ namespace Mezzanine
 
     void RigidDebris::GetProxies(ProxyContainer& Proxies)
     {
-        Proxies.clear();
         Proxies.push_back( this->EntProx );
         Proxies.push_back( this->RigProx );
     }
 
     void RigidDebris::GetProxies(const UInt32 Types, ProxyContainer& Proxies)
     {
-        Proxies.clear();
         if( Types & Mezzanine::PT_Graphics_EntityProxy ) {
             Proxies.push_back( this->EntProx );
         }
