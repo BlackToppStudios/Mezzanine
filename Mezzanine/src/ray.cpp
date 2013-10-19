@@ -94,6 +94,7 @@ namespace Mezzanine
         if( 0 != TempLength ) {
             return (*this) / TempLength;
         }
+        return Ray(*this);
     }
 
     Ray& Ray::Normalize()
@@ -102,6 +103,7 @@ namespace Mezzanine
         if( 0 != TempLength ) {
             return (*this) /= this->Length();
         }
+        return *this;
     }
 
     Ray::PlaneRayTestResult Ray::Intersects(const Plane& ToCheck) const
@@ -181,10 +183,10 @@ namespace Mezzanine
         { return Ray( this->Origin, ( ( this->Destination - this->Origin ) / Factor ) + this->Origin ); }
 
     Ray& Ray::operator*=(const Real Factor)
-        { this->Destination = ( ( this->Destination - this->Origin ) * Factor ) + this->Origin; }
+        { this->Destination = ( ( this->Destination - this->Origin ) * Factor ) + this->Origin;  return *this; }
 
     Ray& Ray::operator/=(const Real Factor)
-        { this->Destination = ( ( this->Destination - this->Origin ) / Factor ) + this->Origin; }
+        { this->Destination = ( ( this->Destination - this->Origin ) / Factor ) + this->Origin;  return *this; }
 
     Bool Ray::operator==(const Ray& Other) const
         { return ( this->Origin == Other.Origin && this->Destination == Other.Destination ); }

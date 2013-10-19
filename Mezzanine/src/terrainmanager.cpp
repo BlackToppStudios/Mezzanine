@@ -159,6 +159,7 @@ namespace Mezzanine
         Terrains.push_back(Terrain);
         Terrain->AddTerrainToWorld();
         return Terrain;//*/
+        return NULL;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

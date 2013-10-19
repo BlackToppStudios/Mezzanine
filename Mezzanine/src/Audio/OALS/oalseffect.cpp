@@ -136,6 +136,7 @@ namespace
             case AL_RING_MODULATOR_SAWTOOTH:  return Mezzanine::Audio::RingModulatorParameters::EMW_Saw;       break;
             case AL_RING_MODULATOR_SQUARE:    return Mezzanine::Audio::RingModulatorParameters::EMW_Square;    break;
         }
+        return Mezzanine::Audio::RingModulatorParameters::EMW_Sinusoid;
     }
 
     /// @internal
@@ -162,6 +163,7 @@ namespace
             case AL_CHORUS_WAVEFORM_SINUSOID:  return Mezzanine::Audio::ChorusParameters::ECW_Sinusoid;  break;
             case AL_CHORUS_WAVEFORM_TRIANGLE:  return Mezzanine::Audio::ChorusParameters::ECW_Triangle;  break;
         }
+        return Mezzanine::Audio::ChorusParameters::ECW_Sinusoid;
     }
 
     /// @internal
@@ -188,6 +190,7 @@ namespace
             case AL_FLANGER_WAVEFORM_SINUSOID:  return Mezzanine::Audio::FlangerParameters::EFW_Sinusoid;  break;
             case AL_FLANGER_WAVEFORM_TRIANGLE:  return Mezzanine::Audio::FlangerParameters::EFW_Triangle;  break;
         }
+        return Mezzanine::Audio::FlangerParameters::EFW_Sinusoid;
     }
 
     /// @internal
@@ -202,6 +205,7 @@ namespace
             case Mezzanine::Audio::FrequencyShiftParameters::ESD_Up:    return AL_FREQUENCY_SHIFTER_DIRECTION_UP;     break;
             case Mezzanine::Audio::FrequencyShiftParameters::ESD_Off:   return AL_FREQUENCY_SHIFTER_DIRECTION_OFF;    break;
         }
+        return AL_FREQUENCY_SHIFTER_DIRECTION_OFF;
     }
     /// @internal
     /// @brief Converts the internal type to the Mezzanine Shift Direction Type.
@@ -215,6 +219,7 @@ namespace
             case AL_FREQUENCY_SHIFTER_DIRECTION_UP:    return Mezzanine::Audio::FrequencyShiftParameters::ESD_Up;    break;
             case AL_FREQUENCY_SHIFTER_DIRECTION_OFF:   return Mezzanine::Audio::FrequencyShiftParameters::ESD_Off;   break;
         }
+        return Mezzanine::Audio::FrequencyShiftParameters::ESD_Off;
     }
 
     /// @internal
@@ -243,6 +248,7 @@ namespace
             case AL_VOCAL_MORPHER_WAVEFORM_TRIANGLE:  return Mezzanine::Audio::VocalMorpherParameters::EMW_Triangle;  break;
             case AL_VOCAL_MORPHER_WAVEFORM_SAWTOOTH:  return Mezzanine::Audio::VocalMorpherParameters::EMW_Saw;       break;
         }
+        return Mezzanine::Audio::VocalMorpherParameters::EMW_Sinusoid;
     }
 
     /// @internal
@@ -284,6 +290,7 @@ namespace
             case Mezzanine::Audio::VocalMorpherParameters::EMP_V:   return AL_VOCAL_MORPHER_PHONEME_V;   break;
             case Mezzanine::Audio::VocalMorpherParameters::EMP_Z:   return AL_VOCAL_MORPHER_PHONEME_Z;   break;
         }
+        return AL_VOCAL_MORPHER_PHONEME_A;
     }
     /// @internal
     /// @brief Converts the internal type to the Mezzanine Morpher Phoneme Type.
@@ -324,6 +331,7 @@ namespace
             case AL_VOCAL_MORPHER_PHONEME_V:   return Mezzanine::Audio::VocalMorpherParameters::EMP_V;   break;
             case AL_VOCAL_MORPHER_PHONEME_Z:   return Mezzanine::Audio::VocalMorpherParameters::EMP_Z;   break;
         }
+        return Mezzanine::Audio::VocalMorpherParameters::EMP_A;
     }
 }
 
