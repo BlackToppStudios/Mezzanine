@@ -97,7 +97,7 @@ namespace Mezzanine
         /// @copydoc GetAxisValue(StandardAxis Axis) const
         Real GetAxisValue(const Whole& Axis) const;
 
-#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
+#ifndef SWIG // Since these functions differ only by constness, they make no sense to most(all?) scripting languages
         /// @brief Get The value associate with a certain Axis in such a way that it can readily be assigned in this Vector3.
         /// @param Axis Which axis to retrieve.
         /// @return Either X, Y or Z as indicated by the value passed in.
