@@ -117,13 +117,11 @@ namespace Mezzanine
 
     void AreaEffect::GetProxies(ProxyContainer& Proxies)
     {
-        Proxies.clear();
         Proxies.push_back( this->Ghost );
     }
 
     void AreaEffect::GetProxies(const UInt32 Types, ProxyContainer& Proxies)
     {
-        Proxies.clear();
         if( Types & Mezzanine::PT_Physics_GhostProxy ) {
             Proxies.push_back( this->Ghost );
         }

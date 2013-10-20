@@ -66,7 +66,7 @@ namespace Mezzanine
             /// @internal
             /// @brief A vector3 storing the scaling applied to this body.
             /// @note This exists because in bullet scaling is a property of shapes instead of bodies.
-            Vector3 BodyScale;
+            //Vector3 BodyScale;
             /// @internal
             /// @brief The physics shape of this proxy.
             CollisionShape* ProxyShape;
@@ -91,15 +91,6 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
-
-            /// @brief Gets whether or not this proxy can have scaling applied to itself (instead of it's shape).
-            /// @remarks When using some collision shapes (such as compound shapes or dynamic trimesh shapes) you cannot
-            /// scale the body using that shape appropriately.  Any scaling that would be applied to the body has to be
-            /// applied to the shape instead, which will impact it's dimensions globally, across all proxies using that
-            /// shape.  In cases where the shape is used by only one proxy, this isn't an issue.  Otherwise scaling should
-            /// be done with care.  This method will tell you if you should use caution when scaling this proxy.
-            /// @return Returns true if this body can scale independantly from it's shape, false otherwise.
-            virtual Bool CanLocallyScale() const;
 
             /// @brief Gets this proxies AABB.
             /// @note This will only return valid values if this proxy is in the world.  A proxy outside of the world has no AABB.
