@@ -82,10 +82,10 @@
     #include <ostream>
 #endif
 
-
-
 #include "swig.h"
 
+// temporary declarations, if this is still here in committed code, yell at Sqeaky
+#define MEZZRUBY
 
 /// @internal
 /// @brief Forward declaration for SDL compatibilty

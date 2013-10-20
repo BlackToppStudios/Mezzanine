@@ -71,7 +71,7 @@ namespace Mezzanine
             /// @brief Lua51BoolArgument returns this value when checking GetTypeData() const.
             const Integer LuaBool = GenericBool;
             /// @brief Lua51NilArgument returns this value when checking GetTypeData() const.
-            const Integer LuaNil = GenericMax+1;
+            const Integer LuaNil = GenericNull;
 
             /// @brief The ScriptArgumentGeneric<T> does a good enough job for actually passing data, but it needs just a bit of Lua specific functionality
             class MEZZ_LIB LuaArgument

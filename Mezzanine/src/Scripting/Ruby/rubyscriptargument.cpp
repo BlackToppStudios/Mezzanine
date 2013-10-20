@@ -57,8 +57,6 @@
 extern "C"
 {
     #include "ruby.h"            // Ruby Core
-    #include "rubylib.h"         // for opening the base state
-    #include "lauxlib.h"        // Extra Ruby Goodies like ruby_open()
 }
 
 namespace Mezzanine
@@ -67,78 +65,30 @@ namespace Mezzanine
     {
         namespace Ruby
         {
-
-
-            void RubyIntegerArgument::Push(ruby_State* TargetState) const
-                { ruby_pushinteger(TargetState, this->Datum); }
-
-            void RubyIntegerArgument::Pop(ruby_State* TargetState)
+            RubyIntegerArgument::RubyIntegerArgument(Integer InitialValue)
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TNUMBER==ruby_type(TargetState,Top))
-                    { Datum = ruby_tointeger(TargetState,Top); }
-                else
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby number(Integer), but found something else.") }
+
             }
 
-            void RubyRealArgument::Push(ruby_State* TargetState) const
-                { ruby_pushnumber(TargetState, this->Datum); }
-            void RubyRealArgument::Pop(ruby_State* TargetState)
+            RubyRealArgument::RubyRealArgument(Real InitialValue)
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TNUMBER==ruby_type(TargetState,Top))
-                    { Datum = ruby_tonumber(TargetState,Top); }
-                else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby number(Real), but found something else.") }
+
             }
 
-            void RubyWholeArgument::Push(ruby_State* TargetState) const
-                { ruby_pushnumber(TargetState, this->Datum); }
-            void RubyWholeArgument::Pop(ruby_State* TargetState)
+            RubyWholeArgument::RubyWholeArgument(Whole InitialValue)
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TNUMBER==ruby_type(TargetState,Top))
-                    { Datum = ruby_tointeger(TargetState,Top); }
-                else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby number(Whole), but found something else.") }
+
             }
 
-            void RubyStringArgument::Push(ruby_State *TargetState) const
-                { ruby_pushlstring(TargetState, this->Datum.c_str(), this->Datum.size() ); }
-            void RubyStringArgument::Pop(ruby_State *TargetState)
+            RubyStringArgument::RubyStringArgument(String InitialValue)
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TSTRING==ruby_type(TargetState,Top))
-                    { Datum = ruby_tostring(TargetState,Top); }
-                else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby string(String), but found something else.") }
+
             }
 
-            void RubyBoolArgument::Push(ruby_State *TargetState) const
-                { ruby_pushboolean(TargetState, this->Datum); }
-            void RubyBoolArgument::Pop(ruby_State *TargetState)
+            RubyBoolArgument::RubyBoolArgument(Bool InitialValue)
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TBOOLEAN==ruby_type(TargetState,Top))
-                    { Datum = ruby_toboolean(TargetState,Top); }
-                else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby string(String), but found something else.") }
+
             }
-
-            void RubyNilArgument::Push(ruby_State *TargetState) const
-                { ruby_pushnil(TargetState); }
-            void RubyNilArgument::Pop(ruby_State *TargetState)
-            {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TNIL==ruby_type(TargetState,Top))
-                    { ruby_pop(TargetState,1); }
-                else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby string(String), but found something else.") }
-                // It seems Ruby Nils never go on the stack when being returned sometimes.
-            }
-
-
-
 
         } // Ruby
     } // Scripting
