@@ -219,8 +219,8 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         virtual RigidDebris* CreateRigidDebris(const XML::Node& XMLNode, World* TheWorld);
 
-        /// @copydoc DebrisFactory::CreateDebris(const String&, World*, NameValuePairList&)
-        virtual Debris* CreateDebris(const String& Name, World* TheWorld, NameValuePairList& Params);
+        /// @copydoc DebrisFactory::CreateDebris(const String&, World*, const NameValuePairList&)
+        virtual Debris* CreateDebris(const String& Name, World* TheWorld, const NameValuePairList& Params);
         /// @copydoc DebrisFactory::CreateDebris(const XML::Node&, World*)
         virtual Debris* CreateDebris(const XML::Node& XMLNode, World* TheWorld);
         /// @copydoc DebrisFactory::DestroyDebris(Debris* ToBeDestroyed)

@@ -110,6 +110,10 @@ namespace Mezzanine
         /// @copydoc Mezzanine::WorldObject::GetType() const
         virtual WorldObjectType GetType() const;
 
+        /// @brief Gets a pointer to the physics portion of this AreaEffect.
+        /// @return Returns a pointer to the Ghost proxy representing the physics portion of this AreaEffect.
+        virtual Physics::GhostProxy* GetGhostProxy() const;
+
         /// @brief Defines and applies the effect of the field.
         /// @details When inheriting this class, this function is what defines the effect the field has. @n
         /// This function will be called on by the physics manager and shouldn't be called manually.
@@ -252,7 +256,7 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         /// @param Params A NameValuePairList containing the params to be applied during construction.
         /// @return Returns a pointer to the AreaEffect created.
-        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, NameValuePairList& Params) = 0;
+        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairList& Params) = 0;
         /// @brief Creates a AreaEffect from XML.
         /// @param XMLNode The node of the xml document to construct from.
         /// @param TheWorld A pointer to the world this object belongs to.

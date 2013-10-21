@@ -106,6 +106,9 @@ namespace Mezzanine
     Mezzanine::WorldObjectType AreaEffect::GetType() const
         { return Mezzanine::WO_AreaEffectUnknown; }
 
+    Physics::GhostProxy* AreaEffect::GetGhostProxy() const
+        { return this->Ghost; }
+
     Bool AreaEffect::IsInWorld() const
         { return this->Ghost->IsInWorld(); }
 

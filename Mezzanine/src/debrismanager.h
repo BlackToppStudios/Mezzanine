@@ -86,7 +86,7 @@ namespace Mezzanine
         /// @brief This does any required update of the Debris stored by it's manager.
         /// @param CurrentThreadStorage The storage class for all resources owned by this work unit during it's execution.
         virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-    };//ActorUpdateWorkUnit
+    };//DebrisUpdateWorkUnit
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A manager responsible for the storage and management of all Debris that exist in a world.
@@ -114,7 +114,7 @@ namespace Mezzanine
         /// @brief A map containing all registered Debris type factories.
         FactoryMap DebrisFactories;
         /// @internal
-        /// @brief The actual Debris container
+        /// @brief Container storing all Debris belonging to this manager.
         DebrisContainer Debriss;
 
         /// @internal
@@ -157,16 +157,22 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Debris Management
 
+        /// @brief Creates a new Debris.
+        /// @param TypeName A string containing the name of the type of Debris to be constructed.
+        /// @param InstanceName A string containing the name to be given to the created Debris.
+        /// @param Params A container of additional parameters to be used for the construction of the new Debris.
+        /// @return Returns a pointer to the created Debris.
+        Debris* CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairList& Params);
         /// @brief Creates a new Debris class from an XML node.
         /// @remarks This is mostly useful for deserialization.
         /// @return Returns a pointer to the created Debris.
         Debris* CreateDebris(const XML::Node& SelfRoot);
 
-        /// @brief Gets an Actor by Index.
+        /// @brief Gets an Debris by Index.
         /// @param Index The index of the Debris you wish to retrieve.
         /// @return Returns a pointer to the Debris at the specified index.
         virtual Debris* GetDebris(const Whole Index) const;
-        /// @brief Gets an Actor by Name.
+        /// @brief Gets an Debris by Name.
         /// @param Name The name of the Debris you wish to retrieve.
         /// @return Returns a pointer to the Debris of the specified name.
         virtual Debris* GetDebris(const String& Name) const;

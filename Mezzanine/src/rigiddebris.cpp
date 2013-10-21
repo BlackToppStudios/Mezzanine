@@ -410,10 +410,10 @@ namespace Mezzanine
     RigidDebris* RigidDebrisFactory::CreateRigidDebris(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<RigidDebris*>( this->CreateDebris(XMLNode,TheWorld) ); }
 
-    Debris* RigidDebrisFactory::CreateDebris(const String& Name, World* TheWorld, NameValuePairList& Params)
+    Debris* RigidDebrisFactory::CreateDebris(const String& Name, World* TheWorld, const NameValuePairList& Params)
     {
         Real Mass = 0;
-        for( NameValuePairList::iterator ValIt = Params.begin() ; ValIt != Params.end() ; ++ValIt )
+        for( NameValuePairList::const_iterator ValIt = Params.begin() ; ValIt != Params.end() ; ++ValIt )
         {
             if( (*ValIt).first == "Mass" )
                 Mass = StringTools::ConvertToReal( (*ValIt).second );

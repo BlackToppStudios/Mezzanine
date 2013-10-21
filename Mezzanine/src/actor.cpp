@@ -42,13 +42,9 @@
 #define _actor_cpp
 
 #include "actor.h"
-#include "Physics/physicsmanager.h"
-#include "Graphics/scenemanager.h"
 #ifndef SWIG
     #include "XML/xml.h"
 #endif
-#include "Internal/motionstate.h.cpp"
-#include "Internal/meshtools.h.cpp"
 
 #include "entresol.h"
 
@@ -60,9 +56,7 @@
 namespace Mezzanine
 {
     Actor::Actor() :
-        WorldObject("",NULL),
-        Animation(NULL),
-        MotionState(NULL)
+        WorldObject("",NULL)
         {  }
 
     Actor::~Actor()

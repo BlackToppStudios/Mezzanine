@@ -47,7 +47,9 @@
 namespace Mezzanine
 {
     class Actor;
+    class ActorFactory;
     class ActorManager;
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a Mezzanine::Threading::iWorkUnit for the updating of actors.
     /// @details
@@ -90,6 +92,12 @@ namespace Mezzanine
     class MEZZ_LIB ActorManager : public WorldManager
     {
     public:
+        /// @brief Basic container type for ActorFactory storage by this class.
+        typedef std::map<String,ActorFactory*>      FactoryMap;
+        /// @brief Iterator type for ActorFactory instances stored by this class.
+        typedef FactoryMap::iterator                 FactoryIterator;
+        /// @brief Const Iterator type for ActorFactory instances stored by this class.
+        typedef FactoryMap::const_iterator           ConstFactoryIterator;
         /// @brief Basic container type for @ref Actor storage by this class.
         typedef std::vector<Actor*>                  ActorContainer;
         /// @brief Iterator type for @ref Actor instances stored by this class.
@@ -99,7 +107,11 @@ namespace Mezzanine
     protected:
         friend class ActorUpdateWorkUnit;
 
-        /// @brief The actual actor container
+        /// @internal
+        /// @brief A map containing all registered Actor type factories.
+        FactoryMap ActorFactories;
+        /// @internal
+        /// @brief Container storing all Actors belonging to this manager.
         ActorContainer Actors;
 
         /// @internal
@@ -118,50 +130,63 @@ namespace Mezzanine
         virtual ~ActorManager();
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Managing all actors
+        // Prefab Actor Type Creation
 
-        /// @brief Adds a pre-created actor to the manager.
-        /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
-        /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
-        /// function facilitates this. @n
-        /// This function is also necessary for anyone inheriting from our actors to add their actors to the world.
-        /// @param ToBeAdded The actor to be added to the manager.
-        virtual void AddActor(Actor* ToBeAdded);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Actor Management
+
+        /// @brief Creates a new Actor.
+        /// @param TypeName A string containing the name of the type of Actor to be constructed.
+        /// @param InstanceName A string containing the name to be given to the created Actor.
+        /// @param Params A container of additional parameters to be used for the construction of the new Actor.
+        /// @return Returns a pointer to the created Actor.
+        Actor* CreateActor(const String& TypeName, const String& InstanceName, const NameValuePairList& Params);
+        /// @brief Creates a new Actor class from an XML node.
+        /// @remarks This is mostly useful for deserialization.
+        /// @return Returns a pointer to the created Actor.
+        Actor* CreateActor(const XML::Node& SelfRoot);
+
         /// @brief Gets an Actor by Index.
-        /// @param Index The index of the actor you wish to retrieve.
-        /// @return Returns a pointer to the actor at the specified index.
-        virtual Actor* GetActor(const Whole& Index) const;
+        /// @param Index The index of the Actor you wish to retrieve.
+        /// @return Returns a pointer to the Actor at the specified index.
+        virtual Actor* GetActor(const Whole Index) const;
         /// @brief Gets an Actor by Name.
-        /// @param Name The name of the actor you wish to retrieve.
-        /// @return Returns a pointer to the actor of the specified name.
+        /// @param Name The name of the Actor you wish to retrieve.
+        /// @return Returns a pointer to the Actor of the specified name.
         virtual Actor* GetActor(const String& Name) const;
-        /// @brief Gets the number of actors stored in this manager.
-        /// @return Returns a whole representing the current actor count.
+        /// @brief Gets the number of Actors stored in this manager.
+        /// @return Returns a whole representing the current Actor count.
         virtual Whole GetNumActors() const;
-        /// @brief Removes an actor from this manager without destroying it.
-        /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
-        /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
-        /// function facilitates this. @n
-        /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
-        /// @param Index The index at which to remove the actor.
-        virtual void RemoveActor(const Whole& Index);
-        /// @brief Removes an actor from this manager without destroying it.
-        /// @details In some cases you may want to add and remove an actor from the world without destroying it and do some special
-        /// manipulations to it to achieve some special/unique affects.  This function along with the "RemoveActor()"
-        /// function facilitates this. @n
-        /// This function is also necessary for anyone inheriting from our actors to remove their actors from the world.
-        /// @param ToBeRemoved The actor to be removed from the manager.
-        virtual void RemoveActor(Actor* ToBeRemoved);
-        /// @brief Removes all actors from this manager without destroying them.
-        virtual void RemoveAllActors();
-        /// @brief Destroys an actor at the specified index.
-        /// @param Index The index at which to destroy the actor.
-        virtual void DestroyActor(const Whole& Index);
-        /// @brief Destroys an actor.
-        /// @param ToBeDestroyed The actor to be destroyed.
+        /// @brief Destroys an Actor at the specified index.
+        /// @param Index The index at which to destroy the Actor.
+        virtual void DestroyActor(const Whole Index);
+        /// @brief Destroys an Actor.
+        /// @param ToBeDestroyed The Actor to be destroyed.
         virtual void DestroyActor(Actor* ToBeDestroyed);
-        /// @brief Destroys all actors currently within this manager.
+        /// @brief Destroys all Actors currently within this manager.
         virtual void DestroyAllActors();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // ActorFactory Management
+
+        /// @brief Adds/registers a Actor factory with this manager, allowing it to be constructed through this API.
+        /// @param ToBeAdded The Actor factory to be added.
+        virtual void AddActorFactory(ActorFactory* ToBeAdded);
+        /// @brief Removes a Actor factory from this manager.
+        /// @param ToBeRemoved A pointer to the Actor factory that is to be removed.
+        virtual void RemoveActorFactory(ActorFactory* ToBeRemoved);
+        /// @brief Removes a Actor factory from this manager.
+        /// @param ImplName The name of the Actor implementation created by the factory to be removed.
+        virtual void RemoveActorFactory(const String& ImplName);
+        /// @brief Removes and destroys a Actor factory in this manager.
+        /// @param ToBeDestroyed A pointer to the Actor factory that is to be removed and destroyed.
+        virtual void DestroyActorFactory(ActorFactory* ToBeDestroyed);
+        /// @brief Removes and destroys a Actor factory in this manager.
+        /// @param ImplName The name of the Actor implementation created by the factory to be removed and destroyed.
+        virtual void DestroyActorFactory(const String& ImplName);
+        /// @brief Destroys all Actor factories in this manager.
+        /// @warning The destruction of Actor factories should only be done after all the Actor have been destroyed, otherwise this will cause an exception.
+        virtual void DestroyAllActorFactories();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

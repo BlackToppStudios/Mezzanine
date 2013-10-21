@@ -279,7 +279,7 @@ namespace Mezzanine
     FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<FieldOfForce*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
 
-    AreaEffect* FieldOfForceFactory::CreateAreaEffect(const String& Name, World* TheWorld, NameValuePairList& Params)
+    AreaEffect* FieldOfForceFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairList& Params)
         { return new FieldOfForce(Name,TheWorld); }
 
     AreaEffect* FieldOfForceFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)

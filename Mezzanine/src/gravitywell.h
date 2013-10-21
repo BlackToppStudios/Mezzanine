@@ -160,8 +160,8 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         virtual GravityWell* CreateGravityWell(const XML::Node& XMLNode, World* TheWorld);
 
-        /// @copydoc Mezzanine::WorldObjectFactory::CreateAreaEffect(const String&, World*, NameValuePairList&)
-        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, NameValuePairList& Params);
+        /// @copydoc Mezzanine::WorldObjectFactory::CreateAreaEffect(const String&, World*, const NameValuePairList&)
+        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairList& Params);
         /// @copydoc Mezzanine::WorldObjectFactory::CreateAreaEffect(XML::Node&)
         virtual AreaEffect* CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld);
         /// @copydoc Mezzanine::WorldObjectFactory::DestroyAreaEffect(AreaEffect*)

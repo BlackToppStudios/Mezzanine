@@ -176,7 +176,7 @@ namespace Mezzanine
     GravityField* GravityFieldFactory::CreateGravityField(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<GravityField*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
 
-    AreaEffect* GravityFieldFactory::CreateAreaEffect(const String& Name, World* TheWorld, NameValuePairList& Params)
+    AreaEffect* GravityFieldFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairList& Params)
         { return new GravityField(Name,TheWorld); }
 
     AreaEffect* GravityFieldFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)

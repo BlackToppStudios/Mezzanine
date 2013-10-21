@@ -46,6 +46,7 @@
 #include "entresol.h"
 
 #include <sstream>
+#include <algorithm>
 
 namespace Mezzanine
 {
@@ -103,25 +104,46 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Managing all actors
+    // Prefab Actor Type Creation
 
-    void ActorManager::AddActor(Actor* ToBeAdded)
+    ///////////////////////////////////////////////////////////////////////////////
+    // Actor Management
+
+    Actor* ActorManager::CreateActor(const String& TypeName, const String& InstanceName, const NameValuePairList& Params)
     {
-        this->Actors.push_back(ToBeAdded);
-        ToBeAdded->AddToWorld();
+        FactoryIterator ActFactIt = this->ActorFactories.find( TypeName );
+        if( ActFactIt != this->ActorFactories.end() ) {
+            Actor* Ret = (*ActFactIt).second->CreateActor( InstanceName, this->ParentWorld, Params );
+            this->Actors.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an Actor of unknown type.");
+        }
     }
 
-    Actor* ActorManager::GetActor(const Whole& Index) const
+    Actor* ActorManager::CreateActor(const XML::Node& SelfRoot)
+    {
+        FactoryIterator ActFactIt = this->ActorFactories.find( SelfRoot.Name() );
+        if( ActFactIt != this->ActorFactories.end() ) {
+            Actor* Ret = (*ActFactIt).second->CreateActor( SelfRoot, this->ParentWorld );
+            this->Actors.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a Actor of unknown type.");
+        }
+    }
+
+    Actor* ActorManager::GetActor(const Whole Index) const
     {
         return this->Actors.at(Index);
     }
 
     Actor* ActorManager::GetActor(const String& Name) const
     {
-        for( ConstActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
+        for( ConstActorIterator ActIt = this->Actors.begin() ; ActIt != this->Actors.end() ; ++ActIt )
         {
-            if(Name == (*it)->GetName())
-                return (*it);
+            if( (*ActIt)->GetName() == Name )
+                return (*ActIt);
         }
         return NULL;
     }
@@ -131,67 +153,91 @@ namespace Mezzanine
         return this->Actors.size();
     }
 
-    void ActorManager::RemoveActor(const Whole& Index)
+    void ActorManager::DestroyActor(const Whole Index)
     {
-        ActorIterator it = this->Actors.begin() + Index;
-        (*it)->RemoveFromWorld();
-        this->Actors.erase(it);
-    }
-
-    void ActorManager::RemoveActor(Actor* ToBeRemoved)
-    {
-        for( ActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
+        ActorIterator ActIt = ( Index < this->GetNumActors() ? this->Actors.begin() + Index : this->Actors.end() );
+        if( ActIt != this->Actors.end() )
         {
-            if(ToBeRemoved == (*it))
-            {
-                (*it)->RemoveFromWorld();
-                this->Actors.erase(it);
-                return;
+            FactoryIterator ActFactIt = this->ActorFactories.find( (*ActIt)->GetDerivedSerializableName() );
+            if( ActFactIt != this->ActorFactories.end() ) {
+                (*ActFactIt).second->DestroyActor( (*ActIt) );
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
             }
+
+            this->Actors.erase(ActIt);
         }
-    }
-
-    void ActorManager::RemoveAllActors()
-    {
-        if( this->Actors.empty() )
-            return;
-        for( ActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
-            (*it)->RemoveFromWorld();
-        this->Actors.clear();
-    }
-
-    void ActorManager::DestroyActor(const Whole& Index)
-    {
-        ActorIterator it = this->Actors.begin() + Index;
-        (*it)->RemoveFromWorld();
-        delete (*it);
-        this->Actors.erase(it);
     }
 
     void ActorManager::DestroyActor(Actor* ToBeDestroyed)
     {
-        for( ActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
+        ActorIterator ActIt = std::find( this->Actors.begin(), this->Actors.end(), ToBeDestroyed );
+        if( ActIt != this->Actors.end() )
         {
-            if(ToBeDestroyed == (*it))
-            {
-                (*it)->RemoveFromWorld();
-                delete (*it);
-                this->Actors.erase(it);
-                return;
+            FactoryIterator ActFactIt = this->ActorFactories.find( (*ActIt)->GetDerivedSerializableName() );
+            if( ActFactIt != this->ActorFactories.end() ) {
+                (*ActFactIt).second->DestroyActor( (*ActIt) );
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
             }
+
+            this->Actors.erase(ActIt);
         }
     }
 
     void ActorManager::DestroyAllActors()
     {
-        if( this->Actors.empty() )
-            return;
-        for( ActorIterator it = this->Actors.begin() ; it != this->Actors.end() ; ++it )
+        for( ActorIterator ActIt = this->Actors.begin() ; ActIt != this->Actors.end() ; ++ActIt )
         {
-            (*it)->RemoveFromWorld();
-            delete (*it);
+            FactoryIterator ActFactIt = this->ActorFactories.find( (*ActIt)->GetDerivedSerializableName() );
+            if( ActFactIt != this->ActorFactories.end() ) {
+                (*ActFactIt).second->DestroyActor( (*ActIt) );
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to destroy a Actor of unknown type.");
+            }
         }
         this->Actors.clear();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // ActorFactory Management
+
+    void ActorManager::AddActorFactory(ActorFactory* ToBeAdded)
+    {
+        this->ActorFactories.insert(std::pair<String,ActorFactory*>(ToBeAdded->GetTypeName(),ToBeAdded));
+    }
+
+    void ActorManager::RemoveActorFactory(ActorFactory* ToBeRemoved)
+    {
+        this->RemoveActorFactory(ToBeRemoved->GetTypeName());
+    }
+
+    void ActorManager::RemoveActorFactory(const String& ImplName)
+    {
+        FactoryIterator ActFactIt = this->ActorFactories.find(ImplName);
+        if( ActFactIt != this->ActorFactories.end() )
+            { this->ActorFactories.erase(ActFactIt); }
+    }
+
+    void ActorManager::DestroyActorFactory(ActorFactory* ToBeDestroyed)
+    {
+        this->DestroyActorFactory(ToBeDestroyed->GetTypeName());
+    }
+
+    void ActorManager::DestroyActorFactory(const String& ImplName)
+    {
+        FactoryIterator ActFactIt = this->ActorFactories.find(ImplName);
+        if( ActFactIt != this->ActorFactories.end() ) {
+            delete ActFactIt->second;
+            this->ActorFactories.erase(ActFactIt);
+        }
+    }
+
+    void ActorManager::DestroyAllActorFactories()
+    {
+        for( FactoryIterator ActFactIt = this->ActorFactories.begin() ; ActFactIt != this->ActorFactories.end() ; ++ActFactIt )
+            { delete (*ActFactIt).second; }
+        this->ActorFactories.clear();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
