@@ -614,7 +614,7 @@ namespace Mezzanine
                 /// @brief Get Null as a String.
                 /// @return The Bool value lexographically converted as a @ref String
                 virtual String GetString() const
-                { return ""; }
+                    { return "Null"; }
 
                 /// @brief Get Null as a Whole.
                 /// @return The Bool value lexographically converted as a @ref Whole

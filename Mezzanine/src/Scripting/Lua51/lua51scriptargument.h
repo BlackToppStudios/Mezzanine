@@ -195,91 +195,23 @@ namespace Mezzanine
                         { return this; }
             };
 
-            /// @brief A very simple class to allow a specialization of ScriptArgumentGeneric to correspond with Lua's Nil.
-            class MEZZ_LIB Lua51Nil {};
-
-        } // Lua
-
-        /// @brief A Lua51Nil implementation of a ScriptArgument that is suitable for only for passing Nil into Lua51 scripts
-        template <>
-        class MEZZ_LIB ScriptArgumentGeneric<Mezzanine::Scripting::Lua::Lua51Nil> : public iScriptArgument
-        {
-            protected:
-                /// @brief For propriety here is an actual Lua51Nil, it does nothing and will likely be optimized out by any sane compiler
-                Mezzanine::Scripting::Lua::Lua51Nil Datum;
-
-            public:
-                /// @brief To make working with this easier.
-                typedef Mezzanine::Scripting::Lua::Lua51Nil Type;
-
-                /// @brief Create a Nil Argument
-                ScriptArgumentGeneric()
-                    {}
-
-                /// @brief Overloadable Deconstructor
-                virtual ~ScriptArgumentGeneric()
-                    {}
-
-                /// @brief Get "Nil".
-                /// @return A string containing "Nil"
-                virtual String GetString() const
-                    { return String("Nil"); }
-
-                /// @brief Get Nil as a Whole
-                /// @return 0 because NaN does not work in C++
-                virtual Whole GetWhole() const
-                    { return 0; }
-
-                /// @brief Get 0.
-                /// @return 0 because NaN does not work in C++
-                virtual Integer GetInteger() const
-                    { return 0; }
-
-                /// @brief Get the Nil as a 0.0.
-                /// @return 0.0 because NaN does not work in C++
-                virtual Real GetReal() const
-                    { return 0.0; }
-
-                /// @brief Get the Nil as a bool
-                /// @return false.
-                virtual Bool GetBool() const
-                    { return false; }
-
-                /// @brief Provide an overload point to change assignment that operators will use.
-                /// @param NewValue The new value for this.
-                virtual void SetValue(Mezzanine::Scripting::Lua::Lua51Nil NewValue)
-                    { Datum=NewValue; }
-
-                /// @brief Get the raw primitive to value.
-                /// @return The internal value that meaningful operations can be performed on.
-                virtual Mezzanine::Scripting::Lua::Lua51Nil GetValue() const
-                    { return Datum; }
-
-                /// @brief Get data about this being a LuaNil
-                /// @return This will return an Integer containing LuaNil
-                virtual Integer GetTypeData() const
-                    { return Mezzanine::Scripting::Lua::LuaNil; }
-
-                /// @brief Get a pointer to the most Derived type of this class
-                /// @return A pointer of the most derived pointing to this.
-                virtual ScriptArgumentGeneric<Mezzanine::Scripting::Lua::Lua51Nil>* GetMostDerived()
-                    { return this; }
-        }; //ScriptArgumentSpecific<Lua51Nil>
-
-        namespace Lua
-        {
             /// @brief Represents not much of anything but will insert and retrieves Nils from Lua51.
-            class MEZZ_LIB Lua51NilArgument : public LuaArgument, public ScriptArgumentGeneric<Lua51Nil>
+            class MEZZ_LIB Lua51NilArgument : public LuaArgument, public ScriptArgumentGeneric<NullArgument>
             {
                 public:
-                    Lua51NilArgument() : ScriptArgumentGeneric<Lua51Nil>()
-                    {}
+                    Lua51NilArgument() : ScriptArgumentGeneric<NullArgument>(NullArgument())
+                        {}
 
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
 
                     virtual ~Lua51NilArgument() {}
+
+                    /// @brief Get Nil as a String.
+                    /// @return The string "Nil"
+                    virtual String GetString() const
+                        { return "Nil"; }
 
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
