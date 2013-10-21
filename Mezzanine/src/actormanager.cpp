@@ -109,7 +109,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Actor Management
 
-    Actor* ActorManager::CreateActor(const String& TypeName, const String& InstanceName, const NameValuePairList& Params)
+    Actor* ActorManager::CreateActor(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params)
     {
         FactoryIterator ActFactIt = this->ActorFactories.find( TypeName );
         if( ActFactIt != this->ActorFactories.end() ) {

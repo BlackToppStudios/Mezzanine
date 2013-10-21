@@ -256,7 +256,7 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         /// @param Params A NameValuePairList containing the params to be applied during construction.
         /// @return Returns a pointer to the AreaEffect created.
-        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairList& Params) = 0;
+        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
         /// @brief Creates a AreaEffect from XML.
         /// @param XMLNode The node of the xml document to construct from.
         /// @param TheWorld A pointer to the world this object belongs to.

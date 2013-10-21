@@ -278,7 +278,7 @@ namespace Mezzanine
     GravityWell* GravityWellFactory::CreateGravityWell(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<GravityWell*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }
 
-    AreaEffect* GravityWellFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairList& Params)
+    AreaEffect* GravityWellFactory::CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params)
         { return new GravityWell(Name,TheWorld); }
 
     AreaEffect* GravityWellFactory::CreateAreaEffect(const XML::Node& XMLNode, World* TheWorld)

@@ -109,7 +109,7 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         /// @param Params A NameValuePairList containing the params to be applied during construction.
         /// @return Returns a pointer to the Debris created.
-        virtual Debris* CreateDebris(const String& Name, World* TheWorld, const NameValuePairList& Params) = 0;
+        virtual Debris* CreateDebris(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
         /// @brief Creates a Debris from XML.
         /// @param XMLNode The node of the xml document to construct from.
         /// @param TheWorld A pointer to the world this object belongs to.

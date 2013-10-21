@@ -162,7 +162,7 @@ namespace Mezzanine
         /// @param InstanceName A string containing the name to be given to the created Debris.
         /// @param Params A container of additional parameters to be used for the construction of the new Debris.
         /// @return Returns a pointer to the created Debris.
-        Debris* CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairList& Params);
+        Debris* CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params);
         /// @brief Creates a new Debris class from an XML node.
         /// @remarks This is mostly useful for deserialization.
         /// @return Returns a pointer to the created Debris.

@@ -399,14 +399,13 @@ namespace Mezzanine
     SoftDebris* SoftDebrisFactory::CreateSoftDebris(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<SoftDebris*>( this->CreateDebris(XMLNode,TheWorld) ); }
 
-    Debris* SoftDebrisFactory::CreateDebris(const String& Name, World* TheWorld, const NameValuePairList& Params)
+    Debris* SoftDebrisFactory::CreateDebris(const String& Name, World* TheWorld, const NameValuePairMap& Params)
     {
         Real Mass = 0;
-        for( NameValuePairList::const_iterator ValIt = Params.begin() ; ValIt != Params.end() ; ++ValIt )
-        {
-            if( (*ValIt).first == "Mass" )
-                Mass = StringTools::ConvertToReal( (*ValIt).second );
-        }
+        NameValuePairMap::const_iterator ParamIt = Params.find( "Mass" );
+        if( ParamIt != Params.end() )
+            Mass = StringTools::ConvertToReal( (*ParamIt).second );
+
         return new SoftDebris(Name,Mass,TheWorld);
     }
 

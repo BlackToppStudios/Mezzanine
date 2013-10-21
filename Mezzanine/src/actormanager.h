@@ -140,7 +140,7 @@ namespace Mezzanine
         /// @param InstanceName A string containing the name to be given to the created Actor.
         /// @param Params A container of additional parameters to be used for the construction of the new Actor.
         /// @return Returns a pointer to the created Actor.
-        Actor* CreateActor(const String& TypeName, const String& InstanceName, const NameValuePairList& Params);
+        Actor* CreateActor(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params);
         /// @brief Creates a new Actor class from an XML node.
         /// @remarks This is mostly useful for deserialization.
         /// @return Returns a pointer to the created Actor.

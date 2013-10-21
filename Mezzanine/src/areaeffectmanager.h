@@ -169,7 +169,7 @@ namespace Mezzanine
         /// @param InstanceName A string containing the name to be given to the created AreaEffect.
         /// @param Params A container of additional parameters to be used for the construction of the new AreaEffect.
         /// @return Returns a pointer to the created AreaEffect.
-        AreaEffect* CreateAreaEffect(const String& TypeName, const String& InstanceName, const NameValuePairList& Params);
+        AreaEffect* CreateAreaEffect(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params);
         /// @brief Creates a new AreaEffect class from an XML node.
         /// @remarks This is mostly useful for deserialization.
         /// @return Returns a pointer to the created AreaEffect.

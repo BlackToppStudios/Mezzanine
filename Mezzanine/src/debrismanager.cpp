@@ -162,7 +162,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Debris Management
 
-    Debris* DebrisManager::CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairList& Params)
+    Debris* DebrisManager::CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params)
     {
         FactoryIterator DebFactIt = this->DebrisFactories.find( TypeName );
         if( DebFactIt != this->DebrisFactories.end() ) {

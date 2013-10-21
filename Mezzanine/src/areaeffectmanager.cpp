@@ -197,7 +197,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // AreaEffect Management
 
-    AreaEffect* AreaEffectManager::CreateAreaEffect(const String& TypeName, const String& InstanceName, const NameValuePairList& Params)
+    AreaEffect* AreaEffectManager::CreateAreaEffect(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params)
     {
         FactoryIterator AEFactIt = this->AreaEffectFactories.find( TypeName );
         if( AEFactIt != this->AreaEffectFactories.end() ) {
