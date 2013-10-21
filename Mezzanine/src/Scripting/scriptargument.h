@@ -125,8 +125,9 @@ namespace Mezzanine
         };
 
         /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations.
-        /// @details Scripting languages the do not benefit from having different implementations per type should at
-        /// other required functionality to a subclass derived from this.
+        /// @details Scripting languages the do not benefit from having different implementations per type should
+        /// implement their argument subclass derived from this. This will attempt to provide basic type conversion
+        /// for Datum to C++ types lexigraphically. Any that is innapropriate or suboptimal should be overidden
         template <class T>
         class MEZZ_LIB ScriptArgumentGeneric : public iScriptArgument
         {
@@ -202,7 +203,7 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<T>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentGeneric
+        }; //ScriptArgumentGeneric<T>
 
         /// @brief A Integer implementation of a ScriptArgument that is suitable for primitive types in most situations
         /// @details Scripting Languages that require algorithms specific to Integers should add required functionality
@@ -278,7 +279,7 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<Integer>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<Integer>
+        }; //ScriptArgumentGeneric<Integer>
 
         /// @brief A Whole number implementation of a ScriptArgument that is suitable for primitive types in most situations
         /// @details Scripting Languages that require algorithms specific to Whole number should add required functionality
@@ -354,7 +355,7 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<Whole>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<Whole>
+        }; //ScriptArgumentGeneric<Whole>
 
         /// @brief A String implementation of a ScriptArgument that is suitable for primitive types in most situations
         /// @details Scripting Languages that require algorithms specific to strings should add required functionality
@@ -430,7 +431,7 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<String>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<String>
+        }; //ScriptArgumentGeneric<String>
 
         /// @brief A Real number implementation of a ScriptArgument that is suitable for primitive types in most situations
         /// @details Scripting Languages that require algorithms specific to Real Numbers should add required functionality
@@ -506,7 +507,7 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<Real>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<Real>
+        }; //ScriptArgumentGeneric<Real>
 
         /// @brief A Bool implementation of a ScriptArgument that is suitable for primitive types in most situations
         /// @details Scripting Languages that require algorithms specific to boolean values should add required functionality
@@ -582,7 +583,7 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<Bool>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<Bool>
+        }; //ScriptArgumentGeneric<Bool>
 
         /// @brief A very simple type used to indicate to script argument templates that the argument represents
         class NullArgument {};
@@ -603,7 +604,7 @@ namespace Mezzanine
                 /// @brief Create an initialized Argument
                 /// @param InitialValue The value to initialize the Argument Integer value with.
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
-                ScriptArgumentGeneric(NullArgument InitialValue) :
+                ScriptArgumentGeneric(NullArgument InitialValue = NullArgument()) :
                     Datum(InitialValue)
                     {}
 
@@ -660,7 +661,7 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<NullArgument>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<Bool>
+        }; //ScriptArgumentGeneric<Bool>
 
     }//Scripting
 
@@ -746,6 +747,42 @@ namespace Mezzanine
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
             /// @param Target A pointer to a Scripting::ScriptArgumentGeneric<Real> that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks ScriptArgumentGeneric<Real> for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::ScriptArgumentGeneric<Bool> >
+    {
+        public:
+            /// @brief The type that maintains the Reference count for ScriptArgumentGeneric<Bool> with be ScriptArgumentGeneric<Bool> itself
+            typedef Scripting::ScriptArgumentGeneric<Bool> RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::ScriptArgumentGeneric<Bool> that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks ScriptArgumentGeneric<Real> for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::ScriptArgumentGeneric<Scripting::NullArgument> >
+    {
+        public:
+            /// @brief The type that maintains the Reference count for ScriptArgumentGeneric<Scripting::NullArgument> with be ScriptArgumentGeneric<Scripting::NullArgument> itself
+            typedef Scripting::ScriptArgumentGeneric<Scripting::NullArgument> RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::ScriptArgumentGeneric<Scripting::NullArgument> that will simply be returned
             /// @return This returns whatever was passed into target because it already is a valid Reference Counter
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }
