@@ -73,7 +73,7 @@ namespace Mezzanine
             /// @brief Lua51NilArgument returns this value when checking GetTypeData() const.
             const Integer LuaNil = GenericNull;
 
-            /// @brief The ScriptArgumentGeneric<T> does a good enough job for actually passing data, but it needs just a bit of Lua specific functionality
+            /// @brief The ScriptArgumentGeneric<T> needs just a bit of Lua specific functionality so we add push/pop for the LuaScript to call.
             class MEZZ_LIB LuaArgument
             {
                 public:
@@ -111,6 +111,7 @@ namespace Mezzanine
 
                     virtual void Pop(lua_State* TargetState);
 
+                    /// @brief Virtual deconstructor
                     virtual ~Lua51IntegerArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -130,6 +131,7 @@ namespace Mezzanine
 
                     virtual void Pop(lua_State* TargetState);
 
+                    /// @brief Virtual deconstructor
                     virtual ~Lua51RealArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -149,6 +151,7 @@ namespace Mezzanine
 
                     virtual void Pop(lua_State* TargetState);
 
+                    /// @brief Virtual deconstructor
                     virtual ~Lua51WholeArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -168,6 +171,7 @@ namespace Mezzanine
 
                     virtual void Pop(lua_State* TargetState);
 
+                    /// @brief Virtual deconstructor
                     virtual ~Lua51StringArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -187,6 +191,7 @@ namespace Mezzanine
 
                     virtual void Pop(lua_State* TargetState);
 
+                    /// @brief Virtual deconstructor
                     virtual ~Lua51BoolArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -199,13 +204,14 @@ namespace Mezzanine
             class MEZZ_LIB Lua51NilArgument : public LuaArgument, public ScriptArgumentGeneric<NullArgument>
             {
                 public:
-                    Lua51NilArgument() : ScriptArgumentGeneric<NullArgument>(NullArgument())
+                    Lua51NilArgument()
                         {}
 
                     virtual void Push(lua_State* TargetState) const;
 
                     virtual void Pop(lua_State* TargetState);
 
+                    /// @brief Virtual deconstructor
                     virtual ~Lua51NilArgument() {}
 
                     /// @brief Get Nil as a String.
@@ -221,8 +227,6 @@ namespace Mezzanine
 
         } // Lua
     } // Scripting
-
-    //
 
     /// @brief Marks LuaArgument for internal reference counting if a CountedPtr checks
     template <>
