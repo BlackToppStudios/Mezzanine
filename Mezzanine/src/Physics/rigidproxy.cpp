@@ -84,7 +84,7 @@ namespace Mezzanine
         void RigidProxy::CreateRigidObject(const Real Mass)
         {
             this->PhysicsRigidBody = new btRigidBody(Mass, NULL/* MotionState */, NULL/* CollisionShape */);
-            this->PhysicsRigidBody->setMotionState( new Internal::MultiProxyMotionState( this ) );
+            this->PhysicsRigidBody->setMotionState( new Internal::MultiMotionState( this ) );
             this->PhysicsRigidBody->setUserPointer( static_cast<CollidableProxy*>( this ) );
             if(0.0 == Mass) {
                 this->PhysicsRigidBody->setCollisionFlags( btCollisionObject::CF_STATIC_OBJECT );
@@ -251,22 +251,22 @@ namespace Mezzanine
 		*/
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Proxy Syncronization
+        // Transform Syncronization
 
-        void RigidProxy::AddSyncProxy(WorldProxy* ToBeAdded)
-            { static_cast<Internal::MultiProxyMotionState*>( this->PhysicsRigidBody->getMotionState() )->AddSyncProxy(ToBeAdded); }
+        void RigidProxy::AddSyncObject(TransformableObject* ToBeAdded)
+            { static_cast<Internal::MultiMotionState*>( this->PhysicsRigidBody->getMotionState() )->AddSyncObject(ToBeAdded); }
 
-        WorldProxy* RigidProxy::GetSyncProxy(const UInt32 Index) const
-            { return static_cast<Internal::MultiProxyMotionState*>( this->PhysicsRigidBody->getMotionState() )->GetSyncProxy(Index); }
+        TransformableObject* RigidProxy::GetSyncObject(const UInt32 Index) const
+            { return static_cast<Internal::MultiMotionState*>( this->PhysicsRigidBody->getMotionState() )->GetSyncObject(Index); }
 
-        UInt32 RigidProxy::GetNumSyncProxies() const
-            { return static_cast<Internal::MultiProxyMotionState*>( this->PhysicsRigidBody->getMotionState() )->GetNumSyncProxies(); }
+        UInt32 RigidProxy::GetNumSyncObjects() const
+            { return static_cast<Internal::MultiMotionState*>( this->PhysicsRigidBody->getMotionState() )->GetNumSyncObjects(); }
 
-        void RigidProxy::RemoveSyncProxy(WorldProxy* ToBeRemoved)
-            { static_cast<Internal::MultiProxyMotionState*>( this->PhysicsRigidBody->getMotionState() )->RemoveSyncProxy(ToBeRemoved); }
+        void RigidProxy::RemoveSyncObject(TransformableObject* ToBeRemoved)
+            { static_cast<Internal::MultiMotionState*>( this->PhysicsRigidBody->getMotionState() )->RemoveSyncObject(ToBeRemoved); }
 
-        void RigidProxy::RemoveAllSyncProxies()
-            { static_cast<Internal::MultiProxyMotionState*>( this->PhysicsRigidBody->getMotionState() )->RemoveAllSyncProxies(); }
+        void RigidProxy::RemoveAllSyncObjects()
+            { static_cast<Internal::MultiMotionState*>( this->PhysicsRigidBody->getMotionState() )->RemoveAllSyncObjects(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization

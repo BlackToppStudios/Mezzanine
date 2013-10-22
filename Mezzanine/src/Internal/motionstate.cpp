@@ -42,6 +42,7 @@
 
 #include "Internal/motionstate.h.cpp"
 #include "Physics/rigidproxy.h"
+#include "transformableobject.h"
 #include "exception.h"
 
 #include <algorithm>
@@ -54,44 +55,44 @@ namespace Mezzanine
     namespace Internal
     {
         ///////////////////////////////////////////////////////////////////////////////
-        // SimpleProxyMotionState methods
+        // SimpleMotionState methods
 
-        SimpleProxyMotionState::SimpleProxyMotionState() :
+        SimpleMotionState::SimpleMotionState() :
             ParentObject(NULL),
             SyncObject(NULL)
             { this->WorldTrans.setIdentity(); }
 
-        SimpleProxyMotionState::SimpleProxyMotionState(Physics::RigidProxy* PO, WorldProxy* WP) :
+        SimpleMotionState::SimpleMotionState(Physics::RigidProxy* PO, TransformableObject* TO) :
             ParentObject(PO),
             SyncObject(NULL)
-            { this->WorldTrans.setIdentity();  this->SetSyncObject(WP); }
+            { this->WorldTrans.setIdentity();  this->SetSyncObject(TO); }
 
-        SimpleProxyMotionState::~SimpleProxyMotionState()
+        SimpleMotionState::~SimpleMotionState()
             {  }
 
-        void SimpleProxyMotionState::SetParentObject(Physics::RigidProxy* PO)
+        void SimpleMotionState::SetParentObject(Physics::RigidProxy* PO)
             { this->ParentObject = PO; }
 
-        void SimpleProxyMotionState::SetSyncObject(WorldProxy* WP)
+        void SimpleMotionState::SetSyncObject(TransformableObject* TO)
         {
-            UInt32 ProxType = WP->GetProxyType();
-            if( ProxType != Mezzanine::PT_Physics_RigidProxy || ProxType != Mezzanine::PT_Physics_SoftProxy ) {
-                this->SyncObject = WP;
-            }else{
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to create motionstate sync object between two physics objects that do not support this configuration.");
-            }
+            //UInt32 ProxType = WP->GetProxyType();
+            //if( ProxType != Mezzanine::PT_Physics_RigidProxy || ProxType != Mezzanine::PT_Physics_SoftProxy ) {
+                this->SyncObject = TO;
+            //}else{
+            //    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to create motionstate sync object between two physics objects that do not support this configuration.");
+            //}
         }
 
-        void SimpleProxyMotionState::SetPosition(const Vector3& Position)
+        void SimpleMotionState::SetPosition(const Vector3& Position)
             { this->WorldTrans.setOrigin( Position.GetBulletVector3() ); }
 
-        void SimpleProxyMotionState::SetOrientation(const Quaternion& Orientation)
+        void SimpleMotionState::SetOrientation(const Quaternion& Orientation)
             { this->WorldTrans.setRotation(Orientation.GetBulletQuaternion()); }
 
-        void SimpleProxyMotionState::getWorldTransform(btTransform& worldTrans) const
+        void SimpleMotionState::getWorldTransform(btTransform& worldTrans) const
             { worldTrans = this->WorldTrans; }
 
-        void SimpleProxyMotionState::setWorldTransform(const btTransform& worldTrans)
+        void SimpleMotionState::setWorldTransform(const btTransform& worldTrans)
         {
             this->WorldTrans = worldTrans;
 
@@ -102,55 +103,55 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // MultiProxyMotionState methods
+        // MultiMotionState methods
 
-        MultiProxyMotionState::MultiProxyMotionState() :
+        MultiMotionState::MultiMotionState() :
             ParentObject(NULL)
             { this->WorldTrans.setIdentity(); }
 
-        MultiProxyMotionState::MultiProxyMotionState(Physics::RigidProxy* PO) :
+        MultiMotionState::MultiMotionState(Physics::RigidProxy* PO) :
             ParentObject(PO)
             { this->WorldTrans.setIdentity(); }
 
-        MultiProxyMotionState::~MultiProxyMotionState()
-            { this->RemoveAllSyncProxies(); }
+        MultiMotionState::~MultiMotionState()
+            { this->RemoveAllSyncObjects(); }
 
-        void MultiProxyMotionState::SetParentObject(Physics::RigidProxy* PO)
+        void MultiMotionState::SetParentObject(Physics::RigidProxy* PO)
             { this->ParentObject = PO; }
 
-        void MultiProxyMotionState::AddSyncProxy(WorldProxy* ToBeAdded)
+        void MultiMotionState::AddSyncObject(TransformableObject* ToBeAdded)
         {
-            ProxyIterator ProxIt = std::find( this->SyncObjects.begin(), this->SyncObjects.end(), ToBeAdded );
-            if( ProxIt == this->SyncObjects.end() )
+            TransformableObjectIterator ObjIt = std::find( this->SyncObjects.begin(), this->SyncObjects.end(), ToBeAdded );
+            if( ObjIt == this->SyncObjects.end() )
                 this->SyncObjects.push_back( ToBeAdded );
         }
 
-        WorldProxy* MultiProxyMotionState::GetSyncProxy(const UInt32 Index) const
+        TransformableObject* MultiMotionState::GetSyncObject(const UInt32 Index) const
             { return this->SyncObjects.at(Index); }
 
-        UInt32 MultiProxyMotionState::GetNumSyncProxies() const
+        UInt32 MultiMotionState::GetNumSyncObjects() const
             { return this->SyncObjects.size(); }
 
-        void MultiProxyMotionState::RemoveSyncProxy(WorldProxy* ToBeRemoved)
+        void MultiMotionState::RemoveSyncObject(TransformableObject* ToBeRemoved)
         {
-            ProxyIterator ProxIt = std::find( this->SyncObjects.begin(), this->SyncObjects.end(), ToBeRemoved );
-            if( ProxIt != this->SyncObjects.end() )
-                this->SyncObjects.erase( ProxIt );
+            TransformableObjectIterator ObjIt = std::find( this->SyncObjects.begin(), this->SyncObjects.end(), ToBeRemoved );
+            if( ObjIt != this->SyncObjects.end() )
+                this->SyncObjects.erase( ObjIt );
         }
 
-        void MultiProxyMotionState::RemoveAllSyncProxies()
+        void MultiMotionState::RemoveAllSyncObjects()
             { this->SyncObjects.clear(); }
 
-        void MultiProxyMotionState::SetPosition(const Vector3& Position)
+        void MultiMotionState::SetPosition(const Vector3& Position)
             { this->WorldTrans.setOrigin( Position.GetBulletVector3() ); }
 
-        void MultiProxyMotionState::SetOrientation(const Quaternion& Orientation)
+        void MultiMotionState::SetOrientation(const Quaternion& Orientation)
             { this->WorldTrans.setRotation(Orientation.GetBulletQuaternion()); }
 
-        void MultiProxyMotionState::getWorldTransform(btTransform& worldTrans) const
+        void MultiMotionState::getWorldTransform(btTransform& worldTrans) const
             { worldTrans = this->WorldTrans; }
 
-        void MultiProxyMotionState::setWorldTransform(const btTransform& worldTrans)
+        void MultiMotionState::setWorldTransform(const btTransform& worldTrans)
         {
             this->WorldTrans = worldTrans;
 
@@ -158,10 +159,10 @@ namespace Mezzanine
                 Vector3 TargetLocation( worldTrans.getOrigin() );
                 Quaternion TargetOrientation( worldTrans.getRotation() );
 
-                for( ProxyIterator ProxIt = this->SyncObjects.begin() ; ProxIt != this->SyncObjects.end() ; ++ProxIt )
+                for( TransformableObjectIterator ObjIt = this->SyncObjects.begin() ; ObjIt != this->SyncObjects.end() ; ++ObjIt )
                 {
-                    (*ProxIt)->SetLocation( TargetLocation );
-                    (*ProxIt)->SetOrientation( TargetOrientation );
+                    (*ObjIt)->SetLocation( TargetLocation );
+                    (*ObjIt)->SetOrientation( TargetOrientation );
                 }
             }
         }
