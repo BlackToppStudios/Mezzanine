@@ -97,6 +97,7 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
         if( this->Ghost != NULL && PhysMan != NULL ) {
             PhysMan->DestroyProxy( this->Ghost );
+            this->Ghost = NULL;
         }
     }
 
