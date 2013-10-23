@@ -112,7 +112,7 @@ namespace Mezzanine
         }; // iScriptArgument
 
         /// @brief A listing of the Base types an iScriptArgument could represent.
-        enum ScriptArgment
+        enum ScriptArgument
         {
             GenericUnknown      = 0,    ///< This is not readily available when instantiating ScriptArgumentGeneric<T> where T is unknown
             GenericInteger      = 1,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an Integer

@@ -41,15 +41,14 @@
 #define _rubyscriptargument_cpp
 
 #include "datatypes.h"
-#include "rubyscriptargument.h"
 
 #ifdef MEZZRUBY
 
-#include "rubyscript.h"
-#include "rubyscriptingengine.h"
+#include "rubyscriptargument.h"
+//#include "rubyscript.h"
+//#include "rubyscriptingengine.h"
 #include "exception.h"
 
-#include <algorithm>
 
 /// @file
 /// @brief This file has the implementation for the Ruby script argument.
@@ -65,6 +64,44 @@ namespace Mezzanine
     {
         namespace Ruby
         {
+            String RubyArgument::GetString() const
+            {
+
+            }
+
+            Whole RubyArgument::GetWhole() const
+            {
+
+            }
+
+            Integer RubyArgument::GetInteger() const
+            {
+
+            }
+
+            Real RubyArgument::GetReal() const
+            {
+
+            }
+
+            Bool RubyArgument::GetBool() const
+            {
+
+            }
+
+            void RubyArgument::SetValue(ConvertiblePointer NewValue)
+            {
+
+            }
+
+            ConvertiblePointer RubyArgument::GetValue() const
+            {
+
+            }
+
+
+
+
             RubyIntegerArgument::RubyIntegerArgument(Integer InitialValue)
             {
 
@@ -90,6 +127,8 @@ namespace Mezzanine
 
             }
 
+
+
         } // Ruby
     } // Scripting
 } // Mezzanine
@@ -99,3 +138,4 @@ namespace Mezzanine
 
 #endif //  MEZZRUBY
 #endif
+

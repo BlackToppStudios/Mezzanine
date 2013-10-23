@@ -96,7 +96,7 @@ namespace Mezzanine
                     /// @brief Compiling Constructor
                     /// @param SourceCode The source of the script to be used in this.
                     /// @param Compiler Defaults to a null pointer. If passed a null pointer this does nothing. If passed a valid RubyScriptingEngine then that engine is used to compile (but not run) this script.
-                    RubyScript(const String& InitialSourceCode, RubyScriptingEngine* Compiler=0, );
+                    RubyScript(const String& InitialSourceCode, RubyScriptingEngine* Compiler=0);
 
                     /// @brief Compiling Cosntructor without pointer
                     /// @param SourceCode The source of the script to be used in this.
