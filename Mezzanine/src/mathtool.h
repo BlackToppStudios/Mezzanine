@@ -62,17 +62,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Predefined Constants
 
-        /// @brief This is Pi.
-        extern const Real Pi;
-        /// @brief This is Pi * 2.
-        extern const Real TwoPi;
-        /// @brief This is Pi * 0.5.
-        extern const Real HalfPi;
+        /// @brief Gets Pi.
+        Real MEZZ_LIB GetPi();
+        /// @brief Gets Pi times two.
+        Real MEZZ_LIB GetTwoPi();
+        /// @brief Gets half of Pi.
+        Real MEZZ_LIB GetHalfPi();
+        /// @brief Gets Quarter Pi.
+        Real MEZZ_LIB GetQuarterPi();
 
-        /// @brief This is a convenience multiplier for the conversion of Radians to Degrees.
-        extern const Real RadToDegMult;
-        /// @brief This is a convenience multiplier for the conversion of Degrees to Radians.
-        extern const Real DegToRadMult;
+        /// @brief Gets a multiplier used in converting Radian angular units to degrees.
+        Real MEZZ_LIB GetRadToDegMultiplier();
+        /// @brief Gets a multiplier used in converting Degree angular units to Radians.
+        Real MEZZ_LIB GetDegToRadMultiplier();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Real Math & Check Functions

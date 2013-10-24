@@ -48,7 +48,8 @@
 #include "mathtool.h"
 #ifndef SWIG
     #include "XML/xml.h"
-#endif#include "XML/xml.h"            // Needed for streaming to xml
+#endif
+#include "XML/xml.h"            // Needed for streaming to xml
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
@@ -404,13 +405,13 @@ namespace Mezzanine
         {
             if( FallBackAxis != Vector3() )
             {
-                Ret.SetFromAxisAngle(MathTools::Pi,FallBackAxis);
+                Ret.SetFromAxisAngle(MathTools::GetPi(),FallBackAxis);
             }else{
                 Vector3 CrossAxis = Vector3::Unit_X().CrossProduct(*this);
                 if(CrossAxis.IsZeroLength())
                     CrossAxis = Vector3::Unit_Y().CrossProduct(*this);
                 CrossAxis.Normalize();
-                Ret.SetFromAxisAngle(MathTools::Pi,CrossAxis);
+                Ret.SetFromAxisAngle(MathTools::GetPi(),CrossAxis);
             }
         }else{
             Real Sqr = MathTools::Sqrt( (1+Dot)*2 );

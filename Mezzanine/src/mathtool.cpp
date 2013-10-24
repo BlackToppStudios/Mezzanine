@@ -84,6 +84,13 @@ namespace
 
         return true;
     }
+
+    const Mezzanine::Real Pi = Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) );
+    const Mezzanine::Real TwoPi = ( Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) ) * 2.0;
+    const Mezzanine::Real HalfPi = ( Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) ) * 0.5;
+    const Mezzanine::Real QuarterPi = ( Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) ) * 0.25;
+    const Mezzanine::Real RadToDegMult = Mezzanine::Real( Mezzanine::Real(180.0) / Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) );
+    const Mezzanine::Real DegToRadMult = Mezzanine::Real( Mezzanine::Real( 4.0 * Mezzanine::MathTools::ATan(1.0) ) / Mezzanine::Real(180.0) );
 }
 /// @endcond
 
@@ -94,11 +101,23 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Predefined Constants
 
-        const Real Pi = Real( 4.0 * MathTools::ATan(1.0) );
-        const Real TwoPi = ( Real( 4.0 * MathTools::ATan(1.0) ) ) * 2.0;
-        const Real HalfPi = ( Real( 4.0 * MathTools::ATan(1.0) ) ) * 0.5;
-        const Real RadToDegMult = Real( Real(180.0) / Real( 4.0 * MathTools::ATan(1.0) ) );
-        const Real DegToRadMult = Real( Real( 4.0 * MathTools::ATan(1.0) ) / Real(180.0) );
+        Real GetPi()
+            { return Pi; }
+
+        Real GetTwoPi()
+            { return TwoPi; }
+
+        Real GetHalfPi()
+            { return HalfPi; }
+
+        Real GetQuarterPi()
+            { return QuarterPi; }
+
+        Real GetRadToDegMultiplier()
+            { return RadToDegMult; }
+
+        Real GetDegToRadMultiplier()
+            { return DegToRadMult; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Real Math & Check Functions
@@ -149,10 +168,10 @@ namespace Mezzanine
         // Angle Conversion Functions
 
         Real DegreesToRadians(const Real& Degrees)
-            { return Degrees * MathTools::DegToRadMult; }
+            { return Degrees * DegToRadMult; }
 
         Real RadiansToDegrees(const Real& Radians)
-            { return Radians * MathTools::RadToDegMult; }
+            { return Radians * RadToDegMult; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Geometry Math

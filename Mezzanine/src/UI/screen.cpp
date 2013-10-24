@@ -543,11 +543,11 @@ namespace Mezzanine
                 OrientationChanged = false;
 #endif
                 if(Orientation == Mezzanine::OM_Degree_90)
-                    VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(MathTools::HalfPi,Vector3::Unit_Z()));
+                    VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(MathTools::GetHalfPi(),Vector3::Unit_Z()));
                 else if(Orientation == Mezzanine::OM_Degree_180)
-                    VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(MathTools::Pi,Vector3::Unit_Z()));
+                    VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(MathTools::GetPi(),Vector3::Unit_Z()));
                 else if(Orientation == Mezzanine::OM_Degree_270)
-                    VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(MathTools::Pi * 1.5,Vector3::Unit_Z()));
+                    VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(MathTools::GetPi() * 1.5,Vector3::Unit_Z()));
                 else
                     VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(0,0,0,1));
                 Force = true;

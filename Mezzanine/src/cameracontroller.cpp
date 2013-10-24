@@ -71,7 +71,7 @@ namespace Mezzanine
 
     void CameraController::CheckAngleRollover(Real Angle)
     {
-        Real Pi = MathTools::Pi;
+        Real Pi = MathTools::GetPi();
         if(Angle > Pi)
         {
             Angle = -Pi + (Angle - Pi);
