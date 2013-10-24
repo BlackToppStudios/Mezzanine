@@ -395,11 +395,11 @@ AreaEffect* StartAreaFactory::CreateAreaEffect(const String& Name, World* TheWor
     if( ParamIt != Params.end() )
         HalfSize.X = StringTools::ConvertToReal( (*ParamIt).second );
 
-    Params.find( "SizeY" );
+    ParamIt = Params.find( "SizeY" );
     if( ParamIt != Params.end() )
         HalfSize.Y = StringTools::ConvertToReal( (*ParamIt).second );
 
-    Params.find( "SizeZ" );
+    ParamIt = Params.find( "SizeZ" );
     if( ParamIt != Params.end() )
         HalfSize.Z = StringTools::ConvertToReal( (*ParamIt).second );
 

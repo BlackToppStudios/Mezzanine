@@ -248,7 +248,7 @@ void LevelLoader::LoadFerris()
     ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams) );
     ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
     ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
-    StartZone->SetLocation(100,0,0);
+    ScoreZone->SetLocation(100,0,0);
     ScoreZone->AddToWorld();// */
 
     Vector3 BonusScoreSize(18,18,30);
