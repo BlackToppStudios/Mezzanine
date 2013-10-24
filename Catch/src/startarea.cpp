@@ -185,13 +185,13 @@ void StartArea::RemoveFromWorld()
 void StartArea::SetLocation(const Vector3& Loc)
 {
     LevelZone::SetLocation(Loc);
-    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( Loc + this->GetParticleSystemOffset() ) );
+    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( this->GetParticleSystemOffset() ) );
 }
 
 void StartArea::SetLocation(const Real X, const Real Y, const Real Z)
 {
     LevelZone::SetLocation(X,Y,Z);
-    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( Vector3(X,Y,Z) + this->GetParticleSystemOffset() ) );
+    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( this->GetParticleSystemOffset() ) );
 }
 
 Vector3 StartArea::GetLocation() const
@@ -203,14 +203,14 @@ void StartArea::SetOrientation(const Quaternion& Ori)
 {
     LevelZone::SetOrientation(Ori);
     this->ParSysProx->SetOrientation(Ori);
-    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( this->GetLocation() + this->GetParticleSystemOffset() ) );
+    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( this->GetParticleSystemOffset() ) );
 }
 
 void StartArea::SetOrientation(const Real X, const Real Y, const Real Z, const Real W)
 {
     LevelZone::SetOrientation(X,Y,Z,W);
     this->ParSysProx->SetOrientation(X,Y,Z,W);
-    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( this->GetLocation() + this->GetParticleSystemOffset() ) );
+    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( this->GetParticleSystemOffset() ) );
 }
 
 Quaternion StartArea::GetOrientation() const
@@ -222,14 +222,14 @@ void StartArea::SetScale(const Vector3& Sc)
 {
     LevelZone::SetScale(Sc);
     this->ParSysProx->SetScale(Sc);
-    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( this->GetLocation() + this->GetParticleSystemOffset() ) );
+    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( this->GetParticleSystemOffset() ) );
 }
 
 void StartArea::SetScale(const Real X, const Real Y, const Real Z)
 {
     LevelZone::SetScale(X,Y,Z);
     this->ParSysProx->SetScale(X,Y,Z);
-    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( this->GetLocation() + this->GetParticleSystemOffset() ) );
+    this->ParSysProx->SetLocation( this->ConvertLocalToGlobal( this->GetParticleSystemOffset() ) );
 }
 
 Vector3 StartArea::GetScale() const
