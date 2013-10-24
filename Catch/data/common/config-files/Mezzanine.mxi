@@ -18,6 +18,8 @@
         </DefaultCameraManager>
         <DefaultCollisionShapeManager>
         </DefaultCollisionShapeManager>
+        <DefaultDebrisManager>
+        </DefaultDebrisManager>
         <DefaultEventManager>
         </DefaultEventManager>
         <DefaultGraphicsManager>

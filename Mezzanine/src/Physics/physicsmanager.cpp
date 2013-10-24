@@ -856,8 +856,8 @@ namespace Mezzanine
                     if( Parent )
                         Parent->_NotifyProxyDestroyed( (*ProxIt) );
 
-                    this->Proxies.erase(ProxIt);
                     delete (*ProxIt);
+                    this->Proxies.erase(ProxIt);
                     return;
                 }
             }

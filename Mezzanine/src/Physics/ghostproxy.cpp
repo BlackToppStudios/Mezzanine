@@ -149,9 +149,8 @@ namespace Mezzanine
                         return static_cast<CollidableProxy*>( ColObj->getUserPointer() );
                     }
                 }
-            }else{
-                return NULL;
             }
+            return NULL;
         }
 
         UInt32 GhostProxy::GetNumShapeOverlappingProxies() const

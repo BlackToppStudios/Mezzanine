@@ -586,6 +586,15 @@ void CatchApp::VerifySettings()
     }
 }
 
+void CatchApp::RegisterTypes()
+{
+    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    if( AEMan != NULL ) {
+        AEMan->AddAreaEffectFactory( new ScoreAreaFactory() );
+        AEMan->AddAreaEffectFactory( new StartAreaFactory() );
+    }
+}
+
 void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
 {
     if(this->CurrentState == StateToSet)
@@ -758,6 +767,8 @@ int CatchApp::GetCatchin()
     this->PostGraphicsWork->AddDependency( this->TheEntresol->GetGraphicsManager()->GetRenderWork() );
     this->PostGraphicsWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostGraphicsWork, "PostGraphicsWork" );
+
+    this->RegisterTypes();
 
     // Initialize the managers.
 	this->TheEntresol->EngineInit(false);
