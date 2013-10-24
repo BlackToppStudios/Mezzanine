@@ -43,11 +43,11 @@
 /// @file
 /// @brief The interface for serialization
 
-    #include "datatypes.h"
-    #include "countedptr.h"
-    #ifndef SWIG
-        #include "XML/xml.h"
-    #endif
+#include "datatypes.h"
+#include "countedptr.h"
+#ifndef SWIG
+    #include "XML/xml.h"
+#endif
 
 namespace Mezzanine
 {
@@ -287,7 +287,7 @@ namespace Mezzanine
     /// no reason why something could not inherit from this and Mezzanine::DeSerializer. The type of this template is expected to match what this is serializing.
     ///////////////////////////////////////
     template <class Serializable>
-    class Serializer
+    class MEZZ_LIB Serializer
     {
         public:
         /// @brief Get all of the data from the serializable class instance
@@ -348,7 +348,7 @@ namespace Mezzanine
     /// no reason why something could not inherit from this and Mezzanine::Serializer.
     ///////////////////////////////////////
     template <class DeSerializable>
-    class DeSerializer
+    class MEZZ_LIB DeSerializer
     {
         public:
         /// @brief Convert An XML Node into a complete series of live class instances
@@ -457,7 +457,7 @@ namespace Mezzanine
     /// @param ClassName The name of the class throw the exception
     /// @param SOrD Defaults to true, and if true uses the word "Serialization", otherwise uses the word "DeSerialization"
     /// @throw A Mezzanine::Exception with the message "Could not {FailedTo} during {ClassName} [De]Serialization.""Could not {FailedTo} during {ClassName} [De]Serialization."
-    void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD = true);
+    void MEZZ_LIB SerializeError(const String& FailedTo, const String& ClassName, bool SOrD = true);
 
     /// @brief Simply does some string concatenation, then throws an Exception
     /// @param FailedTo What failed to happed for example "create testnode" or "acquire a mutex"
@@ -466,10 +466,8 @@ namespace Mezzanine
     /// @throw A Mezzanine::Exception with the message "Could not {FailedTo} during {ClassName} [De]Serialization."
     /// @details This just calls SerializeError() with the third parameter false. This exists solely to make code
     /// A little more readable.
-    void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD = false);
-
-
-} // /Namespace Mezzanine
+    void MEZZ_LIB DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD = false);
+}//Mezzanine
 
 /*
 /// @brief This will call convert an XML::Node into Text in a stream
@@ -483,10 +481,5 @@ std::ostream& MEZZ_LIB operator<< <Mezzanine::XML::Node> (std::ostream& Stream, 
     return Stream;
 }
 */
-
-
-
-
-
 
 #endif
