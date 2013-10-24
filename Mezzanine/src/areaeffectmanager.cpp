@@ -197,6 +197,18 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // AreaEffect Management
 
+    AreaEffect* AreaEffectManager::CreateAreaEffect(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params)
+    {
+        FactoryIterator AEFactIt = this->AreaEffectFactories.find( TypeName );
+        if( AEFactIt != this->AreaEffectFactories.end() ) {
+            AreaEffect* Ret = (*AEFactIt).second->CreateAreaEffect( InstanceName, this->ParentWorld, Params );
+            this->AreaEffects.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an AreaEffect of unknown type.");
+        }
+    }
+
     AreaEffect* AreaEffectManager::CreateAreaEffect(const XML::Node& SelfRoot)
     {
         FactoryIterator AEFactIt = this->AreaEffectFactories.find( SelfRoot.Name() );

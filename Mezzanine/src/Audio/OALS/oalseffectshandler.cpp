@@ -285,6 +285,7 @@ namespace Mezzanine
                     case Audio::ET_Autowah:            AutowahParams.erase(Name);         break;
                     case Audio::ET_Compressor:         CompressorParams.erase(Name);      break;
                     case Audio::ET_Equalizer:          EqualizerParams.erase(Name);       break;
+                    case Audio::ET_Null:               return;                            break;
                 }
             }
 
@@ -305,6 +306,7 @@ namespace Mezzanine
                     case Audio::ET_Autowah:            AutowahParams.clear();         break;
                     case Audio::ET_Compressor:         CompressorParams.clear();      break;
                     case Audio::ET_Equalizer:          EqualizerParams.clear();       break;
+                    case Audio::ET_Null:               return;                        break;
                 }
             }
 

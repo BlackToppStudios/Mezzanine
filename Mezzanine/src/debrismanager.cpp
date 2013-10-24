@@ -162,6 +162,18 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Debris Management
 
+    Debris* DebrisManager::CreateDebris(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params)
+    {
+        FactoryIterator DebFactIt = this->DebrisFactories.find( TypeName );
+        if( DebFactIt != this->DebrisFactories.end() ) {
+            Debris* Ret = (*DebFactIt).second->CreateDebris( InstanceName, this->ParentWorld, Params );
+            this->Debriss.push_back( Ret );
+            return Ret;
+        }else{
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create an Debris of unknown type.");
+        }
+    }
+
     Debris* DebrisManager::CreateDebris(const XML::Node& SelfRoot)
     {
         FactoryIterator DebFactIt = this->DebrisFactories.find( SelfRoot.Name() );

@@ -97,7 +97,7 @@ namespace Mezzanine
         }
 
         if( this->EntProx && this->RigProx ) {
-            this->RigProx->AddSyncProxy( this->EntProx );
+            this->RigProx->AddSyncObject( this->EntProx );
         }
     }
 
@@ -350,7 +350,7 @@ namespace Mezzanine
                 }
 
                 if( this->EntProx && this->RigProx ) {
-                    this->RigProx->AddSyncProxy( this->EntProx );
+                    this->RigProx->AddSyncObject( this->EntProx );
                 }
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RigidDebris::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
@@ -381,7 +381,7 @@ namespace Mezzanine
 
         if( this->EntProx == ToBeDestroyed ) {
             if( this->RigProx ) {
-                this->RigProx->RemoveSyncProxy( this->EntProx );
+                this->RigProx->RemoveSyncObject( this->EntProx );
             }
 
             this->EntProx = NULL;
@@ -410,14 +410,13 @@ namespace Mezzanine
     RigidDebris* RigidDebrisFactory::CreateRigidDebris(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<RigidDebris*>( this->CreateDebris(XMLNode,TheWorld) ); }
 
-    Debris* RigidDebrisFactory::CreateDebris(const String& Name, World* TheWorld, NameValuePairList& Params)
+    Debris* RigidDebrisFactory::CreateDebris(const String& Name, World* TheWorld, const NameValuePairMap& Params)
     {
         Real Mass = 0;
-        for( NameValuePairList::iterator ValIt = Params.begin() ; ValIt != Params.end() ; ++ValIt )
-        {
-            if( (*ValIt).first == "Mass" )
-                Mass = StringTools::ConvertToReal( (*ValIt).second );
-        }
+        NameValuePairMap::const_iterator ParamIt = Params.find( "Mass" );
+        if( ParamIt != Params.end() )
+            Mass = StringTools::ConvertToReal( (*ParamIt).second );
+
         return new RigidDebris(Name,Mass,TheWorld);
     }
 

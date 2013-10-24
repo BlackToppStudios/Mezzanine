@@ -3,7 +3,8 @@
 
 #include <mezzanine.h>
 
-#include "levelzones.h"
+#include "scorearea.h"
+#include "startarea.h"
 #include "levelloader.h"
 #include "levelscorer.h"
 #include "itemshop.h"
@@ -15,7 +16,7 @@ using namespace Mezzanine;
 class CatchApp
 {
     public:
-        typedef std::vector<ActorBase*> ThrowableContainer;
+        typedef std::vector<Debris*> ThrowableContainer;
         typedef std::vector<StartArea*> StartAreaContainer;
         typedef std::vector<ScoreArea*> ScoreAreaContainer;
         enum GameState
@@ -44,7 +45,7 @@ class CatchApp
         LevelLoader* Loader;
         LevelScorer* Scorer;
         ItemShop* Shop;
-        ActorBase* LastActorThrown;
+        Debris* LastObjectThrown;
 
         Timer* LevelTimer;
         StopWatchTimer* EndTimer;
@@ -62,7 +63,7 @@ class CatchApp
         void InitMusic();
         void VerifySettings();
 
-        void ChangeState(const CatchApp::GameState &StateToSet);
+        void ChangeState(const CatchApp::GameState StateToSet);
 
         bool CheckEndOfLevel();
         bool AllStartZonesEmpty();
@@ -76,10 +77,10 @@ class CatchApp
         void PauseGame(bool Pause);
         bool GameIsPaused() const;
 
-        bool IsAThrowable(ActorBase* Actor) const;
-        bool IsInsideAnyStartZone(ActorBase* Actor) const;
+        bool IsAThrowable(WorldObject* Throwable) const;
+        bool IsInsideAnyStartZone(Debris* Throwable) const;
         void RegisterStartArea(StartArea* Start);
-        void AddThrowable(ActorBase* Throwable);
+        void AddThrowable(Debris* Throwable);
 
         ThrowableContainer& GetThrowables();
         LevelLoader* GetLevelLoader() const;

@@ -115,7 +115,7 @@ namespace Mezzanine
         /// @brief A map containing all registered AreaEffect type factories.
         FactoryMap AreaEffectFactories;
         /// @internal
-        /// @brief The actual areaeffect container.
+        /// @brief Container storing all AreaEffects belonging to this manager.
         AreaEffectContainer AreaEffects;
 
         /// @internal
@@ -164,6 +164,12 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // AreaEffect Management
 
+        /// @brief Creates a new AreaEffect.
+        /// @param TypeName A string containing the name of the type of AreaEffect to be constructed.
+        /// @param InstanceName A string containing the name to be given to the created AreaEffect.
+        /// @param Params A container of additional parameters to be used for the construction of the new AreaEffect.
+        /// @return Returns a pointer to the created AreaEffect.
+        AreaEffect* CreateAreaEffect(const String& TypeName, const String& InstanceName, const NameValuePairMap& Params);
         /// @brief Creates a new AreaEffect class from an XML node.
         /// @remarks This is mostly useful for deserialization.
         /// @return Returns a pointer to the created AreaEffect.

@@ -37,30 +37,33 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef _transformableobject_cpp
+#define _transformableobject_cpp
 
-#ifndef _actor_cpp
-#define _actor_cpp
-
-#include "actor.h"
-#ifndef SWIG
-    #include "XML/xml.h"
-#endif
-
-#include "entresol.h"
-
-#include "serialization.h"
-
-/// @file
-/// @brief Code used by all actors is implemented here.
+#include "transformableobject.h"
 
 namespace Mezzanine
 {
-    Actor::Actor() :
-        WorldObject("",NULL)
-        {  }
+    ///////////////////////////////////////////////////////////////////////////////
+    // TransformableObject Methods
 
-    Actor::~Actor()
-        {  }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Conversion Methods
+
+    Vector3 TransformableObject::ConvertLocalToGlobal(const Vector3& Location) const
+        { return (this->GetOrientation() * Location * this->GetScale()) + this->GetLocation(); }
+
+    Vector3 TransformableObject::ConvertGlobalToLocal(const Vector3& Location) const
+        { return this->GetOrientation().GetInverse() * (Location - this->GetLocation()) / this->GetScale(); }
+
+    Quaternion TransformableObject::ConvertLocalToGlobal(const Quaternion& Orientation) const
+        { return this->GetOrientation() * Orientation; }
+
+    Quaternion TransformableObject::ConvertGlobalToLocal(const Quaternion& Orientation) const
+        { return this->GetOrientation().GetInverse() * Orientation; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // TransformableChildObject Methods
 }//Mezzanine
 
 #endif

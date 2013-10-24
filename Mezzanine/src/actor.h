@@ -47,17 +47,8 @@
 /// @file
 /// @brief The base class for all Actors is defined here.
 
-namespace Ogre
-{
-    class AnimationState;
-}
-
 namespace Mezzanine
 {
-    namespace Internal
-    {
-        class AttachableMotionState;
-    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is the base class from which all the actors inherit.
     /// @details The actor classes are responsible for character and character-like objects in the
@@ -66,16 +57,44 @@ namespace Mezzanine
     class MEZZ_LIB Actor : public WorldObject
     {
     protected:
-        /// @brief This class encapsulates the functionality of the Ogre::AnimationState using this
-        Ogre::AnimationState* Animation;
-        /// @brief This class encapsulates the functionality of the PhysMotionState using this
-        Internal::AttachableMotionState* MotionState;
     public:
         /// @brief Class constructor.
         Actor();
         /// @brief Class destructor.
         virtual ~Actor();
     };//Actor
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief A base factory type for the creation of Actor objects.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB ActorFactory
+    {
+    public:
+        /// @brief Class constructor.
+        ActorFactory() {  };
+        /// @brief Class destructor.
+        virtual ~ActorFactory() {  };
+
+        /// @brief Gets the name of the Actor that is created by this factory.
+        /// @return Returns the typename of the Actor created by this factory.
+        virtual String GetTypeName() const = 0;
+
+        /// @brief Creates a Actor of the type represented by this factory.
+        /// @param Name The name to be given to this object.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @param Params A NameValuePairList containing the params to be applied during construction.
+        /// @return Returns a pointer to the Actor created.
+        virtual Actor* CreateActor(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
+        /// @brief Creates a Actor from XML.
+        /// @param XMLNode The node of the xml document to construct from.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        /// @return Returns a pointer to the Actor created.
+        virtual Actor* CreateActor(const XML::Node& XMLNode, World* TheWorld) = 0;
+        /// @brief Destroys a Actor created by this factory.
+        /// @param ToBeDestroyed A pointer to the Actor to be destroyed.
+        virtual void DestroyActor(Actor* ToBeDestroyed) = 0;
+    };//ActorFactory
 }//Mezzanine
 
 #endif

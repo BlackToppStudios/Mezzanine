@@ -17,25 +17,25 @@ LevelScorer::~LevelScorer()
     ResetAllData();
 }
 
-Whole LevelScorer::GetItemScoreValue(ActorBase* Item)
+Whole LevelScorer::GetItemScoreValue(Debris* Item)
 {
     String ItemName = Item->GetName();
     String TypeName = ItemName.substr(0,ItemName.find_first_of("0123456789"));
-    std::map<String,Whole>::iterator it = ItemScoreValues.find(TypeName);
-    if( it != ItemScoreValues.end() ) return (*it).second;
+    ItemScoreContainer::iterator it = this->ItemScoreValues.find(TypeName);
+    if( it != this->ItemScoreValues.end() ) return (*it).second;
     else return 0;
 }
 
-Real LevelScorer::FindHighestMultiplier(ActorBase* Throwable)
+Real LevelScorer::FindHighestMultiplier(Debris* Throwable)
 {
     Real RetMulti = 0.0;
     for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
     {
         Real ScoreMulti = (*ScoreIt)->GetScoreMultiplier();
-        ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
-        for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
+        AreaEffect::ObjectContainer& Overlapping = (*ScoreIt)->GetOverlappingObjects();
+        for( AreaEffect::ConstObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
         {
-            if( (*It) == Throwable && ScoreMulti > RetMulti ) {
+            if( (*ObjIt) == Throwable && ScoreMulti > RetMulti ) {
                 RetMulti = ScoreMulti;
             }
         }
@@ -49,7 +49,7 @@ LevelScorer::ScorePair LevelScorer::CalculateThrowableScore()
     CatchApp::ThrowableContainer& Throwables = this->GameApp->GetThrowables();
     for( CatchApp::ThrowableContainer::iterator ThrowIt = Throwables.begin() ; ThrowIt != Throwables.end() ; ++ThrowIt )
     {
-        ActorBase* Throwable = (*ThrowIt);
+        Debris* Throwable = (*ThrowIt);
         Real Multiplier = this->FindHighestMultiplier( Throwable );
         if( Multiplier == 1.0 ) {
             Ret.first += this->GetItemScoreValue( Throwable );
@@ -91,10 +91,10 @@ Whole LevelScorer::CalculateTimerScore()
 
         for( Whole Areas = 0 ; Areas < this->ScoreAreas.size() ; ++Areas )
         {
-            ActorList& Overlapping = this->ScoreAreas[Areas]->GetOverlappingActors();
-            for( ActorList::iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
+            AreaEffect::ObjectContainer& Overlapping = this->ScoreAreas[Areas]->GetOverlappingObjects();
+            for( AreaEffect::ObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
             {
-                if( this->GameApp->IsAThrowable( *It ) )
+                if( this->GameApp->IsAThrowable( *ObjIt ) )
                     ActorsInScoreZones++;
             }
         }
@@ -192,10 +192,10 @@ Whole LevelScorer::GetNumAddedThrowables() const
     Whole ThrowableCount = 0;
     for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
     {
-        ActorVector& Added = (*ScoreIt)->GetAddedActors();
-        for( ActorVector::const_iterator It = Added.begin() ; It != Added.end() ; ++It )
+        AreaEffect::ObjectContainer& Added = (*ScoreIt)->GetAddedObjects();
+        for( AreaEffect::ConstObjectIterator ObjIt = Added.begin() ; ObjIt != Added.end() ; ++ObjIt )
         {
-            if( this->GameApp->IsAThrowable( *It ) )
+            if( this->GameApp->IsAThrowable( *ObjIt ) )
                 ++ThrowableCount;
         }
     }
@@ -207,10 +207,10 @@ Whole LevelScorer::GetNumOverlappingThrowables() const
     Whole ThrowableCount = 0;
     for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
     {
-        ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
-        for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
+        AreaEffect::ObjectContainer& Overlapping = (*ScoreIt)->GetOverlappingObjects();
+        for( AreaEffect::ConstObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
         {
-            if( this->GameApp->IsAThrowable( *It ) )
+            if( this->GameApp->IsAThrowable( *ObjIt ) )
                 ++ThrowableCount;
         }
     }
@@ -222,10 +222,10 @@ Whole LevelScorer::GetNumRemovedThrowables() const
     Whole ThrowableCount = 0;
     for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
     {
-        ActorVector& Removed = (*ScoreIt)->GetRemovedActors();
-        for( ActorVector::const_iterator It = Removed.begin() ; It != Removed.end() ; ++It )
+        AreaEffect::ObjectContainer& Removed = (*ScoreIt)->GetRemovedObjects();
+        for( AreaEffect::ConstObjectIterator ObjIt = Removed.begin() ; ObjIt != Removed.end() ; ++ObjIt )
         {
-            if( this->GameApp->IsAThrowable( *It ) )
+            if( this->GameApp->IsAThrowable( *ObjIt ) )
                 ++ThrowableCount;
         }
     }

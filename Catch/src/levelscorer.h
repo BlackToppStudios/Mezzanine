@@ -1,7 +1,7 @@
 #ifndef _levelscorer_h
 #define _levelscorer_h
 
-#include "levelzones.h"
+#include "scorearea.h"
 #include <mezzanine.h>
 
 using namespace Mezzanine;
@@ -19,12 +19,10 @@ struct ScoreAreaCache
 class LevelScorer
 {
 public:
-    typedef std::vector<ActorBase*> ThrowableContainer;
+    typedef std::vector<Debris*> ThrowableContainer;
     typedef std::vector<ScoreArea*> ScoreAreaContainer;
-    typedef std::vector<ActorBase*> ActorVector;
-    typedef std::list<ActorBase*> ActorList;
     typedef std::map<String,Whole> ItemScoreContainer;
-    typedef std::pair<ActorBase*,Whole> ThrowableScorePair;
+    typedef std::pair<Debris*,Whole> ThrowableScorePair;
     typedef std::pair<Whole,Whole> ScorePair;
 protected:
     ItemScoreContainer ItemScoreValues;
@@ -34,8 +32,8 @@ protected:
     CatchApp* GameApp;
     Whole LevelTargetTime;
 
-    Whole GetItemScoreValue(ActorBase* Item);
-    Real FindHighestMultiplier(ActorBase* Throwable);
+    Whole GetItemScoreValue(Debris* Item);
+    Real FindHighestMultiplier(Debris* Throwable);
 public:
     LevelScorer();
     ~LevelScorer();

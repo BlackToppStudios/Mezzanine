@@ -5,7 +5,7 @@
 
 using namespace Mezzanine;
 
-class ItemShopItem : public ActorRigid
+class ItemShopItem : public Debris
 {
     protected:
     public:

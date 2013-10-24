@@ -81,6 +81,9 @@ namespace Mezzanine
         /// @brief Container of actors that have been removed since last frame.
         ObjectContainer RemovedObjects;
         /// @internal
+        /// @brief Container of proxies that representing this AE field.
+        ProxyContainer AEProxies;
+        /// @internal
         /// @brief A pointer to the ghost powering this AE field.
         Physics::GhostProxy* Ghost;
 
@@ -106,6 +109,10 @@ namespace Mezzanine
 
         /// @copydoc Mezzanine::WorldObject::GetType() const
         virtual WorldObjectType GetType() const;
+
+        /// @brief Gets a pointer to the physics portion of this AreaEffect.
+        /// @return Returns a pointer to the Ghost proxy representing the physics portion of this AreaEffect.
+        virtual Physics::GhostProxy* GetGhostProxy() const;
 
         /// @brief Defines and applies the effect of the field.
         /// @details When inheriting this class, this function is what defines the effect the field has. @n
@@ -249,7 +256,7 @@ namespace Mezzanine
         /// @param TheWorld A pointer to the world this object belongs to.
         /// @param Params A NameValuePairList containing the params to be applied during construction.
         /// @return Returns a pointer to the AreaEffect created.
-        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, NameValuePairList& Params) = 0;
+        virtual AreaEffect* CreateAreaEffect(const String& Name, World* TheWorld, const NameValuePairMap& Params) = 0;
         /// @brief Creates a AreaEffect from XML.
         /// @param XMLNode The node of the xml document to construct from.
         /// @param TheWorld A pointer to the world this object belongs to.
@@ -258,27 +265,7 @@ namespace Mezzanine
         /// @brief Destroys a AreaEffect created by this factory.
         /// @param ToBeDestroyed A pointer to the AreaEffect to be destroyed.
         virtual void DestroyAreaEffect(AreaEffect* ToBeDestroyed) = 0;
-    };//DebrisFactory
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a dummy class to test if the AE field works.  Details will be output to the log.
-    ///////////////////////////////////////
-    class MEZZ_LIB TestAE : public AreaEffect
-    {
-    public:
-        /// @brief Blank constructor.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        TestAE(World* TheWorld);
-        /// @brief Class constructor.
-        /// @param Name The name to be given to this object.
-        /// @param TheWorld A pointer to the world this object belongs to.
-        TestAE(const String& Name, World* TheWorld);
-        /// @brief Class destructor.
-        virtual ~TestAE();
-
-        /// @brief Applies the effect this field has to object inside.
-        virtual void ApplyEffect();
-    };//testAE
+    };//AreaEffectFactory
 }//Mezzanine
 
 #endif

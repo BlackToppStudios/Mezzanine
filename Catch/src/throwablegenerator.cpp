@@ -134,20 +134,24 @@ ThrowableData* ThrowableGenerator::GetThrowableData(const String& Throwable)
     return NULL;
 }
 
-ActorRigid* ThrowableGenerator::CreateThrowable(const String& Throwable)
+Debris* ThrowableGenerator::CreateThrowable(const String& Throwable)
 {
+    DebrisManager* DebMan = Entresol::GetSingletonPtr()->GetDebrisManager();
     ThrowableData* ToBeCreated = GetThrowableData(Throwable);
     if(!ToBeCreated)
         return NULL;
     std::stringstream NameGen;
     (ToBeCreated->ThrowableCount)++;
     NameGen << ToBeCreated->ThrowableName << ToBeCreated->ThrowableCount;
-    ActorRigid* Created = new ActorRigid(ToBeCreated->Mass,NameGen.str(),ToBeCreated->MeshName,ToBeCreated->GroupName);
-    Created->SetLinearMovementFactor(Vector3(1,1,0));
-    Created->SetOrientation(Quaternion(MathTools::Pi,Vector3(0,1,0)));
-    Created->GetPhysicsSettings()->SetFriction(ToBeCreated->Friction);
-    Created->GetPhysicsSettings()->SetRestitution(ToBeCreated->Restitution);
-    //Created->GetPhysicsSettings()->SetActivationState(Physics::WOAS_DisableDeactivation);
+
+    RigidDebris* Created = DebMan->CreateRigidDebris(NameGen.str(),ToBeCreated->Mass);
+    Created->GetRigidProxy()->SetLinearMovementFactor(Vector3(1,1,0));
+    Created->GetRigidProxy()->SetFriction(ToBeCreated->Friction);
+    Created->GetRigidProxy()->SetRestitution(ToBeCreated->Restitution);
+    //Created->GetRigidProxy()->SetActivationState(Physics::WOAS_DisableDeactivation);
+    Created->GetEntityProxy()->SetMesh(ToBeCreated->MeshName,ToBeCreated->GroupName);
+    Created->SetOrientation(Quaternion(MathTools::GetPi(),Vector3(0,1,0)));
+
     /*if("Rubber"==Throwable)
     {
         //generate sphere shape

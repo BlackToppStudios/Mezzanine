@@ -426,6 +426,7 @@ namespace Mezzanine
         this->Y=Other.Y;
         this->Z=Other.Z;
         this->W=Other.W;
+        return *this;
     }
 
     Quaternion& Quaternion::operator= (const btQuaternion& Other)
@@ -566,6 +567,7 @@ Ogre::Quaternion& operator<< ( Ogre::Quaternion& Other, const btQuaternion& Othe
     Other.y=Other2.getY();
     Other.z=Other2.getZ();
     Other.w=Other2.getW();
+    return Other;
 }
 
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Quaternion& x)

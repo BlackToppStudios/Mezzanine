@@ -43,8 +43,6 @@
 #include "attachable.h"
 #include "exception.h"
 
-#include <Ogre.h>
-
 /// @file attachable.cpp
 /// @brief Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration implementations
 
@@ -53,42 +51,30 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // AttachableBase Methods
 
-    AttachableBase::AttachableBase()
-        : Updating(false)
-    {
-    }
+    AttachableBase::AttachableBase() :
+        Updating(false)
+        {  }
 
     AttachableBase::~AttachableBase()
-    {
-    }
+        {  }
 
     bool AttachableBase::GetUpdating(AttachableBase* AB) const
-    {
-        return (AB ? AB->Updating : false);
-    }
+        { return (AB ? AB->Updating : false); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Conversion Functions
 
     Vector3 AttachableBase::ConvertLocalToGlobal(const Vector3& Location) const
-    {
-        return (this->GetOrientation() * Location * this->GetScaling()) + this->GetLocation();
-    }
+        { return (this->GetOrientation() * Location * this->GetScaling()) + this->GetLocation(); }
 
     Vector3 AttachableBase::ConvertGlobalToLocal(const Vector3& Location) const
-    {
-        return this->GetOrientation().GetInverse() * (Location - this->GetLocation()) / this->GetScaling();
-    }
+        { return this->GetOrientation().GetInverse() * (Location - this->GetLocation()) / this->GetScaling(); }
 
     Quaternion AttachableBase::ConvertLocalToGlobal(const Quaternion& Orientation) const
-    {
-        return this->GetOrientation() * Orientation;
-    }
+        { return this->GetOrientation() * Orientation; }
 
     Quaternion AttachableBase::ConvertGlobalToLocal(const Quaternion& Orientation) const
-    {
-        return this->GetOrientation().GetInverse() * Orientation;
-    }
+        { return this->GetOrientation().GetInverse() * Orientation; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
@@ -97,12 +83,10 @@ namespace Mezzanine
     // AttachableParent Methods
 
     AttachableParent::AttachableParent()
-    {
-    }
+        {  }
 
     AttachableParent::~AttachableParent()
-    {
-    }
+        {  }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Attachment child management
@@ -179,38 +163,29 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // AttachableChild Methods
 
-    AttachableChild::AttachableChild()
-        : Parent(NULL),
-          LocalTransformDirty(false),
-          GlobalTransformDirty(false)
-    {
-        LocalXform.SetIdentity();
-    }
+    AttachableChild::AttachableChild() :
+        Parent(NULL),
+        LocalTransformDirty(false),
+        GlobalTransformDirty(false)
+        { LocalXform.SetIdentity(); }
 
     AttachableChild::~AttachableChild()
-    {
-    }
+        {  }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility Functions
 
     AttachableParent* AttachableChild::GetParent() const
-    {
-        return Parent;
-    }
+        { return Parent; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Transform Functions
 
     Vector3 AttachableChild::GetLocalLocation() const
-    {
-        return LocalXform.Location;
-    }
+        { return LocalXform.Location; }
 
     Quaternion AttachableChild::GetLocalOrientation() const
-    {
-        return LocalXform.Rotation;
-    }
+        { return LocalXform.Rotation; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods

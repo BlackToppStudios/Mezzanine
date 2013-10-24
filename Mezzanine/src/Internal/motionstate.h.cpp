@@ -55,7 +55,7 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    class WorldProxy;
+    class TransformableObject;
     namespace Physics
     {
         class RigidProxy;
@@ -64,16 +64,15 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
-        /// @class SimpleProxyMotionState
+        /// @class SimpleMotionState
         /// @headerfile motionstate.h.cpp
         /// @brief This class is used by the RigidProxy class to sync between the physics world and other subsystems.
         /// @details This class provides the link for position and orientation between all the worlds in the engine.
-        /// This is called on every step(frame) of the world to sync the WorldObject if it has moved.  This motionstate
-        /// differs from the regular motion state in that it invokes the API on the WorldObject and WorldProxy classes, ensuring other proxy classes get updated as well.
+        /// This is called on every step(frame) of the world to sync the TransformableObject if it has moved.
         /// @attention This filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a
         /// source file and should not shipped with the DLL when the SDK is released. This is used for engine internals that need to be used by multiple classes.
         ///////////////////////////////////////
-        class SimpleProxyMotionState : public btMotionState
+        class SimpleMotionState : public btMotionState
         {
         protected:
             /// @internal
@@ -84,23 +83,23 @@ namespace Mezzanine
             Physics::RigidProxy* ParentObject;
             /// @internal
             /// @brief The other proxy being sync'd to the RigidProxy transform.
-            WorldProxy* SyncObject;
+            TransformableObject* SyncObject;
         public:
             /// @brief Blank constructor.
-            SimpleProxyMotionState();
+            SimpleMotionState();
             /// @brief Class constructor.
             /// @param PO A pointer to the parent physics object.
-            /// @param WP A pointer to the proxy that will be sync'd with the physics object transform.
-            SimpleProxyMotionState(Physics::RigidProxy* PO, WorldProxy* WP);
+            /// @param TO A pointer to the TransformableObject that will be sync'd with the physics object transform.
+            SimpleMotionState(Physics::RigidProxy* PO, TransformableObject* TO);
             /// @brief Class destructor.
-            virtual ~SimpleProxyMotionState();
+            virtual ~SimpleMotionState();
 
             /// @brief Sets the parent object to be updated.
             /// @param PO A pointer to the parent physics object.
             void SetParentObject(Physics::RigidProxy* PO);
             /// @brief Sets the proxy to be sync'd.
-            /// @param WP A pointer to the proxy that will be sync'd with the physics object transform.
-            void SetSyncObject(WorldProxy* WP);
+            /// @param TO A pointer to the TransformableObject that will be sync'd with the physics object transform.
+            void SetSyncObject(TransformableObject* TO);
 
             /// @brief Sets the initial position.
             /// @note This information is only grabbed when the object is added to the world.
@@ -119,63 +118,63 @@ namespace Mezzanine
             /// @remarks This function is called each step(frame) by the physics world to sync the physics and graphical worlds.
             /// @param worldTrans The location and orientation data.
             virtual void setWorldTransform(const btTransform& worldTrans);
-        };//SimpleProxyMotionState
+        };//SimpleMotionState
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
-        /// @class MultiProxyMotionState
+        /// @class MultiMotionState
         /// @headerfile motionstate.h.cpp
-        /// @brief This class functions very similarly to the SimgpleProxyMotionState, but it allows the syncing of multiple proxies instead of just one.
+        /// @brief This class functions very similarly to the SimgpleMotionState, but it allows the syncing of multiple objects instead of just one.
         /// @attention This filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a
         /// source file and should not shipped with the DLL when the SDK is released. This is used for engine internals that need to be used by multiple classes.
         ///////////////////////////////////////
-        class MultiProxyMotionState : public btMotionState
+        class MultiMotionState : public btMotionState
         {
         public:
-            /// @brief Basic container type for WorldProxy storage by this class.
-            typedef std::vector< WorldProxy* >             ProxyContainer;
-            /// @brief Iterator type for WorldProxy instances stored by this class.
-            typedef ProxyContainer::iterator               ProxyIterator;
-            /// @brief Const Iterator type for WorldProxy instances stored by this class.
-            typedef ProxyContainer::const_iterator         ConstProxyIterator;
+            /// @brief Basic container type for TransformableObject storage by this class.
+            typedef std::vector< TransformableObject* >             TransformableObjectContainer;
+            /// @brief Iterator type for TransformableObject instances stored by this class.
+            typedef TransformableObjectContainer::iterator          TransformableObjectIterator;
+            /// @brief Const Iterator type for TransformableObject instances stored by this class.
+            typedef TransformableObjectContainer::const_iterator    ConstTransformableObjectIterator;
         protected:
             /// @internal
             /// @brief Transform cache.  May remove in the future.
             btTransform WorldTrans;
             /// @internal
             /// @brief A container of proxies being sync'd to the RigidProxy transform.
-            ProxyContainer SyncObjects;
+            TransformableObjectContainer SyncObjects;
             /// @internal
             /// @brief The calling rigid proxy that will be used to sync other objects' transforms to.
             Physics::RigidProxy* ParentObject;
         public:
             /// @brief Blank constructor.
-            MultiProxyMotionState();
+            MultiMotionState();
             /// @brief Class constructor.
             /// @param PO A pointer to the parent physics object.
-            MultiProxyMotionState(Physics::RigidProxy* PO);
+            MultiMotionState(Physics::RigidProxy* PO);
             /// @brief Class destructor.
-            virtual ~MultiProxyMotionState();
+            virtual ~MultiMotionState();
 
             /// @brief Sets the parent object to be updated.
             /// @param PO A pointer to the parent physics object.
             void SetParentObject(Physics::RigidProxy* PO);
 
-            /// @brief Adds a WorldProxy to this motionstate, which will force it's transform to sync with the parent RigidProxy.
+            /// @brief Adds a TransformableObject to this motionstate, which will force it's transform to sync with the parent RigidProxy.
             /// @param ToBeAdded A pointer to the WorldObject being added.
-            void AddSyncProxy(WorldProxy* ToBeAdded);
-            /// @brief Gets a WorldProxy being sync'd by this motionstate by it's index.
+            void AddSyncObject(TransformableObject* ToBeAdded);
+            /// @brief Gets a TransformableObject being sync'd by this motionstate by it's index.
             /// @param Index The index of the sync object to retrieve.
-            /// @return Returns a pointer to the WorldProxy at the specified Index.
-            WorldProxy* GetSyncProxy(const UInt32 Index) const;
+            /// @return Returns a pointer to the TransformableObject at the specified Index.
+            TransformableObject* GetSyncObject(const UInt32 Index) const;
             /// @brief Gets the number of WorldProxies being sync'd by this motionstate.
             /// @return Returns a UInt32 representing the number of WorldProxies being sync'd with the parent RigidProxy.
-            UInt32 GetNumSyncProxies() const;
+            UInt32 GetNumSyncObjects() const;
             /// @brief Removes a proxy from this motionstate, so it will no longer be sync'd with the parent RigidProxy.
-            /// @param ToBeRemoved A pointer to the WorldProxy to be removed.
-            void RemoveSyncProxy(WorldProxy* ToBeRemoved);
+            /// @param ToBeRemoved A pointer to the TransformableObject to be removed.
+            void RemoveSyncObject(TransformableObject* ToBeRemoved);
             /// @brief Removes all WorldProxies being sync'd from this motionstate.
-            void RemoveAllSyncProxies();
+            void RemoveAllSyncObjects();
 
             /// @brief Sets the initial position.
             /// @note This information is only grabbed when the object is added to the world.
@@ -194,7 +193,7 @@ namespace Mezzanine
             /// @remarks This function is called each step(frame) by the physics world to sync the physics and graphical worlds.
             /// @param worldTrans The location and orientation data.
             virtual void setWorldTransform(const btTransform& worldTrans);
-        };//MultiProxyMotionState
+        };//MultiMotionState
     }//Internal
 }//Mezzanine
 

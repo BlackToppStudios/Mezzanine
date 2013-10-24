@@ -97,6 +97,7 @@ namespace Mezzanine
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
         if( this->Ghost != NULL && PhysMan != NULL ) {
             PhysMan->DestroyProxy( this->Ghost );
+            this->Ghost = NULL;
         }
     }
 
@@ -105,6 +106,9 @@ namespace Mezzanine
 
     Mezzanine::WorldObjectType AreaEffect::GetType() const
         { return Mezzanine::WO_AreaEffectUnknown; }
+
+    Physics::GhostProxy* AreaEffect::GetGhostProxy() const
+        { return this->Ghost; }
 
     Bool AreaEffect::IsInWorld() const
         { return this->Ghost->IsInWorld(); }
@@ -269,7 +273,18 @@ namespace Mezzanine
 
     void AreaEffect::ProtoSerializeProxies(XML::Node& SelfRoot) const
     {
+        // No base implementations to call
+        XML::Node ProxiesNode = SelfRoot.AppendChild( AreaEffect::GetSerializableName() + "Proxies" );
 
+        if( ProxiesNode.AppendAttribute("Version").SetValue("1") )
+        {
+            XML::Node GhostProxNode = ProxiesNode.AppendChild("Ghost");
+            this->Ghost->ProtoSerialize( GhostProxNode );
+
+            return;
+        }else{
+            SerializeError("Create XML Attribute Values",AreaEffect::GetSerializableName() + "Proxies",true);
+        }
     }
 
     void AreaEffect::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
@@ -279,7 +294,31 @@ namespace Mezzanine
 
     void AreaEffect::ProtoDeSerializeProxies(const XML::Node& SelfRoot)
     {
+        this->DestroyAreaEffect();
+        // No base implementations to call
+        //XML::Attribute CurrAttrib;
+        XML::Node ProxiesNode = SelfRoot.GetChild( AreaEffect::GetSerializableName() + "Proxies" );
 
+        if( !ProxiesNode.Empty() ) {
+            if(ProxiesNode.GetAttribute("Version").AsInt() == 1) {
+                /// @todo I don't think an exception is appropriate for the failure of the worldmanager validity checks,
+                /// however a warning should be written to the log if that happens.  This should be updated to do that once
+                /// logging refactors are done.
+
+                XML::Node GhostProxNode = ProxiesNode.GetChild("Ghost").GetFirstChild();
+                if( !GhostProxNode.Empty() ) {
+                    Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+                    if( PhysMan ) {
+                        this->Ghost = PhysMan->CreateGhostProxy(GhostProxNode);
+                        this->Ghost->_Bind( this );
+                    }
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (AreaEffect::GetSerializableName() + "Proxies" ) + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,AreaEffect::GetSerializableName() + "Proxies" + " was not found in the provided XML node, which was expected.");
+        }
     }
 
     String AreaEffect::GetDerivedSerializableName() const
@@ -337,49 +376,7 @@ namespace Mezzanine
             return;
 
         if( this->Ghost == ToBeDestroyed ) {
-            Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-            if( PhysMan != NULL ) {
-                PhysMan->DestroyProxy( this->Ghost );
-                this->Ghost = NULL;
-            }
-        }
-    }
-
-    ///////////////////////////////////
-    // TestAE functions
-
-    TestAE::TestAE(World* TheWorld) :
-        AreaEffect(TheWorld)
-        {  }
-
-    TestAE::TestAE(const String& Name, World* TheWorld) :
-        AreaEffect(Name,TheWorld)
-        {  }
-
-    TestAE::~TestAE()
-        {  }
-
-    void TestAE::ApplyEffect()
-    {
-        Entresol* TheEntresol = Entresol::GetSingletonPtr();
-        ObjectIterator ObjIt;
-
-        if ( !AddedObjects.empty() ) {
-            TheEntresol->Log("Objects Added to field this frame:");
-            for ( ObjIt = AddedObjects.begin() ; ObjIt != AddedObjects.end() ; ObjIt++ )
-                { TheEntresol->Log( (*ObjIt) ); }
-        }
-
-        if ( !RemovedObjects.empty() ) {
-            TheEntresol->Log("Objects Removed from field this frame:");
-            for ( ObjIt = RemovedObjects.begin() ; ObjIt != RemovedObjects.end() ; ObjIt++ )
-                { TheEntresol->Log( (*ObjIt) ); }
-        }
-
-        if ( !OverlappingObjects.empty() ) {
-            TheEntresol->Log("Objects Currently in field this frame:");
-            for ( ObjIt = OverlappingObjects.begin() ; ObjIt != OverlappingObjects.end() ; ObjIt++ )
-                { TheEntresol->Log( (*ObjIt) ); }
+            this->Ghost = NULL;
         }
     }
 }
