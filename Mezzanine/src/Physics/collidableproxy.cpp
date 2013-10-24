@@ -420,9 +420,9 @@ namespace Mezzanine
             {
                 btCollisionObject* Base = this->_GetBasePhysicsObject();
                 if( Enable ) {
-                    Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE );
-                }else{
                     Base->setCollisionFlags( Base->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE );
+                }else{
+                    Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE );
                 }
             }
         }
