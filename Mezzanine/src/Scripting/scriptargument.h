@@ -52,15 +52,23 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief The interface for a script argument
-        /// @details All the members that all script for all languages must implement.
+        /// @details These are all the members that all script for all languages must
+        /// implement. This mandatory functionlity insures that once portion of C++ code
+        /// has access to a script argument it can always access the data contained.
         /// @n @n
         /// These are created to provide data to scripts. This is intended to primarily
         /// to act as an abstraction layer between game data and data inside scripts,
-        /// but currently just transports primitives into and out of scripts without needing to care
-        /// about any underlying types. This limits what operations can be done with
-        /// this, because it is intended to provide an abstraction that can be used
-        /// to implement specific algorithms for languages that require them.
-        /// @todo Define operators for the iScriptArgument at least for assignment
+        /// but currently just transports primitives into and out of scripts without
+        /// needing to care about any underlying types. This limits what operations
+        /// can be done with, because it is intended to provide an abstraction that
+        /// can be used to implement specific algorithms for languages that require
+        /// them.
+        /// @n @n
+        /// For example Lua requires calling different functions for passing Strings
+        /// Numbers, Nils and other types, while Ruby does not require this. These
+        /// classes will always present Data to C++ class the same way, but will take
+        /// whatever steps required for the scripting language and optionally the
+        /// types they represent.
         ///////////////////////////////////////
         class MEZZ_LIB iScriptArgument : public IntrusiveRefCount
         {
@@ -89,6 +97,10 @@ namespace Mezzanine
                 /// @return The argument value lexographically converted as an @ref Bool
                 virtual Bool GetBool() const = 0;
 
+                /// @brief Is this value representing a Null/Nil value.
+                /// @return True if ths argument is null, false if it is anything other Type. This may of may not for language specific semantics.
+                virtual Bool IsNull() const = 0;
+
                 /// @brief Get data about the underlying specific to the scripting system using the argument.
                 /// @return An Integer containing scripting langauge specific data.
                 virtual Integer GetTypeData() const = 0;
@@ -99,7 +111,8 @@ namespace Mezzanine
                     { return this; }
         }; // iScriptArgument
 
-        enum ScriptArgment
+        /// @brief A listing of the Base types an iScriptArgument could represent.
+        enum ScriptArgument
         {
             GenericUnknown      = 0,    ///< This is not readily available when instantiating ScriptArgumentGeneric<T> where T is unknown
             GenericInteger      = 1,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an Integer
@@ -107,18 +120,23 @@ namespace Mezzanine
             GenericString       = 3,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an String
             GenericReal         = 4,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an Real
             GenericBool         = 5,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is specialized as an Bool
-            GenericMax          = 5     ///< This is always equal to the maximum value in this enumeration so that other constant values can be based on this. For example Lua uses this +1 for its NilValue
+            GenericNull         = 6,    ///< Returned from GetTypeData() const when a ScriptArgumentGeneric is intended as NullPtr, SQL Null, Lua Nil, Ruby nil, etc...
+            GenericMax          = 6     ///< This is always equal to the maximum value in this enumeration so that other constant values can be based on this. For example Lua uses this +1 for its NilValue
         };
 
-        /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations
+        /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations.
+        /// @details Scripting languages the do not benefit from having different implementations per type should
+        /// implement their argument subclass derived from this. This will attempt to provide basic type conversion
+        /// for Datum to C++ types lexigraphically. Any that is innapropriate or suboptimal should be overidden
         template <class T>
         class MEZZ_LIB ScriptArgumentGeneric : public iScriptArgument
         {
             protected:
                 /// @brief The actual data.
-                /// @warning To prevent Slicing don't store the parent class in a container.
-                /// This practically guarantees that derived class will have different sizes
-                /// and overflow container boundaries.
+                /// @warning To prevent slicing don't store the parent class in a container.
+                /// Dpractically guarantees that derived class will have different sizes
+                /// and overflow container boundaries. If you must store shared pointers in
+                /// constainers
                 T Datum;
 
             public:
@@ -161,6 +179,11 @@ namespace Mezzanine
                 virtual Bool GetBool() const
                     { return ToBool(Datum); }
 
+                /// @brief Is this value representing a Null/Nil value.
+                /// @return This will return true if the string representation of this is empty and the Integer representation equals 0, this could and should be overridden on derived scripting arguments
+                virtual Bool IsNull() const
+                    { return GetString()=="" && GetInteger()==0; }
+
                 /// @brief Provide an overload point to change assignment that operators will use.
                 /// @param NewValue The new value for this.
                 virtual void SetValue(T NewValue)
@@ -180,9 +203,11 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<T>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific
+        }; //ScriptArgumentGeneric<T>
 
         /// @brief A Integer implementation of a ScriptArgument that is suitable for primitive types in most situations
+        /// @details Scripting Languages that require algorithms specific to Integers should add required functionality
+        /// to a type derived from this.
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<Integer> : public iScriptArgument
         {
@@ -230,6 +255,11 @@ namespace Mezzanine
                 virtual Bool GetBool() const
                     { return Bool(Datum); }
 
+                /// @brief Is this value representing a Null/Nil value.
+                /// @return In most languages 0 is a valid value for Integers, so any value in this is assumed to not be NULL. This should be overridden if different behavior is required.
+                virtual Bool IsNull() const
+                    { return false; }
+
                 /// @brief Provide an overload point to change assignment that operators will use.
                 /// @param NewValue The new value for this.
                 virtual void SetValue(Integer NewValue)
@@ -249,9 +279,11 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<Integer>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<Integer>
+        }; //ScriptArgumentGeneric<Integer>
 
         /// @brief A Whole number implementation of a ScriptArgument that is suitable for primitive types in most situations
+        /// @details Scripting Languages that require algorithms specific to Whole number should add required functionality
+        /// to a type derived from this.
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<Whole> : public iScriptArgument
         {
@@ -299,6 +331,11 @@ namespace Mezzanine
                 virtual Bool GetBool() const
                     { return Bool(Datum); }
 
+                /// @brief Is this value representing a Null/Nil value.
+                /// @return In most languages 0 is a valid value for Whole Numbers, so any value in this is assumedto not be NULL. This should be overridden if different behavior is required.
+                virtual Bool IsNull() const
+                    { return false; }
+
                 /// @brief Provide an overload point to change assignment that operators will use.
                 /// @param NewValue The new value for this.
                 virtual void SetValue(Whole NewValue)
@@ -318,9 +355,11 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<Whole>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<Whole>
+        }; //ScriptArgumentGeneric<Whole>
 
         /// @brief A String implementation of a ScriptArgument that is suitable for primitive types in most situations
+        /// @details Scripting Languages that require algorithms specific to strings should add required functionality
+        /// to a type derived from this.
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<String> : public iScriptArgument
         {
@@ -368,6 +407,11 @@ namespace Mezzanine
                 virtual Bool GetBool() const
                     { return ToBool(Datum); }
 
+                /// @brief Is this value representing a Null/Nil value.
+                /// @return In most languages "" is a valid value for Strings, so any value in this is assumed to not be NULL. This should be overridden if different behavior is required.
+                virtual Bool IsNull() const
+                    { return false; }
+
                 /// @brief Provide an overload point to change assignment that operators will use.
                 /// @param NewValue The new value for this.
                 virtual void SetValue(String NewValue)
@@ -387,9 +431,11 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<String>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<String>
+        }; //ScriptArgumentGeneric<String>
 
         /// @brief A Real number implementation of a ScriptArgument that is suitable for primitive types in most situations
+        /// @details Scripting Languages that require algorithms specific to Real Numbers should add required functionality
+        /// to a type derived from this.
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<Real> : public iScriptArgument
         {
@@ -437,6 +483,11 @@ namespace Mezzanine
                 virtual Bool GetBool() const
                     { return Bool(Datum); }
 
+                /// @brief Is this value representing a Null/Nil value.
+                /// @return In most languages 0.0 is a valid value for Real Numbers, so any value in this is assumed to not be NULL. This should be overridden if different behavior is required.
+                virtual Bool IsNull() const
+                    { return false; }
+
                 /// @brief Provide an overload point to change assignment that operators will use.
                 /// @param NewValue The new value for this.
                 virtual void SetValue(Real NewValue)
@@ -456,9 +507,11 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<Real>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<Real>
+        }; //ScriptArgumentGeneric<Real>
 
         /// @brief A Bool implementation of a ScriptArgument that is suitable for primitive types in most situations
+        /// @details Scripting Languages that require algorithms specific to boolean values should add required functionality
+        /// to a type derived from this.
         template <>
         class MEZZ_LIB ScriptArgumentGeneric<Bool> : public iScriptArgument
         {
@@ -506,6 +559,11 @@ namespace Mezzanine
                 virtual Bool GetBool() const
                     { return Datum; }
 
+                /// @brief Is this value representing a Null/Nil value.
+                /// @return In most languages false is a valid value for Bools, so any value in this is assumed to not be NULL. This should be overridden if different behavior is required.
+                virtual Bool IsNull() const
+                    { return false; }
+
                 /// @brief Provide an overload point to change assignment that operators will use.
                 /// @param NewValue The new value for this.
                 virtual void SetValue(Bool NewValue)
@@ -525,11 +583,87 @@ namespace Mezzanine
                 /// @return A pointer of the most derived pointing to this.
                 virtual ScriptArgumentGeneric<Bool>* GetMostDerived()
                     { return this; }
-        }; //ScriptArgumentSpecific<Bool>
+        }; //ScriptArgumentGeneric<Bool>
+
+        /// @brief A very simple type used to indicate to script argument templates that the argument represents
+        class NullArgument {};
+
+        /// @brief A Null implementation of a ScriptArgument that is suitable for primitive types in most situations
+        /// @details This will likely need to be overidden to get the string varation correct.
+        template <>
+        class MEZZ_LIB ScriptArgumentGeneric<NullArgument> : public iScriptArgument
+        {
+            protected:
+                /// @brief The Bool actual data.
+                NullArgument Datum;
+
+            public:
+                /// @brief To make working with this easier.
+                typedef NullArgument Type;
+
+                /// @brief Create an initialized Argument
+                /// @param InitialValue The value to initialize the Argument Integer value with.
+                /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
+                ScriptArgumentGeneric(NullArgument InitialValue = NullArgument()) :
+                    Datum(InitialValue)
+                    {}
+
+                /// @brief Overloadable Deconstructor
+                virtual ~ScriptArgumentGeneric()
+                    {}
+
+                /// @brief Get Null as a String.
+                /// @return The Bool value lexographically converted as a @ref String
+                virtual String GetString() const
+                    { return "Null"; }
+
+                /// @brief Get Null as a Whole.
+                /// @return The Bool value lexographically converted as a @ref Whole
+                virtual Whole GetWhole() const
+                    { return 0; }
+
+                /// @brief Get Null as a Integer.
+                /// @return The Bool value lexographically converted as an @ref Integer
+                virtual Integer GetInteger() const
+                    { return 0; }
+
+                /// @brief Get Null as a Real.
+                /// @return The Bool value lexographically converted as an @ref Integer
+                virtual Real GetReal() const
+                    { return 0.0; }
+
+                /// @brief Get as a Bool.
+                /// @return False.
+                virtual Bool GetBool() const
+                    { return false; }
+
+                /// @brief Is this value representing a Null/Nil value.
+                /// @return In most languages false is a valid value for Bools, so any value in this is assumed to not be NULL. This should be overridden if different behavior is required.
+                virtual Bool IsNull() const
+                    { return true; }
+
+                /// @brief Provide an overload point to change assignment that operators will use.
+                /// @param NewValue The new value for this.
+                virtual void SetValue(NullArgument NewValue)
+                    { Datum=NewValue; }
+
+                /// @brief Get the raw primitive to value.
+                /// @return The internal value that meaningful operations can be performed on.
+                virtual NullArgument GetValue() const
+                    { return Datum; }
+
+                /// @brief Get data about this being a Bool
+                /// @return This will return an Integer containing GenericBool.
+                virtual Integer GetTypeData() const
+                    { return GenericNull; }
+
+                /// @brief Get a pointer to the most Derived type of this class
+                /// @return A pointer of the most derived pointing to this.
+                virtual ScriptArgumentGeneric<NullArgument>* GetMostDerived()
+                    { return this; }
+        }; //ScriptArgumentGeneric<Bool>
 
     }//Scripting
-
-    //ScriptArgumentGeneric<Bool> ScriptArgumentGeneric<Real> ScriptArgumentGeneric<String> ScriptArgumentGeneric<Whole>  ScriptArgumentGeneric
 
     /// @brief Marks iScriptArgument for internal reference counting if a CountedPtr checks
     template <>
@@ -548,24 +682,6 @@ namespace Mezzanine
             /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
             enum { IsCastable = CastDynamic };
     };
-    /*
-    /// @brief Marks iScriptArgument for internal reference counting if a CountedPtr checks
-    template <>
-    class ReferenceCountTraits <Scripting::iScriptArgument>
-    {
-        public:
-            /// @brief The type that maintains the Reference count for iScriptArgument with be iScriptArgument itself
-            typedef Scripting::iScriptArgument RefCountType;
-
-            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
-            /// @param Target A pointer to a Scripting::iScriptArgument that will simply be returned
-            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
-            static RefCountType* ConstructionPointer(RefCountType* Target)
-                { return Target; }
-
-            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
-            enum { IsCastable = CastDynamic };
-    };*/
 
     /// @brief Marks ScriptArgumentGeneric<Integer> for internal reference counting if a CountedPtr checks
     template <>
@@ -631,6 +747,42 @@ namespace Mezzanine
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
             /// @param Target A pointer to a Scripting::ScriptArgumentGeneric<Real> that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks ScriptArgumentGeneric<Real> for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::ScriptArgumentGeneric<Bool> >
+    {
+        public:
+            /// @brief The type that maintains the Reference count for ScriptArgumentGeneric<Bool> with be ScriptArgumentGeneric<Bool> itself
+            typedef Scripting::ScriptArgumentGeneric<Bool> RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::ScriptArgumentGeneric<Bool> that will simply be returned
+            /// @return This returns whatever was passed into target because it already is a valid Reference Counter
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief This uses dynamic casting when resolving casts inside the CountedPtr
+            enum { IsCastable = CastDynamic };
+    };
+
+    /// @brief Marks ScriptArgumentGeneric<Real> for internal reference counting if a CountedPtr checks
+    template <>
+    class ReferenceCountTraits <Scripting::ScriptArgumentGeneric<Scripting::NullArgument> >
+    {
+        public:
+            /// @brief The type that maintains the Reference count for ScriptArgumentGeneric<Scripting::NullArgument> with be ScriptArgumentGeneric<Scripting::NullArgument> itself
+            typedef Scripting::ScriptArgumentGeneric<Scripting::NullArgument> RefCountType;
+
+            /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
+            /// @param Target A pointer to a Scripting::ScriptArgumentGeneric<Scripting::NullArgument> that will simply be returned
             /// @return This returns whatever was passed into target because it already is a valid Reference Counter
             static RefCountType* ConstructionPointer(RefCountType* Target)
                 { return Target; }

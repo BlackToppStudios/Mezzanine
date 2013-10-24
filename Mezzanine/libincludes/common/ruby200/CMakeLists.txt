@@ -34,7 +34,7 @@
 #   them, so it is best to simply contact us or the Free Software Foundation, if
 #   you have any questions.
 #
-#   Joseph Toppi - toppij@gmail.com
+#   Joseph Toppi - toppij@gma il.com
 #   John Blackwood - makoenergy02@gmail.com
 
 cmake_minimum_required(VERSION 2.8)
@@ -50,9 +50,10 @@ ExternalProject_Add(${RubyProject}
   CONFIGURE_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${RubyDir}/configure --disable-install-doc --disable-rubygems --prefix=<INSTALL_DIR>
   BUILD_COMMAND ${MAKE})
 
-include_directories(
-	"${${PROJECT_NAME}_BINARY_DIR}/${RubyDir}/include"
-)
+File(GLOB_RECURSE RubyConfigFile "${Mezzanine_OUTPUT_DIR}libincludes/common/ruby200/${RubyDir}/include/ruby-2.0.0/*config.h")
+set(IncludeDir "${${PROJECT_NAME}_BINARY_DIR}/${RubyDir}/include/ruby-2.0.0/")
+File(COPY ${RubyConfigFile} DESTINATION "${IncludeDir}ruby/")
+set(RubyIncludeDirectory "${IncludeDir}" PARENT_SCOPE)
 
 message ("${RubyProject} - End")
 

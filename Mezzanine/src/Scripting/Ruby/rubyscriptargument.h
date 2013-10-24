@@ -71,46 +71,72 @@ namespace Mezzanine
             /// @brief RubyBoolArgument returns this value when checking GetTypeData() const.
             const Integer RubyBool = GenericBool;
             /// @brief RubyNilArgument returns this value when checking GetTypeData() const.
-            const Integer RubyNil = GenericMax+1;
+            const Integer RubyNil = GenericNull;
 
-            /// @brief The ScriptArgumentGeneric<T> does a good enough job for actually passing data, but it needs just a bit of Ruby specific functionality
-            class MEZZ_LIB RubyArgument
+            /// @brief A base type that all Ruby Arguments with use.
+            /// @details Ruby does of its type assessment at runtime, so it makes little senses to heavily invest in a typing system.
+            /// The type are for C++ development convenience, but Ruby only cares about its own pointers, since convertible pointer
+            /// can store any native we can use it with Ruby's VALUE type. This still allows to create implicitly cast argument types
+            /// for use with the Ruby Scripting system.
+            typedef ScriptArgumentGeneric<ConvertiblePointer> RubyArgumentBase;
+
+            /// @brief Ruby stores its values a in a very specific way so this must completely overloaded to make it work
+            class MEZZ_LIB RubyArgument : public RubyArgumentBase
             {
                 public:
-                    /// @brief Handle the details of putting this data onto Ruby's Stack.
-                    /// @param TargetState The state with the stack to push the data onto.
-                    /// @return Whatever the Ruby return code of the first failing ruby call, or the last successful call.
-                    virtual void Push(ruby_State* TargetState) const = 0;
 
-                    /// @brief Handle the details of pulling data from Ruby's Stack into this.
-                    /// @param TargetState The state with the stack to pull the data from.
-                    /// @return Whatever the Ruby return code of the first failing ruby call, or the last successful call.
-                    virtual void Pop(ruby_State* TargetState) = 0;
+                    RubyArgument(ConvertiblePointer InitialValue=0) : RubyArgumentBase(InitialValue)
+                        {}
 
                     /// @brief Virtual deconstructor
-                    virtual ~RubyArgument() {}
+                    virtual ~RubyArgument()
+                        {}
 
                     /// @brief Get a pointer to the most Derived type of this class
                     /// @return A pointer of the most derived pointing to this.
                     virtual RubyArgument* GetMostDerived()
                         { return this; }
+
+                    /// @brief Get the Argument as a String, slow default implementation.
+                    /// @return
+                    virtual String GetString() const;
+
+                    /// @brief Get the Argument as a Whole, slow default implementation.
+                    /// @return
+                    virtual Whole GetWhole() const;
+
+                    /// @brief Get the Argument as a Integer, slow default implementation.
+                    /// @return
+                    virtual Integer GetInteger() const;
+
+                    /// @brief Get the Argument as a Real, slow default implementation.
+                    /// @return
+                    virtual Real GetReal() const;
+
+                    /// @brief Get the Argument as a Bool
+                    /// @return
+                    virtual Bool GetBool() const;
+
+                    /// @brief Provide an overload point to change assignment that operators will use.
+                    /// @param
+                    virtual void SetValue(ConvertiblePointer NewValue);
+
+                    /// @brief Get the raw primitive to value.
+                    /// @return
+                    virtual ConvertiblePointer GetValue() const;
             };
 
-            /// @brief The implementations in the ScriptArgumentGeneric<Integer> will cover most of what this needs
-            class MEZZ_LIB RubyIntegerArgument : public RubyArgument, public ScriptArgumentGeneric<Integer>
+            /// @brief
+            class MEZZ_LIB RubyIntegerArgument : public RubyArgument
             {
                 public:
 
                     /// @brief Implicit constructor
                     /// @param InitialValue Defaults to 0 and is the actual data to pass into Ruby
                     /// @note This is intentionally not explicit. This should make it easier to work with in situations where the creation of this is less important.
-                    RubyIntegerArgument(Integer InitialValue = 0) : ScriptArgumentGeneric<Integer>(InitialValue)
-                    {}
+                    RubyIntegerArgument(Integer InitialValue = 0);
 
-                    virtual void Push(ruby_State* TargetState) const;
-
-                    virtual void Pop(ruby_State* TargetState);
-
+                    /// @brief Virtual deconstructor
                     virtual ~RubyIntegerArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -119,17 +145,13 @@ namespace Mezzanine
                         { return this; }
             };
 
-            /// @brief A Real that can readily be passed into ruby scripts
-            class MEZZ_LIB RubyRealArgument : public RubyArgument, public ScriptArgumentGeneric<Real>
+            /// @brief 
+            class MEZZ_LIB RubyRealArgument : public RubyArgument
             {
                 public:
-                    RubyRealArgument(Real InitialValue = 0.0) : ScriptArgumentGeneric<Real>(InitialValue)
-                    {}
+                    RubyRealArgument(Real InitialValue = 0.0);
 
-                    virtual void Push(ruby_State* TargetState) const;
-
-                    virtual void Pop(ruby_State* TargetState);
-
+                    /// @brief Virtual deconstructor
                     virtual ~RubyRealArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -138,17 +160,13 @@ namespace Mezzanine
                         { return this; }
             };
 
-            /// @brief No special care is required for Whole number Ruby Arguments, so a simple typedef is used.
-            class MEZZ_LIB RubyWholeArgument : public RubyArgument, public ScriptArgumentGeneric<Whole>
+            /// @brief
+            class MEZZ_LIB RubyWholeArgument : public RubyArgument
             {
                 public:
-                    RubyWholeArgument(Whole InitialValue = 0) : ScriptArgumentGeneric<Whole>(InitialValue)
-                    {}
+                    RubyWholeArgument(Whole InitialValue = 0);
 
-                    virtual void Push(ruby_State* TargetState) const;
-
-                    virtual void Pop(ruby_State* TargetState);
-
+                    /// @brief Virtual deconstructor
                     virtual ~RubyWholeArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -157,17 +175,13 @@ namespace Mezzanine
                         { return this; }
             };
 
-            /// @brief No special care is required for String Ruby Arguments, so a simple typedef is used.
-            class MEZZ_LIB RubyStringArgument : public RubyArgument, public ScriptArgumentGeneric<String>
+            /// @brief
+            class MEZZ_LIB RubyStringArgument : public RubyArgument
             {
                 public:
-                    RubyStringArgument(String InitialValue = String()) : ScriptArgumentGeneric<String>(InitialValue)
-                    {}
+                    RubyStringArgument(String InitialValue = String());
 
-                    virtual void Push(ruby_State* TargetState) const;
-
-                    virtual void Pop(ruby_State* TargetState);
-
+                    /// @brief Virtual deconstructor
                     virtual ~RubyStringArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -176,17 +190,13 @@ namespace Mezzanine
                         { return this; }
             };
 
-            /// @brief No special care is required for Bool Ruby Arguments, so a simple typedef is used.
-            class MEZZ_LIB RubyBoolArgument : public RubyArgument, public ScriptArgumentGeneric<Bool>
+            /// @brief
+            class MEZZ_LIB RubyBoolArgument : public RubyArgument
             {
                 public:
-                    RubyBoolArgument(Bool InitialValue = false) : ScriptArgumentGeneric<Bool>(InitialValue)
-                    {}
+                    RubyBoolArgument(Bool InitialValue = false);
 
-                    virtual void Push(ruby_State* TargetState) const;
-
-                    virtual void Pop(ruby_State* TargetState);
-
+                    /// @brief Virtual deconstructor
                     virtual ~RubyBoolArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -195,90 +205,15 @@ namespace Mezzanine
                         { return this; }
             };
 
-            /// @brief A very simple class to allow a specialization of ScriptArgumentGeneric to correspond with Ruby's Nil.
-            class MEZZ_LIB RubyNil {};
+            typedef NullArgument NilArgument;
 
-        } // Ruby
-
-        /// @brief A RubyNil implementation of a ScriptArgument that is suitable for only for passing Nil into Ruby scripts
-        template <>
-        class MEZZ_LIB ScriptArgumentGeneric<Mezzanine::Scripting::Ruby::RubyNil> : public iScriptArgument
-        {
-            protected:
-                /// @brief For propriety here is an actual RubyNil, it does nothing and will likely be optimized out by any sane compiler
-                Mezzanine::Scripting::Ruby::RubyNil Datum;
-
-            public:
-                /// @brief To make working with this easier.
-                typedef Mezzanine::Scripting::Ruby::RubyNil Type;
-
-                /// @brief Create a Nil Argument
-                ScriptArgumentGeneric()
-                    {}
-
-                /// @brief Overloadable Deconstructor
-                virtual ~ScriptArgumentGeneric()
-                    {}
-
-                /// @brief Get "Nil".
-                /// @return A string containing "Nil"
-                virtual String GetString() const
-                    { return String("Nil"); }
-
-                /// @brief Get Nil as a Whole
-                /// @return 0 because NaN does not work in C++
-                virtual Whole GetWhole() const
-                    { return 0; }
-
-                /// @brief Get 0.
-                /// @return 0 because NaN does not work in C++
-                virtual Integer GetInteger() const
-                    { return 0; }
-
-                /// @brief Get the Nil as a 0.0.
-                /// @return 0.0 because NaN does not work in C++
-                virtual Real GetReal() const
-                    { return 0.0; }
-
-                /// @brief Get the Nil as a bool
-                /// @return false.
-                virtual Bool GetBool() const
-                    { return false; }
-
-                /// @brief Provide an overload point to change assignment that operators will use.
-                /// @param NewValue The new value for this.
-                virtual void SetValue(Mezzanine::Scripting::Ruby::RubyNil NewValue)
-                    { Datum=NewValue; }
-
-                /// @brief Get the raw primitive to value.
-                /// @return The internal value that meaningful operations can be performed on.
-                virtual Mezzanine::Scripting::Ruby::RubyNil GetValue() const
-                    { return Datum; }
-
-                /// @brief Get data about this being a RubyNil
-                /// @return This will return an Integer containing RubyNil
-                virtual Integer GetTypeData() const
-                    { return Mezzanine::Scripting::Ruby::RubyNil; }
-
-                /// @brief Get a pointer to the most Derived type of this class
-                /// @return A pointer of the most derived pointing to this.
-                virtual ScriptArgumentGeneric<Mezzanine::Scripting::Ruby::RubyNil>* GetMostDerived()
-                    { return this; }
-        }; //ScriptArgumentSpecific<RubyNil>
-
-        namespace Ruby
-        {
-            /// @brief Represents not much of anything but will insert and retrieves Nils from Ruby.
-            class MEZZ_LIB RubyNilArgument : public RubyArgument, public ScriptArgumentGeneric<RubyNil>
+            /// @brief
+            class MEZZ_LIB RubyNilArgument : public RubyArgument
             {
                 public:
-                    RubyNilArgument() : ScriptArgumentGeneric<RubyNil>()
-                    {}
+                    RubyNilArgument(NilArgument InitialValue = NilArgument());
 
-                    virtual void Push(ruby_State* TargetState) const;
-
-                    virtual void Pop(ruby_State* TargetState);
-
+                    /// @brief Virtual deconstructor
                     virtual ~RubyNilArgument() {}
 
                     /// @brief Get a pointer to the most Derived type of this class
@@ -286,6 +221,7 @@ namespace Mezzanine
                     virtual RubyNilArgument* GetMostDerived()
                         { return this; }
             };
+
 
         } // Ruby
     } // Scripting

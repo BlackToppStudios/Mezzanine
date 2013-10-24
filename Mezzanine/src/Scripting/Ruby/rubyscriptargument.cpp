@@ -41,15 +41,14 @@
 #define _rubyscriptargument_cpp
 
 #include "datatypes.h"
-#include "rubyscriptargument.h"
 
 #ifdef MEZZRUBY
 
-#include "rubyscript.h"
-#include "rubyscriptingengine.h"
+#include "rubyscriptargument.h"
+//#include "rubyscript.h"
+//#include "rubyscriptingengine.h"
 #include "exception.h"
 
-#include <algorithm>
 
 /// @file
 /// @brief This file has the implementation for the Ruby script argument.
@@ -57,8 +56,6 @@
 extern "C"
 {
     #include "ruby.h"            // Ruby Core
-    #include "rubylib.h"         // for opening the base state
-    #include "lauxlib.h"        // Extra Ruby Goodies like ruby_open()
 }
 
 namespace Mezzanine
@@ -67,76 +64,68 @@ namespace Mezzanine
     {
         namespace Ruby
         {
-
-
-            void RubyIntegerArgument::Push(ruby_State* TargetState) const
-                { ruby_pushinteger(TargetState, this->Datum); }
-
-            void RubyIntegerArgument::Pop(ruby_State* TargetState)
+            String RubyArgument::GetString() const
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TNUMBER==ruby_type(TargetState,Top))
-                    { Datum = ruby_tointeger(TargetState,Top); }
-                else
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby number(Integer), but found something else.") }
+
             }
 
-            void RubyRealArgument::Push(ruby_State* TargetState) const
-                { ruby_pushnumber(TargetState, this->Datum); }
-            void RubyRealArgument::Pop(ruby_State* TargetState)
+            Whole RubyArgument::GetWhole() const
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TNUMBER==ruby_type(TargetState,Top))
-                    { Datum = ruby_tonumber(TargetState,Top); }
-                else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby number(Real), but found something else.") }
+
             }
 
-            void RubyWholeArgument::Push(ruby_State* TargetState) const
-                { ruby_pushnumber(TargetState, this->Datum); }
-            void RubyWholeArgument::Pop(ruby_State* TargetState)
+            Integer RubyArgument::GetInteger() const
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TNUMBER==ruby_type(TargetState,Top))
-                    { Datum = ruby_tointeger(TargetState,Top); }
-                else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby number(Whole), but found something else.") }
+
             }
 
-            void RubyStringArgument::Push(ruby_State *TargetState) const
-                { ruby_pushlstring(TargetState, this->Datum.c_str(), this->Datum.size() ); }
-            void RubyStringArgument::Pop(ruby_State *TargetState)
+            Real RubyArgument::GetReal() const
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TSTRING==ruby_type(TargetState,Top))
-                    { Datum = ruby_tostring(TargetState,Top); }
-                else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby string(String), but found something else.") }
+
             }
 
-            void RubyBoolArgument::Push(ruby_State *TargetState) const
-                { ruby_pushboolean(TargetState, this->Datum); }
-            void RubyBoolArgument::Pop(ruby_State *TargetState)
+            Bool RubyArgument::GetBool() const
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TBOOLEAN==ruby_type(TargetState,Top))
-                    { Datum = ruby_toboolean(TargetState,Top); }
-                else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby string(String), but found something else.") }
+
             }
 
-            void RubyNilArgument::Push(ruby_State *TargetState) const
-                { ruby_pushnil(TargetState); }
-            void RubyNilArgument::Pop(ruby_State *TargetState)
+            void RubyArgument::SetValue(ConvertiblePointer NewValue)
             {
-                int Top = ruby_gettop(TargetState);
-                if(RUBY_TNIL==ruby_type(TargetState,Top))
-                    { ruby_pop(TargetState,1); }
-                else
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Ruby string(String), but found something else.") }
-                // It seems Ruby Nils never go on the stack when being returned sometimes.
+
             }
 
+            ConvertiblePointer RubyArgument::GetValue() const
+            {
+
+            }
+
+
+
+
+            RubyIntegerArgument::RubyIntegerArgument(Integer InitialValue)
+            {
+
+            }
+
+            RubyRealArgument::RubyRealArgument(Real InitialValue)
+            {
+
+            }
+
+            RubyWholeArgument::RubyWholeArgument(Whole InitialValue)
+            {
+
+            }
+
+            RubyStringArgument::RubyStringArgument(String InitialValue)
+            {
+
+            }
+
+            RubyBoolArgument::RubyBoolArgument(Bool InitialValue)
+            {
+
+            }
 
 
 
@@ -149,3 +138,4 @@ namespace Mezzanine
 
 #endif //  MEZZRUBY
 #endif
+

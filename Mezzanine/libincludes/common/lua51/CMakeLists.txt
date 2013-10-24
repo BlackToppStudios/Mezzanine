@@ -112,9 +112,8 @@ set(${PROJECT_NAME}_sources
 set_source_files_properties( ${${PROJECT_NAME}_sources} PROPERTIES LANGUAGE "C" )
 
 # Where the resulting cpp project should search for headers
-include_directories(
-	"${${PROJECT_NAME}_SOURCE_DIR}/lua5.1/src/"
-)
+set(LuaIncludeDirectory "${${PROJECT_NAME}_SOURCE_DIR}/lua5.1/src/" PARENT_SCOPE)
+include_directories(${LuaIncludeDirectory})
 
 # Where to dump the results
 #set (LIBRARY_OUTPUT_PATH "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/lua51/")

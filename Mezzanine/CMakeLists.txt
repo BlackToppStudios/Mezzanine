@@ -248,6 +248,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptargument.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptingengine.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51workunit.h"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/Ruby/rubyscriptargument.h"
         "${${PROJECT_NAME}_SRC_DIR}singleton.h"
         "${${PROJECT_NAME}_SRC_DIR}serialization.h"
         "${${PROJECT_NAME}_SRC_DIR}softdebris.h"
@@ -492,6 +493,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptargument.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptingengine.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51workunit.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/Ruby/rubyscriptargument.cpp"
         "${${PROJECT_NAME}_SRC_DIR}serialization.cpp"
         "${${PROJECT_NAME}_SRC_DIR}softdebris.cpp"
         "${${PROJECT_NAME}_SRC_DIR}sphere.cpp"
@@ -786,9 +788,6 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
         ${OgreHeaderIncludeDir}
 )
 
-if(${Mezz_Lua51})
-        include_directories( libincludes/common/lua51/lua5.1/src )
-endif(${Mezz_Lua51})
 
 link_directories(
         "${ProjectBinaryDir}Mezzanine/bin"
@@ -839,10 +838,12 @@ set(SDL_STATIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 
 if(${Mezz_Lua51})
         add_subdirectory (libincludes/common/lua51)
+        include_directories(${LuaIncludeDirectory})
 endif(${Mezz_Lua51})
 
 if(${Mezz_Ruby})
         add_subdirectory (libincludes/common/ruby200)
+        include_directories(${RubyIncludeDirectory})
 endif(${Mezz_Ruby})
 
 ###############################################################################
