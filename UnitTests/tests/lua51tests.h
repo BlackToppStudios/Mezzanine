@@ -570,8 +570,15 @@ class lua51tests : public UnitTestGroup
                               "BinaryBuffer", "TestBinaryBuffer", 2, 2,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestActorManager(x)\n"
+                              "   bb=MezzanineSafe.ActorManager()\n"
+                              "   return x\n"
+                              "end",
+                              "ActorManager", "TestActorManager", 2, 2,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
-                //BinaryBuffer
+
+                //ActorManager
             }
 
         }

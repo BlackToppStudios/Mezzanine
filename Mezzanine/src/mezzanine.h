@@ -65,9 +65,10 @@
 #endif
 
                                         // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
-#ifndef SWIG
-#include "actor.h"                  // serializes
+#include "actor.h"                      // serializes
 #include "actormanager.h"
+
+#ifndef SWIG
 #include "areaeffect.h"
 #include "areaeffectmanager.h"
 #endif

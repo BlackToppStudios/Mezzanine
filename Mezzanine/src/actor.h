@@ -41,9 +41,8 @@
 #ifndef _actor_h
 #define _actor_h
 
-#ifndef SWIG
-    #include "worldobject.h"
-#endif
+#include "datatypes.h"
+#include "worldobject.h"
 
 /// @file
 /// @brief The base class for all Actors is defined here.
