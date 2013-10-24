@@ -25,7 +25,7 @@ CatchApp::CatchApp() :
     Loader(NULL),
     Scorer(NULL),
     Shop(NULL),
-    LastActorThrown(NULL),
+    LastObjectThrown(NULL),
 
     LevelTimer(NULL),
     EndTimer(NULL),
@@ -586,7 +586,7 @@ void CatchApp::VerifySettings()
     }
 }
 
-void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
+void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
 {
     if(this->CurrentState == StateToSet)
         return;
@@ -703,16 +703,18 @@ void CatchApp::UnloadLevel()
     Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
     ActorManager* ActorMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
 
     PhysMan->DestroyAllConstraints();
     ActorMan->DestroyAllActors();
-    PhysMan->DestroyAllWorldTriggers();
     AreaEffectMan->DestroyAllAreaEffects();
+    DebrisMan->DestroyAllDebris();
+    SceneMan->DestroyAllProxies();
+    SceneMan->DisableSky();
+    PhysMan->DestroyAllProxies();
+    PhysMan->DestroyAllWorldTriggers();
     CShapeMan->DestroyAllShapes();
     MeshMan->DestroyAllGeneratedMeshes();
-    SceneMan->DestroyAllProxies();
-    SceneMan->DestroyAllWorldNodes();
-    SceneMan->DisableSky();
     StartAreas.clear();
     ThrownItems.clear();
 
@@ -825,23 +827,23 @@ bool CatchApp::GameIsPaused() const
     return Paused;
 }
 
-bool CatchApp::IsAThrowable(ActorBase* Actor) const
+bool CatchApp::IsAThrowable(WorldObject* Throwable) const
 {
-    for( ThrowableContainer::const_iterator it = this->ThrownItems.begin() ; it != this->ThrownItems.end() ; it++ )
+    for( ThrowableContainer::const_iterator ObjIt = this->ThrownItems.begin() ; ObjIt != this->ThrownItems.end() ; ObjIt++ )
     {
-        if( Actor == (*it) )
+        if( Throwable == (*ObjIt) )
             return true;
     }
     return false;
 }
 
-bool CatchApp::IsInsideAnyStartZone(ActorBase* Actor) const
+bool CatchApp::IsInsideAnyStartZone(Debris* Throwable) const
 {
     if(StartAreas.empty())
         return false;
     for( Whole X = 0 ; X < StartAreas.size() ; X++ )
     {
-        if(StartAreas[X]->IsInside(Actor))
+        if(StartAreas[X]->IsInside(Throwable))
             return true;
     }
     return false;
@@ -852,7 +854,7 @@ void CatchApp::RegisterStartArea(StartArea* Start)
     StartAreas.push_back(Start);
 }
 
-void CatchApp::AddThrowable(ActorBase* Throwable)
+void CatchApp::AddThrowable(Debris* Throwable)
 {
     ThrownItems.push_back(Throwable);
 }

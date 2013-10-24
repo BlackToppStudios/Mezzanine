@@ -10,8 +10,8 @@
 LevelLoader::LevelLoader()
     : LevelToLoad("")
 {
-    TheEntresol = Entresol::GetSingletonPtr();
-    GameApp = CatchApp::GetCatchAppPointer();
+    this->TheEntresol = Entresol::GetSingletonPtr();
+    this->GameApp = CatchApp::GetCatchAppPointer();
 }
 
 LevelLoader::~LevelLoader()
@@ -26,8 +26,8 @@ void LevelLoader::LoadFerris()
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -59,7 +59,7 @@ void LevelLoader::LoadFerris()
     DLight->AddToWorld();
 
     // Physics Setup
-    PhysMan->SetGravity(Vector3(0,-1000,0));
+    PhysMan->SetWorldGravity(Vector3(0,-1000,0));
 
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
@@ -91,75 +91,84 @@ void LevelLoader::LoadFerris()
     //----------
 
     // Create the Wheel
-    ActorRigid* FerrisWheel = new ActorRigid(100.0,"FerrisWheel","wheel.mesh",FerrisGroup);
+    RigidDebris* FerrisWheel = DebrisMan->CreateRigidDebris("FerrisWheel",100.0);
+    FerrisWheel->GetRigidProxy()->SetDamping(0,0.1);
+    FerrisWheel->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Wheel") ); // The names aren't being loaded as we expected
+    FerrisWheel->GetEntityProxy()->SetMesh("wheel.mesh",FerrisGroup);
     FerrisWheel->SetLocation(100,0,0);
-    FerrisWheel->GetPhysicsSettings()->SetDamping(0,0.1);
-    FerrisWheel->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Wheel")); // The names aren't being loaded as we expected
-    ActMan->AddActor(FerrisWheel);
+    FerrisWheel->AddToWorld();
 
     // Create the trayz
     Real TrayMass = 50.0;
-    ActorRigid* Tray1 = new ActorRigid(TrayMass,"Tray1","bluetray.mesh",FerrisGroup);
+    RigidDebris* Tray1 = DebrisMan->CreateRigidDebris("Tray1",TrayMass);
+    Tray1->GetRigidProxy()->SetDamping(0,0.1);
+    Tray1->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
+    Tray1->GetEntityProxy()->SetMesh("bluetray.mesh",FerrisGroup);
     Tray1->SetLocation(30.4,14.3,0);
-    Tray1->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray1->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
-    ActMan->AddActor(Tray1);
-    ActorRigid* Tray2 = new ActorRigid(TrayMass,"Tray2","purpletray.mesh",FerrisGroup);
+    Tray1->AddToWorld();
+    RigidDebris* Tray2 = DebrisMan->CreateRigidDebris("Tray2",TrayMass);
+    Tray2->GetRigidProxy()->SetDamping(0,0.1);
+    Tray2->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
+    Tray2->GetEntityProxy()->SetMesh("purpletray.mesh",FerrisGroup);
     Tray2->SetLocation(169.6,14.3,0);
-    Tray2->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray2->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
-    ActMan->AddActor(Tray2);
-    ActorRigid* Tray3 = new ActorRigid(TrayMass,"Tray3","purpletray.mesh",FerrisGroup);
+    Tray2->AddToWorld();
+    RigidDebris* Tray3 = DebrisMan->CreateRigidDebris("Tray3",TrayMass);
+    Tray3->GetRigidProxy()->SetDamping(0,0.1);
+    Tray3->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
+    Tray3->GetEntityProxy()->SetMesh("purpletray.mesh",FerrisGroup);
     Tray3->SetLocation(30.4,-42.7,0);
-    Tray3->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray3->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
-    ActMan->AddActor(Tray3);
-    ActorRigid* Tray4 = new ActorRigid(TrayMass,"Tray4","bluetray.mesh",FerrisGroup);
+    Tray3->AddToWorld();
+    RigidDebris* Tray4 = DebrisMan->CreateRigidDebris("Tray4",TrayMass);
+    Tray4->GetRigidProxy()->SetDamping(0,0.1);
+    Tray4->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
+    Tray4->GetEntityProxy()->SetMesh("bluetray.mesh",FerrisGroup);
     Tray4->SetLocation(169.6,-42.7,0);
-    Tray4->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray4->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
-    ActMan->AddActor(Tray4);
-    ActorRigid* Tray5 = new ActorRigid(TrayMass,"Tray5","purpletray.mesh",FerrisGroup);
+    Tray4->AddToWorld();
+    RigidDebris* Tray5 = DebrisMan->CreateRigidDebris("Tray5",TrayMass);
+    Tray5->GetRigidProxy()->SetDamping(0,0.1);
+    Tray5->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
+    Tray5->GetEntityProxy()->SetMesh("purpletray.mesh",FerrisGroup);
     Tray5->SetLocation(71.5,55.4,0);
-    Tray5->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray5->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
-    ActMan->AddActor(Tray5);
-    ActorRigid* Tray6 = new ActorRigid(TrayMass,"Tray6","bluetray.mesh",FerrisGroup);
+    Tray5->AddToWorld();
+    RigidDebris* Tray6 = DebrisMan->CreateRigidDebris("Tray6",TrayMass);
+    Tray6->GetRigidProxy()->SetDamping(0,0.1);
+    Tray6->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
+    Tray6->GetEntityProxy()->SetMesh("bluetray.mesh",FerrisGroup);
     Tray6->SetLocation(128.5,55.4,0);
-    Tray6->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray6->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
-    ActMan->AddActor(Tray6);
-    ActorRigid* Tray7 = new ActorRigid(TrayMass,"Tray7","bluetray.mesh",FerrisGroup);
+    Tray6->AddToWorld();
+    RigidDebris* Tray7 = DebrisMan->CreateRigidDebris("Tray7",TrayMass);
+    Tray7->GetRigidProxy()->SetDamping(0,0.1);
+    Tray7->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
+    Tray7->GetEntityProxy()->SetMesh("bluetray.mesh",FerrisGroup);
     Tray7->SetLocation(71.5,-83.8,0);
-    Tray7->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray7->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
-    ActMan->AddActor(Tray7);
-    ActorRigid* Tray8 = new ActorRigid(TrayMass,"Tray8","purpletray.mesh",FerrisGroup);
+    Tray7->AddToWorld();
+    RigidDebris* Tray8 = DebrisMan->CreateRigidDebris("Tray8",TrayMass);
+    Tray8->GetRigidProxy()->SetDamping(0,0.1);
+    Tray8->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
+    Tray8->GetEntityProxy()->SetMesh("purpletray.mesh",FerrisGroup);
     Tray8->SetLocation(128.5,-83.8,0);
-    Tray8->GetPhysicsSettings()->SetDamping(0,0.1);
-    Tray8->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
-    ActMan->AddActor(Tray8);// */
+    Tray8->AddToWorld();// */
 
     // Create world anchor for the wheel, which will allow it to spin.
-    Physics::HingeConstraint* WheelAnchor = new Physics::HingeConstraint(FerrisWheel,Vector3(0,0,0),Vector3(0,0,1),true);
+    Physics::HingeConstraint* WheelAnchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Vector3(0,0,0),Vector3(0,0,1),true);
     PhysMan->AddConstraint(WheelAnchor,false);// */
 
     // Create the series of hinges for connecting the 8 trays to the wheel
-    Physics::HingeConstraint* Tray1Anchor = new Physics::HingeConstraint(FerrisWheel,Tray1,Vector3(-69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    Physics::HingeConstraint* Tray1Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(-69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
     PhysMan->AddConstraint(Tray1Anchor,true);
-    Physics::HingeConstraint* Tray2Anchor = new Physics::HingeConstraint(FerrisWheel,Tray2,Vector3(69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    Physics::HingeConstraint* Tray2Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
     PhysMan->AddConstraint(Tray2Anchor,true);
-    Physics::HingeConstraint* Tray3Anchor = new Physics::HingeConstraint(FerrisWheel,Tray3,Vector3(-69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    Physics::HingeConstraint* Tray3Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray3->GetRigidProxy(),Vector3(-69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
     PhysMan->AddConstraint(Tray3Anchor,true);
-    Physics::HingeConstraint* Tray4Anchor = new Physics::HingeConstraint(FerrisWheel,Tray4,Vector3(69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    Physics::HingeConstraint* Tray4Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray4->GetRigidProxy(),Vector3(69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
     PhysMan->AddConstraint(Tray4Anchor,true);
-    Physics::HingeConstraint* Tray5Anchor = new Physics::HingeConstraint(FerrisWheel,Tray5,Vector3(-28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    Physics::HingeConstraint* Tray5Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray5->GetRigidProxy(),Vector3(-28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
     PhysMan->AddConstraint(Tray5Anchor,true);
-    Physics::HingeConstraint* Tray6Anchor = new Physics::HingeConstraint(FerrisWheel,Tray6,Vector3(28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    Physics::HingeConstraint* Tray6Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray6->GetRigidProxy(),Vector3(28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
     PhysMan->AddConstraint(Tray6Anchor,true);
-    Physics::HingeConstraint* Tray7Anchor = new Physics::HingeConstraint(FerrisWheel,Tray7,Vector3(-28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    Physics::HingeConstraint* Tray7Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray7->GetRigidProxy(),Vector3(-28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
     PhysMan->AddConstraint(Tray7Anchor,true);
-    Physics::HingeConstraint* Tray8Anchor = new Physics::HingeConstraint(FerrisWheel,Tray8,Vector3(28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    Physics::HingeConstraint* Tray8Anchor = new Physics::HingeConstraint(FerrisWheel->GetRigidProxy(),Tray8->GetRigidProxy(),Vector3(28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
     PhysMan->AddConstraint(Tray8Anchor,true);// */
 
     // Create some throwable objects
@@ -171,102 +180,113 @@ void LevelLoader::LoadFerris()
     Physics::CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LeadCS",LeadData->MeshName,CommonGroup);
     Physics::CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
     Physics::CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
-    ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
-    Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
-    //Uranium1->GetPhysicsSettings()->SetStickyData(1);
+
+    RigidDebris* Uranium1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Uranium") );
+    Uranium1->GetRigidProxy()->SetCollisionShape(UraniumCS);
+    //Uranium1->GetRigidProxy()->SetStickyData(1);
     Uranium1->SetLocation(-145,60,0);
-    ActMan->AddActor(Uranium1);
+    Uranium1->AddToWorld();
     GameApp->AddThrowable(Uranium1);
-    ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
-    Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
-    //Uranium2->GetPhysicsSettings()->SetStickyData(1);
+    RigidDebris* Uranium2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Uranium") );
+    Uranium2->GetRigidProxy()->SetCollisionShape(UraniumCS);
+    //Uranium2->GetRigidProxy()->SetStickyData(1);
     Uranium2->SetLocation(-195,60,0);
-    ActMan->AddActor(Uranium2);
+    Uranium2->AddToWorld();
     GameApp->AddThrowable(Uranium2);// */
-    ActorRigid* Lead1 = ThrowableGenerator::CreateThrowable("Lead");
-    Lead1->GetPhysicsSettings()->SetCollisionShape(LeadCS);
+    RigidDebris* Lead1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Lead") );
+    Lead1->GetRigidProxy()->SetCollisionShape(LeadCS);
     Lead1->SetLocation(-145,20,0);
-    ActMan->AddActor(Lead1);
+    Lead1->AddToWorld();
     GameApp->AddThrowable(Lead1);
-    ActorRigid* Lead2 = ThrowableGenerator::CreateThrowable("Lead");
-    Lead2->GetPhysicsSettings()->SetCollisionShape(LeadCS);
+    RigidDebris* Lead2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Lead") );
+    Lead2->GetRigidProxy()->SetCollisionShape(LeadCS);
     Lead2->SetLocation(-195,20,0);
-    ActMan->AddActor(Lead2);
+    Lead2->AddToWorld();
     GameApp->AddThrowable(Lead2);// */
-    ActorRigid* Clay1 = ThrowableGenerator::CreateThrowable("Clay");
-    Clay1->GetPhysicsSettings()->SetCollisionShape(ClayCS);
+    RigidDebris* Clay1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Clay") );
+    Clay1->GetRigidProxy()->SetCollisionShape(ClayCS);
     Clay1->SetLocation(-145,-20,0);
-    ActMan->AddActor(Clay1);
+    Clay1->AddToWorld();
     GameApp->AddThrowable(Clay1);
-    ActorRigid* Clay2 = ThrowableGenerator::CreateThrowable("Clay");
-    Clay2->GetPhysicsSettings()->SetCollisionShape(ClayCS);
+    RigidDebris* Clay2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Clay") );
+    Clay2->GetRigidProxy()->SetCollisionShape(ClayCS);
     Clay2->SetLocation(-195,-20,0);
-    ActMan->AddActor(Clay2);
+    Clay2->AddToWorld();
     GameApp->AddThrowable(Clay2);// */
-    ActorRigid* Pyrite1 = ThrowableGenerator::CreateThrowable("Pyrite");
-    Pyrite1->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
+    RigidDebris* Pyrite1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Pyrite") );
+    Pyrite1->GetRigidProxy()->SetCollisionShape(PyriteCS);
     Pyrite1->SetLocation(-145,-60,0);
-    ActMan->AddActor(Pyrite1);
+    Pyrite1->AddToWorld();
     GameApp->AddThrowable(Pyrite1);
-    ActorRigid* Pyrite2 = ThrowableGenerator::CreateThrowable("Pyrite");
-    Pyrite2->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
+    RigidDebris* Pyrite2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Pyrite") );
+    Pyrite2->GetRigidProxy()->SetCollisionShape(PyriteCS);
     Pyrite2->SetLocation(-195,-60,0);
-    ActMan->AddActor(Pyrite2);
+    Pyrite2->AddToWorld();
     GameApp->AddThrowable(Pyrite2);// */
 
     // Create the zones
-    /*AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
-    PlayZone->SetFieldShape(new BoxCollisionShape("PlayAreaShape",Vector3(280,280,35)));
-    AreaEffectMan->AddAreaEffect(PlayZone);
-    GameApp->SetPlayArea(PlayZone);// */
-
     Vector3 StartSize(50,130,25);
-    StartArea* StartZone = new StartArea("StartArea",Vector3(-170,0,0));
-    StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
-    AreaEffectMan->AddAreaEffect(StartZone);// */
-    Graphics::ParticleSystemProxy* StartParticle = SceneMan->CreateParticleSystemProxy("StartVortex");
-    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)11.0));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)15.0));
-    StartParticle->SetLocation(Vector3(-170,-80,0));
-    StartParticle->AddToWorld();// */
+    NameValuePairMap StartZoneParams;
+    StartZoneParams["SizeX"] = StringTools::ConvertToString(StartSize.X);
+    StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
+    StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
+
+    StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams) );
+    StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
+    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->SetParticleMinimumTimeToLive(11.0);
+    StartZone->SetParticleMaximumTimeToLive(15.0);
+    StartZone->SetLocation(-170,0,0);
+    StartZone->AddToWorld();// */
 
     Vector3 ScoreSize(100,100,30);
-    ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(100,0,0));
-    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
-    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
-    AreaEffectMan->AddAreaEffect(ScoreZone);// */
+    NameValuePairMap ScoreZoneParams;
+    ScoreZoneParams["SizeX"] = StringTools::ConvertToString(ScoreSize.X);
+    ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
+    ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
+
+    ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams) );
+    ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
+    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    StartZone->SetLocation(100,0,0);
+    ScoreZone->AddToWorld();// */
 
     Vector3 BonusScoreSize(18,18,30);
+    NameValuePairMap BonusZoneParams;
+    BonusZoneParams["SizeX"] = StringTools::ConvertToString(BonusScoreSize.X);
+    BonusZoneParams["SizeY"] = StringTools::ConvertToString(BonusScoreSize.Y);
+    BonusZoneParams["SizeZ"] = StringTools::ConvertToString(BonusScoreSize.Z);
     Physics::CollisionShape* BonusScoreShape = new Physics::BoxCollisionShape("BonusAreaShape",BonusScoreSize);
     Graphics::Mesh* BonusScoreMesh = MeshMan->CreateBoxCornerMesh("BonusAreaMesh",ColourValue(0.50,0.15,0.65,0.8),BonusScoreSize,4.0);
-    ScoreArea* BonusZone1 = new ScoreArea("BonusArea1",Vector3(169.6,14.3,0));
-    BonusZone1->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
-    BonusZone1->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
+
+    ScoreArea* BonusZone1 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","BonusArea1",BonusZoneParams) );
+    BonusZone1->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
+    BonusZone1->GetEntityProxy()->SetMesh(BonusScoreMesh);
     BonusZone1->SetScoreMultiplier(2.0);
-    AreaEffectMan->AddAreaEffect(BonusZone1);
-    Tray2->AttachObject(BonusZone1);// */
-    ScoreArea* BonusZone2 = new ScoreArea("BonusArea2",Vector3(30.4,-42.7,0));
-    BonusZone2->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
-    BonusZone2->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
+    BonusZone1->SetLocation(169.6,14.3,0);
+    BonusZone1->AddToWorld();
+    Tray2->GetRigidProxy()->AddSyncObject(BonusZone1);// */
+    ScoreArea* BonusZone2 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","BonusArea2",BonusZoneParams) );
+    BonusZone2->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
+    BonusZone2->GetEntityProxy()->SetMesh(BonusScoreMesh);
     BonusZone2->SetScoreMultiplier(2.0);
-    AreaEffectMan->AddAreaEffect(BonusZone2);
-    Tray3->AttachObject(BonusZone2);// */
-    ScoreArea* BonusZone3 = new ScoreArea("BonusArea3",Vector3(71.5,55.4,0));
-    BonusZone3->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
-    BonusZone3->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
+    BonusZone2->SetLocation(30.4,-42.7,0);
+    BonusZone2->AddToWorld();
+    Tray3->GetRigidProxy()->AddSyncObject(BonusZone2);// */
+    ScoreArea* BonusZone3 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","BonusArea3",BonusZoneParams) );
+    BonusZone3->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
+    BonusZone3->GetEntityProxy()->SetMesh(BonusScoreMesh);
     BonusZone3->SetScoreMultiplier(2.0);
-    AreaEffectMan->AddAreaEffect(BonusZone3);
-    Tray5->AttachObject(BonusZone3);// */
-    ScoreArea* BonusZone4 = new ScoreArea("BonusArea4",Vector3(128.5,-83.8,0));
-    BonusZone4->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
-    BonusZone4->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
+    BonusZone3->SetLocation(71.5,55.4,0);
+    BonusZone3->AddToWorld();
+    Tray5->GetRigidProxy()->AddSyncObject(BonusZone3);// */
+    ScoreArea* BonusZone4 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","BonusArea4",BonusZoneParams) );
+    BonusZone4->GetGhostProxy()->SetCollisionShape(BonusScoreShape);
+    BonusZone4->GetEntityProxy()->SetMesh(BonusScoreMesh);
     BonusZone4->SetScoreMultiplier(2.0);
-    AreaEffectMan->AddAreaEffect(BonusZone4);
-    Tray8->AttachObject(BonusZone4);// */
+    BonusZone4->SetLocation(128.5,-83.8,0);
+    BonusZone4->AddToWorld();
+    Tray8->GetRigidProxy()->AddSyncObject(BonusZone4);// */
 }
 
 void LevelLoader::LoadBigCurve()
@@ -277,8 +297,8 @@ void LevelLoader::LoadBigCurve()
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -310,7 +330,7 @@ void LevelLoader::LoadBigCurve()
     DLight->AddToWorld();
 
     // Physics Setup
-    PhysMan->SetGravity(Vector3(0,-1000,0));
+    PhysMan->SetWorldGravity(Vector3(0,-1000,0));
 
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
@@ -323,68 +343,76 @@ void LevelLoader::LoadBigCurve()
     // -no files to be loaded for this level-
 
     // Create the Cave
-    ActorRigid* CurveCave = new ActorRigid(0,"CurveCave","cave.mesh",BigCurveGroup);
-    CurveCave->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("Cave","cave.mesh",BigCurveGroup));
-    CurveCave->SetLocation(Vector3(130,0,-10));
-    CurveCave->SetScaling(Vector3(1.05,1.05,1.05));
-    ActMan->AddActor(CurveCave);
+    RigidDebris* CurveCave = DebrisMan->CreateRigidDebris("CurveCave",0);
+    CurveCave->GetRigidProxy()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("Cave","cave.mesh",BigCurveGroup));
+    CurveCave->GetEntityProxy()->SetMesh("cave.mesh",BigCurveGroup);
+    CurveCave->SetLocation(130,0,-10);
+    CurveCave->SetScale(1.05,1.05,1.05);
+    CurveCave->AddToWorld();
 
     // Create some throwable objects
     ThrowableData* PyriteData = ThrowableGenerator::GetThrowableData("Pyrite");
     ThrowableData* RubberData = ThrowableGenerator::GetThrowableData("Rubber");
     Physics::CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
     Physics::CollisionShape* RubberCS = CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
-    ActorRigid* Pyrite1 = ThrowableGenerator::CreateThrowable("Pyrite");
-    Pyrite1->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
+
+    RigidDebris* Pyrite1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Pyrite") );
+    Pyrite1->GetRigidProxy()->SetCollisionShape( PyriteCS );
     Pyrite1->SetLocation(-155,-20,0);
-    ActMan->AddActor(Pyrite1);
+    Pyrite1->AddToWorld();
     GameApp->AddThrowable(Pyrite1);
-    ActorRigid* Pyrite2 = ThrowableGenerator::CreateThrowable("Pyrite");
-    Pyrite2->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
+    RigidDebris* Pyrite2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Pyrite") );
+    Pyrite2->GetRigidProxy()->SetCollisionShape( PyriteCS );
     Pyrite2->SetLocation(-205,-20,0);
-    ActMan->AddActor(Pyrite2);
+    Pyrite2->AddToWorld();
     GameApp->AddThrowable(Pyrite2);// */
-    ActorRigid* Rubber1 = ThrowableGenerator::CreateThrowable("Rubber");
-    Rubber1->GetPhysicsSettings()->SetCollisionShape(RubberCS);
+    RigidDebris* Rubber1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Rubber") );
+    Rubber1->GetRigidProxy()->SetCollisionShape( RubberCS );
     Rubber1->SetLocation(-155,-60,0);
-    ActMan->AddActor(Rubber1);
+    Rubber1->AddToWorld();
     GameApp->AddThrowable(Rubber1);
-    ActorRigid* Rubber2 = ThrowableGenerator::CreateThrowable("Rubber");
-    Rubber2->GetPhysicsSettings()->SetCollisionShape(RubberCS);
+    RigidDebris* Rubber2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Rubber") );
+    Rubber2->GetRigidProxy()->SetCollisionShape( RubberCS );
     Rubber2->SetLocation(-205,-60,0);
-    ActMan->AddActor(Rubber2);
+    Rubber2->AddToWorld();
     GameApp->AddThrowable(Rubber2);
-    ActorRigid* Rubber3 = ThrowableGenerator::CreateThrowable("Rubber");
-    Rubber3->GetPhysicsSettings()->SetCollisionShape(RubberCS);
+    RigidDebris* Rubber3 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Rubber") );
+    Rubber3->GetRigidProxy()->SetCollisionShape( RubberCS );
     Rubber3->SetLocation(-155,-100,0);
-    ActMan->AddActor(Rubber3);
+    Rubber3->AddToWorld();
     GameApp->AddThrowable(Rubber3);
-    ActorRigid* Rubber4 = ThrowableGenerator::CreateThrowable("Rubber");
-    Rubber4->GetPhysicsSettings()->SetCollisionShape(RubberCS);
+    RigidDebris* Rubber4 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Rubber") );
+    Rubber4->GetRigidProxy()->SetCollisionShape( RubberCS );
     Rubber4->SetLocation(-205,-100,0);
-    ActMan->AddActor(Rubber4);
+    Rubber4->AddToWorld();
     GameApp->AddThrowable(Rubber4);// */
 
     // Create the zones
     Vector3 StartSize(50,80,20);
-    StartArea* StartZone = new StartArea("StartArea",Vector3(-180,-60,0));
-    StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
-    AreaEffectMan->AddAreaEffect(StartZone);// */
-    Graphics::ParticleSystemProxy* StartParticle = SceneMan->CreateParticleSystemProxy("StartVortex");
-    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)8.0));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)10.0));
-    StartParticle->SetLocation(Vector3(-180,-110,0));
-    StartParticle->AddToWorld();// */
+    NameValuePairMap StartZoneParams;
+    StartZoneParams["SizeX"] = StringTools::ConvertToString(StartSize.X);
+    StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
+    StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
+
+    StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams) );
+    StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
+    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->SetParticleMinimumTimeToLive(8.0);
+    StartZone->SetParticleMaximumTimeToLive(10.0);
+    StartZone->SetLocation(-180,-60,0);
+    StartZone->AddToWorld();// */
 
     Vector3 ScoreSize(50,40,50);
-    ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(120,-20,-10));
-    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
-    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
-    AreaEffectMan->AddAreaEffect(ScoreZone);// */
+    NameValuePairMap ScoreZoneParams;
+    ScoreZoneParams["SizeX"] = StringTools::ConvertToString(ScoreSize.X);
+    ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
+    ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
+
+    ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams) );
+    ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
+    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->SetLocation(120,-20,-10);
+    ScoreZone->AddToWorld();// */
 }
 
 void LevelLoader::LoadBlowsNotSucks()
@@ -395,8 +423,8 @@ void LevelLoader::LoadBlowsNotSucks()
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -428,7 +456,7 @@ void LevelLoader::LoadBlowsNotSucks()
     DLight->AddToWorld();
 
     // Physics Setup
-    PhysMan->SetGravity(Vector3(0,-1000,0));
+    PhysMan->SetWorldGravity(Vector3(0,-1000,0));
 
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
@@ -455,31 +483,34 @@ void LevelLoader::LoadBlowsNotSucks()
     //----------
 
     // Create the fan
-    ActorRigid* Fan = new ActorRigid(25,"Fan","fan.mesh",BlowsNotSucksGroup);
-    Fan->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Fan"));
-    Fan->SetLocation(Vector3(103.388,-58.888,7.5));
-    Fan->SetOrientation(Quaternion(MathTools::HalfPi * 0.5,Vector3(0,0,1)));
-    Fan->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
-    ActMan->AddActor(Fan);
+    RigidDebris* Fan = DebrisMan->CreateRigidDebris("Fan",25);
+    Fan->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Fan") );
+    Fan->GetRigidProxy()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
+    Fan->GetEntityProxy()->SetMesh("fan.mesh",BlowsNotSucksGroup);
+    Fan->SetLocation(103.388,-58.888,7.5);
+    Fan->SetOrientation(Quaternion(MathTools::GetQuarterPi(),Vector3(0,0,1)));
+    Fan->AddToWorld();
 
-    ActorRigid* FanBody = new ActorRigid(0,"FanBody","body.mesh",BlowsNotSucksGroup);
-    FanBody->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("Body","body.mesh",BlowsNotSucksGroup));
-    FanBody->SetLocation(Vector3(132.5,-70,25));
-    ActMan->AddActor(FanBody);
+    RigidDebris* FanBody = DebrisMan->CreateRigidDebris("FanBody",0);
+    FanBody->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("Body","body.mesh",BlowsNotSucksGroup) );
+    FanBody->GetEntityProxy()->SetMesh("body.mesh",BlowsNotSucksGroup);
+    FanBody->SetLocation(132.5,-70,25);
+    FanBody->AddToWorld();
 
-    ActorRigid* FanButton = new ActorRigid(2.5,"FanButton","button.mesh",BlowsNotSucksGroup);
-    FanButton->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateConvexHull("Button","button.mesh",BlowsNotSucksGroup));
-    FanButton->SetLocation(Vector3(-10.5,-107.0,-0.5));
-    FanButton->SetAngularMovementFactor(Vector3(0,0,0));
-    ActMan->AddActor(FanButton);
-    PhysMan->SetIndividualGravity(FanButton,Vector3(0,0,0));
+    RigidDebris* FanButton = DebrisMan->CreateRigidDebris("FanButton",2.5);
+    FanButton->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateConvexHull("Button","button.mesh",BlowsNotSucksGroup) );
+    FanButton->GetRigidProxy()->SetGravity( Vector3(0,0,0) );
+    FanButton->GetRigidProxy()->SetAngularMovementFactor(Vector3(0,0,0));
+    FanButton->GetEntityProxy()->SetMesh("button.mesh",BlowsNotSucksGroup);
+    FanButton->SetLocation(-10.5,-107.0,-0.5);
+    FanButton->AddToWorld();
 
     // Create the series of constraints for assembling the fan
-    Physics::HingeConstraint* FanToBody = new Physics::HingeConstraint(FanBody,Fan,Vector3(-12,-6,-17.5),Vector3(0,-24.2,0),Vector3(-1,1,0).Normalize(),Vector3(0,1,0),false);
+    Physics::HingeConstraint* FanToBody = new Physics::HingeConstraint(FanBody->GetRigidProxy(),Fan->GetRigidProxy(),Vector3(-12,-6,-17.5),Vector3(0,-24.2,0),Vector3(-1,1,0).Normalize(),Vector3(0,1,0),false);
     PhysMan->AddConstraint(FanToBody,true);
     FanToBody->SetLimit(1.0,-1.0);
 
-    Physics::Generic6DofSpringConstraint* ButtonToBody = new Physics::Generic6DofSpringConstraint(FanBody,FanButton,Vector3(-143,-52,-25.5),Vector3(0,0,0),Quaternion(0,0,0,1),Quaternion(0,0,0,1),true);
+    Physics::Generic6DofSpringConstraint* ButtonToBody = new Physics::Generic6DofSpringConstraint(FanBody->GetRigidProxy(),FanButton->GetRigidProxy(),Vector3(-143,-52,-25.5),Vector3(0,0,0),Quaternion(0,0,0,1),Quaternion(0,0,0,1),true);
     ButtonToBody->SetLinearLimitUpper(Vector3(0,15,0));
     ButtonToBody->SetLinearLimitLower(Vector3(0,0,0));
     ButtonToBody->SetAngularLimitUpper(Vector3(0,0,0));
@@ -491,99 +522,114 @@ void LevelLoader::LoadBlowsNotSucks()
 
     // Create the field of force for the wind generated by the fan
     Vector3 FanWindSize(60,115,60);
-    Quaternion FanWindOrientation(MathTools::HalfPi * 0.5,Vector3(0,0,1));
-    FieldOfForce* FanWind = new FieldOfForce("FanWind",Vector3(5,40,7.5));
-    FanWind->GetPhysicsSettings()->SetCollisionShape(new Physics::CylinderCollisionShape("FanWindShape",60,115,Vector3::Unit_Y()));
-    //FanWind->GetGraphicsSettings()->SetMesh(MeshMan->CreateCylinderMesh("FanWindMesh",ColourValue(0.8,0.1,0.1,0.2),FanWindSize,Vector3::Unit_Y()));
+    Quaternion FanWindOrientation(MathTools::GetQuarterPi(),Vector3(0,0,1));
+    FieldOfForce* FanWind = AreaEffectMan->CreateFieldOfForce("FanWind");
+    FanWind->GetGhostProxy()->SetCollisionShape( new Physics::CylinderCollisionShape("FanWindShape",60,115,Vector3::Unit_Y()) );
     FanWind->SetOrientation(FanWindOrientation);
     FanWind->SetDirectionOfForce(Vector3(-1,1,0));
     FanWind->SetAttenuation(0.2f,Mezzanine::Att_Linear,Vector3(-125.5,-81,7.5));
     FanWind->SetFieldStrength(1000.f);
-    AreaEffectMan->AddAreaEffect(FanWind);
+    FanWind->SetLocation(5,40,7.5);
+    FanWind->AddToWorld();
     Graphics::ParticleSystemProxy* WindParticle = SceneMan->CreateParticleSystemProxy("WindTunnel");
     WindParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(FanWindSize.X * (Real)1.8));
     WindParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(FanWindSize.Y * (Real)0.6));
     WindParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(FanWindSize.Z * (Real)1.8));
     WindParticle->GetEmitter(0)->SetCustomParam("position","0 -60.0 0");
-    WindParticle->SetLocation(Vector3(5,40,7.5));
+    WindParticle->SetLocation(5,40,7.5);
     WindParticle->SetOrientation(FanWindOrientation);
-    //WindParticle->AddToWorld();// */
+    WindParticle->AddToWorld();// */
 
     // Create the trigger for the fan
     BNS_Fan* FanTrigger = new BNS_Fan("FanTigger",FanToBody,FanButton,Fan,FanWind,WindParticle);
     PhysMan->AddWorldTrigger(FanTrigger);
 
     // Create the goal tray
-    ActorRigid* GoalTray = new ActorRigid(0,"GoalTray","tray.mesh",BlowsNotSucksGroup);
-    GoalTray->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("GoalShape","tray.mesh",BlowsNotSucksGroup));
-    GoalTray->SetLocation(Vector3(-170,100,0));
-    ActMan->AddActor(GoalTray);
+    RigidDebris* GoalTray = DebrisMan->CreateRigidDebris("GoalTray",0);
+    GoalTray->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("GoalShape","tray.mesh",BlowsNotSucksGroup) );
+    GoalTray->GetEntityProxy()->SetMesh("tray.mesh",BlowsNotSucksGroup);
+    GoalTray->SetLocation(-170,100,0);
+    GoalTray->AddToWorld();
 
     // Create some throwable objects
     ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
     ThrowableData* StyrofoamData = ThrowableGenerator::GetThrowableData("Styrofoam");
     Physics::CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
     Physics::CollisionShape* StyrofoamCS = CShapeMan->GenerateConvexHull("StyrofoamCS",StyrofoamData->MeshName,CommonGroup);
-    ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
-    Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
+
+    RigidDebris* Uranium1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Uranium") );
+    Uranium1->GetRigidProxy()->SetCollisionShape(UraniumCS);
     Uranium1->SetLocation(-155,-20,0);
-    ActMan->AddActor(Uranium1);
+    Uranium1->AddToWorld();
     GameApp->AddThrowable(Uranium1);
-    ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
-    Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
+    RigidDebris* Uranium2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Uranium") );
+    Uranium2->GetRigidProxy()->SetCollisionShape(UraniumCS);
     Uranium2->SetLocation(-185,-20,0);
-    ActMan->AddActor(Uranium2);
+    Uranium2->AddToWorld();
     GameApp->AddThrowable(Uranium2);// */
-    ActorRigid* Styrofoam1 = ThrowableGenerator::CreateThrowable("Styrofoam");
-    Styrofoam1->GetPhysicsSettings()->SetCollisionShape(StyrofoamCS);
+    RigidDebris* Styrofoam1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Styrofoam") );
+    Styrofoam1->GetRigidProxy()->SetCollisionShape(StyrofoamCS);
     Styrofoam1->SetLocation(-155,-60,0);
-    ActMan->AddActor(Styrofoam1);
+    Styrofoam1->AddToWorld();
     GameApp->AddThrowable(Styrofoam1);
-    ActorRigid* Styrofoam2 = ThrowableGenerator::CreateThrowable("Styrofoam");
-    Styrofoam2->GetPhysicsSettings()->SetCollisionShape(StyrofoamCS);
+    RigidDebris* Styrofoam2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Styrofoam") );
+    Styrofoam2->GetRigidProxy()->SetCollisionShape(StyrofoamCS);
     Styrofoam2->SetLocation(-185,-60,0);
-    ActMan->AddActor(Styrofoam2);
+    Styrofoam2->AddToWorld();
     GameApp->AddThrowable(Styrofoam2);
-    ActorRigid* Styrofoam3 = ThrowableGenerator::CreateThrowable("Styrofoam");
-    Styrofoam3->GetPhysicsSettings()->SetCollisionShape(StyrofoamCS);
+    RigidDebris* Styrofoam3 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Styrofoam") );
+    Styrofoam3->GetRigidProxy()->SetCollisionShape(StyrofoamCS);
     Styrofoam3->SetLocation(-155,-100,0);
-    ActMan->AddActor(Styrofoam3);
+    Styrofoam3->AddToWorld();
     GameApp->AddThrowable(Styrofoam3);
-    ActorRigid* Styrofoam4 = ThrowableGenerator::CreateThrowable("Styrofoam");
-    Styrofoam4->GetPhysicsSettings()->SetCollisionShape(StyrofoamCS);
+    RigidDebris* Styrofoam4 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Styrofoam") );
+    Styrofoam4->GetRigidProxy()->SetCollisionShape(StyrofoamCS);
     Styrofoam4->SetLocation(-185,-100,0);
-    ActMan->AddActor(Styrofoam4);
+    Styrofoam4->AddToWorld();
     GameApp->AddThrowable(Styrofoam4);// */
 
     // Create the zones
     Vector3 StartSize(50,70,20);
-    StartArea* StartZone = new StartArea("StartArea",Vector3(-170,-70,0));
-    StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
-    AreaEffectMan->AddAreaEffect(StartZone);// */
-    Graphics::ParticleSystemProxy* StartParticle = SceneMan->CreateParticleSystemProxy("StartVortex");
-    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)6.0));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)9.0));
-    StartParticle->SetLocation(Vector3(-170,-115,0));
-    StartParticle->AddToWorld();// */
+    NameValuePairMap StartZoneParams;
+    StartZoneParams["SizeX"] = StringTools::ConvertToString(StartSize.X);
+    StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
+    StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
+
+    StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams) );
+    StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
+    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->SetParticleMinimumTimeToLive(6.0);
+    StartZone->SetParticleMaximumTimeToLive(9.0);
+    StartZone->SetLocation(-170,-70,0);
+    StartZone->AddToWorld();// */
 
     Vector3 Score1Size(25,21,25);
+    NameValuePairMap ScoreZone1Params;
+    ScoreZone1Params["SizeX"] = StringTools::ConvertToString(Score1Size.X);
+    ScoreZone1Params["SizeY"] = StringTools::ConvertToString(Score1Size.Y);
+    ScoreZone1Params["SizeZ"] = StringTools::ConvertToString(Score1Size.Z);
     Physics::CollisionShape* ScoreArea1Shape = new Physics::BoxCollisionShape("ScoreArea1Shape",Score1Size);
     Graphics::Mesh* ScoreArea1Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea1Mesh",ColourValue(0.2,0.2,0.8,0.8),Score1Size,4.0);
-    ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-10.5,-100.0,0.0));
-    ScoreZone1->GetPhysicsSettings()->SetCollisionShape(ScoreArea1Shape);
-    ScoreZone1->GetGraphicsSettings()->SetMesh(ScoreArea1Mesh);
-    AreaEffectMan->AddAreaEffect(ScoreZone1);
+
+    ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZone1Params) );
+    ScoreZone1->GetGhostProxy()->SetCollisionShape(ScoreArea1Shape);
+    ScoreZone1->GetEntityProxy()->SetMesh(ScoreArea1Mesh);
+    ScoreZone1->SetLocation(-10.5,-100.0,0.0);
+    ScoreZone1->AddToWorld();
+
     Vector3 Score2Size(55,48,15);
+    NameValuePairMap ScoreZone2Params;
+    ScoreZone2Params["SizeX"] = StringTools::ConvertToString(Score2Size.X);
+    ScoreZone2Params["SizeY"] = StringTools::ConvertToString(Score2Size.Y);
+    ScoreZone2Params["SizeZ"] = StringTools::ConvertToString(Score2Size.Z);
     Physics::CollisionShape* ScoreArea2Shape = new Physics::BoxCollisionShape("ScoreArea2Shape",Score2Size);
     Graphics::Mesh* ScoreArea2Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea2Mesh",ColourValue(0.2,0.2,0.8,0.8),Score2Size,4.0);
-    ScoreArea* ScoreZone2 = new ScoreArea("ScoreArea2",Vector3(-170,100,0));
-    ScoreZone2->GetPhysicsSettings()->SetCollisionShape(ScoreArea2Shape);
-    ScoreZone2->GetGraphicsSettings()->SetMesh(ScoreArea2Mesh);
-    AreaEffectMan->AddAreaEffect(ScoreZone2);// */
+
+    ScoreArea* ScoreZone2 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea2",ScoreZone2Params) );
+    ScoreZone2->GetGhostProxy()->SetCollisionShape(ScoreArea2Shape);
+    ScoreZone2->GetEntityProxy()->SetMesh(ScoreArea2Mesh);
+    ScoreZone2->SetLocation(-170,100,0);
+    ScoreZone2->AddToWorld();// */
 }
 
 void LevelLoader::LoadJustice()
@@ -594,8 +640,8 @@ void LevelLoader::LoadJustice()
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -627,7 +673,7 @@ void LevelLoader::LoadJustice()
     DLight->AddToWorld();
 
     // Physics Setup
-    PhysMan->SetGravity(Vector3(0,-1000,0));
+    PhysMan->SetWorldGravity(Vector3(0,-1000,0));
 
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
@@ -659,80 +705,88 @@ void LevelLoader::LoadJustice()
     //----------
 
     // Create Lady Justice
-    ActorRigid* LadyJustice = new ActorRigid(0,"LadyJustice","lady.mesh",JusticeGroup);
-    LadyJustice->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("LadyShape","lady.mesh",JusticeGroup));
-    LadyJustice->SetLocation(Vector3(12,-60,-103.35));
-    ActMan->AddActor(LadyJustice);
+    RigidDebris* LadyJustice = DebrisMan->CreateRigidDebris("LadyJustice",0);
+    LadyJustice->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("LadyShape","lady.mesh",JusticeGroup) );
+    LadyJustice->GetEntityProxy()->SetMesh("lady.mesh",JusticeGroup);
+    LadyJustice->SetLocation(12,-60,-103.35);
+    LadyJustice->AddToWorld();
 
     // Create the scale object
     Real ScaleMass = 50.0;
-    ActorRigid* JusticeScale = new ActorRigid(ScaleMass,"JusticeScale","scale.mesh",JusticeGroup);
-    JusticeScale->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Scale"));
-    JusticeScale->SetLocation(Vector3(0,37.4,0));
-    JusticeScale->GetPhysicsSettings()->SetDamping(0.5,0.80);
-    ActMan->AddActor(JusticeScale);
+    RigidDebris* JusticeScale = DebrisMan->CreateRigidDebris("JusticeScale",ScaleMass);
+    JusticeScale->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Scale") );
+    JusticeScale->GetRigidProxy()->SetDamping(0.5,0.80);
+    JusticeScale->GetEntityProxy()->SetMesh("scale.mesh",JusticeGroup);
+    JusticeScale->SetLocation(0,37.4,0);
+    JusticeScale->AddToWorld();
 
     // Create the union objects
     Real UnionMass = 5.0;
-    ActorRigid* Union1 = new ActorRigid(UnionMass,"Union1","union.mesh",JusticeGroup);
-    Union1->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Union"));
-    Union1->SetLocation(Vector3(-112,0.2,-16.4));
-    ActMan->AddActor(Union1);
-    ActorRigid* Union2 = new ActorRigid(UnionMass,"Union2","union.mesh",JusticeGroup);
-    Union2->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Union"));
-    Union2->SetLocation(Vector3(-112,0.2,16.4));
-    ActMan->AddActor(Union2);
-    ActorRigid* Union3 = new ActorRigid(UnionMass,"Union3","union.mesh",JusticeGroup);
-    Union3->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Union"));
-    Union3->SetLocation(Vector3(112,0.2,-16.4));
-    ActMan->AddActor(Union3);
-    ActorRigid* Union4 = new ActorRigid(UnionMass,"Union4","union.mesh",JusticeGroup);
-    Union4->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Union"));
-    Union4->SetLocation(Vector3(112,0.2,16.4));
-    ActMan->AddActor(Union4);
+    RigidDebris* Union1 = DebrisMan->CreateRigidDebris("Union1",UnionMass);
+    Union1->GetRigidProxy()->SetCollisionShape(CShapeMan->GetShape("Union"));
+    Union1->GetEntityProxy()->SetMesh("union.mesh",JusticeGroup);
+    Union1->SetLocation(-112,0.2,-16.4);
+    Union1->AddToWorld();
+    RigidDebris* Union2 = DebrisMan->CreateRigidDebris("Union2",UnionMass);
+    Union2->GetRigidProxy()->SetCollisionShape(CShapeMan->GetShape("Union"));
+    Union2->GetEntityProxy()->SetMesh("union.mesh",JusticeGroup);
+    Union2->SetLocation(-112,0.2,16.4);
+    Union2->AddToWorld();
+    RigidDebris* Union3 = DebrisMan->CreateRigidDebris("Union3",UnionMass);
+    Union3->GetRigidProxy()->SetCollisionShape(CShapeMan->GetShape("Union"));
+    Union3->GetEntityProxy()->SetMesh("union.mesh",JusticeGroup);
+    Union3->SetLocation(112,0.2,-16.4);
+    Union3->AddToWorld();
+    RigidDebris* Union4 = DebrisMan->CreateRigidDebris("Union4",UnionMass);
+    Union4->GetRigidProxy()->SetCollisionShape(CShapeMan->GetShape("Union"));
+    Union4->GetEntityProxy()->SetMesh("union.mesh",JusticeGroup);
+    Union4->SetLocation(112,0.2,16.4);
+    Union4->AddToWorld();
 
     // Create the trays
     Real TrayMass = 25.0;
-    ActorRigid* Tray1 = new ActorRigid(TrayMass,"Tray1","tray.mesh",JusticeGroup);
-    Tray1->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
-    Tray1->SetLocation(Vector3(-112,-35,0));
-    Tray1->SetLinearMovementFactor(Vector3(1,1,0));
-    Tray1->SetAngularMovementFactor(Vector3(1,0,1));
-    Tray1->GetPhysicsSettings()->SetDamping(0.0,0.3);
-    ActMan->AddActor(Tray1);
-    ActorRigid* Tray2 = new ActorRigid(TrayMass,"Tray2","tray.mesh",JusticeGroup);
-    Tray2->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Tray"));
-    Tray2->SetLocation(Vector3(112,-35,0));
-    Tray2->SetLinearMovementFactor(Vector3(1,1,0));
-    Tray2->SetAngularMovementFactor(Vector3(1,0,1));
-    Tray2->GetPhysicsSettings()->SetDamping(0.0,0.3);
-    ActMan->AddActor(Tray2);
+    RigidDebris* Tray1 = DebrisMan->CreateRigidDebris("Tray1",TrayMass);
+    Tray1->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
+    Tray1->GetRigidProxy()->SetLinearMovementFactor(Vector3(1,1,0));
+    Tray1->GetRigidProxy()->SetAngularMovementFactor(Vector3(1,0,1));
+    Tray1->GetRigidProxy()->SetDamping(0.0,0.3);
+    Tray1->GetEntityProxy()->SetMesh("tray.mesh",JusticeGroup);
+    Tray1->SetLocation(-112,-35,0);
+    Tray1->AddToWorld();
+    RigidDebris* Tray2 = DebrisMan->CreateRigidDebris("Tray2",TrayMass);
+    Tray2->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Tray") );
+    Tray2->GetRigidProxy()->SetLinearMovementFactor(Vector3(1,1,0));
+    Tray2->GetRigidProxy()->SetAngularMovementFactor(Vector3(1,0,1));
+    Tray2->GetRigidProxy()->SetDamping(0.0,0.3);
+    Tray2->GetEntityProxy()->SetMesh("tray.mesh",JusticeGroup);
+    Tray2->SetLocation(112,-35,0);
+    Tray2->AddToWorld();
 
     // Create the series of constraints for connecting all the pieces of the scale together
     // Starting with creating the anchor for the scale
-    Physics::HingeConstraint* ScaleAnchor = new Physics::HingeConstraint(LadyJustice,JusticeScale,Vector3(-12,127.4,103.35),Vector3(0,30,0),Vector3(0,0,1),Vector3(0,0,1),false);
-    ScaleAnchor->SetLimit( -(MathTools::Pi * 0.20),(MathTools::Pi * 0.20) );
+    Physics::HingeConstraint* ScaleAnchor = new Physics::HingeConstraint(LadyJustice->GetRigidProxy(),JusticeScale->GetRigidProxy(),Vector3(-12,127.4,103.35),Vector3(0,30,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    ScaleAnchor->SetLimit( -(MathTools::GetPi() * 0.20),(MathTools::GetPi() * 0.20) );
     PhysMan->AddConstraint(ScaleAnchor,true);
 
     // Original X distance from pivot on scale is 112.7, but space was needed to prevent collsions.
     // Create the scale-to-union constraints
-    Physics::Point2PointConstraint* U1S = new Physics::Point2PointConstraint(JusticeScale,Union1,Vector3(-112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,-16.4
+    Physics::Point2PointConstraint* U1S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union1->GetRigidProxy(),Vector3(-112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,-16.4
     PhysMan->AddConstraint(U1S,true);
-    Physics::Point2PointConstraint* U2S = new Physics::Point2PointConstraint(JusticeScale,Union2,Vector3(-112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,16.4
+    Physics::Point2PointConstraint* U2S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union2->GetRigidProxy(),Vector3(-112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,16.4
     PhysMan->AddConstraint(U2S,true);
-    Physics::Point2PointConstraint* U3S = new Physics::Point2PointConstraint(JusticeScale,Union3,Vector3(112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,-16.4
+    Physics::Point2PointConstraint* U3S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union3->GetRigidProxy(),Vector3(112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,-16.4
     PhysMan->AddConstraint(U3S,true);
-    Physics::Point2PointConstraint* U4S = new Physics::Point2PointConstraint(JusticeScale,Union4,Vector3(112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,16.4
+    Physics::Point2PointConstraint* U4S = new Physics::Point2PointConstraint(JusticeScale->GetRigidProxy(),Union4->GetRigidProxy(),Vector3(112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,16.4
     PhysMan->AddConstraint(U4S,true);
 
     // Create the union-to-tray constraints
-    Physics::Point2PointConstraint* U1T = new Physics::Point2PointConstraint(Union1,Tray1,Vector3(0,-17.2,0),Vector3(0,18,-16.4));// -54,10.2,-16.4 // -54,-25,0
+    Physics::Point2PointConstraint* U1T = new Physics::Point2PointConstraint(Union1->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,-16.4));// -54,10.2,-16.4 // -54,-25,0
     PhysMan->AddConstraint(U1T,true);
-    Physics::Point2PointConstraint* U2T = new Physics::Point2PointConstraint(Union2,Tray1,Vector3(0,-17.2,0),Vector3(0,18,16.4));// -54,10.2,16.4 // -54,-25,0
+    Physics::Point2PointConstraint* U2T = new Physics::Point2PointConstraint(Union2->GetRigidProxy(),Tray1->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,16.4));// -54,10.2,16.4 // -54,-25,0
     PhysMan->AddConstraint(U2T,true);
-    Physics::Point2PointConstraint* U3T = new Physics::Point2PointConstraint(Union3,Tray2,Vector3(0,-17.2,0),Vector3(0,18,-16.4));// 170,10.2,-16.4 // 170,-25,0
+    Physics::Point2PointConstraint* U3T = new Physics::Point2PointConstraint(Union3->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,-16.4));// 170,10.2,-16.4 // 170,-25,0
     PhysMan->AddConstraint(U3T,true);
-    Physics::Point2PointConstraint* U4T = new Physics::Point2PointConstraint(Union4,Tray2,Vector3(0,-17.2,0),Vector3(0,18,16.4));// 170,10.2,16.4 // 170,-25,0
+    Physics::Point2PointConstraint* U4T = new Physics::Point2PointConstraint(Union4->GetRigidProxy(),Tray2->GetRigidProxy(),Vector3(0,-17.2,0),Vector3(0,18,16.4));// 170,10.2,16.4 // 170,-25,0
     PhysMan->AddConstraint(U4T,true);
 
     // Create some throwable objects
@@ -742,57 +796,60 @@ void LevelLoader::LoadJustice()
     //Physics::CollisionShape* ClayCS = CShapeMan->GenerateConvexHull("ClayCS",ClayData->MeshName,CommonGroup);
     //Physics::CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LeadCS",LeadData->MeshName,CommonGroup);
     Physics::CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
-    ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
-    Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
+
+    RigidDebris* Uranium1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Uranium") );
+    Uranium1->GetRigidProxy()->SetCollisionShape(UraniumCS);
     Uranium1->SetLocation(-155,110,0);
-    ActMan->AddActor(Uranium1);
+    Uranium1->AddToWorld();
     GameApp->AddThrowable(Uranium1);
-    ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
-    Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
+    RigidDebris* Uranium2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Uranium") );
+    Uranium2->GetRigidProxy()->SetCollisionShape(UraniumCS);
     Uranium2->SetLocation(-185,110,0);
-    ActMan->AddActor(Uranium2);
+    Uranium2->AddToWorld();
     GameApp->AddThrowable(Uranium2);
 
     // Create the zones
     Vector3 StartSize(60,30,20);
+    NameValuePairMap StartZoneParams;
+    StartZoneParams["SizeX"] = StringTools::ConvertToString(StartSize.X);
+    StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
+    StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
     Physics::CollisionShape* StartAreaShape = new Physics::BoxCollisionShape("StartArea1Shape",StartSize);
     Graphics::Mesh* StartAreaMesh = MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0);
-    StartArea* StartZone1 = new StartArea("StartArea1",Vector3(-160,120,0));
-    StartZone1->GetPhysicsSettings()->SetCollisionShape(StartAreaShape);
-    StartZone1->GetGraphicsSettings()->SetMesh(StartAreaMesh);
-    AreaEffectMan->AddAreaEffect(StartZone1);
-    StartArea* StartZone2 = new StartArea("StartArea2",Vector3(160,120,0));
-    StartZone2->GetPhysicsSettings()->SetCollisionShape(StartAreaShape);
-    StartZone2->GetGraphicsSettings()->SetMesh(StartAreaMesh);
-    AreaEffectMan->AddAreaEffect(StartZone2);// */
-    Graphics::ParticleSystemProxy* StartParticle1 = SceneMan->CreateParticleSystemProxy("StartVortex");
-    StartParticle1->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle1->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle1->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle1->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)3.0));
-    StartParticle1->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)4.0));
-    StartParticle1->SetLocation(Vector3(-160,100,0));
-    StartParticle1->AddToWorld();// */
-    Graphics::ParticleSystemProxy* StartParticle2 = SceneMan->CreateParticleSystemProxy("StartVortex");
-    StartParticle2->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle2->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle2->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle2->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)3.0));
-    StartParticle2->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)4.0));
-    StartParticle2->SetLocation(Vector3(160,100,0));
-    StartParticle2->AddToWorld();// */
+
+    StartArea* StartZone1 = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams) );
+    StartZone1->GetGhostProxy()->SetCollisionShape(StartAreaShape);
+    StartZone1->GetEntityProxy()->SetMesh(StartAreaMesh);
+    StartZone1->SetParticleMinimumTimeToLive(3.0);
+    StartZone1->SetParticleMaximumTimeToLive(4.0);
+    StartZone1->SetLocation(-160,120,0);
+    StartZone1->AddToWorld();
+    StartArea* StartZone2 = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea2",StartZoneParams) );
+    StartZone2->GetGhostProxy()->SetCollisionShape(StartAreaShape);
+    StartZone2->GetEntityProxy()->SetMesh(StartAreaMesh);
+    StartZone2->SetParticleMinimumTimeToLive(3.0);
+    StartZone2->SetParticleMaximumTimeToLive(4.0);
+    StartZone2->SetLocation(160,120,0);
+    StartZone2->AddToWorld();// */
 
     Vector3 ScoreSize(52,25,18);
+    NameValuePairMap ScoreZoneParams;
+    ScoreZoneParams["SizeX"] = StringTools::ConvertToString(ScoreSize.X);
+    ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
+    ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
     Physics::CollisionShape* ScoreAreaShape = new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize);
     Graphics::Mesh* ScoreAreaMesh = MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0);
-    ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-113,-40,0));
-    ScoreZone1->GetPhysicsSettings()->SetCollisionShape(ScoreAreaShape);
-    ScoreZone1->GetGraphicsSettings()->SetMesh(ScoreAreaMesh);
-    AreaEffectMan->AddAreaEffect(ScoreZone1);// */
-    ScoreArea* ScoreZone2 = new ScoreArea("ScoreArea2",Vector3(113,-40,0));
-    ScoreZone2->GetPhysicsSettings()->SetCollisionShape(ScoreAreaShape);
-    ScoreZone2->GetGraphicsSettings()->SetMesh(ScoreAreaMesh);
-    AreaEffectMan->AddAreaEffect(ScoreZone2);// */
+
+    ScoreArea* ScoreZone1 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams) );
+    ScoreZone1->GetGhostProxy()->SetCollisionShape(ScoreAreaShape);
+    ScoreZone1->GetEntityProxy()->SetMesh(ScoreAreaMesh);
+    ScoreZone1->SetLocation(-113,-40,0);
+    ScoreZone1->AddToWorld();// */
+    ScoreArea* ScoreZone2 = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea2",ScoreZoneParams) );
+    ScoreZone2->GetGhostProxy()->SetCollisionShape(ScoreAreaShape);
+    ScoreZone2->GetEntityProxy()->SetMesh(ScoreAreaMesh);
+    ScoreZone2->SetLocation(113,-40,0);
+    ScoreZone2->AddToWorld();// */
 }
 
 void LevelLoader::LoadRollers()
@@ -803,8 +860,8 @@ void LevelLoader::LoadRollers()
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -836,7 +893,7 @@ void LevelLoader::LoadRollers()
     DLight->AddToWorld();
 
     // Physics Setup
-    PhysMan->SetGravity(Vector3(0,-1000,0));
+    PhysMan->SetWorldGravity(Vector3(0,-1000,0));
 
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
@@ -848,11 +905,12 @@ void LevelLoader::LoadRollers()
     // Setup and Create the shapes that will be used.
 
     // Create the basic terrain that will be used
-    ActorRigid* RollersFrame = new ActorRigid(0,"RollersFrame","frame.mesh",RollersGroup);
-    RollersFrame->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("FrameShape","frame.mesh",RollersGroup));
-    RollersFrame->GetPhysicsSettings()->SetFriction(1.0);
-    RollersFrame->SetLocation(Vector3(0,-25,0));
-    ActMan->AddActor(RollersFrame);
+    RigidDebris* RollersFrame = DebrisMan->CreateRigidDebris("RollersFrame",0);
+    RollersFrame->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("FrameShape","frame.mesh",RollersGroup) );
+    RollersFrame->GetRigidProxy()->SetFriction(1.0);
+    RollersFrame->GetEntityProxy()->SetMesh("frame.mesh",RollersGroup);
+    RollersFrame->SetLocation(0,-25,0);
+    RollersFrame->AddToWorld();
 
     // Create the individual Rollers and their constraints
     std::vector<Physics::HingeConstraint*> TheRollers;
@@ -863,13 +921,14 @@ void LevelLoader::LoadRollers()
         Vector3 Location(112.4+(XStride*X),-20,0);
         std::stringstream Namestream;
         Namestream << "Roller" << (X+1);
-        ActorRigid* Roller = new ActorRigid(10,Namestream.str(),"rubberroller.mesh",RollersGroup);
-        Roller->GetPhysicsSettings()->SetCollisionShape(RollerShape);
-        Roller->GetPhysicsSettings()->SetFriction(1.0);
+        RigidDebris* Roller = DebrisMan->CreateRigidDebris(Namestream.str(),10);
+        Roller->GetRigidProxy()->SetCollisionShape(RollerShape);
+        Roller->GetRigidProxy()->SetFriction(1.0);
+        Roller->GetEntityProxy()->SetMesh("rubberroller.mesh",RollersGroup);
         Roller->SetLocation(Location);
-        ActMan->AddActor(Roller);
+        Roller->AddToWorld();
 
-        Physics::HingeConstraint* RollerAnchor = new Physics::HingeConstraint(Roller,Vector3(0,0,0),Vector3(0,0,1),true);
+        Physics::HingeConstraint* RollerAnchor = new Physics::HingeConstraint(Roller->GetRigidProxy(),Vector3(0,0,0),Vector3(0,0,1),true);
         RollerAnchor->SetLimit(1.0,-1.0);
         RollerAnchor->SetMaxMotorImpulse(1500.0);
         RollerAnchor->EnableMotor(true);
@@ -886,47 +945,54 @@ void LevelLoader::LoadRollers()
     ThrowableData* LeadData = ThrowableGenerator::GetThrowableData("Lead");
     Physics::CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
     Physics::CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LesdCS",LeadData->MeshName,CommonGroup);
-    ActorRigid* Pyrite1 = ThrowableGenerator::CreateThrowable("Pyrite");
-    Pyrite1->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
+
+    RigidDebris* Pyrite1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Pyrite") );
+    Pyrite1->GetRigidProxy()->SetCollisionShape(PyriteCS);
     Pyrite1->SetLocation(-160,80,0);
-    ActMan->AddActor(Pyrite1);
+    Pyrite1->AddToWorld();
     GameApp->AddThrowable(Pyrite1);
-    ActorRigid* Pyrite2 = ThrowableGenerator::CreateThrowable("Pyrite");
-    Pyrite2->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
+    RigidDebris* Pyrite2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Pyrite") );
+    Pyrite2->GetRigidProxy()->SetCollisionShape(PyriteCS);
     Pyrite2->SetLocation(-120,80,0);
-    ActMan->AddActor(Pyrite2);
+    Pyrite2->AddToWorld();
     GameApp->AddThrowable(Pyrite2);// */
-    ActorRigid* Lead1 = ThrowableGenerator::CreateThrowable("Lead");
-    Lead1->GetPhysicsSettings()->SetCollisionShape(LeadCS);
+    RigidDebris* Lead1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Lead") );
+    Lead1->GetRigidProxy()->SetCollisionShape(LeadCS);
     Lead1->SetLocation(-160,30,0);
-    ActMan->AddActor(Lead1);
+    Lead1->AddToWorld();
     GameApp->AddThrowable(Lead1);
-    ActorRigid* Lead2 = ThrowableGenerator::CreateThrowable("Lead");
-    Lead2->GetPhysicsSettings()->SetCollisionShape(LeadCS);
+    RigidDebris* Lead2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Lead") );
+    Lead2->GetRigidProxy()->SetCollisionShape(LeadCS);
     Lead2->SetLocation(-120,30,0);
-    ActMan->AddActor(Lead2);
+    Lead2->AddToWorld();
     GameApp->AddThrowable(Lead2);// */
 
     // Create the zones
     Vector3 StartSize(50,50,20);
-    StartArea* StartZone = new StartArea("StartArea",Vector3(-140,60,0));
-    StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
-    AreaEffectMan->AddAreaEffect(StartZone);// */
-    Graphics::ParticleSystemProxy* StartParticle = SceneMan->CreateParticleSystemProxy("StartVortex");
-    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)5.0));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)6.0));
-    StartParticle->SetLocation(Vector3(-140,25,0));
-    StartParticle->AddToWorld();// */
+    NameValuePairMap StartZoneParams;
+    StartZoneParams["SizeX"] = StringTools::ConvertToString(StartSize.X);
+    StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
+    StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
+
+    StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","ScoreArea1",StartZoneParams) );
+    StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
+    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->SetParticleMinimumTimeToLive(5.0);
+    StartZone->SetParticleMaximumTimeToLive(6.0);
+    StartZone->SetLocation(-140,60,0);
+    StartZone->AddToWorld();// */
 
     Vector3 ScoreSize(70,40,20);
-    ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(140,20,0));
-    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
-    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
-    AreaEffectMan->AddAreaEffect(ScoreZone);// */
+    NameValuePairMap ScoreZoneParams;
+    ScoreZoneParams["SizeX"] = StringTools::ConvertToString(ScoreSize.X);
+    ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
+    ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
+
+    ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams) );
+    ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
+    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->SetLocation(140,20,0);
+    ScoreZone->AddToWorld();// */
 }
 
 void LevelLoader::LoadJustBounce()
@@ -937,8 +1003,8 @@ void LevelLoader::LoadJustBounce()
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
     Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    ActorManager* ActMan = this->TheEntresol->GetActorManager();
     AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -970,7 +1036,7 @@ void LevelLoader::LoadJustBounce()
     DLight->AddToWorld();
 
     // Physics Setup
-    PhysMan->SetGravity(Vector3(0,-1000,0));
+    PhysMan->SetWorldGravity(Vector3(0,-1000,0));
 
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
@@ -1000,76 +1066,87 @@ void LevelLoader::LoadJustBounce()
     //----------
 
     // Create the basic terrain that will be used
-    ActorRigid* TopWall = new ActorRigid(0,"TopWall","wall.mesh",JustBounceGroup);
-    TopWall->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("WallShape","wall.mesh",JustBounceGroup));
-    TopWall->GetPhysicsSettings()->SetRestitution(0.5);
-    TopWall->SetLocation(Vector3(0,85,0));
-    ActMan->AddActor(TopWall);
+    RigidDebris* TopWall = DebrisMan->CreateRigidDebris("TopWall",0);
+    TopWall->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("WallShape","wall.mesh",JustBounceGroup) );
+    TopWall->GetRigidProxy()->SetRestitution(0.5);
+    TopWall->GetEntityProxy()->SetMesh("wall.mesh",JustBounceGroup);
+    TopWall->SetLocation(0,85,0);
+    TopWall->AddToWorld();
 
-    ActorRigid* Basket = new ActorRigid(0,"Basket","basket.mesh",JustBounceGroup);
-    Basket->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Basket"));
-    Basket->SetLocation(Vector3(165,-25,0));
-    ActMan->AddActor(Basket);
+    RigidDebris* Basket = DebrisMan->CreateRigidDebris("Basket",0);
+    Basket->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("Basket") );
+    Basket->GetEntityProxy()->SetMesh("basket.mesh",JustBounceGroup);
+    Basket->SetLocation(165,-25,0);
+    Basket->AddToWorld();
 
-    ActorRigid* ElasticFloor = new ActorRigid(0,"ElasticFloor","elastic_bed.mesh",JustBounceGroup);
-    ElasticFloor->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("ElasticBed"));//CShapeMan->GenerateStaticTriMesh("ElasticShape","elastic_bed.mesh",JustBounceGroup));
-    ElasticFloor->GetPhysicsSettings()->SetRestitution(1.0);
-    //ElasticFloor->GetPhysicsSettings()->SetFriction(0.4);
-    ElasticFloor->SetLocation(Vector3(-20,-70,0));
-    ActMan->AddActor(ElasticFloor);
+    RigidDebris* ElasticFloor = DebrisMan->CreateRigidDebris("ElasticFloor",0);
+    ElasticFloor->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("ElasticBed") );//CShapeMan->GenerateStaticTriMesh("ElasticShape","elastic_bed.mesh",JustBounceGroup));
+    ElasticFloor->GetRigidProxy()->SetRestitution(1.0);
+    //ElasticFloor->GetRigidProxy()->SetFriction(0.4);
+    ElasticFloor->GetEntityProxy()->SetMesh("elastic_bed.mesh",JustBounceGroup);
+    ElasticFloor->SetLocation(-20,-70,0);
+    ElasticFloor->AddToWorld();
 
-    ActorRigid* ElasticCase = new ActorRigid(0,"ElasticCase","case.mesh",JustBounceGroup);
-    ElasticCase->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GenerateStaticTriMesh("CaseShape","case.mesh",JustBounceGroup));
-    ElasticCase->SetLocation(Vector3(-20,-71,0));
-    ActMan->AddActor(ElasticCase);
+    RigidDebris* ElasticCase = DebrisMan->CreateRigidDebris("ElasticCase",0);
+    ElasticCase->GetRigidProxy()->SetCollisionShape( CShapeMan->GenerateStaticTriMesh("CaseShape","case.mesh",JustBounceGroup) );
+    ElasticCase->GetEntityProxy()->SetMesh("case.mesh",JustBounceGroup);
+    ElasticCase->SetLocation(-20,-71,0);
+    ElasticCase->AddToWorld();
 
     // Create some throwable objects
     //ThrowableData* RubberData = ThrowableGenerator::GetThrowableData("Rubber");
     ThrowableData* WoodData = ThrowableGenerator::GetThrowableData("Wood");
     Physics::CollisionShape* RubberCS = new Physics::SphereCollisionShape("RubberCS",11.4);//CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
     Physics::CollisionShape* WoodCS = CShapeMan->GenerateConvexHull("WoodCS",WoodData->MeshName,CommonGroup);// */
-    ActorRigid* Rubber1 = ThrowableGenerator::CreateThrowable("Rubber");
-    Rubber1->GetPhysicsSettings()->SetCollisionShape(RubberCS);
+
+    RigidDebris* Rubber1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Rubber") );
+    Rubber1->GetRigidProxy()->SetCollisionShape(RubberCS);
     Rubber1->SetLocation(-185,110,0);
-    ActMan->AddActor(Rubber1);
+    Rubber1->AddToWorld();
     GameApp->AddThrowable(Rubber1);
-    ActorRigid* Rubber2 = ThrowableGenerator::CreateThrowable("Rubber");
-    Rubber2->GetPhysicsSettings()->SetCollisionShape(RubberCS);
+    RigidDebris* Rubber2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Rubber") );
+    Rubber2->GetRigidProxy()->SetCollisionShape(RubberCS);
     Rubber2->SetLocation(-155,110,0);
-    ActMan->AddActor(Rubber2);
+    Rubber2->AddToWorld();
     GameApp->AddThrowable(Rubber2);// */
-    ActorRigid* Wood1 = ThrowableGenerator::CreateThrowable("Wood");
-    Wood1->GetPhysicsSettings()->SetCollisionShape(WoodCS);
+    RigidDebris* Wood1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Wood") );
+    Wood1->GetRigidProxy()->SetCollisionShape(WoodCS);
     Wood1->SetLocation(-185,70,0);
-    ActMan->AddActor(Wood1);
+    Wood1->AddToWorld();
     GameApp->AddThrowable(Wood1);
-    ActorRigid* Wood2 = ThrowableGenerator::CreateThrowable("Wood");
-    Wood2->GetPhysicsSettings()->SetCollisionShape(WoodCS);
+    RigidDebris* Wood2 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Wood") );
+    Wood2->GetRigidProxy()->SetCollisionShape(WoodCS);
     Wood2->SetLocation(-155,70,0);
-    ActMan->AddActor(Wood2);
+    Wood2->AddToWorld();
     GameApp->AddThrowable(Wood2);// */
 
 
     // Create the zones
     Vector3 StartSize(50,50,20);
-    StartArea* StartZone = new StartArea("StartArea",Vector3(-170,90,0));
-    StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
-    StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
-    AreaEffectMan->AddAreaEffect(StartZone);// */
-    Graphics::ParticleSystemProxy* StartParticle = SceneMan->CreateParticleSystemProxy("StartVortex");
-    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)5.0));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)6.0));
-    StartParticle->SetLocation(Vector3(-170,55,0));
-    StartParticle->AddToWorld();// */
+    NameValuePairMap StartZoneParams;
+    StartZoneParams["SizeX"] = StringTools::ConvertToString(StartSize.X);
+    StartZoneParams["SizeY"] = StringTools::ConvertToString(StartSize.Y);
+    StartZoneParams["SizeZ"] = StringTools::ConvertToString(StartSize.Z);
+
+    StartArea* StartZone = static_cast<StartArea*>( AreaEffectMan->CreateAreaEffect("StartArea","StartArea1",StartZoneParams) );
+    StartZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("StartAreaShape",StartSize) );
+    StartZone->GetEntityProxy()->SetMesh( MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0) );
+    StartZone->SetParticleMinimumTimeToLive(5.0);
+    StartZone->SetParticleMaximumTimeToLive(6.0);
+    StartZone->SetLocation(-170,90,0);
+    StartZone->AddToWorld();// */
 
     Vector3 ScoreSize(42,50,35);
-    ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(158,-25,0));
-    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
-    ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
-    AreaEffectMan->AddAreaEffect(ScoreZone);// */
+    NameValuePairMap ScoreZoneParams;
+    ScoreZoneParams["SizeX"] = StringTools::ConvertToString(ScoreSize.X);
+    ScoreZoneParams["SizeY"] = StringTools::ConvertToString(ScoreSize.Y);
+    ScoreZoneParams["SizeZ"] = StringTools::ConvertToString(ScoreSize.Z);
+
+    ScoreArea* ScoreZone = static_cast<ScoreArea*>( AreaEffectMan->CreateAreaEffect("ScoreArea","ScoreArea1",ScoreZoneParams) );
+    ScoreZone->GetGhostProxy()->SetCollisionShape( new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize) );
+    ScoreZone->GetEntityProxy()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
+    ScoreZone->SetLocation(158,-25,0);
+    ScoreZone->AddToWorld();// */
 }
 
 bool LevelLoader::HasALevelToLoad()

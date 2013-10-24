@@ -19,16 +19,16 @@ struct ThrowableData
 
 class ThrowableGenerator
 {
-    protected:
-        static ThrowableGenerator* TheRealThrowableGenerator;
-        static std::vector<ThrowableData*> Throwables;
-    public:
-        ThrowableGenerator();
-        ~ThrowableGenerator();
-        static ThrowableGenerator* GetThrowableGenerator();
-        static void ParseThrowables(const String& FileName);
-        static ThrowableData* GetThrowableData(const String& Throwable);
-        static ActorRigid* CreateThrowable(const String& Throwable);
+protected:
+    static ThrowableGenerator* TheRealThrowableGenerator;
+    static std::vector<ThrowableData*> Throwables;
+public:
+    ThrowableGenerator();
+    ~ThrowableGenerator();
+    static ThrowableGenerator* GetThrowableGenerator();
+    static void ParseThrowables(const String& FileName);
+    static ThrowableData* GetThrowableData(const String& Throwable);
+    static Debris* CreateThrowable(const String& Throwable);
 };
 
 #endif

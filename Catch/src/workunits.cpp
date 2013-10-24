@@ -120,27 +120,30 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
             Ray MouseRay = RayQueryTool::GetMouseRay(5000);
 
             bool firstframe=false;
-            if( RayCaster.GetFirstActorOnRayByPolygon(MouseRay,Mezzanine::WSO_ActorRigid) &&
-                this->CatchApplication->IsInsideAnyStartZone(RayCaster.LastQueryResultsActorPtr()) )
+            if( RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid | Mezzanine::WO_DebrisSoft) )
             {
-                if( !(RayCaster.LastQueryResultsActorPtr()->IsStaticOrKinematic()) &&
-                    RayCaster.LastQueryResultsActorPtr()->GetType() == Mezzanine::WSO_ActorRigid &&
+                Debris* CastResult = static_cast<Debris*>( RayCaster.LastQueryResultsObjectPtr() );
+                Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
+                if( CastResult->GetType() == Mezzanine::WO_DebrisRigid &&
+                    this->CatchApplication->IsInsideAnyStartZone( CastResult ) &&
                     !Dragger )
                 {
-                    Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
-                    ActorRigid* rigid = static_cast<ActorRigid*>(RayCaster.LastQueryResultsActorPtr());
-                    rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
-                    Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
-                    Dragger->SetTAU(0.001);
-                    Entresol::GetSingletonPtr()->GetPhysicsManager()->AddConstraint(Dragger);
-                    Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
-                    Dragger->SetParam(Physics::Con_CFM,0.8,-1);
-                    //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
-                    Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
-                    Dragger->SetParam(Physics::Con_ERP,0.1,-1);
-                    //Dragger->SetParam(Physics::Con_Stop_ERP,0.1,0); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
-                    firstframe = true;
-                    this->CatchApplication->LastActorThrown = rigid;
+                    if( !( static_cast<RigidDebris*>( CastResult )->GetRigidProxy()->IsStaticOrKinematic() ) )
+                    {
+                        RigidDebris* rigid = static_cast<RigidDebris*>( RayCaster.LastQueryResultsObjectPtr() );
+                        rigid->GetRigidProxy()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
+                        Dragger = new Physics::Point2PointConstraint(rigid->GetRigidProxy(), LocalPivot);
+                        Dragger->SetTAU(0.001);
+                        Entresol::GetSingletonPtr()->GetPhysicsManager()->AddConstraint(Dragger);
+                        Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
+                        Dragger->SetParam(Physics::Con_CFM,0.8,-1);
+                        //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
+                        Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
+                        Dragger->SetParam(Physics::Con_ERP,0.1,-1);
+                        //Dragger->SetParam(Physics::Con_Stop_ERP,0.1,0); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
+                        firstframe = true;
+                        this->CatchApplication->LastObjectThrown = rigid;
+                    }
                 }
             }
 
@@ -151,22 +154,22 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
             }
 
             if(Dragger &&
-               !this->CatchApplication->IsInsideAnyStartZone(this->CatchApplication->LastActorThrown))
+               !this->CatchApplication->IsInsideAnyStartZone(this->CatchApplication->LastObjectThrown))
             {
-                ActorRigid* Act = Dragger->GetActorA();
+                Physics::RigidProxy* Prox = Dragger->GetProxyA();
                 Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
-                Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
+                Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
             }
         }
 
     }else{  //Since we are no longer clicking we need to setup for the next clicking
         if(Dragger)
         {
-            ActorRigid* Act = Dragger->GetActorA();
+            Physics::RigidProxy* Prox = Dragger->GetProxyA();
             Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger = NULL;
-            Act->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
+            Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
         }
     }
 }
