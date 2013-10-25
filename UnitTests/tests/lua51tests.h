@@ -587,7 +587,14 @@ class lua51tests : public UnitTestGroup
                               "ColourValue", "TestColourValue", 2, 240,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
-                //ColourValue
+                TestLuaScript("function TestAE(x)\n"
+                              "   thing=MezzanineSafe.AreaEffectUpdateWorkUnit\n"
+                              "   return x\n"
+                              "end",
+                              "AreaEffect", "TestAE", 2, 2,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                //AreaEffectUpdateWorkUnit
             }
 
         }
