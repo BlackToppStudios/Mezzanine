@@ -58,13 +58,13 @@ class lua51tests : public UnitTestGroup
 
 
         void TestLuaScript(const String& Source, const String& FeatureName, const String& FunctionToCall,
-                           Real Input = 10, Real ExpectedOutput = 10,
+                           Real Input = 10, Real ExpectedOutput = 10, Real Epsilon = 0.04,
                            Scripting::Lua::Lua51ScriptingEngine::Lua51Libraries Libset = Scripting::Lua::Lua51ScriptingEngine::DefaultLibs )
         {
             try
             {
                 Scripting::Lua::Lua51ScriptingEngine LuaRuntimeSafe(Libset);
-                cout << "Testing " << FeatureName << " functionality" << endl;
+                cout << "Testing " << FeatureName << " functionality, with parameter: " << Input << endl;
                 Scripting::Lua::Lua51Script RealArgScript(Source, LuaRuntimeSafe);
                 LuaRuntimeSafe.Execute(RealArgScript);
                 Scripting::Lua::Lua51Script RealArgCall(FunctionToCall,LuaRuntimeSafe,true);
@@ -72,8 +72,10 @@ class lua51tests : public UnitTestGroup
                 CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
                 RealArgCall.AddReturn(RealReturn);
                 LuaRuntimeSafe.Execute(RealArgCall);
+                cout << " Recieved " << RealReturn->GetReal() << " while expecting " << ExpectedOutput << endl;
 
-                TEST(ExpectedOutput==RealReturn->GetReal(), String("SWIGWrapped::") + FeatureName);
+                TEST((ExpectedOutput==RealReturn->GetReal() || (RealReturn->GetReal()-Epsilon<ExpectedOutput && ExpectedOutput<RealReturn->GetReal()+Epsilon))
+                     , String("SWIGWrapped::") + FeatureName);
             } catch (ScriptLuaException& ) {
                 TEST_RESULT(Testing::Failed, String("SWIGWrapped::") + FeatureName);
             }
@@ -81,11 +83,11 @@ class lua51tests : public UnitTestGroup
         }
 
         void TestLuaScript(const String& Source, const String& FeatureName, const String& FunctionToCall,
-                           Real Input, Real ExpectedOutput,
+                           Real Input, Real ExpectedOutput, Real Epsilon,
                            Whole Libset)
         {
             TestLuaScript(Source, FeatureName,FunctionToCall,
-                          Input, ExpectedOutput,
+                          Input, ExpectedOutput, Epsilon,
                           static_cast<Scripting::Lua::Lua51ScriptingEngine::Lua51Libraries>(Libset));
         }
 
@@ -577,8 +579,15 @@ class lua51tests : public UnitTestGroup
                               "ActorManager", "TestActorManager", 2, 2,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestColourValue(x)\n"
+                              "   cv=MezzanineSafe.ColourValue()\n"
+                              "   alicedressbeforegunfight=MezzanineSafe.ColourValue_AliceBlue()\n"
+                              "   return alicedressbeforegunfight:GetRedChannel()*255\n"
+                              "end",
+                              "ColourValue", "TestColourValue", 2, 240,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
-                //ActorManager
+                //ColourValue
             }
 
         }

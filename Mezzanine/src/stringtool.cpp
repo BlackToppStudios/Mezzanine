@@ -229,7 +229,7 @@ namespace Mezzanine
     String StringTools::ConvertToString(const ColourValue& ToConvert)
     {
         std::stringstream converter;
-        converter << ToConvert.R << " " << ToConvert.G << " " << ToConvert.B << " " << ToConvert.A;
+        converter << ToConvert.RedChannel << " " << ToConvert.GreenChannel << " " << ToConvert.BlueChannel << " " << ToConvert.AlphaChannel;
         return converter.str();
     }
 

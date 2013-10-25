@@ -1826,114 +1826,120 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_ConstActorIterator swig_types[7]
 #define SWIGTYPE_p_ConstAttachableIterator swig_types[8]
 #define SWIGTYPE_p_ConstCollisionIterator swig_types[9]
-#define SWIGTYPE_p_ConstProxyIterator swig_types[10]
-#define SWIGTYPE_p_GeometryRayTestResult swig_types[11]
-#define SWIGTYPE_p_Mezzanine__Actor swig_types[12]
-#define SWIGTYPE_p_Mezzanine__ActorManager swig_types[13]
-#define SWIGTYPE_p_Mezzanine__ActorUpdateWorkUnit swig_types[14]
-#define SWIGTYPE_p_Mezzanine__AlarmTimer swig_types[15]
-#define SWIGTYPE_p_Mezzanine__AttachableBase swig_types[16]
-#define SWIGTYPE_p_Mezzanine__AttachableChild swig_types[17]
-#define SWIGTYPE_p_Mezzanine__AttachableParent swig_types[18]
-#define SWIGTYPE_p_Mezzanine__AttachableParent__AttachableContainer__iterator swig_types[19]
-#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[20]
-#define SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer swig_types[21]
-#define SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t swig_types[22]
-#define SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t swig_types[23]
-#define SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t swig_types[24]
-#define SWIGTYPE_p_Mezzanine__DefaultActorManagerFactory swig_types[25]
-#define SWIGTYPE_p_Mezzanine__DefaultRollingAverageT_Mezzanine__Whole_t__Type swig_types[26]
-#define SWIGTYPE_p_Mezzanine__GoalTimer swig_types[27]
-#define SWIGTYPE_p_Mezzanine__ManagerBase swig_types[28]
-#define SWIGTYPE_p_Mezzanine__ManagerFactory swig_types[29]
-#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[30]
-#define SWIGTYPE_p_Mezzanine__Physics__Collision swig_types[31]
-#define SWIGTYPE_p_Mezzanine__Plane swig_types[32]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[33]
-#define SWIGTYPE_p_Mezzanine__Ray swig_types[34]
-#define SWIGTYPE_p_Mezzanine__RayQueryTool swig_types[35]
-#define SWIGTYPE_p_Mezzanine__RollingAverageT_float_t swig_types[36]
-#define SWIGTYPE_p_Mezzanine__RollingAverageT_int_t swig_types[37]
-#define SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t swig_types[38]
-#define SWIGTYPE_p_Mezzanine__Sphere swig_types[39]
-#define SWIGTYPE_p_Mezzanine__StopWatchTimer swig_types[40]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage swig_types[41]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[42]
-#define SWIGTYPE_p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t swig_types[43]
-#define SWIGTYPE_p_Mezzanine__Threading__FrameScheduler swig_types[44]
-#define SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit swig_types[45]
-#define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[46]
-#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[47]
-#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[48]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[49]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[50]
-#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[51]
-#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[52]
-#define SWIGTYPE_p_Mezzanine__Timer swig_types[53]
-#define SWIGTYPE_p_Mezzanine__Transform swig_types[54]
-#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[55]
-#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[56]
-#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[57]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[58]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[59]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[60]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[61]
-#define SWIGTYPE_p_Mezzanine__World swig_types[62]
-#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[63]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[64]
-#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[65]
-#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[66]
-#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[67]
-#define SWIGTYPE_p_Ogre__Plane swig_types[68]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[69]
-#define SWIGTYPE_p_Ogre__Ray swig_types[70]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[71]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[72]
-#define SWIGTYPE_p_PlaneRayTestResult swig_types[73]
-#define SWIGTYPE_p_ProxyContainer swig_types[74]
-#define SWIGTYPE_p_ProxyIterator swig_types[75]
-#define SWIGTYPE_p_RayTestResult swig_types[76]
-#define SWIGTYPE_p_Resource swig_types[77]
-#define SWIGTYPE_p_SDL_Event swig_types[78]
-#define SWIGTYPE_p_Type swig_types[79]
-#define SWIGTYPE_p_XML__Node swig_types[80]
-#define SWIGTYPE_p_bool swig_types[81]
-#define SWIGTYPE_p_btQuaternion swig_types[82]
-#define SWIGTYPE_p_btTransform swig_types[83]
-#define SWIGTYPE_p_btVector3 swig_types[84]
-#define SWIGTYPE_p_char swig_types[85]
-#define SWIGTYPE_p_f_p_void__void swig_types[86]
-#define SWIGTYPE_p_float swig_types[87]
-#define SWIGTYPE_p_int swig_types[88]
-#define SWIGTYPE_p_long_long swig_types[89]
-#define SWIGTYPE_p_native_handle_type swig_types[90]
-#define SWIGTYPE_p_pthread_t swig_types[91]
-#define SWIGTYPE_p_short swig_types[92]
-#define SWIGTYPE_p_signed_char swig_types[93]
-#define SWIGTYPE_p_std__fstream swig_types[94]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[95]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[96]
-#define SWIGTYPE_p_std__ostream swig_types[97]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[98]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[99]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[100]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[101]
-#define SWIGTYPE_p_std__string swig_types[102]
-#define SWIGTYPE_p_std__stringstream swig_types[103]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t swig_types[104]
-#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[105]
-#define SWIGTYPE_p_std__wstring swig_types[106]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[107]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[108]
-#define SWIGTYPE_p_swig__Iterator swig_types[109]
-#define SWIGTYPE_p_unsigned_char swig_types[110]
-#define SWIGTYPE_p_unsigned_int swig_types[111]
-#define SWIGTYPE_p_unsigned_long swig_types[112]
-#define SWIGTYPE_p_unsigned_long_long swig_types[113]
-#define SWIGTYPE_p_unsigned_short swig_types[114]
-#define SWIGTYPE_p_void swig_types[115]
-static swig_type_info *swig_types[117];
-static swig_module_info swig_module = {swig_types, 116, 0, 0, 0, 0};
+#define SWIGTYPE_p_ConstFactoryIterator swig_types[10]
+#define SWIGTYPE_p_ConstProxyIterator swig_types[11]
+#define SWIGTYPE_p_FactoryIterator swig_types[12]
+#define SWIGTYPE_p_FactoryMap swig_types[13]
+#define SWIGTYPE_p_GeometryRayTestResult swig_types[14]
+#define SWIGTYPE_p_Mezzanine__Actor swig_types[15]
+#define SWIGTYPE_p_Mezzanine__ActorFactory swig_types[16]
+#define SWIGTYPE_p_Mezzanine__ActorManager swig_types[17]
+#define SWIGTYPE_p_Mezzanine__ActorUpdateWorkUnit swig_types[18]
+#define SWIGTYPE_p_Mezzanine__AlarmTimer swig_types[19]
+#define SWIGTYPE_p_Mezzanine__AttachableBase swig_types[20]
+#define SWIGTYPE_p_Mezzanine__AttachableChild swig_types[21]
+#define SWIGTYPE_p_Mezzanine__AttachableParent swig_types[22]
+#define SWIGTYPE_p_Mezzanine__AttachableParent__AttachableContainer__iterator swig_types[23]
+#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[24]
+#define SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer swig_types[25]
+#define SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_float_t swig_types[26]
+#define SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_int_t swig_types[27]
+#define SWIGTYPE_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t swig_types[28]
+#define SWIGTYPE_p_Mezzanine__ColourValue swig_types[29]
+#define SWIGTYPE_p_Mezzanine__DefaultActorManagerFactory swig_types[30]
+#define SWIGTYPE_p_Mezzanine__DefaultRollingAverageT_Mezzanine__Whole_t__Type swig_types[31]
+#define SWIGTYPE_p_Mezzanine__GoalTimer swig_types[32]
+#define SWIGTYPE_p_Mezzanine__ManagerBase swig_types[33]
+#define SWIGTYPE_p_Mezzanine__ManagerFactory swig_types[34]
+#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[35]
+#define SWIGTYPE_p_Mezzanine__Physics__Collision swig_types[36]
+#define SWIGTYPE_p_Mezzanine__Plane swig_types[37]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[38]
+#define SWIGTYPE_p_Mezzanine__Ray swig_types[39]
+#define SWIGTYPE_p_Mezzanine__RayQueryTool swig_types[40]
+#define SWIGTYPE_p_Mezzanine__RollingAverageT_float_t swig_types[41]
+#define SWIGTYPE_p_Mezzanine__RollingAverageT_int_t swig_types[42]
+#define SWIGTYPE_p_Mezzanine__RollingAverageT_unsigned_long_t swig_types[43]
+#define SWIGTYPE_p_Mezzanine__Sphere swig_types[44]
+#define SWIGTYPE_p_Mezzanine__StopWatchTimer swig_types[45]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage swig_types[46]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[47]
+#define SWIGTYPE_p_Mezzanine__Threading__DoubleBufferedResourceT_std__stringstream_t swig_types[48]
+#define SWIGTYPE_p_Mezzanine__Threading__FrameScheduler swig_types[49]
+#define SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit swig_types[50]
+#define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[51]
+#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[52]
+#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[53]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[54]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[55]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[56]
+#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[57]
+#define SWIGTYPE_p_Mezzanine__Timer swig_types[58]
+#define SWIGTYPE_p_Mezzanine__Transform swig_types[59]
+#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[60]
+#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[61]
+#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[62]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[63]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[64]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[65]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[66]
+#define SWIGTYPE_p_Mezzanine__World swig_types[67]
+#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[68]
+#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[69]
+#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[70]
+#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[71]
+#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[72]
+#define SWIGTYPE_p_Ogre__ColourValue swig_types[73]
+#define SWIGTYPE_p_Ogre__Plane swig_types[74]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[75]
+#define SWIGTYPE_p_Ogre__Ray swig_types[76]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[77]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[78]
+#define SWIGTYPE_p_PlaneRayTestResult swig_types[79]
+#define SWIGTYPE_p_ProxyContainer swig_types[80]
+#define SWIGTYPE_p_ProxyIterator swig_types[81]
+#define SWIGTYPE_p_RayTestResult swig_types[82]
+#define SWIGTYPE_p_Resource swig_types[83]
+#define SWIGTYPE_p_SDL_Event swig_types[84]
+#define SWIGTYPE_p_Type swig_types[85]
+#define SWIGTYPE_p_XML__Node swig_types[86]
+#define SWIGTYPE_p_bool swig_types[87]
+#define SWIGTYPE_p_btQuaternion swig_types[88]
+#define SWIGTYPE_p_btTransform swig_types[89]
+#define SWIGTYPE_p_btVector3 swig_types[90]
+#define SWIGTYPE_p_char swig_types[91]
+#define SWIGTYPE_p_f_p_void__void swig_types[92]
+#define SWIGTYPE_p_float swig_types[93]
+#define SWIGTYPE_p_int swig_types[94]
+#define SWIGTYPE_p_long_long swig_types[95]
+#define SWIGTYPE_p_native_handle_type swig_types[96]
+#define SWIGTYPE_p_pthread_t swig_types[97]
+#define SWIGTYPE_p_short swig_types[98]
+#define SWIGTYPE_p_signed_char swig_types[99]
+#define SWIGTYPE_p_std__fstream swig_types[100]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[101]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[102]
+#define SWIGTYPE_p_std__ostream swig_types[103]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[104]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[105]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[106]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[107]
+#define SWIGTYPE_p_std__string swig_types[108]
+#define SWIGTYPE_p_std__stringstream swig_types[109]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t swig_types[110]
+#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[111]
+#define SWIGTYPE_p_std__wstring swig_types[112]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[113]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[114]
+#define SWIGTYPE_p_swig__Iterator swig_types[115]
+#define SWIGTYPE_p_unsigned_char swig_types[116]
+#define SWIGTYPE_p_unsigned_int swig_types[117]
+#define SWIGTYPE_p_unsigned_long swig_types[118]
+#define SWIGTYPE_p_unsigned_long_long swig_types[119]
+#define SWIGTYPE_p_unsigned_short swig_types[120]
+#define SWIGTYPE_p_void swig_types[121]
+static swig_type_info *swig_types[123];
+static swig_module_info swig_module = {swig_types, 122, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -9950,6 +9956,244 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_TransformableObject_convert_local_to_global__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::TransformableObject *arg1 = (Mezzanine::TransformableObject *) 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Vector3 result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__TransformableObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::TransformableObject const *","ConvertLocalToGlobal", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::TransformableObject * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Vector3,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const &","ConvertLocalToGlobal", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","ConvertLocalToGlobal", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
+  result = ((Mezzanine::TransformableObject const *)arg1)->ConvertLocalToGlobal((Mezzanine::Vector3 const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::Vector3(static_cast< const Mezzanine::Vector3& >(result))), SWIGTYPE_p_Mezzanine__Vector3, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TransformableObject_convert_global_to_local__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::TransformableObject *arg1 = (Mezzanine::TransformableObject *) 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Vector3 result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__TransformableObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::TransformableObject const *","ConvertGlobalToLocal", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::TransformableObject * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Vector3,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const &","ConvertGlobalToLocal", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","ConvertGlobalToLocal", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
+  result = ((Mezzanine::TransformableObject const *)arg1)->ConvertGlobalToLocal((Mezzanine::Vector3 const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::Vector3(static_cast< const Mezzanine::Vector3& >(result))), SWIGTYPE_p_Mezzanine__Vector3, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TransformableObject_convert_local_to_global__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::TransformableObject *arg1 = (Mezzanine::TransformableObject *) 0 ;
+  Mezzanine::Quaternion *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Quaternion result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__TransformableObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::TransformableObject const *","ConvertLocalToGlobal", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::TransformableObject * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Quaternion,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Quaternion const &","ConvertLocalToGlobal", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Quaternion const &","ConvertLocalToGlobal", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Quaternion * >(argp2);
+  result = ((Mezzanine::TransformableObject const *)arg1)->ConvertLocalToGlobal((Mezzanine::Quaternion const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::Quaternion(static_cast< const Mezzanine::Quaternion& >(result))), SWIGTYPE_p_Mezzanine__Quaternion, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_TransformableObject_convert_local_to_global(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__TransformableObject, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_TransformableObject_convert_local_to_global__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__TransformableObject, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Quaternion, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_TransformableObject_convert_local_to_global__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "TransformableObject.convert_local_to_global", 
+    "    Mezzanine::Quaternion TransformableObject.convert_local_to_global(Mezzanine::Vector3 const &Location)\n"
+    "    Mezzanine::Quaternion TransformableObject.convert_local_to_global(Mezzanine::Quaternion const &Orientation)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_TransformableObject_convert_global_to_local__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::TransformableObject *arg1 = (Mezzanine::TransformableObject *) 0 ;
+  Mezzanine::Quaternion *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Quaternion result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__TransformableObject, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::TransformableObject const *","ConvertGlobalToLocal", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::TransformableObject * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Quaternion,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Quaternion const &","ConvertGlobalToLocal", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Quaternion const &","ConvertGlobalToLocal", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Quaternion * >(argp2);
+  result = ((Mezzanine::TransformableObject const *)arg1)->ConvertGlobalToLocal((Mezzanine::Quaternion const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::Quaternion(static_cast< const Mezzanine::Quaternion& >(result))), SWIGTYPE_p_Mezzanine__Quaternion, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_TransformableObject_convert_global_to_local(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__TransformableObject, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_TransformableObject_convert_global_to_local__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__TransformableObject, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Quaternion, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_TransformableObject_convert_global_to_local__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "TransformableObject.convert_global_to_local", 
+    "    Mezzanine::Quaternion TransformableObject.convert_global_to_local(Mezzanine::Vector3 const &Location)\n"
+    "    Mezzanine::Quaternion TransformableObject.convert_global_to_local(Mezzanine::Quaternion const &Orientation)\n");
+  
+  return Qnil;
+}
+
+
 SWIGINTERN void
 free_Mezzanine_TransformableObject(Mezzanine::TransformableObject *arg1) {
     delete arg1;
@@ -13585,6 +13829,230 @@ SWIGINTERN void
 free_Mezzanine_Actor(Mezzanine::Actor *arg1) {
     delete arg1;
 }
+
+static swig_class SwigClassActorFactory;
+
+SWIGINTERN void
+free_Mezzanine_ActorFactory(Mezzanine::ActorFactory *arg1) {
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_ActorFactory_get_type_name(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorFactory *arg1 = (Mezzanine::ActorFactory *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::String result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorFactory, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorFactory const *","GetTypeName", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorFactory * >(argp1);
+  result = ((Mezzanine::ActorFactory const *)arg1)->GetTypeName();
+  vresult = SWIG_From_std_string(static_cast< std::string >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ActorFactory_create_actor__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorFactory *arg1 = (Mezzanine::ActorFactory *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::World *arg3 = (Mezzanine::World *) 0 ;
+  Mezzanine::NameValuePairMap *arg4 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 ;
+  int res4 = 0 ;
+  Mezzanine::Actor *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorFactory, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorFactory *","CreateActor", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorFactory * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::String const &","CreateActor", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::String const &","CreateActor", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  res3 = SWIG_ConvertPtr(argv[1], &argp3,SWIGTYPE_p_Mezzanine__World, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::World *","CreateActor", 3, argv[1] )); 
+  }
+  arg3 = reinterpret_cast< Mezzanine::World * >(argp3);
+  res4 = SWIG_ConvertPtr(argv[2], &argp4, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t,  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "Mezzanine::NameValuePairMap const &","CreateActor", 4, argv[2] )); 
+  }
+  if (!argp4) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::NameValuePairMap const &","CreateActor", 4, argv[2])); 
+  }
+  arg4 = reinterpret_cast< Mezzanine::NameValuePairMap * >(argp4);
+  result = (Mezzanine::Actor *)(arg1)->CreateActor((Mezzanine::String const &)*arg2,arg3,(Mezzanine::NameValuePairMap const &)*arg4);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Actor, 0 |  0 );
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ActorFactory_create_actor__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorFactory *arg1 = (Mezzanine::ActorFactory *) 0 ;
+  XML::Node *arg2 = 0 ;
+  Mezzanine::World *arg3 = (Mezzanine::World *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  Mezzanine::Actor *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorFactory, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorFactory *","CreateActor", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorFactory * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_XML__Node,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "XML::Node const &","CreateActor", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "XML::Node const &","CreateActor", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< XML::Node * >(argp2);
+  res3 = SWIG_ConvertPtr(argv[1], &argp3,SWIGTYPE_p_Mezzanine__World, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::World *","CreateActor", 3, argv[1] )); 
+  }
+  arg3 = reinterpret_cast< Mezzanine::World * >(argp3);
+  result = (Mezzanine::Actor *)(arg1)->CreateActor((XML::Node const &)*arg2,arg3);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Actor, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_ActorFactory_create_actor(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[5];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 5) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ActorFactory, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_XML__Node, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__World, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_ActorFactory_create_actor__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ActorFactory, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__World, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          void *vptr = 0;
+          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_ActorFactory_create_actor__SWIG_0(nargs, args, self);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 5, "ActorFactory.create_actor", 
+    "    Mezzanine::Actor * ActorFactory.create_actor(Mezzanine::String const &Name, Mezzanine::World *TheWorld, Mezzanine::NameValuePairMap const &Params)\n"
+    "    Mezzanine::Actor * ActorFactory.create_actor(XML::Node const &XMLNode, Mezzanine::World *TheWorld)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ActorFactory_destroy_actor(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorFactory *arg1 = (Mezzanine::ActorFactory *) 0 ;
+  Mezzanine::Actor *arg2 = (Mezzanine::Actor *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorFactory, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorFactory *","DestroyActor", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorFactory * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Actor, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Actor *","DestroyActor", 2, argv[0] )); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Actor * >(argp2);
+  (arg1)->DestroyActor(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
 
 static swig_class SwigClassManagerBase;
 
@@ -19678,30 +20146,158 @@ free_Mezzanine_ActorManager(Mezzanine::ActorManager *arg1) {
 }
 
 SWIGINTERN VALUE
-_wrap_ActorManager_add_actor(int argc, VALUE *argv, VALUE self) {
+_wrap_ActorManager_create_actor__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
-  Mezzanine::Actor *arg2 = (Mezzanine::Actor *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::NameValuePairMap *arg4 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  void *argp4 ;
+  int res4 = 0 ;
+  Mezzanine::Actor *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","CreateActor", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::String const &","CreateActor", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::String const &","CreateActor", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::String const &","CreateActor", 3, argv[1] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::String const &","CreateActor", 3, argv[1])); 
+    }
+    arg3 = ptr;
+  }
+  res4 = SWIG_ConvertPtr(argv[2], &argp4, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t,  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "Mezzanine::NameValuePairMap const &","CreateActor", 4, argv[2] )); 
+  }
+  if (!argp4) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::NameValuePairMap const &","CreateActor", 4, argv[2])); 
+  }
+  arg4 = reinterpret_cast< Mezzanine::NameValuePairMap * >(argp4);
+  result = (Mezzanine::Actor *)(arg1)->CreateActor((Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::NameValuePairMap const &)*arg4);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Actor, 0 |  0 );
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ActorManager_create_actor__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
   int res2 = 0 ;
+  Mezzanine::Actor *result = 0 ;
+  VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
     rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
   }
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","AddActor", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","CreateActor", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Actor, 0 |  0 );
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__XML__Node,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Actor *","AddActor", 2, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::XML::Node const &","CreateActor", 2, argv[0] )); 
   }
-  arg2 = reinterpret_cast< Mezzanine::Actor * >(argp2);
-  (arg1)->AddActor(arg2);
-  return Qnil;
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::XML::Node const &","CreateActor", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::XML::Node * >(argp2);
+  result = (Mezzanine::Actor *)(arg1)->CreateActor((Mezzanine::XML::Node const &)*arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Actor, 0 |  0 );
+  return vresult;
 fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_ActorManager_create_actor(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[5];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 5) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ActorManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_ActorManager_create_actor__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ActorManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          void *vptr = 0;
+          int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_ActorManager_create_actor__SWIG_0(nargs, args, self);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 5, "ActorManager.create_actor", 
+    "    Mezzanine::Actor * ActorManager.create_actor(Mezzanine::String const &TypeName, Mezzanine::String const &InstanceName, Mezzanine::NameValuePairMap const &Params)\n"
+    "    Mezzanine::Actor * ActorManager.create_actor(Mezzanine::XML::Node const &SelfRoot)\n");
+  
   return Qnil;
 }
 
@@ -19709,10 +20305,9 @@ fail:
 SWIGINTERN VALUE
 _wrap_ActorManager_get_actor__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
-  Mezzanine::Whole *arg2 = 0 ;
+  Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Whole temp2 ;
   unsigned long val2 ;
   int ecode2 = 0 ;
   Mezzanine::Actor *result = 0 ;
@@ -19730,9 +20325,8 @@ _wrap_ActorManager_get_actor__SWIG_0(int argc, VALUE *argv, VALUE self) {
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","GetActor", 2, argv[0] ));
   } 
-  temp2 = static_cast< Mezzanine::Whole >(val2);
-  arg2 = &temp2;
-  result = (Mezzanine::Actor *)((Mezzanine::ActorManager const *)arg1)->GetActor((Mezzanine::Whole const &)*arg2);
+  arg2 = static_cast< Mezzanine::Whole >(val2);
+  result = (Mezzanine::Actor *)((Mezzanine::ActorManager const *)arg1)->GetActor(arg2);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__Actor, 0 |  0 );
   return vresult;
 fail:
@@ -19821,7 +20415,7 @@ SWIGINTERN VALUE _wrap_ActorManager_get_actor(int nargs, VALUE *args, VALUE self
   
 fail:
   Ruby_Format_OverloadedError( argc, 3, "ActorManager.get_actor", 
-    "    Mezzanine::Actor * ActorManager.get_actor(Mezzanine::Whole const &Index)\n"
+    "    Mezzanine::Actor * ActorManager.get_actor(Mezzanine::Whole const Index)\n"
     "    Mezzanine::Actor * ActorManager.get_actor(Mezzanine::String const &Name)\n");
   
   return Qnil;
@@ -19853,143 +20447,11 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_ActorManager_remove_actor__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
-  Mezzanine::Whole *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  Mezzanine::Whole temp2 ;
-  unsigned long val2 ;
-  int ecode2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","RemoveActor", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
-  ecode2 = SWIG_AsVal_unsigned_SS_long(argv[0], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","RemoveActor", 2, argv[0] ));
-  } 
-  temp2 = static_cast< Mezzanine::Whole >(val2);
-  arg2 = &temp2;
-  (arg1)->RemoveActor((Mezzanine::Whole const &)*arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ActorManager_remove_actor__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
-  Mezzanine::Actor *arg2 = (Mezzanine::Actor *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","RemoveActor", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
-  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__Actor, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Actor *","RemoveActor", 2, argv[0] )); 
-  }
-  arg2 = reinterpret_cast< Mezzanine::Actor * >(argp2);
-  (arg1)->RemoveActor(arg2);
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_ActorManager_remove_actor(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[3];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 3) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ActorManager, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Actor, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_ActorManager_remove_actor__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ActorManager, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_unsigned_SS_long(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_ActorManager_remove_actor__SWIG_0(nargs, args, self);
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 3, "ActorManager.remove_actor", 
-    "    void ActorManager.remove_actor(Mezzanine::Whole const &Index)\n"
-    "    void ActorManager.remove_actor(Mezzanine::Actor *ToBeRemoved)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_ActorManager_remove_all_actors(int argc, VALUE *argv, VALUE self) {
-  Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","RemoveAllActors", 1, self )); 
-  }
-  arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
-  (arg1)->RemoveAllActors();
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
 _wrap_ActorManager_destroy_actor__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
-  Mezzanine::Whole *arg2 = 0 ;
+  Mezzanine::Whole arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Whole temp2 ;
   unsigned long val2 ;
   int ecode2 = 0 ;
   
@@ -20005,9 +20467,8 @@ _wrap_ActorManager_destroy_actor__SWIG_0(int argc, VALUE *argv, VALUE self) {
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Whole","DestroyActor", 2, argv[0] ));
   } 
-  temp2 = static_cast< Mezzanine::Whole >(val2);
-  arg2 = &temp2;
-  (arg1)->DestroyActor((Mezzanine::Whole const &)*arg2);
+  arg2 = static_cast< Mezzanine::Whole >(val2);
+  (arg1)->DestroyActor(arg2);
   return Qnil;
 fail:
   return Qnil;
@@ -20086,7 +20547,7 @@ SWIGINTERN VALUE _wrap_ActorManager_destroy_actor(int nargs, VALUE *args, VALUE 
   
 fail:
   Ruby_Format_OverloadedError( argc, 3, "ActorManager.destroy_actor", 
-    "    void ActorManager.destroy_actor(Mezzanine::Whole const &Index)\n"
+    "    void ActorManager.destroy_actor(Mezzanine::Whole const Index)\n"
     "    void ActorManager.destroy_actor(Mezzanine::Actor *ToBeDestroyed)\n");
   
   return Qnil;
@@ -20108,6 +20569,282 @@ _wrap_ActorManager_destroy_all_actors(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
   (arg1)->DestroyAllActors();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ActorManager_add_actor_factory(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
+  Mezzanine::ActorFactory *arg2 = (Mezzanine::ActorFactory *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","AddActorFactory", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__ActorFactory, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::ActorFactory *","AddActorFactory", 2, argv[0] )); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::ActorFactory * >(argp2);
+  (arg1)->AddActorFactory(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ActorManager_remove_actor_factory__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
+  Mezzanine::ActorFactory *arg2 = (Mezzanine::ActorFactory *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","RemoveActorFactory", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__ActorFactory, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::ActorFactory *","RemoveActorFactory", 2, argv[0] )); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::ActorFactory * >(argp2);
+  (arg1)->RemoveActorFactory(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ActorManager_remove_actor_factory__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","RemoveActorFactory", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::String const &","RemoveActorFactory", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::String const &","RemoveActorFactory", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->RemoveActorFactory((Mezzanine::String const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_ActorManager_remove_actor_factory(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ActorManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__ActorFactory, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_ActorManager_remove_actor_factory__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ActorManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_ActorManager_remove_actor_factory__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "ActorManager.remove_actor_factory", 
+    "    void ActorManager.remove_actor_factory(Mezzanine::ActorFactory *ToBeRemoved)\n"
+    "    void ActorManager.remove_actor_factory(Mezzanine::String const &ImplName)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ActorManager_destroy_actor_factory__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
+  Mezzanine::ActorFactory *arg2 = (Mezzanine::ActorFactory *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","DestroyActorFactory", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2,SWIGTYPE_p_Mezzanine__ActorFactory, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::ActorFactory *","DestroyActorFactory", 2, argv[0] )); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::ActorFactory * >(argp2);
+  (arg1)->DestroyActorFactory(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ActorManager_destroy_actor_factory__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","DestroyActorFactory", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::String const &","DestroyActorFactory", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::String const &","DestroyActorFactory", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->DestroyActorFactory((Mezzanine::String const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_ActorManager_destroy_actor_factory(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ActorManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__ActorFactory, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_ActorManager_destroy_actor_factory__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ActorManager, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_ActorManager_destroy_actor_factory__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "ActorManager.destroy_actor_factory", 
+    "    void ActorManager.destroy_actor_factory(Mezzanine::ActorFactory *ToBeDestroyed)\n"
+    "    void ActorManager.destroy_actor_factory(Mezzanine::String const &ImplName)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ActorManager_destroy_all_actor_factories(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ActorManager *arg1 = (Mezzanine::ActorManager *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ActorManager, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ActorManager *","DestroyAllActorFactories", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ActorManager * >(argp1);
+  (arg1)->DestroyAllActorFactories();
   return Qnil;
 fail:
   return Qnil;
@@ -22581,6 +23318,2983 @@ _wrap_predict_base_64string_size_from_binary_size(int argc, VALUE *argv, VALUE s
   arg1 = static_cast< Mezzanine::Whole >(val1);
   result = (Mezzanine::Whole)Mezzanine::BinaryTools::PredictBase64StringSizeFromBinarySize(arg1);
   vresult = SWIG_From_unsigned_SS_long(static_cast< unsigned long >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+static swig_class SwigClassColourValue;
+
+SWIGINTERN VALUE
+_wrap_ColourValue_get_red_channel(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue const *","GetRedChannel", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetRedChannel();
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_set_red_channel(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::Real *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Real temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue *","SetRedChannel", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  ecode2 = SWIG_AsVal_float(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","SetRedChannel", 2, argv[0] ));
+  } 
+  temp2 = static_cast< Mezzanine::Real >(val2);
+  arg2 = &temp2;
+  (arg1)->SetRedChannel((Mezzanine::Real const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_get_green_channel(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue const *","GetGreenChannel", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetGreenChannel();
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_set_green_channel(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::Real *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Real temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue *","SetGreenChannel", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  ecode2 = SWIG_AsVal_float(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","SetGreenChannel", 2, argv[0] ));
+  } 
+  temp2 = static_cast< Mezzanine::Real >(val2);
+  arg2 = &temp2;
+  (arg1)->SetGreenChannel((Mezzanine::Real const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_get_blue_channel(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue const *","GetBlueChannel", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetBlueChannel();
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_set_blue_channel(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::Real *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Real temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue *","SetBlueChannel", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  ecode2 = SWIG_AsVal_float(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","SetBlueChannel", 2, argv[0] ));
+  } 
+  temp2 = static_cast< Mezzanine::Real >(val2);
+  arg2 = &temp2;
+  (arg1)->SetBlueChannel((Mezzanine::Real const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_get_alpha_channel(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue const *","GetAlphaChannel", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetAlphaChannel();
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_set_alpha_channel(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::Real *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Mezzanine::Real temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue *","SetAlphaChannel", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  ecode2 = SWIG_AsVal_float(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","SetAlphaChannel", 2, argv[0] ));
+  } 
+  temp2 = static_cast< Mezzanine::Real >(val2);
+  arg2 = &temp2;
+  (arg1)->SetAlphaChannel((Mezzanine::Real const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_ColourValue__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real arg3 ;
+  Mezzanine::Real arg4 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  float val3 ;
+  int ecode3 = 0 ;
+  float val4 ;
+  int ecode4 = 0 ;
+  Mezzanine::ColourValue *result = 0 ;
+  
+  if ((argc < 4) || (argc > 4)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::ColourValue", 1, argv[0] ));
+  } 
+  arg1 = static_cast< Mezzanine::Real >(val1);
+  ecode2 = SWIG_AsVal_float(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::ColourValue", 2, argv[1] ));
+  } 
+  arg2 = static_cast< Mezzanine::Real >(val2);
+  ecode3 = SWIG_AsVal_float(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::ColourValue", 3, argv[2] ));
+  } 
+  arg3 = static_cast< Mezzanine::Real >(val3);
+  ecode4 = SWIG_AsVal_float(argv[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::ColourValue", 4, argv[3] ));
+  } 
+  arg4 = static_cast< Mezzanine::Real >(val4);
+  result = (Mezzanine::ColourValue *)new Mezzanine::ColourValue(arg1,arg2,arg3,arg4);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_ColourValue__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real arg3 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  float val3 ;
+  int ecode3 = 0 ;
+  Mezzanine::ColourValue *result = 0 ;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::ColourValue", 1, argv[0] ));
+  } 
+  arg1 = static_cast< Mezzanine::Real >(val1);
+  ecode2 = SWIG_AsVal_float(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::ColourValue", 2, argv[1] ));
+  } 
+  arg2 = static_cast< Mezzanine::Real >(val2);
+  ecode3 = SWIG_AsVal_float(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::ColourValue", 3, argv[2] ));
+  } 
+  arg3 = static_cast< Mezzanine::Real >(val3);
+  result = (Mezzanine::ColourValue *)new Mezzanine::ColourValue(arg1,arg2,arg3);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_ColourValue__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real arg1 ;
+  Mezzanine::Real arg2 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  Mezzanine::ColourValue *result = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::ColourValue", 1, argv[0] ));
+  } 
+  arg1 = static_cast< Mezzanine::Real >(val1);
+  ecode2 = SWIG_AsVal_float(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::ColourValue", 2, argv[1] ));
+  } 
+  arg2 = static_cast< Mezzanine::Real >(val2);
+  result = (Mezzanine::ColourValue *)new Mezzanine::ColourValue(arg1,arg2);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_ColourValue__SWIG_3(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real arg1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::ColourValue *result = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::ColourValue", 1, argv[0] ));
+  } 
+  arg1 = static_cast< Mezzanine::Real >(val1);
+  result = (Mezzanine::ColourValue *)new Mezzanine::ColourValue(arg1);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_ColourValue__SWIG_4(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::ColourValue *)new Mezzanine::ColourValue();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_ColourValue__SWIG_5(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  Mezzanine::ColourValue *result = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__ColourValue,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue const &","Mezzanine::ColourValue", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::ColourValue const &","Mezzanine::ColourValue", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  result = (Mezzanine::ColourValue *)new Mezzanine::ColourValue((Mezzanine::ColourValue const &)*arg1);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_ColourValue_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_ColourValue_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Mezzanine__ColourValue);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_ColourValue__SWIG_6(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::XML::Node *arg1 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  Mezzanine::ColourValue *result = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__XML__Node,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::Node const &","Mezzanine::ColourValue", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::XML::Node const &","Mezzanine::ColourValue", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::XML::Node * >(argp1);
+  result = (Mezzanine::ColourValue *)new Mezzanine::ColourValue((Mezzanine::XML::Node const &)*arg1);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_new_ColourValue(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs;
+  if (argc > 4) SWIG_fail;
+  for (ii = 0; (ii < argc); ++ii) {
+    argv[ii] = args[ii];
+  }
+  if (argc == 0) {
+    return _wrap_new_ColourValue__SWIG_4(nargs, args, self);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__ColourValue, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_ColourValue__SWIG_5(nargs, args, self);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__XML__Node, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_ColourValue__SWIG_6(nargs, args, self);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      int res = SWIG_AsVal_float(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      return _wrap_new_ColourValue__SWIG_3(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      int res = SWIG_AsVal_float(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_new_ColourValue__SWIG_2(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      int res = SWIG_AsVal_float(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_float(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_new_ColourValue__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      int res = SWIG_AsVal_float(argv[0], NULL);
+      _v = SWIG_CheckState(res);
+    }
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_float(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_float(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            return _wrap_new_ColourValue__SWIG_0(nargs, args, self);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "ColourValue.new", 
+    "    ColourValue.new(Mezzanine::Real Red, Mezzanine::Real Green, Mezzanine::Real Blue, Mezzanine::Real Alpha)\n"
+    "    ColourValue.new(Mezzanine::Real Red, Mezzanine::Real Green, Mezzanine::Real Blue)\n"
+    "    ColourValue.new(Mezzanine::Real Red, Mezzanine::Real Green)\n"
+    "    ColourValue.new(Mezzanine::Real Red)\n"
+    "    ColourValue.new()\n"
+    "    ColourValue.new(Mezzanine::ColourValue const &OtherColour)\n"
+    "    ColourValue.new(Mezzanine::XML::Node const &OneNode)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_ColourValue(Mezzanine::ColourValue *arg1) {
+    delete arg1;
+}
+
+SWIGINTERN VALUE
+_wrap_ColourValue_get_ogre_colour_value(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  Ogre::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue const *","GetOgreColourValue", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  result = ((Mezzanine::ColourValue const *)arg1)->GetOgreColourValue();
+  vresult = SWIG_NewPointerObj((new Ogre::ColourValue(static_cast< const Ogre::ColourValue& >(result))), SWIGTYPE_p_Ogre__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+
+/*
+  Document-method: Mezzanine::ColourValue.==
+
+  call-seq:
+    ==(Colour) -> bool
+
+Equality comparison operator.
+*/
+SWIGINTERN VALUE
+_wrap_ColourValue___eq__(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::ColourValue *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue const *","operator ==", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__ColourValue,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::ColourValue const &","operator ==", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::ColourValue const &","operator ==", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::ColourValue * >(argp2);
+  result = (bool)((Mezzanine::ColourValue const *)arg1)->operator ==((Mezzanine::ColourValue const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_transparent(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Transparent();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_alice_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::AliceBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_antique_white(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::AntiqueWhite();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_aqua(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Aqua();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_aquamarine(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Aquamarine();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_azure(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Azure();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_beige(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Beige();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_bisque(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Bisque();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_black(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Black();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_blanchedalmond(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Blanchedalmond();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Blue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_blue_violet(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::BlueViolet();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_brown(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Brown();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_burly_wood(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::BurlyWood();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_cadet_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::CadetBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_chartreuse(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Chartreuse();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_chocolate(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Chocolate();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_coral(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Coral();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_corn_flower_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::CornFlowerBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_corn_silk(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::CornSilk();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_crimson(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Crimson();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_cyan(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Cyan();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_cyan(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkCyan();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_golden_rod(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkGoldenRod();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_gray(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkGray();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_khaki(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkKhaki();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_magenta(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkMagenta();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_olive_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkOliveGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_orange(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkOrange();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_orchid(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkOrchid();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_red(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkRed();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_salmon(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkSalmon();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_sea_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkSeaGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_slate_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkSlateBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_slate_gray(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkSlateGray();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_turquoise(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkTurquoise();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dark_violet(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DarkViolet();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_deep_pink(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DeepPink();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_deep_sky_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DeepSkyBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dim_gray(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DimGray();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_dodger_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::DodgerBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_fire_brick(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::FireBrick();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_floral_white(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::FloralWhite();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_forest_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::ForestGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_fuchsia(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Fuchsia();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_gainsboro(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Gainsboro();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_ghost_white(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::GhostWhite();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_gold(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Gold();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_golden_rod(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::GoldenRod();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_gray(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Gray();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Green();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_green_yellow(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::GreenYellow();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_honey_dew(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::HoneyDew();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_hot_pink(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::HotPink();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_indian_red(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::IndianRed();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_indigo(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Indigo();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_ivory(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Ivory();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_khaki(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Khaki();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_lavender(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Lavender();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_lavender_blush(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LavenderBlush();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_lawn_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LawnGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_lemon_chiffon(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LemonChiffon();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_coral(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightCoral();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_cyan(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightCyan();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_golden_rod_yellow(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightGoldenRodYellow();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_gray(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightGray();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_pink(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightPink();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_salmon(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightSalmon();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_sea_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightSeaGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_sky_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightSkyBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_slate_gray(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightSlateGray();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_steel_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightSteelBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_light_yellow(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LightYellow();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_lime(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Lime();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_lime_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::LimeGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_linen(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Linen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_magenta(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Magenta();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_maroon(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Maroon();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_medium_aquamarine(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MediumAquamarine();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_medium_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MediumBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_medium_orchid(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MediumOrchid();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_medium_purple(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MediumPurple();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_medium_sea_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MediumSeaGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_medium_slate_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MediumSlateBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_medium_spring_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MediumSpringGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_medium_turquoise(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MediumTurquoise();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_medium_violet_red(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MediumVioletRed();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_midnight_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MidnightBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_mint_cream(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MintCream();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_misty_rose(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::MistyRose();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_moccasin(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Moccasin();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_navajo_white(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::NavajoWhite();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_navy(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Navy();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_old_lace(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::OldLace();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_olive(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Olive();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_olive_drab(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::OliveDrab();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_orange(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Orange();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_orange_red(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::OrangeRed();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_orchid(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Orchid();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_pale_golden_rod(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::PaleGoldenRod();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_pale_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::PaleGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_pale_turquoise(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::PaleTurquoise();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_pale_violet_red(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::PaleVioletRed();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_papaya_whip(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::PapayaWhip();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_peach_puff(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::PeachPuff();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_peru(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Peru();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_pink(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Pink();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_plum(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Plum();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_powder_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::PowderBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_purple(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Purple();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_red(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Red();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_rosy_brown(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::RosyBrown();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_royal_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::RoyalBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_saddle_brown(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::SaddleBrown();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_salmon(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Salmon();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_sandy_brown(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::SandyBrown();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_sea_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::SeaGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_sea_shell(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::SeaShell();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_sienna(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Sienna();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_silver(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Silver();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_sky_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::SkyBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_slate_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::SlateBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_slate_gray(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::SlateGray();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_snow(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Snow();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_spring_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::SpringGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_steel_blue(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::SteelBlue();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_tan(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Tan();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_teal(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Teal();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_thistle(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Thistle();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_tomato(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Tomato();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_turquoise(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Turquoise();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_violet(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Violet();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_wheat(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Wheat();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_white(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::White();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_white_smoke(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::WhiteSmoke();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_yellow(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::Yellow();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_yellow_green(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::YellowGreen();
+  vresult = SWIG_NewPointerObj((new Mezzanine::ColourValue(static_cast< const Mezzanine::ColourValue& >(result))), SWIGTYPE_p_Mezzanine__ColourValue, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_proto_serialize(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue const *","ProtoSerialize", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__XML__Node,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::XML::Node &","ProtoSerialize", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::XML::Node &","ProtoSerialize", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::XML::Node * >(argp2);
+  ((Mezzanine::ColourValue const *)arg1)->ProtoSerialize(*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_proto_de_serialize(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__ColourValue, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::ColourValue *","ProtoDeSerialize", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::ColourValue * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__XML__Node,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::XML::Node const &","ProtoDeSerialize", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::XML::Node const &","ProtoDeSerialize", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::XML::Node * >(argp2);
+  (arg1)->ProtoDeSerialize((Mezzanine::XML::Node const &)*arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ColourValue_serializable_name(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::String result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = Mezzanine::ColourValue::SerializableName();
+  vresult = SWIG_From_std_string(static_cast< std::string >(result));
   return vresult;
 fail:
   return Qnil;
@@ -26532,17 +30246,11 @@ free_Mezzanine_Vector2(Mezzanine::Vector2 *arg1) {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_swig__IteratorTo_p_swig__ConstIterator(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((swig::ConstIterator *)  ((swig::Iterator *) x));
-}
 static void *_p_Mezzanine__BufferedRollingAverageT_int_tTo_p_Mezzanine__RollingAverageT_int_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< int > *)  ((Mezzanine::BufferedRollingAverage< int > *) x));
 }
 static void *_p_Mezzanine__WeightedRollingAverageT_int_int_tTo_p_Mezzanine__RollingAverageT_int_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< int > *)  ((Mezzanine::WeightedRollingAverage< int,int > *) x));
-}
-static void *_p_Mezzanine__DefaultActorManagerFactoryTo_p_Mezzanine__ManagerFactory(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::ManagerFactory *)  ((Mezzanine::DefaultActorManagerFactory *) x));
 }
 static void *_p_Mezzanine__WeightedRollingAverageT_float_float_tTo_p_Mezzanine__RollingAverageT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< float > *)  ((Mezzanine::WeightedRollingAverage< float,float > *) x));
@@ -26550,14 +30258,11 @@ static void *_p_Mezzanine__WeightedRollingAverageT_float_float_tTo_p_Mezzanine__
 static void *_p_Mezzanine__BufferedRollingAverageT_float_tTo_p_Mezzanine__RollingAverageT_float_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::RollingAverage< float > *)  ((Mezzanine::BufferedRollingAverage< float > *) x));
 }
-static void *_p_Mezzanine__WorldManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::ManagerBase *)  ((Mezzanine::WorldManager *) x));
+static void *_p_Mezzanine__ActorTo_p_Mezzanine__WorldObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::WorldObject *)  ((Mezzanine::Actor *) x));
 }
-static void *_p_Mezzanine__ActorManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::ManagerBase *) (Mezzanine::WorldManager *) ((Mezzanine::ActorManager *) x));
-}
-static void *_p_Mezzanine__ActorUpdateWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::ActorUpdateWorkUnit *) x));
+static void *_p_swig__IteratorTo_p_swig__ConstIterator(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((swig::ConstIterator *)  ((swig::Iterator *) x));
 }
 static void *_p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Threading::iWorkUnit *)  ((Mezzanine::Threading::DefaultWorkUnit *) x));
@@ -26565,11 +30270,23 @@ static void *_p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__
 static void *_p_Mezzanine__ActorUpdateWorkUnitTo_p_Mezzanine__Threading__iWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Threading::iWorkUnit *) (Mezzanine::Threading::DefaultWorkUnit *) ((Mezzanine::ActorUpdateWorkUnit *) x));
 }
+static void *_p_Mezzanine__ActorUpdateWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::ActorUpdateWorkUnit *) x));
+}
 static void *_p_Mezzanine__WorldObjectTo_p_Mezzanine__TransformableObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::TransformableObject *)  ((Mezzanine::WorldObject *) x));
 }
 static void *_p_Mezzanine__ActorTo_p_Mezzanine__TransformableObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::TransformableObject *) (Mezzanine::WorldObject *) ((Mezzanine::Actor *) x));
+}
+static void *_p_Mezzanine__WorldManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ManagerBase *)  ((Mezzanine::WorldManager *) x));
+}
+static void *_p_Mezzanine__ActorManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ManagerBase *) (Mezzanine::WorldManager *) ((Mezzanine::ActorManager *) x));
+}
+static void *_p_Mezzanine__DefaultActorManagerFactoryTo_p_Mezzanine__ManagerFactory(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ManagerFactory *)  ((Mezzanine::DefaultActorManagerFactory *) x));
 }
 static void *_p_Mezzanine__AlarmTimerTo_p_Mezzanine__Timer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Timer *) (Mezzanine::GoalTimer *) ((Mezzanine::AlarmTimer *) x));
@@ -26579,18 +30296,6 @@ static void *_p_Mezzanine__StopWatchTimerTo_p_Mezzanine__Timer(void *x, int *SWI
 }
 static void *_p_Mezzanine__GoalTimerTo_p_Mezzanine__Timer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Timer *)  ((Mezzanine::GoalTimer *) x));
-}
-static void *_p_Mezzanine__ActorManagerTo_p_Mezzanine__WorldManager(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::WorldManager *)  ((Mezzanine::ActorManager *) x));
-}
-static void *_p_Mezzanine__ActorTo_p_Mezzanine__WorldObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::WorldObject *)  ((Mezzanine::Actor *) x));
-}
-static void *_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::RollingAverage< unsigned long > *)  ((Mezzanine::WeightedRollingAverage< unsigned long,unsigned long > *) x));
-}
-static void *_p_Mezzanine__BufferedRollingAverageT_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::RollingAverage< unsigned long > *)  ((Mezzanine::BufferedRollingAverage< unsigned long > *) x));
 }
 static void *_p_Mezzanine__AttachableParentTo_p_Mezzanine__AttachableBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::AttachableBase *)  ((Mezzanine::AttachableParent *) x));
@@ -26604,6 +30309,15 @@ static void *_p_Mezzanine__AlarmTimerTo_p_Mezzanine__GoalTimer(void *x, int *SWI
 static void *_p_Mezzanine__StopWatchTimerTo_p_Mezzanine__GoalTimer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::GoalTimer *)  ((Mezzanine::StopWatchTimer *) x));
 }
+static void *_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::RollingAverage< unsigned long > *)  ((Mezzanine::WeightedRollingAverage< unsigned long,unsigned long > *) x));
+}
+static void *_p_Mezzanine__BufferedRollingAverageT_unsigned_long_tTo_p_Mezzanine__RollingAverageT_unsigned_long_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::RollingAverage< unsigned long > *)  ((Mezzanine::BufferedRollingAverage< unsigned long > *) x));
+}
+static void *_p_Mezzanine__ActorManagerTo_p_Mezzanine__WorldManager(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::WorldManager *)  ((Mezzanine::ActorManager *) x));
+}
 static swig_type_info _swigt__p_ActorContainer = {"_p_ActorContainer", "ActorContainer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ActorIterator = {"_p_ActorIterator", "ActorIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_AttachableContainer = {"_p_AttachableContainer", "AttachableContainer *", 0, 0, (void*)0, 0};
@@ -26614,9 +30328,13 @@ static swig_type_info _swigt__p_CollisionIterator = {"_p_CollisionIterator", "Co
 static swig_type_info _swigt__p_ConstActorIterator = {"_p_ConstActorIterator", "ConstActorIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ConstAttachableIterator = {"_p_ConstAttachableIterator", "ConstAttachableIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ConstCollisionIterator = {"_p_ConstCollisionIterator", "ConstCollisionIterator *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_ConstFactoryIterator = {"_p_ConstFactoryIterator", "ConstFactoryIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ConstProxyIterator = {"_p_ConstProxyIterator", "ConstProxyIterator *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_FactoryIterator = {"_p_FactoryIterator", "FactoryIterator *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_FactoryMap = {"_p_FactoryMap", "FactoryMap *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GeometryRayTestResult = {"_p_GeometryRayTestResult", "GeometryRayTestResult *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Actor = {"_p_Mezzanine__Actor", "Mezzanine::Actor *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__ActorFactory = {"_p_Mezzanine__ActorFactory", "Mezzanine::ActorFactory *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__ActorManager = {"_p_Mezzanine__ActorManager", "Mezzanine::ActorManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__ActorUpdateWorkUnit = {"_p_Mezzanine__ActorUpdateWorkUnit", "Mezzanine::ActorUpdateWorkUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__AlarmTimer = {"_p_Mezzanine__AlarmTimer", "Mezzanine::AlarmTimer *", 0, 0, (void*)0, 0};
@@ -26629,6 +30347,7 @@ static swig_type_info _swigt__p_Mezzanine__BinaryTools__BinaryBuffer = {"_p_Mezz
 static swig_type_info _swigt__p_Mezzanine__BufferedRollingAverageT_float_t = {"_p_Mezzanine__BufferedRollingAverageT_float_t", "Mezzanine::BufferedRollingAverage< Mezzanine::Real > *|Mezzanine::BufferedRollingAverage< float > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__BufferedRollingAverageT_int_t = {"_p_Mezzanine__BufferedRollingAverageT_int_t", "Mezzanine::BufferedRollingAverage< Mezzanine::Integer > *|Mezzanine::BufferedRollingAverage< int > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t = {"_p_Mezzanine__BufferedRollingAverageT_unsigned_long_t", "Mezzanine::BufferedRollingAverage< unsigned long > *|Mezzanine::BufferedRollingAverage< Mezzanine::Whole > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__ColourValue = {"_p_Mezzanine__ColourValue", "Mezzanine::ColourValue *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__DefaultActorManagerFactory = {"_p_Mezzanine__DefaultActorManagerFactory", "Mezzanine::DefaultActorManagerFactory *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__DefaultRollingAverageT_Mezzanine__Whole_t__Type = {"_p_Mezzanine__DefaultRollingAverageT_Mezzanine__Whole_t__Type", "Mezzanine::DefaultRollingAverage< Mezzanine::Whole >::Type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__GoalTimer = {"_p_Mezzanine__GoalTimer", "Mezzanine::GoalTimer *", 0, 0, (void*)0, 0};
@@ -26672,6 +30391,7 @@ static swig_type_info _swigt__p_Mezzanine__WorldObject = {"_p_Mezzanine__WorldOb
 static swig_type_info _swigt__p_Mezzanine__WorldProxy = {"_p_Mezzanine__WorldProxy", "Mezzanine::WorldProxy *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__Node = {"_p_Mezzanine__XML__Node", "Mezzanine::XML::Node *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ogre__AxisAlignedBox = {"_p_Ogre__AxisAlignedBox", "Ogre::AxisAlignedBox *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Ogre__ColourValue = {"_p_Ogre__ColourValue", "Ogre::ColourValue *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ogre__Plane = {"_p_Ogre__Plane", "Ogre::Plane *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ogre__Quaternion = {"_p_Ogre__Quaternion", "Ogre::Quaternion *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Ogre__Ray = {"_p_Ogre__Ray", "Ogre::Ray *", 0, 0, (void*)0, 0};
@@ -26732,9 +30452,13 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_ConstActorIterator,
   &_swigt__p_ConstAttachableIterator,
   &_swigt__p_ConstCollisionIterator,
+  &_swigt__p_ConstFactoryIterator,
   &_swigt__p_ConstProxyIterator,
+  &_swigt__p_FactoryIterator,
+  &_swigt__p_FactoryMap,
   &_swigt__p_GeometryRayTestResult,
   &_swigt__p_Mezzanine__Actor,
+  &_swigt__p_Mezzanine__ActorFactory,
   &_swigt__p_Mezzanine__ActorManager,
   &_swigt__p_Mezzanine__ActorUpdateWorkUnit,
   &_swigt__p_Mezzanine__AlarmTimer,
@@ -26747,6 +30471,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__BufferedRollingAverageT_float_t,
   &_swigt__p_Mezzanine__BufferedRollingAverageT_int_t,
   &_swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,
+  &_swigt__p_Mezzanine__ColourValue,
   &_swigt__p_Mezzanine__DefaultActorManagerFactory,
   &_swigt__p_Mezzanine__DefaultRollingAverageT_Mezzanine__Whole_t__Type,
   &_swigt__p_Mezzanine__GoalTimer,
@@ -26790,6 +30515,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__WorldProxy,
   &_swigt__p_Mezzanine__XML__Node,
   &_swigt__p_Ogre__AxisAlignedBox,
+  &_swigt__p_Ogre__ColourValue,
   &_swigt__p_Ogre__Plane,
   &_swigt__p_Ogre__Quaternion,
   &_swigt__p_Ogre__Ray,
@@ -26850,9 +30576,13 @@ static swig_cast_info _swigc__p_CollisionIterator[] = {  {&_swigt__p_CollisionIt
 static swig_cast_info _swigc__p_ConstActorIterator[] = {  {&_swigt__p_ConstActorIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ConstAttachableIterator[] = {  {&_swigt__p_ConstAttachableIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ConstCollisionIterator[] = {  {&_swigt__p_ConstCollisionIterator, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_ConstFactoryIterator[] = {  {&_swigt__p_ConstFactoryIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ConstProxyIterator[] = {  {&_swigt__p_ConstProxyIterator, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_FactoryIterator[] = {  {&_swigt__p_FactoryIterator, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_FactoryMap[] = {  {&_swigt__p_FactoryMap, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GeometryRayTestResult[] = {  {&_swigt__p_GeometryRayTestResult, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Actor[] = {  {&_swigt__p_Mezzanine__Actor, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ActorFactory[] = {  {&_swigt__p_Mezzanine__ActorFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__ActorManager[] = {  {&_swigt__p_Mezzanine__ActorManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__ActorUpdateWorkUnit[] = {  {&_swigt__p_Mezzanine__ActorUpdateWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AlarmTimer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, 0, 0, 0},{0, 0, 0, 0}};
@@ -26865,6 +30595,7 @@ static swig_cast_info _swigc__p_Mezzanine__BinaryTools__BinaryBuffer[] = {  {&_s
 static swig_cast_info _swigc__p_Mezzanine__BufferedRollingAverageT_float_t[] = {  {&_swigt__p_Mezzanine__BufferedRollingAverageT_float_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__BufferedRollingAverageT_int_t[] = {  {&_swigt__p_Mezzanine__BufferedRollingAverageT_int_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t[] = {  {&_swigt__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ColourValue[] = {  {&_swigt__p_Mezzanine__ColourValue, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__DefaultActorManagerFactory[] = {  {&_swigt__p_Mezzanine__DefaultActorManagerFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__DefaultRollingAverageT_Mezzanine__Whole_t__Type[] = {  {&_swigt__p_Mezzanine__DefaultRollingAverageT_Mezzanine__Whole_t__Type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__GoalTimer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, _p_Mezzanine__AlarmTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__StopWatchTimer, _p_Mezzanine__StopWatchTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__GoalTimer, 0, 0, 0},{0, 0, 0, 0}};
@@ -26908,6 +30639,7 @@ static swig_cast_info _swigc__p_Mezzanine__WorldObject[] = {  {&_swigt__p_Mezzan
 static swig_cast_info _swigc__p_Mezzanine__WorldProxy[] = {  {&_swigt__p_Mezzanine__WorldProxy, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__Node[] = {  {&_swigt__p_Mezzanine__XML__Node, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__AxisAlignedBox[] = {  {&_swigt__p_Ogre__AxisAlignedBox, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Ogre__ColourValue[] = {  {&_swigt__p_Ogre__ColourValue, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__Plane[] = {  {&_swigt__p_Ogre__Plane, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__Quaternion[] = {  {&_swigt__p_Ogre__Quaternion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Ogre__Ray[] = {  {&_swigt__p_Ogre__Ray, 0, 0, 0},{0, 0, 0, 0}};
@@ -26968,9 +30700,13 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_ConstActorIterator,
   _swigc__p_ConstAttachableIterator,
   _swigc__p_ConstCollisionIterator,
+  _swigc__p_ConstFactoryIterator,
   _swigc__p_ConstProxyIterator,
+  _swigc__p_FactoryIterator,
+  _swigc__p_FactoryMap,
   _swigc__p_GeometryRayTestResult,
   _swigc__p_Mezzanine__Actor,
+  _swigc__p_Mezzanine__ActorFactory,
   _swigc__p_Mezzanine__ActorManager,
   _swigc__p_Mezzanine__ActorUpdateWorkUnit,
   _swigc__p_Mezzanine__AlarmTimer,
@@ -26983,6 +30719,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__BufferedRollingAverageT_float_t,
   _swigc__p_Mezzanine__BufferedRollingAverageT_int_t,
   _swigc__p_Mezzanine__BufferedRollingAverageT_unsigned_long_t,
+  _swigc__p_Mezzanine__ColourValue,
   _swigc__p_Mezzanine__DefaultActorManagerFactory,
   _swigc__p_Mezzanine__DefaultRollingAverageT_Mezzanine__Whole_t__Type,
   _swigc__p_Mezzanine__GoalTimer,
@@ -27026,6 +30763,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__WorldProxy,
   _swigc__p_Mezzanine__XML__Node,
   _swigc__p_Ogre__AxisAlignedBox,
+  _swigc__p_Ogre__ColourValue,
   _swigc__p_Ogre__Plane,
   _swigc__p_Ogre__Quaternion,
   _swigc__p_Ogre__Ray,
@@ -27567,6 +31305,8 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_method(SwigClassTransformableObject.klass, "roll", VALUEFUNC(_wrap_TransformableObject_roll), -1);
   rb_define_method(SwigClassTransformableObject.klass, "rotate", VALUEFUNC(_wrap_TransformableObject_rotate), -1);
   rb_define_method(SwigClassTransformableObject.klass, "scale", VALUEFUNC(_wrap_TransformableObject_scale), -1);
+  rb_define_method(SwigClassTransformableObject.klass, "convert_local_to_global", VALUEFUNC(_wrap_TransformableObject_convert_local_to_global), -1);
+  rb_define_method(SwigClassTransformableObject.klass, "convert_global_to_local", VALUEFUNC(_wrap_TransformableObject_convert_global_to_local), -1);
   SwigClassTransformableObject.mark = 0;
   SwigClassTransformableObject.destroy = (void (*)(void *)) free_Mezzanine_TransformableObject;
   SwigClassTransformableObject.trackObjects = 0;
@@ -27745,6 +31485,16 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassActor.mark = 0;
   SwigClassActor.destroy = (void (*)(void *)) free_Mezzanine_Actor;
   SwigClassActor.trackObjects = 0;
+  
+  SwigClassActorFactory.klass = rb_define_class_under(mMezzanine, "ActorFactory", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__ActorFactory, (void *) &SwigClassActorFactory);
+  rb_undef_alloc_func(SwigClassActorFactory.klass);
+  rb_define_method(SwigClassActorFactory.klass, "get_type_name", VALUEFUNC(_wrap_ActorFactory_get_type_name), -1);
+  rb_define_method(SwigClassActorFactory.klass, "create_actor", VALUEFUNC(_wrap_ActorFactory_create_actor), -1);
+  rb_define_method(SwigClassActorFactory.klass, "destroy_actor", VALUEFUNC(_wrap_ActorFactory_destroy_actor), -1);
+  SwigClassActorFactory.mark = 0;
+  SwigClassActorFactory.destroy = (void (*)(void *)) free_Mezzanine_ActorFactory;
+  SwigClassActorFactory.trackObjects = 0;
   
   SwigClassManagerBase.klass = rb_define_class_under(mMezzanine, "ManagerBase", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__ManagerBase, (void *) &SwigClassManagerBase);
@@ -28103,13 +31853,15 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__ActorManager, (void *) &SwigClassActorManager);
   rb_define_alloc_func(SwigClassActorManager.klass, _wrap_ActorManager_allocate);
   rb_define_method(SwigClassActorManager.klass, "initialize", VALUEFUNC(_wrap_new_ActorManager), -1);
-  rb_define_method(SwigClassActorManager.klass, "add_actor", VALUEFUNC(_wrap_ActorManager_add_actor), -1);
+  rb_define_method(SwigClassActorManager.klass, "create_actor", VALUEFUNC(_wrap_ActorManager_create_actor), -1);
   rb_define_method(SwigClassActorManager.klass, "get_actor", VALUEFUNC(_wrap_ActorManager_get_actor), -1);
   rb_define_method(SwigClassActorManager.klass, "get_num_actors", VALUEFUNC(_wrap_ActorManager_get_num_actors), -1);
-  rb_define_method(SwigClassActorManager.klass, "remove_actor", VALUEFUNC(_wrap_ActorManager_remove_actor), -1);
-  rb_define_method(SwigClassActorManager.klass, "remove_all_actors", VALUEFUNC(_wrap_ActorManager_remove_all_actors), -1);
   rb_define_method(SwigClassActorManager.klass, "destroy_actor", VALUEFUNC(_wrap_ActorManager_destroy_actor), -1);
   rb_define_method(SwigClassActorManager.klass, "destroy_all_actors", VALUEFUNC(_wrap_ActorManager_destroy_all_actors), -1);
+  rb_define_method(SwigClassActorManager.klass, "add_actor_factory", VALUEFUNC(_wrap_ActorManager_add_actor_factory), -1);
+  rb_define_method(SwigClassActorManager.klass, "remove_actor_factory", VALUEFUNC(_wrap_ActorManager_remove_actor_factory), -1);
+  rb_define_method(SwigClassActorManager.klass, "destroy_actor_factory", VALUEFUNC(_wrap_ActorManager_destroy_actor_factory), -1);
+  rb_define_method(SwigClassActorManager.klass, "destroy_all_actor_factories", VALUEFUNC(_wrap_ActorManager_destroy_all_actor_factories), -1);
   rb_define_method(SwigClassActorManager.klass, "pause", VALUEFUNC(_wrap_ActorManager_pause), -1);
   rb_define_method(SwigClassActorManager.klass, "initialize", VALUEFUNC(_wrap_ActorManager_initialize), -1);
   rb_define_method(SwigClassActorManager.klass, "deinitialize", VALUEFUNC(_wrap_ActorManager_deinitialize), -1);
@@ -28186,6 +31938,168 @@ SWIGEXPORT void Init_Mezzanine(void) {
   rb_define_module_function(mMezzanine, "base_64decode", VALUEFUNC(_wrap_base_64decode), -1);
   rb_define_module_function(mMezzanine, "predict_binary_size_from_base_64string", VALUEFUNC(_wrap_predict_binary_size_from_base_64string), -1);
   rb_define_module_function(mMezzanine, "predict_base_64string_size_from_binary_size", VALUEFUNC(_wrap_predict_base_64string_size_from_binary_size), -1);
+  
+  SwigClassColourValue.klass = rb_define_class_under(mMezzanine, "ColourValue", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__ColourValue, (void *) &SwigClassColourValue);
+  rb_define_alloc_func(SwigClassColourValue.klass, _wrap_ColourValue_allocate);
+  rb_define_method(SwigClassColourValue.klass, "initialize", VALUEFUNC(_wrap_new_ColourValue), -1);
+  rb_define_method(SwigClassColourValue.klass, "get_red_channel", VALUEFUNC(_wrap_ColourValue_get_red_channel), -1);
+  rb_define_method(SwigClassColourValue.klass, "set_red_channel", VALUEFUNC(_wrap_ColourValue_set_red_channel), -1);
+  rb_define_method(SwigClassColourValue.klass, "get_green_channel", VALUEFUNC(_wrap_ColourValue_get_green_channel), -1);
+  rb_define_method(SwigClassColourValue.klass, "set_green_channel", VALUEFUNC(_wrap_ColourValue_set_green_channel), -1);
+  rb_define_method(SwigClassColourValue.klass, "get_blue_channel", VALUEFUNC(_wrap_ColourValue_get_blue_channel), -1);
+  rb_define_method(SwigClassColourValue.klass, "set_blue_channel", VALUEFUNC(_wrap_ColourValue_set_blue_channel), -1);
+  rb_define_method(SwigClassColourValue.klass, "get_alpha_channel", VALUEFUNC(_wrap_ColourValue_get_alpha_channel), -1);
+  rb_define_method(SwigClassColourValue.klass, "set_alpha_channel", VALUEFUNC(_wrap_ColourValue_set_alpha_channel), -1);
+  rb_define_method(SwigClassColourValue.klass, "get_ogre_colour_value", VALUEFUNC(_wrap_ColourValue_get_ogre_colour_value), -1);
+  rb_define_method(SwigClassColourValue.klass, "==", VALUEFUNC(_wrap_ColourValue___eq__), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "transparent", VALUEFUNC(_wrap_ColourValue_transparent), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "alice_blue", VALUEFUNC(_wrap_ColourValue_alice_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "antique_white", VALUEFUNC(_wrap_ColourValue_antique_white), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "aqua", VALUEFUNC(_wrap_ColourValue_aqua), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "aquamarine", VALUEFUNC(_wrap_ColourValue_aquamarine), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "azure", VALUEFUNC(_wrap_ColourValue_azure), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "beige", VALUEFUNC(_wrap_ColourValue_beige), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "bisque", VALUEFUNC(_wrap_ColourValue_bisque), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "black", VALUEFUNC(_wrap_ColourValue_black), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "blanchedalmond", VALUEFUNC(_wrap_ColourValue_blanchedalmond), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "blue", VALUEFUNC(_wrap_ColourValue_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "blue_violet", VALUEFUNC(_wrap_ColourValue_blue_violet), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "brown", VALUEFUNC(_wrap_ColourValue_brown), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "burly_wood", VALUEFUNC(_wrap_ColourValue_burly_wood), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "cadet_blue", VALUEFUNC(_wrap_ColourValue_cadet_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "chartreuse", VALUEFUNC(_wrap_ColourValue_chartreuse), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "chocolate", VALUEFUNC(_wrap_ColourValue_chocolate), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "coral", VALUEFUNC(_wrap_ColourValue_coral), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "corn_flower_blue", VALUEFUNC(_wrap_ColourValue_corn_flower_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "corn_silk", VALUEFUNC(_wrap_ColourValue_corn_silk), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "crimson", VALUEFUNC(_wrap_ColourValue_crimson), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "cyan", VALUEFUNC(_wrap_ColourValue_cyan), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_blue", VALUEFUNC(_wrap_ColourValue_dark_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_cyan", VALUEFUNC(_wrap_ColourValue_dark_cyan), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_golden_rod", VALUEFUNC(_wrap_ColourValue_dark_golden_rod), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_gray", VALUEFUNC(_wrap_ColourValue_dark_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_green", VALUEFUNC(_wrap_ColourValue_dark_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_khaki", VALUEFUNC(_wrap_ColourValue_dark_khaki), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_magenta", VALUEFUNC(_wrap_ColourValue_dark_magenta), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_olive_green", VALUEFUNC(_wrap_ColourValue_dark_olive_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_orange", VALUEFUNC(_wrap_ColourValue_dark_orange), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_orchid", VALUEFUNC(_wrap_ColourValue_dark_orchid), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_red", VALUEFUNC(_wrap_ColourValue_dark_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_salmon", VALUEFUNC(_wrap_ColourValue_dark_salmon), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_sea_green", VALUEFUNC(_wrap_ColourValue_dark_sea_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_slate_blue", VALUEFUNC(_wrap_ColourValue_dark_slate_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_slate_gray", VALUEFUNC(_wrap_ColourValue_dark_slate_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_turquoise", VALUEFUNC(_wrap_ColourValue_dark_turquoise), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dark_violet", VALUEFUNC(_wrap_ColourValue_dark_violet), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "deep_pink", VALUEFUNC(_wrap_ColourValue_deep_pink), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "deep_sky_blue", VALUEFUNC(_wrap_ColourValue_deep_sky_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dim_gray", VALUEFUNC(_wrap_ColourValue_dim_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "dodger_blue", VALUEFUNC(_wrap_ColourValue_dodger_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "fire_brick", VALUEFUNC(_wrap_ColourValue_fire_brick), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "floral_white", VALUEFUNC(_wrap_ColourValue_floral_white), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "forest_green", VALUEFUNC(_wrap_ColourValue_forest_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "fuchsia", VALUEFUNC(_wrap_ColourValue_fuchsia), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "gainsboro", VALUEFUNC(_wrap_ColourValue_gainsboro), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "ghost_white", VALUEFUNC(_wrap_ColourValue_ghost_white), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "gold", VALUEFUNC(_wrap_ColourValue_gold), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "golden_rod", VALUEFUNC(_wrap_ColourValue_golden_rod), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "gray", VALUEFUNC(_wrap_ColourValue_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "green", VALUEFUNC(_wrap_ColourValue_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "green_yellow", VALUEFUNC(_wrap_ColourValue_green_yellow), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "honey_dew", VALUEFUNC(_wrap_ColourValue_honey_dew), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "hot_pink", VALUEFUNC(_wrap_ColourValue_hot_pink), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "indian_red", VALUEFUNC(_wrap_ColourValue_indian_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "indigo", VALUEFUNC(_wrap_ColourValue_indigo), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "ivory", VALUEFUNC(_wrap_ColourValue_ivory), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "khaki", VALUEFUNC(_wrap_ColourValue_khaki), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lavender", VALUEFUNC(_wrap_ColourValue_lavender), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lavender_blush", VALUEFUNC(_wrap_ColourValue_lavender_blush), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lawn_green", VALUEFUNC(_wrap_ColourValue_lawn_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lemon_chiffon", VALUEFUNC(_wrap_ColourValue_lemon_chiffon), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_blue", VALUEFUNC(_wrap_ColourValue_light_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_coral", VALUEFUNC(_wrap_ColourValue_light_coral), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_cyan", VALUEFUNC(_wrap_ColourValue_light_cyan), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_golden_rod_yellow", VALUEFUNC(_wrap_ColourValue_light_golden_rod_yellow), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_gray", VALUEFUNC(_wrap_ColourValue_light_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_green", VALUEFUNC(_wrap_ColourValue_light_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_pink", VALUEFUNC(_wrap_ColourValue_light_pink), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_salmon", VALUEFUNC(_wrap_ColourValue_light_salmon), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_sea_green", VALUEFUNC(_wrap_ColourValue_light_sea_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_sky_blue", VALUEFUNC(_wrap_ColourValue_light_sky_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_slate_gray", VALUEFUNC(_wrap_ColourValue_light_slate_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_steel_blue", VALUEFUNC(_wrap_ColourValue_light_steel_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "light_yellow", VALUEFUNC(_wrap_ColourValue_light_yellow), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lime", VALUEFUNC(_wrap_ColourValue_lime), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "lime_green", VALUEFUNC(_wrap_ColourValue_lime_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "linen", VALUEFUNC(_wrap_ColourValue_linen), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "magenta", VALUEFUNC(_wrap_ColourValue_magenta), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "maroon", VALUEFUNC(_wrap_ColourValue_maroon), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_aquamarine", VALUEFUNC(_wrap_ColourValue_medium_aquamarine), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_blue", VALUEFUNC(_wrap_ColourValue_medium_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_orchid", VALUEFUNC(_wrap_ColourValue_medium_orchid), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_purple", VALUEFUNC(_wrap_ColourValue_medium_purple), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_sea_green", VALUEFUNC(_wrap_ColourValue_medium_sea_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_slate_blue", VALUEFUNC(_wrap_ColourValue_medium_slate_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_spring_green", VALUEFUNC(_wrap_ColourValue_medium_spring_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_turquoise", VALUEFUNC(_wrap_ColourValue_medium_turquoise), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "medium_violet_red", VALUEFUNC(_wrap_ColourValue_medium_violet_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "midnight_blue", VALUEFUNC(_wrap_ColourValue_midnight_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "mint_cream", VALUEFUNC(_wrap_ColourValue_mint_cream), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "misty_rose", VALUEFUNC(_wrap_ColourValue_misty_rose), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "moccasin", VALUEFUNC(_wrap_ColourValue_moccasin), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "navajo_white", VALUEFUNC(_wrap_ColourValue_navajo_white), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "navy", VALUEFUNC(_wrap_ColourValue_navy), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "old_lace", VALUEFUNC(_wrap_ColourValue_old_lace), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "olive", VALUEFUNC(_wrap_ColourValue_olive), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "olive_drab", VALUEFUNC(_wrap_ColourValue_olive_drab), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "orange", VALUEFUNC(_wrap_ColourValue_orange), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "orange_red", VALUEFUNC(_wrap_ColourValue_orange_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "orchid", VALUEFUNC(_wrap_ColourValue_orchid), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "pale_golden_rod", VALUEFUNC(_wrap_ColourValue_pale_golden_rod), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "pale_green", VALUEFUNC(_wrap_ColourValue_pale_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "pale_turquoise", VALUEFUNC(_wrap_ColourValue_pale_turquoise), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "pale_violet_red", VALUEFUNC(_wrap_ColourValue_pale_violet_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "papaya_whip", VALUEFUNC(_wrap_ColourValue_papaya_whip), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "peach_puff", VALUEFUNC(_wrap_ColourValue_peach_puff), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "peru", VALUEFUNC(_wrap_ColourValue_peru), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "pink", VALUEFUNC(_wrap_ColourValue_pink), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "plum", VALUEFUNC(_wrap_ColourValue_plum), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "powder_blue", VALUEFUNC(_wrap_ColourValue_powder_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "purple", VALUEFUNC(_wrap_ColourValue_purple), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "red", VALUEFUNC(_wrap_ColourValue_red), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "rosy_brown", VALUEFUNC(_wrap_ColourValue_rosy_brown), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "royal_blue", VALUEFUNC(_wrap_ColourValue_royal_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "saddle_brown", VALUEFUNC(_wrap_ColourValue_saddle_brown), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "salmon", VALUEFUNC(_wrap_ColourValue_salmon), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "sandy_brown", VALUEFUNC(_wrap_ColourValue_sandy_brown), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "sea_green", VALUEFUNC(_wrap_ColourValue_sea_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "sea_shell", VALUEFUNC(_wrap_ColourValue_sea_shell), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "sienna", VALUEFUNC(_wrap_ColourValue_sienna), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "silver", VALUEFUNC(_wrap_ColourValue_silver), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "sky_blue", VALUEFUNC(_wrap_ColourValue_sky_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "slate_blue", VALUEFUNC(_wrap_ColourValue_slate_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "slate_gray", VALUEFUNC(_wrap_ColourValue_slate_gray), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "snow", VALUEFUNC(_wrap_ColourValue_snow), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "spring_green", VALUEFUNC(_wrap_ColourValue_spring_green), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "steel_blue", VALUEFUNC(_wrap_ColourValue_steel_blue), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "tan", VALUEFUNC(_wrap_ColourValue_tan), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "teal", VALUEFUNC(_wrap_ColourValue_teal), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "thistle", VALUEFUNC(_wrap_ColourValue_thistle), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "tomato", VALUEFUNC(_wrap_ColourValue_tomato), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "turquoise", VALUEFUNC(_wrap_ColourValue_turquoise), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "violet", VALUEFUNC(_wrap_ColourValue_violet), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "wheat", VALUEFUNC(_wrap_ColourValue_wheat), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "white", VALUEFUNC(_wrap_ColourValue_white), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "white_smoke", VALUEFUNC(_wrap_ColourValue_white_smoke), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "yellow", VALUEFUNC(_wrap_ColourValue_yellow), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "yellow_green", VALUEFUNC(_wrap_ColourValue_yellow_green), -1);
+  rb_define_method(SwigClassColourValue.klass, "proto_serialize", VALUEFUNC(_wrap_ColourValue_proto_serialize), -1);
+  rb_define_method(SwigClassColourValue.klass, "proto_de_serialize", VALUEFUNC(_wrap_ColourValue_proto_de_serialize), -1);
+  rb_define_singleton_method(SwigClassColourValue.klass, "serializable_name", VALUEFUNC(_wrap_ColourValue_serializable_name), -1);
+  SwigClassColourValue.mark = 0;
+  SwigClassColourValue.destroy = (void (*)(void *)) free_Mezzanine_ColourValue;
+  SwigClassColourValue.trackObjects = 0;
   
   SwigClassPlane.klass = rb_define_class_under(mMezzanine, "Plane", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Plane, (void *) &SwigClassPlane);
