@@ -68,7 +68,9 @@ freely, subject to the following restrictions:
     distribution.
 */
 
+#if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
 #include "atomicoperations.h"
+#endif
 
 /// @file
 /// @brief Declares a Mutex, Mutex tools, and at least one MutexLike object.

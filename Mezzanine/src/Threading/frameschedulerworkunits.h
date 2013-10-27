@@ -43,9 +43,11 @@
 #define _frameschedulerworkunits_h
 
 #include "datatypes.h"
+
+#if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
 #include "workunit.h"
 #include "workunitkey.h"
-
+#endif
 /// @file
 /// @brief This defines a number of workunits that are required for doing some tasks that the Framescheduler requires.
 

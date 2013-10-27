@@ -64,6 +64,7 @@ namespace Mezzanine
         CastDynamic          = 3        ///< A dynamic cast from the pointer as provided with no attempt to calls functions on the pointer target, this is default for externally reference counted pointers.
     };
 
+    #ifndef SWIG
     // Forward Declares Just about everything in this file
     // The Pointer itself
     template <typename TypePointedTo> class CountedPtr;
@@ -270,6 +271,7 @@ namespace Mezzanine
                     { UpdateCounter = OtherCounter; }
         };
     }
+    #endif // \SWIG
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A simple reference counting pointer.
@@ -493,6 +495,7 @@ namespace Mezzanine
                 { return _ReferenceCounter; }
     };
 
+    #ifndef SWIG
     /// @internal
     /// @brief This is used as to determine how a CountedPtr performs castin between pointer types internally.
     /// @details The default implementation for internal casting in the CountedPtr  Simply throws an exception.
@@ -524,7 +527,6 @@ namespace Mezzanine
                 return ReturnPointer(0);
             }
     };
-
 
     /// @internal
     /// @brief An implementation of the CountedPtrCast that always return the pointer passed reached via CastNoneError in the ReferenceCountTraits of the target class.
@@ -667,6 +669,7 @@ namespace Mezzanine
     template <typename ReturnType, typename OtherPointerTargetType>
     CountedPtr<ReturnType> CountedPtrDynamicCast(CountedPtr<OtherPointerTargetType>& Original)
         { return CountedPtr<ReturnType>(dynamic_cast<ReturnType*>(Original.GetReferenceCount())); }
+    #endif // \SWIG
 
 } // \Mezzanine
 

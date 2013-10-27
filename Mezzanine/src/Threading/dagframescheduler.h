@@ -88,6 +88,7 @@
     #define SWIG_MODULE_SET
 #endif
 
+#if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
 #include "asynchronousfileloadingworkunit.h"
 #include "asynchronousworkunit.h"
 #include "atomicoperations.h"
@@ -107,6 +108,8 @@
 #include "threadingenumerations.h"
 #include "workunit.h"
 #include "workunitkey.h"
+#endif
+
 
 
 /// @def MEZZ_DAGFRAMESCHEDULER_MAJOR_VERSION

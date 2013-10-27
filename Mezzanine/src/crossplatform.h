@@ -88,11 +88,6 @@ namespace Mezzanine
 
     namespace crossplatform
     {
-        /// @brief Pauses the program for a given period of time.
-        /// @details Pauses the program for a given period of time.
-        /// @param WaitTime The amount of time in milliseconds to wait
-        void MEZZ_LIB WaitMilliseconds(const Whole &WaitTime);
-
         /// @brief Gets the platform currently being run on.
         /// @return Returns a string based on the platform.  "Windows", "Linux", or "MacOSX".
         String MEZZ_LIB GetPlatform();
@@ -109,6 +104,7 @@ namespace Mezzanine
         /// @return The largest size integer containing a timestamp that can be compared to other timestamps, but hads no guarantees for external value.
         MaxInt MEZZ_LIB GetTimeStamp();
 
+        #ifndef SWIG
         /// @brief Get the resolution of the timestamp in microseconds.
         /// @return A Whole which returns in millionths of a second the smallest unit of time that GetTimeStamp can measure.
         Whole MEZZ_LIB GetTimeStampResolution();
@@ -120,6 +116,8 @@ namespace Mezzanine
         /// and should return a reasonable value for how many threads should be used.
         /// @return A Whole containing the amount of processors.
         Whole MEZZ_LIB GetCPUCount();
+        #endif //SWIG
     }//crossplatform
 }//Mezzanine
+
 #endif

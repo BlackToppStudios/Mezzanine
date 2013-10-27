@@ -43,11 +43,13 @@
 
 #include "datatypes.h"
 
+#if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
 #include "doublebufferedresource.h"
 #include "thread.h"
 #include "workunitkey.h"
 #include "systemcalls.h"
 #include "rollingaverage.h"
+#endif
 
 #ifdef MEZZ_USEBARRIERSEACHFRAME
     #include "barrier.h"

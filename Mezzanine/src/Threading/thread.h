@@ -68,8 +68,10 @@ freely, subject to the following restrictions:
     distribution.
 */
 
+#if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
 #include "systemcalls.h"
 #include "mutex.h"
+#endif
 
 namespace Mezzanine
 {

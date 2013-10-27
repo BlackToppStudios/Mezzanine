@@ -63,29 +63,20 @@
     #include "XML/xml.h"
     #include "UI/ui.h"
 #endif
-
                                         // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
 #include "actor.h"                      // serializes
 #include "actormanager.h"
 #include "areaeffect.h"
 #include "areaeffectmanager.h"
-
-#ifndef SWIG
 #include "attachable.h"                 // Target for output only
-#endif
-
 #include "axisalignedbox.h"
 #include "binarybuffer.h"
-
-#ifndef SWIG
 #include "cameracontroller.h"
-#endif
-
 #include "colourvalue.h"                // done
-
-#ifndef SWIG
 #include "countedptr.h"
 #include "crossplatform.h"              // nothing to do
+
+#ifndef SWIG
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
 #include "debris.h"
