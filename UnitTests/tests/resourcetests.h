@@ -41,6 +41,7 @@
 #define _resourcetests_h
 
 #include "mezztest.h"
+
 #include "resourcemanager.h"
 
 #include <fstream>
