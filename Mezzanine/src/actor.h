@@ -72,9 +72,9 @@ namespace Mezzanine
     {
     public:
         /// @brief Class constructor.
-        ActorFactory() {  };
+        ActorFactory() {  }
         /// @brief Class destructor.
-        virtual ~ActorFactory() {  };
+        virtual ~ActorFactory() {  }
 
         /// @brief Gets the name of the Actor that is created by this factory.
         /// @return Returns the typename of the Actor created by this factory.

@@ -277,10 +277,10 @@ namespace Mezzanine
                     *prPos++ = CurrVertex.Position.Z;
 
                     // Colour assignment
-                    *prPos++ = CurrVertex.Colour.R;
-                    *prPos++ = CurrVertex.Colour.G;
-                    *prPos++ = CurrVertex.Colour.B;
-                    *prPos++ = CurrVertex.Colour.A;
+                    *prPos++ = CurrVertex.Colour.RedChannel;
+                    *prPos++ = CurrVertex.Colour.GreenChannel;
+                    *prPos++ = CurrVertex.Colour.BlueChannel;
+                    *prPos++ = CurrVertex.Colour.AlphaChannel;
 
                     // Bounds checking
                     if(CurrVertex.Position.X < vaabMin.X)

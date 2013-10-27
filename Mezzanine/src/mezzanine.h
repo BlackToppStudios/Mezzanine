@@ -82,7 +82,11 @@
 
 #ifndef SWIG
 #include "cameracontroller.h"
+#endif
+
 #include "colourvalue.h"                // done
+
+#ifndef SWIG
 #include "countedptr.h"
 #include "crossplatform.h"              // nothing to do
 #include "crossplatformexport.h"        // nothing to do

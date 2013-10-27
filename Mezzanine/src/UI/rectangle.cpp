@@ -135,7 +135,7 @@ namespace Mezzanine
 
         void Rectangle::DrawFill(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight)
         {
-            if(BackgroundColours[0].A != 0.0)
+            if(BackgroundColours[0].AlphaChannel != 0.0)
             {
                 VertexData Temp;
                 // Triangle A
@@ -341,11 +341,7 @@ namespace Mezzanine
             }
             else if (UI::Gradient_Diagonal_1 == Grad)
             {
-                ColourValue Average;
-                Average.R = (ColourA.R + ColourB.R) * 0.5f;
-                Average.G = (ColourA.G + ColourB.G) * 0.5f;
-                Average.B = (ColourA.B + ColourB.B) * 0.5f;
-                Average.A = (ColourA.A + ColourB.A) * 0.5f;
+                ColourValue Average(ColourA.Average(ColourB));
                 BackgroundColours[0] = ColourA;
                 BackgroundColours[1] = Average;
                 BackgroundColours[2] = ColourB;
@@ -353,11 +349,7 @@ namespace Mezzanine
             }
             else if (UI::Gradient_Diagonal_2 == Grad)
             {
-                ColourValue Average;
-                Average.R = (ColourA.R + ColourB.R) * 0.5f;
-                Average.G = (ColourA.G + ColourB.G) * 0.5f;
-                Average.B = (ColourA.B + ColourB.B) * 0.5f;
-                Average.A = (ColourA.A + ColourB.A) * 0.5f;
+                ColourValue Average(ColourA.Average(ColourB));
                 BackgroundColours[0] = Average;
                 BackgroundColours[1] = ColourA;
                 BackgroundColours[2] = Average;
@@ -367,9 +359,7 @@ namespace Mezzanine
         }
 
         ColourValue Rectangle::GetBackgroundColour(const UI::QuadCorner& Corner) const
-        {
-            return BackgroundColours[Corner];
-        }
+            { return BackgroundColours[Corner]; }
 
         void Rectangle::SetBorderWidth(const Real& Width)
         {
@@ -414,14 +404,10 @@ namespace Mezzanine
         }
 
         Real Rectangle::GetBorderWidth() const
-        {
-            return BorderWidth;
-        }
+            { return BorderWidth; }
 
         ColourValue Rectangle::GetBorderColour(const UI::Border& Side) const
-        {
-            return BorderColours[Side];
-        }
+            { return BorderColours[Side]; }
 
         void Rectangle::SetRotationDegrees(const Real& Degrees)
         {
@@ -436,14 +422,10 @@ namespace Mezzanine
         }
 
         Real Rectangle::GetRotationDegrees() const
-        {
-            return MathTools::RadiansToDegrees(RotAngle);
-        }
+            { return MathTools::RadiansToDegrees(RotAngle); }
 
         Real Rectangle::GetRotationRadians() const
-        {
-            return RotAngle;
-        }
+            { return RotAngle; }
 
         void Rectangle::SetRotationCenter(bool Custom, const Vector2& Center)
         {
@@ -453,9 +435,7 @@ namespace Mezzanine
         }
 
         Vector2 Rectangle::GetRotationCenter() const
-        {
-            return RotCenter;
-        }
+            { return RotCenter; }
 
         void Rectangle::SetPosition(const Vector2& Position)
         {

@@ -52,59 +52,86 @@ namespace Mezzanine
 {
     ColourValue::ColourValue(Real Red, Real Green, Real Blue, Real Alpha)
     {
-        this->R = Red;
-        this->G = Green;
-        this->B = Blue;
-        this->A = Alpha;
+        this->RedChannel = Red;
+        this->GreenChannel = Green;
+        this->BlueChannel = Blue;
+        this->AlphaChannel = Alpha;
     }
 
     ColourValue::ColourValue(const Ogre::ColourValue& OgreValues)
     {
-        this->R = OgreValues.r;
-        this->G = OgreValues.g;
-        this->B = OgreValues.b;
-        this->A = OgreValues.a;
+        this->RedChannel = OgreValues.r;
+        this->GreenChannel = OgreValues.g;
+        this->BlueChannel = OgreValues.b;
+        this->AlphaChannel = OgreValues.a;
     }
 
     ColourValue::ColourValue(const ColourValue& OtherColour)
     {
-        this->R = OtherColour.R;
-        this->G = OtherColour.G;
-        this->B = OtherColour.B;
-        this->A = OtherColour.A;
+        this->RedChannel = OtherColour.RedChannel;
+        this->GreenChannel = OtherColour.GreenChannel;
+        this->BlueChannel = OtherColour.BlueChannel;
+        this->AlphaChannel = OtherColour.AlphaChannel;
     }
 
     ColourValue::ColourValue(const XML::Node& OneNode)
-    {
-        this->ProtoDeSerialize(OneNode);
-    }
+        { this->ProtoDeSerialize(OneNode); }
 
     ColourValue::~ColourValue()
-    {
-    }
+        { }
 
     Ogre::ColourValue ColourValue::GetOgreColourValue() const
     {
         Ogre::ColourValue OgreColour;
-        OgreColour.r = this->R;
-        OgreColour.g = this->G;
-        OgreColour.b = this->B;
-        OgreColour.a = this->A;
+        OgreColour.r = this->RedChannel;
+        OgreColour.g = this->GreenChannel;
+        OgreColour.b = this->BlueChannel;
+        OgreColour.a = this->AlphaChannel;
         return OgreColour;
     }
 
+    Real ColourValue::GetRedChannel() const
+        { return RedChannel; }
+    void ColourValue::SetRedChannel(const Real& Red)
+        { RedChannel = Red; }
+
+    Real ColourValue::GetGreenChannel() const
+        { return GreenChannel; }
+    void ColourValue::SetGreenChannel(const Real& Green)
+        { GreenChannel = Green; }
+
+    Real ColourValue::GetBlueChannel() const
+        { return BlueChannel; }
+    void ColourValue::SetBlueChannel(const Real& Blue)
+        { BlueChannel = Blue; }
+
+    Real ColourValue::GetAlphaChannel() const
+        { return AlphaChannel; }
+    void ColourValue::SetAlphaChannel(const Real& Alpha)
+        { AlphaChannel = Alpha; }
+
     bool ColourValue::operator== (const ColourValue &Colour) const
-        { return ( Colour.R == this->R && Colour.G == this->G && Colour.B == this->B && Colour.A == this->A ); }
+        { return ( Colour.RedChannel == this->RedChannel && Colour.GreenChannel == this->GreenChannel && Colour.BlueChannel == this->BlueChannel && Colour.AlphaChannel == this->AlphaChannel ); }
 
     bool ColourValue::operator!= (const ColourValue &Colour) const
-        { return ( Colour.R != this->R || Colour.G != this->G || Colour.B != this->B || Colour.A != this->A ); }
+        { return ( Colour.RedChannel != this->RedChannel || Colour.GreenChannel != this->GreenChannel || Colour.BlueChannel != this->BlueChannel || Colour.AlphaChannel != this->AlphaChannel ); }
 
     void ColourValue::operator= (const ColourValue &OtherColour)
     {
-        this->R = OtherColour.R;
-        this->G = OtherColour.G;
-        this->B = OtherColour.B;
-        this->A = OtherColour.A;
+        this->RedChannel = OtherColour.RedChannel;
+        this->GreenChannel = OtherColour.GreenChannel;
+        this->BlueChannel = OtherColour.BlueChannel;
+        this->AlphaChannel = OtherColour.AlphaChannel;
+    }
+
+    ColourValue ColourValue::Average(const ColourValue& OtherColor) const
+    {
+        return ColourValue(
+                        (this->RedChannel+OtherColor.RedChannel) * 0.5,
+                        (this->GreenChannel+OtherColor.GreenChannel) * 0.5,
+                        (this->BlueChannel+OtherColor.BlueChannel) * 0.5,
+                        (this->AlphaChannel+OtherColor.AlphaChannel) * 0.5
+                    );
     }
 
     ColourValue ColourValue::Transparent()
@@ -543,7 +570,7 @@ namespace Mezzanine
         Mezzanine::XML::Attribute AAttr = VecNode.AppendAttribute("Alpha");
         if( VersionAttr && RAttr && BAttr && GAttr && AAttr)
         {
-            if( VersionAttr.SetValue("1") && RAttr.SetValue(this->R) && BAttr.SetValue(this->B) && GAttr.SetValue(this->G) && AAttr.SetValue(this->A))
+            if( VersionAttr.SetValue("1") && RAttr.SetValue(this->RedChannel) && BAttr.SetValue(this->BlueChannel) && GAttr.SetValue(this->GreenChannel) && AAttr.SetValue(this->AlphaChannel))
             {
                 return;
             }else{
@@ -561,10 +588,10 @@ namespace Mezzanine
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                this->R=OneNode.GetAttribute("Red").AsReal();
-                this->G=OneNode.GetAttribute("Green").AsReal();
-                this->B=OneNode.GetAttribute("Blue").AsReal();
-                this->A=OneNode.GetAttribute("Alpha").AsReal();
+                this->RedChannel=OneNode.GetAttribute("Red").AsReal();
+                this->GreenChannel=OneNode.GetAttribute("Green").AsReal();
+                this->BlueChannel=OneNode.GetAttribute("Blue").AsReal();
+                this->AlphaChannel=OneNode.GetAttribute("Alpha").AsReal();
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (this->ColourValue::SerializableName()) + ": Not Version 1");
             }

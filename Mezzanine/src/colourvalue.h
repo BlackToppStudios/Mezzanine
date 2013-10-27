@@ -57,18 +57,27 @@ namespace Mezzanine
     /// @class ColourValue
     /// @headerfile colourvalue.h
     /// @brief This is a simple class for holding 4 reals representing the colour any give object or lightsource can have.
+    /// @note Calling the Color helper function from scripting languages without static function support is odd,
+    /// instead of a scoping operator and underscore is used in the identifier name, for example in Lua use the following syntax:
+    /// alicedressbeforegunfight=MezzanineSafe.ColourValue_AliceBlue()
     ///////////////////////////////////////
     class MEZZ_LIB ColourValue
     {
         public:
+            #ifndef SWIG
             /// @brief Value from 0.0 to 1.0 representing the amount of red present in the colour. 1.0 if very red, 0.0 is no red.
-            Real R;
+            /// @note Not accessible from scripting languages
+            Real RedChannel;
             /// @brief Value from 0.0 to 1.0 representing the amount of green present in the colour. 1.0 if very green, 0.0 is no green.
-            Real G;
+            /// @note Not accessible from scripting languages
+            Real GreenChannel;
             /// @brief Value from 0.0 to 1.0 representing the amount of blue present in the colour. 1.0 if very blue, 0.0 is no blue.
-            Real B;
+            /// @note Not accessible from scripting languages
+            Real BlueChannel;
             /// @brief Value from 0.0 to 1.0 representing the transparency of the colours. 1.0 is opaque and 0.0 is clear.
-            Real A;
+            /// @note Not accessible from scripting languages
+            Real AlphaChannel;
+            #endif
 
             /// @brief 4 Reals constructor.
             /// @details This constructor allows you to set any values, if unset, they default to 1.0.
@@ -77,10 +86,14 @@ namespace Mezzanine
             /// @param Blue Real representing the amount of blue present in the colour.
             /// @param Alpha Real representing the transparency of the colours.
             ColourValue(Real Red = 1.0, Real Green = 1.0, Real Blue = 1.0, Real Alpha = 1.0);
+
+            #ifndef SWIG
             /// @brief Ogre constructor.
             /// @details Internal use only.  Constructs a colourvalue class from an ogre colourvalue.
             /// @param OgreValues The Ogre ColourValue class to base this class on.
             ColourValue(const Ogre::ColourValue& OgreValues);
+            #endif
+
             /// @brief Copy Constructor
             /// @param OtherColour
             ColourValue(const ColourValue& OtherColour);
@@ -95,6 +108,31 @@ namespace Mezzanine
             /// @return Returns an Ogre ColourValue class that has values equal to this one.
             Ogre::ColourValue GetOgreColourValue() const;
 
+            /// @brief Retrieve the Red color component
+            /// @return A Real between 0 and 1 respresenting, how Red this this color is.
+            Real GetRedChannel() const;
+            /// @brief Set the Red component of this color
+            /// @param Red A Real between 0 and 1 signify how much red this will color with have.
+            void SetRedChannel(const Real& Red);
+            /// @brief Retrieve the Green color component
+            /// @return A Real between 0 and 1 respresenting, how Green this this color is.
+            Real GetGreenChannel() const;
+            /// @brief Set the Green component of this color
+            /// @param Green A Real between 0 and 1 signify how much Green this will color with have.
+            void SetGreenChannel(const Real& Green);
+            /// @brief Retrieve the Blue color component
+            /// @return A Real between 0 and 1 respresenting, how Blue this this color is.
+            Real GetBlueChannel() const;
+            /// @brief Set the Blue component of this color
+            /// @param Blue A Real between 0 and 1 signify how much Blue this will color with have.
+            void SetBlueChannel(const Real& Blue);
+            /// @brief Retrieve the Alpha color component
+            /// @return A Real between 0 and 1 respresenting, how Transparent this this color is.
+            Real GetAlphaChannel() const;
+            /// @brief Set the Alpha component of this color
+            /// @param Red A Alpha between 0 and 1 signify how much Opaque/Transparent this will color with have.
+            void SetAlphaChannel(const Real& Alpha);
+
             /// @brief Equality Comparison Operator
             /// @param Colour This is another ColourValue to compare with.
             /// @return True if the colors match perfectly, false otherwise
@@ -106,6 +144,11 @@ namespace Mezzanine
             /// @brief Assignment operator.
             /// @param OtherColour The colour values you want to overwrite this colour's values with.
             void operator= (const ColourValue &OtherColour);
+
+            /// @brief Get the color that is the average of this and another color.
+            /// @param OtherColor The other color to average with.
+            /// @return A ColourValue with each channel being the arithmetic mean of this and the OtherColor.
+            ColourValue Average(const ColourValue& OtherColor) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Prefab Colour fetchers
