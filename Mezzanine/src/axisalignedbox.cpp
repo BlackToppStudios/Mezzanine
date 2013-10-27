@@ -80,7 +80,9 @@ namespace Mezzanine
 
     Bool AxisAlignedBox::IsZero() const
     {
-        return ( this->MinExt == this->MaxExt );
+        return ( this->MinExt.X >= this->MaxExt.X &&
+                 this->MinExt.Y >= this->MaxExt.Y &&
+                 this->MinExt.Z >= this->MaxExt.Z );
     }
 
     Real AxisAlignedBox::GetVolume() const
