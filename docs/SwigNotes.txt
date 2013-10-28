@@ -37,6 +37,8 @@ Threading/workunit.h:149: Warning 403: Method Mezzanine::Threading::iWorkUnit::D
   never exclude datatypes.h
 	causes odd problems
 	Be careful about what it includes.
+  Prevent inclusion as part of external modules accidentally
+    #if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
 
 
 

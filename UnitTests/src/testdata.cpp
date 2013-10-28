@@ -110,6 +110,12 @@ namespace Mezzanine
             LongestNameLength(0)
         {}
 
+        UnitTestGroup::UnitTestGroup(const UnitTestGroup& OtherGroup)
+            : set(OtherGroup),
+              TestOutput(OtherGroup.TestOutput.str()),
+              TestError(OtherGroup.TestError.str())
+        {}
+
         void UnitTestGroup::RunTests(bool RunAuto, bool RunInteractive)
         {
             try
@@ -258,6 +264,12 @@ namespace Mezzanine
             for (iterator Iter=this->begin(); Iter!=this->end(); Iter++)
                 { Results += "\n  " + Iter->GetAsXML(); }
             Results += "\n</UnitTestGroup>";
+            Results += "\n<UnitTestOutput>";
+            Results += this->TestOutput.str();
+            Results += "\n</UnitTestOutput>";
+            Results += "\n<UnitTestError>";
+            Results += this->TestError.str();
+            Results += "\n</UnitTestError>";
             return Results;
         }
 

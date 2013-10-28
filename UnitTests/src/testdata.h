@@ -51,6 +51,7 @@
 #include <set>
 #include <map>
 #include <iostream>
+#include <sstream>
 
 namespace Mezzanine
 {
@@ -121,12 +122,21 @@ namespace Mezzanine
         class UnitTestGroup : public TestDataStorage
         {
             protected:
+                /// @brief A destination for all normal ouput in the tests.
+                std::stringstream TestOutput;
+
+                /// @brief A destination for errors
+                std::stringstream TestError;
+
                 /// @brief Some basic variable for tracking simple statistics
                 unsigned int LongestNameLength;
 
             public:
                 /// @brief Default constructor
                 UnitTestGroup();
+
+                /// @brief Copy constructor
+                UnitTestGroup(const UnitTestGroup& OtherGroup);
 
                 /// @brief This will call RunAutomaticTests based on the values passed.
                 /// @details All test results should be inserted using AddTestResult to allow the returning of results.
