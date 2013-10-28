@@ -42,9 +42,10 @@
 #define _barrier_h
 
 #include "datatypes.h"
+
+#if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
 #include "atomicoperations.h"
-
-
+#endif
 
 /// @file
 /// @brief The declaration of the @ref Mezzanine::Threading::Barrier Barrier synchronization primitive

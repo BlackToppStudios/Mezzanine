@@ -330,7 +330,7 @@ int main (int argc, char** argv)
         Runner.DisplayResults(OutFile, OutFile, SummaryDisplay,FullDisplay);
         OutFile.close();
     }
-    Runner.DisplayResults(cout, cerr, SummaryDisplay,FullDisplay);
+    Runner.DisplayResults(cout, cerr, SummaryDisplay, FullDisplay);
 
     return ExitSuccess;
  }

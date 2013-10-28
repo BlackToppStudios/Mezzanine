@@ -43,7 +43,6 @@
 
 #include "datatypes.h"
 
-
 /// @file
 /// @brief Simple thread safe ways to check and change a specified variable atomically.
 

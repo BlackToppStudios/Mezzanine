@@ -42,12 +42,15 @@
 #define _workunit_h
 
 #include "datatypes.h"
+
+#if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
 #include "framescheduler.h"
 #include "mutex.h"
 #include "rollingaverage.h"
 #include "threadingenumerations.h"
 #include "thread.h"
 #include "workunitkey.h"
+#endif
 
 /// @file
 /// @brief This file has the definition of the workunit.

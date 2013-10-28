@@ -48,7 +48,7 @@
 #include "Graphics/graphicsmanager.h"
 #include "UI/uimanager.h"
 #include "Graphics/gamewindow.h"
-
+#include "Threading/systemcalls.h"
 
 //External includes
 #include <Ogre.h>
@@ -75,15 +75,6 @@ namespace Mezzanine
 {
     namespace crossplatform
     {
-        void WaitMilliseconds(const Whole &WaitTime)
-        {
-            #ifdef WINDOWS
-                Sleep(WaitTime);
-            #else
-                usleep(1000*WaitTime);
-            #endif
-        }
-
         String GetPlatform()
         {
             #ifdef LINUX
@@ -111,64 +102,15 @@ namespace Mezzanine
             #endif
         }
 
-        #ifdef _MEZZ_CPP11_
         MaxInt GetTimeStamp()
-            { return std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now()).count(); }
-        #else
-            #ifdef WINDOWS
-                namespace
-                {
-                    /// @internal
-                    class Timer
-                    {
-                        public:
-                            LARGE_INTEGER frequency;
+            { return Mezzanine::GetTimeStamp(); }
 
-                            Timer()
-                                { QueryPerformanceFrequency(&frequency); }
-
-                            MaxInt GetTimeStamp()
-                            {
-                                LARGE_INTEGER Current;
-                                QueryPerformanceCounter(&Current);
-                                return MaxInt(Current.QuadPart * (1000000.0 / frequency.QuadPart));
-                            }
-                    };
-
-                    static Timer ATimer;
-                }
-
-                MaxInt GetTimeStamp()
-                    { return ATimer.GetTimeStamp(); }
-
-                Whole GetTimeStampResolution()
-                    { return Whole(ATimer.frequency.QuadPart/1000); }
-
-            #else
-                MaxInt GetTimeStamp()
-                {
-                    timeval Now;
-                    gettimeofday(&Now, NULL); // Posix says this must return 0, so it seems it can't fail
-                    return (Now.tv_sec * 1000000) + Now.tv_usec;
-                }
-
-                Whole GetTimeStampResolution()
-                    { return 1; } // barring kernel bugs
-
-            #endif
-        #endif
+        Whole GetTimeStampResolution()
+            { return Mezzanine::GetTimeStampResolution(); }
 
         Whole MEZZ_LIB GetCPUCount()
-        {
-            #ifdef WINDOWS
-            SYSTEM_INFO sysinfo;
-            GetSystemInfo( &sysinfo );
+            { return Mezzanine::GetCPUCount(); }
 
-            return sysinfo.dwNumberOfProcessors;
-            #else
-                return sysconf( _SC_NPROCESSORS_ONLN );
-            #endif
-        }
     }//crossplatform
 }//Mezzanine
 

@@ -42,10 +42,14 @@
 #define _logtools_h
 
 #include "datatypes.h"
+
+//#if !(defined(SWIG) && !defined(SWIG_THREADING)) // Do not read when in swig and not in the threading module
+#if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
 #include "systemcalls.h"
+#endif
 
 #ifndef SWIG
-    #include <iostream>
+#include <iostream>
 #endif
 
 /// @file

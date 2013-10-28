@@ -243,9 +243,9 @@ namespace Mezzanine
     {
     public:
         /// @brief Class constructor.
-        AreaEffectFactory() {  };
+        AreaEffectFactory() {  }
         /// @brief Class destructor.
-        virtual ~AreaEffectFactory() {  };
+        virtual ~AreaEffectFactory() {  }
 
         /// @brief Gets the name of the AreaEffect that is created by this factory.
         /// @return Returns the typename of the AreaEffect created by this factory.
