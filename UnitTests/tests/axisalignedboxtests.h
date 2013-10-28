@@ -162,7 +162,7 @@ public:
 
         {
             Plane PassSurface(Vector3(1.0,-1.0,1.0).Normalize(),2);
-            Plane FailSurface(Vector3(2.0,3.0,-1.0),10);
+            Plane FailSurface(Vector3(2.0,3.0,-1.0).Normalize(),10);
             AxisAlignedBox Box(Vector3(0.0,0.0,0.0),Vector3(5.0,5.0,5.0));
             TEST( Box.IsOverlapping(PassSurface) && !Box.IsOverlapping(FailSurface) ,"IsOverlapping(const_Plane&)_const");
         }

@@ -72,10 +72,13 @@ namespace Mezzanine
         Distance(Other.Distance)
         {  }
 
-    Plane::Plane(const Vector3& Norm, const Real Dist) :
+    Plane::Plane(const Vector3& Norm, const Real Constant) :
         Normal(Norm),
-        Distance(Dist)
+        Distance(-Constant)
         {  }
+
+    Plane::Plane(const Vector3& Norm, const Vector3& Point)
+        { this->Define(Norm,Point); }
 
     Plane::Plane(const Vector3& First, const Vector3& Second, const Vector3& Third)
         { this->Define(First,Second,Third); }
@@ -89,10 +92,16 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void Plane::Define(const Vector3& Norm, const Real Dist)
+    void Plane::Define(const Vector3& Norm, const Real Constant)
     {
         this->Normal = Norm;
-        this->Distance = Dist;
+        this->Distance = -Constant;
+    }
+
+    void Plane::Define(const Vector3& Norm, const Vector3& Point)
+    {
+        this->Normal = Norm;
+        this->Distance = -(Norm.DotProduct(Point));
     }
 
     void Plane::Define(const Vector3& First, const Vector3& Second, const Vector3& Third)
@@ -148,10 +157,18 @@ namespace Mezzanine
     // Conversion Methods
 
     Ogre::Plane Plane::GetOgrePlane() const
-        { return Ogre::Plane( Normal.GetOgreVector3(), Distance); }
+    {
+        Ogre::Plane Ret;
+        Ret.normal = this->Normal.GetOgreVector3();
+        Ret.d = this->Distance;
+        return Ret;
+    }
 
     void Plane::ExtractOgrePlane(const Ogre::Plane& InternalPlane)
-        { this->Normal = InternalPlane.normal;  this->Distance = InternalPlane.d; }
+    {
+        this->Normal = InternalPlane.normal;
+        this->Distance = InternalPlane.d;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
