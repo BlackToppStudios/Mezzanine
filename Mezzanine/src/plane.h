@@ -97,8 +97,12 @@ namespace Mezzanine
         Plane(const Plane& Other);
         /// @brief Descriptive constructor.
         /// @param Norm The positive direction of the plane.
-        /// @param Dist Distance from origin to the plane.
-        Plane(const Vector3& Norm, const Real Dist);
+        /// @param Constant The Constant with which to project the plane.
+        Plane(const Vector3& Norm, const Real Constant);
+        /// @brief Dual Vector constructor.
+        /// @param Norm The positive direction of the plane.
+        /// @param Point The "origin" point of the plane in 3D space.
+        Plane(const Vector3& Norm, const Vector3& Point);
         /// @brief Triangle constructor.
         /// @param First This is one point in the triangle.
         /// @param Second This is another point in the triangle.
@@ -115,8 +119,12 @@ namespace Mezzanine
 
         /// @brief Defines the dimensions of this plane explicitly.
         /// @param Norm The positive direction of the plane.
-        /// @param Dist Distance from origin to the plane.
-        void Define(const Vector3& Norm, const Real Dist);
+        /// @param Constant The Constant with which to project the plane.
+        void Define(const Vector3& Norm, const Real Constant);
+        /// @brief Defines the dimensions of this plane based on an origin and direction.
+        /// @param Norm The positive direction of the plane.
+        /// @param Point The "origin" point of the plane in 3D space.
+        void Define(const Vector3& Norm, const Vector3& Point);
         /// @brief Defines the dimensions of this plane from a triangle in 3D space.
         /// @param First This is one point in the triangle.
         /// @param Second This is another point in the triangle.

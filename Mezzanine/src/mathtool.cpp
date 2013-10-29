@@ -220,8 +220,8 @@ namespace Mezzanine
 
         Bool Overlap(const AxisAlignedBox& Box1, const AxisAlignedBox& Box2)
         {
-            return !( Box1.MinExt.X > Box2.MinExt.X || Box1.MinExt.Y > Box2.MinExt.Y || Box1.MinExt.Z > Box2.MinExt.Z ||
-                      Box1.MaxExt.X < Box2.MaxExt.X || Box1.MaxExt.Y < Box2.MaxExt.Y || Box1.MaxExt.Z < Box2.MaxExt.Z );
+            return !( Box1.MinExt.X > Box2.MaxExt.X || Box1.MinExt.Y > Box2.MaxExt.Y || Box1.MinExt.Z > Box2.MaxExt.Z ||
+                      Box1.MaxExt.X < Box2.MinExt.X || Box1.MaxExt.Y < Box2.MinExt.Y || Box1.MaxExt.Z < Box2.MinExt.Z );
         }
 
         Bool Overlap(const Sphere& Ball1, const Sphere& Ball2)
@@ -232,13 +232,13 @@ namespace Mezzanine
 
         Bool Overlap(const Plane& Surface1, const Plane& Surface2)
         {
-            return ( ( Surface1.Normal != Surface2.Normal ? ( Surface1.Distance == Surface2.Distance ) : true ) );
+            return ( ( Surface1.Normal == Surface2.Normal ? ( Surface1.Distance == Surface2.Distance ) : true ) );
         }
 
         PlaneRayTestResult Intersects(const Plane& Surface, const Ray& Cast)
         {
             // Code in this function is based on the equivalent in Ogre
-            Real Denom = Surface.Normal.DotProduct( Cast.GetDirection() ) + Surface.Distance;
+            Real Denom = Surface.Normal.DotProduct( Cast.GetDirection() );// + Surface.Distance;
             if( MathTools::Fabs(Denom) < std::numeric_limits<Real>::epsilon() ) {
                 return PlaneRayTestResult( false, Vector3() );
             }else{
