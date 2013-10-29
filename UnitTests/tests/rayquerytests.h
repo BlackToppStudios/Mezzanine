@@ -72,7 +72,7 @@ class rayquerytests : public UnitTestGroup
             StringStream Buffer;
             Doc.Save(Buffer);
 
-            cout << "Serialized RayCaster looks like: \"" << Buffer.str() << "\"" << endl;
+            TestOutput << "Serialized RayCaster looks like: \"" << Buffer.str() << "\"" << endl;
             String Expected("<?xml version=\"1.0\"?><RayQueryTool Version=\"1\" ValidResult=\"false\" Actor=\"\"><Offset><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></Offset></RayQueryTool>");
             Test(Expected==String(Buffer.str()),"Serialize");
         }

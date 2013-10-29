@@ -134,18 +134,18 @@ class workunittests : public UnitTestGroup
         /// @brief Mostly tests whether or not dependencies are tracked correctly.
         void RunAutomaticTests()
         {
-            cout << "Starting WorkUnit Tests, 20 runs with WorkUnitSample1" << endl;
+            TestOutput << "Starting WorkUnit Tests, 20 runs with WorkUnitSample1" << endl;
             PiMakerWorkUnit WorkUnitSample1(5000,"WorkUnitSample1",false);
-            FrameScheduler TestScheduler(&cout,1);
+            FrameScheduler TestScheduler(&TestOutput,1);
             Mezzanine::Threading::DefaultThreadSpecificStorage::Type TestThreadStorage(&TestScheduler);
             // run work unit
             for(Whole Counter=0; Counter<20; Counter++)
                 { WorkUnitSample1(TestThreadStorage); }
-            cout << "Here is the complete log of Twenty Test Runs" << endl
+            TestOutput << "Here is the complete log of Twenty Test Runs" << endl
                  << TestThreadStorage.GetResource<DoubleBufferedLogger>(DBRLogger).GetUsable().str() // << endl // logs ends with a newline
                  << "Average Execution Time (Microseconds): " << WorkUnitSample1.GetPerformanceLog().GetAverage() << endl;
 
-            cout << endl << "Starting WorkUnit Dependent and Dependency count Tests. Creating a chain in which C depends on B which depends on A."
+            TestOutput << endl << "Starting WorkUnit Dependent and Dependency count Tests. Creating a chain in which C depends on B which depends on A."
                  << endl << "C --> B --> A" << endl;
             PiMakerWorkUnit* WorkUnitA = new PiMakerWorkUnit(50,"A",false);
             PiMakerWorkUnit* WorkUnitB = new PiMakerWorkUnit(50,"B",false);
@@ -156,9 +156,9 @@ class workunittests : public UnitTestGroup
             TestScheduler.AddWorkUnitMain(WorkUnitB, WorkUnitB->Name);
             TestScheduler.AddWorkUnitMain(WorkUnitC, WorkUnitC->Name);
             TestScheduler.UpdateDependentGraph();
-            cout << "A dependency count: " << WorkUnitA->GetDependencyCount() << " \t A dependent count: " << WorkUnitA->GetDependentCount(TestScheduler) << endl;
-            cout << "B dependency count: " << WorkUnitB->GetDependencyCount() << " \t B dependent count: " << WorkUnitB->GetDependentCount(TestScheduler) << endl;
-            cout << "C dependency count: " << WorkUnitC->GetDependencyCount() << " \t C dependent count: " << WorkUnitC->GetDependentCount(TestScheduler) << endl;
+            TestOutput << "A dependency count: " << WorkUnitA->GetDependencyCount() << " \t A dependent count: " << WorkUnitA->GetDependentCount(TestScheduler) << endl;
+            TestOutput << "B dependency count: " << WorkUnitB->GetDependencyCount() << " \t B dependent count: " << WorkUnitB->GetDependentCount(TestScheduler) << endl;
+            TestOutput << "C dependency count: " << WorkUnitC->GetDependencyCount() << " \t C dependent count: " << WorkUnitC->GetDependentCount(TestScheduler) << endl;
             TEST(WorkUnitA->GetDependencyCount()==0,"ADependencyCount");
             TEST(WorkUnitA->GetDependentCount(TestScheduler)==2,"ADependentCount");
             TEST(WorkUnitB->GetDependencyCount()==1,"BDependencyCount");
@@ -166,7 +166,7 @@ class workunittests : public UnitTestGroup
             TEST(WorkUnitC->GetDependencyCount()==2,"CDependencyCount");
             TEST(WorkUnitC->GetDependentCount(TestScheduler)==0,"CDependentCount");
 
-            cout << "Creating a WorkUnit D which depends on B, So we should have:"
+            TestOutput << "Creating a WorkUnit D which depends on B, So we should have:"
                     << endl << "D --"
                     << endl << "   |"
                     << endl << "   v"
@@ -178,10 +178,10 @@ class workunittests : public UnitTestGroup
             WorkUnitD->AddDependency(WorkUnitB);
             TestScheduler.AddWorkUnitMain(WorkUnitD, WorkUnitD->Name);
             TestScheduler.UpdateDependentGraph();
-            cout << "A dependency count: " << WorkUnitA->GetDependencyCount() << " \t A dependent count: " << WorkUnitA->GetDependentCount(TestScheduler) << endl;
-            cout << "B dependency count: " << WorkUnitB->GetDependencyCount() << " \t B dependent count: " << WorkUnitB->GetDependentCount(TestScheduler) << endl;
-            cout << "C dependency count: " << WorkUnitC->GetDependencyCount() << " \t C dependent count: " << WorkUnitC->GetDependentCount(TestScheduler) << endl;
-            cout << "D dependency count: " << WorkUnitD->GetDependencyCount() << " \t D dependent count: " << WorkUnitD->GetDependentCount(TestScheduler) << endl;
+            TestOutput << "A dependency count: " << WorkUnitA->GetDependencyCount() << " \t A dependent count: " << WorkUnitA->GetDependentCount(TestScheduler) << endl;
+            TestOutput << "B dependency count: " << WorkUnitB->GetDependencyCount() << " \t B dependent count: " << WorkUnitB->GetDependentCount(TestScheduler) << endl;
+            TestOutput << "C dependency count: " << WorkUnitC->GetDependencyCount() << " \t C dependent count: " << WorkUnitC->GetDependentCount(TestScheduler) << endl;
+            TestOutput << "D dependency count: " << WorkUnitD->GetDependencyCount() << " \t D dependent count: " << WorkUnitD->GetDependentCount(TestScheduler) << endl;
             TEST(WorkUnitA->GetDependencyCount()==0,"A2DependencyCount");
             TEST(WorkUnitA->GetDependentCount(TestScheduler)==3,"A2DependentCount");
             TEST(WorkUnitB->GetDependencyCount()==1,"B2DependencyCount");

@@ -65,53 +65,53 @@ class workunitkeytests : public UnitTestGroup
         /// @brief Test if the WorkUnit
         void RunAutomaticTests()
         {
-            cout << "Creating a number of WorkUnitKeys and tesing their ability to sort: " << endl;
-            cout << "\t" << "                   Deps, Time, Ptr" << endl;
-            cout << "\t" << "WorkUnitKey First(   10, 500,  0 ); //Units with the most dependants get priority" << endl;
-            cout << "\t" << "WorkUnitKey Second(   5, 600,  0 ); //Then Units that take more time" << endl;
-            cout << "\t" << "WorkUnitKey Third(    5, 500,  0 ); " << endl;
-            cout << "\t" << "WorkUnitKey Fourth(   3, 500,  1 ); //In case of a tie use higher pointer" << endl;
-            cout << "\t" << "WorkUnitKey Fifth(    3, 500,  0 );" << endl;
+            TestOutput << "Creating a number of WorkUnitKeys and tesing their ability to sort: " << endl;
+            TestOutput << "\t" << "                   Deps, Time, Ptr" << endl;
+            TestOutput << "\t" << "WorkUnitKey First(   10, 500,  0 ); //Units with the most dependants get priority" << endl;
+            TestOutput << "\t" << "WorkUnitKey Second(   5, 600,  0 ); //Then Units that take more time" << endl;
+            TestOutput << "\t" << "WorkUnitKey Third(    5, 500,  0 ); " << endl;
+            TestOutput << "\t" << "WorkUnitKey Fourth(   3, 500,  1 ); //In case of a tie use higher pointer" << endl;
+            TestOutput << "\t" << "WorkUnitKey Fifth(    3, 500,  0 );" << endl;
             WorkUnitKey First(10,500,0);
             WorkUnitKey Second(5,600,0);
             WorkUnitKey Third(5,500,0);
             WorkUnitKey Fourth(3,500,(iWorkUnit*)1);
             WorkUnitKey Fifth(3,500,0);
-            cout << "Second<First: " << (Second < First) << "\t Third<First: " << (Third < First) << "\t Fourth<First: " << (Fourth < First) << "\t Fifth<First: " << (Fifth < First) << endl;
+            TestOutput << "Second<First: " << (Second < First) << "\t Third<First: " << (Third < First) << "\t Fourth<First: " << (Fourth < First) << "\t Fifth<First: " << (Fifth < First) << endl;
             TEST(Second < First,"Second<First");
             TEST(Third < First,"Third<First");
             TEST(Fourth < First,"Fourth<First");
             TEST(Fifth < First,"Fifth<First");
 
-            cout << "Third<Second: " << (Third < Second) << "\t Fourth<Second: " << (Fourth < Second) << "\t Fifth<Second: " << (Third < Second) << endl;
+            TestOutput << "Third<Second: " << (Third < Second) << "\t Fourth<Second: " << (Fourth < Second) << "\t Fifth<Second: " << (Third < Second) << endl;
             TEST(Third < Second,"Third<Second");
             TEST(Fourth < Second,"Fourth<Second");
             TEST(Fifth < Second,"Fifth<Second");
 
-            cout << "Fourth<Third: " << (Fourth < Third) << "\t Fifth<Third: " << (Fifth < Third) << endl;
+            TestOutput << "Fourth<Third: " << (Fourth < Third) << "\t Fifth<Third: " << (Fifth < Third) << endl;
             TEST(Fourth < Third,"Fourth<Third");
             TEST(Fifth < Third,"Fifth<Third");
             TEST(Fifth < Fourth,"Fifth<Fourth");
 
-            cout << "First<Second: " << (First < Second) << "\t First<Third: " << (First < Third) << "\t First<Fourth: " << (First < Fourth) << "\t First<Fifth: " << (First < Fifth) << endl;
+            TestOutput << "First<Second: " << (First < Second) << "\t First<Third: " << (First < Third) << "\t First<Fourth: " << (First < Fourth) << "\t First<Fifth: " << (First < Fifth) << endl;
             TEST(!(First < Second),"!(First<Second)");
             TEST(!(First < Third),"!(First<Third)");
             TEST(!(First < Fourth),"!(First<Fourth)");
             TEST(!(First < Fifth),"!(First<Fifth)");
 
-            cout << "Second<Third: " << (Second < Third) << "\t Second<Fourth: " << (Second < Fourth) << "\t Second<Fifth: " << (Second < Fifth) << endl;
+            TestOutput << "Second<Third: " << (Second < Third) << "\t Second<Fourth: " << (Second < Fourth) << "\t Second<Fifth: " << (Second < Fifth) << endl;
             TEST(!(Second < Third),"!(Second<Third)");
             TEST(!(Second < Fourth),"!(Second<Fourth)");
             TEST(!(Second < Fifth),"!(Second<Fifth)");
 
-            cout << "Third<Fourth: " << (Third < Fourth) << "\t Third<Fifth: " << (Third < Fifth) << endl;
+            TestOutput << "Third<Fourth: " << (Third < Fourth) << "\t Third<Fifth: " << (Third < Fifth) << endl;
             TEST(!(Third < Fourth),"!(Third<Fourth)");
             TEST(!(Third < Fifth),"!(Third<Fifth)");
 
-            cout << "Fourth<Fifth: " << (Fourth<Fifth) << endl;
+            TestOutput << "Fourth<Fifth: " << (Fourth<Fifth) << endl;
             TEST(!(Fourth < Fifth),"!(Fourth<Fifth)");
 
-            cout << "Creating 4 WorkUnits for a sorting test with an set (be the only differrence between fourth and fifth was the address of the workunit, and we cannot control that.):" << endl;
+            TestOutput << "Creating 4 WorkUnits for a sorting test with an set (be the only differrence between fourth and fifth was the address of the workunit, and we cannot control that.):" << endl;
             PiMakerWorkUnit *WorkUnitK1 = new PiMakerWorkUnit(500,"First",false);
             PiMakerWorkUnit *WorkUnitK2 = new PiMakerWorkUnit(500,"Second",false);
             PiMakerWorkUnit *WorkUnitK3 = new PiMakerWorkUnit(500,"Third",false);
@@ -127,22 +127,22 @@ class workunitkeytests : public UnitTestGroup
             WorkUnitKeyTest.insert(First);
             set<WorkUnitKey>::reverse_iterator Iter=WorkUnitKeyTest.rbegin();
 
-            cout << ((PiMakerWorkUnit*)(Iter->Unit))->Name << " ";
+            TestOutput << ((PiMakerWorkUnit*)(Iter->Unit))->Name << " ";
             TEST(((PiMakerWorkUnit*)(Iter->Unit))->Name == String("First"), "First");
             Iter++;
 
-            cout << ((PiMakerWorkUnit*)(Iter->Unit))->Name << " ";
+            TestOutput << ((PiMakerWorkUnit*)(Iter->Unit))->Name << " ";
             TEST(((PiMakerWorkUnit*)(Iter->Unit))->Name == String("Second"), "Second");
 
             Iter++;
-            cout << ((PiMakerWorkUnit*)(Iter->Unit))->Name << " ";
+            TestOutput << ((PiMakerWorkUnit*)(Iter->Unit))->Name << " ";
             TEST(((PiMakerWorkUnit*)(Iter->Unit))->Name == String("Third"), "Third");
             Iter++;
 
-            cout << ((PiMakerWorkUnit*)(Iter->Unit))->Name << " ";
+            TestOutput << ((PiMakerWorkUnit*)(Iter->Unit))->Name << " ";
             TEST(((PiMakerWorkUnit*)(Iter->Unit))->Name == String("Fourth"), "Fourth");
             Iter++;
-            cout << endl;
+            TestOutput << endl;
 
             delete WorkUnitK1; delete WorkUnitK2; delete WorkUnitK3; delete WorkUnitK4;
         }

@@ -189,7 +189,7 @@ class managedptrtests : public UnitTestGroup
             int TestDeconstructCount = 0;
             int TestSetCount = 0;
             int TestGetCount = 0;
-            cout << "Testing Basic consistency of ManagedPtr, by creating one and counting its calls in a simple situation." << endl;
+            TestOutput << "Testing Basic consistency of ManagedPtr, by creating one and counting its calls in a simple situation." << endl;
             {
                 TrackedHandleInt AuditableHandle;
                 AuditableHandle.ExternalConstructCount = &TestConstructCount;
@@ -199,7 +199,7 @@ class managedptrtests : public UnitTestGroup
                 ManagedPtr<TrackedHandleInt> BasicConsistencyTest(AuditableHandle);
                 TEST(10==*BasicConsistencyTest,"BaseConsistency::Dereference");
             };
-            cout << endl
+            TestOutput << endl
                  << " Constructed count: " << TestConstructCount << endl
                  << " Deconstructed count: " << TestDeconstructCount << endl
                  << " Set count: " << TestSetCount << endl
@@ -212,7 +212,7 @@ class managedptrtests : public UnitTestGroup
             TestDeconstructCount = 0;
             TestSetCount = 0;
             TestGetCount = 0;
-            cout << "Testing assignment of ManagedPtr, by creating one and counting its calls in a simple situation requiring assigment." << endl;
+            TestOutput << "Testing assignment of ManagedPtr, by creating one and counting its calls in a simple situation requiring assigment." << endl;
             {
                 TrackedHandleInt AuditableHandle;
                 AuditableHandle.ExternalConstructCount = &TestConstructCount;
@@ -227,7 +227,7 @@ class managedptrtests : public UnitTestGroup
                 TEST(Assignee,"AssignmentConsistency::BoolValidity");
                 TEST(10==*Assignee,"AssignmentConsistency::Dereference");
             };
-            cout << endl
+            TestOutput << endl
                  << " Constructed count: " << TestConstructCount << endl
                  << " Deconstructed count: " << TestDeconstructCount << endl
                  << " Set count: " << TestSetCount << endl
@@ -240,7 +240,7 @@ class managedptrtests : public UnitTestGroup
             TestDeconstructCount = 0;
             TestSetCount = 0;
             TestGetCount = 0;
-            cout << "Testing copy construction of ManagedPtr, by creating one and counting its calls in a simple situation requiring copying." << endl;
+            TestOutput << "Testing copy construction of ManagedPtr, by creating one and counting its calls in a simple situation requiring copying." << endl;
             {
                 TrackedHandleInt AuditableHandle;
                 AuditableHandle.ExternalConstructCount = &TestConstructCount;
@@ -254,7 +254,7 @@ class managedptrtests : public UnitTestGroup
                 TEST(Assignee,"CopyConsistency::BoolValidity");
                 TEST(10==*Assignee,"CopyConsistency::Dereference");
             };
-            cout << endl
+            TestOutput << endl
                  << " Constructed count: " << TestConstructCount << endl
                  << " Deconstructed count: " << TestDeconstructCount << endl
                  << " Set count: " << TestSetCount << endl
@@ -267,7 +267,7 @@ class managedptrtests : public UnitTestGroup
             TestDeconstructCount = 0;
             TestSetCount = 0;
             TestGetCount = 0;
-            cout << "Testing copy construction of ManagedPtr, by creating one and counting its calls in a simple situation requiring copying." << endl;
+            TestOutput << "Testing copy construction of ManagedPtr, by creating one and counting its calls in a simple situation requiring copying." << endl;
             {
                 TrackedHandleInt AuditableHandle;
                 AuditableHandle.ExternalConstructCount = &TestConstructCount;
@@ -279,7 +279,7 @@ class managedptrtests : public UnitTestGroup
                 TEST_THROW(Mezzanine::MemoryManagementException&,*Assigner;,"CopyConsistency::InvalidateThrows");
                 TEST(10==*Assignee,"CopyConsistency::Dereference");
             };
-            cout << endl
+            TestOutput << endl
                  << " Constructed count: " << TestConstructCount << endl
                  << " Deconstructed count: " << TestDeconstructCount << endl
                  << " Set count: " << TestSetCount << endl
@@ -291,7 +291,7 @@ class managedptrtests : public UnitTestGroup
             TestDeconstructCount = 0;
             TestSetCount = 0;
             TestGetCount = 0;
-            cout << "Testing copy construction of ManagedPtr, by creating one and counting its calls in a simple situation requiring copying." << endl;
+            TestOutput << "Testing copy construction of ManagedPtr, by creating one and counting its calls in a simple situation requiring copying." << endl;
             {
                 TrackedHandleVector3 AuditableHandle;
                 AuditableHandle.ExternalConstructCount = &TestConstructCount;
@@ -304,7 +304,7 @@ class managedptrtests : public UnitTestGroup
                 TEST_THROW(Mezzanine::MemoryManagementException&,Deffer->Z;,"ArrowConsistency::InvalidateThrows");
                 TEST(1==Deffer2->X && 2==Deffer2->Y && 3==Deffer2->Z,"ArrowConsistency::CopyDereference");
             };
-            cout << endl
+            TestOutput << endl
                  << " Constructed count: " << TestConstructCount << endl
                  << " Deconstructed count: " << TestDeconstructCount << endl
                  << " Set count: " << TestSetCount << endl

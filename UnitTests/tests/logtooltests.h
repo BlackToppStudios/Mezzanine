@@ -70,7 +70,7 @@ class logtooltests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            cout << "Instrumenting a sample function and reading log: " << endl;
+            TestOutput << "Instrumenting a sample function and reading log: " << endl;
             TestLog << "<log>" << endl;
             ScopedTimerTest();
             TestLog << "</log>" << endl;
@@ -101,7 +101,7 @@ class logtooltests : public UnitTestGroup
             Whole Duration = Results.first().attribute().as_int();
             TEST(9900<Duration && Duration<12000,"EndDuration");
 
-            cout << TestLog.str() << endl;
+            TestOutput << TestLog.str() << endl;
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

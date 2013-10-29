@@ -144,18 +144,12 @@ namespace Mezzanine
         }
 
         void UnitTestGroup::RunAutomaticTests()
-        {
-
-        }
-
+            {}
         bool UnitTestGroup::HasAutomaticTests() const
             { return false; }
 
         void UnitTestGroup::RunInteractiveTests()
-        {
-
-        }
-
+            {}
         bool UnitTestGroup::HasInteractiveTests() const
             { return false; }
 
@@ -180,7 +174,6 @@ namespace Mezzanine
                     { throw std::invalid_argument("Invalid UnitTestGroup Name, contains one or more double quote (\"), name: \"" + this->Name() + "\""); }
                 CurrentTest.TestName = this->Name() + "::" + CurrentTest.TestName;
             }
-
 
             TestDataStorage::iterator PreExisting = this->find(CurrentTest.TestName);
             if(this->end()!=PreExisting)
@@ -225,7 +218,7 @@ namespace Mezzanine
 
         void UnitTestGroup::AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior)
         {
-            std::cout << "Noting result of " << this->Name() + "::" + Fresh << " as " << TestResultToString(Meat) << std::endl;
+            this->TestOutput << "Noting result of " << this->Name() + "::" + Fresh << " as " << TestResultToString(Meat) << std::endl;
             AddTestResult(TestData(Fresh,Meat),Behavior);
         }
 
@@ -240,22 +233,41 @@ namespace Mezzanine
 
         void UnitTestGroup::AddTestsFromXML(pugi::xml_node Node)
         {
-            if(!Node)
+            if(!Node) //Basic Sanity Chek
             {
                 throw std::invalid_argument(
                         String("UnitTestGroup::AddTestsFromXML can only handle XML but was passed an empty file. Expected results from ")
                         + Node.name()
                     );
             }
-            if(String("UnitTestGroup")!=Node.name())
+
+            if(String("UnitTestGroup")==Node.name())
+            {
+                for(pugi::xml_node::iterator Iter = Node.begin(); Iter!=Node.end(); Iter++)
+                {
+                    String CurrentName(Iter->name());
+                    if(String("TestData")==CurrentName)
+                        { this->AddTestResult(TestData(*Iter)); }
+                    else if(String("UnitTestOutput")==CurrentName)
+                        { TestOutput << Iter->first_child().text(); }
+                    else if(String("UnitTestError")==CurrentName)
+                        { TestError << Iter->first_child().text(); }
+                    else
+                    {
+                        throw std::invalid_argument(
+                                String("UnitTestGroup::AddTestsFromXML Invalid subelement passed from ")
+                                + Node.name()
+                            );
+                    }
+                }
+            }
+            else
             {
                 throw std::invalid_argument(
-                        String("UnitTestGroup::AddTestsFromXML can only handle XML with \"UnitTestGroup\" as passed element.  Expected results from ")
+                        String("UnitTestGroup::AddTestsFromXML can only handle XML with \"UnitTestGroup\" as root element.  Expected results from ")
                         + Node.name()
                     );
             }
-            for(pugi::xml_node::iterator Iter = Node.begin(); Iter!=Node.end(); Iter++)
-                { this->AddTestResult(TestData(*Iter)); }
         }
 
         String UnitTestGroup::GetAsXML() const
@@ -263,13 +275,13 @@ namespace Mezzanine
             String Results("<UnitTestGroup>");
             for (iterator Iter=this->begin(); Iter!=this->end(); Iter++)
                 { Results += "\n  " + Iter->GetAsXML(); }
-            Results += "\n</UnitTestGroup>";
             Results += "\n<UnitTestOutput>";
             Results += this->TestOutput.str();
             Results += "\n</UnitTestOutput>";
             Results += "\n<UnitTestError>";
             Results += this->TestError.str();
             Results += "\n</UnitTestError>";
+            Results += "\n</UnitTestGroup>";
             return Results;
         }
 
@@ -283,6 +295,9 @@ namespace Mezzanine
                 Mezzanine::String TestName("Test Name");
                 Output << std::endl << " " << TestName << MakePadding(TestName, LongestNameLength) << "Result" << std::endl;
             }
+
+            if(FullOutput)
+                { cout << TestOutput.str(); }
 
             for (TestDataStorage::iterator Iter=this->begin(); Iter!=this->end(); Iter++)
             {
@@ -323,6 +338,9 @@ namespace Mezzanine
                 }
                 Output << std::endl;
             }
+
+            if(FullOutput)
+                { cerr << TestError.str(); }
         }
 
         void UnitTestGroup::Test(bool TestCondition, const String& TestName, TestResult IfFalse, TestResult IfTrue, const String& FuncName, const String& File, Whole Line )

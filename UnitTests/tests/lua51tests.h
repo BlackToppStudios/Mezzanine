@@ -64,7 +64,7 @@ class lua51tests : public UnitTestGroup
             try
             {
                 Scripting::Lua::Lua51ScriptingEngine LuaRuntimeSafe(Libset);
-                cout << "Testing " << FeatureName << " functionality, with parameter: " << Input << endl;
+                TestOutput << "Testing " << FeatureName << " functionality, with parameter: " << Input << endl;
                 Scripting::Lua::Lua51Script RealArgScript(Source, LuaRuntimeSafe);
                 LuaRuntimeSafe.Execute(RealArgScript);
                 Scripting::Lua::Lua51Script RealArgCall(FunctionToCall,LuaRuntimeSafe,true);
@@ -72,14 +72,14 @@ class lua51tests : public UnitTestGroup
                 CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
                 RealArgCall.AddReturn(RealReturn);
                 LuaRuntimeSafe.Execute(RealArgCall);
-                cout << " Recieved " << RealReturn->GetReal() << " while expecting " << ExpectedOutput << endl;
+                TestOutput << " Recieved " << RealReturn->GetReal() << " while expecting " << ExpectedOutput << endl;
 
                 TEST((ExpectedOutput==RealReturn->GetReal() || (RealReturn->GetReal()-Epsilon<ExpectedOutput && ExpectedOutput<RealReturn->GetReal()+Epsilon))
                      , String("SWIGWrapped::") + FeatureName);
             } catch (ScriptLuaException& ) {
                 TEST_RESULT(Testing::Failed, String("SWIGWrapped::") + FeatureName);
             }
-            cout << "End " << FeatureName << " Test" << endl << endl;
+            TestOutput << "End " << FeatureName << " Test" << endl << endl;
         }
 
         void TestLuaScript(const String& Source, const String& FeatureName, const String& FunctionToCall,
@@ -97,30 +97,30 @@ class lua51tests : public UnitTestGroup
             Scripting::Lua::Lua51ScriptingEngine LuaRuntimePartial(Scripting::Lua::Lua51ScriptingEngine::NoLib);
             Scripting::Lua::Lua51Script FeatureScript(Source);
 
-            cout << endl << "Attempting usage of \"" << FeatureInLibName << "\" from the " << LibName << " Library in a Lua51 Script without that library being loaded." << endl;
+            TestOutput << endl << "Attempting usage of \"" << FeatureInLibName << "\" from the " << LibName << " Library in a Lua51 Script without that library being loaded." << endl;
             try
             {
                 FeatureScript.Compile(LuaRuntimePartial);
                 LuaRuntimePartial.Execute(FeatureScript);
                 TEST_RESULT(Testing::Failed, String("LibraryLoad::") + LibName + "LibExclude");
             } catch (ScriptLuaException&) {
-                cout << endl << "It failed as it should." << endl;
+                TestOutput << endl << "It failed as it should." << endl;
                 TEST_RESULT(Success, String("LibraryLoad::") + LibName + "LibExclude");
             }
 
             LuaRuntimePartial.OpenLibraries(Libset);
 
-            cout << "Attempting normal execution with properly loaded " << LibName << " library function." << endl;
+            TestOutput << "Attempting normal execution with properly loaded " << LibName << " library function." << endl;
             try
             {
                 FeatureScript.Compile(LuaRuntimePartial);
                 LuaRuntimePartial.Execute(FeatureScript);
                 TEST_RESULT(Success, String("LibraryLoad::") + LibName + "LibInclude");
             } catch (ScriptLuaException& e) {
-                cout << "Test failed: " << e.what() << endl;
+                TestOutput << "Test failed: " << e.what() << endl;
                 TEST_RESULT(Testing::Failed, String("LibraryLoad::") + LibName + "LibInclude");
             }
-            cout << endl << endl;
+            TestOutput << endl << endl;
         }
 
         void TestLuaLibraryExclusion(const String& Source, const String& LibName, const String& FeatureInLibName, int Libset)
@@ -371,7 +371,7 @@ class lua51tests : public UnitTestGroup
                 // Bad syntax tests
                 try
                 {
-                    cout << "Testing Old XML::Document functionality" << endl;
+                    TestOutput << "Testing Old XML::Document functionality" << endl;
                     Scripting::Lua::Lua51Script RealArgScript("function MakeDoc(x)\n"
                                                               "   Doc1=MezzanineSafe.Document()\n"
                                                               "   return 3\n"
@@ -389,7 +389,7 @@ class lua51tests : public UnitTestGroup
                 } catch (ScriptLuaException& ) {
                     TEST_RESULT(Testing::Success,"Engine::XMLOldSyntax");
                 }
-                cout << "End XML::Document Test" << endl << endl;
+                TestOutput << "End XML::Document Test" << endl << endl;
             }
 
 

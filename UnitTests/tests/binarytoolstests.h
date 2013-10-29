@@ -268,9 +268,9 @@ class binarytoolstests : public UnitTestGroup
                 Blank3=Blank1;
                 TEST( 0 == Blank3.Binary && 0 == Blank3.Size, "BinaryBuffer::BlankAssignment");
 
-                cout << " Exception test: " << endl;
+                TestOutput << " Exception test: " << endl;
                 TEST_THROW(InvalidStateException&, Blank3.CreateBuffer(), "BinaryBuffer::BlankBufferCreation");
-                cout << endl << " End Exception test. " << endl;
+                TestOutput << endl << " End Exception test. " << endl;
             } // \Basic Buffer Consistency
 
             const String Test2String("Mover");
@@ -337,14 +337,14 @@ class binarytoolstests : public UnitTestGroup
                 String OutputS; //To prevent optimizing this whole chunk away.
                 BinaryBuffer OutputB; //To prevent optimizing this whole chunk away.
 
-                cout << "Benchmarking this for the sake of performace is dumb and I know it. This is not performance sensitive code, I just wanted to test my ability to gauge subtle non-optimal performance in code when I saw it." << endl << endl;
+                TestOutput << "Benchmarking this for the sake of performace is dumb and I know it. This is not performance sensitive code, I just wanted to test my ability to gauge subtle non-optimal performance in code when I saw it." << endl << endl;
 
                 Begin = crossplatform::GetTimeStamp();
                 for(Whole c=0; c<TestCount; c++)
                     { OutputS = ReneBase64Decode(GettysburgAddressBase64); }
                 End = crossplatform::GetTimeStamp();
                 ReneDecodeTime = End - Begin;
-                cout << "Decoding With Rene's algorithm took " << ReneDecodeTime << " microseconds for " << TestCount << " iterations and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
+                TestOutput << "Decoding With Rene's algorithm took " << ReneDecodeTime << " microseconds for " << TestCount << " iterations and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
 
                 Begin = crossplatform::GetTimeStamp();
                 for(Whole c=0; c<TestCount; c++)
@@ -355,9 +355,9 @@ class binarytoolstests : public UnitTestGroup
                 End = crossplatform::GetTimeStamp();
                 BTSDecodeTime = End - Begin;
                 OutputS=OutputB.ToString(); //The conversion to string does not get timed, the reason for this conversion was for use as a binary buffer, not an std::String we need to moved things that allow for direct control of memory.
-                cout << "Decoding With BTS algorithm took " << BTSDecodeTime << " microseconds for " << TestCount << " iterations and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
+                TestOutput << "Decoding With BTS algorithm took " << BTSDecodeTime << " microseconds for " << TestCount << " iterations and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
 
-                cout << "The new decoding algorithm takes about " << double((BTSDecodeTime*1000)/(ReneDecodeTime))/10 << "% as long as the original." << endl;
+                TestOutput << "The new decoding algorithm takes about " << double((BTSDecodeTime*1000)/(ReneDecodeTime))/10 << "% as long as the original." << endl;
 
                 TEST_WARN( BTSDecodeTime < ReneDecodeTime, "DecodeTime" );
 

@@ -64,25 +64,25 @@ class timestamptests : public UnitTestGroup
         /// @brief Test if the timestamp tools works correctly were possible
         void RunAutomaticTests()
         {
-            cout << "Starting timekeeping tests." << endl;
-            cout << "Getting Timestamp1" << endl;
+            TestOutput << "Starting timekeeping tests." << endl;
+            TestOutput << "Getting Timestamp1" << endl;
             Mezzanine::MaxInt Timestamp1 = Mezzanine::GetTimeStamp();
 
-            cout << "Sleeping main thread for 300ms." << endl;
+            TestOutput << "Sleeping main thread for 300ms." << endl;
             Mezzanine::Threading::this_thread::sleep_for(300000);
 
-            cout << "Getting Timestamp2" << endl;
+            TestOutput << "Getting Timestamp2" << endl;
             Mezzanine::MaxInt Timestamp2 = Mezzanine::GetTimeStamp();
 
-            cout << "Timestamp1: " << Timestamp1 << endl;
-            cout << "Timestamp2: " << Timestamp2 << endl;
-            cout << "Timestamp2 - Timestamp1 = " << Timestamp2-Timestamp1 << endl;
-            cout << "Is Timestamp1 <= Timestamp2: " << (Timestamp1<=Timestamp2) << endl;
-            cout << "Timer Resolution: " << GetTimeStampResolution() << " microsecond(s)" << endl;
+            TestOutput << "Timestamp1: " << Timestamp1 << endl;
+            TestOutput << "Timestamp2: " << Timestamp2 << endl;
+            TestOutput << "Timestamp2 - Timestamp1 = " << Timestamp2-Timestamp1 << endl;
+            TestOutput << "Is Timestamp1 <= Timestamp2: " << (Timestamp1<=Timestamp2) << endl;
+            TestOutput << "Timer Resolution: " << GetTimeStampResolution() << " microsecond(s)" << endl;
             TEST(Timestamp1<=Timestamp2,"TimeStampChronology")
 
-            cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2 = " << Timestamp1+300000-(2*GetTimeStampResolution()) << "<=" << Timestamp2 << endl;
-            cout << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2: " << (MaxInt(Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2) << endl;
+            TestOutput << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2 = " << Timestamp1+300000-(2*GetTimeStampResolution()) << "<=" << Timestamp2 << endl;
+            TestOutput << "Is Timestamp1+300000-(2*TimerResolution) <= Timestamp2: " << (MaxInt(Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2) << endl;
             TEST(MaxInt(Timestamp1+300000-(2*GetTimeStampResolution()))<=Timestamp2,"TimeStampResolution")
         }
 

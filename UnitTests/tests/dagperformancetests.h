@@ -83,7 +83,7 @@ class dagperformancetests : public UnitTestGroup
         void RunAutomaticTests()
         {
             {// \Variance tests
-                cout << "Creating a few Schedulers with work units and testing a variety of framerates timing accuracies." << endl;
+                TestOutput << "Creating a few Schedulers with work units and testing a variety of framerates timing accuracies." << endl;
                 vector<Whole> Rates;
                 Rates.push_back(10);
                 Rates.push_back(25);
@@ -96,7 +96,7 @@ class dagperformancetests : public UnitTestGroup
                 for(vector<Whole>::iterator Iter = Rates.begin(); Iter!=Rates.end(); ++Iter)
                 {
                     stringstream LogCache;
-                    cout << "Creating a Scheduler with only one work unit " << *Iter << " Frame Per Second running " << *Iter << " frames. " << endl;
+                    TestOutput << "Creating a Scheduler with only one work unit " << *Iter << " Frame Per Second running " << *Iter << " frames. " << endl;
                     FrameScheduler TimingTest(&LogCache,1);
                     PiMakerWorkUnit* WorkUnitTT1 = new PiMakerWorkUnit(50,"ForeverAlone",false);
                     TimingTest.AddWorkUnitMain(WorkUnitTT1, "WorkUnitTT1");
@@ -108,20 +108,20 @@ class dagperformancetests : public UnitTestGroup
                     }
                     MaxInt TimingTestEnd = GetTimeStamp();
                     Whole TestLength = TimingTestEnd-TimingTestStart;
-                    cout << "  " << *Iter << " Frames took " << TestLength << " microseconds to run, should be around 1000000 (one million)." << endl;
+                    TestOutput << "  " << *Iter << " Frames took " << TestLength << " microseconds to run, should be around 1000000 (one million)." << endl;
                     Integer Error = TestLength - 1000000;
                     Error = (Error>0.0) ? Error : -Error;
                     double Variance = (double(Error))/double(1000000) * 100;
-                    cout << "  " << "This is a variance of " << Error << " Frames or " << Variance << "%. Which is " << endl;
+                    TestOutput << "  " << "This is a variance of " << Error << " Frames or " << Variance << "%. Which is " << endl;
                     VarianceTotal.Insert(Variance);
                     TEST_WARN(3>Variance,"TimingVariance3%");       // Allow a 3% variance - Inconsistent - achievable even on even on winxp with its crappy 3500 microsecond timer
                     TEST_WARN(0.1>Variance,"TimingVariance0.1%");   // Allow a .1% variance - This is very achievable with an accurate microsecond timer
                 }
-                cout << "Average Variance: " << VarianceTotal.GetAverage() << "%" << endl;
+                TestOutput << "Average Variance: " << VarianceTotal.GetAverage() << "%" << endl;
             } // \Variance tests
 
             { //Max framerate
-                cout << "|Testing the FrameScheduler with a framrate of 0 to see max performance in a fixed number of frames: " << endl;
+                TestOutput << "|Testing the FrameScheduler with a framrate of 0 to see max performance in a fixed number of frames: " << endl;
                 vector<Whole> Durations;
                 Durations.push_back(10);
                 Durations.push_back(25);
@@ -183,7 +183,7 @@ class dagperformancetests : public UnitTestGroup
                 for(vector<Whole>::iterator Iter = Durations.begin(); Iter!=Durations.end(); ++Iter)
                 {
                     stringstream LogCache;
-                    cout << "Creating a Scheduler with a variety of WorkUnits running at full speed. " << endl;
+                    TestOutput << "Creating a Scheduler with a variety of WorkUnits running at full speed. " << endl;
                     FrameScheduler TimingTest(&LogCache,1);
                     TimingTest.SetFrameRate(0);
                     MaxInt TimingTestStart = GetTimeStamp();
@@ -192,14 +192,14 @@ class dagperformancetests : public UnitTestGroup
                     MaxInt TimingTestEnd = GetTimeStamp();
                     Whole TestLength = TimingTestEnd-TimingTestStart;
                     Whole FrameRate = double(*Iter)/(double(TestLength)/double(1000000));
-                    cout << "  " << *Iter << " Empty Frames took " << TestLength << " microseconds to run, which is " << FrameRate << " frames per second." << endl;
+                    TestOutput << "  " << *Iter << " Empty Frames took " << TestLength << " microseconds to run, which is " << FrameRate << " frames per second." << endl;
                     if(FrameRate>EmptyMaxFR)
                         { EmptyMaxFR = FrameRate; }
                     if(FrameRate<EmptyMinFR)
                         { EmptyMinFR = FrameRate; }
                     EmptyResults.push_back(FrameRate);
                     if(3000000<TestLength)
-                        { cout << "Single Test longer than three seconds, bailing from other performace tests" << endl; break; }
+                        { TestOutput << "Single Test longer than three seconds, bailing from other performace tests" << endl; break; }
 
                     //WorkUnit* WorkUnitTT2 = new PausesWorkUnit(0,"ForeverAlone");
                     iWorkUnit* WorkUnitTT2 = new PiMakerWorkUnit(0,"ForeverAlone",false);
@@ -210,14 +210,14 @@ class dagperformancetests : public UnitTestGroup
                     TimingTestEnd = GetTimeStamp();
                     TestLength = TimingTestEnd-TimingTestStart;
                     FrameRate = double(*Iter)/(double(TestLength)/double(1000000));
-                    cout << "  " << *Iter << " Single WorkUnit Frames took " << TestLength << " microseconds to run, which is " << FrameRate << " frames per second." << endl;
+                    TestOutput << "  " << *Iter << " Single WorkUnit Frames took " << TestLength << " microseconds to run, which is " << FrameRate << " frames per second." << endl;
                     if(FrameRate>OneMaxFR)
                         { OneMaxFR = FrameRate; }
                     if(FrameRate<OneMinFR)
                         { OneMinFR = FrameRate; }
                     OneResults.push_back(FrameRate);
                     if(3000000<TestLength)
-                        { cout << "Single Test longer than three seconds, bailing from other performace tests" << endl; break; }
+                        { TestOutput << "Single Test longer than three seconds, bailing from other performace tests" << endl; break; }
 
                     //WorkUnit* WorkUnitTT2A = new PausesWorkUnit(0,"ForeverAlone");
                     iWorkUnit* WorkUnitTT2A = new PiMakerWorkUnit(0,"A",false);
@@ -235,15 +235,15 @@ class dagperformancetests : public UnitTestGroup
                     TimingTestEnd = GetTimeStamp();
                     TestLength = TimingTestEnd-TimingTestStart;
                     FrameRate = double(*Iter)/(double(TestLength)/double(1000000));
-                    cout << "  " << *Iter << " Frames with the previous and an extra dependency set (A->B->C) took " << TestLength << " microseconds to run, which is " << FrameRate << " frames per second." << endl;
+                    TestOutput << "  " << *Iter << " Frames with the previous and an extra dependency set (A->B->C) took " << TestLength << " microseconds to run, which is " << FrameRate << " frames per second." << endl;
                     if(FrameRate>ChainMaxFR)
                         { ChainMaxFR = FrameRate; }
                     if(FrameRate<ChainMinFR)
                         { ChainMinFR = FrameRate; }
                     ChainResults.push_back(FrameRate);
                     if(3000000<TestLength)
-                        { cout << "Single Test longer than three seconds, bailing from other performance tests" << endl; break; }
-                    cout << endl;
+                        { TestOutput << "Single Test longer than three seconds, bailing from other performance tests" << endl; break; }
+                    TestOutput << endl;
                 }
 
                 std::vector<String> Output;
@@ -264,7 +264,7 @@ class dagperformancetests : public UnitTestGroup
                 Output.push_back(ToString(std::accumulate<>(ChainResults.begin(),ChainResults.end(),0)/ChainResults.size()));
                 Output.push_back(ToString(ChainMaxFR));
 
-                cout << "Scheduler timings for X frames in any second:" << endl;
+                TestOutput << "Scheduler timings for X frames in any second:" << endl;
 
                 Whole ColumnWidth=14;
                 Whole ColumnCount=4;
@@ -275,14 +275,14 @@ class dagperformancetests : public UnitTestGroup
                     if(!(WhichColumn % ColumnCount))
                     {
                         WhichColumn=0;
-                        cout << endl << "  ";
+                        TestOutput << endl << "  ";
                     }
                     WhichColumn++;
 
                     for(CurrentOutput = *Iter; CurrentOutput.size()<ColumnWidth; CurrentOutput += " ") {}
-                    cout << CurrentOutput;
+                    TestOutput << CurrentOutput;
                 }
-                cout << endl << endl;
+                TestOutput << endl << endl;
 
             } // \Max framerate
 

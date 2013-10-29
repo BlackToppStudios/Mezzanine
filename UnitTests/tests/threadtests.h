@@ -52,32 +52,19 @@ using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
 
+void PrintHello(void*);
+void SquareInThread(void* Value);
+
 /// @brief used in some basic threading tests
 ThreadId HelloID;
-/// @brief Used to test the thread class in some Basic Threading test
-void PrintHello(void*)
-{
-    cout << "Hello from thread T1 with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-    HelloID = Mezzanine::Threading::this_thread::get_id();
-    Mezzanine::Threading::this_thread::sleep_for(200000);
-}
 
 /// @brief Used to Basic Threading Passing
 static Mezzanine::Integer ThreadPassTest=0;
 /// @brief Used to Basic Threading Passing
 static Mezzanine::Threading::Mutex ThreadPassLock;
-/// @brief Used to Basic Threading Passing
-/// @param Value The functionality being tested is that is passed correctly
-void SquareInThread(void* Value)
-{
-    cout << "Thread T3 waiting for lock on mutex ThreadPassLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-    ThreadPassLock.Lock();
-    cout << "Thread T3 locked mutex: " << endl;
-    ThreadPassTest = *(Mezzanine::Integer*)Value * *(Mezzanine::Integer*)Value;
-    cout << "Thread T3 work complete unlocking mutex: " << endl;
-    ThreadPassLock.Unlock();
-}
 
+/// @brief A place for log outputs in other threads.
+Logger LogForThreads;
 
 /// @brief Tests for the Thread class
 class threadtests : public UnitTestGroup
@@ -95,54 +82,58 @@ class threadtests : public UnitTestGroup
                 HelloID = 0;
                 ThreadId ActualID = 0;
 
-                cout << "Testing Basic Thread functionality." << endl;
-                cout << "This Threads id: " <<  Mezzanine::Threading::this_thread::get_id() << endl;
+                TestOutput << "Testing Basic Thread functionality." << endl;
+                TestOutput << "This Threads id: " <<  Mezzanine::Threading::this_thread::get_id() << endl;
 
-                cout << "Creating a thread with identifier T1 and unkown id." << endl;
+                TestOutput << "Creating a thread with identifier T1 and unkown id." << endl;
                 Mezzanine::Threading::Thread T1(PrintHello);
-                cout << "T1 should have an id of: " << T1.get_id() << endl;
+                TestOutput << "T1 should have an id of: " << T1.get_id() << endl;
                 ActualID = T1.get_id();
 
-                cout << "Is T1 joinable: " << T1.joinable() << endl;
+                TestOutput << "Is T1 joinable: " << T1.joinable() << endl;
                 TEST(T1.joinable(),"joinable")// In theory this could spuriosly fail but it seems unlikely with the 2/10 second pause in the thread
 
                 MaxInt BeginSleep = GetTimeStamp();
-                cout << "Sleeping main thread for 300ms." << endl;
+                TestOutput << "Sleeping main thread for 300ms." << endl;
                 Mezzanine::Threading::this_thread::sleep_for(300000);
                 MaxInt SleepDuration = GetTimeStamp() - BeginSleep;
                 TEST(SleepDuration>=300000,"sleep_for")
 
-                cout << "Joining T1" << endl;
+                TestOutput << "Joining T1" << endl;
                 T1.join();
-                cout << "Is T1 joinable: " << T1.joinable() << endl;
+                TestOutput << LogForThreads.str();
+                LogForThreads.str("");
+                TestOutput << "Is T1 joinable: " << T1.joinable() << endl;
                 TEST(HelloID==ActualID,"get_id")
 
-                cout << "Yielding thread to OS scheduler." << endl;
+                TestOutput << "Yielding thread to OS scheduler." << endl;
                 Mezzanine::Threading::this_thread::yield();
             } // \Basic Thread
 
             { // Thread Arg passing
-                cout << "Testing passing to thread functionality" << endl;
-                cout << "Locking ThreadPassLock in thread: " << Mezzanine::Threading::this_thread::get_id() << endl;
+                TestOutput << "Testing passing to thread functionality" << endl;
+                TestOutput << "Locking ThreadPassLock in thread: " << Mezzanine::Threading::this_thread::get_id() << endl;
                 ThreadPassLock.Lock();
 
-                cout << "Creating a thread with identifier T3 and unkown id." << endl;
+                TestOutput << "Creating a thread with identifier T3 and unkown id." << endl;
                 Mezzanine::Integer Value = 9;
-                cout << "Passing " << Value << " into thread T3." << endl;
+                TestOutput << "Passing " << Value << " into thread T3." << endl;
                 Mezzanine::Threading::Thread T3(SquareInThread, &Value);
 
-                cout << "Unlocking ThreadPassLock from main and sleeping for 300 ms." << endl;
+                TestOutput << "Unlocking ThreadPassLock from main and sleeping for 300 ms." << endl;
                 ThreadPassLock.Unlock();
                 Mezzanine::Threading::this_thread::sleep_for(300000);
 
                 ThreadPassLock.Lock();
-                cout << "Thread gives us: " << ThreadPassTest << endl;
-                cout << "Does the thread give us the square of what we passed it: " << (Value*Value == ThreadPassTest) << endl;
+                TestOutput << "Thread gives us: " << ThreadPassTest << endl;
+                TestOutput << "Does the thread give us the square of what we passed it: " << (Value*Value == ThreadPassTest) << endl;
                 TEST(Value*Value == ThreadPassTest, "Passing")
                 ThreadPassLock.Unlock();
 
-                cout << "Joining T3" << endl;
+                TestOutput << "Joining T3" << endl;
                 T3.join();
+                TestOutput << LogForThreads.str();
+                LogForThreads.str("");
             } // Thread Arg Passing
         }
 
@@ -152,6 +143,27 @@ class threadtests : public UnitTestGroup
             { return true; }
 
 };
+
+/// @brief Used to test the thread class in some Basic Threading test
+void PrintHello(void*)
+{
+    LogForThreads << "Hello from thread T1 with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    HelloID = Mezzanine::Threading::this_thread::get_id();
+    Mezzanine::Threading::this_thread::sleep_for(200000);
+}
+
+/// @brief Used to Basic Threading Passing
+/// @param Value The functionality being tested is that is passed correctly
+void SquareInThread(void* Value)
+{
+    LogForThreads << "Thread T3 waiting for lock on mutex ThreadPassLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    ThreadPassLock.Lock();
+    LogForThreads << "Thread T3 locked mutex: " << endl;
+    ThreadPassTest = *(Mezzanine::Integer*)Value * *(Mezzanine::Integer*)Value;
+    LogForThreads << "Thread T3 work complete unlocking mutex: " << endl;
+    ThreadPassLock.Unlock();
+}
+
 
 #endif
 

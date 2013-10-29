@@ -68,13 +68,13 @@ class resourcetests : public UnitTestGroup
         void CreateRemoveDirectory(const String& TestDirString)
         {
             Bool Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
-            cout << "Does testing directory exists: " << Exists << endl;
+            TestOutput << "Does testing directory exists: " << Exists << endl;
             if(Exists)
             {
-                cout << "Removing " << TestDirString << endl;
+                TestOutput << "Removing " << TestDirString << endl;
                 Mezzanine::ResourceManager::RemoveDirectory(TestDirString);
             }else{
-                cout << "No cleanup required" << endl;
+                TestOutput << "No cleanup required" << endl;
             }
 
             Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
@@ -83,19 +83,19 @@ class resourcetests : public UnitTestGroup
                 TEST(false, "RemoveDirectory");
                 TEST_RESULT(Testing::Skipped, "CreateDirectory");
             }else{
-                cout << "Attempting to create a directory: " << TestDirString << endl;
+                TestOutput << "Attempting to create a directory: " << TestDirString << endl;
                 Mezzanine::ResourceManager::CreateDirectory(TestDirString);
                 Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
                 TEST(Exists, "CreateDirectory");
-                cout << "Did it work: " << Exists << endl;
+                TestOutput << "Did it work: " << Exists << endl;
 
                 if(Exists)
                 {
-                    cout << "Testing removal of: " << TestDirString << endl;
+                    TestOutput << "Testing removal of: " << TestDirString << endl;
                     Mezzanine::ResourceManager::RemoveDirectory(TestDirString);
                     Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
                     TEST(!Exists, "RemoveDirectory");
-                    cout << "Did it work: " << !Exists << endl;
+                    TestOutput << "Did it work: " << !Exists << endl;
                 }else{
                     TEST_RESULT(Testing::Skipped, "RemoveDirectory");
                 }
@@ -106,7 +106,7 @@ class resourcetests : public UnitTestGroup
         /// set of checks that need to happen and some situations in which tests will be skipped.
         void TestBaseAndDirName()
         {
-            cout << "Testing DirName: " << endl
+            TestOutput << "Testing DirName: " << endl
                  << "Passing:\t\"File.txt\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::DirName("File.txt") << "\"" << endl
                  << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"c:\\\"\n\tActual:\t\"" << Mezzanine::ResourceManager::DirName("c:\\untitled doc.txt") << "\"" << endl
                  << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::DirName("") << "\"" << endl
@@ -119,7 +119,7 @@ class resourcetests : public UnitTestGroup
             Test(Mezzanine::ResourceManager::DirName("/a/b/c")=="/a/b/","DirNameUnix");
             Test(Mezzanine::ResourceManager::DirName("/a/b/c/")=="/a/b/c/","DirNameUnixDir");
 
-            cout << "Testing BaseName: " << endl
+            TestOutput << "Testing BaseName: " << endl
                  << "Passing:\t\"File.txt\"\n\tExpecting:\t\"File.txt\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("File.txt") << "\"" << endl
                  << "Passing:\t\"c:\\untitled doc.txt\"\n\tExpecting:\t\"untitled doc.txt\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("c:\\untitled doc.txt") << "\"" << endl
                  << "Passing:\t\"\"\n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::BaseName("") << "\"" << endl
@@ -150,7 +150,7 @@ class resourcetests : public UnitTestGroup
             char** PtrReasonablew = &Reasonablew;
             char* Reasonableu = const_cast<char *>("/usr/share/bin/game");
             char** PtrReasonableu = &Reasonableu;
-            cout << "Testing GetExecutableDirFromArg(ArgC,ArgV)" << endl
+            TestOutput << "Testing GetExecutableDirFromArg(ArgC,ArgV)" << endl
                  << "On your system with the real args this provides:\n\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(ArgC,ArgV) << "\"" << endl
                  << "With empty records \n\tExpecting:\t\"\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(0,0) << "\"" << endl
                  << "With \"" << ExePtr[0] << "\" \n\tExpecting:\t\".\"\n\tActual:\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(1,ExePtr) << "\"" << endl
@@ -175,53 +175,53 @@ class resourcetests : public UnitTestGroup
             MaxInt SyscallTime = 0;
             MaxInt GetTime = 0;
 
-            cout << "Not testing GetExecutableDirFromArg(ArgC,ArgV) but here is the output so you can check if you want" << endl
+            TestOutput << "Not testing GetExecutableDirFromArg(ArgC,ArgV) but here is the output so you can check if you want" << endl
                  << "On your system with the real args this provides:\n\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromArg(ArgC,ArgV) << "\"" << endl
                  << endl;
             {
                 std::vector<String> CacheDefeater;
                 CacheDefeater.reserve(Count);
-                cout << "Calling GetExecutableDirFromArg(ArgC,ArgV) " << Count << " times and timing it." << endl;
+                TestOutput << "Calling GetExecutableDirFromArg(ArgC,ArgV) " << Count << " times and timing it." << endl;
                 TimedTest Timed;
                 for(Whole C=0; C<Count; C++)
                     { CacheDefeater.push_back(Mezzanine::ResourceManager::GetExecutableDirFromArg(ArgC,ArgV)); }
                 Whole N = (rand()%Count);
-                cout << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
+                TestOutput << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
                 ArgTime = Timed.GetLength();
-                cout << ArgTime << " microseconds." << endl << endl;
+                TestOutput << ArgTime << " microseconds." << endl << endl;
             }
 
-            cout << "Not testing GetExecutableDirFromSystem() but here is the output so you can check if you want" << endl
+            TestOutput << "Not testing GetExecutableDirFromSystem() but here is the output so you can check if you want" << endl
                  << "On your system this provides:\n\t\"" << Mezzanine::ResourceManager::GetExecutableDirFromSystem() << "\"" << endl
                  << endl;
             {
                 std::vector<String> CacheDefeater;
                 CacheDefeater.reserve(Count);
-                cout << "Calling GetExecutableDirFromSystem() " << Count << " times and timing it." << endl;
+                TestOutput << "Calling GetExecutableDirFromSystem() " << Count << " times and timing it." << endl;
                 TimedTest Timed;
                 for(Whole C=0; C<Count; C++)
                     { CacheDefeater.push_back(Mezzanine::ResourceManager::GetExecutableDirFromSystem()); }
                 Whole N = (rand()%Count);
-                cout << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
+                TestOutput << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
                 SyscallTime = Timed.GetLength();
-                cout << SyscallTime << " microseconds." << endl << endl;
+                TestOutput << SyscallTime << " microseconds." << endl << endl;
             }
 
 
-            cout << "Not testing GetExecutableDir(ArgC,ArgV) but here is the output so you can check if you want" << endl
+            TestOutput << "Not testing GetExecutableDir(ArgC,ArgV) but here is the output so you can check if you want" << endl
                  << "On your system this provides:\n\t\"" << Mezzanine::ResourceManager::GetExecutableDir(ArgC,ArgV) << "\"" << endl
                  << endl << endl;
             {
                 std::vector<String> CacheDefeater;
                 CacheDefeater.reserve(Count);
-                cout << "Calling GetExecutableDir(ArgC,ArgV) " << Count << " times and timing it." << endl;
+                TestOutput << "Calling GetExecutableDir(ArgC,ArgV) " << Count << " times and timing it." << endl;
                 TimedTest Timed;
                 for(Whole C=0; C<Count; C++)
                     { CacheDefeater.push_back(Mezzanine::ResourceManager::GetExecutableDir(ArgC,ArgV)); }
                 Whole N = (rand()%Count);
-                cout << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
+                TestOutput << "To defeat the cache the " << N << "th call gave us \"" << CacheDefeater[N] << "\" and took ";
                 GetTime = Timed.GetLength();
-                cout << GetTime << " microseconds." << endl << endl;
+                TestOutput << GetTime << " microseconds." << endl << endl;
             }
 
             TEST_WARN(ArgTime<SyscallTime,"ArgIsFastest")
@@ -237,15 +237,15 @@ class resourcetests : public UnitTestGroup
 
         void TestPath()
         {
-            cout << "Your Current PATH as parsed by GetSystemPATH():" << endl;
+            TestOutput << "Your Current PATH as parsed by GetSystemPATH():" << endl;
             StringVector PATH(ResourceManager::GetSystemPATH());
             for(StringVector::const_iterator Iter = PATH.begin();
                 Iter!=PATH.end();
                 Iter++)
             {
-                cout << "\t\"" << *Iter << "\"" << endl;
+                TestOutput << "\t\"" << *Iter << "\"" << endl;
             }
-            cout << "End of current system PATH" << endl;
+            TestOutput << "End of current system PATH" << endl;
 
 
             std::stringstream SamplePath;
@@ -253,24 +253,24 @@ class resourcetests : public UnitTestGroup
                        << "/bin" << ResourceManager::GetPathSeparator()
                        << ResourceManager::GetPathSeparator();
 
-            cout << "Test parsing a sample PATH: " << SamplePath.str() << endl
+            TestOutput << "Test parsing a sample PATH: " << SamplePath.str() << endl
                  << "Becomes: ";
             PATH=ResourceManager::GetSystemPATH(SamplePath.str());
             for(StringVector::const_iterator Iter = PATH.begin();
                 Iter!=PATH.end();
                 Iter++)
             {
-                cout << "\t\"" << *Iter << "\"" << endl;
+                TestOutput << "\t\"" << *Iter << "\"" << endl;
             }
             TEST(PATH[0]=="/a/b/c"&&PATH[1]=="/bin"&&PATH[2]=="", "PATHParsing");
 
-            cout << "looking for \"ls\" and comparing our results to the system"  << endl
+            TestOutput << "looking for \"ls\" and comparing our results to the system"  << endl
                  << "\t\"" << (ResourceManager::Which("ls")) << "\"" << endl
                  << "\t\"" << ResourceManager::DirName(GetCommandResults("which ls")) << "\"" << endl;
             TEST_WARN((ResourceManager::Which("ls"))==ResourceManager::DirName(GetCommandResults("which ls")),"Whichls");
 
             //Does Windows have which, what does where's output look like?
-            cout << "looking for \"cmd.exe\" and comparing our results to the system"  << endl
+            TestOutput << "looking for \"cmd.exe\" and comparing our results to the system"  << endl
                  << "\t\"" << (ResourceManager::Which("cmd.exe")) << "\"" << endl
                  << "\t\"" << ResourceManager::DirName(GetCommandResults("which cmd.exe")) << "\"" << endl;
             TEST_WARN((ResourceManager::Which("cmd.exe"))==ResourceManager::DirName(GetCommandResults("which cmd.exe")),"Whichcmd");
@@ -278,33 +278,33 @@ class resourcetests : public UnitTestGroup
 
         void TestChangeDir()
         {
-            cout << "Testing Directory Changing." << endl;
+            TestOutput << "Testing Directory Changing." << endl;
             Mezzanine::ResourceManager::CreateDirectory("Change");
             String StartDir(ResourceManager::GetWorkingDirectory());
             String TargetDir(StartDir+ResourceManager::GetDirectorySeparator()+String("Change"));
 
-            cout << "Current directory: " << ResourceManager::GetWorkingDirectory() << endl;
-            cout << "\tExpected: " << StartDir << endl;
+            TestOutput << "Current directory: " << ResourceManager::GetWorkingDirectory() << endl;
+            TestOutput << "\tExpected: " << StartDir << endl;
             Mezzanine::ResourceManager::ChangeDirectory("Change");
             Test(TargetDir==ResourceManager::GetWorkingDirectory(),"CDRelative");
-            cout << "Changing with relative path (cd Change): " << ResourceManager::GetWorkingDirectory() << endl;
-            cout << "\tExpected: " << TargetDir << endl;
+            TestOutput << "Changing with relative path (cd Change): " << ResourceManager::GetWorkingDirectory() << endl;
+            TestOutput << "\tExpected: " << TargetDir << endl;
 
             Mezzanine::ResourceManager::ChangeDirectory("..");
             Test(StartDir==ResourceManager::GetWorkingDirectory(),"CDDotDot");
-            cout << "Changing back with relative path (cd ..): " << ResourceManager::GetWorkingDirectory() << endl;
-            cout << "\tExpected: " << StartDir << endl;
+            TestOutput << "Changing back with relative path (cd ..): " << ResourceManager::GetWorkingDirectory() << endl;
+            TestOutput << "\tExpected: " << StartDir << endl;
 
 
             Mezzanine::ResourceManager::ChangeDirectory(TargetDir);
-            cout << "Changing with absolute path (cd /a/b/Change): " << ResourceManager::GetWorkingDirectory() << endl;
-            cout << "\tExpected: " << TargetDir << endl;
+            TestOutput << "Changing with absolute path (cd /a/b/Change): " << ResourceManager::GetWorkingDirectory() << endl;
+            TestOutput << "\tExpected: " << TargetDir << endl;
             Test(TargetDir==ResourceManager::GetWorkingDirectory(),"CDAbsolute");
 
             Mezzanine::ResourceManager::ChangeDirectory(StartDir);
             Test(StartDir==ResourceManager::GetWorkingDirectory(),"CDAbsolute2");
-            cout << "Changing back with absolute path (cd /a/b/Change): " << ResourceManager::GetWorkingDirectory() << endl;
-            cout << "\tExpected: " << StartDir << endl;
+            TestOutput << "Changing back with absolute path (cd /a/b/Change): " << ResourceManager::GetWorkingDirectory() << endl;
+            TestOutput << "\tExpected: " << StartDir << endl;
 
 
         }
@@ -319,9 +319,9 @@ class resourcetests : public UnitTestGroup
             {
                 CreateRemoveDirectory(TestDirString);
             } catch (Mezzanine::IOException& e) {
-                cout << "Error testing directory creation and removal: " << e.what() << endl;
+                TestOutput << "Error testing directory creation and removal: " << e.what() << endl;
             }
-            cout << endl;
+            TestOutput << endl;
 
             TestBaseAndDirName();
 
@@ -331,7 +331,7 @@ class resourcetests : public UnitTestGroup
 
             TestChangeDir();
 
-            //cout << "Attempting to create a Mezzanine::ResourceManager" << endl;
+            //TestOutput << "Attempting to create a Mezzanine::ResourceManager" << endl;
             //Mezzanine::ResourceManager res;
             //TEST(true,"ConstructionDidNotFailMiserably");
 

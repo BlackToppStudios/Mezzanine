@@ -67,59 +67,59 @@ class rollingaveragetests : public UnitTestGroup
         /// @brief Keeping track of times without temporary spikes in time is critical to the DAG Scheduling Algorithm.
         virtual void RunAutomaticTests()
         {
-            cout << "Starting Rolling Average Tests" << endl;
-            cout << "Is the Default Rolling Average the BufferedRollingAverage: " << (typeid(Mezzanine::DefaultRollingAverage<Mezzanine::Whole>::Type)==typeid(Mezzanine::BufferedRollingAverage<Mezzanine::Whole>)) << endl;
-            cout << "Is the Default Rolling Average the BufferedRollingAverage: " << (typeid(Mezzanine::DefaultRollingAverage<Mezzanine::Whole>::Type)==typeid(Mezzanine::WeightedRollingAverage<Mezzanine::Whole,float>)) << endl;
-            cout << "Creating a BufferedRollingAverage, WeightedRollingAverage and DefaultRollingAverage with Mezzanine::Whole (and sometimes float for math)" << endl;
+            TestOutput << "Starting Rolling Average Tests" << endl;
+            TestOutput << "Is the Default Rolling Average the BufferedRollingAverage: " << (typeid(Mezzanine::DefaultRollingAverage<Mezzanine::Whole>::Type)==typeid(Mezzanine::BufferedRollingAverage<Mezzanine::Whole>)) << endl;
+            TestOutput << "Is the Default Rolling Average the BufferedRollingAverage: " << (typeid(Mezzanine::DefaultRollingAverage<Mezzanine::Whole>::Type)==typeid(Mezzanine::WeightedRollingAverage<Mezzanine::Whole,float>)) << endl;
+            TestOutput << "Creating a BufferedRollingAverage, WeightedRollingAverage and DefaultRollingAverage with Mezzanine::Whole (and sometimes float for math)" << endl;
             Mezzanine::BufferedRollingAverage<Mezzanine::Whole> RollingB(10);
             Mezzanine::WeightedRollingAverage<Mezzanine::Whole,float> RollingW(10);
             Mezzanine::DefaultRollingAverage<Mezzanine::Whole>::Type RollingD(10);
 
-            cout << "Inserting into each: ";
+            TestOutput << "Inserting into each: ";
             for(Mezzanine::Whole Counter=1; Counter<=20; Counter++)
             {
-                cout << Counter << (20==Counter?".":", ");
+                TestOutput << Counter << (20==Counter?".":", ");
                 RollingB.Insert(Counter);
                 RollingW.Insert(Counter);
                 RollingD.Insert(Counter);
             }
-            cout << endl;
+            TestOutput << endl;
 
-            cout << "BufferedRollingAverage Result, should be 15: " << RollingB.GetAverage() << endl;
+            TestOutput << "BufferedRollingAverage Result, should be 15: " << RollingB.GetAverage() << endl;
             TEST(RollingB.GetAverage()==15,"Buffered1")
-            cout << "WeightedRollingAverage Result, should be about 10: " << RollingW.GetAverage() << endl;
+            TestOutput << "WeightedRollingAverage Result, should be about 10: " << RollingW.GetAverage() << endl;
             TEST(RollingW.GetAverage()>9||RollingW.GetAverage()<16,"Weighted1")
-            cout << "DefaultRollingAverage Result, should match its underlying type : " << RollingD.GetAverage() << endl;
+            TestOutput << "DefaultRollingAverage Result, should match its underlying type : " << RollingD.GetAverage() << endl;
 
-            cout << "Creating a BufferedRollingAverage, WeightedRollingAverage and DefaultRollingAverage with floats" << endl;
+            TestOutput << "Creating a BufferedRollingAverage, WeightedRollingAverage and DefaultRollingAverage with floats" << endl;
             Mezzanine::BufferedRollingAverage<float> RollingB2(10);
             Mezzanine::WeightedRollingAverage<float,float> RollingW2(10);
             Mezzanine::DefaultRollingAverage<float>::Type RollingD2(10);
 
-            cout << "Inserting into each: ";
+            TestOutput << "Inserting into each: ";
             for(float Counter=1.0; Counter<=20.0; Counter++)
             {
-                cout << Counter << (20.0<=Counter?".":", ");
+                TestOutput << Counter << (20.0<=Counter?".":", ");
                 RollingB2.Insert(Counter);
                 RollingW2.Insert(Counter);
                 RollingD2.Insert(Counter);
             }
-            cout << endl;
+            TestOutput << endl;
 
-            cout << "BufferedRollingAverage Result, should be ~15.5: " << RollingB2.GetAverage() << endl;
+            TestOutput << "BufferedRollingAverage Result, should be ~15.5: " << RollingB2.GetAverage() << endl;
             TEST(RollingB2.GetAverage()>15.4 && RollingB2.GetAverage()<15.6,"Buffered2")
-            cout << "WeightedRollingAverage Result, should be ~12.2158: " << RollingW2.GetAverage() << endl;
+            TestOutput << "WeightedRollingAverage Result, should be ~12.2158: " << RollingW2.GetAverage() << endl;
             TEST(RollingW2.GetAverage()>12.1 && RollingW2.GetAverage()<15.6,"Weighted2")
-            cout << "DefaultRollingAverage Result, should match its underlying type : " << RollingD2.GetAverage() << endl;
+            TestOutput << "DefaultRollingAverage Result, should match its underlying type : " << RollingD2.GetAverage() << endl;
 
-            cout << "BufferedRollingAverage Last inserted value, should be 20: " << RollingB2[RollingB2.RecordCapacity()-1] << endl;
+            TestOutput << "BufferedRollingAverage Last inserted value, should be 20: " << RollingB2[RollingB2.RecordCapacity()-1] << endl;
             TEST(20.0 == RollingB2[RollingB2.RecordCapacity()-1], "BufferedLastEntry");
-            cout << "WeightedRollingAverage Last inserted value, should be 20: " << RollingW2[RollingW2.RecordCapacity()-1] << endl;
+            TestOutput << "WeightedRollingAverage Last inserted value, should be 20: " << RollingW2[RollingW2.RecordCapacity()-1] << endl;
             TEST(20.0 == RollingW2[RollingW2.RecordCapacity()-1], "WieghtLastEntry");
 
-            cout << "BufferedRollingAverage oldest inserted value, should be 11: " << RollingB2[0] << endl;
+            TestOutput << "BufferedRollingAverage oldest inserted value, should be 11: " << RollingB2[0] << endl;
             TEST(11.0 == RollingB2[0], "BufferedOldestEntry");
-            cout << "WeightedRollingAverage oldest inserted value, should be 20: " << RollingW2[0] << endl;
+            TestOutput << "WeightedRollingAverage oldest inserted value, should be 20: " << RollingW2[0] << endl;
             TEST(20.0 == RollingW2[0], "WieghtOldestEntry");
         }
 
