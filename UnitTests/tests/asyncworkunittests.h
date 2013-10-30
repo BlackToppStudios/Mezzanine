@@ -93,7 +93,7 @@ class asyncworkunittests : public UnitTestGroup
         /// @brief Test if the asyncronous workunits
         void RunAutomaticTests()
         {
-            cout << "Creating three files that might take whole seconds to write." << endl;
+            TestOutput << "Creating three files that might take whole seconds to write." << endl;
             MaxInt MaxTime = 10000000;
             Whole MaxFileWrites = 10000000;
             Whole CurrentCount = 0;
@@ -120,15 +120,15 @@ class asyncworkunittests : public UnitTestGroup
             File1a.close();
             File2a.close();
             File3a.close();
-            cout << fixed << showpoint << setprecision(2);
-            cout << "Creating files took " << Duration << " microseconds " << endl;
-            cout << "A total of " << WriteSize << " Bytes were written or " << PerfString << endl;
+            TestOutput << fixed << showpoint << setprecision(2);
+            TestOutput << "Creating files took " << Duration << " microseconds " << endl;
+            TestOutput << "A total of " << WriteSize << " Bytes were written or " << PerfString << endl;
 
-            cout << "Creating an AsynchronousFileLoadWorkUnit to load the contents of these files." << endl;
+            TestOutput << "Creating an AsynchronousFileLoadWorkUnit to load the contents of these files." << endl;
             AsynchronousFileLoadWorkUnit Testable;
             Testable.BeginLoading(Files);
 
-            FrameScheduler Scheduler1(&cout,2);
+            FrameScheduler Scheduler1(&TestOutput,2);
             DefaultThreadSpecificStorage::Type AResource(&Scheduler1);
             TestResult temp = Testing::Success;
             TimeStarted = GetTimeStamp();
@@ -147,11 +147,11 @@ class asyncworkunittests : public UnitTestGroup
             Duration = GetTimeStamp()-TimeStarted;
             Whole ReadSize = Testable.GetFile(0)->Size+Testable.GetFile(1)->Size+Testable.GetFile(2)->Size;
             PerfString = GetPerfString(ReadSize,Duration);
-            cout << "Reading file took " << Duration << " microseconds " << endl;
-            cout << "A total of " << ReadSize << " Bytes were read or " << PerfString << endl;
+            TestOutput << "Reading file took " << Duration << " microseconds " << endl;
+            TestOutput << "A total of " << ReadSize << " Bytes were read or " << PerfString << endl;
 
 
-            cout << "The files have been loaded. performing a basic consistency check." << endl;
+            TestOutput << "The files have been loaded. performing a basic consistency check." << endl;
             TEST(ReadSize == WriteSize,"Read1ValidA")
             TEST(Testable.GetFile(0)->Size>0,"Read1Present")
             TEST(Testable.GetFile(0)->Data[0]=='P',"Read1ValidB")
@@ -162,7 +162,7 @@ class asyncworkunittests : public UnitTestGroup
             TEST(Testable.GetFile(2)->Size>0,"Read3Present")
             TEST(Testable.GetFile(2)->Data[0]=='-',"Read3Valid")
 
-            cout << "Files seem at least superficially consistent, trunctating files on disk to conserve space." << endl;
+            TestOutput << "Files seem at least superficially consistent, trunctating files on disk to conserve space." << endl;
 
             ofstream File1b(Files[0].c_str());
             ofstream File2b(Files[1].c_str());

@@ -79,7 +79,7 @@ class dagrandomtests : public UnitTestGroup
         /// @brief Tests the random number facility used in other tests.
         void RunAutomaticTests()
         {
-            cout << endl << "Starting random number generation tests. Not part of the library, but required for testing." << endl;
+            TestOutput << endl << "Starting random number generation tests. Not part of the library, but required for testing." << endl;
             Mezzanine::MaxInt Timestamp1 = Mezzanine::GetTimeStamp();
             srand((int)Timestamp1);
             Whole TestRuns = 10000000;
@@ -88,14 +88,14 @@ class dagrandomtests : public UnitTestGroup
             vector<Whole> D20Histogram;
             vector<Whole> D2d3Histogram;
 
-            cout <<  "Doing " << TestRuns << " iterations of generatining numbers with each function, and initializing random seed with " << Timestamp1 << "." << endl;
+            TestOutput <<  "Doing " << TestRuns << " iterations of generatining numbers with each function, and initializing random seed with " << Timestamp1 << "." << endl;
             for (Whole Counter=0; Counter<TestRuns; ++Counter)
             {
                 D20Rolls.push_back(DiceD20());
                 D2d3Rolls.push_back(Dice2D3());
             }
 
-            cout << "Preparing counts of the rolls." << endl;
+            TestOutput << "Preparing counts of the rolls." << endl;
             // init some 0s
             for (Whole Counter=0; Counter<=21; ++Counter) //providing a small amount of buffer space on either side in case dice algorithm has off by one issue.
                 { D20Histogram.push_back(0); }
@@ -112,18 +112,18 @@ class dagrandomtests : public UnitTestGroup
             bool HistDist = true;
 
             // display chart
-            cout << "D20 rolls should be distributed evenly between 1 and 20 inclusive:" << endl;
+            TestOutput << "D20 rolls should be distributed evenly between 1 and 20 inclusive:" << endl;
             for (Whole Counter=1; Counter<=20; ++Counter) //providing a small amount of buffer space on either side in case dice algorithm has off by one issue.
             {
                 double Output = (((double)D20Histogram[Counter])/((double)TestRuns))*100;
-                cout << Counter << ": " << D20Histogram[Counter] << " \t" << Output << "% " << endl;
+                TestOutput << Counter << ": " << D20Histogram[Counter] << " \t" << Output << "% " << endl;
                 if(Output<4.9 || 5.1<Output )
                     { EvenDist = false; }
             }
 
-            cout << "2d3 rolls should be distributed on a bell curve 2 and 6 inclusive:" << endl;
+            TestOutput << "2d3 rolls should be distributed on a bell curve 2 and 6 inclusive:" << endl;
             for (Whole Counter=0; Counter<=7; ++Counter)
-                { cout << Counter << ": " << D2d3Histogram[Counter] << " \t" << (((double)D2d3Histogram[Counter])/((double)TestRuns))*100 << "% " <<  endl; }
+                { TestOutput << Counter << ": " << D2d3Histogram[Counter] << " \t" << (((double)D2d3Histogram[Counter])/((double)TestRuns))*100 << "% " <<  endl; }
             if(D2d3Histogram[2]<1100000 || 1200000<D20Histogram[2] )
                 { HistDist = false; }
             if(D2d3Histogram[3]<2200000 || 2300000<D20Histogram[3] )

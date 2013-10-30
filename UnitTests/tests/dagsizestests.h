@@ -55,7 +55,6 @@ using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
 
-
 /// @brief A simple pair of speeds for a given set
 struct VecMapTestSpeed
 {
@@ -82,7 +81,7 @@ struct VecMapTestSpeed
 /// @param Insertions how many entries inserted on creation
 /// @param Output Should anything be printed, where should it be printed
 /// @return data on the test results
-VecMapTestSpeed VecMapTest(Whole Insertions, ostream& Output = cout)
+VecMapTestSpeed VecMapTest(Whole Insertions, ostream& Output)
 {
     VecMapTestSpeed Results(0,0,Insertions);
     MaxInt StartTime = GetTimeStamp();
@@ -130,7 +129,7 @@ VecMapTestSpeed VecMapTest(Whole Insertions, ostream& Output = cout)
 /// @brief heuristically searches for point where vectors with their lineat searches but cache friendliness slow to the point where a Maps scalabity catch up to it
 /// @param Output Should anything be printed, where should it be printed
 /// @return A whole near the cut off point.
-Whole WhenIsVectorSlowerThanSet(ostream& Output = cout)
+Whole WhenIsVectorSlowerThanSet(ostream& Output)
 {
     double LastTestScale = 2.0;
     const double Delta = 0.01;
@@ -146,7 +145,7 @@ Whole WhenIsVectorSlowerThanSet(ostream& Output = cout)
         FailAt--;
         if (0==FailAt)
         {
-            cout << "Could not find the break even point." << endl;
+            Output << "Could not find the break even point." << endl;
             return 0;
         }
 
@@ -191,7 +190,7 @@ class dagsizestests : public UnitTestGroup
         /// @brief Performs only basic Sanity tests on the assumptions the scheduler is built on.
         virtual void RunAutomaticTests()
         {
-            cout << "Determining sizeof() important types that are used throughout:" << endl
+            TestOutput << "Determining sizeof() important types that are used throughout:" << endl
                  << "iWorkUnit: " << sizeof(iWorkUnit) << endl
                  << "DefaultWorkUnit: " << sizeof(DefaultWorkUnit) << endl
                  << "LogAggregator: " << sizeof(LogAggregator) << endl
@@ -224,7 +223,7 @@ class dagsizestests : public UnitTestGroup
             Whole WPSize = sizeof(DefaultWorkUnit*) * 300;
             Whole TotalSize = FSSize + MSize + WSize + KSize + LASize + TSize + WPSize;
 
-            cout << "CPU cache size: " << GetCacheSize() << endl
+            TestOutput << "CPU cache size: " << GetCacheSize() << endl
                  << "Checking cache against a large set of work:" << endl
                  << "1 Framescheduler: " << FSSize << endl
                  << "12 monopolies: " << MSize << endl
@@ -237,22 +236,22 @@ class dagsizestests : public UnitTestGroup
             TEST_WARN(TotalSize<=GetCacheSize(), "WorkloadFitsInCache");
 
             Whole CachLineSize = GetCachelineSize();
-            cout << "CPU cache line size: " << CachLineSize << endl;
-            cout << "Checking Line size against frequently used types." << endl << endl;
+            TestOutput << "CPU cache line size: " << CachLineSize << endl;
+            TestOutput << "Checking Line size against frequently used types." << endl << endl;
             TEST_WARN(sizeof(iWorkUnit)<=CachLineSize,"iWorkUnitFitsInCacheLine");
             TEST_WARN(sizeof(DefaultWorkUnit)<=CachLineSize,"DefaultWorkUnitFitsInCacheLine");
             TEST_WARN(sizeof(WorkUnitKey)<=CachLineSize,"WorkUnitKeyFitsInCacheLine");
             TEST_WARN(sizeof(DefaultRollingAverage<Whole>::Type)<CachLineSize,"DefaultRollingAverageFitsInCacheLine");
 
-            cout << "This algorithm presumes that vectors under a certain size are just faster than sets/trees/maps below that size. This checks where that stops being true." << endl;
+            TestOutput << "This algorithm presumes that vectors under a certain size are just faster than sets/trees/maps below that size. This checks where that stops being true." << endl;
             stringstream trash;
             Whole Count1 = WhenIsVectorSlowerThanSet(trash);
-            cout << "Element count 1: " << Count1 << endl;
+            TestOutput << "Element count 1: " << Count1 << endl;
             Whole Count2 = WhenIsVectorSlowerThanSet(trash);
-            cout << "Element count 2: " << Count2 << endl;
+            TestOutput << "Element count 2: " << Count2 << endl;
             Whole Count3 = WhenIsVectorSlowerThanSet(trash);
-            cout << "Element count 3: " << Count3 << endl;
-            cout << "Are These higher than 800? " << ((Count1+Count2+Count3)/3>800) << " - If not the DAG scheduling algorithm may need to be revised" << endl;
+            TestOutput << "Element count 3: " << Count3 << endl;
+            TestOutput << "Are These higher than 800? " << ((Count1+Count2+Count3)/3>800) << " - If not the DAG scheduling algorithm may need to be revised" << endl;
             TEST_WARN((Count1+Count2+Count3)/3>800,"VectorSpeed");
         }
 

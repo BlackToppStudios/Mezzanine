@@ -594,7 +594,7 @@ class countedptrtests : public UnitTestGroup
                 DiamondPtr->ValueDiamond = 3;
                 //TEST_RESULT(Success, "DiamondCastingConsistency"); //compiling this BS is sort of a test
 
-                //cout << DiamondPtr.UseCount() << endl;
+                //TestOutput << DiamondPtr.UseCount() << endl;
 
                 CountedPtr<FooInternal> InternalPtrFromImplicitCast = CountedPtrCast<FooInternal>(DiamondPtr);
                 TEST(InternalPtrFromImplicitCast && 0==InternalPtrFromImplicitCast->Value, "ExplicitDiamondCast")
@@ -606,7 +606,7 @@ class countedptrtests : public UnitTestGroup
                 //CarTest* Car2 = new CarTest;
 
                 CountedPtr<VehicleTest> Car1Ptr(Car1);
-                //cout << Car1Ptr.UseCount() << endl;
+                //TestOutput << Car1Ptr.UseCount() << endl;
                 CountedPtr<CarTest> Car1PtrAfterStaticCast = CountedPtrStaticCast<CarTest>(Car1Ptr);
                 TEST(String("Starting V6")==Car1PtrAfterStaticCast->StartEngine(), "CountedPtrStaticCast")
 
@@ -666,7 +666,7 @@ class countedptrtests : public UnitTestGroup
                 #endif
 
                 {
-                    cout << "The objects being created all change a variable on destruction and have initializing, but otherwise trivial constructors. This is useful only for comparing the speeds of the point constructs on this platform, not for providing objective pointer dereferencing costs." << std::endl;
+                    TestOutput << "The objects being created all change a variable on destruction and have initializing, but otherwise trivial constructors. This is useful only for comparing the speeds of the point constructs on this platform, not for providing objective pointer dereferencing costs." << std::endl;
 
                     MaxInt Begin;
                     MaxInt End;
@@ -686,7 +686,7 @@ class countedptrtests : public UnitTestGroup
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     RawPtrTime = End-Begin;
-                    cout << OutputS << " - Creating and Dereferencing a raw pointer " << TestCount << " times without reference counting took: " << RawPtrTime << " Microseconds" << std::endl;
+                    TestOutput << OutputS << " - Creating and Dereferencing a raw pointer " << TestCount << " times without reference counting took: " << RawPtrTime << " Microseconds" << std::endl;
 
                     Begin = 0;
                     End = 0;
@@ -698,7 +698,7 @@ class countedptrtests : public UnitTestGroup
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     CountPtrInternalTime = End-Begin;
-                    cout << OutputI << " - Creating and Dereferencing a CountPtr " << TestCount << " times with internal counting took: " << CountPtrInternalTime << " Microseconds" << std::endl;
+                    TestOutput << OutputI << " - Creating and Dereferencing a CountPtr " << TestCount << " times with internal counting took: " << CountPtrInternalTime << " Microseconds" << std::endl;
 
                     Begin = 0;
                     End = 0;
@@ -710,7 +710,7 @@ class countedptrtests : public UnitTestGroup
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     CountPtrExternalTime = End-Begin;
-                    cout << OutputE << " - Creating and Dereferencing a CountPtr " << TestCount << " times with external counting took: " << CountPtrExternalTime << " Microseconds" << std::endl;
+                    TestOutput << OutputE << " - Creating and Dereferencing a CountPtr " << TestCount << " times with external counting took: " << CountPtrExternalTime << " Microseconds" << std::endl;
 
                     #ifdef SHAREDPTRTEST
                     Begin = 0;
@@ -723,7 +723,7 @@ class countedptrtests : public UnitTestGroup
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     SharedPtrTime = End-Begin;
-                    cout << OutputS << " - Creating and Dereferencing a shared_ptr " << TestCount << " times with external counting took: " << SharedPtrTime << " Microseconds" << std::endl;
+                    TestOutput << OutputS << " - Creating and Dereferencing a shared_ptr " << TestCount << " times with external counting took: " << SharedPtrTime << " Microseconds" << std::endl;
 
                     Begin = 0;
                     End = 0;
@@ -735,7 +735,7 @@ class countedptrtests : public UnitTestGroup
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     MakeSharedTime = End-Begin;
-                    cout << OutputS << " - Creating and Dereferencing a shared_ptr from make_shared " << TestCount << " times with external counting took: " << MakeSharedTime << " Microseconds" << std::endl;
+                    TestOutput << OutputS << " - Creating and Dereferencing a shared_ptr from make_shared " << TestCount << " times with external counting took: " << MakeSharedTime << " Microseconds" << std::endl;
                     #endif
 
                     /////////////////////////////////////
@@ -752,7 +752,7 @@ class countedptrtests : public UnitTestGroup
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     RawPtrCopyTime = End-Begin;
-                    cout << OutputE << " - Creating, Dereferencing and Copying a raw pointer " << TestCount << " times without reference counting took: " << RawPtrCopyTime << " Microseconds" << std::endl;
+                    TestOutput << OutputE << " - Creating, Dereferencing and Copying a raw pointer " << TestCount << " times without reference counting took: " << RawPtrCopyTime << " Microseconds" << std::endl;
 
                     Begin = 0;
                     End = 0;
@@ -765,7 +765,7 @@ class countedptrtests : public UnitTestGroup
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     CountPtrCopyInternalTime = End-Begin;
-                    cout << OutputI << " - Creating, Dereferencing and Copying a CountPtr " << TestCount << " times with internal counting took: " << CountPtrCopyInternalTime << " Microseconds" << std::endl;
+                    TestOutput << OutputI << " - Creating, Dereferencing and Copying a CountPtr " << TestCount << " times with internal counting took: " << CountPtrCopyInternalTime << " Microseconds" << std::endl;
 
                     Begin = 0;
                     End = 0;
@@ -778,7 +778,7 @@ class countedptrtests : public UnitTestGroup
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     CountPtrCopyExternalTime = End-Begin;
-                    cout << OutputE << " - Creating, Dereferencing and Copying a CountPtr " << TestCount << " times with external counting took: " << CountPtrCopyExternalTime << " Microseconds" << std::endl;
+                    TestOutput << OutputE << " - Creating, Dereferencing and Copying a CountPtr " << TestCount << " times with external counting took: " << CountPtrCopyExternalTime << " Microseconds" << std::endl;
 
                     #ifdef SHAREDPTRTEST
                     Begin = 0;
@@ -792,7 +792,7 @@ class countedptrtests : public UnitTestGroup
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     SharedPtrCopyTime = End-Begin;
-                    cout << OutputS << " - Creating, Dereferencing and Copying a shared_ptr " << TestCount << " times with internal counting took: " << SharedPtrCopyTime << " Microseconds" << std::endl;
+                    TestOutput << OutputS << " - Creating, Dereferencing and Copying a shared_ptr " << TestCount << " times with internal counting took: " << SharedPtrCopyTime << " Microseconds" << std::endl;
 
                     Begin = 0;
                     End = 0;
@@ -805,10 +805,10 @@ class countedptrtests : public UnitTestGroup
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     MakeSharedCopyTime = End-Begin;
-                    cout << OutputS << " - Creating, Dereferencing and Copying a shared_ptr from make_shared " << TestCount << " times with external counting took: " << MakeSharedCopyTime << " Microseconds" << std::endl;
+                    TestOutput << OutputS << " - Creating, Dereferencing and Copying a shared_ptr from make_shared " << TestCount << " times with external counting took: " << MakeSharedCopyTime << " Microseconds" << std::endl;
                     #endif
 
-                    cout << "Checking that raw pointers are fastest for sanity: "
+                    TestOutput << "Checking that raw pointers are fastest for sanity: "
                          << (RawPtrTime<CountPtrInternalTime &&
                             RawPtrTime<CountPtrExternalTime
                             #ifdef SHAREDPTRTEST
@@ -838,7 +838,7 @@ class countedptrtests : public UnitTestGroup
                     //TEST_WARN(MakeSharedTime<SharedPtrTime, "SanitySharedWoutMake"); // not very good sanity tests
                     //TEST_WARN(MakeSharedCopyTime<SharedPtrCopyTime, "SanitySharedWoutMakeCopy"); // The assumption this tests is onyl very loosely associated with the CountedPtr
 
-                    cout << "Checking CountedPtr internal is faster than CountedPtr external: "
+                    TestOutput << "Checking CountedPtr internal is faster than CountedPtr external: "
                          << (CountPtrInternalTime<CountPtrExternalTime)
                          << " and "
                          << (CountPtrCopyInternalTime<CountPtrCopyExternalTime) << endl;
@@ -846,7 +846,7 @@ class countedptrtests : public UnitTestGroup
                     TEST_WARN(CountPtrCopyInternalTime<CountPtrCopyExternalTime, "InternalvsExternalTimeCopy");
 
                     #ifdef SHAREDPTRTEST
-                        cout << "Checking CountedPtr internal is faster than shared_ptr: "
+                        TestOutput << "Checking CountedPtr internal is faster than shared_ptr: "
                              << (CountPtrInternalTime<SharedPtrTime)
                              << " and "
                              << (CountPtrCopyInternalTime<SharedPtrCopyTime)
@@ -859,7 +859,7 @@ class countedptrtests : public UnitTestGroup
                         TEST_WARN(CountPtrInternalTime<MakeSharedTime, "InternalvsMakeShared");
                         TEST_WARN(CountPtrCopyInternalTime<MakeSharedCopyTime, "InternalvsMakeSharedCopy");
 
-                        cout << "Checking CountedPtr External is faster than shared_ptr: "
+                        TestOutput << "Checking CountedPtr External is faster than shared_ptr: "
                              << (CountPtrExternalTime<SharedPtrTime)
                              << " and "
                              << (CountPtrCopyExternalTime<SharedPtrCopyTime)

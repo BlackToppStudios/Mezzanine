@@ -52,19 +52,21 @@ using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
 
+/// @brief A place for log outputs in other threads.
+Logger LogForMutexes;
+
 /// @brief Used in testing Basic Mutex
 static Mezzanine::Threading::ThreadId ThreadIDTest=0;
-
 /// @brief Used in testing Basic Mutex
 static Mezzanine::Threading::Mutex ThreadIDLock;
 /// @brief Used in testing Basic Mutex
 void PutIdInGlobal(void*)
 {
-    cout << "Thread T2 trying to lock mutex ThreadIDLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    LogForMutexes << "Thread T2 trying to lock mutex ThreadIDLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
     ThreadIDLock.Lock();
-    cout << "Thread T2 locked mutex: " << endl;
+    LogForMutexes << "Thread T2 locked mutex: " << endl;
     ThreadIDTest = Mezzanine::Threading::this_thread::get_id();
-    cout << "Thread T2 work complete unlocking mutex: " << endl;
+    LogForMutexes << "Thread T2 work complete unlocking mutex: " << endl;
     ThreadIDLock.Unlock();
 }
 
@@ -73,11 +75,11 @@ static Mezzanine::Threading::SpinLock ThreadIDSpinLock;
 /// @brief Used in testing Basic SpinLock
 void PutIdInGlobalSpin(void*)
 {
-    cout << "Thread  trying to lock SpinLock ThreadIDLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    LogForMutexes << "Thread  trying to lock SpinLock ThreadIDLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
     ThreadIDSpinLock.Lock();
-    cout << "Thread T2 locked SpinLock: " << endl;
+    LogForMutexes << "Thread T2 locked SpinLock: " << endl;
     ThreadIDTest = Mezzanine::Threading::this_thread::get_id();
-    cout << "Thread T2 work complete unlocking SpinLock: " << endl;
+    LogForMutexes << "Thread T2 work complete unlocking SpinLock: " << endl;
     ThreadIDSpinLock.Unlock();
 }
 
@@ -91,14 +93,14 @@ static Mezzanine::Threading::Mutex TryLock;
 /// @param Value This is the a value passed into the thread to confirm that it works
 void TryToSquareInThread(void* Value)
 {
-    cout << "Thread T4 trying to lock mutex ThreadPassLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    LogForMutexes << "Thread T4 trying to lock mutex ThreadPassLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
     if (TryLock.TryLock())
     {
-        cout << "Thread T4 locked mutex, Squaring the value " << endl;
+        LogForMutexes << "Thread T4 locked mutex, Squaring the value " << endl;
         TryLockTest = *(Mezzanine::Integer*)Value * *(Mezzanine::Integer*)Value;
         TryLock.Unlock();
     }else{
-        cout << "Thread T4 could not acquire lock, no work done" << endl;
+        LogForMutexes << "Thread T4 could not acquire lock, no work done" << endl;
     }
 }
 
@@ -108,14 +110,14 @@ static Mezzanine::Threading::SpinLock TrySpinLock;
 /// @param Value This is the a value passed into the thread to confirm that it works
 void TryToSquareInThreadSpin(void* Value)
 {
-    cout << "Thread T4 trying to lock mutex ThreadPassLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    LogForMutexes << "Thread T4 trying to lock mutex ThreadPassLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
     if (TrySpinLock.TryLock())
     {
-        cout << "Thread T4 locked mutex, Squaring the value " << endl;
+        LogForMutexes << "Thread T4 locked mutex, Squaring the value " << endl;
         TryLockTest = *(Mezzanine::Integer*)Value * *(Mezzanine::Integer*)Value;
         TrySpinLock.Unlock();
     }else{
-        cout << "Thread T4 could not acquire lock, no work done" << endl;
+        LogForMutexes << "Thread T4 could not acquire lock, no work done" << endl;
     }
 }
 
@@ -133,97 +135,105 @@ class mutextests : public UnitTestGroup
         {
 
             { // Lock
-                cout << "Testing basic mutex functionality" << endl;
-                cout << "Locking ThreadIDLock in thread: " << Mezzanine::Threading::this_thread::get_id() << endl;
+                TestOutput << "Testing basic mutex functionality" << endl;
+                TestOutput << "Locking ThreadIDLock in thread: " << Mezzanine::Threading::this_thread::get_id() << endl;
                 ThreadIDLock.Lock();
 
-                cout << "Creating a thread with identifier T2 and unkown id." << endl;
+                TestOutput << "Creating a thread with identifier T2 and unkown id." << endl;
                 Mezzanine::Threading::Thread T2(PutIdInGlobal);
 
-                cout << "Storing T2's id: " << T2.get_id() << endl;
-                cout << "Unlocking ThreadIDLock from main and sleeping for 300 ms." << endl;
+                TestOutput << "Storing T2's id: " << T2.get_id() << endl;
+                TestOutput << "Unlocking ThreadIDLock from main and sleeping for 300 ms." << endl;
                 Mezzanine::Threading::ThreadId T2id = T2.get_id();
                 ThreadIDLock.Unlock();
                 Mezzanine::Threading::this_thread::sleep_for(300000);
 
                 ThreadIDLock.Lock();
-                cout << "Does the thread report the same ID as we gathered: " << (ThreadIDTest == T2id) << endl;
+                TestOutput << "Does the thread report the same ID as we gathered: " << (ThreadIDTest == T2id) << endl;
                 TEST(ThreadIDTest == T2id,"Mutex::Lock")
                 ThreadIDLock.Unlock();
 
-                cout << "Joining T2" << endl;
+                TestOutput << "Joining T2" << endl;
                 T2.join();
+                TestOutput << LogForMutexes.str();
+                LogForMutexes.str("");
             } // \ Lock
 
             { // SpinLock.Lock
-                cout << "Testing basic SpinLock functionality" << endl;
-                cout << "Locking ThreadIDSpinLock in thread: " << Mezzanine::Threading::this_thread::get_id() << endl;
+                TestOutput << "Testing basic SpinLock functionality" << endl;
+                TestOutput << "Locking ThreadIDSpinLock in thread: " << Mezzanine::Threading::this_thread::get_id() << endl;
                 ThreadIDSpinLock.Lock();
 
-                cout << "Creating a thread with identifier T2 and unkown id." << endl;
+                TestOutput << "Creating a thread with identifier T2 and unkown id." << endl;
                 Mezzanine::Threading::Thread T2(PutIdInGlobalSpin);
 
-                cout << "Storing T2's id: " << T2.get_id() << endl;
-                cout << "Unlocking ThreadIDSpinLock from main and sleeping for 300 ms." << endl;
+                TestOutput << "Storing T2's id: " << T2.get_id() << endl;
+                TestOutput << "Unlocking ThreadIDSpinLock from main and sleeping for 300 ms." << endl;
                 Mezzanine::Threading::ThreadId T2id = T2.get_id();
                 ThreadIDSpinLock.Unlock();
                 Mezzanine::Threading::this_thread::sleep_for(300000);
 
                 ThreadIDSpinLock.Lock();
-                cout << "Does the thread report the same ID as we gathered: " << (ThreadIDTest == T2id) << endl;
+                TestOutput << "Does the thread report the same ID as we gathered: " << (ThreadIDTest == T2id) << endl;
                 TEST(ThreadIDTest == T2id,"SpinLock::Lock")
                 ThreadIDSpinLock.Unlock();
 
-                cout << "Joining T2" << endl;
+                TestOutput << "Joining T2" << endl;
                 T2.join();
+                TestOutput << LogForMutexes.str();
+                LogForMutexes.str("");
             } // \ SpinLock.Lock
 
 
             { // Trylock
-                cout << "Testing Mutex try_lock()" << endl;
+                TestOutput << "Testing Mutex try_lock()" << endl;
 
-                cout << "Locking TryLock in main thread with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+                TestOutput << "Locking TryLock in main thread with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
                 TEST(TryLock.TryLock(),"Mutex::TryLock");
 
                 Mezzanine::Integer Value = 9;
-                cout << "Creating a thread with identifier T4 and unkown id." << endl;
-                cout << "Passing " << Value << " into thread T4, and assigning to output and waiting 200ms." << endl;
+                TestOutput << "Creating a thread with identifier T4 and unkown id." << endl;
+                TestOutput << "Passing " << Value << " into thread T4, and assigning to output and waiting 200ms." << endl;
                 TryLockTest = Value;
                 Mezzanine::Threading::Thread T4(TryToSquareInThread, &Value);
 
                 Mezzanine::Threading::this_thread::sleep_for(300000);
 
-                cout << "Joining T4" << endl;
+                TestOutput << "Joining T4" << endl;
                 T4.join();
+                TestOutput << LogForMutexes.str();
+                LogForMutexes.str("");
 
-                cout << "Unlocking TryLock." << endl;
+                TestOutput << "Unlocking TryLock." << endl;
                 TryLock.Unlock();
-                cout << "Value from thread's return point is " << TryLockTest << " it should be " << Value << " if it wasn't able to get mutex" << endl;
-                cout << "Did T4 not get the mutex and proceed past mutex as expected: " << (TryLockTest == Value) << endl;
+                TestOutput << "Value from thread's return point is " << TryLockTest << " it should be " << Value << " if it wasn't able to get mutex" << endl;
+                TestOutput << "Did T4 not get the mutex and proceed past mutex as expected: " << (TryLockTest == Value) << endl;
                 TEST(TryLockTest == Value,"Mutex::TryLockExclude");
             } // Trylock
 
             { // SpinLock::Trylock
-                cout << "Testing SpinLock try_lock()" << endl;
+                TestOutput << "Testing SpinLock try_lock()" << endl;
 
-                cout << "Locking TrySpinLock in main thread with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+                TestOutput << "Locking TrySpinLock in main thread with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
                 TEST(TrySpinLock.TryLock(),"SpinLock::TryLock");
 
                 Mezzanine::Integer Value = 9;
-                cout << "Creating a thread with identifier T4 and unkown id." << endl;
-                cout << "Passing " << Value << " into thread T4, and assigning to output and waiting 200ms." << endl;
+                TestOutput << "Creating a thread with identifier T4 and unkown id." << endl;
+                TestOutput << "Passing " << Value << " into thread T4, and assigning to output and waiting 200ms." << endl;
                 TryLockTest = Value;
                 Mezzanine::Threading::Thread T4(TryToSquareInThreadSpin, &Value);
 
                 Mezzanine::Threading::this_thread::sleep_for(300000);
 
-                cout << "Joining T4" << endl;
+                TestOutput << "Joining T4" << endl;
                 T4.join();
+                TestOutput << LogForMutexes.str();
+                LogForMutexes.str("");
 
-                cout << "Unlocking TrySpinLock." << endl;
+                TestOutput << "Unlocking TrySpinLock." << endl;
                 TrySpinLock.Unlock();
-                cout << "Value from thread's return point is " << TryLockTest << " it should be " << Value << " if it wasn't able to get SpinLock" << endl;
-                cout << "Did T4 not get the SpinLock and proceed past SpinLock as expected: " << (TryLockTest == Value) << endl;
+                TestOutput << "Value from thread's return point is " << TryLockTest << " it should be " << Value << " if it wasn't able to get SpinLock" << endl;
+                TestOutput << "Did T4 not get the SpinLock and proceed past SpinLock as expected: " << (TryLockTest == Value) << endl;
                 TEST(TryLockTest == Value,"SpinLock::TryLockExclude");
             } // SpinLock::Trylock
 

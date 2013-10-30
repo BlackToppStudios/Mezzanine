@@ -71,7 +71,7 @@ class logaggregatortests : public UnitTestGroup
             Whole WorkUnitCount = 0; // Gather from FrameScheduler
             stringstream TempLog;
             {
-                cout << endl << "Creating a FrameScheduler with a few PiMakerWorkUnits Testing the logger workunits to get a handle multiple logs, logging to cout: " << endl;
+                TestOutput << endl << "Creating a FrameScheduler with a few PiMakerWorkUnits Testing the logger workunits to get a handle multiple logs, logging to TestOutput: " << endl;
                 FrameScheduler TestScheduler(&TempLog,4);           // Create a frame scheduler with 4 threads
                 TestScheduler.AddWorkUnitMain(new PiMakerWorkUnit(5000,"A",false),"A");
                 TestScheduler.AddWorkUnitMain(new PiMakerWorkUnit(5000,"B",false),"B");
@@ -91,8 +91,8 @@ class logaggregatortests : public UnitTestGroup
 
             }
 
-            cout << TempLog.str();
-            cout << "Log should have been emitted that showed PI being calculated 4 times per frame (after the first) and which thread it was calculated in. 4 iterations should have occurred each in one of four threads." << endl;
+            TestOutput << TempLog.str();
+            TestOutput << "Log should have been emitted that showed PI being calculated 4 times per frame (after the first) and which thread it was calculated in. 4 iterations should have occurred each in one of four threads." << endl;
 
             Whole Expected = (Frames-1) * WorkUnitCount;
             pugi::xml_document Doc;
@@ -101,7 +101,7 @@ class logaggregatortests : public UnitTestGroup
             TEST(pugi::status_ok == Results.status, "ValidXML");
 
             pugi::xpath_node_set MakePiNodes = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit/MakePi");
-            cout << "Found " << MakePiNodes.size() << " MakePI workUnits executed, expected " << Expected << "." << endl;
+            TestOutput << "Found " << MakePiNodes.size() << " MakePI workUnits executed, expected " << Expected << "." << endl;
             TEST(MakePiNodes.size()==Expected,"WorkLogged");
         }
 

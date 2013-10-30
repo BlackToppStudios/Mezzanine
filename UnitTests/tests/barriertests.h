@@ -65,18 +65,17 @@ vector<Whole> BarrierData2;
 void BarrierTestHelper(void* ThreadID)
 {
     Int32 Position = *((Int32*)ThreadID);
-    stringstream Output;
+    /*stringstream Output;
     Output << "-------------------" << endl
            << "This is the thread with id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
            << "For this test it requires the data in position: " << Position-1 << endl
-           << "doubling data in position: " << Position%4 << endl;
+           << "doubling data in position: " << Position%4 << endl;*/
     BarrierData1[Position-1] *= 2;
-    cout << Output.str();
-    Output.str("");
+    //TestOutput << Output.str();
+    //Output.str("");
 
-
-    //Mezzanine::Threading::this_thread::sleep_for(10000*DiceD20()); // just because the standard says streams need to synchronize output does not mean they actually output data in correct order, this lets cout catchup and makes guessing which thread makes it to the barrier last impossible
-    if(TestBarrier.Wait())
+    TestBarrier.Wait();
+    /*if(TestBarrier.Wait())
     {
         Output << "-------------------" << endl
                << "This is the thread with id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
@@ -87,12 +86,11 @@ void BarrierTestHelper(void* ThreadID)
                << "This is the thread with id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
                << "This thread waited for another to break it." << endl
                << "Copy data in position: " << Position%4 << endl;
-    }
+    }*/
     BarrierData2[Position%4]=BarrierData1[Position%4];
-    Output << "Data: " << BarrierData2[Position%4] << endl;
-
-    cout << Output.str();
-    Output.str("");
+    //Output << "Data: " << BarrierData2[Position%4] << endl;
+    //TestOutput << Output.str();
+    //Output.str("");
 }
 
 /// @brief Tests for the WorkUnit class
@@ -107,7 +105,7 @@ class barriertests : public UnitTestGroup
         /// @brief Test if the barrier works properly
         void RunAutomaticTests()
         {
-            cout << "Testing Basic Thread Barrier functionality." << endl
+            TestOutput << "Testing Basic Thread Barrier functionality." << endl
                  << "This Threads id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
                  << "A group of data has been populated with 5,10,15 and 20, this should be doubled and copied into a new field of data and will be done by 4 threads. Each thread will be indexed, and will adjust the data from some other thread then synchronize and copy its own data." << endl;
 
@@ -124,10 +122,10 @@ class barriertests : public UnitTestGroup
             BarrierData2.push_back(0);
             BarrierData2.push_back(0);
 
-            Mezzanine::Threading::Thread T1(BarrierTestHelper,&One);
-            Mezzanine::Threading::Thread T2(BarrierTestHelper,&Two);
-            Mezzanine::Threading::Thread T3(BarrierTestHelper,&Three);
-            Mezzanine::Threading::Thread T4(BarrierTestHelper,&Four);
+            Mezzanine::Threading::Thread T1(BarrierTestHelper, &One);
+            Mezzanine::Threading::Thread T2(BarrierTestHelper, &Two);
+            Mezzanine::Threading::Thread T3(BarrierTestHelper, &Three);
+            Mezzanine::Threading::Thread T4(BarrierTestHelper, &Four);
             T1.join();
             T2.join();
             T3.join();

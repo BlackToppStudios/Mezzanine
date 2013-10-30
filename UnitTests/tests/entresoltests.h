@@ -66,25 +66,25 @@ class entresoltests : public UnitTestGroup
         {
             { // Target Times
                 Mezzanine::Entresol TimingEnt;
-                cout << endl << "Default Entresol Timing in microseconds: " << TimingEnt.GetTargetFrameTimeMicroseconds() << endl;
+                TestOutput << endl << "Default Entresol Timing in microseconds: " << TimingEnt.GetTargetFrameTimeMicroseconds() << endl;
                 TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==16666, "DefaultFrameTimeMicro");
 
-                cout << "Default Entresol Timing in milliseconds: " << TimingEnt.GetTargetFrameTimeMilliseconds() << endl;
+                TestOutput << "Default Entresol Timing in milliseconds: " << TimingEnt.GetTargetFrameTimeMilliseconds() << endl;
                 TEST(TimingEnt.GetTargetFrameTimeMilliseconds()==16, "DefaultFrameTimeMilli");
 
-                cout << "Attemping to set Entresol timing to have a single frame last 10 microseconds: ";
+                TestOutput << "Attemping to set Entresol timing to have a single frame last 10 microseconds: ";
                 TimingEnt.SetTargetFrameTimeMicroseconds(10);
-                cout << TimingEnt.GetTargetFrameTimeMicroseconds() << endl;
+                TestOutput << TimingEnt.GetTargetFrameTimeMicroseconds() << endl;
                 TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==10, "SetFrameTimeMicro");
 
-                cout << "Attemping to set Entresol timing to have a single frame last 10 milliseconds: ";
+                TestOutput << "Attemping to set Entresol timing to have a single frame last 10 milliseconds: ";
                 TimingEnt.SetTargetFrameTimeMilliseconds(10);
-                cout << TimingEnt.GetTargetFrameTimeMilliseconds() << endl;
+                TestOutput << TimingEnt.GetTargetFrameTimeMilliseconds() << endl;
                 TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==10000, "SetFrameTimeMilli");
 
-                cout << "Attemping to set Entresol timing to 40 frames per second (should be 2500): ";
+                TestOutput << "Attemping to set Entresol timing to 40 frames per second (should be 2500): ";
                 TimingEnt.SetTargetFrameRate(40);
-                cout << TimingEnt.GetTargetFrameTimeMicroseconds() << endl;
+                TestOutput << TimingEnt.GetTargetFrameTimeMicroseconds() << endl;
                 TEST(TimingEnt.GetTargetFrameTimeMicroseconds()==25000, "SetFrameTimeMilli");
             }
 

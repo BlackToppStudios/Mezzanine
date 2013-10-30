@@ -117,6 +117,14 @@ namespace Mezzanine
         /// @return A parsed TestData.
         TestData StringToTestData(Mezzanine::String Line);
 
+        class BifurcatedStream : std::stringstream
+        {
+            public:
+                /// copy constructor
+                BifurcatedStream& operator<< (const String& stuff) {}
+        };
+
+
         ///////////////////////////////////////////////////////////////////////////////////////////
         /// @brief A single group of tests, suitable for being all the tests of a small subsystem or single class.
         class UnitTestGroup : public TestDataStorage
@@ -136,6 +144,7 @@ namespace Mezzanine
                 UnitTestGroup();
 
                 /// @brief Copy constructor
+                /// @param OtherGroup A UnitTestGroup to copy into this one. The contents of any log streams are copied and the streams themselves.
                 UnitTestGroup(const UnitTestGroup& OtherGroup);
 
                 /// @brief This will call RunAutomaticTests based on the values passed.

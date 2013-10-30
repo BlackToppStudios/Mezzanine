@@ -203,20 +203,20 @@ class frameschedulertests : public UnitTestGroup
             TEST(TestFrame, TestName+"::TestLog")
 
             pugi::xpath_node_set Results = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit/MakePi");
-            cout << "Found " << Results.size() << " WorkUnits expected " << WorkUnitCount_ << "." << endl;
+            TestOutput << "Found " << Results.size() << " WorkUnits expected " << WorkUnitCount_ << "." << endl;
             TEST(WorkUnitCount_==Results.size(),TestName+"::WorkUnitCount");
 
             Results = Doc.select_nodes("MezzanineLog/Frame[1]/Thread");
-            cout << "Found " << Results.size() << " threads expected " << TargetThreadCount_ << "." << endl;
+            TestOutput << "Found " << Results.size() << " threads expected " << TargetThreadCount_ << "." << endl;
             TEST(TargetThreadCount_==Results.size(),TestName+"::ThreadCount");
 
             Results = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit/MakePi/@WorkUnitName");
-            cout << "Found " << Results.size() << " WorkUnitNames expected " << WorkUnitCount_ << ", with the following names: ";
+            TestOutput << "Found " << Results.size() << " WorkUnitNames expected " << WorkUnitCount_ << ", with the following names: ";
             for(pugi::xpath_node_set::const_iterator Iter = Results.begin();
                 Results.end()!=Iter;
                 ++Iter)
-            { cout << "\t" <<Iter->attribute().as_string(); }
-            cout << endl << endl;
+            { TestOutput << "\t" <<Iter->attribute().as_string(); }
+            TestOutput << endl << endl;
             TEST(WorkUnitCount_==Results.size(),TestName+"::NameCount");
 
         }
@@ -256,14 +256,14 @@ class frameschedulertests : public UnitTestGroup
         virtual void RunAutomaticTests()
         {
             { // Basic sorting
-                cout <<  "Creating a simple dependency chain in 4 WorkUnits and inserting them into a Test FrameScheduler. Then they will be pulled out one at a time and mark them as completed: " << endl;
+                TestOutput <<  "Creating a simple dependency chain in 4 WorkUnits and inserting them into a Test FrameScheduler. Then they will be pulled out one at a time and mark them as completed: " << endl;
 
                 PiMakerWorkUnit *WorkUnitK1 = new PiMakerWorkUnit(500,"First",false);
                 PiMakerWorkUnit *WorkUnitK2 = new PiMakerWorkUnit(500,"Second",false);
                 PiMakerWorkUnit *WorkUnitK3 = new PiMakerWorkUnit(500,"Third",false);
                 PiMakerWorkUnit *WorkUnitK4 = new PiMakerWorkUnit(500,"Fourth",false);
 
-                FrameScheduler SchedulingTest1(&cout,1);
+                FrameScheduler SchedulingTest1(&TestOutput,1);
                 DefaultThreadSpecificStorage::Type Storage1(&SchedulingTest1);
                 WorkUnitK4->AddDependency(WorkUnitK3);
                 WorkUnitK3->AddDependency(WorkUnitK2);
@@ -275,35 +275,35 @@ class frameschedulertests : public UnitTestGroup
                 SchedulingTest1.SortWorkUnitsMain();
 
                 iWorkUnit* Counter = SchedulingTest1.GetNextWorkUnit();
-                cout << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
+                TestOutput << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
                 TEST(((PiMakerWorkUnit*)Counter)->Name == String("First"),"BasicSorting::First");
 
                 Counter->operator()(Storage1);
                 Counter = SchedulingTest1.GetNextWorkUnit();
-                cout << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
+                TestOutput << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
                 TEST(((PiMakerWorkUnit*)Counter)->Name == String("Second"),"BasicSorting::Second");
 
                 Counter->operator()(Storage1);
                 Counter = SchedulingTest1.GetNextWorkUnit();
-                cout << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
+                TestOutput << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
                 TEST(((PiMakerWorkUnit*)Counter)->Name == String("Third"),"BasicSorting::Third");
 
                 Counter->operator()(Storage1);
                 Counter = SchedulingTest1.GetNextWorkUnit();
-                cout << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
+                TestOutput << "Getting the WorkUnit Named " << ((PiMakerWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
                 TEST(((PiMakerWorkUnit*)Counter)->Name == String("Fourth"),"BasicSorting::Fourth");
 
                 Counter->operator()(Storage1);
 
-                cout << endl << "Creating 3 WorkUnits with precise runtimes and inserting them into a Test FrameScheduler. Then they will be pulled out one at a time and mark them as completed: " << endl;
-                FrameScheduler SchedulingTest2(&cout,1);
+                TestOutput << endl << "Creating 3 WorkUnits with precise runtimes and inserting them into a Test FrameScheduler. Then they will be pulled out one at a time and mark them as completed: " << endl;
+                FrameScheduler SchedulingTest2(&TestOutput,1);
                 DefaultThreadSpecificStorage::Type Storage2(&SchedulingTest2);
 
                 PausesWorkUnit *FiveHundred = new PausesWorkUnit(500,"FiveHundred-ms");
                 PausesWorkUnit *FiveThousand = new PausesWorkUnit(5000,"FiveThousand-ms");
                 PausesWorkUnit *FiftyThousand = new PausesWorkUnit(50000,"FiftyThousand-ms");
                 //PausesWorkUnit *FiveHundredThousand = new PausesWorkUnit(500000,"FiveHundredThousand-ms");
-                cout << "Work Units (FiveHundred-ms, FiveThousand-ms, FiftyThousand-ms)[ms is microseconds in this context] Created, executing each ten times: " << endl;
+                TestOutput << "Work Units (FiveHundred-ms, FiveThousand-ms, FiftyThousand-ms)[ms is microseconds in this context] Created, executing each ten times: " << endl;
                 for(Int8 Counter = 0; Counter <10; ++Counter)
                 {
                     FiveHundred->operator()(Storage2);
@@ -316,40 +316,40 @@ class frameschedulertests : public UnitTestGroup
                 SchedulingTest2.AddWorkUnitMain(FiveThousand, FiftyThousand->Name);
                 //SchedulingTest2.AddWorkUnit(FiveHundredThousand);
 
-                cout << "FiveHundred-ms   : " << FiveHundred->GetPerformanceLog().GetAverage() << endl;
-                cout << "FiveThousand-ms  : " << FiveThousand->GetPerformanceLog().GetAverage() << endl;
-                cout << "FiftyThousand-ms : " << FiftyThousand->GetPerformanceLog().GetAverage() << endl;
-                //cout << "FiveHundredThousand-ms  : " << FiveHundredThousand->GetPerformanceLog().GetAverage() << endl;
-                cout << "Marking each WorkUnit as usable for the next frame:" << endl;
+                TestOutput << "FiveHundred-ms   : " << FiveHundred->GetPerformanceLog().GetAverage() << endl;
+                TestOutput << "FiveThousand-ms  : " << FiveThousand->GetPerformanceLog().GetAverage() << endl;
+                TestOutput << "FiftyThousand-ms : " << FiftyThousand->GetPerformanceLog().GetAverage() << endl;
+                //TestOutput << "FiveHundredThousand-ms  : " << FiveHundredThousand->GetPerformanceLog().GetAverage() << endl;
+                TestOutput << "Marking each WorkUnit as usable for the next frame:" << endl;
                 FiveHundred->PrepareForNextFrame();
                 FiveThousand->PrepareForNextFrame();
                 FiftyThousand->PrepareForNextFrame();
                 //FiveHundredThousand->PrepareForNextFrame();
                 SchedulingTest2.SortWorkUnitsMain();
 
-                cout << "Extracting WorkUnits with the scheduling mechanism: " << endl;
+                TestOutput << "Extracting WorkUnits with the scheduling mechanism: " << endl;
                 //Counter = SchedulingTest2.GetNextWorkUnit();
-                //cout << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
+                //TestOutput << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
                 //assert( ((PausesWorkUnit*)Counter)->Name == String("FiveHundredThousand-ms") );
                 //Counter->operator()(Storage2, SchedulingTest2);
                 Counter = SchedulingTest2.GetNextWorkUnit();
-                cout << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
+                TestOutput << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
                 TEST(((PausesWorkUnit*)Counter)->Name == String("FiftyThousand-ms"),"TimedSort::FiftyThousand-ms")
 
                 Counter->operator()(Storage2);
                 Counter = SchedulingTest2.GetNextWorkUnit();
-                cout << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
+                TestOutput << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
                 TEST(((PausesWorkUnit*)Counter)->Name == String("FiveThousand-ms"),"TimedSort::FiveThousand-ms")
 
                 Counter->operator()(Storage2);
                 Counter = SchedulingTest2.GetNextWorkUnit();
-                cout << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
+                TestOutput << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
                 TEST(((PausesWorkUnit*)Counter)->Name == String("FiveHundred-ms"),"TimedSort::FiveHundred-ms")
                 Counter->operator()(Storage2);
             } // \Basic Sorting
 
             {
-                cout << std::endl << "Creating a FrameScheduler with 4 WorkUnits and a LogAggregator WorkUnit an Running one frame then redoing it with different thread counts: " << endl;
+                TestOutput << std::endl << "Creating a FrameScheduler with 4 WorkUnits and a LogAggregator WorkUnit an Running one frame then redoing it with different thread counts: " << endl;
 
                 PiMakerWorkUnit WorkUnitR1(50000,"Run1",false);
                 PiMakerWorkUnit WorkUnitR2(50000,"Run2",false);
@@ -365,8 +365,8 @@ class frameschedulertests : public UnitTestGroup
                     ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3, WorkUnitR3.Name);
                     ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4, WorkUnitR4.Name);
                     ThreadCreationTest1.AddWorkUnitMain(&Agg,"Agg");
-                    cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
-                    cout << "Running One Frame." << endl;
+                    TestOutput << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
+                    TestOutput << "Running One Frame." << endl;
                     ThreadCreationTest1.DoOneFrame(); // Do the work
                     ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR1);
                     ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR2);
@@ -375,10 +375,10 @@ class frameschedulertests : public UnitTestGroup
                     ThreadCreationTest1.DoOneFrame(); // Remove the work, but swap the log buffers.
                     ThreadCreationTest1.RemoveWorkUnitMain(&Agg);
                 }
-                cout << "Emitting log:" << endl;
-                cout << LogCache.str() << endl;
+                TestOutput << "Emitting log:" << endl;
+                TestOutput << LogCache.str() << endl;
                 CheckSchedulerLog(LogCache,1,4,"ThreadTests::SingleThread");
-                cout << endl << endl;
+                TestOutput << endl << endl;
                 LogCache.str("");
 
                 {
@@ -388,8 +388,8 @@ class frameschedulertests : public UnitTestGroup
                     ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3, WorkUnitR3.Name);
                     ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4, WorkUnitR4.Name);
                     ThreadCreationTest1.AddWorkUnitMain(&Agg,"Agg");
-                    cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
-                    cout << "Running One Frame." << endl;
+                    TestOutput << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
+                    TestOutput << "Running One Frame." << endl;
                     ThreadCreationTest1.DoOneFrame(); // Do the work
                     ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR1);
                     ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR2);
@@ -398,10 +398,10 @@ class frameschedulertests : public UnitTestGroup
                     ThreadCreationTest1.DoOneFrame(); // Remove the work, but swap the log buffers.
                     ThreadCreationTest1.RemoveWorkUnitMain(&Agg);
                 }
-                cout << "Emitting log:" << endl;
-                cout << LogCache.str() << endl;
+                TestOutput << "Emitting log:" << endl;
+                TestOutput << LogCache.str() << endl;
                 CheckSchedulerLog(LogCache,2,4,"ThreadTests::DualThread");
-                cout << endl << endl;
+                TestOutput << endl << endl;
                 LogCache.str("");
 
                 {
@@ -411,8 +411,8 @@ class frameschedulertests : public UnitTestGroup
                     ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3, WorkUnitR3.Name);
                     ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4, WorkUnitR4.Name);
                     ThreadCreationTest1.AddWorkUnitMain(&Agg,"Agg");
-                    cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
-                    cout << "Running One Frame." << endl;
+                    TestOutput << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
+                    TestOutput << "Running One Frame." << endl;
                     ThreadCreationTest1.DoOneFrame(); // Do the work
                     ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR1);
                     ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR2);
@@ -421,10 +421,10 @@ class frameschedulertests : public UnitTestGroup
                     ThreadCreationTest1.DoOneFrame(); // Remove the work, but swap the log buffers.
                     ThreadCreationTest1.RemoveWorkUnitMain(&Agg);
                 }
-                cout << "Emitting log:" << endl;
-                cout << LogCache.str() << endl;
+                TestOutput << "Emitting log:" << endl;
+                TestOutput << LogCache.str() << endl;
                 CheckSchedulerLog(LogCache,3,4,"ThreadTests::TripleThread");
-                cout << endl << endl;
+                TestOutput << endl << endl;
                 LogCache.str("");
 
                 {
@@ -434,8 +434,8 @@ class frameschedulertests : public UnitTestGroup
                     ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR3, WorkUnitR3.Name);
                     ThreadCreationTest1.AddWorkUnitMain(&WorkUnitR4, WorkUnitR4.Name);
                     ThreadCreationTest1.AddWorkUnitMain(&Agg,"Agg");
-                    cout << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
-                    cout << "Running One Frame." << endl;
+                    TestOutput << "Thread count on initial creation: " << ThreadCreationTest1.GetThreadCount() << endl;
+                    TestOutput << "Running One Frame." << endl;
                     ThreadCreationTest1.DoOneFrame(); // Do the work
                     ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR1);
                     ThreadCreationTest1.RemoveWorkUnitMain(&WorkUnitR2);
@@ -444,18 +444,18 @@ class frameschedulertests : public UnitTestGroup
                     ThreadCreationTest1.DoOneFrame(); // Remove the work, but swap the log buffers.
                     ThreadCreationTest1.RemoveWorkUnitMain(&Agg);
                 }
-                cout << "Emitting log:" << endl;
-                cout << LogCache.str() << endl;
+                TestOutput << "Emitting log:" << endl;
+                TestOutput << LogCache.str() << endl;
                 CheckSchedulerLog(LogCache,4,4,"ThreadTests::DualThread");
-                cout << endl << endl;
+                TestOutput << endl << endl;
                 LogCache.str("");
 
             } // \threading tests
 
             { // Dependency
-                cout << "Creating a few WorkUnits with a " << endl;
+                TestOutput << "Creating a few WorkUnits with a " << endl;
                 stringstream LogCache;
-                cout << "Creating WorkUnits a Dependency chain as follows: "
+                TestOutput << "Creating WorkUnits a Dependency chain as follows: "
                         << endl << "    +--->B"
                         << endl << "    |"
                         << endl << "A---+"
@@ -484,7 +484,7 @@ class frameschedulertests : public UnitTestGroup
                     RestartScheduler1.DoOneFrame();
                     RestartScheduler1.RemoveWorkUnitMain(&Agg3);
                 }
-                cout << LogCache.str() << endl << "Parsing log to determine if everything happened correctly" << endl;
+                TestOutput << LogCache.str() << endl << "Parsing log to determine if everything happened correctly" << endl;
                 pugi::xml_document Doc;
                 Doc.load(LogCache);
 
@@ -503,14 +503,14 @@ class frameschedulertests : public UnitTestGroup
                 //String BStart;
                 //String CStart;
 
-                //cout << "The timer cannot resolve times less then: " << GetTimeStampResolution() << endl;
-                //cout << "Was A complete before B started: " << (ToWhatever<MaxInt>(AEnd)<=ToWhatever<MaxInt>(BStart)+ToWhatever<MaxInt>(GetTimeStampResolution())) << endl;
-                //cout << "Was A complete before B started if the clock resolution could cause error: " << (ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(BStart)+ToWhatever<MaxInt>(GetTimeStampResolution()))) << endl;
+                //TestOutput << "The timer cannot resolve times less then: " << GetTimeStampResolution() << endl;
+                //TestOutput << "Was A complete before B started: " << (ToWhatever<MaxInt>(AEnd)<=ToWhatever<MaxInt>(BStart)+ToWhatever<MaxInt>(GetTimeStampResolution())) << endl;
+                //TestOutput << "Was A complete before B started if the clock resolution could cause error: " << (ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(BStart)+ToWhatever<MaxInt>(GetTimeStampResolution()))) << endl;
                 //TEST(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(BStart)+ToWhatever<MaxInt>(GetTimeStampResolution())),"BasicSorting::ABeforeB");
-                //cout << "Was A complete before C started: " << (ToWhatever<MaxInt>(AEnd)<=ToWhatever<MaxInt>(CStart)) << endl;
-                //cout << "Was A complete before C started if the clock resolution could cause error: " << (ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+ToWhatever<MaxInt>(GetTimeStampResolution()))) << endl;
+                //TestOutput << "Was A complete before C started: " << (ToWhatever<MaxInt>(AEnd)<=ToWhatever<MaxInt>(CStart)) << endl;
+                //TestOutput << "Was A complete before C started if the clock resolution could cause error: " << (ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+ToWhatever<MaxInt>(GetTimeStampResolution()))) << endl;
                 //TEST(ToWhatever<MaxInt>(AEnd)<=(ToWhatever<MaxInt>(CStart)+ToWhatever<MaxInt>(GetTimeStampResolution())),"BasicSorting::ABeforeC");
-                cout << "Were B and C run in different threads: " << (BThread!=CThread) << endl;
+                TestOutput << "Were B and C run in different threads: " << (BThread!=CThread) << endl;
                 TEST(BThread!=CThread,"BasicSorting::BNotInCThread");
             }
 
@@ -519,7 +519,7 @@ class frameschedulertests : public UnitTestGroup
                 FrameScheduler RemovalScheduler(&LogCache,1);
                 ThreadSpecificStorage RemovalResource(&RemovalScheduler);
 
-                cout << "Creating 5 workunits each depending on the next: A -> B -> C -> D -> E" << endl
+                TestOutput << "Creating 5 workunits each depending on the next: A -> B -> C -> D -> E" << endl
                      << "And a 6th that has no dependency relations: F" << endl;
                 PausesWorkUnit *EraseA = new PausesWorkUnit(10,"A");
                 PausesWorkUnit *EraseB = new PausesWorkUnit(10,"B");
@@ -533,7 +533,7 @@ class frameschedulertests : public UnitTestGroup
                 EraseC->AddDependency(EraseB);
                 EraseB->AddDependency(EraseA);
 
-                cout << "Stuffing all 6 into a test frame scheduler and preparing it for a run" << endl;
+                TestOutput << "Stuffing all 6 into a test frame scheduler and preparing it for a run" << endl;
                 RemovalScheduler.AddWorkUnitMain(EraseA, EraseA->Name);
                 RemovalScheduler.AddWorkUnitMain(EraseB, EraseB->Name);
                 RemovalScheduler.AddWorkUnitMain(EraseC, EraseC->Name);
@@ -543,191 +543,191 @@ class frameschedulertests : public UnitTestGroup
 
                 RemovalScheduler.SortWorkUnitsMain();
 
-                cout << "Checking the order of the workunits (Should be \"A B C D E F NULL\" or \"A B C D F E NULL\"): ";
+                TestOutput << "Checking the order of the workunits (Should be \"A B C D E F NULL\" or \"A B C D F E NULL\"): ";
                 Whole PrepCount = 0;
 
                 PausesWorkUnit* Next;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //A
+                TestOutput << Next->Name << " "; //A
                 Next->operator() (RemovalResource);
                 if(Next->Name=="A") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //B
+                TestOutput << Next->Name << " "; //B
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; //C
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //E or F
+                TestOutput << Next->Name << " "; //E or F
                 Next->operator() (RemovalResource);
                 PausesWorkUnit* OtherEF = Next;
                 if(Next->Name=="E" || Next->Name=="F") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //E or F Whichever was not EitherOr
+                TestOutput << Next->Name << " "; //E or F Whichever was not EitherOr
                 Next->operator() (RemovalResource);
                 if( (Next->Name=="E" || Next->Name=="F") && OtherEF!= Next) { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnit())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST((7==PrepCount),"RemoveMain::OrderingPreTest");
 
-                cout << endl << "Removing F from Scheduler then resorting and resetting it (New order should be \"A B C D E NULL\"): ";
+                TestOutput << endl << "Removing F from Scheduler then resorting and resetting it (New order should be \"A B C D E NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.RemoveWorkUnitMain(EraseF);
                 RemovalScheduler.SortWorkUnitsMain();
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //A
+                TestOutput << Next->Name << " "; //A
                 Next->operator() (RemovalResource);
                 if(Next->Name=="A") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //B
+                TestOutput << Next->Name << " "; //B
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; //C
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //E
+                TestOutput << Next->Name << " "; //E
                 Next->operator() (RemovalResource);
                 if(Next->Name=="E") { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnit())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST(6==PrepCount, "RemoveMain::Simple");
 
-                cout << endl << "Removing E from Scheduler then resorting and resetting it (New order should be \"A B C D NULL\"): ";
+                TestOutput << endl << "Removing E from Scheduler then resorting and resetting it (New order should be \"A B C D NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.RemoveWorkUnitMain(EraseE);
                 RemovalScheduler.SortWorkUnitsMain();
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //A
+                TestOutput << Next->Name << " "; //A
                 Next->operator() (RemovalResource);
                 if(Next->Name=="A") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //B
+                TestOutput << Next->Name << " "; //B
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; //C
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnit())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST(5==PrepCount, "RemoveMain::WithDep");
 
-                cout << endl << "Removing A from Scheduler then resorting and resetting it (New order should be \"B C D NULL\"): ";
+                TestOutput << endl << "Removing A from Scheduler then resorting and resetting it (New order should be \"B C D NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.RemoveWorkUnitMain(EraseA);
                 RemovalScheduler.SortWorkUnitsMain();
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //B
+                TestOutput << Next->Name << " "; //B
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; //C
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnit())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST(4==PrepCount, "RemoveMain::AsDep");
 
-                cout << endl << "Removing C from Scheduler then resorting and resetting it (New order should be \"B D NULL\" or \"D B NULL\"): ";
+                TestOutput << endl << "Removing C from Scheduler then resorting and resetting it (New order should be \"B D NULL\" or \"D B NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.RemoveWorkUnitMain(EraseC);
                 RemovalScheduler.SortWorkUnitsMain();
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
                 PausesWorkUnit* BorD = Next;
-                cout << Next->Name << " "; //B or D
+                TestOutput << Next->Name << " "; //B or D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B"||Next->Name=="D") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                cout << Next->Name << " "; // The other
+                TestOutput << Next->Name << " "; // The other
                 Next->operator() (RemovalResource);
                 if( (Next->Name=="B"||Next->Name=="D") && Next!=BorD) { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnit())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST(3==PrepCount, "RemoveMain::WithAndAsDep");
 
 
-                cout << endl << "Adding an Affinity WorkUnit Z and making it depend on B (new order should be B, Z, D, NULL): ";
+                TestOutput << endl << "Adding an Affinity WorkUnit Z and making it depend on B (new order should be B, Z, D, NULL): ";
                 RemovalScheduler.AddWorkUnitAffinity(EraseZ, EraseZ->Name);
                 EraseZ->AddDependency(EraseB);
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.SortWorkUnitsAll(); //Sorting all on this test
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //B
+                TestOutput << Next->Name << " "; //B
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //Z
+                TestOutput << Next->Name << " "; //Z
                 Next->operator() (RemovalResource);
                 if(Next->Name=="Z") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnitAffinity())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST(4==PrepCount, "RemoveMain::MainPreTest");
 
-                cout << endl << "Removing B and verifying no infinite loops are added(new order should be Z, D, NULL): ";
+                TestOutput << endl << "Removing B and verifying no infinite loops are added(new order should be Z, D, NULL): ";
                 RemovalScheduler.RemoveWorkUnitMain(EraseB);
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.SortWorkUnitsAll(); //Sorting all on this test
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //Z
+                TestOutput << Next->Name << " "; //Z
                 Next->operator() (RemovalResource);
                 if(Next->Name=="Z") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnitAffinity())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST(3==PrepCount, "RemoveMain::MainCleanup");
 
                 delete EraseA; delete EraseB; delete EraseC; delete EraseE; delete EraseF;
@@ -735,7 +735,7 @@ class frameschedulertests : public UnitTestGroup
 
             { // Affinty
                 stringstream LogCache;
-                cout << "Creating WorkUnits a Dependency chain as follows: "
+                TestOutput << "Creating WorkUnits a Dependency chain as follows: "
                         << endl << "A---+                  +--->B"
                         << endl << "    |                  |"
                         << endl << "    +-->AffinityUnit---+"
@@ -772,14 +772,14 @@ class frameschedulertests : public UnitTestGroup
                 Scheduler1.RemoveWorkUnitMain(&Agg1);
 
                 // Check that two threads exist and that B and C run in different thread, and after A finished
-                cout << "Affinity should run in this This thread and this thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-                cout << LogCache.str() << endl << "Parsing log to determine if everything happened correctly" << endl;
+                TestOutput << "Affinity should run in this This thread and this thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+                TestOutput << LogCache.str() << endl << "Parsing log to determine if everything happened correctly" << endl;
 
                 pugi::xml_document Doc;
                 Doc.load(LogCache);
 
                 pugi::xpath_node_set MakePiNodes = Doc.select_nodes("MezzanineLog/Frame/Thread/WorkUnit/MakePi");
-                //cout << "Found " << MakePiNodes.size() << " MakePI workUnits executed, expected " << Expected << "." << endl;
+                //TestOutput << "Found " << MakePiNodes.size() << " MakePI workUnits executed, expected " << Expected << "." << endl;
                 //TEST(MakePiNodes.size()==Expected,"WorkLogged");
 
 
@@ -790,7 +790,7 @@ class frameschedulertests : public UnitTestGroup
                 FrameScheduler RemovalScheduler(&LogCache,1);
                 ThreadSpecificStorage RemovalResource(&RemovalScheduler);
 
-                cout << endl << "Creating 5 workunits each depending on the next: A -> B -> C -> D -> E" << endl
+                TestOutput << endl << "Creating 5 workunits each depending on the next: A -> B -> C -> D -> E" << endl
                      << "And a 6th that has no dependency relations: F" << endl;
                 PausesWorkUnit *EraseA = new PausesWorkUnit(10,"A");
                 PausesWorkUnit *EraseB = new PausesWorkUnit(10,"B");
@@ -804,7 +804,7 @@ class frameschedulertests : public UnitTestGroup
                 EraseC->AddDependency(EraseB);
                 EraseB->AddDependency(EraseA);
 
-                cout << "Stuffing all 6 into a test frame scheduler as affinity workunit and preparing it for a run" << endl;
+                TestOutput << "Stuffing all 6 into a test frame scheduler as affinity workunit and preparing it for a run" << endl;
                 RemovalScheduler.AddWorkUnitAffinity(EraseA, EraseA->Name);
                 RemovalScheduler.AddWorkUnitAffinity(EraseB, EraseB->Name);
                 RemovalScheduler.AddWorkUnitAffinity(EraseC, EraseC->Name);
@@ -814,190 +814,190 @@ class frameschedulertests : public UnitTestGroup
 
                 RemovalScheduler.SortWorkUnitsAffinity();
 
-                cout << "Checking the order of the workunits (Should be \"A B C D E F NULL\" or \"A B C D F E NULL\"): ";
+                TestOutput << "Checking the order of the workunits (Should be \"A B C D E F NULL\" or \"A B C D F E NULL\"): ";
                 Whole PrepCount = 0;
 
                 PausesWorkUnit* Next;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //A
+                TestOutput << Next->Name << " "; //A
                 Next->operator() (RemovalResource);
                 if(Next->Name=="A") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //B
+                TestOutput << Next->Name << " "; //B
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; //C
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //E or F
+                TestOutput << Next->Name << " "; //E or F
                 Next->operator() (RemovalResource);
                 PausesWorkUnit* OtherEF = Next;
                 if(Next->Name=="E" || Next->Name=="F") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //E or F Whichever was not EitherOr
+                TestOutput << Next->Name << " "; //E or F Whichever was not EitherOr
                 Next->operator() (RemovalResource);
                 if( (Next->Name=="E" || Next->Name=="F") && OtherEF!= Next) { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnitAffinity())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST((7==PrepCount),"RemoveAffinity::OrderingPreTest");
 
-                cout << endl << "Removing F from Scheduler then resorting and resetting it (New order should be \"A B C D E NULL\"): ";
+                TestOutput << endl << "Removing F from Scheduler then resorting and resetting it (New order should be \"A B C D E NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.RemoveWorkUnitAffinity(EraseF);
                 RemovalScheduler.SortWorkUnitsAffinity();
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //A
+                TestOutput << Next->Name << " "; //A
                 Next->operator() (RemovalResource);
                 if(Next->Name=="A") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //B
+                TestOutput << Next->Name << " "; //B
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; //C
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //E
+                TestOutput << Next->Name << " "; //E
                 Next->operator() (RemovalResource);
                 if(Next->Name=="E") { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnitAffinity())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST((6==PrepCount),"RemoveAffinity::Simple");
 
-                cout << endl << "Removing E from Scheduler then resorting and resetting it (New order should be \"A B C D NULL\"): ";
+                TestOutput << endl << "Removing E from Scheduler then resorting and resetting it (New order should be \"A B C D NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.RemoveWorkUnitAffinity(EraseE);
                 RemovalScheduler.SortWorkUnitsAffinity();
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //A
+                TestOutput << Next->Name << " "; //A
                 Next->operator() (RemovalResource);
                 if(Next->Name=="A") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //B
+                TestOutput << Next->Name << " "; //B
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; //C
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnitAffinity())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST((5==PrepCount),"RemoveAffinity::WithDep");
 
-                cout << endl << "Removing A from Scheduler then resorting and resetting it (New order should be \"B C D NULL\"): ";
+                TestOutput << endl << "Removing A from Scheduler then resorting and resetting it (New order should be \"B C D NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.RemoveWorkUnitAffinity(EraseA);
                 RemovalScheduler.SortWorkUnitsAffinity();
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //B
+                TestOutput << Next->Name << " "; //B
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; //C
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnitAffinity())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST((4==PrepCount),"RemoveAffinity::AsDep");
 
-                cout << endl << "Removing C from Scheduler then resorting and resetting it (New order should be \"B D NULL\" or \"D B NULL\"): ";
+                TestOutput << endl << "Removing C from Scheduler then resorting and resetting it (New order should be \"B D NULL\" or \"D B NULL\"): ";
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.RemoveWorkUnitAffinity(EraseC);
                 RemovalScheduler.SortWorkUnitsAffinity();
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
                 PausesWorkUnit* BorD = Next;
-                cout << Next->Name << " "; //B or D
+                TestOutput << Next->Name << " "; //B or D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B"||Next->Name=="D") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; // The other
+                TestOutput << Next->Name << " "; // The other
                 Next->operator() (RemovalResource);
                 if( (Next->Name=="B"||Next->Name=="D") && Next!=BorD) { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnitAffinity())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST((3==PrepCount),"RemoveAffinity::WithAndAsDep");
 
-                cout << endl << "Adding a non-affinity/Main WorkUnit Z and making it depend on B (new order should be B, D, Z, NULL): ";
+                TestOutput << endl << "Adding a non-affinity/Main WorkUnit Z and making it depend on B (new order should be B, D, Z, NULL): ";
                 RemovalScheduler.AddWorkUnitMain(EraseZ, EraseZ->Name);
                 EraseZ->AddDependency(EraseB);
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.SortWorkUnitsAll(); //Sorting all on this test
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //B
+                TestOutput << Next->Name << " "; //B
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //Z
+                TestOutput << Next->Name << " "; //Z
                 Next->operator() (RemovalResource);
                 if(Next->Name=="Z") { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnitAffinity())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST((4==PrepCount),"RemoveAffinity::MainPreTest");
 
-                cout << endl << "Removing B and verifying no infinite loops are added(new order should be D, Z, NULL): ";
+                TestOutput << endl << "Removing B and verifying no infinite loops are added(new order should be D, Z, NULL): ";
                 RemovalScheduler.RemoveWorkUnitAffinity(EraseB);
                 RemovalScheduler.ResetAllWorkUnits();
                 RemovalScheduler.SortWorkUnitsAll(); //Sorting all on this test
                 PrepCount = 0;
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //D
+                TestOutput << Next->Name << " "; //D
                 Next->operator() (RemovalResource);
                 if(Next->Name=="D") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                cout << Next->Name << " "; //Z
+                TestOutput << Next->Name << " "; //Z
                 Next->operator() (RemovalResource);
                 if(Next->Name=="Z") { PrepCount++; }
                 if(RemovalScheduler.GetNextWorkUnitAffinity())
-                    { cout << Next->Name << " "; }
+                    { TestOutput << Next->Name << " "; }
                 else
-                    { cout << "NULL "; PrepCount++; }
-                cout << endl;
+                    { TestOutput << "NULL "; PrepCount++; }
+                TestOutput << endl;
                 TEST((3==PrepCount),"RemoveAffinity::MainCleanup");
 
                 delete EraseA; delete EraseB; delete EraseC; delete EraseE; delete EraseF;
@@ -1008,7 +1008,7 @@ class frameschedulertests : public UnitTestGroup
                 FrameScheduler RemovalScheduler(&LogCache,1);
                 //ThreadSpecificStorage RemovalResource(&RemovalScheduler);
 
-                cout << endl << "Creating 3 Monopoly Workunits and an affinity Workunit and a normal/Main workunit" << endl;
+                TestOutput << endl << "Creating 3 Monopoly Workunits and an affinity Workunit and a normal/Main workunit" << endl;
                 PauseMonopoly *EraseMonoA = new PauseMonopoly(10,"MonoA");
                 PauseMonopoly *EraseMonoB = new PauseMonopoly(10,"MonoB");
                 PauseMonopoly *EraseMonoC = new PauseMonopoly(10,"MonoC");
@@ -1025,24 +1025,24 @@ class frameschedulertests : public UnitTestGroup
                 RemovalScheduler.AddWorkUnitMonopoly(EraseMonoB, EraseMonoB->Name);
                 RemovalScheduler.AddWorkUnitMonopoly(EraseMonoC, EraseMonoC->Name);
 
-                cout << "Test Scheduler has " << RemovalScheduler.GetWorkUnitMonopolyCount() << " WorkUnits, and the affinity unit has " << EraseA->GetDependencyCount()
+                TestOutput << "Test Scheduler has " << RemovalScheduler.GetWorkUnitMonopolyCount() << " WorkUnits, and the affinity unit has " << EraseA->GetDependencyCount()
                      << " Dependencies and the main workunit has " << EraseB->GetDependencyCount() << "." << endl;
                 Test(EraseA->GetDependencyCount()==1 &&
                      EraseB->GetDependencyCount()==1 &&
                      RemovalScheduler.GetWorkUnitMonopolyCount()==3, "DAGFrameScheduler::FrameScheduler::RemoveMopoly::PreTest");
 
                 RemovalScheduler.RemoveWorkUnitMonopoly(EraseMonoC);
-                cout << "Removing Monopoly is no dependent, now the are " << RemovalScheduler.GetWorkUnitMonopolyCount() << " Monopolies (should be 2)." << endl << endl;
+                TestOutput << "Removing Monopoly is no dependent, now the are " << RemovalScheduler.GetWorkUnitMonopolyCount() << " Monopolies (should be 2)." << endl << endl;
                 Test(RemovalScheduler.GetWorkUnitMonopolyCount()==2, "DAGFrameScheduler::FrameScheduler::RemoveMopoly::Simple");
 
                 RemovalScheduler.RemoveWorkUnitMonopoly(EraseMonoA);
-                cout << "Removing Monopoly is a dependent for an Affinity unit, now the are " << RemovalScheduler.GetWorkUnitMonopolyCount() << " Monopolies (should be 1)" << endl
+                TestOutput << "Removing Monopoly is a dependent for an Affinity unit, now the are " << RemovalScheduler.GetWorkUnitMonopolyCount() << " Monopolies (should be 1)" << endl
                      << "and the affinity unit has " << EraseA->GetDependencyCount() << " deps (should be 0)." << endl << endl;
                 Test(RemovalScheduler.GetWorkUnitMonopolyCount()==1 &&
                      EraseA->GetDependencyCount()==0, "DAGFrameScheduler::FrameScheduler::RemoveMopoly::AffinityDep");
 
                 RemovalScheduler.RemoveWorkUnitMonopoly(EraseMonoB);
-                cout << "Removing Monopoly is a dependent for an main unit, now the are " << RemovalScheduler.GetWorkUnitMonopolyCount() << " Monopolies (should be 0)" << endl
+                TestOutput << "Removing Monopoly is a dependent for an main unit, now the are " << RemovalScheduler.GetWorkUnitMonopolyCount() << " Monopolies (should be 0)" << endl
                      << "and the main unit has " << EraseB->GetDependencyCount() << " deps (should be 0)." << endl << endl;
                 Test(RemovalScheduler.GetWorkUnitMonopolyCount()==0 &&
                      EraseB->GetDependencyCount()==0, "DAGFrameScheduler::FrameScheduler::RemoveMopoly::AffinityDep");
@@ -1065,7 +1065,7 @@ class frameschedulertests : public UnitTestGroup
                 Scheduler1.SortWorkUnitsAll();
                 Scheduler1.DoOneFrame();
 
-                cout << "Checking that FrameScheduler::GetThreadResource produces the same results as what is passed into WorkUnit::DoWork: "
+                TestOutput << "Checking that FrameScheduler::GetThreadResource produces the same results as what is passed into WorkUnit::DoWork: "
                      << endl
                      << dec << "from thread :" << Checker1->InThread << " - " << hex
                         << (Checker1->FromArgs) << " == " << (Checker1->FromGetResource) << " : " << (Checker1->FromArgs==Checker1->FromGetResource) << endl
@@ -1082,7 +1082,7 @@ class frameschedulertests : public UnitTestGroup
                      Checker4->FromArgs==Checker4->FromGetResource
                      ,"GetThreadResource");
 
-                cout << "Checking that FrameScheduler::GetThreadUsableLogger produces the same results as what is passed into WorkUnit::DoWork: "
+                TestOutput << "Checking that FrameScheduler::GetThreadUsableLogger produces the same results as what is passed into WorkUnit::DoWork: "
                      << endl
                      << dec << "from thread :" << Checker1->InThread << " - " << hex
                         << (Checker1->LogFromArgs) << " == " << (Checker1->LogFromGet) << " : " << (Checker1->LogFromArgs==Checker1->LogFromGet) << endl
@@ -1108,7 +1108,7 @@ class frameschedulertests : public UnitTestGroup
                 MaxInt TargetLength = FrameCount*FrameLength;
                 Scheduler1.SetFrameLength(FrameLength);
 
-                cout << "Creating a Framescheduler and running it empty for brief period to measure its accuracy." << endl;
+                TestOutput << "Creating a Framescheduler and running it empty for brief period to measure its accuracy." << endl;
                 TEST_TIMED (
                                 for(MaxInt Counter = 0; Counter<FrameCount; Counter++)
                                     { Scheduler1.DoOneFrame(); }
@@ -1117,11 +1117,11 @@ class frameschedulertests : public UnitTestGroup
 
                 // get the last inserted frame length
                 MaxInt ActualLength = Scheduler1.GetFrameTimeRollingAverage()[Scheduler1.GetFrameTimeRollingAverage().RecordCapacity()-1];
-                cout << "Expected last frame to be " << FrameLength << " microseconds and it was " << ActualLength << " microseconds." << endl;
+                TestOutput << "Expected last frame to be " << FrameLength << " microseconds and it was " << ActualLength << " microseconds." << endl;
                 TEST( (FrameLength-200<ActualLength) && (ActualLength<FrameLength+200),"LastFrameData" );
 
                 MaxInt PauseLength = Scheduler1.GetPauseTimeRollingAverage()[Scheduler1.GetPauseTimeRollingAverage().RecordCapacity()-1];
-                cout << "Without know the performance of this machine ahead of time, knowing the size of the pause is impossible, how it can be tested for sane values, it is: "
+                TestOutput << "Without know the performance of this machine ahead of time, knowing the size of the pause is impossible, how it can be tested for sane values, it is: "
                      << PauseLength<< "  microseconds." << endl;
                 TEST( (0<=PauseLength) && (PauseLength<=FrameLength+1),"LastPauseData" );
 
