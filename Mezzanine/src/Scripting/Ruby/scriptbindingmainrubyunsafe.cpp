@@ -26621,6 +26621,43 @@ SWIGINTERN VALUE
 _wrap_new_Plane__SWIG_3(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Vector3 *arg1 = 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Plane *result = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__Vector3,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const &","Mezzanine::Plane", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","Mezzanine::Plane", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Vector3 * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Vector3,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const &","Mezzanine::Plane", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","Mezzanine::Plane", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
+  result = (Mezzanine::Plane *)new Mezzanine::Plane((Mezzanine::Vector3 const &)*arg1,(Mezzanine::Vector3 const &)*arg2);
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_new_Plane__SWIG_4(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Vector3 *arg1 = 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
@@ -26683,7 +26720,7 @@ _wrap_Plane_allocate(VALUE self) {
   
 
 SWIGINTERN VALUE
-_wrap_new_Plane__SWIG_4(int argc, VALUE *argv, VALUE self) {
+_wrap_new_Plane__SWIG_5(int argc, VALUE *argv, VALUE self) {
   Ogre::Plane *arg1 = 0 ;
   void *argp1 ;
   int res1 = 0 ;
@@ -26736,7 +26773,21 @@ SWIGINTERN VALUE _wrap_new_Plane(int nargs, VALUE *args, VALUE self) {
     int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Ogre__Plane, 0);
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_new_Plane__SWIG_4(nargs, args, self);
+      return _wrap_new_Plane__SWIG_5(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_Plane__SWIG_3(nargs, args, self);
+      }
     }
   }
   if (argc == 2) {
@@ -26768,7 +26819,7 @@ SWIGINTERN VALUE _wrap_new_Plane(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_new_Plane__SWIG_3(nargs, args, self);
+          return _wrap_new_Plane__SWIG_4(nargs, args, self);
         }
       }
     }
@@ -26778,7 +26829,8 @@ fail:
   Ruby_Format_OverloadedError( argc, 3, "Plane.new", 
     "    Plane.new()\n"
     "    Plane.new(Mezzanine::Plane const &Other)\n"
-    "    Plane.new(Mezzanine::Vector3 const &Norm, Mezzanine::Real const Dist)\n"
+    "    Plane.new(Mezzanine::Vector3 const &Norm, Mezzanine::Real const Constant)\n"
+    "    Plane.new(Mezzanine::Vector3 const &Norm, Mezzanine::Vector3 const &Point)\n"
     "    Plane.new(Mezzanine::Vector3 const &First, Mezzanine::Vector3 const &Second, Mezzanine::Vector3 const &Third)\n"
     "    Plane.new(Ogre::Plane const &InternalPlane)\n");
   
@@ -26833,6 +26885,49 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_Plane_define__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Vector3 *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Plane, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Plane *","Define", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Plane * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Vector3,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const &","Define", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","Define", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
+  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_Mezzanine__Vector3,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const &","Define", 3, argv[1] )); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","Define", 3, argv[1])); 
+  }
+  arg3 = reinterpret_cast< Mezzanine::Vector3 * >(argp3);
+  (arg1)->Define((Mezzanine::Vector3 const &)*arg2,(Mezzanine::Vector3 const &)*arg3);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Plane_define__SWIG_2(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
@@ -26906,6 +27001,25 @@ SWIGINTERN VALUE _wrap_Plane_define(int nargs, VALUE *args, VALUE self) {
       int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_Plane_define__SWIG_1(nargs, args, self);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Plane, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
         {
           int res = SWIG_AsVal_float(argv[2], NULL);
           _v = SWIG_CheckState(res);
@@ -26934,7 +27048,7 @@ SWIGINTERN VALUE _wrap_Plane_define(int nargs, VALUE *args, VALUE self) {
           int res = SWIG_ConvertPtr(argv[3], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_Plane_define__SWIG_1(nargs, args, self);
+            return _wrap_Plane_define__SWIG_2(nargs, args, self);
           }
         }
       }
@@ -26943,7 +27057,8 @@ SWIGINTERN VALUE _wrap_Plane_define(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 5, "Plane.define", 
-    "    void Plane.define(Mezzanine::Vector3 const &Norm, Mezzanine::Real const Dist)\n"
+    "    void Plane.define(Mezzanine::Vector3 const &Norm, Mezzanine::Real const Constant)\n"
+    "    void Plane.define(Mezzanine::Vector3 const &Norm, Mezzanine::Vector3 const &Point)\n"
     "    void Plane.define(Mezzanine::Vector3 const &First, Mezzanine::Vector3 const &Second, Mezzanine::Vector3 const &Third)\n");
   
   return Qnil;

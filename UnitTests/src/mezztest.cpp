@@ -108,8 +108,6 @@ UnitTestGroup GetResultsFromTempFile()
         throw runtime_error(FailStream.str());
     }
 
-
-
     return Results;
 }
 

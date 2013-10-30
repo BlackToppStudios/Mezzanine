@@ -24920,6 +24920,37 @@ static int _wrap_new_Plane__SWIG_3(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Vector3 *arg1 = 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Plane *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Plane::Plane",2,2)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Plane::Plane",1,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Plane::Plane",2,"Mezzanine::Vector3 const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("new_Plane",1,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("new_Plane",2,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  result = (Mezzanine::Plane *)new Mezzanine::Plane((Mezzanine::Vector3 const &)*arg1,(Mezzanine::Vector3 const &)*arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Plane,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Plane__SWIG_4(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Vector3 *arg1 = 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
   Mezzanine::Vector3 *arg3 = 0 ;
   Mezzanine::Plane *result = 0 ;
   
@@ -24954,7 +24985,7 @@ fail:
 }
 
 
-static int _wrap_new_Plane__SWIG_4(lua_State* L) {
+static int _wrap_new_Plane__SWIG_5(lua_State* L) {
   int SWIG_arg = 0;
   Ogre::Plane *arg1 = 0 ;
   Mezzanine::Plane *result = 0 ;
@@ -25013,7 +25044,31 @@ static int _wrap_new_Plane(lua_State* L) {
       }
     }
     if (_v) {
-      return _wrap_new_Plane__SWIG_4(L);
+      return _wrap_new_Plane__SWIG_5(L);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *ptr;
+      if (lua_isuserdata(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector3, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector3, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        return _wrap_new_Plane__SWIG_3(L);
+      }
     }
   }
   if (argc == 2) {
@@ -25064,7 +25119,7 @@ static int _wrap_new_Plane(lua_State* L) {
           }
         }
         if (_v) {
-          return _wrap_new_Plane__SWIG_3(L);
+          return _wrap_new_Plane__SWIG_4(L);
         }
       }
     }
@@ -25075,6 +25130,7 @@ static int _wrap_new_Plane(lua_State* L) {
     "    Mezzanine::Plane::Plane()\n"
     "    Mezzanine::Plane::Plane(Mezzanine::Plane const &)\n"
     "    Mezzanine::Plane::Plane(Mezzanine::Vector3 const &,Mezzanine::Real const)\n"
+    "    Mezzanine::Plane::Plane(Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n"
     "    Mezzanine::Plane::Plane(Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n"
     "    Mezzanine::Plane::Plane(Ogre::Plane const &)\n");
   lua_error(L);return 0;
@@ -25115,6 +25171,43 @@ fail:
 
 
 static int _wrap_Plane_Define__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Vector3 *arg3 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Plane::Define",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::Define",1,"Mezzanine::Plane *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Plane::Define",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Plane::Define",3,"Mezzanine::Vector3 const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Plane,0))){
+    SWIG_fail_ptr("Plane_Define",1,SWIGTYPE_p_Mezzanine__Plane);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("Plane_Define",2,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("Plane_Define",3,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  (arg1)->Define((Mezzanine::Vector3 const &)*arg2,(Mezzanine::Vector3 const &)*arg3);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Plane_Define__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
@@ -25186,6 +25279,40 @@ static int _wrap_Plane_Define(lua_State* L) {
       }
       if (_v) {
         {
+          void *ptr;
+          if (lua_isuserdata(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector3, 0)) {
+            _v = 0;
+          } else {
+            _v = 1;
+          }
+        }
+        if (_v) {
+          return _wrap_Plane_Define__SWIG_1(L);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *ptr;
+      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Plane, 0)) {
+        _v = 0;
+      } else {
+        _v = 1;
+      }
+    }
+    if (_v) {
+      {
+        void *ptr;
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector3, 0)) {
+          _v = 0;
+        } else {
+          _v = 1;
+        }
+      }
+      if (_v) {
+        {
           _v = lua_isnumber(L,argv[2]);
         }
         if (_v) {
@@ -25232,7 +25359,7 @@ static int _wrap_Plane_Define(lua_State* L) {
             }
           }
           if (_v) {
-            return _wrap_Plane_Define__SWIG_1(L);
+            return _wrap_Plane_Define__SWIG_2(L);
           }
         }
       }
@@ -25242,6 +25369,7 @@ static int _wrap_Plane_Define(lua_State* L) {
   lua_pushstring(L,"Wrong arguments for overloaded function 'Plane_Define'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Plane::Define(Mezzanine::Vector3 const &,Mezzanine::Real const)\n"
+    "    Mezzanine::Plane::Define(Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n"
     "    Mezzanine::Plane::Define(Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n");
   lua_error(L);return 0;
 }

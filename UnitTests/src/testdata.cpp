@@ -118,6 +118,8 @@ namespace Mezzanine
 
         void UnitTestGroup::RunTests(bool RunAuto, bool RunInteractive)
         {
+            TestOutput << "<AutomaticTestOutput>" << std::endl;
+            TestError << "<AutomaticTestError>" << std::endl;
             try
             {
                 if(RunAuto)
@@ -129,7 +131,11 @@ namespace Mezzanine
                      << "Message: " << e.what() << endl;
                 AddTestResult( TestData("UnhandledException", Testing::Failed) );
             }
+            TestOutput << "</AutomaticTestOutput>" << std::endl;
+            TestError << "</AutomaticTestError>" << std::endl;
 
+            TestOutput << "<InteractiveTestOutput>" << std::endl;
+            TestError << "<InteractiveTestError>" << std::endl;
             try
             {
                 if(RunInteractive)
@@ -141,6 +147,8 @@ namespace Mezzanine
                      << "Message: " << e.what() << endl;
                 AddTestResult( TestData("UnhandledException", Testing::Failed) );
             }
+            TestOutput << "</InteractiveTestOutput>" << std::endl;
+            TestError << "</InteractiveTestError>" << std::endl;
         }
 
         void UnitTestGroup::RunAutomaticTests()
@@ -249,9 +257,13 @@ namespace Mezzanine
                     if(String("TestData")==CurrentName)
                         { this->AddTestResult(TestData(*Iter)); }
                     else if(String("UnitTestOutput")==CurrentName)
-                        { TestOutput << Iter->first_child().text(); }
+                    {
+                        TestOutput << std::endl;
+                        Iter->print(TestOutput);
+                        TestOutput << std::endl;
+                    }
                     else if(String("UnitTestError")==CurrentName)
-                        { TestError << Iter->first_child().text(); }
+                        { TestError << std::endl << Iter->text() << std::endl; }
                     else
                     {
                         throw std::invalid_argument(
