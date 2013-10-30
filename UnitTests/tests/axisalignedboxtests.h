@@ -81,7 +81,7 @@ public:
     {
         {
             AxisAlignedBox Blank;
-            TEST( Blank.MinExt == Vector3(0,0,0) && Blank.MaxExt == Vector3(0,0,0) ,"AxisAlignedBox()");
+            TEST( Blank.MinExt == Vector3(0.0,0.0,0.0) && Blank.MaxExt == Vector3(0.0,0.0,0.0) ,"AxisAlignedBox()");
         }
 
         {

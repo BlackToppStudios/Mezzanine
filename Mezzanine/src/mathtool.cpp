@@ -227,7 +227,7 @@ namespace Mezzanine
         Bool Overlap(const Sphere& Ball1, const Sphere& Ball2)
         {
             Real Dist = Ball1.Center.Distance(Ball2.Center);
-            return ( Dist <= Ball1.Radius || Dist <= Ball2.Radius );
+            return ( Dist <= Ball1.Radius + Ball2.Radius );
         }
 
         Bool Overlap(const Plane& Surface1, const Plane& Surface2)
