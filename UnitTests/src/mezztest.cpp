@@ -325,7 +325,7 @@ int main (int argc, char** argv)
     {
         String FileName("TestResults.txt");
         std::ofstream OutFile(FileName.c_str());
-        Runner.DisplayResults(OutFile, OutFile, SummaryDisplay,FullDisplay);
+        Runner.DisplayResults(OutFile, OutFile, SummaryDisplay, FullDisplay);
         OutFile.close();
     }
     Runner.DisplayResults(cout, cerr, SummaryDisplay, FullDisplay);

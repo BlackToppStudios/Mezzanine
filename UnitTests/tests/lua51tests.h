@@ -135,7 +135,7 @@ class lua51tests : public UnitTestGroup
             Scripting::Lua::Lua51ScriptingEngine LuaRuntimeSafe(Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
             //Scripting::Lua::Lua51ScriptingEngine LuaRuntimeAll(Scripting::Lua::Lua51ScriptingEngine::AllLibs);
 
-            String WorldWorldSource("print (\"Hello World!\")");
+            String WorldWorldSource("print (\"Hello World, From Lua5.1\")");
 
             // Lua script Default constructor skipped
             // Skipped FlaggedBuffer completely.

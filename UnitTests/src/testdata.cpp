@@ -118,8 +118,8 @@ namespace Mezzanine
 
         void UnitTestGroup::RunTests(bool RunAuto, bool RunInteractive)
         {
-            TestOutput << "<AutomaticTestOutput>" << std::endl;
-            TestError << "<AutomaticTestError>" << std::endl;
+            TestOutput << std::endl << "<AutomaticTestOutput>" << std::endl;
+            TestError << std::endl<< "<AutomaticTestError>" << std::endl;
             try
             {
                 if(RunAuto)
@@ -127,12 +127,12 @@ namespace Mezzanine
                 else if(HasAutomaticTests())
                     { AddTestResult( TestData("AutomaticTests",Testing::Skipped, "RunTests") );}
             }catch(exception& e){
-                cerr << "Caught an unhandled exception while doing RunAutomaticTests()." << endl
-                     << "Message: " << e.what() << endl;
+                TestError << "Caught an unhandled exception while doing RunAutomaticTests()." << endl
+                          << "Message: " << e.what() << endl;
                 AddTestResult( TestData("UnhandledException", Testing::Failed) );
             }
-            TestOutput << "</AutomaticTestOutput>" << std::endl;
-            TestError << "</AutomaticTestError>" << std::endl;
+            TestOutput << std::endl<< "</AutomaticTestOutput>" << std::endl;
+            TestError << std::endl<< "</AutomaticTestError>" << std::endl;
 
             TestOutput << "<InteractiveTestOutput>" << std::endl;
             TestError << "<InteractiveTestError>" << std::endl;
@@ -143,12 +143,12 @@ namespace Mezzanine
                 else if(HasInteractiveTests())
                     { AddTestResult( TestData("InteractiveTests",Testing::Skipped, "RunTests") );}
             }catch(exception& e){
-                cerr << "Caught an unhandled exception while doing RunInteractiveTests()." << endl
-                     << "Message: " << e.what() << endl;
+                TestError << "Caught an unhandled exception while doing RunInteractiveTests()." << endl
+                          << "Message: " << e.what() << endl;
                 AddTestResult( TestData("UnhandledException", Testing::Failed) );
             }
-            TestOutput << "</InteractiveTestOutput>" << std::endl;
-            TestError << "</InteractiveTestError>" << std::endl;
+            TestOutput << std::endl << "</InteractiveTestOutput>" << std::endl;
+            TestError << std::endl << "</InteractiveTestError>" << std::endl;
         }
 
         void UnitTestGroup::RunAutomaticTests()
@@ -236,6 +236,8 @@ namespace Mezzanine
                 { LongestNameLength=rhs.LongestNameLength; }
 
             insert(rhs.begin(),rhs.end());
+            this->TestOutput << rhs.TestOutput.str();
+            this->TestError << rhs.TestError.str();
             return *this;
         }
 
@@ -284,7 +286,7 @@ namespace Mezzanine
 
         String UnitTestGroup::GetAsXML() const
         {
-            String Results("<UnitTestGroup>");
+            String Results("\n<UnitTestGroup>");
             for (iterator Iter=this->begin(); Iter!=this->end(); Iter++)
                 { Results += "\n  " + Iter->GetAsXML(); }
             Results += "\n<UnitTestOutput>";
