@@ -118,6 +118,11 @@ namespace Mezzanine
 
         void UnitTestGroup::RunTests(bool RunAuto, bool RunInteractive)
         {
+            streambuf* CoutStreamBuf = cout.rdbuf();
+            cout.rdbuf(TestOutput.rdbuf());
+            streambuf* CerrStreamBuf = cerr.rdbuf();
+            cerr.rdbuf(TestError.rdbuf());
+
             TestOutput << std::endl << "<AutomaticTestOutput>" << std::endl;
             TestError << std::endl<< "<AutomaticTestError>" << std::endl;
             try
@@ -149,6 +154,9 @@ namespace Mezzanine
             }
             TestOutput << std::endl << "</InteractiveTestOutput>" << std::endl;
             TestError << std::endl << "</InteractiveTestError>" << std::endl;
+
+            cout.rdbuf(CoutStreamBuf);
+            cout.rdbuf(CerrStreamBuf);
         }
 
         void UnitTestGroup::RunAutomaticTests()
