@@ -311,7 +311,7 @@ namespace Mezzanine
             }
 
             if(FullOutput)
-                { cout << TestOutput.str(); }
+                { Output << TestOutput.str(); }
 
             for (TestDataStorage::iterator Iter=this->begin(); Iter!=this->end(); Iter++)
             {
@@ -354,7 +354,7 @@ namespace Mezzanine
             }
 
             if(FullOutput)
-                { cerr << TestError.str(); }
+                { Error << "Errors:\n" << TestError.str(); }
         }
 
         void UnitTestGroup::Test(bool TestCondition, const String& TestName, TestResult IfFalse, TestResult IfTrue, const String& FuncName, const String& File, Whole Line )
@@ -368,8 +368,8 @@ namespace Mezzanine
                     AddTestResult( TestData(TestName, IfFalse, FuncName, File, Line) );
                 }
             }catch(exception& e){
-                cerr << "Caught an unhandled exception while adding results for " << TestName << endl
-                     << "Message: " << e.what() << endl;
+                TestError << "Caught an unhandled exception while adding results for " << TestName << endl
+                          << "Message: " << e.what() << endl;
                 AddTestResult( TestData("UnhandledException", Testing::Failed, FuncName, File, Line) );
             }
         }

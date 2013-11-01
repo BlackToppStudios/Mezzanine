@@ -193,8 +193,8 @@ class AllUnitTestGroups : public UnitTestGroup
                 {
                     try{
                         TestGroups[*CurrentTestName]->RunTests(RunAutomaticTests, RunInteractiveTests);
-                    }catch (std::exception e){
-                        std::cerr << std::endl << e.what() << std::endl;
+                    } catch (std::exception e) {
+                        TestError << std::endl << e.what() << std::endl;
                         // maybe we should log or somehting.
                     }
 
@@ -215,7 +215,7 @@ class AllUnitTestGroups : public UnitTestGroup
                     {
                         (*this) += GetResultsFromTempFile();
                     } catch (std::exception& e) {
-                        cerr << e.what() << endl;
+                        TestError << e.what() << endl;
                     }
 
                 }

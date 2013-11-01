@@ -130,7 +130,6 @@ namespace Mezzanine
         class UnitTestGroup : public TestDataStorage
         {
             protected:
-            public:
                 /// @brief A destination for all normal ouput in the tests.
                 std::stringstream TestOutput;
 

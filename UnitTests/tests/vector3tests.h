@@ -449,7 +449,7 @@ class vector3tests : public UnitTestGroup
                     XMLstream >> VecStream;
                     TEST(VecStream==Vec,"operator>>(istream,Vector3)");
                 }catch (Mezzanine::Exception& Ex){
-                    std::cerr << "Failure in: Vector3::operator>>(istream,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
+                    TestError << "Failure in: Vector3::operator>>(istream,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     TEST_RESULT(Testing::Failed,"operator>>(istream,Vector3)");
                 }
 
@@ -461,7 +461,7 @@ class vector3tests : public UnitTestGroup
                     XMLdoc.GetFirstChild()>>VecLoad;
                     TEST(VecLoad==Vec, "operator>>(XML::Node,Vector3)");
                 }catch (Mezzanine::Exception& Ex){
-                    std::cerr << "Failure in: Vector3::operator>>(XML::Node,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
+                    TestError << "Failure in: Vector3::operator>>(XML::Node,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     TEST_RESULT(Testing::Failed,"operator>>(XML::Node,Vector3)");
                 }
             }
