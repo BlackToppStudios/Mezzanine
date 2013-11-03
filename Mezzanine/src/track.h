@@ -174,48 +174,8 @@ namespace Mezzanine
         virtual Vector3 GetLocationOnTrack(const UInt32 Index, const Real TrackPos);
     };//TrackOld
 
-    /// @brief An empty class to prevent classes without explicit interpolater traits from compiling.
-    class NotAnInterpolator {};
 
-    /// @brief The generic Interpolatable Traits, intended to catch all class without explicit traits set and server as and example.
-    template<typename T>
-    class InterpolatableTraits
-    {
-            /// @brief If something specifically needs the linear interpolator for T they should use this.
-            /// @details This interpolator provides certain guarantees.
-            ///     - All data points will be valid interpolated values.
-            ///     - There are "corners".
-            ///     - Interpolation will be constant/O(1) time (and as fast as reasonable).
-            ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data
-            ///     - Will not take multiple pair of points into account.
-            /// Corners can be thought of as any non-smooth change, and may not be intuitively in some interpolatable
-            /// types.
-            typedef NotAnInterpolator LinearInterpolator;
-
-            /// @brief If something specifically needs the Bezier interpolator for T they should use this.
-            /// @details This interpolator provides different guarantees different from the linear one:
-            ///     - Data points, might not be valid interpolated values
-            ///     - There are no "Corners".
-            ///     - Execution time will be (N)log(N) or better.
-            ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
-            ///     - Will be able to provide interpolated values for a small set of data points.
-            /// There might be corners when connecting 2 different bezier curves if not careful, any
-            /// bezier implementation taking a finite amount of point cannot help this.
-            typedef NotAnInterpolator BezierInterpolator;
-
-            /// @brief If something specifically needs the linear interpolator for T they should use this.
-            /// @details This is with be a cubic spline where applicable, and will be
-            /// more smooth that the others, and be at least as intuitive as the linear version:
-            ///     - Data points, will be valid interpolated values.
-            ///     - There are no "Corners".
-            ///     - Execution time is better than N^2.
-            ///     - This shape defined by interpolating a set of these *will* leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
-            ///     - Will be able to interpolated arbitrary sets of data points.
-            typedef NotAnInterpolator SplineInterpolator;
-    };
-
-
-
+    #include "interpolator.h"
     /// @brief A base type that provide the API components distinct from
     template <typename InterpolatableType>
     class TrackBase
