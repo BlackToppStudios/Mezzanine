@@ -46,81 +46,81 @@
 
 namespace Mezzanine
 {
-    Track::Track()
+    TrackOld::TrackOld()
         : Closed(false)
     {
     }
 
-    Track::~Track()
+    TrackOld::~TrackOld()
     {
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void Track::AddPoint(const Vector3& Point)
+    void TrackOld::AddPoint(const Vector3& Point)
     {
         this->Points.push_back(Point);
     }
 
-    void Track::AddPoint(const Real X, const Real Y, const Real Z)
+    void TrackOld::AddPoint(const Real X, const Real Y, const Real Z)
     {
         this->AddPoint(Vector3(X,Y,Z));
     }
 
-    void Track::UpdatePoint(const UInt32 Index, const Vector3& Point)
+    void TrackOld::UpdatePoint(const UInt32 Index, const Vector3& Point)
     {
         this->Points.at(Index) = Point;
     }
 
-    void Track::UpdatePoint(const UInt32 Index, const Real X, const Real Y, const Real Z)
+    void TrackOld::UpdatePoint(const UInt32 Index, const Real X, const Real Y, const Real Z)
     {
         this->UpdatePoint(Index,Vector3(X,Y,Z));
     }
 
-    const Vector3& Track::GetPoint(const UInt32 Index) const
+    const Vector3& TrackOld::GetPoint(const UInt32 Index) const
     {
         return this->Points.at(Index);
     }
 
-    UInt32 Track::GetNumPoints() const
+    UInt32 TrackOld::GetNumPoints() const
     {
         return this->Points.size();
     }
 
-    void Track::ClearAllPoints()
+    void TrackOld::ClearAllPoints()
     {
         this->Points.clear();
     }
 
-    void Track::Close(bool Enable)
+    void TrackOld::Close(bool Enable)
     {
         this->Closed = Enable;
     }
 
-    bool Track::IsClosed() const
+    bool TrackOld::IsClosed() const
     {
         return this->Closed;
     }
 
-    void Track::Reverse()
+    void TrackOld::Reverse()
     {
         std::reverse(Points.begin(),Points.end());
     }
 
-    Track Track::ExtractSubPath(const UInt32 First, const UInt32 Last)
+    TrackOld TrackOld::ExtractSubPath(const UInt32 First, const UInt32 Last)
     {
-        Track NewTrack;
+        TrackOld NewTrack;
         NewTrack.Points.insert( NewTrack.Points.end(), this->Points.begin() + First, this->Points.begin() + Last + 1 );
         return NewTrack;
     }
 
-    Track::PointContainer& Track::GetPoints()
+    TrackOld::PointContainer& TrackOld::GetPoints()
     {
         return this->Points;
     }
 
-    const Track::PointContainer& Track::GetPoints() const
+    const TrackOld::PointContainer& TrackOld::GetPoints() const
     {
         return this->Points;
     }
@@ -128,7 +128,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Transform related methods
 
-    void Track::Translate(const Vector3& Trans)
+    void TrackOld::Translate(const Vector3& Trans)
     {
         for( PointIterator PointIt = this->Points.begin() ; PointIt != this->Points.end() ; ++PointIt )
         {
@@ -136,12 +136,12 @@ namespace Mezzanine
         }
     }
 
-    void Track::Translate(const Real X, const Real Y, const Real Z)
+    void TrackOld::Translate(const Real X, const Real Y, const Real Z)
     {
         this->Translate(Vector3(X,Y,Z));
     }
 
-    void Track::Scale(const Vector3& Sc)
+    void TrackOld::Scale(const Vector3& Sc)
     {
         for( PointIterator PointIt = this->Points.begin() ; PointIt != this->Points.end() ; ++PointIt )
         {
@@ -151,7 +151,7 @@ namespace Mezzanine
         }
     }
 
-    void Track::Scale(const Real X, const Real Y, const Real Z)
+    void TrackOld::Scale(const Real X, const Real Y, const Real Z)
     {
         for( PointIterator PointIt = this->Points.begin() ; PointIt != this->Points.end() ; ++PointIt )
         {
@@ -164,12 +164,12 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Interpolation
 
-    Vector3 Track::GetLocationOnTrack(const Real TrackPos)
+    Vector3 TrackOld::GetLocationOnTrack(const Real TrackPos)
     {
         return Vector3(0,0,0);
     }
 
-    Vector3 Track::GetLocationOnTrack(const UInt32 Index, const Real TrackPos)
+    Vector3 TrackOld::GetLocationOnTrack(const UInt32 Index, const Real TrackPos)
     {
         return Vector3(0,0,0);
     }

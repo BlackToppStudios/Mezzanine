@@ -49,7 +49,7 @@ namespace Mezzanine
     /// @brief This class represents a series of points as a line in 3D space.
     /// @details
     ///////////////////////////////////////
-    class MEZZ_LIB Track
+    class MEZZ_LIB TrackOld
     {
     public:
         /// @brief Basic container type for point storage by this class.
@@ -76,9 +76,9 @@ namespace Mezzanine
         TangentContainer Tangents;//*/
     public:
         /// @brief Class constructor.
-        Track();
+        TrackOld();
         /// @brief Class destructor.
-        virtual ~Track();
+        virtual ~TrackOld();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -127,7 +127,7 @@ namespace Mezzanine
         /// @param First The index of the first point in this track to be included in the new track.
         /// @param Last The index of the last point in this track to be included in the new track.
         /// @return Returns a track containing all the points in the range specified.
-        virtual Track ExtractSubPath(const UInt32 First, const UInt32 Last);
+        virtual TrackOld ExtractSubPath(const UInt32 First, const UInt32 Last);
 
         /// @brief Gets all the points belonging to this track.
         /// @return Returns a reference to the container storing all points in this track.
@@ -172,7 +172,79 @@ namespace Mezzanine
         /// @param TrackPos The relative position on the track between the specified point and the point after it to get the 3D location of.  Range: 0.0 to 1.0.
         /// @return Returns the world location of the position on the track specified.
         virtual Vector3 GetLocationOnTrack(const UInt32 Index, const Real TrackPos);
-    };//Track
+    };//TrackOld
+
+    /// @brief An empty class to prevent classes without explicit interpolater traits from compiling.
+    class NotAnInterpolator {};
+
+    /// @brief The generic Interpolatable Traits, intended to catch all class without explicit traits set and server as and example.
+    template<typename T>
+    class InterpolatableTraits
+    {
+            /// @brief If something specifically needs the linear interpolator for T they should use this.
+            /// @details This interpolator provides certain guarantees.
+            ///     - All data points will be valid interpolated values.
+            ///     - There are "corners".
+            ///     - Interpolation will be constant/O(1) time (and as fast as reasonable).
+            ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data
+            ///     - Will not take multiple pair of points into account.
+            /// Corners can be thought of as any non-smooth change, and may not be intuitively in some interpolatable
+            /// types.
+            typedef NotAnInterpolator LinearInterpolator;
+
+            /// @brief If something specifically needs the Bezier interpolator for T they should use this.
+            /// @details This interpolator provides different guarantees different from the linear one:
+            ///     - Data points, might not be valid interpolated values
+            ///     - There are no "Corners".
+            ///     - Execution time will be (N)log(N) or better.
+            ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
+            ///     - Will be able to provide interpolated values for a small set of data points.
+            /// There might be corners when connecting 2 different bezier curves if not careful, any
+            /// bezier implementation taking a finite amount of point cannot help this.
+            typedef NotAnInterpolator BezierInterpolator;
+
+            /// @brief If something specifically needs the linear interpolator for T they should use this.
+            /// @details This is with be a cubic spline where applicable, and will be
+            /// more smooth that the others, and be at least as intuitive as the linear version:
+            ///     - Data points, will be valid interpolated values.
+            ///     - There are no "Corners".
+            ///     - Execution time is better than N^2.
+            ///     - This shape defined by interpolating a set of these *will* leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
+            ///     - Will be able to interpolated arbitrary sets of data points.
+            typedef NotAnInterpolator SplineInterpolator;
+    };
+
+
+
+    /// @brief A base type that provide the API components distinct from
+    template <typename InterpolatableType>
+    class TrackBase
+    {
+        protected:
+            std::vector<InterpolatableType> DataPoints;
+        public:
+            //insert
+
+            InterpolatableType GetInterpolated(Real Percentage) const
+                {}
+    };
+
+    /// @brief A track that uses linear interpolation
+    template <typename InterpolatableType, class Interpolator>
+    class TrackLinear : TrackBase<InterpolatableType>
+    {
+        public:
+            typedef std::vector<InterpolatableType> ContainerType;
+            typedef typename ContainerType::iterator iterator;
+            typedef typename ContainerType::const_iterator const_iterator;
+
+
+
+    };
+
+
+
+
 }//Mezzanine
 
 #endif
