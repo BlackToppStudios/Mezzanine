@@ -43,6 +43,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "enumerations.h"
+#include "interpolator.h"
 #include "swig.h"
 #ifndef SWIG
     #include "XML/xml.h"
@@ -422,6 +423,35 @@ namespace Mezzanine
         /// @return A string containing "Vector3"
         static String SerializableName();
     };//Vector3
+
+
+    /// @brief A simple functor for interpolating Vector3 instances in a simple way.
+    class MEZZ_LIB Vector3LinearInterpolator
+    {
+        public:
+            /// @brief Get a Vector at a given location between two others.
+            /// @param Begin One end of line segment
+            /// @param End The other end of a line segment
+            /// @param A value between 0.0 and 1.0 indicate what point on the line segment defined by Begin and End you want.
+            /// @return A Vector3 equal to Begin if 0.0 is passed, equal to End if 1.0 is passed equal to a point exactly in the middle if 0.5 is passed.
+            Vector3 Interpolate(const Vector3& Begin, const Vector3& End, Real Location) const
+                { return ((End-Begin)*Location)+Begin; }
+    };
+
+    /// @brief The generic Interpolatable Traits, intended to catch all class without explicit traits set and server as and example.
+    template<>
+    class InterpolatableTraits <Vector3>
+    {
+        public:
+            /// @brief Name the type of the Linear interpolator for the Vector3
+            typedef Vector3LinearInterpolator LinearInterpolator;
+
+            /// @brief Indicate there is no Bezier Interpolator for the Vector3
+            typedef NotAnInterpolator<Vector3> BezierInterpolator;
+
+            /// @brief Indicate there is no Spline interopolator for the Vector3
+            typedef NotAnInterpolator<Vector3> SplineInterpolator;
+    };
 }//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////

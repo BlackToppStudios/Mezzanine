@@ -1882,62 +1882,63 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[63]
 #define SWIGTYPE_p_Mezzanine__Vector2 swig_types[64]
 #define SWIGTYPE_p_Mezzanine__Vector3 swig_types[65]
-#define SWIGTYPE_p_Mezzanine__World swig_types[66]
-#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[67]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[68]
-#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[69]
-#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[70]
-#define SWIGTYPE_p_ObjectContainer swig_types[71]
-#define SWIGTYPE_p_ObjectIterator swig_types[72]
-#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[73]
-#define SWIGTYPE_p_Ogre__ColourValue swig_types[74]
-#define SWIGTYPE_p_Ogre__Plane swig_types[75]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[76]
-#define SWIGTYPE_p_Ogre__Ray swig_types[77]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[78]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[79]
-#define SWIGTYPE_p_PlaneRayTestResult swig_types[80]
-#define SWIGTYPE_p_ProxyContainer swig_types[81]
-#define SWIGTYPE_p_ProxyIterator swig_types[82]
-#define SWIGTYPE_p_RayTestResult swig_types[83]
-#define SWIGTYPE_p_RollingAverageT_unsigned_long_t swig_types[84]
-#define SWIGTYPE_p_RunningState swig_types[85]
-#define SWIGTYPE_p_SDL_Event swig_types[86]
-#define SWIGTYPE_p_WorkUnitKey swig_types[87]
-#define SWIGTYPE_p_XML__Node swig_types[88]
-#define SWIGTYPE_p_bool swig_types[89]
-#define SWIGTYPE_p_btQuaternion swig_types[90]
-#define SWIGTYPE_p_btTransform swig_types[91]
-#define SWIGTYPE_p_btVector3 swig_types[92]
-#define SWIGTYPE_p_char swig_types[93]
-#define SWIGTYPE_p_float swig_types[94]
-#define SWIGTYPE_p_int swig_types[95]
-#define SWIGTYPE_p_long_long swig_types[96]
-#define SWIGTYPE_p_short swig_types[97]
-#define SWIGTYPE_p_signed_char swig_types[98]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[99]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[100]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[101]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[102]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[103]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[104]
-#define SWIGTYPE_p_std__string swig_types[105]
-#define SWIGTYPE_p_std__stringstream swig_types[106]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t swig_types[107]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t swig_types[108]
-#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[109]
-#define SWIGTYPE_p_std__wstring swig_types[110]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[111]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[112]
-#define SWIGTYPE_p_swig__Iterator swig_types[113]
-#define SWIGTYPE_p_unsigned_char swig_types[114]
-#define SWIGTYPE_p_unsigned_int swig_types[115]
-#define SWIGTYPE_p_unsigned_long swig_types[116]
-#define SWIGTYPE_p_unsigned_long_long swig_types[117]
-#define SWIGTYPE_p_unsigned_short swig_types[118]
-#define SWIGTYPE_p_void swig_types[119]
-static swig_type_info *swig_types[121];
-static swig_module_info swig_module = {swig_types, 120, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__Vector3LinearInterpolator swig_types[66]
+#define SWIGTYPE_p_Mezzanine__World swig_types[67]
+#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[68]
+#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[69]
+#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[70]
+#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[71]
+#define SWIGTYPE_p_ObjectContainer swig_types[72]
+#define SWIGTYPE_p_ObjectIterator swig_types[73]
+#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[74]
+#define SWIGTYPE_p_Ogre__ColourValue swig_types[75]
+#define SWIGTYPE_p_Ogre__Plane swig_types[76]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[77]
+#define SWIGTYPE_p_Ogre__Ray swig_types[78]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[79]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[80]
+#define SWIGTYPE_p_PlaneRayTestResult swig_types[81]
+#define SWIGTYPE_p_ProxyContainer swig_types[82]
+#define SWIGTYPE_p_ProxyIterator swig_types[83]
+#define SWIGTYPE_p_RayTestResult swig_types[84]
+#define SWIGTYPE_p_RollingAverageT_unsigned_long_t swig_types[85]
+#define SWIGTYPE_p_RunningState swig_types[86]
+#define SWIGTYPE_p_SDL_Event swig_types[87]
+#define SWIGTYPE_p_WorkUnitKey swig_types[88]
+#define SWIGTYPE_p_XML__Node swig_types[89]
+#define SWIGTYPE_p_bool swig_types[90]
+#define SWIGTYPE_p_btQuaternion swig_types[91]
+#define SWIGTYPE_p_btTransform swig_types[92]
+#define SWIGTYPE_p_btVector3 swig_types[93]
+#define SWIGTYPE_p_char swig_types[94]
+#define SWIGTYPE_p_float swig_types[95]
+#define SWIGTYPE_p_int swig_types[96]
+#define SWIGTYPE_p_long_long swig_types[97]
+#define SWIGTYPE_p_short swig_types[98]
+#define SWIGTYPE_p_signed_char swig_types[99]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[100]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[101]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[102]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[103]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[104]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[105]
+#define SWIGTYPE_p_std__string swig_types[106]
+#define SWIGTYPE_p_std__stringstream swig_types[107]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t swig_types[108]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t swig_types[109]
+#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[110]
+#define SWIGTYPE_p_std__wstring swig_types[111]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[112]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[113]
+#define SWIGTYPE_p_swig__Iterator swig_types[114]
+#define SWIGTYPE_p_unsigned_char swig_types[115]
+#define SWIGTYPE_p_unsigned_int swig_types[116]
+#define SWIGTYPE_p_unsigned_long swig_types[117]
+#define SWIGTYPE_p_unsigned_long_long swig_types[118]
+#define SWIGTYPE_p_unsigned_short swig_types[119]
+#define SWIGTYPE_p_void swig_types[120]
+static swig_type_info *swig_types[122];
+static swig_module_info swig_module = {swig_types, 121, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -6743,6 +6744,99 @@ fail:
 
 SWIGINTERN void
 free_Mezzanine_Vector3(Mezzanine::Vector3 *arg1) {
+    delete arg1;
+}
+
+static swig_class SwigClassVector3LinearInterpolator;
+
+SWIGINTERN VALUE
+_wrap_Vector3LinearInterpolator_interpolate(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Vector3LinearInterpolator *arg1 = (Mezzanine::Vector3LinearInterpolator *) 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Vector3 *arg3 = 0 ;
+  Mezzanine::Real arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  float val4 ;
+  int ecode4 = 0 ;
+  Mezzanine::Vector3 result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__Vector3LinearInterpolator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Vector3LinearInterpolator const *","Interpolate", 1, self )); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Vector3LinearInterpolator * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__Vector3,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const &","Interpolate", 2, argv[0] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","Interpolate", 2, argv[0])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
+  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_Mezzanine__Vector3,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const &","Interpolate", 3, argv[1] )); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","Interpolate", 3, argv[1])); 
+  }
+  arg3 = reinterpret_cast< Mezzanine::Vector3 * >(argp3);
+  ecode4 = SWIG_AsVal_float(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "Mezzanine::Real","Interpolate", 4, argv[2] ));
+  } 
+  arg4 = static_cast< Mezzanine::Real >(val4);
+  result = ((Mezzanine::Vector3LinearInterpolator const *)arg1)->Interpolate((Mezzanine::Vector3 const &)*arg2,(Mezzanine::Vector3 const &)*arg3,arg4);
+  vresult = SWIG_NewPointerObj((new Mezzanine::Vector3(static_cast< const Mezzanine::Vector3& >(result))), SWIGTYPE_p_Mezzanine__Vector3, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+#ifdef HAVE_RB_DEFINE_ALLOC_FUNC
+SWIGINTERN VALUE
+_wrap_Vector3LinearInterpolator_allocate(VALUE self) {
+#else
+  SWIGINTERN VALUE
+  _wrap_Vector3LinearInterpolator_allocate(int argc, VALUE *argv, VALUE self) {
+#endif
+    
+    
+    VALUE vresult = SWIG_NewClassInstance(self, SWIGTYPE_p_Mezzanine__Vector3LinearInterpolator);
+#ifndef HAVE_RB_DEFINE_ALLOC_FUNC
+    rb_obj_call_init(vresult, argc, argv);
+#endif
+    return vresult;
+  }
+  
+
+SWIGINTERN VALUE
+_wrap_new_Vector3LinearInterpolator(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Vector3LinearInterpolator *result = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Vector3LinearInterpolator *)new Mezzanine::Vector3LinearInterpolator();
+  DATA_PTR(self) = result;
+  return self;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN void
+free_Mezzanine_Vector3LinearInterpolator(Mezzanine::Vector3LinearInterpolator *arg1) {
     delete arg1;
 }
 
@@ -30209,6 +30303,7 @@ static swig_type_info _swigt__p_Mezzanine__TransformableChildObject = {"_p_Mezza
 static swig_type_info _swigt__p_Mezzanine__TransformableObject = {"_p_Mezzanine__TransformableObject", "Mezzanine::TransformableObject *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Vector2 = {"_p_Mezzanine__Vector2", "Mezzanine::Vector2 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Vector3LinearInterpolator = {"_p_Mezzanine__Vector3LinearInterpolator", "Mezzanine::Vector3LinearInterpolator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__World = {"_p_Mezzanine__World", "Mezzanine::World *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldManager = {"_p_Mezzanine__WorldManager", "Mezzanine::WorldManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldObject = {"_p_Mezzanine__WorldObject", "Mezzanine::WorldObject *", 0, 0, (void*)0, 0};
@@ -30331,6 +30426,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__TransformableObject,
   &_swigt__p_Mezzanine__Vector2,
   &_swigt__p_Mezzanine__Vector3,
+  &_swigt__p_Mezzanine__Vector3LinearInterpolator,
   &_swigt__p_Mezzanine__World,
   &_swigt__p_Mezzanine__WorldManager,
   &_swigt__p_Mezzanine__WorldObject,
@@ -30453,6 +30549,7 @@ static swig_cast_info _swigc__p_Mezzanine__TransformableChildObject[] = {  {&_sw
 static swig_cast_info _swigc__p_Mezzanine__TransformableObject[] = {  {&_swigt__p_Mezzanine__WorldObject, _p_Mezzanine__WorldObjectTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__AreaEffect, _p_Mezzanine__AreaEffectTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__TransformableObject, 0, 0, 0},  {&_swigt__p_Mezzanine__Actor, _p_Mezzanine__ActorTo_p_Mezzanine__TransformableObject, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector2[] = {  {&_swigt__p_Mezzanine__Vector2, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector3[] = {  {&_swigt__p_Mezzanine__Vector3, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Vector3LinearInterpolator[] = {  {&_swigt__p_Mezzanine__Vector3LinearInterpolator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__World[] = {  {&_swigt__p_Mezzanine__World, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WorldManager[] = {  {&_swigt__p_Mezzanine__WorldManager, 0, 0, 0},  {&_swigt__p_Mezzanine__ActorManager, _p_Mezzanine__ActorManagerTo_p_Mezzanine__WorldManager, 0, 0},  {&_swigt__p_Mezzanine__AreaEffectManager, _p_Mezzanine__AreaEffectManagerTo_p_Mezzanine__WorldManager, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WorldObject[] = {  {&_swigt__p_Mezzanine__WorldObject, 0, 0, 0},  {&_swigt__p_Mezzanine__AreaEffect, _p_Mezzanine__AreaEffectTo_p_Mezzanine__WorldObject, 0, 0},  {&_swigt__p_Mezzanine__Actor, _p_Mezzanine__ActorTo_p_Mezzanine__WorldObject, 0, 0},{0, 0, 0, 0}};
@@ -30575,6 +30672,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__TransformableObject,
   _swigc__p_Mezzanine__Vector2,
   _swigc__p_Mezzanine__Vector3,
+  _swigc__p_Mezzanine__Vector3LinearInterpolator,
   _swigc__p_Mezzanine__World,
   _swigc__p_Mezzanine__WorldManager,
   _swigc__p_Mezzanine__WorldObject,
@@ -31067,6 +31165,15 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassVector3.mark = 0;
   SwigClassVector3.destroy = (void (*)(void *)) free_Mezzanine_Vector3;
   SwigClassVector3.trackObjects = 0;
+  
+  SwigClassVector3LinearInterpolator.klass = rb_define_class_under(mMezzanine, "Vector3LinearInterpolator", rb_cObject);
+  SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Vector3LinearInterpolator, (void *) &SwigClassVector3LinearInterpolator);
+  rb_define_alloc_func(SwigClassVector3LinearInterpolator.klass, _wrap_Vector3LinearInterpolator_allocate);
+  rb_define_method(SwigClassVector3LinearInterpolator.klass, "initialize", VALUEFUNC(_wrap_new_Vector3LinearInterpolator), -1);
+  rb_define_method(SwigClassVector3LinearInterpolator.klass, "interpolate", VALUEFUNC(_wrap_Vector3LinearInterpolator_interpolate), -1);
+  SwigClassVector3LinearInterpolator.mark = 0;
+  SwigClassVector3LinearInterpolator.destroy = (void (*)(void *)) free_Mezzanine_Vector3LinearInterpolator;
+  SwigClassVector3LinearInterpolator.trackObjects = 0;
   
   SwigClassQuaternion.klass = rb_define_class_under(mMezzanine, "Quaternion", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Quaternion, (void *) &SwigClassQuaternion);

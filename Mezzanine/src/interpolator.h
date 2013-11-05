@@ -56,6 +56,7 @@ namespace Mezzanine
     template<typename T>
     class InterpolatableTraits
     {
+        public:
             /// @brief If something specifically needs the linear interpolator for T they should use this.
             /// @details This interpolator provides certain guarantees.
             ///     - All data points will be valid interpolated values.

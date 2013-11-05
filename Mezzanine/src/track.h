@@ -42,6 +42,7 @@
 
 #include "vector3.h"
 #include "enumerations.h"
+#include "interpolator.h"
 
 namespace Mezzanine
 {
@@ -175,7 +176,7 @@ namespace Mezzanine
     };//TrackOld
 
 
-    #include "interpolator.h"
+
     /// @brief A base type that provide the API components distinct from
     template <typename InterpolatableType>
     class TrackBase
@@ -183,7 +184,16 @@ namespace Mezzanine
         protected:
             std::vector<InterpolatableType> DataPoints;
         public:
-            //insert
+            /// @brief Get the amount of stored DataPoints
+            /// @note Name chosen to match standard containers
+            /// @return How many data points exist on this track
+            size_t size() const
+                { return DataPoints.size(); }
+
+
+            /// @brief
+            void push_back(const InterpolatableType& AddedValue)
+                { DataPoints.push_back(AddedValue); }
 
             InterpolatableType GetInterpolated(Real Percentage) const
                 {}

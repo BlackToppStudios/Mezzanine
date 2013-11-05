@@ -42,6 +42,9 @@
 
 #include "mezztest.h"
 
+#include "vector3.h"
+#include "interpolator.h"
+
 /// @file
 /// @brief Test interpolation functions not specific to a single interpolatable class
 
@@ -60,8 +63,20 @@ class interpolatortests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            // The TEST macro will capture Line, function file Metadata while
-            TEST(true,"AutomaticTest");
+            InterpolatableTraits <Vector3>::LinearInterpolator li;
+            Vector3 a(0.0,0.0,0.0);
+            Vector3 b(1.0,1.0,1.0);
+
+            cout << "Lets try some simple interpolations between 0,0,0 and 1,1,1 at 0,.1,.5, and 1:" << endl
+                 << li.Interpolate(a,b,0.0) << endl
+                 << li.Interpolate(a,b,0.1) << endl
+                 << li.Interpolate(a,b,0.5) << endl
+                 << li.Interpolate(a,b,1.0) << endl;
+
+            TEST(li.Interpolate(a,b,0.0)==a,"Vector3LinearInterpolationBegin");
+            TEST(li.Interpolate(a,b,0.1)==Vector3(0.1,0.1,0.1),"Vector3LinearInterpolationTenth");
+            TEST(li.Interpolate(a,b,0.5)==Vector3(0.5,0.5,0.5),"Vector3LinearInterpolationHalfway");
+            TEST(li.Interpolate(a,b,1.0)==b,"Vector3LinearInterpolationEnd");
 
         }
 

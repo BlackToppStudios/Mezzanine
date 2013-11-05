@@ -97,6 +97,7 @@
 #include "fieldofforce.h"
 #include "gravityfield.h"
 #include "gravitywell.h"
+#include "interpolator.h"
 #include "linegroup.h"
 #include "macros.h"
 #include "managedptr.h"
