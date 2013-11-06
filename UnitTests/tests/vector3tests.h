@@ -228,6 +228,17 @@ class vector3tests : public UnitTestGroup
             }
 
             {
+                Vector3 VecQ(1.0,2.0,3.0);
+                Vector3 Vec1(1.0,2.0,3.0);
+                Vector3 Vec2(0.0,5.0,6.0);
+                Vector3 Vec3(0.0,2.0,3.0);
+                Vector3 Vec4(1.0,0.0,3.0);
+                Vector3 Vec5(1.0,2.0,0.0);
+                TEST(VecQ<=Vec1 && !(VecQ<=Vec2)/* && !(VecQ==Vec3) && !(VecQ==Vec4) && !(VecQ==Vec5)*/, "operator<=");
+                //TEST(!(VecQ!=Vec1) && VecQ!=Vec2 && VecQ!=Vec3 && VecQ!=Vec4 && VecQ!=Vec5, "operator==(Ogre::Vector3)");
+            }
+
+            {
                 Vector3 Vec1(3.0,4.0,5.0);
                 Vector3 Vec2(7.0,9.0,11.0);
                 Vector3 VecAnswer;

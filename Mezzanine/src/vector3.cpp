@@ -257,6 +257,11 @@ namespace Mezzanine
     bool Vector3::operator!= (const Ogre::Vector3 &Vec) const
         { return ( Vec.x != this->X || Vec.y != this->Y || Vec.z != this->Z ); }
 
+    bool Vector3::operator<= (const Mezzanine::Vector3 &Vec) const
+        { return ( this->X <= Vec.X && this->Y <= Vec.Y && this->Z <= Vec.Z); }
+    bool Vector3::operator>= (const Mezzanine::Vector3 &Vec) const
+        { return ( this->X >= Vec.X && this->Y >= Vec.Y && this->Z >= Vec.Z); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators
 

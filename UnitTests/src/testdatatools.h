@@ -47,6 +47,7 @@
 
 #include "testdata.h"
 
+#include <limits>
 
 namespace Mezzanine
 {
@@ -64,6 +65,22 @@ namespace Mezzanine
                 #define TEST(Cond, Name) Test( (Cond), (Name), Testing::Failed, Testing::Success, __FUNCTION__, __FILE__, __LINE__ );
             #else
                 #define TEST(Cond, Name) Test( (Cond), (Name), Testing::Failed, Testing::Success, __func__, __FILE__, __LINE__ );
+            #endif
+        #endif
+
+        template <typename T>
+        bool CompareEqualityWithEpsilon(const T& Left, const T& Right)
+            { return ((Right-std::numeric_limits<T>::epsilon()) <= Left) && (Left <= (Right+std::numeric_limits<T>::epsilon())); }
+
+        #ifndef TEST_EQUAL_EPSILON
+            /// @def TEST_EQUAL_EPSILON
+            /// @brief Compare types that might
+            /// @param Cond A boolean operand of some kind
+            /// @param Name The name of the current test
+            #ifdef __FUNCTION__
+                #define TEST_EQUAL_EPSILON(LeftValue, RightValue, Name) Test( CompareEqualityWithEpsilon(LeftValue, RightValue), (Name), Testing::Failed, Testing::Success, __FUNCTION__, __FILE__, __LINE__ );
+            #else
+                #define TEST_EQUAL_EPSILON(LeftValue, RightValue, Name) Test( CompareEqualityWithEpsilon(LeftValue, RightValue), (Name), Testing::Failed, Testing::Success, __func__, __FILE__, __LINE__ );
             #endif
         #endif
 

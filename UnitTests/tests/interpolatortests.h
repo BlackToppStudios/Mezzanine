@@ -73,10 +73,10 @@ class interpolatortests : public UnitTestGroup
                  << li.Interpolate(a,b,0.5) << endl
                  << li.Interpolate(a,b,1.0) << endl;
 
-            TEST(li.Interpolate(a,b,0.0)==a,"Vector3LinearInterpolationBegin");
-            TEST(li.Interpolate(a,b,0.1)==Vector3(0.1,0.1,0.1),"Vector3LinearInterpolationTenth");
-            TEST(li.Interpolate(a,b,0.5)==Vector3(0.5,0.5,0.5),"Vector3LinearInterpolationHalfway");
-            TEST(li.Interpolate(a,b,1.0)==b,"Vector3LinearInterpolationEnd");
+            TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.0),a,"Vector3LinearInterpolationBegin");
+            TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.1),Vector3(0.1,0.1,0.1),"Vector3LinearInterpolationTenth");
+            TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.5),Vector3(0.5,0.5,0.5),"Vector3LinearInterpolationHalfway");
+            TEST_EQUAL_EPSILON(li.Interpolate(a,b,1.0),b,"Vector3LinearInterpolationEnd");
 
         }
 
