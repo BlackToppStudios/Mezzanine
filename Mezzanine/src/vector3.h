@@ -476,6 +476,52 @@ namespace std
     class numeric_limits<Mezzanine::Vector3>
     {
         public:
+            /// @brief Does this class (numeric_limits<Mezzanine::Vector3>) exist
+            static const bool is_specialized = true;
+            /// @brief Does this support negative values?
+            static const bool is_signed = true;
+            /// @brief Can this only store integer types.
+            static const bool is_integer = false;
+            /// @brief The Vector3 uses Real, which is typically a machine dependedant which can be inexact
+            static const bool is_exact = std::numeric_limits<Mezzanine::Real>::is_exact;
+            /// @brief Can This represent an infinitely large value in X, Y or Z?
+            static const bool has_infinity = std::numeric_limits<Mezzanine::Real>::has_infinity;
+            /// @brief ??? Required by std::numeric to be compliant
+            /// @todo Learn why this exists and document it.
+            static const bool has_quiet_NaN = std::numeric_limits<Mezzanine::Real>::has_quiet_NaN;
+            /// @brief ??? Required by std::numeric to be compliant
+            /// @todo Learn why this exists and document it.
+            static const bool has_signaling_NaN = std::numeric_limits<Mezzanine::Real>::has_signaling_NaN;
+            /// @brief Does this support exceptionally small numbers near 0?
+            static const std::float_denorm_style has_denorm = std::numeric_limits<Mezzanine::Real>::has_denorm;
+            /// @brief When extra precision near 0 is lost, can this type distinguish that from other imprecision.
+            static const bool has_denorm_loss = std::numeric_limits<Mezzanine::Real>::has_denorm_loss;
+            /// @brief How items that fit between the precise amount a Real can represent will be adapted.
+            static const std::float_round_style round_style = std::numeric_limits<Mezzanine::Real>::round_style;
+            /// @brief Do X, Y and Z adhere to iec 559?
+            static const bool is_iec559 = std::numeric_limits<Mezzanine::Real>::is_iec559;
+            /// @brief Is overflow of this type handle by modulo overflow?
+            static const bool is_modulo = std::numeric_limits<Mezzanine::Real>::is_modulo;
+            /// @brief How many integer digits(in machine base) of precision can this handle in each X, Y or Z without floating point component or error?
+            static const int digits = std::numeric_limits<Mezzanine::Real>::digits;
+            /// @brief How many integer digits in base 10 of precision can this handle in each X, Y or Z without floating point component or error?
+            static const int digits10 = std::numeric_limits<Mezzanine::Real>::digits10;
+            /// @brief The base of the number system that this is implemented in
+            static const int radix = std::numeric_limits<Mezzanine::Real>::radix;
+            /// @brief The smallest power of the radix that is valid floating point value
+            static const int min_exponent = std::numeric_limits<Mezzanine::Real>::min_exponent;
+            /// @brief The smallest power of 10 that is valid floating point value
+            static const int min_exponent10 = std::numeric_limits<Mezzanine::Real>::min_exponent10;
+            /// @brief The largest power of the radix that is valid floating point value
+            static const int max_exponent = std::numeric_limits<Mezzanine::Real>::max_exponent;
+            /// @brief The largest power of 10 that is valid floating point value
+            static const int max_exponent10 = std::numeric_limits<Mezzanine::Real>::max_exponent10;
+            /// @brief Can this generate a trap?
+            static const bool traps = std::numeric_limits<Mezzanine::Real>::traps;
+            /// @brief Are tiny values respected during rounding?
+            static const bool tinyness_before = std::numeric_limits<Mezzanine::Real>::tinyness_before;
+
+
             /// @brief The smallest value representable from 1.0,1.0,1.0 to the next value
             static Mezzanine::Vector3 epsilon()
             {
