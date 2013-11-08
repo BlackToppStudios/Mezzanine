@@ -521,8 +521,28 @@ namespace std
             /// @brief Are tiny values respected during rounding?
             static const bool tinyness_before = std::numeric_limits<Mezzanine::Real>::tinyness_before;
 
+            /// @brief Get the lowest positive finite value this can represent
+            /// @return A vector with 3 very small numbers
+            static Mezzanine::Vector3 min()
+            {
+                return Mezzanine::Vector3(std::numeric_limits<Mezzanine::Real>::min(),
+                                          std::numeric_limits<Mezzanine::Real>::min(),
+                                          std::numeric_limits<Mezzanine::Real>::min()
+                                         );
+            }
+
+            /// @brief Get the highest positive finite value this can represent
+            /// @return A vector with 3 very large numbers
+            static Mezzanine::Vector3 max()
+            {
+                return Mezzanine::Vector3(std::numeric_limits<Mezzanine::Real>::max(),
+                                          std::numeric_limits<Mezzanine::Real>::max(),
+                                          std::numeric_limits<Mezzanine::Real>::max()
+                                         );
+            }
 
             /// @brief The smallest value representable from 1.0,1.0,1.0 to the next value
+            /// @return A vector with a very small number
             static Mezzanine::Vector3 epsilon()
             {
                 return Mezzanine::Vector3(std::numeric_limits<Mezzanine::Real>::epsilon(),
@@ -530,6 +550,58 @@ namespace std
                                           std::numeric_limits<Mezzanine::Real>::epsilon()
                                          );
             }
+
+            /// @brief Get the largest possible rounding error
+            /// @return A vector containing 3 values indicating how much they could be rounded.
+            static Mezzanine::Vector3 round_error()
+            {
+                return Mezzanine::Vector3(std::numeric_limits<Mezzanine::Real>::round_error(),
+                                          std::numeric_limits<Mezzanine::Real>::round_error(),
+                                          std::numeric_limits<Mezzanine::Real>::round_error()
+                                         );
+            }
+
+            /// @brief Get the special value "Positive infinity"
+            /// @return A vector containing 3 values.
+            static Mezzanine::Vector3 infinity()
+            {
+                return Mezzanine::Vector3(std::numeric_limits<Mezzanine::Real>::infinity(),
+                                          std::numeric_limits<Mezzanine::Real>::infinity(),
+                                          std::numeric_limits<Mezzanine::Real>::infinity()
+                                         );
+            }
+
+            /// @brief Get the special value "Quiet Not actual Number"
+            /// @return A vector containing 3 values.
+            static Mezzanine::Vector3 quiet_NaN()
+            {
+                return Mezzanine::Vector3(std::numeric_limits<Mezzanine::Real>::quiet_NaN(),
+                                          std::numeric_limits<Mezzanine::Real>::quiet_NaN(),
+                                          std::numeric_limits<Mezzanine::Real>::quiet_NaN()
+                                         );
+            }
+
+            /// @brief Get the special value "Signaling Not actual Number"
+            /// @return A vector containing 3 values.
+            static Mezzanine::Vector3 signaling_NaN()
+            {
+                return Mezzanine::Vector3(std::numeric_limits<Mezzanine::Real>::signaling_NaN(),
+                                          std::numeric_limits<Mezzanine::Real>::signaling_NaN(),
+                                          std::numeric_limits<Mezzanine::Real>::signaling_NaN()
+                                         );
+            }
+
+            /// @brief Get the closest value to 0 that is not 0 this can represent, including extra precision for being close to 0 if supported.
+            /// @return A vector containing 3 very small values.
+            static Mezzanine::Vector3 denorm_min()
+            {
+                return Mezzanine::Vector3(std::numeric_limits<Mezzanine::Real>::denorm_min(),
+                                          std::numeric_limits<Mezzanine::Real>::denorm_min(),
+                                          std::numeric_limits<Mezzanine::Real>::denorm_min()
+                                         );
+            }
+
+
 
     };
 
