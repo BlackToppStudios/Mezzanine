@@ -177,12 +177,20 @@ namespace Mezzanine
 
 
 
-    /// @brief A base type that provide the API components distinct from
+    /// @brief A base type that provides container features for different tracks
+    /// @details This uses vector underneath for its performance characteristics. If
+    /// You are using a track with a small number of points
     template <typename InterpolatableType>
     class TrackBase
     {
+        public:
+            /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
+            typedef  std::vector<InterpolatableType> DataContainerType;
+
         protected:
-            std::vector<InterpolatableType> DataPoints;
+            ///
+            DataContainerType DataPoints;
+
         public:
             /// @brief Get the amount of stored DataPoints
             /// @note Name chosen to match standard containers
@@ -190,25 +198,62 @@ namespace Mezzanine
             size_t size() const
                 { return DataPoints.size(); }
 
-
-            /// @brief
+            /// @brief Add another data point to the end of the track.
+            /// @param AddedVale
             void push_back(const InterpolatableType& AddedValue)
                 { DataPoints.push_back(AddedValue); }
 
-            InterpolatableType GetInterpolated(Real Percentage) const
-                {}
+            /// @brief Get a value between the beginning and the end
+            /// @details in derived classes this will perform some simple(hopefully fast) calculation to get
+            /// interpolated value between the beginning and the end fo the track. Depending on algorithm this
+            /// may or may not respect the nodes.
+            /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
+            /// @return An InterpolatableType
+            InterpolatableType GetInterpolated(Real Percentage) const = 0;
+            /// @brief As GetInterpolated but includes the first a second time at the end of the series.
+            /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
+            /// @return An InterpolatableType
+            InterpolatableType GetInterpolatedAsLoop(Real Percentage) const = 0;
+    };
+
+    /// @brief
+    template<typename InterpolatableType>
+    class SmoothTrackIterator
+    {
+        private:
+            /// @brief A pointer to the track under iteration.
+            typename TrackBase<InterpolatableType>::DataContainerType* TrackUnderIteration;
+        public:
+
+
     };
 
     /// @brief A track that uses linear interpolation
-    template <typename InterpolatableType, class Interpolator>
+    template <typename InterpolatableType>
     class TrackLinear : TrackBase<InterpolatableType>
     {
         public:
-            typedef std::vector<InterpolatableType> ContainerType;
-            typedef typename ContainerType::iterator iterator;
-            typedef typename ContainerType::const_iterator const_iterator;
+            typedef typename TrackBase<InterpolatableType>::DataContainerType DataContainerType;
+            typedef typename DataContainerType::iterator iterator;
+            typedef typename DataContainerType::const_iterator const_iterator;
+            typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator Interpolator;
 
 
+            InterpolatableType GetInterpolated(Real Percentage) const
+            {
+                Whole Index = Percentage * TrackBase<InterpolatableType>::DataPoints.size();
+                if(TrackBase<InterpolatableType>::DataPoints.size()==Index)
+                    { Index--; }
+                return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],
+                                                 TrackBase<InterpolatableType>::DataPoints[Index+1],
+                                                 (0.0==Percentage || 1.0==Percentage) ? Percentage : Percentage/Index);
+            }
+
+            InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
+            {
+
+
+            }
 
     };
 
