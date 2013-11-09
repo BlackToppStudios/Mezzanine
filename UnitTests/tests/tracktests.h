@@ -42,6 +42,8 @@
 
 #include "mezztest.h"
 
+#include "track.h"
+
 /// @file
 /// @brief Test the track classes produce the expected interpolated values.
 
@@ -60,6 +62,11 @@ class tracktests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
+            {
+                TrackLinear<Vector3> Test1;
+                Test1.push_back(Vector3(0,0,0));
+                Test1.push_back(Vector3(10,10,10));
+            }
             // The TEST macro will capture Line, function file Metadata while
             TEST(true,"AutomaticTest");
         }

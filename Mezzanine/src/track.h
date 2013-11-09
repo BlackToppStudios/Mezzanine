@@ -209,11 +209,11 @@ namespace Mezzanine
             /// may or may not respect the nodes.
             /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
             /// @return An InterpolatableType
-            InterpolatableType GetInterpolated(Real Percentage) const = 0;
+            virtual InterpolatableType GetInterpolated(Real Percentage) const = 0;
             /// @brief As GetInterpolated but includes the first a second time at the end of the series.
             /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
             /// @return An InterpolatableType
-            InterpolatableType GetInterpolatedAsLoop(Real Percentage) const = 0;
+            virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const = 0;
     };
 
     /// @brief
@@ -230,7 +230,7 @@ namespace Mezzanine
 
     /// @brief A track that uses linear interpolation
     template <typename InterpolatableType>
-    class TrackLinear : TrackBase<InterpolatableType>
+    class TrackLinear : public TrackBase<InterpolatableType>
     {
         public:
             typedef typename TrackBase<InterpolatableType>::DataContainerType DataContainerType;
@@ -239,7 +239,7 @@ namespace Mezzanine
             typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator Interpolator;
 
 
-            InterpolatableType GetInterpolated(Real Percentage) const
+            virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
                 Whole Index = Percentage * TrackBase<InterpolatableType>::DataPoints.size();
                 if(TrackBase<InterpolatableType>::DataPoints.size()==Index)
@@ -249,7 +249,7 @@ namespace Mezzanine
                                                  (0.0==Percentage || 1.0==Percentage) ? Percentage : Percentage/Index);
             }
 
-            InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
+            virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
             {
 
 

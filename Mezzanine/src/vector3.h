@@ -449,7 +449,7 @@ namespace Mezzanine
             /// @param End The other end of a line segment
             /// @param A value between 0.0 and 1.0 indicate what point on the line segment defined by Begin and End you want.
             /// @return A Vector3 equal to Begin if 0.0 is passed, equal to End if 1.0 is passed equal to a point exactly in the middle if 0.5 is passed.
-            Vector3 Interpolate(const Vector3& Begin, const Vector3& End, Real Location) const
+            static Vector3 Interpolate(const Vector3& Begin, const Vector3& End, Real Location)
                 { return ((End-Begin)*Location)+Begin; }
     };
 
