@@ -63,9 +63,16 @@ class tracktests : public UnitTestGroup
         void RunAutomaticTests()
         {
             {
-                TrackLinear<Vector3> Test1;
-                Test1.push_back(Vector3(0,0,0));
-                Test1.push_back(Vector3(10,10,10));
+                TrackLinear<Vector3> TestDualPointTrack;
+                TestDualPointTrack.push_back(Vector3(0,0,0));
+                TestDualPointTrack.push_back(Vector3(10,10,10));
+                TestOutput << "Testing interpolation on a Track with just two points:" << endl
+                           << "\t0.1 should be 1,1,1 and is " << TestDualPointTrack.GetInterpolated(0.1) << endl
+                           << "\t0.1 should be 5,5,5 and is " << TestDualPointTrack.GetInterpolated(0.5) << endl
+                           << "\t0.1 should be 9.5,9.9,9.5 and is " << TestDualPointTrack.GetInterpolated(0.95) << endl;
+                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.1), Vector3(1.0,1.0,1.0), "DualPointTrack1");
+                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.5), Vector3(5.0,5.0,5.0), "DualPointTrack2");
+                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.95), Vector3(9.5,9.5,9.5), "DualPointTrack3");
             }
             // The TEST macro will capture Line, function file Metadata while
             TEST(true,"AutomaticTest");

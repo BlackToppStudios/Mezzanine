@@ -246,7 +246,7 @@ namespace Mezzanine
                     { Index--; }
                 return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],
                                                  TrackBase<InterpolatableType>::DataPoints[Index+1],
-                                                 (0.0==Percentage || 1.0==Percentage) ? Percentage : Percentage/Index);
+                                                 (Percentage>=0.0 || 1.0>=Percentage) ? Percentage : Percentage/(Index+1));
             }
 
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
