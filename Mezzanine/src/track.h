@@ -41,6 +41,7 @@
 #define _track_h
 
 #include "vector3.h"
+#include "exception.h"
 #include "enumerations.h"
 #include "interpolator.h"
 
@@ -241,12 +242,16 @@ namespace Mezzanine
 
             virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
-                Whole Index = Percentage * TrackBase<InterpolatableType>::DataPoints.size();
-                if(TrackBase<InterpolatableType>::DataPoints.size()==Index)
-                    { Index--; }
-                return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],
-                                                 TrackBase<InterpolatableType>::DataPoints[Index+1],
-                                                 (Percentage>=0.0 || 1.0>=Percentage) ? Percentage : Percentage/(Index+1));
+                Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
+                if(DataPointCount<2)
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot interpolate location on a track with a single point."); }
+                Whole Index = Whole(Percentage * Real(DataPointCount)); // Pick a Line Segment
+                if(DataPointCount==Index)
+                    { return TrackBase<InterpolatableType>::DataPoints[Index]; } //Past the End, just return the end.
+                return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
+                                                 TrackBase<InterpolatableType>::DataPoints[Index+1],// The second point
+                                                 //Percentage/(TrackBase<InterpolatableType>::DataPoints.size()-1)); //(Percentage<=0.0 || 1.0<=Percentage) ? Percentage :
+                                                 (Index+1)*(Percentage/(DataPointCount-1))); // The percentage we are through this line segment
             }
 
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const

@@ -43,6 +43,7 @@
 #include "mezztest.h"
 
 #include "track.h"
+#include "exception.h"
 
 /// @file
 /// @brief Test the track classes produce the expected interpolated values.
@@ -63,19 +64,47 @@ class tracktests : public UnitTestGroup
         void RunAutomaticTests()
         {
             {
+                TrackLinear<Vector3> TestSinglePointTrack;
+                TestSinglePointTrack.push_back(Vector3(0,0,0));
+                TestOutput << "Testing interpolation on a Track with just one point, should throw and execption:" << endl;
+                TEST_THROW(Mezzanine::ParametersRangeException,
+                           TestSinglePointTrack.GetInterpolated(0.5),
+                           "SingleTrackPointThrows");
+            }
+
+            {
                 TrackLinear<Vector3> TestDualPointTrack;
                 TestDualPointTrack.push_back(Vector3(0,0,0));
                 TestDualPointTrack.push_back(Vector3(10,10,10));
-                TestOutput << "Testing interpolation on a Track with just two points:" << endl
+                TestOutput << endl << "Testing interpolation on a Track with just two points:" << endl
                            << "\t0.1 should be 1,1,1 and is " << TestDualPointTrack.GetInterpolated(0.1) << endl
-                           << "\t0.1 should be 5,5,5 and is " << TestDualPointTrack.GetInterpolated(0.5) << endl
-                           << "\t0.1 should be 9.5,9.9,9.5 and is " << TestDualPointTrack.GetInterpolated(0.95) << endl;
+                           << "\t0.5 should be 5,5,5 and is " << TestDualPointTrack.GetInterpolated(0.5) << endl
+                           << "\t0.95 should be 9.5,9.9,9.5 and is " << TestDualPointTrack.GetInterpolated(0.95) << endl;
                 TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.1), Vector3(1.0,1.0,1.0), "DualPointTrack1");
                 TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.5), Vector3(5.0,5.0,5.0), "DualPointTrack2");
                 TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.95), Vector3(9.5,9.5,9.5), "DualPointTrack3");
             }
-            // The TEST macro will capture Line, function file Metadata while
-            TEST(true,"AutomaticTest");
+
+            {
+                TrackLinear<Vector3> TestTriplePointTrack;
+                TestTriplePointTrack.push_back(Vector3(0,0,0));
+                TestTriplePointTrack.push_back(Vector3(0,0,10));
+                TestTriplePointTrack.push_back(Vector3(0,10,10));
+                TestOutput << endl << "Testing interpolation on a Track with three points:" << endl
+                           << "\t0.1 should be 20% along the first line segment at 0,0,2 and is " << TestTriplePointTrack.GetInterpolated(0.1) << endl
+                           << "\t0.4 should be 80% along the first line segment at 0,0,8 and is " << TestTriplePointTrack.GetInterpolated(0.4) << endl
+                           << "\t0.5 should be the middle point at 0,0,10 and is " << TestTriplePointTrack.GetInterpolated(0.5) << endl
+                           << "\t0.6 should be 20% along the second line segment at 0,2,10 and is " << TestTriplePointTrack.GetInterpolated(0.6) << endl
+                           << "\t0.9 should be 80% along the second line segment at 0,8,10 and is " << TestTriplePointTrack.GetInterpolated(0.9) << endl
+                           << "\t1.0 should be the second point at 0,10,10 and is " << TestTriplePointTrack.GetInterpolated(1.0) << endl;
+                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.1), Vector3(0.0,0.0,2.0), "TriplePointTrack1");
+                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.4), Vector3(0.0,0.0,0.0), "TriplePointTrack2");
+                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.5), Vector3(0.0,0.0,10.0), "TriplePointTrack3");
+                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.6), Vector3(0.0,2.0,10.0), "TriplePointTrack4");
+                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.9), Vector3(0.0,8.0,10.0), "TriplePointTrack5");
+                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(1.0), Vector3(0.0,10.0,10.0), "TriplePointTrack6");
+
+            }
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
