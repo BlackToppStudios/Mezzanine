@@ -232,20 +232,23 @@ namespace Mezzanine
     /// @brief A track that uses linear interpolation
     template <typename InterpolatableType>
     class TrackLinear : public TrackBase<InterpolatableType>
-    {
+    {       
         public:
             typedef typename TrackBase<InterpolatableType>::DataContainerType DataContainerType;
             typedef typename DataContainerType::iterator iterator;
             typedef typename DataContainerType::const_iterator const_iterator;
             typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator Interpolator;
 
+        public:
+            Whole GetLineSegmentFor(Real Percentage) const
+                { return (Percentage * (Real(TrackBase<InterpolatableType>::DataPoints.size()-1))); }
 
             virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
                 Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
                 if(DataPointCount<2)
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot interpolate location on a track with a single point."); }
-                Whole Index = Whole(Percentage * Real(DataPointCount)); // Pick a Line Segment
+                Whole Index = GetLineSegmentFor(Percentage); // Pick a Line Segment
                 if(DataPointCount==Index)
                     { return TrackBase<InterpolatableType>::DataPoints[Index]; } //Past the End, just return the end.
                 return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment

@@ -83,6 +83,13 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.1), Vector3(1.0,1.0,1.0), "DualPointTrack1");
                 TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.5), Vector3(5.0,5.0,5.0), "DualPointTrack2");
                 TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.95), Vector3(9.5,9.5,9.5), "DualPointTrack3");
+                TestOutput << endl << "Testing line segment selection on previous track:" << endl
+                           << "\t0.1 should be on segement 0 and is on segment " << TestDualPointTrack.GetLineSegmentFor(0.1) << endl
+                           << "\t0.5 should be on segement 0 and is on segment " << TestDualPointTrack.GetLineSegmentFor(0.5) << endl
+                           << "\t0.95 should be on segement 0 and is on segment " << TestDualPointTrack.GetLineSegmentFor(0.95) << endl;
+                TEST(TestDualPointTrack.GetLineSegmentFor(0.1)==0, "DualPointTrackSegment1");
+                TEST(TestDualPointTrack.GetLineSegmentFor(0.5)==0, "DualPointTrackSegment2");
+                TEST(TestDualPointTrack.GetLineSegmentFor(0.95)==0, "DualPointTrackSegment3");
             }
 
             {
@@ -103,6 +110,19 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.6), Vector3(0.0,2.0,10.0), "TriplePointTrack4");
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.9), Vector3(0.0,8.0,10.0), "TriplePointTrack5");
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(1.0), Vector3(0.0,10.0,10.0), "TriplePointTrack6");
+                TestOutput << endl << "Testing line segment selection on previous track:" << endl
+                           << "\t0.1 should be line segment 0 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.1) << endl
+                           << "\t0.4 should be line segment 0 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.4) << endl
+                           << "\t0.5 should be line segment 0 or 1 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.5) << endl
+                           << "\t0.6 should be line segment 1 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.6) << endl
+                           << "\t0.9 should be line segment 1 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.9) << endl
+                           << "\t1.0 should be line segment 1 or 2 and is on " << TestTriplePointTrack.GetLineSegmentFor(1.0) << endl;
+                TEST(TestTriplePointTrack.GetLineSegmentFor(0.1)==0, "TriplePointTrackSegment1");
+                TEST(TestTriplePointTrack.GetLineSegmentFor(0.4)==0, "TriplePointTrackSegment2");
+                //TEST(TestTriplePointTrack.GetLineSegmentFor(0.5==0, "TriplePointTrackSegment3");
+                TEST(TestTriplePointTrack.GetLineSegmentFor(0.6)==1, "TriplePointTrackSegment4");
+                TEST(TestTriplePointTrack.GetLineSegmentFor(0.9)==1, "TriplePointTrackSegment5");
+                //TEST(TestTriplePointTrack.GetLineSegmentFor(1.0)==0, "TriplePointTrackSegment6");
 
             }
         }
