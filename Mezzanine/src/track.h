@@ -249,26 +249,23 @@ namespace Mezzanine
 
             Real GetPercentageThroughSegment(Real Percentage) const
             {
-                Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
-                if(DataPointCount<2)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot interpolate location on a track without a single Line segment."); }
-                if(2==DataPointCount)
+                Whole LineSegmentCount = TrackBase<InterpolatableType>::DataPoints.size() - 1;
+                if(LineSegmentCount<1)
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot GetPercentageThroughSegment on a track without a single data segment. There must be two or more data points."); }
+                if(1==LineSegmentCount)
                     { return Percentage; }
-                return GetLineSegmentFor(Percentage)*Percentage;//std::fmod(DataPointCount*Percentage,GetLineSegmentFor(Percentage)*Percentage);
+                return std::fmod(Percentage,1.0/Real(LineSegmentCount))*LineSegmentCount;
             }
 
             virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
                 Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
-                if(DataPointCount<2)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot interpolate location on a track with a single point."); }
                 Whole Index = GetLineSegmentFor(Percentage); // Pick a Line Segment
-                if(DataPointCount==Index)
-                    { return TrackBase<InterpolatableType>::DataPoints[Index]; } //Past the End, just return the end.
+                if(DataPointCount==Index) // If we are past the end give them the end, because this should only happen when percentage == 1.0
+                    { return TrackBase<InterpolatableType>::DataPoints[Index]; }
                 return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
                                                  TrackBase<InterpolatableType>::DataPoints[Index+1],// The second point
-                                                 //Percentage/(TrackBase<InterpolatableType>::DataPoints.size()-1)); //(Percentage<=0.0 || 1.0<=Percentage) ? Percentage :
-                                                 (Index+1)*(Percentage/(DataPointCount-1))); // The percentage we are through this line segment
+                                                 GetPercentageThroughSegment(Percentage)); // The percentage we are through this line segment
             }
 
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
