@@ -45,6 +45,10 @@
 #include "enumerations.h"
 #include "interpolator.h"
 
+#ifndef SWIG // STD headers are bad for Swig
+    #include <cmath>
+#endif
+
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
@@ -242,6 +246,16 @@ namespace Mezzanine
         public:
             Whole GetLineSegmentFor(Real Percentage) const
                 { return (Percentage * (Real(TrackBase<InterpolatableType>::DataPoints.size()-1))); }
+
+            Real GetPercentageThroughSegment(Real Percentage) const
+            {
+                Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
+                if(DataPointCount<2)
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot interpolate location on a track without a single Line segment."); }
+                if(2==DataPointCount)
+                    { return Percentage; }
+                return GetLineSegmentFor(Percentage)*Percentage;//std::fmod(DataPointCount*Percentage,GetLineSegmentFor(Percentage)*Percentage);
+            }
 
             virtual InterpolatableType GetInterpolated(Real Percentage) const
             {

@@ -45,6 +45,7 @@
 #include "track.h"
 #include "exception.h"
 
+
 /// @file
 /// @brief Test the track classes produce the expected interpolated values.
 
@@ -63,6 +64,8 @@ class tracktests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
+
+
             {
                 TrackLinear<Vector3> TestSinglePointTrack;
                 TestSinglePointTrack.push_back(Vector3(0,0,0));
@@ -90,6 +93,13 @@ class tracktests : public UnitTestGroup
                 TEST(TestDualPointTrack.GetLineSegmentFor(0.1)==0, "DualPointTrackSegment1");
                 TEST(TestDualPointTrack.GetLineSegmentFor(0.5)==0, "DualPointTrackSegment2");
                 TEST(TestDualPointTrack.GetLineSegmentFor(0.95)==0, "DualPointTrackSegment3");
+                TestOutput << endl << "Testing line segment location on previous track:" << endl
+                           << "\t0.1 should be on segement 0 at .1 and is " << TestDualPointTrack.GetPercentageThroughSegment(0.1) << endl
+                           << "\t0.5 should be on segement 0 at .5 and is " << TestDualPointTrack.GetPercentageThroughSegment(0.5) << endl
+                           << "\t0.95 should be on segement 0 at .95 and is " << TestDualPointTrack.GetPercentageThroughSegment(0.95) << endl;
+                TEST_EQUAL_EPSILON(TestDualPointTrack.GetPercentageThroughSegment(0.1), Real(0.1), "DualPointTrackSegmentLocation1");
+                TEST_EQUAL_EPSILON(TestDualPointTrack.GetPercentageThroughSegment(0.5), Real(0.5), "DualPointTrackSegmentLocation2");
+                TEST_EQUAL_EPSILON(TestDualPointTrack.GetPercentageThroughSegment(0.95), Real(0.95), "DualPointTrackSegmentLocation3");
             }
 
             {
