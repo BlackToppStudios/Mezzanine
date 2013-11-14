@@ -545,9 +545,9 @@ namespace std
             /// @return A vector with a very small number
             static Mezzanine::Vector3 epsilon()
             {
-                return Mezzanine::Vector3(std::numeric_limits<Mezzanine::Real>::epsilon(),
-                                          std::numeric_limits<Mezzanine::Real>::epsilon(),
-                                          std::numeric_limits<Mezzanine::Real>::epsilon()
+                return Mezzanine::Vector3(std::numeric_limits<Mezzanine::Real>::epsilon()*4,
+                                          std::numeric_limits<Mezzanine::Real>::epsilon()*4,
+                                          std::numeric_limits<Mezzanine::Real>::epsilon()*4
                                          );
             }
 

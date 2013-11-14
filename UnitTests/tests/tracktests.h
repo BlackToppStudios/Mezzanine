@@ -65,6 +65,8 @@ class tracktests : public UnitTestGroup
         void RunAutomaticTests()
         {
 
+            //TestOutput.precision(10);
+            //TestOutput << std::fixed;
 
             {
                 TrackLinear<Vector3> TestSinglePointTrack;
@@ -117,8 +119,8 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.1), Vector3(0.0,0.0,2.0), "TriplePointTrack1");
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.4), Vector3(0.0,0.0,8.0), "TriplePointTrack2");
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.5), Vector3(0.0,0.0,10.0), "TriplePointTrack3");
-                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.6), Vector3(0.0,2.0,10.0), "TriplePointTrack4");
-                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.9), Vector3(0.0,8.0,10.0), "TriplePointTrack5");
+                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolated(0.6), Vector3(0.0,2.0,10.0), "TriplePointTrack4",4);
+                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolated(0.9), Vector3(0.0,8.0,10.0), "TriplePointTrack5",4);
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(1.0), Vector3(0.0,10.0,10.0), "TriplePointTrack6");
                 TestOutput << endl << "Testing line segment selection on previous track:" << endl
                            << "\t0.1 should be line segment 0 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.1) << endl
