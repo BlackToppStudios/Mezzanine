@@ -261,11 +261,12 @@ namespace Mezzanine
             {
                 Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
                 Whole Index = GetLineSegmentFor(Percentage); // Pick a Line Segment
+                Real LocalPercentage = GetPercentageThroughSegment(Percentage);
                 if(DataPointCount-1<=Index) // If we are past the end give them the end, because this should only happen when percentage == 1.0
                     { return TrackBase<InterpolatableType>::DataPoints[Index]; }
                 return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
                                                  TrackBase<InterpolatableType>::DataPoints[Index+1],// The second point
-                                                 GetPercentageThroughSegment(Percentage)); // The percentage we are through this line segment
+                                                 LocalPercentage); // The percentage we are through this line segment
             }
 
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const

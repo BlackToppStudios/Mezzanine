@@ -155,6 +155,7 @@ namespace Mezzanine
                 #define TEST_THROW(ExpectThrown, CodeThatThrows, Name)                                      \
                 try {                                                                                       \
                     CodeThatThrows;                                                                         \
+                    AddTestResult( TestData( (Name), Testing::Failed, __FUNCTION__, __FILE__, __LINE__)) ;  \
                 } catch (ExpectThrown) {                                                                    \
                     AddTestResult( TestData( (Name), Testing::Success, __FUNCTION__, __FILE__, __LINE__)) ; \
                 } catch (...) {                                                                             \
@@ -164,6 +165,7 @@ namespace Mezzanine
                 #define TEST_THROW(ExpectThrown, CodeThatThrows, Name)                                      \
                 try {                                                                                       \
                     CodeThatThrows;                                                                         \
+                    AddTestResult( TestData( (Name), Testing::Failed, __func__, __FILE__, __LINE__)) ;      \
                 } catch (ExpectThrown) {                                                                    \
                     AddTestResult( TestData( (Name), Testing::Success, __func__, __FILE__, __LINE__)) ;     \
                 } catch (...) {                                                                             \

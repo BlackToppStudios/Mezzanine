@@ -2956,6 +2956,37 @@ static int _wrap_Vector3___eq(lua_State* L) {
 }
 
 
+static int _wrap_Vector3___le(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::Vector3::operator <=",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector3::operator <=",1,"Mezzanine::Vector3 const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Vector3::operator <=",2,"Mezzanine::Vector3 const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("Vector3___le",1,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("Vector3___le",2,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  result = (bool)((Mezzanine::Vector3 const *)arg1)->operator <=((Mezzanine::Vector3 const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_Vector3___add__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Vector3 *arg1 = (Mezzanine::Vector3 *) 0 ;
@@ -4574,6 +4605,7 @@ static swig_lua_method swig_Mezzanine_Vector3_methods[] = {
     {"IsStandardUnitAxis", _wrap_Vector3_IsStandardUnitAxis}, 
     {"__unm", _wrap_Vector3___unm}, 
     {"__eq", _wrap_Vector3___eq}, 
+    {"__le", _wrap_Vector3___le}, 
     {"__add", _wrap_Vector3___add}, 
     {"__sub", _wrap_Vector3___sub}, 
     {"__mul", _wrap_Vector3___mul}, 
@@ -4615,20 +4647,18 @@ static swig_lua_class _wrap_class_Mezzanine_Vector3 = { "Vector3", &SWIGTYPE_p_M
 
 static int _wrap_Vector3LinearInterpolator_Interpolate(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::Vector3LinearInterpolator *arg1 = (Mezzanine::Vector3LinearInterpolator *) 0 ;
+  Mezzanine::Vector3 *arg1 = 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Real arg4 ;
+  Mezzanine::Real arg3 ;
   Mezzanine::Vector3 result;
   
-  SWIG_check_num_args("Mezzanine::Vector3LinearInterpolator::Interpolate",4,4)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector3LinearInterpolator::Interpolate",1,"Mezzanine::Vector3LinearInterpolator const *");
+  SWIG_check_num_args("Mezzanine::Vector3LinearInterpolator::Interpolate",3,3)
+  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Vector3LinearInterpolator::Interpolate",1,"Mezzanine::Vector3 const &");
   if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Vector3LinearInterpolator::Interpolate",2,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Vector3LinearInterpolator::Interpolate",3,"Mezzanine::Vector3 const &");
-  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::Vector3LinearInterpolator::Interpolate",4,"Mezzanine::Real");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Vector3LinearInterpolator::Interpolate",3,"Mezzanine::Real");
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Vector3LinearInterpolator,0))){
-    SWIG_fail_ptr("Vector3LinearInterpolator_Interpolate",1,SWIGTYPE_p_Mezzanine__Vector3LinearInterpolator);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("Vector3LinearInterpolator_Interpolate",1,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
   
@@ -4636,13 +4666,8 @@ static int _wrap_Vector3LinearInterpolator_Interpolate(lua_State* L) {
     SWIG_fail_ptr("Vector3LinearInterpolator_Interpolate",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Vector3,0))){
-    SWIG_fail_ptr("Vector3LinearInterpolator_Interpolate",3,SWIGTYPE_p_Mezzanine__Vector3);
-  }
-  
-  arg4 = (Mezzanine::Real)lua_tonumber(L, 4);
-  result = ((Mezzanine::Vector3LinearInterpolator const *)arg1)->Interpolate((Mezzanine::Vector3 const &)*arg2,(Mezzanine::Vector3 const &)*arg3,arg4);
+  arg3 = (Mezzanine::Real)lua_tonumber(L, 3);
+  result = Mezzanine::Vector3LinearInterpolator::Interpolate((Mezzanine::Vector3 const &)*arg1,(Mezzanine::Vector3 const &)*arg2,arg3);
   {
     Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
@@ -4679,7 +4704,6 @@ Mezzanine::Vector3LinearInterpolator *arg1 = (Mezzanine::Vector3LinearInterpolat
 delete arg1;
 }
 static swig_lua_method swig_Mezzanine_Vector3LinearInterpolator_methods[] = {
-    {"Interpolate", _wrap_Vector3LinearInterpolator_Interpolate}, 
     {0,0}
 };
 static swig_lua_attribute swig_Mezzanine_Vector3LinearInterpolator_attributes[] = {
@@ -28482,6 +28506,7 @@ static const struct luaL_Reg swig_commands[] = {
     { "Vector3_Neg_Unit_Z", _wrap_Vector3_Neg_Unit_Z},
     { "Vector3_UnitOnAxis", _wrap_Vector3_UnitOnAxis},
     { "Vector3_SerializableName", _wrap_Vector3_SerializableName},
+    { "Vector3LinearInterpolator_Interpolate", _wrap_Vector3LinearInterpolator_Interpolate},
     { "Quaternion_SerializableName", _wrap_Quaternion_SerializableName},
     { "Transform_SerializableName", _wrap_Transform_SerializableName},
     { "WorldObject_GetSerializableName", _wrap_WorldObject_GetSerializableName},

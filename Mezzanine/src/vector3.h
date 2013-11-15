@@ -40,7 +40,9 @@
 #ifndef _vector3_h
 #define _vector3_h
 
-#include <limits>
+#ifndef SWIG
+    #include <limits>
+#endif
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
