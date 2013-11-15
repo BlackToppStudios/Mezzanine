@@ -261,7 +261,7 @@ namespace Mezzanine
             {
                 Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
                 Whole Index = GetLineSegmentFor(Percentage); // Pick a Line Segment
-                if(DataPointCount==Index) // If we are past the end give them the end, because this should only happen when percentage == 1.0
+                if(DataPointCount-1<=Index) // If we are past the end give them the end, because this should only happen when percentage == 1.0
                     { return TrackBase<InterpolatableType>::DataPoints[Index]; }
                 return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
                                                  TrackBase<InterpolatableType>::DataPoints[Index+1],// The second point
