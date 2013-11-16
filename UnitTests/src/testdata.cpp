@@ -123,8 +123,8 @@ namespace Mezzanine
             streambuf* CerrStreamBuf = cerr.rdbuf();
             cerr.rdbuf(TestError.rdbuf());
 
-            TestOutput << std::endl << "<AutomaticTestOutput>" << std::endl;
-            TestError << std::endl<< "<AutomaticTestError>" << std::endl;
+            TestOutput << std::endl << "<AutomaticTestOutput><![CDATA[" << std::endl;
+            TestError << std::endl<< "<AutomaticTestError><![CDATA[" << std::endl;
             try
             {
                 if(RunAuto)
@@ -136,11 +136,11 @@ namespace Mezzanine
                           << "Message: " << e.what() << endl;
                 AddTestResult( TestData("UnhandledException", Testing::Failed) );
             }
-            TestOutput << std::endl<< "</AutomaticTestOutput>" << std::endl;
-            TestError << std::endl<< "</AutomaticTestError>" << std::endl;
+            TestOutput << std::endl<< "]]></AutomaticTestOutput>" << std::endl;
+            TestError << std::endl<< "]]></AutomaticTestError>" << std::endl;
 
-            TestOutput << "<InteractiveTestOutput>" << std::endl;
-            TestError << "<InteractiveTestError>" << std::endl;
+            TestOutput << "<InteractiveTestOutput><![CDATA[" << std::endl;
+            TestError << "<InteractiveTestError><![CDATA[" << std::endl;
             try
             {
                 if(RunInteractive)
@@ -152,8 +152,8 @@ namespace Mezzanine
                           << "Message: " << e.what() << endl;
                 AddTestResult( TestData("UnhandledException", Testing::Failed) );
             }
-            TestOutput << std::endl << "</InteractiveTestOutput>" << std::endl;
-            TestError << std::endl << "</InteractiveTestError>" << std::endl;
+            TestOutput << std::endl << "]]></InteractiveTestOutput>" << std::endl;
+            TestError << std::endl << "]]></InteractiveTestError>" << std::endl;
 
             cout.rdbuf(CoutStreamBuf);
             cout.rdbuf(CerrStreamBuf);
@@ -251,7 +251,7 @@ namespace Mezzanine
 
         void UnitTestGroup::AddTestsFromXML(pugi::xml_node Node)
         {
-            if(!Node) //Basic Sanity Chek
+            if(!Node) //Basic Sanity Check
             {
                 throw std::invalid_argument(
                         String("UnitTestGroup::AddTestsFromXML can only handle XML but was passed an empty file. Expected results from ")
