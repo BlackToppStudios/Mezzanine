@@ -91,12 +91,12 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.5), Vector3(5.0,5.0,5.0), "DualPointTrack2");
                 TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolated(0.95), Vector3(9.5,9.5,9.5), "DualPointTrack3");
                 TestOutput << endl << "Testing line segment selection on previous track:" << endl
-                           << "\t0.1 should be on segement 0 and is on segment " << TestDualPointTrack.GetLineSegmentFor(0.1) << endl
-                           << "\t0.5 should be on segement 0 and is on segment " << TestDualPointTrack.GetLineSegmentFor(0.5) << endl
-                           << "\t0.95 should be on segement 0 and is on segment " << TestDualPointTrack.GetLineSegmentFor(0.95) << endl;
-                TEST(TestDualPointTrack.GetLineSegmentFor(0.1)==0, "DualPointTrackSegment1");
-                TEST(TestDualPointTrack.GetLineSegmentFor(0.5)==0, "DualPointTrackSegment2");
-                TEST(TestDualPointTrack.GetLineSegmentFor(0.95)==0, "DualPointTrackSegment3");
+                           << "\t0.1 should be on segement 0 and is on segment " << TestDualPointTrack.GetLineSegmentByPercent(0.1) << endl
+                           << "\t0.5 should be on segement 0 and is on segment " << TestDualPointTrack.GetLineSegmentByPercent(0.5) << endl
+                           << "\t0.95 should be on segement 0 and is on segment " << TestDualPointTrack.GetLineSegmentByPercent(0.95) << endl;
+                TEST(TestDualPointTrack.GetLineSegmentByPercent(0.1)==0, "DualPointTrackSegment1");
+                TEST(TestDualPointTrack.GetLineSegmentByPercent(0.5)==0, "DualPointTrackSegment2");
+                TEST(TestDualPointTrack.GetLineSegmentByPercent(0.95)==0, "DualPointTrackSegment3");
                 TestOutput << endl << "Testing line segment location on previous track:" << endl
                            << "\t0.1 should be on segement 0 at .1 and is " << TestDualPointTrack.GetPercentageThroughSegment(0.1) << endl
                            << "\t0.5 should be on segement 0 at .5 and is " << TestDualPointTrack.GetPercentageThroughSegment(0.5) << endl
@@ -136,18 +136,18 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolated(0.9), Vector3(0.0,8.0,10.0), "TriplePointTrack5",4);
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(1.0), Vector3(0.0,10.0,10.0), "TriplePointTrack6");
                 TestOutput << endl << "Testing line segment selection on previous track:" << endl
-                           << "\t0.1 should be line segment 0 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.1) << endl
-                           << "\t0.4 should be line segment 0 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.4) << endl
-                           << "\t0.5 should be line segment 0 or 1 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.5) << endl
-                           << "\t0.6 should be line segment 1 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.6) << endl
-                           << "\t0.9 should be line segment 1 and is on " << TestTriplePointTrack.GetLineSegmentFor(0.9) << endl
-                           << "\t1.0 should be line segment 1 or 2 and is on " << TestTriplePointTrack.GetLineSegmentFor(1.0) << endl;
-                TEST(TestTriplePointTrack.GetLineSegmentFor(0.1)==0, "TriplePointTrackSegment1");
-                TEST(TestTriplePointTrack.GetLineSegmentFor(0.4)==0, "TriplePointTrackSegment2");
-                TEST(TestTriplePointTrack.GetLineSegmentFor(0.5)==0||TestTriplePointTrack.GetLineSegmentFor(0.5)==1, "TriplePointTrackSegment3");
-                TEST(TestTriplePointTrack.GetLineSegmentFor(0.6)==1, "TriplePointTrackSegment4");
-                TEST(TestTriplePointTrack.GetLineSegmentFor(0.9)==1, "TriplePointTrackSegment5");
-                TEST(TestTriplePointTrack.GetLineSegmentFor(1.0)==1||TestTriplePointTrack.GetLineSegmentFor(1.0)==2, "TriplePointTrackSegment6");
+                           << "\t0.1 should be line segment 0 and is on " << TestTriplePointTrack.GetLineSegmentByPercent(0.1) << endl
+                           << "\t0.4 should be line segment 0 and is on " << TestTriplePointTrack.GetLineSegmentByPercent(0.4) << endl
+                           << "\t0.5 should be line segment 0 or 1 and is on " << TestTriplePointTrack.GetLineSegmentByPercent(0.5) << endl
+                           << "\t0.6 should be line segment 1 and is on " << TestTriplePointTrack.GetLineSegmentByPercent(0.6) << endl
+                           << "\t0.9 should be line segment 1 and is on " << TestTriplePointTrack.GetLineSegmentByPercent(0.9) << endl
+                           << "\t1.0 should be line segment 1 or 2 and is on " << TestTriplePointTrack.GetLineSegmentByPercent(1.0) << endl;
+                TEST(TestTriplePointTrack.GetLineSegmentByPercent(0.1)==0, "TriplePointTrackSegment1");
+                TEST(TestTriplePointTrack.GetLineSegmentByPercent(0.4)==0, "TriplePointTrackSegment2");
+                TEST(TestTriplePointTrack.GetLineSegmentByPercent(0.5)==0||TestTriplePointTrack.GetLineSegmentByPercent(0.5)==1, "TriplePointTrackSegment3");
+                TEST(TestTriplePointTrack.GetLineSegmentByPercent(0.6)==1, "TriplePointTrackSegment4");
+                TEST(TestTriplePointTrack.GetLineSegmentByPercent(0.9)==1, "TriplePointTrackSegment5");
+                TEST(TestTriplePointTrack.GetLineSegmentByPercent(1.0)==1||TestTriplePointTrack.GetLineSegmentByPercent(1.0)==2, "TriplePointTrackSegment6");
                 TestOutput << endl << "Testing line segment selection on previous track:" << endl
                            << "\t0.1 should be 0.2 on line segment 1 and is " << TestTriplePointTrack.GetPercentageThroughSegment(0.1) << endl
                            << "\t0.4 should be 0.8 on line segment 0 and is " << TestTriplePointTrack.GetPercentageThroughSegment(0.4) << endl
@@ -157,7 +157,7 @@ class tracktests : public UnitTestGroup
                            << "\t1.0 should be 1.0 or 0.0 line segment 1 or 2 and is " << TestTriplePointTrack.GetPercentageThroughSegment(1.0) << endl;
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetPercentageThroughSegment(0.1), Real(0.2), "TriplePointTrackSegmentLocation1");
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetPercentageThroughSegment(0.4), Real(0.8), "TriplePointTrackSegmentLocation2");
-                if(0==TestTriplePointTrack.GetLineSegmentFor(0.5)) // I really don't care if this is the first point on the next segment or the last point on this one
+                if(0==TestTriplePointTrack.GetLineSegmentByPercent(0.5)) // I really don't care if this is the first point on the next segment or the last point on this one
                 {
                     TEST_EQUAL_EPSILON(TestTriplePointTrack.GetPercentageThroughSegment(0.5), Real(1.0), "TriplePointTrackSegmentLocation3");
                 }else{
@@ -165,7 +165,7 @@ class tracktests : public UnitTestGroup
                 }
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetPercentageThroughSegment(0.6), Real(0.2), "TriplePointTrackSegmentLocation4");
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetPercentageThroughSegment(0.9), Real(0.8), "TriplePointTrackSegmentLocation5");
-                if(1==TestTriplePointTrack.GetLineSegmentFor(1.0))
+                if(1==TestTriplePointTrack.GetLineSegmentByPercent(1.0))
                 {
                     TEST_EQUAL_EPSILON(TestTriplePointTrack.GetPercentageThroughSegment(0.5), Real(1.0), "TriplePointTrackSegmentLocation6");
                 }else{

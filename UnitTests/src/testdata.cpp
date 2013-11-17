@@ -339,6 +339,7 @@ namespace Mezzanine
                             { Output << " No Metadata available able issue, use TEST to capture"; }
                     }
                     Output << endl;
+                    Output.flush();
                 }
 
                 if (Iter->Results && Iter->FileName.length() && Iter->FunctionName.length() && Iter->LineNumber)
@@ -346,6 +347,7 @@ namespace Mezzanine
                     Error << Iter->FileName << ":" << Iter->LineNumber
                           << " Test " << TestResultToString(Iter->Results)
                           << " in function " << Iter->FunctionName << endl;
+                    Error.flush();
                 }
                 TestCounts.at((unsigned int)Iter->Results)++; // Count this test result
             }
@@ -359,6 +361,7 @@ namespace Mezzanine
                     Output << "  " << ResultName << MakePadding(ResultName,16) << TestCounts.at(c) << std::endl;
                 }
                 Output << std::endl;
+                Output.flush();
             }
 
             if(FullOutput)
