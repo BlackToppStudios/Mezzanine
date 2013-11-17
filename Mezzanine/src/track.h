@@ -244,8 +244,8 @@ namespace Mezzanine
             typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator Interpolator;
 
         public:
-            Whole GetLineSegmentByPercent(Real Percentage) const
-                { return (Percentage * (Real(TrackBase<InterpolatableType>::DataPoints.size()-1))); }
+            Whole GetLineSegmentByPercent(Real Percentage, Bool Loop = false) const
+                { return (Percentage * (Real(TrackBase<InterpolatableType>::DataPoints.size()-(Whole(!Loop)*1)))); }
 
             Whole GetLineSegmentLoopByPercent(Real Percentage) const
                 { return (Percentage * (Real(TrackBase<InterpolatableType>::DataPoints.size()))); }
@@ -275,13 +275,15 @@ namespace Mezzanine
 
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
             { 
-                Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size()+1;
-                Whole Index = GetLineSegmentLoopByPercent(Percentage); // Pick a Line Segment
+                Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
+                Whole Index = GetLineSegmentByPercent(Percentage,true); // Pick a Line Segment
                 Real LocalPercentage = GetPercentageThroughSegment(Percentage,true);
-                if(DataPointCount-1<=Index) // If we are past the end give them the end, because this should only happen when percentage == 1.0
+                if(DataPointCount<=Index) // If we are past the end give them the end, because this should only happen when percentage == 1.0
+                    { return TrackBase<InterpolatableType>::DataPoints[0]; }
+                if(DataPointCount-1<=Index) // If we are in the last segment connect t to the begining
                 {
                     return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],
-                                                     TrackBase<InterpolatableType>::DataPoints[1],
+                                                     TrackBase<InterpolatableType>::DataPoints[0],
                                                      LocalPercentage);
 
                 }
