@@ -221,7 +221,6 @@ namespace Mezzanine
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const = 0;
     };
 
-    /// @brief
     template<typename InterpolatableType>
     class SmoothTrackIterator
     {
@@ -229,21 +228,29 @@ namespace Mezzanine
             /// @brief A pointer to the track under iteration.
             typename TrackBase<InterpolatableType>::DataContainerType* TrackUnderIteration;
         public:
-
-
     };
 
-    /// @brief A track that uses linear interpolation
+    /// @brief A track that uses linear interpolation for linear and looped tracks.
+    /// @details This class is intended to provide an abstraction for any amount of
+    /// datapoints and present a range from 0 to 1 for all tracks.
     template <typename InterpolatableType>
     class TrackLinear : public TrackBase<InterpolatableType>
     {       
         public:
+            /// @brief The type of the underlying container for InterpolatableType instances
             typedef typename TrackBase<InterpolatableType>::DataContainerType DataContainerType;
-            typedef typename DataContainerType::iterator iterator;
-            typedef typename DataContainerType::const_iterator const_iterator;
+            /// @brief A type used for iterating over the range of interpolated values of the track
+            typedef SmoothTrackIterator<InterpolatableType> iterator;
+            /// @brief A type used for iterating over the range of interpolated values of the track, and guaranteed to not change the track.
+            typedef SmoothTrackIterator<InterpolatableType> const_iterator;
+            /// @brief The functor that does the actual interpolation of the points.
             typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator Interpolator;
 
         public:
+            /// @brief For a given percentage determine which two data points it is between.
+            /// @param Percentage from 0.0(beginning) and 1.0(end) where is the point you want.
+            /// @param Loop should we calculate as if there is another segment connection the last point to the first? Default to false.
+            /// @return A Whole indicating which segment to use. 0 define as the segment connect index 0 and index 1. 1 is index 1 to 2, etc...
             Whole GetLineSegmentByPercent(Real Percentage, Bool Loop = false) const
                 { return (Percentage * (Real(TrackBase<InterpolatableType>::DataPoints.size()-(Whole(!Loop)*1)))); }
 
@@ -287,24 +294,7 @@ namespace Mezzanine
                 { return GetInterpolated(Percentage, false); }
 
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
-            { 
-                return GetInterpolated(Percentage, true);
-                Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
-                Whole Index = GetLineSegmentByPercent(Percentage,true); // Pick a Line Segment
-                Real LocalPercentage = GetPercentageThroughSegment(Percentage,true);
-                if(DataPointCount<=Index) // If we are past the end give them the end, because this should only happen when percentage == 1.0
-                    { return TrackBase<InterpolatableType>::DataPoints[0]; }
-                if(DataPointCount-1<=Index) // If we are in the last segment connect t to the begining
-                {
-                    return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],
-                                                     TrackBase<InterpolatableType>::DataPoints[0],
-                                                     LocalPercentage);
-
-                }
-                return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
-                                                 TrackBase<InterpolatableType>::DataPoints[Index+1],// The second point
-                                                 LocalPercentage); // The percentage we are through this line segment
-            }
+                { return GetInterpolated(Percentage, true); }
 
     };
 

@@ -65,7 +65,7 @@ class tracktests : public UnitTestGroup
         void RunAutomaticTests()
         {
             TestOutput.precision(10);
-            TestOutput << std::fixed;
+            TestOutput << std::fixed << "Epsilon of the Vector3: " << numeric_limits<Vector3>::epsilon();
 
             {
                 TrackLinear<Vector3> TestSinglePointTrack;
@@ -209,6 +209,17 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(TestQuadPointTrack.GetInterpolatedAsLoop(0.0), Vector3(0.0,0.0,0.0), "QuadPointTrackLoop1");
                 TEST_EQUAL_EPSILON(TestQuadPointTrack.GetInterpolatedAsLoop(0.5), Vector3(10.0,10.0,0.0), "QuadPointTrackLoop2");
                 TEST_EQUAL_EPSILON(TestQuadPointTrack.GetInterpolatedAsLoop(1.0), Vector3(0.0,0.0,0.0), "QuadPointTrackLoop3");
+
+                TestOutput << endl << "Testing interpolation on a track with four points for performance:" << endl;
+                {
+                    SCOPEDTIMER(TestOutput);
+                    Vector3 DefeatCompilerOptimization(0,0,0);
+                    for(Whole Counter = 0; Counter<1000000; Counter++)
+                    {
+                        DefeatCompilerOptimization = TestQuadPointTrack.GetInterpolatedAsLoop(rand()/RAND_MAX);
+                    }
+                    TestOutput << "A random point on the track to defeat optimizations: " << DefeatCompilerOptimization << endl;
+                }
             }
             
         }
