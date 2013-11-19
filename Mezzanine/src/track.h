@@ -221,13 +221,38 @@ namespace Mezzanine
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const = 0;
     };
 
+    // Forward declation
+    template <typename InterpolatableType> class TrackLinear;
+
+    /// @brief An Iterator that can take an arbitrary amount of steps through a track.
     template<typename InterpolatableType>
     class SmoothTrackIterator
     {
-        private:
-            /// @brief A pointer to the track under iteration.
-            typename TrackBase<InterpolatableType>::DataContainerType* TrackUnderIteration;
         public:
+            /// @brief What kind of track with this iterate over
+            typedef TrackBase<InterpolatableType> TargetTrackType;
+
+        private:
+            /// @brief The track this works against.
+            TargetTrackType TargetTrack;
+            /// @brief Where on the track are we?
+            Real Location;
+            /// @brief How far should this
+            Real Step;
+
+        public:
+            /// @brief The constructor for and iterator
+            /// @details Tracks
+            /// @param TrackToIterate Which track with this work against.
+            /// @param WhereToStart Where on the track (range 0 to 1) Should iteration start.
+            /// @param Increment When incremented how much should the location change? Defaults to .01 to create 100 steps.
+            SmoothTrackIterator(TargetTrackType* TrackToIterate, Real WhereToStart = 0.0, Real Increment = 0.01)
+                : TargetTrack(TrackToIterate), Location(WhereToStart), Step(Increment)
+                {}
+
+            // copy constructor
+            //
+
     };
 
     /// @brief A track that uses linear interpolation for linear and looped tracks.
@@ -254,6 +279,8 @@ namespace Mezzanine
             Whole GetLineSegmentByPercent(Real Percentage, Bool Loop = false) const
                 { return (Percentage * (Real(TrackBase<InterpolatableType>::DataPoints.size()-(Whole(!Loop)*1)))); }
 
+            /// @brief How far betweent the two points of a segment is the provided Track Percentage.
+            ///
             Real GetPercentageThroughSegment(Real Percentage, Bool Loop = false) const
             {
                 Whole LineSegmentCount = TrackBase<InterpolatableType>::DataPoints.size()-1;
