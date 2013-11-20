@@ -47,6 +47,20 @@
 
 namespace Mezzanine
 {
+    /// @brief A simple functor for interpolating data points in a simple way.
+    template <typename T>
+    class MEZZ_LIB GenericLinearInterpolator
+    {
+        public:
+            /// @brief Get a value at a given location between two others.
+            /// @param Begin One end of line segment
+            /// @param End The other end of a line segment
+            /// @param A value between 0.0 and 1.0 indicate what point on the line segment defined by Begin and End you want.
+            /// @return A Value equal to Begin if 0.0 is passed, equal to End if 1.0 is passed equal to a point exactly in the middle if 0.5 is passed.
+            static T Interpolate(T Begin, T End, Real Location)
+                { return ((End-Begin)*Location)+Begin; }
+    };
+
 
     /// @brief An empty class to prevent classes without explicit interpolater traits from compiling.
     template <typename T>
@@ -89,6 +103,40 @@ namespace Mezzanine
             ///     - Will be able to interpolated arbitrary sets of data points.
             typedef NotAnInterpolator<T> SplineInterpolator;
     };
+
+
+
+    /// @brief The generic Interpolatable Traits, intended to catch all class without explicit traits set and server as and example.
+    template<>
+    class InterpolatableTraits <Integer>
+    {
+        public:
+            /// @brief Name the type of the Linear interpolator for the Vector3
+            typedef GenericLinearInterpolator<Integer> LinearInterpolator;
+
+            /// @brief Indicate there is no Bezier Interpolator for the Vector3
+            typedef NotAnInterpolator<Integer> BezierInterpolator;
+
+            /// @brief Indicate there is no Spline interopolator for the Vector3
+            typedef NotAnInterpolator<Integer> SplineInterpolator;
+    };
+
+
+    /// @brief The generic Interpolatable Traits, intended to catch all class without explicit traits set and server as and example.
+    template<>
+    class InterpolatableTraits <Real>
+    {
+        public:
+            /// @brief Name the type of the Linear interpolator for the Vector3
+            typedef GenericLinearInterpolator<Real> LinearInterpolator;
+
+            /// @brief Indicate there is no Bezier Interpolator for the Vector3
+            typedef NotAnInterpolator<Real> BezierInterpolator;
+
+            /// @brief Indicate there is no Spline interopolator for the Vector3
+            typedef NotAnInterpolator<Real> SplineInterpolator;
+    };
+
 
 } // /namespace Mezzanine
 

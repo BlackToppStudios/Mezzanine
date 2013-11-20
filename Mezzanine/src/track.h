@@ -47,144 +47,23 @@
 
 #ifndef SWIG // STD headers are bad for Swig
     #include <cmath>
+    #include <iterator>
 #endif
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This class represents a series of points as a line in 3D space.
-    /// @details
-    ///////////////////////////////////////
-    class MEZZ_LIB TrackOld
-    {
-    public:
-        /// @brief Basic container type for point storage by this class.
-        typedef std::vector<Vector3>               PointContainer;
-        /// @brief Iterator type for points stored by this class.
-        typedef PointContainer::iterator           PointIterator;
-        /// @brief Const Iterator type for points stored by this class.
-        typedef PointContainer::const_iterator     ConstPointIterator;
-        /*/// @brief Basic container type for tangent storage by this class.
-        typedef std::vector<Vector3>               TangentContainer;
-        /// @brief Iterator type for tangent stored by this class.
-        typedef TangentContainer::iterator         TangentIterator;
-        /// @brief Const Iterator type for tangent stored by this class.
-        typedef TangentContainer::const_iterator   ConstTangentIterator;//*/
-    protected:
-        /// @internal
-        /// @brief Whether or not this Track forms a closed loop.
-        bool Closed;
-        /// @internal
-        /// @brief Container storing all points via @ref Vector3 instances.
-        PointContainer Points;
-        /*/// @internal
-        /// @brief Container storing all tangents via @ref Vector3 instances.
-        TangentContainer Tangents;//*/
-    public:
-        /// @brief Class constructor.
-        TrackOld();
-        /// @brief Class destructor.
-        virtual ~TrackOld();
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        /// @brief Adds a point in 3D space to the end of this track.
-        /// @param Point The location in 3D space to be added.
-        /// @return Returns a reference to this.
-        virtual void AddPoint(const Vector3& Point);
-        /// @brief Adds a point in 3D space to the end of this track.
-        /// @param X The location on the X axis to be added.
-        /// @param Y The location on the Y axis to be added.
-        /// @param Z The location on the Z axis to be added.
-        /// @return Returns a reference to this.
-        virtual void AddPoint(const Real X, const Real Y, const Real Z);
-        /// @brief Changes the location of a point in this track.
-        /// @param Index The index of the point to be updated.
-        /// @param Point The location in 3D space to update to.
-        /// @return Returns a reference to this.
-        virtual void UpdatePoint(const UInt32 Index, const Vector3& Point);
-        /// @brief Changes the location of a point in this track.
-        /// @param Index The index of the point to be updated.
-        /// @param X The location on the X axis to update to.
-        /// @param Y The location on the Y axis to update to.
-        /// @param Z The location on the Z axis to update to.
-        /// @return Returns a reference to this.
-        virtual void UpdatePoint(const UInt32 Index, const Real X, const Real Y, const Real Z);
-        /// @brief Gets a point by index.
-        /// @param Index The index of the point to be retrieved.
-        /// @return Returns a const Vector3 reference to the location at the specified index.
-        virtual const Vector3& GetPoint(const UInt32 Index) const;
-        /// @brief Gets the number of points in this track.
-        /// @return Returns the current number of points in this track.
-        virtual UInt32 GetNumPoints() const;
-        /// @brief Erases all points from this track.
-        virtual void ClearAllPoints();
-
-        /// @brief Sets this track to be a closed loop.
-        /// @param Enable Whether or not to connect the last point in this track to the first point in this track.
-        virtual void Close(bool Enable);
-        /// @brief Gets whether or not this track is closed.
-        /// @return Returns true if this track is currently closed, false otherwise.
-        virtual bool IsClosed() const;
-        /// @brief Reverses the order of points in this track.
-        virtual void Reverse();
-        /// @brief Creats a new track from a subset of points belonging to this track.
-        /// @param First The index of the first point in this track to be included in the new track.
-        /// @param Last The index of the last point in this track to be included in the new track.
-        /// @return Returns a track containing all the points in the range specified.
-        virtual TrackOld ExtractSubPath(const UInt32 First, const UInt32 Last);
-
-        /// @brief Gets all the points belonging to this track.
-        /// @return Returns a reference to the container storing all points in this track.
-        virtual PointContainer& GetPoints();
-        /// @brief Gets all the points belonging to this track.
-        /// @return Returns a const reference to the container storing all points in this track.
-        virtual const PointContainer& GetPoints() const;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Transform related methods
-
-        /// @brief Translates each point in this track.
-        /// @param Trans A Vector3 representing the amount of movement to be applied to the track.
-        /// @return Returns a reference to this.
-        virtual void Translate(const Vector3& Trans);
-        /// @brief Translates each point in this track.
-        /// @param X The amount of movement to apply on the X axis to each point in the track.
-        /// @param Y The amount of movement to apply on the Y axis to each point in the track.
-        /// @param Z The amount of movement to apply on the Z axis to each point in the track.
-        /// @return Returns a reference to this.
-        virtual void Translate(const Real X, const Real Y, const Real Z);
-        /// @brief Scales each point in this track.
-        /// @param Sc A Vector3 representing the amount of scaling to be applied to the track.
-        /// @return Returns a reference to this.
-        virtual void Scale(const Vector3& Sc);
-        /// @brief Scales each point in this track.
-        /// @param X The amount of scaling to apply on the X axis to each point on the track.
-        /// @param Y The amount of scaling to apply on the Y axis to each point on the track.
-        /// @param Z The amount of scaling to apply on the Z axis to each point on the track.
-        /// @return Returns a reference to this.
-        virtual void Scale(const Real X, const Real Y, const Real Z);
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Interpolation
-
-        /// @brief Gets the world location of a certain point on the track.
-        /// @param TrackPos The relative position on the track to get the 3D location of.  Range: 0.0 to 1.0.
-        /// @return Returns the world location of the position on the track specified.
-        virtual Vector3 GetLocationOnTrack(const Real TrackPos);
-        /// @brief Gets the world location of a certain point on the track.
-        /// @param Index
-        /// @param TrackPos The relative position on the track between the specified point and the point after it to get the 3D location of.  Range: 0.0 to 1.0.
-        /// @return Returns the world location of the position on the track specified.
-        virtual Vector3 GetLocationOnTrack(const UInt32 Index, const Real TrackPos);
-    };//TrackOld
-
-
-
     /// @brief A base type that provides container features for different tracks
-    /// @details This uses vector underneath for its performance characteristics. If
-    /// You are using a track with a small number of points
+    /// @details Tracks are containers of a Discrete set of points, that are presented as
+    /// a continuous range from 0 to 1. Interpolators are used to generate the data between
+    /// the points as it is needed. For example, lets say there is an interpolator provided
+    /// for integers and a track contains only two data points 0 and 100, requesting 0.5
+    /// might return 50.
+    /// @n @n
+    /// There are different interpolation methods. These are defined by the InterpolatableTraits
+    /// for a given class. For example a track that does bezier interpolation might try to
+    /// use InterpolatableTraits<Integer>::BezierInterpolator to do the math.
+    /// @n @n
+    /// This uses vector underneath for its performance characteristics.
     template <typename InterpolatableType>
     class TrackBase
     {
@@ -193,7 +72,7 @@ namespace Mezzanine
             typedef  std::vector<InterpolatableType> DataContainerType;
 
         protected:
-            ///
+            /// @brief The underlying container of Discreate datapoints
             DataContainerType DataPoints;
 
         public:
@@ -202,11 +81,13 @@ namespace Mezzanine
             /// @return How many data points exist on this track
             size_t size() const
                 { return DataPoints.size(); }
-
             /// @brief Add another data point to the end of the track.
             /// @param AddedVale
             void push_back(const InterpolatableType& AddedValue)
                 { DataPoints.push_back(AddedValue); }
+            /// @brief Remove all the points from the track
+            void clear()
+                { DataPoints.clear(); }
 
             /// @brief Get a value between the beginning and the end
             /// @details in derived classes this will perform some simple(hopefully fast) calculation to get
@@ -229,6 +110,19 @@ namespace Mezzanine
     class SmoothTrackIterator
     {
         public:
+            // Iterator traits
+            /// @brief What type is this iterator working with.
+            typedef InterpolatableType value_type;
+            /// @brief When doing iterator math what is the type of math results
+            typedef Real difference_type;
+            /// @brief The type of a pointer to the iterated type
+            typedef InterpolatableType* pointer;
+            /// @brief The type of a reference to the iterated type
+            typedef InterpolatableType& reference;
+            /// @brief This almost supports random access iteration, it does not support any kind of writing to the container
+            typedef std::random_access_iterator_tag iterator_category;
+
+
             /// @brief What kind of track with this iterate over
             typedef TrackBase<InterpolatableType> TargetTrackType;
 
@@ -250,8 +144,28 @@ namespace Mezzanine
                 : TargetTrack(TrackToIterate), Location(WhereToStart), Step(Increment)
                 {}
 
+            // This is nearly a random access iterator it cannot:
+            // allow dereferenced assigment, the points aren't actually contained anywhere so there is nothing to write to
+            // to ensure correct semantics this will be treated as a const random access iterator
+
+            // it will
             // copy constructor
-            //
+            // assigment operator
+            // operator ==
+            // operator !=
+            // operator* read only
+            // operator-> read only
+            // operator -- and --
+            // operator ++ and ++
+            // operator +
+            // operator -
+            // operator <
+            // operator >
+            // operator <=
+            // operator >=
+            // operator +=
+            // operator -=
+            // operator[](int)
 
     };
 
@@ -264,10 +178,17 @@ namespace Mezzanine
         public:
             /// @brief The type of the underlying container for InterpolatableType instances
             typedef typename TrackBase<InterpolatableType>::DataContainerType DataContainerType;
-            /// @brief A type used for iterating over the range of interpolated values of the track
-            typedef SmoothTrackIterator<InterpolatableType> iterator;
+            /// @brief An Iterator for the raw points of the track
+            typedef typename DataContainerType::iterator iterator;
+            /// @brief An Iterator for the raw points of the track
+            typedef typename TrackLinear::iterator Iterator;
+
+            /// @brief An Iterator for the raw points of the track, guaranteed to not change the track
+            typedef typename DataContainerType::const_iterator const_iterator;
+            /// @brief An Iterator for the raw points of the track, guaranteed to not change the track
+            typedef typename TrackLinear::const_iterator ConstIterator;
             /// @brief A type used for iterating over the range of interpolated values of the track, and guaranteed to not change the track.
-            typedef SmoothTrackIterator<InterpolatableType> const_iterator;
+            typedef SmoothTrackIterator<InterpolatableType> SmoothIterator;
             /// @brief The functor that does the actual interpolation of the points.
             typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator Interpolator;
 

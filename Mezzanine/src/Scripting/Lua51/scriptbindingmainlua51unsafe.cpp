@@ -1727,59 +1727,58 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[63]
 #define SWIGTYPE_p_Mezzanine__Vector2 swig_types[64]
 #define SWIGTYPE_p_Mezzanine__Vector3 swig_types[65]
-#define SWIGTYPE_p_Mezzanine__Vector3LinearInterpolator swig_types[66]
-#define SWIGTYPE_p_Mezzanine__World swig_types[67]
-#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[68]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[69]
-#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[70]
-#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[71]
-#define SWIGTYPE_p_ObjectContainer swig_types[72]
-#define SWIGTYPE_p_ObjectIterator swig_types[73]
-#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[74]
-#define SWIGTYPE_p_Ogre__ColourValue swig_types[75]
-#define SWIGTYPE_p_Ogre__Plane swig_types[76]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[77]
-#define SWIGTYPE_p_Ogre__Ray swig_types[78]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[79]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[80]
-#define SWIGTYPE_p_PlaneRayTestResult swig_types[81]
-#define SWIGTYPE_p_ProxyContainer swig_types[82]
-#define SWIGTYPE_p_ProxyIterator swig_types[83]
-#define SWIGTYPE_p_RayTestResult swig_types[84]
-#define SWIGTYPE_p_RollingAverageT_unsigned_long_t swig_types[85]
-#define SWIGTYPE_p_RunningState swig_types[86]
-#define SWIGTYPE_p_SDL_Event swig_types[87]
-#define SWIGTYPE_p_WorkUnitKey swig_types[88]
-#define SWIGTYPE_p_XML__Node swig_types[89]
-#define SWIGTYPE_p_bool swig_types[90]
-#define SWIGTYPE_p_btQuaternion swig_types[91]
-#define SWIGTYPE_p_btTransform swig_types[92]
-#define SWIGTYPE_p_btVector3 swig_types[93]
-#define SWIGTYPE_p_char swig_types[94]
-#define SWIGTYPE_p_float swig_types[95]
-#define SWIGTYPE_p_int swig_types[96]
-#define SWIGTYPE_p_long_long swig_types[97]
-#define SWIGTYPE_p_short swig_types[98]
-#define SWIGTYPE_p_signed_char swig_types[99]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[100]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[101]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[102]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[103]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[104]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[105]
-#define SWIGTYPE_p_std__string swig_types[106]
-#define SWIGTYPE_p_std__stringstream swig_types[107]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_t swig_types[108]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_t swig_types[109]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[110]
-#define SWIGTYPE_p_std__wstring swig_types[111]
-#define SWIGTYPE_p_unsigned_char swig_types[112]
-#define SWIGTYPE_p_unsigned_int swig_types[113]
-#define SWIGTYPE_p_unsigned_long swig_types[114]
-#define SWIGTYPE_p_unsigned_long_long swig_types[115]
-#define SWIGTYPE_p_unsigned_short swig_types[116]
-static swig_type_info *swig_types[118];
-static swig_module_info swig_module = {swig_types, 117, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__World swig_types[66]
+#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[67]
+#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[68]
+#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[69]
+#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[70]
+#define SWIGTYPE_p_ObjectContainer swig_types[71]
+#define SWIGTYPE_p_ObjectIterator swig_types[72]
+#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[73]
+#define SWIGTYPE_p_Ogre__ColourValue swig_types[74]
+#define SWIGTYPE_p_Ogre__Plane swig_types[75]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[76]
+#define SWIGTYPE_p_Ogre__Ray swig_types[77]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[78]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[79]
+#define SWIGTYPE_p_PlaneRayTestResult swig_types[80]
+#define SWIGTYPE_p_ProxyContainer swig_types[81]
+#define SWIGTYPE_p_ProxyIterator swig_types[82]
+#define SWIGTYPE_p_RayTestResult swig_types[83]
+#define SWIGTYPE_p_RollingAverageT_unsigned_long_t swig_types[84]
+#define SWIGTYPE_p_RunningState swig_types[85]
+#define SWIGTYPE_p_SDL_Event swig_types[86]
+#define SWIGTYPE_p_WorkUnitKey swig_types[87]
+#define SWIGTYPE_p_XML__Node swig_types[88]
+#define SWIGTYPE_p_bool swig_types[89]
+#define SWIGTYPE_p_btQuaternion swig_types[90]
+#define SWIGTYPE_p_btTransform swig_types[91]
+#define SWIGTYPE_p_btVector3 swig_types[92]
+#define SWIGTYPE_p_char swig_types[93]
+#define SWIGTYPE_p_float swig_types[94]
+#define SWIGTYPE_p_int swig_types[95]
+#define SWIGTYPE_p_long_long swig_types[96]
+#define SWIGTYPE_p_short swig_types[97]
+#define SWIGTYPE_p_signed_char swig_types[98]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[99]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[100]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[101]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[102]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[103]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[104]
+#define SWIGTYPE_p_std__string swig_types[105]
+#define SWIGTYPE_p_std__stringstream swig_types[106]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_t swig_types[107]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_t swig_types[108]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[109]
+#define SWIGTYPE_p_std__wstring swig_types[110]
+#define SWIGTYPE_p_unsigned_char swig_types[111]
+#define SWIGTYPE_p_unsigned_int swig_types[112]
+#define SWIGTYPE_p_unsigned_long swig_types[113]
+#define SWIGTYPE_p_unsigned_long_long swig_types[114]
+#define SWIGTYPE_p_unsigned_short swig_types[115]
+static swig_type_info *swig_types[117];
+static swig_module_info swig_module = {swig_types, 116, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4644,74 +4643,6 @@ static swig_lua_attribute swig_Mezzanine_Vector3_attributes[] = {
 static swig_lua_class *swig_Mezzanine_Vector3_bases[] = {0};
 static const char *swig_Mezzanine_Vector3_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_Vector3 = { "Vector3", &SWIGTYPE_p_Mezzanine__Vector3,_wrap_new_Vector3, swig_delete_Vector3, swig_Mezzanine_Vector3_methods, swig_Mezzanine_Vector3_attributes, swig_Mezzanine_Vector3_bases, swig_Mezzanine_Vector3_base_names };
-
-static int _wrap_Vector3LinearInterpolator_Interpolate(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Vector3 *arg1 = 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
-  Mezzanine::Real arg3 ;
-  Mezzanine::Vector3 result;
-  
-  SWIG_check_num_args("Mezzanine::Vector3LinearInterpolator::Interpolate",3,3)
-  if(!lua_isuserdata(L,1)) SWIG_fail_arg("Mezzanine::Vector3LinearInterpolator::Interpolate",1,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Vector3LinearInterpolator::Interpolate",2,"Mezzanine::Vector3 const &");
-  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Vector3LinearInterpolator::Interpolate",3,"Mezzanine::Real");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Vector3,0))){
-    SWIG_fail_ptr("Vector3LinearInterpolator_Interpolate",1,SWIGTYPE_p_Mezzanine__Vector3);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
-    SWIG_fail_ptr("Vector3LinearInterpolator_Interpolate",2,SWIGTYPE_p_Mezzanine__Vector3);
-  }
-  
-  arg3 = (Mezzanine::Real)lua_tonumber(L, 3);
-  result = Mezzanine::Vector3LinearInterpolator::Interpolate((Mezzanine::Vector3 const &)*arg1,(Mezzanine::Vector3 const &)*arg2,arg3);
-  {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_Vector3LinearInterpolator(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Vector3LinearInterpolator *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::Vector3LinearInterpolator::Vector3LinearInterpolator",0,0)
-  result = (Mezzanine::Vector3LinearInterpolator *)new Mezzanine::Vector3LinearInterpolator();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Vector3LinearInterpolator,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_Vector3LinearInterpolator(void *obj) {
-Mezzanine::Vector3LinearInterpolator *arg1 = (Mezzanine::Vector3LinearInterpolator *) obj;
-delete arg1;
-}
-static swig_lua_method swig_Mezzanine_Vector3LinearInterpolator_methods[] = {
-    {0,0}
-};
-static swig_lua_attribute swig_Mezzanine_Vector3LinearInterpolator_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_Mezzanine_Vector3LinearInterpolator_bases[] = {0};
-static const char *swig_Mezzanine_Vector3LinearInterpolator_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Vector3LinearInterpolator = { "Vector3LinearInterpolator", &SWIGTYPE_p_Mezzanine__Vector3LinearInterpolator,_wrap_new_Vector3LinearInterpolator, swig_delete_Vector3LinearInterpolator, swig_Mezzanine_Vector3LinearInterpolator_methods, swig_Mezzanine_Vector3LinearInterpolator_attributes, swig_Mezzanine_Vector3LinearInterpolator_bases, swig_Mezzanine_Vector3LinearInterpolator_base_names };
 
 static int _wrap_Quaternion_X_set(lua_State* L) {
   int SWIG_arg = 0;
@@ -28506,7 +28437,6 @@ static const struct luaL_Reg swig_commands[] = {
     { "Vector3_Neg_Unit_Z", _wrap_Vector3_Neg_Unit_Z},
     { "Vector3_UnitOnAxis", _wrap_Vector3_UnitOnAxis},
     { "Vector3_SerializableName", _wrap_Vector3_SerializableName},
-    { "Vector3LinearInterpolator_Interpolate", _wrap_Vector3LinearInterpolator_Interpolate},
     { "Quaternion_SerializableName", _wrap_Quaternion_SerializableName},
     { "Transform_SerializableName", _wrap_Transform_SerializableName},
     { "WorldObject_GetSerializableName", _wrap_WorldObject_GetSerializableName},
@@ -29001,7 +28931,6 @@ static swig_type_info _swigt__p_Mezzanine__TransformableChildObject = {"_p_Mezza
 static swig_type_info _swigt__p_Mezzanine__TransformableObject = {"_p_Mezzanine__TransformableObject", "Mezzanine::TransformableObject *", 0, 0, (void*)&_wrap_class_Mezzanine_TransformableObject, 0};
 static swig_type_info _swigt__p_Mezzanine__Vector2 = {"_p_Mezzanine__Vector2", "Mezzanine::Vector2 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector2, 0};
 static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector3, 0};
-static swig_type_info _swigt__p_Mezzanine__Vector3LinearInterpolator = {"_p_Mezzanine__Vector3LinearInterpolator", "Mezzanine::Vector3LinearInterpolator *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector3LinearInterpolator, 0};
 static swig_type_info _swigt__p_Mezzanine__World = {"_p_Mezzanine__World", "Mezzanine::World *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldManager = {"_p_Mezzanine__WorldManager", "Mezzanine::WorldManager *", 0, 0, (void*)&_wrap_class_Mezzanine_WorldManager, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldObject = {"_p_Mezzanine__WorldObject", "Mezzanine::WorldObject *", 0, 0, (void*)&_wrap_class_Mezzanine_WorldObject, 0};
@@ -29120,7 +29049,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__TransformableObject,
   &_swigt__p_Mezzanine__Vector2,
   &_swigt__p_Mezzanine__Vector3,
-  &_swigt__p_Mezzanine__Vector3LinearInterpolator,
   &_swigt__p_Mezzanine__World,
   &_swigt__p_Mezzanine__WorldManager,
   &_swigt__p_Mezzanine__WorldObject,
@@ -29239,7 +29167,6 @@ static swig_cast_info _swigc__p_Mezzanine__TransformableChildObject[] = {  {&_sw
 static swig_cast_info _swigc__p_Mezzanine__TransformableObject[] = {  {&_swigt__p_Mezzanine__WorldObject, _p_Mezzanine__WorldObjectTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__AreaEffect, _p_Mezzanine__AreaEffectTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__TransformableObject, 0, 0, 0},  {&_swigt__p_Mezzanine__Actor, _p_Mezzanine__ActorTo_p_Mezzanine__TransformableObject, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector2[] = {  {&_swigt__p_Mezzanine__Vector2, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector3[] = {  {&_swigt__p_Mezzanine__Vector3, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Vector3LinearInterpolator[] = {  {&_swigt__p_Mezzanine__Vector3LinearInterpolator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__World[] = {  {&_swigt__p_Mezzanine__World, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WorldManager[] = {  {&_swigt__p_Mezzanine__WorldManager, 0, 0, 0},  {&_swigt__p_Mezzanine__ActorManager, _p_Mezzanine__ActorManagerTo_p_Mezzanine__WorldManager, 0, 0},  {&_swigt__p_Mezzanine__AreaEffectManager, _p_Mezzanine__AreaEffectManagerTo_p_Mezzanine__WorldManager, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WorldObject[] = {  {&_swigt__p_Mezzanine__WorldObject, 0, 0, 0},  {&_swigt__p_Mezzanine__AreaEffect, _p_Mezzanine__AreaEffectTo_p_Mezzanine__WorldObject, 0, 0},  {&_swigt__p_Mezzanine__Actor, _p_Mezzanine__ActorTo_p_Mezzanine__WorldObject, 0, 0},{0, 0, 0, 0}};
@@ -29358,7 +29285,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__TransformableObject,
   _swigc__p_Mezzanine__Vector2,
   _swigc__p_Mezzanine__Vector3,
-  _swigc__p_Mezzanine__Vector3LinearInterpolator,
   _swigc__p_Mezzanine__World,
   _swigc__p_Mezzanine__WorldManager,
   _swigc__p_Mezzanine__WorldObject,
