@@ -440,21 +440,6 @@ namespace Mezzanine
         /// @return A string containing "Vector3"
         static String SerializableName();
     };//Vector3
-
-    /// @brief The generic Interpolatable Traits, intended to catch all class without explicit traits set and server as and example.
-    template<>
-    class InterpolatableTraits <Vector3>
-    {
-        public:
-            /// @brief Name the type of the Linear interpolator for the Vector3
-            typedef GenericLinearInterpolator<Vector3> LinearInterpolator;
-
-            /// @brief Indicate there is no Bezier Interpolator for the Vector3
-            typedef NotAnInterpolator<Vector3> BezierInterpolator;
-
-            /// @brief Indicate there is no Spline interopolator for the Vector3
-            typedef NotAnInterpolator<Vector3> SplineInterpolator;
-    };
 }//Mezzanine
 
 namespace std

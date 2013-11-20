@@ -80,7 +80,7 @@ namespace Mezzanine
             ///     - Will not take multiple pair of points into account.
             /// Corners can be thought of as any non-smooth change, and may not be intuitively in some interpolatable
             /// types.
-            typedef NotAnInterpolator<T> LinearInterpolator;
+            typedef GenericLinearInterpolator<T> LinearInterpolator;
 
             /// @brief If something specifically needs the Bezier interpolator for T they should use this.
             /// @details This interpolator provides different guarantees different from the linear one:
