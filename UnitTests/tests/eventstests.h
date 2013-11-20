@@ -46,6 +46,30 @@
 #include "eventpublisher.h"
 
 #include <stdexcept> //only used to throw for TEST_THROW
+#include <ostream>
+
+class TestFunctor : public FunctorSubscriber::FunctorDefinition
+{
+    public:
+        ostream& Output;
+
+        TestFunctor(ostream& Out)
+            : Output(Out)
+        {
+
+        }
+
+        virtual void operator()(const EventArguments& Args)
+        {
+            Output << "Called from Functor" << endl;
+        }
+};
+
+class TestPublisher : public EventPublisher
+{
+    public:
+
+};
 
 /// @file
 /// @brief This file should be used as template/example for building future Unit Tests
@@ -65,6 +89,10 @@ class eventstests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
+            TestFunctor Func(TestOutput);
+
+            TestPublisher Pub;
+            //FunctorSubscriber Sub;
 
         }
 
