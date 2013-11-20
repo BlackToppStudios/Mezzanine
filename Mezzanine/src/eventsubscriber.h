@@ -95,7 +95,7 @@ namespace Mezzanine
         {
         public:
             /// @brief Class destructor.
-            virtual ~FunctorDefinition() {  };
+            virtual ~FunctorDefinition() {  }
             /// @brief Executes subscriber specific functionality when the event is fired.
             /// @param Args The arguments that describe the fired event.
             virtual void operator()(const EventArguments& Args) = 0;
