@@ -397,6 +397,25 @@ namespace Mezzanine
 
 }
 
+template <typename T>
+CountedPtr<T> RecurseImpl(CountedPtr<T> Ptr, Whole Count)
+{
+    if(0==Count)
+    {
+        return Ptr;
+    }else{
+        CountedPtr<T> TempToForceExtraCopies = RecurseImpl(Ptr, Count-1);
+        return TempToForceExtraCopies;
+    }
+
+}
+
+template <typename T>
+CountedPtr<T> RecurseTest(T Datum, Whole Count)
+{
+    return RecurseImpl(CountedPtr<T>(new T(Datum)), Count);
+}
+
 class countedptrtests : public UnitTestGroup
 {
     public:
@@ -874,6 +893,16 @@ class countedptrtests : public UnitTestGroup
                         TEST_WARN(CountPtrCopyExternalTime<MakeSharedCopyTime, "ExternalvsMakeSharedCopy");
                     #endif
                 } // When pointers fall out of scope
+
+                {
+                    // A test to Try to make the CountedPtr segfault. No need for test macros
+                    // The process will fail if this causes a segfault.
+                    #define SEGFAULT_TESTS
+                    #ifdef SEGFAULT_TESTS
+                        CountedPtr<int> ThingThatMightCrash = RecurseTest(10,5);
+                        RecurseTest(10,5);
+                    #endif
+                }
             }
 
 
