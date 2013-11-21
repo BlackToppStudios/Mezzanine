@@ -119,7 +119,7 @@ namespace Mezzanine
         static EventConnectionPtr CreateConnection(Event* Ev, void (T::*ObjFunction)(const EventArguments&), T* Obj)
         {
             MemberFunctionSubscriber<T>* Sub = new MemberFunctionSubscriber<T>(ObjFunction,Obj);
-            EventConnectionPtr NewConnection(new VolitileEventConnection(Ev,Sub));
+            EventConnectionPtr NewConnection(new VolatileEventConnection(Ev,Sub));
             return NewConnection;
         }
 

@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -72,21 +72,21 @@ namespace Mezzanine
     EventConnectionPtr Event::CreateConnection(Event* Ev, FunctorSubscriber::FunctorDefinition* Funct, bool CleanUpAfter)
     {
         FunctorSubscriber* Sub = new FunctorSubscriber(Funct,CleanUpAfter);
-        EventConnectionPtr NewConnection(new VolitileEventConnection(Ev,Sub));
+        EventConnectionPtr NewConnection(new VolatileEventConnection(Ev,Sub));
         return NewConnection;
     }
 
     EventConnectionPtr Event::CreateConnection(Event* Ev, CFunctionSubscriber::SubscriberFunction* CFunct)
     {
         CFunctionSubscriber* Sub = new CFunctionSubscriber(CFunct);
-        EventConnectionPtr NewConnection(new VolitileEventConnection(Ev,Sub));
+        EventConnectionPtr NewConnection(new VolatileEventConnection(Ev,Sub));
         return NewConnection;
     }
 
     EventConnectionPtr Event::CreateConnection(Event* Ev, Scripting::iScript* SubScript)
     {
         ScriptSubscriber* Sub = new ScriptSubscriber(SubScript);
-        EventConnectionPtr NewConnection(new VolitileEventConnection(Ev,Sub));
+        EventConnectionPtr NewConnection(new VolatileEventConnection(Ev,Sub));
         return NewConnection;
     }
 

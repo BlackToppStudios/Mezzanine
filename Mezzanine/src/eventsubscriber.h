@@ -66,7 +66,7 @@ namespace Mezzanine
         typedef ConnectionContainer::const_iterator  ConstConnectionIterator;
     protected:
         friend class EventConnection;
-        friend class VolitileEventConnection;
+        friend class VolatileEventConnection;
         /// @internal
         /// @brief A container storing all the EventConnection instances to events.
         ConnectionContainer Connections;

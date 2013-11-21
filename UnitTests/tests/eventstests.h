@@ -65,10 +65,18 @@ class TestFunctor : public FunctorSubscriber::FunctorDefinition
         }
 };
 
-class TestPublisher : public EventPublisher
+class TestPublisher: public EventPublisher
 {
     public:
 
+        TestPublisher()
+            { AddEvent("test"); }
+
+        void DoTest()
+        {
+            EventArguments Stuff("test");
+            this->FireEvent(Stuff);
+        }
 };
 
 /// @file
@@ -92,6 +100,14 @@ class eventstests : public UnitTestGroup
             TestFunctor Func(TestOutput);
 
             TestPublisher Pub;
+
+
+            // Why does one of these segfault and the other does not?
+            EventConnectionPtr temp = Pub.Subscribe("test", &Func, false);
+            //Pub.Subscribe("test", &Func, false);
+
+
+            //Pub.DoTest();
             //FunctorSubscriber Sub;
 
         }

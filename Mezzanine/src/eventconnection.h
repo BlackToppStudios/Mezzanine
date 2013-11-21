@@ -95,16 +95,16 @@ namespace Mezzanine
 	/// subscribed to anything).  For any object that you want to last longer then that use the base class
 	/// instead.
     ///////////////////////////////////////
-	class MEZZ_LIB VolitileEventConnection : public EventConnection
+    class MEZZ_LIB VolatileEventConnection : public EventConnection
 	{
     //protected:
     public:
         /// @brief Class constructor.
         /// @param TheEvent The event being subscribed to.
         /// @param Subscriber The subscriber to wrap.
-        VolitileEventConnection(Event* TheEvent, EventSubscriber* Subscriber);
+        VolatileEventConnection(Event* TheEvent, EventSubscriber* Subscriber);
         /// @brief Class destructor.
-        virtual ~VolitileEventConnection();
+        virtual ~VolatileEventConnection();
 	};//VolitileEventConnection
 
 	/// @typedef EventConnectionPtr

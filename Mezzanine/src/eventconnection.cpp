@@ -100,12 +100,12 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // VolitileEventConnection Methods
 
-    VolitileEventConnection::VolitileEventConnection(Event* TheEvent, EventSubscriber* Subscriber)
+    VolatileEventConnection::VolatileEventConnection(Event* TheEvent, EventSubscriber* Subscriber)
         : EventConnection(TheEvent,Subscriber)
     {
     }
 
-    VolitileEventConnection::~VolitileEventConnection()
+    VolatileEventConnection::~VolatileEventConnection()
     {
         delete Sub;
     }
