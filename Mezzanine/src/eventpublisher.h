@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -96,98 +96,118 @@ namespace Mezzanine
         /// @param EventName The name of the event to retrieve.
         /// @return Returns a pointer to the requested event.
         Event* GetEvent(const String& EventName) const;
+        /// @brief Gets an event in this publisher.
+        /// @exception This version differs from the non-except version in that if it fails to find the event specified
+        /// it will throw a "II_IDENTITY_NOT_FOUND_EXCEPTION".
+        /// @param EventName The name of the event to retrieve.
+        /// @return Returns a pointer to the requested event.
+        Event* GetEventExcept(const String& EventName) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Subscribe Methods
 
         /// @brief Adds a subscriber to this event.
         /// @param EventName The name of the event to subscribe to.
-        /// @param Subscriber The event subscriber slot to subscribe to this event.
-        void Subscribe(const String& EventName, EventConnectionPtr Subscriber);
-        /// @brief Adds a subscriber to this event.
-        /// @param EventName The name of the event to subscribe to.
-        /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
-        /// @param Subscriber The event subscriber slot to subscribe to this event.
-        void Subscribe(const String& EventName, const UInt8 Group, EventConnectionPtr Subscriber);
-        /// @brief Adds a subscriber to this event.
-        /// @param EventName The name of the event to subscribe to.
         /// @param Sub The custom event subscriber.
-        /// @return Returns an EventSubscriberSlotPtr that can be inserted into other events.
-        EventConnectionPtr Subscribe(const String& EventName, EventSubscriber* Sub);
+        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
+        EventSubscriberSlot* Subscribe(const String& EventName, EventSubscriber* Sub);
         /// @brief Adds a subscriber to this event.
         /// @param EventName The name of the event to subscribe to.
         /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
         /// @param Sub The custom event subscriber.
-        /// @return Returns an EventSubscriberSlotPtr that can be inserted into other events.
-        EventConnectionPtr Subscribe(const String& EventName, const UInt8 Group, EventSubscriber* Sub);
+        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
+        EventSubscriberSlot* Subscribe(const String& EventName, const UInt8 Group, EventSubscriber* Sub);
         /// @brief Subscribes a functor object to this event.
         /// @param EventName The name of the event to subscribe to.
         /// @param Funct The functor to call when the event is fired.
         /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
-        /// @return Returns an EventSubscriberSlotPtr that can be inserted into other events.
-        EventConnectionPtr Subscribe(const String& EventName, FunctorSubscriber::FunctorDefinition* Funct, bool CleanUpAfter);
+        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
+        EventSubscriberSlot* Subscribe(const String& EventName, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter);
         /// @brief Subscribes a functor object to this event.
         /// @param EventName The name of the event to subscribe to.
         /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
         /// @param Funct The functor to call when the event is fired.
         /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
-        /// @return Returns an EventSubscriberSlotPtr that can be inserted into other events.
-        EventConnectionPtr Subscribe(const String& EventName, const UInt8 Group, FunctorSubscriber::FunctorDefinition* Funct, bool CleanUpAfter);
+        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
+        EventSubscriberSlot* Subscribe(const String& EventName, const UInt8 Group, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter);
         /// @brief Subscribes a C-style function to this event.
         /// @param EventName The name of the event to subscribe to.
         /// @param CFunct The C-style function to call when the event is fired.
-        /// @return Returns an EventSubscriberSlotPtr that can be inserted into other events.
-        EventConnectionPtr Subscribe(const String& EventName, CFunctionSubscriber::SubscriberFunction* CFunct);
+        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
+        EventSubscriberSlot* Subscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
         /// @brief Subscribes a C-style function to this event.
         /// @param EventName The name of the event to subscribe to.
         /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
         /// @param CFunct The C-style function to call when the event is fired.
-        /// @return Returns an EventSubscriberSlotPtr that can be inserted into other events.
-        EventConnectionPtr Subscribe(const String& EventName, const UInt8 Group, CFunctionSubscriber::SubscriberFunction* CFunct);
+        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
+        EventSubscriberSlot* Subscribe(const String& EventName, const UInt8 Group, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
         /// @brief Subscribes a script to this event.
         /// @param EventName The name of the event to subscribe to.
         /// @param SubScript The subscribed script to execute when the event is fired.
-        /// @return Returns an EventSubscriberSlotPtr that can be inserted into other events.
-        EventConnectionPtr Subscribe(const String& EventName, Scripting::iScript* SubScript);
+        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
+        EventSubscriberSlot* Subscribe(const String& EventName, Scripting::iScript* SubScript);
         /// @brief Subscribes a script to this event.
         /// @param EventName The name of the event to subscribe to.
         /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
         /// @param SubScript The subscribed script to execute when the event is fired.
-        /// @return Returns an EventSubscriberSlotPtr that can be inserted into other events.
-        EventConnectionPtr Subscribe(const String& EventName, const UInt8 Group, Scripting::iScript* SubScript);
-        /// @brief Subscribes an Object and a member function on that object to this event.
-        /// @param EventName The name of the event to subscribe to.
-        /// @param ObjFunction The member function to call when the event is fired.
-        /// @param Obj The object to call the member function on.
-        /// @return Returns an EventSubscriberSlotPtr that can be inserted into other events.
-        template<typename T>
-        EventConnectionPtr Subscribe(const String& EventName, void (T::*ObjFunction)(const EventArguments&), T* Obj)
-        {
-            Event* Ev = GetEvent(EventName);
-            if( Ev != NULL )
-            {
-                return Ev->Subscribe(ObjFunction,Obj);
-            }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-            }
-        }
-        /// @brief Subscribes an Object and a member function on that object to this event.
-        /// @param EventName The name of the event to subscribe to.
-        /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
-        /// @param ObjFunction The member function to call when the event is fired.
-        /// @param Obj The object to call the member function on.
-        /// @return Returns an EventSubscriberSlotPtr that can be inserted into other events.
-        template<typename T>
-        EventConnectionPtr Subscribe(const String& EventName, const UInt8 Group, void (T::*ObjFunction)(const EventArguments&), T* Obj)
-        {
-            Event* Ev = GetEvent(EventName);
-            if( Ev != NULL )
-            {
-                return Ev->Subscribe(Group,ObjFunction,Obj);
-            }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-            }
-        }
+        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
+        EventSubscriberSlot* Subscribe(const String& EventName, const UInt8 Group, Scripting::iScript* SubScript);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Unsubscribe Methods
+
+        /// @brief Unsubscribes a single subscriber all events in this publisher.
+        /// @param Subscriber The EventSubscriberSlot (and the subscriber it is holding) to be removed.
+        void Unsubscribe(EventSubscriber* Subscriber);
+        /// @brief Unsubscribes a single subscriber all events in this publisher.
+        /// @param Funct The functor to be removed.
+        void Unsubscribe(FunctorSubscriberSlot::FunctorDefinition* Funct);
+        /// @brief Unsubscribes a single subscriber from all events in this publisher.
+        /// @param CFunct The function to be removed.
+        void Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct);
+        /// @brief Unsubscribes a single subscriber from all events in this publisher.
+        /// @param SubScript The Script to be removed.
+        void Unsubscribe(Scripting::iScript* SubScript);
+        /// @brief Unsubscribes a single subscriber from all events in this publisher.
+        /// @param SubSlot The EventSubscriberSlot (and the subscriber it is holding) to be removed.
+        void Unsubscribe(EventSubscriberSlot* SubSlot);
+        /// @brief Unsubscribes an entire group from all events in this publisher.
+        /// @param Group The mask for the group of subscribers to remove.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeGroup(const UInt8 Group);
+        /// @brief Unsubscribes all subscribers from all events in this publisher.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeAll();
+
+        /// @brief Unsubscribes a single subscriber from the named event.
+        /// @param EventName The name of the event to unsubscribe from.
+        /// @param Subscriber The EventSubscriberSlot (and the subscriber it is holding) to be removed.
+        void Unsubscribe(const String& EventName, EventSubscriber* Subscriber);
+        /// @brief Unsubscribes a single subscriber from the named event.
+        /// @param EventName The name of the event to unsubscribe from.
+        /// @param Funct The functor to be removed.
+        void Unsubscribe(const String& EventName, FunctorSubscriberSlot::FunctorDefinition* Funct);
+        /// @brief Unsubscribes a single subscriber from the named event.
+        /// @param EventName The name of the event to unsubscribe from.
+        /// @param CFunct The function to be removed.
+        void Unsubscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
+        /// @brief Unsubscribes a single subscriber from the named event.
+        /// @param EventName The name of the event to unsubscribe from.
+        /// @param SubScript The Script to be removed.
+        void Unsubscribe(const String& EventName, Scripting::iScript* SubScript);
+        /// @brief Unsubscribes a single subscriber from the named event.
+        /// @param EventName The name of the event to unsubscribe from.
+        /// @param SubSlot The EventSubscriberSlot (and the subscriber it is holding) to be removed.
+        void Unsubscribe(const String& EventName, EventSubscriberSlot* SubSlot);
+        /// @brief Unsubscribes an entire group from the named event.
+        /// @param EventName The name of the event to unsubscribe from.
+        /// @param Group The mask for the group of subscribers to remove.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeGroup(const String& EventName, const UInt8 Group);
+        /// @brief Unsubscribes all subscribers from the named Event.
+        /// @param EventName The name of the event to unsubscribe from.
+        /// @return Returns the number of subscribers removed.
+        Whole UnsubscribeAll(const String& EventName);
 	};//EventPublisher
 }//Mezzanine
 

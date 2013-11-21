@@ -86,12 +86,12 @@
 #include "event.h"                      // new localized system
 #include "eventarguments.h"             // new localized system
 #include "eventbase.h"                  // done/serializes
-#include "eventconnection.h"            // new localized system
 #include "eventgamewindow.h"            // done
 #include "eventmanager.h"               // done
 #include "eventpublisher.h"             // new localized system
 #include "eventquit.h"                  // done
 #include "eventsubscriber.h"            // new localized system
+#include "eventsubscriberslot.h"        // new localized system
 #include "eventuserinput.h"             // done
 #include "exception.h"
 #include "fieldofforce.h"

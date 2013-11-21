@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -45,14 +45,10 @@
 namespace Mezzanine
 {
     EventPublisher::EventPublisher()
-    {
-
-    }
+        {  }
 
     EventPublisher::~EventPublisher()
-    {
-        this->RemoveAllEvents();
-    }
+        { this->RemoveAllEvents(); }
 
     Event* EventPublisher::AddEvent(const String& EventName)
     {
@@ -67,14 +63,7 @@ namespace Mezzanine
     }
 
     void EventPublisher::FireEvent(const EventArguments& Args)
-    {
-        Event* Ev = this->GetEvent(Args.EventName);
-        if( Ev != NULL ) {
-            Ev->_FireEvent(Args);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + Args.EventName + "\" not found in publisher.");
-        }
-    }
+        { this->GetEventExcept(Args.EventName)->_FireEvent(Args); }
 
     void EventPublisher::RemoveEvent(const String& EventName)
     {
@@ -104,108 +93,109 @@ namespace Mezzanine
         else return NULL;
     }
 
+    Event* EventPublisher::GetEventExcept(const String& EventName) const
+    {
+        ConstEventIterator EvIt = this->Events.find(EventName);
+        if( EvIt != this->Events.end() ) {
+            return (*EvIt).second;
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
+        }
+        return NULL;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Subscribe Methods
 
-    void EventPublisher::Subscribe(const String& EventName, EventConnectionPtr Subscriber)
+    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, EventSubscriber* Sub)
+        { return this->GetEventExcept(EventName)->Subscribe(Sub); }
+
+    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, const UInt8 Group, EventSubscriber* Sub)
+        { return this->GetEventExcept(EventName)->Subscribe(Group,Sub); }
+
+    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter)
+        { return this->GetEventExcept(EventName)->Subscribe(Funct,CleanUpAfter); }
+
+    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, const UInt8 Group, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter)
+        { return this->GetEventExcept(EventName)->Subscribe(Group,Funct,CleanUpAfter); }
+
+    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
+        { return this->GetEventExcept(EventName)->Subscribe(CFunct); }
+
+    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, const UInt8 Group, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
+        { return this->GetEventExcept(EventName)->Subscribe(Group,CFunct); }
+
+    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, Scripting::iScript* SubScript)
+        { return this->GetEventExcept(EventName)->Subscribe(SubScript); }
+
+    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, const UInt8 Group, Scripting::iScript* SubScript)
+        { return this->GetEventExcept(EventName)->Subscribe(Group,SubScript); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Unsubscribe Methods
+
+    void EventPublisher::Unsubscribe(EventSubscriber* Subscriber)
     {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            Ev->Subscribe(Subscriber);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-        }
+        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
+            { (*EventIt).second->Unsubscribe(Subscriber); }
     }
 
-    void EventPublisher::Subscribe(const String& EventName, const UInt8 Group, EventConnectionPtr Subscriber)
+    void EventPublisher::Unsubscribe(FunctorSubscriberSlot::FunctorDefinition* Funct)
     {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            Ev->Subscribe(Group,Subscriber);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-        }
+        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
+            { (*EventIt).second->Unsubscribe(Funct); }
     }
 
-    EventConnectionPtr EventPublisher::Subscribe(const String& EventName, EventSubscriber* Sub)
+    void EventPublisher::Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct)
     {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            return Ev->Subscribe(Sub);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-        }
+        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
+            { (*EventIt).second->Unsubscribe(CFunct); }
     }
 
-    EventConnectionPtr EventPublisher::Subscribe(const String& EventName, const UInt8 Group, EventSubscriber* Sub)
+    void EventPublisher::Unsubscribe(Scripting::iScript* SubScript)
     {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            return Ev->Subscribe(Group,Sub);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-        }
+        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
+            { (*EventIt).second->Unsubscribe(SubScript); }
     }
 
-    EventConnectionPtr EventPublisher::Subscribe(const String& EventName, FunctorSubscriber::FunctorDefinition* Funct, bool CleanUpAfter)
+    void EventPublisher::Unsubscribe(EventSubscriberSlot* SubSlot)
     {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            return Ev->Subscribe(Funct,CleanUpAfter);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-        }
+        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
+            { (*EventIt).second->Unsubscribe(SubSlot); }
     }
 
-    EventConnectionPtr EventPublisher::Subscribe(const String& EventName, const UInt8 Group, FunctorSubscriber::FunctorDefinition* Funct, bool CleanUpAfter)
+    Whole EventPublisher::UnsubscribeGroup(const UInt8 Group)
     {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            return Ev->Subscribe(Group,Funct,CleanUpAfter);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-        }
+        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
+            { (*EventIt).second->UnsubscribeGroup(Group); }
     }
 
-    EventConnectionPtr EventPublisher::Subscribe(const String& EventName, CFunctionSubscriber::SubscriberFunction* CFunct)
+    Whole EventPublisher::UnsubscribeAll()
     {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            return Ev->Subscribe(CFunct);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-        }
+        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
+            { (*EventIt).second->UnsubscribeAll(); }
     }
 
-    EventConnectionPtr EventPublisher::Subscribe(const String& EventName, const UInt8 Group, CFunctionSubscriber::SubscriberFunction* CFunct)
-    {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            return Ev->Subscribe(Group,CFunct);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-        }
-    }
+    void EventPublisher::Unsubscribe(const String& EventName, EventSubscriber* Subscriber)
+        { this->GetEventExcept(EventName)->Unsubscribe(Subscriber); }
 
-    EventConnectionPtr EventPublisher::Subscribe(const String& EventName, Scripting::iScript* SubScript)
-    {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            return Ev->Subscribe(SubScript);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-        }
-    }
+    void EventPublisher::Unsubscribe(const String& EventName, FunctorSubscriberSlot::FunctorDefinition* Funct)
+        { this->GetEventExcept(EventName)->Unsubscribe(Funct); }
 
-    EventConnectionPtr EventPublisher::Subscribe(const String& EventName, const UInt8 Group, Scripting::iScript* SubScript)
-    {
-        Event* Ev = this->GetEvent(EventName);
-        if( Ev != NULL ) {
-            return Ev->Subscribe(Group,SubScript);
-        }else{
-            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Event name \"" + EventName + "\" not found in publisher.");
-        }
-    }
-}
+    void EventPublisher::Unsubscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
+        { this->GetEventExcept(EventName)->Unsubscribe(CFunct); }
+
+    void EventPublisher::Unsubscribe(const String& EventName, Scripting::iScript* SubScript)
+        { this->GetEventExcept(EventName)->Unsubscribe(SubScript); }
+
+    void EventPublisher::Unsubscribe(const String& EventName, EventSubscriberSlot* SubSlot)
+        { this->GetEventExcept(EventName)->Unsubscribe(SubSlot); }
+
+    Whole EventPublisher::UnsubscribeGroup(const String& EventName, const UInt8 Group)
+        { this->GetEventExcept(EventName)->UnsubscribeGroup(Group); }
+
+    Whole EventPublisher::UnsubscribeAll(const String& EventName)
+        { this->GetEventExcept(EventName)->UnsubscribeAll(); }
+}//Mezzanine
 
 #endif

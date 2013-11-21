@@ -41,14 +41,13 @@
 #define _eventstests_h
 
 #include "mezztest.h"
-#include "eventconnection.h"
 #include "eventsubscriber.h"
 #include "eventpublisher.h"
 
 #include <stdexcept> //only used to throw for TEST_THROW
 #include <ostream>
 
-class TestFunctor : public FunctorSubscriber::FunctorDefinition
+class TestFunctor : public FunctorSubscriberSlot::FunctorDefinition
 {
     public:
         ostream& Output;
@@ -103,7 +102,7 @@ class eventstests : public UnitTestGroup
 
 
             // Why does one of these segfault and the other does not?
-            EventConnectionPtr temp = Pub.Subscribe("test", &Func, false);
+            EventSubscriberSlot* temp = Pub.Subscribe("test", &Func, false);
             //Pub.Subscribe("test", &Func, false);
 
 
