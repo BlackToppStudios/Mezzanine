@@ -174,7 +174,7 @@ namespace Mezzanine
     /// datapoints and present a range from 0 to 1 for all tracks.
     template <typename InterpolatableType>
     class TrackLinear : public TrackBase<InterpolatableType>
-    {       
+    {
         public:
             /// @brief The type of the underlying container for InterpolatableType instances
             typedef typename TrackBase<InterpolatableType>::DataContainerType DataContainerType;
@@ -210,7 +210,7 @@ namespace Mezzanine
                 LineSegmentCount+=Whole(Loop);
                 if(1==LineSegmentCount)
                     { return Percentage; }
-                return std::fmod(Percentage,1.0/Real(LineSegmentCount))*LineSegmentCount;
+                return std::fmod(Percentage,Real(1.0/Real(LineSegmentCount))*LineSegmentCount);
             }
 
             InterpolatableType GetInterpolated(Real Percentage, Bool Loop) const
