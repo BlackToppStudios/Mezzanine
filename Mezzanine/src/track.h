@@ -125,13 +125,33 @@ namespace Mezzanine
             /// @brief What kind of track with this iterate over
             typedef TrackBase<InterpolatableType> TargetTrackType;
 
-        private:
+        protected:
             /// @brief The track this works against.
-            TargetTrackType TargetTrack;
+            TargetTrackType* TargetTrack;
             /// @brief Where on the track are we?
             Real Location;
             /// @brief How far should this
             Real Step;
+
+            void BoundsCheck()
+            {
+                while(1.0<Location)
+                    { Location--; }
+                while(0.0>Location)
+                    { Location++; }
+            }
+
+            void Increment()
+            {
+                Location += Step;
+                BoundsCheck();
+            }
+
+            void Decrement()
+            {
+                Location += Step;
+                BoundsCheck();
+            }
 
         public:
             /// @brief The constructor for and iterator
@@ -146,7 +166,7 @@ namespace Mezzanine
             /// @brief Create a copy of an SmoothTrackIterator.
             /// @param Copy The SmoothTrackIterator to copy.
             SmoothTrackIterator(const SmoothTrackIterator<InterpolatableType>& Copy)
-                : TargetTrack(Copy.TargetTrack), Location(Copy.TargetTrack), Step(Copy.TargetTrack)
+                : TargetTrack(Copy.TargetTrack), Location(Copy.Location), Step(Copy.Step)
                 {}
 
             /// @brief Change this SmoothTrackIterator to match another.
@@ -161,23 +181,71 @@ namespace Mezzanine
             }
 
             /// @brief Is this SmoothTrackIterator on the same track and in the same place as another.
+            /// @param Other The Other SmoothTrackIterator to compare this one too.
+            /// @return True if the track is the same and the location on the track is close enough to be within 1 epsilon.
             bool operator==(const SmoothTrackIterator<InterpolatableType>& Other) const
             {
                 return TargetTrack==Other.TargetTrack &&
-                       Location=Other.TargetTrack &&
-                       Step=Other.TargetTrack;
+                       (Other.TargetTrack-std::numeric_limits<InterpolatableType>::epsilon())<=Location &&
+                       Location<=(Other.TargetTrack+std::numeric_limits<InterpolatableType>::epsilon());
+                //return TargetTrack==Other.TargetTrack &&
+                //       Location=Other.TargetTrack &&
+                //       Step=Other.TargetTrack;
             }
+
+            /// @brief Is this SmoothTrackIterator not on the same track and in the same place as another.
+            /// @param Other The Other SmoothTrackIterator to compare this one too.
+            /// @return True if the track is the same and the location on the track is close enough to be within 1 epsilon.
+            bool operator!=(const SmoothTrackIterator<InterpolatableType>& Other) const
+                { return !operator==(Other); }
+
+            /// @brief Get the current location on the SmoothTrackIterator
+            /// @return An instance of InterpolatableType that is read only
+            /// @warning Most iterators return a reference, to allow changes in the underlying container. This returns points that are not stored, so they cannot be changed.
+            /// @note Everytime this is called this it calls the interpolator in the Target Track, This should run in constant time, but is much slower than normal pointer dereferences.
+            virtual InterpolatableType operator*() const
+                { return TargetTrack->GetInterpolated(Location); }
+
+            /// @brief Derefernce this with the syntax for pointer member access.
+            /// @return A Counted pointer to a temporary InterpolatableType instance.
+            /// @warning This is read only because it is not stored anywhere.
+            /// @note Everytime this is called it calls the interpolator in the Target Track.
+            virtual CountedPtr<InterpolatableType> operator->() const
+                { return CountedPtr<InterpolatableType> (new InterpolatableType(TargetTrack->GetInterpolated(Location))); }
+
+            SmoothTrackIterator<InterpolatableType>&  operator--()
+            {
+                Decrement();
+                return *this;
+            }
+
+            SmoothTrackIterator<InterpolatableType>  operator--(int)
+            {
+                SmoothTrackIterator<InterpolatableType> Results(*this);
+                Decrement();
+                return Results;
+            }
+
+            SmoothTrackIterator<InterpolatableType>&  operator++()
+            {
+                Increment();
+                return *this;
+            }
+
+            SmoothTrackIterator<InterpolatableType>  operator++(int)
+            {
+                SmoothTrackIterator<InterpolatableType> Results(*this);
+                Increment();
+                return Results;
+            }
+
+
             // This is nearly a random access iterator it cannot:
             // allow dereferenced assigment, the points aren't actually contained anywhere so there is nothing to write to
             // to ensure correct semantics this will be treated as a const random access iterator
 
             // it will
-            // operator ==
-            // operator !=
-            // operator* read only
-            // operator-> read only
-            // operator -- and --
-            // operator ++ and ++
+
             // operator +
             // operator -
             // operator <
@@ -189,6 +257,48 @@ namespace Mezzanine
             // operator[](int)
 
     };
+/*
+    template<typename InterpolatableType>
+    class SmoothLoopedTrackIterator : public SmoothTrackIterator<InterpolatableType>
+    {
+        public:
+            /// @brief The constructor for and iterator
+            /// @details Tracks
+            /// @param TrackToIterate Which track with this work against.
+            /// @param WhereToStart Where on the track (range 0 to 1) Should iteration start.
+            /// @param Increment When incremented how much should the location change? Defaults to .01 to create 100 steps.
+            SmoothLoopedTrackIterator(TargetTrackType* TrackToIterate, Real WhereToStart = 0.0, Real Increment = 0.01)
+                : SmoothTrackIterator<InterpolatableType>(TrackToIterate,WhereToStart,Increment)
+                {}
+
+            /// @brief Create a copy of an SmoothTrackIterator.
+            /// @param Copy The SmoothTrackIterator to copy.
+            SmoothLoopedTrackIterator(const SmoothLoopedTrackIterator<InterpolatableType>& Copy)
+                : SmoothTrackIterator<InterpolatableType>(Copy.TrackToIterate, Copy.WhereToStart, Copy.Increment)
+                {}
+
+            /// @brief Get the current location on the SmoothLoopedTrackIterator on the track as a loop
+            /// @return An instance of InterpolatableType that is read only
+            /// @warning Most iterators return a reference, to allow changes in the underlying container. This returns points that are not stored, so they cannot be changed.
+            /// @note Everytime this is called this it calls the interpolator in the Target Track, This should run in constant time, but is much slower than normal pointer dereferences.
+            virtual InterpolatableType operator*() const
+                { return SmoothTrackIterator<InterpolatableType>::TargetTrack->GetInterpolatedAsLoop(SmoothTrackIterator<InterpolatableType>::Location); }
+
+            /// @brief Derefernce this with the syntax for pointer member access.
+            /// @return A Counted pointer to a temporary InterpolatableType instance.
+            /// @warning This is read only because it is not stored anywhere.
+            /// @note Everytime this is called it calls the interpolator in the Target Track.
+            virtual CountedPtr<InterpolatableType> operator->() const
+            {
+                return CountedPtr<InterpolatableType> (
+                    new InterpolatableType(
+                        SmoothTrackIterator<InterpolatableType>::TargetTrack->GetInterpolatedAsLoop(
+                            SmoothTrackIterator<InterpolatableType>::Location
+                        )
+                    )
+                );
+            }
+    };*/
 
     /// @brief A track that uses linear interpolation for linear and looped tracks.
     /// @details This class is intended to provide an abstraction for any amount of

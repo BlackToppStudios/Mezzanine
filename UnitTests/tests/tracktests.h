@@ -218,8 +218,47 @@ class tracktests : public UnitTestGroup
                     {
                         DefeatCompilerOptimization = TestQuadPointTrack.GetInterpolatedAsLoop(rand()/RAND_MAX);
                     }
-                    TestOutput << "A random point on the track to defeat optimizations: " << DefeatCompilerOptimization << endl;
+                    TestOutput << "A random point on the track to defeat optimizations: " << DefeatCompilerOptimization << endl << endl;
                 }
+            }
+
+            {
+                TrackLinear<Vector3> TestIteratorTrack;
+
+                TestIteratorTrack.push_back(Vector3(0,0,0));
+                TestIteratorTrack.push_back(Vector3(10,0,0));
+                TestIteratorTrack.push_back(Vector3(10,10,0));
+                TestIteratorTrack.push_back(Vector3(0,10,0));
+
+                SmoothTrackIterator<Vector3> Iter(&TestIteratorTrack,0.0,1.0/30.0);
+
+                TestOutput << "A Dereferenced X component from an iterator refering to 0.0 on a Linear track: " << Iter->X << endl
+                           << "A dereferenced Vector3 from an iterator " << *Iter << endl;
+                TEST_EQUAL_EPSILON(Iter->X, Real(0.0), "SmoothTrackIterator->1");
+                TEST_EQUAL_EPSILON(*Iter, Vector3(0,0,0), "SmoothTrackIterator*1");
+
+
+                TestOutput << "Incrementing the iterator via postfix:" << endl;
+                Iter++;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 on a Linear track: " << Iter->X << endl
+                           << "A dereferenced Vector3 from an iterator " << *Iter << endl;
+                TEST_EQUAL_EPSILON(Iter->X, Real(1.0), "SmoothTrackIterator->2");
+                TEST_EQUAL_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator*2");
+
+                TestOutput << "Incrementing the iterator via prefix:" << endl;
+                ++Iter;
+                TestOutput << "A Dereferenced X component from an iterator refering to 2/30 on a Linear track: " << Iter->X << endl
+                           << "A dereferenced Vector3 from an iterator " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(2.0), "SmoothTrackIterator->3",4);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(2.0,0.0,0.0), "SmoothTrackIterator*3",4);
+
+                TestIteratorTrack.push_back(Vector3(0,0,0)); // need to do this better.
+                TestOutput << "200 steps with a looped iterator on at a 100 step resolution on a four point track:" << endl;
+                SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/100.0);
+                for(Whole Counter=0; Counter<200; Counter++,LoopedIter++)
+                    { TestOutput << *LoopedIter << endl; }
+
+
             }
             
         }
