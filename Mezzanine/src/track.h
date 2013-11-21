@@ -122,7 +122,6 @@ namespace Mezzanine
             /// @brief This almost supports random access iteration, it does not support any kind of writing to the container
             typedef std::random_access_iterator_tag iterator_category;
 
-
             /// @brief What kind of track with this iterate over
             typedef TrackBase<InterpolatableType> TargetTrackType;
 
@@ -144,13 +143,35 @@ namespace Mezzanine
                 : TargetTrack(TrackToIterate), Location(WhereToStart), Step(Increment)
                 {}
 
+            /// @brief Create a copy of an SmoothTrackIterator.
+            /// @param Copy The SmoothTrackIterator to copy.
+            SmoothTrackIterator(const SmoothTrackIterator<InterpolatableType>& Copy)
+                : TargetTrack(Copy.TargetTrack), Location(Copy.TargetTrack), Step(Copy.TargetTrack)
+                {}
+
+            /// @brief Change this SmoothTrackIterator to match another.
+            /// @param Other The SmoothTrackIterator to copy.
+            /// @return A SmoothTrackIterator<InterpolatableType>
+            SmoothTrackIterator<InterpolatableType>& operator=(const SmoothTrackIterator<InterpolatableType>& Other)
+            {
+                TargetTrack=Other.TargetTrack;
+                Location=Other.TargetTrack;
+                Step=Other.TargetTrack;
+                return *this;
+            }
+
+            /// @brief Is this SmoothTrackIterator on the same track and in the same place as another.
+            bool operator==(const SmoothTrackIterator<InterpolatableType>& Other) const
+            {
+                return TargetTrack==Other.TargetTrack &&
+                       Location=Other.TargetTrack &&
+                       Step=Other.TargetTrack;
+            }
             // This is nearly a random access iterator it cannot:
             // allow dereferenced assigment, the points aren't actually contained anywhere so there is nothing to write to
             // to ensure correct semantics this will be treated as a const random access iterator
 
             // it will
-            // copy constructor
-            // assigment operator
             // operator ==
             // operator !=
             // operator* read only
@@ -210,7 +231,7 @@ namespace Mezzanine
                 LineSegmentCount+=Whole(Loop);
                 if(1==LineSegmentCount)
                     { return Percentage; }
-                return std::fmod(Percentage,1.0/Real(LineSegmentCount))*LineSegmentCount;
+                return std::fmod(Percentage,PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount;
             }
 
             InterpolatableType GetInterpolated(Real Percentage, Bool Loop) const

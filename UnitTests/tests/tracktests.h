@@ -110,11 +110,11 @@ class tracktests : public UnitTestGroup
                            << "\t0.5 should be 10,10,10 and is " << TestDualPointTrack.GetInterpolatedAsLoop(0.5) << endl
                            << "\t0.95 should be 1,1,1 and is " << TestDualPointTrack.GetInterpolatedAsLoop(0.95) << endl
                            << "\t1.0 should be 0,0,0 and is " << TestDualPointTrack.GetInterpolatedAsLoop(1.0) << endl;
-                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop1");
-                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.1), Vector3(2.0,2.0,2.0), "DualPointTrackLoop2");
-                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.5), Vector3(10.0,10.0,10.0), "DualPointTrackLoop3");
-                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.95), Vector3(1.0,1.0,1.0), "DualPointTrackLoop4");
-                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(1.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop5");
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop1",4);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.1), Vector3(2.0,2.0,2.0), "DualPointTrackLoop2",4);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.5), Vector3(10.0,10.0,10.0), "DualPointTrackLoop3",4);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.95), Vector3(1.0,1.0,1.0), "DualPointTrackLoop4",4);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(1.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop5",4);
             }
 
             {
