@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,8 +41,6 @@
 #define _eventsubscriber_cpp
 
 #include "eventsubscriber.h"
-#include "eventconnection.h"
-#include "Scripting/script.h"
 
 namespace Mezzanine
 {
@@ -50,69 +48,10 @@ namespace Mezzanine
     // EventSubscriber Methods
 
     EventSubscriber::EventSubscriber()
-    {
-    }
+        {  }
 
     EventSubscriber::~EventSubscriber()
-    {
-        for( ConnectionIterator ConIt = Connections.begin() ; ConIt != Connections.end() ; ++ConIt )
-            (*ConIt)->Disconnect(this);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // FunctorSubscriber Methods
-
-    FunctorSubscriber::FunctorSubscriber(FunctorDefinition* Funct, bool CleanUpAfter) :
-        Functor(Funct),
-        CleanUp(CleanUpAfter)
-	{
-	}
-
-    FunctorSubscriber::~FunctorSubscriber()
-    {
-        if(CleanUp)
-            delete Functor;
-    }
-
-    void FunctorSubscriber::_NotifyEvent(const EventArguments& Args)
-    {
-        (*Functor)(Args);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // CFunctionSubscriber Methods
-
-    CFunctionSubscriber::CFunctionSubscriber(SubscriberFunction* CFunct) :
-        CFunction(CFunct)
-    {
-    }
-
-    CFunctionSubscriber::~CFunctionSubscriber()
-    {
-    }
-
-    void CFunctionSubscriber::_NotifyEvent(const EventArguments& Args)
-    {
-        CFunction(Args);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // ScriptSubscriber Methods
-
-    ScriptSubscriber::ScriptSubscriber(Scripting::iScript* SubScript) :
-        SubscriberScript(SubScript)
-    {
-    }
-
-    ScriptSubscriber::~ScriptSubscriber()
-    {
-    }
-
-    void ScriptSubscriber::_NotifyEvent(const EventArguments& Args)
-    {
-        /// @todo Fill out the necessary logic here.
-        //SubscriberScript->Execute();
-    }
+        {  }
 }//Mezzanine
 
 #endif

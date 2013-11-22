@@ -149,7 +149,13 @@ namespace Mezzanine
 
             void Decrement()
             {
-                Location += Step;
+                Location -= Step;
+                BoundsCheck();
+            }
+
+            void StepAdjust(Integer Steps)
+            {
+                Location += Step * PreciseReal(Steps);
                 BoundsCheck();
             }
 
@@ -239,6 +245,12 @@ namespace Mezzanine
                 return Results;
             }
 
+            SmoothTrackIterator<InterpolatableType>&  operator+(Whole Steps)
+            {
+               StepAdjust(Steps);
+            }
+
+            //StepAdjust(Integer Steps)
 
             // This is nearly a random access iterator it cannot:
             // allow dereferenced assigment, the points aren't actually contained anywhere so there is nothing to write to
@@ -257,6 +269,11 @@ namespace Mezzanine
             // operator[](int)
 
     };
+
+    template<typename InterpolatableType>
+    SmoothTrackIterator<InterpolatableType>&  operator+(Whole Steps, SmoothTrackIterator<InterpolatableType>& Iter)
+        { return Iter + Steps; }
+
 /*
     template<typename InterpolatableType>
     class SmoothLoopedTrackIterator : public SmoothTrackIterator<InterpolatableType>
@@ -305,7 +322,7 @@ namespace Mezzanine
     /// datapoints and present a range from 0 to 1 for all tracks.
     template <typename InterpolatableType>
     class TrackLinear : public TrackBase<InterpolatableType>
-    {       
+    {
         public:
             /// @brief The type of the underlying container for InterpolatableType instances
             typedef typename TrackBase<InterpolatableType>::DataContainerType DataContainerType;

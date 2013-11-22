@@ -1695,31 +1695,32 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Type swig_types[31]
 #define SWIGTYPE_p_bool swig_types[32]
 #define SWIGTYPE_p_char swig_types[33]
-#define SWIGTYPE_p_f_p_void__void swig_types[34]
-#define SWIGTYPE_p_float swig_types[35]
-#define SWIGTYPE_p_int swig_types[36]
-#define SWIGTYPE_p_long_long swig_types[37]
-#define SWIGTYPE_p_native_handle_type swig_types[38]
-#define SWIGTYPE_p_pthread_t swig_types[39]
-#define SWIGTYPE_p_short swig_types[40]
-#define SWIGTYPE_p_signed_char swig_types[41]
-#define SWIGTYPE_p_std__fstream swig_types[42]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[43]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[44]
-#define SWIGTYPE_p_std__ostream swig_types[45]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[46]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[47]
-#define SWIGTYPE_p_std__string swig_types[48]
-#define SWIGTYPE_p_std__stringstream swig_types[49]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[50]
-#define SWIGTYPE_p_std__wstring swig_types[51]
-#define SWIGTYPE_p_unsigned_char swig_types[52]
-#define SWIGTYPE_p_unsigned_int swig_types[53]
-#define SWIGTYPE_p_unsigned_long swig_types[54]
-#define SWIGTYPE_p_unsigned_long_long swig_types[55]
-#define SWIGTYPE_p_unsigned_short swig_types[56]
-static swig_type_info *swig_types[58];
-static swig_module_info swig_module = {swig_types, 57, 0, 0, 0, 0};
+#define SWIGTYPE_p_double swig_types[34]
+#define SWIGTYPE_p_f_p_void__void swig_types[35]
+#define SWIGTYPE_p_float swig_types[36]
+#define SWIGTYPE_p_int swig_types[37]
+#define SWIGTYPE_p_long_long swig_types[38]
+#define SWIGTYPE_p_native_handle_type swig_types[39]
+#define SWIGTYPE_p_pthread_t swig_types[40]
+#define SWIGTYPE_p_short swig_types[41]
+#define SWIGTYPE_p_signed_char swig_types[42]
+#define SWIGTYPE_p_std__fstream swig_types[43]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[44]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[45]
+#define SWIGTYPE_p_std__ostream swig_types[46]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[47]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[48]
+#define SWIGTYPE_p_std__string swig_types[49]
+#define SWIGTYPE_p_std__stringstream swig_types[50]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[51]
+#define SWIGTYPE_p_std__wstring swig_types[52]
+#define SWIGTYPE_p_unsigned_char swig_types[53]
+#define SWIGTYPE_p_unsigned_int swig_types[54]
+#define SWIGTYPE_p_unsigned_long swig_types[55]
+#define SWIGTYPE_p_unsigned_long_long swig_types[56]
+#define SWIGTYPE_p_unsigned_short swig_types[57]
+static swig_type_info *swig_types[59];
+static swig_module_info swig_module = {swig_types, 58, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -8363,6 +8364,7 @@ static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzan
 static swig_type_info _swigt__p_Type = {"_p_Type", "Type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "Mezzanine::Bool *|bool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *|Mezzanine::Char8 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_double = {"_p_double", "Mezzanine::PreciseReal *|double *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void__void = {"_p_f_p_void__void", "void (*)(void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_float = {"_p_float", "float *|Mezzanine::Real *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "intptr_t *|int *|int_least32_t *|int_fast32_t *|Mezzanine::Int32 *|int32_t *|Mezzanine::ConvertiblePointer *|Mezzanine::Integer *|int_fast16_t *", 0, 0, (void*)0, 0};
@@ -8422,6 +8424,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Type,
   &_swigt__p_bool,
   &_swigt__p_char,
+  &_swigt__p_double,
   &_swigt__p_f_p_void__void,
   &_swigt__p_float,
   &_swigt__p_int,
@@ -8481,6 +8484,7 @@ static swig_cast_info _swigc__p_SDL_Event[] = {  {&_swigt__p_SDL_Event, 0, 0, 0}
 static swig_cast_info _swigc__p_Type[] = {  {&_swigt__p_Type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_double[] = {  {&_swigt__p_double, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void__void[] = {  {&_swigt__p_f_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
@@ -8540,6 +8544,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Type,
   _swigc__p_bool,
   _swigc__p_char,
+  _swigc__p_double,
   _swigc__p_f_p_void__void,
   _swigc__p_float,
   _swigc__p_int,

@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -49,220 +49,208 @@ namespace Mezzanine
         {  }
 
     Event::~Event()
-    {
-        this->UnsubscribeAll();
-    }
+        { this->UnsubscribeAll(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
     const String& Event::GetName() const
-    {
-        return this->EventName;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Subscriber Slot Creation
-
-    EventConnectionPtr Event::CreateConnection(Event* Ev, EventSubscriber* Sub)
-    {
-        return EventConnectionPtr(new EventConnection(Ev,Sub));
-    }
-
-    EventConnectionPtr Event::CreateConnection(Event* Ev, FunctorSubscriber::FunctorDefinition* Funct, bool CleanUpAfter)
-    {
-        FunctorSubscriber* Sub = new FunctorSubscriber(Funct,CleanUpAfter);
-        EventConnectionPtr NewConnection(new VolatileEventConnection(Ev,Sub));
-        return NewConnection;
-    }
-
-    EventConnectionPtr Event::CreateConnection(Event* Ev, CFunctionSubscriber::SubscriberFunction* CFunct)
-    {
-        CFunctionSubscriber* Sub = new CFunctionSubscriber(CFunct);
-        EventConnectionPtr NewConnection(new VolatileEventConnection(Ev,Sub));
-        return NewConnection;
-    }
-
-    EventConnectionPtr Event::CreateConnection(Event* Ev, Scripting::iScript* SubScript)
-    {
-        ScriptSubscriber* Sub = new ScriptSubscriber(SubScript);
-        EventConnectionPtr NewConnection(new VolatileEventConnection(Ev,Sub));
-        return NewConnection;
-    }
+        { return this->EventName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Subscription Methods
 
-    void Event::Subscribe(EventConnectionPtr Subscriber)
+    EventSubscriberSlot* Event::Subscribe(EventSubscriber* Sub)
     {
-        this->Connections.insert(ConnectionPair(255,Subscriber));
+        return this->Subscribe(255,Sub);
     }
 
-    void Event::Subscribe(const UInt8 Group, EventConnectionPtr Subscriber)
+    EventSubscriberSlot* Event::Subscribe(const UInt8 Group, EventSubscriber* Sub)
     {
-        this->Connections.insert(ConnectionPair(Group,Subscriber));
+        CustomSubscriberSlot* NewSlot = new CustomSubscriberSlot(this,Sub);
+        this->Slots.insert( SlotPair(Group,NewSlot) );
+        return NewSlot;
     }
 
-    EventConnectionPtr Event::Subscribe(EventSubscriber* Sub)
+    EventSubscriberSlot* Event::Subscribe(FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter)
     {
-        this->Subscribe(255,Sub);
+        return this->Subscribe(255,Funct,CleanUpAfter);
     }
 
-    EventConnectionPtr Event::Subscribe(const UInt8 Group, EventSubscriber* Sub)
+    EventSubscriberSlot* Event::Subscribe(const UInt8 Group, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter)
     {
-        EventConnectionPtr EventSub = Event::CreateConnection(this,Sub);
-        this->Subscribe(Group,EventSub);
-        return EventSub;
+        FunctorSubscriberSlot* NewSlot = new FunctorSubscriberSlot(this,Funct,CleanUpAfter);
+        this->Slots.insert( SlotPair(Group,NewSlot) );
+        return NewSlot;
     }
 
-    EventConnectionPtr Event::Subscribe(FunctorSubscriber::FunctorDefinition* Funct, bool CleanUpAfter)
+    EventSubscriberSlot* Event::Subscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct)
     {
-        this->Subscribe(255,Funct,CleanUpAfter);
+        return this->Subscribe(255,CFunct);
     }
 
-    EventConnectionPtr Event::Subscribe(const UInt8 Group, FunctorSubscriber::FunctorDefinition* Funct, bool CleanUpAfter)
+    EventSubscriberSlot* Event::Subscribe(const UInt8 Group, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
     {
-        EventConnectionPtr EventSub = Event::CreateConnection(this,Funct,CleanUpAfter);
-        this->Subscribe(Group,EventSub);
-        return EventSub;
+        CFunctionSubscriberSlot* NewSlot = new CFunctionSubscriberSlot(this,CFunct);
+        this->Slots.insert( SlotPair(Group,NewSlot) );
+        return NewSlot;
     }
 
-    EventConnectionPtr Event::Subscribe(CFunctionSubscriber::SubscriberFunction* CFunct)
+    EventSubscriberSlot* Event::Subscribe(Scripting::iScript* SubScript)
     {
-        this->Subscribe(255,CFunct);
+        return this->Subscribe(255,SubScript);
     }
 
-    EventConnectionPtr Event::Subscribe(const UInt8 Group, CFunctionSubscriber::SubscriberFunction* CFunct)
+    EventSubscriberSlot* Event::Subscribe(const UInt8 Group, Scripting::iScript* SubScript)
     {
-        EventConnectionPtr EventSub = Event::CreateConnection(this,CFunct);
-        this->Subscribe(Group,EventSub);
-        return EventSub;
-    }
-
-    EventConnectionPtr Event::Subscribe(Scripting::iScript* SubScript)
-    {
-        this->Subscribe(255,SubScript);
-    }
-
-    EventConnectionPtr Event::Subscribe(const UInt8 Group, Scripting::iScript* SubScript)
-    {
-        EventConnectionPtr EventSub = Event::CreateConnection(this,SubScript);
-        this->Subscribe(Group,EventSub);
-        return EventSub;
+        ScriptSubscriberSlot* NewSlot = new ScriptSubscriberSlot(this,SubScript);
+        this->Slots.insert( SlotPair(Group,NewSlot) );
+        return NewSlot;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Unsubscribe Methods
 
-    void Event::Unsubscribe(EventConnection* Subscriber)
+    void Event::Unsubscribe(EventSubscriber* Subscriber)
     {
-        Subscriber->Disconnect(this);
-        for( ConnectionIterator SubIt = this->Connections.begin() ; SubIt != this->Connections.end() ; ++SubIt )
+        SlotIterator Current = this->Slots.begin();
+        while( Current != this->Slots.end() )
         {
-            if( Subscriber == (*SubIt).second.get() )
+            if( (*Current).second->GetType() == EventSubscriberSlot::ST_Custom &&
+                static_cast<CustomSubscriberSlot*>( (*Current).second )->GetSubscriber() == Subscriber )
             {
-                this->Connections.erase(SubIt);
-                return;
+                SlotIterator Prev = Current++;
+                delete (*Prev).second;
+                this->Slots.erase(Prev);
+            }else{
+                ++Current;
             }
         }
     }
 
-    void Event::Unsubscribe(EventConnectionPtr Subscriber)
+    void Event::Unsubscribe(FunctorSubscriberSlot::FunctorDefinition* Funct)
     {
-        Subscriber->Disconnect(this);
-        for( ConnectionIterator SubIt = this->Connections.begin() ; SubIt != this->Connections.end() ; ++SubIt )
+        SlotIterator Current = this->Slots.begin();
+        while( Current != this->Slots.end() )
         {
-            if( Subscriber == (*SubIt).second )
+            if( (*Current).second->GetType() == EventSubscriberSlot::ST_Functor &&
+                static_cast<FunctorSubscriberSlot*>( (*Current).second )->GetFunctor() == Funct )
             {
-                this->Connections.erase(SubIt);
-                return;
+                SlotIterator Prev = Current++;
+                delete (*Prev).second;
+                this->Slots.erase(Prev);
+            }else{
+                ++Current;
             }
         }
     }
 
-    void Event::Unsubscribe(ConnectionIterator Subscriber)
+    void Event::Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct)
     {
-        (*Subscriber).second->Disconnect(this);
-        this->Connections.erase(Subscriber);
+        SlotIterator Current = this->Slots.begin();
+        while( Current != this->Slots.end() )
+        {
+            if( (*Current).second->GetType() == EventSubscriberSlot::ST_CFunction &&
+                static_cast<CFunctionSubscriberSlot*>( (*Current).second )->GetFunction() == CFunct )
+            {
+                SlotIterator Prev = Current++;
+                delete (*Prev).second;
+                this->Slots.erase(Prev);
+            }else{
+                ++Current;
+            }
+        }
+    }
+
+    void Event::Unsubscribe(Scripting::iScript* SubScript)
+    {
+        SlotIterator Current = this->Slots.begin();
+        while( Current != this->Slots.end() )
+        {
+            if( (*Current).second->GetType() == EventSubscriberSlot::ST_Script &&
+                static_cast<ScriptSubscriberSlot*>( (*Current).second )->GetScript() == SubScript )
+            {
+                SlotIterator Prev = Current++;
+                delete (*Prev).second;
+                this->Slots.erase(Prev);
+            }else{
+                ++Current;
+            }
+        }
+    }
+
+    void Event::Unsubscribe(EventSubscriberSlot* SubSlot)
+    {
+        SlotIterator Current = this->Slots.begin();
+        while( Current != this->Slots.end() )
+        {
+            if( (*Current).second == SubSlot ) {
+                SlotIterator Prev = Current++;
+                delete (*Prev).second;
+                this->Slots.erase(Prev);
+            }else{
+                ++Current;
+            }
+        }
     }
 
     Whole Event::UnsubscribeGroup(const UInt8 Group)
     {
-        ConnectionIterator Begin = this->Connections.lower_bound(Group);
-        ConnectionIterator End = this->Connections.upper_bound(Group);
-        for( ConnectionIterator Current = Begin ; Current != End ; ++Current )
+        SlotIterator Begin = this->Slots.lower_bound(Group);
+        SlotIterator End = this->Slots.upper_bound(Group);
+        for( SlotIterator Current = Begin ; Current != End ; ++Current )
         {
-            (*Current).second->Disconnect(this);
+            delete (*Current).second;
         }
-        return this->Connections.erase(Group);
+        return this->Slots.erase(Group);
     }
 
     Whole Event::UnsubscribeAll()
     {
-        Whole PrevSize = this->Connections.size();
-        ConnectionIterator Begin = this->Connections.begin();
-        ConnectionIterator End = this->Connections.end();
-        for( ConnectionIterator Current = Begin ; Current != End ; ++Current )
+        Whole PrevSize = this->Slots.size();
+        SlotIterator Begin = this->Slots.begin();
+        SlotIterator End = this->Slots.end();
+        for( SlotIterator Current = Begin ; Current != End ; ++Current )
         {
-            (*Current).second->Disconnect(this);
+            delete (*Current).second;
         }
-        this->Connections.clear();
+        this->Slots.clear();
         return PrevSize;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Subscriber Access Methods
 
-    Event::ConnectionIterator Event::SubscriberBegin()
-    {
-        return this->Connections.begin();
-    }
+    Event::SlotIterator Event::SubscriberSlotBegin()
+        { return this->Slots.begin(); }
 
-    Event::ConnectionIterator Event::SubscriberEnd()
-    {
-        return this->Connections.end();
-    }
+    Event::SlotIterator Event::SubscriberSlotEnd()
+        { return this->Slots.end(); }
 
-    Event::ConstConnectionIterator Event::SubscriberBegin() const
-    {
-        return this->Connections.begin();
-    }
+    Event::ConstSlotIterator Event::SubscriberSlotBegin() const
+        { return this->Slots.begin(); }
 
-    Event::ConstConnectionIterator Event::SubscriberEnd() const
-    {
-        return this->Connections.end();
-    }
+    Event::ConstSlotIterator Event::SubscriberSlotEnd() const
+        { return this->Slots.end(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
     void Event::_FireEvent(const EventArguments& Args)
     {
-        for( ConnectionIterator SubIt = this->Connections.begin() ; SubIt != this->Connections.end() ; ++SubIt )
+        for( SlotIterator SlotIt = this->Slots.begin() ; SlotIt != this->Slots.end() ; ++SlotIt )
         {
-            if( (*SubIt).second->IsConnected() ) {
-                (*SubIt).second->GetSubscriber()->_NotifyEvent(Args);
-                ++SubIt;
-            }else{
-                ConnectionIterator Remove = SubIt++;
-                this->Connections.erase(Remove);
-            }
+            (*SlotIt).second->_NotifyEvent(Args);
         }
     }
 
     void Event::_FireGroupEvent(const UInt8 Group, const EventArguments& Args)
     {
-        ConnectionIterator Begin = this->Connections.lower_bound(Group);
-        ConnectionIterator End = this->Connections.upper_bound(Group);
-        for( ConnectionIterator Current = Begin ; Current != End ; ++Current )
+        SlotIterator Begin = this->Slots.lower_bound(Group);
+        SlotIterator End = this->Slots.upper_bound(Group);
+        for( SlotIterator Current = Begin ; Current != End ; ++Current )
         {
-            if( (*Current).second->IsConnected() ) {
-                (*Current).second->GetSubscriber()->_NotifyEvent(Args);
-                ++Current;
-            }else{
-                ConnectionIterator Remove = Current++;
-                this->Connections.erase(Remove);
-            }
+            (*Current).second->_NotifyEvent(Args);
         }
     }
 }

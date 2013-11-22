@@ -252,11 +252,11 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(2.0), "SmoothTrackIterator->3",4);
                 TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(2.0,0.0,0.0), "SmoothTrackIterator*3",4);
 
-                TestIteratorTrack.push_back(Vector3(0,0,0)); // need to do this better.
+                /*TestIteratorTrack.push_back(Vector3(0,0,0)); // need to do this better.
                 TestOutput << "200 steps with a looped iterator on at a 100 step resolution on a four point track:" << endl;
                 SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/100.0);
                 for(Whole Counter=0; Counter<200; Counter++,LoopedIter++)
-                    { TestOutput << *LoopedIter << endl; }
+                    { TestOutput << *LoopedIter << endl; }*/
 
 
             }
