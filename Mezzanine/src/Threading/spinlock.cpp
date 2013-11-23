@@ -38,79 +38,37 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mezz_mutex_cpp
-#define _mezz_mutex_cpp
+#ifndef _spinlock_cpp
+#define _spinlock_cpp
 
-#include "mutex.h"
+#include "spinlock.h"
+#include "atomicoperations.h"
 #include "crossplatformincludes.h"
 
 /// @file
-/// @brief Contains the implementation for the @ref Mezzanine::Threading::Mutex Mutex synchronization object.
+/// @brief Contains the implementation for the @ref Mezzanine::Threading::SpinLock synchronization object.
 
 namespace Mezzanine
 {
     namespace Threading
     {
+        SpinLock::SpinLock() : Locked(0)
+        {}
 
-        Mutex::Mutex()
-        #if defined(_MEZZ_THREAD_WIN32_)
-            : mAlreadyLocked(false)
-        #endif
+        SpinLock::~SpinLock()
+        {}
+
+        void SpinLock::Lock()
         {
-        #if defined(_MEZZ_THREAD_WIN32_)
-            mHandle = (CRITICAL_SECTION*)( malloc(sizeof(CRITICAL_SECTION) ) );
-            InitializeCriticalSection(mHandle);
-        #else
-            pthread_mutex_init(&mHandle, NULL);
-        #endif
+            while(AtomicCompareAndSwap32(&Locked,0,1))
+                {}
         }
 
-        Mutex::~Mutex()
-        {
-        #if defined(_MEZZ_THREAD_WIN32_)
-            DeleteCriticalSection(mHandle);
-            free(mHandle);
-        #else
-            pthread_mutex_destroy(&mHandle);
-        #endif
-        }
+        bool SpinLock::TryLock()
+            { return !AtomicCompareAndSwap32(&Locked,0,1); }
 
-        void Mutex::Lock()
-        {
-        #if defined(_MEZZ_THREAD_WIN32_)
-            EnterCriticalSection(mHandle);
-            while(mAlreadyLocked) Sleep(100); // Simulate deadlock...
-            mAlreadyLocked = true;
-        #else
-            pthread_mutex_lock(&mHandle);
-        #endif
-        }
-
-        bool Mutex::TryLock()
-        {
-        #if defined(_MEZZ_THREAD_WIN32_)
-            bool ret = (TryEnterCriticalSection(mHandle) ? true : false);
-            if(ret && mAlreadyLocked)
-            {
-                LeaveCriticalSection(mHandle);
-                ret = false;
-            }
-            return ret;
-        #else
-            return (pthread_mutex_trylock(&mHandle) == 0) ? true : false;
-        #endif
-        }
-
-        void Mutex::Unlock()
-        {
-        #if defined(_MEZZ_THREAD_WIN32_)
-            mAlreadyLocked = false;
-            LeaveCriticalSection(mHandle);
-        #else
-            pthread_mutex_unlock(&mHandle);
-        #endif
-        }
-
+        void SpinLock::Unlock()
+            { AtomicCompareAndSwap32(&Locked,1,0); }
     } // \Threading namespace
 } // \Mezzanine namespace
 #endif

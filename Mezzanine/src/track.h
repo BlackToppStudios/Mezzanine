@@ -181,8 +181,8 @@ namespace Mezzanine
             SmoothTrackIterator<InterpolatableType>& operator=(const SmoothTrackIterator<InterpolatableType>& Other)
             {
                 TargetTrack=Other.TargetTrack;
-                Location=Other.TargetTrack;
-                Step=Other.TargetTrack;
+                Location=Other.Location;
+                Step=Other.Step;
                 return *this;
             }
 
@@ -192,11 +192,9 @@ namespace Mezzanine
             bool operator==(const SmoothTrackIterator<InterpolatableType>& Other) const
             {
                 return TargetTrack==Other.TargetTrack &&
-                       (Other.TargetTrack-std::numeric_limits<InterpolatableType>::epsilon())<=Location &&
-                       Location<=(Other.TargetTrack+std::numeric_limits<InterpolatableType>::epsilon());
-                //return TargetTrack==Other.TargetTrack &&
-                //       Location=Other.TargetTrack &&
-                //       Step=Other.TargetTrack;
+                       (Other.Location-std::numeric_limits<Real>::epsilon())<=Location &&
+                       Location<=(Other.Location+std::numeric_limits<Real>::epsilon());
+                //       Step=Other.Step;
             }
 
             /// @brief Is this SmoothTrackIterator not on the same track and in the same place as another.

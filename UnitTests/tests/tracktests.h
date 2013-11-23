@@ -247,10 +247,24 @@ class tracktests : public UnitTestGroup
 
                 TestOutput << "Incrementing the iterator via prefix:" << endl;
                 ++Iter;
-                TestOutput << "A Dereferenced X component from an iterator refering to 2/30 on a Linear track: " << Iter->X << endl
+                TestOutput << "A Dereferenced X component from an iterator refering to 2/30 (using ++) on a Linear track: " << Iter->X << endl
                            << "A dereferenced Vector3 from an iterator " << *Iter << endl;
-                TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(2.0), "SmoothTrackIterator->3",4);
-                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(2.0,0.0,0.0), "SmoothTrackIterator*3",4);
+                TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(2.0), "SmoothTrackIterator->++",4);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(2.0,0.0,0.0), "SmoothTrackIterator*++",4);
+
+                TestOutput << "Incrementing the iterator via prefix:" << endl;
+                --Iter;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using --)on a Linear track: " << Iter->X << endl
+                           << "A dereferenced Vector3 from an iterator " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(1.0), "SmoothTrackIterator->--",4);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator*--",4);
+
+                SmoothTrackIterator<Vector3> Iter2(0);
+                Iter2 = Iter;
+                TEST_EQUAL_EPSILON(*Iter, *Iter2, "SmoothTrackIterator=");
+                TEST(Iter==Iter2, "SmoothTrackIterator==");
+                TEST(!(Iter!=Iter2), "SmoothTrackIterator!=");
+
 
                 /*TestIteratorTrack.push_back(Vector3(0,0,0)); // need to do this better.
                 TestOutput << "200 steps with a looped iterator on at a 100 step resolution on a four point track:" << endl;

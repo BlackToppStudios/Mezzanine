@@ -38,10 +38,11 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mezz_mutex_cpp
-#define _mezz_mutex_cpp
+#ifndef _readwritespinlock_cpp
+#define _readwritespinlock_cpp
 
-#include "mutex.h"
+#include "atomicoperations.h"
+#include "readwritespinlock.h"
 #include "crossplatformincludes.h"
 
 /// @file
@@ -51,65 +52,66 @@ namespace Mezzanine
 {
     namespace Threading
     {
+        ReadWriteSpinLock::ReadWriteSpinLock() : Locked(0)
+        {}
 
-        Mutex::Mutex()
-        #if defined(_MEZZ_THREAD_WIN32_)
-            : mAlreadyLocked(false)
-        #endif
-        {
-        #if defined(_MEZZ_THREAD_WIN32_)
-            mHandle = (CRITICAL_SECTION*)( malloc(sizeof(CRITICAL_SECTION) ) );
-            InitializeCriticalSection(mHandle);
-        #else
-            pthread_mutex_init(&mHandle, NULL);
-        #endif
-        }
+        ReadWriteSpinLock::~ReadWriteSpinLock()
+        {}
 
-        Mutex::~Mutex()
-        {
-        #if defined(_MEZZ_THREAD_WIN32_)
-            DeleteCriticalSection(mHandle);
-            free(mHandle);
-        #else
-            pthread_mutex_destroy(&mHandle);
-        #endif
-        }
 
-        void Mutex::Lock()
+        void ReadWriteSpinLock::LockForRead()
         {
-        #if defined(_MEZZ_THREAD_WIN32_)
-            EnterCriticalSection(mHandle);
-            while(mAlreadyLocked) Sleep(100); // Simulate deadlock...
-            mAlreadyLocked = true;
-        #else
-            pthread_mutex_lock(&mHandle);
-        #endif
-        }
-
-        bool Mutex::TryLock()
-        {
-        #if defined(_MEZZ_THREAD_WIN32_)
-            bool ret = (TryEnterCriticalSection(mHandle) ? true : false);
-            if(ret && mAlreadyLocked)
+            bool locked = false;
+            Int32 Expected = Locked;
+            /*while(!locked)
             {
-                LeaveCriticalSection(mHandle);
-                ret = false;
-            }
-            return ret;
-        #else
-            return (pthread_mutex_trylock(&mHandle) == 0) ? true : false;
-        #endif
+                if (0<AtomicCompareAndSwap32(&Locked,0,0))
+                {
+
+                }
+            }*/
+
+            if(0>Expected)
+                { return; }
+            //while(AtomicCompareAndSwap32(&Locked,0,1))
+                {}
         }
 
-        void Mutex::Unlock()
+        bool ReadWriteSpinLock::TryLockForRead()
         {
-        #if defined(_MEZZ_THREAD_WIN32_)
-            mAlreadyLocked = false;
-            LeaveCriticalSection(mHandle);
-        #else
-            pthread_mutex_unlock(&mHandle);
-        #endif
+            Int32 Expected = Locked;
+            if(0>Expected) // Can spuriously fail but shouldn't spuriosly succeed
+            {
+                return Expected==AtomicCompareAndSwap32(&Locked,Expected,Expected+1);
+            }else{
+                return false;
+            }
         }
+
+        void ReadWriteSpinLock::UnlockRead()
+        {
+            Int32 Expected = Locked;
+            if(0>Expected)
+                { return; }
+            while(Expected==AtomicCompareAndSwap32(&Locked,Expected,Expected-1))
+                { Expected = Locked; }
+        }
+        //{ AtomicCompareAndSwap32(&Locked,1,0); }
+
+
+        void ReadWriteSpinLock::LockForWrite()
+        {
+            //while(AtomicCompareAndSwap32(&Locked,0,1))
+                {}
+        }
+
+        bool ReadWriteSpinLock::TryLockForWrite()
+            { return false; }//{ return !AtomicCompareAndSwap32(&Locked,0,1); }
+
+        void ReadWriteSpinLock::UnlockWrite()
+            {}//{ AtomicCompareAndSwap32(&Locked,1,0); }
+
+
 
     } // \Threading namespace
 } // \Mezzanine namespace

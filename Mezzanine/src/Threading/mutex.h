@@ -41,9 +41,6 @@
 #ifndef _mutex_h
 #define _mutex_h
 
-/// @file
-/// @brief This file declares and defines a mutex that is a partial implementation
-
 // Parts of this library use the TinyThread++ libary and those parts are also covered by the following license
 /*
 Copyright (c) 2010-2012 Marcus Geelnard
@@ -73,7 +70,7 @@ freely, subject to the following restrictions:
 #endif
 
 /// @file
-/// @brief Declares a Mutex, Mutex tools, and at least one MutexLike object.
+/// @brief Declares a Mutex, Mutex tools
 
 /// @brief Forward declaration
 #if defined(_MEZZ_THREAD_WIN32_)
@@ -139,43 +136,6 @@ namespace Mezzanine
                 bool TryLock();
 
                 /// @brief Unlock the mutex.
-                /// @details If any threads are waiting for the lock on this mutex, one of them will
-                /// be unblocked.
-                void Unlock();
-        };//Mutex
-
-        /// @brief A mutex like construct that never makes a system call and uses CPU instructions instead.
-        /// @details This should be used when delay is likely to be measured in CPUs cycles and almost
-        /// certainly a short while. For pauses of unknown length use a Mutex so that the OS is informed it
-        /// could schedule another thread.
-        class MEZZ_LIB SpinLock
-        {
-            private:
-                /// @internal
-                /// 0 if unlocked, any other value if locked.
-                Int32 Locked;
-
-            public:
-                ///@brief Constructor, creates an unlocked mutex
-                SpinLock();
-
-                ///@brief Destructor.
-                ~SpinLock();
-
-                /// @brief Lock the SpinLoc.
-                /// @details The method will block the calling thread until a lock on the SpinLock can
-                /// be obtained. The SpinLock remains locked until @c unlock() is called.
-                /// @see lock_guard
-                void Lock();
-
-                /// @brief Try to lock the spinlock.
-                /// @details The method will try to lock the SpinLock. If it fails, the function will
-                /// return immediately (non-blocking).
-                /// @return @c true if the lock was acquired, or @c false if the lock could
-                /// not be acquired.
-                bool TryLock();
-
-                /// @brief Unlock the splinlock.
                 /// @details If any threads are waiting for the lock on this mutex, one of them will
                 /// be unblocked.
                 void Unlock();

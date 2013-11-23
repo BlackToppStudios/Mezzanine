@@ -105,21 +105,52 @@ void TryToSquareInThread(void* Value)
 }
 
 /// @brief Used in SpinLock try_lock tests
-static Mezzanine::Threading::SpinLock TrySpinLock;
-/// @brief Used in mutex try_lock tests
+static Mezzanine::Threading::SpinLock TrySpinlock;
+/// @brief Used in spinlock try_lock tests
 /// @param Value This is the a value passed into the thread to confirm that it works
 void TryToSquareInThreadSpin(void* Value)
 {
-    LogForMutexes << "Thread T4 trying to lock mutex ThreadPassLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-    if (TrySpinLock.TryLock())
+    LogForMutexes << "Thread T4 trying to lock mutex TrySpinlock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    if (TrySpinlock.TryLock())
     {
         LogForMutexes << "Thread T4 locked mutex, Squaring the value " << endl;
         TryLockTest = *(Mezzanine::Integer*)Value * *(Mezzanine::Integer*)Value;
-        TrySpinLock.Unlock();
+        TrySpinlock.Unlock();
     }else{
         LogForMutexes << "Thread T4 could not acquire lock, no work done" << endl;
     }
 }
+
+/// @brief Used in ReadEriteSpinLock try_lock tests
+static Mezzanine::Threading::ReadWriteSpinLock TryReadWriteSpinlock;
+/// @brief Used in ReadWriteSpinlock TryWritelock tests
+/// @param Value This is the a value passed into the thread to confirm that it works
+void TryToSquareInThreadRWSpin(void* Value)
+{
+    LogForMutexes << "Thread T4 trying to lock write mutex TryReadWriteSpinlock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    if (TryReadWriteSpinlock.TryLockForWrite())
+    {
+        LogForMutexes << "Thread T4 locked mutex, Squaring the value " << endl;
+        TryLockTest = *(Mezzanine::Integer*)Value * *(Mezzanine::Integer*)Value;
+        TryReadWriteSpinlock.UnlockWrite();
+    }else{
+        LogForMutexes << "Thread T4 could not acquire lock, no work done" << endl;
+    }
+}
+/// @brief Used in ReadWriteSpinlock TryReadlock tests
+/// @param Value This is the a value passed into the thread to confirm that it works
+void TryToReadInThreadRWSpin(void* Value)
+{
+    LogForMutexes << "Thread T4 trying to lock for read mutex TryReadWriteSpinlock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    if (TryReadWriteSpinlock.TryLockForRead())
+    {
+        LogForMutexes << "Thread T4 locked mutex for read." << endl;
+        TryReadWriteSpinlock.UnlockRead();
+    }else{
+        LogForMutexes << "Thread T4 could not acquire lock, no work done" << endl;
+    }
+}
+
 
 /// @brief Tests for the mutex class
 class mutextests : public UnitTestGroup
@@ -215,7 +246,7 @@ class mutextests : public UnitTestGroup
                 TestOutput << "Testing SpinLock try_lock()" << endl;
 
                 TestOutput << "Locking TrySpinLock in main thread with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-                TEST(TrySpinLock.TryLock(),"SpinLock::TryLock");
+                TEST(TrySpinlock.TryLock(),"SpinLock::TryLock");
 
                 Mezzanine::Integer Value = 9;
                 TestOutput << "Creating a thread with identifier T4 and unkown id." << endl;
@@ -231,11 +262,49 @@ class mutextests : public UnitTestGroup
                 LogForMutexes.str("");
 
                 TestOutput << "Unlocking TrySpinLock." << endl;
-                TrySpinLock.Unlock();
+                TrySpinlock.Unlock();
                 TestOutput << "Value from thread's return point is " << TryLockTest << " it should be " << Value << " if it wasn't able to get SpinLock" << endl;
                 TestOutput << "Did T4 not get the SpinLock and proceed past SpinLock as expected: " << (TryLockTest == Value) << endl;
                 TEST(TryLockTest == Value,"SpinLock::TryLockExclude");
             } // SpinLock::Trylock
+
+            { // ReadWriteSpinLock
+                TEST(true==TryReadWriteSpinlock.TryLockForRead(),"RWSpinLock::TryLockRead");
+                TEST(false==TryReadWriteSpinlock.TryLockForWrite(),"RWSpinLock::TryLockWriteExcludes");
+                TEST(true==TryReadWriteSpinlock.TryLockForRead(),"RWSpinLock::TryLockReadMultiple");
+                TryReadWriteSpinlock.UnlockRead();
+                TryReadWriteSpinlock.UnlockRead();
+
+                TEST(true==TryReadWriteSpinlock.TryLockForWrite(),"RWSpinLock::TryLockWrite");
+                TEST(false==TryReadWriteSpinlock.TryLockForRead(),"RWSpinLock::TryLockReadExcludes");
+                TryReadWriteSpinlock.UnlockWrite();
+                /*//TryToSquareInThreadRWSpin TryToReadInThreadRWSpin;
+                TestOutput << "Testing ReadWriteSpinLock try_writelock()" << endl;
+
+                TestOutput << "Locking TryReadWriteSpinLock in main thread with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+                TEST(TrySpinlock.TryLock(),"SpinLock::TryLock");
+
+                Mezzanine::Integer Value = 9;
+                TestOutput << "Creating a thread with identifier T4 and unkown id." << endl;
+                TestOutput << "Passing " << Value << " into thread T4, and assigning to output and waiting a while." << endl;
+                TryLockTest = Value;
+                Mezzanine::Threading::Thread T4(TryToSquareInThreadSpin, &Value);
+
+                Mezzanine::Threading::this_thread::sleep_for(300000);
+
+                TestOutput << "Joining T4" << endl;
+                T4.join();
+                TestOutput << LogForMutexes.str();
+                LogForMutexes.str("");
+
+                TestOutput << "Unlocking TrySpinLock." << endl;
+                TrySpinlock.Unlock();
+                TestOutput << "Value from thread's return point is " << TryLockTest << " it should be " << Value << " if it wasn't able to get SpinLock" << endl;
+                TestOutput << "Did T4 not get the SpinLock and proceed past SpinLock as expected: " << (TryLockTest == Value) << endl;
+                TEST(TryLockTest == Value,"SpinLock::TryLockExclude");
+                */
+            } // SpinLock::Trylock
+
 
         }
 
