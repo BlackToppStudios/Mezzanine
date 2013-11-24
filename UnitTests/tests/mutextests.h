@@ -269,7 +269,7 @@ class mutextests : public UnitTestGroup
             } // SpinLock::Trylock
 
             { // ReadWriteSpinLock
-                TestOutput << "ReadWriteSpinLock tests (true values are all good): " << endl;
+                TestOutput << endl << "ReadWriteSpinLock tests (true values are all good): " << endl;
                 bool TestValue = true==TryReadWriteSpinlock.TryLockForRead();
                 cout << "Just tried to TryLockForRead expecting to get the lock: " << TestValue << endl;
                 TEST( TestValue, "RWSpinLock::TryLockRead");

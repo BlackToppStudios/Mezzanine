@@ -44,6 +44,7 @@
 #include "atomicoperations.h"
 #include "readwritespinlock.h"
 #include "crossplatformincludes.h"
+#include <limits>
 
 /// @file
 /// @brief Contains the implementation for the @ref Mezzanine::Threading::Mutex Mutex synchronization object.
@@ -80,7 +81,7 @@ namespace Mezzanine
         bool ReadWriteSpinLock::TryLockForRead()
         {
             Int32 Expected = Locked;
-            if(0>=Expected) // Can spuriously fail but shouldn't spuriosly succeed
+            if(0<=Expected) // Can spuriously fail but shouldn't spuriosly succeed
             {
                 return Expected==AtomicCompareAndSwap32(&Locked,Expected,Expected+1);
             }else{
@@ -93,7 +94,7 @@ namespace Mezzanine
             Int32 Expected = Locked;
             if(0>Expected)
                 { return; }
-            //while(Expected==AtomicCompareAndSwap32(&Locked,Expected,Expected-1))
+            while(Expected!=AtomicCompareAndSwap32(&Locked,Expected,Expected-1))
                 { Expected = Locked; }
         }
         //{ AtomicCompareAndSwap32(&Locked,1,0); }
@@ -106,10 +107,10 @@ namespace Mezzanine
         }
 
         bool ReadWriteSpinLock::TryLockForWrite()
-            { return false; }//{ return !AtomicCompareAndSwap32(&Locked,0,1); }
+            { return 0==AtomicCompareAndSwap32(&Locked,0,std::numeric_limits<Int32>::min()); }
 
         void ReadWriteSpinLock::UnlockWrite()
-            {}//{ AtomicCompareAndSwap32(&Locked,1,0); }
+            { !AtomicCompareAndSwap32(&Locked,std::numeric_limits<Int32>::min(),0); }
 
 
 
