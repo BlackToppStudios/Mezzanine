@@ -269,15 +269,35 @@ class mutextests : public UnitTestGroup
             } // SpinLock::Trylock
 
             { // ReadWriteSpinLock
-                TEST(true==TryReadWriteSpinlock.TryLockForRead(),"RWSpinLock::TryLockRead");
-                TEST(false==TryReadWriteSpinlock.TryLockForWrite(),"RWSpinLock::TryLockWriteExcludes");
-                TEST(true==TryReadWriteSpinlock.TryLockForRead(),"RWSpinLock::TryLockReadMultiple");
+                TestOutput << "ReadWriteSpinLock tests (true values are all good): " << endl;
+                bool TestValue = true==TryReadWriteSpinlock.TryLockForRead();
+                cout << "Just tried to TryLockForRead expecting to get the lock: " << TestValue << endl;
+                TEST( TestValue, "RWSpinLock::TryLockRead");
+
+                TestValue = false==TryReadWriteSpinlock.TryLockForWrite();
+                cout << "Just tried to TryLockForWrite expecting to *not* get the lock: " << TestValue << endl;
+                TEST(TestValue,"RWSpinLock::TryLockReadExcludesWrite");
+
+                TestValue = true==TryReadWriteSpinlock.TryLockForRead();
+                cout << "Just tried to TryLockForRead expecting to  get the lock: " << TestValue << endl;
+                TEST(TestValue,"RWSpinLock::TryLockReadMultiple");
+                cout << "Trying to UnlockRead twice expecting to release the lock twice, no test for this." << endl;
                 TryReadWriteSpinlock.UnlockRead();
                 TryReadWriteSpinlock.UnlockRead();
 
-                TEST(true==TryReadWriteSpinlock.TryLockForWrite(),"RWSpinLock::TryLockWrite");
-                TEST(false==TryReadWriteSpinlock.TryLockForRead(),"RWSpinLock::TryLockReadExcludes");
+                TestValue = true==TryReadWriteSpinlock.TryLockForWrite();
+                cout << "Just tried to TryLockForWrite expecting to get the lock: " << TestValue << endl;
+                TEST(TestValue,"RWSpinLock::TryLockWrite");
+
+                TestValue = false==TryReadWriteSpinlock.TryLockForRead();
+                cout << "Just tried to TryLockForRead expecting to *not* get the lock: " << TestValue << endl;
+                TEST(TestValue,"RWSpinLock::TryLockWriteExcludesRead");
+                TestValue = false==TryReadWriteSpinlock.TryLockForWrite();
+                cout << "Just tried to TryLockForWrite expecting to *not* get the lock: " << TestValue << endl;
+                TEST(TestValue,"RWSpinLock::TryLockWriteExcludesWrite");
+                cout << "Trying to UnlockWrite twice expecting to release the lock twice, no test for this." << endl;
                 TryReadWriteSpinlock.UnlockWrite();
+
                 /*//TryToSquareInThreadRWSpin TryToReadInThreadRWSpin;
                 TestOutput << "Testing ReadWriteSpinLock try_writelock()" << endl;
 
