@@ -61,22 +61,8 @@ namespace Mezzanine
 
 
         void ReadWriteSpinLock::LockForRead()
-        {
-            bool locked = false;
-            Int32 Expected = Locked;
-            /*while(!locked)
-            {
-                if (0<AtomicCompareAndSwap32(&Locked,0,0))
-                {
-
-                }
-            }*/
-
-            if(0>Expected)
-                { return; }
-            //while(AtomicCompareAndSwap32(&Locked,0,1))
-                {}
-        }
+        {}
+        //{ while(!TryLockForRead()){} }
 
         bool ReadWriteSpinLock::TryLockForRead()
         {
@@ -97,20 +83,16 @@ namespace Mezzanine
             while(Expected!=AtomicCompareAndSwap32(&Locked,Expected,Expected-1))
                 { Expected = Locked; }
         }
-        //{ AtomicCompareAndSwap32(&Locked,1,0); }
-
 
         void ReadWriteSpinLock::LockForWrite()
-        {
-            //while(AtomicCompareAndSwap32(&Locked,0,1))
-                {}
-        }
+        {}
+            //{ while(AtomicCompareAndSwap32(&Locked,0,1)) {} }
 
         bool ReadWriteSpinLock::TryLockForWrite()
             { return 0==AtomicCompareAndSwap32(&Locked,0,std::numeric_limits<Int32>::min()); }
 
         void ReadWriteSpinLock::UnlockWrite()
-            { !AtomicCompareAndSwap32(&Locked,std::numeric_limits<Int32>::min(),0); }
+            { AtomicCompareAndSwap32(&Locked,std::numeric_limits<Int32>::min(),0); }
 
 
 

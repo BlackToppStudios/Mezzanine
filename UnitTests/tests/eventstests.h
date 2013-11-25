@@ -96,13 +96,13 @@ class eventstests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            TestFunctor Func(TestOutput);
+            //TestFunctor Func(TestOutput);
 
-            TestPublisher Pub;
+            //TestPublisher Pub;
 
 
             // Why does one of these segfault and the other does not?
-            EventSubscriberSlot* temp = Pub.Subscribe("test", &Func, false);
+            //EventSubscriberSlot* temp = Pub.Subscribe("test", &Func, false);
             //Pub.Subscribe("test", &Func, false);
 
 
