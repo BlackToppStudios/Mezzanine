@@ -99,6 +99,7 @@
 #include "doublebufferedresource.h"
 #include "framescheduler.h"
 #include "frameschedulerworkunits.h"
+#include "lockguard.h"
 #include "logtools.h"
 #include "monopoly.h"
 #include "mutex.h"

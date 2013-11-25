@@ -42,6 +42,7 @@
 #define _readwritespinlock_h
 
 #include "datatypes.h"
+#include "lockguard.h"
 
 /// @file
 /// @brief Declares a Mutex, Mutex tools, and at least one MutexLike object.
@@ -105,7 +106,96 @@ namespace Mezzanine
                 /// @details If any threads are waiting for the read or write lock on this,
                 /// one of them willbe unblocked. If locked for read this doe nothing.
                 void UnlockWrite();
+
+                /// @brief Simply calls LockForWrite() for compatibility with lock_guard
+                void lock()
+                    { LockForWrite(); }
+                /// @brief Simply calls UnlockWrite() for compatibility with lock_guard
+                void unlock()
+                    { UnlockWrite(); }
         };//Mutex
+
+
+
+        /// @brief Read only lock guard.
+        /// @details The constructor locks the mutex, and the destructor unlocks the mutex, so
+        /// the mutex will automatically be unlocked when the lock guard goes out of
+        /// scope. Example usage:
+        /// @code
+        /// ReadWriteSpinLock m;
+        /// ClassThatIsWrittenInAnotherThread n;
+        ///
+        /// ClassThatIsWrittenInAnotherThread GetCurrent()
+        /// {
+        ///   ReadOnlyLockGuard<ReadWriteSpinLock> guard(m);
+        ///   return n; // returns a copy guaranteed to be valid because
+        ///             // the lock (which is attempted in the constructor
+        ///             // of the guard) could not be acquired until only
+        ///             // readers want it.
+        /// }
+        /// @endcode
+        template <class T>
+        class ReadOnlyLockGuard
+        {
+            public:
+                /// @brief This allows other code to use the type of this mutex in a more safe way.
+                typedef T mutex_type;
+
+            private:
+                /// @internal
+                /// @brief A non-owning pointer to the mutex.
+                mutex_type* mMutex;
+
+            public:
+                /// @brief The constructor locks the mutex.
+                /// @param aMutex Any mutex which implements lock() and unlock().
+                explicit ReadOnlyLockGuard(mutex_type& aMutex)
+                    : mMutex(&aMutex)
+                    { mMutex->LockForRead(); }
+
+                /// @brief The destructor unlocks the mutex.
+                ~ReadOnlyLockGuard()
+                    { mMutex->UnlockRead(); }
+        };//lock_guard
+
+        /// @brief ReadWrite lock guard.
+        /// @details The constructor locks the mutex, and the destructor unlocks the mutex, so
+        /// the mutex will automatically be unlocked when the lock guard goes out of
+        /// scope. Example usage:
+        /// @code
+        /// ReadWriteSpinLock m;
+        /// int counter;
+        ///
+        /// int Increment()
+        /// {
+        ///   ReadWriteLockGuard<ReadWriteSpinLock> guard(m);
+        ///   return counter++;
+        /// }
+        /// @endcode
+        template <class T>
+        class ReadWriteLockGuard
+        {
+            public:
+                /// @brief This allows other code to use the type of this mutex in a more safe way.
+                typedef T mutex_type;
+
+            private:
+                /// @internal
+                /// @brief A non-owning pointer to the mutex.
+                mutex_type* mMutex;
+
+            public:
+                /// @brief The constructor locks the mutex.
+                /// @param aMutex Any mutex which implements lock() and unlock().
+                explicit ReadWriteLockGuard(mutex_type& aMutex)
+                    : mMutex(&aMutex)
+                    { mMutex->LockForWrite(); }
+
+                /// @brief The destructor unlocks the mutex.
+                ~ReadWriteLockGuard()
+                    { mMutex->UnlockWrite(); }
+        };//lock_guard
+
     }//Threading
 }//Mezzanine
 

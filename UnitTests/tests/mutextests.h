@@ -305,6 +305,7 @@ class mutextests : public UnitTestGroup
                 //LogForMutexes.str("");
                 cout << endl << "Creating " << ThreadCount << " threads to read and write into a value proected by a ReadWriteSpinLock" << endl;
                 Bool WriteTest = true;
+                MaxInt Start = GetTimeStamp();
                 for(Whole Counter=0; Counter<ThreadCount; Counter++)
                 {
                     WriteTest = !WriteTest;
@@ -326,16 +327,34 @@ class mutextests : public UnitTestGroup
                     (*Iter)->join();
                     delete *Iter;
                 }
+                MaxInt End = GetTimeStamp();
 
                 Int32 Expected = (ThreadCount+1)/2+10;
                 TestOutput << "Expected result is " << Expected << " actually got " << Value << "." << endl;
                 TEST(Expected==Value,"RWSpinLock::StressTest");
                 //TestOutput << "ThreadLog" << endl << LogForMutexes.str() << endl << "/ThreadLog" << endl;
+                TestOutput << "It took " << End-Start << " microseconds to create, run, join and then delete "
+                           << ThreadCount << " threads half of which change the a single piece of data. "
+                           << "This is " << PreciseReal(ThreadCount)/PreciseReal(End-Start) * PreciseReal(1000000)
+                           << " threads per second." << endl;
 
 
-            } // SpinLock::Trylock
+            } // ReadWriteSpinLock
 
-
+            { // ReadWriteSpinLock and lock guards
+                {
+                    lock_guard<ReadWriteSpinLock> g(TryReadWriteSpinlock);
+                }
+                TEST(true,"RWSpinLock::lock_gaurd");
+                {
+                    ReadOnlyLockGuard<ReadWriteSpinLock> g(TryReadWriteSpinlock);
+                }
+                TEST(true,"RWSpinLock::ReadOnlyLockGuard");
+                {
+                    ReadWriteLockGuard<ReadWriteSpinLock> g(TryReadWriteSpinlock);
+                }
+                TEST(true,"RWSpinLock::ReadWriteLockGuard");
+            } // ReadWriteSpinLock and lock guards
         }
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true

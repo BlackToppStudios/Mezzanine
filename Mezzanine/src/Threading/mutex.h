@@ -127,63 +127,24 @@ namespace Mezzanine
                 /// be obtained. The mutex remains locked until @c unlock() is called.
                 /// @see lock_guard
                 void Lock();
-
                 /// @brief Try to lock the mutex.
                 /// @details The method will try to lock the mutex. If it fails, the function will
                 /// return immediately (non-blocking).
                 /// @return @c true if the lock was acquired, or @c false if the lock could
                 /// not be acquired.
                 bool TryLock();
-
                 /// @brief Unlock the mutex.
                 /// @details If any threads are waiting for the lock on this mutex, one of them will
                 /// be unblocked.
                 void Unlock();
+
+                /// @brief Simply calls Lock() for compatibility with lock_guard and other more standard mutexes
+                void lock()
+                    { Lock(); }
+                /// @brief Simply calls Unlock() for compatibility with lock_guard and other more standard mutexes
+                void unlock()
+                    { Unlock(); }
         };//Mutex
-
-        /// @brief Lock guard class.
-        /// @details The constructor locks the mutex, and the destructor unlocks the mutex, so
-        /// the mutex will automatically be unlocked when the lock guard goes out of
-        /// scope. Example usage:
-        /// @code
-        /// mutex m;
-        /// int counter;
-        ///
-        /// void increment()
-        /// {
-        ///   lock_guard<mutex> guard(m);
-        ///   ++counter;
-        /// }
-        /// @endcode
-        template <class T>
-        class lock_guard {
-            public:
-                /// @brief This allows other code to use the type of this mutex in a more safe way.
-                typedef T mutex_type;
-
-                // @brief Empty Constructor
-                //lock_guard() : mMutex(0) {}
-
-                /// @brief The constructor locks the mutex.
-                /// @param aMutex Any mutex which implements lock() and unlock().
-                explicit lock_guard(mutex_type& aMutex)
-                {
-                    mMutex = &aMutex;
-                    mMutex->Lock();
-                }
-
-                /// @brief The destructor unlocks the mutex.
-                ~lock_guard()
-                {
-                    if(mMutex)
-                        mMutex->Unlock();
-                }
-
-            private:
-                /// @internal
-                /// @brief A non-owning pointer to the mutex.
-                mutex_type* mMutex;
-        };//lock_guard
     }//Threading
 }//Mezzanine
 
