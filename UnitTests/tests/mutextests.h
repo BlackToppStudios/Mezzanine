@@ -298,7 +298,7 @@ class mutextests : public UnitTestGroup
                 TryReadWriteSpinlock.UnlockWrite();
 
 
-                Whole ThreadCount = 20000;
+                Whole ThreadCount = 30000;
                 vector<Mezzanine::Threading::Thread*> Threads;
                 Threads.reserve(ThreadCount);
                 Int32 Value = 10;
@@ -317,7 +317,7 @@ class mutextests : public UnitTestGroup
 
                 TestOutput << "Waiting briefly for most threaded work to complete." << endl;
                 //Mezzanine::Threading::this_thread::sleep_for(5000*ThreadCount);
-                Mezzanine::Threading::this_thread::sleep_for(2*ThreadCount);
+                //Mezzanine::Threading::this_thread::sleep_for(2*ThreadCount);
 
                 TestOutput << "Joining and then cleaning up all threads." << endl;
                 for(vector<Mezzanine::Threading::Thread*>::iterator Iter = Threads.begin();
