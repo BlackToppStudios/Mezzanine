@@ -111,10 +111,10 @@ namespace Mezzanine
         {}
 
         UnitTestGroup::UnitTestGroup(const UnitTestGroup& OtherGroup)
-            : set(OtherGroup),
+            : //set(OtherGroup),
               TestOutput(OtherGroup.TestOutput.str()),
               TestError(OtherGroup.TestError.str())
-        {}
+        { insert(OtherGroup.begin(),OtherGroup.end()); }
 
         void UnitTestGroup::RunTests(bool RunAuto, bool RunInteractive)
         {

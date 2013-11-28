@@ -356,7 +356,7 @@ namespace Mezzanine
                 LineSegmentCount+=Whole(Loop);
                 if(1==LineSegmentCount)
                     { return Percentage; }
-                return std::fmod(Percentage,PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount;
+                return std::fmod(PreciseReal(Percentage),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount;
             }
 
             InterpolatableType GetInterpolated(Real Percentage, Bool Loop) const
