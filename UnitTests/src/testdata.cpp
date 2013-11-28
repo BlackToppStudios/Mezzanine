@@ -364,8 +364,8 @@ namespace Mezzanine
                 Output.flush();
             }
 
-            if(FullOutput)
-                { Error << "Errors:\n" << TestError.str(); }
+            if(FullOutput && TestError.str().size()>3 ) // Sometimes the copying put "0\r\n" in TestError
+                { Error << "Errors: " << TestError.str(); }
         }
 
         void UnitTestGroup::Test(bool TestCondition, const String& TestName, TestResult IfFalse, TestResult IfTrue, const String& FuncName, const String& File, Whole Line )

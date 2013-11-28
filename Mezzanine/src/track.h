@@ -106,6 +106,22 @@ namespace Mezzanine
     template <typename InterpolatableType> class TrackLinear;
 
     /// @brief An Iterator that can take an arbitrary amount of steps through a track.
+    /// @details This stores a value between 0.0 and 1.0 as the current location on a
+    /// track, and another value between 0.0 an 1.0 as how muc to move when
+    /// incremented. Everytime this is dereferenced it makes a call against the
+    /// track it targets and gets the point on the track that corresponds with is current
+    /// location. For example, presume SomeTrack is a valid track instance:
+    /// @code
+    /// SmoothTrackIterator<Vector3> Iter(&SomeTrack,0.0,1.0/200.0);
+    ///
+    /// for(Whole Counter = 0; Counter<200; Counter++
+    /// {
+    ///     std::cout << *Iter << std::endl;
+    /// }
+    /// @endcode
+    /// This code will output 200 Vector3's lying on the path define by the track, which
+    /// are each separated b approximately 0.5% ofthe tracks full length. If the track is
+    /// small this could look pretty smooth
     template<typename InterpolatableType>
     class SmoothTrackIterator
     {
@@ -217,6 +233,8 @@ namespace Mezzanine
             virtual CountedPtr<InterpolatableType> operator->() const
                 { return CountedPtr<InterpolatableType> (new InterpolatableType(TargetTrack->GetInterpolated(Location))); }
 
+            /// @brief Move the SmoothTrackIterator backwards on the track.
+            /// @details the
             SmoothTrackIterator<InterpolatableType>&  operator--()
             {
                 Decrement();
