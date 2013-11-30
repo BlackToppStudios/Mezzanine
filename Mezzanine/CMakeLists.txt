@@ -286,6 +286,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Threading/workunitkey.h"
         "${${PROJECT_NAME}_SRC_DIR}timer.h"
         "${${PROJECT_NAME}_SRC_DIR}track.h"
+        "${${PROJECT_NAME}_SRC_DIR}trackiterator.h"
         "${${PROJECT_NAME}_SRC_DIR}transform.h"
         "${${PROJECT_NAME}_SRC_DIR}transformableobject.h"
         "${${PROJECT_NAME}_SRC_DIR}trie.h"

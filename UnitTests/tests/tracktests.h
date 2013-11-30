@@ -38,12 +38,14 @@
    John Blackwood - makoenergy02@gmail.com
 */
 #ifndef _tracktests_h
-#define _tracketests_h
+#define _tracktests_h
 
 #include "mezztest.h"
 
 #include "track.h"
+#include "trackiterator.h"
 #include "exception.h"
+#include "vector3.h"
 
 
 /// @file
@@ -266,11 +268,13 @@ class tracktests : public UnitTestGroup
                 TEST(!(Iter!=Iter2), "SmoothTrackIterator!=");
 
 
-                /*TestIteratorTrack.push_back(Vector3(0,0,0)); // need to do this better.
+                TestIteratorTrack.push_back(Vector3(0,0,0)); // need to do this better.
                 TestOutput << "200 steps with a looped iterator on at a 100 step resolution on a four point track:" << endl;
+
+                //Icky non-idiomatic way
                 SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/100.0);
-                for(Whole Counter=0; Counter<200; Counter++,LoopedIter++)
-                    { TestOutput << *LoopedIter << endl; }*/
+                for(Whole Counter=0; Counter<200; Counter++, LoopedIter++)
+                    { TestOutput << *LoopedIter << endl; }
 
 
             }
