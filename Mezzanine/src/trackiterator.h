@@ -97,27 +97,11 @@ namespace Mezzanine
             /// @brief How far should this
             Real Step;
 
-            bool BoundsCheck()
-            {
-                Real Original = Location;
-                while(1.0<Location)
-                    { Location--; }
-                while(0.0>Location)
-                    { Location++; }
-                return Original!=Location;
-            }
-
             void Increment()
-            {
-                Location += Step;
-                BoundsCheck();
-            }
+                { Location += Step; }
 
             void Decrement()
-            {
-                Location -= Step;
-                BoundsCheck();
-            }
+                { Location -= Step; }
 
             void StepAdjust(Integer Steps)
                 { Location += Step * PreciseReal(Steps); }
@@ -210,6 +194,30 @@ namespace Mezzanine
                 SmoothTrackIterator<InterpolatableType> Results(*this);
                 Increment();
                 return Results;
+            }
+
+            /// @brief Is the Iterator inside the track?
+            /// @return This returns 0 if iterator is in the bounds of the track, -1 if before and 1 if after.
+            Integer BoundsCheck() const
+            {
+                if(1.0 < Location)
+                    { return 1; }
+                if(0.0 > Location)
+                    { return -1; }
+                return 0;
+            }
+
+            /// @brief If this is iterator is beyond the bounds of the track it target *wrap*it around to the other side
+            /// @details Since the location on the track is stored as a value between 0.0 and 1.0
+            /// @return
+            bool BoundsCorrect()
+            {
+                Real Original = Location;
+                while(1.0<Location)
+                    { Location--; }
+                while(0.0>Location)
+                    { Location++; }
+                return Original!=Location;
             }
 
             SmoothTrackIterator<InterpolatableType>&  operator+(Whole Steps)

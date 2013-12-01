@@ -271,6 +271,13 @@ class tracktests : public UnitTestGroup
                 TestIteratorTrack.push_back(Vector3(0,0,0)); // need to do this better.
                 TestOutput << "200 steps with a looped iterator on at a 100 step resolution on a four point track:" << endl;
 
+                TestOutput << "Validating iterator bounds checking:" << endl;
+                TEST(SmoothTrackIterator<Vector3>(&TestIteratorTrack,0.0,1.0/100.0).BoundsCheck()==0, "SmoothTrackIterator::BoundsCheckIn");
+                TEST(SmoothTrackIterator<Vector3>(&TestIteratorTrack,-0.1,1.0/100.0).BoundsCheck()==-1, "SmoothTrackIterator::BoundsCheckLow");
+                TEST(SmoothTrackIterator<Vector3>(&TestIteratorTrack,1.1,1.0/100.0).BoundsCheck()==1, "SmoothTrackIterator::BoundsCheckHigh");
+
+
+
                 //Icky non-idiomatic way
                 SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/100.0);
                 for(Whole Counter=0; Counter<200; Counter++, LoopedIter++)
