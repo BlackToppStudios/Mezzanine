@@ -261,6 +261,20 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(1.0), "SmoothTrackIterator->--",4);
                 TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator*--",4);
 
+                Iter = Iter + 3;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using +3)on a Linear track: " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(4.0,0.0,0.0), "SmoothTrackIterator+",4);
+                Iter = Iter - 3;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using -3)on a Linear track: " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator-",4);
+
+                Iter += 3;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using +=3)on a Linear track: " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(4.0,0.0,0.0), "SmoothTrackIterator+=",4);
+                Iter -= 3;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using -=3)on a Linear track: " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator-=",4);
+
                 SmoothTrackIterator<Vector3> Iter2(0);
                 Iter2 = Iter;
                 TEST_EQUAL_EPSILON(*Iter, *Iter2, "SmoothTrackIterator=");
@@ -277,11 +291,26 @@ class tracktests : public UnitTestGroup
                 TEST(SmoothTrackIterator<Vector3>(&TestIteratorTrack,1.1,1.0/100.0).BoundsCheck()==1, "SmoothTrackIterator::BoundsCheckHigh");
 
 
-
-                //Icky non-idiomatic way
-                SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/100.0);
-                for(Whole Counter=0; Counter<200; Counter++, LoopedIter++)
+                /// Idiomatic loop
+                TestOutput << "Sample track iteration with for loop:" << endl;
+                for(SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
+                    LoopedIter!=SmoothTrackIterator<Vector3> (&TestIteratorTrack,1.0,1.0/10.0);
+                    LoopedIter++)
                     { TestOutput << *LoopedIter << endl; }
+
+
+                /// Almost Idiomatic loop
+                TestOutput << "Sample track iteration with for loop:" << endl;
+                for(SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
+                    0==LoopedIter.BoundsCheck();
+                    LoopedIter++)
+                    { TestOutput << *LoopedIter << endl; }
+
+                //non-idiomatic way to iterate over a track
+                SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
+                for(Whole Counter=0; Counter<10; Counter++, LoopedIter++)
+                    { TestOutput << *LoopedIter << endl; }
+
 
 
             }

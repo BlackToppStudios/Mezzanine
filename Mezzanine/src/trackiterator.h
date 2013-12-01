@@ -97,12 +97,13 @@ namespace Mezzanine
             /// @brief How far should this
             Real Step;
 
+            /// @brief Move the iterator in the direction of the step.
             void Increment()
                 { Location += Step; }
-
+            /// @brief Move the iterator in the opposite direction from the step.
             void Decrement()
                 { Location -= Step; }
-
+            /// @brief Move the iterator a multiple (including negative multiples) of the step.
             void StepAdjust(Integer Steps)
                 { Location += Step * PreciseReal(Steps); }
 
@@ -163,7 +164,7 @@ namespace Mezzanine
             virtual CountedPtr<InterpolatableType> operator->() const
                 { return CountedPtr<InterpolatableType> (new InterpolatableType(TargetTrack->GetInterpolated(Location))); }
 
-            /// @brief Move the SmoothTrackIterator backwards on the track.
+            /// @brief Move the SmoothTrackIterator backwards on the track by on step.
             /// @details The iterator is moved to a new position by subtracting the
             /// step from the current location.
             /// @return A Reference to this iterator after the change has been made.
@@ -176,6 +177,7 @@ namespace Mezzanine
             /// @brief Move the SmoothTrackIterator backwards on the track and get a copy of its location before
             /// @details Like the prefix -- this moves the iterator, but this returns a copy
             /// of the iterator before being increment.
+            /// @return An iterator that is a copy of this one before the decrement.
             SmoothTrackIterator<InterpolatableType>  operator--(int)
             {
                 SmoothTrackIterator<InterpolatableType> Results(*this);
@@ -183,12 +185,20 @@ namespace Mezzanine
                 return Results;
             }
 
+            /// @brief Move the SmoothTrackIterator forwards on the track by on step.
+            /// @details The iterator is moved to a new position by adding the
+            /// step from the current location.
+            /// @return A Reference to this iterator after the change has been made.
             SmoothTrackIterator<InterpolatableType>&  operator++()
             {
                 Increment();
                 return *this;
             }
 
+            /// @brief Move the SmoothTrackIterator forwards on the track and get a copy of its location before
+            /// @details Like the prefix ++ this moves the iterator, but this returns a copy
+            /// of the iterator before being incremented.
+            /// @return An iterator that is a copy of this one before the decrement.
             SmoothTrackIterator<InterpolatableType>  operator++(int)
             {
                 SmoothTrackIterator<InterpolatableType> Results(*this);
@@ -197,7 +207,7 @@ namespace Mezzanine
             }
 
             /// @brief Is the Iterator inside the track?
-            /// @return This returns 0 if iterator is in the bounds of the track, -1 if before and 1 if after.
+            /// @return This returns 0 if iterator is in the bounds of the track, -1 if before and 1 if after the bounds of the track.
             Integer BoundsCheck() const
             {
                 if(1.0 < Location)
@@ -207,9 +217,11 @@ namespace Mezzanine
                 return 0;
             }
 
-            /// @brief If this is iterator is beyond the bounds of the track it target *wrap*it around to the other side
-            /// @details Since the location on the track is stored as a value between 0.0 and 1.0
-            /// @return
+            /// @brief If this is iterator is beyond the bounds of the track it target *wrap* it around to the other side
+            /// @details Since the location on the track is stored as a value between 0.0 and 1.0 as long asthe step is
+            /// less than ,subtracting or adding one will preserve the apparent offset from the last location on looped
+            /// tracks
+            /// @return True if the bounds where outside the track and false if they where not.
             bool BoundsCorrect()
             {
                 Real Original = Location;
@@ -220,12 +232,40 @@ namespace Mezzanine
                 return Original!=Location;
             }
 
-            SmoothTrackIterator<InterpolatableType>&  operator+(Whole Steps)
+            /// @brief Move a copy of this iterator a multiple of steps relative to the amount added
+            /// @return A reference to this iterator to allow multiple math operations.
+            SmoothTrackIterator<InterpolatableType> operator+(Whole Steps)
             {
-               StepAdjust(Steps);
+                SmoothTrackIterator<InterpolatableType> Results(*this);
+                Results.StepAdjust(Steps);
+                return Results;
             }
 
-            //StepAdjust(Integer Steps)
+            /// @brief Move a copy this iterator a negativemultiple of steps relative to the amount subtract
+            /// @return A reference to this iterator to allow multiple math operations.
+            SmoothTrackIterator<InterpolatableType> operator-(Whole Steps)
+            {
+                SmoothTrackIterator<InterpolatableType> Results(*this);
+                Results.StepAdjust(-Steps);
+                return Results;
+            }
+
+
+            /// @brief
+            /// @return
+            SmoothTrackIterator<InterpolatableType> operator+=(Whole Steps)
+            {
+                StepAdjust(Steps);
+                return *this;
+            }
+
+            /// @brief
+            /// @return
+            SmoothTrackIterator<InterpolatableType> operator-=(Whole Steps)
+            {
+                StepAdjust(-Steps);
+                return *this;
+            }
 
             // This is nearly a random access iterator it cannot:
             // allow dereferenced assigment, the points aren't actually contained anywhere so there is nothing to write to
@@ -233,14 +273,10 @@ namespace Mezzanine
 
             // it will
 
-            // operator +
-            // operator -
             // operator <
             // operator >
             // operator <=
             // operator >=
-            // operator +=
-            // operator -=
             // operator[](int)
 
     };
@@ -248,6 +284,9 @@ namespace Mezzanine
     template<typename InterpolatableType>
     SmoothTrackIterator<InterpolatableType>&  operator+(Whole Steps, SmoothTrackIterator<InterpolatableType>& Iter)
         { return Iter + Steps; }
+    template<typename InterpolatableType>
+    SmoothTrackIterator<InterpolatableType>&  operator-(Whole Steps, SmoothTrackIterator<InterpolatableType>& Iter)
+        { return Iter - Steps; }
 
 }//Mezzanine
 
