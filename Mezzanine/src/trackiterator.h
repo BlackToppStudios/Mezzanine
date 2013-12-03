@@ -300,7 +300,7 @@ namespace Mezzanine
             /// @brief Get an iterator an arbitrary number of steps forward or backwards.
             /// @note Even though the results of this could be assignable doing so is useless without storing the results in a new iterator so this is made const.
             /// @param Steps How many times to increment or decrement the iterator.
-            const SmoothTrackIterator<InterpolatableType>& operator[](Integer Steps)
+            const SmoothTrackIterator<InterpolatableType> operator[](Integer Steps)
                 { return *this + Steps; }
 
     };

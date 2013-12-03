@@ -290,8 +290,8 @@ class tracktests : public UnitTestGroup
                 TEST(SmoothTrackIterator<Vector3>(&TestIteratorTrack,-0.1,1.0/100.0).BoundsCheck()==-1, "SmoothTrackIterator::BoundsCheckLow");
                 TEST(SmoothTrackIterator<Vector3>(&TestIteratorTrack,1.1,1.0/100.0).BoundsCheck()==1, "SmoothTrackIterator::BoundsCheckHigh");
 
-
-                /// Idiomatic loop
+                // Some sample loops for academic purposes
+                // Idiomatic loop
                 TestOutput << "Sample track iteration with for loop:" << endl;
                 for(SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
                     LoopedIter!=SmoothTrackIterator<Vector3> (&TestIteratorTrack,1.0,1.0/10.0);
@@ -299,19 +299,39 @@ class tracktests : public UnitTestGroup
                     { TestOutput << *LoopedIter << endl; }
 
 
-                /// Almost Idiomatic loop
+                // Almost Idiomatic loop
                 TestOutput << "Sample track iteration with for loop:" << endl;
                 for(SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
                     0==LoopedIter.BoundsCheck();
                     LoopedIter++)
                     { TestOutput << *LoopedIter << endl; }
 
-                //non-idiomatic way to iterate over a track
+                // non-idiomatic way to iterate over a track
                 SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
                 for(Whole Counter=0; Counter<10; Counter++, LoopedIter++)
                     { TestOutput << *LoopedIter << endl; }
 
+                TestOutput << "Validating iterator comparison operators." << endl;
+                SmoothTrackIterator<Vector3> HighIter(&TestIteratorTrack,.8,1.0/100.0);
+                SmoothTrackIterator<Vector3> MidIter(&TestIteratorTrack,.5,1.0/100.0);
+                SmoothTrackIterator<Vector3> LowIter(&TestIteratorTrack,.2,1.0/100.0);
+                TEST((HighIter < LowIter) == false, "SmoothTrackIterator<1");
+                TEST((LowIter < HighIter) == true, "SmoothTrackIterator<2");
+                TEST((MidIter < MidIter) == false, "SmoothTrackIterator<3");
+                TEST((HighIter > LowIter) == true, "SmoothTrackIterator>1");
+                TEST((LowIter > HighIter) == false, "SmoothTrackIterator>2");
+                TEST((MidIter > MidIter) == false, "SmoothTrackIterator>3");
+                TEST((HighIter <= LowIter) == false, "SmoothTrackIterator<=1");
+                TEST((LowIter <= HighIter) == true, "SmoothTrackIterator<=2");
+                TEST((MidIter <= MidIter) == true, "SmoothTrackIterator<=3");
+                TEST((HighIter >= LowIter) == true, "SmoothTrackIterator>=1");
+                TEST((LowIter >= HighIter) == false, "SmoothTrackIterator>=2");
+                TEST((MidIter >= MidIter) == true, "SmoothTrackIterator>=3");
 
+                TestOutput << "Validating iterator indexing [] operator." << endl;
+                SmoothTrackIterator<Vector3> IndexIter1(&TestIteratorTrack,.8,1.0/100.0);
+                SmoothTrackIterator<Vector3> IndexIter2(&TestIteratorTrack,.9,1.0/100.0);
+                TEST(IndexIter1[10] == IndexIter2, "SmoothTrackIterator[]");
 
             }
             
