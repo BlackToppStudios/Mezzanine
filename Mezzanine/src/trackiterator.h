@@ -91,7 +91,7 @@ namespace Mezzanine
 
         protected:
             /// @brief The track this works against.
-            TargetTrackType* TargetTrack;
+            const TargetTrackType* const TargetTrack;
             /// @brief Where on the track are we?
             Real Location;
             /// @brief How far should this
@@ -113,7 +113,7 @@ namespace Mezzanine
             /// @param TrackToIterate Which track with this work against.
             /// @param WhereToStart Where on the track (range 0 to 1) Should iteration start.
             /// @param Increment When incremented how much should the location change? Defaults to .01 to create 100 steps.
-            SmoothTrackIterator(TargetTrackType* TrackToIterate, Real WhereToStart = 0.0, Real Increment = 0.01)
+            SmoothTrackIterator(const TargetTrackType* const TrackToIterate, Real WhereToStart = 0.0, Real Increment = 0.01)
                 : TargetTrack(TrackToIterate), Location(WhereToStart), Step(Increment)
                 {}
             /// @brief Create a copy of an SmoothTrackIterator.
@@ -122,12 +122,12 @@ namespace Mezzanine
                 : TargetTrack(Copy.TargetTrack), Location(Copy.Location), Step(Copy.Step)
                 {}
 
-            /// @brief Change this SmoothTrackIterator to match another.
-            /// @param Other The SmoothTrackIterator to copy.
+            /// @brief Change this SmoothTrackIterator to match another (Except for Track)
+            /// @param Other The SmoothTrackIterator to copy, except for its target track
             /// @return A SmoothTrackIterator<InterpolatableType>
             SmoothTrackIterator<InterpolatableType>& operator=(const SmoothTrackIterator<InterpolatableType>& Other)
             {
-                TargetTrack=Other.TargetTrack;
+                //TargetTrack=Other.TargetTrack;
                 Location=Other.Location;
                 Step=Other.Step;
                 return *this;

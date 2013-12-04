@@ -69,7 +69,9 @@ namespace Mezzanine
     {
         public:
             /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
-            typedef  std::vector<InterpolatableType> DataContainerType;
+            typedef std::vector<InterpolatableType> DataContainerType;
+
+            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
 
         protected:
             /// @brief The underlying container of Discreate datapoints
@@ -100,6 +102,11 @@ namespace Mezzanine
             /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
             /// @return An InterpolatableType
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const = 0;
+
+            /// @brief
+            virtual SmoothIteratorType begin(Integer Steps) const = 0;
+            virtual SmoothIteratorType end(Integer Steps) const = 0;
+
     };
 
     /// @brief A track that uses linear interpolation for linear and looped tracks.
@@ -121,9 +128,9 @@ namespace Mezzanine
             /// @brief An Iterator for the raw points of the track, guaranteed to not change the track
             typedef typename TrackLinear::const_iterator ConstIterator;
             /// @brief A type used for iterating over the range of interpolated values of the track, and guaranteed to not change the track.
-            typedef SmoothTrackIterator<InterpolatableType> SmoothIterator;
+            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
             /// @brief The functor that does the actual interpolation of the points.
-            typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator Interpolator;
+            typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator InterpolatorType;
 
         public:
             /// @brief For a given percentage determine which two data points it is between.
@@ -157,7 +164,7 @@ namespace Mezzanine
                         { return TrackBase<InterpolatableType>::DataPoints[0]; }
                     if(DataPointCount-1<=Index) // If we are in the last segment connect and should connect to the begining
                     {
-                        return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],
+                        return InterpolatorType::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],
                                                          TrackBase<InterpolatableType>::DataPoints[0],
                                                          LocalPercentage);
                     }
@@ -166,7 +173,7 @@ namespace Mezzanine
                         { return TrackBase<InterpolatableType>::DataPoints[Index]; }
 
                 }
-                return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
+                return InterpolatorType::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
                                                  TrackBase<InterpolatableType>::DataPoints[Index+1],// The second point
                                                  LocalPercentage); // The percentage we are through this line segment
             }
@@ -176,6 +183,21 @@ namespace Mezzanine
 
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
                 { return GetInterpolated(Percentage, true); }
+
+
+            virtual SmoothIteratorType begin(Integer Steps=100) const
+            {
+                return SmoothIteratorType(this, 0.0,
+                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
+                                          );
+            }
+            virtual SmoothIteratorType end(Integer Steps=0) const
+            {
+                return SmoothIteratorType(this, 0.0,
+                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
+                                          );
+            }
+
 
     };
 

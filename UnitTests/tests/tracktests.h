@@ -275,8 +275,7 @@ class tracktests : public UnitTestGroup
                 TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using -=3)on a Linear track: " << *Iter << endl;
                 TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator-=",4);
 
-                SmoothTrackIterator<Vector3> Iter2(0);
-                Iter2 = Iter;
+                SmoothTrackIterator<Vector3> Iter2(Iter);
                 TEST_EQUAL_EPSILON(*Iter, *Iter2, "SmoothTrackIterator=");
                 TEST(Iter==Iter2, "SmoothTrackIterator==");
                 TEST(!(Iter!=Iter2), "SmoothTrackIterator!=");
@@ -291,10 +290,15 @@ class tracktests : public UnitTestGroup
                 TEST(SmoothTrackIterator<Vector3>(&TestIteratorTrack,1.1,1.0/100.0).BoundsCheck()==1, "SmoothTrackIterator::BoundsCheckHigh");
 
                 // Some sample loops for academic purposes
-                // Idiomatic loop
+                // Idiomatic loops
                 TestOutput << "Sample track iteration with for loop:" << endl;
                 for(SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
                     LoopedIter!=SmoothTrackIterator<Vector3> (&TestIteratorTrack,1.0,1.0/10.0);
+                    LoopedIter++)
+                    { TestOutput << *LoopedIter << endl; }
+
+                for(TrackLinear<Vector3>::SmoothIteratorType LoopedIter(TestIteratorTrack.begin(10));
+                    LoopedIter!=TestIteratorTrack.end();
                     LoopedIter++)
                     { TestOutput << *LoopedIter << endl; }
 
