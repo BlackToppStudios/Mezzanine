@@ -116,7 +116,6 @@ namespace Mezzanine
             SmoothTrackIterator(TargetTrackType* TrackToIterate, Real WhereToStart = 0.0, Real Increment = 0.01)
                 : TargetTrack(TrackToIterate), Location(WhereToStart), Step(Increment)
                 {}
-
             /// @brief Create a copy of an SmoothTrackIterator.
             /// @param Copy The SmoothTrackIterator to copy.
             SmoothTrackIterator(const SmoothTrackIterator<InterpolatableType>& Copy)
@@ -143,7 +142,6 @@ namespace Mezzanine
                        (Other.Location-std::numeric_limits<Real>::epsilon())<=Location &&
                        Location<=(Other.Location+std::numeric_limits<Real>::epsilon());
             }
-
             /// @brief Is this SmoothTrackIterator not on the same track and in the same place as another.
             /// @param Other The Other SmoothTrackIterator to compare this one too.
             /// @return True if the track is the same and the location on the track is close enough to be within 1 epsilon.
@@ -156,7 +154,6 @@ namespace Mezzanine
             /// @note Everytime this is called this it calls the interpolator in the Target Track, This should run in constant time, but is much slower than normal pointer dereferences.
             virtual InterpolatableType operator*() const
                 { return TargetTrack->GetInterpolated(Location); }
-
             /// @brief Derefernce this with the syntax for pointer member access.
             /// @return A Counted pointer to a temporary InterpolatableType instance.
             /// @warning This is read only because it is not stored anywhere.
@@ -173,7 +170,6 @@ namespace Mezzanine
                 Decrement();
                 return *this;
             }
-
             /// @brief Move the SmoothTrackIterator backwards on the track and get a copy of its location before
             /// @details Like the prefix -- this moves the iterator, but this returns a copy
             /// of the iterator before being increment.
@@ -195,7 +191,6 @@ namespace Mezzanine
                 Increment();
                 return *this;
             }
-
             /// @brief Move the SmoothTrackIterator forwards on the track and get a copy of its location before
             /// @details Like the prefix ++ this moves the iterator, but this returns a copy
             /// of the iterator before being incremented.
@@ -218,7 +213,6 @@ namespace Mezzanine
                     { return -1; }
                 return 0;
             }
-
             /// @brief If this is iterator is beyond the bounds of the track it target *wrap* it around to the other side
             /// @details Since the location on the track is stored as a value between 0.0 and 1.0 as long asthe step is
             /// less than ,subtracting or adding one will preserve the apparent offset from the last location on looped
@@ -243,7 +237,6 @@ namespace Mezzanine
                 Results.StepAdjust(Steps);
                 return Results;
             }
-
             /// @brief Move a copy this iterator a negativemultiple of steps relative to the amount subtract
             /// @return A reference to this iterator to allow multiple math operations.
             /// @note Even though the results of this could be assignable doing so is useless without storing the results in a new iterator so this is made const.
@@ -262,7 +255,6 @@ namespace Mezzanine
                 StepAdjust(Steps);
                 return *this;
             }
-
             /// @brief Move this iterator a given amount of steps backwards
             /// @return A reference to this iterator so it could be used in other operations
             SmoothTrackIterator<InterpolatableType>& operator-=(Integer Steps)
@@ -283,7 +275,6 @@ namespace Mezzanine
             /// @return true if the other iterator is closer to the start of its track than right one, false otherwise.
             bool operator>(const SmoothTrackIterator<InterpolatableType>& Right)
                 { return Location > Right.Location; }
-
             /// @brief Compare which iterator is further along the track
             /// @note The target track and the step size are ignored. This allows for potentially non-sensensical comparison.
             /// @param Right The value on the right of the <=.
