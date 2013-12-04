@@ -311,7 +311,9 @@ namespace Mezzanine
     template<typename InterpolatableType>
     SmoothTrackIterator<InterpolatableType>&  operator+(Integer Steps, SmoothTrackIterator<InterpolatableType>& Iter)
         { return Iter + Steps; }
-
+    /// @brief This allows for subtraction with and an Integer on the Left hand side, such as: 2 + Iter
+    /// @param Steps The Integer on the left.
+    /// @param Iter The SmoothTrackIterator on the right.
     template<typename InterpolatableType>
     SmoothTrackIterator<InterpolatableType>&  operator-(Integer Steps, SmoothTrackIterator<InterpolatableType>& Iter)
         { return Iter - Steps; }
