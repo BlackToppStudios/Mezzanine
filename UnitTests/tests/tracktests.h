@@ -302,6 +302,11 @@ class tracktests : public UnitTestGroup
                     LoopedIter++)
                     { TestOutput << *LoopedIter << endl; }
 
+                // Just by executing this line we can tell that these work to some degree.
+                TEST(true, "SmoothTrackIterator::begin1");
+                TEST(true, "SmoothTrackIterator::end1");
+                TEST(TestIteratorTrack.begin(10)==TrackLinear<Vector3>::SmoothIteratorType(&TestIteratorTrack,0.0,1.0/10.0), "SmoothTrackIterator::begin2");
+                TEST(TestIteratorTrack.end()==TrackLinear<Vector3>::SmoothIteratorType(&TestIteratorTrack,0.0,0.0), "SmoothTrackIterator::end2");
 
                 // Almost Idiomatic loop
                 TestOutput << "Sample track iteration with for loop:" << endl;
