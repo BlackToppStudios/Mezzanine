@@ -1,0 +1,24 @@
+diff -Nur FreeImage.orig\Source\FreeImage\BitmapAccess.cpp FreeImage\Source\FreeImage\BitmapAccess.cpp
+--- FreeImage.orig\Source\FreeImage\BitmapAccess.cpp	Thu Sep 03 08:41:36 2009
++++ FreeImage\Source\FreeImage\BitmapAccess.cpp	Sat Jul 24 21:25:08 2010
+@@ -82,7 +82,7 @@
+ //  Memory allocation on a specified alignment boundary
+ // ----------------------------------------------------------
+ 
+-#if (defined(_WIN32) || defined(_WIN64)) && !defined(__MINGW32__)
++#if (defined(_WIN32) || defined(_WIN64)) && (!defined(__MINGW32__) || defined(__MINGW64_VERSION_MAJOR))
+ 
+ void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
+ 	assert(alignment == FIBITMAP_ALIGNMENT);
+diff -Nur FreeImage.orig\Source\FreeImage\PluginTIFF.cpp FreeImage\Source\FreeImage\PluginTIFF.cpp
+--- FreeImage.orig\Source\FreeImage\PluginTIFF.cpp	Mon Nov 09 16:44:44 2009
++++ FreeImage\Source\FreeImage\PluginTIFF.cpp	Sat Jul 24 21:25:35 2010
+@@ -196,7 +196,7 @@
+     // 64bit machines (sizeof(int) != sizeof(long)). 
+     // Needs to be fixed within libTIFF.
+     if (tif)
+-		tif->tif_fd = (long)handle;
++		tif->tif_fd = (intptr_t)handle;
+ 
+ 	return tif;
+ }
