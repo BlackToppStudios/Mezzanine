@@ -53,6 +53,10 @@ namespace Mezzanine
     class MEZZ_LIB TransformableObject
     {
     public:
+        /// @brief Class Destructor.
+        virtual ~TransformableObject()
+            {  }
+
         /// @brief Sets the location of this object in parent space.
         /// @param Location A Vector3 representing the location this object is to be set to.
         virtual void SetLocation(const Vector3& Loc) = 0;
@@ -162,6 +166,10 @@ namespace Mezzanine
     class MEZZ_LIB TransformableChildObject
     {
     public:
+        /// @brief Class Destructor.
+        virtual ~TransformableChildObject()
+            {  }
+
         /// @brief Sets the location of this object in parent space.
         /// @param Location A Vector3 representing the location this object is to be set to.
         virtual void SetLocation(const Vector3& Loc) = 0;
