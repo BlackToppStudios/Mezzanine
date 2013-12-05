@@ -160,14 +160,13 @@ else(MSVC)
     set(D "-D")
 endif(MSVC)
 
-# TODO We need to replace this with a real solution for CPU architecture
-if(MINGW)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=i486")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=i486")
-else(MINGW)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=athlon64")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=athlon64")
-endif(MINGW)
+if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=athlon64")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=athlon64")
+else( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=i686")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=i686")
+endif( CMAKE_SIZEOF_VOID_P EQUAL 8 )
 
 ###############################################################################
 # Check For the Mezzanine Build Type options and set values accordingly
