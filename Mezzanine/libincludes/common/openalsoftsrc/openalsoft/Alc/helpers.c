@@ -256,7 +256,7 @@ void RestoreFPUMode(const FPUCtl *ctl)
 }
 
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(HAVE_PTHREAD_H)
 void pthread_once(pthread_once_t *once, void (*callback)(void))
 {
     LONG ret;
@@ -292,6 +292,38 @@ int pthread_setspecific(pthread_key_t key, void *val)
     return 0;
 }
 
+
+void *LoadLib(const char *name)
+{ return LoadLibraryA(name); }
+void CloseLib(void *handle)
+{ FreeLibrary((HANDLE)handle); }
+void *GetSymbol(void *handle, const char *name)
+{
+    void *ret;
+
+    ret = (void*)GetProcAddress((HANDLE)handle, name);
+    if(ret == NULL)
+        ERR("Failed to load %s\n", name);
+    return ret;
+}
+
+WCHAR *strdupW(const WCHAR *str)
+{
+    const WCHAR *n;
+    WCHAR *ret;
+    size_t len;
+
+    n = str;
+    while(*n) n++;
+    len = n - str;
+
+    ret = calloc(sizeof(WCHAR), len+1);
+    if(ret != NULL)
+        memcpy(ret, str, sizeof(WCHAR)*len);
+    return ret;
+}
+
+#elif defined(_WIN32) && defined(HAVE_PTHREAD_H)
 
 void *LoadLib(const char *name)
 { return LoadLibraryA(name); }
