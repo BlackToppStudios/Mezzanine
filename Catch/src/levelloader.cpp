@@ -65,7 +65,7 @@ void LevelLoader::LoadFerris()
     // Assuming all distances are in metric cm.
 
     // Create the background
-    Plane SkyPlane(Vector3(-15,-10,120),Vector3(15,-10,120),Vector3(0,10,120));
+    Plane SkyPlane(Vector3(-15,-10,-120),Vector3(15,-10,-120),Vector3(0,10,-120));
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Setup and Create the shapes that will be used.
@@ -336,7 +336,7 @@ void LevelLoader::LoadBigCurve()
     // Assuming all distances are in metric cm.
 
     // Create the background
-    Plane SkyPlane(Vector3(-15,-10,120),Vector3(15,-10,120),Vector3(0,10,120));
+    Plane SkyPlane(Vector3(-15,-10,-120),Vector3(15,-10,-120),Vector3(0,10,-120));
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Setup and Create the shapes that will be used.
@@ -462,7 +462,7 @@ void LevelLoader::LoadBlowsNotSucks()
     // Assuming all distances are in metric cm.
 
     // Create the background
-    Plane SkyPlane(Vector3(-15,-10,120),Vector3(15,-10,120),Vector3(0,10,120));
+    Plane SkyPlane(Vector3(-15,-10,-120),Vector3(15,-10,-120),Vector3(0,10,-120));
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Setup and Create the shapes that will be used.
@@ -679,7 +679,7 @@ void LevelLoader::LoadJustice()
     // Assuming all distances are in metric cm.
 
     // Create the background
-    Plane SkyPlane(Vector3(-15,-10,120),Vector3(15,-10,120),Vector3(0,10,120));
+    Plane SkyPlane(Vector3(-15,-10,-120),Vector3(15,-10,-120),Vector3(0,10,-120));
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Setup and Create the shapes that will be used.
@@ -899,7 +899,7 @@ void LevelLoader::LoadRollers()
     // Assuming all distances are in metric cm.
 
     // Create the background
-    Plane SkyPlane(Vector3(-15,-10,120),Vector3(15,-10,120),Vector3(0,10,120));
+    Plane SkyPlane(Vector3(-15,-10,-120),Vector3(15,-10,-120),Vector3(0,10,-120));
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Setup and Create the shapes that will be used.
@@ -1042,7 +1042,7 @@ void LevelLoader::LoadJustBounce()
     // Assuming all distances are in metric cm.
 
     // Create the background
-    Plane SkyPlane(Vector3(-15,-10,120),Vector3(15,-10,120),Vector3(0,10,120));
+    Plane SkyPlane(Vector3(-15,-10,-120),Vector3(15,-10,-120),Vector3(0,10,-120));
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Setup and Create the shapes that will be used.
