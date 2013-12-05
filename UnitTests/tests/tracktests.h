@@ -38,12 +38,14 @@
    John Blackwood - makoenergy02@gmail.com
 */
 #ifndef _tracktests_h
-#define _tracketests_h
+#define _tracktests_h
 
 #include "mezztest.h"
 
 #include "track.h"
+#include "trackiterator.h"
 #include "exception.h"
+#include "vector3.h"
 
 
 /// @file
@@ -110,11 +112,11 @@ class tracktests : public UnitTestGroup
                            << "\t0.5 should be 10,10,10 and is " << TestDualPointTrack.GetInterpolatedAsLoop(0.5) << endl
                            << "\t0.95 should be 1,1,1 and is " << TestDualPointTrack.GetInterpolatedAsLoop(0.95) << endl
                            << "\t1.0 should be 0,0,0 and is " << TestDualPointTrack.GetInterpolatedAsLoop(1.0) << endl;
-                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop1");
-                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.1), Vector3(2.0,2.0,2.0), "DualPointTrackLoop2");
-                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.5), Vector3(10.0,10.0,10.0), "DualPointTrackLoop3");
-                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.95), Vector3(1.0,1.0,1.0), "DualPointTrackLoop4");
-                TEST_EQUAL_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(1.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop5");
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop1",4);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.1), Vector3(2.0,2.0,2.0), "DualPointTrackLoop2",4);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.5), Vector3(10.0,10.0,10.0), "DualPointTrackLoop3",4);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.95), Vector3(1.0,1.0,1.0), "DualPointTrackLoop4",4);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(1.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop5",4);
             }
 
             {
@@ -218,8 +220,128 @@ class tracktests : public UnitTestGroup
                     {
                         DefeatCompilerOptimization = TestQuadPointTrack.GetInterpolatedAsLoop(rand()/RAND_MAX);
                     }
-                    TestOutput << "A random point on the track to defeat optimizations: " << DefeatCompilerOptimization << endl;
+                    TestOutput << "A random point on the track to defeat optimizations: " << DefeatCompilerOptimization << endl << endl;
                 }
+            }
+
+            {
+                TrackLinear<Vector3> TestIteratorTrack;
+
+                TestIteratorTrack.push_back(Vector3(0,0,0));
+                TestIteratorTrack.push_back(Vector3(10,0,0));
+                TestIteratorTrack.push_back(Vector3(10,10,0));
+                TestIteratorTrack.push_back(Vector3(0,10,0));
+
+                SmoothTrackIterator<Vector3> Iter(&TestIteratorTrack,0.0,1.0/30.0);
+
+                TestOutput << "A Dereferenced X component from an iterator refering to 0.0 on a Linear track: " << Iter->X << endl
+                           << "A dereferenced Vector3 from an iterator " << *Iter << endl;
+                TEST_EQUAL_EPSILON(Iter->X, Real(0.0), "SmoothTrackIterator->1");
+                TEST_EQUAL_EPSILON(*Iter, Vector3(0,0,0), "SmoothTrackIterator*1");
+
+
+                TestOutput << "Incrementing the iterator via postfix:" << endl;
+                Iter++;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 on a Linear track: " << Iter->X << endl
+                           << "A dereferenced Vector3 from an iterator " << *Iter << endl;
+                TEST_EQUAL_EPSILON(Iter->X, Real(1.0), "SmoothTrackIterator->2");
+                TEST_EQUAL_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator*2");
+
+                TestOutput << "Incrementing the iterator via prefix:" << endl;
+                ++Iter;
+                TestOutput << "A Dereferenced X component from an iterator refering to 2/30 (using ++) on a Linear track: " << Iter->X << endl
+                           << "A dereferenced Vector3 from an iterator " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(2.0), "SmoothTrackIterator->++",4);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(2.0,0.0,0.0), "SmoothTrackIterator*++",4);
+
+                TestOutput << "Incrementing the iterator via prefix:" << endl;
+                --Iter;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using --)on a Linear track: " << Iter->X << endl
+                           << "A dereferenced Vector3 from an iterator " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(1.0), "SmoothTrackIterator->--",4);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator*--",4);
+
+                Iter = Iter + 3;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using +3)on a Linear track: " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(4.0,0.0,0.0), "SmoothTrackIterator+",4);
+                Iter = Iter - 3;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using -3)on a Linear track: " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator-",4);
+
+                Iter += 3;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using +=3)on a Linear track: " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(4.0,0.0,0.0), "SmoothTrackIterator+=",4);
+                Iter -= 3;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using -=3)on a Linear track: " << *Iter << endl;
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator-=",4);
+
+                SmoothTrackIterator<Vector3> Iter2(Iter);
+                TEST_EQUAL_EPSILON(*Iter, *Iter2, "SmoothTrackIterator=");
+                TEST(Iter==Iter2, "SmoothTrackIterator==");
+                TEST(!(Iter!=Iter2), "SmoothTrackIterator!=");
+
+
+                TestIteratorTrack.push_back(Vector3(0,0,0)); // need to do this better.
+                TestOutput << "200 steps with a looped iterator on at a 100 step resolution on a four point track:" << endl;
+
+                TestOutput << "Validating iterator bounds checking:" << endl;
+                TEST(SmoothTrackIterator<Vector3>(&TestIteratorTrack,0.0,1.0/100.0).BoundsCheck()==0, "SmoothTrackIterator::BoundsCheckIn");
+                TEST(SmoothTrackIterator<Vector3>(&TestIteratorTrack,-0.1,1.0/100.0).BoundsCheck()==-1, "SmoothTrackIterator::BoundsCheckLow");
+                TEST(SmoothTrackIterator<Vector3>(&TestIteratorTrack,1.1,1.0/100.0).BoundsCheck()==1, "SmoothTrackIterator::BoundsCheckHigh");
+
+                // Some sample loops for academic purposes
+                // Idiomatic loops
+                TestOutput << "Sample track iteration with for loop:" << endl;
+                for(SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
+                    LoopedIter!=SmoothTrackIterator<Vector3> (&TestIteratorTrack,1.0,1.0/10.0);
+                    LoopedIter++)
+                    { TestOutput << *LoopedIter << endl; }
+
+                for(TrackLinear<Vector3>::SmoothIteratorType LoopedIter(TestIteratorTrack.begin(10));
+                    LoopedIter!=TestIteratorTrack.end();
+                    LoopedIter++)
+                    { TestOutput << *LoopedIter << endl; }
+
+                // Just by executing this line we can tell that these work to some degree.
+                TEST(true, "SmoothTrackIterator::begin1");
+                TEST(true, "SmoothTrackIterator::end1");
+                TEST(TestIteratorTrack.begin(10)==TrackLinear<Vector3>::SmoothIteratorType(&TestIteratorTrack,0.0,1.0/10.0), "SmoothTrackIterator::begin2");
+                TEST(TestIteratorTrack.end()==TrackLinear<Vector3>::SmoothIteratorType(&TestIteratorTrack,0.0,0.0), "SmoothTrackIterator::end2");
+
+                // Almost Idiomatic loop
+                TestOutput << "Sample track iteration with for loop:" << endl;
+                for(SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
+                    0==LoopedIter.BoundsCheck();
+                    LoopedIter++)
+                    { TestOutput << *LoopedIter << endl; }
+
+                // non-idiomatic way to iterate over a track
+                SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
+                for(Whole Counter=0; Counter<10; Counter++, LoopedIter++)
+                    { TestOutput << *LoopedIter << endl; }
+
+                TestOutput << "Validating iterator comparison operators." << endl;
+                SmoothTrackIterator<Vector3> HighIter(&TestIteratorTrack,.8,1.0/100.0);
+                SmoothTrackIterator<Vector3> MidIter(&TestIteratorTrack,.5,1.0/100.0);
+                SmoothTrackIterator<Vector3> LowIter(&TestIteratorTrack,.2,1.0/100.0);
+                TEST((HighIter < LowIter) == false, "SmoothTrackIterator<1");
+                TEST((LowIter < HighIter) == true, "SmoothTrackIterator<2");
+                TEST((MidIter < MidIter) == false, "SmoothTrackIterator<3");
+                TEST((HighIter > LowIter) == true, "SmoothTrackIterator>1");
+                TEST((LowIter > HighIter) == false, "SmoothTrackIterator>2");
+                TEST((MidIter > MidIter) == false, "SmoothTrackIterator>3");
+                TEST((HighIter <= LowIter) == false, "SmoothTrackIterator<=1");
+                TEST((LowIter <= HighIter) == true, "SmoothTrackIterator<=2");
+                TEST((MidIter <= MidIter) == true, "SmoothTrackIterator<=3");
+                TEST((HighIter >= LowIter) == true, "SmoothTrackIterator>=1");
+                TEST((LowIter >= HighIter) == false, "SmoothTrackIterator>=2");
+                TEST((MidIter >= MidIter) == true, "SmoothTrackIterator>=3");
+
+                TestOutput << "Validating iterator indexing [] operator." << endl;
+                SmoothTrackIterator<Vector3> IndexIter1(&TestIteratorTrack,.8,1.0/100.0);
+                SmoothTrackIterator<Vector3> IndexIter2(&TestIteratorTrack,.9,1.0/100.0);
+                TEST(IndexIter1[10] == IndexIter2, "SmoothTrackIterator[]");
+
             }
             
         }

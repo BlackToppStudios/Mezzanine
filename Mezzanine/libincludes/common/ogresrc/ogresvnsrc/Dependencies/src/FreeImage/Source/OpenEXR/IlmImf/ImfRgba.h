@@ -59,7 +59,7 @@ struct Rgba
     half	a;
     
     Rgba () {}
-    Rgba (half r, half g, half b, half a = 1.f): r (r), g (g), b (b), a (a) {}
+    Rgba (half rr, half gg, half bb, half aa = 1.f): r (rr), g (gg), b (bb), a (aa) {}
 
     Rgba & operator = (const Rgba &other)
     {

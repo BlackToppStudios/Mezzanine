@@ -40,10 +40,10 @@
 #ifndef _track_h
 #define _track_h
 
-#include "vector3.h"
 #include "exception.h"
 #include "enumerations.h"
 #include "interpolator.h"
+#include "trackiterator.h"
 
 #ifndef SWIG // STD headers are bad for Swig
     #include <cmath>
@@ -69,7 +69,9 @@ namespace Mezzanine
     {
         public:
             /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
-            typedef  std::vector<InterpolatableType> DataContainerType;
+            typedef std::vector<InterpolatableType> DataContainerType;
+
+            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
 
         protected:
             /// @brief The underlying container of Discreate datapoints
@@ -100,72 +102,10 @@ namespace Mezzanine
             /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
             /// @return An InterpolatableType
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const = 0;
-    };
 
-    // Forward declation
-    template <typename InterpolatableType> class TrackLinear;
-
-    /// @brief An Iterator that can take an arbitrary amount of steps through a track.
-    template<typename InterpolatableType>
-    class SmoothTrackIterator
-    {
-        public:
-            // Iterator traits
-            /// @brief What type is this iterator working with.
-            typedef InterpolatableType value_type;
-            /// @brief When doing iterator math what is the type of math results
-            typedef Real difference_type;
-            /// @brief The type of a pointer to the iterated type
-            typedef InterpolatableType* pointer;
-            /// @brief The type of a reference to the iterated type
-            typedef InterpolatableType& reference;
-            /// @brief This almost supports random access iteration, it does not support any kind of writing to the container
-            typedef std::random_access_iterator_tag iterator_category;
-
-
-            /// @brief What kind of track with this iterate over
-            typedef TrackBase<InterpolatableType> TargetTrackType;
-
-        private:
-            /// @brief The track this works against.
-            TargetTrackType TargetTrack;
-            /// @brief Where on the track are we?
-            Real Location;
-            /// @brief How far should this
-            Real Step;
-
-        public:
-            /// @brief The constructor for and iterator
-            /// @details Tracks
-            /// @param TrackToIterate Which track with this work against.
-            /// @param WhereToStart Where on the track (range 0 to 1) Should iteration start.
-            /// @param Increment When incremented how much should the location change? Defaults to .01 to create 100 steps.
-            SmoothTrackIterator(TargetTrackType* TrackToIterate, Real WhereToStart = 0.0, Real Increment = 0.01)
-                : TargetTrack(TrackToIterate), Location(WhereToStart), Step(Increment)
-                {}
-
-            // This is nearly a random access iterator it cannot:
-            // allow dereferenced assigment, the points aren't actually contained anywhere so there is nothing to write to
-            // to ensure correct semantics this will be treated as a const random access iterator
-
-            // it will
-            // copy constructor
-            // assigment operator
-            // operator ==
-            // operator !=
-            // operator* read only
-            // operator-> read only
-            // operator -- and --
-            // operator ++ and ++
-            // operator +
-            // operator -
-            // operator <
-            // operator >
-            // operator <=
-            // operator >=
-            // operator +=
-            // operator -=
-            // operator[](int)
+            /// @brief
+            virtual SmoothIteratorType begin(Integer Steps) const = 0;
+            virtual SmoothIteratorType end(Integer Steps) const = 0;
 
     };
 
@@ -188,9 +128,9 @@ namespace Mezzanine
             /// @brief An Iterator for the raw points of the track, guaranteed to not change the track
             typedef typename TrackLinear::const_iterator ConstIterator;
             /// @brief A type used for iterating over the range of interpolated values of the track, and guaranteed to not change the track.
-            typedef SmoothTrackIterator<InterpolatableType> SmoothIterator;
+            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
             /// @brief The functor that does the actual interpolation of the points.
-            typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator Interpolator;
+            typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator InterpolatorType;
 
         public:
             /// @brief For a given percentage determine which two data points it is between.
@@ -210,7 +150,7 @@ namespace Mezzanine
                 LineSegmentCount+=Whole(Loop);
                 if(1==LineSegmentCount)
                     { return Percentage; }
-                return std::fmod(Percentage,Real(1.0/Real(LineSegmentCount))*LineSegmentCount);
+                return std::fmod(PreciseReal(Percentage),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount;
             }
 
             InterpolatableType GetInterpolated(Real Percentage, Bool Loop) const
@@ -224,7 +164,7 @@ namespace Mezzanine
                         { return TrackBase<InterpolatableType>::DataPoints[0]; }
                     if(DataPointCount-1<=Index) // If we are in the last segment connect and should connect to the begining
                     {
-                        return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],
+                        return InterpolatorType::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],
                                                          TrackBase<InterpolatableType>::DataPoints[0],
                                                          LocalPercentage);
                     }
@@ -233,7 +173,7 @@ namespace Mezzanine
                         { return TrackBase<InterpolatableType>::DataPoints[Index]; }
 
                 }
-                return Interpolator::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
+                return InterpolatorType::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
                                                  TrackBase<InterpolatableType>::DataPoints[Index+1],// The second point
                                                  LocalPercentage); // The percentage we are through this line segment
             }
@@ -243,6 +183,21 @@ namespace Mezzanine
 
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
                 { return GetInterpolated(Percentage, true); }
+
+
+            virtual SmoothIteratorType begin(Integer Steps=100) const
+            {
+                return SmoothIteratorType(this, 0.0,
+                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
+                                          );
+            }
+            virtual SmoothIteratorType end(Integer Steps=0) const
+            {
+                return SmoothIteratorType(this, 0.0,
+                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
+                                          );
+            }
+
 
     };
 

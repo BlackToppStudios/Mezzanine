@@ -38,8 +38,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mutex_h
-#define _mutex_h
+#ifndef _spinlock_h
+#define _spinlock_h
 
 // Parts of this library use the TinyThread++ libary and those parts are also covered by the following license
 /*
@@ -65,91 +65,53 @@ freely, subject to the following restrictions:
     distribution.
 */
 
-#if !defined(SWIG) || defined(SWIG_THREADING) // Do not read when in swig and not in the threading module
-#include "atomicoperations.h"
-#endif
+#include "datatypes.h"
 
 /// @file
-/// @brief Declares a Mutex, Mutex tools
-
-/// @brief Forward declaration
-#if defined(_MEZZ_THREAD_WIN32_)
-#if defined(__MINGW64_VERSION_MAJOR)
-struct _RTL_CRITICAL_SECTION;
-typedef _RTL_CRITICAL_SECTION CRITICAL_SECTION;
-#else//__MINGW64_VERSION_MAJOR
-class _CRITICAL_SECTION;
-typedef _CRITICAL_SECTION CRITICAL_SECTION;
-#endif//__MINGW64_VERSION_MAJOR
-#endif//_MEZZ_THREAD_WIN32_
+/// @brief Declares a Mutex, Mutex tools, and at least one MutexLike object.
 
 namespace Mezzanine
 {
     namespace Threading
     {
-        /// @brief A cross-platform abstraction of the OS's mutex.
-        /// @details Use this for potentially long delays, like making multiple system calls. This is likely slower
-        /// than a spinlock, but it informs the OS of delay and could allow another thread to be scheduled, making use
-        /// of the time the current thread would otherwise spin.
-        class MEZZ_LIB Mutex
+        /// @brief A mutex like construct that never makes a system call and uses CPU instructions instead.
+        /// @details This should be used when delay is likely to be measured in CPUs cycles and almost
+        /// certainly a short while. For pauses of unknown length use a Mutex so that the OS is informed it
+        /// could schedule another thread.
+        /// @n @n
+        /// This is compatible with the lock_guard class.
+        class MEZZ_LIB SpinLock
         {
             private:
-
-                /// @brief Deleted assignment operator
-                #ifdef _MEZZ_CPP11_PARTIAL_
-                    Mutex& operator=(const Mutex&) = delete;
-                #else
-                    Mutex& operator=(const Mutex&);
-                #endif
-
-                /// @brief Deleted assignment operator copy constructor
-                #ifdef _MEZZ_CPP11_PARTIAL_
-                    Mutex(const Mutex&) = delete;
-                #else
-                    Mutex(const Mutex&);
-                #endif
-
-                /// @var mHandle
-                /// @brief A native handle to the OS specific synchronization object.
-                #if defined(_MEZZ_THREAD_WIN32_)
-                    CRITICAL_SECTION* mHandle;
-                    /// @brief Is this critical section already locked?
-                    bool mAlreadyLocked;
-                #else
-                    pthread_mutex_t mHandle;
-                #endif
-
+                /// @internal
+                /// 0 if unlocked, any other value if locked.
+                Int32 Locked;
 
             public:
                 ///@brief Constructor, creates an unlocked mutex
-                Mutex();
+                SpinLock();
 
                 ///@brief Destructor.
-                ~Mutex();
+                ~SpinLock();
 
-                /// @brief Lock the mutex.
-                /// @details The method will block the calling thread until a lock on the mutex can
-                /// be obtained. The mutex remains locked until @c unlock() is called.
+                /// @brief Lock the SpinLock.
+                /// @details The method will block the calling thread until a lock on the SpinLock can
+                /// be obtained. The SpinLock remains locked until @c unlock() is called.
                 /// @see lock_guard
                 void Lock();
-                /// @brief Try to lock the mutex.
-                /// @details The method will try to lock the mutex. If it fails, the function will
+
+                /// @brief Try to lock the spinlock.
+                /// @details The method will try to lock the SpinLock. If it fails, the function will
                 /// return immediately (non-blocking).
                 /// @return @c true if the lock was acquired, or @c false if the lock could
                 /// not be acquired.
                 bool TryLock();
-                /// @brief Unlock the mutex.
+
+                /// @brief Unlock the spinlock.
                 /// @details If any threads are waiting for the lock on this mutex, one of them will
                 /// be unblocked.
                 void Unlock();
-
-                /// @brief Simply calls Lock() for compatibility with lock_guard and other more standard mutexes
-                void lock()
-                    { Lock(); }
-                /// @brief Simply calls Unlock() for compatibility with lock_guard and other more standard mutexes
-                void unlock()
-                    { Unlock(); }
-        };//Mutex
+        };
     }//Threading
 }//Mezzanine
 

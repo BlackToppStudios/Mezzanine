@@ -143,6 +143,10 @@ namespace Mezzanine
     /// switch would require atleast some troubleshooting.
     typedef float Real;
 
+    /// @typedef PreciseReal
+    /// @brief A Real number that is at least as precise as the Real and could be considerabll moreso
+    typedef double PreciseReal;
+
     /// @typedef Whole
     /// @brief Whole is an unsigned integer, it will be at least 32bits in size.
     /// @details This is a typedef to unsigned Long. but could be smaller in some situations.  In

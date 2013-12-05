@@ -124,6 +124,8 @@
 #include "softdebris.h"
 #include "sphere.h"
 #include "stringtool.h"
+#include "track.h"
+#include "trackiterator.h"
 #include "terrainbase.h"
 #include "terrainmanager.h"
 #endif // \no SWIG

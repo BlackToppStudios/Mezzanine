@@ -1910,34 +1910,35 @@ int SWIG_Ruby_arity( VALUE proc, int minimal )
 #define SWIGTYPE_p_btTransform swig_types[91]
 #define SWIGTYPE_p_btVector3 swig_types[92]
 #define SWIGTYPE_p_char swig_types[93]
-#define SWIGTYPE_p_float swig_types[94]
-#define SWIGTYPE_p_int swig_types[95]
-#define SWIGTYPE_p_long_long swig_types[96]
-#define SWIGTYPE_p_short swig_types[97]
-#define SWIGTYPE_p_signed_char swig_types[98]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[99]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[100]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[101]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[102]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[103]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[104]
-#define SWIGTYPE_p_std__string swig_types[105]
-#define SWIGTYPE_p_std__stringstream swig_types[106]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t swig_types[107]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t swig_types[108]
-#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[109]
-#define SWIGTYPE_p_std__wstring swig_types[110]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[111]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[112]
-#define SWIGTYPE_p_swig__Iterator swig_types[113]
-#define SWIGTYPE_p_unsigned_char swig_types[114]
-#define SWIGTYPE_p_unsigned_int swig_types[115]
-#define SWIGTYPE_p_unsigned_long swig_types[116]
-#define SWIGTYPE_p_unsigned_long_long swig_types[117]
-#define SWIGTYPE_p_unsigned_short swig_types[118]
-#define SWIGTYPE_p_void swig_types[119]
-static swig_type_info *swig_types[121];
-static swig_module_info swig_module = {swig_types, 120, 0, 0, 0, 0};
+#define SWIGTYPE_p_double swig_types[94]
+#define SWIGTYPE_p_float swig_types[95]
+#define SWIGTYPE_p_int swig_types[96]
+#define SWIGTYPE_p_long_long swig_types[97]
+#define SWIGTYPE_p_short swig_types[98]
+#define SWIGTYPE_p_signed_char swig_types[99]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[100]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[101]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[102]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[103]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[104]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[105]
+#define SWIGTYPE_p_std__string swig_types[106]
+#define SWIGTYPE_p_std__stringstream swig_types[107]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_std__allocatorT_Mezzanine__WorldObject_p_t_t swig_types[108]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_std__allocatorT_Mezzanine__WorldProxy_p_t_t swig_types[109]
+#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[110]
+#define SWIGTYPE_p_std__wstring swig_types[111]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[112]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[113]
+#define SWIGTYPE_p_swig__Iterator swig_types[114]
+#define SWIGTYPE_p_unsigned_char swig_types[115]
+#define SWIGTYPE_p_unsigned_int swig_types[116]
+#define SWIGTYPE_p_unsigned_long swig_types[117]
+#define SWIGTYPE_p_unsigned_long_long swig_types[118]
+#define SWIGTYPE_p_unsigned_short swig_types[119]
+#define SWIGTYPE_p_void swig_types[120]
+static swig_type_info *swig_types[122];
+static swig_module_info swig_module = {swig_types, 121, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -30325,6 +30326,7 @@ static swig_type_info _swigt__p_btQuaternion = {"_p_btQuaternion", "btQuaternion
 static swig_type_info _swigt__p_btTransform = {"_p_btTransform", "btTransform *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btVector3 = {"_p_btVector3", "btVector3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *|Mezzanine::Char8 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_double = {"_p_double", "Mezzanine::PreciseReal *|double *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_float = {"_p_float", "float *|Mezzanine::Real *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "intptr_t *|int *|int_least32_t *|int_fast32_t *|Mezzanine::Int32 *|int32_t *|Mezzanine::ConvertiblePointer *|Mezzanine::Integer *|int_fast16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_long_long = {"_p_long_long", "int_least64_t *|int_fast64_t *|Mezzanine::Int64 *|int64_t *|long long *|Mezzanine::MaxInt *|intmax_t *", 0, 0, (void*)0, 0};
@@ -30447,6 +30449,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_btTransform,
   &_swigt__p_btVector3,
   &_swigt__p_char,
+  &_swigt__p_double,
   &_swigt__p_float,
   &_swigt__p_int,
   &_swigt__p_long_long,
@@ -30569,6 +30572,7 @@ static swig_cast_info _swigc__p_btQuaternion[] = {  {&_swigt__p_btQuaternion, 0,
 static swig_cast_info _swigc__p_btTransform[] = {  {&_swigt__p_btTransform, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_btVector3[] = {  {&_swigt__p_btVector3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_double[] = {  {&_swigt__p_double, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -30691,6 +30695,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_btTransform,
   _swigc__p_btVector3,
   _swigc__p_char,
+  _swigc__p_double,
   _swigc__p_float,
   _swigc__p_int,
   _swigc__p_long_long,

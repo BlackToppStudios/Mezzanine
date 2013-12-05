@@ -37,46 +37,12 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventstests_h
-#define _eventstests_h
+#ifndef _atomicqueue_h
+#define _atomicqueue_h
 
 #include "mezztest.h"
-#include "eventsubscriber.h"
-#include "eventpublisher.h"
 
 #include <stdexcept> //only used to throw for TEST_THROW
-#include <ostream>
-
-class TestFunctor : public FunctorSubscriberSlot::FunctorDefinition
-{
-    public:
-        ostream& Output;
-
-        TestFunctor(ostream& Out)
-            : Output(Out)
-        {
-
-        }
-
-        virtual void operator()(const EventArguments& Args)
-        {
-            Output << "Called from Functor" << endl;
-        }
-};
-
-class TestPublisher: public EventPublisher
-{
-    public:
-
-        TestPublisher()
-            { AddEvent("test"); }
-
-        void DoTest()
-        {
-            EventArguments Stuff("test");
-            this->FireEvent(Stuff);
-        }
-};
 
 /// @file
 /// @brief This file should be used as template/example for building future Unit Tests
@@ -85,38 +51,42 @@ using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
 /// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
-class eventstests : public UnitTestGroup
+class atomicqueuetests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "BoilerPlate"
+        /// @return Returns a String containing "atomicqueue"
         virtual String Name()
-            { return String("Events"); }
+            { return String("atomicqueue"); }
 
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            //TestFunctor Func(TestOutput);
+            // The TEST macro will capture Line, function file Metadata while
+            TEST(true,"AutomaticTest");
+            //TEST(false,"AutomaticFail");
 
-            //TestPublisher Pub;
+            TEST_WARN(true,"AutomaticDoNotWarn");
+            //TEST_WARN(false,"AutomaticWarn");
 
+            TestResult Answer = Testing::Success;
+            TEST_RESULT(Answer, "AutomaticTestResult");
 
-            // Why does one of these segfault and the other does not?
-            //EventSubscriberSlot* temp = Pub.Subscribe("test", &Func, false);
-            //Pub.Subscribe("test", &Func, false);
+            // Multiline example
+            TEST_THROW  (
+                            std::runtime_error&,
+                            throw std::runtime_error("oh noes!");
+                            , "AutomaticTestThrow"
+                        );
+            //TEST_THROW(std::runtime_error, throw "oh noes!";, "AutomaticTestThrow"); //Throws unexpected type so it fails
 
-
-            //Pub.DoTest();
-            //FunctorSubscriber Sub;
-
+            TEST_NO_THROW( int x = 0; x++; , "ShouldNotThrow");
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
         virtual bool HasAutomaticTests() const
             { return true; }
-
-
 };
 
 #endif

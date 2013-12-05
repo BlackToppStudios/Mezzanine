@@ -47,6 +47,7 @@
 #include "doublebufferedresource.h"
 #include "thread.h"
 #include "workunitkey.h"
+#include "spinlock.h"
 #include "systemcalls.h"
 #include "rollingaverage.h"
 #endif
