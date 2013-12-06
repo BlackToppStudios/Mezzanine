@@ -343,7 +343,6 @@ class tracktests : public UnitTestGroup
                 TEST(IndexIter1[10] == IndexIter2, "SmoothTrackIterator[]");
 
             }
-            
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

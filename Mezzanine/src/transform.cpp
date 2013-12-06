@@ -133,6 +133,30 @@ namespace Mezzanine
     String Transform::SerializableName()
         { return String("Transform"); }
 
+    Transform Transform::operator- (const Transform& rhs) const
+        { return Transform(this->Location-rhs.Location,this->Rotation-rhs.Rotation); }
+
+    Transform Transform::operator+ (const Transform& rhs) const
+        { return Transform(this->Location+rhs.Location, this->Rotation+rhs.Rotation); }
+
+    Transform Transform::operator* (Real rhs) const
+        { return Transform(this->Location*rhs,this->Rotation*rhs); }
+
+    Transform Transform::operator/ (Real rhs) const
+        { return Transform(this->Location/rhs,this->Rotation/rhs); }
+
+    bool Transform::operator<= (const Transform& rhs) const
+        { return this->Location<=rhs.Location && this->Rotation<=rhs.Rotation; }
+
+    bool Transform::operator>= (const Transform& rhs) const
+        { return this->Location>=rhs.Location && this->Rotation>=rhs.Rotation; }
+}
+
+
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Transform& rhs)
+{
+    Serialize(stream,rhs);
+    return stream;
 }
 
 btTransform& operator<< (btTransform& lhs, const Mezzanine::Transform& rhs)
