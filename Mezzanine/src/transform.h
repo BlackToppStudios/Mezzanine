@@ -130,10 +130,24 @@ namespace Mezzanine
             /// @return A string containing "Transform"
             static String SerializableName();
 
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Math and test operations
+            Transform operator- (const Transform& rhs) const;
+            Transform operator+ (const Transform& rhs) const;
+            Transform operator* (Real rhs) const;
+            Transform operator/ (Real rhs) const;
+            bool operator<= (const Transform& rhs) const;
+            /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
+            bool operator>= (const Transform& rhs) const;
+
+
     };
 }
 
 #ifndef SWIG
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Transform& x);
+
 /// @brief Overwrite the data in a btTransform with the data in a Mezzanine::Transform using an intelligent assignment operator (in this case we really couldn't code the real assignment operator).
 /// @param lhs The item on the Left Hand of the Sign, the item to be assigned to.
 /// @param rhs The item on the Right Hand of the Sign, the item that has the values to be copied.

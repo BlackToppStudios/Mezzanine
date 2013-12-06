@@ -361,6 +361,11 @@ namespace Mezzanine
             /// @return True if the Quaternions are not semantically equal, false otherwise.
             bool operator!=(const btQuaternion& Other) const;
 
+
+            bool operator<= (const Mezzanine::Quaternion& Other) const;
+            /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
+            bool operator>= (const Mezzanine::Quaternion& Other) const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 

@@ -43,6 +43,7 @@
 #include "mezztest.h"
 
 #include "vector3.h"
+#include "transform.h"
 #include "interpolator.h"
 
 /// @file
@@ -112,6 +113,23 @@ class interpolatortests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.1),Real(0.5),"RealLinearInterpolationTenth");
                 TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.5),Real(2.5),"RealLinearInterpolationHalfway");
                 TEST_EQUAL_EPSILON(li.Interpolate(a,b,1.0),b,"RealLinearInterpolationEnd");
+             }
+
+            {
+                InterpolatableTraits<Transform>::LinearInterpolator li;
+                Transform a(Vector3(0,0,0),Quaternion(0,0,0,0));
+                Transform z(Vector3(1,1,1),Quaternion(1,1,1,1));
+
+                TestOutput << "Lets try some simple Integer interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
+                           << li.Interpolate(a,z,0.0) << endl
+                           << li.Interpolate(a,z,0.1) << endl
+                           << li.Interpolate(a,z,0.5) << endl
+                           << li.Interpolate(a,z,1.0) << endl << endl;
+
+                TEST_EQUAL_EPSILON(li.Interpolate(a,z,0.0),a,"TransformLinearInterpolationBegin");
+                TEST_EQUAL_EPSILON(li.Interpolate(a,z,0.1),Transform(Vector3(0.1,0.1,0.1),Quaternion(0.1,0.1,0.1,0.1)),"TransformLinearInterpolationTenth");
+                TEST_EQUAL_EPSILON(li.Interpolate(a,z,0.5),Transform(Vector3(0.5,0.5,0.5),Quaternion(0.5,0.5,0.5,0.5)),"TransformLinearInterpolationHalfway");
+                TEST_EQUAL_EPSILON(li.Interpolate(a,z,1.0),z,"TransformLinearInterpolationEnd");
              }
         }
 
