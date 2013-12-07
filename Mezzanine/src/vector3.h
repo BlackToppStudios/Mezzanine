@@ -574,11 +574,9 @@ namespace std
                                          );
             }
 
+    }; //Numeric Limits
 
-
-    };
-
-}
+} // std
 
 ///////////////////////////////////////////////////////////////////////////////
 // Right Hand Arithmetic Operators
