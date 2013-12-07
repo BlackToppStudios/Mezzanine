@@ -37,9 +37,8 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OgreDeps_BINARY_DIR}" )
 #
 # In ogresvnsrc\cmakelists.txt:
 # Set the commonbuild flags and force the GL rendersystem to be compiled aroun line 46.
-## --At around line 102, comment out the line that adds definitions and add these two lines below it (wrapped in an if to target just mingw):
-## --  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
-## --  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
+# At around line 102, comment out the line that adds definitions.
+# At Around line 130, comment out any lines that define a CPU architecture (should only be there for MinGW).
 # At around line 202 change the archive, output and library directory to be the same output directory as before.
 # -- Around line 324 disable building of demos and RPATH usage. comment out the 4 lines around line 281 that say to build the samples, tools, xsi export, and tests.  These need to be set to false.
 # Lines 311 and 315 were changed from "cmake_dependant_option" to "option", and removed the extra conditions to change the default.  

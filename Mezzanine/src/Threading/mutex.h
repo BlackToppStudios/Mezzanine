@@ -74,9 +74,14 @@ freely, subject to the following restrictions:
 
 /// @brief Forward declaration
 #if defined(_MEZZ_THREAD_WIN32_)
+#if defined(__MINGW64_VERSION_MAJOR)
+struct _RTL_CRITICAL_SECTION;
+typedef _RTL_CRITICAL_SECTION CRITICAL_SECTION;
+#else//__MINGW64_VERSION_MAJOR
 class _CRITICAL_SECTION;
 typedef _CRITICAL_SECTION CRITICAL_SECTION;
-#endif
+#endif//__MINGW64_VERSION_MAJOR
+#endif//_MEZZ_THREAD_WIN32_
 
 namespace Mezzanine
 {

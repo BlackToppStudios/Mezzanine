@@ -22,8 +22,8 @@ INCLUDE(FindPkgConfig)
 SET(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS TRUE)
 
 IF(MINGW)
-	#Currently SSE instructions on MinGW cause crashes due to unknown Alignment issues in debug mode.
-        SET(ALSOFT_CPUEXT_SSE OFF)
+    #Currently SSE instructions on MinGW cause crashes due to unknown Alignment issues in debug mode.
+    SET(ALSOFT_CPUEXT_SSE OFF)
 ELSE(MINGW)
 	OPTION(ALSOFT_CPUEXT_SSE  "Check for SSE CPU extensions"      ON)
 ENDIF(MINGW)
@@ -279,8 +279,12 @@ CHECK_INCLUDE_FILE(fenv.h HAVE_FENV_H)
 CHECK_INCLUDE_FILE(float.h HAVE_FLOAT_H)
 CHECK_INCLUDE_FILE(ieeefp.h HAVE_IEEEFP_H)
 CHECK_INCLUDE_FILE(guiddef.h HAVE_GUIDDEF_H)
+CHECK_INCLUDE_FILE(pthread.h HAVE_PTHREAD_H)
 IF(NOT HAVE_GUIDDEF_H)
     CHECK_INCLUDE_FILE(initguid.h HAVE_INITGUID_H)
+ENDIF()
+IF(HAVE_PTHREAD_H)
+    ADD_DEFINITIONS(-DHAVE_PTHREAD_H)
 ENDIF()
 
 # Some systems need libm for some of the following math functions to work

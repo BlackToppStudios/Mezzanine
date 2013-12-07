@@ -51,8 +51,8 @@
 #include "Threading/systemcalls.h"
 
 //External includes
-#include <Ogre.h>
 #include "SDL.h"
+#include <Ogre.h>
 
 
 #include <dirent.h> //Included with gcc/mingw will likely need replacement with msvc
