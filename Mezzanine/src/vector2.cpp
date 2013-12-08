@@ -125,6 +125,11 @@ namespace Mezzanine
         return false;
     }
 
+    bool Vector2::operator<= (const Mezzanine::Vector2 &Vec) const
+        { return ( this->X <= Vec.X && this->Y <= Vec.Y); }
+    bool Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
+        { return ( this->X >= Vec.X && this->Y >= Vec.Y); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Vector2 Arithmetic with Real
     Vector2 Vector2::operator* (const Real &scalar) const

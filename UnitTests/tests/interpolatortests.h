@@ -65,6 +65,9 @@ class interpolatortests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
+            TestOutput.precision(10);
+            TestOutput << std::fixed;
+
             {
                 InterpolatableTraits<Vector3>::LinearInterpolator li;
                 Vector3 a(0.0,0.0,0.0);
@@ -121,8 +124,7 @@ class interpolatortests : public UnitTestGroup
                 Transform a(Vector3(0,0,0),Quaternion(0,0,0,0));
                 Transform z(Vector3(1,1,1),Quaternion(1,1,1,1));
 
-                TestOutput.precision(10);
-                TestOutput << std::fixed << "Lets try some simple Transform interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
+                TestOutput << "Lets try some simple Transform interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
                            << li.Interpolate(a,z,0.0) << endl
                            << li.Interpolate(a,z,0.1) << endl
                            << li.Interpolate(a,z,0.5) << endl
@@ -135,12 +137,56 @@ class interpolatortests : public UnitTestGroup
             }
 
             {
-                InterpolatableTraits<Transform>::LinearInterpolator li;
+                InterpolatableTraits<Real>::BezierInterpolator Bi;
+                Real A(0), B(1);
+
+                std::vector<Real> DataPoints;
+                DataPoints.push_back(A);
+                DataPoints.push_back(B);
+
+                TestOutput << "Lets try some simple Bezier interpolation of reals between 0, 1 and 2:" << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl  << endl;
+
+                TEST_THROW(Mezzanine::ParametersRangeException,
+                           Bi.Interpolate(DataPoints.begin(),DataPoints.begin(),0.0),
+                           "BezierNoArgThrows");
+                TEST_THROW(Mezzanine::ParametersRangeException,
+                           Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+1,0.0),
+                           "BezierSingleArgThrows");
+
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.end(), 0.0),A,"BezierDualArg1");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.end(), 0.1),Real(0.1),"BezierDualArg2");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.end(), 0.5),Real(0.5),"BezierDualArg3");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.end(), 1.0),B,"BezierDualArg4");
+
+            }
+
+            {
+                InterpolatableTraits<Vector2>::BezierInterpolator Bi;
                 Vector2 A(0,0);
                 Vector2 B(1,1);
                 Vector2 C(0,2);
 
+                std::vector<Vector2> DataPoints;
+                DataPoints.push_back(A);
+                DataPoints.push_back(B);
+                DataPoints.push_back(C);
+
+                TestOutput << "Lets try some simple Bezier interpolation of reals between 0, 1 and 2:" << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.0) << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.1) << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.5) << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,1.0) << endl  << endl;
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.0),A,"BezierTriArg1");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.1),Vector2(5,5),"BezierTriArg2");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.5),Vector2(1,0.5),"BezierTriArg3");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 1.0),C,"BezierTriArg4");
+
             }
+
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
