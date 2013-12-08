@@ -42,10 +42,8 @@
 
 #include "UI/spinner.h"
 #include "UI/button.h"
-#include "UI/caption.h"
 #include "UI/screen.h"
 #include "uimanager.h"
-#include "UI/viewportupdatetool.h"
 
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"
@@ -57,7 +55,7 @@ namespace Mezzanine
 {
     namespace UI
     {
-        Spinner::Spinner(const String& name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent)
+        /*Spinner::Spinner(const String& name, const Rect& RendRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent)
             : Widget(name,parent),
               IncrementOffset(Vector2(0,0)),
               DecrementOffset(Vector2(0,0)),
@@ -75,43 +73,43 @@ namespace Mezzanine
         {
             Type = Widget::W_Spinner;
             SpinLayout = SStyle;
-            if(Rect.Relative)
+            if(RendRect.Relative)
             {
-                RelPosition = Rect.Position;
-                RelSize = Rect.Size;
+                RelPosition = RendRect.Position;
+                RelSize = RendRect.Size;
             }else{
-                RelPosition = Rect.Position / ParentScreen->GetViewportDimensions();
-                RelSize = Rect.Size / ParentScreen->GetViewportDimensions();
+                RelPosition = RendRect.Position / ParentScreen->GetViewportDimensions();
+                RelSize = RendRect.Size / ParentScreen->GetViewportDimensions();
             }
 
             if(UI::Spn_Separate == SpinLayout)
             {
-                if(Rect.Size.X > Rect.Size.Y * 2)
+                if(RendRect.Size.X > RendRect.Size.Y * 2)
                 {
-                    if(Rect.Relative)
+                    if(RendRect.Relative)
                     {
                         const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-                        Vector2 APos = Rect.Position * WinDim;
-                        Vector2 ASize = Rect.Size * WinDim;
+                        Vector2 APos = RendRect.Position * WinDim;
+                        Vector2 ASize = RendRect.Size * WinDim;
                         CalculateOffsets(ASize);
                         CreateHorizontalSpinner(APos,ASize,GlyphHeight);
                     }else{
-                        CalculateOffsets(Rect.Size);
-                        CreateHorizontalSpinner(Rect.Position,Rect.Size,GlyphHeight);
+                        CalculateOffsets(RendRect.Size);
+                        CreateHorizontalSpinner(RendRect.Position,RendRect.Size,GlyphHeight);
                     }
                 }
-                else if(Rect.Size.Y > Rect.Size.X * 2)
+                else if(RendRect.Size.Y > RendRect.Size.X * 2)
                 {
-                    if(Rect.Relative)
+                    if(RendRect.Relative)
                     {
                         const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-                        Vector2 APos = Rect.Position * WinDim;
-                        Vector2 ASize = Rect.Size * WinDim;
+                        Vector2 APos = RendRect.Position * WinDim;
+                        Vector2 ASize = RendRect.Size * WinDim;
                         CalculateOffsets(ASize);
                         CreateVerticalSpinner(APos,ASize,GlyphHeight);
                     }else{
-                        CalculateOffsets(Rect.Size);
-                        CreateVerticalSpinner(Rect.Position,Rect.Size,GlyphHeight);
+                        CalculateOffsets(RendRect.Size);
+                        CreateVerticalSpinner(RendRect.Position,RendRect.Size,GlyphHeight);
                     }
                 }
                 else
@@ -121,16 +119,16 @@ namespace Mezzanine
             }
             else if(UI::Spn_Together_Left == SpinLayout || UI::Spn_Together_Right == SpinLayout)
             {
-                if(Rect.Relative)
+                if(RendRect.Relative)
                 {
                     const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-                    Vector2 APos = Rect.Position * WinDim;
-                    Vector2 ASize = Rect.Size * WinDim;
+                    Vector2 APos = RendRect.Position * WinDim;
+                    Vector2 ASize = RendRect.Size * WinDim;
                     CalculateOffsets(ASize);
                     CreateBoxSpinner(APos,ASize,GlyphHeight);
                 }else{
-                    CalculateOffsets(Rect.Size);
-                    CreateBoxSpinner(Rect.Position,Rect.Size,GlyphHeight);
+                    CalculateOffsets(RendRect.Size);
+                    CreateBoxSpinner(RendRect.Position,RendRect.Size,GlyphHeight);
                 }
             }
             CaptureData = new InputCaptureData();
@@ -157,9 +155,9 @@ namespace Mezzanine
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = ParentScreen->CreateButton(Name+"Inc",RenderableRect(IncPos,Vector2(Size.Y,Size.Y),false));
-            Decrement = ParentScreen->CreateButton(Name+"Dec",RenderableRect(DecPos,Vector2(Size.Y,Size.Y),false));
-            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X - (Size.Y * 2),Size.Y),false),GlyphInfo.first,GetValueAsText());
+            Increment = ParentScreen->CreateButton(Name+"Inc",Rect(IncPos,Vector2(Size.Y,Size.Y),false));
+            Decrement = ParentScreen->CreateButton(Name+"Dec",Rect(DecPos,Vector2(Size.Y,Size.Y),false));
+            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",Rect(ValPos,Vector2(Size.X - (Size.Y * 2),Size.Y),false),GlyphInfo.first,GetValueAsText());
             AddSubRenderable(0,Increment);
             AddSubRenderable(1,Decrement);
             AddSubRenderable(2,ValueDisplay);
@@ -175,9 +173,9 @@ namespace Mezzanine
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = ParentScreen->CreateButton(Name+"Inc",RenderableRect(IncPos,Vector2(Size.X,Size.X),false));
-            Decrement = ParentScreen->CreateButton(Name+"Dec",RenderableRect(DecPos,Vector2(Size.X,Size.X),false));
-            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X,Size.Y - (Size.X * 2)),false),GlyphInfo.first,GetValueAsText());
+            Increment = ParentScreen->CreateButton(Name+"Inc",Rect(IncPos,Vector2(Size.X,Size.X),false));
+            Decrement = ParentScreen->CreateButton(Name+"Dec",Rect(DecPos,Vector2(Size.X,Size.X),false));
+            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",Rect(ValPos,Vector2(Size.X,Size.Y - (Size.X * 2)),false),GlyphInfo.first,GetValueAsText());
             AddSubRenderable(0,Increment);
             AddSubRenderable(1,Decrement);
             AddSubRenderable(2,ValueDisplay);
@@ -193,9 +191,9 @@ namespace Mezzanine
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = ParentScreen->CreateButton(Name+"Inc",RenderableRect(IncPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false));
-            Decrement = ParentScreen->CreateButton(Name+"Dec",RenderableRect(DecPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false));
-            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X - (Size.Y * 0.5),Size.Y),false),GlyphInfo.first,GetValueAsText());
+            Increment = ParentScreen->CreateButton(Name+"Inc",Rect(IncPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false));
+            Decrement = ParentScreen->CreateButton(Name+"Dec",Rect(DecPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false));
+            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",Rect(ValPos,Vector2(Size.X - (Size.Y * 0.5),Size.Y),false),GlyphInfo.first,GetValueAsText());
             AddSubRenderable(0,Increment);
             AddSubRenderable(1,Decrement);
             AddSubRenderable(2,ValueDisplay);
@@ -307,7 +305,7 @@ namespace Mezzanine
             ProcessCapturedInputs();
             if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
-                Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+                Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
                 if(Input::BUTTON_PRESSING == State)
                 {
                     if(HoveredSubWidget==Increment)
@@ -484,7 +482,62 @@ namespace Mezzanine
         {
             return ValueDisplay;
         }
-    }//ui
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // PageProvider Methods
+
+        Real Spinner::GetMaxXPages() const
+            { return this->MaxXPages; }
+
+        Real Spinner::GetMaxYPages() const
+            { return this->MaxYPages; }
+
+        Real Spinner::GetCurrentXPage() const
+        {
+            Real PageValue = static_cast<Real>( this->Target->GetSpinnerValue() );
+            if( this->PageOrder == UI::OP_Horizontal_Vertical ) {
+                return MathTool::Ceil( PageValue / this->MaxXPages );
+            }else if( this->PageOrder == UI::OP_Vertical_Horizontal ) {
+                return MathTool::Fmod( PageValue, this->MaxYPages );
+            }
+            return 1;
+        }
+
+        Real Spinner::GetCurrentYPage() const
+        {
+            Real PageValue = static_cast<Real>( this->Target->GetSpinnerValue() );
+            if( this->PageOrder == UI::OP_Horizontal_Vertical ) {
+                return MathTool::Ceil( PageValue / this->MaxXPages );
+            }else if( this->PageOrder == UI::OP_Vertical_Horizontal ) {
+                return MathTool::Fmod( PageValue, this->MaxYPages );
+            }
+            return 1;
+        }
+
+        void Spinner::SetOrdering(const UI::OrderingPriority Order)
+            { this->PageOrder = Order; }
+
+        UI::OrderingPriority Spinner::GetOrdering() const
+            { return this->PageOrder; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void Spinner::ProtoSerializePageData(XML::Node& SelfRoot) const
+            {  }
+
+        void Spinner::ProtoDeSerializePageData(const XML::Node& SelfRoot)
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        void Spinner::_SetContainer(PagedContainer* ToUpdate)
+            { this->Container = ToUpdate; }
+
+        void Spinner::_NotifyContainerUpdated()
+            { this->Target->SetValueLimits(1,this->MaxXPages * this->MaxYPages); }//*/
+    }//UI
 }//Mezzanine
 
 #endif

@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uimenu_cpp
-#define _uimenu_cpp
+#ifndef _uimenuentry_cpp
+#define _uimenuentry_cpp
 
 #include "UI/menu.h"
 #include "UI/menuwindow.h"
@@ -55,8 +55,92 @@ namespace Mezzanine
 {
     namespace UI
     {
-        Menu::Menu(ConstString name, const RenderableRect& Rect, Screen* PScreen)
-            : Widget(name,PScreen)
+        const String MenuEntry::TypeName                    = "MenuEntry";
+
+        MenuEntry::MenuEntry(Screen* Parent) :
+            StackedContainer(Parent),
+            PushButton(NULL),
+            PopButton(NULL)
+        {
+
+        }
+
+        MenuEntry::MenuEntry(const String& RendName, Screen* Parent) :
+            StackedContainer(RendName,Parent),
+            PushButton(NULL),
+            PopButton(NULL)
+        {
+
+        }
+
+        MenuEntry::MenuEntry(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
+            StackedContainer(RendName,RendRect,Parent),
+            PushButton(NULL),
+            PopButton(NULL)
+        {
+
+        }
+
+        MenuEntry::~MenuEntry()
+        {
+
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        Bool MenuEntry::IsRootEntry() const
+        {
+            if( this->ParentQuad->GetRenderableType() == Renderable::RT_Widget ) {
+                return ( static_cast<Widget*>( this->ParentQuad )->GetTypeName() == MenuEntry::TypeName );
+            }else{
+                return false;
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // MenuEntry Properties
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Menu Configuration
+
+        void MenuEntry::SetEntryPushButton(Button* Push)
+        {
+
+        }
+
+        void MenuEntry::SetEntryPopButton(Button* Pop)
+        {
+
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        void MenuEntry::_NotifyEvent(const EventArguments& Args)
+        {
+
+        }
+
+
+
+
+
+
+        /*Menu::Menu(ConstString name, const Rect& RendRect, Screen* PScreen) :
+            Widget(name,PScreen)
         {
             Type = Widget::W_Menu;
             RelPosition.X = -1;
@@ -65,7 +149,7 @@ namespace Mezzanine
             RelSize.Y = -1;
 
             ConstString NewName = name+"root";
-            RootWindow = new UI::MenuWindow(NewName,Rect,this,ParentScreen);
+            RootWindow = new UI::MenuWindow(NewName,RendRect,this,ParentScreen);
             MenuStack.push_back(RootWindow);
             AddSubRenderable(0,RootWindow);
         }
@@ -78,7 +162,7 @@ namespace Mezzanine
 
         void Menu::UpdateImpl(bool Force)
         {
-            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredSubWidget)
             {
                 Button* button = NULL;
@@ -226,14 +310,14 @@ namespace Mezzanine
             return MenuStack.back();
         }
 
-        void Menu::_AppendVertices(ScreenVertexData& Vertices)
+        void Menu::_AppendRenderData(ScreenRenderData& RenderData)
         {
             for( Whole X = 0 ; X < MenuStack.size() ; ++X )
             {
                 if( MenuStack[X]->IsVisible() )
-                    MenuStack[X]->_AppendVertices(Vertices);
+                    MenuStack[X]->_AppendRenderData(RenderData);
             }
-        }
+        }//*/
     }//UI
 }//Mezzanine
 

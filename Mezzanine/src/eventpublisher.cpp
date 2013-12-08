@@ -166,14 +166,18 @@ namespace Mezzanine
 
     Whole EventPublisher::UnsubscribeGroup(const UInt8 Group)
     {
+        Whole Ret = 0;
         for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
-            { (*EventIt).second->UnsubscribeGroup(Group); }
+            { Ret += (*EventIt).second->UnsubscribeGroup(Group); }
+        return Ret;
     }
 
     Whole EventPublisher::UnsubscribeAll()
     {
+        Whole Ret = 0;
         for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
-            { (*EventIt).second->UnsubscribeAll(); }
+            { Ret += (*EventIt).second->UnsubscribeAll(); }
+        return Ret;
     }
 
     void EventPublisher::Unsubscribe(const String& EventName, EventSubscriber* Subscriber)
@@ -192,10 +196,10 @@ namespace Mezzanine
         { this->GetEventExcept(EventName)->Unsubscribe(SubSlot); }
 
     Whole EventPublisher::UnsubscribeGroup(const String& EventName, const UInt8 Group)
-        { this->GetEventExcept(EventName)->UnsubscribeGroup(Group); }
+        { return this->GetEventExcept(EventName)->UnsubscribeGroup(Group); }
 
     Whole EventPublisher::UnsubscribeAll(const String& EventName)
-        { this->GetEventExcept(EventName)->UnsubscribeAll(); }
+        { return this->GetEventExcept(EventName)->UnsubscribeAll(); }
 }//Mezzanine
 
 #endif

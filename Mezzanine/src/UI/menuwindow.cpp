@@ -49,12 +49,12 @@ namespace Mezzanine
 {
     namespace UI
     {
-        MenuWindow::MenuWindow(ConstString& Name, const RenderableRect& Rect, UI::Menu* TheMenu, Screen* PScreen)
-            : Window(Name,Rect,PScreen),
-              BackButton(NULL),
-              ParentWindow(NULL),
-              MasterMenu(TheMenu),
-              AutoHideWindow(true)
+        /*MenuWindow::MenuWindow(ConstString& Name, const Rect& RendRect, UI::Menu* TheMenu, Screen* PScreen) :
+            Window(Name,RendRect,PScreen),
+            BackButton(NULL),
+            ParentWindow(NULL),
+            MasterMenu(TheMenu),
+            AutoHideWindow(true)
         {
             Type = Widget::W_MenuWindow;
         }
@@ -84,31 +84,31 @@ namespace Mezzanine
             return ParentWindow;
         }
 
-        Button* MenuWindow::CreateBackButton(const RenderableRect& Rect)
+        Button* MenuWindow::CreateBackButton(const Rect& RendRect)
         {
             if(!BackButton && ParentWindow)
             {
-                BackButton = this->CreateButton(Name+"back",Rect);
+                BackButton = this->CreateButton(Name+"back",RendRect);
                 return BackButton;
             }
             return 0;
         }
 
-        Button* MenuWindow::CreateBackButton(const RenderableRect& Rect, const Whole& Glyph, const String& Text)
+        Button* MenuWindow::CreateBackButton(const Rect& RendRect, const Whole& Glyph, const String& Text)
         {
             if(!BackButton && ParentWindow)
             {
-                BackButton = this->CreateButton(Name+"back",Rect,Glyph,Text);
+                BackButton = this->CreateButton(Name+"back",RendRect,Glyph,Text);
                 return BackButton;
             }
             return 0;
         }
 
-        Button* MenuWindow::CreateBackButton(const RenderableRect& Rect, const Real& LineHeight, const String& Text)
+        Button* MenuWindow::CreateBackButton(const Rect& RendRect, const Real& LineHeight, const String& Text)
         {
             if(!BackButton && ParentWindow)
             {
-                BackButton = this->CreateButton(Name+"back",Rect,LineHeight,Text);
+                BackButton = this->CreateButton(Name+"back",RendRect,LineHeight,Text);
                 return BackButton;
             }
             return 0;
@@ -119,23 +119,23 @@ namespace Mezzanine
             return BackButton;
         }
 
-        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const RenderableRect& Rect)
+        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const Rect& RendRect)
         {
-            Button* AccBut = this->CreateButton(Name,Rect);
+            Button* AccBut = this->CreateButton(Name,RendRect);
             ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
             return AccBut;
         }
 
-        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text)
+        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const Rect& RendRect, const Whole& Glyph, const String& Text)
         {
-            Button* AccBut = this->CreateButton(Name,Rect,Glyph,Text);
+            Button* AccBut = this->CreateButton(Name,RendRect,Glyph,Text);
             ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
             return AccBut;
         }
 
-        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text)
+        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const Rect& RendRect, const Real& LineHeight, const String& Text)
         {
-            Button* AccBut = this->CreateButton(Name,Rect,LineHeight,Text);
+            Button* AccBut = this->CreateButton(Name,RendRect,LineHeight,Text);
             ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
             return AccBut;
         }
@@ -166,7 +166,7 @@ namespace Mezzanine
             return 0;
         }
 
-        MenuWindow* MenuWindow::CreateChildMenuWindow(ConstString& Name, const RenderableRect& Rect, Button* Accessor)
+        MenuWindow* MenuWindow::CreateChildMenuWindow(ConstString& Name, const Rect& RendRect, Button* Accessor)
         {
             std::pair<Button*,MenuWindow*>* AccessorPair = NULL;
             for( std::vector<std::pair<Button*,MenuWindow*> >::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
@@ -176,7 +176,7 @@ namespace Mezzanine
             }
             if(NULL==AccessorPair)
                 return 0;
-            MenuWindow* MenWin = new MenuWindow(Name,Rect,MasterMenu,ParentScreen);
+            MenuWindow* MenWin = new MenuWindow(Name,RendRect,MasterMenu,ParentScreen);
             MenWin->ParentWindow = this;
             AccessorPair->second = MenWin;
             MenWin->Hide();
@@ -228,8 +228,8 @@ namespace Mezzanine
             {
                 (*it).second->UpdateDimensions();
             }
-        }
-    }
-}
+        }//*/
+    }//UI
+}//Mezzanine
 
 #endif

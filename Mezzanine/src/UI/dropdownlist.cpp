@@ -43,12 +43,9 @@
 #include "uimanager.h"
 #include "UI/dropdownlist.h"
 #include "UI/listbox.h"
-#include "UI/caption.h"
 #include "UI/button.h"
-#include "UI/rectangle.h"
 #include "UI/scrollbar.h"
 #include "UI/screen.h"
-#include "UI/viewportupdatetool.h"
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"
 
@@ -56,7 +53,7 @@ namespace Mezzanine
 {
     namespace UI
     {
-        DropDownList::DropDownList(const String& name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle, Screen* parent)
+        /*DropDownList::DropDownList(const String& name, const Rect& RendRect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle, Screen* parent)
             : Widget(name,parent),
               ToggleActivated(false)
         {
@@ -65,7 +62,7 @@ namespace Mezzanine
             if(Rect.Relative) Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * WinDim.Y),ParentScreen->GetPrimaryAtlas());
             else Result = Manager->SuggestGlyphIndex((Whole)LineHeight,ParentScreen->GetPrimaryAtlas());
 
-            ConstructDropDownList(Rect,Result.first,ScrollStyle);
+            ConstructDropDownList(RendRect,Result.first,ScrollStyle);
 
             if(1.f != Result.second)
             {
@@ -74,11 +71,11 @@ namespace Mezzanine
             }
         }
 
-        DropDownList::DropDownList(const String& name, const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle, Screen* parent)
+        DropDownList::DropDownList(const String& name, const Rect& RendRect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle, Screen* parent)
             : Widget(name,parent),
               ToggleActivated(false)
         {
-            ConstructDropDownList(Rect,Glyph,ScrollStyle);
+            ConstructDropDownList(RendRect,Glyph,ScrollStyle);
         }
 
         DropDownList::~DropDownList()
@@ -88,50 +85,50 @@ namespace Mezzanine
             ParentScreen->DestroyWidget(SelectionList);
         }
 
-        void DropDownList::ConstructDropDownList(const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle)
+        void DropDownList::ConstructDropDownList(const Rect& RendRect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle)
         {
             Type = Widget::W_DropDownList;
-            RenderableRect SelectionRect, ListToggleRect, SelectionListRect;
+            Rect SelectionRect, ListToggleRect, SelectionListRect;
             Real ScrollbarWidth;
             const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            if(Rect.Relative)
+            if(RendRect.Relative)
             {
-                RelPosition = Rect.Position;
-                RelSize = Rect.Size;
+                RelPosition = RendRect.Position;
+                RelSize = RendRect.Size;
 
-                SelectionRect.Position = Rect.Position;
-                SelectionRect.Size.X = Rect.Size.X - ((Rect.Size.Y * WinDim.Y) / WinDim.X);
-                SelectionRect.Size.Y = Rect.Size.Y;
-                SelectionRect.Relative = Rect.Relative;
+                SelectionRect.Position = RendRect.Position;
+                SelectionRect.Size.X = RendRect.Size.X - ((RendRect.Size.Y * WinDim.Y) / WinDim.X);
+                SelectionRect.Size.Y = RendRect.Size.Y;
+                SelectionRect.Relative = RendRect.Relative;
 
-                ListToggleRect.Position.X = Rect.Position.X + SelectionRect.Size.X;
-                ListToggleRect.Position.Y = Rect.Position.Y;
-                ListToggleRect.Size.X = (Rect.Size.Y * WinDim.Y) / WinDim.X;
-                ListToggleRect.Size.Y = Rect.Size.Y;
-                ListToggleRect.Relative = Rect.Relative;
+                ListToggleRect.Position.X = RendRect.Position.X + SelectionRect.Size.X;
+                ListToggleRect.Position.Y = RendRect.Position.Y;
+                ListToggleRect.Size.X = (RendRect.Size.Y * WinDim.Y) / WinDim.X;
+                ListToggleRect.Size.Y = RendRect.Size.Y;
+                ListToggleRect.Relative = RendRect.Relative;
 
-                ScrollbarWidth = (Rect.Size.Y * WinDim.Y) / WinDim.X;
+                ScrollbarWidth = (RendRect.Size.Y * WinDim.Y) / WinDim.X;
             }else{
-                RelPosition = Rect.Position / WinDim;
-                RelSize = Rect.Size / WinDim;
+                RelPosition = RendRect.Position / WinDim;
+                RelSize = RendRect.Size / WinDim;
 
-                SelectionRect.Position = Rect.Position;
-                SelectionRect.Size.X = Rect.Size.X - Rect.Size.Y;
-                SelectionRect.Size.Y = Rect.Size.Y;
-                SelectionRect.Relative = Rect.Relative;
+                SelectionRect.Position = RendRect.Position;
+                SelectionRect.Size.X = RendRect.Size.X - Rect.Size.Y;
+                SelectionRect.Size.Y = RendRect.Size.Y;
+                SelectionRect.Relative = RendRect.Relative;
 
-                ListToggleRect.Position.X = Rect.Position.X + SelectionRect.Size.X;
-                ListToggleRect.Position.Y = Rect.Position.Y;
-                ListToggleRect.Size.X = Rect.Size.Y;
-                ListToggleRect.Size.Y = Rect.Size.Y;
-                ListToggleRect.Relative = Rect.Relative;
+                ListToggleRect.Position.X = RendRect.Position.X + SelectionRect.Size.X;
+                ListToggleRect.Position.Y = RendRect.Position.Y;
+                ListToggleRect.Size.X = RendRect.Size.Y;
+                ListToggleRect.Size.Y = RendRect.Size.Y;
+                ListToggleRect.Relative = RendRect.Relative;
 
-                ScrollbarWidth = Rect.Size.Y;
+                ScrollbarWidth = RendRect.Size.Y;
             }
-            SelectionListRect.Position.X = Rect.Position.X;
-            SelectionListRect.Position.Y = Rect.Position.Y + SelectionRect.Size.Y;
-            SelectionListRect.Size = Rect.Size;
-            SelectionListRect.Relative = Rect.Relative;
+            SelectionListRect.Position.X = RendRect.Position.X;
+            SelectionListRect.Position.Y = RendRect.Position.Y + SelectionRect.Size.Y;
+            SelectionListRect.Size = RendRect.Size;
+            SelectionListRect.Relative = RendRect.Relative;
 
             Selection = ParentScreen->CreateCaption(Name+"Select",SelectionRect,Glyph,"");
             ListToggle = ParentScreen->CreateButton(Name+"Toggle",ListToggleRect);
@@ -153,7 +150,7 @@ namespace Mezzanine
 
         void DropDownList::UpdateImpl(bool Force)
         {
-            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredSubWidget == ListToggle)
             {
                 if(Input::BUTTON_PRESSING == State)
@@ -279,8 +276,8 @@ namespace Mezzanine
         UI::ListBox* DropDownList::GetSelectionList()
         {
             return SelectionList;
-        }
-    }//ui
+        }//*/
+    }//UI
 }//Mezzanine
 
 #endif

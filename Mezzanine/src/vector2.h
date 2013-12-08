@@ -63,142 +63,145 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB Vector2
     {
-        public:
-            /// @brief Coordinate on the X vector.
-            Real X;
-            /// @brief Coordinate on the Y vector.
-            Real Y;
-            /// @brief Default Constructor.
-            /// @details Basic all zero initialization constructor.
-            Vector2();
-            /// @brief Real value Constructor.
-            /// @details Constructor that sets both vectors.
-            /// @param x Coordinate on the X vector.
-            /// @param y Coordinate on the Y vector.
-            Vector2(const Real& x, const Real& y);
-            /// @brief Ogre Value Constructor.
-            /// @details Constructor that sets all values to match the Ogre vector.
-            /// @param Vec The vector to be copied to make this vector.
-            Vector2(const Ogre::Vector2& Vec);
+    public:
+        /// @brief Coordinate on the X vector.
+        Real X;
+        /// @brief Coordinate on the Y vector.
+        Real Y;
 
-            /// @brief Gets a Ogre vector2.
-            /// @details Creates a Ogre vector2 with values equal to this class and returns it.
-            Ogre::Vector2 GetOgreVector2() const;
-            /// @brief Copies an existing Ogre vector2.
-            /// @details This function will copy the values stored in an existing Ogre vector2
-            /// and set the values of this class to be the same.
-            /// @param Ours The vector2 to be extracted.
-            void ExtractOgreVector2(const Ogre::Vector2& Ours);
+        /// @brief Default Constructor.
+        Vector2();
+        /// @brief Real value Constructor.
+        /// @param x Coordinate on the X vector.
+        /// @param y Coordinate on the Y vector.
+        Vector2(const Real& x, const Real& y);
+        /// @brief Ogre Value Constructor.
+        /// @param Vec The vector to be copied to make this vector.
+        Vector2(const Ogre::Vector2& Vec);
 
-            /// @brief Sets the values of this vector2 to identity values(0,0).
-            void SetIdentity();
-            /// @brief Sets the X and Y values of this vector2.
-            /// @param x The real that will have this vector's X member set to.
-            /// @param y The real that will have this vector's Y member set to.
-            void SetValues(const Real& x, const Real& y);
+        /// @brief Gets a Ogre vector2.
+        /// @return Returns an Ogre Vector2 with the same values as this.
+        Ogre::Vector2 GetOgreVector2() const;
+        /// @brief Copies an existing Ogre vector2.
+        /// @param Thiers The vector2 to be extracted.
+        void ExtractOgreVector2(const Ogre::Vector2& Thiers);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Equality Comparison operators
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
 
-            /// @brief Equality Comparison Operator
-            /// @details Returns true if X==X and Y==Y. If any of those do not match this returns false.
-            /// @param Vec2 This is the other Mezzanine::Vector2.
-            bool operator== (const Mezzanine::Vector2 &Vec2);
+        /// @brief Sets the values of this vector2 to identity values(0,0).
+        void SetIdentity();
+        /// @brief Sets the X and Y values of this vector2.
+        /// @param x The real that will have this vector's X member set to.
+        /// @param y The real that will have this vector's Y member set to.
+        void SetValues(const Real& x, const Real& y);
 
-            /// @brief Equality Comparison Operator
-            /// @details Returns true if X!=X or Y!=Y. If any of those do not match this returns false.
-            /// @param Vec2 This is the other Mezzanine::Vector2.
-            bool operator!= (const Mezzanine::Vector2 &Vec2);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Equality Comparison operators
 
-            /// @brief Equality Comparison Operator
-            /// @details Returns true if X==X and Y==Y. If any of those do not match this returns false.
-            /// @param Vec2 This is the other Ogre::Vector2.
-            bool operator== (const Ogre::Vector2 &Vec2);
+        /// @brief Equality Comparison Operator.
+        /// @param Vec2 This is the other Mezzanine::Vector2 to compare with.
+        /// @return Returns true if X==X and Y==Y, otherwise returns false.
+        Bool operator==(const Mezzanine::Vector2& Vec2) const;
+        /// @brief Equality Comparison Operator.
+        /// @param Vec2 This is the other Mezzanine::Vector2.
+        /// @return Returns true if X!=X or Y!=Y, otherwise returns false.
+        Bool operator!=(const Mezzanine::Vector2& Vec2) const;
+        /// @brief Equality Comparison Operator.
+        /// @param Vec2 This is the other Ogre::Vector2.
+        /// @return Returns true if X==X and Y==Y, otherwise returns false.
+        Bool operator==(const Ogre::Vector2& Vec2) const;
+        /// @brief Equality Comparison Operator.
+        /// @param Vec2 This is the other Ogre::Vector2.
+        /// @return Returns true if X!=X or Y!=Y, otherwise returns false.
+        Bool operator!=(const Ogre::Vector2& Vec2) const;
 
-            /// @brief Equality Comparison Operator
-            /// @details Returns true if X!=X or Y!=Y. If any of those do not match this returns false.
-            /// @param Vec2 This is the other Ogre::Vector2.
-            bool operator!= (const Ogre::Vector2 &Vec2);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Vector2 Arithmetic with Real
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Vector2 Arithmetic with Real
+        /// @brief Scaling by multiplication.
+        /// @return This returns a Vector2 that has been scaled.
+        /// @param scalar This is the amount to scale the Vector2 by.
+        Vector2 operator* (const Real& scalar) const;
+        /// @brief Scaling by Division.
+        /// @return This returns a Vector2 that has been scaled.
+        /// @param scalar This is the amount to scale the Vector2 by.
+        Vector2 operator/ (const Real& scalar) const;
 
-            /// @brief Scaling by multiplication
-            /// @details This Multiplies X and Y by scalar
-            /// @return This returns a Vector2 that has been scaled
-            /// @param scalar This is the amount to scale the Vector2 by
-            Vector2 operator* (const Real &scalar) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Vector2 Arithmetic and assignment with Real
 
-            /// @brief Scaling by Division
-            /// @details This Diisionn X and Y by scalar
-            /// @return This returns a Vector2 that has been scaled
-            /// @param scalar This is the amount to scale the Vector2 by
-            Vector2 operator/ (const Real &scalar) const;
+        /// @brief Scaling by multiplication.
+        /// @param scalar This is the amount to scale the Vector2 by.
+        /// @return Returns a reference to this.
+        Vector2& operator*= (const Real& scalar);
+        /// @brief Scaling by Division.
+        /// @param scalar This is the amount to scale the Vector2 by.
+        /// @return Returns a reference to this.
+        Vector2& operator/= (const Real& scalar);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Vector2 Arithmetic and assignment with Real
+        ///////////////////////////////////////////////////////////////////////////////
+        // Arithmetic Operators
 
-            /// @brief Scaling by multiplication.
-            /// @details This Multiplies X and Y by scalar and stores the changes in this Vector2.
-            /// @param scalar This is the amount to scale the Vector2 by.
-            void operator*= (const Real &scalar);
+        /// @brief Addition Operator.
+        /// @param Vec2 The other Vector2 to add to this.
+        /// @return Returns a new Vector2 that is the result of this operation.
+        Vector2 operator+ (const Vector2& Vec2) const;
+        /// @brief Subraction Operator.
+        /// @param Vec2 The other Vector2 to subtract from this.
+        /// @return Returns a new Vector2 that is the result of this operation.
+        Vector2 operator- (const Vector2& Vec2) const;
+        /// @brief Multiplaction Operator.
+        /// @param Vec2 The other Vector2 to multiply by this.
+        /// @return Returns a new Vector2 that is the result of this operation.
+        Vector2 operator* (const Vector2& Vec2) const;
+        /// @brief Division Operator.
+        /// @param Vec2 The other Vector2 to divide by.
+        /// @return Returns a new Vector2 that is the result of this operation.
+        Vector2 operator/ (const Vector2& Vec2) const;
 
-            /// @brief Scaling by Division
-            /// @details This Division X and Y by scalar and and stores the changes in this Vector2.
-            /// @param scalar This is the amount to scale the Vector2 by
-            void operator/= (const Real &scalar);
+        /// @brief Addition assignment Operator.
+        /// @param Vec2 The other Vector2 to add to this.
+        /// @return Returns a reference to this.
+        Vector2& operator+= (const Vector2& Vec2);
+        /// @brief Subraction assignment Operator.
+        /// @param Vec2 The other Vector2 to subtract from this.
+        /// @return Returns a reference to this.
+        Vector2& operator-= (const Vector2& Vec2);
+        /// @brief Multiplaction assignment Operator.
+        /// @param Vec2 The other Vector2 to multiply by this.
+        /// @return Returns a reference to this.
+        Vector2& operator*= (const Vector2& Vec2);
+        /// @brief Division assignment Operator.
+        /// @param Vec2 The other Vector2 to divide by.
+        /// @return Returns a reference to this.
+        Vector2& operator/= (const Vector2& Vec2);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Arithmetic Operators
+        ///////////////////////////////////////////////////////////////////////////////
+        // Fancy Math
 
-            /// @brief Addition Operator
-            /// @details Allows for addition from a Mezzanine::Vector2
-            /// @param Vec2 This is the other Mezzanine::Vector2
-            Vector2 operator+ (const Vector2 &Vec2) const;
+        /// @brief Generates a Vector2 that is perpendicular to this vector.
+        /// @return Returns a new Vector2 that is perpendicular to this.
+        Vector2 Perpendicular() const;
+        /// @brief Normalizes this Vector2.
+        /// @return Returns a reference to this.
+        Vector2& Normalize();
 
-            /// @brief Subraction Operator
-            /// @details Allows for subtraction from a Mezzanine::Vector2
-            /// @param Vec2 This is the other Mezzanine::Vector2
-            Vector2 operator- (const Vector2 &Vec2) const;
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
 
-            /// @brief Multiplaction Operator
-            /// @details Allows for multiplaction from a Mezzanine::Vector2
-            /// @param Vec2 This is the other Mezzanine::Vector2
-            Vector2 operator* (const Vector2 &Vec2) const;
+        /// @brief Convert this class to an XML::Node ready for serialization
+        /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+        void ProtoSerialize(XML::Node& CurrentRoot) const;
+        /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+        /// @param OneNode and XML::Node containing the data.
+        void ProtoDeSerialize(const XML::Node& OneNode);
 
-            /// @brief Division Operator
-            /// @details Allows for division from a Mezzanine::Vector2
-            /// @param Vec2 This is the other Mezzanine::Vector2
-            Vector2 operator/ (const Vector2 &Vec2) const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Fancy Math
-
-            /// @brief Generates a Vector2 that is perpendicular to this vector.
-            /// @return Returns a new Vector2 that is perpendicular to this.
-            Vector2 Perpendicular() const;
-
-            /// @brief Normalizes this Vector2.
-            /// @return Returns a reference to this.
-            Vector2& Normalize();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Serialization
-            // Serializable
-            /// @brief Convert this class to an XML::Node ready for serialization
-            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            void ProtoSerialize(XML::Node& CurrentRoot) const;
-
-            // DeSerializable
-            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and XML::Node containing the data.
-            void ProtoDeSerialize(const XML::Node& OneNode);
-
-            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-            /// @return A string containing "Vector2"
-            static String SerializableName();
-    };
-}
+        /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+        /// @return A string containing "Vector2"
+        static String SerializableName();
+    };//Vector2
+}//Mezzanine
 
 // We can skip these operators when creating bindings with swig
 #ifndef SWIG

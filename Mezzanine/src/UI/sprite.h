@@ -41,31 +41,122 @@
 #define _uisprite_h
 
 #include "vector2.h"
+#include "UI/uienumerations.h"
+#include "UI/textureatlas.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        /// @struct Sprite
-        /// @headerfile uisprite.h
+        ///////////////////////////////////////////////////////////////////////////////
         /// @brief Basic class used to describe a portion of a texture to be applied to a Quad.
         /// @details
-        struct MEZZ_LIB Sprite
+        ///////////////////////////////////////
+        class MEZZ_LIB Sprite
         {
-            /// @brief Top Coordinate on the Texture.
-            Real UVTop;
-            /// @brief Left Coordinate on the Texture.
-            Real UVLeft;
-            /// @brief Right Coordinate on the Texture.
-            Real UVRight;
-            /// @brief Bottom Coordinate on the Texture.
-            Real UVBottom;
-            /// @brief Overall size of the Quad to be drawn.
-            Vector2 SpriteSize;
-            /// @brief The 4 corner coordinates on the Texture.
-            Vector2 AtlasCoords[4];
-            /// @brief The Atlas the Texture belongs to.
-            String Atlas;
+        public:
+            /// @brief Class constructor.
+            /// @brief The name to be given to this sprite.
+            /// @param UVTop The top position of this sprite on the Atlas.
+            /// @param UVLeft The left position of this sprite on the Atlas.
+            /// @param UVBottom The bottom position of this sprite on the Atlas.
+            /// @param UVRight The right position of this sprite on the Atlas.
+            Sprite(const String& SpriteName, const Real UVTop, const Real UVLeft, const Real UVBottom, const Real UVRight) :
+                Atlas(NULL),
+                Name(SpriteName),
+                Top(UVTop),
+                Left(UVLeft),
+                Bottom(UVBottom),
+                Right(UVRight)
+                {  }
+            /// @brief Class destructor.
+            ~Sprite()
+                {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Data Members
+
+            /// @brief The TextureAtlas this sprite belongs to.
+            TextureAtlas* Atlas;
+            /// @brief The name of this sprite.
+            const String Name;
+            /// @brief The top position of this sprite on the Atlas.
+            const Real Top;
+            /// @brief The left position of this sprite on the Atlas.
+            const Real Left;
+            /// @brief The bottom position of this sprite on the Atlas.
+            const Real Bottom;
+            /// @brief The right position of this sprite on the Atlas.
+            const Real Right;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            /// @brief Gets the name of the atlas this sprite belongs to.
+            inline const String& GetAtlasName() const
+                { return Atlas->GetName(); }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Position and Size Methods
+
+            /// @brief Gets the Top coordinate on the Atlas texture.
+            /// @return Returns a Real representing the top position of this sprite on the Atlas texture in pixels.
+            inline Real GetUVTop() const
+                { return this->Top * Atlas->GetTextureSize().Y; }
+            /// @brief Gets the Bottom coordinate on the Atlas texture.
+            /// @return Returns a Real representing the bottom position of this sprite on the Atlas texture in pixels.
+            inline Real GetUVBottom() const
+                { return this->Bottom * Atlas->GetTextureSize().Y; }
+            /// @brief Gets the Left coordinate on the Atlas texture.
+            /// @return Returns a Real representing the left position of this sprite on the Atlas texture in pixels.
+            inline Real GetUVLeft() const
+                { return this->Left * Atlas->GetTextureSize().X; }
+            /// @brief Gets the Right coordinate on the Atlas texture.
+            /// @return Returns a Real representing the right position of this sprite on the Atlas texture in pixels.
+            inline Real GetUVRight() const
+                { return this->Right * Atlas->GetTextureSize().X; }
+            /// @brief Gets the position of the sprite on the Atlas texture.
+            /// @return Returns a Vector2 containing the top-left position of this sprite on the Atlas texture in pixels.
+            inline Vector2 GetPosition() const
+                { return Vector2(this->Left,this->Top) * Atlas->GetTextureSize(); }
+            /// @brief Gets the size of the sprite on the Atlas texture.
+            /// @return Returns a Vector2 containing the size of this sprite on the Atlas Texture in pixels.
+            inline Vector2 GetSize() const
+                { return Vector2(this->GetWidth(),this->GetHeight()); }
+            /// @brief Gets the sprite's height on the Atlas texture.
+            /// @return Returns a Real representing the height of this sprite on the Atlas Texture in pixels.
+            inline Real GetHeight() const
+                { return GetUVBottom() - GetUVTop(); }
+            /// @brief Gets the sprite's width on the Atlas texture.
+            /// @return Returns a Real representing the width of this sprite on the Atlas Texture in pixels.
+            inline Real GetWidth() const
+                { return GetUVRight() - GetUVLeft(); }
+            /// @brief Gets the pixel position on the Atlas of a corner belonging to this Sprite.
+            /// @param Corner The corner to retrieve the coordinates for.
+            /// @return Returns a Vector2 containing the Atlas pixel position of the specific corner.
+            inline Vector2 GetAtlasCoords(const UI::QuadCorner Corner) const
+            {
+                switch(Corner)
+                {
+                    case UI::QC_TopLeft:      return Vector2(Left,Top) * Atlas->GetTextureSize();      break;
+                    case UI::QC_TopRight:     return Vector2(Right,Top) * Atlas->GetTextureSize();     break;
+                    case UI::QC_BottomLeft:   return Vector2(Left,Bottom) * Atlas->GetTextureSize();   break;
+                    case UI::QC_BottomRight:  return Vector2(Right,Bottom) * Atlas->GetTextureSize();  break;
+                }
+            }
+            /// @brief Gets the relative position on the Atlas of a corner belonging to this Sprite.
+            /// @param Corner The corner to retrieve the coordinates for.
+            /// @return Returns a Vector2 containing the Atlas relative position of the specific corner.
+            inline Vector2 GetRelativeAtlasCoords(const UI::QuadCorner Corner) const
+            {
+                switch(Corner)
+                {
+                    case UI::QC_TopLeft:      return Vector2(Left,Top);      break;
+                    case UI::QC_TopRight:     return Vector2(Right,Top);     break;
+                    case UI::QC_BottomLeft:   return Vector2(Left,Bottom);   break;
+                    case UI::QC_BottomRight:  return Vector2(Right,Bottom);  break;
+                }
+            }
         };//Sprite
     }//UI
 }//Mezzanine

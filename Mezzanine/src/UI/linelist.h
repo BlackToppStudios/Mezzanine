@@ -42,15 +42,16 @@
 
 #include "colourvalue.h"
 #include "uienumerations.h"
-#include "UI/basicrenderable.h"
+#include "UI/renderable.h"
 
 namespace Mezzanine
 {
+    class UIManager;
     namespace UI
     {
         class VertexData;
-        class ScreenVertexData;
-        class UIManager;
+        class ScreenRenderData;
+        class LineListRenderer;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class LineList
         /// @headerfile uilinelist.h
@@ -59,20 +60,36 @@ namespace Mezzanine
         /// doesn't have a position or size.  The position functions exist only to create additional
         /// points for the lines to connect.
         ///////////////////////////////////////
-        class MEZZ_LIB LineList : public BasicRenderable
+        class MEZZ_LIB LineList : public Renderable
         {
+            public:
+                /// @brief Basic container type for the storage of all the points in 2D space that create the line to be rendered.
+                typedef std::vector<Vector2> PointVector;
             protected:
                 friend class ExtendedRenderableFactory;
-                UIManager* Manager;
-                bool IsClosed;
-                Real Thickness;
+                /// @internal
+                /// @brief The colour of the line.
                 ColourValue Colour;
-                std::vector<Vector2> Positions;
+                /// @internal
+                /// @brief The points in 2D space that create this line.
+                PointVector Positions;
+                /// @internal
+                /// @brief The internal renderer responsible for generating this lines vertices.
+                LineListRenderer* Renderer;
+                /// @internal
+                /// @brief The pixel thickness of the each line segment in this linelist.
+                Real Thickness;
+                /// @internal
+                /// @brief A bool indicating whether or not an additional segment should be generated between the first and last points.
+                bool Closed;
+                /// @internal
+                /// @brief Determines the "higher ZOrder" of this Quad compared to all other renderables on screen.
+                UI::RenderPriority Priority;
             //public:
                 /// @brief Class constructor.
-                /// @param name The name to give to this Linelist.
+                /// @param RendName The name to give to this Linelist.
                 /// @param PScreen Pointer to the parent Screen that created this linelist.
-                LineList(const String& name, Screen* PScreen);
+                LineList(const String& RendName, Screen* PScreen);
                 /// @brief Class destructor.
                 virtual ~LineList();
             public:
@@ -81,36 +98,77 @@ namespace Mezzanine
                 /// clear the current list of lines and start a new list.
                 /// @param LineThickness The thickness of the line to draw in pixels.
                 /// @param LineColour The colour of the line.
-                void Begin(const Whole& LineThickness, const ColourValue& LineColour);
+                /// @return Returns a reference to this.
+                LineList& Begin(const Whole& LineThickness, const ColourValue& LineColour);
                 /// @brief Adds a new point/line to the list via 2 reals.
                 /// @param X Relative coordinate on the X vector.
                 /// @param Y Relative coordinate on the Y vector.
-                void AddPoint(const Real& X, const Real& Y);
+                /// @return Returns a reference to this.
+                LineList& AddPoint(const Real& X, const Real& Y);
                 /// @brief Adds a new point/line to the list via a vector2.
                 /// @param Position A vector2 representing the relative position on screen.
-                void AddPoint(const Vector2& Position);
+                /// @return Returns a reference to this.
+                LineList& AddPoint(const Vector2& Position);
                 /// @brief Adds a new point/line to the list via 2 reals.
                 /// @param X Coordinate on the X vector.
                 /// @param Y Coordinate on the Y vector.
-                void AddActualPoint(const Real& X, const Real& Y);
+                /// @return Returns a reference to this.
+                LineList& AddActualPoint(const Real& X, const Real& Y);
                 /// @brief Adds a new point/line to the list via a vector2.
                 /// @param Position A vector2 representing the position on screen.
-                void AddActualPoint(const Vector2& Position);
+                /// @return Returns a reference to this.
+                LineList& AddActualPoint(const Vector2& Position);
                 /// @brief Finalizes the list and prepares it for rendering.
                 /// @param Closed Whether or not the line list connects back to it's starting position.  If
                 /// true this will create one last line connecting the last provided position with the first.
                 void End(bool Closed = false);
 
-                /// @brief Updates the dimensions of this renderable to match those of the new screen size.
-                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                virtual void UpdateDimensions();
                 ///////////////////////////////////////////////////////////////////////////////
-                // Internal Functions
-                ///////////////////////////////////////
-                /// @copydoc UI::BasicRenderable::_Redraw()
-                virtual void _Redraw();
-                /// @copydoc UI::BasicRenderable::_AppendVertices()
-                virtual void _AppendVertices(ScreenVertexData& Vertices);
+                // Utility Methods
+
+                /// @copydoc Renderable::GetRenderableType() const
+                RenderableType GetRenderableType() const;
+                /// @brief Gets the vector of points stored by this linelist.
+                /// @return Returns a const reference to the vector of points stored by this linelist.
+                const PointVector& GetPoints() const;
+                /// @brief Gets whether or not this linelist is enclosed.
+                /// @return Returns true if this linelist has an extra line connecting the first and last entries.
+                bool IsClosed() const;
+                /// @brief Gets the colour of this linelist.
+                /// @return Returns a const reference to the colourvalue for this linelist.
+                const ColourValue& GetLineColour() const;
+                /// @brief Gets the thickness of the line generated by this linelist.
+                /// @return Returns a const reference to the real storing the line thickness for this linelist.
+                const Real& GetLineThickness() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Visibility Methods
+
+                /// @copydoc Renderable::SetVisible(bool visible)
+                virtual void SetVisible(bool visible);
+                /// @copydoc Renderable::GetVisible()
+                virtual bool GetVisible() const;
+                /// @copydoc Renderable::IsVisible()
+                virtual bool IsVisible() const;
+                /// @copydoc Renderable::Show()
+                virtual void Show();
+                /// @copydoc Renderable::Hide()
+                virtual void Hide();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility Methods
+
+                /// @brief Updates the dimensions of this QuadRenderable based on the transform of it's parent.
+                /// @details This function is called automatically when a parent changes in size, and shouldn't need to be called manually.
+                virtual void UpdateDimensions();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Methods
+
+                /// @copydoc Renderable::_MarkDirty()
+                virtual void _MarkDirty();
+                /// @copydoc UI::Renderable::_AppendRenderData()
+                virtual void _AppendRenderData(ScreenRenderData& RenderData);
         };//listlist
     }//UI
 }//Mezzanine

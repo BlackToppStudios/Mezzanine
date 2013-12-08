@@ -37,19 +37,16 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uimenu_h
-#define _uimenu_h
+#ifndef _uimenuentry_h
+#define _uimenuentry_h
 
-#include "UI/widget.h"
+#include "UI/stackedcontainer.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        class MenuWindow;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Menu
-        /// @headerfile uimenu.h
         /// @brief This class is a control mechanism for multiple windows in a heirarchy.
         /// @details This class controls the presentation and order of different windows, useful
         /// for creating menu systems, be it a game main menu, or in-game menu. @n @n
@@ -57,72 +54,82 @@ namespace Mezzanine
         /// doesn't have a position or size like other classes.  Instead when you call those functions
         /// to set or get the position or size, you'll be working with the current top level window.
         ///////////////////////////////////////
-        class MEZZ_LIB Menu : public Widget
+        class MEZZ_LIB MenuEntry : public StackedContainer
         {
-            protected:
-                friend class ExtendedRenderableFactory;
-                UI::MenuWindow* RootWindow;
-                std::vector<UI::MenuWindow*> MenuStack;
-                /// @brief Child specific update method.
-                virtual void UpdateImpl(bool Force = false);
-                /// @brief Child specific visibility method.
-                virtual void SetVisibleImpl(bool visible);
-                /// @brief Child specific mouse hover method.
-                virtual bool CheckMouseHoverImpl();
-            public:
-                /// @brief Standard initialization constructor.
-                /// @param name The name of the window.
-                /// @param Rect The Rect representing the position and size of the window.
-                /// @param Screen The parent screen this window belongs to.
-                Menu(ConstString name, const RenderableRect& Rect, Screen* PScreen);
-                /// @brief Standard destructor.
-                virtual ~Menu();
-                /// @brief Hides and removes from the stack all windows from the top until it reaches the specified window, or root window.
-                /// @param Win The window to roll back to.
-                virtual void RollMenuBackToWindow(UI::MenuWindow* Win);
-                /// @brief Sets the relative position of this menu.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Position A vector2 representing the relative position of this menu.
-                virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative position of this widget.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this widget.
-                virtual Vector2 GetPosition();
-                /// @brief Sets the pixel position of this menu.
-                /// @param Position A vector2 representing the pixel position of this menu.
-                virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Sets the pixel position of this widget.
-                /// @return Returns a vector2 representing the pixel position of this widget.
-                virtual Vector2 GetActualPosition();
-                /// @brief Sets the relative size of this menu.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Size A vector2 representing the relative size of this menu.
-                virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this widget.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this widget.
-                virtual Vector2 GetSize();
-                /// @brief Sets the pixel size of this menu.
-                /// @param Size A vector2 representing the pixel size of this menu.
-                virtual void SetActualSize(const Vector2& Size);
-                /// @brief Sets the pixel size of this widget.
-                /// @return Returns a vector2 representing the pixel size of this widget.
-                virtual Vector2 GetActualSize();
-                /// @brief Updates the dimensions of this widget to match those of the new screen size.
-                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                virtual void UpdateDimensions();
-                /// @brief Gets the Root window of this menu.
-                /// @return Returns a pointer to the Root window of this menu.
-                virtual UI::MenuWindow* GetRootWindow();
-                /// @brief Gets the current window at the top of the stack.
-                /// @return Returns a pointer to the window currently at the top of the stack.
-                virtual UI::MenuWindow* GetTopWindow();
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Functions
-                ///////////////////////////////////////
-                /// @copydoc Widget::_AppendVertices
-                virtual void _AppendVertices(ScreenVertexData& Vertices);
-        };//Menu
+        public:
+            /// @brief Basic container type for child MenuEntry storage by this class.
+            typedef std::vector<MenuEntry*>               MenuEntryContainer;
+            /// @brief Iterator type for child MenuEntry instances stored by this class.
+            typedef MenuEntryContainer::iterator          MenuEntryIterator;
+            /// @brief Const Iterator type for child MenuEntry instances stored by this class.
+            typedef MenuEntryContainer::const_iterator    ConstMenuEntryIterator;
+
+            /// @brief String containing the type name for this class: "MenuEntry".
+            static const String TypeName;
+        protected:
+            /// @internal
+            /// @brief A pointer to the active stack of MenuEntries.
+            MenuEntryContainer* MenuStack;
+            /// @internal
+            /// @brief A pointer to the button that will push this entry on the menu stack.
+            Button* PushButton;
+            /// @internal
+            /// @brief A pointer to the button that will pop this entry from the menu stack.
+            Button* PopButton;
+        public:
+            /// @brief Blank constructor.
+            /// @param Parent The parent Screen that created this widget.
+            MenuEntry(Screen* Parent);
+            /// @brief Standard initialization constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param Parent The parent Screen that created this widget.
+            MenuEntry(const String& RendName, Screen* Parent);
+            /// @brief Rect constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param RendRect The rect describing this widget's transform relative to it's parent.
+            /// @param Parent The parent screen that created this renderable.
+            MenuEntry(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief Class destructor.
+            virtual ~MenuEntry();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            /// @brief Gets whether or not this is the Root of the MenuEntry hierarchy.
+            /// @return Returns true if this MenuEntry has no parent entry, false otherwise.
+            virtual Bool IsRootEntry() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // MenuEntry Properties
+
+
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Menu Configuration
+
+            /// @brief Sets the button that will push(add) this entry on the menu stack, making it visible.
+            /// @param Push A pointer to the button that will make this entry visible.
+            virtual void SetEntryPushButton(Button* Push);
+            /// @brief Sets the button that will pop(remove) this entry from the menu stack, hiding it.
+            /// @param Pop A pointer to the button that will make this entry hide.
+            virtual void SetEntryPopButton(Button* Pop);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Event Methods
+
+
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
+            virtual void _NotifyEvent(const EventArguments& Args);
+        };//MenuEntry
     }//UI
 }//Mezzanine
 

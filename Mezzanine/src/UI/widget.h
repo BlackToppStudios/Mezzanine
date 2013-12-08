@@ -40,277 +40,262 @@
 #ifndef _uiwidget_h
 #define _uiwidget_h
 
-#include "UI/renderable.h"
-#include "UI/renderablerect.h"
-#include "Input/inputenumerations.h"
+#include "UI/quadrenderable.h"
+#include "Input/metacode.h"
+#include "eventpublisher.h"
+#include "eventsubscriber.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
         class Button;
-        class WidgetListener;
-        class BasicRenderable;
-        class UIManager;
+        class RenderableContainer;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class InputCaptureData
-        /// @headerfile uiwidget.h
-        /// @brief This class contains all the utilities necessary for capturing input.
-        /// @details This is commonly used for Text-based widgets, such as TextBox's, Spinners, and InputBox's.
-        ///////////////////////////////////////
-        class MEZZ_LIB InputCaptureData : public std::set<Input::InputCode>
-        {
-            protected:
-                std::vector<Input::InputCode> CapturedCodes;
-            public:
-                /// @brief Class constructor.
-                InputCaptureData();
-                /// @brief Class destructor.
-                ~InputCaptureData();
-                /// @brief Adds a single input code to the list of codes to be captured.
-                /// @param Code The code to be captured.
-                void AddInput(const Input::InputCode& Code);
-                /// @brief Adds a range of input codes to the list of codes to be captured.
-                /// @details This function will fail silently if the lower code is higher then the upper code.
-                /// @param Lower The first input code in the range to be entered.
-                /// @param Upper The last input code in the range to be entered.
-                void AddInputRange(const Input::InputCode& Lower, const Input::InputCode& Upper);
-                /// @brief Gets the number of input codes this class is currently set to capture.
-                /// @return Returns a Whole representing the number of input codes set to be captured.
-                Whole GetNumCapturedInputs();
-                /// @brief Gets a vector of inputs that have been captured this frame.
-                /// @return Returns a pointer to the vector containing all the input codes captured this frame.
-                std::vector<Input::InputCode>* GetCapturedInputs();
-                /// @brief Checks this class to see if the provided code is set to be captured.
-                /// @param Code The input code to check for.
-                bool IsInputToBeCaptured(const Input::InputCode& Code);
-                /// @brief Updates the list of captured inputs for the frame.
-                /// @param InputCodes Vector of input codes to update the widget with.
-                void UpdateCapturedInputs(std::vector<Input::InputCode>& InputCodes);
-        };//inputcapturedata
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class Widget
-        /// @headerfile uiwidget.h
-        /// @brief This class is the base class for all widgets.
+        /// @class WidgetEventArguments
+        /// @headerfile widget.h
+        /// @brief This is the base class for widget specific event arguments.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB Widget : public Renderable
+        class MEZZ_LIB WidgetEventArguments : public EventArguments
         {
-            public:
-                // Vertex data types
-                typedef std::vector<VertexData> VertexContainer;
-                // Renderable data types
-                typedef std::list<Renderable*> RenderableList;
-                typedef RenderableList::iterator RenderableIterator;
-                typedef RenderableList::const_iterator ConstRenderableIterator;
-                // Listener data types
-                typedef std::vector<WidgetListener*> ListenerContainer;
-                typedef ListenerContainer::iterator ListenerIterator;
-                typedef ListenerContainer::const_iterator ConstListenerIterator;
-                enum WidgetType
-                {
-                    W_Button,
-                    W_ButtonListBox,
-                    W_Cell,
-                    W_CellGrid,
-                    W_CheckBox,
-                    W_DropDownList,
-                    W_DropDownMenu,
-                    W_GenericWidgetContainer,
-                    W_ListBox,
-                    W_Menu,
-                    W_MenuWindow,
-                    W_RadioButton,
-                    W_Scrollbar,
-                    W_Spinner,
-                    W_TabSet,
-                    W_TextBox,
-                    W_Window
-                };
-            protected:
-                friend class UIManager;
-                friend class Screen;
-                InputCaptureData* CaptureData;
-                Widget* HoveredSubWidget;
-                Widget* SubWidgetFocus;
-                bool Hovered;
-                WidgetType Type;
+        public:
+            /// @brief The identification of the source firing this event.
+            const String WidgetName;
 
-                ListenerContainer Listeners;
-                RenderableList SubRenderables;
-                /// @brief For use with widget update/automation.
-                virtual void Update(bool Force = false);
-                /// @brief Child specific update method.
-                virtual void UpdateImpl(bool Force = false) = 0;
-                /// @brief Child specific visibility method.
-                virtual void SetVisibleImpl(bool visible) = 0;
-                /// @brief Child specific mouse hover method.
-                virtual bool CheckMouseHoverImpl() = 0;
-                /// @brief For use with sub-widget update/automation.
-                virtual void SubWidgetUpdate(bool Force = false);
-                /// @brief For use with sub-widget update/automation when the mouse isn't hovered.
-                virtual void SubWidgetFocusUpdate(bool Force = false);
-                /// @brief Adds a renderable as a subrenderable to this widget.
-                virtual void AddSubRenderable(const UInt16& Zorder, Renderable* ToAdd);
-                /// @brief Processes the captured inputs.  This is an empty function and should be overridden if making an input capturing widget.
-                virtual void ProcessCapturedInputs();
-            public:
-                /// @brief Standard initialization constructor.
-                /// @param Parent The parent Screen that created this widget.
-                /// @param name The Name for the Widget.
-                Widget(const String& name, Screen* Parent);
-                /// @brief Standard destructor.
-                virtual ~Widget();
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility Methods
-
-                /// @brief Gets the type of widget this is.
-                /// @return Returns an enum value representing the type of widget this is.
-                virtual WidgetType GetType() const;
-                /// @brief Checks if this is an input capturing widget.
-                /// @return Returns a bool indicating whether or not this widget will capture input.
-                virtual bool IsInputCaptureWidget() const;
-                /// @brief Gets the result of the last mouse hover check.
-                /// @return Returns whether or not the mouse was hovering over this widget during the last check.
-                virtual bool IsHovered() const;
-                /// @brief Checks to see if the current mouse position is over this widget.
-                /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
-                virtual bool CheckMouseHover();
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Visibility Methods
-
-                /// @copydoc Renderable::SetVisible(bool visible)
-                virtual void SetVisible(bool visible);
-                /// @copydoc Renderable::GetVisible()
-                virtual bool GetVisible() const;
-                /// @copydoc Renderable::IsVisible()
-                virtual bool IsVisible() const;
-                /// @copydoc Renderable::Show()
-                virtual void Show();
-                /// @copydoc Renderable::Hide()
-                virtual void Hide();
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Transform Methods
-
-                /// @brief Sets the Rect(Position and Size) of this Widget.
-                /// @param Rect The Rect to set.
-                virtual void SetRect(const RenderableRect& Rect);
-                /// @brief Gets this Widgets' Rect.
-                /// @param Relative Whether or not you want the Rect to be populated with Relative values.
-                /// @return Returns a Rect containing this Widgets' Position and Size.
-                virtual RenderableRect GetRect(bool Relative = true) const;
-                /// @brief Sets the relative position of this widget.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Position A vector2 representing the relative position of this widget.
-                virtual void SetPosition(const Vector2& Position) = 0;
-                /// @brief Gets the relative position of this widget.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this widget.
-                virtual Vector2 GetPosition() const;
-                /// @brief Sets the pixel position of this widget.
-                /// @param Position A vector2 representing the pixel position of this widget.
-                virtual void SetActualPosition(const Vector2& Position) = 0;
-                /// @brief Sets the pixel position of this widget.
-                /// @return Returns a vector2 representing the pixel position of this widget.
-                virtual Vector2 GetActualPosition() const;
-                /// @brief Sets the relative size of this widget.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Size A vector2 representing the relative size of this widget.
-                virtual void SetSize(const Vector2& Size) = 0;
-                /// @brief Gets the relative size of this widget.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this widget.
-                virtual Vector2 GetSize() const;
-                /// @brief Sets the pixel size of this widget.
-                /// @param Size A vector2 representing the pixel size of this widget.
-                virtual void SetActualSize(const Vector2& Size) = 0;
-                /// @brief Sets the pixel size of this widget.
-                /// @return Returns a vector2 representing the pixel size of this widget.
-                virtual Vector2 GetActualSize() const;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Listener Methods
-
-                /// @brief Sets the listener to be used by this widget.
-                /// @param Listener The listener to be set for this widget.
-                virtual void AddWidgetListener(WidgetListener* Listener);
-                /// @brief Removes a listener currently being used by this widget.
-                /// @param Listener The listener to be removed from this widget.
-                virtual void RemoveWidgetListener(WidgetListener* Listener);
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Render Priority Methods
-
-                /// @copydoc Renderable::SetRenderPriority(const UI::RenderPriority& Priority)
-                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Fetch Methods
-
-                /// @brief Gets the hovered sub-widget within this widget, if any.
-                /// @return Returns a pointer to the sub-widget within this widget the mouse is hovering over, or NULL if none.
-                Widget* GetHoveredSubWidget() const;
-                /// @brief Gets a pointer to the Widget at the bottom of the hovered SubWidget chain.
-                /// @return Returns a pointer to the hovered sub-widget of the hovered sub-widget, etc., until you reach the end of the chain.
-                Widget* GetBottomMostHoveredWidget();
-                /// @brief Gets a pointer to the root widget in this chain of widgets.
-                /// @return Returns a pointer to the parent of the parent, etc., until you reach the root widget on the screen.
-                Widget* GetTopMostWidget();
-                /// @brief Gets the screen this widget belongs to.
-                /// @return Returns a pointer to the screen this eidget belongs to.
-                Screen* GetParent() const;
-                /// @brief Gets the data determining what input should be captured.
-                /// @return Returns a pointer to the InputCaptureData, or NULL if this widget doesn't capture data.
-                InputCaptureData* GetInputCaptureData() const;
-
-                /// @brief Gets an iterator to the first renderable pair in this widget.
-                RenderableIterator BeginRenderable();
-                /// @brief Gets an iterator to one passed the last renderable pair in this widget.
-                RenderableIterator EndRenderable();
-                /// @brief Gets a const iterator to the first renderable pair in this widget.
-                ConstRenderableIterator BeginRenderable() const;
-                /// @brief Gets a const iterator to one passed the last renderable pair in this widget.
-                ConstRenderableIterator EndRenderable() const;
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
-
-                /// @copydoc Renderable::_MarkDirty()
-                virtual void _MarkDirty();
-                /// @copydoc Renderable::_Redraw()
-                virtual void _Redraw();
-                /// @copydoc Renderable::_AppendVertices(ScreenVertexData& Vertices)
-                virtual void _AppendVertices(ScreenVertexData& Vertices);
-        };//widget
+            /// @brief Class constructor.
+            /// @param Name The name of the event being fired.
+            /// @param Source The identification of the widget firing this event.
+            WidgetEventArguments(const String& Name, const String& Source) :
+                EventArguments(Name), WidgetName(Source) {  }
+            /// @brief Class destructor.
+            virtual ~WidgetEventArguments() {  }
+        };//WidgetEventArguments
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class WidgetListener
-        /// @headerfile uiwidget.h
-        /// @brief This is a listener class for widgets.
+        /// @class Widget
+        /// @headerfile widget.h
+        /// @brief This is the base class for all widgets.
+        /// @details A widget is really a mechanism for implementing not-so-generic UI behaviors.  They
+        /// are control stuctures allowing UI elements to interact with each other and potentially classes
+        /// outside the UI system(through the event system). @n @n
+        /// This class automatically creates a "Normal" and "Hovered" RenderLayerGroup that are used with
+        /// the events of this class, these groups should be used and additional groups only made for special
+        /// cases.
         ///////////////////////////////////////
-        class MEZZ_LIB WidgetListener
+        class MEZZ_LIB Widget : public QuadRenderable, public EventPublisher, public EventSubscriber
         {
-            protected:
-                Widget* Caller;
-            public:
-                /// @brief Class constructor.
-                WidgetListener();
-                /// @brief Class destructor.
-                virtual ~WidgetListener();
-                /// @brief Sets the Widget this listener belongs to.
-                virtual void SetCaller(Widget* Caller);
-                /// @brief Performs listener items immediately after hover checks complete.
-                virtual void DoHoverItems() = 0;
-                /// @brief Performs listener items just before widget updates start.
-                virtual void DoPreUpdateItems() = 0;
-                /// @brief Performs listener items immediately after updates complete.
-                virtual void DoPostUpdateItems() = 0;
-                /// @brief Performs listener items immediately after widget visibility changes.
-                virtual void DoVisibilityChangeItems() = 0;
-        };//WidgetListener
+        public:
+            /// @enum WidgetState
+            /// @brief Enum describing the current state of the widget.
+            enum WidgetState
+            {
+                WS_Untouched = 0,
+                WS_Hovered   = 1,
+                WS_Focused   = 2,
+                WS_Dragged   = 4
+            };
+
+            /// @brief Container class for storing @ref RenderLayerGroup instances in relation to widget states.
+            typedef std::map<UInt32,RenderLayerGroup*>       StateLayerGroupMap;
+            /// @brief Iterator type for @ref RenderLayerGroup instances stored in relation to widget states.
+            typedef StateLayerGroupMap::iterator             StateLayerGroupIterator;
+            /// @brief Const Iterator type for @ref RenderLayerGroup instances stored in relation to widget states.
+            typedef StateLayerGroupMap::const_iterator       ConstStateLayerGroupIterator;
+
+            /// @brief String containing the type name for this class: "GenericWidget".
+            static const String TypeName;
+            /// @brief Event name for when the mouse enters this widget.
+            static const String EventMouseEnter;
+            /// @brief Event name for when the mouse leaves this widget.
+            static const String EventMouseExit;
+            /// @brief Event name for when the mouse starts dragging this widget.
+            static const String EventMouseDragStart;
+            /// @brief Event name for when a mouse activation button is pressed, and held while moving.
+            static const String EventMouseDragging;
+            /// @brief Event name for when the mouse stops dragging this widget.
+            static const String EventMouseDragEnd;
+            /// @brief Event name for when this widget gains focus.
+            static const String EventFocusGained;
+            /// @brief Event name for when this widget loses focus.
+            static const String EventFocusLost;
+            /// @brief Event name for when the system locks focus on this widget.
+            static const String EventFocusLocked;
+            /// @brief Event name fow when the system removes the focus lock from this widget.
+            static const String EventFocusUnlocked;
+            /// @brief Event name for when this widget is switched from being hidden to being shown.
+            static const String EventVisibilityShown;
+            /// @brief Event name for when this widget is switched from being shown to being hidden.
+            static const String EventVisibilityHidden;
+        protected:
+            /// @internal
+            /// @brief The child widget of this widget the mouse is over, if any.
+            Widget* HoveredSubWidget;
+            /// @internal
+            /// @brief UInt32 describing the current state of this widget.
+            UInt32 State;
+            /// @internal
+            /// @brief Map containing all the RenderLayerGroups bound to specific widget states.
+            StateLayerGroupMap StateGroupBindings;
+
+            /// @internal
+            /// @brief Consumes input for this widget's use.
+            /// @return Returns true if the input was handled, false otherwise.
+            virtual bool HandleInputImpl(const Input::MetaCode& Code);
+            /// @internal
+            /// @brief Contains all the common necessary startup initializations for this class.
+            void ConstructWidget();
+        //public:
+            /// @brief Blank constructor.
+            /// @param Parent The parent Screen that created this widget.
+            Widget(Screen* Parent);
+            /// @brief Standard initialization constructor.
+            /// @param RendName The name to be given to this widget.
+            /// @param Parent The parent Screen that created this widget.
+            Widget(const String& RendName, Screen* Parent);
+            /// @brief Rect constructor.
+            /// @param RendName The name to be given to this widget.
+            /// @param RendRect The rect describing this widget's transform relative to it's parent.
+            /// @param Parent The parent screen that created this widget.
+            Widget(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief Standard destructor.
+            virtual ~Widget();
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            /// @copydoc Renderable::GetRenderableType() const
+            RenderableType GetRenderableType() const;
+            /// @brief Gets the type of widget this is.
+            /// @return Returns a const String reference representing the type of widget this is.
+            virtual const String& GetTypeName() const;
+            /// @brief Gets the result of the last mouse hover check.
+            /// @return Returns whether or not the mouse was hovering over this widget during the last check.
+            virtual Bool IsHovered() const;
+            /// @brief Gets whether or not this widget currently has focus.
+            /// @return True if this widget has focus, false otherwise.
+            virtual Bool HasFocus() const;
+            /// @brief Gets whether or not this widget is being dragged.
+            /// @return Returns true if this widget is being dragged, false otherwise.
+            virtual Bool IsBeingDragged() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // State-LayerGroup Binding Methods
+
+            /// @brief Binds a RenderLayerGroup to a WidgetState.
+            /// @param BindState The WidgetState to be bound to.
+            /// @param ToBind The RenderLayerGroup to be bound to the specified state.
+            virtual void BindGroupToState(const UInt32 BindState, RenderLayerGroup* ToBind);
+            /// @brief Gets the current RenderLayerGroup bound to a specified WidgetState.
+            /// @param BindState The WidgetState bound to the RenderLayerGroup being retrieved.
+            /// @return Returns a pointer to the RenderLayerGroup bound to the specified WidgetState, or NULL if none are bound.
+            virtual RenderLayerGroup* GetGroupBoundToState(const UInt32 BindState) const;
+            /// @brief Sets the group bound to the specified WidgetState as active.
+            /// @param BindState The WidgetState bound to the RenderLayerGroup being set.
+            /// @return Returns true if the active RenderLayerGroup has changed, false otherwise.
+            virtual bool SetGroupFromState(const UInt32 BindState);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Fetch Methods
+
+            /// @brief Gets the hovered sub-widget within this widget, if any.
+            /// @return Returns a pointer to the sub-widget within this widget the mouse is hovering over, or NULL if none.
+            Widget* GetHoveredSubWidget() const;
+            /// @brief Gets a pointer to the Widget at the bottom of the hovered SubWidget chain.
+            /// @return Returns a pointer to the hovered sub-widget of the hovered sub-widget, etc., until you reach the end of the chain.
+            Widget* GetBottomMostHoveredWidget();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Visibility and Priority Methods
+
+            /// @copydoc Renderable::SetVisible(bool visible)
+            virtual void SetVisible(bool visible);
+            /// @copydoc Renderable::GetVisible() const
+            virtual bool GetVisible() const;
+            /// @copydoc Renderable::IsVisible() const
+            virtual bool IsVisible() const;
+            /// @copydoc Renderable::Show()
+            virtual void Show();
+            /// @copydoc Renderable::Hide()
+            virtual void Hide();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc Renderable::ProtoSerialize(XML::Node&) const
+            virtual void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @copydoc Renderable::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @brief Convert the state-group bindings of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            virtual void ProtoSerializeStateGroupBindings(XML::Node& SelfRoot) const;
+            /// @brief Convert the Events of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            virtual void ProtoSerializeEvents(XML::Node& SelfRoot) const;
+
+            /// @copydoc Renderable::ProtoDeSerialize(const XML::Node&)
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+            /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the state-group bindings of this object with it.
+            /// @param SelfRoo tAn XML::Node containing the data to populate this class with.
+            virtual void ProtoDeSerializeStateGroupBindings(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the Events of this object with it.
+            /// @param SelfRoo tAn XML::Node containing the data to populate this class with.
+            virtual void ProtoDeSerializeEvents(const XML::Node& SelfRoot);
+
+            /// @copydoc Renderable::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @copydoc Renderable::GetSerializableName()
+            static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Event Methods
+
+            /// @brief Self logic to be executed when the mouse cursor enters the bounds of this widget.
+            /// @details This method should be exclusively called by the UIManager.
+            virtual void _OnMouseEnter();
+            /// @brief Self logic to be executed when the mouse cursor leaves the bounds of thiw widget.
+            /// @details This method should be exclusively called by the UIManager.
+            virtual void _OnMouseExit();
+            /// @brief Self logic to be executed when the mouse cursor starts dragging across the bounds of this widget.
+            /// @details This method should be exclusively called by the UIManager.
+            virtual void _OnMouseDragStart();
+            /// @brief Self logic to be executed when the mouse cursor is dragging across the bounds of this widget.
+            /// @details This method should be exclusively called by the UIManager.
+            virtual void _OnMouseDragging();
+            /// @brief Self logic to be executed when the mouse cursor stops dragging across the bounds of this widget.
+            /// @details This method should be exclusively called by the UIManager.
+            virtual void _OnMouseDragEnd();
+            /// @brief Self logic to be executed when focus is given to this widget.
+            /// @details This method should be exclusively called by the UIManager.
+            virtual void _OnFocusGained();
+            /// @brief Self logic to be executed when focus is removed from this widget.
+            /// @details This method should be exclusively called by the UIManager.
+            virtual void _OnFocusLost();
+            /// @brief Self logic to be executed when focus is locked to this widget.
+            /// @details This method should be exclusively called by the UIManager.
+            virtual void _OnFocusLocked();
+            /// @brief Self logic to be executed when focus is no longer locked to this widget.
+            /// @details This method should be exclusively called by the UIManager.
+            virtual void _OnFocusUnlocked();
+            /// @brief Self logic to be executed when this widget becomes visible.
+            virtual void _OnVisibilityShown();
+            /// @brief Self logic to be executed when this widget becomes invisible.
+            virtual void _OnVisibilityHidden();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Handles input passed to this widget.
+            /// @note This input will be passed up if not consumed by this widget.
+            /// @param Code The MetaCode to be processed.
+            /// @return Returns true if this input was consumed/handled, false otherwise.
+            virtual bool _HandleInput(const Input::MetaCode& Code);
+            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
+            virtual void _NotifyEvent(const EventArguments& Args);
+        };//Widget
     }//UI
 }//Mezzanine
 

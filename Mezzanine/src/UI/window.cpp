@@ -43,17 +43,16 @@
 #include "UI/window.h"
 #include "uimanager.h"
 #include "UI/screen.h"
-#include "UI/rectangle.h"
 #include "entresol.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        Window::Window(ConstString& name, const RenderableRect& Rect, Screen* PScreen)
-            : EnclosedRenderableContainerWidget(name,Rect,PScreen),
-              BorderWidth(0),
-              CurrentRM(RM_None)
+        /*Window::Window(ConstString& name, const Rect& RendRect, Screen* PScreen) :
+            EnclosedRenderableContainerWidget(name,RendRect,PScreen),
+            BorderWidth(0),
+            CurrentRM(RM_None)
         {
             Type = Widget::W_Window;
         }
@@ -125,7 +124,7 @@ namespace Mezzanine
         Rectangle* Window::GetWindowBack()
         {
             return WidgetBack;
-        }
+        }//*/
     }//UI
 }//Mezzanine
 

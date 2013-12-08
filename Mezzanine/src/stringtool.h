@@ -135,6 +135,15 @@ namespace Mezzanine
         /// @return Returns a string containing the values from the ColourValue in "R G B A" format.
         String MEZZ_LIB ConvertToString(const ColourValue& ToConvert);
 
+        /// @brief Converts a Hex code in a string into a ColourValue.
+        /// @param ToConvert The string to be converted.
+        /// @return Returns a ColourValue populated with the values from the string passed in.
+        ColourValue MEZZ_LIB ConvertHexToColourValue(const String& ToConvert);
+        /// @brief Converts a ColourValue into a string as a Hex code.
+        /// @param ToConvert The ColourValue to be converted.
+        /// @return Returns a string containing the values from the string passed in.
+        String MEZZ_LIB ConvertToHexString(const ColourValue& ToConvert);
+
         ///////////////////////////////////////////////////////////////////////////////
         // Convert-To-Data functions
 
