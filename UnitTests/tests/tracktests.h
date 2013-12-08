@@ -112,11 +112,11 @@ class tracktests : public UnitTestGroup
                            << "\t0.5 should be 10,10,10 and is " << TestDualPointTrack.GetInterpolatedAsLoop(0.5) << endl
                            << "\t0.95 should be 1,1,1 and is " << TestDualPointTrack.GetInterpolatedAsLoop(0.95) << endl
                            << "\t1.0 should be 0,0,0 and is " << TestDualPointTrack.GetInterpolatedAsLoop(1.0) << endl;
-                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop1",4);
-                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.1), Vector3(2.0,2.0,2.0), "DualPointTrackLoop2",4);
-                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.5), Vector3(10.0,10.0,10.0), "DualPointTrackLoop3",4);
-                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.95), Vector3(1.0,1.0,1.0), "DualPointTrackLoop4",4);
-                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(1.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop5",4);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop1",5);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.1), Vector3(2.0,2.0,2.0), "DualPointTrackLoop2",5);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.5), Vector3(10.0,10.0,10.0), "DualPointTrackLoop3",5);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(0.95), Vector3(1.0,1.0,1.0), "DualPointTrackLoop4",5);
+                TEST_EQUAL_MULTI_EPSILON(TestDualPointTrack.GetInterpolatedAsLoop(1.0), Vector3(0.0,0.0,0.0), "DualPointTrackLoop5",5);
             }
 
             {
@@ -134,8 +134,8 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.1), Vector3(0.0,0.0,2.0), "TriplePointTrack1");
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.4), Vector3(0.0,0.0,8.0), "TriplePointTrack2");
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(0.5), Vector3(0.0,0.0,10.0), "TriplePointTrack3");
-                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolated(0.6), Vector3(0.0,2.0,10.0), "TriplePointTrack4",4);
-                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolated(0.9), Vector3(0.0,8.0,10.0), "TriplePointTrack5",4);
+                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolated(0.6), Vector3(0.0,2.0,10.0), "TriplePointTrack4",5);
+                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolated(0.9), Vector3(0.0,8.0,10.0), "TriplePointTrack5",5);
                 TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolated(1.0), Vector3(0.0,10.0,10.0), "TriplePointTrack6");
                 TestOutput << endl << "Testing line segment selection on previous track(TriplePointTrackSegment):" << endl
                            << "\t0.1 should be line segment 0 and is on " << TestTriplePointTrack.GetLineSegmentByPercent(0.1) << endl
@@ -179,14 +179,14 @@ class tracktests : public UnitTestGroup
                            << "\t2.0/3.0 should be 0,10,10, and is " << TestTriplePointTrack.GetInterpolatedAsLoop(2.0/3.0) << endl
                            << "\t5.0/6.0 should be 0,5,5, and is " << TestTriplePointTrack.GetInterpolatedAsLoop(5.0/6.0) << endl
                            << "\t1.0 should be 0,0,0 and is " << TestTriplePointTrack.GetInterpolatedAsLoop(1.0) << endl;
-                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolatedAsLoop(0.0), Vector3(0.0,0.0,0.0), "TriplePointTrackLoop1");
-                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolatedAsLoop(1.0/3.0), Vector3(0.0,0.0,10.0), "TriplePointTrackLoop2");
-                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolatedAsLoop(2.0/3.0), Vector3(0.0,10.0,10.0), "TriplePointTrackLoop3",4);
-                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolatedAsLoop(5.0/6.0), Vector3(0.0,5.0,5.0), "TriplePointTrackLoop4");
-                TEST_EQUAL_EPSILON(TestTriplePointTrack.GetInterpolatedAsLoop(1.0), Vector3(0.0,0.0,0.0), "TriplePointTrackLoop5");
+                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolatedAsLoop(0.0), Vector3(0.0,0.0,0.0), "TriplePointTrackLoop1",5);
+                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolatedAsLoop(1.0/3.0), Vector3(0.0,0.0,10.0), "TriplePointTrackLoop2",5);
+                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolatedAsLoop(2.0/3.0), Vector3(0.0,10.0,10.0), "TriplePointTrackLoop3",5);
+                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolatedAsLoop(5.0/6.0), Vector3(0.0,5.0,5.0), "TriplePointTrackLoop4",5);
+                TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolatedAsLoop(1.0), Vector3(0.0,0.0,0.0), "TriplePointTrackLoop5",5);
 
             }
-            
+
             {
                 TrackLinear<Vector3> TestQuadPointTrack;
                 TestQuadPointTrack.push_back(Vector3(0,0,0));
@@ -199,11 +199,11 @@ class tracktests : public UnitTestGroup
                            << "\t2.0/3.0 should be the third point, at 10,10,0, and is " << TestQuadPointTrack.GetInterpolated(2.0/3.0) << endl
                            << "\t1.0 should be the fourth point, at 0,10,0, and is " << TestQuadPointTrack.GetInterpolated(1.0) << endl
                            << "\t0.5 should be the middle point at 10,5,0 and is " << TestQuadPointTrack.GetInterpolated(0.5) << endl;
-                TEST_EQUAL_EPSILON(TestQuadPointTrack.GetInterpolated(0.0), Vector3(0.0,0.0,0.0), "QuadPointTrack1");
-                TEST_EQUAL_EPSILON(TestQuadPointTrack.GetInterpolated(1.0/3.0), Vector3(10.0,0.0,0.0), "QuadPointTrack2");
-                TEST_EQUAL_MULTI_EPSILON(TestQuadPointTrack.GetInterpolated(2.0/3.0), Vector3(10.0,10.0,0.0), "QuadPointTrack3",4);
-                TEST_EQUAL_MULTI_EPSILON(TestQuadPointTrack.GetInterpolated(1.0), Vector3(0.0,10.0,0.0), "QuadPointTrack4",4);
-                TEST_EQUAL_EPSILON(TestQuadPointTrack.GetInterpolated(0.5), Vector3(10.0,5.0,0.0), "QuadPointTrack5");
+                TEST_EQUAL_MULTI_EPSILON(TestQuadPointTrack.GetInterpolated(0.0), Vector3(0.0,0.0,0.0), "QuadPointTrack1",5);
+                TEST_EQUAL_MULTI_EPSILON(TestQuadPointTrack.GetInterpolated(1.0/3.0), Vector3(10.0,0.0,0.0), "QuadPointTrack2",5);
+                TEST_EQUAL_MULTI_EPSILON(TestQuadPointTrack.GetInterpolated(2.0/3.0), Vector3(10.0,10.0,0.0), "QuadPointTrack3",5);
+                TEST_EQUAL_MULTI_EPSILON(TestQuadPointTrack.GetInterpolated(1.0), Vector3(0.0,10.0,0.0), "QuadPointTrack4",5);
+                TEST_EQUAL_MULTI_EPSILON(TestQuadPointTrack.GetInterpolated(0.5), Vector3(10.0,5.0,0.0), "QuadPointTrack5",5);
                 TestOutput << endl << "Testing interpolation on a Track with four points as a loop(QuadPointTrackLoop):" << endl
                            << "\t0.0 should be 0,0,0 and is " << TestQuadPointTrack.GetInterpolatedAsLoop(0.0) << endl
                            << "\t0.5 should be 10,10,0, and is " << TestQuadPointTrack.GetInterpolatedAsLoop(0.5) << endl
@@ -251,29 +251,29 @@ class tracktests : public UnitTestGroup
                 ++Iter;
                 TestOutput << "A Dereferenced X component from an iterator refering to 2/30 (using ++) on a Linear track: " << Iter->X << endl
                            << "A dereferenced Vector3 from an iterator " << *Iter << endl;
-                TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(2.0), "SmoothTrackIterator->++",4);
-                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(2.0,0.0,0.0), "SmoothTrackIterator*++",4);
+                TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(2.0), "SmoothTrackIterator->++",5);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(2.0,0.0,0.0), "SmoothTrackIterator*++",5);
 
                 TestOutput << "Incrementing the iterator via prefix:" << endl;
                 --Iter;
                 TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using --)on a Linear track: " << Iter->X << endl
                            << "A dereferenced Vector3 from an iterator " << *Iter << endl;
-                TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(1.0), "SmoothTrackIterator->--",4);
-                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator*--",4);
+                TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(1.0), "SmoothTrackIterator->--",5);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator*--",5);
 
                 Iter = Iter + 3;
                 TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using +3)on a Linear track: " << *Iter << endl;
-                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(4.0,0.0,0.0), "SmoothTrackIterator+",4);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(4.0,0.0,0.0), "SmoothTrackIterator+",5);
                 Iter = Iter - 3;
                 TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using -3)on a Linear track: " << *Iter << endl;
-                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator-",4);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator-",5);
 
                 Iter += 3;
                 TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using +=3)on a Linear track: " << *Iter << endl;
-                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(4.0,0.0,0.0), "SmoothTrackIterator+=",4);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(4.0,0.0,0.0), "SmoothTrackIterator+=",5);
                 Iter -= 3;
                 TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using -=3)on a Linear track: " << *Iter << endl;
-                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator-=",4);
+                TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator-=",5);
 
                 SmoothTrackIterator<Vector3> Iter2(Iter);
                 TEST_EQUAL_EPSILON(*Iter, *Iter2, "SmoothTrackIterator=");

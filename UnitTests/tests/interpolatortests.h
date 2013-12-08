@@ -104,7 +104,7 @@ class interpolatortests : public UnitTestGroup
                 Real a = 0;
                 Real b = 5;
 
-                TestOutput << "Lets try some simple Integer interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
+                TestOutput << "Lets try some simple Floating point interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
                            << li.Interpolate(a,b,0.0) << endl
                            << li.Interpolate(a,b,0.1) << endl
                            << li.Interpolate(a,b,0.5) << endl
@@ -121,7 +121,8 @@ class interpolatortests : public UnitTestGroup
                 Transform a(Vector3(0,0,0),Quaternion(0,0,0,0));
                 Transform z(Vector3(1,1,1),Quaternion(1,1,1,1));
 
-                TestOutput << "Lets try some simple Integer interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
+                TestOutput.precision(10);
+                TestOutput << std::fixed << "Lets try some simple Transform interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
                            << li.Interpolate(a,z,0.0) << endl
                            << li.Interpolate(a,z,0.1) << endl
                            << li.Interpolate(a,z,0.5) << endl
