@@ -1404,7 +1404,7 @@ SWIGINTERN int  SWIG_Lua_class_tostring(lua_State* L)
 /*  there should be 1 param passed in
   (1) userdata (not the metatable) */
   assert(lua_isuserdata(L,1));  /* just in case */
-  unsigned long long int userData = (unsigned long long int)lua_touserdata(L,1); /* get the userdata address for later */
+  unsigned long long userData = (unsigned long long)lua_touserdata(L,1); /* get the userdata address for later */
   lua_getmetatable(L,1);    /* get the meta table */
   assert(lua_istable(L,-1));  /* just in case */
 
@@ -1895,49 +1895,51 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__Threading__LogAggregator swig_types[13]
 #define SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit swig_types[14]
 #define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[15]
-#define SWIGTYPE_p_Mezzanine__Threading__ScopedTimer swig_types[16]
-#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[17]
-#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[18]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[19]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[20]
-#define SWIGTYPE_p_Mezzanine__Threading__WorkSorter swig_types[21]
-#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[22]
-#define SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit swig_types[23]
-#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[24]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[25]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[26]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[27]
-#define SWIGTYPE_p_RawFile swig_types[28]
-#define SWIGTYPE_p_Resource swig_types[29]
-#define SWIGTYPE_p_SDL_Event swig_types[30]
-#define SWIGTYPE_p_Type swig_types[31]
-#define SWIGTYPE_p_bool swig_types[32]
-#define SWIGTYPE_p_char swig_types[33]
-#define SWIGTYPE_p_f_p_void__void swig_types[34]
-#define SWIGTYPE_p_float swig_types[35]
-#define SWIGTYPE_p_int swig_types[36]
-#define SWIGTYPE_p_long_long swig_types[37]
-#define SWIGTYPE_p_native_handle_type swig_types[38]
-#define SWIGTYPE_p_pthread_t swig_types[39]
-#define SWIGTYPE_p_short swig_types[40]
-#define SWIGTYPE_p_signed_char swig_types[41]
-#define SWIGTYPE_p_std__fstream swig_types[42]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[43]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[44]
-#define SWIGTYPE_p_std__ostream swig_types[45]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[46]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[47]
-#define SWIGTYPE_p_std__string swig_types[48]
-#define SWIGTYPE_p_std__stringstream swig_types[49]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[50]
-#define SWIGTYPE_p_std__wstring swig_types[51]
-#define SWIGTYPE_p_unsigned_char swig_types[52]
-#define SWIGTYPE_p_unsigned_int swig_types[53]
-#define SWIGTYPE_p_unsigned_long swig_types[54]
-#define SWIGTYPE_p_unsigned_long_long swig_types[55]
-#define SWIGTYPE_p_unsigned_short swig_types[56]
-static swig_type_info *swig_types[58];
-static swig_module_info swig_module = {swig_types, 57, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock swig_types[16]
+#define SWIGTYPE_p_Mezzanine__Threading__ScopedTimer swig_types[17]
+#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[18]
+#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[19]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[20]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[21]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkSorter swig_types[22]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[23]
+#define SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit swig_types[24]
+#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[25]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[26]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[27]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[28]
+#define SWIGTYPE_p_RawFile swig_types[29]
+#define SWIGTYPE_p_Resource swig_types[30]
+#define SWIGTYPE_p_SDL_Event swig_types[31]
+#define SWIGTYPE_p_Type swig_types[32]
+#define SWIGTYPE_p_bool swig_types[33]
+#define SWIGTYPE_p_char swig_types[34]
+#define SWIGTYPE_p_double swig_types[35]
+#define SWIGTYPE_p_f_p_void__void swig_types[36]
+#define SWIGTYPE_p_float swig_types[37]
+#define SWIGTYPE_p_int swig_types[38]
+#define SWIGTYPE_p_long_long swig_types[39]
+#define SWIGTYPE_p_native_handle_type swig_types[40]
+#define SWIGTYPE_p_pthread_t swig_types[41]
+#define SWIGTYPE_p_short swig_types[42]
+#define SWIGTYPE_p_signed_char swig_types[43]
+#define SWIGTYPE_p_std__fstream swig_types[44]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[45]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[46]
+#define SWIGTYPE_p_std__ostream swig_types[47]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[48]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[49]
+#define SWIGTYPE_p_std__string swig_types[50]
+#define SWIGTYPE_p_std__stringstream swig_types[51]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[52]
+#define SWIGTYPE_p_std__wstring swig_types[53]
+#define SWIGTYPE_p_unsigned_char swig_types[54]
+#define SWIGTYPE_p_unsigned_int swig_types[55]
+#define SWIGTYPE_p_unsigned_long swig_types[56]
+#define SWIGTYPE_p_unsigned_long_long swig_types[57]
+#define SWIGTYPE_p_unsigned_short swig_types[58]
+static swig_type_info *swig_types[60];
+static swig_module_info swig_module = {swig_types, 59, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2581,6 +2583,52 @@ fail:
 }
 
 
+static int _wrap_Mutex_lock(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::Mutex *arg1 = (Mezzanine::Threading::Mutex *) 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::Mutex::lock",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::Mutex::lock",1,"Mezzanine::Threading::Mutex *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__Mutex,0))){
+    SWIG_fail_ptr("Mutex_lock",1,SWIGTYPE_p_Mezzanine__Threading__Mutex);
+  }
+
+  (arg1)->lock();
+
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Mutex_unlock(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::Mutex *arg1 = (Mezzanine::Threading::Mutex *) 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::Mutex::unlock",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::Mutex::unlock",1,"Mezzanine::Threading::Mutex *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__Mutex,0))){
+    SWIG_fail_ptr("Mutex_unlock",1,SWIGTYPE_p_Mezzanine__Threading__Mutex);
+  }
+
+  (arg1)->unlock();
+
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_Mutex(void *obj) {
 Mezzanine::Threading::Mutex *arg1 = (Mezzanine::Threading::Mutex *) obj;
 delete arg1;
@@ -2589,6 +2637,8 @@ static swig_lua_method swig_Mezzanine_Threading_Mutex_methods[] = {
     {"Lock", _wrap_Mutex_Lock},
     {"TryLock", _wrap_Mutex_TryLock},
     {"Unlock", _wrap_Mutex_Unlock},
+    {"lock", _wrap_Mutex_lock},
+    {"unlock", _wrap_Mutex_unlock},
     {0,0}
 };
 static swig_lua_attribute swig_Mezzanine_Threading_Mutex_attributes[] = {
@@ -2606,119 +2656,6 @@ static swig_lua_const_info swig_Mezzanine_Threading_Mutex_cls_constants[] = {
 static swig_lua_class *swig_Mezzanine_Threading_Mutex_bases[] = {0};
 static const char *swig_Mezzanine_Threading_Mutex_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_Threading_Mutex = { "Mutex", &SWIGTYPE_p_Mezzanine__Threading__Mutex,_wrap_new_Mutex, swig_delete_Mutex, swig_Mezzanine_Threading_Mutex_methods, swig_Mezzanine_Threading_Mutex_attributes, { "Mutex", swig_Mezzanine_Threading_Mutex_cls_methods, swig_Mezzanine_Threading_Mutex_cls_attributes, swig_Mezzanine_Threading_Mutex_cls_constants }, swig_Mezzanine_Threading_Mutex_bases, swig_Mezzanine_Threading_Mutex_base_names };
-
-static int _wrap_new_SpinLock(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::SpinLock *result = 0 ;
-
-  SWIG_check_num_args("Mezzanine::Threading::SpinLock::SpinLock",0,0)
-  result = (Mezzanine::Threading::SpinLock *)new Mezzanine::Threading::SpinLock();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__SpinLock,1); SWIG_arg++;
-  return SWIG_arg;
-
-  if(0) SWIG_fail;
-
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SpinLock_Lock(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::SpinLock *arg1 = (Mezzanine::Threading::SpinLock *) 0 ;
-
-  SWIG_check_num_args("Mezzanine::Threading::SpinLock::Lock",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::SpinLock::Lock",1,"Mezzanine::Threading::SpinLock *");
-
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__SpinLock,0))){
-    SWIG_fail_ptr("SpinLock_Lock",1,SWIGTYPE_p_Mezzanine__Threading__SpinLock);
-  }
-
-  (arg1)->Lock();
-
-  return SWIG_arg;
-
-  if(0) SWIG_fail;
-
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SpinLock_TryLock(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::SpinLock *arg1 = (Mezzanine::Threading::SpinLock *) 0 ;
-  bool result;
-
-  SWIG_check_num_args("Mezzanine::Threading::SpinLock::TryLock",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::SpinLock::TryLock",1,"Mezzanine::Threading::SpinLock *");
-
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__SpinLock,0))){
-    SWIG_fail_ptr("SpinLock_TryLock",1,SWIGTYPE_p_Mezzanine__Threading__SpinLock);
-  }
-
-  result = (bool)(arg1)->TryLock();
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-
-  if(0) SWIG_fail;
-
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_SpinLock_Unlock(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Threading::SpinLock *arg1 = (Mezzanine::Threading::SpinLock *) 0 ;
-
-  SWIG_check_num_args("Mezzanine::Threading::SpinLock::Unlock",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::SpinLock::Unlock",1,"Mezzanine::Threading::SpinLock *");
-
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__SpinLock,0))){
-    SWIG_fail_ptr("SpinLock_Unlock",1,SWIGTYPE_p_Mezzanine__Threading__SpinLock);
-  }
-
-  (arg1)->Unlock();
-
-  return SWIG_arg;
-
-  if(0) SWIG_fail;
-
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_SpinLock(void *obj) {
-Mezzanine::Threading::SpinLock *arg1 = (Mezzanine::Threading::SpinLock *) obj;
-delete arg1;
-}
-static swig_lua_method swig_Mezzanine_Threading_SpinLock_methods[] = {
-    {"Lock", _wrap_SpinLock_Lock},
-    {"TryLock", _wrap_SpinLock_TryLock},
-    {"Unlock", _wrap_SpinLock_Unlock},
-    {0,0}
-};
-static swig_lua_attribute swig_Mezzanine_Threading_SpinLock_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_attribute swig_Mezzanine_Threading_SpinLock_cls_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_method swig_Mezzanine_Threading_SpinLock_cls_methods[] = {
-    {0,0}
-};
-static swig_lua_const_info swig_Mezzanine_Threading_SpinLock_cls_constants[] = {
-    {0,0,0,0,0,0}
-};
-static swig_lua_class *swig_Mezzanine_Threading_SpinLock_bases[] = {0};
-static const char *swig_Mezzanine_Threading_SpinLock_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_Threading_SpinLock = { "SpinLock", &SWIGTYPE_p_Mezzanine__Threading__SpinLock,_wrap_new_SpinLock, swig_delete_SpinLock, swig_Mezzanine_Threading_SpinLock_methods, swig_Mezzanine_Threading_SpinLock_attributes, { "SpinLock", swig_Mezzanine_Threading_SpinLock_cls_methods, swig_Mezzanine_Threading_SpinLock_cls_attributes, swig_Mezzanine_Threading_SpinLock_cls_constants }, swig_Mezzanine_Threading_SpinLock_bases, swig_Mezzanine_Threading_SpinLock_base_names };
 
 static int _wrap_new_Thread__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -3539,6 +3476,119 @@ static swig_lua_const_info swig_Mezzanine_Threading_WorkUnitKey_cls_constants[] 
 static swig_lua_class *swig_Mezzanine_Threading_WorkUnitKey_bases[] = {0};
 static const char *swig_Mezzanine_Threading_WorkUnitKey_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_Threading_WorkUnitKey = { "WorkUnitKey", &SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey,_wrap_new_WorkUnitKey, swig_delete_WorkUnitKey, swig_Mezzanine_Threading_WorkUnitKey_methods, swig_Mezzanine_Threading_WorkUnitKey_attributes, { "WorkUnitKey", swig_Mezzanine_Threading_WorkUnitKey_cls_methods, swig_Mezzanine_Threading_WorkUnitKey_cls_attributes, swig_Mezzanine_Threading_WorkUnitKey_cls_constants }, swig_Mezzanine_Threading_WorkUnitKey_bases, swig_Mezzanine_Threading_WorkUnitKey_base_names };
+
+static int _wrap_new_SpinLock(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::SpinLock *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::SpinLock::SpinLock",0,0)
+  result = (Mezzanine::Threading::SpinLock *)new Mezzanine::Threading::SpinLock();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__SpinLock,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SpinLock_Lock(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::SpinLock *arg1 = (Mezzanine::Threading::SpinLock *) 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::SpinLock::Lock",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::SpinLock::Lock",1,"Mezzanine::Threading::SpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__SpinLock,0))){
+    SWIG_fail_ptr("SpinLock_Lock",1,SWIGTYPE_p_Mezzanine__Threading__SpinLock);
+  }
+
+  (arg1)->Lock();
+
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SpinLock_TryLock(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::SpinLock *arg1 = (Mezzanine::Threading::SpinLock *) 0 ;
+  bool result;
+
+  SWIG_check_num_args("Mezzanine::Threading::SpinLock::TryLock",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::SpinLock::TryLock",1,"Mezzanine::Threading::SpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__SpinLock,0))){
+    SWIG_fail_ptr("SpinLock_TryLock",1,SWIGTYPE_p_Mezzanine__Threading__SpinLock);
+  }
+
+  result = (bool)(arg1)->TryLock();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_SpinLock_Unlock(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::SpinLock *arg1 = (Mezzanine::Threading::SpinLock *) 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::SpinLock::Unlock",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::SpinLock::Unlock",1,"Mezzanine::Threading::SpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__SpinLock,0))){
+    SWIG_fail_ptr("SpinLock_Unlock",1,SWIGTYPE_p_Mezzanine__Threading__SpinLock);
+  }
+
+  (arg1)->Unlock();
+
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SpinLock(void *obj) {
+Mezzanine::Threading::SpinLock *arg1 = (Mezzanine::Threading::SpinLock *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_SpinLock_methods[] = {
+    {"Lock", _wrap_SpinLock_Lock},
+    {"TryLock", _wrap_SpinLock_TryLock},
+    {"Unlock", _wrap_SpinLock_Unlock},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_SpinLock_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_SpinLock_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_Threading_SpinLock_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_Threading_SpinLock_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_SpinLock_bases[] = {0};
+static const char *swig_Mezzanine_Threading_SpinLock_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_SpinLock = { "SpinLock", &SWIGTYPE_p_Mezzanine__Threading__SpinLock,_wrap_new_SpinLock, swig_delete_SpinLock, swig_Mezzanine_Threading_SpinLock_methods, swig_Mezzanine_Threading_SpinLock_attributes, { "SpinLock", swig_Mezzanine_Threading_SpinLock_cls_methods, swig_Mezzanine_Threading_SpinLock_cls_attributes, swig_Mezzanine_Threading_SpinLock_cls_constants }, swig_Mezzanine_Threading_SpinLock_bases, swig_Mezzanine_Threading_SpinLock_base_names };
 
 static int _wrap_RollingAverageWhole_RecordCapacity(lua_State* L) {
   int SWIG_arg = 0;
@@ -8700,6 +8750,240 @@ static swig_lua_class *swig_Mezzanine_Threading_MonopolyWorkUnit_bases[] = {0,0}
 static const char *swig_Mezzanine_Threading_MonopolyWorkUnit_base_names[] = {"Mezzanine::Threading::DefaultWorkUnit *",0};
 static swig_lua_class _wrap_class_Mezzanine_Threading_MonopolyWorkUnit = { "MonopolyWorkUnit", &SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit,0, swig_delete_MonopolyWorkUnit, swig_Mezzanine_Threading_MonopolyWorkUnit_methods, swig_Mezzanine_Threading_MonopolyWorkUnit_attributes, { "MonopolyWorkUnit", swig_Mezzanine_Threading_MonopolyWorkUnit_cls_methods, swig_Mezzanine_Threading_MonopolyWorkUnit_cls_attributes, swig_Mezzanine_Threading_MonopolyWorkUnit_cls_constants }, swig_Mezzanine_Threading_MonopolyWorkUnit_bases, swig_Mezzanine_Threading_MonopolyWorkUnit_base_names };
 
+static int _wrap_new_ReadWriteSpinLock(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ReadWriteSpinLock *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::ReadWriteSpinLock::ReadWriteSpinLock",0,0)
+  result = (Mezzanine::Threading::ReadWriteSpinLock *)new Mezzanine::Threading::ReadWriteSpinLock();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ReadWriteSpinLock_LockForRead(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ReadWriteSpinLock *arg1 = (Mezzanine::Threading::ReadWriteSpinLock *) 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::ReadWriteSpinLock::LockForRead",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ReadWriteSpinLock::LockForRead",1,"Mezzanine::Threading::ReadWriteSpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock,0))){
+    SWIG_fail_ptr("ReadWriteSpinLock_LockForRead",1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock);
+  }
+
+  (arg1)->LockForRead();
+
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ReadWriteSpinLock_TryLockForRead(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ReadWriteSpinLock *arg1 = (Mezzanine::Threading::ReadWriteSpinLock *) 0 ;
+  bool result;
+
+  SWIG_check_num_args("Mezzanine::Threading::ReadWriteSpinLock::TryLockForRead",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ReadWriteSpinLock::TryLockForRead",1,"Mezzanine::Threading::ReadWriteSpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock,0))){
+    SWIG_fail_ptr("ReadWriteSpinLock_TryLockForRead",1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock);
+  }
+
+  result = (bool)(arg1)->TryLockForRead();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ReadWriteSpinLock_UnlockRead(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ReadWriteSpinLock *arg1 = (Mezzanine::Threading::ReadWriteSpinLock *) 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::ReadWriteSpinLock::UnlockRead",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ReadWriteSpinLock::UnlockRead",1,"Mezzanine::Threading::ReadWriteSpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock,0))){
+    SWIG_fail_ptr("ReadWriteSpinLock_UnlockRead",1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock);
+  }
+
+  (arg1)->UnlockRead();
+
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ReadWriteSpinLock_LockForWrite(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ReadWriteSpinLock *arg1 = (Mezzanine::Threading::ReadWriteSpinLock *) 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::ReadWriteSpinLock::LockForWrite",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ReadWriteSpinLock::LockForWrite",1,"Mezzanine::Threading::ReadWriteSpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock,0))){
+    SWIG_fail_ptr("ReadWriteSpinLock_LockForWrite",1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock);
+  }
+
+  (arg1)->LockForWrite();
+
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ReadWriteSpinLock_TryLockForWrite(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ReadWriteSpinLock *arg1 = (Mezzanine::Threading::ReadWriteSpinLock *) 0 ;
+  bool result;
+
+  SWIG_check_num_args("Mezzanine::Threading::ReadWriteSpinLock::TryLockForWrite",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ReadWriteSpinLock::TryLockForWrite",1,"Mezzanine::Threading::ReadWriteSpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock,0))){
+    SWIG_fail_ptr("ReadWriteSpinLock_TryLockForWrite",1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock);
+  }
+
+  result = (bool)(arg1)->TryLockForWrite();
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ReadWriteSpinLock_UnlockWrite(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ReadWriteSpinLock *arg1 = (Mezzanine::Threading::ReadWriteSpinLock *) 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::ReadWriteSpinLock::UnlockWrite",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ReadWriteSpinLock::UnlockWrite",1,"Mezzanine::Threading::ReadWriteSpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock,0))){
+    SWIG_fail_ptr("ReadWriteSpinLock_UnlockWrite",1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock);
+  }
+
+  (arg1)->UnlockWrite();
+
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ReadWriteSpinLock_lock(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ReadWriteSpinLock *arg1 = (Mezzanine::Threading::ReadWriteSpinLock *) 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::ReadWriteSpinLock::lock",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ReadWriteSpinLock::lock",1,"Mezzanine::Threading::ReadWriteSpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock,0))){
+    SWIG_fail_ptr("ReadWriteSpinLock_lock",1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock);
+  }
+
+  (arg1)->lock();
+
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ReadWriteSpinLock_unlock(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ReadWriteSpinLock *arg1 = (Mezzanine::Threading::ReadWriteSpinLock *) 0 ;
+
+  SWIG_check_num_args("Mezzanine::Threading::ReadWriteSpinLock::unlock",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ReadWriteSpinLock::unlock",1,"Mezzanine::Threading::ReadWriteSpinLock *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock,0))){
+    SWIG_fail_ptr("ReadWriteSpinLock_unlock",1,SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock);
+  }
+
+  (arg1)->unlock();
+
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ReadWriteSpinLock(void *obj) {
+Mezzanine::Threading::ReadWriteSpinLock *arg1 = (Mezzanine::Threading::ReadWriteSpinLock *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Threading_ReadWriteSpinLock_methods[] = {
+    {"LockForRead", _wrap_ReadWriteSpinLock_LockForRead},
+    {"TryLockForRead", _wrap_ReadWriteSpinLock_TryLockForRead},
+    {"UnlockRead", _wrap_ReadWriteSpinLock_UnlockRead},
+    {"LockForWrite", _wrap_ReadWriteSpinLock_LockForWrite},
+    {"TryLockForWrite", _wrap_ReadWriteSpinLock_TryLockForWrite},
+    {"UnlockWrite", _wrap_ReadWriteSpinLock_UnlockWrite},
+    {"lock", _wrap_ReadWriteSpinLock_lock},
+    {"unlock", _wrap_ReadWriteSpinLock_unlock},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_ReadWriteSpinLock_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Threading_ReadWriteSpinLock_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_Threading_ReadWriteSpinLock_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_Threading_ReadWriteSpinLock_cls_constants[] = {
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Threading_ReadWriteSpinLock_bases[] = {0};
+static const char *swig_Mezzanine_Threading_ReadWriteSpinLock_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_Threading_ReadWriteSpinLock = { "ReadWriteSpinLock", &SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock,_wrap_new_ReadWriteSpinLock, swig_delete_ReadWriteSpinLock, swig_Mezzanine_Threading_ReadWriteSpinLock_methods, swig_Mezzanine_Threading_ReadWriteSpinLock_attributes, { "ReadWriteSpinLock", swig_Mezzanine_Threading_ReadWriteSpinLock_cls_methods, swig_Mezzanine_Threading_ReadWriteSpinLock_cls_attributes, swig_Mezzanine_Threading_ReadWriteSpinLock_cls_constants }, swig_Mezzanine_Threading_ReadWriteSpinLock_bases, swig_Mezzanine_Threading_ReadWriteSpinLock_base_names };
+
 #ifdef __cplusplus
 }
 #endif
@@ -8807,6 +9091,7 @@ static swig_type_info _swigt__p_Mezzanine__Threading__FrameScheduler = {"_p_Mezz
 static swig_type_info _swigt__p_Mezzanine__Threading__LogAggregator = {"_p_Mezzanine__Threading__LogAggregator", "Mezzanine::Threading::LogAggregator *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_LogAggregator, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__MonopolyWorkUnit = {"_p_Mezzanine__Threading__MonopolyWorkUnit", "Mezzanine::Threading::MonopolyWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_MonopolyWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Mutex = {"_p_Mezzanine__Threading__Mutex", "Mezzanine::Threading::Mutex *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Mutex, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__ReadWriteSpinLock = {"_p_Mezzanine__Threading__ReadWriteSpinLock", "Mezzanine::Threading::ReadWriteSpinLock *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ReadWriteSpinLock, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__ScopedTimer = {"_p_Mezzanine__Threading__ScopedTimer", "Mezzanine::Threading::ScopedTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ScopedTimer, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__SpinLock = {"_p_Mezzanine__Threading__SpinLock", "Mezzanine::Threading::SpinLock *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_SpinLock, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Thread = {"_p_Mezzanine__Threading__Thread", "Mezzanine::Threading::Thread *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Thread, 0};
@@ -8825,6 +9110,7 @@ static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzan
 static swig_type_info _swigt__p_Type = {"_p_Type", "Type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "Mezzanine::Bool *|bool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *|Mezzanine::Char8 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_double = {"_p_double", "Mezzanine::PreciseReal *|double *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void__void = {"_p_f_p_void__void", "void (*)(void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_float = {"_p_float", "float *|Mezzanine::Real *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "intptr_t *|int *|int_least32_t *|int_fast32_t *|Mezzanine::Int32 *|int32_t *|Mezzanine::ConvertiblePointer *|Mezzanine::Integer *|int_fast16_t *", 0, 0, (void*)0, 0};
@@ -8866,6 +9152,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__Threading__LogAggregator,
   &_swigt__p_Mezzanine__Threading__MonopolyWorkUnit,
   &_swigt__p_Mezzanine__Threading__Mutex,
+  &_swigt__p_Mezzanine__Threading__ReadWriteSpinLock,
   &_swigt__p_Mezzanine__Threading__ScopedTimer,
   &_swigt__p_Mezzanine__Threading__SpinLock,
   &_swigt__p_Mezzanine__Threading__Thread,
@@ -8884,6 +9171,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Type,
   &_swigt__p_bool,
   &_swigt__p_char,
+  &_swigt__p_double,
   &_swigt__p_f_p_void__void,
   &_swigt__p_float,
   &_swigt__p_int,
@@ -8925,6 +9213,7 @@ static swig_cast_info _swigc__p_Mezzanine__Threading__FrameScheduler[] = {  {&_s
 static swig_cast_info _swigc__p_Mezzanine__Threading__LogAggregator[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__MonopolyWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__MonopolyWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Mutex[] = {  {&_swigt__p_Mezzanine__Threading__Mutex, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__ReadWriteSpinLock[] = {  {&_swigt__p_Mezzanine__Threading__ReadWriteSpinLock, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__ScopedTimer[] = {  {&_swigt__p_Mezzanine__Threading__ScopedTimer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__SpinLock[] = {  {&_swigt__p_Mezzanine__Threading__SpinLock, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Thread[] = {  {&_swigt__p_Mezzanine__Threading__Thread, 0, 0, 0},{0, 0, 0, 0}};
@@ -8943,6 +9232,7 @@ static swig_cast_info _swigc__p_SDL_Event[] = {  {&_swigt__p_SDL_Event, 0, 0, 0}
 static swig_cast_info _swigc__p_Type[] = {  {&_swigt__p_Type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_double[] = {  {&_swigt__p_double, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void__void[] = {  {&_swigt__p_f_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
@@ -8984,6 +9274,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__Threading__LogAggregator,
   _swigc__p_Mezzanine__Threading__MonopolyWorkUnit,
   _swigc__p_Mezzanine__Threading__Mutex,
+  _swigc__p_Mezzanine__Threading__ReadWriteSpinLock,
   _swigc__p_Mezzanine__Threading__ScopedTimer,
   _swigc__p_Mezzanine__Threading__SpinLock,
   _swigc__p_Mezzanine__Threading__Thread,
@@ -9002,6 +9293,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Type,
   _swigc__p_bool,
   _swigc__p_char,
+  _swigc__p_double,
   _swigc__p_f_p_void__void,
   _swigc__p_float,
   _swigc__p_int,
