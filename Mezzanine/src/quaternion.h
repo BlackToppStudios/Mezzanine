@@ -45,6 +45,7 @@
 
 #ifndef SWIG
     #include "XML/xml.h"
+    #include <limits>
 #endif
 
 class btQuaternion;

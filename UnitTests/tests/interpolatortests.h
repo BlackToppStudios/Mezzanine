@@ -43,6 +43,7 @@
 #include "mezztest.h"
 
 #include "vector3.h"
+#include "vector2.h"
 #include "transform.h"
 #include "interpolator.h"
 
@@ -130,7 +131,15 @@ class interpolatortests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(li.Interpolate(a,z,0.1),Transform(Vector3(0.1,0.1,0.1),Quaternion(0.1,0.1,0.1,0.1)),"TransformLinearInterpolationTenth");
                 TEST_EQUAL_EPSILON(li.Interpolate(a,z,0.5),Transform(Vector3(0.5,0.5,0.5),Quaternion(0.5,0.5,0.5,0.5)),"TransformLinearInterpolationHalfway");
                 TEST_EQUAL_EPSILON(li.Interpolate(a,z,1.0),z,"TransformLinearInterpolationEnd");
-             }
+            }
+
+            {
+                InterpolatableTraits<Transform>::LinearInterpolator li;
+                Vector2 A(0,0);
+                Vector2 B(1,1);
+                Vector2 C(0,2);
+
+            }
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
