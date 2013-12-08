@@ -343,7 +343,7 @@ static int name_is_array(char* name, int* dim1, int* dim2) {
     return 1;
 }
 
-#include <stdint-gcc.h>
+#include <stdint.h>
 // ----------------------------------------------------- //
 void bDNA::init(char *data, int len, bool swap)
 {
