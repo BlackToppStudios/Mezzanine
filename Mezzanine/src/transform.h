@@ -135,15 +135,15 @@ namespace Mezzanine
             /// @param rhs The Transform on the right hand side of the sign.
             /// @return A Transform with
             Transform operator- (const Transform& rhs) const;
-            /// @brief
+            /// @brief Create a Transform with the sum of this and another
             /// @param rhs The Transform on the right hand side of the sign.
             /// @return A Transform with
             Transform operator+ (const Transform& rhs) const;
-            /// @brief
+            /// @brief Multiply all the values of this by a single scalar.
             /// @param rhs The Transform on the right hand side of the sign.
             /// @return A Transform with
             Transform operator* (Real rhs) const;
-            /// @brief
+            /// @brief Divide all the values of this by a single scalar.
             /// @param rhs The Transform on the right hand side of the sign.
             /// @return A Transform with
             Transform operator/ (Real rhs) const;

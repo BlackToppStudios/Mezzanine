@@ -72,6 +72,7 @@ namespace Mezzanine
             /// @param End The end (not one past the end) of the range that Begin started.
             /// @param A value between 0.0 and 1.0 indicate what point on the beziear spline defined by Begin and End you want.
             /// @return A Value equal or near to Begin if 0.0 is passed, equal to or near to End if 1.0 is passed equal to a point exactly in the middle if 0.5 is passed.
+            /// @warning This is implemented as a recursive function with the only termination condition being the Edn iterator.
             template<typename TIterator>
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
@@ -81,7 +82,10 @@ namespace Mezzanine
                 if(Begin+2==End)
                     { return GenericLinearInterpolator<T>::Interpolate(*Begin,*(Begin+1),Location); }
 
-                return *Begin;
+                std::vector<T> SubSection;
+                for(TIterator Iter=Begin; Iter!=End-1; Iter++)
+                    { SubSection.push_back(GenericLinearInterpolator<T>::Interpolate(*Iter,*(Iter+1),Location)); }
+                return Interpolate(SubSection.begin(),SubSection.end(),Location);
             }
     };
 
@@ -110,7 +114,7 @@ namespace Mezzanine
             /// @details This interpolator provides different guarantees different from the linear one:
             ///     - Data points, might not be valid interpolated values
             ///     - There are no "Corners".
-            ///     - Execution time will be (N)log(N) or better.
+            ///     - Execution could be as bad as O^N.
             ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
             ///     - Will be able to provide interpolated values for a small set of data points.
             /// There might be corners when connecting 2 different bezier curves if not careful, any

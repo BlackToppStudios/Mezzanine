@@ -71,14 +71,14 @@ namespace Mezzanine
             /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
             typedef std::vector<InterpolatableType> DataContainerType;
 
-            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
-            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
-
         protected:
-            /// @brief The underlying container of Discreate datapoints
+            /// @brief The underlying container of Discrete datapoints
             DataContainerType DataPoints;
 
         public:
+            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
+            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
+
             /// @brief Get the amount of stored DataPoints
             /// @note Name chosen to match standard containers
             /// @return How many data points exist on this track
@@ -192,9 +192,10 @@ namespace Mezzanine
                                             (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
                                           );
             }
-            virtual SmoothIteratorType end(Integer Steps=0) const
+
+            virtual SmoothIteratorType end(Integer Steps=100) const
             {
-                return SmoothIteratorType(this, 0.0,
+                return SmoothIteratorType(this, 1.0,
                                             (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
                                           );
             }
@@ -202,7 +203,43 @@ namespace Mezzanine
 
     };
 
+    template <typename InterpolatableType, typename InterpolatorType>
+    class Track : public TrackBase<InterpolatableType>
+    {
+        public:
+            /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
+            typedef std::vector<InterpolatableType> DataContainerType;
 
+            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
+            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
+
+            virtual InterpolatableType GetInterpolated(Real Percentage) const
+            {
+                return InterpolatorType::Interpolate(
+                           TrackBase<InterpolatableType>::DataPoints.begin(),
+                           TrackBase<InterpolatableType>::DataPoints.end(),
+                           Percentage
+                       );
+            }
+
+            virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
+                {}
+
+            virtual SmoothIteratorType begin(Integer Steps=100) const
+            {
+                return SmoothIteratorType(this, 0.0,
+                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
+                                          );
+            }
+
+            virtual SmoothIteratorType end(Integer Steps=0) const
+            {
+                return SmoothIteratorType(this, 0.0,
+                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
+                                          );
+            }
+
+    };
 
 
 }//Mezzanine

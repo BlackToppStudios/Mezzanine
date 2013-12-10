@@ -291,12 +291,13 @@ class tracktests : public UnitTestGroup
 
                 // Some sample loops for academic purposes
                 // Idiomatic loops
-                TestOutput << "Sample track iteration with for loop:" << endl;
+                TestOutput << "Sample track iteration with custom end and nearly idiomatic for loop:" << endl;
                 for(SmoothTrackIterator<Vector3> LoopedIter(&TestIteratorTrack,0.0,1.0/10.0);
                     LoopedIter!=SmoothTrackIterator<Vector3> (&TestIteratorTrack,1.0,1.0/10.0);
                     LoopedIter++)
                     { TestOutput << *LoopedIter << endl; }
 
+                TestOutput << "Sample track iteration with idiomatic for loop:" << endl;
                 for(TrackLinear<Vector3>::SmoothIteratorType LoopedIter(TestIteratorTrack.begin(10));
                     LoopedIter!=TestIteratorTrack.end();
                     LoopedIter++)
@@ -306,7 +307,7 @@ class tracktests : public UnitTestGroup
                 TEST(true, "SmoothTrackIterator::begin1");
                 TEST(true, "SmoothTrackIterator::end1");
                 TEST(TestIteratorTrack.begin(10)==TrackLinear<Vector3>::SmoothIteratorType(&TestIteratorTrack,0.0,1.0/10.0), "SmoothTrackIterator::begin2");
-                TEST(TestIteratorTrack.end()==TrackLinear<Vector3>::SmoothIteratorType(&TestIteratorTrack,0.0,0.0), "SmoothTrackIterator::end2");
+                TEST(TestIteratorTrack.end()==TrackLinear<Vector3>::SmoothIteratorType(&TestIteratorTrack,1.0,0.0), "SmoothTrackIterator::end2");
 
                 // Almost Idiomatic loop
                 TestOutput << "Sample track iteration with for loop:" << endl;
