@@ -86,11 +86,25 @@ namespace Mezzanine
                 { return DataPoints.size(); }
             /// @brief Add another data point to the end of the track.
             /// @param AddedVale
-            void push_back(const InterpolatableType& AddedValue)
+            virtual void push_back(const InterpolatableType& AddedValue)
                 { DataPoints.push_back(AddedValue); }
             /// @brief Remove all the points from the track
             void clear()
                 { DataPoints.clear(); }
+
+            virtual SmoothIteratorType begin(Integer Steps=100) const
+            {
+                return SmoothIteratorType(this, 0.0,
+                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
+                                          );
+            }
+
+            virtual SmoothIteratorType end(Integer Steps=0) const
+            {
+                return SmoothIteratorType(this, 1.0,
+                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
+                                          );
+            }
 
             /// @brief Get a value between the beginning and the end
             /// @details in derived classes this will perform some simple(hopefully fast) calculation to get
@@ -103,11 +117,6 @@ namespace Mezzanine
             /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
             /// @return An InterpolatableType
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const = 0;
-
-            /// @brief
-            virtual SmoothIteratorType begin(Integer Steps) const = 0;
-            virtual SmoothIteratorType end(Integer Steps) const = 0;
-
     };
 
     /// @brief A track that uses linear interpolation for linear and looped tracks.
@@ -156,7 +165,7 @@ namespace Mezzanine
 
             InterpolatableType GetInterpolated(Real Percentage, Bool Loop) const
             {
-                Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
+              /*Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
                 Whole Index = GetLineSegmentByPercent(Percentage,Loop); // Pick a Line Segment
                 Real LocalPercentage = GetPercentageThroughSegment(Percentage,Loop);
                 if(Loop)
@@ -177,6 +186,29 @@ namespace Mezzanine
                 return InterpolatorType::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
                                                  TrackBase<InterpolatableType>::DataPoints[Index+1],// The second point
                                                  LocalPercentage); // The percentage we are through this line segment
+              */
+                Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
+                Whole Index = GetLineSegmentByPercent(Percentage,Loop); // Pick a Line Segment
+                iterator Iter;
+                Real LocalPercentage = GetPercentageThroughSegment(Percentage,Loop);
+                if(Loop)
+                {
+                    if(DataPointCount<=Index)
+                        { return TrackBase<InterpolatableType>::DataPoints[0]; }
+                    if(DataPointCount-1<=Index) // If we are in the last segment connect and should connect to the begining
+                    {
+                        return InterpolatorType::Interpolate(Iter+Index,
+                                                             Iter+0,
+                                                             LocalPercentage);
+                    }
+                }else{
+                    if(DataPointCount-1<=Index) // If we are past the end give them the end, because this should only happen when percentage == 1.0
+                        { return Iter[Index]; }
+
+                }
+                return InterpolatorType::Interpolate(Iter+Index,  // The first point of the line segment
+                                                     Iter+Index+1,// The second point
+                                                     LocalPercentage); // The percentage we are through this line segment
             }
 
             virtual InterpolatableType GetInterpolated(Real Percentage) const
@@ -184,21 +216,6 @@ namespace Mezzanine
 
             virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
                 { return GetInterpolated(Percentage, true); }
-
-
-            virtual SmoothIteratorType begin(Integer Steps=100) const
-            {
-                return SmoothIteratorType(this, 0.0,
-                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
-                                          );
-            }
-
-            virtual SmoothIteratorType end(Integer Steps=100) const
-            {
-                return SmoothIteratorType(this, 1.0,
-                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
-                                          );
-            }
 
 
     };
@@ -222,23 +239,27 @@ namespace Mezzanine
                        );
             }
 
-            virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
-                {}
 
-            virtual SmoothIteratorType begin(Integer Steps=100) const
+
+    };
+
+    template <typename InterpolatableType, typename InterpolatorType>
+    class TrackLooped : public Track<InterpolatableType, InterpolatorType>
+    {
+        public:
+            /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
+            typedef std::vector<InterpolatableType> DataContainerType;
+
+            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
+            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
+
+            /// @brief Add another data point to the end of the track.
+            /// @param
+            virtual void push_back(const InterpolatableType& AddedValue)
             {
-                return SmoothIteratorType(this, 0.0,
-                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
-                                          );
+                *(TrackBase<InterpolatableType>::DataPoints.end()-1) = AddedValue;
+                TrackBase<InterpolatableType>::DataPoints.push_back(*TrackBase<InterpolatableType>::DataPoints.begin());
             }
-
-            virtual SmoothIteratorType end(Integer Steps=0) const
-            {
-                return SmoothIteratorType(this, 0.0,
-                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
-                                          );
-            }
-
     };
 
 

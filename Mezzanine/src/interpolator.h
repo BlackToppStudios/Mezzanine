@@ -58,8 +58,21 @@ namespace Mezzanine
             /// @param End The other end of a line segment
             /// @param Location A value between 0.0 and 1.0 indicate what point on the line segment defined by Begin and End you want.
             /// @return A Value equal to Begin if 0.0 is passed, equal to End if 1.0 is passed equal to a point exactly in the middle if 0.5 is passed.
-            static T Interpolate(T Begin, T End, Real Location)
+            static T InterpolateMath(T Begin, T End, Real Location)
                 { return ((End-Begin)*Location)+Begin; }
+
+            typedef typename std::vector<T>::iterator TIterator;
+            //template<typename TIterator>
+            static T Interpolate(TIterator Begin, TIterator End, Real Location)
+            {
+                if(Begin==End || Begin+1==End)
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 1 data points for linear interpolation."); }
+
+                if(Begin+2==End)
+                    { return InterpolateMath(*Begin, *(Begin+1), Location); }
+
+                return T();
+            }
     };
 
     /// @brief A simple functor for interpolating data points in a simple way.
@@ -80,11 +93,11 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 1 data points for bezier interpolation."); }
 
                 if(Begin+2==End)
-                    { return GenericLinearInterpolator<T>::Interpolate(*Begin,*(Begin+1),Location); }
+                    { return GenericLinearInterpolator<T>::Interpolate(Begin,End,Location); }
 
                 std::vector<T> SubSection;
                 for(TIterator Iter=Begin; Iter!=End-1; Iter++)
-                    { SubSection.push_back(GenericLinearInterpolator<T>::Interpolate(*Iter,*(Iter+1),Location)); }
+                    { SubSection.push_back(GenericLinearInterpolator<T>::Interpolate(Iter,(Iter+1),Location)); }
                 return Interpolate(SubSection.begin(),SubSection.end(),Location);
             }
     };
