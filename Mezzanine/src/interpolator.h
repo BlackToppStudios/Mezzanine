@@ -65,8 +65,10 @@ namespace Mezzanine
             //template<typename TIterator>
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
-                if(Begin==End || Begin+1==End)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 1 data points for linear interpolation."); }
+                if(Begin==End)
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 2 data points for linear interpolation, was provided 0."); }
+                if(Begin+1==End)
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 2 data points for linear interpolation, was provided 1."); }
 
                 if(Begin+2==End)
                     { return InterpolateMath(*Begin, *(Begin+1), Location); }
@@ -97,7 +99,7 @@ namespace Mezzanine
 
                 std::vector<T> SubSection;
                 for(TIterator Iter=Begin; Iter!=End-1; Iter++)
-                    { SubSection.push_back(GenericLinearInterpolator<T>::Interpolate(Iter,(Iter+1),Location)); }
+                    { SubSection.push_back(GenericLinearInterpolator<T>::Interpolate(Iter,(Iter+2),Location)); }
                 return Interpolate(SubSection.begin(),SubSection.end(),Location);
             }
     };

@@ -156,7 +156,7 @@ class interpolatortests : public UnitTestGroup
                 DataPoints.push_back(A);
                 DataPoints.push_back(B);
 
-                TestOutput << "Lets try some simple Bezier interpolation of reals between 0, 1 and 2:" << endl
+                TestOutput << "Lets try some simple Bezier interpolation of reals between 0, 1 and 2 with only 2 points (so that is really a linear interpolation):" << endl
                            << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
                            << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
                            << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
@@ -187,12 +187,13 @@ class interpolatortests : public UnitTestGroup
                 DataPoints.push_back(B);
                 DataPoints.push_back(C);
 
-                TestOutput << "Lets try some simple Bezier interpolation of reals between 0, 1 and 2:" << endl
-                           << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.0) << endl
-                           << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.1) << endl
-                           << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.5) << endl
-                           << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.9) << endl
-                           << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,1.0) << endl  << endl;
+                TestOutput << "Lets try some 3 point Bezier interpolation of reals between 0, 1 and 2:" << endl;
+                TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl;
+                TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.1) << endl;
+                TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.5) << endl;
+                TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.9) << endl;
+                TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,1.0) << endl;
+                TestOutput << endl;
                 TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.0),A,"BezierTriArg1");
                 TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.1),Vector2(0.18,0.2),"BezierTriArg2");
                 TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.5),Vector2(0.5,1),"BezierTriArg3");

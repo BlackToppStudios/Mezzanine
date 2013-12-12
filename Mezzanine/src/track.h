@@ -207,7 +207,7 @@ namespace Mezzanine
 
                 }
                 return InterpolatorType::Interpolate(Iter+Index,  // The first point of the line segment
-                                                     Iter+Index+1,// The second point
+                                                     Iter+Index+2,// One past the second point
                                                      LocalPercentage); // The percentage we are through this line segment
             }
 
