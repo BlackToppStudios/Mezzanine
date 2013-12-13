@@ -112,21 +112,54 @@ class interpolatortests : public UnitTestGroup
                 InterpolatableTraits<Real>::LinearInterpolator li;
                 Real a = 0;
                 Real b = 5;
+                Real c = 10;
+                Real d = 20;
+
                 std::vector<Real> DataPoints;
                 DataPoints.push_back(a);
                 DataPoints.push_back(b);
 
-                TestOutput << "Lets try some simple Floating point interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
+                TestOutput << "Lets try some simple Floating point interpolations between 0 and 5 at the locations 0,.1,.5, and 1:" << endl
                            << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
                            << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
                            << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl << endl;
-
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl
+                           << endl;
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"RealLinearInterpolationBegin");
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Real(0.5),"RealLinearInterpolationTenth");
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5),Real(2.5),"RealLinearInterpolationHalfway");
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),b,"RealLinearInterpolationEnd");
-             }
+
+                DataPoints.push_back(c);
+                TestOutput << "Lets try some 3 point Floating point interpolations between 0,5 and 10 at the locations 0,.1,.5, and 1:" << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl
+                           << endl;
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"Real3PointLinearInterpolationBegin");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Real(1.0),"Real3PointLinearInterpolationTenth");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5),b,"Real3PointLinearInterpolationHalfway");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),c,"Real3PointLinearInterpolationEnd");
+
+                DataPoints.push_back(d);
+                TestOutput << "Lets try some 4 point Floating point interpolations between 0, 5, 10 and 20 at the locations 0, .1, .25, .5, .75, .8 and 1:" << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.25) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.75) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.8) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl
+                           << endl;
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"Real4PointLinearInterpolationBegin");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Real(1.25),"Real4PointLinearInterpolationTenth");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.25),b,"Real4PointLinearInterpolationQuarter");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5),Real(7.5),"Real4PointLinearInterpolationHalfway");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.75),c,"Real4PointLinearInterpolationThreeQuarter");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.8),Real(12.0),"Real4PointLinearInterpolationEighty");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),d,"Real4PointLinearInterpolationEnd");
+            }
 
             {
                 InterpolatableTraits<Transform>::LinearInterpolator li;
