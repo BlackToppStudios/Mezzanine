@@ -129,17 +129,18 @@ namespace Mezzanine
             static const String EventVisibilityHidden;
         protected:
             /// @internal
+            /// @brief Map containing all the RenderLayerGroups bound to specific widget states.
+            StateLayerGroupMap StateGroupBindings;
+            /// @internal
             /// @brief The child widget of this widget the mouse is over, if any.
             Widget* HoveredSubWidget;
             /// @internal
             /// @brief UInt32 describing the current state of this widget.
             UInt32 State;
-            /// @internal
-            /// @brief Map containing all the RenderLayerGroups bound to specific widget states.
-            StateLayerGroupMap StateGroupBindings;
 
             /// @internal
             /// @brief Consumes input for this widget's use.
+            /// @param Code The input to be processed.
             /// @return Returns true if the input was handled, false otherwise.
             virtual bool HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
