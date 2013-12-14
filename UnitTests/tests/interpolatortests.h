@@ -131,12 +131,12 @@ class interpolatortests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),b,"RealLinearInterpolationEnd");
 
                 DataPoints.push_back(c);
-                TestOutput << "Lets try some 3 point Floating point interpolations between 0,5 and 10 at the locations 0,.1,.5, and 1:" << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl
-                           << endl;
+                TestOutput << "Lets try some 3 point Floating point interpolations between 0,5 and 10 at the locations 0,.1,.5, and 1:" << endl;
+                TestOutput << " 0 @ 0.0 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl;
+                TestOutput << " 1 @ 0.1 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl;
+                TestOutput << " 5 @ 0.5 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl;
+                TestOutput << "10 @ 1.0 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl;
+                TestOutput << endl;
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"Real3PointLinearInterpolationBegin");
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Real(1.0),"Real3PointLinearInterpolationTenth");
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5),b,"Real3PointLinearInterpolationHalfway");
