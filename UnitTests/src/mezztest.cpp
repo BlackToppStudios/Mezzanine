@@ -239,6 +239,7 @@ class AllUnitTestGroups : public UnitTestGroup
             if(ExecuteInThisMemorySpace) // we are running a test in a seperate process, so we need to control the output for communcation purposes
             {
                 WriteTempFile(*this);
+                UnitTestGroup::DisplayResults(Output, Error, Summary, FullOutput, HeaderOutput);
                 //std::ofstream OutputFile(TempFile.c_str(),std::ios_base::out|std::ios_base::trunc);
                 //UnitTestGroup::DisplayResults(OutputFile,false,true,false);
                 //OutputFile.close();

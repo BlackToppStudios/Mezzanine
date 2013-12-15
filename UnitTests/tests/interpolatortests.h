@@ -131,11 +131,18 @@ class interpolatortests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),b,"RealLinearInterpolationEnd");
 
                 DataPoints.push_back(c);
+
+                Whole DataPointCount = std::distance(DataPoints.begin(),DataPoints.end());
+                Whole LineSegmentCount = DataPointCount-1;
                 TestOutput << "Lets try some 3 point Floating point interpolations between 0,5 and 10 at the locations 0,.1,.5, and 1:" << endl;
-                TestOutput << " 0 @ 0.0 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl;
-                TestOutput << " 1 @ 0.1 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl;
-                TestOutput << " 5 @ 0.5 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl;
-                TestOutput << "10 @ 1.0 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl;
+                TestOutput << " 0 @ 0.0 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0)
+                           << "\tLineSegment: " << Whole((0.0) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.0),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << " 1 @ 0.1 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1)
+                           << "\tLineSegment: " << Whole((0.1) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.1),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << " 5 @ 0.5 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5)
+                           << "\tLineSegment: " << Whole((0.5) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.5),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << "10 @ 1.0 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0)
+                           << "\tLineSegment: " << Whole((1.0) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(1.0),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
                 TestOutput << endl;
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"Real3PointLinearInterpolationBegin");
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Real(1.0),"Real3PointLinearInterpolationTenth");
@@ -143,21 +150,28 @@ class interpolatortests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),c,"Real3PointLinearInterpolationEnd");
 
                 DataPoints.push_back(d);
-                TestOutput << "Lets try some 4 point Floating point interpolations between 0, 5, 10 and 20 at the locations 0, .1, .25, .5, .75, .8 and 1:" << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.25) << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.75) << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.8) << endl
-                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl
-                           << endl;
+                TestOutput << "Lets try some 4 point Floating point interpolations between 0, 5, 10 and 20 at the locations 0, .1, .3333333333, .5, .6666666666, .8 and 1:" << endl;
+                TestOutput << " 0.*  @ 0.0  = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0)
+                           << "\tLineSegment: " << Whole((0.0) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.0),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << " 1.5  @ 0.1  = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1)
+                           << "\tLineSegment: " << Whole((0.1) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.1),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << " 5    @ 0.33 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.333333333)
+                           << "\tLineSegment: " << Whole((0.3333333333) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.3333333333),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << " 7.5  @ 0.5  = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5)
+                           << "\tLineSegment: " << Whole((0.5) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.5),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << "10.0  @ 0.66 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.6666666666)
+                           << "\tLineSegment: " << Whole((0.6666666666) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.6666666666),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << "14.0  @ 0.8  = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.8)
+                           << "\tLineSegment: " << Whole((0.8) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.8),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << "20.0  @ 1.0  = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0)
+                           << "\tLineSegment: " << Whole((1.0) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(1.0),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << endl;
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"Real4PointLinearInterpolationBegin");
-                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Real(1.25),"Real4PointLinearInterpolationTenth");
-                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.25),b,"Real4PointLinearInterpolationQuarter");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Real(1.5),"Real4PointLinearInterpolationTenth");
+                TEST_EQUAL_MULTI_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.3333333333),b,"Real4PointLinearInterpolationOneThird",8);
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5),Real(7.5),"Real4PointLinearInterpolationHalfway");
-                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.75),c,"Real4PointLinearInterpolationThreeQuarter");
-                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.8),Real(12.0),"Real4PointLinearInterpolationEighty");
+                TEST_EQUAL_MULTI_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.6666666666),c,"Real4PointLinearInterpolationTwoThirds",8);
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.8),Real(14.0),"Real4PointLinearInterpolationEighty");
                 TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),d,"Real4PointLinearInterpolationEnd");
             }
 

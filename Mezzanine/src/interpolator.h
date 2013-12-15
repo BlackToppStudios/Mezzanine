@@ -57,8 +57,8 @@ namespace Mezzanine
     template <typename T>
     class MEZZ_LIB GenericLinearInterpolator
     {
-        protected:
-            typedef typename std::vector<T>::iterator TIterator;
+        public:
+            //typedef typename std::vector<T>::iterator TIterator;
 
             /// @brief Get a value at a given location between two others.
             /// @param Begin One end of line segment
@@ -68,32 +68,32 @@ namespace Mezzanine
             static T InterpolateMath(T Begin, T End, Real Location)
                 { return ((End-Begin)*Location)+Begin; }
 
-            static Real GetLocationThroughSegment(Whole LineSegmentCount, Real Location)
-            {
-                if(LineSegmentCount<1)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot GetPercentageThroughSegment in GenericLinearInterpolator without a data segment. There must be two or more data points."); }
-                if(1==LineSegmentCount)
-                    { return Location; }
-                return std::fmod(PreciseReal(Location),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount;
-            }
-
-
+            template<typename TIterator>
             static T GetInterpolatedFromMultiple(TIterator Begin, TIterator End, Real Location)
             {
                 Whole DataPointCount = std::distance(Begin,End);
-                Whole UsingLineSegment = Location * Real(DataPointCount); // Pick a Line Segment
-                Real LocalPercentage = GetLocationThroughSegment(DataPointCount-1, Location);
-                if(Begin+DataPointCount-1<=End) // If we are past the end give them the end, because this should only happen when percentage == 1.0
-                    { return Begin[UsingLineSegment]; }
+                Whole LineSegmentCount = DataPointCount-1;
+
+                if(LineSegmentCount<1)
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot GetPercentageThroughSegment in GenericLinearInterpolator without a data segment. There must be two or more data points."); }
+                if(1==LineSegmentCount)
+                    { return InterpolateMath(*(Begin), *(Begin+1), Location); }
+
+                Whole UsingLineSegment = Location * Real(LineSegmentCount); // Pick a Line Segment
+                if(UsingLineSegment>LineSegmentCount)               //We are past the end of the line segments
+                    { return *(End-1); }
+
+                Real LocalPercentage = std::fmod(PreciseReal(Location), PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount;
+
                 return InterpolateMath(*(Begin+UsingLineSegment),   // The first point of the line segment
-                                       *(Begin+UsingLineSegment+2), // One *past* the second point
-                                       LocalPercentage);           // The percentage we are through this line segment
+                                       *(Begin+UsingLineSegment+1),
+                                       LocalPercentage);            // The percentage we are through this line segment
             }
 
 
         public:
 
-            //template<typename TIterator>
+            template<typename TIterator>
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
                 if(Begin==End)

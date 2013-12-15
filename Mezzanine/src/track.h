@@ -202,7 +202,7 @@ namespace Mezzanine
                                                              LocalPercentage);
                     }
                 }else{
-                    if(DataPointCount-1<=Index) // If we are past the end give them the end, because this should only happen when percentage == 1.0
+                    if(DataPointCount-1<=Index)
                         { return Iter[Index]; }
 
                 }
