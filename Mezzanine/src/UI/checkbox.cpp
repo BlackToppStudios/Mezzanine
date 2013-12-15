@@ -40,7 +40,7 @@
 #ifndef _uicheckbox_cpp
 #define _uicheckbox_cpp
 
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/checkbox.h"
 #include "UI/screen.h"
 

@@ -43,7 +43,7 @@
 #include "UI/scrollbar.h"
 #include "UI/button.h"
 #include "UI/screen.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "Input/metacode.h"
 
 #include <algorithm>

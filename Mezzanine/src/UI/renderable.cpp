@@ -41,7 +41,7 @@
 #define _uirenderable_cpp
 
 #include "UI/renderable.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "stringtool.h"
 #include "serialization.h"
 

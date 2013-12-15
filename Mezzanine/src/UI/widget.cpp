@@ -44,7 +44,7 @@
 #include "UI/button.h"
 #include "UI/screen.h"
 
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "entresol.h"
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"

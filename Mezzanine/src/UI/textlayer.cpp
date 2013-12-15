@@ -49,7 +49,7 @@
 #include "UI/widget.h"
 #include "UI/screen.h"
 
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "unicode.h"
 #include "stringtool.h"
 #include "mathtool.h"

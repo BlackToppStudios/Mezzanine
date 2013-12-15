@@ -44,7 +44,7 @@
 #include "UI/button.h"
 #include "UI/screen.h"
 #include "UI/pagedcontainer.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 
 #include "UI/horizontallayoutstrategy.h"
 

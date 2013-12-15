@@ -45,7 +45,7 @@
 #include "UI/font.h"
 #include "UI/textureatlas.h"
 
-#include "uimanager.h"
+#include "UI/uimanager.h"
 
 namespace Mezzanine
 {

@@ -40,7 +40,7 @@
 #ifndef _uidropdownlist_cpp
 #define _uidropdownlist_cpp
 
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/dropdownlist.h"
 #include "UI/listbox.h"
 #include "UI/button.h"

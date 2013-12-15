@@ -42,7 +42,7 @@
 
 #include "UI/linelist.h"
 #include "UI/uienumerations.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/screen.h"
 #include "UI/simplerenderer.h"
 

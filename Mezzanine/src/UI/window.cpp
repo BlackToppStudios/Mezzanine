@@ -41,7 +41,7 @@
 #define _uiwindow_cpp
 
 #include "UI/window.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/screen.h"
 #include "entresol.h"
 

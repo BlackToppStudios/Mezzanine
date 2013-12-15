@@ -41,7 +41,7 @@
 #define _uimultilinetextlayer_cpp
 
 #include "UI/multilinetextlayer.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/textline.h"
 #include "UI/character.h"
 #include "countedptr.h"

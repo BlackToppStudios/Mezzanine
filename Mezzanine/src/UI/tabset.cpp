@@ -42,7 +42,7 @@
 
 #include "UI/tabset.h"
 #include "UI/screen.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/button.h"
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"

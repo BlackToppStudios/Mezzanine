@@ -41,7 +41,7 @@
 #define _uilistbox_cpp
 
 #include "UI/listbox.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/screen.h"
 #include "UI/scrollbar.h"
 #include "Input/inputmanager.h"
