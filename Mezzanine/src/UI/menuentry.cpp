@@ -43,7 +43,7 @@
 #include "UI/menu.h"
 #include "UI/menuwindow.h"
 
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/screen.h"
 #include "UI/button.h"
 #include "Input/inputmanager.h"
@@ -108,12 +108,38 @@ namespace Mezzanine
 
         void MenuEntry::SetEntryPushButton(Button* Push)
         {
+            if( this->PushButton != NULL ) {
+                this->PushButton->Unsubscribe(Button::EventActivated,this);
+            }
 
+            this->PushButton = Push;
+
+            if( this->PushButton != NULL ) {
+                this->PushButton->Subscribe(Button::EventActivated,this);
+            }
+        }
+
+        Button* MenuEntry::GetEntryPushButton() const
+        {
+            return this->PushButton;
         }
 
         void MenuEntry::SetEntryPopButton(Button* Pop)
         {
+            if( this->PopButton != NULL ) {
+                this->PopButton->Unsubscribe(Button::EventActivated,this);
+            }
 
+            this->PopButton = Pop;
+
+            if( this->PopButton != NULL ) {
+                this->PopButton->Subscribe(Button::EventActivated,this);
+            }
+        }
+
+        Button* MenuEntry::GetEntryPopButton() const
+        {
+            return this->PopButton;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -139,27 +165,7 @@ namespace Mezzanine
 
 
 
-        /*Menu::Menu(ConstString name, const Rect& RendRect, Screen* PScreen) :
-            Widget(name,PScreen)
-        {
-            Type = Widget::W_Menu;
-            RelPosition.X = -1;
-            RelPosition.Y = -1;
-            RelSize.X = -1;
-            RelSize.Y = -1;
-
-            ConstString NewName = name+"root";
-            RootWindow = new UI::MenuWindow(NewName,RendRect,this,ParentScreen);
-            MenuStack.push_back(RootWindow);
-            AddSubRenderable(0,RootWindow);
-        }
-
-        Menu::~Menu()
-        {
-            delete RootWindow;
-            MenuStack.clear();
-        }
-
+        /*
         void Menu::UpdateImpl(bool Force)
         {
             Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
@@ -253,61 +259,6 @@ namespace Mezzanine
                     break;
                 }
             }
-        }
-
-        void Menu::SetPosition(const Vector2& Position)
-        {
-            MenuStack.back()->SetPosition(Position);
-        }
-
-        Vector2 Menu::GetPosition()
-        {
-            return MenuStack.back()->GetPosition();
-        }
-
-        void Menu::SetActualPosition(const Vector2& Position)
-        {
-            MenuStack.back()->SetActualPosition(Position);
-        }
-
-        Vector2 Menu::GetActualPosition()
-        {
-            return MenuStack.back()->GetActualPosition();
-        }
-
-        void Menu::SetSize(const Vector2& Size)
-        {
-            MenuStack.back()->SetSize(Size);
-        }
-
-        Vector2 Menu::GetSize()
-        {
-            return MenuStack.back()->GetSize();
-        }
-
-        void Menu::SetActualSize(const Vector2& Size)
-        {
-            MenuStack.back()->SetActualSize(Size);
-        }
-
-        Vector2 Menu::GetActualSize()
-        {
-            return MenuStack.back()->GetActualSize();
-        }
-
-        void Menu::UpdateDimensions()
-        {
-            RootWindow->UpdateDimensions();
-        }
-
-        MenuWindow* Menu::GetRootWindow()
-        {
-            return RootWindow;
-        }
-
-        MenuWindow* Menu::GetTopWindow()
-        {
-            return MenuStack.back();
         }
 
         void Menu::_AppendRenderData(ScreenRenderData& RenderData)

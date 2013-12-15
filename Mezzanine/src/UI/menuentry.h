@@ -110,9 +110,15 @@ namespace Mezzanine
             /// @brief Sets the button that will push(add) this entry on the menu stack, making it visible.
             /// @param Push A pointer to the button that will make this entry visible.
             virtual void SetEntryPushButton(Button* Push);
+            /// @brief Gets a pointer to the button that will add this entry to the menu stack.
+            /// @return Returns a pointer to the button that will make this entry visible.
+            virtual Button* GetEntryPushButton() const;
             /// @brief Sets the button that will pop(remove) this entry from the menu stack, hiding it.
             /// @param Pop A pointer to the button that will make this entry hide.
             virtual void SetEntryPopButton(Button* Pop);
+            /// @brief Gets a pointer to the button that will remove this entry from the menu stack.
+            /// @return Returns a pointer to the button that will make this entry hide.
+            virtual Button* GetEntryPopButton() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
