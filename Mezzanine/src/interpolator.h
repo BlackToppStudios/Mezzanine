@@ -54,20 +54,75 @@
 namespace Mezzanine
 {
     /// @brief A simple functor for interpolating data points in a simple way.
+    /// @details This interpolator provides certain guarantees.
+    ///     - All data points will be valid interpolated values.
+    ///     - There are "corners".
+    ///     - Interpolation will be constant/O(1) time (and as fast as reasonable).
+    ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data
+    /// Corners can be thought of as any non-smooth change, and may not be intuitively in some interpolatable
+    /// types.
     template <typename T>
-    class MEZZ_LIB GenericLinearInterpolator
+    class MEZZ_LIB LinearInterpolator
     {
         public:
-            //typedef typename std::vector<T>::iterator TIterator;
-
-            /// @brief Get a value at a given location between two others.
-            /// @param Begin One end of line segment
-            /// @param End The other end of a line segment
+            /// @brief Get a value at a given location between exactly two others.
+            /// @param Begin The data point at one end of line segment
+            /// @param End  The data point at the other end of line segment
             /// @param Location A value between 0.0 and 1.0 indicate what point on the line segment defined by Begin and End you want.
             /// @return A Value equal to Begin if 0.0 is passed, equal to End if 1.0 is passed equal to a point exactly in the middle if 0.5 is passed.
             static T InterpolateMath(T Begin, T End, Real Location)
                 { return ((End-Begin)*Location)+Begin; }
 
+            /// @brief Handles Interpolation of multiple points.
+            /// @details This will treat each data point as if it were equidistant from its
+            /// neighbors and find the datasegment the desired point resides in. Then it will
+            /// return a data point partway through that data segment. For example if you have
+            /// three Vector2's defining two data segments as follows:
+            /// @n 0,0 - 1,1 - 2,0
+            /// @n @n
+            /// Requesting the following locations would return the following data points:
+            /// @n 0.0 = 0,0
+            /// @n 0.5 = 1,1
+            /// @n 1.0 = 2,0
+            /// @n
+            /// @n 0.25 = 0.5,0.5
+            /// @n 0.75 = 1.5,0.5
+            /// @n @n Any floating point location between 0 and 1 could be requested following
+            /// this pattern.
+            /// @n @n Should the data segments not actually be equal in size that they will each
+            /// still be treated as an equal length when calcuting size. For example if you
+            /// have 2 data segments like the previous example, then .25 will be halfway through
+            /// the first segment and .75 will be halfwy through the second. If you are
+            /// interpolating a series of points through segment like these the larger data
+            /// segment will be traversed faster. For example consider the following Real value
+            /// values as data points:
+            /// @n -5, 0, 100
+            /// Requesting the following locations would return the following data points:
+            /// @n 0.0 = -5
+            /// @n 0.5 = 0
+            /// @n 1.0 = 100
+            /// @n
+            /// @n 0.25 = -2.5
+            /// @n 0.75 = 50
+            /// @n
+            /// @n 0.0 = -5
+            /// @n 0.1 = -4
+            /// @n 0.2 = -3
+            /// @n 0.3 = -2
+            /// @n 0.4 = -1
+            /// @n 0.5 = 0
+            /// @n 0.6 = 20
+            /// @n 0.7 = 40
+            /// @n 0.8 = 60
+            /// @n 0.9 = 80
+            /// @n 1.0 = 100
+            /// @n @n Note how even though the location increase by only 0.1 each step
+            /// the resulting interpolated data point move relative to the length of the
+            /// segment.
+            /// @param Begin An iterator at the beginning of a rande of data point
+            /// @param End An iterator one past the end of the data range to interpolate.
+            /// @param Location A value between 0.0 and 1.0 that represents
+            /// @return A T at a location along the data segments defined by Begin and End.
             template<typename TIterator>
             static T GetInterpolatedFromMultiple(TIterator Begin, TIterator End, Real Location)
             {
@@ -90,9 +145,13 @@ namespace Mezzanine
                                        LocalPercentage);            // The percentage we are through this line segment
             }
 
-
-        public:
-
+            /// @brief This will interpolates data points with GetInterpolatedFromMultiple or InterpolateMath a required
+            /// @details read about GetInterpolatedFromMultiple or InterpolateMath to see what kinds of results this
+            /// can produce.
+            /// @param Begin An iterator at the beginning of a rande of data point
+            /// @param End An iterator one past the end of the data range to interpolate.
+            /// @param Location A value between 0.0 and 1.0 that represents
+            /// @return A T at a location along the data segments defined by Begin and End.
             template<typename TIterator>
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
@@ -109,11 +168,26 @@ namespace Mezzanine
     };
 
     /// @brief A simple functor for interpolating data points in a simple way.
+    /// @details This interpolator provides different guarantees different from the linear one:
+    ///     - Data points, might not be valid interpolated values
+    ///     - There are no "Corners".
+    ///     - Execution could be as bad as O^N.
+    ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
+    ///     - Will be able to provide interpolated values for a small set of data points.
+    /// There might be corners when connecting 2 different bezier curves if not careful, any
+    /// bezier implementation taking a finite amount of points cannot help this.
     template <typename T>
-    class MEZZ_LIB GenericBezierInterpolator
+    class MEZZ_LIB BezierInterpolator
     {
         public:
             /// @brief Get a value at a given location between two others.
+            /// @details This uses Linear interpolation recursively to produce a single curve
+            /// following Bézier's curve algorithm. For example if interpolating the location 0.5
+            /// on a set of 3 data points A,B,C and therefor 2 data segments AB and BC, you can imagine this as
+            /// getting the point halfway down AB and the point halfway down down BC. Then this will
+            /// get return the halfway between each of those points. This produces smooth curves but could
+            /// perform slowly. For more details see the wikiedia pages on Bézier curves:
+            /// http://en.wikipedia.org/wiki/Bézier_curve or http://en.wikipedia.org/wiki/B%C3%A9zier_curve
             /// @param Begin An Iterator to the begining of the range of the instances of the type to be Interpolated
             /// @param End The end (not one past the end) of the range that Begin started.
             /// @param A value between 0.0 and 1.0 indicate what point on the beziear spline defined by Begin and End you want.
@@ -126,91 +200,27 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Requires at least 1 data points for bezier interpolation."); }
 
                 if(Begin+2==End)
-                    { return GenericLinearInterpolator<T>::Interpolate(Begin,End,Location); }
+                    { return LinearInterpolator<T>::Interpolate(Begin,End,Location); }
 
                 std::vector<T> SubSection;
                 for(TIterator Iter=Begin; Iter!=End-1; Iter++)
-                    { SubSection.push_back(GenericLinearInterpolator<T>::Interpolate(Iter,(Iter+2),Location)); }
+                    { SubSection.push_back(LinearInterpolator<T>::Interpolate(Iter,(Iter+2),Location)); }
                 return Interpolate(SubSection.begin(),SubSection.end(),Location);
             }
     };
 
-
-    /// @brief An empty class to prevent classes without explicit interpolater traits from compiling.
+    /// @brief If something specifically needs the linear interpolator for T they should use this.
+    /// @details This is with be a cubic spline where applicable, and will be
+    /// more smooth that the others, and be at least as intuitive as the linear version:
+    ///     - Data points, will be valid interpolated values.
+    ///     - There are no "Corners".
+    ///     - Execution time is better than N^2.
+    ///     - This shape defined by interpolating a set of these *will* leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
+    ///     - Will be able to interpolated arbitrary sets of data points.
     template <typename T>
-    class NotAnInterpolator {};
-
-    /// @brief The generic Interpolatable Traits, intended to catch all class without explicit traits set and server as and example.
-    template<typename T>
-    class InterpolatableTraits
+    class MEZZ_LIB SplineInterpolator
     {
-        public:
-            /// @brief If something specifically needs the linear interpolator for T they should use this.
-            /// @details This interpolator provides certain guarantees.
-            ///     - All data points will be valid interpolated values.
-            ///     - There are "corners".
-            ///     - Interpolation will be constant/O(1) time (and as fast as reasonable).
-            ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data
-            ///     - Will not take multiple pair of points into account.
-            /// Corners can be thought of as any non-smooth change, and may not be intuitively in some interpolatable
-            /// types.
-            typedef GenericLinearInterpolator<T> LinearInterpolator;
-
-            /// @brief If something specifically needs the Bezier interpolator for T they should use this.
-            /// @details This interpolator provides different guarantees different from the linear one:
-            ///     - Data points, might not be valid interpolated values
-            ///     - There are no "Corners".
-            ///     - Execution could be as bad as O^N.
-            ///     - This shape defined by interpolating a set of these will not leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
-            ///     - Will be able to provide interpolated values for a small set of data points.
-            /// There might be corners when connecting 2 different bezier curves if not careful, any
-            /// bezier implementation taking a finite amount of point cannot help this.
-            typedef GenericBezierInterpolator<T> BezierInterpolator;
-
-            /// @brief If something specifically needs the linear interpolator for T they should use this.
-            /// @details This is with be a cubic spline where applicable, and will be
-            /// more smooth that the others, and be at least as intuitive as the linear version:
-            ///     - Data points, will be valid interpolated values.
-            ///     - There are no "Corners".
-            ///     - Execution time is better than N^2.
-            ///     - This shape defined by interpolating a set of these *will* leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
-            ///     - Will be able to interpolated arbitrary sets of data points.
-            typedef NotAnInterpolator<T> SplineInterpolator;
     };
-
-
-
-    /// @brief The generic Interpolatable Traits, intended to catch all class without explicit traits set and server as and example.
-    template<>
-    class InterpolatableTraits <Integer>
-    {
-        public:
-            /// @brief Name the type of the Linear interpolator for the Integer
-            typedef GenericLinearInterpolator<Integer> LinearInterpolator;
-
-            /// @brief Indicate there is Bezier Interpolator for the Integer
-            typedef GenericBezierInterpolator<Integer> BezierInterpolator;
-
-            /// @brief Indicate there is no Spline interopolator for the Integer
-            typedef NotAnInterpolator<Integer> SplineInterpolator;
-    };
-
-
-    /// @brief The generic Interpolatable Traits, intended to catch all class without explicit traits set and server as and example.
-    template<>
-    class InterpolatableTraits <Real>
-    {
-        public:
-            /// @brief Name the type of the Linear interpolator for the Real
-            typedef GenericLinearInterpolator<Real> LinearInterpolator;
-
-            /// @brief Indicate the Bezier Interpolator for the Real
-            typedef GenericBezierInterpolator<Real> BezierInterpolator;
-
-            /// @brief Indicate there is no Spline interopolator for the Real
-            typedef NotAnInterpolator<Real> SplineInterpolator;
-    };
-
 
 } // /namespace Mezzanine
 

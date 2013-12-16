@@ -69,7 +69,7 @@ class interpolatortests : public UnitTestGroup
             TestOutput << std::fixed;
 
             {
-                InterpolatableTraits<Vector3>::LinearInterpolator li;
+                LinearInterpolator<Vector3> li;
                 Vector3 a(0.0,0.0,0.0);
                 Vector3 b(1.0,1.0,1.0);
                 std::vector<Vector3> Points;
@@ -89,7 +89,7 @@ class interpolatortests : public UnitTestGroup
              }
 
             {
-                InterpolatableTraits<Integer>::LinearInterpolator li;
+                LinearInterpolator<Integer> li;
                 Integer a = 0;
                 Integer b = 10;
                 std::vector<Integer> DataPoints;
@@ -109,7 +109,7 @@ class interpolatortests : public UnitTestGroup
              }
 
             {
-                InterpolatableTraits<Real>::LinearInterpolator li;
+                LinearInterpolator<Real> li;
                 Real a = 0;
                 Real b = 5;
                 Real c = 10;
@@ -176,7 +176,7 @@ class interpolatortests : public UnitTestGroup
             }
 
             {
-                InterpolatableTraits<Transform>::LinearInterpolator li;
+                LinearInterpolator<Transform> li;
                 Transform a(Vector3(0,0,0),Quaternion(0,0,0,0));
                 Transform z(Vector3(1,1,1),Quaternion(1,1,1,1));
                 std::vector<Transform> DataPoints;
@@ -196,7 +196,7 @@ class interpolatortests : public UnitTestGroup
             }
 
             {
-                InterpolatableTraits<Real>::BezierInterpolator Bi;
+                BezierInterpolator<Real> Bi;
                 Real A(0), B(1);
 
                 std::vector<Real> DataPoints;
@@ -224,7 +224,7 @@ class interpolatortests : public UnitTestGroup
             }
 
             {
-                InterpolatableTraits<Vector2>::BezierInterpolator Bi;
+                BezierInterpolator<Vector2> Bi;
                 Vector2 A(0,0);
                 Vector2 B(1,1);
                 Vector2 C(0,2);
