@@ -152,8 +152,16 @@ namespace Mezzanine
             /// @param
             virtual void push_back(const InterpolatableType& AddedValue)
             {
-                *(TrackBase<InterpolatableType>::DataPoints.end()-1) = AddedValue;
-                TrackBase<InterpolatableType>::DataPoints.push_back(*TrackBase<InterpolatableType>::DataPoints.begin());
+                if(TrackBase<InterpolatableType>::DataPoints.size()>1)
+                {
+                    *(TrackBase<InterpolatableType>::DataPoints.end()-1) = AddedValue;
+                    TrackBase<InterpolatableType>::DataPoints.push_back(*TrackBase<InterpolatableType>::DataPoints.begin());
+                }else if(TrackBase<InterpolatableType>::DataPoints.size()==1){
+                    TrackBase<InterpolatableType>::DataPoints.push_back(AddedValue);
+                    TrackBase<InterpolatableType>::DataPoints.push_back(*TrackBase<InterpolatableType>::DataPoints.begin());
+                }else{
+                    TrackBase<InterpolatableType>::DataPoints.push_back(AddedValue);
+                }
             }
     };
 

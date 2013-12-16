@@ -204,7 +204,7 @@ class tracktests : public UnitTestGroup
             }
 
             {
-                TrackLooped<Vector3,LinearInterpolator<Vector3> > TestIteratorTrack;
+                Track<Vector3,LinearInterpolator<Vector3> > TestIteratorTrack;
 
                 TestIteratorTrack.push_back(Vector3(0,0,0));
                 TestIteratorTrack.push_back(Vector3(10,0,0));
@@ -213,16 +213,17 @@ class tracktests : public UnitTestGroup
 
                 SmoothTrackIterator<Vector3> Iter(&TestIteratorTrack,0.0,1.0/30.0);
 
-                TestOutput << "A Dereferenced X component from an iterator refering to 0.0 on a Linear track: " << Iter->X << endl
-                           << "A dereferenced Vector3 from an iterator " << *Iter << endl;
+                TestOutput << "Performing some basic tests to see if SmoothTrackIterators basib functionality work at all." << endl
+                           << "A dereferenced X component from an iterator refering to 0.0 on a Linear track (expecting 0.0): " << Iter->X << endl
+                           << "A dereferenced Vector3 from an iterator (expecting \"<Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" />\")" << *Iter << endl << endl;
                 TEST_EQUAL_EPSILON(Iter->X, Real(0.0), "SmoothTrackIterator->1");
                 TEST_EQUAL_EPSILON(*Iter, Vector3(0,0,0), "SmoothTrackIterator*1");
 
 
-                TestOutput << "Incrementing the iterator via postfix:" << endl;
+                TestOutput << "Incrementing the iterator via postfix++, this should move it 1/30th of the track: " << endl;
                 Iter++;
-                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 on a Linear track: " << Iter->X << endl
-                           << "A dereferenced Vector3 from an iterator " << *Iter << endl;
+                TestOutput << "A Dereferenced X component from an iterator refering to 1/30 on a Linear track (expecting 1.0): " << Iter->X << endl
+                           << "A dereferenced Vector3 from an iterator (expecting \"<Vector3 Version=\"1\" X=\"1.0\" Y=\"0\" Z=\"0\" />\")" << *Iter << endl << endl;
                 TEST_EQUAL_EPSILON(Iter->X, Real(1.0), "SmoothTrackIterator->2");
                 TEST_EQUAL_EPSILON(*Iter, Vector3(1.0,0.0,0.0), "SmoothTrackIterator*2");
 
@@ -233,7 +234,7 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_MULTI_EPSILON(Iter->X, Real(2.0), "SmoothTrackIterator->++",5);
                 TEST_EQUAL_MULTI_EPSILON(*Iter, Vector3(2.0,0.0,0.0), "SmoothTrackIterator*++",5);
 
-                TestOutput << "Incrementing the iterator via prefix:" << endl;
+                TestOutput << "Decrementing the iterator via prefix:" << endl;
                 --Iter;
                 TestOutput << "A Dereferenced X component from an iterator refering to 1/30 (using --)on a Linear track: " << Iter->X << endl
                            << "A dereferenced Vector3 from an iterator " << *Iter << endl;
@@ -321,7 +322,7 @@ class tracktests : public UnitTestGroup
                 SmoothTrackIterator<Vector3> IndexIter1(&TestIteratorTrack,.8,1.0/100.0);
                 SmoothTrackIterator<Vector3> IndexIter2(&TestIteratorTrack,.9,1.0/100.0);
                 TEST(IndexIter1[10] == IndexIter2, "SmoothTrackIterator[]");
-
+            //*/
             }
         }
 
