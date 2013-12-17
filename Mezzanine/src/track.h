@@ -59,16 +59,12 @@ namespace Mezzanine
     /// for integers and a track contains only two data points 0 and 100, requesting 0.5
     /// might return 50.
     /// @n @n
-    /// There are different interpolation methods. These are defined by the InterpolatableTraits
-    /// for a given class. For example a track that does bezier interpolation might try to
-    /// use InterpolatableTraits<Integer>::BezierInterpolator to do the math.
-    /// @n @n
-    /// This uses vector underneath for its performance characteristics.
+    /// This uses std::vector underneath for its performance characteristics.
     template <typename InterpolatableType>
     class TrackBase
     {
         public:
-            /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
+            /// @brief The type of the internal container storing the interpolatable data. This is a single point to change all the tracks.
             typedef std::vector<InterpolatableType> DataContainerType;
 
         protected:
@@ -82,16 +78,35 @@ namespace Mezzanine
             /// @brief Get the amount of stored DataPoints
             /// @note Name chosen to match standard containers
             /// @return How many data points exist on this track
+            /// @note Name for compatibility with std templates
             size_t size() const
                 { return DataPoints.size(); }
+            /// @brief Get the amount of stored DataPoints
+            /// @note Name chosen to match standard containers
+            /// @return How many data points exist on this track
+            /// @note Name for consistency with naming conventions and implemented in terms of size().
+            size_t Size() const
+                { return size(); }
+
             /// @brief Add another data point to the end of the track.
-            /// @param AddedVale
+            /// @param AddedValue The data point to add to theend of the track.
+            /// @note Name for compatibility with std templates.
             virtual void push_back(const InterpolatableType& AddedValue)
                 { DataPoints.push_back(AddedValue); }
+            /// @brief Add another data point to the end of the track.
+            /// @param AddedValue The data point to add to theend of the track.
+            /// @note Name for consistency with naming conventions and implemented in terms of push_back().
+            virtual void Add(const InterpolatableType& AddedValue)
+                { push_back(AddedValue); }
+
             /// @brief Remove all the points from the track
             void clear()
                 { DataPoints.clear(); }
 
+            /// @brief Get an Smooth iterator to the beginning of the track.
+            /// @details A Smooth iterator will take a fixed number of steps across
+            /// a data set, interpolating values not actually present.
+            /// @param Steps How many steps to take, defaults to 100.
             virtual SmoothIteratorType begin(Integer Steps=100) const
             {
                 return SmoothIteratorType(this, 0.0,
@@ -99,12 +114,25 @@ namespace Mezzanine
                                           );
             }
 
+            /// @copydoc begin
+            virtual SmoothIteratorType Begin(Integer Steps=100) const
+                { return begin(Steps); }
+
+
+            /// @brief Get an Smooth iterator to the end (not one past) of the track.
+            /// @details A Smooth iterator will take a fixed number of steps across
+            /// a data set, interpolating values not actually present.
+            /// @param Steps How many steps to take if any, defaults to 0.
             virtual SmoothIteratorType end(Integer Steps=0) const
             {
                 return SmoothIteratorType(this, 1.0,
                                             (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
                                           );
             }
+
+            /// @copydoc end
+            virtual SmoothIteratorType End(Integer Steps=0) const
+                { return end(Steps); }
 
             /// @brief Get a value between the beginning and the end
             /// @details in derived classes this will perform some simple(hopefully fast) calculation to get
