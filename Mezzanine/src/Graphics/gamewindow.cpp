@@ -69,29 +69,10 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        /// @cond false
-        /// @class The impl part of the Mezzanine::Graphics::GameWindows class.
-        class GameWindowInternalData
-        {
-        public:
-            /// @brief A flag indicating if there should be a border on the window.
-            bool Borderless;
-
-            /// @brief A flag indicating the user can resize this window.
-            bool Resizeable;
-
-            /// @brief Default constructor sets all flags to false.
-            GameWindowInternalData() : Borderless(false), Resizeable(false) {  }
-        };
-        /// @endcond
-
-        GameWindow::GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
-            : OgreWindow(NULL),
-              SDLWindow(NULL)
-        {
-            this->GWID = new GameWindowInternalData();
-            this->CreateGameWindow(WindowCaption,Width,Height,Flags);
-        }
+        GameWindow::GameWindow(const String& WindowCaption, const Whole Width, const Whole Height, const Whole Flags) :
+            OgreWindow(NULL),
+            SDLWindow(NULL)
+            { this->CreateGameWindow(WindowCaption,Width,Height,Flags); }
 
         GameWindow::~GameWindow()
         {
@@ -106,61 +87,49 @@ namespace Mezzanine
 
             //this->OgreWindow->destroy();
             Ogre::Root::getSingleton().destroyRenderTarget(OgreWindow);
-            delete GWID;
         }
 
-        void GameWindow::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
+        void GameWindow::CreateGameWindow(const String& WindowCaption, const Whole Width, const Whole Height, const Whole Flags)
         {
             this->Manager = Graphics::GraphicsManager::GetSingletonPtr();
+            this->CreationFlags = Flags;
             this->Settings.RenderWidth = Width;
             this->Settings.RenderHeight = Height;
 
             Ogre::NameValuePairList Opts;
-            if(WF_Fullscreen & Flags)
-            {
+            if(WF_Fullscreen & Flags) {
                 this->Settings.Fullscreen = true;
             }
-            if(WF_Hidden & Flags)
-            {
+
+            if(WF_Hidden & Flags) {
                 Opts["hidden"] = "true";
             }
-            if(WF_VsyncEnabled & Flags)
-            {
+
+            if(WF_VsyncEnabled & Flags) {
                 Opts["vsync"] = "true";
                 this->Settings.VSync = true;
             }
-            if(WF_FSAA_16 & Flags)
-            {
+
+            if(WF_FSAA_16 & Flags) {
                 Opts["FSAA"] = "16";
-            }
-            else if(WF_FSAA_8 & Flags)
-            {
+            }else if(WF_FSAA_8 & Flags) {
                 Opts["FSAA"] = "8";
-            }
-            else if(WF_FSAA_4 & Flags)
-            {
+            }else if(WF_FSAA_4 & Flags) {
                 Opts["FSAA"] = "4";
-            }
-            else if(WF_FSAA_2 & Flags)
-            {
+            }else if(WF_FSAA_2 & Flags) {
                 Opts["FSAA"] = "2";
             }
-            if(WF_Resizeable & Flags)
-            {
+
+            if(WF_Resizeable & Flags) {
                 Opts["border"] = "resize";
-                this->GWID->Resizeable = true;
-            }
-            else if(WF_Borderless & Flags)
-            {
+            }else if(WF_Borderless & Flags) {
                 Opts["border"] = "none";
-                this->GWID->Borderless = true;
-            }
-            else
-            {
+            }else{
                 Opts["border"] = "fixed";
             }
-            if(WF_Maximized & Flags)
-            {
+
+            if(WF_Maximized & Flags) {
+
             }
 
             #ifdef MACOSX
@@ -172,8 +141,7 @@ namespace Mezzanine
             //#endif
             this->OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, this->Settings.RenderWidth, this->Settings.RenderHeight, this->Settings.Fullscreen, &Opts);//*/
 
-            if( !(WF_Hidden & Flags) )
-            {
+            if( !(WF_Hidden & Flags) ) {
                 #ifdef WINDOWS
                 HWND Data = 0;
                 #endif
@@ -202,7 +170,7 @@ namespace Mezzanine
             }
         }
 
-        int GameWindow::IsLargerThenDesktop(const Whole& Width, const Whole& Height)
+        int GameWindow::IsLargerThenDesktop(const Whole Width, const Whole Height)
         {
             SDL_DisplayMode DesktopDisplay;
             SDL_GetDesktopDisplayMode(0,&DesktopDisplay);
@@ -219,18 +187,17 @@ namespace Mezzanine
 
         Viewport* GameWindow::CreateViewport(CameraProxy* ViewportCamera, const Integer ZOrder)
         {
-            Whole Order = ( ZOrder == 0 ? this->Viewports.size() : ZOrder );
-            Viewport* NewViewport = new Viewport(ViewportCamera,Order,this);
+            Viewport* NewViewport = new Viewport(ViewportCamera,ZOrder,this);
 
             for( ViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
             {
-                if( (*ViewIt).second->GetZOrder() > ZOrder ) {
-                    this->Viewports.insert( ViewIt, ViewportEntry( ZOrder, NewViewport ) );
+                if( (*ViewIt)->GetZOrder() > ZOrder ) {
+                    this->Viewports.insert( ViewIt, NewViewport );
                     return NewViewport;
                 }
             }
 
-            this->Viewports.push_back( ViewportEntry(ZOrder,NewViewport) );
+            this->Viewports.push_back( NewViewport );
             return NewViewport;
         }
 
@@ -241,7 +208,18 @@ namespace Mezzanine
             while( Count-- )
                 ++ViewIt;
 
-            return (*ViewIt).second;
+            return (*ViewIt);
+        }
+
+        Viewport* GameWindow::GetViewportByZOrder(const Integer ZOrder) const
+        {
+            for( ViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
+            {
+                if( (*ViewIt).first == ZOrder ) {
+                    return (*ViewIt).second;
+                }
+            }
+            return NULL;
         }
 
         Whole GameWindow::GetNumViewports() const
@@ -251,10 +229,9 @@ namespace Mezzanine
 
         void GameWindow::DestroyViewport(Viewport* ToBeDestroyed)
         {
-            for ( ViewportIterator it = this->Viewports.begin() ; it != this->Viewports.end() ; it++ )
+            for ( ViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
             {
-                if ( ToBeDestroyed == (*it).second )
-                {
+                if ( ToBeDestroyed == (*ViewIt) ) {
                     delete ToBeDestroyed;
                     this->Viewports.erase(it);
                     return;
@@ -319,8 +296,7 @@ namespace Mezzanine
         {
             if( this->Settings.RenderWidth == Width && this->Settings.RenderHeight == Height )
                 return;
-            if( this->Settings.Fullscreen )
-            {
+            if( this->Settings.Fullscreen ) {
                 SDL_DisplayMode CurrentDisplay;
                 SDL_GetWindowDisplayMode(SDLWindow,&CurrentDisplay);
                 CurrentDisplay.w = Width;
@@ -336,8 +312,7 @@ namespace Mezzanine
                 }
             }else{
                 int Result = this->IsLargerThenDesktop(Width,Height);
-                if(Result == 0)
-                {
+                if(Result == 0) {
                     Whole ResultWidth, ResultHeight;
                     crossplatform::SanitizeWindowedRes(Width,Height,ResultWidth,ResultHeight);
                     SDL_SetWindowSize(SDLWindow,ResultWidth,ResultHeight);
@@ -362,33 +337,27 @@ namespace Mezzanine
             if( Fullscreen == this->Settings.Fullscreen )
                 return;
 
-            if( !Fullscreen && this->Settings.Fullscreen )
-            {
+            if( !Fullscreen && this->Settings.Fullscreen ) {
                 const WindowSettings& DeskSet = this->Manager->GetDesktopSettings();
-                if( this->Settings.RenderWidth > DeskSet.RenderWidth || this->Settings.RenderHeight > DeskSet.RenderHeight )
-                {
+                if( this->Settings.RenderWidth > DeskSet.RenderWidth || this->Settings.RenderHeight > DeskSet.RenderHeight ) {
                     this->Settings.RenderWidth = DeskSet.RenderWidth;
                     this->Settings.RenderHeight = DeskSet.RenderHeight;
                 }
-                if( this->Settings.RenderWidth == DeskSet.RenderWidth || this->Settings.RenderHeight == DeskSet.RenderHeight )
-                {
+                if( this->Settings.RenderWidth == DeskSet.RenderWidth || this->Settings.RenderHeight == DeskSet.RenderHeight ) {
                     Whole ResultWidth, ResultHeight;
                     crossplatform::SanitizeWindowedRes(Settings.RenderWidth,Settings.RenderHeight,ResultWidth,ResultHeight);
                     this->SetRenderResolution(ResultWidth,ResultHeight);
                     this->Settings.RenderWidth = DeskSet.RenderWidth;
                     this->Settings.RenderHeight = DeskSet.RenderHeight;
                 }
-            }
-            else if(Fullscreen && !Settings.Fullscreen)
-            {
+            }else if(Fullscreen && !Settings.Fullscreen) {
                 FSDisplayMode.w = this->Settings.RenderWidth;
                 FSDisplayMode.h = this->Settings.RenderHeight;
                 FSDisplayMode.refresh_rate = Settings.RefreshRate;
                 SDL_SetWindowDisplayMode(SDLWindow,&FSDisplayMode);
             }
 
-            if(SDL_SetWindowFullscreen(SDLWindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0)
-            {
+            if(SDL_SetWindowFullscreen(SDLWindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0) {
                 this->OgreWindow->setFullscreen(Fullscreen,this->Settings.RenderWidth,this->Settings.RenderHeight);
                 this->UpdateViewportsAndCameras();
                 this->Settings.Fullscreen = Fullscreen;
@@ -423,20 +392,20 @@ namespace Mezzanine
         void GameWindow::EnableVsync(bool Enable)
             { this->OgreWindow->setVSyncEnabled(Enable); }
 
-        bool GameWindow::VsyncEnabled() const
+        Bool GameWindow::VsyncEnabled() const
             { return this->OgreWindow->isVSyncEnabled(); }
 
         void GameWindow::SetHidden(bool Hidden)
             { this->OgreWindow->setHidden(Hidden); }
 
-        bool GameWindow::IsHidden() const
+        Bool GameWindow::IsHidden() const
             { return this->OgreWindow->isHidden(); }
 
-        bool GameWindow::BorderIsResizeable() const
-            { return this->GWID->Resizeable; }
+        Bool GameWindow::BorderIsResizeable() const
+            { return (this->CreationFlags & GameWindow::WF_Resizeable); }
 
-        bool GameWindow::IsBorderless() const
-            { return this->GWID->Borderless; }
+        Bool GameWindow::IsBorderless() const
+            { return (this->CreationFlags & GameWindow::WF_Borderless); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Window Stats Methods
