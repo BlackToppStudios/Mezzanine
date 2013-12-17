@@ -41,9 +41,9 @@
 #define _objectsettings_cpp
 
 #include "objectsettings.h"
+#include "stringtool.h"
 #include "resourcemanager.h"
 #include "Resource/filestream.h"
-#include "stringtool.h"
 
 namespace Mezzanine
 {
@@ -52,26 +52,19 @@ namespace Mezzanine
 
     ObjectSettingSetContainer::ObjectSettingSetContainer(const String& Name) :
         ContainerName(Name)
-    {
-    }
+        {  }
 
     ObjectSettingSetContainer::~ObjectSettingSetContainer()
-    {
-        this->DestroyAllObjectSettingSets();
-    }
+        { this->DestroyAllObjectSettingSets(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
     void ObjectSettingSetContainer::SetName(const String& Name)
-    {
-        this->ContainerName = Name;
-    }
+        { this->ContainerName = Name; }
 
     ConstString& ObjectSettingSetContainer::GetName() const
-    {
-        return ContainerName;
-    }
+        { return ContainerName; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Sub-Set Methods
@@ -95,8 +88,7 @@ namespace Mezzanine
     {
         for( ConstSubSetIterator it = this->SubSets.begin() ; it != this->SubSets.end() ; ++it )
         {
-            if( Name == (*it)->GetName() )
-            {
+            if( Name == (*it)->GetName() ) {
                 if(0 == Which) return (*it);
                 else --Which;
             }
@@ -113,8 +105,7 @@ namespace Mezzanine
     {
         for( SubSetIterator it = this->SubSets.begin() ; it != this->SubSets.end() ; ++it )
         {
-            if( ToBeRemoved == (*it) )
-            {
+            if( ToBeRemoved == (*it) ) {
                 ToBeRemoved->ParentSetOrGroup = NULL;
                 this->SubSets.erase(it);
                 this->_MarkUpdated();
@@ -127,8 +118,7 @@ namespace Mezzanine
     {
         for( SubSetIterator it = this->SubSets.begin() ; it != this->SubSets.end() ; ++it )
         {
-            if( Name == (*it)->GetName() )
-            {
+            if( Name == (*it)->GetName() ) {
                 delete (*it);
                 this->SubSets.erase(it);
                 return;
@@ -152,24 +142,16 @@ namespace Mezzanine
     // Iterator Access
 
     ObjectSettingSetContainer::SubSetIterator ObjectSettingSetContainer::SubSetBegin()
-    {
-        return this->SubSets.begin();
-    }
+        { return this->SubSets.begin(); }
 
     ObjectSettingSetContainer::ConstSubSetIterator ObjectSettingSetContainer::SubSetBegin() const
-    {
-        return this->SubSets.begin();
-    }
+        { return this->SubSets.begin(); }
 
     ObjectSettingSetContainer::SubSetIterator ObjectSettingSetContainer::SubSetEnd()
-    {
-        return this->SubSets.end();
-    }
+        { return this->SubSets.end(); }
 
     ObjectSettingSetContainer::ConstSubSetIterator ObjectSettingSetContainer::SubSetEnd() const
-    {
-        return this->SubSets.end();
-    }
+        { return this->SubSets.end(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // ObjectSettingSet Methods
@@ -177,20 +159,16 @@ namespace Mezzanine
     ObjectSettingSet::ObjectSettingSet(const String& Name) :
         ObjectSettingSetContainer(Name),
         ParentSetOrGroup(NULL)
-    {
-    }
+        {  }
 
     ObjectSettingSet::~ObjectSettingSet()
-    {
-    }
+        {  }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
     ObjectSettingSetContainer* ObjectSettingSet::GetParentSetOrGroup() const
-    {
-        return this->ParentSetOrGroup;
-    }
+        { return this->ParentSetOrGroup; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Setting Methods
@@ -212,24 +190,16 @@ namespace Mezzanine
     // Iterator Access
 
     ObjectSettingSet::SettingsIterator ObjectSettingSet::SettingsBegin()
-    {
-        return this->Settings.begin();
-    }
+        { return this->Settings.begin(); }
 
     ObjectSettingSet::ConstSettingsIterator ObjectSettingSet::SettingsBegin() const
-    {
-        return this->Settings.begin();
-    }
+        { return this->Settings.begin(); }
 
     ObjectSettingSet::SettingsIterator ObjectSettingSet::SettingsEnd()
-    {
-        return this->Settings.end();
-    }
+        { return this->Settings.end(); }
 
     ObjectSettingSet::ConstSettingsIterator ObjectSettingSet::SettingsEnd() const
-    {
-        return this->Settings.end();
-    }
+        { return this->Settings.end(); }
 
     void ObjectSettingSet::_MarkUpdated()
     {
@@ -243,25 +213,19 @@ namespace Mezzanine
     ObjectSettingGroup::ObjectSettingGroup(const String& Name) :
         ObjectSettingSetContainer(Name),
         OptionalFile(NULL)
-    {
-    }
+        {  }
 
     ObjectSettingGroup::~ObjectSettingGroup()
-    {
-    }
+        {  }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Optional File config
 
     ObjectSettingFile* ObjectSettingGroup::GetOptionalFile() const
-    {
-        return this->OptionalFile;
-    }
+        { return this->OptionalFile; }
 
     const String& ObjectSettingGroup::GetOptionalFileName() const
-    {
-        return ( this->OptionalFile ? this->OptionalFile->GetFileName() : StringTools::Blank );
-    }
+        { return ( this->OptionalFile ? this->OptionalFile->GetFileName() : StringTools::Blank ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
@@ -284,30 +248,22 @@ namespace Mezzanine
     ObjectSettingFile::ObjectSettingFile(const String& FileName) :
         File(FileName),
         NeedsSave(false)
-    {
-    }
+        {  }
 
     ObjectSettingFile::~ObjectSettingFile()
-    {
-    }
+        {  }
 
     ///////////////////////////////////////////////////////////////////////////////
     // File and Group Management
 
     const String& ObjectSettingFile::GetFileName() const
-    {
-        return this->File;
-    }
+        { return this->File; }
 
-    void ObjectSettingFile::SetNeedsSave(bool Save)
-    {
-        this->NeedsSave = Save;
-    }
+    void ObjectSettingFile::SetNeedsSave(Bool Save)
+        { this->NeedsSave = Save; }
 
-    bool ObjectSettingFile::GetNeedsSave() const
-    {
-        return this->NeedsSave;
-    }
+    Bool ObjectSettingFile::GetNeedsSave() const
+        { return this->NeedsSave; }
 
     void ObjectSettingFile::AddGroup(ObjectSettingGroup* Group)
     {
@@ -330,8 +286,7 @@ namespace Mezzanine
     {
         for( SaveGroupsIterator SaveIt = this->SaveGroups.begin() ; SaveIt != this->SaveGroups.end() ; ++SaveIt )
         {
-            if( Group == (*SaveIt) )
-            {
+            if( Group == (*SaveIt) ) {
                 Group->_SetOptionalFile(NULL);
                 this->SaveGroups.erase(SaveIt);
                 this->NeedsSave = true;
@@ -341,29 +296,19 @@ namespace Mezzanine
     }
 
     ObjectSettingFile::SaveGroupsContainer& ObjectSettingFile::GetGroups()
-    {
-        return this->SaveGroups;
-    }
+        { return this->SaveGroups; }
 
     ObjectSettingFile::SaveGroupsIterator ObjectSettingFile::SaveGroupsBegin()
-    {
-        return this->SaveGroups.begin();
-    }
+        { return this->SaveGroups.begin(); }
 
     ObjectSettingFile::ConstSaveGroupsIterator ObjectSettingFile::SaveGroupsBegin() const
-    {
-        return this->SaveGroups.begin();
-    }
+        { return this->SaveGroups.begin(); }
 
     ObjectSettingFile::SaveGroupsIterator ObjectSettingFile::SaveGroupsEnd()
-    {
-        return this->SaveGroups.end();
-    }
+        { return this->SaveGroups.end(); }
 
     ObjectSettingFile::ConstSaveGroupsIterator ObjectSettingFile::SaveGroupsEnd() const
-    {
-        return this->SaveGroups.end();
-    }
+        { return this->SaveGroups.end(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // ObjectSettingsHandler Methods
@@ -371,12 +316,10 @@ namespace Mezzanine
     ObjectSettingsHandler::ObjectSettingsHandler() :
         AutoGenPath(true),
         AutoGenFiles(true)
-    {
-    }
+        {  }
 
     ObjectSettingsHandler::~ObjectSettingsHandler()
-    {
-    }
+        {  }
 
     CountedPtr<ObjectSettingsHandler::SettingGroupVector> ObjectSettingsHandler::LoadSettingsFromFile(const String& FileName, const String& Path)
     {
@@ -397,13 +340,10 @@ namespace Mezzanine
 
         // Load and parse the settings
         XML::Node RootNode = SettingsDoc.GetChild(GetObjectRootNodeName());
-        if( !RootNode.Empty() )
-        {
+        if( !RootNode.Empty() ) {
             XML::Node CurrentSettingsNode = RootNode.GetChild("Current");
-            if( !RootNode.Empty() )
-            {
-                if( !this->CurrentSettingsSaveFile.empty() )
-                {
+            if( !RootNode.Empty() ) {
+                if( !this->CurrentSettingsSaveFile.empty() ) {
                     MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Second file containing \"Current\" settings detected.");
                 }
                 this->CurrentSettingsSaveFile = FileName;
@@ -426,8 +366,7 @@ namespace Mezzanine
         XML::Document SettingsDoc;
         XML::Node DeclNode = SettingsDoc.AppendChild(XML::NodeDeclaration);
         XML::Attribute VerAttrib = DeclNode.AppendAttribute("version");
-        if( DeclNode.SetName("xml") && VerAttrib.SetValue("1.0") )
-        {
+        if( DeclNode.SetName("xml") && VerAttrib.SetValue("1.0") ) {
             XML::Node RootNode = SettingsDoc.AppendChild( this->GetObjectRootNodeName() );
 
             if( GroupNames.empty() ) this->SaveSettingsToXML(RootNode);
@@ -501,8 +440,7 @@ namespace Mezzanine
     void ObjectSettingsHandler::DestroySettingGroup(const String& Name)
     {
         SettingGroupIterator SetIt = this->SettingGroups.find(Name);
-        if( SetIt != this->SettingGroups.end() )
-        {
+        if( SetIt != this->SettingGroups.end() ) {
             delete (*SetIt).second;
             this->SettingGroups.erase(SetIt);
         }
@@ -521,7 +459,6 @@ namespace Mezzanine
         }
         this->SettingGroups.clear();
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////
     // Setting File Handling
@@ -596,12 +533,12 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Setting Path Handling
+
     void ObjectSettingsHandler::SetSettingsFilePath(const String& Path)
     {
         size_t FirstDol = Path.find_first_of('$');
         size_t SecondDol = Path.find_first_of('$',FirstDol+1);
-        if(FirstDol != String::npos && SecondDol != String::npos)
-        {
+        if(FirstDol != String::npos && SecondDol != String::npos) {
             String PathKeyWord = Path.substr( FirstDol + 1, ( SecondDol - FirstDol ) - 1 );
             String RestOfPath = Path.substr( SecondDol + 1 );
             String ActualPath = ResourceManager::GetSingletonPtr()->ResolveDataPathFromString(PathKeyWord);
@@ -631,11 +568,11 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Loading Utilities
+
     CountedPtr<ObjectSettingsHandler::SettingGroupVector> ObjectSettingsHandler::LoadSettingsFromGroup(const String& FileName, const String& Group)
     {
         String FilePath = ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group);
-        if( FilePath.empty() )
-        {
+        if( FilePath.empty() ) {
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Failed to find path for file \"" + FileName + "\", in group \"" + Group + "\".");
         }
         return this->LoadSettingsFromFile(FileName,FilePath);
@@ -648,8 +585,7 @@ namespace Mezzanine
 
     CountedPtr<ObjectSettingsHandler::SettingGroupVector> ObjectSettingsHandler::LoadSettings(const String& FileName)
     {
-        if( this->SettingsFilePath.empty() )
-        {
+        if( this->SettingsFilePath.empty() ) {
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
         return this->LoadSettingsFromFile(FileName,SettingsFilePath);
@@ -664,8 +600,7 @@ namespace Mezzanine
             XML::Node CurrGroupNode = (*CurrGroupIt);
             String SettingGroupName = CurrGroupNode.Name();
             ObjectSettingGroup* NewGroup = new ObjectSettingGroup(SettingGroupName);
-            if( "Current" != SettingGroupName )
-            {
+            if( "Current" != SettingGroupName ) {
                 this->SettingGroups.insert( std::pair<String,ObjectSettingGroup*>(SettingGroupName,NewGroup) );
                 RetVec->push_back(NewGroup);
             }else{
@@ -680,8 +615,7 @@ namespace Mezzanine
                 this->LoadSettingSetFromXML( CurrSetNode, NewSet );
             }
         }
-        if(SetAfter)
-        {
+        if(SetAfter) {
             this->ApplySettingGroupImpl(SetAfter);
             delete SetAfter;
         }
@@ -690,30 +624,22 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Saving Utilities
-    void ObjectSettingsHandler::SetAutoGenPath(bool Enable)
-    {
-        this->AutoGenPath = Enable;
-    }
 
-    bool ObjectSettingsHandler::GetAutoGenPath() const
-    {
-        return this->AutoGenPath;
-    }
+    void ObjectSettingsHandler::SetAutoGenPath(Bool Enable)
+        { this->AutoGenPath = Enable; }
 
-    void ObjectSettingsHandler::SetAutoGenFiles(bool Enable)
-    {
-        this->AutoGenFiles = Enable;
-    }
+    Bool ObjectSettingsHandler::GetAutoGenPath() const
+        { return this->AutoGenPath; }
 
-    bool ObjectSettingsHandler::GetAutoGenFiles() const
-    {
-        return this->AutoGenFiles;
-    }
+    void ObjectSettingsHandler::SetAutoGenFiles(Bool Enable)
+        { this->AutoGenFiles = Enable; }
+
+    Bool ObjectSettingsHandler::GetAutoGenFiles() const
+        { return this->AutoGenFiles; }
 
     void ObjectSettingsHandler::SaveAllSettings()
     {
-        if( this->SettingsFilePath.empty() )
-        {
+        if( this->SettingsFilePath.empty() ) {
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
 
@@ -721,9 +647,8 @@ namespace Mezzanine
         for( SettingFilesIterator SettingFileIt = this->SettingFiles.begin() ; SettingFileIt != this->SettingFiles.end() ; ++SettingFileIt )
         {
             ObjectSettingFile* CurrFile = (*SettingFileIt).second;
-            bool IsCurrentSettingsFile = ( CurrentSettingsSaveFile == CurrFile->GetFileName() );
-            if( CurrFile->GetNeedsSave() || IsCurrentSettingsFile )
-            {
+            Bool IsCurrentSettingsFile = ( CurrentSettingsSaveFile == CurrFile->GetFileName() );
+            if( CurrFile->GetNeedsSave() || IsCurrentSettingsFile ) {
                 if( IsCurrentSettingsFile )
                     GroupNames.push_back( "Current" );
                 for( ObjectSettingFile::SaveGroupsIterator SetGroupIt = CurrFile->SaveGroupsBegin() ; SetGroupIt != CurrFile->SaveGroupsEnd() ; ++SetGroupIt )
@@ -745,8 +670,7 @@ namespace Mezzanine
             GroupNames.push_back( "Current" );
 
         SettingFilesIterator SetFileIt = this->SettingFiles.find(FileName);
-        if( SetFileIt == this->SettingFiles.end() )
-        {
+        if( SetFileIt == this->SettingFiles.end() ) {
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Setting file \"" + FileName + "\" was not found when attempting to save.");
         }
 
@@ -760,8 +684,7 @@ namespace Mezzanine
 
     void ObjectSettingsHandler::SaveSettingsByFile(const String& FileName)
     {
-        if( this->SettingsFilePath.empty() )
-        {
+        if( this->SettingsFilePath.empty() ) {
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
 
@@ -770,8 +693,7 @@ namespace Mezzanine
             GroupNames.push_back( "Current" );
 
         SettingFilesIterator SetFileIt = this->SettingFiles.find(FileName);
-        if( SetFileIt == this->SettingFiles.end() )
-        {
+        if( SetFileIt == this->SettingFiles.end() ) {
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Setting file \"" + FileName + "\" was not found when attempting to save.");
         }
 
@@ -790,15 +712,14 @@ namespace Mezzanine
 
     void ObjectSettingsHandler::SaveSettingGroups(StringVector& GroupNames, const String& FileName)
     {
-        if( this->SettingsFilePath.empty() )
-        {
+        if( this->SettingsFilePath.empty() ) {
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
 
         this->SaveSettingsToFile(GroupNames,FileName,SettingsFilePath);
     }
 
-    void ObjectSettingsHandler::SaveSettingsToXML(XML::Node& RootSettings, bool SaveCurrent)
+    void ObjectSettingsHandler::SaveSettingsToXML(XML::Node& RootSettings, Bool SaveCurrent)
     {
         StringVector GroupNames;
 
@@ -816,13 +737,11 @@ namespace Mezzanine
     {
         for( StringVector::iterator StrIt = GroupNames.begin() ; StrIt != GroupNames.end() ; ++StrIt )
         {
-            if( "Current" == (*StrIt) )
-            {
+            if( "Current" == (*StrIt) ) {
                 this->AppendCurrentSettings(RootSettings);
             }else{
                 SettingGroupIterator GroupIt = this->SettingGroups.find( (*StrIt) );
-                if( GroupIt == this->SettingGroups.end() )
-                {
+                if( GroupIt == this->SettingGroups.end() ) {
                     MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to save setting group \"" + (*StrIt) + "\", which does not exist.");
                 }
                 ObjectSettingSetContainer* SaveSet = (*GroupIt).second;
@@ -835,7 +754,6 @@ namespace Mezzanine
             }
         }
     }
-
 }
 
 #endif
