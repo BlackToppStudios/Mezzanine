@@ -240,6 +240,10 @@ namespace Mezzanine
             /// @param WindowViewport The Viewport to which this screen belongs.
             /// @param Manager A pointer to the UI manager creating this screen.
             Screen(const String& RendName, const String& Atlas, Graphics::Viewport* WindowViewport, UIManager* Manager);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Manager A pointer to the UI manager creating this screen.
+            Screen(const XML::Node& XMLNode, UIManager* Manager);
             /// @brief Class destructor.
             virtual ~Screen();
         public:
@@ -484,6 +488,19 @@ namespace Mezzanine
             /// @param ParserName The name of the MarkupParser to retrieve.
             /// @return Returns a pointer to the requested MarkupParser, or NULL if none are registered under the specified name.
             UI::MarkupParser* GetMarkupParser(const String& ParserName) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc Renderable::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+            /// @copydoc Renderable::GetDerivedSerializableName() const
+            virtual String GetDerivedSerializableName() const;
+            /// @copydoc Renderable::GetSerializableName()
+            static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Functions

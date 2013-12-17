@@ -219,6 +219,31 @@ namespace Mezzanine
             this->SetMouseHoverStrategy(new BruteStrategy());
         }
 
+        Screen::Screen(const XML::Node& XMLNode, UIManager* Manager) :
+            QuadRenderable(this),
+            Scale(1,1,1),
+            MouseHitPosition(-1,-1),
+            UIMan(Manager),
+            GameViewport(NULL),
+            MouseStrat(NULL),
+            Orientation(Mezzanine::OM_Degree_0)
+        {
+            this->AddAllDefaultWidgetFactories();
+
+            this->SID = new ScreenInternalData();
+            this->SID->RenderSys = Ogre::Root::getSingletonPtr()->getRenderSystem();
+            this->SID->ParentScreen = this;
+
+            Graphics::SceneManager* SceneMan = this->GetSceneManager();
+            if(SceneMan)
+                SceneMan->_GetGraphicsWorldPointer()->addRenderQueueListener(SID);
+
+            this->CreateVertexBuffer(32 * 6);
+            this->SetMouseHoverStrategy(new BruteStrategy());
+
+            this->ProtoDeSerialize(XMLNode);
+        }
+
         Screen::~Screen()
         {
             this->DestroyAllWidgets();
@@ -656,6 +681,97 @@ namespace Mezzanine
 
         MarkupParser* Screen::GetMarkupParser(const String& ParserName) const
             { return this->UIMan->GetMarkupParser(ParserName); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void Screen::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->QuadRenderable::ProtoSerializeProperties(SelfRoot);
+            XML::Node PropertiesNode = SelfRoot.AppendChild( Screen::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("WindowTitle").SetValue( this->GameViewport->GetParentWindow()->GetWindowCaption() ) &&
+                PropertiesNode.AppendAttribute("ViewportZOrder").SetValue( this->GameViewport->GetZOrder() ) &&
+                PropertiesNode.AppendAttribute("PriAtlas").SetValue( this->PriAtlas ) )
+            {
+                XML::Node VertexTransformNode = PropertiesNode.AppendChild("VertexTransform");
+                this->VertexTransform.ProtoSerialize( VertexTransformNode );
+                XML::Node ScaleNode = PropertiesNode.AppendChild("Scale");
+                this->Scale.ProtoSerialize( ScaleNode );
+
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",Screen::GetSerializableName() + "Properties",true);
+            }
+        }
+
+        void Screen::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->QuadRenderable::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( Screen::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    String WindowTitle;
+                    Whole ViewZOrder = 0;
+
+                    // Get the single data type properties
+                    CurrAttrib = PropertiesNode.GetAttribute("PriAtlas");
+                    if( !CurrAttrib.Empty() )
+                        this->PriAtlas = CurrAttrib.AsString();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("WindowTitle");
+                    if( !CurrAttrib.Empty() )
+                        WindowTitle = CurrAttrib.AsString();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("ViewportZOrder");
+                    if( !CurrAttrib.Empty() )
+                        ZOrder = CurrAttrib.AsString();
+
+                    // Get the properties that need their own nodes
+                    XML::Node VertexTransformNode = PropertiesNode.GetChild("VertexTransform").GetFirstChild();
+                    if( !VertexTransformNode.Empty() )
+                        this->VertexTransform.ProtoDeSerialize(VertexTransformNode);
+
+                    XML::Node ScaleNode = PropertiesNode.GetChild("Scale").GetFirstChild();
+                    if( !ScaleNode.Empty() )
+                        this->Scale.ProtoDeSerialize(ScaleNode);
+
+                    if( !WindowTitle.empty() ) {
+                        Graphics::GraphicsManager* GraphicsMan = Graphics::GraphicsManager::GetSingletonPtr();
+                        Graphics::GameWindow* NamedWindow = GraphicsMan->GetGameWindow(WindowTitle);
+                        if( NamedWindow != NULL ) {
+                            this->GameViewport = NamedWindow->GetViewportByZOrder(ViewZOrder);
+                            if( this->GameViewport != NULL ) {
+                                this->ActDims.Size.X = (Real)this->GameViewport->GetActualWidth();
+                                this->ActDims.Size.Y = (Real)this->GameViewport->GetActualHeight();
+                                this->InverseSize.X = 1 / this->ActDims.Size.X;
+                                this->InverseSize.Y = 1 / this->ActDims.Size.Y;
+                            }else{
+                                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The Viewport specified via ZOrder was not found in the named GameWindow.");
+                            }
+                        }else{
+                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"The named GameWindow to be used by UI Screen was not found.");
+                        }
+                    }else{
+                        MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"A GameWindow Title/Caption was not specified for UI Screen.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Screen::GetSerializableName() + "Properties") + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Screen::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String Screen::GetDerivedSerializableName() const
+            { return Screen::GetSerializableName(); }
+
+        String Screen::GetSerializableName()
+            { return "Screen"; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Functions
