@@ -149,7 +149,7 @@ namespace Mezzanine
                 Graphics::GameWindow* Win = static_cast<Graphics::GameWindow*>(Focus->data->data);
                 for( Graphics::GameWindow::ReverseViewportIterator ViewIt = Win->ReverseBeginViewport() ; ViewIt != Win->ReverseEndViewport() ; ++ViewIt )
                 {
-                    Graphics::Viewport* VP = (*ViewIt).second;
+                    Graphics::Viewport* VP = (*ViewIt);
                     if( (this->Position.X >= (Real)(VP->GetActualLeft()) && this->Position.X <= (Real)(VP->GetActualLeft() + VP->GetActualWidth())) &&
                         (this->Position.Y >= (Real)(VP->GetActualTop()) && this->Position.Y <= (Real)(VP->GetActualTop() + VP->GetActualHeight()) ) )
                     {

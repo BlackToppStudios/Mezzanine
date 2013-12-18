@@ -535,6 +535,12 @@ namespace Mezzanine
         String GenericWidgetFactory::GetWidgetTypeName() const
             { return Widget::TypeName; }
 
+        Widget* GenericWidgetFactory::CreateWidget(const String& RendName, Screen* Parent)
+            { return new Widget(RendName,Parent); }
+
+        Widget* GenericWidgetFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
+            { return new Widget(RendName,RendRect,Parent); }
+
         Widget* GenericWidgetFactory::CreateWidget(Screen* Parent)
             { return new Widget(Parent); }
 

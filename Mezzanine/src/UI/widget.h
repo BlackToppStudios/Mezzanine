@@ -320,6 +320,18 @@ namespace Mezzanine
             /// @copydoc WidgetFactory::GetWidgetTypeName() const
             virtual String GetWidgetTypeName() const;
 
+            /// @brief Creates a new Widget.
+            /// @param RendName The name to be given to the created Widget.
+            /// @param Parent The screen the created Widget will belong to.
+            /// @return Returns a pointer to the created Widget.
+            virtual Widget* CreateWidget(const String& RendName, Screen* Parent);
+            /// @brief Creates a new Widget.
+            /// @param RendName The name to be given to the created Widget.
+            /// @param RendRect The dimensions that will be assigned to the created Widget.
+            /// @param Parent The screen the created Widget will belong to.
+            /// @return Returns a pointer to the created Widget.
+            virtual Widget* CreateWidget(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+
             /// @copydoc WidgetFactory::CreateWidget(Screen*)
             virtual Widget* CreateWidget(Screen* Parent);
             /// @copydoc WidgetFactory::CreateWidget(const String&, const NameValuePairMap&, Screen*)

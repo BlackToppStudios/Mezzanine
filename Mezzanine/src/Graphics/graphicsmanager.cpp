@@ -310,9 +310,9 @@ namespace Mezzanine
                 for( GameWindow::ViewportIterator VPIt = (*WinIt)->BeginViewport() ; VPIt != (*WinIt)->EndViewport() ; ++VPIt )
                 {
                     XML::Node ViewportConfigNode = WindowConfigNode.AppendChild("Viewport");
-                    ViewportConfigNode.AppendAttribute("ZOrder").SetValue( (*VPIt).second->GetZOrder() );
-                    ViewportConfigNode.AppendAttribute("Position").SetValue( StringTools::ConvertToString( Vector2((*VPIt).second->GetLeft(),(*VPIt).second->GetTop()) ) );
-                    ViewportConfigNode.AppendAttribute("Size").SetValue( StringTools::ConvertToString( Vector2((*VPIt).second->GetWidth(),(*VPIt).second->GetHeight()) ) );
+                    ViewportConfigNode.AppendAttribute("ZOrder").SetValue( (*VPIt)->GetZOrder() );
+                    ViewportConfigNode.AppendAttribute("Position").SetValue( StringTools::ConvertToString( Vector2((*VPIt)->GetLeft(),(*VPIt)->GetTop()) ) );
+                    ViewportConfigNode.AppendAttribute("Size").SetValue( StringTools::ConvertToString( Vector2((*VPIt)->GetWidth(),(*VPIt)->GetHeight()) ) );
                 }
             }
         }
@@ -478,7 +478,7 @@ namespace Mezzanine
 
         GameWindow* GraphicsManager::GetGameWindow(const String& Caption) const
         {
-            for( GameWindowIterator WinIt = this->GameWindows.begin() ; WinIt != this->GameWindows.end() ; ++WinIt )
+            for( ConstGameWindowIterator WinIt = this->GameWindows.begin() ; WinIt != this->GameWindows.end() ; ++WinIt )
             {
                 if( (*WinIt)->GetWindowCaption() == Caption ) {
                     return (*WinIt);

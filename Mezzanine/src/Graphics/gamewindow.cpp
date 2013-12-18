@@ -164,9 +164,9 @@ namespace Mezzanine
         {
             for( ViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
             {
-                CameraProxy* Cam = (*ViewIt).second->GetViewportCamera();
+                CameraProxy* Cam = (*ViewIt)->GetViewportCamera();
                 if(Cam)
-                    Cam->SetAspectRatio((Real)((*ViewIt).second->GetActualWidth()) / (Real)((*ViewIt).second->GetActualHeight()));
+                    Cam->SetAspectRatio((Real)((*ViewIt)->GetActualWidth()) / (Real)((*ViewIt)->GetActualHeight()));
             }
         }
 
@@ -213,10 +213,10 @@ namespace Mezzanine
 
         Viewport* GameWindow::GetViewportByZOrder(const Integer ZOrder) const
         {
-            for( ViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
+            for( ConstViewportIterator ViewIt = this->Viewports.begin() ; ViewIt != this->Viewports.end() ; ++ViewIt )
             {
-                if( (*ViewIt).first == ZOrder ) {
-                    return (*ViewIt).second;
+                if( (*ViewIt)->GetZOrder() == ZOrder ) {
+                    return (*ViewIt);
                 }
             }
             return NULL;
@@ -233,7 +233,7 @@ namespace Mezzanine
             {
                 if ( ToBeDestroyed == (*ViewIt) ) {
                     delete ToBeDestroyed;
-                    this->Viewports.erase(it);
+                    this->Viewports.erase(ViewIt);
                     return;
                 }
             }

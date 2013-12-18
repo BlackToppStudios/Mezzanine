@@ -225,10 +225,10 @@ namespace Mezzanine
             { return VerticalContainer::TypeName; }
 
         VerticalContainer* VerticalContainerFactory::CreateVerticalContainer(const String& RendName, Screen* Parent)
-            { return new VerticalContainer(RendName,Style,Parent); }
+            { return new VerticalContainer(RendName,Parent); }
 
         VerticalContainer* VerticalContainerFactory::CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
-            { return new VerticalContainer(RendName,RendRect,Style,Parent); }
+            { return new VerticalContainer(RendName,RendRect,Parent); }
 
         VerticalContainer* VerticalContainerFactory::CreateVerticalContainer(const XML::Node& XMLNode, Screen* Parent)
             { return new VerticalContainer(XMLNode,Parent); }

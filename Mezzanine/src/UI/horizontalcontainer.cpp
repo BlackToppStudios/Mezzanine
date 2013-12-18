@@ -225,10 +225,10 @@ namespace Mezzanine
             { return HorizontalContainer::TypeName; }
 
         HorizontalContainer* HorizontalContainerFactory::CreateHorizontalContainer(const String& RendName, Screen* Parent)
-            { return new HorizontalContainer(RendName,Style,Parent); }
+            { return new HorizontalContainer(RendName,Parent); }
 
         HorizontalContainer* HorizontalContainerFactory::CreateHorizontalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
-            { return new HorizontalContainer(RendName,RendRect,Style,Parent); }
+            { return new HorizontalContainer(RendName,RendRect,Parent); }
 
         HorizontalContainer* HorizontalContainerFactory::CreateHorizontalContainer(const XML::Node& XMLNode, Screen* Parent)
             { return new HorizontalContainer(XMLNode,Parent); }
