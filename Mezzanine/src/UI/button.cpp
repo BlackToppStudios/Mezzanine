@@ -40,7 +40,7 @@
 #ifndef _uibutton_cpp
 #define _uibutton_cpp
 
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/button.h"
 #include "UI/screen.h"
 
@@ -80,7 +80,7 @@ namespace Mezzanine
         Button::~Button()
             {  }
 
-        bool Button::HandleInputImpl(const Input::MetaCode& Code)
+        Bool Button::HandleInputImpl(const Input::MetaCode& Code)
         {
             // Check to see if this is an activation code
             if( this->ActivationCodes.count( Input::MetaCodeKey(Code) ) )
@@ -89,7 +89,7 @@ namespace Mezzanine
                 if( Code.IsMouseButton() ) {
                     if( this->IsHovered() && Input::BUTTON_PRESSING == Code.GetMetaValue() )
                     {
-                        bool Result = this->Activate();
+                        Bool Result = this->Activate();
                         if(Result)
                             this->MouseActivated = true;
                         return true;
@@ -131,14 +131,14 @@ namespace Mezzanine
             }
         }
 
-        bool Button::VertifyActivationCode(const Input::InputCode Code)
+        Bool Button::VertifyActivationCode(const Input::InputCode Code)
         {
             return (Input::KEY_FIRST < Code && Input::KEY_LAST > Code) ||
                    (Input::MOUSEBUTTON_FIRST <= Code && Input::MOUSEBUTTON_LAST >= Code) ||
                    (Input::CONTROLLERBUTTON_FIRST <= Code && Input::CONTROLLERBUTTON_LAST >= Code);
         }
 
-        bool Button::Activate()
+        Bool Button::Activate()
         {
             if( this->Activation == AS_Activated )
                 return false;
@@ -150,7 +150,7 @@ namespace Mezzanine
             return true;
         }
 
-        bool Button::Deactivate()
+        Bool Button::Deactivate()
         {
             if( this->Activation == AS_Deactivated )
                 return false;
@@ -165,7 +165,7 @@ namespace Mezzanine
             return true;
         }
 
-        bool Button::Standby()
+        Bool Button::Standby()
         {
             if(this->Activation == AS_Activation_Standby)
                 return false;
@@ -184,13 +184,13 @@ namespace Mezzanine
         const StopWatchTimer& Button::GetLockoutTimer() const
             { return this->LockoutTimer; }
 
-        bool Button::IsActivated() const
+        Bool Button::IsActivated() const
             { return ( this->Activation == AS_Activated ); }
 
-        bool Button::IsOnStandby() const
+        Bool Button::IsOnStandby() const
             { return ( this->Activation == AS_Activation_Standby ); }
 
-        bool Button::IsDeactivated() const
+        Bool Button::IsDeactivated() const
             { return ( this->Activation == AS_Deactivated ); }
 
         const String& Button::GetTypeName() const

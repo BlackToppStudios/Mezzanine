@@ -110,7 +110,7 @@ namespace Mezzanine
             Bool MouseActivated;
 
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode& Code)
-            virtual bool HandleInputImpl(const Input::MetaCode& Code);
+            virtual Bool HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             virtual void ConstructButton();
@@ -118,19 +118,19 @@ namespace Mezzanine
             /// @brief Verifies the provided to code is valid for this button.
             /// @param Code The code to check.
             /// @return Returns true if this code is valid, false otherwise.
-            virtual bool VertifyActivationCode(const Input::InputCode Code);
+            virtual Bool VertifyActivationCode(const Input::InputCode Code);
             /// @internal
             /// @brief Attempts to activate this button.
             /// @return Returns true if this button was successfully activated.
-            virtual bool Activate();
+            virtual Bool Activate();
             /// @internal
             /// @brief Attempts to deactivate this button.
             /// @return Returns true if this button was successfully deactivated.
-            virtual bool Deactivate();
+            virtual Bool Deactivate();
             /// @internal
             /// @brief Attempts to put this button into standby.
             /// @return Returns true if this button was successfully put into standby.
-            virtual bool Standby();
+            virtual Bool Standby();
         //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
@@ -160,18 +160,20 @@ namespace Mezzanine
             /// @brief Gets this activatables lockout timer.
             /// @return Returns a pointer to the Lockout timer for this button, or NULL if one hasn't been set.
             const StopWatchTimer& GetLockoutTimer() const;
+
             /// @brief Gets whether or not this button can be activated again.
             /// @return Returns true if this button is not ready to be activated again.
-            bool IsActivationLocked() const;
+            Bool IsActivationLocked() const;
             /// @brief Gets whether or not this button is currently activated.
             /// @return Returns true if this button is currently activated, false otherwise.
-            bool IsActivated() const;
+            Bool IsActivated() const;
             /// @brief Gets whether or not this button is currently on standby.
             /// @return Returns true if this button is currently on activation standby, false otherwise.
-            bool IsOnStandby() const;
+            Bool IsOnStandby() const;
             /// @brief Gets whether or not this button is currently deactivated.
             /// @return Retruns true if this button is currently deactivated, false otherwise.
-            bool IsDeactivated() const;
+            Bool IsDeactivated() const;
+
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
 
