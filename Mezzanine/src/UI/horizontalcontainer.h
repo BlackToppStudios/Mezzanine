@@ -74,6 +74,10 @@ namespace Mezzanine
             /// @param RendRect The rect describing this widget's transform relative to it's parent.
             /// @param Parent The parent screen that created this renderable.
             HorizontalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created HorizontalContainer will belong to.
+            HorizontalContainer(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~HorizontalContainer();
 
@@ -114,6 +118,50 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
         };//HorizontalContainer
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the factory implementation for HorizontalContainer widgets.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB HorizontalContainerFactory : public WidgetFactory
+        {
+        public:
+            /// @brief Class constructor.
+            HorizontalContainerFactory() {  }
+            /// @brief Class destructor.
+            virtual ~HorizontalContainerFactory() {  }
+
+            /// @copydoc WidgetFactory::GetWidgetTypeName() const
+            virtual String GetWidgetTypeName() const;
+
+            /// @brief Creates a new HorizontalContainer.
+            /// @param RendName The name to be given to the created HorizontalContainer.
+            /// @param Parent The screen the created HorizontalContainer will belong to.
+            /// @return Returns a pointer to the created HorizontalContainer.
+            virtual HorizontalContainer* CreateHorizontalContainer(const String& RendName, Screen* Parent);
+            /// @brief Creates a new HorizontalContainer.
+            /// @param RendName The name to be given to the created HorizontalContainer.
+            /// @param RendRect The dimensions that will be assigned to the created HorizontalContainer.
+            /// @param Parent The screen the created HorizontalContainer will belong to.
+            /// @return Returns a pointer to the created HorizontalContainer.
+            virtual HorizontalContainer* CreateHorizontalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief Creates a new HorizontalContainer.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created HorizontalContainer will belong to.
+            /// @return Returns a pointer to the created HorizontalContainer.
+            virtual HorizontalContainer* CreateHorizontalContainer(const XML::Node& XMLNode, Screen* Parent);
+
+            /// @copydoc WidgetFactory::CreateWidget(Screen*)
+            virtual Widget* CreateWidget(Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const UnifiedRect&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const XML::Node&, Screen*)
+            virtual Widget* CreateWidget(const XML::Node& XMLNode, Screen* Parent);
+            /// @copydoc WidgetFactory::DestroyWidget(Widget*)
+            virtual void DestroyWidget(Widget* ToBeDestroyed);
+        };//HorizontalContainerFactory
     }//UI
 }//Mezzanine
 

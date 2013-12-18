@@ -67,6 +67,10 @@ namespace Mezzanine
             LinearContainer(RendName,RendRect,Parent)
             { this->LayoutStrat = new LayoutStrategy(); }
 
+        HorizontalContainer::HorizontalContainer(const XML::Node& XMLNode, Screen* Parent) :
+            LinearContainer(Parent)
+            { this->ProtoDeSerialize(XMLNode); }
+
         HorizontalContainer::~HorizontalContainer()
             { delete this->LayoutStrat; }
 
@@ -213,6 +217,36 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // HorizontalContainerFactory Methods
+
+        String HorizontalContainerFactory::GetWidgetTypeName() const
+            { return HorizontalContainer::TypeName; }
+
+        HorizontalContainer* HorizontalContainerFactory::CreateHorizontalContainer(const String& RendName, Screen* Parent)
+            { return new HorizontalContainer(RendName,Style,Parent); }
+
+        HorizontalContainer* HorizontalContainerFactory::CreateHorizontalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
+            { return new HorizontalContainer(RendName,RendRect,Style,Parent); }
+
+        HorizontalContainer* HorizontalContainerFactory::CreateHorizontalContainer(const XML::Node& XMLNode, Screen* Parent)
+            { return new HorizontalContainer(XMLNode,Parent); }
+
+        Widget* HorizontalContainerFactory::CreateWidget(Screen* Parent)
+            { return new HorizontalContainer(Parent); }
+
+        Widget* HorizontalContainerFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateHorizontalContainer(RendName,Parent); }
+
+        Widget* HorizontalContainerFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateHorizontalContainer(RendName,RendRect,Parent); }
+
+        Widget* HorizontalContainerFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateHorizontalContainer(XMLNode,Parent); }
+
+        void HorizontalContainerFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<HorizontalContainer*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 

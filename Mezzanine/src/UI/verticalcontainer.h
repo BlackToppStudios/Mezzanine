@@ -74,6 +74,10 @@ namespace Mezzanine
             /// @param RendRect The rect describing this widget's transform relative to it's parent.
             /// @param Parent The parent screen that created this renderable.
             VerticalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created VerticalContainer will belong to.
+            VerticalContainer(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~VerticalContainer();
 
@@ -114,6 +118,50 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
         };//VerticalContainer
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the factory implementation for VerticalContainer widgets.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB VerticalContainerFactory : public WidgetFactory
+        {
+        public:
+            /// @brief Class constructor.
+            VerticalContainerFactory() {  }
+            /// @brief Class destructor.
+            virtual ~VerticalContainerFactory() {  }
+
+            /// @copydoc WidgetFactory::GetWidgetTypeName() const
+            virtual String GetWidgetTypeName() const;
+
+            /// @brief Creates a new VerticalContainer.
+            /// @param RendName The name to be given to the created VerticalContainer.
+            /// @param Parent The screen the created VerticalContainer will belong to.
+            /// @return Returns a pointer to the created VerticalContainer.
+            virtual VerticalContainer* CreateVerticalContainer(const String& RendName, Screen* Parent);
+            /// @brief Creates a new VerticalContainer.
+            /// @param RendName The name to be given to the created VerticalContainer.
+            /// @param RendRect The dimensions that will be assigned to the created VerticalContainer.
+            /// @param Parent The screen the created VerticalContainer will belong to.
+            /// @return Returns a pointer to the created VerticalContainer.
+            virtual VerticalContainer* CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief Creates a new VerticalContainer.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created VerticalContainer will belong to.
+            /// @return Returns a pointer to the created VerticalContainer.
+            virtual VerticalContainer* CreateVerticalContainer(const XML::Node& XMLNode, Screen* Parent);
+
+            /// @copydoc WidgetFactory::CreateWidget(Screen*)
+            virtual Widget* CreateWidget(Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const UnifiedRect&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const XML::Node&, Screen*)
+            virtual Widget* CreateWidget(const XML::Node& XMLNode, Screen* Parent);
+            /// @copydoc WidgetFactory::DestroyWidget(Widget*)
+            virtual void DestroyWidget(Widget* ToBeDestroyed);
+        };//VerticalContainerFactory
     }//UI
 }//Mezzanine
 

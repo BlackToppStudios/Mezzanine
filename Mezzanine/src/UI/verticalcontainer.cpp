@@ -67,6 +67,10 @@ namespace Mezzanine
             LinearContainer(RendName,RendRect,Parent)
             { this->LayoutStrat = new LayoutStrategy(); }
 
+        VerticalContainer::VerticalContainer(const XML::Node& XMLNode, Screen* Parent) :
+            LinearContainer(Parent)
+            { this->ProtoDeSerialize(XMLNode); }
+
         VerticalContainer::~VerticalContainer()
             { delete this->LayoutStrat; }
 
@@ -213,6 +217,36 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // VerticalContainerFactory Methods
+
+        String VerticalContainerFactory::GetWidgetTypeName() const
+            { return VerticalContainer::TypeName; }
+
+        VerticalContainer* VerticalContainerFactory::CreateVerticalContainer(const String& RendName, Screen* Parent)
+            { return new VerticalContainer(RendName,Style,Parent); }
+
+        VerticalContainer* VerticalContainerFactory::CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
+            { return new VerticalContainer(RendName,RendRect,Style,Parent); }
+
+        VerticalContainer* VerticalContainerFactory::CreateVerticalContainer(const XML::Node& XMLNode, Screen* Parent)
+            { return new VerticalContainer(XMLNode,Parent); }
+
+        Widget* VerticalContainerFactory::CreateWidget(Screen* Parent)
+            { return new VerticalContainer(Parent); }
+
+        Widget* VerticalContainerFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateVerticalContainer(RendName,Parent); }
+
+        Widget* VerticalContainerFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateVerticalContainer(RendName,RendRect,Parent); }
+
+        Widget* VerticalContainerFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateVerticalContainer(XMLNode,Parent); }
+
+        void VerticalContainerFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<VerticalContainer*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 
