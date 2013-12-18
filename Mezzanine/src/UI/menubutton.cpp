@@ -41,12 +41,138 @@
 #define _uimenubutton_cpp
 
 #include "UI/menubutton.h"
+#include "UI/menuentry.h"
+#include "UI/screen.h"
+#include "stringtool.h"
+#include "exception.h"
+#include "serialization.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
+        const String MenuButton::TypeName = "MenuButton";
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // MenuButton Methods
+
+        MenuButton::MenuButton(Screen* Parent) :
+            Button(Parent),
+            BoundMenu(NULL)
+            {  }
+
+        MenuButton::MenuButton(const String& RendName, Screen* Parent) :
+            Button(RendName,Parent),
+            BoundMenu(NULL)
+            {  }
+
+        MenuButton::MenuButton(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
+            Button(RendName,RendRect,Parent),
+            BoundMenu(NULL)
+            {  }
+
+        MenuButton::MenuButton(const XML::Node& XMLNode, Screen* Parent) :
+            Button(Parent),
+            BoundMenu(NULL)
+            { this->ProtoDeSerialize(XMLNode); }
+
+        MenuButton::~MenuButton()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void MenuButton::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->Button::ProtoSerializeProperties(SelfRoot);
+
+            XML::Node PropertiesNode = SelfRoot.AppendChild( MenuButton::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") )
+            {
+                // Only if we have a valid binding
+                if( this->BoundMenu != NULL ) {
+                    if( PropertiesNode.AppendAttribute("MenuEntryName").SetValue( this->BoundMenu->GetName() ) &&
+                        PropertiesNode.AppendAttribute("IsPushButton").SetValue( this->BoundMenu->GetEntryPushButton() == this ? "true" : "false" ) )
+                    {
+                        SerializeError("Create XML Attribute Values",MenuButton::GetSerializableName() + "Properties",true);
+                    }
+                }
+            }else{
+                SerializeError("Create XML Attribute Values",MenuButton::GetSerializableName() + "Properties",true);
+            }
+        }
+
+        void MenuButton::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->Button::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( MenuButton::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    String MenuName;
+                    Bool IsPush = true;
+
+                    CurrAttrib = PropertiesNode.GetAttribute("MenuEntryName");
+                    if( !CurrAttrib.Empty() )
+                        MenuName = CurrAttrib.AsString();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("MenuEntryName");
+                    if( !CurrAttrib.Empty() )
+                        IsPush = StringTools::ConvertToBool( CurrAttrib.AsString() );
+
+                    if( !MenuName.empty() ) {
+                        Widget* UncastedMenu = this->ParentScreen->GetWidget(MenuName);
+                        if( UncastedMenu->GetTypeName() == "MenuEntry" ) {
+                            this->BoundMenu = static_cast<MenuEntry*>( UncastedMenu );
+                        }else{
+                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Named Widget that was expected to be a MenuEntry is not a MenuEntry.");
+                        }
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (MenuButton::GetSerializableName() + "Properties") + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,MenuButton::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String MenuButton::GetSerializableName()
+        {
+            return MenuButton::TypeName;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // MenuButtonFactory Methods
+
+        String MenuButtonFactory::GetWidgetTypeName() const
+            { return Button::TypeName; }
+
+        MenuButton* MenuButtonFactory::CreateMenuButton(const String& RendName, Screen* Parent)
+            { return new MenuButton(RendName,Parent); }
+
+        MenuButton* MenuButtonFactory::CreateMenuButton(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
+            { return new MenuButton(RendName,RendRect,Parent); }
+
+        MenuButton* MenuButtonFactory::CreateMenuButton(const XML::Node& XMLNode, Screen* Parent)
+            { return new MenuButton(XMLNode,Parent); }
+
+        Widget* MenuButtonFactory::CreateWidget(Screen* Parent)
+            { return new MenuButton(Parent); }
+
+        Widget* MenuButtonFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateMenuButton(RendName,Parent); }
+
+        Widget* MenuButtonFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateMenuButton(RendName,RendRect,Parent); }
+
+        Widget* MenuButtonFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateMenuButton(XMLNode,Parent); }
+
+        void MenuButtonFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<MenuButton*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 
