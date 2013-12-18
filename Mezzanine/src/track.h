@@ -102,6 +102,9 @@ namespace Mezzanine
             /// @brief Remove all the points from the track
             void clear()
                 { DataPoints.clear(); }
+            /// @copydoc clear
+            void Clear()
+                { clear(); }
 
             /// @brief Get an Smooth iterator to the beginning of the track.
             /// @details A Smooth iterator will take a fixed number of steps across
@@ -113,7 +116,6 @@ namespace Mezzanine
                                             (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
                                           );
             }
-
             /// @copydoc begin
             virtual SmoothIteratorType Begin(Integer Steps=100) const
                 { return begin(Steps); }
@@ -129,7 +131,6 @@ namespace Mezzanine
                                             (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
                                           );
             }
-
             /// @copydoc end
             virtual SmoothIteratorType End(Integer Steps=0) const
                 { return end(Steps); }
@@ -166,6 +167,10 @@ namespace Mezzanine
 
     };
 
+    /// @brief A track that keeps an extra data point in the track to make sure it loops.
+    /// @details when Add or push_back is called and there are 2 or more points the track,
+    /// this seamlessly adds a copy of the first data point to the end of the track. When
+    /// Iterating with a Smooth iterator this creates the impression of a loop.
     template <typename InterpolatableType, typename InterpolatorType>
     class TrackLooped : public Track<InterpolatableType, InterpolatorType>
     {
@@ -176,8 +181,6 @@ namespace Mezzanine
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
 
-            /// @brief Add another data point to the end of the track.
-            /// @param
             virtual void push_back(const InterpolatableType& AddedValue)
             {
                 if(TrackBase<InterpolatableType>::DataPoints.size()>1)
