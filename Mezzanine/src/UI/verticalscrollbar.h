@@ -159,12 +159,14 @@ namespace Mezzanine
 
             /// @brief Creates a new VerticalScrollbar.
             /// @param RendName The name to be given to the created VerticalScrollbar.
+            /// @param Style An enum value representing how you want your scrollbar constructed.  See @ref UI::ScrollbarStyle enum for more info.
             /// @param Parent The screen the created VerticalScrollbar will belong to.
             /// @return Returns a pointer to the created VerticalScrollbar.
             virtual VerticalScrollbar* CreateVerticalScrollbar(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent);
             /// @brief Creates a new VerticalScrollbar.
             /// @param RendName The name to be given to the created VerticalScrollbar.
             /// @param RendRect The dimensions that will be assigned to the created VerticalScrollbar.
+            /// @param Style An enum value representing how you want your scrollbar constructed.  See @ref UI::ScrollbarStyle enum for more info.
             /// @param Parent The screen the created VerticalScrollbar will belong to.
             /// @return Returns a pointer to the created VerticalScrollbar.
             virtual VerticalScrollbar* CreateVerticalScrollbar(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent);
