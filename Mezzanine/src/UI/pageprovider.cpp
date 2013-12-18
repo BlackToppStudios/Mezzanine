@@ -64,22 +64,20 @@ namespace Mezzanine
         PageProvider::~PageProvider()
             {  }
 
+        void PageProvider::ProtoSerializeImpl(XML::Node& SelfRoot) const
+        {
+            this->Widget::ProtoSerializeImpl(SelfRoot);
+            this->ProtoSerializePageData(SelfRoot);
+        }
+
+        void PageProvider::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+        {
+            this->Widget::ProtoDeSerializeImpl(SelfRoot);
+            this->ProtoDeSerializePageData(SelfRoot);
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
-
-        void PageProvider::ProtoSerialize(XML::Node& ParentNode) const
-        {
-            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-
-            this->ProtoSerializeProperties(SelfRoot);
-            this->ProtoSerializeRenderLayers(SelfRoot);
-            this->ProtoSerializeRenderLayerGroups(SelfRoot);
-            this->ProtoSerializeStateGroupBindings(SelfRoot);
-            this->ProtoSerializeEvents(SelfRoot);
-            this->ProtoSerializePageData(SelfRoot);
-            this->ProtoSerializeChildQuads(SelfRoot);
-            /// @todo Seriailze subscribed events?  Scripts at least.
-        }
 
         void PageProvider::ProtoSerializePageData(XML::Node& SelfRoot) const
         {
@@ -95,19 +93,6 @@ namespace Mezzanine
                     SerializeError("Create XML Attribute Values",PageProvider::GetSerializableName() + "PageData",true);
                 }
             }
-        }
-
-        void PageProvider::ProtoDeSerialize(const XML::Node& SelfRoot)
-        {
-            // Get the render layers first in this case as our properties partially depend on them (ActiveGroup)
-            this->ProtoDeSerializeRenderLayers(SelfRoot);
-            this->ProtoDeSerializeRenderLayerGroups(SelfRoot);
-            this->ProtoDeSerializeStateGroupBindings(SelfRoot);
-            this->ProtoDeSerializeProperties(SelfRoot);
-            this->ProtoDeSerializeEvents(SelfRoot);
-            this->ProtoDeSerializePageData(SelfRoot);
-            // Child quads update is always last
-            this->ProtoDeSerializeChildQuads(SelfRoot);
         }
 
         void PageProvider::ProtoDeSerializePageData(const XML::Node& SelfRoot)

@@ -246,6 +246,10 @@ namespace Mezzanine
             /// @brief This is a container storing all the @ref RenderLayerGroup instances created by and belonging to this Quad.
             RenderLayerGroupContainer RenderLayerGroups;
 
+            /// @copydoc Renderable::ProtoSerializeImpl(XML::Node&) const
+            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
+            /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
+            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
             /// @internal
             /// @brief Adds all the vertices belonging to all the layers of this renderable to the provided vector.
             /// @param Vertices The vector to store the generated vertices.

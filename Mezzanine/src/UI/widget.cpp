@@ -70,31 +70,45 @@ namespace Mezzanine
             QuadRenderable(Parent),
             HoveredSubWidget(NULL),
             State(WS_Untouched)
-        {
-            // Do nothing to leave it blank
-        }
+            { /* Do nothing to leave it blank */ }
 
         Widget::Widget(const String& RendName, Screen* Parent) :
             QuadRenderable(RendName,Parent),
             HoveredSubWidget(NULL),
             State(WS_Untouched)
-        {
-            this->ConstructWidget();
-        }
+            { this->ConstructWidget(); }
 
         Widget::Widget(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             QuadRenderable(RendName,RendRect,Parent),
             HoveredSubWidget(NULL),
             State(WS_Untouched)
-        {
-            this->ConstructWidget();
-        }
+            { this->ConstructWidget(); }
+
+        Widget::Widget(const XML::Node& XMLNode, Screen* Parent) :
+            QuadRenderable(Parent),
+            HoveredSubWidget(NULL),
+            State(WS_Untouched)
+            { this->ProtoDeSerialize(XMLNode); }
 
         Widget::~Widget()
+            {  }
+
+        void Widget::ProtoSerializeImpl(XML::Node& SelfRoot) const
         {
+            this->QuadRenderable::ProtoSerializeImpl(SelfRoot);
+            this->ProtoSerializeStateGroupBindings(SelfRoot);
+            this->ProtoSerializeEvents(SelfRoot);
+            /// @todo Seriailze subscribed events?  Scripts at least.
         }
 
-        bool Widget::HandleInputImpl(const Input::MetaCode& Code)
+        void Widget::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+        {
+            this->QuadRenderable::ProtoDeSerializeImpl(SelfRoot);
+            this->ProtoDeSerializeStateGroupBindings(SelfRoot);
+            this->ProtoDeSerializeEvents(SelfRoot);
+        }
+
+        Bool Widget::HandleInputImpl(const Input::MetaCode& Code)
         {
             return false;
         }
@@ -237,19 +251,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void Widget::ProtoSerialize(XML::Node& ParentNode) const
-        {
-            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-
-            this->ProtoSerializeProperties(SelfRoot);
-            this->ProtoSerializeRenderLayers(SelfRoot);
-            this->ProtoSerializeRenderLayerGroups(SelfRoot);
-            this->ProtoSerializeStateGroupBindings(SelfRoot);
-            this->ProtoSerializeEvents(SelfRoot);
-            this->ProtoSerializeChildQuads(SelfRoot);
-            /// @todo Seriailze subscribed events?  Scripts at least.
-        }
-
         void Widget::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             this->QuadRenderable::ProtoSerializeProperties(SelfRoot);
@@ -307,18 +308,6 @@ namespace Mezzanine
             }else{
                 SerializeError("Create XML Version Attribute","Events",true);
             }
-        }
-
-        void Widget::ProtoDeSerialize(const XML::Node& SelfRoot)
-        {
-            // Get the render layers first in this case as our properties partially depend on them (ActiveGroup)
-            this->ProtoDeSerializeRenderLayers(SelfRoot);
-            this->ProtoDeSerializeRenderLayerGroups(SelfRoot);
-            this->ProtoDeSerializeStateGroupBindings(SelfRoot);
-            this->ProtoDeSerializeProperties(SelfRoot);
-            this->ProtoDeSerializeEvents(SelfRoot);
-            // Child quads update is always last
-            this->ProtoDeSerializeChildQuads(SelfRoot);
         }
 
         void Widget::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
@@ -539,6 +528,27 @@ namespace Mezzanine
         {
             // Default to doing nothing, must be overridden to add logic if a widget needs it
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // ButtonFactory Methods
+
+        String GenericWidgetFactory::GetWidgetTypeName() const
+            { return Widget::TypeName; }
+
+        Widget* GenericWidgetFactory::CreateWidget(Screen* Parent)
+            { return new Widget(Parent); }
+
+        Widget* GenericWidgetFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+            { return new Widget(RendName,Parent); }
+
+        Widget* GenericWidgetFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+            { return new Widget(RendName,RendRect,Parent); }
+
+        Widget* GenericWidgetFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return new Widget(XMLNode,Parent); }
+
+        void GenericWidgetFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete ToBeDestroyed; }
     }//UI
 }//Mezzanine
 

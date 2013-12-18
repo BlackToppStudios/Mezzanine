@@ -58,6 +58,11 @@ namespace Mezzanine
             /// @internal
             /// @brief A pointer to the PagedContainer this scrollbar is providing page data for.
             PagedContainer* Container;
+
+            /// @copydoc Renderable::ProtoSerializeImpl(XML::Node&) const
+            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
+            /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
+            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
         //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this PageProvider.
@@ -95,14 +100,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc Renderable::ProtoSerialize(XML::Node&) const
-            virtual void ProtoSerialize(XML::Node& ParentNode) const;
             /// @brief Convert the PageProvider data of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializePageData(XML::Node& SelfRoot) const;
-
-            /// @copydoc Renderable::ProtoDeSerialize(const XML::Node&)
-            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the PageProvider data of this object with it.
             /// @param SelfRoo tAn XML::Node containing the data to populate this class with.
             virtual void ProtoDeSerializePageData(const XML::Node& SelfRoot);

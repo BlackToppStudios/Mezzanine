@@ -41,6 +41,7 @@
 #define _uiwidget_h
 
 #include "UI/quadrenderable.h"
+#include "UI/widgetfactory.h"
 #include "Input/metacode.h"
 #include "eventpublisher.h"
 #include "eventsubscriber.h"
@@ -51,6 +52,7 @@ namespace Mezzanine
     {
         class Button;
         class RenderableContainer;
+        class GenericWidgetFactory;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WidgetEventArguments
         /// @headerfile widget.h
@@ -128,6 +130,7 @@ namespace Mezzanine
             /// @brief Event name for when this widget is switched from being shown to being hidden.
             static const String EventVisibilityHidden;
         protected:
+            friend class GenericWidgetFactory;
             /// @internal
             /// @brief Map containing all the RenderLayerGroups bound to specific widget states.
             StateLayerGroupMap StateGroupBindings;
@@ -138,11 +141,15 @@ namespace Mezzanine
             /// @brief UInt32 describing the current state of this widget.
             UInt32 State;
 
+            /// @copydoc Renderable::ProtoSerializeImpl(XML::Node&) const
+            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
+            /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
+            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
             /// @internal
             /// @brief Consumes input for this widget's use.
             /// @param Code The input to be processed.
             /// @return Returns true if the input was handled, false otherwise.
-            virtual bool HandleInputImpl(const Input::MetaCode& Code);
+            virtual Bool HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             void ConstructWidget();
@@ -159,6 +166,10 @@ namespace Mezzanine
             /// @param RendRect The rect describing this widget's transform relative to it's parent.
             /// @param Parent The parent screen that created this widget.
             Widget(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created Widget will belong to.
+            Widget(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Standard destructor.
             virtual ~Widget();
         public:
@@ -223,8 +234,6 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc Renderable::ProtoSerialize(XML::Node&) const
-            virtual void ProtoSerialize(XML::Node& ParentNode) const;
             /// @copydoc Renderable::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the state-group bindings of this class to an XML::Node ready for serialization.
@@ -234,15 +243,13 @@ namespace Mezzanine
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeEvents(XML::Node& SelfRoot) const;
 
-            /// @copydoc Renderable::ProtoDeSerialize(const XML::Node&)
-            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
             /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the state-group bindings of this object with it.
-            /// @param SelfRoo tAn XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
             virtual void ProtoDeSerializeStateGroupBindings(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the Events of this object with it.
-            /// @param SelfRoo tAn XML::Node containing the data to populate this class with.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
             virtual void ProtoDeSerializeEvents(const XML::Node& SelfRoot);
 
             /// @copydoc Renderable::GetDerivedSerializableName() const
@@ -297,6 +304,33 @@ namespace Mezzanine
             /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
             virtual void _NotifyEvent(const EventArguments& Args);
         };//Widget
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the factory implementation for generic widgets.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB GenericWidgetFactory : public WidgetFactory
+        {
+        public:
+            /// @brief Class constructor.
+            GenericWidgetFactory() {  }
+            /// @brief Class destructor.
+            virtual ~GenericWidgetFactory() {  }
+
+            /// @copydoc WidgetFactory::GetWidgetTypeName() const
+            virtual String GetWidgetTypeName() const;
+
+            /// @copydoc WidgetFactory::CreateWidget(Screen*)
+            virtual Widget* CreateWidget(Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const UnifiedRect&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const XML::Node&, Screen*)
+            virtual Widget* CreateWidget(const XML::Node& XMLNode, Screen* Parent);
+            /// @copydoc WidgetFactory::DestroyWidget(Widget*)
+            virtual void DestroyWidget(Widget* ToBeDestroyed);
+        };//GenericWidgetFactory
     }//UI
 }//Mezzanine
 

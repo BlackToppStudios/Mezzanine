@@ -65,6 +65,12 @@ namespace Mezzanine
         Renderable::~Renderable()
             {  }
 
+        void Renderable::ProtoSerializeImpl(XML::Node& SelfRoot) const
+            { this->ProtoSerializeProperties(SelfRoot); }
+
+        void Renderable::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+            { this->ProtoDeSerializeProperties(SelfRoot); }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
@@ -81,7 +87,7 @@ namespace Mezzanine
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
 
-            this->ProtoSerializeProperties(SelfRoot);
+            this->ProtoSerializeImpl(SelfRoot);
         }
 
         void Renderable::ProtoSerializeProperties(XML::Node& SelfRoot) const
@@ -100,7 +106,7 @@ namespace Mezzanine
 
         void Renderable::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            this->ProtoDeSerializeProperties(SelfRoot);
+            this->ProtoDeSerializeImpl(SelfRoot);
         }
 
         void Renderable::ProtoDeSerializeProperties(const XML::Node& SelfRoot)

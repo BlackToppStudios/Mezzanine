@@ -221,6 +221,21 @@ namespace Mezzanine
             this->SetLocalVertexCaching(false);
         }
 
+        void QuadRenderable::ProtoSerializeImpl(XML::Node& SelfRoot) const
+        {
+            this->ProtoSerializeProperties(SelfRoot);
+            this->ProtoSerializeRenderLayers(SelfRoot);
+            this->ProtoSerializeRenderLayerGroups(SelfRoot);
+        }
+
+        void QuadRenderable::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+        {
+            // Get the render layers first in this case as our properties partially depend on them (ActiveGroup)
+            this->ProtoDeSerializeRenderLayers(SelfRoot);
+            this->ProtoDeSerializeRenderLayerGroups(SelfRoot);
+            this->ProtoDeSerializeProperties(SelfRoot);
+        }
+
         void QuadRenderable::AppendLayerVertices(std::vector<VertexData>& Vertices)
         {
             if( this->ActiveGroup == NULL )
@@ -968,9 +983,9 @@ namespace Mezzanine
         {
             XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
 
-            this->ProtoSerializeProperties(SelfRoot);
-            this->ProtoSerializeRenderLayers(SelfRoot);
-            this->ProtoSerializeRenderLayerGroups(SelfRoot);
+            this->ProtoSerializeImpl(SelfRoot);
+
+            // Child quads always get serialized last
             this->ProtoSerializeChildQuads(SelfRoot);
         }
 
@@ -1054,10 +1069,8 @@ namespace Mezzanine
 
         void QuadRenderable::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            // Get the render layers first in this case as our properties partially depend on them (ActiveGroup)
-            this->ProtoDeSerializeRenderLayers(SelfRoot);
-            this->ProtoDeSerializeRenderLayerGroups(SelfRoot);
-            this->ProtoDeSerializeProperties(SelfRoot);
+            this->ProtoDeSerializeImpl(SelfRoot);
+
             // Child quads update is always last
             this->ProtoDeSerializeChildQuads(SelfRoot);
         }
