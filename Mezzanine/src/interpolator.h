@@ -215,14 +215,14 @@ namespace Mezzanine
      * this notice you can do whatever you want with this stuff. If we meet some day, and you
      * think this stuff is worth it, you can buy me a beer in return. */
     template <typename X, typename Y>
-    class Element
+    class CubicSplineElement
     {
         public:
             X x;
             Y a, b, c, d;
 
-            Element(X _x) : x(_x) {}
-            Element(X _x, Y _a, Y _b, Y _c, Y _d)
+            CubicSplineElement(X _x) : x(_x) {}
+            CubicSplineElement(X _x, Y _a, Y _b, Y _c, Y _d)
                 : x(_x), a(_a), b(_b), c(_c), d(_d)
             {}
 
@@ -232,7 +232,7 @@ namespace Mezzanine
                 return a + b * xix + c * (xix * xix) + d * (xix * xix * xix);
             }
 
-            bool operator<(const Element& e) const
+            bool operator<(const CubicSplineElement& e) const
             {
                 return x < e.x;
             }
@@ -247,17 +247,17 @@ namespace Mezzanine
     /** Templated on type of X, Y. X and Y must have operator +, -, *, /. Y must have defined
      * a constructor that takes a scalar. */
     template <typename X, typename Y>
-    class Spline
+    class CubicSpline
     {
         public:
-            typedef Element<X,Y> element_type;
+            typedef CubicSplineElement<X,Y> element_type;
             std::vector<element_type> mElements;
 
             /** An empty, invalid spline */
-            Spline() {}
+            CubicSpline() {}
 
             /** A spline with x and y values */
-            Spline(const std::vector<X>& x, const std::vector<Y>& y)
+            CubicSpline(const std::vector<X>& x, const std::vector<Y>& y)
             {
                 if (x.size() != y.size())
                 {
@@ -307,7 +307,7 @@ namespace Mezzanine
                     mElements.push_back(element_type(x[i], y[i], b[i], c[i], d[i]));
                 }
             }
-            virtual ~Spline() {}
+            virtual ~CubicSpline() {}
 
             Y operator[](const X& x) const {
                 return interpolate(x);
@@ -363,8 +363,26 @@ namespace Mezzanine
     ///     - This shape defined by interpolating a set of these *will* leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
     ///     - Will be able to interpolated arbitrary sets of data points.
     template <typename T>
-    class MEZZ_LIB SplineInterpolator
+    class MEZZ_LIB SlowSplineInterpolator
     {
+            template<typename TIterator>
+            static T Interpolate(TIterator Begin, TIterator End, Real Location)
+            {
+                std::vector<T> DataPoints(Begin, End);
+                std::vector<Real> Spacing(DataPoints.size());
+                Real JumpSize = 1/DataPoints.size();
+                Real CurrentJump=0;
+                for(std::vector<Real>::iterator Iter=Spacing.begin();
+                    Iter!=Spacing.end();
+                    Iter++)
+                {
+                    *Iter=CurrentJump;
+                    CurrentJump+=JumpSize;
+                }
+
+                CubicSpline<Real,T> Spliney(Spacing,DataPoints);
+                return Spliney.interpolate(Location);
+            }
     };
 
 } // /namespace Mezzanine

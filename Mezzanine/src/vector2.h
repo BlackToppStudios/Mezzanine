@@ -72,6 +72,10 @@ namespace Mezzanine
             /// @brief Default Constructor.
             /// @details Basic all zero initialization constructor.
             Vector2();
+            /// @brief Single Real value Constructor.
+            /// @details Constructor that sets both vectors.
+            /// @param xy Set both x and y to.
+            Vector2(const Real& xy);
             /// @brief Real value Constructor.
             /// @details Constructor that sets both vectors.
             /// @param x Coordinate on the X vector.

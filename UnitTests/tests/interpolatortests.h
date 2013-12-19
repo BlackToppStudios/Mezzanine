@@ -234,7 +234,7 @@ class interpolatortests : public UnitTestGroup
                 DataPoints.push_back(B);
                 DataPoints.push_back(C);
 
-                TestOutput << "Lets try some 3 point Bezier interpolation of reals between 0, 1 and 2:" << endl;
+                TestOutput << "Lets try some 3 point Bezier interpolation of some Vector2s along the track (0,0) (1,1) (0,2):" << endl;
                 TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl;
                 TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.1) << endl;
                 TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.5) << endl;
@@ -248,6 +248,40 @@ class interpolatortests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 1.0),C,"BezierTriArg5");
             }
 
+            {
+                Vector2 A(0,0);
+                Vector2 B(1,1);
+                Vector2 C(0,2);
+                std::vector<Vector2> DataPoints;
+                DataPoints.push_back(A);
+                DataPoints.push_back(B);
+                DataPoints.push_back(C);
+
+                std::vector<Real> Weights;
+                Weights.push_back(0.0);
+                Weights.push_back(0.5);
+                Weights.push_back(1.0);
+
+                CubicSpline<Real,Vector2> Sp(Weights,DataPoints);
+
+                TestOutput << "Lets try some 3 point Cubic Spline interpolation of some Vector2s along the track (0,0) (1,1) (0,2):" << endl;
+                TestOutput << Sp.interpolate(0) << endl;
+                TestOutput << Sp.interpolate(.25) << endl;
+                TestOutput << Sp.interpolate(.5) << endl;
+                TestOutput << Sp.interpolate(.75) << endl;
+                TestOutput << Sp.interpolate(1) << endl;
+                /*TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl;
+                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.1) << endl;
+                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.5) << endl;
+                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.9) << endl;
+                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,1.0) << endl;
+                TestOutput << endl;
+                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.0),A,"BezierTriArg1");
+                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.1),Vector2(0.18,0.2),"BezierTriArg2");
+                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.5),Vector2(0.5,1),"BezierTriArg3");
+                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.9),Vector2(0.18,1.8),"BezierTriArg4");
+                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 1.0),C,"BezierTriArg5");*/
+            }
             /*{
                 std::vector<Vector3> PreTrack;
                 PreTrack.push_back(Vector3( 0, 0, 0));

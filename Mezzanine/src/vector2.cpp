@@ -58,6 +58,11 @@ namespace Mezzanine
         Y = 0;
     }
 
+    Vector2::Vector2(const Real& xy)
+    {
+        SetValues(xy, xy);
+    }
+
     Vector2::Vector2(const Real& x, const Real& y)
     {
         SetValues(x,y);
