@@ -262,14 +262,48 @@ class interpolatortests : public UnitTestGroup
                 Weights.push_back(0.5);
                 Weights.push_back(1.0);
 
+                Vector2 DesiredAtZero(0,0);
+                Vector2 DesiredAtPointTwoFive(0.6875,0.5);
+                Vector2 DesiredAtPointFive(1,1);
+                Vector2 DesiredAtPointSevenFive(0.6875,1.5);
+                Vector2 DesiredAtOne(0,2);
+
+
+
                 CubicSpline<Real,Vector2> Sp(Weights,DataPoints);
 
-                TestOutput << "Lets try some 3 point Cubic Spline interpolation of some Vector2s along the track (0,0) (1,1) (0,2):" << endl;
+                TestOutput << "Lets try some 3 point Cubic Spline interpolation of some Vector2s along a raw spline with (0,0) (1,1) (0,2):" << endl;
                 TestOutput << Sp.interpolate(0) << endl;
                 TestOutput << Sp.interpolate(.25) << endl;
                 TestOutput << Sp.interpolate(.5) << endl;
                 TestOutput << Sp.interpolate(.75) << endl;
-                TestOutput << Sp.interpolate(1) << endl;
+                TestOutput << Sp.interpolate(1) << endl << endl;
+                TEST_EQUAL_EPSILON(Sp.interpolate(0.0),DesiredAtZero,"RawCubicSpline1");
+                TEST_EQUAL_EPSILON(Sp.interpolate(0.25),DesiredAtPointTwoFive,"RawCubicSpline2");
+                TEST_EQUAL_EPSILON(Sp.interpolate(0.5),DesiredAtPointFive,"RawCubicSpline3");
+                TEST_EQUAL_EPSILON(Sp.interpolate(0.75),DesiredAtPointSevenFive,"RawCubicSpline4");
+                TEST_EQUAL_EPSILON(Sp.interpolate(1.0),DesiredAtOne,"RawCubicSpline5");
+
+
+                TestOutput << "Lets try some 3 point Cubic Spline interpolation of some Vector2s with and interpolator along (0,0) (1,1) (0,2):" << endl;
+                TestOutput << SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),0) << endl;
+                TestOutput << SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),0.25) << endl;
+                TestOutput << SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl;
+                TestOutput << SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),0.75) << endl;
+                TestOutput << SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),1) << endl << endl;
+                TEST_EQUAL_EPSILON(SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),0)
+                                   ,DesiredAtZero,"SlowSplineInterpolator1");
+                TEST_EQUAL_EPSILON(SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),0.25)
+                                   ,DesiredAtPointTwoFive,"SlowSplineInterpolator2");
+                TEST_EQUAL_EPSILON(SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),0.5)
+                                   ,DesiredAtPointFive,"SlowSplineInterpolator3");
+                TEST_EQUAL_EPSILON(SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),0.75)
+                                   ,DesiredAtPointSevenFive,"SlowSplineInterpolator4");
+                TEST_EQUAL_EPSILON(SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),1)
+                                   ,DesiredAtOne,"SlowSplineInterpolator5");
+
+                SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),0.5);
+
                 /*TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl;
                 TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.1) << endl;
                 TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.5) << endl;

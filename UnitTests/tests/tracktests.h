@@ -70,8 +70,9 @@ class tracktests : public UnitTestGroup
             TestOutput << std::fixed << "Epsilon of the Vector3: " << numeric_limits<Vector3>::epsilon();
 
             {
-                Track<Vector3,LinearInterpolator<Vector3> > TestSinglePointTrack;
-                TestSinglePointTrack.push_back(Vector3(0,0,0));
+                std::vector<Vector3> TestDataPoints;
+                TestDataPoints.push_back(Vector3(0,0,0));
+                Track<Vector3,LinearInterpolator<Vector3> > TestSinglePointTrack(TestDataPoints);
                 TestOutput << "Testing interpolation on a Track with just one point, should throw and exception (SingleTrackPointThrows):" << endl;
                 TEST_THROW(Mezzanine::ParametersRangeException,
                            TestSinglePointTrack.GetInterpolated(0.5),
@@ -79,9 +80,12 @@ class tracktests : public UnitTestGroup
             }
 
             {
-                Track<Vector3,LinearInterpolator<Vector3> > TestDualPointTrack;
-                TestDualPointTrack.push_back(Vector3(0,0,0));
-                TestDualPointTrack.push_back(Vector3(10,10,10));
+                std::vector<Vector3> TestDataPoints;
+                TestDataPoints.push_back(Vector3(0,0,0));
+                TestDataPoints.push_back(Vector3(10,10,10));
+
+                Track<Vector3,LinearInterpolator<Vector3> > TestDualPointTrack(TestDataPoints);
+
                 TestOutput << endl << "Testing interpolation on a Track with just two points(DualPointTrack):" << endl
                            << "\t0.1 should be 1,1,1 and is " << TestDualPointTrack.GetInterpolated(0.1) << endl
                            << "\t0.5 should be 5,5,5 and is " << TestDualPointTrack.GetInterpolated(0.5) << endl

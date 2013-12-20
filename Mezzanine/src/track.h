@@ -75,6 +75,17 @@ namespace Mezzanine
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
 
+            TrackBase(typename DataContainerType::iterator Begin,
+                      typename DataContainerType::iterator End)
+                : DataPoints(Begin,End)
+                {}
+
+            TrackBase(const DataContainerType& DataSet) : DataPoints(DataSet)
+                {}
+
+            TrackBase()
+                {}
+
             /// @brief Get the amount of stored DataPoints
             /// @note Name chosen to match standard containers
             /// @return How many data points exist on this track
@@ -154,6 +165,18 @@ namespace Mezzanine
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
 
+            Track(typename DataContainerType::iterator Begin,
+                  typename DataContainerType::iterator End)
+                : TrackBase<InterpolatableType>(Begin,End)
+                {}
+
+            Track(const DataContainerType& DataSet)
+                : TrackBase<InterpolatableType>(DataSet)
+                {}
+
+            Track()
+                {}
+
             virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
                 return InterpolatorType::Interpolate(
@@ -180,6 +203,18 @@ namespace Mezzanine
 
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
+
+            TrackLooped(typename DataContainerType::iterator Begin,
+                        typename DataContainerType::iterator End)
+                : Track<InterpolatableType, InterpolatorType>(Begin,End)
+                {}
+
+            TrackLooped(const DataContainerType& DataSet)
+                : Track<InterpolatableType, InterpolatorType>(DataSet)
+                {}
+
+            TrackLooped()
+                {}
 
             virtual void push_back(const InterpolatableType& AddedValue)
             {

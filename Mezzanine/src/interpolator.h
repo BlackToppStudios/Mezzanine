@@ -365,12 +365,13 @@ namespace Mezzanine
     template <typename T>
     class MEZZ_LIB SlowSplineInterpolator
     {
+        public:
             template<typename TIterator>
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
-                std::vector<T> DataPoints(Begin, End);
-                std::vector<Real> Spacing(DataPoints.size());
-                Real JumpSize = 1/DataPoints.size();
+                std::vector<T> Points(Begin, End);
+                std::vector<Real> Spacing(Points.size());
+                Real JumpSize = 1/PreciseReal(Points.size()-1);
                 Real CurrentJump=0;
                 for(std::vector<Real>::iterator Iter=Spacing.begin();
                     Iter!=Spacing.end();
@@ -380,7 +381,7 @@ namespace Mezzanine
                     CurrentJump+=JumpSize;
                 }
 
-                CubicSpline<Real,T> Spliney(Spacing,DataPoints);
+                CubicSpline<Real,T> Spliney(Spacing,Points);
                 return Spliney.interpolate(Location);
             }
     };
