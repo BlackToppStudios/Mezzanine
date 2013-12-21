@@ -41,7 +41,7 @@
 #ifndef _uipagedcontainer_h
 #define _uipagedcontainer_h
 
-#include "UI/layoutcontainer.h"
+#include "UI/widget.h"
 
 namespace Mezzanine
 {
@@ -76,9 +76,16 @@ namespace Mezzanine
         /// accurately express their total dimensions, or "work area" where widgets can be placed.  The work area
         /// of a PagedLayoutContainer can be nagivated via a small selection of specific widgets.
         ///////////////////////////////////////
-        class MEZZ_LIB PagedContainer : public LayoutContainer
+        class MEZZ_LIB PagedContainer : public Widget
         {
         public:
+            /// @brief Basic container type for Visible @ref QuadRenderable storage by this class.
+            typedef std::vector<QuadRenderable*>           VisibleChildContainer;
+            /// @brief Iterator type for Visible @ref QuadRenderable instances stored by this class.
+            typedef VisibleChildContainer::iterator        VisibleChildIterator;
+            /// @brief Const Iterator type for Visible @ref QuadRenderable instances stored by this class.
+            typedef VisibleChildContainer::const_iterator  ConstVisibleChildIterator;
+
             /// @enum ProviderMode
             /// @brief An enum describing how the providers for this container are configured and being used.
             /// @details Depending on the method returning the values, these values can mean slightly different things.
@@ -102,6 +109,9 @@ namespace Mezzanine
             /// @brief Unified rect storing the size alloted for children of this container.
             UnifiedVec2 WorkAreaSize;
             /// @internal
+            /// @brief A container of children that meet the criteria for rendering in this container.
+            VisibleChildContainer VisibleChildren;
+            /// @internal
             /// @brief A pointer to the last child widget that was focused by this container.
             Widget* LastFocusedChild;
             /// @internal
@@ -115,6 +125,9 @@ namespace Mezzanine
             virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
             /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
+            /// @internal
+            /// @brief The container specific logic for updating it's dimensions.
+            virtual void UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect) = 0;
         public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
@@ -224,6 +237,8 @@ namespace Mezzanine
 
             /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
             virtual void _NotifyEvent(const EventArguments& Args);
+            /// @copydoc QuadRenderable::_AppendRenderDataCascading(ScreenRenderData&)
+            virtual void _AppendRenderDataCascading(ScreenRenderData& RenderData);
         };//PagedContainer
     }//UI
 }//Mezzanine

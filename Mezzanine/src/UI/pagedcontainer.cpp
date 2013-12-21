@@ -52,21 +52,21 @@ namespace Mezzanine
         const String PagedContainer::EventChildFocusGained  = "ChildFocusGained";
 
         PagedContainer::PagedContainer(Screen* Parent) :
-            LayoutContainer(Parent),
+            Widget(Parent),
             LastFocusedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
             {  }
 
         PagedContainer::PagedContainer(const String& RendName, Screen* Parent) :
-            LayoutContainer(RendName,Parent),
+            Widget(RendName,Parent),
             LastFocusedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
             {  }
 
         PagedContainer::PagedContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
-            LayoutContainer(RendName,RendRect,Parent),
+            Widget(RendName,RendRect,Parent),
             LastFocusedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
@@ -118,13 +118,25 @@ namespace Mezzanine
 
         void PagedContainer::UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect)
         {
-            this->LayoutContainer::UpdateDimensions(OldSelfRect,NewSelfRect);
             /*if( this->XProvider != NULL ) {
                 this->XProvider->ConfigureProviderMetaData(this->ActDims.Size,this->GetActualWorkAreaSize());
             }//*/
             /*if( this->YProvider != NULL && this->YProvider != this->XProvider ) {
                 this->YProvider->ConfigureProviderMetaData(this->ActDims.Size,this->GetActualWorkAreaSize());
             }//*/
+
+            // Update the personal data first
+            this->ActDims = NewSelfRect;
+
+            // Perform the container specific update logic
+            this->UpdateContainerDimensionsImpl(OldSelfRect,NewSelfRect);
+
+            /*// Update the children, if any
+            if( this->VisibleChildren.empty() == false )
+                this->LayoutStrat->Layout(OldSelfRect,NewSelfRect,this->VisibleChildren);//*/
+
+            // We done got icky
+            this->_MarkAllLayersDirty();
         }
 
         Widget* PagedContainer::GetLastFocusedWidget() const
@@ -199,7 +211,7 @@ namespace Mezzanine
             this->LastFocusedChild = NULL;
             for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
             {
-                this->ClearParenthood( *It );
+                (*It)->_NotifyParenthood(NULL);
                 (*It)->Unsubscribe(Widget::EventFocusGained,this);
             }
             this->ChildWidgets.clear();
@@ -246,7 +258,7 @@ namespace Mezzanine
 
         void PagedContainer::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            this->LayoutContainer::ProtoSerializeProperties(SelfRoot);
+            this->Widget::ProtoSerializeProperties(SelfRoot);
 
             XML::Node PropertiesNode = SelfRoot.AppendChild( PagedContainer::GetSerializableName() + "Properties" );
 
@@ -335,7 +347,7 @@ namespace Mezzanine
 
         void PagedContainer::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            this->LayoutContainer::ProtoDeSerializeProperties(SelfRoot);
+            this->Widget::ProtoDeSerializeProperties(SelfRoot);
 
             //XML::Attribute CurrAttrib;
             XML::Node PropertiesNode = SelfRoot.GetChild( PagedContainer::GetSerializableName() + "Properties" );
@@ -379,6 +391,32 @@ namespace Mezzanine
                 if( EventWidget != NULL ) {
                     this->LastFocusedChild = EventWidget;
                     this->_OnChildFocusGained( this->LastFocusedChild->GetName() );
+                }
+            }
+        }
+
+        void PagedContainer::_AppendRenderDataCascading(ScreenRenderData& RenderData)
+        {
+            // Update the children based on page positions and the container size so we can grab the proper vertices.
+            if(this->VertexCache) {
+                if( this->Dirty || this->AllLayersDirty ) {
+                    this->VertexCache->Clear();
+                    this->_AppendRenderData(*VertexCache);
+                    for( VisibleChildIterator ChildIt = this->VisibleChildren.begin() ; ChildIt != this->VisibleChildren.end() ; ++ChildIt )
+                    {
+                        if( (*ChildIt)->IsVisible() ) {
+                            (*ChildIt)->_AppendRenderDataCascading(*VertexCache);
+                        }
+                    }
+                }
+                RenderData.Append(*VertexCache);
+            }else{
+                this->_AppendRenderData(RenderData);
+                for( VisibleChildIterator It = this->VisibleChildren.begin() ; It != this->VisibleChildren.end() ; ++It )
+                {
+                    if( (*It)->IsVisible() ) {
+                        (*It)->_AppendRenderDataCascading(RenderData);
+                    }
                 }
             }
         }

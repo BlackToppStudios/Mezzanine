@@ -41,7 +41,7 @@
 #ifndef _uistackedcontainer_h
 #define _uistackedcontainer_h
 
-#include "UI/layoutcontainer.h"
+#include "UI/widget.h"
 
 namespace Mezzanine
 {
@@ -51,7 +51,7 @@ namespace Mezzanine
         /// @brief This is the base class for containers that stack their children one on top of the other.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB StackedContainer : public LayoutContainer
+        class MEZZ_LIB StackedContainer : public Widget
         {
         public:
             /// @brief String containing the type name for this class: "StackedContainer".
