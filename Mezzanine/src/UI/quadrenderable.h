@@ -261,14 +261,6 @@ namespace Mezzanine
             /// @brief Resizes the container for RenderLayers in this QuadRenderable.
             /// @param NewSize The new capacity for RenderLayer storage.
             void ResizeLayers(const Whole NewSize);
-            /// @internal
-            /// @brief Makes this Widget become the parent of the specified Quadrenderable.
-            /// @param Child A pointer to the Widget this Quad is to become the parent of.
-            void ClaimParenthood(Widget* Child);
-            /// @internal
-            /// @brief Clears the parent pointer of the specified child Widget.
-            /// @param Child A pointer to the Widget that will have it's parent pointer cleared.
-            void ClearParenthood(Widget* Child);
         //public:
             /// @brief Blank constructor.
             /// @note This is primarily useful for (and used as) a basic constructor suitable for XML deserialization post-construction.
@@ -803,7 +795,11 @@ namespace Mezzanine
             /// @brief Ssts the ZOrder value for this renderable.
             /// @warning Under no circumstances would any user need to call this method themselves.  Doing so can damage how things are rendered.
             /// @param Zorder The ZOrder this renderable has among the renderables belonging to it's parent.
-            void _SetZOrder(const UInt16& Zorder);
+            virtual void _SetZOrder(const UInt16& Zorder);
+            /// @internal
+            /// @brief Notifies this QuadRenderable that it has been added to another QuadRenderable.
+            /// @param NewParent A pointer to the QuadRenderable this is becoming the child of.
+            virtual void _NotifyParenthood(QuadRenderable* NewParent);
             /// @copydoc Renderable::_MarkDirty()
             virtual void _MarkDirty();
             /// @internal

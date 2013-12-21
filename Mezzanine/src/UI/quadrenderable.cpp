@@ -270,12 +270,6 @@ namespace Mezzanine
             }
         }
 
-        void QuadRenderable::ClaimParenthood(Widget* Child)
-            { Child->ParentQuad = this; }
-
-        void QuadRenderable::ClearParenthood(Widget* Child)
-            { Child->ParentQuad = NULL; }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
@@ -796,7 +790,7 @@ namespace Mezzanine
             {
                 if( (*It)->GetZOrder() > Zorder ) {
                     this->ChildWidgets.insert(It,Child);
-                    Child->ParentQuad = this;
+                    Child->_NotifyParenthood(this);
                     Child->_MarkAllChildrenDirty();
                     //this->_MarkDirty();
                     return;
@@ -1230,6 +1224,11 @@ namespace Mezzanine
         void QuadRenderable::_SetZOrder(const UInt16& Zorder)
         {
             this->ZOrder = Zorder;
+        }
+
+        void QuadRenderable::_NotifyParenthood(QuadRenderable* NewParent)
+        {
+            this->ParentQuad = NewParent;
         }
 
         void QuadRenderable::_MarkDirty()
