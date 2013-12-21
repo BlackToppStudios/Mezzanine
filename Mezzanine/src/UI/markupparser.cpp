@@ -72,9 +72,10 @@ namespace Mezzanine
         {
             // Set up our return
             TextToken* NewTagToken = NULL;
+            const Integer TextSize = Text.size();
             // Do some string processing to get some more data
             UInt32 SlashPos = Text.find_first_of('/');
-            if( SlashPos == 1 /* && Text.size() > 3 */ ) {
+            if( SlashPos == 1 /* && TextSize > 3 */ ) {
                 // We now know we have a valid end tag
                 // Get the name
                 String TagName = Text.substr(SlashPos + 1,Text.find_first_of(this->GetMarkupTagEnd()) - SlashPos - 1);
@@ -109,12 +110,12 @@ namespace Mezzanine
                     TagToken* CastedTag = static_cast<TagToken*>( NewTagToken );
                     NameValuePairMap TagParams;
                     if( Text[Position] == '=' ) {
-                        TagParams["Value"] = Text.substr(Position + 1,Text.size() - Position - 1);
+                        TagParams["Value"] = Text.substr(Position + 1,TextSize - Position - 1);
                     }else if( Text[Position] == ' ' ) {
                         // Get the parameters
                         String ParamEndChars(" ");
                         ParamEndChars.append(1,this->GetMarkupTagEnd());
-                        while( Position < Text.size() - 1 )
+                        while( Position < TextSize - 1 )
                         {
                             String ParamName, ParamValue;
 
@@ -148,7 +149,7 @@ namespace Mezzanine
             Int32 BytesAdvance = 0;
             const char* StrBuf = Token->Text.data();
             // Get generat'in
-            while( Position < Token->Text.size() )
+            while( static_cast<UInt32>(Position) < Token->Text.size() )
             {
                 Int32 GlyphID = Unicode::GetIntFromCharacter(BytesAdvance,StrBuf + Position);
                 if( GlyphID == -1 )

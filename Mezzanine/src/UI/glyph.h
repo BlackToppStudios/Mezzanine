@@ -123,9 +123,11 @@ namespace Mezzanine
             /// @return Returns in pixels the special amount to advance.
             inline Real GetKerning(const char Previous) const
             {
-                if( this->Kernings.size() == 0 || Previous == 0 )
+                Integer NumKernings = this->Kernings.size();
+                if( NumKernings == 0 || Previous == 0 )
                     return 0;
-                for( Integer i = 0 ; i < this->Kernings.size() ; i++ )
+
+                for( Integer i = 0 ; i < NumKernings ; i++ )
                 {
                     if( this->Kernings[i].Character == Previous )
                         return this->Kernings[i].Kerning;
