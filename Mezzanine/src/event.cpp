@@ -41,6 +41,9 @@
 #define _event_cpp
 
 #include "event.h"
+#include "eventsubscriberslot.h"
+
+#include <algorithm>
 
 namespace Mezzanine
 {
@@ -60,51 +63,71 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Subscription Methods
 
-    EventSubscriberSlot* Event::Subscribe(EventSubscriber* Sub)
+    EventSubscriberSlot* Event::Subscribe(EventSubscriber* Subscriber)
     {
-        return this->Subscribe(255,Sub);
-    }
+        for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
+        {
+            if( (*Current)->GetType() == EventSubscriberSlot::ST_Custom &&
+                static_cast<CustomSubscriberSlot*>( (*Current) )->GetSubscriber() == Subscriber )
+            {
+                // Just escape from here, returning the pre-existing slot
+                return (*Current);
+            }
+        }
 
-    EventSubscriberSlot* Event::Subscribe(const UInt8 Group, EventSubscriber* Sub)
-    {
-        CustomSubscriberSlot* NewSlot = new CustomSubscriberSlot(this,Sub);
-        this->Slots.insert( SlotPair(Group,NewSlot) );
+        CustomSubscriberSlot* NewSlot = new CustomSubscriberSlot(this,Subscriber);
+        this->Slots.push_back( NewSlot );
         return NewSlot;
     }
 
     EventSubscriberSlot* Event::Subscribe(FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter)
     {
-        return this->Subscribe(255,Funct,CleanUpAfter);
-    }
+        for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
+        {
+            if( (*Current)->GetType() == EventSubscriberSlot::ST_Functor &&
+                static_cast<FunctorSubscriberSlot*>( (*Current) )->GetFunctor() == Funct )
+            {
+                // Just escape from here, returning the pre-existing slot
+                return (*Current);
+            }
+        }
 
-    EventSubscriberSlot* Event::Subscribe(const UInt8 Group, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter)
-    {
         FunctorSubscriberSlot* NewSlot = new FunctorSubscriberSlot(this,Funct,CleanUpAfter);
-        this->Slots.insert( SlotPair(Group,NewSlot) );
+        this->Slots.push_back( NewSlot );
         return NewSlot;
     }
 
     EventSubscriberSlot* Event::Subscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct)
     {
-        return this->Subscribe(255,CFunct);
-    }
+        for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
+        {
+            if( (*Current)->GetType() == EventSubscriberSlot::ST_CFunction &&
+                static_cast<CFunctionSubscriberSlot*>( (*Current) )->GetFunction() == CFunct )
+            {
+                // Just escape from here, returning the pre-existing slot
+                return (*Current);
+            }
+        }
 
-    EventSubscriberSlot* Event::Subscribe(const UInt8 Group, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
-    {
         CFunctionSubscriberSlot* NewSlot = new CFunctionSubscriberSlot(this,CFunct);
-        this->Slots.insert( SlotPair(Group,NewSlot) );
+        this->Slots.push_back( NewSlot );
         return NewSlot;
     }
 
     EventSubscriberSlot* Event::Subscribe(Scripting::iScript* SubScript)
     {
-        return this->Subscribe(255,SubScript);
-    }
+        for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
+        {
+            if( (*Current)->GetType() == EventSubscriberSlot::ST_Script &&
+                static_cast<ScriptSubscriberSlot*>( (*Current) )->GetScript() == SubScript )
+            {
+                // Just escape from here, returning the pre-existing slot
+                return (*Current);
+            }
+        }
 
-    EventSubscriberSlot* Event::Subscribe(const UInt8 Group, Scripting::iScript* SubScript)
-    {
         ScriptSubscriberSlot* NewSlot = new ScriptSubscriberSlot(this,SubScript);
-        this->Slots.insert( SlotPair(Group,NewSlot) );
+        this->Slots.push_back( NewSlot );
         return NewSlot;
     }
 
@@ -113,107 +136,77 @@ namespace Mezzanine
 
     void Event::Unsubscribe(EventSubscriber* Subscriber)
     {
-        SlotIterator Current = this->Slots.begin();
-        while( Current != this->Slots.end() )
+        for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
         {
-            if( (*Current).second->GetType() == EventSubscriberSlot::ST_Custom &&
-                static_cast<CustomSubscriberSlot*>( (*Current).second )->GetSubscriber() == Subscriber )
+            if( (*Current)->GetType() == EventSubscriberSlot::ST_Custom &&
+                static_cast<CustomSubscriberSlot*>( (*Current) )->GetSubscriber() == Subscriber )
             {
-                SlotIterator Prev = Current++;
-                delete (*Prev).second;
-                this->Slots.erase(Prev);
-            }else{
-                ++Current;
+                delete (*Current);
+                this->Slots.erase(Current);
+                return;
             }
         }
     }
 
     void Event::Unsubscribe(FunctorSubscriberSlot::FunctorDefinition* Funct)
     {
-        SlotIterator Current = this->Slots.begin();
-        while( Current != this->Slots.end() )
+        for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
         {
-            if( (*Current).second->GetType() == EventSubscriberSlot::ST_Functor &&
-                static_cast<FunctorSubscriberSlot*>( (*Current).second )->GetFunctor() == Funct )
+            if( (*Current)->GetType() == EventSubscriberSlot::ST_Functor &&
+                static_cast<FunctorSubscriberSlot*>( (*Current) )->GetFunctor() == Funct )
             {
-                SlotIterator Prev = Current++;
-                delete (*Prev).second;
-                this->Slots.erase(Prev);
-            }else{
-                ++Current;
+                delete (*Current);
+                this->Slots.erase(Current);
+                return;
             }
         }
     }
 
     void Event::Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct)
     {
-        SlotIterator Current = this->Slots.begin();
-        while( Current != this->Slots.end() )
+        for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
         {
-            if( (*Current).second->GetType() == EventSubscriberSlot::ST_CFunction &&
-                static_cast<CFunctionSubscriberSlot*>( (*Current).second )->GetFunction() == CFunct )
+            if( (*Current)->GetType() == EventSubscriberSlot::ST_CFunction &&
+                static_cast<CFunctionSubscriberSlot*>( (*Current) )->GetFunction() == CFunct )
             {
-                SlotIterator Prev = Current++;
-                delete (*Prev).second;
-                this->Slots.erase(Prev);
-            }else{
-                ++Current;
+                delete (*Current);
+                this->Slots.erase(Current);
+                return;
             }
         }
     }
 
     void Event::Unsubscribe(Scripting::iScript* SubScript)
     {
-        SlotIterator Current = this->Slots.begin();
-        while( Current != this->Slots.end() )
+        for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
         {
-            if( (*Current).second->GetType() == EventSubscriberSlot::ST_Script &&
-                static_cast<ScriptSubscriberSlot*>( (*Current).second )->GetScript() == SubScript )
+            if( (*Current)->GetType() == EventSubscriberSlot::ST_Script &&
+                static_cast<ScriptSubscriberSlot*>( (*Current) )->GetScript() == SubScript )
             {
-                SlotIterator Prev = Current++;
-                delete (*Prev).second;
-                this->Slots.erase(Prev);
-            }else{
-                ++Current;
+                delete (*Current);
+                this->Slots.erase(Current);
+                return;
             }
         }
     }
 
     void Event::Unsubscribe(EventSubscriberSlot* SubSlot)
     {
-        SlotIterator Current = this->Slots.begin();
-        while( Current != this->Slots.end() )
+        for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
         {
-            if( (*Current).second == SubSlot ) {
-                SlotIterator Prev = Current++;
-                delete (*Prev).second;
-                this->Slots.erase(Prev);
-            }else{
-                ++Current;
+            if( (*Current) == SubSlot ) {
+                delete (*Current);
+                this->Slots.erase(Current);
+                return;
             }
         }
-    }
-
-    Whole Event::UnsubscribeGroup(const UInt8 Group)
-    {
-        SlotIterator Begin = this->Slots.lower_bound(Group);
-        SlotIterator End = this->Slots.upper_bound(Group);
-        for( SlotIterator Current = Begin ; Current != End ; ++Current )
-        {
-            delete (*Current).second;
-        }
-        return this->Slots.erase(Group);
     }
 
     Whole Event::UnsubscribeAll()
     {
         Whole PrevSize = this->Slots.size();
-        SlotIterator Begin = this->Slots.begin();
-        SlotIterator End = this->Slots.end();
-        for( SlotIterator Current = Begin ; Current != End ; ++Current )
-        {
-            delete (*Current).second;
-        }
+        for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
+            { delete (*Current); }
         this->Slots.clear();
         return PrevSize;
     }
@@ -240,17 +233,7 @@ namespace Mezzanine
     {
         for( SlotIterator SlotIt = this->Slots.begin() ; SlotIt != this->Slots.end() ; ++SlotIt )
         {
-            (*SlotIt).second->_NotifyEvent(Args);
-        }
-    }
-
-    void Event::_FireGroupEvent(const UInt8 Group, const EventArguments& Args)
-    {
-        SlotIterator Begin = this->Slots.lower_bound(Group);
-        SlotIterator End = this->Slots.upper_bound(Group);
-        for( SlotIterator Current = Begin ; Current != End ; ++Current )
-        {
-            (*Current).second->_NotifyEvent(Args);
+            (*SlotIt)->_NotifyEvent(Args);
         }
     }
 }

@@ -110,26 +110,14 @@ namespace Mezzanine
     EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, EventSubscriber* Sub)
         { return this->GetEventExcept(EventName)->Subscribe(Sub); }
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, const UInt8 Group, EventSubscriber* Sub)
-        { return this->GetEventExcept(EventName)->Subscribe(Group,Sub); }
-
     EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter)
         { return this->GetEventExcept(EventName)->Subscribe(Funct,CleanUpAfter); }
-
-    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, const UInt8 Group, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter)
-        { return this->GetEventExcept(EventName)->Subscribe(Group,Funct,CleanUpAfter); }
 
     EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
         { return this->GetEventExcept(EventName)->Subscribe(CFunct); }
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, const UInt8 Group, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
-        { return this->GetEventExcept(EventName)->Subscribe(Group,CFunct); }
-
     EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, Scripting::iScript* SubScript)
         { return this->GetEventExcept(EventName)->Subscribe(SubScript); }
-
-    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, const UInt8 Group, Scripting::iScript* SubScript)
-        { return this->GetEventExcept(EventName)->Subscribe(Group,SubScript); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Unsubscribe Methods
@@ -164,14 +152,6 @@ namespace Mezzanine
             { (*EventIt).second->Unsubscribe(SubSlot); }
     }
 
-    Whole EventPublisher::UnsubscribeGroup(const UInt8 Group)
-    {
-        Whole Ret = 0;
-        for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
-            { Ret += (*EventIt).second->UnsubscribeGroup(Group); }
-        return Ret;
-    }
-
     Whole EventPublisher::UnsubscribeAll()
     {
         Whole Ret = 0;
@@ -194,9 +174,6 @@ namespace Mezzanine
 
     void EventPublisher::Unsubscribe(const String& EventName, EventSubscriberSlot* SubSlot)
         { this->GetEventExcept(EventName)->Unsubscribe(SubSlot); }
-
-    Whole EventPublisher::UnsubscribeGroup(const String& EventName, const UInt8 Group)
-        { return this->GetEventExcept(EventName)->UnsubscribeGroup(Group); }
 
     Whole EventPublisher::UnsubscribeAll(const String& EventName)
         { return this->GetEventExcept(EventName)->UnsubscribeAll(); }
