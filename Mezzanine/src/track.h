@@ -165,6 +165,8 @@ namespace Mezzanine
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
 
+
+
             Track(typename DataContainerType::iterator Begin,
                   typename DataContainerType::iterator End)
                 : TrackBase<InterpolatableType>(Begin,End)

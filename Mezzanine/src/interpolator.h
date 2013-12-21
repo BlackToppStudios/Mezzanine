@@ -244,8 +244,9 @@ namespace Mezzanine
     };
 
 
-    /** Templated on type of X, Y. X and Y must have operator +, -, *, /. Y must have defined
-     * a constructor that takes a scalar. */
+    /// @brief cleanly curved
+    /// @details Templated on type of X, Y. X and Y must have operator +, -, *, /. Y must have defined
+    /// a constructor that takes a scalar.
     template <typename X, typename Y>
     class CubicSpline
     {
@@ -258,55 +259,8 @@ namespace Mezzanine
 
             /** A spline with x and y values */
             CubicSpline(const std::vector<X>& x, const std::vector<Y>& y)
-            {
-                if (x.size() != y.size())
-                {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"X and Y must be the same size");
-                    return;
-                }
+                { CalculateElements(x,y); }
 
-                if (x.size() < 3)
-                {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Must have at least three points for interpolation");
-                    return;
-                }
-
-                typedef typename std::vector<X>::difference_type size_type;
-
-                size_type n = y.size() - 1;
-
-                std::vector<Y> b(n), d(n), a(n), c(n+1), l(n+1), u(n+1), z(n+1);
-                std::vector<X> h(n+1);
-
-                l[0] = Y(1);
-                u[0] = Y(0);
-                z[0] = Y(0);
-                h[0] = x[1] - x[0];
-
-                for (size_type i = 1; i < n; i++)
-                {
-                    h[i] = x[i+1] - x[i];
-                    l[i] = Y(2 * (x[i+1] - x[i-1])) - Y(h[i-1]) * u[i-1];
-                    u[i] = Y(h[i]) / l[i];
-                    a[i] = (Y(3) / Y(h[i])) * (y[i+1] - y[i]) - (Y(3) / Y(h[i-1])) * (y[i] - y[i-1]);
-                    z[i] = (a[i] - Y(h[i-1]) * z[i-1]) / l[i];
-                }
-
-                l[n] = Y(1);
-                z[n] = c[n] = Y(0);
-
-                for (size_type j = n-1; j >= 0; j--)
-                {
-                    c[j] = z[j] - u[j] * c[j+1];
-                    b[j] = (y[j+1] - y[j]) / Y(h[j]) - (Y(h[j]) * (c[j+1] + Y(2) * c[j])) / Y(3);
-                    d[j] = (c[j+1] - c[j]) / Y(3 * h[j]);
-                }
-
-                for (size_type i = 0; i < n; i++)
-                {
-                    mElements.push_back(element_type(x[i], y[i], b[i], c[i], d[i]));
-                }
-            }
             virtual ~CubicSpline() {}
 
             Y operator[](const X& x) const {
@@ -351,6 +305,50 @@ namespace Mezzanine
 
         protected:
 
+            void CalculateElements(const std::vector<X>& x, const std::vector<Y>& y)
+            {
+                if (x.size() != y.size())
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"data series and time series must have the same count of elemens."); }
+
+                if (x.size() < 3)
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Must have at least three points for interpolation."); }
+
+                typedef typename std::vector<X>::difference_type size_type;
+
+                size_type n = y.size() - 1;
+
+                std::vector<Y> b(n), d(n), a(n), c(n+1), l(n+1), u(n+1), z(n+1);
+                std::vector<X> h(n+1);
+
+                l[0] = Y(1);
+                u[0] = Y(0);
+                z[0] = Y(0);
+                h[0] = x[1] - x[0];
+
+                for (size_type i = 1; i < n; i++)
+                {
+                    h[i] = x[i+1] - x[i];
+                    l[i] = Y(2 * (x[i+1] - x[i-1])) - Y(h[i-1]) * u[i-1];
+                    u[i] = Y(h[i]) / l[i];
+                    a[i] = (Y(3) / Y(h[i])) * (y[i+1] - y[i]) - (Y(3) / Y(h[i-1])) * (y[i] - y[i-1]);
+                    z[i] = (a[i] - Y(h[i-1]) * z[i-1]) / l[i];
+                }
+
+                l[n] = Y(1);
+                z[n] = c[n] = Y(0);
+
+                for (size_type j = n-1; j >= 0; j--)
+                {
+                    c[j] = z[j] - u[j] * c[j+1];
+                    b[j] = (y[j+1] - y[j]) / Y(h[j]) - (Y(h[j]) * (c[j+1] + Y(2) * c[j])) / Y(3);
+                    d[j] = (c[j+1] - c[j]) / Y(3 * h[j]);
+                }
+
+                for (size_type i = 0; i < n; i++)
+                {
+                    mElements.push_back(element_type(x[i], y[i], b[i], c[i], d[i]));
+                }
+            }
 
     };
 
