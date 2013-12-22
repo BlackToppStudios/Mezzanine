@@ -52,6 +52,22 @@
 
 namespace Mezzanine
 {
+    /// @brief The data storage for a a track.
+    /// @details If an interpolator requires a special container this can be re-implemented
+    /// to have the TrackBase use that instead. The type must implement at least:
+    ///     - size()
+    ///     - push_back(InterpolatableType)
+    ///     - clear()
+    ///     - A copy constructor
+    ///     - A constructor that accepts an iterator range
+    template <typename InterpolatableType, typename InterpolatorType>
+    class TrackStorage
+    {
+        public:
+            /// @brief The storage for type for the given type for a track.
+            typedef std::vector<InterpolatableType> Storage;
+    };
+
     /// @brief A base type that provides container features for different tracks
     /// @details Tracks are containers of a Discrete set of points, that are presented as
     /// a continuous range from 0 to 1. Interpolators are used to generate the data between
@@ -60,21 +76,23 @@ namespace Mezzanine
     /// might return 50.
     /// @n @n
     /// This uses std::vector underneath for its performance characteristics.
-    template <typename InterpolatableType>
+    template <typename InterpolatorType>
     class TrackBase
     {
         public:
+            typedef typename InterpolatorType::InterpolatableType InterpolatableType;
+
             /// @brief The type of the internal container storing the interpolatable data. This is a single point to change all the tracks.
-            typedef std::vector<InterpolatableType> DataContainerType;
+            typedef typename TrackStorage<InterpolatableType,InterpolatorType>::Storage DataContainerType;
+
+            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
+            typedef SmoothTrackIterator<InterpolatorType> SmoothIteratorType;
 
         protected:
             /// @brief The underlying container of Discrete datapoints
             DataContainerType DataPoints;
 
         public:
-            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
-            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
-
             TrackBase(typename DataContainerType::iterator Begin,
                       typename DataContainerType::iterator End)
                 : DataPoints(Begin,End)
@@ -155,25 +173,32 @@ namespace Mezzanine
             virtual InterpolatableType GetInterpolated(Real Percentage) const = 0;
     };
 
-    template <typename InterpolatableType, typename InterpolatorType>
-    class Track : public TrackBase<InterpolatableType>
+    template <typename InterpolatorType>
+    class Track : public TrackBase<InterpolatorType>
     {
+        protected:
+            InterpolatorType TrackInterpolator;
+
+            typedef TrackBase<InterpolatorType> ParentType;
+
         public:
+            typedef typename InterpolatorType::InterpolatableType InterpolatableType;
+
             /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
             typedef std::vector<InterpolatableType> DataContainerType;
 
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
-            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
+            typedef typename ParentType::SmoothIteratorType SmoothIteratorType;
 
 
 
             Track(typename DataContainerType::iterator Begin,
                   typename DataContainerType::iterator End)
-                : TrackBase<InterpolatableType>(Begin,End)
+                : ParentType(Begin,End)
                 {}
 
             Track(const DataContainerType& DataSet)
-                : TrackBase<InterpolatableType>(DataSet)
+                : ParentType(DataSet)
                 {}
 
             Track()
@@ -181,9 +206,9 @@ namespace Mezzanine
 
             virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
-                return InterpolatorType::Interpolate(
-                           TrackBase<InterpolatableType>::DataPoints.begin(),
-                           TrackBase<InterpolatableType>::DataPoints.end(),
+                return TrackInterpolator.Interpolate(
+                           ParentType::DataPoints.begin(),
+                           ParentType::DataPoints.end(),
                            Percentage
                        );
             }
@@ -196,10 +221,16 @@ namespace Mezzanine
     /// @details when Add or push_back is called and there are 2 or more points the track,
     /// this seamlessly adds a copy of the first data point to the end of the track. When
     /// Iterating with a Smooth iterator this creates the impression of a loop.
-    template <typename InterpolatableType, typename InterpolatorType>
-    class TrackLooped : public Track<InterpolatableType, InterpolatorType>
+    template <typename InterpolatorType>
+    class TrackLooped : public Track<InterpolatorType>
     {
+        protected:
+            typedef Track<InterpolatorType> ParentType;
+            typedef TrackBase<typename InterpolatorType::InterpolatableType> BaseType;
+
         public:
+            typedef typename InterpolatorType::InterpolatableType InterpolatableType;
+
             /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
             typedef std::vector<InterpolatableType> DataContainerType;
 
@@ -208,11 +239,11 @@ namespace Mezzanine
 
             TrackLooped(typename DataContainerType::iterator Begin,
                         typename DataContainerType::iterator End)
-                : Track<InterpolatableType, InterpolatorType>(Begin,End)
+                : ParentType(Begin,End)
                 {}
 
             TrackLooped(const DataContainerType& DataSet)
-                : Track<InterpolatableType, InterpolatorType>(DataSet)
+                : ParentType(DataSet)
                 {}
 
             TrackLooped()
@@ -220,15 +251,15 @@ namespace Mezzanine
 
             virtual void push_back(const InterpolatableType& AddedValue)
             {
-                if(TrackBase<InterpolatableType>::DataPoints.size()>1)
+                if(BaseType::DataPoints.size()>1)
                 {
-                    *(TrackBase<InterpolatableType>::DataPoints.end()-1) = AddedValue;
-                    TrackBase<InterpolatableType>::DataPoints.push_back(*TrackBase<InterpolatableType>::DataPoints.begin());
-                }else if(TrackBase<InterpolatableType>::DataPoints.size()==1){
-                    TrackBase<InterpolatableType>::DataPoints.push_back(AddedValue);
-                    TrackBase<InterpolatableType>::DataPoints.push_back(*TrackBase<InterpolatableType>::DataPoints.begin());
+                    *(BaseType::DataPoints.end()-1) = AddedValue;
+                    BaseType::DataPoints.push_back(*BaseType::DataPoints.begin());
+                }else if(BaseType::DataPoints.size()==1){
+                    BaseType::DataPoints.push_back(AddedValue);
+                    BaseType::DataPoints.push_back(*BaseType::DataPoints.begin());
                 }else{
-                    TrackBase<InterpolatableType>::DataPoints.push_back(AddedValue);
+                    BaseType::DataPoints.push_back(AddedValue);
                 }
             }
     };

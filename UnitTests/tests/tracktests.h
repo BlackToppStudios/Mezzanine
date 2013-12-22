@@ -72,19 +72,19 @@ class tracktests : public UnitTestGroup
             {
                 std::vector<Vector3> TestDataPoints;
                 TestDataPoints.push_back(Vector3(0,0,0));
-                Track<Vector3,LinearInterpolator<Vector3> > TestSinglePointTrack(TestDataPoints);
+                Track<LinearInterpolator<Vector3> > TestSinglePointTrack(TestDataPoints);
                 TestOutput << "Testing interpolation on a Track with just one point, should throw and exception (SingleTrackPointThrows):" << endl;
                 TEST_THROW(Mezzanine::ParametersRangeException,
                            TestSinglePointTrack.GetInterpolated(0.5),
                            "SingleTrackPointThrows");
             }
-
+/*
             {
                 std::vector<Vector3> TestDataPoints;
                 TestDataPoints.push_back(Vector3(0,0,0));
                 TestDataPoints.push_back(Vector3(10,10,10));
 
-                Track<Vector3,LinearInterpolator<Vector3> > TestDualPointTrack(TestDataPoints);
+                Track<LinearInterpolator<Vector3> > TestDualPointTrack(TestDataPoints);
 
                 TestOutput << endl << "Testing interpolation on a Track with just two points(DualPointTrack):" << endl
                            << "\t0.1 should be 1,1,1 and is " << TestDualPointTrack.GetInterpolated(0.1) << endl
@@ -96,7 +96,7 @@ class tracktests : public UnitTestGroup
             }
 
             {
-                TrackLooped<Vector3,LinearInterpolator<Vector3> > TestDualPointTrack;
+                TrackLooped<LinearInterpolator<Vector3> > TestDualPointTrack;
                 TestDualPointTrack.push_back(Vector3(0,0,0));
                 TestDualPointTrack.push_back(Vector3(10,10,10));
                 TestOutput << endl << "Testing interpolation on a Track with just two points as a loop(DualPointTrackLoop):" << endl
@@ -113,7 +113,7 @@ class tracktests : public UnitTestGroup
             }
 
             {
-                Track<Vector3,LinearInterpolator<Vector3> > TestTriplePointTrack;
+                Track<LinearInterpolator<Vector3> > TestTriplePointTrack;
                 TestTriplePointTrack.push_back(Vector3(0,0,0));
                 TestTriplePointTrack.push_back(Vector3(0,0,10));
                 TestTriplePointTrack.push_back(Vector3(0,10,10));
@@ -133,7 +133,7 @@ class tracktests : public UnitTestGroup
             }
 
             {
-                TrackLooped<Vector3,LinearInterpolator<Vector3> > TestTriplePointTrack;
+                TrackLooped<LinearInterpolator<Vector3> > TestTriplePointTrack;
                 TestTriplePointTrack.push_back(Vector3(0,0,0));
                 TestTriplePointTrack.push_back(Vector3(0,0,10));
                 TestTriplePointTrack.push_back(Vector3(0,10,10));
@@ -152,7 +152,7 @@ class tracktests : public UnitTestGroup
             }
 
             {
-                Track<Vector3,LinearInterpolator<Vector3> > TestQuadPointTrack;
+                Track<LinearInterpolator<Vector3> > TestQuadPointTrack;
                 TestQuadPointTrack.push_back(Vector3(0,0,0));
                 TestQuadPointTrack.push_back(Vector3(10,0,0));
                 TestQuadPointTrack.push_back(Vector3(10,10,0));
@@ -182,7 +182,7 @@ class tracktests : public UnitTestGroup
             }
 
             {
-                TrackLooped<Vector3,LinearInterpolator<Vector3> > TestQuadPointTrack;
+                TrackLooped<LinearInterpolator<Vector3> > TestQuadPointTrack;
                 TestQuadPointTrack.push_back(Vector3(0,0,0));
                 TestQuadPointTrack.push_back(Vector3(10,0,0));
                 TestQuadPointTrack.push_back(Vector3(10,10,0));
@@ -208,7 +208,7 @@ class tracktests : public UnitTestGroup
             }
 
             {
-                Track<Vector3,LinearInterpolator<Vector3> > TestIteratorTrack;
+                Track<LinearInterpolator<Vector3> > TestIteratorTrack;
 
                 TestIteratorTrack.push_back(Vector3(0,0,0));
                 TestIteratorTrack.push_back(Vector3(10,0,0));
@@ -282,7 +282,7 @@ class tracktests : public UnitTestGroup
                     { TestOutput << *LoopedIter << endl; }
 
                 TestOutput << "Sample track iteration with idiomatic for loop:" << endl;
-                for(TrackLooped<Vector3,LinearInterpolator<Vector3> >::SmoothIteratorType LoopedIter(TestIteratorTrack.begin(10));
+                for(TrackLooped<LinearInterpolator<Vector3> >::SmoothIteratorType LoopedIter(TestIteratorTrack.begin(10));
                     LoopedIter!=TestIteratorTrack.end();
                     LoopedIter++)
                     { TestOutput << *LoopedIter << endl; }
@@ -290,8 +290,8 @@ class tracktests : public UnitTestGroup
                 // Just by executing this line we can tell that these work to some degree.
                 TEST(true, "SmoothTrackIterator::begin1");
                 TEST(true, "SmoothTrackIterator::end1");
-                TEST((TestIteratorTrack.begin(10)==TrackLooped<Vector3,LinearInterpolator<Vector3> >::SmoothIteratorType(&TestIteratorTrack,0.0,1.0/10.0) ), "SmoothTrackIterator::begin2");
-                TEST((TestIteratorTrack.end()==TrackLooped<Vector3,LinearInterpolator<Vector3> >::SmoothIteratorType(&TestIteratorTrack,1.0,0.0)), "SmoothTrackIterator::end2");
+                TEST((TestIteratorTrack.begin(10)==TrackLooped<LinearInterpolator<Vector3> >::SmoothIteratorType(&TestIteratorTrack,0.0,1.0/10.0) ), "SmoothTrackIterator::begin2");
+                TEST((TestIteratorTrack.end()==TrackLooped<LinearInterpolator<Vector3> >::SmoothIteratorType(&TestIteratorTrack,1.0,0.0)), "SmoothTrackIterator::end2");
 
                 // Almost Idiomatic loop
                 TestOutput << "Sample track iteration with for loop:" << endl;
@@ -326,8 +326,17 @@ class tracktests : public UnitTestGroup
                 SmoothTrackIterator<Vector3> IndexIter1(&TestIteratorTrack,.8,1.0/100.0);
                 SmoothTrackIterator<Vector3> IndexIter2(&TestIteratorTrack,.9,1.0/100.0);
                 TEST(IndexIter1[10] == IndexIter2, "SmoothTrackIterator[]");
-            //*/
+
             }
+
+            {
+                Track<SlowSplineInterpolator<Vector2> > CubicSplineTrack;
+
+                CubicSplineTrack.push_back(Vector2(0,0));
+                //TestIteratorTrack.push_back(Vector2(10,10));
+                //TestIteratorTrack.push_back(Vector2(20,0));
+
+            }*/
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

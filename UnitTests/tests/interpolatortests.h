@@ -304,35 +304,7 @@ class interpolatortests : public UnitTestGroup
 
                 SlowSplineInterpolator<Vector2>::Interpolate(DataPoints.begin(),DataPoints.end(),0.5);
 
-                /*TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl;
-                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.1) << endl;
-                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.5) << endl;
-                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.9) << endl;
-                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,1.0) << endl;
-                TestOutput << endl;
-                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.0),A,"BezierTriArg1");
-                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.1),Vector2(0.18,0.2),"BezierTriArg2");
-                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.5),Vector2(0.5,1),"BezierTriArg3");
-                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.9),Vector2(0.18,1.8),"BezierTriArg4");
-                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 1.0),C,"BezierTriArg5");*/
             }
-            /*{
-                std::vector<Vector3> PreTrack;
-                PreTrack.push_back(Vector3( 0, 0, 0));
-                PreTrack.push_back(Vector3(10, 0, 5));
-                PreTrack.push_back(Vector3(10,10,10));
-                PreTrack.push_back(Vector3( 0,10,15));
-                PreTrack.push_back(Vector3( 0, 0,20));
-                for(Real Counter=0.0;
-                    Counter<1.0;
-                    Counter+=0.01)
-                {
-                    cout << InterpolatableTraits<Vector3>::BezierInterpolator::Interpolate(PreTrack.begin(),
-                                                                                           PreTrack.end(),
-                                                                                           Counter)
-                         << endl;
-                }
-            }// */
 
         }
 

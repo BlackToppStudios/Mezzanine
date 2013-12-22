@@ -53,6 +53,10 @@
 
 namespace Mezzanine
 {
+
+    // Forward declaration
+    template <typename InterpolatableType, typename InterpolatorType> class TrackStorage;
+
     /// @brief A simple functor for interpolating data points in a simple way.
     /// @details This interpolator provides certain guarantees.
     ///     - All data points will be valid interpolated values.
@@ -65,6 +69,10 @@ namespace Mezzanine
     class MEZZ_LIB LinearInterpolator
     {
         public:
+            /// @brief The type this will interpolate
+            /// @note All Interpolators need to declare an InterpolatableType
+            typedef T InterpolatableType;
+
             /// @brief Get a value at a given location between exactly two others.
             /// @param Begin The data point at one end of line segment
             /// @param End  The data point at the other end of line segment
@@ -180,6 +188,10 @@ namespace Mezzanine
     class MEZZ_LIB BezierInterpolator
     {
         public:
+            /// @brief The type this will interpolate
+            /// @note All Interpolators need to declare an InterpolatableType
+            typedef T InterpolatableType;
+
             /// @brief Get a value at a given location between two others.
             /// @details This uses Linear interpolation recursively to produce a single curve
             /// following Bézier's curve algorithm. For example if interpolating the location 0.5
@@ -244,11 +256,11 @@ namespace Mezzanine
     };
 
 
-    /// @brief cleanly curved
+    /// @brief
     /// @details Templated on type of X, Y. X and Y must have operator +, -, *, /. Y must have defined
     /// a constructor that takes a scalar.
     template <typename X, typename Y>
-    class CubicSpline
+    class MEZZ_LIB CubicSpline
     {
         public:
             typedef CubicSplineElement<X,Y> element_type;
@@ -364,6 +376,10 @@ namespace Mezzanine
     class MEZZ_LIB SlowSplineInterpolator
     {
         public:
+            /// @brief The type this will interpolate
+            /// @note All Interpolators need to declare an InterpolatableType
+            typedef T InterpolatableType;
+
             template<typename TIterator>
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
@@ -383,6 +399,15 @@ namespace Mezzanine
                 return Spliney.interpolate(Location);
             }
     };
+
+    template <typename InterpolatableType>
+    class TrackStorage <InterpolatableType, SlowSplineInterpolator<InterpolatableType> >
+    {
+        public:
+            /// @brief The storage for type for the given type for a track.
+            typedef CubicSpline<Real,InterpolatableType> Storage;
+    };
+
 
 } // /namespace Mezzanine
 
