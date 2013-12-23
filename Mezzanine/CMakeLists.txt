@@ -109,6 +109,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}countedptr.h"
         "${${PROJECT_NAME}_SRC_DIR}crossplatform.h"
         "${${PROJECT_NAME}_SRC_DIR}crossplatformexport.h"
+        "${${PROJECT_NAME}_SRC_DIR}cubicspline.h"
         "${${PROJECT_NAME}_SRC_DIR}datatypes.h"
         "${${PROJECT_NAME}_SRC_DIR}debris.h"
         "${${PROJECT_NAME}_SRC_DIR}debrismanager.h"
