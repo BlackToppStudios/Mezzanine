@@ -226,37 +226,59 @@ namespace Mezzanine
     /* "THE BEER-WARE LICENSE" (Revision 42): Devin Lane wrote this file. As long as you retain
      * this notice you can do whatever you want with this stuff. If we meet some day, and you
      * think this stuff is worth it, you can buy me a beer in return. */
+    /// @brief Meta data nodes required to generate a cubic spline
     template <typename X, typename Y>
     class CubicSplineElement
     {
         public:
-            X x;
-            Y a, b, c, d;
 
+            /// @brief Time series meta-data
+            X x;
+
+            /// @brief Meta-data corresponding to "a" on wikipedia description of a cubic splines
+            Y a;
+            /// @brief Meta-data corresponding to "b" on wikipedia description of a cubic splines
+            Y b;
+            /// @brief Meta-data corresponding to "c" on wikipedia description of a cubic splines
+            Y c;
+            /// @brief Meta-data corresponding to "d" on wikipedia description of a cubic splines
+            Y d;
+
+            /// @brief Simple constructor
+            /// @param _x
             CubicSplineElement(X _x) : x(_x) {}
+
+            /// @brief Complete meta-data constructor
+            /// _x Time series location
+            /// _a  Meta-data corresponding to "a" on wikipedia description of a cubic splines
+            /// _b  Meta-data corresponding to "b" on wikipedia description of a cubic splines
+            /// _c  Meta-data corresponding to "c" on wikipedia description of a cubic splines
+            /// _d  Meta-data corresponding to "d" on wikipedia description of a cubic splines
             CubicSplineElement(X _x, Y _a, Y _b, Y _c, Y _d)
                 : x(_x), a(_a), b(_b), c(_c), d(_d)
             {}
 
+            /// @brief The actual interpolation of the meta-data into a result
+            /// @param xx Location in the time series toget the corresponding Data series location on a cubic curve.
             Y eval(const X& xx) const
             {
                 X xix(xx - x);
                 return a + b * xix + c * (xix * xix) + d * (xix * xix * xix);
             }
 
+            /// @brief Sort Meta-data elements by time series locations in other Meta-Data
+            /// @param e The CubicSplineElement to compare this one too.
             bool operator<(const CubicSplineElement& e) const
-            {
-                return x < e.x;
-            }
+                { return x < e.x; }
 
+            /// @brief Sort Meta-data elements by time series locations
+            /// @param e The CubicSplineEleme to compare this one too.
             bool operator<(const X& xx) const
-            {
-                return x < xx;
-            }
+                { return x < xx; }
     };
 
 
-    /// @brief
+    /// @brief A class for interpolating data with arbitrary
     /// @details Templated on type of X, Y. X and Y must have operator +, -, *, /. Y must have defined
     /// a constructor that takes a scalar.
     template <typename X, typename Y>
