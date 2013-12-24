@@ -78,7 +78,7 @@ class tracktests : public UnitTestGroup
                            TestSinglePointTrack.GetInterpolated(0.5),
                            "SingleTrackPointThrows");
             }
-/*
+
             {
                 std::vector<Vector3> TestDataPoints;
                 TestDataPoints.push_back(Vector3(0,0,0));
@@ -96,7 +96,11 @@ class tracktests : public UnitTestGroup
             }
 
             {
-                TrackLooped<LinearInterpolator<Vector3> > TestDualPointTrack;
+                std::vector<Vector3> TestDataPoints;
+                //TestDataPoints.push_back(Vector3(0,0,0));
+                //TestDataPoints.push_back(Vector3(10,10,10));
+
+                TrackLooped<LinearInterpolator<Vector3> > TestDualPointTrack(TestDataPoints);
                 TestDualPointTrack.push_back(Vector3(0,0,0));
                 TestDualPointTrack.push_back(Vector3(10,10,10));
                 TestOutput << endl << "Testing interpolation on a Track with just two points as a loop(DualPointTrackLoop):" << endl
@@ -150,7 +154,7 @@ class tracktests : public UnitTestGroup
                 TEST_EQUAL_MULTI_EPSILON(TestTriplePointTrack.GetInterpolated(1.0), Vector3(0.0,0.0,0.0), "TriplePointTrackLoop5",5);
 
             }
-
+/*
             {
                 Track<LinearInterpolator<Vector3> > TestQuadPointTrack;
                 TestQuadPointTrack.push_back(Vector3(0,0,0));

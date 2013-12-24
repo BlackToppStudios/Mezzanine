@@ -80,6 +80,7 @@ namespace Mezzanine
     class TrackBase
     {
         public:
+            /// @brief The type this class and the interpolator it uses works with.
             typedef typename InterpolatorType::InterpolatableType InterpolatableType;
 
             /// @brief The type of the internal container storing the interpolatable data. This is a single point to change all the tracks.
@@ -182,6 +183,7 @@ namespace Mezzanine
             typedef TrackBase<InterpolatorType> ParentType;
 
         public:
+            /// @brief The type this class and the interpolator it uses works with.
             typedef typename InterpolatorType::InterpolatableType InterpolatableType;
 
             /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
@@ -225,10 +227,13 @@ namespace Mezzanine
     class TrackLooped : public Track<InterpolatorType>
     {
         protected:
+            /// @brief The immediate parent type of this class.
             typedef Track<InterpolatorType> ParentType;
-            typedef TrackBase<typename InterpolatorType::InterpolatableType> BaseType;
+            /// @brief The base most class of this type.
+            typedef TrackBase<InterpolatorType> BaseType;
 
         public:
+            /// @brief The type this class and the interpolator it uses works with.
             typedef typename InterpolatorType::InterpolatableType InterpolatableType;
 
             /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
