@@ -144,14 +144,14 @@ namespace Mezzanine
                     { return InterpolateMath(*(Begin), *(Begin+1), Location); }
 
                 Whole UsingLineSegment = Location * Real(LineSegmentCount); // Pick a Line Segment
-                if(UsingLineSegment>=LineSegmentCount)               //We are past the end of the line segments
+                if(UsingLineSegment>=LineSegmentCount)                      // We are past or at the end of the line segments
                     { return *(End-1); }
 
                 Real LocalPercentage = std::fmod(PreciseReal(Location), PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount;
 
-                return InterpolateMath(*(Begin+UsingLineSegment),   // The first point of the line segment
+                return InterpolateMath(*(Begin+UsingLineSegment),           // The first point of the line segment
                                        *(Begin+UsingLineSegment+1),
-                                       LocalPercentage);            // The percentage we are through this line segment
+                                       LocalPercentage);                    // The percentage we are through this line segment
             }
 
             /// @brief This will interpolates data points with GetInterpolatedFromMultiple or InterpolateMath a required
