@@ -93,8 +93,10 @@ namespace Mezzanine
                 // Only if we have a valid binding
                 if( this->BoundMenu != NULL ) {
                     if( PropertiesNode.AppendAttribute("MenuEntryName").SetValue( this->BoundMenu->GetName() ) &&
-                        PropertiesNode.AppendAttribute("IsPushButton").SetValue( this->BoundMenu->GetEntryPushButton() == this ? "true" : "false" ) )
+                        PropertiesNode.AppendAttribute("ButtonConfig").SetValue( static_cast<Whole>( this->BoundMenu->GetButtonConfig(this) ) ) )
                     {
+                        return;
+                    }else{
                         SerializeError("Create XML Attribute Values",MenuButton::GetSerializableName() + "Properties",true);
                     }
                 }
@@ -113,20 +115,27 @@ namespace Mezzanine
             if( !PropertiesNode.Empty() ) {
                 if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
                     String MenuName;
-                    Bool IsPush = true;
+                    MenuEntry::ButtonConfig MenuConfig = MenuEntry::BC_Error;
 
                     CurrAttrib = PropertiesNode.GetAttribute("MenuEntryName");
                     if( !CurrAttrib.Empty() )
                         MenuName = CurrAttrib.AsString();
 
-                    CurrAttrib = PropertiesNode.GetAttribute("MenuEntryName");
+                    CurrAttrib = PropertiesNode.GetAttribute("IsPushButton");
                     if( !CurrAttrib.Empty() )
-                        IsPush = StringTools::ConvertToBool( CurrAttrib.AsString() );
+                        MenuConfig = static_cast<MenuEntry::ButtonConfig>( CurrAttrib.AsWhole() );
 
                     if( !MenuName.empty() ) {
                         Widget* UncastedMenu = this->ParentScreen->GetWidget(MenuName);
                         if( UncastedMenu->GetTypeName() == "MenuEntry" ) {
-                            this->BoundMenu = static_cast<MenuEntry*>( UncastedMenu );
+                            MenuEntry* CastedMenu = static_cast<MenuEntry*>( UncastedMenu );
+                            switch( MenuConfig )
+                            {
+                                case MenuEntry::BC_PushButton:    CastedMenu->SetPushButton(this);    break;
+                                case MenuEntry::BC_PopButton:     CastedMenu->SetPopButton(this);     break;
+                                case MenuEntry::BC_ToggleButton:  CastedMenu->SetToggleButton(this);  break;
+                                default:                          /* Do Nothing */                    break;
+                            }
                         }else{
                             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Named Widget that was expected to be a MenuEntry is not a MenuEntry.");
                         }
@@ -140,9 +149,13 @@ namespace Mezzanine
         }
 
         String MenuButton::GetSerializableName()
-        {
-            return MenuButton::TypeName;
-        }
+            { return MenuButton::TypeName; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        void MenuButton::_SetBoundMenu(MenuEntry* ToBeBound)
+            { this->BoundMenu = ToBeBound; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // MenuButtonFactory Methods

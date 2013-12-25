@@ -46,13 +46,26 @@ namespace Mezzanine
 {
     namespace UI
     {
+        class MenuButton;
+        class MenuEntryStack;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This class is a control mechanism for multiple windows in a heirarchy.
-        /// @details This class controls the presentation and order of different windows, useful
-        /// for creating menu systems, be it a game main menu, or in-game menu. @n @n
-        /// Also it should be noted that since this is just a control system for other classes, it
-        /// doesn't have a position or size like other classes.  Instead when you call those functions
-        /// to set or get the position or size, you'll be working with the current top level window.
+        /// @brief This is a class designed to help MenuEntrys keep track of the Menu tree they belong to.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB MenuStack
+        {
+        protected:
+        public:
+            MenuStack();
+            ~MenuStack();
+
+
+        };//MenuStack
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This class is an entry for a single window/widget in a menu.
+        /// @details This class can be used to represent a single window/widget in a heirarchy
+        /// that will change visibility as one would expect in a game menu.
         ///////////////////////////////////////
         class MEZZ_LIB MenuEntry : public StackedContainer
         {
@@ -64,6 +77,16 @@ namespace Mezzanine
             /// @brief Const Iterator type for child MenuEntry instances stored by this class.
             typedef MenuEntryContainer::const_iterator    ConstMenuEntryIterator;
 
+            /// @enum ButtonConfig
+            /// @brief An enum describing how the MenuButton for this MenuEntry is configured and being used.
+            enum ButtonConfig
+            {
+                BC_Error         = 0,    ///< Error condition or queried button isn't bound to this MenuEntry.
+                BC_PushButton    = 1,    ///< Queried button is being used as the entry push button.
+                BC_PopButton     = 2,    ///< Queried button is being used as the entry pop button.
+                BC_ToggleButton  = 3     ///< Queried button is being used as both the push and pop button, aka toggle button.
+            };
+
             /// @brief String containing the type name for this class: "MenuEntry".
             static const String TypeName;
         protected:
@@ -72,10 +95,22 @@ namespace Mezzanine
             MenuEntryContainer* MenuStack;
             /// @internal
             /// @brief A pointer to the button that will push this entry on the menu stack.
-            Button* PushButton;
+            MenuButton* PushButton;
             /// @internal
             /// @brief A pointer to the button that will pop this entry from the menu stack.
-            Button* PopButton;
+            MenuButton* PopButton;
+            /// @internal
+            /// @brief Stores whether or not this Entry will automatically be hidden when another entry is pushed onto the stack after it.
+            Bool AutoHideEntry;
+
+            /// @internal
+            /// @brief Pushes this MenuEntry onto the stack if one is available.
+            /// @return Returns true if this MenuEntry was successfully pushed onto the stack, false otherwise.
+            virtual Bool PushOntoStack();
+            /// @internal
+            /// @brief Pops this MenuEntry from the stack if one is available.
+            /// @return Returns true if this MenuEntry was successfully popped from the stack, false otherwise.
+            virtual Bool PopFromStack();
         public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
@@ -89,6 +124,10 @@ namespace Mezzanine
             /// @param RendRect The rect describing this widget's transform relative to it's parent.
             /// @param Parent The parent screen that created this renderable.
             MenuEntry(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created MenuEntry will belong to.
+            MenuEntry(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~MenuEntry();
 
@@ -98,32 +137,66 @@ namespace Mezzanine
             /// @brief Gets whether or not this is the Root of the MenuEntry hierarchy.
             /// @return Returns true if this MenuEntry has no parent entry, false otherwise.
             virtual Bool IsRootEntry() const;
+            /// @brief Gets the role of the specified MenuButton for this MenuEntry.
+            /// @param EntryButton The button to check this MenuEntry for.
+            /// @return Returns a ButtonConfig enum value representing how the specified MenuButton is being used by this MenuEntry.
+            virtual ButtonConfig GetButtonConfig(const MenuButton* EntryButton) const;
+
+            /// @brief Finds a MenuEntry in the menu stack and hides all Entries above it in the menu stack.
+            /// @note This can return zero if the provided entry isn't on the stack or if it is the last entry on the stack.
+            /// @param RollBackTo A pointer to the MenuEntry to roll the menu stack back to.
+            /// @return Returns the number of MenuEntrys that were hidden by this method.
+            virtual Whole RollBackToEntry(MenuEntry* RollBackTo);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Visibility and Priority Methods
+
+            /// @copydoc Renderable::SetVisible(Bool)
+            virtual void SetVisible(Bool CanSee);
+            /// @copydoc Renderable::Show()
+            virtual void Show();
+            /// @copydoc Renderable::Hide()
+            virtual void Hide();
 
             ///////////////////////////////////////////////////////////////////////////////
             // MenuEntry Properties
 
-
+            /// @brief Sets whether or not thie window should auto hide when another window is added to the menu stack.
+            /// @param AutoHide whether or not to enable auto hiding for this menu window.
+            virtual void SetAutoHide(Bool AutoHide);
+            /// @brief Gets wether or not this window is set to auto hide when another window is added to the menu stack.
+            /// @return Returns a bool indicating whether or not AutoHide is enabled on this menu window.
+            virtual Bool GetAutoHide() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Menu Configuration
 
             /// @brief Sets the button that will push(add) this entry on the menu stack, making it visible.
             /// @param Push A pointer to the button that will make this entry visible.
-            virtual void SetEntryPushButton(Button* Push);
+            virtual void SetPushButton(MenuButton* Push);
             /// @brief Gets a pointer to the button that will add this entry to the menu stack.
             /// @return Returns a pointer to the button that will make this entry visible.
-            virtual Button* GetEntryPushButton() const;
+            virtual MenuButton* GetPushButton() const;
             /// @brief Sets the button that will pop(remove) this entry from the menu stack, hiding it.
             /// @param Pop A pointer to the button that will make this entry hide.
-            virtual void SetEntryPopButton(Button* Pop);
+            virtual void SetPopButton(MenuButton* Pop);
             /// @brief Gets a pointer to the button that will remove this entry from the menu stack.
             /// @return Returns a pointer to the button that will make this entry hide.
-            virtual Button* GetEntryPopButton() const;
+            virtual MenuButton* GetPopButton() const;
+            /// @brief Sets the button that will both push(add) and pop(remove) the entry from the menu stack, based on the current state of the entry.
+            /// @param Toggle A pointer to the button that will toggle this MenuEntrys visibility.
+            virtual void SetToggleButton(MenuButton* Toggle);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
+            /// @copydoc Renderable::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
+            /// @copydoc Renderable::GetSerializableName()
+            static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Event Methods
@@ -133,8 +206,20 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
+            /// @internal
+            /// @brief Gets the MenuStack this Entry belongs to.
+            /// @return Returns a pointer to the MenuEntryContainer being used as the menu stack.
+            MenuEntryContainer* _GetMenuStack() const;
+            /// @internal
+            /// @brief Notifies this MenuEntry and all if it's Entry children a new MenuStack is being applied to the menu tree.
+            /// @param NewStack the new stack to be applied.  Can be NULL to remove the stack from all children.
+            virtual void _NotifyStack(MenuEntryContainer* NewStack);
+            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments&)
             virtual void _NotifyEvent(const EventArguments& Args);
+            /// @copydoc QuadRenderable::_NotifyParenthood(QuadRenderable*)
+            virtual void _NotifyParenthood(QuadRenderable* NewParent);
+            /// @copydoc QuadRenderable::_HasAvailableRenderData() const
+            virtual Bool _HasAvailableRenderData() const;
         };//MenuEntry
     }//UI
 }//Mezzanine

@@ -91,6 +91,14 @@ namespace Mezzanine
 
             /// @copydoc Renderable::GetSerializableName()
             static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Notifies this MenuButton that a MenuEntry is now using it as a push or pop button.
+            /// @param ToBeBound A pointer to the MenuEntry that this MenuButton will be bound to.
+            void _SetBoundMenu(MenuEntry* ToBeBound);
         };//MenuButton
 
         ///////////////////////////////////////////////////////////////////////////////

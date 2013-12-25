@@ -40,16 +40,14 @@
 #ifndef _uimenuentry_cpp
 #define _uimenuentry_cpp
 
-#include "UI/menu.h"
-#include "UI/menuwindow.h"
-
+#include "UI/menuentry.h"
+#include "UI/menubutton.h"
 #include "UI/uimanager.h"
 #include "UI/screen.h"
-#include "UI/button.h"
-#include "Input/inputmanager.h"
-#include "Input/mouse.h"
-#include "Input/metacode.h"
-#include "entresol.h"
+
+#include "stringtool.h"
+#include "exception.h"
+#include "serialization.h"
 
 namespace Mezzanine
 {
@@ -57,33 +55,72 @@ namespace Mezzanine
     {
         const String MenuEntry::TypeName                    = "MenuEntry";
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // MenuEntry Methods
+
         MenuEntry::MenuEntry(Screen* Parent) :
             StackedContainer(Parent),
             PushButton(NULL),
-            PopButton(NULL)
-        {
-
-        }
+            PopButton(NULL),
+            AutoHideEntry(true)
+            {  }
 
         MenuEntry::MenuEntry(const String& RendName, Screen* Parent) :
             StackedContainer(RendName,Parent),
             PushButton(NULL),
-            PopButton(NULL)
-        {
-
-        }
+            PopButton(NULL),
+            AutoHideEntry(true)
+            {  }
 
         MenuEntry::MenuEntry(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             StackedContainer(RendName,RendRect,Parent),
             PushButton(NULL),
-            PopButton(NULL)
-        {
+            PopButton(NULL),
+            AutoHideEntry(true)
+            {  }
 
-        }
+        MenuEntry::MenuEntry(const XML::Node& XMLNode, Screen* Parent) :
+            StackedContainer(Parent),
+            PushButton(NULL),
+            PopButton(NULL),
+            AutoHideEntry(true)
+            {  }
 
         MenuEntry::~MenuEntry()
         {
+            this->_NotifyStack(NULL);
+            if( this->IsRootEntry() && this->MenuStack ) {
+                delete this->MenuStack;
+            }
+        }
 
+        Bool MenuEntry::PushOntoStack()
+        {
+            if( this->MenuStack ) {
+                if( ( this->IsRootEntry() && this->MenuStack->empty() ) ||
+                    ( !(this->MenuStack->empty()) && this->MenuStack->back() == this->ParentQuad ) )
+                {
+                    if( this->MenuStack->empty() ) {
+                        this->MenuStack->back()->Hide();
+                    }
+                    this->MenuStack->push_back(this);
+                    this->Show();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        Bool MenuEntry::PopFromStack()
+        {
+            if( this->MenuStack ) {
+                if( !(this->MenuStack->empty()) && this->MenuStack->back() == this ) {
+                    this->MenuStack->pop_back();
+                    this->Hide();
+                    return true;
+                }
+            }
+            return false;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -92,60 +129,225 @@ namespace Mezzanine
         Bool MenuEntry::IsRootEntry() const
         {
             if( this->ParentQuad->GetRenderableType() == Renderable::RT_Widget ) {
-                return ( static_cast<Widget*>( this->ParentQuad )->GetTypeName() == MenuEntry::TypeName );
+                return ( static_cast<Widget*>( this->ParentQuad )->GetTypeName() != MenuEntry::TypeName );
             }else{
                 return false;
             }
         }
 
+        MenuEntry::ButtonConfig MenuEntry::GetButtonConfig(const MenuButton* EntryButton) const
+        {
+            if( this->PushButton == EntryButton && this->PopButton == EntryButton ) {
+                return MenuEntry::BC_ToggleButton;
+            }else if( this->PushButton == EntryButton ) {
+                return MenuEntry::BC_PushButton;
+            }else if( this->PopButton == EntryButton ) {
+                return MenuEntry::BC_PopButton;
+            }else{
+                return MenuEntry::BC_Error;
+            }
+        }
+
+        Whole MenuEntry::RollBackToEntry(MenuEntry* RollBackTo)
+        {
+            if( RollBackTo != NULL && !(this->MenuStack->empty()) ) {
+                Whole Ret = 0;
+                MenuEntryIterator MenuBeg = this->MenuStack->begin();
+                MenuEntryIterator MenuEnd = this->MenuStack->end();
+                while( MenuBeg != MenuEnd )
+                {
+                    if( (*MenuBeg) == RollBackTo )
+                        break;
+                    else
+                        ++MenuBeg;
+                }
+
+                for( MenuEntryIterator MenuIt = MenuBeg ; MenuIt != MenuEnd ; ++MenuIt )
+                {
+                    (*MenuIt)->Hide();
+                    ++Ret;
+                }
+                this->MenuStack->erase(MenuBeg,MenuEnd);
+                RollBackTo->Show();
+                return Ret;
+            }
+            return 0;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Visibility and Priority Methods
+
+        void MenuEntry::SetVisible(Bool CanSee)
+        {
+            if( CanSee ) {
+                if( !this->AutoHideEntry || ( this->MenuStack ? this->MenuStack->back() == this : false ) ) {
+                    this->Widget::SetVisible(CanSee);
+                }
+            }else{
+                this->Widget::SetVisible(CanSee);
+            }
+        }
+
+        void MenuEntry::Show()
+        {
+            if( !this->AutoHideEntry || ( this->MenuStack ? this->MenuStack->back() == this : false ) )
+                this->Widget::Show();
+        }
+
+        void MenuEntry::Hide()
+        {
+            this->Widget::Hide();
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // MenuEntry Properties
 
+        void MenuEntry::SetAutoHide(Bool AutoHide)
+            { this->AutoHideEntry = AutoHide; }
 
+        Bool MenuEntry::GetAutoHide() const
+            { return this->AutoHideEntry; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Menu Configuration
 
-        void MenuEntry::SetEntryPushButton(Button* Push)
+        void MenuEntry::SetPushButton(MenuButton* Push)
         {
             if( this->PushButton != NULL ) {
-                this->PushButton->Unsubscribe(Button::EventActivated,this);
+                this->PushButton->_SetBoundMenu(NULL);
+                this->PushButton->Unsubscribe(Button::EventDeactivated,this);
             }
 
             this->PushButton = Push;
 
             if( this->PushButton != NULL ) {
-                this->PushButton->Subscribe(Button::EventActivated,this);
+                this->PushButton->_SetBoundMenu(this);
+                this->PushButton->Subscribe(Button::EventDeactivated,this);
             }
         }
 
-        Button* MenuEntry::GetEntryPushButton() const
+        MenuButton* MenuEntry::GetPushButton() const
         {
             return this->PushButton;
         }
 
-        void MenuEntry::SetEntryPopButton(Button* Pop)
+        void MenuEntry::SetPopButton(MenuButton* Pop)
         {
             if( this->PopButton != NULL ) {
-                this->PopButton->Unsubscribe(Button::EventActivated,this);
+                this->PopButton->_SetBoundMenu(NULL);
+                this->PopButton->Unsubscribe(Button::EventDeactivated,this);
             }
 
             this->PopButton = Pop;
 
             if( this->PopButton != NULL ) {
-                this->PopButton->Subscribe(Button::EventActivated,this);
+                this->PopButton->_SetBoundMenu(this);
+                this->PopButton->Subscribe(Button::EventDeactivated,this);
             }
         }
 
-        Button* MenuEntry::GetEntryPopButton() const
+        MenuButton* MenuEntry::GetPopButton() const
         {
             return this->PopButton;
+        }
+
+        void MenuEntry::SetToggleButton(MenuButton* Toggle)
+        {
+            if( this->PushButton != NULL ) {
+                this->PushButton->_SetBoundMenu(NULL);
+                this->PushButton->Unsubscribe(Button::EventDeactivated,this);
+            }
+            if( this->PopButton != NULL ) {
+                this->PopButton->_SetBoundMenu(NULL);
+                this->PopButton->Unsubscribe(Button::EventDeactivated,this);
+            }
+
+            this->PushButton = Toggle;
+            this->PopButton = Toggle;
+
+            if( this->PushButton != NULL ) {
+                this->PushButton->_SetBoundMenu(this);
+                this->PushButton->Subscribe(Button::EventDeactivated,this);
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
+        void MenuEntry::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->Widget::ProtoSerializeProperties(SelfRoot);
 
+            XML::Node PropertiesNode = SelfRoot.AppendChild( MenuEntry::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("AutoHideEntry").SetValue( this->GetAutoHide() ? "true" : "false" ) )
+            {
+                // Only if we have valid bindings
+                if( this->PushButton != NULL ) {
+                    if( PropertiesNode.AppendAttribute("PushButtonName").SetValue( this->PushButton->GetName() ) ) {
+                        return;
+                    }else{
+                        SerializeError("Create XML Attribute Values",MenuEntry::GetSerializableName() + "Properties",true);
+                    }
+                }
+
+                if( this->PopButton != NULL ) {
+                    if( PropertiesNode.AppendAttribute("PopButtonName").SetValue( this->PopButton->GetName() ) ) {
+                        return;
+                    }else{
+                        SerializeError("Create XML Attribute Values",MenuEntry::GetSerializableName() + "Properties",true);
+                    }
+                }
+            }else{
+                SerializeError("Create XML Attribute Values",MenuEntry::GetSerializableName() + "Properties",true);
+            }
+        }
+
+        void MenuEntry::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->Widget::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( MenuEntry::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("AutoHideEntry");
+                    if( !CurrAttrib.Empty() )
+                        this->SetAutoHide( StringTools::ConvertToBool( CurrAttrib.AsString(), true ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("PushButtonName");
+                    if( !CurrAttrib.Empty() ) {
+                        Widget* UncastedButton = this->ParentScreen->GetWidget( CurrAttrib.AsString() );
+                        if( UncastedButton->GetTypeName() == MenuButton::TypeName ) {
+                            this->SetPushButton( static_cast<MenuButton*>( UncastedButton ) );
+                        }else{
+                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Expected name of MenuButton when deserializing.  Named widget is not MenuButton.");
+                        }
+                    }
+
+                    CurrAttrib = PropertiesNode.GetAttribute("PopButtonName");
+                    if( !CurrAttrib.Empty() ) {
+                        Widget* UncastedButton = this->ParentScreen->GetWidget( CurrAttrib.AsString() );
+                        if( UncastedButton->GetTypeName() == MenuButton::TypeName ) {
+                            this->SetPopButton( static_cast<MenuButton*>( UncastedButton ) );
+                        }else{
+                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Expected name of MenuButton when deserializing.  Named widget is not MenuButton.");
+                        }
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (MenuEntry::GetSerializableName() + "Properties") + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,MenuEntry::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String MenuEntry::GetSerializableName()
+        {
+            return MenuEntry::TypeName;
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Event Methods
@@ -155,120 +357,104 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
+        MenuEntry::MenuEntryContainer* MenuEntry::_GetMenuStack() const
+        {
+            return this->MenuStack;
+        }
+
+        void MenuEntry::_NotifyStack(MenuEntryContainer* NewStack)
+        {
+            this->MenuStack = NewStack;
+            for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
+            {
+                if( (*ChildIt)->GetTypeName() != MenuEntry::TypeName ) {
+                    static_cast<MenuEntry*>( (*ChildIt) )->_NotifyStack(NewStack);
+                }
+            }
+        }
+
         void MenuEntry::_NotifyEvent(const EventArguments& Args)
         {
+            const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
+            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);
+            if( EventWidget == NULL )
+                return;
 
-        }
+            MenuButton* EntryButton = NULL;
+            if( EventWidget->GetTypeName() == MenuButton::TypeName ) {
+                EntryButton = static_cast<MenuButton*>( EventWidget );
+            }else{
+                return;
+            }
 
-
-
-
-
-
-        /*
-        void Menu::UpdateImpl(bool Force)
-        {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
-            if(HoveredSubWidget)
-            {
-                Button* button = NULL;
-                Widget* SubSubWidget = HoveredSubWidget->GetHoveredSubWidget();
-                if( SubSubWidget && (Widget::W_Button == SubSubWidget->GetType()) )
-                    button = static_cast<Button*>(SubSubWidget);
-                if(button && State == Input::BUTTON_LIFTING)
-                {
-                    UI::MenuWindow* MenWin = static_cast<UI::MenuWindow*>(HoveredSubWidget);
-                    UI::MenuWindow* ChildMenWin = MenWin->GetWindowOfAccessButton(button);
-                    if(ChildMenWin)
-                    {
-                        if(!ChildMenWin->IsVisible())
-                        {
-                            if(MenuStack.back()->GetAutoHide())
-                                MenuStack.back()->Hide();
-                            MenuStack.push_back(ChildMenWin);
-                            AddSubRenderable(SubRenderables.size(),ChildMenWin);
-                            ChildMenWin->Show();
-                            return;
-                        }else{
-                            RollMenuBackToWindow(MenWin);
+            if( this->PushButton == EntryButton && this->PopButton == EntryButton ) {
+                // Since we are toggling, attempt to push first.  It'll automatically do the checks needed for pushing.
+                Bool PushResult = this->PushOntoStack();
+                if( !PushResult ) {
+                    // If it failed to push, try popping.
+                    Bool PopResult = this->PopFromStack();
+                    if( !PopResult ) {
+                        // If even that failed, then we almost certainly need to do a rollback
+                        Bool IsRoot = this->IsRootEntry();
+                        this->RollBackToEntry( IsRoot ? this : static_cast<MenuEntry*>( this->ParentQuad ) );
+                        if( !IsRoot ) {
+                            // Last attempt
+                            this->PushOntoStack();
                         }
                     }
-                    else if(button == MenWin->GetBackButton())
-                    {
-                        MenWin->Hide();
-                        MenuStack.pop_back();
-                        SubRenderables.pop_back();
-                        if(!MenuStack.back()->IsVisible())
-                            MenuStack.back()->Show();
-                        return;
+                }
+            }else if( this->PushButton == EntryButton ) {
+                Bool PushResult = this->PushOntoStack();
+                if( !PushResult ) {
+                    // Attempt a rollback
+                    Bool IsRoot = this->IsRootEntry();
+                    this->RollBackToEntry( IsRoot ? this : static_cast<MenuEntry*>( this->ParentQuad ) );
+                    if( !IsRoot ) {
+                        // Last attempt
+                        this->PushOntoStack();
                     }
                 }
+            }else if( this->PopButton == EntryButton ) {
+                this->PopFromStack();
+                /*Bool PopResult = this->PopFromStack();
+                if( !PopResult ) {
+                    // Is there anything to do here?
+                }//*/
             }
         }
 
-        void Menu::SetVisibleImpl(bool visible)
+        void MenuEntry::_NotifyParenthood(QuadRenderable* NewParent)
         {
-            for( std::vector<UI::MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
-            {
-                if(visible)
-                {
-                    if( !(*it)->GetAutoHide() )
-                        (*it)->SetVisible(visible);
-                }else{
-                    (*it)->SetVisible(visible);
-                }
-            }
-            if(visible)
-            {
-                if(!MenuStack.back()->GetVisible())
-                    MenuStack.back()->Show();
-            }
-        }
+            if( this->ParentQuad != NewParent ) {
+                if( this->MenuStack != NULL ) {
+                    MenuEntryContainer* OldStack = this->MenuStack;
+                    Bool DestroyOldStack = this->IsRootEntry();
 
-        bool Menu::CheckMouseHoverImpl()
-        {
-            bool HoverRet = false;
-            for( std::vector<UI::MenuWindow*>::reverse_iterator it = MenuStack.rbegin() ; it != MenuStack.rend() ; it++ )
-            {
-                if((*it)->IsVisible())
-                {
-                    if((*it)->CheckMouseHover())
-                    {
-                        HoveredSubWidget = (*it);
-                        HoverRet = true;
+                    this->QuadRenderable::_NotifyParenthood(NewParent);
+
+                    MenuEntryContainer* NewStack = ( this->IsRootEntry() ? new MenuEntryContainer() : static_cast<MenuEntry*>( this->ParentQuad )->_GetMenuStack() );
+                    this->_NotifyStack(NewStack);
+
+                    if( DestroyOldStack ) {
+                        delete OldStack;
+                        OldStack = NULL;
                     }
-                }
-            }
-            return HoverRet;
-        }
-
-        void Menu::RollMenuBackToWindow(UI::MenuWindow* Win)
-        {
-            for( std::vector<UI::MenuWindow*>::reverse_iterator rit = MenuStack.rbegin() ; rit != MenuStack.rend() ; rit++ )
-            {
-                if(!(*rit)->IsVisible())
-                    (*rit)->Show();
-                if( RootWindow == (*rit) )
-                    break;
-                if( Win != (*rit))
-                {
-                    (*rit)->Hide();
-                    MenuStack.pop_back();
-                    SubRenderables.pop_back();
                 }else{
-                    break;
+                    this->QuadRenderable::_NotifyParenthood(NewParent);
+                    MenuEntryContainer* NewStack = ( this->IsRootEntry() ? new MenuEntryContainer() : static_cast<MenuEntry*>( this->ParentQuad )->_GetMenuStack() );
+                    this->_NotifyStack(NewStack);
                 }
             }
         }
 
-        void Menu::_AppendRenderData(ScreenRenderData& RenderData)
+        Bool MenuEntry::_HasAvailableRenderData() const
         {
-            for( Whole X = 0 ; X < MenuStack.size() ; ++X )
-            {
-                if( MenuStack[X]->IsVisible() )
-                    MenuStack[X]->_AppendRenderData(RenderData);
+            if( this->MenuStack ) {
+                ConstMenuEntryIterator MenuIt = std::find(this->MenuStack->begin(),this->MenuStack->end(),this);
+                return ( MenuIt != this->MenuStack->end() );
             }
-        }//*/
+            return false;
+        }
     }//UI
 }//Mezzanine
 
