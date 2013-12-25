@@ -144,8 +144,8 @@ namespace Mezzanine
                     { return InterpolateMath(*(Begin), *(Begin+1), Location); }
 
                 Whole UsingLineSegment = Location * Real(LineSegmentCount); // Pick a Line Segment
-                if(UsingLineSegment>LineSegmentCount)               //We are past the end of the line segments
-                    { return *(End-1); }
+                //if(UsingLineSegment>LineSegmentCount)               //We are past the end of the line segments
+                //    { return *(End-1); }
 
                 Real LocalPercentage = std::fmod(PreciseReal(Location), PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount;
 
@@ -157,7 +157,7 @@ namespace Mezzanine
             /// @brief This will interpolates data points with GetInterpolatedFromMultiple or InterpolateMath a required
             /// @details read about GetInterpolatedFromMultiple or InterpolateMath to see what kinds of results this
             /// can produce.
-            /// @param Begin An iterator at the beginning of a rande of data point
+            /// @param Begin An iterator at the beginning of a range of data point
             /// @param End An iterator one past the end of the data range to interpolate.
             /// @param Location A value between 0.0 and 1.0 that represents
             /// @return A T at a location along the data segments defined by Begin and End.
