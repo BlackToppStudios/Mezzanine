@@ -498,6 +498,10 @@ namespace Mezzanine
             FactIt = this->WidgetFactories.find( VerticalScrollbar::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new VerticalScrollbarFactory() );
 
+            // MenuEntry
+            FactIt = this->WidgetFactories.find( MenuEntry::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new MenuEntryFactory() );
+
             // HorizontalContainer
             FactIt = this->WidgetFactories.find( HorizontalContainer::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new HorizontalContainerFactory() );
@@ -644,6 +648,20 @@ namespace Mezzanine
             VerticalScrollbar* NewVScroll = static_cast<VerticalScrollbarFactory*>( this->GetWidgetFactoryExcept( VerticalScrollbar::TypeName ) )->CreateVerticalScrollbar( Name, RendRect, Style, this );
             this->CheckAndInsertExcept( NewVScroll );
             return NewVScroll;
+        }
+
+        MenuEntry* Screen::CreateMenuEntry(const String& Name)
+        {
+            MenuEntry* NewEntry = static_cast<MenuEntryFactory*>( this->GetWidgetFactoryExcept( MenuEntry::TypeName ) )->CreateMenuEntry( Name, this );
+            this->CheckAndInsertExcept( NewEntry );
+            return NewEntry;
+        }
+
+        MenuEntry* Screen::CreateMenuEntry(const String& Name, const UnifiedRect& RendRect)
+        {
+            MenuEntry* NewEntry = static_cast<MenuEntryFactory*>( this->GetWidgetFactoryExcept( MenuEntry::TypeName ) )->CreateMenuEntry( Name, RendRect, this );
+            this->CheckAndInsertExcept( NewEntry );
+            return NewEntry;
         }
 
         HorizontalContainer* Screen::CreateHorizontalContainer(const String& RendName)

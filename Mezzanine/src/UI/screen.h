@@ -409,6 +409,16 @@ namespace Mezzanine
             /// @return Returns a pointer to the created VerticalScrollbar.
             virtual VerticalScrollbar* CreateVerticalScrollbar(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style);
 
+            /// @brief Creates a MenuEntry.
+            /// @param Name The name to be given to this MenuEntry.
+            /// @return Returns a pointer to the created MenuEntry.
+            virtual MenuEntry* CreateMenuEntry(const String& Name);
+            /// @brief Creates a MenuEntry.
+            /// @param Name The name to be given to this MenuEntry.
+            /// @param RendRect The rect describing this MenuEntry's transform relative to it's parent.
+            /// @return Returns a pointer to the created MenuEntry.
+            virtual MenuEntry* CreateMenuEntry(const String& Name, const UnifiedRect& RendRect);
+
             /// @brief Creates a widget container aligned on the X axis.
             /// @param RendName The name to be given to this renderable.
             /// @return Returns a pointer to the created HorizontalContainer.
