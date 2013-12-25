@@ -100,7 +100,7 @@ namespace Mezzanine
                 if( ( this->IsRootEntry() && this->MenuStack->empty() ) ||
                     ( !(this->MenuStack->empty()) && this->MenuStack->back() == this->ParentQuad ) )
                 {
-                    if( this->MenuStack->empty() ) {
+                    if( this->MenuStack->empty() && this->MenuStack->back()->GetAutoHide() ) {
                         this->MenuStack->back()->Hide();
                     }
                     this->MenuStack->push_back(this);
@@ -380,14 +380,10 @@ namespace Mezzanine
             if( EventWidget == NULL )
                 return;
 
-            MenuButton* EntryButton = NULL;
-            if( EventWidget->GetTypeName() == MenuButton::TypeName ) {
-                EntryButton = static_cast<MenuButton*>( EventWidget );
-            }else{
+            if( !(EventWidget->IsHovered()) )
                 return;
-            }
 
-            if( this->PushButton == EntryButton && this->PopButton == EntryButton ) {
+            if( this->PushButton == EventWidget && this->PopButton == EventWidget ) {
                 // Since we are toggling, attempt to push first.  It'll automatically do the checks needed for pushing.
                 Bool PushResult = this->PushOntoStack();
                 if( !PushResult ) {
@@ -403,7 +399,7 @@ namespace Mezzanine
                         }
                     }
                 }
-            }else if( this->PushButton == EntryButton ) {
+            }else if( this->PushButton == EventWidget ) {
                 Bool PushResult = this->PushOntoStack();
                 if( !PushResult ) {
                     // Attempt a rollback
@@ -414,7 +410,7 @@ namespace Mezzanine
                         this->PushOntoStack();
                     }
                 }
-            }else if( this->PopButton == EntryButton ) {
+            }else if( this->PopButton == EventWidget ) {
                 this->PopFromStack();
                 /*Bool PopResult = this->PopFromStack();
                 if( !PopResult ) {
