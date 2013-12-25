@@ -723,9 +723,11 @@ namespace Mezzanine
             if( It != this->RenderLayerGroups.end() ) {
                 RenderLayerGroup* NewGroup = new RenderLayerGroup(Name,this);
                 this->RenderLayerGroups.insert( std::pair<String,RenderLayerGroup*>(Name,NewGroup) );
+                return NewGroup;
             }else{
                 MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" already exists in QuadRenderable: \"" + this->GetName() + "\"." );
             }
+            return NULL;
         }
 
         RenderLayerGroup* QuadRenderable::CreateOrRetrieveRenderLayerGroup(const String& Name)
@@ -817,6 +819,7 @@ namespace Mezzanine
                 if( Zorder == (*ChildIt)->GetZOrder() )
                     return (*ChildIt);
             }
+            return NULL;
         }
 
         Widget* QuadRenderable::GetChild(const String& RendName) const
@@ -826,6 +829,7 @@ namespace Mezzanine
                 if( RendName == (*ChildIt)->GetName() )
                     return (*ChildIt);
             }
+            return NULL;
         }
 
         Whole QuadRenderable::GetNumChildren() const
@@ -1134,17 +1138,17 @@ namespace Mezzanine
                     {
                         RenderLayer* CurrLayer = NULL;
 
-                        if( (*LayerNodeIt).Name() == "ImageLayer" ) {
+                        if( (*LayerNodeIt).Name() == String("ImageLayer") ) {
                             CurrLayer = new ImageLayer(this);
                             CurrLayer->ProtoDeSerialize( (*LayerNodeIt) );
                             this->ResizeLayers( CurrLayer->GetIndex() );
                             this->RenderLayers[ CurrLayer->GetIndex() ] = CurrLayer;
-                        }else if( (*LayerNodeIt).Name() == "SingleLineTextLayer" ) {
+                        }else if( (*LayerNodeIt).Name() == String("SingleLineTextLayer") ) {
                             CurrLayer = new SingleLineTextLayer(this);
                             CurrLayer->ProtoDeSerialize( (*LayerNodeIt) );
                             this->ResizeLayers( CurrLayer->GetIndex() );
                             this->RenderLayers[ CurrLayer->GetIndex() ] = CurrLayer;
-                        }else if( (*LayerNodeIt).Name() == "MultiLineTextLayer" ) {
+                        }else if( (*LayerNodeIt).Name() == String("MultiLineTextLayer") ) {
                             CurrLayer = new MultiLineTextLayer(this);
                             CurrLayer->ProtoDeSerialize( (*LayerNodeIt) );
                             this->ResizeLayers( CurrLayer->GetIndex() );
