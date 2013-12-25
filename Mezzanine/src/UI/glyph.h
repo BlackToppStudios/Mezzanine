@@ -210,6 +210,7 @@ namespace Mezzanine
                     case UI::QC_BottomLeft:   return this->AtlasCoords[UI::QC_BottomLeft] * this->Atlas->GetTextureSize();   break;
                     case UI::QC_BottomRight:  return this->AtlasCoords[UI::QC_BottomRight] * this->Atlas->GetTextureSize();  break;
                 }
+                return Vector2(0,0);
             }
             /// @brief Gets the relative position on the Atlas of a corner belonging to this glyph.
             /// @param Corner The corner to retrieve the coordinates for.
@@ -223,6 +224,7 @@ namespace Mezzanine
                     case UI::QC_BottomLeft:   return this->AtlasCoords[UI::QC_BottomLeft];   break;
                     case UI::QC_BottomRight:  return this->AtlasCoords[UI::QC_BottomRight];  break;
                 }
+                return Vector2(0,0);
             }
         };//Glyph
     }//UI

@@ -113,7 +113,7 @@ namespace Mezzanine
             // to the new rect, and allow simpler targetted checks fill in the exceptions
             Real Ret = ChildPositioning.UPosition.X.CalculateActualDimension(NewSelfRect.Position.X);
             // Do our checks
-            if( ChildPositioning.PositionRules & UI::PF_HorizontalCenter == UI::PF_HorizontalCenter ) { // Check if we're centered
+            if( ChildPositioning.PositionRules & UI::PF_HorizontalCenter ) { // Check if we're centered
                 // Get the center point in the parent space on this axis, and align the childs center on the same axis to that point
                 Ret = (NewSelfRect.Position.X - ( NewSelfRect.Size.X * 0.5 ) ) + ( NewChildSize.X * 0.5 );
             }else if( ChildPositioning.PositionRules & UI::PF_Left ) { // Check if we're anchored to the left
@@ -135,7 +135,7 @@ namespace Mezzanine
             // to the new rect, and allow simpler targetted checks fill in the exceptions
             Real Ret = ChildPositioning.UPosition.Y.CalculateActualDimension(NewSelfRect.Position.Y);
             // Do our checks
-            if( ChildPositioning.PositionRules & UI::PF_VerticalCenter == UI::PF_VerticalCenter ) { // Check if we're centered
+            if( ChildPositioning.PositionRules & UI::PF_VerticalCenter ) { // Check if we're centered
                 // Get the center point in the parent space on this axis, and align the childs center on the same axis to that point
                 Ret = (NewSelfRect.Position.Y - ( NewSelfRect.Size.Y * 0.5 ) ) + ( NewChildSize.Y * 0.5 );
             }else if( ChildPositioning.PositionRules & UI::PF_Top ) { // Check if we're anchored to the top
