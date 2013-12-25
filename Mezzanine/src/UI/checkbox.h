@@ -48,10 +48,9 @@ namespace Mezzanine
     namespace UI
     {
         class Button;
-        class Caption;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class CheckBox
-        /// @headerfile uicheckbox.h
+        /// @headerfile checkbox.h
         /// @brief This is a simple widget for storing a bool value.
         /// @details
         ///////////////////////////////////////

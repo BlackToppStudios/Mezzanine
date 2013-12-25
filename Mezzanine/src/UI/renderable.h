@@ -45,9 +45,9 @@
 
 namespace Mezzanine
 {
-    class UIManager;
     namespace UI
     {
+        class UIManager;
         class Screen;
         class ScreenRenderData;
         class Widget;
