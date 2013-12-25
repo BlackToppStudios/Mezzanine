@@ -73,8 +73,7 @@ namespace Mezzanine
         /// @brief Default Constructor.
         Vector2();
         /// @brief Single Real value Constructor.
-        /// @details Constructor that sets both vectors.
-        /// @param xy Set both x and y to.
+        /// @param xy Value to set both x and y to.
         Vector2(const Real& xy);
         /// @brief Real value Constructor.
         /// @param x Coordinate on the X vector.
@@ -124,16 +123,25 @@ namespace Mezzanine
         /// @details Returns true if X<=X and Y<=Y. If any of those do not hold this returns false.
         /// @param Vec This is the other Mezzanine::Vector2.
         /// @note Used primarily for testing. This is not implement for use with other kinds of Vector3 implementations as it is widely considered useless.
-        bool operator<= (const Mezzanine::Vector2 &Vec) const;
+        Bool operator<= (const Mezzanine::Vector2 &Vec) const;
         /// @brief Greater than or Equal Comparison Operator.
         /// @details Returns true if X>=X and Y>=Y . If any of those do not hold this returns false.
         /// @param Vec This is the other Mezzanine::Vector2.
         /// @note Used primarily for testing. This is not implement for use with other kinds of Vector3 implementations as it is widely considered useless.
-        bool operator>= (const Mezzanine::Vector2 &Vec) const;
+        Bool operator>= (const Mezzanine::Vector2 &Vec) const;
+
         ///////////////////////////////////////////////////////////////////////////////
         // Vector2 Arithmetic with Real
 
-        /// @brief Scaling by multiplication.        /// @return This returns a Vector2 that has been scaled.        /// @param scalar This is the amount to scale the Vector2 by.        Vector2 operator* (const Real& scalar) const;        /// @brief Scaling by Division.        /// @return This returns a Vector2 that has been scaled.        /// @param scalar This is the amount to scale the Vector2 by.        Vector2 operator/ (const Real& scalar) const;
+        /// @brief Scaling by multiplication.
+        /// @return This returns a Vector2 that has been scaled.
+        /// @param scalar This is the amount to scale the Vector2 by.
+        Vector2 operator* (const Real& scalar) const;
+        /// @brief Scaling by Division.
+        /// @return This returns a Vector2 that has been scaled.
+        /// @param scalar This is the amount to scale the Vector2 by.
+        Vector2 operator/ (const Real& scalar) const;
+
         ///////////////////////////////////////////////////////////////////////////////
         // Vector2 Arithmetic and assignment with Real
 

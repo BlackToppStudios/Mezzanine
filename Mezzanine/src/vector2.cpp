@@ -56,9 +56,7 @@ namespace Mezzanine
         { this->SetIdentity(); }
 
     Vector2::Vector2(const Real& xy)
-    {
-        SetValues(xy, xy);
-    }
+        { this->SetValues(xy, xy); }
 
     Vector2::Vector2(const Real& x, const Real& y)
         { this->SetValues(x,y); }
@@ -99,40 +97,26 @@ namespace Mezzanine
     // Equality Comparison operators
 
     Bool Vector2::operator==(const Mezzanine::Vector2& Vec2) const
-    {
-        if( Vec2.X == this->X && Vec2.Y == this->Y )
-            { return true; }
-        return false;
-    }
+        { return ( Vec2.X == this->X && Vec2.Y == this->Y ); }
 
     Bool Vector2::operator!=(const Mezzanine::Vector2& Vec2) const
-    {
-        if( Vec2.X != this->X || Vec2.Y != this->Y )
-            { return true; }
-        return false;
-    }
+        { return ( Vec2.X != this->X || Vec2.Y != this->Y ); }
 
     Bool Vector2::operator==(const Ogre::Vector2& Vec2) const
-    {
-        if( Vec2.x == this->X && Vec2.y == this->Y )
-            { return true; }
-        return false;
-    }
+        { return ( Vec2.x == this->X && Vec2.y == this->Y ); }
 
     Bool Vector2::operator!=(const Ogre::Vector2& Vec2) const
-    {
-        if( Vec2.x != this->X || Vec2.y != this->Y )
-            { return true; }
-        return false;
-    }
+        { return ( Vec2.x != this->X || Vec2.y != this->Y ); }
 
-    bool Vector2::operator<= (const Mezzanine::Vector2 &Vec) const
+    Bool Vector2::operator<= (const Mezzanine::Vector2 &Vec) const
         { return ( this->X <= Vec.X && this->Y <= Vec.Y); }
-    bool Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
+
+    Bool Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
         { return ( this->X >= Vec.X && this->Y >= Vec.Y); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector2 Arithmetic with Real
+
     Vector2 Vector2::operator* (const Real& scalar) const
     {
         return Vector2(
