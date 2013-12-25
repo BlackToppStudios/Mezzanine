@@ -47,22 +47,20 @@ namespace Mezzanine
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class RadioButton
-        /// @headerfile uiradiobutton.h
         /// @brief This is a simple widget where only one of it's selections can be selected at a time.
         /// @details
         ///////////////////////////////////////
         class RadioButton : public Widget
         {
-            protected:
-                friend class RenderableFactory;
-            public:
-                /// @brief Class constructor.
-                RadioButton();
-                /// @brief Class destructor.
-                virtual ~RadioButton();
-        };//radiobutton
-    }//ui
+        protected:
+            friend class RadioButtonFactory;
+        public:
+            /// @brief Class constructor.
+            RadioButton();
+            /// @brief Class destructor.
+            virtual ~RadioButton();
+        };//RadioButton
+    }//UI
 }//Mezzanine
 
 #endif
