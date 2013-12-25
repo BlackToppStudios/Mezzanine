@@ -170,42 +170,42 @@ namespace Mezzanine
 
         QuadRenderable::QuadRenderable(Screen* Parent) :
             Renderable(Parent),
-            MousePassthrough(false),
-            ManualTransformUpdates(false),
-            AllLayersDirty(false),
-            ZOrder(0),
             ParentQuad(NULL),
             ActiveGroup(NULL),
             LayoutStrat(NULL),
-            VertexCache(NULL)
+            VertexCache(NULL),
+            ZOrder(0),
+            MousePassthrough(false),
+            ManualTransformUpdates(false),
+            AllLayersDirty(false)
         {
             this->ActDims.SetIdentity();
         }
 
         QuadRenderable::QuadRenderable(const String& RendName, Screen* Parent) :
             Renderable(RendName,Parent),
-            MousePassthrough(false),
-            ManualTransformUpdates(false),
-            AllLayersDirty(false),
-            ZOrder(0),
             ParentQuad(NULL),
             ActiveGroup(NULL),
             LayoutStrat(NULL),
-            VertexCache(NULL)
+            VertexCache(NULL),
+            ZOrder(0),
+            MousePassthrough(false),
+            ManualTransformUpdates(false),
+            AllLayersDirty(false)
         {
             this->ActDims.SetIdentity();
         }
 
         QuadRenderable::QuadRenderable(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Renderable(RendName,Parent),
-            MousePassthrough(false),
-            ManualTransformUpdates(false),
-            AllLayersDirty(false),
-            ZOrder(0),
             ParentQuad(NULL),
             ActiveGroup(NULL),
             LayoutStrat(NULL),
-            VertexCache(NULL)
+            VertexCache(NULL),
+            ZOrder(0),
+            MousePassthrough(false),
+            ManualTransformUpdates(false),
+            AllLayersDirty(false)
         {
             this->ActDims.SetIdentity();
 
@@ -215,7 +215,9 @@ namespace Mezzanine
 
         QuadRenderable::~QuadRenderable()
         {
-            this->RemoveAllChildren();
+            for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
+                { this->ParentScreen->DestroyWidget( (*ChildIt) ); }
+            this->ChildWidgets.clear();
             this->DestroyAllRenderLayerGroups();
             this->DestroyAllRenderLayers();
             this->SetLocalVertexCaching(false);
@@ -264,7 +266,7 @@ namespace Mezzanine
             {
                 Whole Pow2 = 1;
                 while( Pow2 < NewSize )
-                    Pow2 << 1;
+                    Pow2 <<= 1;
 
                 this->RenderLayers.resize(Pow2,NULL);
             }
@@ -1262,26 +1264,26 @@ namespace Mezzanine
 
         void QuadRenderable::_AppendRenderData(ScreenRenderData& RenderData)
         {
-            this->CleanLayers();
-            switch(Priority)
-            {
-                case UI::RP_Low:     this->AppendLayerVertices(RenderData.LowVertices);     break;
-                case UI::RP_Medium:  this->AppendLayerVertices(RenderData.MediumVertices);  break;
-                case UI::RP_High:    this->AppendLayerVertices(RenderData.HighVertices);    break;
+            if( this->GetVisible() ) {
+                this->CleanLayers();
+                switch(Priority)
+                {
+                    case UI::RP_Low:     this->AppendLayerVertices(RenderData.LowVertices);     break;
+                    case UI::RP_Medium:  this->AppendLayerVertices(RenderData.MediumVertices);  break;
+                    case UI::RP_High:    this->AppendLayerVertices(RenderData.HighVertices);    break;
+                }
             }
         }
 
         void QuadRenderable::_AppendRenderDataCascading(ScreenRenderData& RenderData)
         {
-            if(this->VertexCache)
-            {
-                if( this->Dirty || this->AllLayersDirty )
-                {
+            if( this->VertexCache ) {
+                if( this->Dirty || this->AllLayersDirty ) {
                     this->VertexCache->Clear();
                     this->_AppendRenderData(*VertexCache);
                     for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
                     {
-                        if( (*ChildIt)->IsVisible() ) {
+                        if( (*ChildIt)->_HasAvailableRenderData() ) {
                             (*ChildIt)->_AppendRenderDataCascading(*VertexCache);
                         }
                     }
@@ -1291,11 +1293,16 @@ namespace Mezzanine
                 this->_AppendRenderData(RenderData);
                 for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
                 {
-                    if( (*It)->IsVisible() ) {
+                    if( (*It)->_HasAvailableRenderData() ) {
                         (*It)->_AppendRenderDataCascading(RenderData);
                     }
                 }
             }
+        }
+
+        Bool QuadRenderable::_HasAvailableRenderData() const
+        {
+            return this->Visible;
         }
     }//UI
 }//Mezzanine

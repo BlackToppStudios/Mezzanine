@@ -201,20 +201,23 @@ namespace Mezzanine
             typedef std::vector<GroupOrderEntry>               GroupOrderEntryVector;
         protected:
             /// @internal
-            /// @brief Controls whether or not this Quad will be considered for mouse hover checks.
-            Bool MousePassthrough;
+            /// @brief This is a container storing all the @ref RenderLayerGroup instances created by and belonging to this Quad.
+            RenderLayerGroupContainer RenderLayerGroups;
             /// @internal
-            /// @brief Controls whether or not this Quad and it's children will recieve automatic transform updates.
-            Bool ManualTransformUpdates;
+            /// @brief This is a container storing all the @ref RenderLayer instances created by and belonging to this Quad.
+            RenderLayerContainer RenderLayers;
             /// @internal
-            /// @brief Determines whether or not this Quad needs all of it's layers refreshed.  Usually after a transform update.
-            Bool AllLayersDirty;
+            /// @brief This is a container storing all the children that belong to this Quad.
+            ChildContainer ChildWidgets;
             /// @internal
-            /// @brief Determines the "higher ZOrder" of this Quad compared to all other renderables on screen.
-            UI::RenderPriority Priority;
+            /// @brief This stores all the information needed to determine the specific behaviors this Quad should have when it's size is being updated.
+            SizingInfo SizingPolicy;
             /// @internal
-            /// @brief This is the ZOrder of this Quad in relation to all other Quads in it's parent.
-            UInt16 ZOrder;
+            /// @brief This stores all the information needed to determine the specific behaviors this Quad should have when it's position is being updated.
+            PositioningInfo PositioningPolicy;
+            /// @internal
+            /// @brief The actual (pixel) position and size of this Quad on the screen it belongs to.
+            Rect ActDims;
             /// @internal
             /// @brief This is a pointer to the Quad that owns this Quad and is responsible for transform updates applied to this Quad.
             QuadRenderable* ParentQuad;
@@ -228,23 +231,20 @@ namespace Mezzanine
             /// @brief This is a pointer to the optional cache of vertex's belonging to this Quad and all of it's children.
             ScreenRenderData* VertexCache;
             /// @internal
-            /// @brief The actual (pixel) position and size of this Quad on the screen it belongs to.
-            Rect ActDims;
+            /// @brief This is the ZOrder of this Quad in relation to all other Quads in it's parent.
+            UInt16 ZOrder;
             /// @internal
-            /// @brief This stores all the information needed to determine the specific behaviors this Quad should have when it's position is being updated.
-            PositioningInfo PositioningPolicy;
+            /// @brief Determines the "higher ZOrder" of this Quad compared to all other renderables on screen.
+            UI::RenderPriority Priority;
             /// @internal
-            /// @brief This stores all the information needed to determine the specific behaviors this Quad should have when it's size is being updated.
-            SizingInfo SizingPolicy;
+            /// @brief Controls whether or not this Quad will be considered for mouse hover checks.
+            Bool MousePassthrough;
             /// @internal
-            /// @brief This is a container storing all the children that belong to this Quad.
-            ChildContainer ChildWidgets;
+            /// @brief Controls whether or not this Quad and it's children will recieve automatic transform updates.
+            Bool ManualTransformUpdates;
             /// @internal
-            /// @brief This is a container storing all the @ref RenderLayer instances created by and belonging to this Quad.
-            RenderLayerContainer RenderLayers;
-            /// @internal
-            /// @brief This is a container storing all the @ref RenderLayerGroup instances created by and belonging to this Quad.
-            RenderLayerGroupContainer RenderLayerGroups;
+            /// @brief Determines whether or not this Quad needs all of it's layers refreshed.  Usually after a transform update.
+            Bool AllLayersDirty;
 
             /// @copydoc Renderable::ProtoSerializeImpl(XML::Node&) const
             virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
@@ -276,6 +276,8 @@ namespace Mezzanine
             /// @param Parent The parent screen that created this renderable.
             QuadRenderable(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
             /// @brief Class destructor.
+            /// @note Any and all children of this quad at the time of it's destruction will be destroyed as well.
+            /// If you want to preserve the children for whatever reason, remove them from the quad prior to destroying it.
             virtual ~QuadRenderable();
         public:
             ///////////////////////////////////////////////////////////////////////////////
@@ -800,6 +802,7 @@ namespace Mezzanine
             /// @brief Notifies this QuadRenderable that it has been added to another QuadRenderable.
             /// @param NewParent A pointer to the QuadRenderable this is becoming the child of.
             virtual void _NotifyParenthood(QuadRenderable* NewParent);
+
             /// @copydoc Renderable::_MarkDirty()
             virtual void _MarkDirty();
             /// @internal
@@ -809,12 +812,17 @@ namespace Mezzanine
             /// @internal
             /// @brief Tells this QuadRenderable that all of it's layers are dirty.
             virtual void _MarkAllLayersDirty();
+
             /// @copydoc Renderable::_AppendRenderData(ScreenRenderData& RenderData)
             virtual void _AppendRenderData(ScreenRenderData& RenderData);
             /// @internal
             /// @brief Appends the vertices of this renderable to another vector, and then does the same for this renderable's children.
             /// @param RenderData The vector of vertex's to append to.
             virtual void _AppendRenderDataCascading(ScreenRenderData& RenderData);
+            /// @internal
+            /// @brief Checks if there are available render data from this QuadRenderable (or it's subrenderables).
+            /// @return Returns true if this QuadRenderable has render data that can be appended, false otherwise.
+            virtual Bool _HasAvailableRenderData() const;
         };//QuadRenderable
     }//UI
 }//Mezzanine
