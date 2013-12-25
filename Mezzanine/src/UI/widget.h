@@ -220,12 +220,12 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods
 
-            /// @copydoc Renderable::SetVisible(bool visible)
-            virtual void SetVisible(bool visible);
+            /// @copydoc Renderable::SetVisible(Bool)
+            virtual void SetVisible(Bool CanSee);
             /// @copydoc Renderable::GetVisible() const
-            virtual bool GetVisible() const;
+            virtual Bool GetVisible() const;
             /// @copydoc Renderable::IsVisible() const
-            virtual bool IsVisible() const;
+            virtual Bool IsVisible() const;
             /// @copydoc Renderable::Show()
             virtual void Show();
             /// @copydoc Renderable::Hide()

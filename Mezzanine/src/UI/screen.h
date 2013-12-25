@@ -65,6 +65,7 @@ namespace Mezzanine
         class HorizontalScrollbar;
         class LineList;
         class ListBox;
+        class MenuButton;
         class MenuEntry;
         class RadioButton;
         class Scrollbar;
@@ -250,18 +251,20 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility and Visibility Methods
 
-            /// @copydoc Renderable::SetVisible(bool)
-            virtual void SetVisible(bool visible);
+            /// @copydoc Renderable::SetVisible(Bool)
+            virtual void SetVisible(Bool CanSee);
             /// @copydoc Renderable::GetVisible() const
-            virtual bool GetVisible() const;
+            virtual Bool GetVisible() const;
             /// @copydoc Renderable::IsVisible() const
-            virtual bool IsVisible() const;
+            virtual Bool IsVisible() const;
             /// @copydoc Renderable::Show()
             virtual void Show();
             /// @copydoc Renderable::Hide()
             virtual void Hide();
+
             /// @copydoc Renderable::GetRenderableType() const
             virtual RenderableType GetRenderableType() const;
+
             /// @brief Gets the current viewport dimensions.
             /// @return Returns a Vector2 representing the current viewport dimensions.
             virtual const Vector2& GetViewportDimensions() const;
@@ -345,15 +348,35 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Convenience Widget Creation Methods
 
-            /// @brief Creates a button.
-            /// @param Name The name to be given to this button.
-            /// @return Returns a pointer to the created button.
+            /// @brief Creates a generic widget.
+            /// @note This is not a polymorphic create method.  It will case an instance of the widget base class.
+            /// @param Name The name to be given to this Widget.
+            /// @return Returns a pointer to the created Widget.
+            virtual Widget* CreateWidget(const String& Name);
+            /// @brief Creates a generic widget.
+            /// @note This is not a polymorphic create method.  It will case an instance of the widget base class.
+            /// @param Name The name to be given to this Widget.
+            /// @param RendRect The rect describing this Widget's transform relative to it's parent.
+            /// @return Returns a pointer to the created Widget.
+            virtual Widget* CreateWidget(const String& Name, const UnifiedRect& RendRect);
+            /// @brief Creates a Button.
+            /// @param Name The name to be given to this Button.
+            /// @return Returns a pointer to the created Button.
             virtual Button* CreateButton(const String& Name);
-            /// @brief Creates a text button.
-            /// @param Name The name to be given to this button.
-            /// @param RendRect The rect describing this button's transform relative to it's parent.
-            /// @return Returns a pointer to the created button.
+            /// @brief Creates a Button.
+            /// @param Name The name to be given to this Button.
+            /// @param RendRect The rect describing this Button's transform relative to it's parent.
+            /// @return Returns a pointer to the created Button.
             virtual Button* CreateButton(const String& Name, const UnifiedRect& RendRect);
+            /// @brief Creates a MenuButton.
+            /// @param Name The name to be given to this MenuButton.
+            /// @return Returns a pointer to the created MenuButton.
+            virtual MenuButton* CreateMenuButton(const String& Name);
+            /// @brief Creates a MenuButton.
+            /// @param Name The name to be given to this MenuButton.
+            /// @param RendRect The rect describing this MenuButton's transform relative to it's parent.
+            /// @return Returns a pointer to the created MenuButton.
+            virtual MenuButton* CreateMenuButton(const String& Name, const UnifiedRect& RendRect);
             /// @brief Creates a CheckBox.
             /// @param Name The name of the CheckBox.
             /// @return Returns a pointer to the created CheckBox.
@@ -385,6 +408,25 @@ namespace Mezzanine
             /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
             /// @return Returns a pointer to the created VerticalScrollbar.
             virtual VerticalScrollbar* CreateVerticalScrollbar(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style);
+
+            /// @brief Creates a widget container aligned on the X axis.
+            /// @param RendName The name to be given to this renderable.
+            /// @return Returns a pointer to the created HorizontalContainer.
+            virtual HorizontalContainer* CreateHorizontalContainer(const String& RendName);
+            /// @brief Creates a widget container aligned on the X axis.
+            /// @param RendName The name to be given to this renderable.
+            /// @param RendRect The rect describing this widget's transform relative to it's parent.
+            /// @return Returns a pointer to the created HorizontalContainer.
+            virtual HorizontalContainer* CreateHorizontalContainer(const String& RendName, const UnifiedRect& RendRect);
+            /// @brief Creates a widget container aligned on the Y axis.
+            /// @param RendName The name to be given to this renderable.
+            /// @return Returns a pointer to the created VerticalContainer.
+            virtual VerticalContainer* CreateVerticalContainer(const String& RendName);
+            /// @brief Creates a widget container aligned on the Y axis.
+            /// @param RendName The name to be given to this renderable.
+            /// @param RendRect The rect describing this widget's transform relative to it's parent.
+            /// @return Returns a pointer to the created VerticalContainer.
+            virtual VerticalContainer* CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect);
 
             /*/// @brief Creates a List Box.
             /// @return Returns a pointer to the created List Box.

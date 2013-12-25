@@ -201,27 +201,31 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
-        void Widget::SetVisible(bool visible)
+        void Widget::SetVisible(Bool CanSee)
         {
-            if( this->Visible == visible )
+            if( this->Visible == CanSee )
                 return;
-            Visible = visible;
-            if(visible) this->_OnVisibilityShown();
+            Visible = CanSee;
+            if(CanSee) this->_OnVisibilityShown();
             else this->_OnVisibilityHidden();
             for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
             {
-                (*It)->SetVisible(visible);
+                (*It)->SetVisible(CanSee);
             }
         }
 
-        bool Widget::GetVisible() const
+        Bool Widget::GetVisible() const
         {
             return this->Visible;
         }
 
-        bool Widget::IsVisible() const
+        Bool Widget::IsVisible() const
         {
-            return this->Visible && this->ParentScreen->IsVisible();
+            if( this->ParentQuad ) {
+                return this->Visible && this->ParentQuad->IsVisible();
+            }else{
+                return this->Visible;
+            }
         }
 
         void Widget::Show()

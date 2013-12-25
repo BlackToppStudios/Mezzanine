@@ -55,7 +55,8 @@
 #include "UI/horizontalscrollbar.h"
 #include "UI/linelist.h"
 #include "UI/listbox.h"
-#include "UI/menu.h"
+#include "UI/menubutton.h"
+#include "UI/menuentry.h"
 #include "UI/radiobutton.h"
 #include "UI/scrollbar.h"
 #include "UI/spinner.h"
@@ -65,10 +66,12 @@
 #include "UI/widget.h"
 #include "UI/window.h"
 
+#include "Graphics/gamewindow.h"
 #include "Graphics/viewport.h"
 #include "Graphics/cameramanager.h"
-#include "Graphics/scenemanager.h"
 #include "Graphics/cameraproxy.h"
+#include "Graphics/graphicsmanager.h"
+#include "Graphics/scenemanager.h"
 
 #include "mathtool.h"
 #include "exception.h"
@@ -356,13 +359,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility and Visibility Methods
 
-        void Screen::SetVisible(bool visible)
-            { this->Visible = visible; }
+        void Screen::SetVisible(Bool CanSee)
+            { this->Visible = CanSee; }
 
-        bool Screen::GetVisible() const
+        Bool Screen::GetVisible() const
             { return this->Visible; }
 
-        bool Screen::IsVisible() const
+        Bool Screen::IsVisible() const
             { return this->Visible; }
 
         void Screen::Show()
@@ -476,9 +479,15 @@ namespace Mezzanine
         void Screen::AddAllDefaultWidgetFactories()
         {
             WidgetFactoryIterator FactIt;
+            // Generic Widget
+            FactIt = this->WidgetFactories.find( Widget::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new GenericWidgetFactory() );
             // Button
             FactIt = this->WidgetFactories.find( Button::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new ButtonFactory() );
+            // MenuButton
+            FactIt = this->WidgetFactories.find( MenuButton::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new MenuButtonFactory() );
             // CheckBox
             FactIt = this->WidgetFactories.find( CheckBox::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new CheckBoxFactory() );
@@ -488,6 +497,13 @@ namespace Mezzanine
             // VerticalScrollbar
             FactIt = this->WidgetFactories.find( VerticalScrollbar::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new VerticalScrollbarFactory() );
+
+            // HorizontalContainer
+            FactIt = this->WidgetFactories.find( HorizontalContainer::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new HorizontalContainerFactory() );
+            // VerticalContainer
+            FactIt = this->WidgetFactories.find( VerticalContainer::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new VerticalContainerFactory() );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -546,6 +562,20 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Convenience Widget Creation Methods
 
+        Widget* Screen::CreateWidget(const String& Name)
+        {
+            Widget* NewWidget = static_cast<GenericWidgetFactory*>( this->GetWidgetFactoryExcept( Widget::TypeName ) )->CreateWidget( Name, this );
+            this->CheckAndInsertExcept( NewWidget );
+            return NewWidget;
+        }
+
+        Widget* Screen::CreateWidget(const String& Name, const UnifiedRect& RendRect)
+        {
+            Widget* NewWidget = static_cast<GenericWidgetFactory*>( this->GetWidgetFactoryExcept( Widget::TypeName ) )->CreateWidget( Name, RendRect, this );
+            this->CheckAndInsertExcept( NewWidget );
+            return NewWidget;
+        }
+
         Button* Screen::CreateButton(const String& Name)
         {
             Button* NewButton = static_cast<ButtonFactory*>( this->GetWidgetFactoryExcept( Button::TypeName ) )->CreateButton( Name, this );
@@ -556,6 +586,20 @@ namespace Mezzanine
         Button* Screen::CreateButton(const String& Name, const UnifiedRect& RendRect)
         {
             Button* NewButton = static_cast<ButtonFactory*>( this->GetWidgetFactoryExcept( Button::TypeName ) )->CreateButton( Name, RendRect, this );
+            this->CheckAndInsertExcept( NewButton );
+            return NewButton;
+        }
+
+        MenuButton* Screen::CreateMenuButton(const String& Name)
+        {
+            MenuButton* NewButton = static_cast<MenuButtonFactory*>( this->GetWidgetFactoryExcept( MenuButton::TypeName ) )->CreateMenuButton( Name, this );
+            this->CheckAndInsertExcept( NewButton );
+            return NewButton;
+        }
+
+        MenuButton* Screen::CreateMenuButton(const String& Name, const UnifiedRect& RendRect)
+        {
+            MenuButton* NewButton = static_cast<MenuButtonFactory*>( this->GetWidgetFactoryExcept( MenuButton::TypeName ) )->CreateMenuButton( Name, RendRect, this );
             this->CheckAndInsertExcept( NewButton );
             return NewButton;
         }
@@ -600,6 +644,34 @@ namespace Mezzanine
             VerticalScrollbar* NewVScroll = static_cast<VerticalScrollbarFactory*>( this->GetWidgetFactoryExcept( VerticalScrollbar::TypeName ) )->CreateVerticalScrollbar( Name, RendRect, Style, this );
             this->CheckAndInsertExcept( NewVScroll );
             return NewVScroll;
+        }
+
+        HorizontalContainer* Screen::CreateHorizontalContainer(const String& RendName)
+        {
+            HorizontalContainer* NewHContain = static_cast<HorizontalContainerFactory*>( this->GetWidgetFactoryExcept( HorizontalContainer::TypeName ) )->CreateHorizontalContainer( Name, this );
+            this->CheckAndInsertExcept( NewHContain );
+            return NewHContain;
+        }
+
+        HorizontalContainer* Screen::CreateHorizontalContainer(const String& RendName, const UnifiedRect& RendRect)
+        {
+            HorizontalContainer* NewHContain = static_cast<HorizontalContainerFactory*>( this->GetWidgetFactoryExcept( HorizontalContainer::TypeName ) )->CreateHorizontalContainer( Name, RendRect, this );
+            this->CheckAndInsertExcept( NewHContain );
+            return NewHContain;
+        }
+
+        VerticalContainer* Screen::CreateVerticalContainer(const String& RendName)
+        {
+            VerticalContainer* NewVContain = static_cast<VerticalContainerFactory*>( this->GetWidgetFactoryExcept( VerticalContainer::TypeName ) )->CreateVerticalContainer( Name, this );
+            this->CheckAndInsertExcept( NewVContain );
+            return NewVContain;
+        }
+
+        VerticalContainer* Screen::CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect)
+        {
+            VerticalContainer* NewVContain = static_cast<VerticalContainerFactory*>( this->GetWidgetFactoryExcept( VerticalContainer::TypeName ) )->CreateVerticalContainer( Name, RendRect, this );
+            this->CheckAndInsertExcept( NewVContain );
+            return NewVContain;
         }
 
 
@@ -693,7 +765,7 @@ namespace Mezzanine
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
                 PropertiesNode.AppendAttribute("WindowTitle").SetValue( this->GameViewport->GetParentWindow()->GetWindowCaption() ) &&
                 PropertiesNode.AppendAttribute("ViewportZOrder").SetValue( this->GameViewport->GetZOrder() ) &&
-                PropertiesNode.AppendAttribute("PriAtlas").SetValue( this->PriAtlas ) )
+                PropertiesNode.AppendAttribute("PriAtlas").SetValue( this->PrimaryAtlas ) )
             {
                 XML::Node VertexTransformNode = PropertiesNode.AppendChild("VertexTransform");
                 this->VertexTransform.ProtoSerialize( VertexTransformNode );
@@ -721,7 +793,7 @@ namespace Mezzanine
                     // Get the single data type properties
                     CurrAttrib = PropertiesNode.GetAttribute("PriAtlas");
                     if( !CurrAttrib.Empty() )
-                        this->PriAtlas = CurrAttrib.AsString();
+                        this->PrimaryAtlas = CurrAttrib.AsString();
 
                     CurrAttrib = PropertiesNode.GetAttribute("WindowTitle");
                     if( !CurrAttrib.Empty() )
@@ -729,7 +801,7 @@ namespace Mezzanine
 
                     CurrAttrib = PropertiesNode.GetAttribute("ViewportZOrder");
                     if( !CurrAttrib.Empty() )
-                        ZOrder = CurrAttrib.AsString();
+                        ViewZOrder = CurrAttrib.AsWhole();
 
                     // Get the properties that need their own nodes
                     XML::Node VertexTransformNode = PropertiesNode.GetChild("VertexTransform").GetFirstChild();

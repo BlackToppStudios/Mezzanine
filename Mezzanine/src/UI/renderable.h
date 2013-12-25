@@ -119,17 +119,17 @@ namespace Mezzanine
             // Visibility Methods
 
             /// @brief Sets the visibility of this renderable.
-            /// @param visible Bool determining whether or not this renderable should be visible.
-            virtual void SetVisible(bool visible) = 0;
+            /// @param CanSee Bool determining whether or not this renderable should be visible.
+            virtual void SetVisible(Bool CanSee) = 0;
             /// @brief Gets the visibility setting of this renderable.
             /// @return Returns a bool that is the current visibility setting of this renderable.
-            virtual bool GetVisible() const = 0;
+            virtual Bool GetVisible() const = 0;
             /// @brief Gets whether or not this renderable is being drawn.
             /// @details This function will check the visibility of all parent objects to see if it is being
             /// drawn.  This will not tell you whether or not this renderable has it's own visibility setting
             /// enabled.  For that see: GetVisible().
             /// @return Returns a bool representing the visibility of this renderable.
-            virtual bool IsVisible() const = 0;
+            virtual Bool IsVisible() const = 0;
             /// @brief Forces this renderable to be shown.
             virtual void Show() = 0;
             /// @brief Forces this renderable to hide.
