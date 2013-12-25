@@ -90,6 +90,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "MenuEntry".
             static const String TypeName;
         protected:
+            friend class MenuEntryFactory;
             /// @internal
             /// @brief A pointer to the active stack of MenuEntries.
             MenuEntryContainer* MenuStack;
@@ -111,7 +112,7 @@ namespace Mezzanine
             /// @brief Pops this MenuEntry from the stack if one is available.
             /// @return Returns true if this MenuEntry was successfully popped from the stack, false otherwise.
             virtual Bool PopFromStack();
-        public:
+        //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             MenuEntry(Screen* Parent);
@@ -129,8 +130,8 @@ namespace Mezzanine
             /// @param Parent The screen the created MenuEntry will belong to.
             MenuEntry(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
-            virtual ~MenuEntry();
-
+        virtual ~MenuEntry();
+        public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
