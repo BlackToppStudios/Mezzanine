@@ -455,6 +455,36 @@ namespace Mezzanine
             }
             return false;
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // MenuEntryFactory Methods
+
+        String MenuEntryFactory::GetWidgetTypeName() const
+            { return MenuEntry::TypeName; }
+
+        MenuEntry* MenuEntryFactory::CreateMenuEntry(const String& RendName, Screen* Parent)
+            { return new MenuEntry(RendName,Parent); }
+
+        MenuEntry* MenuEntryFactory::CreateMenuEntry(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
+            { return new MenuEntry(RendName,RendRect,Parent); }
+
+        MenuEntry* MenuEntryFactory::CreateMenuEntry(const XML::Node& XMLNode, Screen* Parent)
+            { return new MenuEntry(XMLNode,Parent); }
+
+        Widget* MenuEntryFactory::CreateWidget(Screen* Parent)
+            { return new MenuEntry(Parent); }
+
+        Widget* MenuEntryFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateMenuEntry(RendName,Parent); }
+
+        Widget* MenuEntryFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateMenuEntry(RendName,RendRect,Parent); }
+
+        Widget* MenuEntryFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateMenuEntry(XMLNode,Parent); }
+
+        void MenuEntryFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<MenuEntry*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 

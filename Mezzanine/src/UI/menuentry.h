@@ -221,6 +221,50 @@ namespace Mezzanine
             /// @copydoc QuadRenderable::_HasAvailableRenderData() const
             virtual Bool _HasAvailableRenderData() const;
         };//MenuEntry
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the factory implementation for MenuEntry widgets.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB MenuEntryFactory : public WidgetFactory
+        {
+        public:
+            /// @brief Class constructor.
+            MenuEntryFactory() {  }
+            /// @brief Class destructor.
+            virtual ~MenuEntryFactory() {  }
+
+            /// @copydoc WidgetFactory::GetWidgetTypeName() const
+            virtual String GetWidgetTypeName() const;
+
+            /// @brief Creates a new MenuEntry.
+            /// @param RendName The name to be given to the created MenuEntry.
+            /// @param Parent The screen the created MenuEntry will belong to.
+            /// @return Returns a pointer to the created MenuEntry.
+            virtual MenuEntry* CreateMenuEntry(const String& RendName, Screen* Parent);
+            /// @brief Creates a new MenuEntry.
+            /// @param RendName The name to be given to the created MenuEntry.
+            /// @param RendRect The dimensions that will be assigned to the created MenuEntry.
+            /// @param Parent The screen the created MenuEntry will belong to.
+            /// @return Returns a pointer to the created MenuEntry.
+            virtual MenuEntry* CreateMenuEntry(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief Creates a new MenuEntry.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created MenuEntry will belong to.
+            /// @return Returns a pointer to the created MenuEntry.
+            virtual MenuEntry* CreateMenuEntry(const XML::Node& XMLNode, Screen* Parent);
+
+            /// @copydoc WidgetFactory::CreateWidget(Screen*)
+            virtual Widget* CreateWidget(Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const UnifiedRect&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const XML::Node&, Screen*)
+            virtual Widget* CreateWidget(const XML::Node& XMLNode, Screen* Parent);
+            /// @copydoc WidgetFactory::DestroyWidget(Widget*)
+            virtual void DestroyWidget(Widget* ToBeDestroyed);
+        };//MenuEntryFactory
     }//UI
 }//Mezzanine
 
