@@ -271,25 +271,18 @@ public:
 
         }
 
-        Input::Mouse* SysMouse = Input::InputManager::GetSingletonPtr()->GetSystemMouse();
         // Update Stat information
-        UI::OpenRenderableContainerWidget* HUD = static_cast<UI::OpenRenderableContainerWidget*>(TheEntresol->GetUIManager()->GetScreen("DefaultScreen")->GetWidget("D_HUD"));
-        UI::Caption* CurFPS = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_CurFPS"));
-        UI::Caption* AvFPS = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_AvFPS"));
-        std::stringstream CFPSstream;
-        std::stringstream AFPSstream;
+        UI::Screen* DScreen = TheEntresol->GetUIManager()->GetScreen("DefaultScreen");
+        UI::Widget* CurFPS = static_cast<UI::Widget*>(DScreen->GetWidget("D_CurFPS"));
+        UI::Widget* AvFPS = static_cast<UI::Widget*>(DScreen->GetWidget("D_AvFPS"));
+        StringStream CFPSstream;
+        StringStream AFPSstream;
         CFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetLastFPS();
         AFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetAverageFPS();
         String CFPS = CFPSstream.str();
         String AFPS = AFPSstream.str();
-        CurFPS->SetText(CFPS);
-        AvFPS->SetText(AFPS);
-        // Update mouse positions
-        UI::Caption* IMPos = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_IMPos"));
-        std::stringstream IMPosstream;
-        IMPosstream << SysMouse->GetWindowX() << "," << SysMouse->GetWindowY();
-        String IMPosTex = IMPosstream.str();
-        IMPos->SetText(IMPosTex);
+        static_cast<UI::SingleLineTextLayer*>(CurFPS->GetRenderLayer(0))->SetText(CFPS);
+        static_cast<UI::SingleLineTextLayer*>(AvFPS->GetRenderLayer(0))->SetText(AFPS);
     }
 };//DemoPostRenderWorkUnit
 
@@ -350,7 +343,7 @@ int main(int argc, char **argv)
     Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
     Graphics::CameraProxy* FirstCam = TheEntresol->GetCameraManager()->CreateCamera("FirstCam");
     //Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
-    FirstWindow->CreateViewport(FirstCam);
+    FirstWindow->CreateViewport(FirstCam,0);
     FirstCam->SetLocation( Vector3(0,50,900) );
     FirstCam->LookAt( Vector3(0,0,0) );
 
@@ -606,50 +599,91 @@ void MakeGUI()
     String DefaultScreen = "DefaultScreen";
     UI::UIManager* GUI = TheEntresol->GetUIManager();
     Graphics::Viewport* UIViewport = TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetViewport(0);
-    GUI->LoadMTA("dejavu");
-    UI::Screen* DScreen = GUI->CreateScreen(DefaultScreen, "dejavu", UIViewport);
+    GUI->LoadMTA("EngineDemo_Menu.mta");
+    UI::Screen* DScreen = GUI->CreateScreen(DefaultScreen, "EngineDemo_Menu.mta", UIViewport);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ColourValue Black(0.0,0.0,0.0,1.0);
     ColourValue TransBlack(0.0,0.0,0.0,0.3);
 
-    ColourValue MenuButtonColour(0.3,0.4,0.8,1.0);
+    ColourValue ButtonColour(0.6,0.2,0.2,1.0);
+    ColourValue HoveredButtonColour(0.8,0.7,0.05,1.0);
     ColourValue MenuColour(0.4,0.8,0.3,1.0);
-    ColourValue ReturnColour(0.6,0.2,0.2,1.0);
-    ColourValue ExitColour(0.6,0.2,0.2,1.0);
 
     //Build the HUD
-    UI::OpenRenderableContainerWidget* HUDContainer = DScreen->CreateOpenRenderableContainerWidget("D_HUD");
-    UI::Button* MenuButton = HUDContainer->CreateButton( "D_MenuAccess", UI::RenderableRect(Vector2(0.008, 0.935), Vector2(0.16, 0.065), true),(Whole)14,"Menu");
-    MenuButton->GetClickable()->SetBackgroundColour(MenuButtonColour);
-    UI::Caption* CurFPS = HUDContainer->CreateCaption( "D_CurFPS", UI::RenderableRect(Vector2(0.16, 0.06), Vector2(0.06, 0.065), true), (Whole)14, "0.0");
-    CurFPS->SetBackgroundColour(Transparent);
-    CurFPS->HorizontallyAlign(UI::Txt_Left);
-    UI::Caption* CurFPSText = HUDContainer->CreateCaption( "D_CurFPSText", UI::RenderableRect(Vector2(0.008, 0.06), Vector2(0.15, 0.065), true), (Whole)14, "Current FPS: ");
-    CurFPSText->SetBackgroundColour(Transparent);
-    CurFPSText->HorizontallyAlign(UI::Txt_Left);
-    UI::Caption* AvFPS = HUDContainer->CreateCaption( "D_AvFPS", UI::RenderableRect(Vector2(0.16, 0.105), Vector2(0.06, 0.065), true), (Whole)14, "0.0");
-    AvFPS->SetBackgroundColour(Transparent);
-    AvFPS->HorizontallyAlign(UI::Txt_Left);
-    UI::Caption* AvFPSText = HUDContainer->CreateCaption( "D_AvFPSText", UI::RenderableRect(Vector2(0.008, 0.105), Vector2(0.15, 0.065), true), (Whole)14, "Average FPS: ");
-    AvFPSText->SetBackgroundColour(Transparent);
-    AvFPSText->HorizontallyAlign(UI::Txt_Left);
-    UI::Caption* IMPos = HUDContainer->CreateCaption( "D_IMPos", UI::RenderableRect(Vector2(0.16, 0.15), Vector2(0.12, 0.065), true), (Whole)14, "0,0");
-    IMPos->SetBackgroundColour(Transparent);
-    IMPos->HorizontallyAlign(UI::Txt_Left);
-    UI::Caption* IMPosText = HUDContainer->CreateCaption( "D_IMPosText", UI::RenderableRect(Vector2(0.008, 0.15), Vector2(0.15, 0.065), true), (Whole)14, "Mouse Pos: ");
-    IMPosText->SetBackgroundColour(Transparent);
-    IMPosText->HorizontallyAlign(UI::Txt_Left);
-    DScreen->AddRootWidget(0,HUDContainer);
+    UI::MenuButton* MenuAccess = DScreen->CreateMenuButton("D_MenuAccess",UI::UnifiedRect(0.008,0.935,0.16,0.065,0,0,0,0));
+    UI::ImageLayer* AccessBackground = MenuAccess->CreateImageLayer(0,"Normal");
+    AccessBackground->SetColour(ButtonColour);
+    UI::ImageLayer* AccessHoveredBackground = MenuAccess->CreateImageLayer(0,"Hovered");
+    AccessHoveredBackground->SetColour(HoveredButtonColour);
+    UI::SingleLineTextLayer* AccessText = MenuAccess->CreateSingleLineTextLayer();
+    AccessText->SetText("Menu");
+    MenuAccess->AddLayerToGroup(AccessText,1,"Normal");
+    MenuAccess->AddLayerToGroup(AccessText,1,"Hovered");
+    DScreen->AddChild(MenuAccess);
+
+    UI::Widget* CurFPS = DScreen->CreateWidget("D_CurFPS",UI::UnifiedRect(0.16,0.06,0.06,0.065,0,0,0,0));
+    UI::SingleLineTextLayer* CurFPSText = CurFPS->CreateSingleLineTextLayer();
+    CurFPSText->HorizontallyAlign(UI::LA_TopLeft);
+    CurFPSText->SetText("0.0");
+    CurFPS->AddLayerToGroup(CurFPSText,1,"Normal");
+    CurFPS->AddLayerToGroup(CurFPSText,1,"Hovered");
+    DScreen->AddChild(CurFPS);
+
+    UI::Widget* CurFPSStat = DScreen->CreateWidget("D_CurFPSStat",UI::UnifiedRect(0.008,0.06,0.15,0.065,0,0,0,0));
+    UI::SingleLineTextLayer* CurFPSStatText = CurFPSStat->CreateSingleLineTextLayer();
+    CurFPSStatText->HorizontallyAlign(UI::LA_TopLeft);
+    CurFPSStatText->SetText("Current FPS: ");
+    CurFPSStat->AddLayerToGroup(CurFPSStatText,1,"Normal");
+    CurFPSStat->AddLayerToGroup(CurFPSStatText,1,"Hovered");
+    DScreen->AddChild(CurFPSStat);
+
+    UI::Widget* AvFPS = DScreen->CreateWidget("D_AvFPS",UI::UnifiedRect(0.16,0.105,0.06,0.065,0,0,0,0));
+    UI::SingleLineTextLayer* AvFPSText = AvFPS->CreateSingleLineTextLayer();
+    AvFPSText->HorizontallyAlign(UI::LA_TopLeft);
+    AvFPSText->SetText("0.0");
+    AvFPS->AddLayerToGroup(AvFPSText,1,"Normal");
+    AvFPS->AddLayerToGroup(AvFPSText,1,"Hovered");
+    DScreen->AddChild(AvFPS);
+
+    UI::Widget* AvFPSStat = DScreen->CreateWidget("D_AvFPSStat",UI::UnifiedRect(0.008,0.105,0.15,0.065,0,0,0,0));
+    UI::SingleLineTextLayer* AvFPSStatText = AvFPSStat->CreateSingleLineTextLayer();
+    AvFPSStatText->HorizontallyAlign(UI::LA_TopLeft);
+    AvFPSStatText->SetText("Average FPS: ");
+    AvFPSStat->AddLayerToGroup(AvFPSStatText,1,"Normal");
+    AvFPSStat->AddLayerToGroup(AvFPSStatText,1,"Hovered");
+    DScreen->AddChild(AvFPSStat);
     //End of HUD
     //Build the Menu
-    UI::Menu* DemoMenu = DScreen->CreateMenu( "D_Menu", UI::RenderableRect(Vector2(0.35, 0.27), Vector2(0.3, 0.45), true));
-    DemoMenu->GetRootWindow()->GetWindowBack()->SetBackgroundColour(MenuColour);
-    UI::Button* ReturnButton = DemoMenu->GetRootWindow()->CreateButton( "D_Return", UI::RenderableRect(Vector2(0.38, 0.56), Vector2(0.24, 0.05), true), (Whole)14, "Return To Demo");
-    ReturnButton->GetClickable()->SetBackgroundColour(ReturnColour);
-    UI::Button* GameExitButton = DemoMenu->GetRootWindow()->CreateButton( "D_Exit", UI::RenderableRect(Vector2(0.38, 0.64), Vector2(0.24, 0.05), true), (Whole)14, "Exit Demo");
-    GameExitButton->GetClickable()->SetBackgroundColour(ExitColour);
-    DScreen->AddRootWidget(1,DemoMenu);
+    UI::MenuEntry* DemoMenu = DScreen->CreateMenuEntry("D_Menu",UI::UnifiedRect(0.35,0.27,0.3,0.45,0,0,0,0));
+    UI::ImageLayer* DemoMenuBackground = DemoMenu->CreateImageLayer();
+    DemoMenuBackground->SetColour(MenuColour);
+    DemoMenu->AddLayerToGroup(DemoMenuBackground,0,"Normal");
+    DemoMenu->AddLayerToGroup(DemoMenuBackground,0,"Hovered");
+
+    UI::MenuButton* ReturnButton = DScreen->CreateMenuButton("D_Return",UI::UnifiedRect(0.38,0.56,0.24,0.05,0,0,0,0));
+    UI::ImageLayer* ReturnBackground = ReturnButton->CreateImageLayer(0,"Normal");
+    ReturnBackground->SetColour(ButtonColour);
+    UI::ImageLayer* ReturnHoveredBackground = ReturnButton->CreateImageLayer(0,"Hovered");
+    ReturnHoveredBackground->SetColour(HoveredButtonColour);
+    UI::SingleLineTextLayer* ReturnText = ReturnButton->CreateSingleLineTextLayer();
+    ReturnText->SetText("Return To Demo");
+    ReturnButton->AddLayerToGroup(ReturnText,1,"Normal");
+    ReturnButton->AddLayerToGroup(ReturnText,1,"Hovered");
+
+    UI::Button* GameExitButton = DScreen->CreateButton("D_Exit",UI::UnifiedRect(0.38,0.64,0.24,0.05,0,0,0,0));
+    UI::ImageLayer* GameExitBackground = GameExitButton->CreateImageLayer(0,"Normal");
+    GameExitBackground->SetColour(ButtonColour);
+    UI::ImageLayer* GameExitHoveredBackground = GameExitButton->CreateImageLayer(0,"Hovered");
+    GameExitHoveredBackground->SetColour(HoveredButtonColour);
+    UI::SingleLineTextLayer* GameExitText = GameExitButton->CreateSingleLineTextLayer();
+    GameExitText->SetText("Exit Demo");
+    GameExitButton->AddLayerToGroup(GameExitText,1,"Normal");
+    GameExitButton->AddLayerToGroup(GameExitText,1,"Hovered");
+
+    DemoMenu->SetPushButton(MenuAccess);
+    DemoMenu->SetPopButton(ReturnButton);
+    DScreen->AddChild(DemoMenu);
     DemoMenu->Hide();
     //End of Menu
 }
