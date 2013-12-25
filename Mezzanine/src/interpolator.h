@@ -144,8 +144,8 @@ namespace Mezzanine
                     { return InterpolateMath(*(Begin), *(Begin+1), Location); }
 
                 Whole UsingLineSegment = Location * Real(LineSegmentCount); // Pick a Line Segment
-                //if(UsingLineSegment>LineSegmentCount)               //We are past the end of the line segments
-                //    { return *(End-1); }
+                if(UsingLineSegment>=LineSegmentCount)               //We are past the end of the line segments
+                    { return *(End-1); }
 
                 Real LocalPercentage = std::fmod(PreciseReal(Location), PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount;
 
