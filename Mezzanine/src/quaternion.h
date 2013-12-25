@@ -45,6 +45,7 @@
 
 #ifndef SWIG
     #include "XML/xml.h"
+    #include <limits>
 #endif
 
 class btQuaternion;
@@ -335,12 +336,10 @@ namespace Mezzanine
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are semantically equal, false otherwise.
             bool operator==(const Mezzanine::Quaternion& Other) const;
-
             /// @brief Equality Comparison Operator from Ogre::Quaternion.
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are semantically equal, false otherwise.
             bool operator==(const Ogre::Quaternion& Other) const;
-
             /// @brief Equality Comparison Operator from btQuaternion.
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are semantically equal, false otherwise.
@@ -350,20 +349,22 @@ namespace Mezzanine
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are not semantically equal, false otherwise.
             bool operator!=(const Mezzanine::Quaternion& Other) const;
-
             /// @brief Inequality Comparison Operator from Ogre::Quaternion.
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are not semantically equal, false otherwise.
             bool operator!=(const Ogre::Quaternion& Other) const;
-
             /// @brief Inequality Comparison Operator from btQuaternion.
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are not semantically equal, false otherwise.
             bool operator!=(const btQuaternion& Other) const;
 
-
+            /// @brief Is every value in this Quaternion less than or equal to its corresponding value in another.
+            /// @param Other The Quaternion on the right hand side of the sign.
+            /// @note Used primarily for testing. This is not implemented for use with other kinds of Quaternion implementations as it is widely considered useless.
             bool operator<= (const Mezzanine::Quaternion& Other) const;
-            /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
+            /// @brief Is every value in this Quaternion greater than or equal to its corresponding value in another.
+            /// @param Other The Quaternion on the right hand side of the sign.
+            /// @note Used primarily for testing. This is not implemented for use with other kinds of Quaternion implementations as it is widely considered useless.
             bool operator>= (const Mezzanine::Quaternion& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -482,6 +483,150 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Quaternion&
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Quaternion& Vec);
 #endif // \ SWIG
+
+namespace std
+{
+    /// @brief Get Numeric details on Quaternion
+    template<>
+    class numeric_limits<Mezzanine::Quaternion>
+    {
+        public:
+            /// @brief Does this class (numeric_limits<Mezzanine::Quaternion>) exist
+            static const bool is_specialized = true;
+            /// @brief Does this support negative values?
+            static const bool is_signed = true;
+            /// @brief Can this only store integer types.
+            static const bool is_integer = false;
+            /// @brief The Quaternion uses Real, which is typically a machine dependedant which can be inexact
+            static const bool is_exact = std::numeric_limits<Mezzanine::Real>::is_exact;
+            /// @brief Can This represent an infinitely large value in X, Y or Z?
+            static const bool has_infinity = std::numeric_limits<Mezzanine::Real>::has_infinity;
+            /// @brief ??? Required by std::numeric to be compliant
+            /// @todo Learn why this exists and document it.
+            static const bool has_quiet_NaN = std::numeric_limits<Mezzanine::Real>::has_quiet_NaN;
+            /// @brief ??? Required by std::numeric to be compliant
+            /// @todo Learn why this exists and document it.
+            static const bool has_signaling_NaN = std::numeric_limits<Mezzanine::Real>::has_signaling_NaN;
+            /// @brief Does this support exceptionally small numbers near 0?
+            static const std::float_denorm_style has_denorm = std::numeric_limits<Mezzanine::Real>::has_denorm;
+            /// @brief When extra precision near 0 is lost, can this type distinguish that from other imprecision.
+            static const bool has_denorm_loss = std::numeric_limits<Mezzanine::Real>::has_denorm_loss;
+            /// @brief How items that fit between the precise amount a Real can represent will be adapted.
+            static const std::float_round_style round_style = std::numeric_limits<Mezzanine::Real>::round_style;
+            /// @brief Do X, Y and Z adhere to iec 559?
+            static const bool is_iec559 = std::numeric_limits<Mezzanine::Real>::is_iec559;
+            /// @brief Is overflow of this type handle by modulo overflow?
+            static const bool is_modulo = std::numeric_limits<Mezzanine::Real>::is_modulo;
+            /// @brief How many integer digits(in machine base) of precision can this handle in each X, Y or Z without floating point component or error?
+            static const int digits = std::numeric_limits<Mezzanine::Real>::digits;
+            /// @brief How many integer digits in base 10 of precision can this handle in each X, Y or Z without floating point component or error?
+            static const int digits10 = std::numeric_limits<Mezzanine::Real>::digits10;
+            /// @brief The base of the number system that this is implemented in
+            static const int radix = std::numeric_limits<Mezzanine::Real>::radix;
+            /// @brief The smallest power of the radix that is valid floating point value
+            static const int min_exponent = std::numeric_limits<Mezzanine::Real>::min_exponent;
+            /// @brief The smallest power of 10 that is valid floating point value
+            static const int min_exponent10 = std::numeric_limits<Mezzanine::Real>::min_exponent10;
+            /// @brief The largest power of the radix that is valid floating point value
+            static const int max_exponent = std::numeric_limits<Mezzanine::Real>::max_exponent;
+            /// @brief The largest power of 10 that is valid floating point value
+            static const int max_exponent10 = std::numeric_limits<Mezzanine::Real>::max_exponent10;
+            /// @brief Can this generate a trap?
+            static const bool traps = std::numeric_limits<Mezzanine::Real>::traps;
+            /// @brief Are tiny values respected during rounding?
+            static const bool tinyness_before = std::numeric_limits<Mezzanine::Real>::tinyness_before;
+
+            /// @brief Get the lowest positive finite value this can represent
+            /// @return A Quaternion with 4 very small numbers
+            static Mezzanine::Quaternion min()
+            {
+                return Mezzanine::Quaternion(std::numeric_limits<Mezzanine::Real>::min(),
+                                             std::numeric_limits<Mezzanine::Real>::min(),
+                                             std::numeric_limits<Mezzanine::Real>::min(),
+                                             std::numeric_limits<Mezzanine::Real>::min()
+                                            );
+            }
+
+            /// @brief Get the highest positive finite value this can represent
+            /// @return A Quaternion with 4 very large numbers
+            static Mezzanine::Quaternion max()
+            {
+                return Mezzanine::Quaternion(std::numeric_limits<Mezzanine::Real>::max(),
+                                             std::numeric_limits<Mezzanine::Real>::max(),
+                                             std::numeric_limits<Mezzanine::Real>::max(),
+                                             std::numeric_limits<Mezzanine::Real>::max()
+                                            );
+            }
+
+            /// @brief The smallest value representable from 1.0,1.0,1.0 to the next value
+            /// @return A Quaternion with very small numbers
+            static Mezzanine::Quaternion epsilon()
+            {
+                return Mezzanine::Quaternion(std::numeric_limits<Mezzanine::Real>::epsilon(),
+                                             std::numeric_limits<Mezzanine::Real>::epsilon(),
+                                             std::numeric_limits<Mezzanine::Real>::epsilon(),
+                                             std::numeric_limits<Mezzanine::Real>::epsilon()
+                                            );
+            }
+
+            /// @brief Get the largest possible rounding error
+            /// @return A Quaternion containing 4 values indicating how much they could be rounded.
+            static Mezzanine::Quaternion round_error()
+            {
+                return Mezzanine::Quaternion(std::numeric_limits<Mezzanine::Real>::round_error(),
+                                             std::numeric_limits<Mezzanine::Real>::round_error(),
+                                             std::numeric_limits<Mezzanine::Real>::round_error(),
+                                             std::numeric_limits<Mezzanine::Real>::round_error()
+                                            );
+            }
+
+            /// @brief Get the special value "Positive infinity"
+            /// @return A Quaternion containing 4 values.
+            static Mezzanine::Quaternion infinity()
+            {
+                return Mezzanine::Quaternion(std::numeric_limits<Mezzanine::Real>::infinity(),
+                                             std::numeric_limits<Mezzanine::Real>::infinity(),
+                                             std::numeric_limits<Mezzanine::Real>::infinity(),
+                                             std::numeric_limits<Mezzanine::Real>::infinity()
+                                            );
+            }
+
+            /// @brief Get the special value "Quiet Not actual Number"
+            /// @return A Quaternion containing 4 values.
+            static Mezzanine::Quaternion quiet_NaN()
+            {
+                return Mezzanine::Quaternion(std::numeric_limits<Mezzanine::Real>::quiet_NaN(),
+                                             std::numeric_limits<Mezzanine::Real>::quiet_NaN(),
+                                             std::numeric_limits<Mezzanine::Real>::quiet_NaN(),
+                                             std::numeric_limits<Mezzanine::Real>::quiet_NaN()
+                                            );
+            }
+
+            /// @brief Get the special value "Signaling Not actual Number"
+            /// @return A Quaternion containing 4 special values.
+            static Mezzanine::Quaternion signaling_NaN()
+            {
+                return Mezzanine::Quaternion(std::numeric_limits<Mezzanine::Real>::signaling_NaN(),
+                                             std::numeric_limits<Mezzanine::Real>::signaling_NaN(),
+                                             std::numeric_limits<Mezzanine::Real>::signaling_NaN(),
+                                             std::numeric_limits<Mezzanine::Real>::signaling_NaN()
+                                            );
+            }
+
+            /// @brief Get the closest value to 0 that is not 0 this can represent, including extra precision for being close to 0 if supported.
+            /// @return A vector containing 3 very small values.
+            static Mezzanine::Quaternion denorm_min()
+            {
+                return Mezzanine::Quaternion(std::numeric_limits<Mezzanine::Real>::denorm_min(),
+                                             std::numeric_limits<Mezzanine::Real>::denorm_min(),
+                                             std::numeric_limits<Mezzanine::Real>::denorm_min(),
+                                             std::numeric_limits<Mezzanine::Real>::denorm_min()
+                                            );
+            }
+
+    }; //Numeric Limits
+
+} // std
 
 
 #endif

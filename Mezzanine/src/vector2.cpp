@@ -55,6 +55,11 @@ namespace Mezzanine
     Vector2::Vector2()
         { this->SetIdentity(); }
 
+    Vector2::Vector2(const Real& xy)
+    {
+        SetValues(xy, xy);
+    }
+
     Vector2::Vector2(const Real& x, const Real& y)
         { this->SetValues(x,y); }
 
@@ -120,6 +125,11 @@ namespace Mezzanine
             { return true; }
         return false;
     }
+
+    bool Vector2::operator<= (const Mezzanine::Vector2 &Vec) const
+        { return ( this->X <= Vec.X && this->Y <= Vec.Y); }
+    bool Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
+        { return ( this->X >= Vec.X && this->Y >= Vec.Y); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector2 Arithmetic with Real

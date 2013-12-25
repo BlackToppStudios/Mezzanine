@@ -43,6 +43,7 @@
 #include "mezztest.h"
 
 #include "vector3.h"
+#include "vector2.h"
 #include "transform.h"
 #include "interpolator.h"
 
@@ -64,73 +65,241 @@ class interpolatortests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
+            TestOutput.precision(10);
+            TestOutput << std::fixed;
+
             {
-                InterpolatableTraits<Vector3>::LinearInterpolator li;
+                LinearInterpolator<Vector3> li;
                 Vector3 a(0.0,0.0,0.0);
                 Vector3 b(1.0,1.0,1.0);
+                std::vector<Vector3> Points;
+                Points.push_back(a);
+                Points.push_back(b);
 
                 TestOutput << "Lets try some simple interpolations between 0,0,0 and 1,1,1 at 0,.1,.5, and 1:" << endl
-                           << li.Interpolate(a,b,0.0) << endl
-                           << li.Interpolate(a,b,0.1) << endl
-                           << li.Interpolate(a,b,0.5) << endl
-                           << li.Interpolate(a,b,1.0) << endl << endl;
+                           << li.Interpolate(Points.begin(),Points.end(),0.0) << endl
+                           << li.Interpolate(Points.begin(),Points.end(),0.1) << endl
+                           << li.Interpolate(Points.begin(),Points.end(),0.5) << endl
+                           << li.Interpolate(Points.begin(),Points.end(),1.0) << endl << endl;
 
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.0),a,"Vector3LinearInterpolationBegin");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.1),Vector3(0.1,0.1,0.1),"Vector3LinearInterpolationTenth");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.5),Vector3(0.5,0.5,0.5),"Vector3LinearInterpolationHalfway");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,1.0),b,"Vector3LinearInterpolationEnd");
+                TEST_EQUAL_EPSILON(li.Interpolate(Points.begin(),Points.end(),0.0),a,"Vector3LinearInterpolationBegin");
+                TEST_EQUAL_EPSILON(li.Interpolate(Points.begin(),Points.end(),0.1),Vector3(0.1,0.1,0.1),"Vector3LinearInterpolationTenth");
+                TEST_EQUAL_EPSILON(li.Interpolate(Points.begin(),Points.end(),0.5),Vector3(0.5,0.5,0.5),"Vector3LinearInterpolationHalfway");
+                TEST_EQUAL_EPSILON(li.Interpolate(Points.begin(),Points.end(),1.0),b,"Vector3LinearInterpolationEnd");
              }
 
             {
-                InterpolatableTraits<Integer>::LinearInterpolator li;
+                LinearInterpolator<Integer> li;
                 Integer a = 0;
                 Integer b = 10;
+                std::vector<Integer> DataPoints;
+                DataPoints.push_back(a);
+                DataPoints.push_back(b);
 
                 TestOutput << "Lets try some simple Integer interpolations between 0 and 10 at 0,.1,.5, and 1:" << endl
-                           << li.Interpolate(a,b,0.0) << endl
-                           << li.Interpolate(a,b,0.1) << endl
-                           << li.Interpolate(a,b,0.5) << endl
-                           << li.Interpolate(a,b,1.0) << endl << endl;
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl << endl;
 
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.0),a,"IntegerLinearInterpolationBegin");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.1),1,"IntegerLinearInterpolationTenth");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.5),5,"IntegerLinearInterpolationHalfway");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,1.0),b,"IntegerLinearInterpolationEnd");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"IntegerLinearInterpolationBegin");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),1,"IntegerLinearInterpolationTenth");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5),5,"IntegerLinearInterpolationHalfway");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),b,"IntegerLinearInterpolationEnd");
              }
 
             {
-                InterpolatableTraits<Real>::LinearInterpolator li;
+                LinearInterpolator<Real> li;
                 Real a = 0;
                 Real b = 5;
+                Real c = 10;
+                Real d = 20;
 
-                TestOutput << "Lets try some simple Integer interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
-                           << li.Interpolate(a,b,0.0) << endl
-                           << li.Interpolate(a,b,0.1) << endl
-                           << li.Interpolate(a,b,0.5) << endl
-                           << li.Interpolate(a,b,1.0) << endl << endl;
+                std::vector<Real> DataPoints;
+                DataPoints.push_back(a);
+                DataPoints.push_back(b);
 
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.0),a,"RealLinearInterpolationBegin");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.1),Real(0.5),"RealLinearInterpolationTenth");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,0.5),Real(2.5),"RealLinearInterpolationHalfway");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,b,1.0),b,"RealLinearInterpolationEnd");
-             }
+                TestOutput << "Lets try some simple Floating point interpolations between 0 and 5 at the locations 0,.1,.5, and 1:" << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl
+                           << endl;
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"RealLinearInterpolationBegin");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Real(0.5),"RealLinearInterpolationTenth");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5),Real(2.5),"RealLinearInterpolationHalfway");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),b,"RealLinearInterpolationEnd");
+
+                DataPoints.push_back(c);
+
+                Whole DataPointCount = std::distance(DataPoints.begin(),DataPoints.end());
+                Whole LineSegmentCount = DataPointCount-1;
+                TestOutput << "Lets try some 3 point Floating point interpolations between 0,5 and 10 at the locations 0,.1,.5, and 1:" << endl;
+                TestOutput << " 0 @ 0.0 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0)
+                           << "\tLineSegment: " << Whole((0.0) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.0),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << " 1 @ 0.1 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1)
+                           << "\tLineSegment: " << Whole((0.1) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.1),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << " 5 @ 0.5 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5)
+                           << "\tLineSegment: " << Whole((0.5) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.5),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << "10 @ 1.0 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0)
+                           << "\tLineSegment: " << Whole((1.0) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(1.0),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << endl;
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"Real3PointLinearInterpolationBegin");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Real(1.0),"Real3PointLinearInterpolationTenth");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5),b,"Real3PointLinearInterpolationHalfway");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),c,"Real3PointLinearInterpolationEnd");
+
+                DataPoints.push_back(d);
+                TestOutput << "Lets try some 4 point Floating point interpolations between 0, 5, 10 and 20 at the locations 0, .1, .3333333333, .5, .6666666666, .8 and 1:" << endl;
+                TestOutput << " 0.*  @ 0.0  = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0)
+                           << "\tLineSegment: " << Whole((0.0) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.0),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << " 1.5  @ 0.1  = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1)
+                           << "\tLineSegment: " << Whole((0.1) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.1),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << " 5    @ 0.33 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.333333333)
+                           << "\tLineSegment: " << Whole((0.3333333333) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.3333333333),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << " 7.5  @ 0.5  = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5)
+                           << "\tLineSegment: " << Whole((0.5) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.5),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << "10.0  @ 0.66 = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.6666666666)
+                           << "\tLineSegment: " << Whole((0.6666666666) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.6666666666),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << "14.0  @ 0.8  = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.8)
+                           << "\tLineSegment: " << Whole((0.8) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(0.8),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << "20.0  @ 1.0  = " << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0)
+                           << "\tLineSegment: " << Whole((1.0) * Real(LineSegmentCount)) << " LocalPercentage: " << std::fmod(PreciseReal(1.0),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount << endl;
+                TestOutput << endl;
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"Real4PointLinearInterpolationBegin");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Real(1.5),"Real4PointLinearInterpolationTenth");
+                TEST_EQUAL_MULTI_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.3333333333),b,"Real4PointLinearInterpolationOneThird",8);
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5),Real(7.5),"Real4PointLinearInterpolationHalfway");
+                TEST_EQUAL_MULTI_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.6666666666),c,"Real4PointLinearInterpolationTwoThirds",8);
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.8),Real(14.0),"Real4PointLinearInterpolationEighty");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),d,"Real4PointLinearInterpolationEnd");
+            }
 
             {
-                InterpolatableTraits<Transform>::LinearInterpolator li;
+                LinearInterpolator<Transform> li;
                 Transform a(Vector3(0,0,0),Quaternion(0,0,0,0));
                 Transform z(Vector3(1,1,1),Quaternion(1,1,1,1));
+                std::vector<Transform> DataPoints;
+                DataPoints.push_back(a);
+                DataPoints.push_back(z);
 
-                TestOutput << "Lets try some simple Integer interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
-                           << li.Interpolate(a,z,0.0) << endl
-                           << li.Interpolate(a,z,0.1) << endl
-                           << li.Interpolate(a,z,0.5) << endl
-                           << li.Interpolate(a,z,1.0) << endl << endl;
+                TestOutput << "Lets try some simple Transform interpolations between 0 and 5 at 0,.1,.5, and 1:" << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
+                           << li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl << endl;
 
-                TEST_EQUAL_EPSILON(li.Interpolate(a,z,0.0),a,"TransformLinearInterpolationBegin");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,z,0.1),Transform(Vector3(0.1,0.1,0.1),Quaternion(0.1,0.1,0.1,0.1)),"TransformLinearInterpolationTenth");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,z,0.5),Transform(Vector3(0.5,0.5,0.5),Quaternion(0.5,0.5,0.5,0.5)),"TransformLinearInterpolationHalfway");
-                TEST_EQUAL_EPSILON(li.Interpolate(a,z,1.0),z,"TransformLinearInterpolationEnd");
-             }
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.0),a,"TransformLinearInterpolationBegin");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.1),Transform(Vector3(0.1,0.1,0.1),Quaternion(0.1,0.1,0.1,0.1)),"TransformLinearInterpolationTenth");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),0.5),Transform(Vector3(0.5,0.5,0.5),Quaternion(0.5,0.5,0.5,0.5)),"TransformLinearInterpolationHalfway");
+                TEST_EQUAL_EPSILON(li.Interpolate(DataPoints.begin(),DataPoints.end(),1.0),z,"TransformLinearInterpolationEnd");
+            }
+
+            {
+                BezierInterpolator<Real> Bi;
+                Real A(0), B(1);
+
+                std::vector<Real> DataPoints;
+                DataPoints.push_back(A);
+                DataPoints.push_back(B);
+
+                TestOutput << "Lets try some simple Bezier interpolation of reals between 0, 1 and 2 with only 2 points (so that is really a linear interpolation):" << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.1) << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.5) << endl
+                           << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),1.0) << endl  << endl;
+
+                TEST_THROW(Mezzanine::ParametersRangeException,
+                           Bi.Interpolate(DataPoints.begin(),DataPoints.begin(),0.0),
+                           "BezierNoArgThrows");
+                TEST_THROW(Mezzanine::ParametersRangeException,
+                           Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+1,0.0),
+                           "BezierSingleArgThrows");
+
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.end(), 0.0),A,"BezierDualArg1");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.end(), 0.1),Real(0.1),"BezierDualArg2");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.end(), 0.5),Real(0.5),"BezierDualArg3");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.end(), 1.0),B,"BezierDualArg4");
+
+            }
+
+            {
+                BezierInterpolator<Vector2> Bi;
+                Vector2 A(0,0);
+                Vector2 B(1,1);
+                Vector2 C(0,2);
+
+                std::vector<Vector2> DataPoints;
+                DataPoints.push_back(A);
+                DataPoints.push_back(B);
+                DataPoints.push_back(C);
+
+                TestOutput << "Lets try some 3 point Bezier interpolation of some Vector2s along the track (0,0) (1,1) (0,2):" << endl;
+                TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl;
+                TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.1) << endl;
+                TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.5) << endl;
+                TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.9) << endl;
+                TestOutput << Bi.Interpolate(DataPoints.begin(),DataPoints.begin()+3,1.0) << endl;
+                TestOutput << endl;
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.0),A,"BezierTriArg1");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.1),Vector2(0.18,0.2),"BezierTriArg2");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.5),Vector2(0.5,1),"BezierTriArg3");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.9),Vector2(0.18,1.8),"BezierTriArg4");
+                TEST_EQUAL_EPSILON(Bi.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 1.0),C,"BezierTriArg5");
+            }
+
+            {
+                Vector2 A(0,0);
+                Vector2 B(1,1);
+                Vector2 C(0,2);
+                std::vector<Vector2> DataPoints;
+                DataPoints.push_back(A);
+                DataPoints.push_back(B);
+                DataPoints.push_back(C);
+
+                std::vector<Real> Weights;
+                Weights.push_back(0.0);
+                Weights.push_back(0.5);
+                Weights.push_back(1.0);
+
+                CubicSpline<Real,Vector2> Sp(Weights,DataPoints);
+
+                TestOutput << "Lets try some 3 point Cubic Spline interpolation of some Vector2s along the track (0,0) (1,1) (0,2):" << endl;
+                TestOutput << Sp.interpolate(0) << endl;
+                TestOutput << Sp.interpolate(.25) << endl;
+                TestOutput << Sp.interpolate(.5) << endl;
+                TestOutput << Sp.interpolate(.75) << endl;
+                TestOutput << Sp.interpolate(1) << endl;
+                /*TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.end(),0.0) << endl;
+                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.1) << endl;
+                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.5) << endl;
+                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,0.9) << endl;
+                TestOutput << Sp.Interpolate(DataPoints.begin(),DataPoints.begin()+3,1.0) << endl;
+                TestOutput << endl;
+                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.0),A,"BezierTriArg1");
+                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.1),Vector2(0.18,0.2),"BezierTriArg2");
+                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.5),Vector2(0.5,1),"BezierTriArg3");
+                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 0.9),Vector2(0.18,1.8),"BezierTriArg4");
+                TEST_EQUAL_EPSILON(Sp.Interpolate(DataPoints.begin(), DataPoints.begin()+3, 1.0),C,"BezierTriArg5");*/
+            }
+            /*{
+                std::vector<Vector3> PreTrack;
+                PreTrack.push_back(Vector3( 0, 0, 0));
+                PreTrack.push_back(Vector3(10, 0, 5));
+                PreTrack.push_back(Vector3(10,10,10));
+                PreTrack.push_back(Vector3( 0,10,15));
+                PreTrack.push_back(Vector3( 0, 0,20));
+                for(Real Counter=0.0;
+                    Counter<1.0;
+                    Counter+=0.01)
+                {
+                    cout << InterpolatableTraits<Vector3>::BezierInterpolator::Interpolate(PreTrack.begin(),
+                                                                                           PreTrack.end(),
+                                                                                           Counter)
+                         << endl;
+                }
+            }// */
+
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

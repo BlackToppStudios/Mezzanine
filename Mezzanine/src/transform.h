@@ -95,7 +95,6 @@ namespace Mezzanine
             /// @brief Gets a Bullet Transform
             /// @details Creates a Bullet Transform with values equal to this class instance and returns it.
             btTransform GetBulletTransform() const;
-
             /// @brief Copies an existing Bullet transform
             /// @details This function will copy the values stored in an existing Bullet transform
             /// and set the values of this class instance to be the same.
@@ -106,7 +105,6 @@ namespace Mezzanine
             /// @param rhs The item storing the values to copy.
             /// @return A reference to the freshly overwritten Transform.
             Transform& operator= (const Transform& rhs);
-
             /// @brief Set the values of this Transform to match an existing btTransform.
             /// @param rhs The item storing the values to copy.
             /// @return A reference to the freshly overwritten Transform.
@@ -133,11 +131,29 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Math and test operations
+            /// @brief Create a Transform with the difference of this and another
+            /// @param rhs The Transform on the right hand side of the sign.
+            /// @return A Transform with
             Transform operator- (const Transform& rhs) const;
+            /// @brief Create a Transform with the sum of this and another
+            /// @param rhs The Transform on the right hand side of the sign.
+            /// @return A Transform with
             Transform operator+ (const Transform& rhs) const;
+            /// @brief Multiply all the values of this by a single scalar.
+            /// @param rhs The Transform on the right hand side of the sign.
+            /// @return A Transform with
             Transform operator* (Real rhs) const;
+            /// @brief Divide all the values of this by a single scalar.
+            /// @param rhs The Transform on the right hand side of the sign.
+            /// @return A Transform with
             Transform operator/ (Real rhs) const;
+
+            /// @brief Is every value in this Transform less than or equal to its corresponding value in another.
+            /// @param rhs The Transform on the right hand side of the sign.
+            /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
             bool operator<= (const Transform& rhs) const;
+            /// @brief Is every value in this Transform greater than or equal to its corresponding value in another.
+            /// @param rhs The Transform on the right hand side of the sign.
             /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
             bool operator>= (const Transform& rhs) const;
 
@@ -161,5 +177,132 @@ btTransform& MEZZ_LIB operator<< (btTransform& lhs, const Mezzanine::Transform& 
 Mezzanine::Transform& MEZZ_LIB operator<< (Mezzanine::Transform& lhs, const btTransform& rhs);
 #endif
 
+namespace std
+{
+    /// @brief Get Numeric details on Transform
+    template<>
+    class numeric_limits<Mezzanine::Transform>
+    {
+        public:
+            /// @brief Does this class (numeric_limits<Mezzanine::Transform>) exist
+            static const bool is_specialized = true;
+            /// @brief Does this support negative values?
+            static const bool is_signed = true;
+            /// @brief Can this only store integer types.
+            static const bool is_integer = false;
+            /// @brief The Transform uses Real, which is typically a machine dependedant which can be inexact
+            static const bool is_exact = std::numeric_limits<Mezzanine::Real>::is_exact;
+            /// @brief Can This represent an infinitely large value in subvalues?
+            static const bool has_infinity = std::numeric_limits<Mezzanine::Real>::has_infinity;
+            /// @brief ??? Required by std::numeric to be compliant
+            /// @todo Learn why this exists and document it.
+            static const bool has_quiet_NaN = std::numeric_limits<Mezzanine::Real>::has_quiet_NaN;
+            /// @brief ??? Required by std::numeric to be compliant
+            /// @todo Learn why this exists and document it.
+            static const bool has_signaling_NaN = std::numeric_limits<Mezzanine::Real>::has_signaling_NaN;
+            /// @brief Does this support exceptionally small numbers near 0?
+            static const std::float_denorm_style has_denorm = std::numeric_limits<Mezzanine::Real>::has_denorm;
+            /// @brief When extra precision near 0 is lost, can this type distinguish that from other imprecision.
+            static const bool has_denorm_loss = std::numeric_limits<Mezzanine::Real>::has_denorm_loss;
+            /// @brief How items that fit between the precise amount a Real can represent will be adapted.
+            static const std::float_round_style round_style = std::numeric_limits<Mezzanine::Real>::round_style;
+            /// @brief Do subvalues adhere to iec 559?
+            static const bool is_iec559 = std::numeric_limits<Mezzanine::Real>::is_iec559;
+            /// @brief Is overflow of this type handle by modulo overflow?
+            static const bool is_modulo = std::numeric_limits<Mezzanine::Real>::is_modulo;
+            /// @brief How many integer digits(in machine base) of precision can this handle in each subvalue without floating point component or error?
+            static const int digits = std::numeric_limits<Mezzanine::Real>::digits;
+            /// @brief How many integer digits in base 10 of precision can this handle in each subvalue without floating point component or error?
+            static const int digits10 = std::numeric_limits<Mezzanine::Real>::digits10;
+            /// @brief The base of the number system that this is implemented in
+            static const int radix = std::numeric_limits<Mezzanine::Real>::radix;
+            /// @brief The smallest power of the radix that is valid floating point value
+            static const int min_exponent = std::numeric_limits<Mezzanine::Real>::min_exponent;
+            /// @brief The smallest power of 10 that is valid floating point value
+            static const int min_exponent10 = std::numeric_limits<Mezzanine::Real>::min_exponent10;
+            /// @brief The largest power of the radix that is valid floating point value
+            static const int max_exponent = std::numeric_limits<Mezzanine::Real>::max_exponent;
+            /// @brief The largest power of 10 that is valid floating point value
+            static const int max_exponent10 = std::numeric_limits<Mezzanine::Real>::max_exponent10;
+            /// @brief Can this generate a trap?
+            static const bool traps = std::numeric_limits<Mezzanine::Real>::traps;
+            /// @brief Are tiny values respected during rounding?
+            static const bool tinyness_before = std::numeric_limits<Mezzanine::Real>::tinyness_before;
+
+            /// @brief Get the lowest positive finite value this can represent
+            /// @return A Transform with 3 very small numbers in the location and 4 very small values in the rotation
+            static Mezzanine::Transform min()
+            {
+                return Mezzanine::Transform(std::numeric_limits<Mezzanine::Vector3>::min(),
+                                            std::numeric_limits<Mezzanine::Quaternion>::min()
+                                         );
+            }
+
+            /// @brief Get the highest positive finite value this can represent
+            /// @return A Transform with 3 very large numbers in the location and 4 very large values in the rotation
+            static Mezzanine::Transform max()
+            {
+                return Mezzanine::Transform(std::numeric_limits<Mezzanine::Vector3>::max(),
+                                            std::numeric_limits<Mezzanine::Quaternion>::max()
+                                         );
+            }
+
+            /// @brief The smallest value representable from 1,1,1/1,1,1,1 to the next value
+            /// @return A Transform with values larger than 1, but only just so.
+            static Mezzanine::Transform epsilon()
+            {
+                return Mezzanine::Transform(std::numeric_limits<Mezzanine::Vector3>::epsilon(),
+                                            std::numeric_limits<Mezzanine::Quaternion>::epsilon()
+                                         );
+            }
+
+            /// @brief Get the largest possible rounding error
+            /// @return A Transform containing with each value indicating how much they could be rounded.
+            static Mezzanine::Transform round_error()
+            {
+                return Mezzanine::Transform(std::numeric_limits<Mezzanine::Vector3>::round_error(),
+                                            std::numeric_limits<Mezzanine::Quaternion>::round_error()
+                                         );
+            }
+
+            /// @brief Get the special value "Positive infinity"
+            /// @return A transform containing 7 infinities.
+            static Mezzanine::Transform infinity()
+            {
+                return Mezzanine::Transform(std::numeric_limits<Mezzanine::Vector3>::infinity(),
+                                            std::numeric_limits<Mezzanine::Quaternion>::infinity()
+                                         );
+            }
+
+            /// @brief Get the special value "Quiet Not actual Number"
+            /// @return A Tranform containing 7 values
+            static Mezzanine::Transform quiet_NaN()
+            {
+                return Mezzanine::Transform(std::numeric_limits<Mezzanine::Vector3>::quiet_NaN(),
+                                            std::numeric_limits<Mezzanine::Quaternion>::quiet_NaN()
+                                         );
+            }
+
+            /// @brief Get the special value "Signaling Not actual Number"
+            /// @return A Tranform containing 7 values
+            static Mezzanine::Transform signaling_NaN()
+            {
+                return Mezzanine::Transform(std::numeric_limits<Mezzanine::Vector3>::signaling_NaN(),
+                                            std::numeric_limits<Mezzanine::Quaternion>::signaling_NaN()
+                                         );
+            }
+
+            /// @brief Get the closest value to 0 that is not 0 this can represent, including extra precision for being close to 0 if supported.
+            /// @return A Tranform containing 7 small values
+            static Mezzanine::Transform denorm_min()
+            {
+                return Mezzanine::Transform(std::numeric_limits<Mezzanine::Vector3>::denorm_min(),
+                                            std::numeric_limits<Mezzanine::Quaternion>::denorm_min()
+                                         );
+            }
+
+    }; //Numeric Limits
+
+} // std
 
 #endif

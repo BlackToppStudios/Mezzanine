@@ -79,9 +79,10 @@ namespace Mezzanine
         template <typename T>
         bool CompareEqualityWithEpsilon(const T& Left, const T& Right, size_t EpsilonFactor = 1)
         {
-            return ((Right-std::numeric_limits<T>::epsilon()*PreciseReal(EpsilonFactor)) <= Left)
+            T Epsilon(std::numeric_limits<T>::epsilon());
+            return Right-Epsilon*PreciseReal(EpsilonFactor) <= Left
                    &&
-                   (Left <= (Right+std::numeric_limits<T>::epsilon()*PreciseReal(EpsilonFactor)));
+                   Left <= Right+Epsilon*PreciseReal(EpsilonFactor);
         }
 
         #ifndef TEST_EQUAL_EPSILON

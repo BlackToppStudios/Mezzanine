@@ -463,9 +463,9 @@ namespace Mezzanine
         { return (this->X!=Other.getX() || this->Y!=Other.getY() || this->Z!=Other.getZ() || this->W!=Other.getW()); }
 
     bool Quaternion::operator<= (const Mezzanine::Quaternion& Other) const
-        { return (this->X==Other.X && this->Y<=Other.Y && this->Z<=Other.Z && this->W<=Other.W); }
+        { return (this->X<=Other.X && this->Y<=Other.Y && this->Z<=Other.Z && this->W<=Other.W); }
     bool Quaternion::operator>= (const Mezzanine::Quaternion& Other) const
-        { return (this->X==Other.X && this->Y>=Other.Y && this->Z>=Other.Z && this->W>=Other.W); }
+        { return (this->X>=Other.X && this->Y>=Other.Y && this->Z>=Other.Z && this->W>=Other.W); }
 
     // Serializable
     void Quaternion::ProtoSerialize(XML::Node& CurrentRoot) const

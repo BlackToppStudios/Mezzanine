@@ -59,37 +59,81 @@ namespace Mezzanine
     /// for integers and a track contains only two data points 0 and 100, requesting 0.5
     /// might return 50.
     /// @n @n
-    /// There are different interpolation methods. These are defined by the InterpolatableTraits
-    /// for a given class. For example a track that does bezier interpolation might try to
-    /// use InterpolatableTraits<Integer>::BezierInterpolator to do the math.
-    /// @n @n
-    /// This uses vector underneath for its performance characteristics.
+    /// This uses std::vector underneath for its performance characteristics.
     template <typename InterpolatableType>
     class TrackBase
     {
         public:
-            /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
+            /// @brief The type of the internal container storing the interpolatable data. This is a single point to change all the tracks.
             typedef std::vector<InterpolatableType> DataContainerType;
 
-            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
-
         protected:
-            /// @brief The underlying container of Discreate datapoints
+            /// @brief The underlying container of Discrete datapoints
             DataContainerType DataPoints;
 
         public:
+            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
+            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
+
             /// @brief Get the amount of stored DataPoints
             /// @note Name chosen to match standard containers
             /// @return How many data points exist on this track
+            /// @note Name for compatibility with std templates
             size_t size() const
                 { return DataPoints.size(); }
+            /// @brief Get the amount of stored DataPoints
+            /// @note Name chosen to match standard containers
+            /// @return How many data points exist on this track
+            /// @note Name for consistency with naming conventions and implemented in terms of size().
+            size_t Size() const
+                { return size(); }
+
             /// @brief Add another data point to the end of the track.
-            /// @param AddedVale
-            void push_back(const InterpolatableType& AddedValue)
+            /// @param AddedValue The data point to add to theend of the track.
+            /// @note Name for compatibility with std templates.
+            virtual void push_back(const InterpolatableType& AddedValue)
                 { DataPoints.push_back(AddedValue); }
+            /// @brief Add another data point to the end of the track.
+            /// @param AddedValue The data point to add to theend of the track.
+            /// @note Name for consistency with naming conventions and implemented in terms of push_back().
+            virtual void Add(const InterpolatableType& AddedValue)
+                { push_back(AddedValue); }
+
             /// @brief Remove all the points from the track
             void clear()
                 { DataPoints.clear(); }
+            /// @copydoc clear
+            void Clear()
+                { clear(); }
+
+            /// @brief Get an Smooth iterator to the beginning of the track.
+            /// @details A Smooth iterator will take a fixed number of steps across
+            /// a data set, interpolating values not actually present.
+            /// @param Steps How many steps to take, defaults to 100.
+            virtual SmoothIteratorType begin(Integer Steps=100) const
+            {
+                return SmoothIteratorType(this, 0.0,
+                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
+                                          );
+            }
+            /// @copydoc begin
+            virtual SmoothIteratorType Begin(Integer Steps=100) const
+                { return begin(Steps); }
+
+
+            /// @brief Get an Smooth iterator to the end (not one past) of the track.
+            /// @details A Smooth iterator will take a fixed number of steps across
+            /// a data set, interpolating values not actually present.
+            /// @param Steps How many steps to take if any, defaults to 0.
+            virtual SmoothIteratorType end(Integer Steps=0) const
+            {
+                return SmoothIteratorType(this, 1.0,
+                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
+                                          );
+            }
+            /// @copydoc end
+            virtual SmoothIteratorType End(Integer Steps=0) const
+                { return end(Steps); }
 
             /// @brief Get a value between the beginning and the end
             /// @details in derived classes this will perform some simple(hopefully fast) calculation to get
@@ -98,110 +142,59 @@ namespace Mezzanine
             /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
             /// @return An InterpolatableType
             virtual InterpolatableType GetInterpolated(Real Percentage) const = 0;
-            /// @brief As GetInterpolated but includes the first a second time at the end of the series.
-            /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
-            /// @return An InterpolatableType
-            virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const = 0;
-
-            /// @brief
-            virtual SmoothIteratorType begin(Integer Steps) const = 0;
-            virtual SmoothIteratorType end(Integer Steps) const = 0;
-
     };
 
-    /// @brief A track that uses linear interpolation for linear and looped tracks.
-    /// @details This class is intended to provide an abstraction for any amount of
-    /// datapoints and present a range from 0 to 1 for all tracks.
-    template <typename InterpolatableType>
-    class TrackLinear : public TrackBase<InterpolatableType>
+    template <typename InterpolatableType, typename InterpolatorType>
+    class Track : public TrackBase<InterpolatableType>
     {
         public:
-            /// @brief The type of the underlying container for InterpolatableType instances
-            typedef typename TrackBase<InterpolatableType>::DataContainerType DataContainerType;
-            /// @brief An Iterator for the raw points of the track
-            typedef typename DataContainerType::iterator iterator;
-            /// @brief An Iterator for the raw points of the track
-            typedef typename TrackLinear::iterator Iterator;
+            /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
+            typedef std::vector<InterpolatableType> DataContainerType;
 
-            /// @brief An Iterator for the raw points of the track, guaranteed to not change the track
-            typedef typename DataContainerType::const_iterator const_iterator;
-            /// @brief An Iterator for the raw points of the track, guaranteed to not change the track
-            typedef typename TrackLinear::const_iterator ConstIterator;
-            /// @brief A type used for iterating over the range of interpolated values of the track, and guaranteed to not change the track.
+            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
-            /// @brief The functor that does the actual interpolation of the points.
-            typedef typename InterpolatableTraits<InterpolatableType>::LinearInterpolator InterpolatorType;
-
-        public:
-            /// @brief For a given percentage determine which two data points it is between.
-            /// @param Percentage from 0.0(beginning) and 1.0(end) where is the point you want.
-            /// @param Loop should we calculate as if there is another segment connection the last point to the first? Default to false.
-            /// @return A Whole indicating which segment to use. 0 define as the segment connect index 0 and index 1. 1 is index 1 to 2, etc...
-            Whole GetLineSegmentByPercent(Real Percentage, Bool Loop = false) const
-                { return (Percentage * (Real(TrackBase<InterpolatableType>::DataPoints.size()-(Whole(!Loop)*1)))); }
-
-            /// @brief How far betweent the two points of a segment is the provided Track Percentage.
-            ///
-            Real GetPercentageThroughSegment(Real Percentage, Bool Loop = false) const
-            {
-                Whole LineSegmentCount = TrackBase<InterpolatableType>::DataPoints.size()-1;
-                if(LineSegmentCount<1)
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Cannot GetPercentageThroughSegment on a track without a single data segment. There must be two or more data points."); }
-                LineSegmentCount+=Whole(Loop);
-                if(1==LineSegmentCount)
-                    { return Percentage; }
-                return std::fmod(PreciseReal(Percentage),PreciseReal(1.0/PreciseReal(LineSegmentCount)))*LineSegmentCount;
-            }
-
-            InterpolatableType GetInterpolated(Real Percentage, Bool Loop) const
-            {
-                Whole DataPointCount = TrackBase<InterpolatableType>::DataPoints.size();
-                Whole Index = GetLineSegmentByPercent(Percentage,Loop); // Pick a Line Segment
-                Real LocalPercentage = GetPercentageThroughSegment(Percentage,Loop);
-                if(Loop)
-                {
-                    if(DataPointCount<=Index)
-                        { return TrackBase<InterpolatableType>::DataPoints[0]; }
-                    if(DataPointCount-1<=Index) // If we are in the last segment connect and should connect to the begining
-                    {
-                        return InterpolatorType::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],
-                                                         TrackBase<InterpolatableType>::DataPoints[0],
-                                                         LocalPercentage);
-                    }
-                }else{
-                    if(DataPointCount-1<=Index) // If we are past the end give them the end, because this should only happen when percentage == 1.0
-                        { return TrackBase<InterpolatableType>::DataPoints[Index]; }
-
-                }
-                return InterpolatorType::Interpolate(TrackBase<InterpolatableType>::DataPoints[Index],  // The first point of the line segment
-                                                 TrackBase<InterpolatableType>::DataPoints[Index+1],// The second point
-                                                 LocalPercentage); // The percentage we are through this line segment
-            }
 
             virtual InterpolatableType GetInterpolated(Real Percentage) const
-                { return GetInterpolated(Percentage, false); }
-
-            virtual InterpolatableType GetInterpolatedAsLoop(Real Percentage) const
-                { return GetInterpolated(Percentage, true); }
-
-
-            virtual SmoothIteratorType begin(Integer Steps=100) const
             {
-                return SmoothIteratorType(this, 0.0,
-                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
-                                          );
+                return InterpolatorType::Interpolate(
+                           TrackBase<InterpolatableType>::DataPoints.begin(),
+                           TrackBase<InterpolatableType>::DataPoints.end(),
+                           Percentage
+                       );
             }
-            virtual SmoothIteratorType end(Integer Steps=0) const
-            {
-                return SmoothIteratorType(this, 0.0,
-                                            (Steps?(PreciseReal(1.0)/PreciseReal(Steps)):0.0)
-                                          );
-            }
+
 
 
     };
 
+    /// @brief A track that keeps an extra data point in the track to make sure it loops.
+    /// @details when Add or push_back is called and there are 2 or more points the track,
+    /// this seamlessly adds a copy of the first data point to the end of the track. When
+    /// Iterating with a Smooth iterator this creates the impression of a loop.
+    template <typename InterpolatableType, typename InterpolatorType>
+    class TrackLooped : public Track<InterpolatableType, InterpolatorType>
+    {
+        public:
+            /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
+            typedef std::vector<InterpolatableType> DataContainerType;
 
+            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
+            typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
+
+            virtual void push_back(const InterpolatableType& AddedValue)
+            {
+                if(TrackBase<InterpolatableType>::DataPoints.size()>1)
+                {
+                    *(TrackBase<InterpolatableType>::DataPoints.end()-1) = AddedValue;
+                    TrackBase<InterpolatableType>::DataPoints.push_back(*TrackBase<InterpolatableType>::DataPoints.begin());
+                }else if(TrackBase<InterpolatableType>::DataPoints.size()==1){
+                    TrackBase<InterpolatableType>::DataPoints.push_back(AddedValue);
+                    TrackBase<InterpolatableType>::DataPoints.push_back(*TrackBase<InterpolatableType>::DataPoints.begin());
+                }else{
+                    TrackBase<InterpolatableType>::DataPoints.push_back(AddedValue);
+                }
+            }
+    };
 
 
 }//Mezzanine
