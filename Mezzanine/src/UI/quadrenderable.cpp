@@ -175,6 +175,7 @@ namespace Mezzanine
             LayoutStrat(NULL),
             VertexCache(NULL),
             ZOrder(0),
+            Priority(UI::RP_Medium),
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
@@ -189,6 +190,7 @@ namespace Mezzanine
             LayoutStrat(NULL),
             VertexCache(NULL),
             ZOrder(0),
+            Priority(UI::RP_Medium),
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
@@ -203,6 +205,7 @@ namespace Mezzanine
             LayoutStrat(NULL),
             VertexCache(NULL),
             ZOrder(0),
+            Priority(UI::RP_Medium),
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
@@ -720,9 +723,13 @@ namespace Mezzanine
         RenderLayerGroup* QuadRenderable::CreateRenderLayerGroup(const String& Name)
         {
             RenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
-            if( It != this->RenderLayerGroups.end() ) {
+            if( It == this->RenderLayerGroups.end() ) {
+                Bool Empty = ( this->RenderLayerGroups.empty() && this->ActiveGroup == NULL );
                 RenderLayerGroup* NewGroup = new RenderLayerGroup(Name,this);
                 this->RenderLayerGroups.insert( std::pair<String,RenderLayerGroup*>(Name,NewGroup) );
+                if( Empty ) {
+                    this->SetActiveGroup( NewGroup );
+                }
                 return NewGroup;
             }else{
                 MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" already exists in QuadRenderable: \"" + this->GetName() + "\"." );
@@ -801,7 +808,7 @@ namespace Mezzanine
                 }
             }
             this->ChildWidgets.push_back(Child);
-            Child->ParentQuad = this;
+            Child->_NotifyParenthood(this);
             Child->_MarkAllChildrenDirty();
             //this->_MarkDirty();
         }

@@ -45,6 +45,7 @@
 #include "UI/textureatlas.h"
 #include "UI/mousehoverstrategy.h"
 #include "UI/brutestrategy.h"
+#include "UI/layoutstrategy.h"
 
 #include "UI/button.h"
 #include "UI/checkbox.h"
@@ -202,10 +203,10 @@ namespace Mezzanine
             Orientation(Mezzanine::OM_Degree_0)
         {
             this->AddAllDefaultWidgetFactories();
-            this->ActDims.Size.X = (Real)this->GameViewport->GetActualWidth();
+            /*this->ActDims.Size.X = (Real)this->GameViewport->GetActualWidth();
             this->ActDims.Size.Y = (Real)this->GameViewport->GetActualHeight();
             this->InverseSize.X = 1 / this->ActDims.Size.X;
-            this->InverseSize.Y = 1 / this->ActDims.Size.Y;
+            this->InverseSize.Y = 1 / this->ActDims.Size.Y;//*/
 
             this->SID = new ScreenInternalData();
             this->SID->RenderSys = Ogre::Root::getSingletonPtr()->getRenderSystem();
@@ -220,6 +221,8 @@ namespace Mezzanine
 
             this->SetMousePassthrough(true);
             this->SetMouseHoverStrategy(new BruteStrategy());
+
+            this->LayoutStrat = new LayoutStrategy();
         }
 
         Screen::Screen(const XML::Node& XMLNode, UIManager* Manager) :
@@ -243,6 +246,8 @@ namespace Mezzanine
 
             this->CreateVertexBuffer(32 * 6);
             this->SetMouseHoverStrategy(new BruteStrategy());
+
+            this->LayoutStrat = new LayoutStrategy();
 
             this->ProtoDeSerialize(XMLNode);
         }
@@ -383,15 +388,14 @@ namespace Mezzanine
         void Screen::CheckViewportSize()
         {
             Vector2 CurrentSize((Real)this->GameViewport->GetActualWidth(),(Real)this->GameViewport->GetActualHeight());
-            if(this->ActDims.Size == CurrentSize)
-                return;
+            if( this->ActDims.Size != CurrentSize || ( this->InverseSize.X == 0.0 || this->InverseSize.Y == 0.0 ) ) {
+                Rect OldRect(this->ActDims);
+                Rect NewRect(Vector2(0,0),CurrentSize);
+                this->UpdateDimensions(OldRect,NewRect);
 
-            Rect OldRect(this->ActDims);
-            Rect NewRect(Vector2(0,0),CurrentSize);
-            this->UpdateDimensions(OldRect,NewRect);
-
-            this->InverseSize.X = 1.0 / this->ActDims.Size.X;
-            this->InverseSize.Y = 1.0 / this->ActDims.Size.Y;
+                this->InverseSize.X = 1.0 / this->ActDims.Size.X;
+                this->InverseSize.Y = 1.0 / this->ActDims.Size.Y;
+            }
         }
 
         Graphics::Viewport* Screen::GetViewport() const
@@ -872,11 +876,19 @@ namespace Mezzanine
             this->MouseStrat->_NotifyScreenDirty();
         }
 
+        void Screen::_MarkAllLayersDirty()
+        {
+            if( this->Dirty && this->AllLayersDirty )
+                return;
+
+            this->Dirty = true;
+            this->AllLayersDirty = true;
+        }
+
         void Screen::_RenderScreen()
         {
-            bool Force = false;
-            if(Orientation != this->GameViewport->GetOrientationMode() )
-            {
+            Bool Force = false;
+            if(Orientation != this->GameViewport->GetOrientationMode() ) {
                 this->Orientation = GameViewport->GetOrientationMode();
                 if(this->Orientation == Mezzanine::OM_Degree_90)
                     VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(MathTools::GetHalfPi(),Vector3::Unit_Z()));
@@ -888,29 +900,26 @@ namespace Mezzanine
                     VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(0,0,0,1));
                 Force = true;
             }
+            this->CheckViewportSize();
             this->_RenderVertices(Force);
             size_t KnownVertexCount = this->SID->RenderOp.vertexData->vertexCount;
-            if(this->SID->RenderOp.vertexData->vertexCount)
-            {
-                if(this->TextureByVertex.size() == 0)
-                {
+            if(this->SID->RenderOp.vertexData->vertexCount) {
+                if(this->TextureByVertex.size() == 0) {
                     AtlasAndPosition MyObject;
                     MyObject.RenderStart = 0;
                     MyObject.RenderEnd = KnownVertexCount;
                     MyObject.Atlas = this->PrimaryAtlas;
                     this->TextureByVertex.push_back(MyObject);
                 }
-                PrepareRenderSystem();
+                this->PrepareRenderSystem();
                 String CurrAtlas = this->PrimaryAtlas;
                 for( int i = 0 ; i < this->TextureByVertex.size() ; i++ )
                 {
                     String& CurrVertAtlas = this->TextureByVertex[i].Atlas;
-                    if(CurrVertAtlas.empty())
-                    {
+                    if(CurrVertAtlas.empty()) {
                         CurrVertAtlas = this->PrimaryAtlas;
                     }
-                    if(CurrVertAtlas != CurrAtlas)
-                    {
+                    if(CurrVertAtlas != CurrAtlas) {
                         CurrAtlas = CurrVertAtlas;
                         Ogre::TexturePtr TextureUse = this->UIMan->GetAtlas(CurrAtlas)->_GetTexture();
                         this->SID->RenderSys->_setTexture(0,true,TextureUse);
@@ -925,8 +934,7 @@ namespace Mezzanine
         void Screen::_SetOrientation(const Mezzanine::OrientationMode& Mode)
         {
             this->Orientation = Mode;
-            if( this->Orientation == Mezzanine::OM_Degree_90 || this->Orientation == Mezzanine::OM_Degree_270 )
-            {
+            if( this->Orientation == Mezzanine::OM_Degree_90 || this->Orientation == Mezzanine::OM_Degree_270 ) {
                 std::swap(this->ActDims.Size.X,this->ActDims.Size.Y);
                 std::swap(this->InverseSize.X,this->InverseSize.Y);
             }
@@ -936,16 +944,14 @@ namespace Mezzanine
         {
             static const Matrix4x4 Iden;
             Whole X;
-            if( Begin != End )
-            {
+            if( Begin != End ) {
                 for( X = Begin ; X < End ; X++ )
                 {
-                    RenderData[X].Vert.Position.X = ((RenderData[X].Vert.Position.X) * this->InverseSize.X) * 2 - 1;
-                    RenderData[X].Vert.Position.Y = ((RenderData[X].Vert.Position.Y) * this->InverseSize.Y) * -2 + 1;
+                    RenderData[X].Vert.Position.X = ( ( RenderData[X].Vert.Position.X * this->InverseSize.X ) * 2 ) - 1;
+                    RenderData[X].Vert.Position.Y = ( ( RenderData[X].Vert.Position.Y * this->InverseSize.Y ) * -2 ) + 1;
                 }
             }
-            if( this->VertexTransform != Iden )
-            {
+            if( this->VertexTransform != Iden ) {
                 for( X = Begin ; X < End ; X++ )
                     RenderData[X].Vert.Position = this->VertexTransform * RenderData[X].Vert.Position;
             }
@@ -965,20 +971,18 @@ namespace Mezzanine
             ScreenRenderData TempVertexCache;
             this->_AppendRenderDataCascading(TempVertexCache);
             KnownVertexCount = TempVertexCache.Size();
+            this->_Transform(TempVertexCache,0,KnownVertexCount);
 
             this->ResizeVertexBuffer(KnownVertexCount);
             //OgreVertex* WriteIterator = (OgreVertex*) this->SID->VertexBuffer->lock(Ogre::HardwareBuffer::HBL_DISCARD);
             Vertex* WriteIterator = (Vertex*) this->SID->VertexBuffer->lock(Ogre::HardwareBuffer::HBL_DISCARD);
             for( Whole Index = 0 ; Index < TempVertexCache.Size() ; ++Index )
             {
-                if( TempVertexCache[Index].Atlas.empty() )
-                {
+                if( TempVertexCache[Index].Atlas.empty() ) {
                     MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Null or Empty String Atlas found when rendering UI.");
                 }
-                if( TempVertexCache[Index].Atlas != CurrentName )
-                {
-                    if( Index != 0 )
-                    {
+                if( TempVertexCache[Index].Atlas != CurrentName ) {
+                    if( Index != 0 ) {
                         MyObject.RenderEnd = Index;
                         this->TextureByVertex.push_back(MyObject);
                     }
@@ -992,7 +996,8 @@ namespace Mezzanine
                 NewVertex.Colour = TempVertexCache[Index].Vert.Colour.GetOgreColourValue();
                 NewVertex.UV = TempVertexCache[Index].Vert.UV.GetOgreVector2();
                 *WriteIterator++ = NewVertex;// */
-                *WriteIterator++ = TempVertexCache[Index].Vert;
+                const Vertex& NewVertex = TempVertexCache[Index].Vert;
+                *WriteIterator++ = NewVertex;
             }
             MyObject.RenderEnd = KnownVertexCount;
             MyObject.Atlas = CurrentName;

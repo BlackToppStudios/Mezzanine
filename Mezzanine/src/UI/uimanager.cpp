@@ -184,32 +184,33 @@ namespace Mezzanine
             if( Code.IsMouseButton() ) {
                 if( Input::BUTTON_PRESSING == Code.GetMetaValue() ) {
                     // Update the focus
-                    //bool Switched = SwitchFocus(HoveredWidget);
+                    //Bool Switched = SwitchFocus(HoveredWidget);
+                    this->SwitchFocus(HoveredWidget);
 
                     // If we got a valid focus, there is more work to be done
-                    if( WidgetFocus ) {
+                    if( this->WidgetFocus ) {
                         // Regardless of it has changed, lock the focus
                         if( !FocusIsLocked() ) {
-                            WidgetFocus->_OnFocusLocked();
-                            FocusLockCode = Code;
+                            this->WidgetFocus->_OnFocusLocked();
+                            this->FocusLockCode = Code;
                         }
 
                         // If we have a new focus, inform it of the input
                         // Only do this if we switched because if it's an old focus it already had a chance
                         // at the input code, and we don't want to double dip.
                         //if( Switched )
-                        //    WidgetFocus->_HandleInput(Code);
+                        //    this->WidgetFocus->_HandleInput(Code);
                     }
                 }else if( Input::BUTTON_LIFTING == Code.GetMetaValue() ) {
-                    if( WidgetFocus ) {
+                    if( this->WidgetFocus ) {
                         // Check the code to see if we're releasing the focus lock
-                        if( FocusLockCode.GetCode() == Code.GetCode() ) {
-                            WidgetFocus->_OnFocusUnlocked();
-                            FocusLockCode.SetNullValues();
+                        if( this->FocusLockCode.GetCode() == Code.GetCode() ) {
+                            this->WidgetFocus->_OnFocusUnlocked();
+                            this->FocusLockCode.SetNullValues();
                         }
 
                         // Pass on the input
-                        //WidgetFocus->_HandleInput(Code);
+                        //this->WidgetFocus->_HandleInput(Code);
                     }
                 }
             }
@@ -243,18 +244,18 @@ namespace Mezzanine
         bool UIManager::SwitchFocus(Widget* NewFocus)
         {
             // Check if the focus is changing at all
-            if( WidgetFocus != NewFocus && !FocusIsLocked() )
+            if( this->WidgetFocus != NewFocus && !this->FocusIsLocked() )
             {
                 // If we already have a focus, drop it
-                if( WidgetFocus )
-                    WidgetFocus->_OnFocusLost();
+                if( this->WidgetFocus )
+                    this->WidgetFocus->_OnFocusLost();
 
                 // Assign the new focus
-                WidgetFocus = NewFocus;
+                this->WidgetFocus = NewFocus;
 
                 // If the new focus is valid, notify it of it's new status
-                if( WidgetFocus )
-                    WidgetFocus->_OnFocusGained();
+                if( this->WidgetFocus )
+                    this->WidgetFocus->_OnFocusGained();
 
                 // Acknowledge the focus was changed
                 return true;
@@ -265,7 +266,7 @@ namespace Mezzanine
 
         bool UIManager::FocusIsLocked() const
         {
-            return ( Input::KEY_UNKNOWN == FocusLockCode.GetCode() );
+            return ( Input::KEY_UNKNOWN != FocusLockCode.GetCode() );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -612,14 +613,15 @@ namespace Mezzanine
                 Widget* TempWidget = this->CheckWidgetUnderPoint(SysMouse->GetHoveredViewport(),SysMouse->GetViewportPosition());
                 if( TempWidget != this->HoveredWidget )
                 {
-                    if( this->HoveredWidget )
+                    if( this->HoveredWidget ) {
                         this->HoveredWidget->_OnMouseExit();
+                    }
 
-                    if( TempWidget && Renderable::RT_Widget == TempWidget->GetRenderableType() ) {
-                        this->HoveredWidget = TempWidget;
+                    this->HoveredWidget = TempWidget;
+
+                    if( this->HoveredWidget ) {
                         this->HoveredWidget->_OnMouseEnter();
-                    }else{
-                        this->HoveredWidget = NULL;
+                        TheEntresol->Log( "New Hovered Widget Name: " + this->HoveredWidget->GetName() );
                     }
                 }
             }
@@ -649,6 +651,7 @@ namespace Mezzanine
                 this->HandlePostFocusInput( (*InIt) );
             }
             this->MouseMoved = false;
+            this->InjectedInputs.clear();
         }
 
         void UIManager::Initialize()

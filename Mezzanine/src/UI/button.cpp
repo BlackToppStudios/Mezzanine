@@ -97,6 +97,7 @@ namespace Mezzanine
                     else if( Input::BUTTON_LIFTING == Code.GetMetaValue() )
                     {
                         this->Deactivate();
+                        this->MouseActivated = false;
                         return true;
                     }
                 }else{
@@ -334,8 +335,7 @@ namespace Mezzanine
         {
             Widget::_OnMouseEnter();
 
-            if( this->MouseActivated && this->Activation == AS_Activation_Standby )
-            {
+            if( this->MouseActivated && this->Activation == AS_Activation_Standby ) {
                 this->Activate();
             }
         }
@@ -344,8 +344,7 @@ namespace Mezzanine
         {
             Widget::_OnMouseExit();
 
-            if( this->MouseActivated && this->Activation == AS_Activated )
-            {
+            if( this->MouseActivated && this->Activation == AS_Activated ) {
                 this->Standby();
             }
         }

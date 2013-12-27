@@ -219,6 +219,7 @@ namespace Mezzanine
                     // If this is an error token, just treat it as normal text
                     case TextToken::TT_Text:
                     case TextToken::TT_Error:
+                    case TextToken::TT_TagInvalid:
                     {
                         // Generate and append
                         TextToken* CurrToken = (*TokIt);
@@ -312,6 +313,7 @@ namespace Mezzanine
                     }// case insert tag
                 }// switch token type
             }// for each token
+            return GeneratedCharacters;
         }
 
         TokenString* MarkupParser::Lex(const String& Source) const
@@ -319,12 +321,12 @@ namespace Mezzanine
             // Return Data
             TokenString* RetTokens = new TokenString();
 
-            UInt32 Position = 0;
+            size_t Position = 0;
             // Lets process some data
             while( Position < Source.size() )
             {
                 // Find our start tag
-                UInt32 TagStartPos = Source.find_first_of( this->GetMarkupTagStart(), Position );
+                size_t TagStartPos = Source.find_first_of( this->GetMarkupTagStart(), Position );
 
                 // Deal with non-tag text if needed
                 if( TagStartPos == String::npos )
@@ -340,7 +342,7 @@ namespace Mezzanine
                 }
 
                 // If we get this far, we got a tag so find the closing character
-                UInt32 TagEndPos = Source.find_first_of( this->GetMarkupTagEnd(), TagStartPos );
+                size_t TagEndPos = Source.find_first_of( this->GetMarkupTagEnd(), TagStartPos );
 
                 // if we didn't get a match, this isn't a valid token so make a text token instead
                 if( TagEndPos == String::npos )

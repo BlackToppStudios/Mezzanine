@@ -559,6 +559,8 @@ namespace Mezzanine
 
             /// @copydoc Renderable::_MarkDirty()
             void _MarkDirty();
+            /// @copydoc QuadRenderable::_MarkAllLayersDirty()
+            virtual void _MarkAllLayersDirty();
             /// @internal
             /// @brief Manually calls the UI system to render this screen.
             void _RenderScreen();
@@ -589,6 +591,7 @@ namespace Mezzanine
                     if( Screen::_ProcessAllChildren((*ChildIt),CB) )
                         return true;
                 }
+                return false;
             }
             /// @internal
             /// @brief Processes all children of this screen in reverse zorder.
@@ -599,9 +602,10 @@ namespace Mezzanine
             {
                 for( ReverseChildIterator RChildIt = this->RChildrenBegin() ; RChildIt != this->RChildrenEnd() ; ++RChildIt )
                 {
-                    if( Screen::_ProcessAllChildren((*RChildIt),CB) )
+                    if( Screen::_ReverseProcessAllChildren((*RChildIt),CB) )
                         return true;
                 }
+                return false;
             }
             /// @internal
             /// @brief Processes all children of this screen by their zorder.
@@ -618,6 +622,7 @@ namespace Mezzanine
                     if( Screen::_ProcessAllChildren((*ChildIt),CB) )
                         return true;
                 }
+                return false;
             }
             /// @internal
             /// @brief Processes all children of this screen in reverse zorder.
@@ -629,11 +634,13 @@ namespace Mezzanine
             {
                 for( ReverseChildIterator RChildIt = Wid->RChildrenBegin() ; RChildIt != Wid->RChildrenEnd() ; ++RChildIt )
                 {
-                    if( Screen::_ProcessAllChildren((*RChildIt),CB) )
+                    if( Screen::_ReverseProcessAllChildren((*RChildIt),CB) )
                         return true;
                 }
                 if( (*CB)(Wid) )
                     return true;
+
+                return false;
             }
         };//uiscreen
     }//ui

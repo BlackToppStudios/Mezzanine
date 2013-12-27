@@ -142,23 +142,23 @@ namespace Mezzanine
             {
                 Vector2 UVs[4];
                 if( this->LayerSprite == NULL ) {
-                    UVs[0] = UVs[1] = UVs[2] = UVs[3] = this->Parent->GetScreen()->GetWhitePixel(this->PriAtlas);
+                    UVs[UI::QC_TopLeft] = UVs[UI::QC_TopRight] = UVs[UI::QC_BottomRight] = UVs[UI::QC_BottomLeft] = this->Parent->GetScreen()->GetWhitePixel(this->PriAtlas);
                 }else{
-                    UVs[0] = this->LayerSprite->GetAtlasCoords(UI::QC_TopLeft);
-                    UVs[1] = this->LayerSprite->GetAtlasCoords(UI::QC_TopRight);
-                    UVs[2] = this->LayerSprite->GetAtlasCoords(UI::QC_BottomRight);
-                    UVs[3] = this->LayerSprite->GetAtlasCoords(UI::QC_BottomLeft);
+                    UVs[UI::QC_TopLeft] = this->LayerSprite->GetRelativeAtlasCoords(UI::QC_TopLeft);
+                    UVs[UI::QC_TopRight] = this->LayerSprite->GetRelativeAtlasCoords(UI::QC_TopRight);
+                    UVs[UI::QC_BottomRight] = this->LayerSprite->GetRelativeAtlasCoords(UI::QC_BottomRight);
+                    UVs[UI::QC_BottomLeft] = this->LayerSprite->GetRelativeAtlasCoords(UI::QC_BottomLeft);
                 }
 
                 // Triangle A
-                this->PushVertex(BottomLeft.X, BottomLeft.Y, UVs[3], this->FillColours[3], this->PriAtlas);    // Left/Bottom  3
-                this->PushVertex(TopRight.X, TopRight.Y, UVs[1], this->FillColours[1], this->PriAtlas);    // Right/Top    1
-                this->PushVertex(TopLeft.X, TopLeft.Y, UVs[0], this->FillColours[0], this->PriAtlas);    // Left/Top     0
+                this->PushVertex(BottomLeft.X, BottomLeft.Y, UVs[UI::QC_BottomLeft], this->FillColours[UI::QC_BottomLeft], this->PriAtlas);      // Left/Bottom  3
+                this->PushVertex(TopRight.X, TopRight.Y, UVs[UI::QC_TopRight], this->FillColours[UI::QC_TopRight], this->PriAtlas);              // Right/Top    1
+                this->PushVertex(TopLeft.X, TopLeft.Y, UVs[UI::QC_TopLeft], this->FillColours[UI::QC_TopLeft], this->PriAtlas);                  // Left/Top     0
 
                 // Triangle B
-                this->PushVertex(BottomLeft.X, BottomLeft.Y, UVs[3], this->FillColours[3], this->PriAtlas);    // Left/Bottom   3
-                this->PushVertex(BottomRight.X, BottomRight.Y, UVs[2], this->FillColours[2], this->PriAtlas);    // Right/Bottom  2
-                this->PushVertex(TopRight.X, TopRight.Y, UVs[1], this->FillColours[1], this->PriAtlas);    // Right/Top     1
+                this->PushVertex(BottomLeft.X, BottomLeft.Y, UVs[UI::QC_BottomLeft], this->FillColours[UI::QC_BottomLeft], this->PriAtlas);      // Left/Bottom   3
+                this->PushVertex(BottomRight.X, BottomRight.Y, UVs[UI::QC_BottomRight], this->FillColours[UI::QC_BottomRight], this->PriAtlas);  // Right/Bottom  2
+                this->PushVertex(TopRight.X, TopRight.Y, UVs[UI::QC_TopRight], this->FillColours[UI::QC_TopRight], this->PriAtlas);              // Right/Top     1
             }
         }
 

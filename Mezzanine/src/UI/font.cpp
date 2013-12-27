@@ -48,7 +48,8 @@ namespace Mezzanine
 {
     namespace UI
     {
-        FontData::FontData() :
+        FontData::FontData(TextureAtlas* ParentAtlas) :
+            Atlas(ParentAtlas),
             SpaceLength(0),
             LineHeight(0),
             BaseLine(0),
@@ -151,9 +152,6 @@ namespace Mezzanine
 
         void FontData::_SetName(const String& Name)
             { this->FontName = Name; }
-
-        void FontData::_SetAtlas(TextureAtlas* FontAtlas)
-            { this->Atlas = FontAtlas; }
 
         void FontData::_AddGlyph(Glyph* NewGlyph)
         {

@@ -179,7 +179,7 @@ namespace Mezzanine
             {
                 XML::Attribute CurrAttrib;
                 Vector2 Offset(0,0);
-                FontData* Data = new FontData();
+                FontData* Data = new FontData(this);
 
                 // Get the name
                 CurrAttrib = (*FontNode).GetAttribute("Name");
@@ -188,7 +188,7 @@ namespace Mezzanine
 
                 // Now that we have the name, quickly check if this is unique before we continue to parse
                 FontDataIterator FontIt = Fonts.find(Data->GetName());
-                if( FontIt != Fonts.end() ) { Fonts[Data->GetName()] = Data; }
+                if( FontIt == Fonts.end() ) { Fonts[Data->GetName()] = Data; }
                 else { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Duplicate name of font:\"" + Data->GetName() + "\", found in atlas:\"" + AtlasName + "\"." ); }
 
                 // Get the horizontal offset if there is any
@@ -245,9 +245,6 @@ namespace Mezzanine
                 // Lastly parse the vertical offsets
                 XML::Node VerticalOffsetsNode = (*FontNode).GetChild("VerticalOffsets");
                 this->ParseVerticalOffsets( VerticalOffsetsNode, Data );
-
-                // Set the Atlas
-                Data->_SetAtlas(this);
             }
         }
 
@@ -303,8 +300,8 @@ namespace Mezzanine
                 // Assign the values to the glyph
                 NewGlyph->AtlasCoords[QC_TopLeft].SetValues(Left,Top);
                 NewGlyph->AtlasCoords[QC_TopRight].SetValues(Right,Top);
-                NewGlyph->AtlasCoords[QC_BottomRight].SetValues(Bottom,Right);
-                NewGlyph->AtlasCoords[QC_BottomLeft].SetValues(Bottom,Left);
+                NewGlyph->AtlasCoords[QC_BottomRight].SetValues(Right,Bottom);
+                NewGlyph->AtlasCoords[QC_BottomLeft].SetValues(Left,Bottom);
 
                 // Get or generate the glyph advance
                 CurrAttrib = (*GlyphIt).GetAttribute("Advance");
@@ -481,6 +478,7 @@ namespace Mezzanine
             Ogre::TextureUnitState* TexUnit = MatPass->createTextureUnitState();
             TexUnit->setTextureAddressingMode(Ogre::TextureUnitState::TAM_CLAMP);
             TexUnit->setTextureFiltering(Ogre::FO_NONE, Ogre::FO_NONE, Ogre::FO_NONE);
+            return Material2D;
         }
 
         Ogre::MaterialPtr TextureAtlas::GetOrCreate3DMasterMaterial()
@@ -516,6 +514,7 @@ namespace Mezzanine
             Ogre::TextureUnitState* TexUnit = MatPass->createTextureUnitState();
             TexUnit->setTextureAddressingMode(Ogre::TextureUnitState::TAM_CLAMP);
             TexUnit->setTextureFiltering(Ogre::FO_ANISOTROPIC, Ogre::FO_ANISOTROPIC, Ogre::FO_ANISOTROPIC);
+            return Material3D;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -551,48 +550,32 @@ namespace Mezzanine
         }
 
         TextureAtlas::SpriteContainer& TextureAtlas::GetSprites()
-        {
-            return Sprites;
-        }
+            { return Sprites; }
 
         Vector2 TextureAtlas::GetWhitePixel() const
-        {
-            return WhitePixel;
-        }
+            { return WhitePixel; }
 
         Real TextureAtlas::GetWhitePixelX() const
-        {
-            return WhitePixel.X;
-        }
+            { return WhitePixel.X; }
 
         Real TextureAtlas::GetWhitePixelY() const
-        {
-            return WhitePixel.Y;
-        }
+            { return WhitePixel.Y; }
 
         Vector2 TextureAtlas::GetTextureSize() const
-        {
-            Vector2 Vec(Real(this->TAID->TATexture->getWidth()),Real(this->TAID->TATexture->getHeight()));
-            return Vec;
-        }
+            { return Vector2( Real( this->TAID->TATexture->getWidth() ), Real( this->TAID->TATexture->getHeight() ) ); }
 
         Real TextureAtlas::GetInvTextureCoordsX() const
-        {
-            return 1.0 / Real(this->TAID->TATexture->getWidth());
-        }
+            { return 1.0 / Real(this->TAID->TATexture->getWidth()); }
 
         Real TextureAtlas::GetInvTextureCoordsY() const
-        {
-            return 1.0 / Real(this->TAID->TATexture->getHeight());
-        }
+            { return 1.0 / Real(this->TAID->TATexture->getHeight()); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Functions
 
         Ogre::MaterialPtr TextureAtlas::_GetOrCreate2DMaterial()
         {
-            if(this->TAID->Mat2D.isNull())
-            {
+            if(this->TAID->Mat2D.isNull()) {
                 Create2DMaterial();
             }
             return this->TAID->Mat2D;
@@ -600,27 +583,20 @@ namespace Mezzanine
 
         Ogre::MaterialPtr TextureAtlas::_GetOrCreate3DMaterial()
         {
-            if(this->TAID->Mat3D.isNull())
-            {
+            if(this->TAID->Mat3D.isNull()) {
                 Create3DMaterial();
             }
             return this->TAID->Mat3D;
         }
 
         Ogre::TexturePtr TextureAtlas::_GetTexture()
-        {
-            return this->TAID->TATexture;
-        }
+            { return this->TAID->TATexture; }
 
         Ogre::Pass* TextureAtlas::_Get2DPass() const
-        {
-            return this->TAID->Pass2D;
-        }
+            { return this->TAID->Pass2D; }
 
         Ogre::Pass* TextureAtlas::_Get3DPass() const
-        {
-            return this->TAID->Pass3D;
-        }
+            { return this->TAID->Pass3D; }
     }//UI
 }//Mezzanine
 

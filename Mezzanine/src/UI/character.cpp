@@ -148,20 +148,30 @@ namespace Mezzanine
             // If this is a glyph, combine the manual vertical offset for low hanging letters as well as the difference between the baseline and lineheight.
             // In almost all cases the combined offset should be a positive number, elevating the normal letters and thus making everything more centered.
             /// @todo If we want to change how normal text is aligned on the Y axis, we need to update this.
-            if( this->IsGlyph() ) return this->CharGlyph->VerticalOffset + (this->CharGlyph->Font->GetLineHeight() - this->CharGlyph->Font->GetBaseLine());
-            else if( this->IsSprite() ) return 0;
+            if( this->IsGlyph() ) {
+                return this->CharGlyph->VerticalOffset + (this->CharGlyph->Font->GetLineHeight() - this->CharGlyph->Font->GetBaseLine());
+            }
+            return 0;
         }
 
         TextureAtlas* Character::GetAtlas() const
         {
-            if( this->IsGlyph() ) return this->CharGlyph->Atlas;
-            else if( this->IsSprite() ) return this->CharSprite->Atlas;
+            if( this->IsGlyph() ) {
+                return this->CharGlyph->Atlas;
+            }else if( this->IsSprite() ) {
+                return this->CharSprite->Atlas;
+            }else{
+                return NULL;
+            }
         }
 
         const String& Character::GetAtlasName() const
         {
-            if( this->IsGlyph() ) return this->CharGlyph->GetAtlasName();
-            else if( this->IsSprite() ) return this->CharSprite->GetAtlasName();
+            if( this->IsGlyph() ) {
+                return this->CharGlyph->GetAtlasName();
+            }else if( this->IsSprite() ) {
+                return this->CharSprite->GetAtlasName();
+            }
         }
 
         Vector2 Character::GetAtlasWhitePixel() const
@@ -173,6 +183,14 @@ namespace Mezzanine
         {
             if( this->IsGlyph() ) return CharGlyph->GetAtlasCoords(Corner);
             else if( this->IsSprite() ) return CharSprite->GetAtlasCoords(Corner);
+            else return Vector2();
+        }
+
+        Vector2 Character::GetRelativeAtlasCoords(const UI::QuadCorner Corner) const
+        {
+            if( this->IsGlyph() ) return CharGlyph->GetRelativeAtlasCoords(Corner);
+            else if( this->IsSprite() ) return CharSprite->GetRelativeAtlasCoords(Corner);
+            else return Vector2();
         }
 
         void Character::SetCharacterColour(const ColourValue& Colour)

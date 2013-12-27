@@ -44,6 +44,7 @@
 #include "UI/menubutton.h"
 #include "UI/uimanager.h"
 #include "UI/screen.h"
+#include "UI/layoutstrategy.h"
 
 #include "stringtool.h"
 #include "exception.h"
@@ -60,31 +61,35 @@ namespace Mezzanine
 
         MenuEntry::MenuEntry(Screen* Parent) :
             StackedContainer(Parent),
+            MenuStack(NULL),
             PushButton(NULL),
             PopButton(NULL),
             AutoHideEntry(true)
-            {  }
+            { this->LayoutStrat = new LayoutStrategy(); }
 
         MenuEntry::MenuEntry(const String& RendName, Screen* Parent) :
             StackedContainer(RendName,Parent),
+            MenuStack(NULL),
             PushButton(NULL),
             PopButton(NULL),
             AutoHideEntry(true)
-            {  }
+            { this->LayoutStrat = new LayoutStrategy(); }
 
         MenuEntry::MenuEntry(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             StackedContainer(RendName,RendRect,Parent),
+            MenuStack(NULL),
             PushButton(NULL),
             PopButton(NULL),
             AutoHideEntry(true)
-            {  }
+            { this->LayoutStrat = new LayoutStrategy(); }
 
         MenuEntry::MenuEntry(const XML::Node& XMLNode, Screen* Parent) :
             StackedContainer(Parent),
+            MenuStack(NULL),
             PushButton(NULL),
             PopButton(NULL),
             AutoHideEntry(true)
-            {  }
+            { this->LayoutStrat = new LayoutStrategy(); }
 
         MenuEntry::~MenuEntry()
         {
@@ -100,7 +105,7 @@ namespace Mezzanine
                 if( ( this->IsRootEntry() && this->MenuStack->empty() ) ||
                     ( !(this->MenuStack->empty()) && this->MenuStack->back() == this->ParentQuad ) )
                 {
-                    if( this->MenuStack->empty() && this->MenuStack->back()->GetAutoHide() ) {
+                    if( !(this->MenuStack->empty()) && this->MenuStack->back()->GetAutoHide() ) {
                         this->MenuStack->back()->Hide();
                     }
                     this->MenuStack->push_back(this);
@@ -131,7 +136,7 @@ namespace Mezzanine
             if( this->ParentQuad->GetRenderableType() == Renderable::RT_Widget ) {
                 return ( static_cast<Widget*>( this->ParentQuad )->GetTypeName() != MenuEntry::TypeName );
             }else{
-                return false;
+                return true;
             }
         }
 
@@ -150,26 +155,30 @@ namespace Mezzanine
 
         Whole MenuEntry::RollBackToEntry(MenuEntry* RollBackTo)
         {
-            if( RollBackTo != NULL && !(this->MenuStack->empty()) ) {
-                Whole Ret = 0;
-                MenuEntryIterator MenuBeg = this->MenuStack->begin();
-                MenuEntryIterator MenuEnd = this->MenuStack->end();
-                while( MenuBeg != MenuEnd )
-                {
-                    if( (*MenuBeg) == RollBackTo )
-                        break;
-                    else
-                        ++MenuBeg;
-                }
+            if( this->MenuStack ) {
+                if( RollBackTo != NULL && !(this->MenuStack->empty()) ) {
+                    Whole Ret = 0;
+                    MenuEntryIterator MenuBeg = this->MenuStack->begin();
+                    MenuEntryIterator MenuEnd = this->MenuStack->end();
+                    while( MenuBeg != MenuEnd )
+                    {
+                        if( (*MenuBeg) == RollBackTo ) {
+                            ++MenuBeg;
+                            break;
+                        }else{
+                            ++MenuBeg;
+                        }
+                    }
 
-                for( MenuEntryIterator MenuIt = MenuBeg ; MenuIt != MenuEnd ; ++MenuIt )
-                {
-                    (*MenuIt)->Hide();
-                    ++Ret;
+                    for( MenuEntryIterator MenuIt = MenuBeg ; MenuIt != MenuEnd ; ++MenuIt )
+                    {
+                        (*MenuIt)->Hide();
+                        ++Ret;
+                    }
+                    this->MenuStack->erase(MenuBeg,MenuEnd);
+                    RollBackTo->Show();
+                    return Ret;
                 }
-                this->MenuStack->erase(MenuBeg,MenuEnd);
-                RollBackTo->Show();
-                return Ret;
             }
             return 0;
         }
@@ -377,7 +386,8 @@ namespace Mezzanine
         {
             const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
             Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);
-            if( EventWidget == NULL )
+            //if( EventWidget == NULL )
+            if( EventWidget == NULL || WidArgs.EventName != Button::EventDeactivated )
                 return;
 
             if( !(EventWidget->IsHovered()) )

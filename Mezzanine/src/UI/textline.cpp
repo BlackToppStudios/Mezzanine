@@ -186,12 +186,12 @@ namespace Mezzanine
 
         Real TextLine::GetClosestCursorPosition(const Real& Position)
         {
-            CharacterIterator CharIt = Characters.begin();
+            CharacterIterator CharIt = this->Characters.begin();
             // Check if we're too far to the left side to get anything
             if( Position < (*CharIt)->GetLengthOffset() )
                 return this->GetLeftMostCursorPosition();
 
-            while( CharIt != Characters.end() && Position < (*CharIt)->GetLengthOffset() )
+            while( CharIt != this->Characters.end() && Position < (*CharIt)->GetLengthOffset() )
             {
                 if( (*CharIt)->IsNewLine() )
                     continue;
@@ -204,7 +204,7 @@ namespace Mezzanine
             Real CharXSize = (*CharIt)->GetCharacterSize().X;
 
             // Check if we're too far to the right side to get anything
-            if( CharIt == (--Characters.end()) && Position > CharXPos + CharXSize )
+            if( CharIt == (--(this->Characters.end())) && Position > CharXPos + CharXSize )
                 return this->GetRightMostCursorPosition();
 
             return ( Position < CharXPos + (CharXSize * 0.5) ? CharXPos : CharXPos + CharXSize );
@@ -327,7 +327,7 @@ namespace Mezzanine
 
         LeftToRightTextLine::LeftToRightTextLine(TextLayer* ParentLayer) :
             TextLine(ParentLayer)
-            { Alignment = UI::LA_TopLeft; }
+            { this->Alignment = UI::LA_TopLeft; }
 
         LeftToRightTextLine::~LeftToRightTextLine()
             {  }
@@ -345,7 +345,7 @@ namespace Mezzanine
             for( CharacterIterator CharIt = this->Characters.begin() ; CharIt != this->Characters.end() ; ++CharIt )
             {
                 (*CharIt)->SetLengthOffset(CursorPosition);
-                CursorPosition += (*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph()) * Parent->GetTextScale().X;
+                CursorPosition += (*CharIt)->GetCharacterAdvance( Previous != NULL ? Previous->GetCharGlyph() : NULL ) * Parent->GetTextScale().X;
                 Previous = (*CharIt);
             }
             this->Parent->_MarkDirty();
@@ -358,7 +358,7 @@ namespace Mezzanine
 
         void LeftToRightTextLine::AppendToBack(TextLine::CharacterIterator First, TextLine::CharacterIterator Last)
         {
-            this->Characters.insert(Characters.end(),First,Last);
+            this->Characters.insert(this->Characters.end(),First,Last);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -437,35 +437,35 @@ namespace Mezzanine
 
         TextLine::CharacterIterator LeftToRightTextLine::GetFirstCharacter()
         {
-            if( !Characters.empty() ) return Characters.begin();
-            else return Characters.end();
+            if( !this->Characters.empty() ) return this->Characters.begin();
+            else return this->Characters.end();
         }
 
         TextLine::CharacterIterator LeftToRightTextLine::GetLastCharacter()
         {
-            if( !Characters.empty() ) return --Characters.end();
-            else return Characters.end();
+            if( !this->Characters.empty() ) return --(this->Characters.end());
+            else return this->Characters.end();
         }
 
         TextLine::CharacterIterator LeftToRightTextLine::GetNextCharacter(TextLine::CharacterIterator Current)
         {
-            if( Current != Characters.end() )
-            {
+            if( Current != this->Characters.end() ) {
                 CharacterIterator Copy = Current;
                 return ++Copy;
             }
+            return this->Characters.end();
         }
 
         void LeftToRightTextLine::RemoveFirstCharacter()
         {
-            Characters.pop_front();
+            this->Characters.pop_front();
             //Characters.erase(Characters.begin());
             this->RecalculateOffsets();
         }
 
         void LeftToRightTextLine::RemoveLastCharacter()
         {
-            Characters.pop_back();
+            this->Characters.pop_back();
             this->RecalculateOffsets();
         }
 
@@ -474,14 +474,14 @@ namespace Mezzanine
 
         RightToLeftTextLine::RightToLeftTextLine(TextLayer* ParentLayer) :
             TextLine(ParentLayer)
-            { Alignment = UI::LA_BottomRight; }
+            { this->Alignment = UI::LA_BottomRight; }
 
         RightToLeftTextLine::~RightToLeftTextLine()
             {  }
 
         Character* RightToLeftTextLine::GetSecondFromLastCharacter() const
         {
-            if( Characters.size() > 1 ) return *(++Characters.begin());
+            if( this->Characters.size() > 1 ) return *(++(this->Characters.begin()));
             else return NULL;
         }
 
@@ -489,9 +489,9 @@ namespace Mezzanine
         {
             Real CursorPosition = this->GetRightMostCursorPosition();
             Character* Previous = NULL;
-            for( ReverseCharacterIterator CharIt = Characters.rbegin() ; CharIt != Characters.rend() ; ++CharIt )
+            for( ReverseCharacterIterator CharIt = this->Characters.rbegin() ; CharIt != this->Characters.rend() ; ++CharIt )
             {
-                CursorPosition -= (*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph()) * this->Parent->GetTextScale().X;
+                CursorPosition -= (*CharIt)->GetCharacterAdvance( Previous != NULL ? Previous->GetCharGlyph() : NULL ) * this->Parent->GetTextScale().X;
                 (*CharIt)->SetLengthOffset(CursorPosition);
                 Previous = (*CharIt);
             }
@@ -500,12 +500,12 @@ namespace Mezzanine
 
         void RightToLeftTextLine::AppendToBack(Character* ToAppend)
         {
-            this->Characters.insert(Characters.begin(),ToAppend);
+            this->Characters.insert(this->Characters.begin(),ToAppend);
         }
 
         void RightToLeftTextLine::AppendToBack(TextLine::CharacterIterator First, TextLine::CharacterIterator Last)
         {
-            this->Characters.insert(Characters.begin(),First,Last);
+            this->Characters.insert(this->Characters.begin(),First,Last);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -527,7 +527,7 @@ namespace Mezzanine
             // Set up data to be used
             Real Tallest = 0, SequenceLength = 0;
             Vector2 CharScaling = this->Parent->GetTextScale();
-            Character* Previous = ( this->GetLastCharacter() != Characters.end() ? *(this->GetLastCharacter()) : NULL  );
+            Character* Previous = ( this->GetLastCharacter() != this->Characters.end() ? *(this->GetLastCharacter()) : NULL  );
 
             // Setup our iterators for iteration (format provided is for insertion)
             CharacterIterator FirstCopy = First;
@@ -563,7 +563,7 @@ namespace Mezzanine
             // Set up data to be used
             Real MaxWidth = GetMaxWidth();
             Vector2 CharScaling = this->Parent->GetTextScale();
-            Character* Previous = ( this->GetLastCharacter() != Characters.end() ? *(this->GetLastCharacter()) : NULL  );
+            Character* Previous = ( this->GetLastCharacter() != this->Characters.end() ? *(this->GetLastCharacter()) : NULL  );
 
             // Setup our iterators for iteration (format provided is for insertion)
             CharacterIterator FirstCopy = First;
@@ -596,20 +596,20 @@ namespace Mezzanine
 
         TextLine::CharacterIterator RightToLeftTextLine::GetFirstCharacter()
         {
-            if( !Characters.empty() ) return --Characters.end();
-            else return Characters.end();
+            if( !this->Characters.empty() ) return --(this->Characters.end());
+            else return this->Characters.end();
         }
 
         TextLine::CharacterIterator RightToLeftTextLine::GetLastCharacter()
         {
-            if( !Characters.empty() ) return Characters.begin();
-            else return Characters.end();
+            if( !this->Characters.empty() ) return this->Characters.begin();
+            else return this->Characters.end();
         }
 
         TextLine::CharacterIterator RightToLeftTextLine::GetNextCharacter(TextLine::CharacterIterator Current)
         {
             CharacterIterator Copy = Current;
-            if( *Current != Characters.front() ) return --Copy;
+            if( *Current != this->Characters.front() ) return --Copy;
             else return Copy;
         }
 

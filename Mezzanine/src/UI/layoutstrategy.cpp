@@ -65,8 +65,8 @@ namespace Mezzanine
 
         void LayoutStrategy::Layout(const Rect& OldSelfRect, const Rect& NewSelfRect, const ChildContainer& ChildQuads)
         {
-            bool QuadPositionUpdated = (OldSelfRect.Position != NewSelfRect.Position);
-            bool QuadSizeUpdated = (OldSelfRect.Size != NewSelfRect.Size);
+            Bool QuadPositionUpdated = (OldSelfRect.Position != NewSelfRect.Position);
+            Bool QuadSizeUpdated = (OldSelfRect.Size != NewSelfRect.Size);
             for( ConstChildIterator ChildIt = ChildQuads.begin() ; ChildIt != ChildQuads.end() ; ++ChildIt )
             {
                 QuadRenderable* Child = (*ChildIt);
@@ -76,15 +76,13 @@ namespace Mezzanine
 
                 const Rect OldChildRect = Child->GetRect();
                 Rect NewChildRect = OldChildRect;
-                NewChildRect.SetIdentity();
+                //NewChildRect.SetIdentity();
 
-                if( QuadSizeUpdated )
-                {
+                if( QuadSizeUpdated ) {
                     NewChildRect.Size = this->HandleChildSizing(OldSelfRect,NewSelfRect,Child);
                 }
 
-                if( QuadSizeUpdated || QuadPositionUpdated )
-                {
+                if( QuadSizeUpdated || QuadPositionUpdated ) {
                     NewChildRect.Position = this->HandleChildPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,Child);
                 }
 
@@ -108,44 +106,48 @@ namespace Mezzanine
 
         Real LayoutStrategy::HandleChildHorizontalPositioning(const Rect& OldSelfRect, const Rect& NewSelfRect, const Vector2& NewChildSize, QuadRenderable* Child)
         {
+            const Real OldXPos = Child->GetActualPosition().X;
+            const Real OldXSize = Child->GetActualSize().X;
             const PositioningInfo& ChildPositioning = Child->GetPositioningPolicy();
             // Rather than have a bunch of complicated checks to see what needs to be filled in, blindly assign Unified position
             // to the new rect, and allow simpler targetted checks fill in the exceptions
-            Real Ret = ChildPositioning.UPosition.X.CalculateActualDimension(NewSelfRect.Position.X);
+            Real Ret = NewSelfRect.Position.X + ChildPositioning.UPosition.X.CalculateActualDimension(NewSelfRect.Size.X);
             // Do our checks
             if( ChildPositioning.PositionRules & UI::PF_HorizontalCenter ) { // Check if we're centered
                 // Get the center point in the parent space on this axis, and align the childs center on the same axis to that point
-                Ret = (NewSelfRect.Position.X - ( NewSelfRect.Size.X * 0.5 ) ) + ( NewChildSize.X * 0.5 );
+                Ret = ( NewSelfRect.Position.X + ( NewSelfRect.Size.X * 0.5 ) ) - ( NewChildSize.X * 0.5 );
             }else if( ChildPositioning.PositionRules & UI::PF_Left ) { // Check if we're anchored to the left
                 // Get the difference there used to be prior to this update between the left edge of this quad and it's parent.
                 // Then add it to the parents updated rect to get our new position.  This preserves absolute distance.
-                Ret = NewSelfRect.Position.X + ( OldSelfRect.Position.X - OldSelfRect.Position.X );
+                Ret = NewSelfRect.Position.X + ( OldSelfRect.Position.X - OldXPos );
             }else if( ChildPositioning.PositionRules & UI::PF_Right ) { // Check if we're anchored to the right
                 // Get the right edge of the parent's old transform and get the distance from that point to the left edge of this quad.
                 // Then subtract apply that distance (via subtraction) to the updated transform.  This preserves absolute distance.
-                Ret = ( NewSelfRect.Position.X + NewSelfRect.Size.X ) - ( ( OldSelfRect.Position.X + OldSelfRect.Size.X ) - OldSelfRect.Position.X );
+                Ret = ( NewSelfRect.Position.X + NewSelfRect.Size.X ) - ( ( OldSelfRect.Position.X + OldSelfRect.Size.X ) - ( OldXPos + OldXSize ) );
             }
             return Ret;
         }
 
         Real LayoutStrategy::HandleChildVerticalPositioning(const Rect& OldSelfRect, const Rect& NewSelfRect, const Vector2& NewChildSize, QuadRenderable* Child)
         {
+            const Real OldYPos = Child->GetActualPosition().Y;
+            const Real OldYSize = Child->GetActualSize().Y;
             const PositioningInfo& ChildPositioning = Child->GetPositioningPolicy();
             // Rather than have a bunch of complicated checks to see what needs to be filled in, blindly assign Unified position
             // to the new rect, and allow simpler targetted checks fill in the exceptions
-            Real Ret = ChildPositioning.UPosition.Y.CalculateActualDimension(NewSelfRect.Position.Y);
+            Real Ret = NewSelfRect.Position.Y + ChildPositioning.UPosition.Y.CalculateActualDimension(NewSelfRect.Size.Y);
             // Do our checks
             if( ChildPositioning.PositionRules & UI::PF_VerticalCenter ) { // Check if we're centered
                 // Get the center point in the parent space on this axis, and align the childs center on the same axis to that point
-                Ret = (NewSelfRect.Position.Y - ( NewSelfRect.Size.Y * 0.5 ) ) + ( NewChildSize.Y * 0.5 );
+                Ret = ( NewSelfRect.Position.Y + ( NewSelfRect.Size.Y * 0.5 ) ) - ( NewChildSize.Y * 0.5 );
             }else if( ChildPositioning.PositionRules & UI::PF_Top ) { // Check if we're anchored to the top
                 // Get the difference there used to be prior to this update between the top edge of this quad and it's parent.
                 // Then add it to the parents updated rect to get our new position.  This preserves absolute distance.
-                Ret = NewSelfRect.Position.Y + ( OldSelfRect.Position.Y - OldSelfRect.Position.Y );
+                Ret = NewSelfRect.Position.Y + ( OldSelfRect.Position.Y - NewSelfRect.Position.Y );
             }else if( ChildPositioning.PositionRules & UI::PF_Bottom ) { // Check if we're anchored to the bottom
                 // Get the bottom edge of the parent's old transform and get the distance from that point to the top edge of this quad.
                 // Then subtract apply that distance (via subtraction) to the updated transform.  This preserves absolute distance.
-                Ret = ( NewSelfRect.Position.Y + NewSelfRect.Size.Y ) - ( ( OldSelfRect.Position.Y + OldSelfRect.Size.Y ) - OldSelfRect.Position.Y );
+                Ret = ( NewSelfRect.Position.Y + NewSelfRect.Size.Y ) - ( ( OldSelfRect.Position.Y + OldSelfRect.Size.Y ) - ( OldYPos + OldYSize ) );
             }
             return Ret;
         }

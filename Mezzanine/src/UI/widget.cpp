@@ -123,6 +123,8 @@ namespace Mezzanine
             this->AddEvent(Widget::EventMouseDragEnd);
             this->AddEvent(Widget::EventFocusGained);
             this->AddEvent(Widget::EventFocusLost);
+            this->AddEvent(Widget::EventFocusLocked);
+            this->AddEvent(Widget::EventFocusUnlocked);
             this->AddEvent(Widget::EventVisibilityShown);
             this->AddEvent(Widget::EventVisibilityHidden);
 
@@ -519,9 +521,9 @@ namespace Mezzanine
 
         bool Widget::_HandleInput(const Input::MetaCode& Code)
         {
-            if( this->HandleInputImpl(Code) ) return true;
-            else
-            {
+            if( this->HandleInputImpl(Code) ) {
+                return true;
+            }else{
                 if( this->ParentQuad && Renderable::RT_Widget == this->ParentQuad->GetRenderableType() )
                     return static_cast<Widget*>(this->ParentQuad)->_HandleInput(Code);
                 else return false;

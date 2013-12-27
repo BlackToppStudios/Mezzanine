@@ -60,27 +60,36 @@ namespace Mezzanine
             typedef GlyphContainer::iterator         GlyphIterator;
             typedef GlyphContainer::const_iterator   ConstGlyphIterator;
         protected:
-            /// @brief The width in pixels of a space in this font.
-            Real SpaceLength;
-            /// @brief The height of a line of text in this font.
-            Real LineHeight;
-            /// @brief The height of the largest glyph in this font.
-            Real BaseLine;
-            /// @brief I don't know.
-            Real LetterSpacing;
-            /// @brief The name of this font.
-            String FontName;
-            /// @brief The Atlas that this GlyphData belongs to.
-            TextureAtlas* Atlas;
+            /// @internal
             /// @brief Container storing all the Glyphs contained in this font.
             GlyphContainer Glyphs;
+            /// @internal
+            /// @brief The name of this font.
+            String FontName;
+            /// @internal
+            /// @brief The Atlas that this GlyphData belongs to.
+            TextureAtlas* Atlas;
+            /// @internal
+            /// @brief The width in pixels of a space in this font.
+            Real SpaceLength;
+            /// @internal
+            /// @brief The height of a line of text in this font.
+            Real LineHeight;
+            /// @internal
+            /// @brief The height of the largest glyph in this font.
+            Real BaseLine;
+            /// @internal
+            /// @brief I don't know.
+            Real LetterSpacing;
+
             /// @brief Sets the dummy coordinates for a generated whitespace glyph.
             void SetWhitespaceAtlasCoords(Glyph* Whitespace);
             /// @brief Generates Whitespace Glyphs from this font's data for this font.
             void GenerateWhitespaceGlyphs();
         public:
             /// @brief Class constructor.
-            FontData();
+            /// @param ParentAtlas The TextureAtlas this font data belongs to.
+            FontData(TextureAtlas* ParentAtlas);
             /// @brief Class destructor.
             ~FontData();
 
@@ -136,10 +145,6 @@ namespace Mezzanine
             /// @brief Sets the name of this font.
             /// @param Name The name to be given to this font.
             void _SetName(const String& Name);
-            /// @internal
-            /// @brief Sets the Atlas this Font belongs to.
-            /// @param FontAtlas The Atlas this font belongs to.
-            void _SetAtlas(TextureAtlas* FontAtlas);
             /// @internal
             /// @brief Adds a new glyph to this Font.
             /// @exception An exception will be thrown if a glyph with the same ID is already taken.

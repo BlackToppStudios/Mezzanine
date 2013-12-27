@@ -130,8 +130,12 @@ namespace Mezzanine
             Vector2 GetAtlasWhitePixel() const;
             /// @brief Gets the atlas coordinates of a quad corner.
             /// @param Corner The corner to get the atlas coordinates for.
-            /// @return Returns a const Vector2 reference to the atlas coordinates to the requested corner.
+            /// @return Returns a Vector2 containing the Atlas pixel position of the requested corner.
             Vector2 GetAtlasCoords(const UI::QuadCorner Corner) const;
+            /// @brief Gets the relative atlas coordinates of a quad corner.
+            /// @param Corner The corner to retrieve the coordinates for.
+            /// @return Returns a Vector2 containing the Atlas relative(0 to 1) position of the requested corner.
+            Vector2 GetRelativeAtlasCoords(const UI::QuadCorner Corner) const;
 
             /// @brief Sets the fill colour for this character.
             /// @note With most text/glyphs this will simply set the colour of the letters.  In the case of

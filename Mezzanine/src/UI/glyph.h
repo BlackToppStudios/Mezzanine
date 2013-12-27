@@ -79,7 +79,7 @@ namespace Mezzanine
             /// @brief Default constructor.
             /// @param Data The collection of glyphs this glyph belongs to.
             Glyph(FontData* Data) :
-                Atlas(NULL), Font(Data), GlyphID(0), GlyphAdvance(0), VerticalOffset(0) {  }
+                Atlas(Data->GetAtlas()), Font(Data), GlyphID(0), GlyphAdvance(0), VerticalOffset(0) {  }
             /// @brief Descriptive constructor.
             /// @param Data The collection of glyphs this glyph belongs to.
             /// @param TexAtlas The TextureAtlas this glyph belongs to.
@@ -121,16 +121,16 @@ namespace Mezzanine
             /// @note This is the character to the left in languages like English(left to right), or the character to the right in languages like Arabic(right to left).
             /// @param Previous The previous glyph in the sequence.
             /// @return Returns in pixels the special amount to advance.
-            inline Real GetKerning(const char Previous) const
+            inline Real GetKerning(const UInt32 Previous) const
             {
-                Integer NumKernings = this->Kernings.size();
+                Whole NumKernings = this->Kernings.size();
                 if( NumKernings == 0 || Previous == 0 )
                     return 0;
 
-                for( Integer i = 0 ; i < NumKernings ; i++ )
+                for( Whole Index = 0 ; Index < NumKernings ; ++Index )
                 {
-                    if( this->Kernings[i].Character == Previous )
-                        return this->Kernings[i].Kerning;
+                    if( this->Kernings[Index].Character == Previous )
+                        return this->Kernings[Index].Kerning;
                 }
                 return 0;
             }

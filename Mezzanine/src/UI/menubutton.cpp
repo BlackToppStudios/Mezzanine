@@ -161,7 +161,7 @@ namespace Mezzanine
         // MenuButtonFactory Methods
 
         String MenuButtonFactory::GetWidgetTypeName() const
-            { return Button::TypeName; }
+            { return MenuButton::TypeName; }
 
         MenuButton* MenuButtonFactory::CreateMenuButton(const String& RendName, Screen* Parent)
             { return new MenuButton(RendName,Parent); }

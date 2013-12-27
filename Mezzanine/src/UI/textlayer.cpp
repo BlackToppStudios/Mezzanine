@@ -242,14 +242,14 @@ namespace Mezzanine
                     }
 
                     // Triangle A
-                    PushVertex(BottomLeft.X, BottomLeft.Y, CurrChar->GetAtlasCoords(UI::QC_BottomLeft), CharColour, CharAtlas);    // Left/Bottom  3
-                    PushVertex(TopRight.X, TopRight.Y, CurrChar->GetAtlasCoords(UI::QC_TopRight), CharColour, CharAtlas);          // Right/Top    1
-                    PushVertex(TopLeft.X, TopLeft.Y, CurrChar->GetAtlasCoords(UI::QC_TopLeft), CharColour, CharAtlas);             // Left/Top     0
+                    PushVertex(BottomLeft.X, BottomLeft.Y, CurrChar->GetRelativeAtlasCoords(UI::QC_BottomLeft), CharColour, CharAtlas);    // Left/Bottom  3
+                    PushVertex(TopRight.X, TopRight.Y, CurrChar->GetRelativeAtlasCoords(UI::QC_TopRight), CharColour, CharAtlas);          // Right/Top    1
+                    PushVertex(TopLeft.X, TopLeft.Y, CurrChar->GetRelativeAtlasCoords(UI::QC_TopLeft), CharColour, CharAtlas);             // Left/Top     0
 
                     // Triangle B
-                    PushVertex(BottomLeft.X, BottomLeft.Y, CurrChar->GetAtlasCoords(UI::QC_BottomLeft), CharColour, CharAtlas);    // Left/Bottom  3
-                    PushVertex(BottomRight.X, BottomRight.Y, CurrChar->GetAtlasCoords(UI::QC_BottomRight), CharColour, CharAtlas); // Right/Bottom 2
-                    PushVertex(TopRight.X, TopRight.Y, CurrChar->GetAtlasCoords(UI::QC_TopRight), CharColour, CharAtlas);          // Right/Top    1
+                    PushVertex(BottomLeft.X, BottomLeft.Y, CurrChar->GetRelativeAtlasCoords(UI::QC_BottomLeft), CharColour, CharAtlas);    // Left/Bottom  3
+                    PushVertex(BottomRight.X, BottomRight.Y, CurrChar->GetRelativeAtlasCoords(UI::QC_BottomRight), CharColour, CharAtlas); // Right/Bottom 2
+                    PushVertex(TopRight.X, TopRight.Y, CurrChar->GetRelativeAtlasCoords(UI::QC_TopRight), CharColour, CharAtlas);          // Right/Top    1
                 }//for each character
             }//for each text line
 
@@ -298,9 +298,9 @@ namespace Mezzanine
             {
                 switch(VerticalAlign)
                 {
-                    case UI::LA_TopLeft:      /* do nothing, we're at the top */                                              break;
-                    case UI::LA_BottomRight:  CursorY = (ActDims.Position.Y + ActDims.Size.Y) - TotalHeight;                  break;
-                    case UI::LA_Center:       CursorY = (ActDims.Position.Y + (ActDims.Size.Y * 0.5)) - (TotalHeight * 0.5);  break;
+                    case UI::LA_TopLeft:      /* do nothing, we're at the top */                       break;
+                    case UI::LA_BottomRight:  CursorY = ActDims.Size.Y - TotalHeight;                  break;
+                    case UI::LA_Center:       CursorY = (ActDims.Size.Y * 0.5) - (TotalHeight * 0.5);  break;
                 }
             }
             // Set all the actual offsets

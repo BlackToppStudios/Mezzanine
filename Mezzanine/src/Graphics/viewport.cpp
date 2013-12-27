@@ -92,7 +92,13 @@ namespace Mezzanine
             { return OgreViewport->getZOrder(); }
 
         Mezzanine::OrientationMode Viewport::GetOrientationMode() const
-            { return static_cast<Mezzanine::OrientationMode>( OgreViewport->getOrientationMode() ); }
+        {
+            #if OGRE_NO_VIEWPORT_ORIENTATIONMODE != 0
+            return Mezzanine::OM_Degree_0;
+            #else
+            return static_cast<Mezzanine::OrientationMode>( OgreViewport->getOrientationMode() );
+            #endif
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Viewport Metrics Management

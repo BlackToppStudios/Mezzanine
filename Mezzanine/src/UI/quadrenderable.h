@@ -592,14 +592,18 @@ namespace Mezzanine
             void RemoveLayerFromAllGroups(RenderLayer* Layer);
 
             /// @brief Creates a new RenderLayerGroup that can have.
+            /// @exception This function will throw an exception if a group already exists with the provided name.
+            /// @remarks The first RenderLayerGroup that is created will automatically be set to the ActiveGroup.  You can override
+            /// this by calling "SetActiveGroup" manually after creating any additional RenderLayerGroup.
             /// @param Name The name to be given to the new RenderLayerGroup.
             /// @return Returns a pointer to the created RenderLayerGroup.
-            /// @exception This function will throw an exception if a group already exists with the provided name.
             RenderLayerGroup* CreateRenderLayerGroup(const String& Name);
             /// @brief Gets the named RenderLayerGroup or creates one with the specified name if it does not exist.
             /// @remarks This function is unlike the "create" function in that it won't throw an exception in an error condition,
             /// and it is unlike the "get" function in that it will not return a NULL pointer.  This function guarentee's returning
-            /// a valid RenderLayerGroup with the given name.
+            /// a valid RenderLayerGroup with the given name. @n @n
+            /// The first RenderLayerGroup that is created will automatically be set to the ActiveGroup.  You can override
+            /// this by calling "SetActiveGroup" manually after creating any additional RenderLayerGroup.
             /// @param Name The name of the RenderLayerGroup to get or create.
             /// @return Returns a pointer to the named RenderLayerGroup.
             RenderLayerGroup* CreateOrRetrieveRenderLayerGroup(const String& Name);
