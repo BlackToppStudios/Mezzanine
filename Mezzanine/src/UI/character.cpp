@@ -149,7 +149,7 @@ namespace Mezzanine
             // In almost all cases the combined offset should be a positive number, elevating the normal letters and thus making everything more centered.
             /// @todo If we want to change how normal text is aligned on the Y axis, we need to update this.
             if( this->IsGlyph() ) {
-                return this->CharGlyph->VerticalOffset + (this->CharGlyph->Font->GetLineHeight() - this->CharGlyph->Font->GetBaseLine());
+                return this->CharGlyph->VerticalOffset;// + (this->CharGlyph->Font->GetLineHeight() - this->CharGlyph->Font->GetBaseLine());
             }
             return 0;
         }
