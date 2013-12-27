@@ -1910,94 +1910,142 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__AreaEffectFactory swig_types[28]
 #define SWIGTYPE_p_Mezzanine__AreaEffectManager swig_types[29]
 #define SWIGTYPE_p_Mezzanine__AreaEffectUpdateWorkUnit swig_types[30]
-#define SWIGTYPE_p_Mezzanine__AttachableBase swig_types[31]
-#define SWIGTYPE_p_Mezzanine__AttachableChild swig_types[32]
-#define SWIGTYPE_p_Mezzanine__AttachableParent swig_types[33]
-#define SWIGTYPE_p_Mezzanine__AttachableParent__AttachableContainer__iterator swig_types[34]
-#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[35]
-#define SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer swig_types[36]
-#define SWIGTYPE_p_Mezzanine__CameraController swig_types[37]
-#define SWIGTYPE_p_Mezzanine__ColourValue swig_types[38]
-#define SWIGTYPE_p_Mezzanine__DefaultActorManagerFactory swig_types[39]
-#define SWIGTYPE_p_Mezzanine__DefaultAreaEffectManagerFactory swig_types[40]
-#define SWIGTYPE_p_Mezzanine__FieldOfForce swig_types[41]
-#define SWIGTYPE_p_Mezzanine__GoalTimer swig_types[42]
-#define SWIGTYPE_p_Mezzanine__Graphics__CameraProxy swig_types[43]
-#define SWIGTYPE_p_Mezzanine__GravityField swig_types[44]
-#define SWIGTYPE_p_Mezzanine__GravityWell swig_types[45]
-#define SWIGTYPE_p_Mezzanine__ManagerBase swig_types[46]
-#define SWIGTYPE_p_Mezzanine__ManagerFactory swig_types[47]
-#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[48]
-#define SWIGTYPE_p_Mezzanine__Physics__Collision swig_types[49]
-#define SWIGTYPE_p_Mezzanine__Physics__GhostProxy swig_types[50]
-#define SWIGTYPE_p_Mezzanine__Plane swig_types[51]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[52]
-#define SWIGTYPE_p_Mezzanine__Ray swig_types[53]
-#define SWIGTYPE_p_Mezzanine__RayQueryTool swig_types[54]
-#define SWIGTYPE_p_Mezzanine__Sphere swig_types[55]
-#define SWIGTYPE_p_Mezzanine__StopWatchTimer swig_types[56]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type swig_types[57]
-#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[58]
-#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[59]
-#define SWIGTYPE_p_Mezzanine__Timer swig_types[60]
-#define SWIGTYPE_p_Mezzanine__Transform swig_types[61]
-#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[62]
-#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[63]
-#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[64]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[65]
-#define SWIGTYPE_p_Mezzanine__World swig_types[66]
-#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[67]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[68]
-#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[69]
-#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[70]
-#define SWIGTYPE_p_ObjectContainer swig_types[71]
-#define SWIGTYPE_p_ObjectIterator swig_types[72]
-#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[73]
-#define SWIGTYPE_p_Ogre__ColourValue swig_types[74]
-#define SWIGTYPE_p_Ogre__Plane swig_types[75]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[76]
-#define SWIGTYPE_p_Ogre__Ray swig_types[77]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[78]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[79]
-#define SWIGTYPE_p_PlaneRayTestResult swig_types[80]
-#define SWIGTYPE_p_ProxyContainer swig_types[81]
-#define SWIGTYPE_p_ProxyIterator swig_types[82]
-#define SWIGTYPE_p_RayTestResult swig_types[83]
-#define SWIGTYPE_p_RollingAverageT_unsigned_long_t swig_types[84]
-#define SWIGTYPE_p_RunningState swig_types[85]
-#define SWIGTYPE_p_SDL_Event swig_types[86]
-#define SWIGTYPE_p_WorkUnitKey swig_types[87]
-#define SWIGTYPE_p_XML__Node swig_types[88]
-#define SWIGTYPE_p_bool swig_types[89]
-#define SWIGTYPE_p_btQuaternion swig_types[90]
-#define SWIGTYPE_p_btTransform swig_types[91]
-#define SWIGTYPE_p_btVector3 swig_types[92]
-#define SWIGTYPE_p_char swig_types[93]
-#define SWIGTYPE_p_double swig_types[94]
-#define SWIGTYPE_p_float swig_types[95]
-#define SWIGTYPE_p_int swig_types[96]
-#define SWIGTYPE_p_long_long swig_types[97]
-#define SWIGTYPE_p_short swig_types[98]
-#define SWIGTYPE_p_signed_char swig_types[99]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[100]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[101]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[102]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[103]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[104]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[105]
-#define SWIGTYPE_p_std__string swig_types[106]
-#define SWIGTYPE_p_std__stringstream swig_types[107]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_t swig_types[108]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_t swig_types[109]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[110]
-#define SWIGTYPE_p_std__wstring swig_types[111]
-#define SWIGTYPE_p_unsigned_char swig_types[112]
-#define SWIGTYPE_p_unsigned_int swig_types[113]
-#define SWIGTYPE_p_unsigned_long swig_types[114]
-#define SWIGTYPE_p_unsigned_long_long swig_types[115]
-#define SWIGTYPE_p_unsigned_short swig_types[116]
-static swig_type_info *swig_types[118];
-static swig_module_info swig_module = {swig_types, 117, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__ArithmeticException swig_types[31]
+#define SWIGTYPE_p_Mezzanine__AttachableBase swig_types[32]
+#define SWIGTYPE_p_Mezzanine__AttachableChild swig_types[33]
+#define SWIGTYPE_p_Mezzanine__AttachableParent swig_types[34]
+#define SWIGTYPE_p_Mezzanine__AttachableParent__AttachableContainer__iterator swig_types[35]
+#define SWIGTYPE_p_Mezzanine__AxisAlignedBox swig_types[36]
+#define SWIGTYPE_p_Mezzanine__BinaryTools__BinaryBuffer swig_types[37]
+#define SWIGTYPE_p_Mezzanine__CameraController swig_types[38]
+#define SWIGTYPE_p_Mezzanine__ColourValue swig_types[39]
+#define SWIGTYPE_p_Mezzanine__DefaultActorManagerFactory swig_types[40]
+#define SWIGTYPE_p_Mezzanine__DefaultAreaEffectManagerFactory swig_types[41]
+#define SWIGTYPE_p_Mezzanine__DirectoryException swig_types[42]
+#define SWIGTYPE_p_Mezzanine__DirectoryNotFoundException swig_types[43]
+#define SWIGTYPE_p_Mezzanine__DirectoryPermissionException swig_types[44]
+#define SWIGTYPE_p_Mezzanine__DirectoryReadException swig_types[45]
+#define SWIGTYPE_p_Mezzanine__DirectoryWriteException swig_types[46]
+#define SWIGTYPE_p_Mezzanine__Exception swig_types[47]
+#define SWIGTYPE_p_Mezzanine__FieldOfForce swig_types[48]
+#define SWIGTYPE_p_Mezzanine__FileException swig_types[49]
+#define SWIGTYPE_p_Mezzanine__FileNotFoundException swig_types[50]
+#define SWIGTYPE_p_Mezzanine__FilePermissionException swig_types[51]
+#define SWIGTYPE_p_Mezzanine__FileReadException swig_types[52]
+#define SWIGTYPE_p_Mezzanine__FileWriteException swig_types[53]
+#define SWIGTYPE_p_Mezzanine__GoalTimer swig_types[54]
+#define SWIGTYPE_p_Mezzanine__Graphics__CameraProxy swig_types[55]
+#define SWIGTYPE_p_Mezzanine__GravityField swig_types[56]
+#define SWIGTYPE_p_Mezzanine__GravityWell swig_types[57]
+#define SWIGTYPE_p_Mezzanine__IOException swig_types[58]
+#define SWIGTYPE_p_Mezzanine__IOReadException swig_types[59]
+#define SWIGTYPE_p_Mezzanine__IOWriteException swig_types[60]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException swig_types[61]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityException swig_types[62]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException swig_types[63]
+#define SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException swig_types[64]
+#define SWIGTYPE_p_Mezzanine__InternalException swig_types[65]
+#define SWIGTYPE_p_Mezzanine__InvalidAssignment swig_types[66]
+#define SWIGTYPE_p_Mezzanine__InvalidStateException swig_types[67]
+#define SWIGTYPE_p_Mezzanine__InvalidVersionException swig_types[68]
+#define SWIGTYPE_p_Mezzanine__ManagerBase swig_types[69]
+#define SWIGTYPE_p_Mezzanine__ManagerFactory swig_types[70]
+#define SWIGTYPE_p_Mezzanine__Matrix3x3 swig_types[71]
+#define SWIGTYPE_p_Mezzanine__MemoryManagementException swig_types[72]
+#define SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException swig_types[73]
+#define SWIGTYPE_p_Mezzanine__NetworkException swig_types[74]
+#define SWIGTYPE_p_Mezzanine__NetworkNotFoundException swig_types[75]
+#define SWIGTYPE_p_Mezzanine__NetworkPermissionException swig_types[76]
+#define SWIGTYPE_p_Mezzanine__NetworkReadException swig_types[77]
+#define SWIGTYPE_p_Mezzanine__NetworkURLException swig_types[78]
+#define SWIGTYPE_p_Mezzanine__NetworkWriteException swig_types[79]
+#define SWIGTYPE_p_Mezzanine__NotImplementedException swig_types[80]
+#define SWIGTYPE_p_Mezzanine__OutOfMemoryException swig_types[81]
+#define SWIGTYPE_p_Mezzanine__ParametersCastException swig_types[82]
+#define SWIGTYPE_p_Mezzanine__ParametersException swig_types[83]
+#define SWIGTYPE_p_Mezzanine__ParametersRangeException swig_types[84]
+#define SWIGTYPE_p_Mezzanine__Physics__Collision swig_types[85]
+#define SWIGTYPE_p_Mezzanine__Physics__GhostProxy swig_types[86]
+#define SWIGTYPE_p_Mezzanine__Plane swig_types[87]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[88]
+#define SWIGTYPE_p_Mezzanine__Ray swig_types[89]
+#define SWIGTYPE_p_Mezzanine__RayQueryTool swig_types[90]
+#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[91]
+#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[92]
+#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[93]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[94]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[95]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[96]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[97]
+#define SWIGTYPE_p_Mezzanine__Sphere swig_types[98]
+#define SWIGTYPE_p_Mezzanine__StopWatchTimer swig_types[99]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[100]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[101]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[102]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[103]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type swig_types[104]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[105]
+#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[106]
+#define SWIGTYPE_p_Mezzanine__Timer swig_types[107]
+#define SWIGTYPE_p_Mezzanine__Transform swig_types[108]
+#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[109]
+#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[110]
+#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[111]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[112]
+#define SWIGTYPE_p_Mezzanine__World swig_types[113]
+#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[114]
+#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[115]
+#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[116]
+#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[117]
+#define SWIGTYPE_p_ObjectContainer swig_types[118]
+#define SWIGTYPE_p_ObjectIterator swig_types[119]
+#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[120]
+#define SWIGTYPE_p_Ogre__ColourValue swig_types[121]
+#define SWIGTYPE_p_Ogre__Plane swig_types[122]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[123]
+#define SWIGTYPE_p_Ogre__Ray swig_types[124]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[125]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[126]
+#define SWIGTYPE_p_PlaneRayTestResult swig_types[127]
+#define SWIGTYPE_p_ProxyContainer swig_types[128]
+#define SWIGTYPE_p_ProxyIterator swig_types[129]
+#define SWIGTYPE_p_RayTestResult swig_types[130]
+#define SWIGTYPE_p_RollingAverageT_unsigned_long_t swig_types[131]
+#define SWIGTYPE_p_RunningState swig_types[132]
+#define SWIGTYPE_p_SDL_Event swig_types[133]
+#define SWIGTYPE_p_WorkUnitKey swig_types[134]
+#define SWIGTYPE_p_XML__Node swig_types[135]
+#define SWIGTYPE_p_bool swig_types[136]
+#define SWIGTYPE_p_btQuaternion swig_types[137]
+#define SWIGTYPE_p_btTransform swig_types[138]
+#define SWIGTYPE_p_btVector3 swig_types[139]
+#define SWIGTYPE_p_char swig_types[140]
+#define SWIGTYPE_p_double swig_types[141]
+#define SWIGTYPE_p_float swig_types[142]
+#define SWIGTYPE_p_int swig_types[143]
+#define SWIGTYPE_p_long_long swig_types[144]
+#define SWIGTYPE_p_short swig_types[145]
+#define SWIGTYPE_p_signed_char swig_types[146]
+#define SWIGTYPE_p_std__exception swig_types[147]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[148]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[149]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[150]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[151]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[152]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[153]
+#define SWIGTYPE_p_std__string swig_types[154]
+#define SWIGTYPE_p_std__stringstream swig_types[155]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_t swig_types[156]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_t swig_types[157]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[158]
+#define SWIGTYPE_p_std__wstring swig_types[159]
+#define SWIGTYPE_p_unsigned_char swig_types[160]
+#define SWIGTYPE_p_unsigned_int swig_types[161]
+#define SWIGTYPE_p_unsigned_long swig_types[162]
+#define SWIGTYPE_p_unsigned_long_long swig_types[163]
+#define SWIGTYPE_p_unsigned_short swig_types[164]
+static swig_type_info *swig_types[166];
+static swig_module_info swig_module = {swig_types, 165, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2021,6 +2069,10 @@ typedef struct{} LANGUAGE_OBJ;
 
         #ifdef GetCurrentTime
         #undef GetCurrentTime
+        #endif
+
+        #ifdef GetExceptionCode
+        #undef GetExceptionCode
         #endif
 
         using namespace Mezzanine;
@@ -2307,6 +2359,8990 @@ static swig_lua_const_info swig_std_string_cls_constants[] = {
 static swig_lua_class *swig_std_string_bases[] = {0};
 static const char *swig_std_string_base_names[] = {0};
 static swig_lua_class _wrap_class_std_string = { "string", &SWIGTYPE_p_std__string,_wrap_new_string, swig_delete_string, swig_std_string_methods, swig_std_string_attributes, { "string", swig_std_string_cls_methods, swig_std_string_cls_attributes, swig_std_string_cls_constants }, swig_std_string_bases, swig_std_string_base_names };
+
+static int _wrap_Exception_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Exception *arg1 = (Mezzanine::Exception *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::Exception::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Exception::GetExceptionCode",1,"Mezzanine::Exception const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Exception,0))){
+    SWIG_fail_ptr("Exception_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__Exception);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::Exception const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Exception_GetExceptionTypeName(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Exception *arg1 = (Mezzanine::Exception *) 0 ;
+  Mezzanine::ConstString *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::Exception::GetExceptionTypeName",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Exception::GetExceptionTypeName",1,"Mezzanine::Exception const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Exception,0))){
+    SWIG_fail_ptr("Exception_GetExceptionTypeName",1,SWIGTYPE_p_Mezzanine__Exception);
+  }
+
+  result = (Mezzanine::ConstString *) &((Mezzanine::Exception const *)arg1)->GetExceptionTypeName();
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Exception_GetFunction(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Exception *arg1 = (Mezzanine::Exception *) 0 ;
+  Mezzanine::ConstString *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::Exception::GetFunction",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Exception::GetFunction",1,"Mezzanine::Exception const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Exception,0))){
+    SWIG_fail_ptr("Exception_GetFunction",1,SWIGTYPE_p_Mezzanine__Exception);
+  }
+
+  result = (Mezzanine::ConstString *) &((Mezzanine::Exception const *)arg1)->GetFunction();
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Exception_GetFile(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Exception *arg1 = (Mezzanine::Exception *) 0 ;
+  Mezzanine::ConstString *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::Exception::GetFile",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Exception::GetFile",1,"Mezzanine::Exception const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Exception,0))){
+    SWIG_fail_ptr("Exception_GetFile",1,SWIGTYPE_p_Mezzanine__Exception);
+  }
+
+  result = (Mezzanine::ConstString *) &((Mezzanine::Exception const *)arg1)->GetFile();
+  lua_pushlstring(L,result->data(),result->size()); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Exception_GetLine(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Exception *arg1 = (Mezzanine::Exception *) 0 ;
+  Mezzanine::Whole *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::Exception::GetLine",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Exception::GetLine",1,"Mezzanine::Exception const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Exception,0))){
+    SWIG_fail_ptr("Exception_GetLine",1,SWIGTYPE_p_Mezzanine__Exception);
+  }
+
+  result = (Mezzanine::Whole *) &((Mezzanine::Exception const *)arg1)->GetLine();
+  lua_pushnumber(L, (lua_Number) *result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Exception_GetCompleteMessage(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Exception *arg1 = (Mezzanine::Exception *) 0 ;
+  Mezzanine::String result;
+
+  SWIG_check_num_args("Mezzanine::Exception::GetCompleteMessage",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Exception::GetCompleteMessage",1,"Mezzanine::Exception const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Exception,0))){
+    SWIG_fail_ptr("Exception_GetCompleteMessage",1,SWIGTYPE_p_Mezzanine__Exception);
+  }
+
+  result = ((Mezzanine::Exception const *)arg1)->GetCompleteMessage();
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_Exception_what(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Exception *arg1 = (Mezzanine::Exception *) 0 ;
+  Mezzanine::String result;
+
+  SWIG_check_num_args("Mezzanine::Exception::what",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Exception::what",1,"Mezzanine::Exception *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Exception,0))){
+    SWIG_fail_ptr("Exception_what",1,SWIGTYPE_p_Mezzanine__Exception);
+  }
+
+  result = (arg1)->what();
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_Exception(void *obj) {
+Mezzanine::Exception *arg1 = (Mezzanine::Exception *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Exception_methods[] = {
+    {"GetExceptionCode", _wrap_Exception_GetExceptionCode},
+    {"GetExceptionTypeName", _wrap_Exception_GetExceptionTypeName},
+    {"GetFunction", _wrap_Exception_GetFunction},
+    {"GetFile", _wrap_Exception_GetFile},
+    {"GetLine", _wrap_Exception_GetLine},
+    {"GetCompleteMessage", _wrap_Exception_GetCompleteMessage},
+    {"what", _wrap_Exception_what},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Exception_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Exception_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_Exception_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_Exception_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("IO_EXCEPTION", Mezzanine::Exception::IO_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_FILE_EXCEPTION", Mezzanine::Exception::IO_FILE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_FILE_READ_EXCEPTION", Mezzanine::Exception::IO_FILE_READ_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_FILE_WRITE_EXCEPTION", Mezzanine::Exception::IO_FILE_WRITE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_FILE_NOT_FOUND_EXCEPTION", Mezzanine::Exception::IO_FILE_NOT_FOUND_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_FILE_PERMISSION_EXCEPTION", Mezzanine::Exception::IO_FILE_PERMISSION_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_DIRECTORY_EXCEPTION", Mezzanine::Exception::IO_DIRECTORY_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_DIRECTORY_READ_EXCEPTION", Mezzanine::Exception::IO_DIRECTORY_READ_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_DIRECTORY_WRITE_EXCEPTION", Mezzanine::Exception::IO_DIRECTORY_WRITE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_DIRECTORY_NOT_FOUND_EXCEPTION", Mezzanine::Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_DIRECTORY_PERMISSION_EXCEPTION", Mezzanine::Exception::IO_DIRECTORY_PERMISSION_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_NETWORK_EXCEPTION", Mezzanine::Exception::IO_NETWORK_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_NETWORK_READ_EXCEPTION", Mezzanine::Exception::IO_NETWORK_READ_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_NETWORK_WRITE_EXCEPTION", Mezzanine::Exception::IO_NETWORK_WRITE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_NETWORK_NOT_FOUND_EXCEPTION", Mezzanine::Exception::IO_NETWORK_NOT_FOUND_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_NETWORK_URL_EXCEPTION", Mezzanine::Exception::IO_NETWORK_URL_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_NETWORK_PERMISSION_EXCEPTION", Mezzanine::Exception::IO_NETWORK_PERMISSION_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_WRITE_EXCEPTION", Mezzanine::Exception::IO_WRITE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("IO_READ_EXCEPTION", Mezzanine::Exception::IO_READ_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("II_EXCEPTION", Mezzanine::Exception::II_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("II_IDENTITY_INVALID_EXCEPTION", Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("II_IDENTITY_NOT_FOUND_EXCEPTION", Mezzanine::Exception::II_IDENTITY_NOT_FOUND_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("II_DUPLICATE_IDENTITY_EXCEPTION", Mezzanine::Exception::II_DUPLICATE_IDENTITY_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("MM_EXCEPTION", Mezzanine::Exception::MM_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("MM_OUT_OF_MEMORY_EXCEPTION", Mezzanine::Exception::MM_OUT_OF_MEMORY_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("MM_OUT_OF_BOUNDS_EXCEPTION", Mezzanine::Exception::MM_OUT_OF_BOUNDS_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("SYNTAX_ERROR_EXCEPTION", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("SYNTAX_ERROR_EXCEPTION_XML", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION_XML)},
+    {SWIG_LUA_CONSTTAB_INT("SYNTAX_ERROR_EXCEPTION_XPATH", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION_XPATH)},
+    {SWIG_LUA_CONSTTAB_INT("SYNTAX_ERROR_EXCEPTION_LUA", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION_LUA)},
+    {SWIG_LUA_CONSTTAB_INT("SCRIPT_EXCEPTION", Mezzanine::Exception::SCRIPT_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("SCRIPT_EXCEPTION_LUA", Mezzanine::Exception::SCRIPT_EXCEPTION_LUA)},
+    {SWIG_LUA_CONSTTAB_INT("SCRIPT_EXCEPTION_LUA_YIELD", Mezzanine::Exception::SCRIPT_EXCEPTION_LUA_YIELD)},
+    {SWIG_LUA_CONSTTAB_INT("SCRIPT_EXCEPTION_LUA_RUNTIME", Mezzanine::Exception::SCRIPT_EXCEPTION_LUA_RUNTIME)},
+    {SWIG_LUA_CONSTTAB_INT("SCRIPT_EXCEPTION_LUA_ERRERR", Mezzanine::Exception::SCRIPT_EXCEPTION_LUA_ERRERR)},
+    {SWIG_LUA_CONSTTAB_INT("PARAMETERS_EXCEPTION", Mezzanine::Exception::PARAMETERS_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("PARAMETERS_CAST_EXCEPTION", Mezzanine::Exception::PARAMETERS_CAST_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("PARAMETERS_RANGE_EXCEPTION", Mezzanine::Exception::PARAMETERS_RANGE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("ARITHMETIC_EXCEPTION", Mezzanine::Exception::ARITHMETIC_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("INVALID_VERSION_EXCEPTION", Mezzanine::Exception::INVALID_VERSION_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("INVALID_STATE_EXCEPTION", Mezzanine::Exception::INVALID_STATE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("RENDERINGAPI_EXCEPTION", Mezzanine::Exception::RENDERINGAPI_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("RT_ASSERTION_EXCEPTION", Mezzanine::Exception::RT_ASSERTION_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("INTERNAL_EXCEPTION", Mezzanine::Exception::INTERNAL_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("NOT_IMPLEMENTED_EXCEPTION", Mezzanine::Exception::NOT_IMPLEMENTED_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("INVALID_ASSIGNMENT", Mezzanine::Exception::INVALID_ASSIGNMENT)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Exception_bases[] = {0};
+static const char *swig_Mezzanine_Exception_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_Exception = { "Exception", &SWIGTYPE_p_Mezzanine__Exception,0, swig_delete_Exception, swig_Mezzanine_Exception_methods, swig_Mezzanine_Exception_attributes, { "Exception", swig_Mezzanine_Exception_cls_methods, swig_Mezzanine_Exception_cls_attributes, swig_Mezzanine_Exception_cls_constants }, swig_Mezzanine_Exception_bases, swig_Mezzanine_Exception_base_names };
+
+static int _wrap_new_IOException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::IOException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::IOException::IOException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::IOException::IOException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::IOException::IOException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::IOException::IOException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::IOException::IOException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::IOException::IOException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::IOException *)new Mezzanine::IOException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__IOException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_IOException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::IOException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::IOException::IOException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::IOException::IOException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::IOException::IOException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::IOException::IOException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::IOException::IOException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::IOException *)new Mezzanine::IOException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__IOException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_IOException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_IOException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_IOException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_IOException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::IOException::IOException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::IOException::IOException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_IOException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::IOException *arg1 = (Mezzanine::IOException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::IOException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::IOException::GetExceptionCode",1,"Mezzanine::IOException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__IOException,0))){
+    SWIG_fail_ptr("IOException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__IOException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::IOException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_IOException(void *obj) {
+Mezzanine::IOException *arg1 = (Mezzanine::IOException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_IOException_methods[] = {
+    {"GetExceptionCode", _wrap_IOException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_IOException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_IOException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_IOException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_IOException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::IOException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_IOException_bases[] = {0,0};
+static const char *swig_Mezzanine_IOException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_IOException = { "IOException", &SWIGTYPE_p_Mezzanine__IOException,_wrap_new_IOException, swig_delete_IOException, swig_Mezzanine_IOException_methods, swig_Mezzanine_IOException_attributes, { "IOException", swig_Mezzanine_IOException_cls_methods, swig_Mezzanine_IOException_cls_attributes, swig_Mezzanine_IOException_cls_constants }, swig_Mezzanine_IOException_bases, swig_Mezzanine_IOException_base_names };
+
+static int _wrap_new_FileException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::FileException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::FileException::FileException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::FileException::FileException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::FileException::FileException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::FileException::FileException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::FileException::FileException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::FileException::FileException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::FileException *)new Mezzanine::FileException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FileException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_FileException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::FileException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::FileException::FileException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::FileException::FileException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::FileException::FileException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::FileException::FileException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::FileException::FileException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::FileException *)new Mezzanine::FileException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FileException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_FileException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_FileException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_FileException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_FileException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::FileException::FileException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::FileException::FileException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_FileException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::FileException *arg1 = (Mezzanine::FileException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::FileException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::FileException::GetExceptionCode",1,"Mezzanine::FileException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__FileException,0))){
+    SWIG_fail_ptr("FileException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__FileException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::FileException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_FileException(void *obj) {
+Mezzanine::FileException *arg1 = (Mezzanine::FileException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_FileException_methods[] = {
+    {"GetExceptionCode", _wrap_FileException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_FileException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_FileException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_FileException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_FileException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::FileException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_FileException_bases[] = {0,0};
+static const char *swig_Mezzanine_FileException_base_names[] = {"Mezzanine::IOException *",0};
+static swig_lua_class _wrap_class_Mezzanine_FileException = { "FileException", &SWIGTYPE_p_Mezzanine__FileException,_wrap_new_FileException, swig_delete_FileException, swig_Mezzanine_FileException_methods, swig_Mezzanine_FileException_attributes, { "FileException", swig_Mezzanine_FileException_cls_methods, swig_Mezzanine_FileException_cls_attributes, swig_Mezzanine_FileException_cls_constants }, swig_Mezzanine_FileException_bases, swig_Mezzanine_FileException_base_names };
+
+static int _wrap_new_FileReadException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::FileReadException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::FileReadException::FileReadException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::FileReadException::FileReadException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::FileReadException::FileReadException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::FileReadException::FileReadException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::FileReadException::FileReadException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::FileReadException::FileReadException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::FileReadException *)new Mezzanine::FileReadException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FileReadException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_FileReadException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::FileReadException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::FileReadException::FileReadException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::FileReadException::FileReadException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::FileReadException::FileReadException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::FileReadException::FileReadException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::FileReadException::FileReadException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::FileReadException *)new Mezzanine::FileReadException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FileReadException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_FileReadException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_FileReadException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_FileReadException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_FileReadException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::FileReadException::FileReadException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::FileReadException::FileReadException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_FileReadException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::FileReadException *arg1 = (Mezzanine::FileReadException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::FileReadException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::FileReadException::GetExceptionCode",1,"Mezzanine::FileReadException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__FileReadException,0))){
+    SWIG_fail_ptr("FileReadException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__FileReadException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::FileReadException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_FileReadException(void *obj) {
+Mezzanine::FileReadException *arg1 = (Mezzanine::FileReadException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_FileReadException_methods[] = {
+    {"GetExceptionCode", _wrap_FileReadException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_FileReadException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_FileReadException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_FileReadException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_FileReadException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::FileReadException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_FileReadException_bases[] = {0,0};
+static const char *swig_Mezzanine_FileReadException_base_names[] = {"Mezzanine::FileException *",0};
+static swig_lua_class _wrap_class_Mezzanine_FileReadException = { "FileReadException", &SWIGTYPE_p_Mezzanine__FileReadException,_wrap_new_FileReadException, swig_delete_FileReadException, swig_Mezzanine_FileReadException_methods, swig_Mezzanine_FileReadException_attributes, { "FileReadException", swig_Mezzanine_FileReadException_cls_methods, swig_Mezzanine_FileReadException_cls_attributes, swig_Mezzanine_FileReadException_cls_constants }, swig_Mezzanine_FileReadException_bases, swig_Mezzanine_FileReadException_base_names };
+
+static int _wrap_new_FileWriteException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::FileWriteException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::FileWriteException::FileWriteException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::FileWriteException::FileWriteException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::FileWriteException::FileWriteException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::FileWriteException::FileWriteException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::FileWriteException::FileWriteException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::FileWriteException::FileWriteException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::FileWriteException *)new Mezzanine::FileWriteException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FileWriteException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_FileWriteException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::FileWriteException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::FileWriteException::FileWriteException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::FileWriteException::FileWriteException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::FileWriteException::FileWriteException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::FileWriteException::FileWriteException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::FileWriteException::FileWriteException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::FileWriteException *)new Mezzanine::FileWriteException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FileWriteException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_FileWriteException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_FileWriteException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_FileWriteException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_FileWriteException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::FileWriteException::FileWriteException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::FileWriteException::FileWriteException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_FileWriteException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::FileWriteException *arg1 = (Mezzanine::FileWriteException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::FileWriteException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::FileWriteException::GetExceptionCode",1,"Mezzanine::FileWriteException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__FileWriteException,0))){
+    SWIG_fail_ptr("FileWriteException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__FileWriteException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::FileWriteException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_FileWriteException(void *obj) {
+Mezzanine::FileWriteException *arg1 = (Mezzanine::FileWriteException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_FileWriteException_methods[] = {
+    {"GetExceptionCode", _wrap_FileWriteException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_FileWriteException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_FileWriteException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_FileWriteException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_FileWriteException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::FileWriteException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_FileWriteException_bases[] = {0,0};
+static const char *swig_Mezzanine_FileWriteException_base_names[] = {"Mezzanine::FileException *",0};
+static swig_lua_class _wrap_class_Mezzanine_FileWriteException = { "FileWriteException", &SWIGTYPE_p_Mezzanine__FileWriteException,_wrap_new_FileWriteException, swig_delete_FileWriteException, swig_Mezzanine_FileWriteException_methods, swig_Mezzanine_FileWriteException_attributes, { "FileWriteException", swig_Mezzanine_FileWriteException_cls_methods, swig_Mezzanine_FileWriteException_cls_attributes, swig_Mezzanine_FileWriteException_cls_constants }, swig_Mezzanine_FileWriteException_bases, swig_Mezzanine_FileWriteException_base_names };
+
+static int _wrap_new_FileNotFoundException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::FileNotFoundException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::FileNotFoundException::FileNotFoundException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::FileNotFoundException::FileNotFoundException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::FileNotFoundException::FileNotFoundException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::FileNotFoundException::FileNotFoundException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::FileNotFoundException::FileNotFoundException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::FileNotFoundException::FileNotFoundException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::FileNotFoundException *)new Mezzanine::FileNotFoundException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FileNotFoundException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_FileNotFoundException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::FileNotFoundException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::FileNotFoundException::FileNotFoundException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::FileNotFoundException::FileNotFoundException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::FileNotFoundException::FileNotFoundException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::FileNotFoundException::FileNotFoundException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::FileNotFoundException::FileNotFoundException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::FileNotFoundException *)new Mezzanine::FileNotFoundException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FileNotFoundException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_FileNotFoundException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_FileNotFoundException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_FileNotFoundException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_FileNotFoundException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::FileNotFoundException::FileNotFoundException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::FileNotFoundException::FileNotFoundException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_FileNotFoundException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::FileNotFoundException *arg1 = (Mezzanine::FileNotFoundException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::FileNotFoundException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::FileNotFoundException::GetExceptionCode",1,"Mezzanine::FileNotFoundException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__FileNotFoundException,0))){
+    SWIG_fail_ptr("FileNotFoundException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__FileNotFoundException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::FileNotFoundException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_FileNotFoundException(void *obj) {
+Mezzanine::FileNotFoundException *arg1 = (Mezzanine::FileNotFoundException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_FileNotFoundException_methods[] = {
+    {"GetExceptionCode", _wrap_FileNotFoundException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_FileNotFoundException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_FileNotFoundException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_FileNotFoundException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_FileNotFoundException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::FileNotFoundException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_FileNotFoundException_bases[] = {0,0};
+static const char *swig_Mezzanine_FileNotFoundException_base_names[] = {"Mezzanine::FileException *",0};
+static swig_lua_class _wrap_class_Mezzanine_FileNotFoundException = { "FileNotFoundException", &SWIGTYPE_p_Mezzanine__FileNotFoundException,_wrap_new_FileNotFoundException, swig_delete_FileNotFoundException, swig_Mezzanine_FileNotFoundException_methods, swig_Mezzanine_FileNotFoundException_attributes, { "FileNotFoundException", swig_Mezzanine_FileNotFoundException_cls_methods, swig_Mezzanine_FileNotFoundException_cls_attributes, swig_Mezzanine_FileNotFoundException_cls_constants }, swig_Mezzanine_FileNotFoundException_bases, swig_Mezzanine_FileNotFoundException_base_names };
+
+static int _wrap_new_FilePermissionException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::FilePermissionException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::FilePermissionException::FilePermissionException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::FilePermissionException::FilePermissionException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::FilePermissionException::FilePermissionException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::FilePermissionException::FilePermissionException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::FilePermissionException::FilePermissionException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::FilePermissionException::FilePermissionException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::FilePermissionException *)new Mezzanine::FilePermissionException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FilePermissionException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_FilePermissionException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::FilePermissionException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::FilePermissionException::FilePermissionException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::FilePermissionException::FilePermissionException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::FilePermissionException::FilePermissionException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::FilePermissionException::FilePermissionException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::FilePermissionException::FilePermissionException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::FilePermissionException *)new Mezzanine::FilePermissionException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FilePermissionException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_FilePermissionException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_FilePermissionException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_FilePermissionException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_FilePermissionException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::FilePermissionException::FilePermissionException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::FilePermissionException::FilePermissionException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_FilePermissionException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::FilePermissionException *arg1 = (Mezzanine::FilePermissionException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::FilePermissionException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::FilePermissionException::GetExceptionCode",1,"Mezzanine::FilePermissionException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__FilePermissionException,0))){
+    SWIG_fail_ptr("FilePermissionException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__FilePermissionException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::FilePermissionException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_FilePermissionException(void *obj) {
+Mezzanine::FilePermissionException *arg1 = (Mezzanine::FilePermissionException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_FilePermissionException_methods[] = {
+    {"GetExceptionCode", _wrap_FilePermissionException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_FilePermissionException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_FilePermissionException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_FilePermissionException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_FilePermissionException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::FilePermissionException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_FilePermissionException_bases[] = {0,0};
+static const char *swig_Mezzanine_FilePermissionException_base_names[] = {"Mezzanine::FileException *",0};
+static swig_lua_class _wrap_class_Mezzanine_FilePermissionException = { "FilePermissionException", &SWIGTYPE_p_Mezzanine__FilePermissionException,_wrap_new_FilePermissionException, swig_delete_FilePermissionException, swig_Mezzanine_FilePermissionException_methods, swig_Mezzanine_FilePermissionException_attributes, { "FilePermissionException", swig_Mezzanine_FilePermissionException_cls_methods, swig_Mezzanine_FilePermissionException_cls_attributes, swig_Mezzanine_FilePermissionException_cls_constants }, swig_Mezzanine_FilePermissionException_bases, swig_Mezzanine_FilePermissionException_base_names };
+
+static int _wrap_new_DirectoryException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::DirectoryException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::DirectoryException::DirectoryException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::DirectoryException::DirectoryException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::DirectoryException::DirectoryException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::DirectoryException::DirectoryException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::DirectoryException::DirectoryException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::DirectoryException::DirectoryException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::DirectoryException *)new Mezzanine::DirectoryException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__DirectoryException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_DirectoryException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::DirectoryException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::DirectoryException::DirectoryException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::DirectoryException::DirectoryException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::DirectoryException::DirectoryException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::DirectoryException::DirectoryException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::DirectoryException::DirectoryException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::DirectoryException *)new Mezzanine::DirectoryException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__DirectoryException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_DirectoryException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_DirectoryException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_DirectoryException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_DirectoryException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::DirectoryException::DirectoryException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::DirectoryException::DirectoryException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_DirectoryException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::DirectoryException *arg1 = (Mezzanine::DirectoryException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::DirectoryException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::DirectoryException::GetExceptionCode",1,"Mezzanine::DirectoryException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__DirectoryException,0))){
+    SWIG_fail_ptr("DirectoryException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__DirectoryException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::DirectoryException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_DirectoryException(void *obj) {
+Mezzanine::DirectoryException *arg1 = (Mezzanine::DirectoryException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_DirectoryException_methods[] = {
+    {"GetExceptionCode", _wrap_DirectoryException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_DirectoryException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_DirectoryException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_DirectoryException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_DirectoryException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::DirectoryException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_DirectoryException_bases[] = {0,0};
+static const char *swig_Mezzanine_DirectoryException_base_names[] = {"Mezzanine::IOException *",0};
+static swig_lua_class _wrap_class_Mezzanine_DirectoryException = { "DirectoryException", &SWIGTYPE_p_Mezzanine__DirectoryException,_wrap_new_DirectoryException, swig_delete_DirectoryException, swig_Mezzanine_DirectoryException_methods, swig_Mezzanine_DirectoryException_attributes, { "DirectoryException", swig_Mezzanine_DirectoryException_cls_methods, swig_Mezzanine_DirectoryException_cls_attributes, swig_Mezzanine_DirectoryException_cls_constants }, swig_Mezzanine_DirectoryException_bases, swig_Mezzanine_DirectoryException_base_names };
+
+static int _wrap_new_DirectoryReadException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::DirectoryReadException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::DirectoryReadException::DirectoryReadException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::DirectoryReadException::DirectoryReadException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::DirectoryReadException::DirectoryReadException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::DirectoryReadException::DirectoryReadException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::DirectoryReadException::DirectoryReadException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::DirectoryReadException::DirectoryReadException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::DirectoryReadException *)new Mezzanine::DirectoryReadException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__DirectoryReadException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_DirectoryReadException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::DirectoryReadException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::DirectoryReadException::DirectoryReadException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::DirectoryReadException::DirectoryReadException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::DirectoryReadException::DirectoryReadException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::DirectoryReadException::DirectoryReadException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::DirectoryReadException::DirectoryReadException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::DirectoryReadException *)new Mezzanine::DirectoryReadException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__DirectoryReadException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_DirectoryReadException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_DirectoryReadException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_DirectoryReadException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_DirectoryReadException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::DirectoryReadException::DirectoryReadException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::DirectoryReadException::DirectoryReadException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_DirectoryReadException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::DirectoryReadException *arg1 = (Mezzanine::DirectoryReadException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::DirectoryReadException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::DirectoryReadException::GetExceptionCode",1,"Mezzanine::DirectoryReadException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__DirectoryReadException,0))){
+    SWIG_fail_ptr("DirectoryReadException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__DirectoryReadException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::DirectoryReadException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_DirectoryReadException(void *obj) {
+Mezzanine::DirectoryReadException *arg1 = (Mezzanine::DirectoryReadException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_DirectoryReadException_methods[] = {
+    {"GetExceptionCode", _wrap_DirectoryReadException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_DirectoryReadException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_DirectoryReadException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_DirectoryReadException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_DirectoryReadException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::DirectoryReadException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_DirectoryReadException_bases[] = {0,0};
+static const char *swig_Mezzanine_DirectoryReadException_base_names[] = {"Mezzanine::DirectoryException *",0};
+static swig_lua_class _wrap_class_Mezzanine_DirectoryReadException = { "DirectoryReadException", &SWIGTYPE_p_Mezzanine__DirectoryReadException,_wrap_new_DirectoryReadException, swig_delete_DirectoryReadException, swig_Mezzanine_DirectoryReadException_methods, swig_Mezzanine_DirectoryReadException_attributes, { "DirectoryReadException", swig_Mezzanine_DirectoryReadException_cls_methods, swig_Mezzanine_DirectoryReadException_cls_attributes, swig_Mezzanine_DirectoryReadException_cls_constants }, swig_Mezzanine_DirectoryReadException_bases, swig_Mezzanine_DirectoryReadException_base_names };
+
+static int _wrap_new_DirectoryWriteException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::DirectoryWriteException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::DirectoryWriteException::DirectoryWriteException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::DirectoryWriteException::DirectoryWriteException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::DirectoryWriteException::DirectoryWriteException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::DirectoryWriteException::DirectoryWriteException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::DirectoryWriteException::DirectoryWriteException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::DirectoryWriteException::DirectoryWriteException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::DirectoryWriteException *)new Mezzanine::DirectoryWriteException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__DirectoryWriteException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_DirectoryWriteException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::DirectoryWriteException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::DirectoryWriteException::DirectoryWriteException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::DirectoryWriteException::DirectoryWriteException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::DirectoryWriteException::DirectoryWriteException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::DirectoryWriteException::DirectoryWriteException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::DirectoryWriteException::DirectoryWriteException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::DirectoryWriteException *)new Mezzanine::DirectoryWriteException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__DirectoryWriteException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_DirectoryWriteException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_DirectoryWriteException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_DirectoryWriteException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_DirectoryWriteException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::DirectoryWriteException::DirectoryWriteException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::DirectoryWriteException::DirectoryWriteException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_DirectoryWriteException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::DirectoryWriteException *arg1 = (Mezzanine::DirectoryWriteException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::DirectoryWriteException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::DirectoryWriteException::GetExceptionCode",1,"Mezzanine::DirectoryWriteException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__DirectoryWriteException,0))){
+    SWIG_fail_ptr("DirectoryWriteException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__DirectoryWriteException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::DirectoryWriteException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_DirectoryWriteException(void *obj) {
+Mezzanine::DirectoryWriteException *arg1 = (Mezzanine::DirectoryWriteException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_DirectoryWriteException_methods[] = {
+    {"GetExceptionCode", _wrap_DirectoryWriteException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_DirectoryWriteException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_DirectoryWriteException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_DirectoryWriteException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_DirectoryWriteException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::DirectoryWriteException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_DirectoryWriteException_bases[] = {0,0};
+static const char *swig_Mezzanine_DirectoryWriteException_base_names[] = {"Mezzanine::DirectoryException *",0};
+static swig_lua_class _wrap_class_Mezzanine_DirectoryWriteException = { "DirectoryWriteException", &SWIGTYPE_p_Mezzanine__DirectoryWriteException,_wrap_new_DirectoryWriteException, swig_delete_DirectoryWriteException, swig_Mezzanine_DirectoryWriteException_methods, swig_Mezzanine_DirectoryWriteException_attributes, { "DirectoryWriteException", swig_Mezzanine_DirectoryWriteException_cls_methods, swig_Mezzanine_DirectoryWriteException_cls_attributes, swig_Mezzanine_DirectoryWriteException_cls_constants }, swig_Mezzanine_DirectoryWriteException_bases, swig_Mezzanine_DirectoryWriteException_base_names };
+
+static int _wrap_new_DirectoryNotFoundException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::DirectoryNotFoundException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::DirectoryNotFoundException *)new Mezzanine::DirectoryNotFoundException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__DirectoryNotFoundException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_DirectoryNotFoundException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::DirectoryNotFoundException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::DirectoryNotFoundException *)new Mezzanine::DirectoryNotFoundException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__DirectoryNotFoundException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_DirectoryNotFoundException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_DirectoryNotFoundException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_DirectoryNotFoundException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_DirectoryNotFoundException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::DirectoryNotFoundException::DirectoryNotFoundException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_DirectoryNotFoundException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::DirectoryNotFoundException *arg1 = (Mezzanine::DirectoryNotFoundException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::DirectoryNotFoundException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::DirectoryNotFoundException::GetExceptionCode",1,"Mezzanine::DirectoryNotFoundException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__DirectoryNotFoundException,0))){
+    SWIG_fail_ptr("DirectoryNotFoundException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__DirectoryNotFoundException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::DirectoryNotFoundException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_DirectoryNotFoundException(void *obj) {
+Mezzanine::DirectoryNotFoundException *arg1 = (Mezzanine::DirectoryNotFoundException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_DirectoryNotFoundException_methods[] = {
+    {"GetExceptionCode", _wrap_DirectoryNotFoundException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_DirectoryNotFoundException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_DirectoryNotFoundException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_DirectoryNotFoundException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_DirectoryNotFoundException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::DirectoryNotFoundException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_DirectoryNotFoundException_bases[] = {0,0};
+static const char *swig_Mezzanine_DirectoryNotFoundException_base_names[] = {"Mezzanine::DirectoryException *",0};
+static swig_lua_class _wrap_class_Mezzanine_DirectoryNotFoundException = { "DirectoryNotFoundException", &SWIGTYPE_p_Mezzanine__DirectoryNotFoundException,_wrap_new_DirectoryNotFoundException, swig_delete_DirectoryNotFoundException, swig_Mezzanine_DirectoryNotFoundException_methods, swig_Mezzanine_DirectoryNotFoundException_attributes, { "DirectoryNotFoundException", swig_Mezzanine_DirectoryNotFoundException_cls_methods, swig_Mezzanine_DirectoryNotFoundException_cls_attributes, swig_Mezzanine_DirectoryNotFoundException_cls_constants }, swig_Mezzanine_DirectoryNotFoundException_bases, swig_Mezzanine_DirectoryNotFoundException_base_names };
+
+static int _wrap_new_DirectoryPermissionException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::DirectoryPermissionException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::DirectoryPermissionException *)new Mezzanine::DirectoryPermissionException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__DirectoryPermissionException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_DirectoryPermissionException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::DirectoryPermissionException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::DirectoryPermissionException::DirectoryPermissionException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::DirectoryPermissionException *)new Mezzanine::DirectoryPermissionException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__DirectoryPermissionException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_DirectoryPermissionException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_DirectoryPermissionException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_DirectoryPermissionException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_DirectoryPermissionException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::DirectoryPermissionException::DirectoryPermissionException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::DirectoryPermissionException::DirectoryPermissionException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_DirectoryPermissionException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::DirectoryPermissionException *arg1 = (Mezzanine::DirectoryPermissionException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::DirectoryPermissionException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::DirectoryPermissionException::GetExceptionCode",1,"Mezzanine::DirectoryPermissionException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__DirectoryPermissionException,0))){
+    SWIG_fail_ptr("DirectoryPermissionException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__DirectoryPermissionException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::DirectoryPermissionException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_DirectoryPermissionException(void *obj) {
+Mezzanine::DirectoryPermissionException *arg1 = (Mezzanine::DirectoryPermissionException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_DirectoryPermissionException_methods[] = {
+    {"GetExceptionCode", _wrap_DirectoryPermissionException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_DirectoryPermissionException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_DirectoryPermissionException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_DirectoryPermissionException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_DirectoryPermissionException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::DirectoryPermissionException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_DirectoryPermissionException_bases[] = {0,0};
+static const char *swig_Mezzanine_DirectoryPermissionException_base_names[] = {"Mezzanine::DirectoryException *",0};
+static swig_lua_class _wrap_class_Mezzanine_DirectoryPermissionException = { "DirectoryPermissionException", &SWIGTYPE_p_Mezzanine__DirectoryPermissionException,_wrap_new_DirectoryPermissionException, swig_delete_DirectoryPermissionException, swig_Mezzanine_DirectoryPermissionException_methods, swig_Mezzanine_DirectoryPermissionException_attributes, { "DirectoryPermissionException", swig_Mezzanine_DirectoryPermissionException_cls_methods, swig_Mezzanine_DirectoryPermissionException_cls_attributes, swig_Mezzanine_DirectoryPermissionException_cls_constants }, swig_Mezzanine_DirectoryPermissionException_bases, swig_Mezzanine_DirectoryPermissionException_base_names };
+
+static int _wrap_new_NetworkException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::NetworkException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkException::NetworkException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkException::NetworkException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkException::NetworkException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkException::NetworkException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::NetworkException::NetworkException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::NetworkException::NetworkException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::NetworkException *)new Mezzanine::NetworkException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::NetworkException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkException::NetworkException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkException::NetworkException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkException::NetworkException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkException::NetworkException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::NetworkException::NetworkException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::NetworkException *)new Mezzanine::NetworkException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_NetworkException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_NetworkException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_NetworkException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::NetworkException::NetworkException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::NetworkException::NetworkException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NetworkException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::NetworkException *arg1 = (Mezzanine::NetworkException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::NetworkException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::NetworkException::GetExceptionCode",1,"Mezzanine::NetworkException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__NetworkException,0))){
+    SWIG_fail_ptr("NetworkException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__NetworkException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::NetworkException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_NetworkException(void *obj) {
+Mezzanine::NetworkException *arg1 = (Mezzanine::NetworkException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_NetworkException_methods[] = {
+    {"GetExceptionCode", _wrap_NetworkException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_NetworkException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_NetworkException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::NetworkException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_NetworkException_bases[] = {0,0};
+static const char *swig_Mezzanine_NetworkException_base_names[] = {"Mezzanine::IOException *",0};
+static swig_lua_class _wrap_class_Mezzanine_NetworkException = { "NetworkException", &SWIGTYPE_p_Mezzanine__NetworkException,_wrap_new_NetworkException, swig_delete_NetworkException, swig_Mezzanine_NetworkException_methods, swig_Mezzanine_NetworkException_attributes, { "NetworkException", swig_Mezzanine_NetworkException_cls_methods, swig_Mezzanine_NetworkException_cls_attributes, swig_Mezzanine_NetworkException_cls_constants }, swig_Mezzanine_NetworkException_bases, swig_Mezzanine_NetworkException_base_names };
+
+static int _wrap_new_NetworkReadException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::NetworkReadException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkReadException::NetworkReadException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkReadException::NetworkReadException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkReadException::NetworkReadException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkReadException::NetworkReadException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::NetworkReadException::NetworkReadException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::NetworkReadException::NetworkReadException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::NetworkReadException *)new Mezzanine::NetworkReadException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkReadException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkReadException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::NetworkReadException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkReadException::NetworkReadException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkReadException::NetworkReadException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkReadException::NetworkReadException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkReadException::NetworkReadException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::NetworkReadException::NetworkReadException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::NetworkReadException *)new Mezzanine::NetworkReadException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkReadException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkReadException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_NetworkReadException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_NetworkReadException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_NetworkReadException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::NetworkReadException::NetworkReadException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::NetworkReadException::NetworkReadException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NetworkReadException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::NetworkReadException *arg1 = (Mezzanine::NetworkReadException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::NetworkReadException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::NetworkReadException::GetExceptionCode",1,"Mezzanine::NetworkReadException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__NetworkReadException,0))){
+    SWIG_fail_ptr("NetworkReadException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__NetworkReadException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::NetworkReadException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_NetworkReadException(void *obj) {
+Mezzanine::NetworkReadException *arg1 = (Mezzanine::NetworkReadException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_NetworkReadException_methods[] = {
+    {"GetExceptionCode", _wrap_NetworkReadException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkReadException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkReadException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_NetworkReadException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_NetworkReadException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::NetworkReadException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_NetworkReadException_bases[] = {0,0};
+static const char *swig_Mezzanine_NetworkReadException_base_names[] = {"Mezzanine::NetworkException *",0};
+static swig_lua_class _wrap_class_Mezzanine_NetworkReadException = { "NetworkReadException", &SWIGTYPE_p_Mezzanine__NetworkReadException,_wrap_new_NetworkReadException, swig_delete_NetworkReadException, swig_Mezzanine_NetworkReadException_methods, swig_Mezzanine_NetworkReadException_attributes, { "NetworkReadException", swig_Mezzanine_NetworkReadException_cls_methods, swig_Mezzanine_NetworkReadException_cls_attributes, swig_Mezzanine_NetworkReadException_cls_constants }, swig_Mezzanine_NetworkReadException_bases, swig_Mezzanine_NetworkReadException_base_names };
+
+static int _wrap_new_NetworkWriteException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::NetworkWriteException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkWriteException::NetworkWriteException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkWriteException::NetworkWriteException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkWriteException::NetworkWriteException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkWriteException::NetworkWriteException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::NetworkWriteException::NetworkWriteException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::NetworkWriteException::NetworkWriteException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::NetworkWriteException *)new Mezzanine::NetworkWriteException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkWriteException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkWriteException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::NetworkWriteException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkWriteException::NetworkWriteException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkWriteException::NetworkWriteException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkWriteException::NetworkWriteException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkWriteException::NetworkWriteException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::NetworkWriteException::NetworkWriteException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::NetworkWriteException *)new Mezzanine::NetworkWriteException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkWriteException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkWriteException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_NetworkWriteException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_NetworkWriteException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_NetworkWriteException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::NetworkWriteException::NetworkWriteException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::NetworkWriteException::NetworkWriteException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NetworkWriteException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::NetworkWriteException *arg1 = (Mezzanine::NetworkWriteException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::NetworkWriteException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::NetworkWriteException::GetExceptionCode",1,"Mezzanine::NetworkWriteException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__NetworkWriteException,0))){
+    SWIG_fail_ptr("NetworkWriteException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__NetworkWriteException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::NetworkWriteException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_NetworkWriteException(void *obj) {
+Mezzanine::NetworkWriteException *arg1 = (Mezzanine::NetworkWriteException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_NetworkWriteException_methods[] = {
+    {"GetExceptionCode", _wrap_NetworkWriteException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkWriteException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkWriteException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_NetworkWriteException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_NetworkWriteException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::NetworkWriteException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_NetworkWriteException_bases[] = {0,0};
+static const char *swig_Mezzanine_NetworkWriteException_base_names[] = {"Mezzanine::NetworkException *",0};
+static swig_lua_class _wrap_class_Mezzanine_NetworkWriteException = { "NetworkWriteException", &SWIGTYPE_p_Mezzanine__NetworkWriteException,_wrap_new_NetworkWriteException, swig_delete_NetworkWriteException, swig_Mezzanine_NetworkWriteException_methods, swig_Mezzanine_NetworkWriteException_attributes, { "NetworkWriteException", swig_Mezzanine_NetworkWriteException_cls_methods, swig_Mezzanine_NetworkWriteException_cls_attributes, swig_Mezzanine_NetworkWriteException_cls_constants }, swig_Mezzanine_NetworkWriteException_bases, swig_Mezzanine_NetworkWriteException_base_names };
+
+static int _wrap_new_NetworkNotFoundException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::NetworkNotFoundException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::NetworkNotFoundException *)new Mezzanine::NetworkNotFoundException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkNotFoundException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkNotFoundException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::NetworkNotFoundException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::NetworkNotFoundException::NetworkNotFoundException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::NetworkNotFoundException *)new Mezzanine::NetworkNotFoundException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkNotFoundException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkNotFoundException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_NetworkNotFoundException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_NetworkNotFoundException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_NetworkNotFoundException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::NetworkNotFoundException::NetworkNotFoundException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::NetworkNotFoundException::NetworkNotFoundException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NetworkNotFoundException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::NetworkNotFoundException *arg1 = (Mezzanine::NetworkNotFoundException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::NetworkNotFoundException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::NetworkNotFoundException::GetExceptionCode",1,"Mezzanine::NetworkNotFoundException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__NetworkNotFoundException,0))){
+    SWIG_fail_ptr("NetworkNotFoundException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__NetworkNotFoundException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::NetworkNotFoundException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_NetworkNotFoundException(void *obj) {
+Mezzanine::NetworkNotFoundException *arg1 = (Mezzanine::NetworkNotFoundException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_NetworkNotFoundException_methods[] = {
+    {"GetExceptionCode", _wrap_NetworkNotFoundException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkNotFoundException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkNotFoundException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_NetworkNotFoundException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_NetworkNotFoundException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::NetworkNotFoundException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_NetworkNotFoundException_bases[] = {0,0};
+static const char *swig_Mezzanine_NetworkNotFoundException_base_names[] = {"Mezzanine::NetworkException *",0};
+static swig_lua_class _wrap_class_Mezzanine_NetworkNotFoundException = { "NetworkNotFoundException", &SWIGTYPE_p_Mezzanine__NetworkNotFoundException,_wrap_new_NetworkNotFoundException, swig_delete_NetworkNotFoundException, swig_Mezzanine_NetworkNotFoundException_methods, swig_Mezzanine_NetworkNotFoundException_attributes, { "NetworkNotFoundException", swig_Mezzanine_NetworkNotFoundException_cls_methods, swig_Mezzanine_NetworkNotFoundException_cls_attributes, swig_Mezzanine_NetworkNotFoundException_cls_constants }, swig_Mezzanine_NetworkNotFoundException_bases, swig_Mezzanine_NetworkNotFoundException_base_names };
+
+static int _wrap_new_NetworkURLException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::NetworkURLException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkURLException::NetworkURLException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkURLException::NetworkURLException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkURLException::NetworkURLException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkURLException::NetworkURLException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::NetworkURLException::NetworkURLException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::NetworkURLException::NetworkURLException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::NetworkURLException *)new Mezzanine::NetworkURLException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkURLException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkURLException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::NetworkURLException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkURLException::NetworkURLException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkURLException::NetworkURLException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkURLException::NetworkURLException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkURLException::NetworkURLException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::NetworkURLException::NetworkURLException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::NetworkURLException *)new Mezzanine::NetworkURLException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkURLException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkURLException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_NetworkURLException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_NetworkURLException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_NetworkURLException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::NetworkURLException::NetworkURLException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::NetworkURLException::NetworkURLException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NetworkURLException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::NetworkURLException *arg1 = (Mezzanine::NetworkURLException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::NetworkURLException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::NetworkURLException::GetExceptionCode",1,"Mezzanine::NetworkURLException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__NetworkURLException,0))){
+    SWIG_fail_ptr("NetworkURLException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__NetworkURLException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::NetworkURLException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_NetworkURLException(void *obj) {
+Mezzanine::NetworkURLException *arg1 = (Mezzanine::NetworkURLException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_NetworkURLException_methods[] = {
+    {"GetExceptionCode", _wrap_NetworkURLException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkURLException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkURLException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_NetworkURLException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_NetworkURLException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::NetworkURLException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_NetworkURLException_bases[] = {0,0};
+static const char *swig_Mezzanine_NetworkURLException_base_names[] = {"Mezzanine::NetworkException *",0};
+static swig_lua_class _wrap_class_Mezzanine_NetworkURLException = { "NetworkURLException", &SWIGTYPE_p_Mezzanine__NetworkURLException,_wrap_new_NetworkURLException, swig_delete_NetworkURLException, swig_Mezzanine_NetworkURLException_methods, swig_Mezzanine_NetworkURLException_attributes, { "NetworkURLException", swig_Mezzanine_NetworkURLException_cls_methods, swig_Mezzanine_NetworkURLException_cls_attributes, swig_Mezzanine_NetworkURLException_cls_constants }, swig_Mezzanine_NetworkURLException_bases, swig_Mezzanine_NetworkURLException_base_names };
+
+static int _wrap_new_NetworkPermissionException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::NetworkPermissionException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkPermissionException::NetworkPermissionException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkPermissionException::NetworkPermissionException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkPermissionException::NetworkPermissionException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkPermissionException::NetworkPermissionException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::NetworkPermissionException::NetworkPermissionException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::NetworkPermissionException::NetworkPermissionException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::NetworkPermissionException *)new Mezzanine::NetworkPermissionException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkPermissionException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkPermissionException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::NetworkPermissionException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NetworkPermissionException::NetworkPermissionException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NetworkPermissionException::NetworkPermissionException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NetworkPermissionException::NetworkPermissionException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NetworkPermissionException::NetworkPermissionException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::NetworkPermissionException::NetworkPermissionException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::NetworkPermissionException *)new Mezzanine::NetworkPermissionException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NetworkPermissionException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NetworkPermissionException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_NetworkPermissionException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_NetworkPermissionException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_NetworkPermissionException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::NetworkPermissionException::NetworkPermissionException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::NetworkPermissionException::NetworkPermissionException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NetworkPermissionException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::NetworkPermissionException *arg1 = (Mezzanine::NetworkPermissionException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::NetworkPermissionException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::NetworkPermissionException::GetExceptionCode",1,"Mezzanine::NetworkPermissionException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__NetworkPermissionException,0))){
+    SWIG_fail_ptr("NetworkPermissionException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__NetworkPermissionException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::NetworkPermissionException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_NetworkPermissionException(void *obj) {
+Mezzanine::NetworkPermissionException *arg1 = (Mezzanine::NetworkPermissionException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_NetworkPermissionException_methods[] = {
+    {"GetExceptionCode", _wrap_NetworkPermissionException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkPermissionException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NetworkPermissionException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_NetworkPermissionException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_NetworkPermissionException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::NetworkPermissionException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_NetworkPermissionException_bases[] = {0,0};
+static const char *swig_Mezzanine_NetworkPermissionException_base_names[] = {"Mezzanine::NetworkException *",0};
+static swig_lua_class _wrap_class_Mezzanine_NetworkPermissionException = { "NetworkPermissionException", &SWIGTYPE_p_Mezzanine__NetworkPermissionException,_wrap_new_NetworkPermissionException, swig_delete_NetworkPermissionException, swig_Mezzanine_NetworkPermissionException_methods, swig_Mezzanine_NetworkPermissionException_attributes, { "NetworkPermissionException", swig_Mezzanine_NetworkPermissionException_cls_methods, swig_Mezzanine_NetworkPermissionException_cls_attributes, swig_Mezzanine_NetworkPermissionException_cls_constants }, swig_Mezzanine_NetworkPermissionException_bases, swig_Mezzanine_NetworkPermissionException_base_names };
+
+static int _wrap_new_IOWriteException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::IOWriteException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::IOWriteException::IOWriteException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::IOWriteException::IOWriteException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::IOWriteException::IOWriteException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::IOWriteException::IOWriteException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::IOWriteException::IOWriteException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::IOWriteException::IOWriteException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::IOWriteException *)new Mezzanine::IOWriteException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__IOWriteException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_IOWriteException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::IOWriteException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::IOWriteException::IOWriteException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::IOWriteException::IOWriteException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::IOWriteException::IOWriteException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::IOWriteException::IOWriteException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::IOWriteException::IOWriteException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::IOWriteException *)new Mezzanine::IOWriteException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__IOWriteException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_IOWriteException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_IOWriteException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_IOWriteException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_IOWriteException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::IOWriteException::IOWriteException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::IOWriteException::IOWriteException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_IOWriteException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::IOWriteException *arg1 = (Mezzanine::IOWriteException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::IOWriteException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::IOWriteException::GetExceptionCode",1,"Mezzanine::IOWriteException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__IOWriteException,0))){
+    SWIG_fail_ptr("IOWriteException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__IOWriteException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::IOWriteException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_IOWriteException(void *obj) {
+Mezzanine::IOWriteException *arg1 = (Mezzanine::IOWriteException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_IOWriteException_methods[] = {
+    {"GetExceptionCode", _wrap_IOWriteException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_IOWriteException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_IOWriteException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_IOWriteException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_IOWriteException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::IOWriteException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_IOWriteException_bases[] = {0,0};
+static const char *swig_Mezzanine_IOWriteException_base_names[] = {"Mezzanine::IOException *",0};
+static swig_lua_class _wrap_class_Mezzanine_IOWriteException = { "IOWriteException", &SWIGTYPE_p_Mezzanine__IOWriteException,_wrap_new_IOWriteException, swig_delete_IOWriteException, swig_Mezzanine_IOWriteException_methods, swig_Mezzanine_IOWriteException_attributes, { "IOWriteException", swig_Mezzanine_IOWriteException_cls_methods, swig_Mezzanine_IOWriteException_cls_attributes, swig_Mezzanine_IOWriteException_cls_constants }, swig_Mezzanine_IOWriteException_bases, swig_Mezzanine_IOWriteException_base_names };
+
+static int _wrap_new_IOReadException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::IOReadException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::IOReadException::IOReadException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::IOReadException::IOReadException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::IOReadException::IOReadException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::IOReadException::IOReadException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::IOReadException::IOReadException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::IOReadException::IOReadException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::IOReadException *)new Mezzanine::IOReadException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__IOReadException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_IOReadException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::IOReadException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::IOReadException::IOReadException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::IOReadException::IOReadException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::IOReadException::IOReadException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::IOReadException::IOReadException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::IOReadException::IOReadException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::IOReadException *)new Mezzanine::IOReadException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__IOReadException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_IOReadException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_IOReadException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_IOReadException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_IOReadException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::IOReadException::IOReadException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::IOReadException::IOReadException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_IOReadException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::IOReadException *arg1 = (Mezzanine::IOReadException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::IOReadException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::IOReadException::GetExceptionCode",1,"Mezzanine::IOReadException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__IOReadException,0))){
+    SWIG_fail_ptr("IOReadException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__IOReadException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::IOReadException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_IOReadException(void *obj) {
+Mezzanine::IOReadException *arg1 = (Mezzanine::IOReadException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_IOReadException_methods[] = {
+    {"GetExceptionCode", _wrap_IOReadException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_IOReadException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_IOReadException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_IOReadException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_IOReadException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::IOReadException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_IOReadException_bases[] = {0,0};
+static const char *swig_Mezzanine_IOReadException_base_names[] = {"Mezzanine::IOException *",0};
+static swig_lua_class _wrap_class_Mezzanine_IOReadException = { "IOReadException", &SWIGTYPE_p_Mezzanine__IOReadException,_wrap_new_IOReadException, swig_delete_IOReadException, swig_Mezzanine_IOReadException_methods, swig_Mezzanine_IOReadException_attributes, { "IOReadException", swig_Mezzanine_IOReadException_cls_methods, swig_Mezzanine_IOReadException_cls_attributes, swig_Mezzanine_IOReadException_cls_constants }, swig_Mezzanine_IOReadException_bases, swig_Mezzanine_IOReadException_base_names };
+
+static int _wrap_new_InstanceIdentityException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::InstanceIdentityException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityException::InstanceIdentityException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityException::InstanceIdentityException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InstanceIdentityException::InstanceIdentityException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InstanceIdentityException::InstanceIdentityException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::InstanceIdentityException::InstanceIdentityException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::InstanceIdentityException::InstanceIdentityException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::InstanceIdentityException *)new Mezzanine::InstanceIdentityException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InstanceIdentityException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InstanceIdentityException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::InstanceIdentityException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityException::InstanceIdentityException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityException::InstanceIdentityException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InstanceIdentityException::InstanceIdentityException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InstanceIdentityException::InstanceIdentityException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::InstanceIdentityException::InstanceIdentityException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::InstanceIdentityException *)new Mezzanine::InstanceIdentityException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InstanceIdentityException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InstanceIdentityException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_InstanceIdentityException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_InstanceIdentityException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_InstanceIdentityException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::InstanceIdentityException::InstanceIdentityException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::InstanceIdentityException::InstanceIdentityException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_InstanceIdentityException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::InstanceIdentityException *arg1 = (Mezzanine::InstanceIdentityException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityException::GetExceptionCode",1,"Mezzanine::InstanceIdentityException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__InstanceIdentityException,0))){
+    SWIG_fail_ptr("InstanceIdentityException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__InstanceIdentityException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::InstanceIdentityException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_InstanceIdentityException(void *obj) {
+Mezzanine::InstanceIdentityException *arg1 = (Mezzanine::InstanceIdentityException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_InstanceIdentityException_methods[] = {
+    {"GetExceptionCode", _wrap_InstanceIdentityException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InstanceIdentityException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InstanceIdentityException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_InstanceIdentityException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_InstanceIdentityException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::InstanceIdentityException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_InstanceIdentityException_bases[] = {0,0};
+static const char *swig_Mezzanine_InstanceIdentityException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_InstanceIdentityException = { "InstanceIdentityException", &SWIGTYPE_p_Mezzanine__InstanceIdentityException,_wrap_new_InstanceIdentityException, swig_delete_InstanceIdentityException, swig_Mezzanine_InstanceIdentityException_methods, swig_Mezzanine_InstanceIdentityException_attributes, { "InstanceIdentityException", swig_Mezzanine_InstanceIdentityException_cls_methods, swig_Mezzanine_InstanceIdentityException_cls_attributes, swig_Mezzanine_InstanceIdentityException_cls_constants }, swig_Mezzanine_InstanceIdentityException_bases, swig_Mezzanine_InstanceIdentityException_base_names };
+
+static int _wrap_new_InstanceIdentityInvalidException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::InstanceIdentityInvalidException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::InstanceIdentityInvalidException *)new Mezzanine::InstanceIdentityInvalidException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InstanceIdentityInvalidException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::InstanceIdentityInvalidException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::InstanceIdentityInvalidException *)new Mezzanine::InstanceIdentityInvalidException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InstanceIdentityInvalidException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_InstanceIdentityInvalidException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_InstanceIdentityInvalidException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_InstanceIdentityInvalidException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::InstanceIdentityInvalidException::InstanceIdentityInvalidException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_InstanceIdentityInvalidException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::InstanceIdentityInvalidException *arg1 = (Mezzanine::InstanceIdentityInvalidException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityInvalidException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityInvalidException::GetExceptionCode",1,"Mezzanine::InstanceIdentityInvalidException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException,0))){
+    SWIG_fail_ptr("InstanceIdentityInvalidException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::InstanceIdentityInvalidException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_InstanceIdentityInvalidException(void *obj) {
+Mezzanine::InstanceIdentityInvalidException *arg1 = (Mezzanine::InstanceIdentityInvalidException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_InstanceIdentityInvalidException_methods[] = {
+    {"GetExceptionCode", _wrap_InstanceIdentityInvalidException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InstanceIdentityInvalidException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InstanceIdentityInvalidException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_InstanceIdentityInvalidException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_InstanceIdentityInvalidException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::InstanceIdentityInvalidException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_InstanceIdentityInvalidException_bases[] = {0,0};
+static const char *swig_Mezzanine_InstanceIdentityInvalidException_base_names[] = {"Mezzanine::InstanceIdentityException *",0};
+static swig_lua_class _wrap_class_Mezzanine_InstanceIdentityInvalidException = { "InstanceIdentityInvalidException", &SWIGTYPE_p_Mezzanine__InstanceIdentityInvalidException,_wrap_new_InstanceIdentityInvalidException, swig_delete_InstanceIdentityInvalidException, swig_Mezzanine_InstanceIdentityInvalidException_methods, swig_Mezzanine_InstanceIdentityInvalidException_attributes, { "InstanceIdentityInvalidException", swig_Mezzanine_InstanceIdentityInvalidException_cls_methods, swig_Mezzanine_InstanceIdentityInvalidException_cls_attributes, swig_Mezzanine_InstanceIdentityInvalidException_cls_constants }, swig_Mezzanine_InstanceIdentityInvalidException_bases, swig_Mezzanine_InstanceIdentityInvalidException_base_names };
+
+static int _wrap_new_InstanceIdentityNotFoundException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::InstanceIdentityNotFoundException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::InstanceIdentityNotFoundException *)new Mezzanine::InstanceIdentityNotFoundException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InstanceIdentityNotFoundException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::InstanceIdentityNotFoundException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::InstanceIdentityNotFoundException *)new Mezzanine::InstanceIdentityNotFoundException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InstanceIdentityNotFoundException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_InstanceIdentityNotFoundException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_InstanceIdentityNotFoundException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_InstanceIdentityNotFoundException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::InstanceIdentityNotFoundException::InstanceIdentityNotFoundException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_InstanceIdentityNotFoundException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::InstanceIdentityNotFoundException *arg1 = (Mezzanine::InstanceIdentityNotFoundException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityNotFoundException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityNotFoundException::GetExceptionCode",1,"Mezzanine::InstanceIdentityNotFoundException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException,0))){
+    SWIG_fail_ptr("InstanceIdentityNotFoundException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::InstanceIdentityNotFoundException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_InstanceIdentityNotFoundException(void *obj) {
+Mezzanine::InstanceIdentityNotFoundException *arg1 = (Mezzanine::InstanceIdentityNotFoundException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_InstanceIdentityNotFoundException_methods[] = {
+    {"GetExceptionCode", _wrap_InstanceIdentityNotFoundException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InstanceIdentityNotFoundException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InstanceIdentityNotFoundException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_InstanceIdentityNotFoundException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_InstanceIdentityNotFoundException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::InstanceIdentityNotFoundException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_InstanceIdentityNotFoundException_bases[] = {0,0};
+static const char *swig_Mezzanine_InstanceIdentityNotFoundException_base_names[] = {"Mezzanine::InstanceIdentityException *",0};
+static swig_lua_class _wrap_class_Mezzanine_InstanceIdentityNotFoundException = { "InstanceIdentityNotFoundException", &SWIGTYPE_p_Mezzanine__InstanceIdentityNotFoundException,_wrap_new_InstanceIdentityNotFoundException, swig_delete_InstanceIdentityNotFoundException, swig_Mezzanine_InstanceIdentityNotFoundException_methods, swig_Mezzanine_InstanceIdentityNotFoundException_attributes, { "InstanceIdentityNotFoundException", swig_Mezzanine_InstanceIdentityNotFoundException_cls_methods, swig_Mezzanine_InstanceIdentityNotFoundException_cls_attributes, swig_Mezzanine_InstanceIdentityNotFoundException_cls_constants }, swig_Mezzanine_InstanceIdentityNotFoundException_bases, swig_Mezzanine_InstanceIdentityNotFoundException_base_names };
+
+static int _wrap_new_InstanceIdentityDuplicateException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::InstanceIdentityDuplicateException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::InstanceIdentityDuplicateException *)new Mezzanine::InstanceIdentityDuplicateException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InstanceIdentityDuplicateException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::InstanceIdentityDuplicateException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::InstanceIdentityDuplicateException *)new Mezzanine::InstanceIdentityDuplicateException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InstanceIdentityDuplicateException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_InstanceIdentityDuplicateException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_InstanceIdentityDuplicateException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_InstanceIdentityDuplicateException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::InstanceIdentityDuplicateException::InstanceIdentityDuplicateException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_InstanceIdentityDuplicateException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::InstanceIdentityDuplicateException *arg1 = (Mezzanine::InstanceIdentityDuplicateException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::InstanceIdentityDuplicateException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::InstanceIdentityDuplicateException::GetExceptionCode",1,"Mezzanine::InstanceIdentityDuplicateException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException,0))){
+    SWIG_fail_ptr("InstanceIdentityDuplicateException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::InstanceIdentityDuplicateException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_InstanceIdentityDuplicateException(void *obj) {
+Mezzanine::InstanceIdentityDuplicateException *arg1 = (Mezzanine::InstanceIdentityDuplicateException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_InstanceIdentityDuplicateException_methods[] = {
+    {"GetExceptionCode", _wrap_InstanceIdentityDuplicateException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InstanceIdentityDuplicateException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InstanceIdentityDuplicateException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_InstanceIdentityDuplicateException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_InstanceIdentityDuplicateException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::InstanceIdentityDuplicateException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_InstanceIdentityDuplicateException_bases[] = {0,0};
+static const char *swig_Mezzanine_InstanceIdentityDuplicateException_base_names[] = {"Mezzanine::InstanceIdentityException *",0};
+static swig_lua_class _wrap_class_Mezzanine_InstanceIdentityDuplicateException = { "InstanceIdentityDuplicateException", &SWIGTYPE_p_Mezzanine__InstanceIdentityDuplicateException,_wrap_new_InstanceIdentityDuplicateException, swig_delete_InstanceIdentityDuplicateException, swig_Mezzanine_InstanceIdentityDuplicateException_methods, swig_Mezzanine_InstanceIdentityDuplicateException_attributes, { "InstanceIdentityDuplicateException", swig_Mezzanine_InstanceIdentityDuplicateException_cls_methods, swig_Mezzanine_InstanceIdentityDuplicateException_cls_attributes, swig_Mezzanine_InstanceIdentityDuplicateException_cls_constants }, swig_Mezzanine_InstanceIdentityDuplicateException_bases, swig_Mezzanine_InstanceIdentityDuplicateException_base_names };
+
+static int _wrap_new_MemoryManagementException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::MemoryManagementException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::MemoryManagementException::MemoryManagementException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::MemoryManagementException::MemoryManagementException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::MemoryManagementException::MemoryManagementException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::MemoryManagementException::MemoryManagementException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::MemoryManagementException::MemoryManagementException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::MemoryManagementException::MemoryManagementException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::MemoryManagementException *)new Mezzanine::MemoryManagementException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MemoryManagementException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_MemoryManagementException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::MemoryManagementException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::MemoryManagementException::MemoryManagementException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::MemoryManagementException::MemoryManagementException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::MemoryManagementException::MemoryManagementException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::MemoryManagementException::MemoryManagementException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::MemoryManagementException::MemoryManagementException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::MemoryManagementException *)new Mezzanine::MemoryManagementException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MemoryManagementException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_MemoryManagementException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_MemoryManagementException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_MemoryManagementException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_MemoryManagementException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::MemoryManagementException::MemoryManagementException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::MemoryManagementException::MemoryManagementException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_MemoryManagementException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::MemoryManagementException *arg1 = (Mezzanine::MemoryManagementException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::MemoryManagementException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::MemoryManagementException::GetExceptionCode",1,"Mezzanine::MemoryManagementException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__MemoryManagementException,0))){
+    SWIG_fail_ptr("MemoryManagementException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__MemoryManagementException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::MemoryManagementException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_MemoryManagementException(void *obj) {
+Mezzanine::MemoryManagementException *arg1 = (Mezzanine::MemoryManagementException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_MemoryManagementException_methods[] = {
+    {"GetExceptionCode", _wrap_MemoryManagementException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_MemoryManagementException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_MemoryManagementException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_MemoryManagementException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_MemoryManagementException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::MemoryManagementException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_MemoryManagementException_bases[] = {0,0};
+static const char *swig_Mezzanine_MemoryManagementException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_MemoryManagementException = { "MemoryManagementException", &SWIGTYPE_p_Mezzanine__MemoryManagementException,_wrap_new_MemoryManagementException, swig_delete_MemoryManagementException, swig_Mezzanine_MemoryManagementException_methods, swig_Mezzanine_MemoryManagementException_attributes, { "MemoryManagementException", swig_Mezzanine_MemoryManagementException_cls_methods, swig_Mezzanine_MemoryManagementException_cls_attributes, swig_Mezzanine_MemoryManagementException_cls_constants }, swig_Mezzanine_MemoryManagementException_bases, swig_Mezzanine_MemoryManagementException_base_names };
+
+static int _wrap_new_OutOfMemoryException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::OutOfMemoryException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::OutOfMemoryException::OutOfMemoryException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::OutOfMemoryException::OutOfMemoryException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::OutOfMemoryException::OutOfMemoryException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::OutOfMemoryException::OutOfMemoryException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::OutOfMemoryException::OutOfMemoryException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::OutOfMemoryException::OutOfMemoryException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::OutOfMemoryException *)new Mezzanine::OutOfMemoryException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__OutOfMemoryException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_OutOfMemoryException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::OutOfMemoryException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::OutOfMemoryException::OutOfMemoryException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::OutOfMemoryException::OutOfMemoryException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::OutOfMemoryException::OutOfMemoryException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::OutOfMemoryException::OutOfMemoryException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::OutOfMemoryException::OutOfMemoryException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::OutOfMemoryException *)new Mezzanine::OutOfMemoryException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__OutOfMemoryException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_OutOfMemoryException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_OutOfMemoryException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_OutOfMemoryException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_OutOfMemoryException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::OutOfMemoryException::OutOfMemoryException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::OutOfMemoryException::OutOfMemoryException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_OutOfMemoryException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::OutOfMemoryException *arg1 = (Mezzanine::OutOfMemoryException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::OutOfMemoryException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::OutOfMemoryException::GetExceptionCode",1,"Mezzanine::OutOfMemoryException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__OutOfMemoryException,0))){
+    SWIG_fail_ptr("OutOfMemoryException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__OutOfMemoryException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::OutOfMemoryException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_OutOfMemoryException(void *obj) {
+Mezzanine::OutOfMemoryException *arg1 = (Mezzanine::OutOfMemoryException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_OutOfMemoryException_methods[] = {
+    {"GetExceptionCode", _wrap_OutOfMemoryException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_OutOfMemoryException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_OutOfMemoryException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_OutOfMemoryException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_OutOfMemoryException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::OutOfMemoryException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_OutOfMemoryException_bases[] = {0,0};
+static const char *swig_Mezzanine_OutOfMemoryException_base_names[] = {"Mezzanine::MemoryManagementException *",0};
+static swig_lua_class _wrap_class_Mezzanine_OutOfMemoryException = { "OutOfMemoryException", &SWIGTYPE_p_Mezzanine__OutOfMemoryException,_wrap_new_OutOfMemoryException, swig_delete_OutOfMemoryException, swig_Mezzanine_OutOfMemoryException_methods, swig_Mezzanine_OutOfMemoryException_attributes, { "OutOfMemoryException", swig_Mezzanine_OutOfMemoryException_cls_methods, swig_Mezzanine_OutOfMemoryException_cls_attributes, swig_Mezzanine_OutOfMemoryException_cls_constants }, swig_Mezzanine_OutOfMemoryException_bases, swig_Mezzanine_OutOfMemoryException_base_names };
+
+static int _wrap_new_MemoryOutOfBoundsException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::MemoryOutOfBoundsException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::MemoryOutOfBoundsException *)new Mezzanine::MemoryOutOfBoundsException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_MemoryOutOfBoundsException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::MemoryOutOfBoundsException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::MemoryOutOfBoundsException *)new Mezzanine::MemoryOutOfBoundsException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_MemoryOutOfBoundsException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_MemoryOutOfBoundsException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_MemoryOutOfBoundsException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_MemoryOutOfBoundsException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::MemoryOutOfBoundsException::MemoryOutOfBoundsException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_MemoryOutOfBoundsException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::MemoryOutOfBoundsException *arg1 = (Mezzanine::MemoryOutOfBoundsException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::MemoryOutOfBoundsException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::MemoryOutOfBoundsException::GetExceptionCode",1,"Mezzanine::MemoryOutOfBoundsException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException,0))){
+    SWIG_fail_ptr("MemoryOutOfBoundsException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::MemoryOutOfBoundsException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_MemoryOutOfBoundsException(void *obj) {
+Mezzanine::MemoryOutOfBoundsException *arg1 = (Mezzanine::MemoryOutOfBoundsException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_MemoryOutOfBoundsException_methods[] = {
+    {"GetExceptionCode", _wrap_MemoryOutOfBoundsException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_MemoryOutOfBoundsException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_MemoryOutOfBoundsException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_MemoryOutOfBoundsException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_MemoryOutOfBoundsException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::MemoryOutOfBoundsException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_MemoryOutOfBoundsException_bases[] = {0,0};
+static const char *swig_Mezzanine_MemoryOutOfBoundsException_base_names[] = {"Mezzanine::MemoryManagementException *",0};
+static swig_lua_class _wrap_class_Mezzanine_MemoryOutOfBoundsException = { "MemoryOutOfBoundsException", &SWIGTYPE_p_Mezzanine__MemoryOutOfBoundsException,_wrap_new_MemoryOutOfBoundsException, swig_delete_MemoryOutOfBoundsException, swig_Mezzanine_MemoryOutOfBoundsException_methods, swig_Mezzanine_MemoryOutOfBoundsException_attributes, { "MemoryOutOfBoundsException", swig_Mezzanine_MemoryOutOfBoundsException_cls_methods, swig_Mezzanine_MemoryOutOfBoundsException_cls_attributes, swig_Mezzanine_MemoryOutOfBoundsException_cls_constants }, swig_Mezzanine_MemoryOutOfBoundsException_bases, swig_Mezzanine_MemoryOutOfBoundsException_base_names };
+
+static int _wrap_new_SyntaxErrorException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::SyntaxErrorException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorException::SyntaxErrorException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorException::SyntaxErrorException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::SyntaxErrorException::SyntaxErrorException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::SyntaxErrorException::SyntaxErrorException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::SyntaxErrorException::SyntaxErrorException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::SyntaxErrorException::SyntaxErrorException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::SyntaxErrorException *)new Mezzanine::SyntaxErrorException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SyntaxErrorException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SyntaxErrorException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::SyntaxErrorException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorException::SyntaxErrorException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorException::SyntaxErrorException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::SyntaxErrorException::SyntaxErrorException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::SyntaxErrorException::SyntaxErrorException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::SyntaxErrorException::SyntaxErrorException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::SyntaxErrorException *)new Mezzanine::SyntaxErrorException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SyntaxErrorException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SyntaxErrorException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_SyntaxErrorException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_SyntaxErrorException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_SyntaxErrorException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::SyntaxErrorException::SyntaxErrorException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::SyntaxErrorException::SyntaxErrorException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_SyntaxErrorException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::SyntaxErrorException *arg1 = (Mezzanine::SyntaxErrorException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorException::GetExceptionCode",1,"Mezzanine::SyntaxErrorException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__SyntaxErrorException,0))){
+    SWIG_fail_ptr("SyntaxErrorException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__SyntaxErrorException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::SyntaxErrorException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SyntaxErrorException(void *obj) {
+Mezzanine::SyntaxErrorException *arg1 = (Mezzanine::SyntaxErrorException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_SyntaxErrorException_methods[] = {
+    {"GetExceptionCode", _wrap_SyntaxErrorException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_SyntaxErrorException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_SyntaxErrorException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_SyntaxErrorException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_SyntaxErrorException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::SyntaxErrorException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_SyntaxErrorException_bases[] = {0,0};
+static const char *swig_Mezzanine_SyntaxErrorException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_SyntaxErrorException = { "SyntaxErrorException", &SWIGTYPE_p_Mezzanine__SyntaxErrorException,_wrap_new_SyntaxErrorException, swig_delete_SyntaxErrorException, swig_Mezzanine_SyntaxErrorException_methods, swig_Mezzanine_SyntaxErrorException_attributes, { "SyntaxErrorException", swig_Mezzanine_SyntaxErrorException_cls_methods, swig_Mezzanine_SyntaxErrorException_cls_attributes, swig_Mezzanine_SyntaxErrorException_cls_constants }, swig_Mezzanine_SyntaxErrorException_bases, swig_Mezzanine_SyntaxErrorException_base_names };
+
+static int _wrap_new_SyntaxErrorXMLException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::SyntaxErrorXMLException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::SyntaxErrorXMLException *)new Mezzanine::SyntaxErrorXMLException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SyntaxErrorXMLException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::SyntaxErrorXMLException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::SyntaxErrorXMLException *)new Mezzanine::SyntaxErrorXMLException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SyntaxErrorXMLException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_SyntaxErrorXMLException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_SyntaxErrorXMLException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_SyntaxErrorXMLException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::SyntaxErrorXMLException::SyntaxErrorXMLException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_SyntaxErrorXMLException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::SyntaxErrorXMLException *arg1 = (Mezzanine::SyntaxErrorXMLException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorXMLException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorXMLException::GetExceptionCode",1,"Mezzanine::SyntaxErrorXMLException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException,0))){
+    SWIG_fail_ptr("SyntaxErrorXMLException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::SyntaxErrorXMLException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SyntaxErrorXMLException(void *obj) {
+Mezzanine::SyntaxErrorXMLException *arg1 = (Mezzanine::SyntaxErrorXMLException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_SyntaxErrorXMLException_methods[] = {
+    {"GetExceptionCode", _wrap_SyntaxErrorXMLException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_SyntaxErrorXMLException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_SyntaxErrorXMLException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_SyntaxErrorXMLException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_SyntaxErrorXMLException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::SyntaxErrorXMLException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_SyntaxErrorXMLException_bases[] = {0,0};
+static const char *swig_Mezzanine_SyntaxErrorXMLException_base_names[] = {"Mezzanine::SyntaxErrorException *",0};
+static swig_lua_class _wrap_class_Mezzanine_SyntaxErrorXMLException = { "SyntaxErrorXMLException", &SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException,_wrap_new_SyntaxErrorXMLException, swig_delete_SyntaxErrorXMLException, swig_Mezzanine_SyntaxErrorXMLException_methods, swig_Mezzanine_SyntaxErrorXMLException_attributes, { "SyntaxErrorXMLException", swig_Mezzanine_SyntaxErrorXMLException_cls_methods, swig_Mezzanine_SyntaxErrorXMLException_cls_attributes, swig_Mezzanine_SyntaxErrorXMLException_cls_constants }, swig_Mezzanine_SyntaxErrorXMLException_bases, swig_Mezzanine_SyntaxErrorXMLException_base_names };
+
+static int _wrap_new_SyntaxErrorXPathException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::SyntaxErrorXPathException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::SyntaxErrorXPathException *)new Mezzanine::SyntaxErrorXPathException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SyntaxErrorXPathException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::SyntaxErrorXPathException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::SyntaxErrorXPathException *)new Mezzanine::SyntaxErrorXPathException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SyntaxErrorXPathException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_SyntaxErrorXPathException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_SyntaxErrorXPathException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_SyntaxErrorXPathException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_SyntaxErrorXPathException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::SyntaxErrorXPathException *arg1 = (Mezzanine::SyntaxErrorXPathException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorXPathException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::GetExceptionCode",1,"Mezzanine::SyntaxErrorXPathException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException,0))){
+    SWIG_fail_ptr("SyntaxErrorXPathException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::SyntaxErrorXPathException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SyntaxErrorXPathException(void *obj) {
+Mezzanine::SyntaxErrorXPathException *arg1 = (Mezzanine::SyntaxErrorXPathException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_SyntaxErrorXPathException_methods[] = {
+    {"GetExceptionCode", _wrap_SyntaxErrorXPathException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_SyntaxErrorXPathException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_SyntaxErrorXPathException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_SyntaxErrorXPathException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_SyntaxErrorXPathException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::SyntaxErrorXPathException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_SyntaxErrorXPathException_bases[] = {0,0};
+static const char *swig_Mezzanine_SyntaxErrorXPathException_base_names[] = {"Mezzanine::SyntaxErrorException *",0};
+static swig_lua_class _wrap_class_Mezzanine_SyntaxErrorXPathException = { "SyntaxErrorXPathException", &SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException,_wrap_new_SyntaxErrorXPathException, swig_delete_SyntaxErrorXPathException, swig_Mezzanine_SyntaxErrorXPathException_methods, swig_Mezzanine_SyntaxErrorXPathException_attributes, { "SyntaxErrorXPathException", swig_Mezzanine_SyntaxErrorXPathException_cls_methods, swig_Mezzanine_SyntaxErrorXPathException_cls_attributes, swig_Mezzanine_SyntaxErrorXPathException_cls_constants }, swig_Mezzanine_SyntaxErrorXPathException_bases, swig_Mezzanine_SyntaxErrorXPathException_base_names };
+
+static int _wrap_new_SyntaxErrorLuaException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::SyntaxErrorLuaException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::SyntaxErrorLuaException *)new Mezzanine::SyntaxErrorLuaException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SyntaxErrorLuaException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::SyntaxErrorLuaException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::SyntaxErrorLuaException *)new Mezzanine::SyntaxErrorLuaException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SyntaxErrorLuaException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_SyntaxErrorLuaException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_SyntaxErrorLuaException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_SyntaxErrorLuaException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::SyntaxErrorLuaException::SyntaxErrorLuaException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_SyntaxErrorLuaException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::SyntaxErrorLuaException *arg1 = (Mezzanine::SyntaxErrorLuaException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::SyntaxErrorLuaException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorLuaException::GetExceptionCode",1,"Mezzanine::SyntaxErrorLuaException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException,0))){
+    SWIG_fail_ptr("SyntaxErrorLuaException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::SyntaxErrorLuaException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SyntaxErrorLuaException(void *obj) {
+Mezzanine::SyntaxErrorLuaException *arg1 = (Mezzanine::SyntaxErrorLuaException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_SyntaxErrorLuaException_methods[] = {
+    {"GetExceptionCode", _wrap_SyntaxErrorLuaException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_SyntaxErrorLuaException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_SyntaxErrorLuaException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_SyntaxErrorLuaException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_SyntaxErrorLuaException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::SyntaxErrorLuaException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_SyntaxErrorLuaException_bases[] = {0,0};
+static const char *swig_Mezzanine_SyntaxErrorLuaException_base_names[] = {"Mezzanine::SyntaxErrorException *",0};
+static swig_lua_class _wrap_class_Mezzanine_SyntaxErrorLuaException = { "SyntaxErrorLuaException", &SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException,_wrap_new_SyntaxErrorLuaException, swig_delete_SyntaxErrorLuaException, swig_Mezzanine_SyntaxErrorLuaException_methods, swig_Mezzanine_SyntaxErrorLuaException_attributes, { "SyntaxErrorLuaException", swig_Mezzanine_SyntaxErrorLuaException_cls_methods, swig_Mezzanine_SyntaxErrorLuaException_cls_attributes, swig_Mezzanine_SyntaxErrorLuaException_cls_constants }, swig_Mezzanine_SyntaxErrorLuaException_bases, swig_Mezzanine_SyntaxErrorLuaException_base_names };
+
+static int _wrap_new_ScriptException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::ScriptException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ScriptException::ScriptException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ScriptException::ScriptException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ScriptException::ScriptException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ScriptException::ScriptException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::ScriptException::ScriptException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::ScriptException::ScriptException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::ScriptException *)new Mezzanine::ScriptException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ScriptException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScriptException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::ScriptException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ScriptException::ScriptException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ScriptException::ScriptException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ScriptException::ScriptException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ScriptException::ScriptException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::ScriptException::ScriptException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::ScriptException *)new Mezzanine::ScriptException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ScriptException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScriptException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_ScriptException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_ScriptException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ScriptException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::ScriptException::ScriptException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::ScriptException::ScriptException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_ScriptException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ScriptException *arg1 = (Mezzanine::ScriptException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::ScriptException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ScriptException::GetExceptionCode",1,"Mezzanine::ScriptException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ScriptException,0))){
+    SWIG_fail_ptr("ScriptException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__ScriptException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::ScriptException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ScriptException(void *obj) {
+Mezzanine::ScriptException *arg1 = (Mezzanine::ScriptException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_ScriptException_methods[] = {
+    {"GetExceptionCode", _wrap_ScriptException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ScriptException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ScriptException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_ScriptException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_ScriptException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::ScriptException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_ScriptException_bases[] = {0,0};
+static const char *swig_Mezzanine_ScriptException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_ScriptException = { "ScriptException", &SWIGTYPE_p_Mezzanine__ScriptException,_wrap_new_ScriptException, swig_delete_ScriptException, swig_Mezzanine_ScriptException_methods, swig_Mezzanine_ScriptException_attributes, { "ScriptException", swig_Mezzanine_ScriptException_cls_methods, swig_Mezzanine_ScriptException_cls_attributes, swig_Mezzanine_ScriptException_cls_constants }, swig_Mezzanine_ScriptException_bases, swig_Mezzanine_ScriptException_base_names };
+
+static int _wrap_new_ScriptLuaException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::ScriptLuaException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaException::ScriptLuaException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaException::ScriptLuaException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ScriptLuaException::ScriptLuaException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ScriptLuaException::ScriptLuaException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::ScriptLuaException::ScriptLuaException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::ScriptLuaException::ScriptLuaException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::ScriptLuaException *)new Mezzanine::ScriptLuaException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ScriptLuaException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScriptLuaException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::ScriptLuaException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaException::ScriptLuaException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaException::ScriptLuaException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ScriptLuaException::ScriptLuaException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ScriptLuaException::ScriptLuaException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::ScriptLuaException::ScriptLuaException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::ScriptLuaException *)new Mezzanine::ScriptLuaException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ScriptLuaException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScriptLuaException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_ScriptLuaException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_ScriptLuaException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ScriptLuaException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::ScriptLuaException::ScriptLuaException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::ScriptLuaException::ScriptLuaException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_ScriptLuaException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ScriptLuaException *arg1 = (Mezzanine::ScriptLuaException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaException::GetExceptionCode",1,"Mezzanine::ScriptLuaException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ScriptLuaException,0))){
+    SWIG_fail_ptr("ScriptLuaException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__ScriptLuaException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::ScriptLuaException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ScriptLuaException(void *obj) {
+Mezzanine::ScriptLuaException *arg1 = (Mezzanine::ScriptLuaException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_ScriptLuaException_methods[] = {
+    {"GetExceptionCode", _wrap_ScriptLuaException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ScriptLuaException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ScriptLuaException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_ScriptLuaException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_ScriptLuaException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::ScriptLuaException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_ScriptLuaException_bases[] = {0,0};
+static const char *swig_Mezzanine_ScriptLuaException_base_names[] = {"Mezzanine::ScriptException *",0};
+static swig_lua_class _wrap_class_Mezzanine_ScriptLuaException = { "ScriptLuaException", &SWIGTYPE_p_Mezzanine__ScriptLuaException,_wrap_new_ScriptLuaException, swig_delete_ScriptLuaException, swig_Mezzanine_ScriptLuaException_methods, swig_Mezzanine_ScriptLuaException_attributes, { "ScriptLuaException", swig_Mezzanine_ScriptLuaException_cls_methods, swig_Mezzanine_ScriptLuaException_cls_attributes, swig_Mezzanine_ScriptLuaException_cls_constants }, swig_Mezzanine_ScriptLuaException_bases, swig_Mezzanine_ScriptLuaException_base_names };
+
+static int _wrap_new_ScriptLuaYieldException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::ScriptLuaYieldException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::ScriptLuaYieldException *)new Mezzanine::ScriptLuaYieldException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ScriptLuaYieldException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScriptLuaYieldException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::ScriptLuaYieldException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::ScriptLuaYieldException *)new Mezzanine::ScriptLuaYieldException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ScriptLuaYieldException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScriptLuaYieldException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_ScriptLuaYieldException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_ScriptLuaYieldException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ScriptLuaYieldException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::ScriptLuaYieldException::ScriptLuaYieldException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_ScriptLuaYieldException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ScriptLuaYieldException *arg1 = (Mezzanine::ScriptLuaYieldException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaYieldException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaYieldException::GetExceptionCode",1,"Mezzanine::ScriptLuaYieldException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ScriptLuaYieldException,0))){
+    SWIG_fail_ptr("ScriptLuaYieldException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__ScriptLuaYieldException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::ScriptLuaYieldException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ScriptLuaYieldException(void *obj) {
+Mezzanine::ScriptLuaYieldException *arg1 = (Mezzanine::ScriptLuaYieldException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_ScriptLuaYieldException_methods[] = {
+    {"GetExceptionCode", _wrap_ScriptLuaYieldException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ScriptLuaYieldException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ScriptLuaYieldException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_ScriptLuaYieldException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_ScriptLuaYieldException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::ScriptLuaYieldException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_ScriptLuaYieldException_bases[] = {0,0};
+static const char *swig_Mezzanine_ScriptLuaYieldException_base_names[] = {"Mezzanine::ScriptLuaException *",0};
+static swig_lua_class _wrap_class_Mezzanine_ScriptLuaYieldException = { "ScriptLuaYieldException", &SWIGTYPE_p_Mezzanine__ScriptLuaYieldException,_wrap_new_ScriptLuaYieldException, swig_delete_ScriptLuaYieldException, swig_Mezzanine_ScriptLuaYieldException_methods, swig_Mezzanine_ScriptLuaYieldException_attributes, { "ScriptLuaYieldException", swig_Mezzanine_ScriptLuaYieldException_cls_methods, swig_Mezzanine_ScriptLuaYieldException_cls_attributes, swig_Mezzanine_ScriptLuaYieldException_cls_constants }, swig_Mezzanine_ScriptLuaYieldException_bases, swig_Mezzanine_ScriptLuaYieldException_base_names };
+
+static int _wrap_new_ScriptLuaRuntimeException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::ScriptLuaRuntimeException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::ScriptLuaRuntimeException *)new Mezzanine::ScriptLuaRuntimeException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScriptLuaRuntimeException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::ScriptLuaRuntimeException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::ScriptLuaRuntimeException *)new Mezzanine::ScriptLuaRuntimeException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScriptLuaRuntimeException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_ScriptLuaRuntimeException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_ScriptLuaRuntimeException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ScriptLuaRuntimeException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::ScriptLuaRuntimeException::ScriptLuaRuntimeException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_ScriptLuaRuntimeException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ScriptLuaRuntimeException *arg1 = (Mezzanine::ScriptLuaRuntimeException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaRuntimeException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaRuntimeException::GetExceptionCode",1,"Mezzanine::ScriptLuaRuntimeException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException,0))){
+    SWIG_fail_ptr("ScriptLuaRuntimeException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::ScriptLuaRuntimeException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ScriptLuaRuntimeException(void *obj) {
+Mezzanine::ScriptLuaRuntimeException *arg1 = (Mezzanine::ScriptLuaRuntimeException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_ScriptLuaRuntimeException_methods[] = {
+    {"GetExceptionCode", _wrap_ScriptLuaRuntimeException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ScriptLuaRuntimeException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ScriptLuaRuntimeException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_ScriptLuaRuntimeException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_ScriptLuaRuntimeException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::ScriptLuaRuntimeException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_ScriptLuaRuntimeException_bases[] = {0,0};
+static const char *swig_Mezzanine_ScriptLuaRuntimeException_base_names[] = {"Mezzanine::ScriptLuaException *",0};
+static swig_lua_class _wrap_class_Mezzanine_ScriptLuaRuntimeException = { "ScriptLuaRuntimeException", &SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException,_wrap_new_ScriptLuaRuntimeException, swig_delete_ScriptLuaRuntimeException, swig_Mezzanine_ScriptLuaRuntimeException_methods, swig_Mezzanine_ScriptLuaRuntimeException_attributes, { "ScriptLuaRuntimeException", swig_Mezzanine_ScriptLuaRuntimeException_cls_methods, swig_Mezzanine_ScriptLuaRuntimeException_cls_attributes, swig_Mezzanine_ScriptLuaRuntimeException_cls_constants }, swig_Mezzanine_ScriptLuaRuntimeException_bases, swig_Mezzanine_ScriptLuaRuntimeException_base_names };
+
+static int _wrap_new_ScriptLuaErrErrException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::ScriptLuaErrErrException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::ScriptLuaErrErrException *)new Mezzanine::ScriptLuaErrErrException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScriptLuaErrErrException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::ScriptLuaErrErrException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::ScriptLuaErrErrException *)new Mezzanine::ScriptLuaErrErrException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ScriptLuaErrErrException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_ScriptLuaErrErrException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_ScriptLuaErrErrException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ScriptLuaErrErrException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::ScriptLuaErrErrException::ScriptLuaErrErrException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_ScriptLuaErrErrException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ScriptLuaErrErrException *arg1 = (Mezzanine::ScriptLuaErrErrException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::ScriptLuaErrErrException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ScriptLuaErrErrException::GetExceptionCode",1,"Mezzanine::ScriptLuaErrErrException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException,0))){
+    SWIG_fail_ptr("ScriptLuaErrErrException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::ScriptLuaErrErrException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ScriptLuaErrErrException(void *obj) {
+Mezzanine::ScriptLuaErrErrException *arg1 = (Mezzanine::ScriptLuaErrErrException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_ScriptLuaErrErrException_methods[] = {
+    {"GetExceptionCode", _wrap_ScriptLuaErrErrException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ScriptLuaErrErrException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ScriptLuaErrErrException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_ScriptLuaErrErrException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_ScriptLuaErrErrException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::ScriptLuaErrErrException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_ScriptLuaErrErrException_bases[] = {0,0};
+static const char *swig_Mezzanine_ScriptLuaErrErrException_base_names[] = {"Mezzanine::ScriptLuaException *",0};
+static swig_lua_class _wrap_class_Mezzanine_ScriptLuaErrErrException = { "ScriptLuaErrErrException", &SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException,_wrap_new_ScriptLuaErrErrException, swig_delete_ScriptLuaErrErrException, swig_Mezzanine_ScriptLuaErrErrException_methods, swig_Mezzanine_ScriptLuaErrErrException_attributes, { "ScriptLuaErrErrException", swig_Mezzanine_ScriptLuaErrErrException_cls_methods, swig_Mezzanine_ScriptLuaErrErrException_cls_attributes, swig_Mezzanine_ScriptLuaErrErrException_cls_constants }, swig_Mezzanine_ScriptLuaErrErrException_bases, swig_Mezzanine_ScriptLuaErrErrException_base_names };
+
+static int _wrap_new_ParametersException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::ParametersException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ParametersException::ParametersException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ParametersException::ParametersException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ParametersException::ParametersException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ParametersException::ParametersException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::ParametersException::ParametersException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::ParametersException::ParametersException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::ParametersException *)new Mezzanine::ParametersException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ParametersException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ParametersException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::ParametersException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ParametersException::ParametersException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ParametersException::ParametersException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ParametersException::ParametersException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ParametersException::ParametersException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::ParametersException::ParametersException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::ParametersException *)new Mezzanine::ParametersException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ParametersException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ParametersException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_ParametersException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_ParametersException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ParametersException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::ParametersException::ParametersException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::ParametersException::ParametersException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_ParametersException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ParametersException *arg1 = (Mezzanine::ParametersException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::ParametersException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ParametersException::GetExceptionCode",1,"Mezzanine::ParametersException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ParametersException,0))){
+    SWIG_fail_ptr("ParametersException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__ParametersException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::ParametersException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ParametersException(void *obj) {
+Mezzanine::ParametersException *arg1 = (Mezzanine::ParametersException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_ParametersException_methods[] = {
+    {"GetExceptionCode", _wrap_ParametersException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ParametersException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ParametersException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_ParametersException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_ParametersException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::ParametersException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_ParametersException_bases[] = {0,0};
+static const char *swig_Mezzanine_ParametersException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_ParametersException = { "ParametersException", &SWIGTYPE_p_Mezzanine__ParametersException,_wrap_new_ParametersException, swig_delete_ParametersException, swig_Mezzanine_ParametersException_methods, swig_Mezzanine_ParametersException_attributes, { "ParametersException", swig_Mezzanine_ParametersException_cls_methods, swig_Mezzanine_ParametersException_cls_attributes, swig_Mezzanine_ParametersException_cls_constants }, swig_Mezzanine_ParametersException_bases, swig_Mezzanine_ParametersException_base_names };
+
+static int _wrap_new_ParametersCastException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::ParametersCastException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ParametersCastException::ParametersCastException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ParametersCastException::ParametersCastException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ParametersCastException::ParametersCastException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ParametersCastException::ParametersCastException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::ParametersCastException::ParametersCastException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::ParametersCastException::ParametersCastException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::ParametersCastException *)new Mezzanine::ParametersCastException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ParametersCastException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ParametersCastException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::ParametersCastException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ParametersCastException::ParametersCastException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ParametersCastException::ParametersCastException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ParametersCastException::ParametersCastException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ParametersCastException::ParametersCastException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::ParametersCastException::ParametersCastException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::ParametersCastException *)new Mezzanine::ParametersCastException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ParametersCastException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ParametersCastException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_ParametersCastException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_ParametersCastException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ParametersCastException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::ParametersCastException::ParametersCastException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::ParametersCastException::ParametersCastException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_ParametersCastException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ParametersCastException *arg1 = (Mezzanine::ParametersCastException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::ParametersCastException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ParametersCastException::GetExceptionCode",1,"Mezzanine::ParametersCastException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ParametersCastException,0))){
+    SWIG_fail_ptr("ParametersCastException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__ParametersCastException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::ParametersCastException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ParametersCastException(void *obj) {
+Mezzanine::ParametersCastException *arg1 = (Mezzanine::ParametersCastException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_ParametersCastException_methods[] = {
+    {"GetExceptionCode", _wrap_ParametersCastException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ParametersCastException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ParametersCastException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_ParametersCastException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_ParametersCastException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::ParametersCastException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_ParametersCastException_bases[] = {0,0};
+static const char *swig_Mezzanine_ParametersCastException_base_names[] = {"Mezzanine::ParametersException *",0};
+static swig_lua_class _wrap_class_Mezzanine_ParametersCastException = { "ParametersCastException", &SWIGTYPE_p_Mezzanine__ParametersCastException,_wrap_new_ParametersCastException, swig_delete_ParametersCastException, swig_Mezzanine_ParametersCastException_methods, swig_Mezzanine_ParametersCastException_attributes, { "ParametersCastException", swig_Mezzanine_ParametersCastException_cls_methods, swig_Mezzanine_ParametersCastException_cls_attributes, swig_Mezzanine_ParametersCastException_cls_constants }, swig_Mezzanine_ParametersCastException_bases, swig_Mezzanine_ParametersCastException_base_names };
+
+static int _wrap_new_ParametersRangeException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::ParametersRangeException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ParametersRangeException::ParametersRangeException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ParametersRangeException::ParametersRangeException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ParametersRangeException::ParametersRangeException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ParametersRangeException::ParametersRangeException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::ParametersRangeException::ParametersRangeException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::ParametersRangeException::ParametersRangeException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::ParametersRangeException *)new Mezzanine::ParametersRangeException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ParametersRangeException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ParametersRangeException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::ParametersRangeException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ParametersRangeException::ParametersRangeException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ParametersRangeException::ParametersRangeException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ParametersRangeException::ParametersRangeException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ParametersRangeException::ParametersRangeException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::ParametersRangeException::ParametersRangeException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::ParametersRangeException *)new Mezzanine::ParametersRangeException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ParametersRangeException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ParametersRangeException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_ParametersRangeException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_ParametersRangeException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ParametersRangeException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::ParametersRangeException::ParametersRangeException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::ParametersRangeException::ParametersRangeException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_ParametersRangeException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ParametersRangeException *arg1 = (Mezzanine::ParametersRangeException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::ParametersRangeException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ParametersRangeException::GetExceptionCode",1,"Mezzanine::ParametersRangeException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ParametersRangeException,0))){
+    SWIG_fail_ptr("ParametersRangeException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__ParametersRangeException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::ParametersRangeException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ParametersRangeException(void *obj) {
+Mezzanine::ParametersRangeException *arg1 = (Mezzanine::ParametersRangeException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_ParametersRangeException_methods[] = {
+    {"GetExceptionCode", _wrap_ParametersRangeException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ParametersRangeException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ParametersRangeException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_ParametersRangeException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_ParametersRangeException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::ParametersRangeException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_ParametersRangeException_bases[] = {0,0};
+static const char *swig_Mezzanine_ParametersRangeException_base_names[] = {"Mezzanine::ParametersException *",0};
+static swig_lua_class _wrap_class_Mezzanine_ParametersRangeException = { "ParametersRangeException", &SWIGTYPE_p_Mezzanine__ParametersRangeException,_wrap_new_ParametersRangeException, swig_delete_ParametersRangeException, swig_Mezzanine_ParametersRangeException_methods, swig_Mezzanine_ParametersRangeException_attributes, { "ParametersRangeException", swig_Mezzanine_ParametersRangeException_cls_methods, swig_Mezzanine_ParametersRangeException_cls_attributes, swig_Mezzanine_ParametersRangeException_cls_constants }, swig_Mezzanine_ParametersRangeException_bases, swig_Mezzanine_ParametersRangeException_base_names };
+
+static int _wrap_new_ArithmeticException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::ArithmeticException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ArithmeticException::ArithmeticException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ArithmeticException::ArithmeticException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ArithmeticException::ArithmeticException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ArithmeticException::ArithmeticException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::ArithmeticException::ArithmeticException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::ArithmeticException::ArithmeticException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::ArithmeticException *)new Mezzanine::ArithmeticException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ArithmeticException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ArithmeticException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::ArithmeticException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::ArithmeticException::ArithmeticException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::ArithmeticException::ArithmeticException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::ArithmeticException::ArithmeticException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::ArithmeticException::ArithmeticException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::ArithmeticException::ArithmeticException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::ArithmeticException *)new Mezzanine::ArithmeticException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__ArithmeticException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_ArithmeticException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_ArithmeticException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_ArithmeticException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_ArithmeticException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::ArithmeticException::ArithmeticException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::ArithmeticException::ArithmeticException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_ArithmeticException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ArithmeticException *arg1 = (Mezzanine::ArithmeticException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::ArithmeticException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ArithmeticException::GetExceptionCode",1,"Mezzanine::ArithmeticException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ArithmeticException,0))){
+    SWIG_fail_ptr("ArithmeticException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__ArithmeticException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::ArithmeticException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_ArithmeticException(void *obj) {
+Mezzanine::ArithmeticException *arg1 = (Mezzanine::ArithmeticException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_ArithmeticException_methods[] = {
+    {"GetExceptionCode", _wrap_ArithmeticException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ArithmeticException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_ArithmeticException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_ArithmeticException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_ArithmeticException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::ArithmeticException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_ArithmeticException_bases[] = {0,0};
+static const char *swig_Mezzanine_ArithmeticException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_ArithmeticException = { "ArithmeticException", &SWIGTYPE_p_Mezzanine__ArithmeticException,_wrap_new_ArithmeticException, swig_delete_ArithmeticException, swig_Mezzanine_ArithmeticException_methods, swig_Mezzanine_ArithmeticException_attributes, { "ArithmeticException", swig_Mezzanine_ArithmeticException_cls_methods, swig_Mezzanine_ArithmeticException_cls_attributes, swig_Mezzanine_ArithmeticException_cls_constants }, swig_Mezzanine_ArithmeticException_bases, swig_Mezzanine_ArithmeticException_base_names };
+
+static int _wrap_new_InvalidVersionException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::InvalidVersionException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InvalidVersionException::InvalidVersionException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InvalidVersionException::InvalidVersionException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InvalidVersionException::InvalidVersionException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InvalidVersionException::InvalidVersionException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::InvalidVersionException::InvalidVersionException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::InvalidVersionException::InvalidVersionException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::InvalidVersionException *)new Mezzanine::InvalidVersionException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InvalidVersionException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InvalidVersionException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::InvalidVersionException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InvalidVersionException::InvalidVersionException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InvalidVersionException::InvalidVersionException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InvalidVersionException::InvalidVersionException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InvalidVersionException::InvalidVersionException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::InvalidVersionException::InvalidVersionException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::InvalidVersionException *)new Mezzanine::InvalidVersionException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InvalidVersionException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InvalidVersionException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_InvalidVersionException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_InvalidVersionException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_InvalidVersionException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::InvalidVersionException::InvalidVersionException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::InvalidVersionException::InvalidVersionException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_InvalidVersionException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::InvalidVersionException *arg1 = (Mezzanine::InvalidVersionException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::InvalidVersionException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::InvalidVersionException::GetExceptionCode",1,"Mezzanine::InvalidVersionException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__InvalidVersionException,0))){
+    SWIG_fail_ptr("InvalidVersionException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__InvalidVersionException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::InvalidVersionException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_InvalidVersionException(void *obj) {
+Mezzanine::InvalidVersionException *arg1 = (Mezzanine::InvalidVersionException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_InvalidVersionException_methods[] = {
+    {"GetExceptionCode", _wrap_InvalidVersionException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InvalidVersionException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InvalidVersionException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_InvalidVersionException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_InvalidVersionException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::InvalidVersionException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_InvalidVersionException_bases[] = {0,0};
+static const char *swig_Mezzanine_InvalidVersionException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_InvalidVersionException = { "InvalidVersionException", &SWIGTYPE_p_Mezzanine__InvalidVersionException,_wrap_new_InvalidVersionException, swig_delete_InvalidVersionException, swig_Mezzanine_InvalidVersionException_methods, swig_Mezzanine_InvalidVersionException_attributes, { "InvalidVersionException", swig_Mezzanine_InvalidVersionException_cls_methods, swig_Mezzanine_InvalidVersionException_cls_attributes, swig_Mezzanine_InvalidVersionException_cls_constants }, swig_Mezzanine_InvalidVersionException_bases, swig_Mezzanine_InvalidVersionException_base_names };
+
+static int _wrap_new_InvalidStateException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::InvalidStateException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InvalidStateException::InvalidStateException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InvalidStateException::InvalidStateException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InvalidStateException::InvalidStateException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InvalidStateException::InvalidStateException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::InvalidStateException::InvalidStateException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::InvalidStateException::InvalidStateException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::InvalidStateException *)new Mezzanine::InvalidStateException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InvalidStateException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InvalidStateException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::InvalidStateException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InvalidStateException::InvalidStateException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InvalidStateException::InvalidStateException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InvalidStateException::InvalidStateException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InvalidStateException::InvalidStateException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::InvalidStateException::InvalidStateException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::InvalidStateException *)new Mezzanine::InvalidStateException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InvalidStateException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InvalidStateException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_InvalidStateException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_InvalidStateException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_InvalidStateException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::InvalidStateException::InvalidStateException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::InvalidStateException::InvalidStateException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_InvalidStateException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::InvalidStateException *arg1 = (Mezzanine::InvalidStateException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::InvalidStateException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::InvalidStateException::GetExceptionCode",1,"Mezzanine::InvalidStateException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__InvalidStateException,0))){
+    SWIG_fail_ptr("InvalidStateException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__InvalidStateException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::InvalidStateException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_InvalidStateException(void *obj) {
+Mezzanine::InvalidStateException *arg1 = (Mezzanine::InvalidStateException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_InvalidStateException_methods[] = {
+    {"GetExceptionCode", _wrap_InvalidStateException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InvalidStateException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InvalidStateException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_InvalidStateException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_InvalidStateException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::InvalidStateException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_InvalidStateException_bases[] = {0,0};
+static const char *swig_Mezzanine_InvalidStateException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_InvalidStateException = { "InvalidStateException", &SWIGTYPE_p_Mezzanine__InvalidStateException,_wrap_new_InvalidStateException, swig_delete_InvalidStateException, swig_Mezzanine_InvalidStateException_methods, swig_Mezzanine_InvalidStateException_attributes, { "InvalidStateException", swig_Mezzanine_InvalidStateException_cls_methods, swig_Mezzanine_InvalidStateException_cls_attributes, swig_Mezzanine_InvalidStateException_cls_constants }, swig_Mezzanine_InvalidStateException_bases, swig_Mezzanine_InvalidStateException_base_names };
+
+static int _wrap_new_RenderingAPIException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::RenderingAPIException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::RenderingAPIException::RenderingAPIException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::RenderingAPIException::RenderingAPIException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::RenderingAPIException::RenderingAPIException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::RenderingAPIException::RenderingAPIException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::RenderingAPIException::RenderingAPIException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::RenderingAPIException::RenderingAPIException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::RenderingAPIException *)new Mezzanine::RenderingAPIException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__RenderingAPIException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_RenderingAPIException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::RenderingAPIException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::RenderingAPIException::RenderingAPIException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::RenderingAPIException::RenderingAPIException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::RenderingAPIException::RenderingAPIException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::RenderingAPIException::RenderingAPIException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::RenderingAPIException::RenderingAPIException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::RenderingAPIException *)new Mezzanine::RenderingAPIException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__RenderingAPIException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_RenderingAPIException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_RenderingAPIException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_RenderingAPIException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_RenderingAPIException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::RenderingAPIException::RenderingAPIException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::RenderingAPIException::RenderingAPIException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_RenderingAPIException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RenderingAPIException *arg1 = (Mezzanine::RenderingAPIException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::RenderingAPIException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RenderingAPIException::GetExceptionCode",1,"Mezzanine::RenderingAPIException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RenderingAPIException,0))){
+    SWIG_fail_ptr("RenderingAPIException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__RenderingAPIException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::RenderingAPIException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_RenderingAPIException(void *obj) {
+Mezzanine::RenderingAPIException *arg1 = (Mezzanine::RenderingAPIException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_RenderingAPIException_methods[] = {
+    {"GetExceptionCode", _wrap_RenderingAPIException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_RenderingAPIException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_RenderingAPIException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_RenderingAPIException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_RenderingAPIException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::RenderingAPIException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_RenderingAPIException_bases[] = {0,0};
+static const char *swig_Mezzanine_RenderingAPIException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_RenderingAPIException = { "RenderingAPIException", &SWIGTYPE_p_Mezzanine__RenderingAPIException,_wrap_new_RenderingAPIException, swig_delete_RenderingAPIException, swig_Mezzanine_RenderingAPIException_methods, swig_Mezzanine_RenderingAPIException_attributes, { "RenderingAPIException", swig_Mezzanine_RenderingAPIException_cls_methods, swig_Mezzanine_RenderingAPIException_cls_attributes, swig_Mezzanine_RenderingAPIException_cls_constants }, swig_Mezzanine_RenderingAPIException_bases, swig_Mezzanine_RenderingAPIException_base_names };
+
+static int _wrap_new_RuntimeAssertionException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::RuntimeAssertionException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::RuntimeAssertionException *)new Mezzanine::RuntimeAssertionException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__RuntimeAssertionException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_RuntimeAssertionException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::RuntimeAssertionException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::RuntimeAssertionException::RuntimeAssertionException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::RuntimeAssertionException *)new Mezzanine::RuntimeAssertionException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__RuntimeAssertionException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_RuntimeAssertionException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_RuntimeAssertionException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_RuntimeAssertionException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_RuntimeAssertionException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::RuntimeAssertionException::RuntimeAssertionException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::RuntimeAssertionException::RuntimeAssertionException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_RuntimeAssertionException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::RuntimeAssertionException *arg1 = (Mezzanine::RuntimeAssertionException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::RuntimeAssertionException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RuntimeAssertionException::GetExceptionCode",1,"Mezzanine::RuntimeAssertionException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__RuntimeAssertionException,0))){
+    SWIG_fail_ptr("RuntimeAssertionException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__RuntimeAssertionException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::RuntimeAssertionException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_RuntimeAssertionException(void *obj) {
+Mezzanine::RuntimeAssertionException *arg1 = (Mezzanine::RuntimeAssertionException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_RuntimeAssertionException_methods[] = {
+    {"GetExceptionCode", _wrap_RuntimeAssertionException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_RuntimeAssertionException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_RuntimeAssertionException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_RuntimeAssertionException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_RuntimeAssertionException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::RuntimeAssertionException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_RuntimeAssertionException_bases[] = {0,0};
+static const char *swig_Mezzanine_RuntimeAssertionException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_RuntimeAssertionException = { "RuntimeAssertionException", &SWIGTYPE_p_Mezzanine__RuntimeAssertionException,_wrap_new_RuntimeAssertionException, swig_delete_RuntimeAssertionException, swig_Mezzanine_RuntimeAssertionException_methods, swig_Mezzanine_RuntimeAssertionException_attributes, { "RuntimeAssertionException", swig_Mezzanine_RuntimeAssertionException_cls_methods, swig_Mezzanine_RuntimeAssertionException_cls_attributes, swig_Mezzanine_RuntimeAssertionException_cls_constants }, swig_Mezzanine_RuntimeAssertionException_bases, swig_Mezzanine_RuntimeAssertionException_base_names };
+
+static int _wrap_new_InternalException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::InternalException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InternalException::InternalException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InternalException::InternalException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InternalException::InternalException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InternalException::InternalException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::InternalException::InternalException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::InternalException::InternalException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::InternalException *)new Mezzanine::InternalException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InternalException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InternalException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::InternalException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InternalException::InternalException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InternalException::InternalException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InternalException::InternalException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InternalException::InternalException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::InternalException::InternalException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::InternalException *)new Mezzanine::InternalException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InternalException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InternalException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_InternalException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_InternalException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_InternalException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::InternalException::InternalException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::InternalException::InternalException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_InternalException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::InternalException *arg1 = (Mezzanine::InternalException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::InternalException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::InternalException::GetExceptionCode",1,"Mezzanine::InternalException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__InternalException,0))){
+    SWIG_fail_ptr("InternalException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__InternalException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::InternalException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_InternalException(void *obj) {
+Mezzanine::InternalException *arg1 = (Mezzanine::InternalException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_InternalException_methods[] = {
+    {"GetExceptionCode", _wrap_InternalException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InternalException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InternalException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_InternalException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_InternalException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::InternalException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_InternalException_bases[] = {0,0};
+static const char *swig_Mezzanine_InternalException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_InternalException = { "InternalException", &SWIGTYPE_p_Mezzanine__InternalException,_wrap_new_InternalException, swig_delete_InternalException, swig_Mezzanine_InternalException_methods, swig_Mezzanine_InternalException_attributes, { "InternalException", swig_Mezzanine_InternalException_cls_methods, swig_Mezzanine_InternalException_cls_attributes, swig_Mezzanine_InternalException_cls_constants }, swig_Mezzanine_InternalException_bases, swig_Mezzanine_InternalException_base_names };
+
+static int _wrap_new_NotImplementedException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::NotImplementedException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NotImplementedException::NotImplementedException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NotImplementedException::NotImplementedException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NotImplementedException::NotImplementedException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NotImplementedException::NotImplementedException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::NotImplementedException::NotImplementedException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::NotImplementedException::NotImplementedException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::NotImplementedException *)new Mezzanine::NotImplementedException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NotImplementedException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NotImplementedException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::NotImplementedException *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::NotImplementedException::NotImplementedException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::NotImplementedException::NotImplementedException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::NotImplementedException::NotImplementedException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::NotImplementedException::NotImplementedException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::NotImplementedException::NotImplementedException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::NotImplementedException *)new Mezzanine::NotImplementedException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__NotImplementedException,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_NotImplementedException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_NotImplementedException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_NotImplementedException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_NotImplementedException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::NotImplementedException::NotImplementedException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::NotImplementedException::NotImplementedException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_NotImplementedException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::NotImplementedException *arg1 = (Mezzanine::NotImplementedException *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::NotImplementedException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::NotImplementedException::GetExceptionCode",1,"Mezzanine::NotImplementedException const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__NotImplementedException,0))){
+    SWIG_fail_ptr("NotImplementedException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__NotImplementedException);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::NotImplementedException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_NotImplementedException(void *obj) {
+Mezzanine::NotImplementedException *arg1 = (Mezzanine::NotImplementedException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_NotImplementedException_methods[] = {
+    {"GetExceptionCode", _wrap_NotImplementedException_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NotImplementedException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_NotImplementedException_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_NotImplementedException_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_NotImplementedException_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::NotImplementedException::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_NotImplementedException_bases[] = {0,0};
+static const char *swig_Mezzanine_NotImplementedException_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_NotImplementedException = { "NotImplementedException", &SWIGTYPE_p_Mezzanine__NotImplementedException,_wrap_new_NotImplementedException, swig_delete_NotImplementedException, swig_Mezzanine_NotImplementedException_methods, swig_Mezzanine_NotImplementedException_attributes, { "NotImplementedException", swig_Mezzanine_NotImplementedException_cls_methods, swig_Mezzanine_NotImplementedException_cls_attributes, swig_Mezzanine_NotImplementedException_cls_constants }, swig_Mezzanine_NotImplementedException_bases, swig_Mezzanine_NotImplementedException_base_names };
+
+static int _wrap_new_InvalidAssignment__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::InvalidAssignment *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InvalidAssignment::InvalidAssignment",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InvalidAssignment::InvalidAssignment",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InvalidAssignment::InvalidAssignment",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InvalidAssignment::InvalidAssignment",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::InvalidAssignment::InvalidAssignment",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::InvalidAssignment::InvalidAssignment",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::InvalidAssignment *)new Mezzanine::InvalidAssignment((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InvalidAssignment,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InvalidAssignment__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::InvalidAssignment *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::InvalidAssignment::InvalidAssignment",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::InvalidAssignment::InvalidAssignment",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::InvalidAssignment::InvalidAssignment",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::InvalidAssignment::InvalidAssignment",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::InvalidAssignment::InvalidAssignment",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::InvalidAssignment *)new Mezzanine::InvalidAssignment((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__InvalidAssignment,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_InvalidAssignment(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_InvalidAssignment__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_InvalidAssignment__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_InvalidAssignment'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::InvalidAssignment::InvalidAssignment(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::InvalidAssignment::InvalidAssignment(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_InvalidAssignment_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::InvalidAssignment *arg1 = (Mezzanine::InvalidAssignment *) 0 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::InvalidAssignment::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::InvalidAssignment::GetExceptionCode",1,"Mezzanine::InvalidAssignment const *");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__InvalidAssignment,0))){
+    SWIG_fail_ptr("InvalidAssignment_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__InvalidAssignment);
+  }
+
+  result = (Mezzanine::Whole)((Mezzanine::InvalidAssignment const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_InvalidAssignment(void *obj) {
+Mezzanine::InvalidAssignment *arg1 = (Mezzanine::InvalidAssignment *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_InvalidAssignment_methods[] = {
+    {"GetExceptionCode", _wrap_InvalidAssignment_GetExceptionCode},
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InvalidAssignment_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_attribute swig_Mezzanine_InvalidAssignment_cls_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_method swig_Mezzanine_InvalidAssignment_cls_methods[] = {
+    {0,0}
+};
+static swig_lua_const_info swig_Mezzanine_InvalidAssignment_cls_constants[] = {
+    {SWIG_LUA_CONSTTAB_INT("ExceptionCode", Mezzanine::InvalidAssignment::ExceptionCode)},
+    {0,0,0,0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_InvalidAssignment_bases[] = {0,0};
+static const char *swig_Mezzanine_InvalidAssignment_base_names[] = {"Mezzanine::Exception *",0};
+static swig_lua_class _wrap_class_Mezzanine_InvalidAssignment = { "InvalidAssignment", &SWIGTYPE_p_Mezzanine__InvalidAssignment,_wrap_new_InvalidAssignment, swig_delete_InvalidAssignment, swig_Mezzanine_InvalidAssignment_methods, swig_Mezzanine_InvalidAssignment_attributes, { "InvalidAssignment", swig_Mezzanine_InvalidAssignment_cls_methods, swig_Mezzanine_InvalidAssignment_cls_attributes, swig_Mezzanine_InvalidAssignment_cls_constants }, swig_Mezzanine_InvalidAssignment_bases, swig_Mezzanine_InvalidAssignment_base_names };
 
 static int _wrap_PrintHello(lua_State* L) {
   int SWIG_arg = 0;
@@ -15623,30 +24659,6 @@ fail:
 }
 
 
-static int _wrap_ColourValue_GetRedChannel(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
-  Mezzanine::Real result;
-
-  SWIG_check_num_args("Mezzanine::ColourValue::GetRedChannel",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::GetRedChannel",1,"Mezzanine::ColourValue const *");
-
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
-    SWIG_fail_ptr("ColourValue_GetRedChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
-  }
-
-  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetRedChannel();
-  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
-  return SWIG_arg;
-
-  if(0) SWIG_fail;
-
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_ColourValue_SetRedChannel(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
@@ -15674,19 +24686,19 @@ fail:
 }
 
 
-static int _wrap_ColourValue_GetGreenChannel(lua_State* L) {
+static int _wrap_ColourValue_GetRedChannel(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
   Mezzanine::Real result;
 
-  SWIG_check_num_args("Mezzanine::ColourValue::GetGreenChannel",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::GetGreenChannel",1,"Mezzanine::ColourValue const *");
+  SWIG_check_num_args("Mezzanine::ColourValue::GetRedChannel",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::GetRedChannel",1,"Mezzanine::ColourValue const *");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
-    SWIG_fail_ptr("ColourValue_GetGreenChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
+    SWIG_fail_ptr("ColourValue_GetRedChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
   }
 
-  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetGreenChannel();
+  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetRedChannel();
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
 
@@ -15725,19 +24737,19 @@ fail:
 }
 
 
-static int _wrap_ColourValue_GetBlueChannel(lua_State* L) {
+static int _wrap_ColourValue_GetGreenChannel(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
   Mezzanine::Real result;
 
-  SWIG_check_num_args("Mezzanine::ColourValue::GetBlueChannel",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::GetBlueChannel",1,"Mezzanine::ColourValue const *");
+  SWIG_check_num_args("Mezzanine::ColourValue::GetGreenChannel",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::GetGreenChannel",1,"Mezzanine::ColourValue const *");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
-    SWIG_fail_ptr("ColourValue_GetBlueChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
+    SWIG_fail_ptr("ColourValue_GetGreenChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
   }
 
-  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetBlueChannel();
+  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetGreenChannel();
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
 
@@ -15776,19 +24788,19 @@ fail:
 }
 
 
-static int _wrap_ColourValue_GetAlphaChannel(lua_State* L) {
+static int _wrap_ColourValue_GetBlueChannel(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
   Mezzanine::Real result;
 
-  SWIG_check_num_args("Mezzanine::ColourValue::GetAlphaChannel",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::GetAlphaChannel",1,"Mezzanine::ColourValue const *");
+  SWIG_check_num_args("Mezzanine::ColourValue::GetBlueChannel",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::GetBlueChannel",1,"Mezzanine::ColourValue const *");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
-    SWIG_fail_ptr("ColourValue_GetAlphaChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
+    SWIG_fail_ptr("ColourValue_GetBlueChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
   }
 
-  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetAlphaChannel();
+  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetBlueChannel();
   lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
 
@@ -15827,27 +24839,20 @@ fail:
 }
 
 
-static int _wrap_ColourValue___eq(lua_State* L) {
+static int _wrap_ColourValue_GetAlphaChannel(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
-  Mezzanine::ColourValue *arg2 = 0 ;
-  bool result;
+  Mezzanine::Real result;
 
-  SWIG_check_num_args("Mezzanine::ColourValue::operator ==",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::operator ==",1,"Mezzanine::ColourValue const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::operator ==",2,"Mezzanine::ColourValue const &");
+  SWIG_check_num_args("Mezzanine::ColourValue::GetAlphaChannel",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::GetAlphaChannel",1,"Mezzanine::ColourValue const *");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
-    SWIG_fail_ptr("ColourValue___eq",1,SWIGTYPE_p_Mezzanine__ColourValue);
+    SWIG_fail_ptr("ColourValue_GetAlphaChannel",1,SWIGTYPE_p_Mezzanine__ColourValue);
   }
 
-
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__ColourValue,0))){
-    SWIG_fail_ptr("ColourValue___eq",2,SWIGTYPE_p_Mezzanine__ColourValue);
-  }
-
-  result = (bool)((Mezzanine::ColourValue const *)arg1)->operator ==((Mezzanine::ColourValue const &)*arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  result = (Mezzanine::Real)((Mezzanine::ColourValue const *)arg1)->GetAlphaChannel();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
   return SWIG_arg;
 
   if(0) SWIG_fail;
@@ -15882,6 +24887,37 @@ static int _wrap_ColourValue_Average(lua_State* L) {
     Mezzanine::ColourValue * resultptr = new Mezzanine::ColourValue((const Mezzanine::ColourValue &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__ColourValue,1); SWIG_arg++;
   }
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ColourValue___eq(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::ColourValue *arg1 = (Mezzanine::ColourValue *) 0 ;
+  Mezzanine::ColourValue *arg2 = 0 ;
+  bool result;
+
+  SWIG_check_num_args("Mezzanine::ColourValue::operator ==",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ColourValue::operator ==",1,"Mezzanine::ColourValue const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::ColourValue::operator ==",2,"Mezzanine::ColourValue const &");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ColourValue,0))){
+    SWIG_fail_ptr("ColourValue___eq",1,SWIGTYPE_p_Mezzanine__ColourValue);
+  }
+
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__ColourValue,0))){
+    SWIG_fail_ptr("ColourValue___eq",2,SWIGTYPE_p_Mezzanine__ColourValue);
+  }
+
+  result = (bool)((Mezzanine::ColourValue const *)arg1)->operator ==((Mezzanine::ColourValue const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
   if(0) SWIG_fail;
@@ -18795,16 +27831,16 @@ delete arg1;
 }
 static swig_lua_method swig_Mezzanine_ColourValue_methods[] = {
     {"GetOgreColourValue", _wrap_ColourValue_GetOgreColourValue},
-    {"GetRedChannel", _wrap_ColourValue_GetRedChannel},
     {"SetRedChannel", _wrap_ColourValue_SetRedChannel},
-    {"GetGreenChannel", _wrap_ColourValue_GetGreenChannel},
+    {"GetRedChannel", _wrap_ColourValue_GetRedChannel},
     {"SetGreenChannel", _wrap_ColourValue_SetGreenChannel},
-    {"GetBlueChannel", _wrap_ColourValue_GetBlueChannel},
+    {"GetGreenChannel", _wrap_ColourValue_GetGreenChannel},
     {"SetBlueChannel", _wrap_ColourValue_SetBlueChannel},
-    {"GetAlphaChannel", _wrap_ColourValue_GetAlphaChannel},
+    {"GetBlueChannel", _wrap_ColourValue_GetBlueChannel},
     {"SetAlphaChannel", _wrap_ColourValue_SetAlphaChannel},
-    {"__eq", _wrap_ColourValue___eq},
+    {"GetAlphaChannel", _wrap_ColourValue_GetAlphaChannel},
     {"Average", _wrap_ColourValue_Average},
+    {"__eq", _wrap_ColourValue___eq},
     {"ProtoSerialize", _wrap_ColourValue_ProtoSerialize},
     {"ProtoDeSerialize", _wrap_ColourValue_ProtoDeSerialize},
     {0,0}
@@ -28564,6 +37600,27 @@ fail:
 static int _wrap_new_Vector2__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  Mezzanine::Vector2 *result = 0 ;
+
+  SWIG_check_num_args("Mezzanine::Vector2::Vector2",1,1)
+  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Vector2::Vector2",1,"Mezzanine::Real const &");
+  temp1=(Mezzanine::Real)lua_tonumber(L,1); arg1=&temp1;
+  result = (Mezzanine::Vector2 *)new Mezzanine::Vector2((Mezzanine::Real const &)*arg1);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Vector2,1); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_Vector2__SWIG_2(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Real *arg1 = 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Real temp1 ;
   Mezzanine::Real temp2 ;
@@ -28586,7 +37643,7 @@ fail:
 }
 
 
-static int _wrap_new_Vector2__SWIG_2(lua_State* L) {
+static int _wrap_new_Vector2__SWIG_3(lua_State* L) {
   int SWIG_arg = 0;
   Ogre::Vector2 *arg1 = 0 ;
   Mezzanine::Vector2 *result = 0 ;
@@ -28631,7 +37688,16 @@ static int _wrap_new_Vector2(lua_State* L) {
       }
     }
     if (_v) {
-      return _wrap_new_Vector2__SWIG_2(L);
+      return _wrap_new_Vector2__SWIG_3(L);
+    }
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      _v = lua_isnumber(L,argv[0]);
+    }
+    if (_v) {
+      return _wrap_new_Vector2__SWIG_1(L);
     }
   }
   if (argc == 2) {
@@ -28644,7 +37710,7 @@ static int _wrap_new_Vector2(lua_State* L) {
         _v = lua_isnumber(L,argv[1]);
       }
       if (_v) {
-        return _wrap_new_Vector2__SWIG_1(L);
+        return _wrap_new_Vector2__SWIG_2(L);
       }
     }
   }
@@ -28652,6 +37718,7 @@ static int _wrap_new_Vector2(lua_State* L) {
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'new_Vector2'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Vector2::Vector2()\n"
+    "    Mezzanine::Vector2::Vector2(Mezzanine::Real const &)\n"
     "    Mezzanine::Vector2::Vector2(Mezzanine::Real const &,Mezzanine::Real const &)\n"
     "    Mezzanine::Vector2::Vector2(Ogre::Vector2 const &)\n");
   lua_error(L);return 0;
@@ -28773,10 +37840,10 @@ static int _wrap_Vector2___eq__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   Mezzanine::Vector2 *arg2 = 0 ;
-  bool result;
+  Mezzanine::Bool result;
 
   SWIG_check_num_args("Mezzanine::Vector2::operator ==",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector2::operator ==",1,"Mezzanine::Vector2 *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector2::operator ==",1,"Mezzanine::Vector2 const *");
   if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Vector2::operator ==",2,"Mezzanine::Vector2 const &");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Vector2,0))){
@@ -28788,7 +37855,7 @@ static int _wrap_Vector2___eq__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("Vector2___eq",2,SWIGTYPE_p_Mezzanine__Vector2);
   }
 
-  result = (bool)(arg1)->operator ==((Mezzanine::Vector2 const &)*arg2);
+  result = (Mezzanine::Bool)((Mezzanine::Vector2 const *)arg1)->operator ==((Mezzanine::Vector2 const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -28804,10 +37871,10 @@ static int _wrap_Vector2___eq__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   Ogre::Vector2 *arg2 = 0 ;
-  bool result;
+  Mezzanine::Bool result;
 
   SWIG_check_num_args("Mezzanine::Vector2::operator ==",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector2::operator ==",1,"Mezzanine::Vector2 *");
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector2::operator ==",1,"Mezzanine::Vector2 const *");
   if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Vector2::operator ==",2,"Ogre::Vector2 const &");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Vector2,0))){
@@ -28819,7 +37886,7 @@ static int _wrap_Vector2___eq__SWIG_1(lua_State* L) {
     SWIG_fail_ptr("Vector2___eq",2,SWIGTYPE_p_Ogre__Vector2);
   }
 
-  result = (bool)(arg1)->operator ==((Ogre::Vector2 const &)*arg2);
+  result = (Mezzanine::Bool)((Mezzanine::Vector2 const *)arg1)->operator ==((Ogre::Vector2 const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -28889,9 +37956,40 @@ static int _wrap_Vector2___eq(lua_State* L) {
 
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Vector2___eq'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Vector2::operator ==(Mezzanine::Vector2 const &)\n"
-    "    Mezzanine::Vector2::operator ==(Ogre::Vector2 const &)\n");
+    "    Mezzanine::Vector2::operator ==(Mezzanine::Vector2 const &) const\n"
+    "    Mezzanine::Vector2::operator ==(Ogre::Vector2 const &) const\n");
   lua_error(L);return 0;
+}
+
+
+static int _wrap_Vector2___le(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
+  Mezzanine::Vector2 *arg2 = 0 ;
+  Mezzanine::Bool result;
+
+  SWIG_check_num_args("Mezzanine::Vector2::operator <=",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector2::operator <=",1,"Mezzanine::Vector2 const *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Vector2::operator <=",2,"Mezzanine::Vector2 const &");
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Vector2,0))){
+    SWIG_fail_ptr("Vector2___le",1,SWIGTYPE_p_Mezzanine__Vector2);
+  }
+
+
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector2,0))){
+    SWIG_fail_ptr("Vector2___le",2,SWIGTYPE_p_Mezzanine__Vector2);
+  }
+
+  result = (Mezzanine::Bool)((Mezzanine::Vector2 const *)arg1)->operator <=((Mezzanine::Vector2 const &)*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
 }
 
 
@@ -29349,6 +38447,7 @@ static swig_lua_method swig_Mezzanine_Vector2_methods[] = {
     {"SetIdentity", _wrap_Vector2_SetIdentity},
     {"SetValues", _wrap_Vector2_SetValues},
     {"__eq", _wrap_Vector2___eq},
+    {"__le", _wrap_Vector2___le},
     {"__add", _wrap_Vector2___add},
     {"__sub", _wrap_Vector2___sub},
     {"__mul", _wrap_Vector2___mul},
@@ -29644,6 +38743,98 @@ static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("WO_VehiclePlaceHolder4", Mezzanine::WO_VehiclePlaceHolder4)},
     {SWIG_LUA_CONSTTAB_INT("WO_VehiclePlaceHolder5", Mezzanine::WO_VehiclePlaceHolder5)},
     {SWIG_LUA_CONSTTAB_INT("WO_VehicleLast", Mezzanine::WO_VehicleLast)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_EXCEPTION", Mezzanine::Exception::IO_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_FILE_EXCEPTION", Mezzanine::Exception::IO_FILE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_FILE_READ_EXCEPTION", Mezzanine::Exception::IO_FILE_READ_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_FILE_WRITE_EXCEPTION", Mezzanine::Exception::IO_FILE_WRITE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_FILE_NOT_FOUND_EXCEPTION", Mezzanine::Exception::IO_FILE_NOT_FOUND_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_FILE_PERMISSION_EXCEPTION", Mezzanine::Exception::IO_FILE_PERMISSION_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_DIRECTORY_EXCEPTION", Mezzanine::Exception::IO_DIRECTORY_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_DIRECTORY_READ_EXCEPTION", Mezzanine::Exception::IO_DIRECTORY_READ_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_DIRECTORY_WRITE_EXCEPTION", Mezzanine::Exception::IO_DIRECTORY_WRITE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_DIRECTORY_NOT_FOUND_EXCEPTION", Mezzanine::Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_DIRECTORY_PERMISSION_EXCEPTION", Mezzanine::Exception::IO_DIRECTORY_PERMISSION_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_NETWORK_EXCEPTION", Mezzanine::Exception::IO_NETWORK_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_NETWORK_READ_EXCEPTION", Mezzanine::Exception::IO_NETWORK_READ_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_NETWORK_WRITE_EXCEPTION", Mezzanine::Exception::IO_NETWORK_WRITE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_NETWORK_NOT_FOUND_EXCEPTION", Mezzanine::Exception::IO_NETWORK_NOT_FOUND_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_NETWORK_URL_EXCEPTION", Mezzanine::Exception::IO_NETWORK_URL_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_NETWORK_PERMISSION_EXCEPTION", Mezzanine::Exception::IO_NETWORK_PERMISSION_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_WRITE_EXCEPTION", Mezzanine::Exception::IO_WRITE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_IO_READ_EXCEPTION", Mezzanine::Exception::IO_READ_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_II_EXCEPTION", Mezzanine::Exception::II_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_II_IDENTITY_INVALID_EXCEPTION", Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_II_IDENTITY_NOT_FOUND_EXCEPTION", Mezzanine::Exception::II_IDENTITY_NOT_FOUND_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_II_DUPLICATE_IDENTITY_EXCEPTION", Mezzanine::Exception::II_DUPLICATE_IDENTITY_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_MM_EXCEPTION", Mezzanine::Exception::MM_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_MM_OUT_OF_MEMORY_EXCEPTION", Mezzanine::Exception::MM_OUT_OF_MEMORY_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_MM_OUT_OF_BOUNDS_EXCEPTION", Mezzanine::Exception::MM_OUT_OF_BOUNDS_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_SYNTAX_ERROR_EXCEPTION", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_SYNTAX_ERROR_EXCEPTION_XML", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION_XML)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_SYNTAX_ERROR_EXCEPTION_XPATH", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION_XPATH)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_SYNTAX_ERROR_EXCEPTION_LUA", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION_LUA)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_SCRIPT_EXCEPTION", Mezzanine::Exception::SCRIPT_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_SCRIPT_EXCEPTION_LUA", Mezzanine::Exception::SCRIPT_EXCEPTION_LUA)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_SCRIPT_EXCEPTION_LUA_YIELD", Mezzanine::Exception::SCRIPT_EXCEPTION_LUA_YIELD)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_SCRIPT_EXCEPTION_LUA_RUNTIME", Mezzanine::Exception::SCRIPT_EXCEPTION_LUA_RUNTIME)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_SCRIPT_EXCEPTION_LUA_ERRERR", Mezzanine::Exception::SCRIPT_EXCEPTION_LUA_ERRERR)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_PARAMETERS_EXCEPTION", Mezzanine::Exception::PARAMETERS_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_PARAMETERS_CAST_EXCEPTION", Mezzanine::Exception::PARAMETERS_CAST_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_PARAMETERS_RANGE_EXCEPTION", Mezzanine::Exception::PARAMETERS_RANGE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_ARITHMETIC_EXCEPTION", Mezzanine::Exception::ARITHMETIC_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_INVALID_VERSION_EXCEPTION", Mezzanine::Exception::INVALID_VERSION_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_INVALID_STATE_EXCEPTION", Mezzanine::Exception::INVALID_STATE_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_RENDERINGAPI_EXCEPTION", Mezzanine::Exception::RENDERINGAPI_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_RT_ASSERTION_EXCEPTION", Mezzanine::Exception::RT_ASSERTION_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_INTERNAL_EXCEPTION", Mezzanine::Exception::INTERNAL_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_NOT_IMPLEMENTED_EXCEPTION", Mezzanine::Exception::NOT_IMPLEMENTED_EXCEPTION)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_INVALID_ASSIGNMENT", Mezzanine::Exception::INVALID_ASSIGNMENT)},
+    {SWIG_LUA_CONSTTAB_INT("IOException_ExceptionCode", Mezzanine::IOException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("FileException_ExceptionCode", Mezzanine::FileException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("FileReadException_ExceptionCode", Mezzanine::FileReadException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("FileWriteException_ExceptionCode", Mezzanine::FileWriteException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("FileNotFoundException_ExceptionCode", Mezzanine::FileNotFoundException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("FilePermissionException_ExceptionCode", Mezzanine::FilePermissionException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("DirectoryException_ExceptionCode", Mezzanine::DirectoryException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("DirectoryReadException_ExceptionCode", Mezzanine::DirectoryReadException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("DirectoryWriteException_ExceptionCode", Mezzanine::DirectoryWriteException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("DirectoryNotFoundException_ExceptionCode", Mezzanine::DirectoryNotFoundException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("DirectoryPermissionException_ExceptionCode", Mezzanine::DirectoryPermissionException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("NetworkException_ExceptionCode", Mezzanine::NetworkException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("NetworkReadException_ExceptionCode", Mezzanine::NetworkReadException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("NetworkWriteException_ExceptionCode", Mezzanine::NetworkWriteException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("NetworkNotFoundException_ExceptionCode", Mezzanine::NetworkNotFoundException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("NetworkURLException_ExceptionCode", Mezzanine::NetworkURLException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("NetworkPermissionException_ExceptionCode", Mezzanine::NetworkPermissionException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("IOWriteException_ExceptionCode", Mezzanine::IOWriteException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("IOReadException_ExceptionCode", Mezzanine::IOReadException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("InstanceIdentityException_ExceptionCode", Mezzanine::InstanceIdentityException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("InstanceIdentityInvalidException_ExceptionCode", Mezzanine::InstanceIdentityInvalidException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("InstanceIdentityNotFoundException_ExceptionCode", Mezzanine::InstanceIdentityNotFoundException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("InstanceIdentityDuplicateException_ExceptionCode", Mezzanine::InstanceIdentityDuplicateException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("MemoryManagementException_ExceptionCode", Mezzanine::MemoryManagementException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("OutOfMemoryException_ExceptionCode", Mezzanine::OutOfMemoryException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("MemoryOutOfBoundsException_ExceptionCode", Mezzanine::MemoryOutOfBoundsException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("SyntaxErrorException_ExceptionCode", Mezzanine::SyntaxErrorException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("SyntaxErrorXMLException_ExceptionCode", Mezzanine::SyntaxErrorXMLException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("SyntaxErrorXPathException_ExceptionCode", Mezzanine::SyntaxErrorXPathException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("SyntaxErrorLuaException_ExceptionCode", Mezzanine::SyntaxErrorLuaException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("ScriptException_ExceptionCode", Mezzanine::ScriptException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("ScriptLuaException_ExceptionCode", Mezzanine::ScriptLuaException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("ScriptLuaYieldException_ExceptionCode", Mezzanine::ScriptLuaYieldException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("ScriptLuaRuntimeException_ExceptionCode", Mezzanine::ScriptLuaRuntimeException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("ScriptLuaErrErrException_ExceptionCode", Mezzanine::ScriptLuaErrErrException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("ParametersException_ExceptionCode", Mezzanine::ParametersException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("ParametersCastException_ExceptionCode", Mezzanine::ParametersCastException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("ParametersRangeException_ExceptionCode", Mezzanine::ParametersRangeException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("ArithmeticException_ExceptionCode", Mezzanine::ArithmeticException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("InvalidVersionException_ExceptionCode", Mezzanine::InvalidVersionException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("InvalidStateException_ExceptionCode", Mezzanine::InvalidStateException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("RenderingAPIException_ExceptionCode", Mezzanine::RenderingAPIException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("RuntimeAssertionException_ExceptionCode", Mezzanine::RuntimeAssertionException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("InternalException_ExceptionCode", Mezzanine::InternalException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("NotImplementedException_ExceptionCode", Mezzanine::NotImplementedException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("InvalidAssignment_ExceptionCode", Mezzanine::InvalidAssignment::ExceptionCode)},
     {SWIG_LUA_CONSTTAB_INT("AS_Active", Mezzanine::Physics::AS_Active)},
     {SWIG_LUA_CONSTTAB_INT("AS_Island_Sleeping", Mezzanine::Physics::AS_Island_Sleeping)},
     {SWIG_LUA_CONSTTAB_INT("AS_Wants_Deactivation", Mezzanine::Physics::AS_Wants_Deactivation)},
@@ -29748,20 +38939,11 @@ static swig_lua_const_info swig_constants[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_Mezzanine__DefaultActorManagerFactoryTo_p_Mezzanine__ManagerFactory(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::ManagerFactory *)  ((Mezzanine::DefaultActorManagerFactory *) x));
+static void *_p_Mezzanine__AreaEffectTo_p_Mezzanine__WorldObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::WorldObject *)  ((Mezzanine::AreaEffect *) x));
 }
-static void *_p_Mezzanine__DefaultAreaEffectManagerFactoryTo_p_Mezzanine__ManagerFactory(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::ManagerFactory *)  ((Mezzanine::DefaultAreaEffectManagerFactory *) x));
-}
-static void *_p_Mezzanine__WorldManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::ManagerBase *)  ((Mezzanine::WorldManager *) x));
-}
-static void *_p_Mezzanine__ActorManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::ManagerBase *) (Mezzanine::WorldManager *) ((Mezzanine::ActorManager *) x));
-}
-static void *_p_Mezzanine__AreaEffectManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::ManagerBase *) (Mezzanine::WorldManager *) ((Mezzanine::AreaEffectManager *) x));
+static void *_p_Mezzanine__ActorTo_p_Mezzanine__WorldObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::WorldObject *)  ((Mezzanine::Actor *) x));
 }
 static void *_p_Mezzanine__ActorUpdateWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Threading::DefaultWorkUnit *)  ((Mezzanine::ActorUpdateWorkUnit *) x));
@@ -29787,6 +38969,444 @@ static void *_p_Mezzanine__AreaEffectTo_p_Mezzanine__TransformableObject(void *x
 static void *_p_Mezzanine__ActorTo_p_Mezzanine__TransformableObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::TransformableObject *) (Mezzanine::WorldObject *) ((Mezzanine::Actor *) x));
 }
+static void *_p_Mezzanine__WorldManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ManagerBase *)  ((Mezzanine::WorldManager *) x));
+}
+static void *_p_Mezzanine__ActorManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ManagerBase *) (Mezzanine::WorldManager *) ((Mezzanine::ActorManager *) x));
+}
+static void *_p_Mezzanine__AreaEffectManagerTo_p_Mezzanine__ManagerBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ManagerBase *) (Mezzanine::WorldManager *) ((Mezzanine::AreaEffectManager *) x));
+}
+static void *_p_Mezzanine__InvalidAssignmentTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::InvalidAssignment *) x));
+}
+static void *_p_Mezzanine__ScriptLuaYieldExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaYieldException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::ScriptException *) ((Mezzanine::ScriptLuaException *) x));
+}
+static void *_p_Mezzanine__ScriptExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::ScriptException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorLuaExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorLuaException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorXPathExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorXPathException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorXMLExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorXMLException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::SyntaxErrorException *) x));
+}
+static void *_p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::MemoryManagementException *) ((Mezzanine::MemoryOutOfBoundsException *) x));
+}
+static void *_p_Mezzanine__OutOfMemoryExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::MemoryManagementException *) ((Mezzanine::OutOfMemoryException *) x));
+}
+static void *_p_Mezzanine__MemoryManagementExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::MemoryManagementException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::InstanceIdentityException *) ((Mezzanine::InstanceIdentityDuplicateException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::InstanceIdentityException *) ((Mezzanine::InstanceIdentityNotFoundException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::InstanceIdentityException *) ((Mezzanine::InstanceIdentityInvalidException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::InstanceIdentityException *) x));
+}
+static void *_p_Mezzanine__IOReadExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *) ((Mezzanine::IOReadException *) x));
+}
+static void *_p_Mezzanine__IOWriteExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *) ((Mezzanine::IOWriteException *) x));
+}
+static void *_p_Mezzanine__NetworkPermissionExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkPermissionException *) x));
+}
+static void *_p_Mezzanine__NetworkURLExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkURLException *) x));
+}
+static void *_p_Mezzanine__NetworkNotFoundExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkNotFoundException *) x));
+}
+static void *_p_Mezzanine__NetworkWriteExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkWriteException *) x));
+}
+static void *_p_Mezzanine__ExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *)  ((Mezzanine::Exception *) x));
+}
+static void *_p_Mezzanine__IOExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::IOException *) x));
+}
+static void *_p_Mezzanine__FileExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *) ((Mezzanine::FileException *) x));
+}
+static void *_p_Mezzanine__FileReadExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::FileException *) ((Mezzanine::FileReadException *) x));
+}
+static void *_p_Mezzanine__FileWriteExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::FileException *) ((Mezzanine::FileWriteException *) x));
+}
+static void *_p_Mezzanine__FileNotFoundExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::FileException *) ((Mezzanine::FileNotFoundException *) x));
+}
+static void *_p_Mezzanine__FilePermissionExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::FileException *) ((Mezzanine::FilePermissionException *) x));
+}
+static void *_p_Mezzanine__DirectoryExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *) ((Mezzanine::DirectoryException *) x));
+}
+static void *_p_Mezzanine__DirectoryReadExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::DirectoryException *) ((Mezzanine::DirectoryReadException *) x));
+}
+static void *_p_Mezzanine__DirectoryWriteExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::DirectoryException *) ((Mezzanine::DirectoryWriteException *) x));
+}
+static void *_p_Mezzanine__DirectoryNotFoundExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::DirectoryException *) ((Mezzanine::DirectoryNotFoundException *) x));
+}
+static void *_p_Mezzanine__DirectoryPermissionExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::DirectoryException *) ((Mezzanine::DirectoryPermissionException *) x));
+}
+static void *_p_Mezzanine__NetworkExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *) ((Mezzanine::NetworkException *) x));
+}
+static void *_p_Mezzanine__NetworkReadExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkReadException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaRuntimeException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaErrErrExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaErrErrException *) x));
+}
+static void *_p_Mezzanine__ParametersExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::ParametersException *) x));
+}
+static void *_p_Mezzanine__ParametersCastExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::ParametersException *) ((Mezzanine::ParametersCastException *) x));
+}
+static void *_p_Mezzanine__ParametersRangeExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::ParametersException *) ((Mezzanine::ParametersRangeException *) x));
+}
+static void *_p_Mezzanine__ArithmeticExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::ArithmeticException *) x));
+}
+static void *_p_Mezzanine__InvalidVersionExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::InvalidVersionException *) x));
+}
+static void *_p_Mezzanine__InvalidStateExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::InvalidStateException *) x));
+}
+static void *_p_Mezzanine__RenderingAPIExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::RenderingAPIException *) x));
+}
+static void *_p_Mezzanine__RuntimeAssertionExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::RuntimeAssertionException *) x));
+}
+static void *_p_Mezzanine__InternalExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::InternalException *) x));
+}
+static void *_p_Mezzanine__NotImplementedExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::NotImplementedException *) x));
+}
+static void *_p_Mezzanine__InvalidAssignmentTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::InvalidAssignment *) x));
+}
+static void *_p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaRuntimeException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaYieldExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaYieldException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::ScriptException *) ((Mezzanine::ScriptLuaException *) x));
+}
+static void *_p_Mezzanine__ScriptExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::ScriptException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorLuaException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorXPathExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorXPathException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorXMLException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::SyntaxErrorException *) x));
+}
+static void *_p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::MemoryManagementException *) ((Mezzanine::MemoryOutOfBoundsException *) x));
+}
+static void *_p_Mezzanine__OutOfMemoryExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::MemoryManagementException *) ((Mezzanine::OutOfMemoryException *) x));
+}
+static void *_p_Mezzanine__MemoryManagementExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::MemoryManagementException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::InstanceIdentityException *) ((Mezzanine::InstanceIdentityDuplicateException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::InstanceIdentityException *) ((Mezzanine::InstanceIdentityNotFoundException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::InstanceIdentityException *) ((Mezzanine::InstanceIdentityInvalidException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::InstanceIdentityException *) x));
+}
+static void *_p_Mezzanine__IOReadExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *) ((Mezzanine::IOReadException *) x));
+}
+static void *_p_Mezzanine__IOWriteExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *) ((Mezzanine::IOWriteException *) x));
+}
+static void *_p_Mezzanine__NetworkPermissionExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkPermissionException *) x));
+}
+static void *_p_Mezzanine__NetworkURLExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkURLException *) x));
+}
+static void *_p_Mezzanine__NetworkNotFoundExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkNotFoundException *) x));
+}
+static void *_p_Mezzanine__IOExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::IOException *) x));
+}
+static void *_p_Mezzanine__FileExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *) ((Mezzanine::FileException *) x));
+}
+static void *_p_Mezzanine__FileReadExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::FileException *) ((Mezzanine::FileReadException *) x));
+}
+static void *_p_Mezzanine__FileWriteExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::FileException *) ((Mezzanine::FileWriteException *) x));
+}
+static void *_p_Mezzanine__FileNotFoundExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::FileException *) ((Mezzanine::FileNotFoundException *) x));
+}
+static void *_p_Mezzanine__FilePermissionExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::FileException *) ((Mezzanine::FilePermissionException *) x));
+}
+static void *_p_Mezzanine__DirectoryExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *) ((Mezzanine::DirectoryException *) x));
+}
+static void *_p_Mezzanine__DirectoryReadExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::DirectoryException *) ((Mezzanine::DirectoryReadException *) x));
+}
+static void *_p_Mezzanine__DirectoryWriteExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::DirectoryException *) ((Mezzanine::DirectoryWriteException *) x));
+}
+static void *_p_Mezzanine__DirectoryNotFoundExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::DirectoryException *) ((Mezzanine::DirectoryNotFoundException *) x));
+}
+static void *_p_Mezzanine__DirectoryPermissionExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::DirectoryException *) ((Mezzanine::DirectoryPermissionException *) x));
+}
+static void *_p_Mezzanine__NetworkExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *) ((Mezzanine::NetworkException *) x));
+}
+static void *_p_Mezzanine__NetworkReadExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkReadException *) x));
+}
+static void *_p_Mezzanine__NetworkWriteExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkWriteException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaErrErrException *) x));
+}
+static void *_p_Mezzanine__ParametersExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::ParametersException *) x));
+}
+static void *_p_Mezzanine__ParametersCastExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::ParametersException *) ((Mezzanine::ParametersCastException *) x));
+}
+static void *_p_Mezzanine__ParametersRangeExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::ParametersException *) ((Mezzanine::ParametersRangeException *) x));
+}
+static void *_p_Mezzanine__ArithmeticExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::ArithmeticException *) x));
+}
+static void *_p_Mezzanine__InvalidVersionExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::InvalidVersionException *) x));
+}
+static void *_p_Mezzanine__InvalidStateExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::InvalidStateException *) x));
+}
+static void *_p_Mezzanine__RenderingAPIExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::RenderingAPIException *) x));
+}
+static void *_p_Mezzanine__RuntimeAssertionExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::RuntimeAssertionException *) x));
+}
+static void *_p_Mezzanine__InternalExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::InternalException *) x));
+}
+static void *_p_Mezzanine__NotImplementedExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *)  ((Mezzanine::NotImplementedException *) x));
+}
+static void *_p_Mezzanine__NetworkNotFoundExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::NetworkException *) ((Mezzanine::NetworkNotFoundException *) x));
+}
+static void *_p_Mezzanine__NetworkWriteExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::NetworkException *) ((Mezzanine::NetworkWriteException *) x));
+}
+static void *_p_Mezzanine__NetworkReadExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::NetworkException *) ((Mezzanine::NetworkReadException *) x));
+}
+static void *_p_Mezzanine__NetworkExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *)  ((Mezzanine::NetworkException *) x));
+}
+static void *_p_Mezzanine__DirectoryPermissionExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::DirectoryException *) ((Mezzanine::DirectoryPermissionException *) x));
+}
+static void *_p_Mezzanine__DirectoryNotFoundExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::DirectoryException *) ((Mezzanine::DirectoryNotFoundException *) x));
+}
+static void *_p_Mezzanine__DirectoryWriteExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::DirectoryException *) ((Mezzanine::DirectoryWriteException *) x));
+}
+static void *_p_Mezzanine__DirectoryReadExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::DirectoryException *) ((Mezzanine::DirectoryReadException *) x));
+}
+static void *_p_Mezzanine__DirectoryExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *)  ((Mezzanine::DirectoryException *) x));
+}
+static void *_p_Mezzanine__FilePermissionExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::FileException *) ((Mezzanine::FilePermissionException *) x));
+}
+static void *_p_Mezzanine__FileNotFoundExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::FileException *) ((Mezzanine::FileNotFoundException *) x));
+}
+static void *_p_Mezzanine__FileWriteExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::FileException *) ((Mezzanine::FileWriteException *) x));
+}
+static void *_p_Mezzanine__FileReadExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::FileException *) ((Mezzanine::FileReadException *) x));
+}
+static void *_p_Mezzanine__FileExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *)  ((Mezzanine::FileException *) x));
+}
+static void *_p_Mezzanine__NetworkURLExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::NetworkException *) ((Mezzanine::NetworkURLException *) x));
+}
+static void *_p_Mezzanine__NetworkPermissionExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *) (Mezzanine::NetworkException *) ((Mezzanine::NetworkPermissionException *) x));
+}
+static void *_p_Mezzanine__IOWriteExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *)  ((Mezzanine::IOWriteException *) x));
+}
+static void *_p_Mezzanine__IOReadExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::IOException *)  ((Mezzanine::IOReadException *) x));
+}
+static void *_p_Mezzanine__FileReadExceptionTo_p_Mezzanine__FileException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::FileException *)  ((Mezzanine::FileReadException *) x));
+}
+static void *_p_Mezzanine__FileWriteExceptionTo_p_Mezzanine__FileException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::FileException *)  ((Mezzanine::FileWriteException *) x));
+}
+static void *_p_Mezzanine__FileNotFoundExceptionTo_p_Mezzanine__FileException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::FileException *)  ((Mezzanine::FileNotFoundException *) x));
+}
+static void *_p_Mezzanine__FilePermissionExceptionTo_p_Mezzanine__FileException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::FileException *)  ((Mezzanine::FilePermissionException *) x));
+}
+static void *_p_Mezzanine__DirectoryReadExceptionTo_p_Mezzanine__DirectoryException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::DirectoryException *)  ((Mezzanine::DirectoryReadException *) x));
+}
+static void *_p_Mezzanine__DirectoryWriteExceptionTo_p_Mezzanine__DirectoryException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::DirectoryException *)  ((Mezzanine::DirectoryWriteException *) x));
+}
+static void *_p_Mezzanine__DirectoryNotFoundExceptionTo_p_Mezzanine__DirectoryException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::DirectoryException *)  ((Mezzanine::DirectoryNotFoundException *) x));
+}
+static void *_p_Mezzanine__DirectoryPermissionExceptionTo_p_Mezzanine__DirectoryException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::DirectoryException *)  ((Mezzanine::DirectoryPermissionException *) x));
+}
+static void *_p_Mezzanine__NetworkReadExceptionTo_p_Mezzanine__NetworkException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::NetworkException *)  ((Mezzanine::NetworkReadException *) x));
+}
+static void *_p_Mezzanine__NetworkWriteExceptionTo_p_Mezzanine__NetworkException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::NetworkException *)  ((Mezzanine::NetworkWriteException *) x));
+}
+static void *_p_Mezzanine__NetworkNotFoundExceptionTo_p_Mezzanine__NetworkException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::NetworkException *)  ((Mezzanine::NetworkNotFoundException *) x));
+}
+static void *_p_Mezzanine__NetworkURLExceptionTo_p_Mezzanine__NetworkException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::NetworkException *)  ((Mezzanine::NetworkURLException *) x));
+}
+static void *_p_Mezzanine__NetworkPermissionExceptionTo_p_Mezzanine__NetworkException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::NetworkException *)  ((Mezzanine::NetworkPermissionException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_Mezzanine__InstanceIdentityException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::InstanceIdentityException *)  ((Mezzanine::InstanceIdentityInvalidException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_Mezzanine__InstanceIdentityException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::InstanceIdentityException *)  ((Mezzanine::InstanceIdentityNotFoundException *) x));
+}
+static void *_p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_Mezzanine__InstanceIdentityException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::InstanceIdentityException *)  ((Mezzanine::InstanceIdentityDuplicateException *) x));
+}
+static void *_p_Mezzanine__OutOfMemoryExceptionTo_p_Mezzanine__MemoryManagementException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::MemoryManagementException *)  ((Mezzanine::OutOfMemoryException *) x));
+}
+static void *_p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_Mezzanine__MemoryManagementException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::MemoryManagementException *)  ((Mezzanine::MemoryOutOfBoundsException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__SyntaxErrorException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::SyntaxErrorException *)  ((Mezzanine::SyntaxErrorXMLException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorXPathExceptionTo_p_Mezzanine__SyntaxErrorException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::SyntaxErrorException *)  ((Mezzanine::SyntaxErrorXPathException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__SyntaxErrorException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::SyntaxErrorException *)  ((Mezzanine::SyntaxErrorLuaException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaExceptionTo_p_Mezzanine__ScriptException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ScriptException *)  ((Mezzanine::ScriptLuaException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaYieldExceptionTo_p_Mezzanine__ScriptException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ScriptException *) (Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaYieldException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__ScriptException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ScriptException *) (Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaRuntimeException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__ScriptException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ScriptException *) (Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaErrErrException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaYieldExceptionTo_p_Mezzanine__ScriptLuaException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ScriptLuaException *)  ((Mezzanine::ScriptLuaYieldException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__ScriptLuaException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ScriptLuaException *)  ((Mezzanine::ScriptLuaRuntimeException *) x));
+}
+static void *_p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__ScriptLuaException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ScriptLuaException *)  ((Mezzanine::ScriptLuaErrErrException *) x));
+}
+static void *_p_Mezzanine__ParametersCastExceptionTo_p_Mezzanine__ParametersException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ParametersException *)  ((Mezzanine::ParametersCastException *) x));
+}
+static void *_p_Mezzanine__ParametersRangeExceptionTo_p_Mezzanine__ParametersException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ParametersException *)  ((Mezzanine::ParametersRangeException *) x));
+}
+static void *_p_Mezzanine__DefaultActorManagerFactoryTo_p_Mezzanine__ManagerFactory(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ManagerFactory *)  ((Mezzanine::DefaultActorManagerFactory *) x));
+}
+static void *_p_Mezzanine__DefaultAreaEffectManagerFactoryTo_p_Mezzanine__ManagerFactory(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::ManagerFactory *)  ((Mezzanine::DefaultAreaEffectManagerFactory *) x));
+}
 static void *_p_Mezzanine__AlarmTimerTo_p_Mezzanine__Timer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Timer *) (Mezzanine::GoalTimer *) ((Mezzanine::AlarmTimer *) x));
 }
@@ -29795,18 +39415,6 @@ static void *_p_Mezzanine__StopWatchTimerTo_p_Mezzanine__Timer(void *x, int *SWI
 }
 static void *_p_Mezzanine__GoalTimerTo_p_Mezzanine__Timer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Timer *)  ((Mezzanine::GoalTimer *) x));
-}
-static void *_p_Mezzanine__ActorManagerTo_p_Mezzanine__WorldManager(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::WorldManager *)  ((Mezzanine::ActorManager *) x));
-}
-static void *_p_Mezzanine__AreaEffectManagerTo_p_Mezzanine__WorldManager(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::WorldManager *)  ((Mezzanine::AreaEffectManager *) x));
-}
-static void *_p_Mezzanine__AreaEffectTo_p_Mezzanine__WorldObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::WorldObject *)  ((Mezzanine::AreaEffect *) x));
-}
-static void *_p_Mezzanine__ActorTo_p_Mezzanine__WorldObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::WorldObject *)  ((Mezzanine::Actor *) x));
 }
 static void *_p_Mezzanine__AttachableParentTo_p_Mezzanine__AttachableBase(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::AttachableBase *)  ((Mezzanine::AttachableParent *) x));
@@ -29819,6 +39427,12 @@ static void *_p_Mezzanine__AlarmTimerTo_p_Mezzanine__GoalTimer(void *x, int *SWI
 }
 static void *_p_Mezzanine__StopWatchTimerTo_p_Mezzanine__GoalTimer(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::GoalTimer *)  ((Mezzanine::StopWatchTimer *) x));
+}
+static void *_p_Mezzanine__ActorManagerTo_p_Mezzanine__WorldManager(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::WorldManager *)  ((Mezzanine::ActorManager *) x));
+}
+static void *_p_Mezzanine__AreaEffectManagerTo_p_Mezzanine__WorldManager(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::WorldManager *)  ((Mezzanine::AreaEffectManager *) x));
 }
 static swig_type_info _swigt__p_ActorContainer = {"_p_ActorContainer", "ActorContainer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ActorIterator = {"_p_ActorIterator", "ActorIterator *", 0, 0, (void*)0, 0};
@@ -29851,6 +39465,7 @@ static swig_type_info _swigt__p_Mezzanine__AreaEffect = {"_p_Mezzanine__AreaEffe
 static swig_type_info _swigt__p_Mezzanine__AreaEffectFactory = {"_p_Mezzanine__AreaEffectFactory", "Mezzanine::AreaEffectFactory *", 0, 0, (void*)&_wrap_class_Mezzanine_AreaEffectFactory, 0};
 static swig_type_info _swigt__p_Mezzanine__AreaEffectManager = {"_p_Mezzanine__AreaEffectManager", "Mezzanine::AreaEffectManager *", 0, 0, (void*)&_wrap_class_Mezzanine_AreaEffectManager, 0};
 static swig_type_info _swigt__p_Mezzanine__AreaEffectUpdateWorkUnit = {"_p_Mezzanine__AreaEffectUpdateWorkUnit", "Mezzanine::AreaEffectUpdateWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_AreaEffectUpdateWorkUnit, 0};
+static swig_type_info _swigt__p_Mezzanine__ArithmeticException = {"_p_Mezzanine__ArithmeticException", "Mezzanine::ArithmeticException *", 0, 0, (void*)&_wrap_class_Mezzanine_ArithmeticException, 0};
 static swig_type_info _swigt__p_Mezzanine__AttachableBase = {"_p_Mezzanine__AttachableBase", "Mezzanine::AttachableBase *", 0, 0, (void*)&_wrap_class_Mezzanine_AttachableBase, 0};
 static swig_type_info _swigt__p_Mezzanine__AttachableChild = {"_p_Mezzanine__AttachableChild", "Mezzanine::AttachableChild *", 0, 0, (void*)&_wrap_class_Mezzanine_AttachableChild, 0};
 static swig_type_info _swigt__p_Mezzanine__AttachableParent = {"_p_Mezzanine__AttachableParent", "Mezzanine::AttachableParent *", 0, 0, (void*)&_wrap_class_Mezzanine_AttachableParent, 0};
@@ -29861,22 +39476,68 @@ static swig_type_info _swigt__p_Mezzanine__CameraController = {"_p_Mezzanine__Ca
 static swig_type_info _swigt__p_Mezzanine__ColourValue = {"_p_Mezzanine__ColourValue", "Mezzanine::ColourValue *", 0, 0, (void*)&_wrap_class_Mezzanine_ColourValue, 0};
 static swig_type_info _swigt__p_Mezzanine__DefaultActorManagerFactory = {"_p_Mezzanine__DefaultActorManagerFactory", "Mezzanine::DefaultActorManagerFactory *", 0, 0, (void*)&_wrap_class_Mezzanine_DefaultActorManagerFactory, 0};
 static swig_type_info _swigt__p_Mezzanine__DefaultAreaEffectManagerFactory = {"_p_Mezzanine__DefaultAreaEffectManagerFactory", "Mezzanine::DefaultAreaEffectManagerFactory *", 0, 0, (void*)&_wrap_class_Mezzanine_DefaultAreaEffectManagerFactory, 0};
+static swig_type_info _swigt__p_Mezzanine__DirectoryException = {"_p_Mezzanine__DirectoryException", "Mezzanine::DirectoryException *", 0, 0, (void*)&_wrap_class_Mezzanine_DirectoryException, 0};
+static swig_type_info _swigt__p_Mezzanine__DirectoryNotFoundException = {"_p_Mezzanine__DirectoryNotFoundException", "Mezzanine::DirectoryNotFoundException *", 0, 0, (void*)&_wrap_class_Mezzanine_DirectoryNotFoundException, 0};
+static swig_type_info _swigt__p_Mezzanine__DirectoryPermissionException = {"_p_Mezzanine__DirectoryPermissionException", "Mezzanine::DirectoryPermissionException *", 0, 0, (void*)&_wrap_class_Mezzanine_DirectoryPermissionException, 0};
+static swig_type_info _swigt__p_Mezzanine__DirectoryReadException = {"_p_Mezzanine__DirectoryReadException", "Mezzanine::DirectoryReadException *", 0, 0, (void*)&_wrap_class_Mezzanine_DirectoryReadException, 0};
+static swig_type_info _swigt__p_Mezzanine__DirectoryWriteException = {"_p_Mezzanine__DirectoryWriteException", "Mezzanine::DirectoryWriteException *", 0, 0, (void*)&_wrap_class_Mezzanine_DirectoryWriteException, 0};
+static swig_type_info _swigt__p_Mezzanine__Exception = {"_p_Mezzanine__Exception", "Mezzanine::Exception *", 0, 0, (void*)&_wrap_class_Mezzanine_Exception, 0};
 static swig_type_info _swigt__p_Mezzanine__FieldOfForce = {"_p_Mezzanine__FieldOfForce", "Mezzanine::FieldOfForce *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__FileException = {"_p_Mezzanine__FileException", "Mezzanine::FileException *", 0, 0, (void*)&_wrap_class_Mezzanine_FileException, 0};
+static swig_type_info _swigt__p_Mezzanine__FileNotFoundException = {"_p_Mezzanine__FileNotFoundException", "Mezzanine::FileNotFoundException *", 0, 0, (void*)&_wrap_class_Mezzanine_FileNotFoundException, 0};
+static swig_type_info _swigt__p_Mezzanine__FilePermissionException = {"_p_Mezzanine__FilePermissionException", "Mezzanine::FilePermissionException *", 0, 0, (void*)&_wrap_class_Mezzanine_FilePermissionException, 0};
+static swig_type_info _swigt__p_Mezzanine__FileReadException = {"_p_Mezzanine__FileReadException", "Mezzanine::FileReadException *", 0, 0, (void*)&_wrap_class_Mezzanine_FileReadException, 0};
+static swig_type_info _swigt__p_Mezzanine__FileWriteException = {"_p_Mezzanine__FileWriteException", "Mezzanine::FileWriteException *", 0, 0, (void*)&_wrap_class_Mezzanine_FileWriteException, 0};
 static swig_type_info _swigt__p_Mezzanine__GoalTimer = {"_p_Mezzanine__GoalTimer", "Mezzanine::GoalTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_GoalTimer, 0};
 static swig_type_info _swigt__p_Mezzanine__Graphics__CameraProxy = {"_p_Mezzanine__Graphics__CameraProxy", "Mezzanine::Graphics::CameraProxy *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__GravityField = {"_p_Mezzanine__GravityField", "Mezzanine::GravityField *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__GravityWell = {"_p_Mezzanine__GravityWell", "Mezzanine::GravityWell *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__IOException = {"_p_Mezzanine__IOException", "Mezzanine::IOException *", 0, 0, (void*)&_wrap_class_Mezzanine_IOException, 0};
+static swig_type_info _swigt__p_Mezzanine__IOReadException = {"_p_Mezzanine__IOReadException", "Mezzanine::IOReadException *", 0, 0, (void*)&_wrap_class_Mezzanine_IOReadException, 0};
+static swig_type_info _swigt__p_Mezzanine__IOWriteException = {"_p_Mezzanine__IOWriteException", "Mezzanine::IOWriteException *", 0, 0, (void*)&_wrap_class_Mezzanine_IOWriteException, 0};
+static swig_type_info _swigt__p_Mezzanine__InstanceIdentityDuplicateException = {"_p_Mezzanine__InstanceIdentityDuplicateException", "Mezzanine::InstanceIdentityDuplicateException *", 0, 0, (void*)&_wrap_class_Mezzanine_InstanceIdentityDuplicateException, 0};
+static swig_type_info _swigt__p_Mezzanine__InstanceIdentityException = {"_p_Mezzanine__InstanceIdentityException", "Mezzanine::InstanceIdentityException *", 0, 0, (void*)&_wrap_class_Mezzanine_InstanceIdentityException, 0};
+static swig_type_info _swigt__p_Mezzanine__InstanceIdentityInvalidException = {"_p_Mezzanine__InstanceIdentityInvalidException", "Mezzanine::InstanceIdentityInvalidException *", 0, 0, (void*)&_wrap_class_Mezzanine_InstanceIdentityInvalidException, 0};
+static swig_type_info _swigt__p_Mezzanine__InstanceIdentityNotFoundException = {"_p_Mezzanine__InstanceIdentityNotFoundException", "Mezzanine::InstanceIdentityNotFoundException *", 0, 0, (void*)&_wrap_class_Mezzanine_InstanceIdentityNotFoundException, 0};
+static swig_type_info _swigt__p_Mezzanine__InternalException = {"_p_Mezzanine__InternalException", "Mezzanine::InternalException *", 0, 0, (void*)&_wrap_class_Mezzanine_InternalException, 0};
+static swig_type_info _swigt__p_Mezzanine__InvalidAssignment = {"_p_Mezzanine__InvalidAssignment", "Mezzanine::InvalidAssignment *", 0, 0, (void*)&_wrap_class_Mezzanine_InvalidAssignment, 0};
+static swig_type_info _swigt__p_Mezzanine__InvalidStateException = {"_p_Mezzanine__InvalidStateException", "Mezzanine::InvalidStateException *", 0, 0, (void*)&_wrap_class_Mezzanine_InvalidStateException, 0};
+static swig_type_info _swigt__p_Mezzanine__InvalidVersionException = {"_p_Mezzanine__InvalidVersionException", "Mezzanine::InvalidVersionException *", 0, 0, (void*)&_wrap_class_Mezzanine_InvalidVersionException, 0};
 static swig_type_info _swigt__p_Mezzanine__ManagerBase = {"_p_Mezzanine__ManagerBase", "Mezzanine::ManagerBase *", 0, 0, (void*)&_wrap_class_Mezzanine_ManagerBase, 0};
 static swig_type_info _swigt__p_Mezzanine__ManagerFactory = {"_p_Mezzanine__ManagerFactory", "Mezzanine::ManagerFactory *", 0, 0, (void*)&_wrap_class_Mezzanine_ManagerFactory, 0};
 static swig_type_info _swigt__p_Mezzanine__Matrix3x3 = {"_p_Mezzanine__Matrix3x3", "Mezzanine::Matrix3x3 *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__MemoryManagementException = {"_p_Mezzanine__MemoryManagementException", "Mezzanine::MemoryManagementException *", 0, 0, (void*)&_wrap_class_Mezzanine_MemoryManagementException, 0};
+static swig_type_info _swigt__p_Mezzanine__MemoryOutOfBoundsException = {"_p_Mezzanine__MemoryOutOfBoundsException", "Mezzanine::MemoryOutOfBoundsException *", 0, 0, (void*)&_wrap_class_Mezzanine_MemoryOutOfBoundsException, 0};
+static swig_type_info _swigt__p_Mezzanine__NetworkException = {"_p_Mezzanine__NetworkException", "Mezzanine::NetworkException *", 0, 0, (void*)&_wrap_class_Mezzanine_NetworkException, 0};
+static swig_type_info _swigt__p_Mezzanine__NetworkNotFoundException = {"_p_Mezzanine__NetworkNotFoundException", "Mezzanine::NetworkNotFoundException *", 0, 0, (void*)&_wrap_class_Mezzanine_NetworkNotFoundException, 0};
+static swig_type_info _swigt__p_Mezzanine__NetworkPermissionException = {"_p_Mezzanine__NetworkPermissionException", "Mezzanine::NetworkPermissionException *", 0, 0, (void*)&_wrap_class_Mezzanine_NetworkPermissionException, 0};
+static swig_type_info _swigt__p_Mezzanine__NetworkReadException = {"_p_Mezzanine__NetworkReadException", "Mezzanine::NetworkReadException *", 0, 0, (void*)&_wrap_class_Mezzanine_NetworkReadException, 0};
+static swig_type_info _swigt__p_Mezzanine__NetworkURLException = {"_p_Mezzanine__NetworkURLException", "Mezzanine::NetworkURLException *", 0, 0, (void*)&_wrap_class_Mezzanine_NetworkURLException, 0};
+static swig_type_info _swigt__p_Mezzanine__NetworkWriteException = {"_p_Mezzanine__NetworkWriteException", "Mezzanine::NetworkWriteException *", 0, 0, (void*)&_wrap_class_Mezzanine_NetworkWriteException, 0};
+static swig_type_info _swigt__p_Mezzanine__NotImplementedException = {"_p_Mezzanine__NotImplementedException", "Mezzanine::NotImplementedException *", 0, 0, (void*)&_wrap_class_Mezzanine_NotImplementedException, 0};
+static swig_type_info _swigt__p_Mezzanine__OutOfMemoryException = {"_p_Mezzanine__OutOfMemoryException", "Mezzanine::OutOfMemoryException *", 0, 0, (void*)&_wrap_class_Mezzanine_OutOfMemoryException, 0};
+static swig_type_info _swigt__p_Mezzanine__ParametersCastException = {"_p_Mezzanine__ParametersCastException", "Mezzanine::ParametersCastException *", 0, 0, (void*)&_wrap_class_Mezzanine_ParametersCastException, 0};
+static swig_type_info _swigt__p_Mezzanine__ParametersException = {"_p_Mezzanine__ParametersException", "Mezzanine::ParametersException *", 0, 0, (void*)&_wrap_class_Mezzanine_ParametersException, 0};
+static swig_type_info _swigt__p_Mezzanine__ParametersRangeException = {"_p_Mezzanine__ParametersRangeException", "Mezzanine::ParametersRangeException *", 0, 0, (void*)&_wrap_class_Mezzanine_ParametersRangeException, 0};
 static swig_type_info _swigt__p_Mezzanine__Physics__Collision = {"_p_Mezzanine__Physics__Collision", "Mezzanine::Physics::Collision *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Physics__GhostProxy = {"_p_Mezzanine__Physics__GhostProxy", "Mezzanine::Physics::GhostProxy *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Plane = {"_p_Mezzanine__Plane", "Mezzanine::Plane *", 0, 0, (void*)&_wrap_class_Mezzanine_Plane, 0};
 static swig_type_info _swigt__p_Mezzanine__Quaternion = {"_p_Mezzanine__Quaternion", "Mezzanine::Quaternion *", 0, 0, (void*)&_wrap_class_Mezzanine_Quaternion, 0};
 static swig_type_info _swigt__p_Mezzanine__Ray = {"_p_Mezzanine__Ray", "Mezzanine::Ray *", 0, 0, (void*)&_wrap_class_Mezzanine_Ray, 0};
 static swig_type_info _swigt__p_Mezzanine__RayQueryTool = {"_p_Mezzanine__RayQueryTool", "Mezzanine::RayQueryTool *", 0, 0, (void*)&_wrap_class_Mezzanine_RayQueryTool, 0};
+static swig_type_info _swigt__p_Mezzanine__RenderingAPIException = {"_p_Mezzanine__RenderingAPIException", "Mezzanine::RenderingAPIException *", 0, 0, (void*)&_wrap_class_Mezzanine_RenderingAPIException, 0};
+static swig_type_info _swigt__p_Mezzanine__RuntimeAssertionException = {"_p_Mezzanine__RuntimeAssertionException", "Mezzanine::RuntimeAssertionException *", 0, 0, (void*)&_wrap_class_Mezzanine_RuntimeAssertionException, 0};
+static swig_type_info _swigt__p_Mezzanine__ScriptException = {"_p_Mezzanine__ScriptException", "Mezzanine::ScriptException *", 0, 0, (void*)&_wrap_class_Mezzanine_ScriptException, 0};
+static swig_type_info _swigt__p_Mezzanine__ScriptLuaErrErrException = {"_p_Mezzanine__ScriptLuaErrErrException", "Mezzanine::ScriptLuaErrErrException *", 0, 0, (void*)&_wrap_class_Mezzanine_ScriptLuaErrErrException, 0};
+static swig_type_info _swigt__p_Mezzanine__ScriptLuaException = {"_p_Mezzanine__ScriptLuaException", "Mezzanine::ScriptLuaException *", 0, 0, (void*)&_wrap_class_Mezzanine_ScriptLuaException, 0};
+static swig_type_info _swigt__p_Mezzanine__ScriptLuaRuntimeException = {"_p_Mezzanine__ScriptLuaRuntimeException", "Mezzanine::ScriptLuaRuntimeException *", 0, 0, (void*)&_wrap_class_Mezzanine_ScriptLuaRuntimeException, 0};
+static swig_type_info _swigt__p_Mezzanine__ScriptLuaYieldException = {"_p_Mezzanine__ScriptLuaYieldException", "Mezzanine::ScriptLuaYieldException *", 0, 0, (void*)&_wrap_class_Mezzanine_ScriptLuaYieldException, 0};
 static swig_type_info _swigt__p_Mezzanine__Sphere = {"_p_Mezzanine__Sphere", "Mezzanine::Sphere *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__StopWatchTimer = {"_p_Mezzanine__StopWatchTimer", "Mezzanine::StopWatchTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_StopWatchTimer, 0};
+static swig_type_info _swigt__p_Mezzanine__SyntaxErrorException = {"_p_Mezzanine__SyntaxErrorException", "Mezzanine::SyntaxErrorException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorException, 0};
+static swig_type_info _swigt__p_Mezzanine__SyntaxErrorLuaException = {"_p_Mezzanine__SyntaxErrorLuaException", "Mezzanine::SyntaxErrorLuaException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorLuaException, 0};
+static swig_type_info _swigt__p_Mezzanine__SyntaxErrorXMLException = {"_p_Mezzanine__SyntaxErrorXMLException", "Mezzanine::SyntaxErrorXMLException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorXMLException, 0};
+static swig_type_info _swigt__p_Mezzanine__SyntaxErrorXPathException = {"_p_Mezzanine__SyntaxErrorXPathException", "Mezzanine::SyntaxErrorXPathException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorXPathException, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type = {"_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__DefaultWorkUnit = {"_p_Mezzanine__Threading__DefaultWorkUnit", "Mezzanine::Threading::DefaultWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_DefaultWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__iWorkUnit = {"_p_Mezzanine__Threading__iWorkUnit", "Mezzanine::Threading::iWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_iWorkUnit, 0};
@@ -29920,6 +39581,7 @@ static swig_type_info _swigt__p_int = {"_p_int", "intptr_t *|int *|int_least32_t
 static swig_type_info _swigt__p_long_long = {"_p_long_long", "int_least64_t *|int_fast64_t *|Mezzanine::Int64 *|int64_t *|long long *|Mezzanine::MaxInt *|intmax_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_short = {"_p_short", "Mezzanine::Int16 *|short *|int_least16_t *|int16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_signed_char = {"_p_signed_char", "signed char *|Mezzanine::Int8 *|Mezzanine::BinaryTools::BinaryBuffer::Byte *|int_least8_t *|int_fast8_t *|int8_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__exception = {"_p_std__exception", "std::exception *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__listT_std__pairT_std__string_std__string_t_t = {"_p_std__listT_std__pairT_std__string_std__string_t_t", "Mezzanine::NameValuePairList *|std::list< std::pair< std::string,std::string > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_t = {"_p_std__mapT_std__string_std__string_t", "Mezzanine::NameValuePairMap *|std::map< std::string,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__pairT_bool_Mezzanine__Ray_t = {"_p_std__pairT_bool_Mezzanine__Ray_t", "std::pair< bool,Mezzanine::Ray > *|Mezzanine::AxisAlignedBox::RayTestResult *|Mezzanine::Ray::GeometryRayTestResult *", 0, 0, (void*)0, 0};
@@ -29970,6 +39632,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__AreaEffectFactory,
   &_swigt__p_Mezzanine__AreaEffectManager,
   &_swigt__p_Mezzanine__AreaEffectUpdateWorkUnit,
+  &_swigt__p_Mezzanine__ArithmeticException,
   &_swigt__p_Mezzanine__AttachableBase,
   &_swigt__p_Mezzanine__AttachableChild,
   &_swigt__p_Mezzanine__AttachableParent,
@@ -29980,22 +39643,68 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__ColourValue,
   &_swigt__p_Mezzanine__DefaultActorManagerFactory,
   &_swigt__p_Mezzanine__DefaultAreaEffectManagerFactory,
+  &_swigt__p_Mezzanine__DirectoryException,
+  &_swigt__p_Mezzanine__DirectoryNotFoundException,
+  &_swigt__p_Mezzanine__DirectoryPermissionException,
+  &_swigt__p_Mezzanine__DirectoryReadException,
+  &_swigt__p_Mezzanine__DirectoryWriteException,
+  &_swigt__p_Mezzanine__Exception,
   &_swigt__p_Mezzanine__FieldOfForce,
+  &_swigt__p_Mezzanine__FileException,
+  &_swigt__p_Mezzanine__FileNotFoundException,
+  &_swigt__p_Mezzanine__FilePermissionException,
+  &_swigt__p_Mezzanine__FileReadException,
+  &_swigt__p_Mezzanine__FileWriteException,
   &_swigt__p_Mezzanine__GoalTimer,
   &_swigt__p_Mezzanine__Graphics__CameraProxy,
   &_swigt__p_Mezzanine__GravityField,
   &_swigt__p_Mezzanine__GravityWell,
+  &_swigt__p_Mezzanine__IOException,
+  &_swigt__p_Mezzanine__IOReadException,
+  &_swigt__p_Mezzanine__IOWriteException,
+  &_swigt__p_Mezzanine__InstanceIdentityDuplicateException,
+  &_swigt__p_Mezzanine__InstanceIdentityException,
+  &_swigt__p_Mezzanine__InstanceIdentityInvalidException,
+  &_swigt__p_Mezzanine__InstanceIdentityNotFoundException,
+  &_swigt__p_Mezzanine__InternalException,
+  &_swigt__p_Mezzanine__InvalidAssignment,
+  &_swigt__p_Mezzanine__InvalidStateException,
+  &_swigt__p_Mezzanine__InvalidVersionException,
   &_swigt__p_Mezzanine__ManagerBase,
   &_swigt__p_Mezzanine__ManagerFactory,
   &_swigt__p_Mezzanine__Matrix3x3,
+  &_swigt__p_Mezzanine__MemoryManagementException,
+  &_swigt__p_Mezzanine__MemoryOutOfBoundsException,
+  &_swigt__p_Mezzanine__NetworkException,
+  &_swigt__p_Mezzanine__NetworkNotFoundException,
+  &_swigt__p_Mezzanine__NetworkPermissionException,
+  &_swigt__p_Mezzanine__NetworkReadException,
+  &_swigt__p_Mezzanine__NetworkURLException,
+  &_swigt__p_Mezzanine__NetworkWriteException,
+  &_swigt__p_Mezzanine__NotImplementedException,
+  &_swigt__p_Mezzanine__OutOfMemoryException,
+  &_swigt__p_Mezzanine__ParametersCastException,
+  &_swigt__p_Mezzanine__ParametersException,
+  &_swigt__p_Mezzanine__ParametersRangeException,
   &_swigt__p_Mezzanine__Physics__Collision,
   &_swigt__p_Mezzanine__Physics__GhostProxy,
   &_swigt__p_Mezzanine__Plane,
   &_swigt__p_Mezzanine__Quaternion,
   &_swigt__p_Mezzanine__Ray,
   &_swigt__p_Mezzanine__RayQueryTool,
+  &_swigt__p_Mezzanine__RenderingAPIException,
+  &_swigt__p_Mezzanine__RuntimeAssertionException,
+  &_swigt__p_Mezzanine__ScriptException,
+  &_swigt__p_Mezzanine__ScriptLuaErrErrException,
+  &_swigt__p_Mezzanine__ScriptLuaException,
+  &_swigt__p_Mezzanine__ScriptLuaRuntimeException,
+  &_swigt__p_Mezzanine__ScriptLuaYieldException,
   &_swigt__p_Mezzanine__Sphere,
   &_swigt__p_Mezzanine__StopWatchTimer,
+  &_swigt__p_Mezzanine__SyntaxErrorException,
+  &_swigt__p_Mezzanine__SyntaxErrorLuaException,
+  &_swigt__p_Mezzanine__SyntaxErrorXMLException,
+  &_swigt__p_Mezzanine__SyntaxErrorXPathException,
   &_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,
   &_swigt__p_Mezzanine__Threading__DefaultWorkUnit,
   &_swigt__p_Mezzanine__Threading__iWorkUnit,
@@ -30039,6 +39748,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_long_long,
   &_swigt__p_short,
   &_swigt__p_signed_char,
+  &_swigt__p_std__exception,
   &_swigt__p_std__listT_std__pairT_std__string_std__string_t_t,
   &_swigt__p_std__mapT_std__string_std__string_t,
   &_swigt__p_std__pairT_bool_Mezzanine__Ray_t,
@@ -30089,6 +39799,7 @@ static swig_cast_info _swigc__p_Mezzanine__AreaEffect[] = {  {&_swigt__p_Mezzani
 static swig_cast_info _swigc__p_Mezzanine__AreaEffectFactory[] = {  {&_swigt__p_Mezzanine__AreaEffectFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AreaEffectManager[] = {  {&_swigt__p_Mezzanine__AreaEffectManager, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AreaEffectUpdateWorkUnit[] = {  {&_swigt__p_Mezzanine__AreaEffectUpdateWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ArithmeticException[] = {  {&_swigt__p_Mezzanine__ArithmeticException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AttachableBase[] = {  {&_swigt__p_Mezzanine__AttachableBase, 0, 0, 0},  {&_swigt__p_Mezzanine__AttachableParent, _p_Mezzanine__AttachableParentTo_p_Mezzanine__AttachableBase, 0, 0},  {&_swigt__p_Mezzanine__AttachableChild, _p_Mezzanine__AttachableChildTo_p_Mezzanine__AttachableBase, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AttachableChild[] = {  {&_swigt__p_Mezzanine__AttachableChild, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__AttachableParent[] = {  {&_swigt__p_Mezzanine__AttachableParent, 0, 0, 0},{0, 0, 0, 0}};
@@ -30099,22 +39810,68 @@ static swig_cast_info _swigc__p_Mezzanine__CameraController[] = {  {&_swigt__p_M
 static swig_cast_info _swigc__p_Mezzanine__ColourValue[] = {  {&_swigt__p_Mezzanine__ColourValue, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__DefaultActorManagerFactory[] = {  {&_swigt__p_Mezzanine__DefaultActorManagerFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__DefaultAreaEffectManagerFactory[] = {  {&_swigt__p_Mezzanine__DefaultAreaEffectManagerFactory, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__DirectoryException[] = {  {&_swigt__p_Mezzanine__DirectoryException, 0, 0, 0},  {&_swigt__p_Mezzanine__DirectoryReadException, _p_Mezzanine__DirectoryReadExceptionTo_p_Mezzanine__DirectoryException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryWriteException, _p_Mezzanine__DirectoryWriteExceptionTo_p_Mezzanine__DirectoryException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryNotFoundException, _p_Mezzanine__DirectoryNotFoundExceptionTo_p_Mezzanine__DirectoryException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryPermissionException, _p_Mezzanine__DirectoryPermissionExceptionTo_p_Mezzanine__DirectoryException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__DirectoryNotFoundException[] = {  {&_swigt__p_Mezzanine__DirectoryNotFoundException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__DirectoryPermissionException[] = {  {&_swigt__p_Mezzanine__DirectoryPermissionException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__DirectoryReadException[] = {  {&_swigt__p_Mezzanine__DirectoryReadException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__DirectoryWriteException[] = {  {&_swigt__p_Mezzanine__DirectoryWriteException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Exception[] = {  {&_swigt__p_Mezzanine__InvalidAssignment, _p_Mezzanine__InvalidAssignmentTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorException, _p_Mezzanine__SyntaxErrorExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, _p_Mezzanine__SyntaxErrorXPathExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptException, _p_Mezzanine__ScriptExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaException, _p_Mezzanine__ScriptLuaExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityDuplicateException, _p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityNotFoundException, _p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityInvalidException, _p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityException, _p_Mezzanine__InstanceIdentityExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__IOReadException, _p_Mezzanine__IOReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__IOWriteException, _p_Mezzanine__IOWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__IOException, _p_Mezzanine__IOExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileException, _p_Mezzanine__FileExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileReadException, _p_Mezzanine__FileReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileWriteException, _p_Mezzanine__FileWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileNotFoundException, _p_Mezzanine__FileNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__Exception, 0, 0, 0},  {&_swigt__p_Mezzanine__NetworkException, _p_Mezzanine__NetworkExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkReadException, _p_Mezzanine__NetworkReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkWriteException, _p_Mezzanine__NetworkWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkNotFoundException, _p_Mezzanine__NetworkNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkURLException, _p_Mezzanine__NetworkURLExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkPermissionException, _p_Mezzanine__NetworkPermissionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryPermissionException, _p_Mezzanine__DirectoryPermissionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryNotFoundException, _p_Mezzanine__DirectoryNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryWriteException, _p_Mezzanine__DirectoryWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryReadException, _p_Mezzanine__DirectoryReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryException, _p_Mezzanine__DirectoryExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FilePermissionException, _p_Mezzanine__FilePermissionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, _p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__OutOfMemoryException, _p_Mezzanine__OutOfMemoryExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryManagementException, _p_Mezzanine__MemoryManagementExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ParametersException, _p_Mezzanine__ParametersExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ParametersCastException, _p_Mezzanine__ParametersCastExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ParametersRangeException, _p_Mezzanine__ParametersRangeExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ArithmeticException, _p_Mezzanine__ArithmeticExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidVersionException, _p_Mezzanine__InvalidVersionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidStateException, _p_Mezzanine__InvalidStateExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__RenderingAPIException, _p_Mezzanine__RenderingAPIExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__RuntimeAssertionException, _p_Mezzanine__RuntimeAssertionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InternalException, _p_Mezzanine__InternalExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NotImplementedException, _p_Mezzanine__NotImplementedExceptionTo_p_Mezzanine__Exception, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__FieldOfForce[] = {  {&_swigt__p_Mezzanine__FieldOfForce, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__FileException[] = {  {&_swigt__p_Mezzanine__FileException, 0, 0, 0},  {&_swigt__p_Mezzanine__FileReadException, _p_Mezzanine__FileReadExceptionTo_p_Mezzanine__FileException, 0, 0},  {&_swigt__p_Mezzanine__FileWriteException, _p_Mezzanine__FileWriteExceptionTo_p_Mezzanine__FileException, 0, 0},  {&_swigt__p_Mezzanine__FileNotFoundException, _p_Mezzanine__FileNotFoundExceptionTo_p_Mezzanine__FileException, 0, 0},  {&_swigt__p_Mezzanine__FilePermissionException, _p_Mezzanine__FilePermissionExceptionTo_p_Mezzanine__FileException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__FileNotFoundException[] = {  {&_swigt__p_Mezzanine__FileNotFoundException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__FilePermissionException[] = {  {&_swigt__p_Mezzanine__FilePermissionException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__FileReadException[] = {  {&_swigt__p_Mezzanine__FileReadException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__FileWriteException[] = {  {&_swigt__p_Mezzanine__FileWriteException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__GoalTimer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, _p_Mezzanine__AlarmTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__StopWatchTimer, _p_Mezzanine__StopWatchTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__GoalTimer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Graphics__CameraProxy[] = {  {&_swigt__p_Mezzanine__Graphics__CameraProxy, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__GravityField[] = {  {&_swigt__p_Mezzanine__GravityField, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__GravityWell[] = {  {&_swigt__p_Mezzanine__GravityWell, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__IOException[] = {  {&_swigt__p_Mezzanine__NetworkNotFoundException, _p_Mezzanine__NetworkNotFoundExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__NetworkWriteException, _p_Mezzanine__NetworkWriteExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__NetworkReadException, _p_Mezzanine__NetworkReadExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__NetworkException, _p_Mezzanine__NetworkExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryPermissionException, _p_Mezzanine__DirectoryPermissionExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryNotFoundException, _p_Mezzanine__DirectoryNotFoundExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryWriteException, _p_Mezzanine__DirectoryWriteExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryReadException, _p_Mezzanine__DirectoryReadExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__DirectoryException, _p_Mezzanine__DirectoryExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__FilePermissionException, _p_Mezzanine__FilePermissionExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__FileNotFoundException, _p_Mezzanine__FileNotFoundExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__FileWriteException, _p_Mezzanine__FileWriteExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__FileReadException, _p_Mezzanine__FileReadExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__IOException, 0, 0, 0},  {&_swigt__p_Mezzanine__NetworkURLException, _p_Mezzanine__NetworkURLExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__NetworkPermissionException, _p_Mezzanine__NetworkPermissionExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__FileException, _p_Mezzanine__FileExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__IOWriteException, _p_Mezzanine__IOWriteExceptionTo_p_Mezzanine__IOException, 0, 0},  {&_swigt__p_Mezzanine__IOReadException, _p_Mezzanine__IOReadExceptionTo_p_Mezzanine__IOException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__IOReadException[] = {  {&_swigt__p_Mezzanine__IOReadException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__IOWriteException[] = {  {&_swigt__p_Mezzanine__IOWriteException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__InstanceIdentityDuplicateException[] = {  {&_swigt__p_Mezzanine__InstanceIdentityDuplicateException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__InstanceIdentityException[] = {  {&_swigt__p_Mezzanine__InstanceIdentityException, 0, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityInvalidException, _p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_Mezzanine__InstanceIdentityException, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityNotFoundException, _p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_Mezzanine__InstanceIdentityException, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityDuplicateException, _p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_Mezzanine__InstanceIdentityException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__InstanceIdentityInvalidException[] = {  {&_swigt__p_Mezzanine__InstanceIdentityInvalidException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__InstanceIdentityNotFoundException[] = {  {&_swigt__p_Mezzanine__InstanceIdentityNotFoundException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__InternalException[] = {  {&_swigt__p_Mezzanine__InternalException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__InvalidAssignment[] = {  {&_swigt__p_Mezzanine__InvalidAssignment, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__InvalidStateException[] = {  {&_swigt__p_Mezzanine__InvalidStateException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__InvalidVersionException[] = {  {&_swigt__p_Mezzanine__InvalidVersionException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__ManagerBase[] = {  {&_swigt__p_Mezzanine__WorldManager, _p_Mezzanine__WorldManagerTo_p_Mezzanine__ManagerBase, 0, 0},  {&_swigt__p_Mezzanine__ActorManager, _p_Mezzanine__ActorManagerTo_p_Mezzanine__ManagerBase, 0, 0},  {&_swigt__p_Mezzanine__AreaEffectManager, _p_Mezzanine__AreaEffectManagerTo_p_Mezzanine__ManagerBase, 0, 0},  {&_swigt__p_Mezzanine__ManagerBase, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__ManagerFactory[] = {  {&_swigt__p_Mezzanine__ManagerFactory, 0, 0, 0},  {&_swigt__p_Mezzanine__DefaultActorManagerFactory, _p_Mezzanine__DefaultActorManagerFactoryTo_p_Mezzanine__ManagerFactory, 0, 0},  {&_swigt__p_Mezzanine__DefaultAreaEffectManagerFactory, _p_Mezzanine__DefaultAreaEffectManagerFactoryTo_p_Mezzanine__ManagerFactory, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Matrix3x3[] = {  {&_swigt__p_Mezzanine__Matrix3x3, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__MemoryManagementException[] = {  {&_swigt__p_Mezzanine__MemoryManagementException, 0, 0, 0},  {&_swigt__p_Mezzanine__OutOfMemoryException, _p_Mezzanine__OutOfMemoryExceptionTo_p_Mezzanine__MemoryManagementException, 0, 0},  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, _p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_Mezzanine__MemoryManagementException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__MemoryOutOfBoundsException[] = {  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__NetworkException[] = {  {&_swigt__p_Mezzanine__NetworkException, 0, 0, 0},  {&_swigt__p_Mezzanine__NetworkReadException, _p_Mezzanine__NetworkReadExceptionTo_p_Mezzanine__NetworkException, 0, 0},  {&_swigt__p_Mezzanine__NetworkWriteException, _p_Mezzanine__NetworkWriteExceptionTo_p_Mezzanine__NetworkException, 0, 0},  {&_swigt__p_Mezzanine__NetworkNotFoundException, _p_Mezzanine__NetworkNotFoundExceptionTo_p_Mezzanine__NetworkException, 0, 0},  {&_swigt__p_Mezzanine__NetworkURLException, _p_Mezzanine__NetworkURLExceptionTo_p_Mezzanine__NetworkException, 0, 0},  {&_swigt__p_Mezzanine__NetworkPermissionException, _p_Mezzanine__NetworkPermissionExceptionTo_p_Mezzanine__NetworkException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__NetworkNotFoundException[] = {  {&_swigt__p_Mezzanine__NetworkNotFoundException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__NetworkPermissionException[] = {  {&_swigt__p_Mezzanine__NetworkPermissionException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__NetworkReadException[] = {  {&_swigt__p_Mezzanine__NetworkReadException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__NetworkURLException[] = {  {&_swigt__p_Mezzanine__NetworkURLException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__NetworkWriteException[] = {  {&_swigt__p_Mezzanine__NetworkWriteException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__NotImplementedException[] = {  {&_swigt__p_Mezzanine__NotImplementedException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__OutOfMemoryException[] = {  {&_swigt__p_Mezzanine__OutOfMemoryException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ParametersCastException[] = {  {&_swigt__p_Mezzanine__ParametersCastException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ParametersException[] = {  {&_swigt__p_Mezzanine__ParametersException, 0, 0, 0},  {&_swigt__p_Mezzanine__ParametersCastException, _p_Mezzanine__ParametersCastExceptionTo_p_Mezzanine__ParametersException, 0, 0},  {&_swigt__p_Mezzanine__ParametersRangeException, _p_Mezzanine__ParametersRangeExceptionTo_p_Mezzanine__ParametersException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ParametersRangeException[] = {  {&_swigt__p_Mezzanine__ParametersRangeException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__Collision[] = {  {&_swigt__p_Mezzanine__Physics__Collision, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__GhostProxy[] = {  {&_swigt__p_Mezzanine__Physics__GhostProxy, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Plane[] = {  {&_swigt__p_Mezzanine__Plane, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Quaternion[] = {  {&_swigt__p_Mezzanine__Quaternion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Ray[] = {  {&_swigt__p_Mezzanine__Ray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__RayQueryTool[] = {  {&_swigt__p_Mezzanine__RayQueryTool, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__RenderingAPIException[] = {  {&_swigt__p_Mezzanine__RenderingAPIException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__RuntimeAssertionException[] = {  {&_swigt__p_Mezzanine__RuntimeAssertionException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ScriptException[] = {  {&_swigt__p_Mezzanine__ScriptException, 0, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaException, _p_Mezzanine__ScriptLuaExceptionTo_p_Mezzanine__ScriptException, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_Mezzanine__ScriptException, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__ScriptException, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__ScriptException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ScriptLuaErrErrException[] = {  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ScriptLuaException[] = {  {&_swigt__p_Mezzanine__ScriptLuaException, 0, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_Mezzanine__ScriptLuaException, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__ScriptLuaException, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__ScriptLuaException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ScriptLuaRuntimeException[] = {  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__ScriptLuaYieldException[] = {  {&_swigt__p_Mezzanine__ScriptLuaYieldException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Sphere[] = {  {&_swigt__p_Mezzanine__Sphere, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__StopWatchTimer[] = {  {&_swigt__p_Mezzanine__StopWatchTimer, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorException, 0, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, _p_Mezzanine__SyntaxErrorXPathExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorLuaException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorXMLException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorXPathException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type[] = {  {&_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__ActorUpdateWorkUnit, _p_Mezzanine__ActorUpdateWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__AreaEffectUpdateWorkUnit, _p_Mezzanine__AreaEffectUpdateWorkUnitTo_p_Mezzanine__Threading__DefaultWorkUnit, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__iWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__iWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, _p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__ActorUpdateWorkUnit, _p_Mezzanine__ActorUpdateWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__AreaEffectUpdateWorkUnit, _p_Mezzanine__AreaEffectUpdateWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},{0, 0, 0, 0}};
@@ -30158,6 +39915,7 @@ static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0
 static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_short[] = {  {&_swigt__p_short, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_signed_char[] = {  {&_swigt__p_signed_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__exception[] = {  {&_swigt__p_Mezzanine__InvalidAssignment, _p_Mezzanine__InvalidAssignmentTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, _p_Mezzanine__SyntaxErrorXPathExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptException, _p_Mezzanine__ScriptExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaException, _p_Mezzanine__ScriptLuaExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityDuplicateException, _p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityNotFoundException, _p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityInvalidException, _p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityException, _p_Mezzanine__InstanceIdentityExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__Exception, _p_Mezzanine__ExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOReadException, _p_Mezzanine__IOReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOWriteException, _p_Mezzanine__IOWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkPermissionException, _p_Mezzanine__NetworkPermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkURLException, _p_Mezzanine__NetworkURLExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkNotFoundException, _p_Mezzanine__NetworkNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkWriteException, _p_Mezzanine__NetworkWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkReadException, _p_Mezzanine__NetworkReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_std__exception, 0, 0, 0},  {&_swigt__p_Mezzanine__DirectoryPermissionException, _p_Mezzanine__DirectoryPermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryNotFoundException, _p_Mezzanine__DirectoryNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryWriteException, _p_Mezzanine__DirectoryWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryReadException, _p_Mezzanine__DirectoryReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryException, _p_Mezzanine__DirectoryExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FilePermissionException, _p_Mezzanine__FilePermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileNotFoundException, _p_Mezzanine__FileNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileWriteException, _p_Mezzanine__FileWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileReadException, _p_Mezzanine__FileReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileException, _p_Mezzanine__FileExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOException, _p_Mezzanine__IOExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkException, _p_Mezzanine__NetworkExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorException, _p_Mezzanine__SyntaxErrorExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, _p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__OutOfMemoryException, _p_Mezzanine__OutOfMemoryExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryManagementException, _p_Mezzanine__MemoryManagementExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ParametersException, _p_Mezzanine__ParametersExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ParametersCastException, _p_Mezzanine__ParametersCastExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ParametersRangeException, _p_Mezzanine__ParametersRangeExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ArithmeticException, _p_Mezzanine__ArithmeticExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidVersionException, _p_Mezzanine__InvalidVersionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidStateException, _p_Mezzanine__InvalidStateExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__RenderingAPIException, _p_Mezzanine__RenderingAPIExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__RuntimeAssertionException, _p_Mezzanine__RuntimeAssertionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InternalException, _p_Mezzanine__InternalExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NotImplementedException, _p_Mezzanine__NotImplementedExceptionTo_p_std__exception, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__listT_std__pairT_std__string_std__string_t_t[] = {  {&_swigt__p_std__listT_std__pairT_std__string_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__pairT_bool_Mezzanine__Ray_t[] = {  {&_swigt__p_std__pairT_bool_Mezzanine__Ray_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -30208,6 +39966,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__AreaEffectFactory,
   _swigc__p_Mezzanine__AreaEffectManager,
   _swigc__p_Mezzanine__AreaEffectUpdateWorkUnit,
+  _swigc__p_Mezzanine__ArithmeticException,
   _swigc__p_Mezzanine__AttachableBase,
   _swigc__p_Mezzanine__AttachableChild,
   _swigc__p_Mezzanine__AttachableParent,
@@ -30218,22 +39977,68 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__ColourValue,
   _swigc__p_Mezzanine__DefaultActorManagerFactory,
   _swigc__p_Mezzanine__DefaultAreaEffectManagerFactory,
+  _swigc__p_Mezzanine__DirectoryException,
+  _swigc__p_Mezzanine__DirectoryNotFoundException,
+  _swigc__p_Mezzanine__DirectoryPermissionException,
+  _swigc__p_Mezzanine__DirectoryReadException,
+  _swigc__p_Mezzanine__DirectoryWriteException,
+  _swigc__p_Mezzanine__Exception,
   _swigc__p_Mezzanine__FieldOfForce,
+  _swigc__p_Mezzanine__FileException,
+  _swigc__p_Mezzanine__FileNotFoundException,
+  _swigc__p_Mezzanine__FilePermissionException,
+  _swigc__p_Mezzanine__FileReadException,
+  _swigc__p_Mezzanine__FileWriteException,
   _swigc__p_Mezzanine__GoalTimer,
   _swigc__p_Mezzanine__Graphics__CameraProxy,
   _swigc__p_Mezzanine__GravityField,
   _swigc__p_Mezzanine__GravityWell,
+  _swigc__p_Mezzanine__IOException,
+  _swigc__p_Mezzanine__IOReadException,
+  _swigc__p_Mezzanine__IOWriteException,
+  _swigc__p_Mezzanine__InstanceIdentityDuplicateException,
+  _swigc__p_Mezzanine__InstanceIdentityException,
+  _swigc__p_Mezzanine__InstanceIdentityInvalidException,
+  _swigc__p_Mezzanine__InstanceIdentityNotFoundException,
+  _swigc__p_Mezzanine__InternalException,
+  _swigc__p_Mezzanine__InvalidAssignment,
+  _swigc__p_Mezzanine__InvalidStateException,
+  _swigc__p_Mezzanine__InvalidVersionException,
   _swigc__p_Mezzanine__ManagerBase,
   _swigc__p_Mezzanine__ManagerFactory,
   _swigc__p_Mezzanine__Matrix3x3,
+  _swigc__p_Mezzanine__MemoryManagementException,
+  _swigc__p_Mezzanine__MemoryOutOfBoundsException,
+  _swigc__p_Mezzanine__NetworkException,
+  _swigc__p_Mezzanine__NetworkNotFoundException,
+  _swigc__p_Mezzanine__NetworkPermissionException,
+  _swigc__p_Mezzanine__NetworkReadException,
+  _swigc__p_Mezzanine__NetworkURLException,
+  _swigc__p_Mezzanine__NetworkWriteException,
+  _swigc__p_Mezzanine__NotImplementedException,
+  _swigc__p_Mezzanine__OutOfMemoryException,
+  _swigc__p_Mezzanine__ParametersCastException,
+  _swigc__p_Mezzanine__ParametersException,
+  _swigc__p_Mezzanine__ParametersRangeException,
   _swigc__p_Mezzanine__Physics__Collision,
   _swigc__p_Mezzanine__Physics__GhostProxy,
   _swigc__p_Mezzanine__Plane,
   _swigc__p_Mezzanine__Quaternion,
   _swigc__p_Mezzanine__Ray,
   _swigc__p_Mezzanine__RayQueryTool,
+  _swigc__p_Mezzanine__RenderingAPIException,
+  _swigc__p_Mezzanine__RuntimeAssertionException,
+  _swigc__p_Mezzanine__ScriptException,
+  _swigc__p_Mezzanine__ScriptLuaErrErrException,
+  _swigc__p_Mezzanine__ScriptLuaException,
+  _swigc__p_Mezzanine__ScriptLuaRuntimeException,
+  _swigc__p_Mezzanine__ScriptLuaYieldException,
   _swigc__p_Mezzanine__Sphere,
   _swigc__p_Mezzanine__StopWatchTimer,
+  _swigc__p_Mezzanine__SyntaxErrorException,
+  _swigc__p_Mezzanine__SyntaxErrorLuaException,
+  _swigc__p_Mezzanine__SyntaxErrorXMLException,
+  _swigc__p_Mezzanine__SyntaxErrorXPathException,
   _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,
   _swigc__p_Mezzanine__Threading__DefaultWorkUnit,
   _swigc__p_Mezzanine__Threading__iWorkUnit,
@@ -30277,6 +40082,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_long_long,
   _swigc__p_short,
   _swigc__p_signed_char,
+  _swigc__p_std__exception,
   _swigc__p_std__listT_std__pairT_std__string_std__string_t_t,
   _swigc__p_std__mapT_std__string_std__string_t,
   _swigc__p_std__pairT_bool_Mezzanine__Ray_t,

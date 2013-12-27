@@ -1969,6 +1969,10 @@ typedef struct{} LANGUAGE_OBJ;
         #undef GetCurrentTime
         #endif
 
+        #ifdef GetExceptionCode
+        #undef GetExceptionCode
+        #endif
+
         using namespace Mezzanine;
         using namespace Mezzanine::Threading;
 
