@@ -52,22 +52,6 @@
 
 namespace Mezzanine
 {
-    /// @brief The data storage for a a track.
-    /// @details If an interpolator requires a special container this can be re-implemented
-    /// to have the TrackBase use that instead. The type must implement at least:
-    ///     - size()
-    ///     - push_back(InterpolatableType)
-    ///     - clear()
-    ///     - A copy constructor
-    ///     - A constructor that accepts an iterator range
-    template <typename InterpolatableType, typename InterpolatorType>
-    class TrackStorage
-    {
-        public:
-            /// @brief The storage for type for the given type for a track.
-            typedef std::vector<InterpolatableType> Storage;
-    };
-
     /// @brief A base type that provides container features for different tracks
     /// @details Tracks are containers of a Discrete set of points, that are presented as
     /// a continuous range from 0 to 1. Interpolators are used to generate the data between
@@ -84,7 +68,15 @@ namespace Mezzanine
             typedef typename InterpolatorType::InterpolatableType InterpolatableType;
 
             /// @brief The type of the internal container storing the interpolatable data. This is a single point to change all the tracks.
-            typedef typename TrackStorage<InterpolatableType,InterpolatorType>::Storage DataContainerType;
+            /// @details If an interpolator requires a special container this can be re-implemented
+            /// to have the TrackBase use that instead. The type must implement at least:
+            ///     - size()
+            ///     - push_back(InterpolatableType)
+            ///     - clear()
+            ///     - A copy constructor
+            ///     - A constructor that accepts an iterator range
+            ///     - An iterator type
+            typedef typename InterpolatorType::Storage DataContainerType;
 
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatorType> SmoothIteratorType;
@@ -178,8 +170,6 @@ namespace Mezzanine
     class Track : public TrackBase<InterpolatorType>
     {
         protected:
-            InterpolatorType TrackInterpolator;
-
             typedef TrackBase<InterpolatorType> ParentType;
 
         public:
@@ -208,7 +198,7 @@ namespace Mezzanine
 
             virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
-                return TrackInterpolator.Interpolate(
+                return InterpolatorType::Interpolate(
                            ParentType::DataPoints.begin(),
                            ParentType::DataPoints.end(),
                            Percentage
@@ -242,6 +232,7 @@ namespace Mezzanine
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
 
+            /// @brief
             TrackLooped(typename DataContainerType::iterator Begin,
                         typename DataContainerType::iterator End)
                 : ParentType(Begin,End)

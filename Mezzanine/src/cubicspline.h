@@ -97,7 +97,7 @@ namespace Mezzanine
                 { return x < e.x; }
 
             /// @brief Sort Meta-data elements by time series locations
-            /// @param e The CubicSplineEleme to compare this one too.
+            /// @param xx The CubicSplineElement to compare this one too.
             bool operator<(const X& xx) const
                 { return x < xx; }
     };
@@ -105,106 +105,140 @@ namespace Mezzanine
     /// @brief A class for interpolating data with arbitrary
     /// @details Templated on type of X, Y. X and Y must have operator +, -, *, /. Y must have defined
     /// a constructor that takes a scalar.
-    template <typename X, typename Y>
+    template <typename TimeSeriesType, typename DataSeriesType>
     class MEZZ_LIB CubicSpline
     {
         public:
-            typedef CubicSplineElement<X,Y> element_type;
-            std::vector<element_type> mElements;
+            /// @brief The meta data type stored by this container.
+            typedef CubicSplineElement<TimeSeriesType,DataSeriesType> element_type;
+            /// @brief The underlying type of the container that actually stores the instances of ContainerType.
+            typedef std::vector<element_type> ContainerType;
+            /// @brief An iterator suitable for the metadata this spline uses.
+            typedef typename ContainerType::iterator iterator;
+            /// @brief An iterator suitable for the metadata this spline uses that will not allow changes to the underlying data.
+            typedef typename ContainerType::const_iterator const_iterator;
 
-            /** An empty, invalid spline */
+            /// @brief The actual container of Metadata.
+            ContainerType DataElements;
+
+            /// @brief Create an empty, invalid spline
             CubicSpline() {}
 
-            /** A spline with x and y values */
-            CubicSpline(const std::vector<X>& x, const std::vector<Y>& y)
+            /// @brief Create a Spline with a time series spread evenly between 0 and 1.
+            /// @param y The data series.
+            CubicSpline(const std::vector<DataSeriesType>& y)
+            {
+                std::vector<TimeSeriesType> x;
+
+
+                CalculateElements(x,y);
+            }
+
+            /// @brief A spline with custom time and data series values
+            CubicSpline(const std::vector<TimeSeriesType>& x, const std::vector<DataSeriesType>& y)
                 { CalculateElements(x,y); }
 
             virtual ~CubicSpline() {}
 
-            Y operator[](const X& x) const {
-                return interpolate(x);
-            }
+            DataSeriesType operator[](const TimeSeriesType& x) const
+                { return interpolate(x); }
 
-            Y interpolate(const X&x) const {
-                if (mElements.size() == 0) return Y();
-
+            DataSeriesType interpolate(const TimeSeriesType&x) const
+            {
+                if (DataElements.size() == 0)
+                    { return DataSeriesType(); }
                 typename std::vector<element_type>::const_iterator it;
-                it = std::lower_bound(mElements.begin(), mElements.end(), element_type(x));
-                if (it != mElements.begin()) {
-                    it--;
-                }
-
+                it = std::lower_bound(DataElements.begin(), DataElements.end(), element_type(x));
+                if (it != DataElements.begin())
+                    { it--; }
                 return it->eval(x);
             }
 
-            std::vector<Y> operator[](const std::vector<X>& xx) const {
-                return interpolate(xx);
+            std::vector<DataSeriesType> operator[](const std::vector<TimeSeriesType>& xx) const
+                { return interpolate(xx); }
+
+            iterator begin()
+                { return DataElements.begin(); }
+            iterator end()
+                { return DataElements.end(); }
+
+            const_iterator begin() const
+                { return DataElements.begin(); }
+            const_iterator end() const
+                { return DataElements.end(); }
+
+            void push_back(const DataSeriesType& DataToAdd)
+            {
+
             }
 
             /* Evaluate at multiple locations, assuming xx is sorted ascending */
-            std::vector<Y> interpolate(const std::vector<X>& xx) const {
-                if (mElements.size() == 0) return std::vector<Y>(xx.size());
+            std::vector<DataSeriesType> interpolate(const std::vector<TimeSeriesType>& xx) const
+            {
+                if (DataElements.size() == 0)
+                    { return std::vector<DataSeriesType>(xx.size()); }
 
-                typename std::vector<X>::const_iterator it;
+                typename std::vector<TimeSeriesType>::const_iterator it;
                 typename std::vector<element_type>::const_iterator it2;
-                it2 = mElements.begin();
-                std::vector<Y> ys;
-                for (it = xx.begin(); it != xx.end(); it++) {
-                    it2 = std::lower_bound(it2, mElements.end(), element_type(*it));
-                    if (it2 != mElements.begin()) {
-                        it2--;
-                    }
+                it2 = DataElements.begin();
+                std::vector<DataSeriesType> ys;
+                for (it = xx.begin(); it != xx.end(); it++)
+                {
+                    it2 = std::lower_bound(it2, DataElements.end(), element_type(*it));
+                    if (it2 != DataElements.begin())
+                        { it2--; }
 
                     ys.push_back(it2->eval(*it));
                 }
-
                 return ys;
             }
 
         protected:
 
-            void CalculateElements(const std::vector<X>& x, const std::vector<Y>& y)
+            void CalculateElements(const std::vector<TimeSeriesType>& x, const std::vector<DataSeriesType>& y)
             {
                 if (x.size() != y.size())
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"data series and time series must have the same count of elemens."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Data series and time series must have the same count of elements."); }
 
                 if (x.size() < 3)
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION,"Must have at least three points for interpolation."); }
 
-                typedef typename std::vector<X>::difference_type size_type;
+                DataElements.clear();
+
+                typedef typename std::vector<TimeSeriesType>::difference_type size_type;
 
                 size_type n = y.size() - 1;
 
-                std::vector<Y> b(n), d(n), a(n), c(n+1), l(n+1), u(n+1), z(n+1);
-                std::vector<X> h(n+1);
+                std::vector<DataSeriesType> b(n), d(n), a(n), c(n+1), l(n+1), u(n+1), z(n+1);
+                std::vector<TimeSeriesType> h(n+1);
 
-                l[0] = Y(1);
-                u[0] = Y(0);
-                z[0] = Y(0);
+                l[0] = DataSeriesType(1);
+                u[0] = DataSeriesType(0);
+                z[0] = DataSeriesType(0);
                 h[0] = x[1] - x[0];
 
                 for (size_type i = 1; i < n; i++)
                 {
                     h[i] = x[i+1] - x[i];
-                    l[i] = Y(2 * (x[i+1] - x[i-1])) - Y(h[i-1]) * u[i-1];
-                    u[i] = Y(h[i]) / l[i];
-                    a[i] = (Y(3) / Y(h[i])) * (y[i+1] - y[i]) - (Y(3) / Y(h[i-1])) * (y[i] - y[i-1]);
-                    z[i] = (a[i] - Y(h[i-1]) * z[i-1]) / l[i];
+                    l[i] = DataSeriesType(2 * (x[i+1] - x[i-1])) - DataSeriesType(h[i-1]) * u[i-1];
+                    u[i] = DataSeriesType(h[i]) / l[i];
+                    a[i] = (DataSeriesType(3) / DataSeriesType(h[i])) * (y[i+1] - y[i]) - (DataSeriesType(3) / DataSeriesType(h[i-1])) * (y[i] - y[i-1]);
+                    z[i] = (a[i] - DataSeriesType(h[i-1]) * z[i-1]) / l[i];
                 }
 
-                l[n] = Y(1);
-                z[n] = c[n] = Y(0);
+                l[n] = DataSeriesType(1);
+                z[n] = c[n] = DataSeriesType(0);
 
                 for (size_type j = n-1; j >= 0; j--)
                 {
                     c[j] = z[j] - u[j] * c[j+1];
-                    b[j] = (y[j+1] - y[j]) / Y(h[j]) - (Y(h[j]) * (c[j+1] + Y(2) * c[j])) / Y(3);
-                    d[j] = (c[j+1] - c[j]) / Y(3 * h[j]);
+                    b[j] = (y[j+1] - y[j]) / DataSeriesType(h[j]) - (DataSeriesType(h[j]) * (c[j+1] + DataSeriesType(2) * c[j])) / DataSeriesType(3);
+                    d[j] = (c[j+1] - c[j]) / DataSeriesType(3 * h[j]);
                 }
 
                 for (size_type i = 0; i < n; i++)
                 {
-                    mElements.push_back(element_type(x[i], y[i], b[i], c[i], d[i]));
+                    DataElements.push_back(element_type(x[i], y[i], b[i], c[i], d[i]));
                 }
             }
     };

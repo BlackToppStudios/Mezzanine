@@ -73,6 +73,8 @@ namespace Mezzanine
             /// @brief The type this will interpolate
             /// @note All Interpolators need to declare an InterpolatableType
             typedef T InterpolatableType;
+            /// @brief The storage to use with thison tracks
+            typedef std::vector<InterpolatableType> Storage;
 
             /// @brief Get a value at a given location between exactly two others.
             /// @param Begin The data point at one end of line segment
@@ -192,6 +194,8 @@ namespace Mezzanine
             /// @brief The type this will interpolate
             /// @note All Interpolators need to declare an InterpolatableType
             typedef T InterpolatableType;
+            /// @brief The storage to use with thison tracks
+            typedef std::vector<InterpolatableType> Storage;
 
             /// @brief Get a value at a given location between two others.
             /// @details This uses Linear interpolation recursively to produce a single curve
@@ -227,7 +231,7 @@ namespace Mezzanine
     /// more smooth that the others, and be at least as intuitive as the linear version:
     ///     - Data points, will be valid interpolated values.
     ///     - There are no "Corners".
-    ///     - Execution time is better than N^2.
+    ///     - Execution time is O^N.
     ///     - This shape defined by interpolating a set of these *will* leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
     ///     - Will be able to interpolated arbitrary sets of data points.
     template <typename T>
@@ -237,6 +241,8 @@ namespace Mezzanine
             /// @brief The type this will interpolate
             /// @note All Interpolators need to declare an InterpolatableType
             typedef T InterpolatableType;
+            /// @brief The storage for type for a cubic spline
+            typedef CubicSpline<Real,InterpolatableType> Storage;
 
             /// @brief Calculates the desired location on a cubic spline
             /// @param Begin An iterator to the beginning of points to interpolate
@@ -261,15 +267,6 @@ namespace Mezzanine
                 CubicSpline<Real,T> Spliney(Spacing,Points);
                 return Spliney.interpolate(Location);
             }
-    };
-
-    /// @brief Indicate to the track base the datastorage requires
-    template <typename InterpolatableType>
-    class TrackStorage <InterpolatableType, SlowSplineInterpolator<InterpolatableType> >
-    {
-        public:
-            /// @brief The storage for type for a cubic
-            typedef CubicSpline<Real,InterpolatableType> Storage;
     };
 
 
