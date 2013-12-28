@@ -110,13 +110,13 @@ namespace Mezzanine
     Physics::GhostProxy* AreaEffect::GetGhostProxy() const
         { return this->Ghost; }
 
-    Bool AreaEffect::IsInWorld() const
+    Boolean AreaEffect::IsInWorld() const
         { return this->Ghost->IsInWorld(); }
 
-    Bool AreaEffect::IsStatic() const
+    Boolean AreaEffect::IsStatic() const
         { return this->Ghost->IsStatic(); }
 
-    Bool AreaEffect::IsKinematic() const
+    Boolean AreaEffect::IsKinematic() const
         { return this->Ghost->IsKinematic(); }
 
     void AreaEffect::GetProxies(ProxyContainer& Proxies)

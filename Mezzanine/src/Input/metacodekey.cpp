@@ -137,7 +137,7 @@ namespace Mezzanine
         const MetaCode& MetaCodeKey::GetKeyData() const
             { return MCode; }
 
-        Bool MetaCodeKey::operator<(const MetaCodeKey& Other) const
+        Boolean MetaCodeKey::operator<(const MetaCodeKey& Other) const
         {
             if( this->MCode.GetDeviceType() == Other.MCode.GetDeviceType() ) {
                 return Compare(MCode,Other.MCode);

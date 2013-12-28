@@ -105,30 +105,30 @@ namespace Mezzanine
         /// @brief Equality Comparison Operator.
         /// @param Vec2 This is the other Mezzanine::Vector2 to compare with.
         /// @return Returns true if X==X and Y==Y, otherwise returns false.
-        Bool operator==(const Mezzanine::Vector2& Vec2) const;
+        Boolean operator==(const Mezzanine::Vector2& Vec2) const;
         /// @brief Equality Comparison Operator.
         /// @param Vec2 This is the other Mezzanine::Vector2.
         /// @return Returns true if X!=X or Y!=Y, otherwise returns false.
-        Bool operator!=(const Mezzanine::Vector2& Vec2) const;
+        Boolean operator!=(const Mezzanine::Vector2& Vec2) const;
         /// @brief Equality Comparison Operator.
         /// @param Vec2 This is the other Ogre::Vector2.
         /// @return Returns true if X==X and Y==Y, otherwise returns false.
-        Bool operator==(const Ogre::Vector2& Vec2) const;
+        Boolean operator==(const Ogre::Vector2& Vec2) const;
         /// @brief Equality Comparison Operator.
         /// @param Vec2 This is the other Ogre::Vector2.
         /// @return Returns true if X!=X or Y!=Y, otherwise returns false.
-        Bool operator!=(const Ogre::Vector2& Vec2) const;
+        Boolean operator!=(const Ogre::Vector2& Vec2) const;
 
         /// @brief Less or Equal Comparison Operator.
         /// @details Returns true if X<=X and Y<=Y. If any of those do not hold this returns false.
         /// @param Vec This is the other Mezzanine::Vector2.
         /// @note Used primarily for testing. This is not implement for use with other kinds of Vector3 implementations as it is widely considered useless.
-        Bool operator<= (const Mezzanine::Vector2 &Vec) const;
+        Boolean operator<= (const Mezzanine::Vector2 &Vec) const;
         /// @brief Greater than or Equal Comparison Operator.
         /// @details Returns true if X>=X and Y>=Y . If any of those do not hold this returns false.
         /// @param Vec This is the other Mezzanine::Vector2.
         /// @note Used primarily for testing. This is not implement for use with other kinds of Vector3 implementations as it is widely considered useless.
-        Bool operator>= (const Mezzanine::Vector2 &Vec) const;
+        Boolean operator>= (const Mezzanine::Vector2 &Vec) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Vector2 Arithmetic with Real

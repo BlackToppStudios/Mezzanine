@@ -78,7 +78,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Bool AxisAlignedBox::IsZero() const
+    Boolean AxisAlignedBox::IsZero() const
     {
         return ( this->MinExt.X >= this->MaxExt.X &&
                  this->MinExt.Y >= this->MaxExt.Y &&
@@ -116,16 +116,16 @@ namespace Mezzanine
         this->MaxExt.Ceil(Other.MaxExt);
     }
 
-    Bool AxisAlignedBox::IsInside(const Vector3& ToCheck) const
+    Boolean AxisAlignedBox::IsInside(const Vector3& ToCheck) const
         { return MathTools::IsInside(*this,ToCheck); }
 
-    Bool AxisAlignedBox::IsOverlapping(const Sphere& ToCheck) const
+    Boolean AxisAlignedBox::IsOverlapping(const Sphere& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
 
-    Bool AxisAlignedBox::IsOverlapping(const AxisAlignedBox& ToCheck) const
+    Boolean AxisAlignedBox::IsOverlapping(const AxisAlignedBox& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
 
-    Bool AxisAlignedBox::IsOverlapping(const Plane& ToCheck) const
+    Boolean AxisAlignedBox::IsOverlapping(const Plane& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
 
     AxisAlignedBox::RayTestResult AxisAlignedBox::Intersects(const Ray& ToCheck) const
@@ -217,22 +217,22 @@ namespace Mezzanine
     void AxisAlignedBox::operator=(const Ogre::AxisAlignedBox& InternalAABB)
         { this->ExtractOgreAABB(InternalAABB); }
 
-    Bool AxisAlignedBox::operator>(const AxisAlignedBox& Other) const
+    Boolean AxisAlignedBox::operator>(const AxisAlignedBox& Other) const
         { return ( this->GetVolume() > Other.GetVolume() ); }
 
-    Bool AxisAlignedBox::operator<(const AxisAlignedBox& Other) const
+    Boolean AxisAlignedBox::operator<(const AxisAlignedBox& Other) const
         { return ( this->GetVolume() < Other.GetVolume() ); }
 
-    Bool AxisAlignedBox::operator>=(const AxisAlignedBox& Other) const
+    Boolean AxisAlignedBox::operator>=(const AxisAlignedBox& Other) const
         { return ( this->GetVolume() >= Other.GetVolume() ); }
 
-    Bool AxisAlignedBox::operator<=(const AxisAlignedBox& Other) const
+    Boolean AxisAlignedBox::operator<=(const AxisAlignedBox& Other) const
         { return ( this->GetVolume() <= Other.GetVolume() ); }
 
-    Bool AxisAlignedBox::operator==(const AxisAlignedBox& Other) const
+    Boolean AxisAlignedBox::operator==(const AxisAlignedBox& Other) const
         { return ( this->MinExt == Other.MinExt && this->MaxExt == Other.MaxExt ); }
 
-    Bool AxisAlignedBox::operator!=(const AxisAlignedBox& Other) const
+    Boolean AxisAlignedBox::operator!=(const AxisAlignedBox& Other) const
         { return ( this->MinExt != Other.MinExt || this->MaxExt != Other.MaxExt ); }
 }//Mezzanine
 

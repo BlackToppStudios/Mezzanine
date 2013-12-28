@@ -63,7 +63,7 @@ namespace
     /// @param Box The AABB to check for intersection.
     /// @param PosPair A pair for the near and far distances in the check so far.
     /// @return Returns false if the check has succeeded in ruling out an intersection, true otherwise.
-    Mezzanine::Bool CalculateAxis(const Mezzanine::Whole Axis, const Mezzanine::Ray& Cast, const Mezzanine::AxisAlignedBox& Box, SegmentPosPair& PosPair)
+    Mezzanine::Boolean CalculateAxis(const Mezzanine::Whole Axis, const Mezzanine::Ray& Cast, const Mezzanine::AxisAlignedBox& Box, SegmentPosPair& PosPair)
     {
         Mezzanine::Vector3 RayDir = Cast.GetDirection();
         Mezzanine::Real Denom = 1 / RayDir[Axis];
@@ -179,19 +179,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Intersection Query
 
-        Bool IsInside(const AxisAlignedBox& Box, const Vector3& Point)
+        Boolean IsInside(const AxisAlignedBox& Box, const Vector3& Point)
         {
             return ( Box.MinExt.X <= Point.X && Box.MaxExt.X >= Point.X &&
                      Box.MinExt.Y <= Point.Y && Box.MaxExt.Y >= Point.Y &&
                      Box.MinExt.Z <= Point.Z && Box.MaxExt.Z >= Point.Z );
         }
 
-        Bool IsInside(const Sphere& Ball, const Vector3& Point)
+        Boolean IsInside(const Sphere& Ball, const Vector3& Point)
         {
             return ( Ball.Center.Distance(Point) <= Ball.Radius );
         }
 
-        Bool Overlap(const AxisAlignedBox& Box, const Sphere& Ball)
+        Boolean Overlap(const AxisAlignedBox& Box, const Sphere& Ball)
         {
             // Arvo's algorithm
             Real SquareVar, Dist = 0;
@@ -208,29 +208,29 @@ namespace Mezzanine
             return ( Dist <= Ball.Radius * Ball.Radius );
         }
 
-        Bool Overlap(const AxisAlignedBox& Box, const Plane& Surface)
+        Boolean Overlap(const AxisAlignedBox& Box, const Plane& Surface)
         {
             return ( Plane::S_Both == Surface.GetSide(Box.GetCenter(),Box.GetHalfSize()) );
         }
 
-        Bool Overlap(const Plane& Surface, const Sphere& Ball)
+        Boolean Overlap(const Plane& Surface, const Sphere& Ball)
         {
             return ( MathTools::Fabs( Surface.GetDistance( Ball.Center ) ) <= Ball.Radius );
         }
 
-        Bool Overlap(const AxisAlignedBox& Box1, const AxisAlignedBox& Box2)
+        Boolean Overlap(const AxisAlignedBox& Box1, const AxisAlignedBox& Box2)
         {
             return !( Box1.MinExt.X > Box2.MaxExt.X || Box1.MinExt.Y > Box2.MaxExt.Y || Box1.MinExt.Z > Box2.MaxExt.Z ||
                       Box1.MaxExt.X < Box2.MinExt.X || Box1.MaxExt.Y < Box2.MinExt.Y || Box1.MaxExt.Z < Box2.MinExt.Z );
         }
 
-        Bool Overlap(const Sphere& Ball1, const Sphere& Ball2)
+        Boolean Overlap(const Sphere& Ball1, const Sphere& Ball2)
         {
             Real Dist = Ball1.Center.Distance(Ball2.Center);
             return ( Dist <= Ball1.Radius + Ball2.Radius );
         }
 
-        Bool Overlap(const Plane& Surface1, const Plane& Surface2)
+        Boolean Overlap(const Plane& Surface1, const Plane& Surface2)
         {
             return ( ( Surface1.Normal == Surface2.Normal ? ( Surface1.Distance == Surface2.Distance ) : true ) );
         }

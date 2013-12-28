@@ -97,7 +97,7 @@ namespace Mezzanine
 
     void WorldProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
     {
-        Bool WasInWorld = false;
+        Boolean WasInWorld = false;
         XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
         if( !InWorldAttrib.Empty() ) {
             WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );

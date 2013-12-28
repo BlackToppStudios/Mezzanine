@@ -182,7 +182,7 @@ namespace Mezzanine
     /// @typedef Bool
     /// @brief Generally acts a single bit, true or false
     /// @details Normally just a bool, but on some platform alignment matters more than size, so this could be as large as one cpu word in size.
-    typedef bool Bool;
+    typedef bool Boolean;
 
     /// @typedef StringStream
     /// @brief A Datatype used for streaming operations with strings.
@@ -307,8 +307,8 @@ namespace Mezzanine
     /// @brief Converts whatever to a Bool as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
     /// @return A Bool with the converted data
-    template<class T> Bool ToBool( const T& Datum )
-        { return ConvertTo<Bool>(Datum); }
+    template<class T> Boolean ToBool( const T& Datum )
+        { return ConvertTo<Boolean>(Datum); }
 
     /// @brief Converts whatever to a float as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted

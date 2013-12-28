@@ -77,7 +77,7 @@ namespace Mezzanine
             virtual const String& GetName() const
                 { return DefaultColourTag::TagName; }
             /// @copydoc MarkupTag::IsRangeTag() const
-            virtual Bool IsRangeTag() const
+            virtual Boolean IsRangeTag() const
                 { return true; }
 
             /// @copydoc MarkupTag::Process(NameValuePairMap&, CharacterTraits&, TextLayer*) const
@@ -113,7 +113,7 @@ namespace Mezzanine
             virtual const String& GetName() const
                 { return DefaultFontTag::TagName; }
             /// @copydoc MarkupTag::IsRangeTag() const
-            virtual Bool IsRangeTag() const
+            virtual Boolean IsRangeTag() const
                 { return true; }
 
             /// @copydoc MarkupTag::Process(NameValuePairMap&, CharacterTraits&, TextLayer*) const
@@ -148,7 +148,7 @@ namespace Mezzanine
             virtual const String& GetName() const
                 { return DefaultSpriteTag::TagName; }
             /// @copydoc MarkupTag::IsRangeTag() const
-            virtual Bool IsRangeTag() const
+            virtual Boolean IsRangeTag() const
                 { return false; }
 
             /// @copydoc MarkupTag::Process(NameValuePairMap&, CharacterTraits&, TextLayer*) const

@@ -41,7 +41,7 @@ public:
     virtual void ApplyEffect();
     /// @brief Gets whether or not all objects in this zone are at rest.
     /// @return Returns true if all objects in this score zone are at rest, false otherwise.
-    virtual Bool AllObjectsAtRest();
+    virtual Boolean AllObjectsAtRest();
 
     ///////////////////////////////////////////////////////////////////////////////
     // LevelZone Properties

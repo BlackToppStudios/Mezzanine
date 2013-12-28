@@ -100,10 +100,10 @@ namespace Mezzanine
         /// @remarks Changing this value while the field is in the world and active is not recommended.
         /// @param WorldGravity If true, then forces exerted by this field will be added to the world gravity, otherwise
         /// world gravity for objects inside will be set to zero.
-        virtual void SetAllowWorldGravity(Bool WorldGravity);
+        virtual void SetAllowWorldGravity(Boolean WorldGravity);
         /// @brief Gets whether or not world gravity is is removed for objects inside this field.
         /// @return Returns a bool indicating whether objects inside are affected by world gravity.
-        virtual Bool GetAllowWorldGravity() const;
+        virtual Boolean GetAllowWorldGravity() const;
 
         /// @brief Sets the attenuation for this field.
         /// @param Amount The amount of force that is dropped off per 1 unit of distance objects are from the AE center.

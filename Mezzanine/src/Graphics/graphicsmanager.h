@@ -167,7 +167,7 @@ namespace Mezzanine
             Graphics::RenderSystem CurrRenderSys;
             /// @internal
             /// @brief Stores whether the internal graphics subsystem has been initialized.
-            Bool OgreBeenInitialized;
+            Boolean OgreBeenInitialized;
 
             /// @internal
             /// @brief Construct the manager and set sane defaults.

@@ -102,16 +102,16 @@ namespace Mezzanine
             MenuButton* PopButton;
             /// @internal
             /// @brief Stores whether or not this Entry will automatically be hidden when another entry is pushed onto the stack after it.
-            Bool AutoHideEntry;
+            Boolean AutoHideEntry;
 
             /// @internal
             /// @brief Pushes this MenuEntry onto the stack if one is available.
             /// @return Returns true if this MenuEntry was successfully pushed onto the stack, false otherwise.
-            virtual Bool PushOntoStack();
+            virtual Boolean PushOntoStack();
             /// @internal
             /// @brief Pops this MenuEntry from the stack if one is available.
             /// @return Returns true if this MenuEntry was successfully popped from the stack, false otherwise.
-            virtual Bool PopFromStack();
+            virtual Boolean PopFromStack();
         //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
@@ -137,7 +137,7 @@ namespace Mezzanine
 
             /// @brief Gets whether or not this is the Root of the MenuEntry hierarchy.
             /// @return Returns true if this MenuEntry has no parent entry, false otherwise.
-            virtual Bool IsRootEntry() const;
+            virtual Boolean IsRootEntry() const;
             /// @brief Gets the role of the specified MenuButton for this MenuEntry.
             /// @param EntryButton The button to check this MenuEntry for.
             /// @return Returns a ButtonConfig enum value representing how the specified MenuButton is being used by this MenuEntry.
@@ -153,7 +153,7 @@ namespace Mezzanine
             // Visibility and Priority Methods
 
             /// @copydoc Renderable::SetVisible(Bool)
-            virtual void SetVisible(Bool CanSee);
+            virtual void SetVisible(Boolean CanSee);
             /// @copydoc Renderable::Show()
             virtual void Show();
             /// @copydoc Renderable::Hide()
@@ -164,10 +164,10 @@ namespace Mezzanine
 
             /// @brief Sets whether or not thie window should auto hide when another window is added to the menu stack.
             /// @param AutoHide whether or not to enable auto hiding for this menu window.
-            virtual void SetAutoHide(Bool AutoHide);
+            virtual void SetAutoHide(Boolean AutoHide);
             /// @brief Gets wether or not this window is set to auto hide when another window is added to the menu stack.
             /// @return Returns a bool indicating whether or not AutoHide is enabled on this menu window.
-            virtual Bool GetAutoHide() const;
+            virtual Boolean GetAutoHide() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Menu Configuration
@@ -220,7 +220,7 @@ namespace Mezzanine
             /// @copydoc QuadRenderable::_NotifyParenthood(QuadRenderable*)
             virtual void _NotifyParenthood(QuadRenderable* NewParent);
             /// @copydoc QuadRenderable::_HasAvailableRenderData() const
-            virtual Bool _HasAvailableRenderData() const;
+            virtual Boolean _HasAvailableRenderData() const;
         };//MenuEntry
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -118,7 +118,7 @@ namespace Mezzanine
         virtual void Stop();
         /// @brief Gets Whether or not this timer is currently running.
         /// @return Returns true if this timer is not currently active, false otherwise.
-        virtual Bool IsStopped();
+        virtual Boolean IsStopped();
         /// @brief Sets the current values to their initial values.
         virtual void Reset();
         /// @brief Gets the type of timer this is.
@@ -138,10 +138,10 @@ namespace Mezzanine
         MaxInt GoalTime;
         /// @internal
         /// @brief Wether or not this timer will reset itself when it reaches it's goal.
-        Bool ResetAtGoal;
+        Boolean ResetAtGoal;
         /// @internal
         /// @brief Checks to see if the goal has been attained as dictated by the type of timer this is.
-        virtual Bool GoalReached() = 0;
+        virtual Boolean GoalReached() = 0;
     public:
         /// @brief Class constructor.
         GoalTimer();
@@ -156,7 +156,7 @@ namespace Mezzanine
         virtual void SetAutoReset(const bool AutoReset);
         /// @brief Gets whether or not this Timer will reset when it reaches it's goal.
         /// @return Returns true if this timer will automatically reset when it reaches it's goal.
-        virtual Bool GetAutoReset() const;
+        virtual Boolean GetAutoReset() const;
 
         /// @brief Sets the goal time in Microseconds.
         /// @param Goal The value to set as goal time in Microseconds.
@@ -182,7 +182,7 @@ namespace Mezzanine
         /// @copydoc Timer::Update()
         virtual void Update();
         /// @copydoc GoalTimer::GoalReached()
-        virtual Bool GoalReached();
+        virtual Boolean GoalReached();
     public:
         /// @brief Class constructor.
         StopWatchTimer();
@@ -206,7 +206,7 @@ namespace Mezzanine
         /// @copydoc Timer::Update()
         virtual void Update();
         /// @copydoc GoalTimer::GoalReached()
-        virtual Bool GoalReached();
+        virtual Boolean GoalReached();
     public:
         /// @brief Class constructor.
         AlarmTimer();

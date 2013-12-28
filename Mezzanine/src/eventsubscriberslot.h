@@ -153,7 +153,7 @@ namespace Mezzanine
         FunctorDefinition* Functor;
         /// @internal
         /// @brief Stores whether or not the functor is to be deleted when this subscriber is destructed.
-        Bool CleanUp;
+        Boolean CleanUp;
     public:
         /// @brief Class constructor.
         /// @param Ev The event this subscriber slot belongs to.
