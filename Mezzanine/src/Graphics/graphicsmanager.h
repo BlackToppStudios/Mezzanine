@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -167,7 +167,7 @@ namespace Mezzanine
             Graphics::RenderSystem CurrRenderSys;
             /// @internal
             /// @brief Stores whether the internal graphics subsystem has been initialized.
-            Bool OgreBeenInitialized;
+            Boolean OgreBeenInitialized;
 
             /// @internal
             /// @brief Construct the manager and set sane defaults.

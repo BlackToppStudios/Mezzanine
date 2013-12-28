@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -65,7 +65,7 @@ namespace Mezzanine
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.  @n @n
         /// The first member stores whether or not there was a hit.  The second member stores ray containing the points where the ray entered and exited the sphere.
-        typedef std::pair<Bool,Ray> RayTestResult;
+        typedef std::pair<Boolean,Ray> RayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -102,19 +102,19 @@ namespace Mezzanine
         /// @brief Checks to see if a point is inside this sphere.
         /// @param ToCheck The location to check to see if it is within this sphere.
         /// @return Returns true if the point provided is within this sphere, false otherwise.
-        Bool IsInside(const Vector3& ToCheck) const;
+        Boolean IsInside(const Vector3& ToCheck) const;
         /// @brief Checks to see if another sphere overlaps with this one.
         /// @param ToCheck The other sphere to check for overlap.
         /// @return Returns true if the provided sphere overlaps with this sphere, false otherwise.
-        Bool IsOverlapping(const Sphere& ToCheck) const;
+        Boolean IsOverlapping(const Sphere& ToCheck) const;
         /// @brief Checks to see if an AABB overlaps with this sphere.
         /// @param ToCheck The AABB to check for overlap.
         /// @return Returns true if the AABB overlaps with this sphere, false otherwise.
-        Bool IsOverlapping(const AxisAlignedBox& ToCheck) const;
+        Boolean IsOverlapping(const AxisAlignedBox& ToCheck) const;
         /// @brief Checks to see if a plane intersects this sphere.
         /// @param ToCheck The plane to check for intersection.
         /// @return Returns true if the provided plane intersects with this sphere, false otherwise.
-        Bool IsOverlapping(const Plane& ToCheck) const;
+        Boolean IsOverlapping(const Plane& ToCheck) const;
         /// @brief Checks to see if a ray intersects this sphere.
         /// @param ToCheck The ray to check for a hit.
         /// @return Returns a std::pair containing whether or not the ray hit, and if it did the subsection of the ray that went through the sphere.
@@ -159,31 +159,31 @@ namespace Mezzanine
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
         /// @return Returns true if this Sphere is larger than the other provided Sphere, false otherwise.
-        Bool operator>(const Sphere& Other) const;
+        Boolean operator>(const Sphere& Other) const;
         /// @brief Greater-than or equals-to operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
         /// @return Returns true if this Sphere is larger than or equal to the other provided Sphere, false otherwise.
-        Bool operator<(const Sphere& Other) const;
+        Boolean operator<(const Sphere& Other) const;
         /// @brief Less-than operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
         /// @return Returns true if this Sphere is smaller than the other provided Sphere, false otherwise.
-        Bool operator>=(const Sphere& Other) const;
+        Boolean operator>=(const Sphere& Other) const;
         /// @brief Less-than or equals-to operator.
         /// @note This operator compares the radii of both spheres.
         /// @param Other The other Sphere to compare with.
         /// @return Returns true if this Sphere is smaller than or equal to the other provided Sphere, false otherwise.
-        Bool operator<=(const Sphere& Other) const;
+        Boolean operator<=(const Sphere& Other) const;
 
         /// @brief Equality operator.
         /// @param Other The other Sphere to compare with.
         /// @return Returns true if this Sphere is the same as the other provided Sphere, false otherwise.
-        Bool operator==(const Sphere& Other) const;
+        Boolean operator==(const Sphere& Other) const;
         /// @brief Inequality operator.
         /// @param Other The other Sphere to compare with.
         /// @return Returns true if this Sphere is not the same as the other provided Sphere, false otherwise.
-        Bool operator!=(const Sphere& Other) const;
+        Boolean operator!=(const Sphere& Other) const;
     };//Sphere
 }//Mezzanine
 

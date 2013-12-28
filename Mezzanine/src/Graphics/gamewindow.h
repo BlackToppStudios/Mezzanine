@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -230,19 +230,19 @@ namespace Mezzanine
             void EnableVsync(bool Enable);
             /// @brief Gets whether or not vsync is currently enabled on this window.
             /// @return Returns true if vsync is currently enabled, false otherwise.
-            Bool VsyncEnabled() const;
+            Boolean VsyncEnabled() const;
             /// @brief Hides (shows) the window.
             /// @param Hidden Whether or not to hide the window.
             void SetHidden(bool Hidden);
             /// @brief Gets whether this window is hidden.
             /// @return Returns true if this window is being hidden, false otherwise.
-            Bool IsHidden() const;
+            Boolean IsHidden() const;
             /// @brief Gets whether or not this window has a resizeable border.
             /// @return Returns true if this window has a border when not fullscreen and it can be resized, false otherwise.
-            Bool BorderIsResizeable() const;
+            Boolean BorderIsResizeable() const;
             /// @brief Gets whether this window is borderless.
             /// @return Returns true if this window has no border, false otherwise.
-            Bool IsBorderless() const;
+            Boolean IsBorderless() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Window Stats Methods

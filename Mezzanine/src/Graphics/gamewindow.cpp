@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -392,19 +392,19 @@ namespace Mezzanine
         void GameWindow::EnableVsync(bool Enable)
             { this->OgreWindow->setVSyncEnabled(Enable); }
 
-        Bool GameWindow::VsyncEnabled() const
+        Boolean GameWindow::VsyncEnabled() const
             { return this->OgreWindow->isVSyncEnabled(); }
 
         void GameWindow::SetHidden(bool Hidden)
             { this->OgreWindow->setHidden(Hidden); }
 
-        Bool GameWindow::IsHidden() const
+        Boolean GameWindow::IsHidden() const
             { return this->OgreWindow->isHidden(); }
 
-        Bool GameWindow::BorderIsResizeable() const
+        Boolean GameWindow::BorderIsResizeable() const
             { return (this->CreationFlags & GameWindow::WF_Resizeable); }
 
-        Bool GameWindow::IsBorderless() const
+        Boolean GameWindow::IsBorderless() const
             { return (this->CreationFlags & GameWindow::WF_Borderless); }
 
         ///////////////////////////////////////////////////////////////////////////////

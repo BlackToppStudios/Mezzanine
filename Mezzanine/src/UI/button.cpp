@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -80,7 +80,7 @@ namespace Mezzanine
         Button::~Button()
             {  }
 
-        Bool Button::HandleInputImpl(const Input::MetaCode& Code)
+        Boolean Button::HandleInputImpl(const Input::MetaCode& Code)
         {
             // Check to see if this is an activation code
             if( this->ActivationCodes.count( Input::MetaCodeKey(Code) ) )
@@ -89,7 +89,7 @@ namespace Mezzanine
                 if( Code.IsMouseButton() ) {
                     if( this->IsHovered() && Input::BUTTON_PRESSING == Code.GetMetaValue() )
                     {
-                        Bool Result = this->Activate();
+                        Boolean Result = this->Activate();
                         if(Result)
                             this->MouseActivated = true;
                         return true;
@@ -132,14 +132,14 @@ namespace Mezzanine
             }
         }
 
-        Bool Button::VertifyActivationCode(const Input::InputCode Code)
+        Boolean Button::VertifyActivationCode(const Input::InputCode Code)
         {
             return (Input::KEY_FIRST < Code && Input::KEY_LAST > Code) ||
                    (Input::MOUSEBUTTON_FIRST <= Code && Input::MOUSEBUTTON_LAST >= Code) ||
                    (Input::CONTROLLERBUTTON_FIRST <= Code && Input::CONTROLLERBUTTON_LAST >= Code);
         }
 
-        Bool Button::Activate()
+        Boolean Button::Activate()
         {
             if( this->Activation == AS_Activated )
                 return false;
@@ -151,7 +151,7 @@ namespace Mezzanine
             return true;
         }
 
-        Bool Button::Deactivate()
+        Boolean Button::Deactivate()
         {
             if( this->Activation == AS_Deactivated )
                 return false;
@@ -166,7 +166,7 @@ namespace Mezzanine
             return true;
         }
 
-        Bool Button::Standby()
+        Boolean Button::Standby()
         {
             if(this->Activation == AS_Activation_Standby)
                 return false;
@@ -185,13 +185,13 @@ namespace Mezzanine
         const StopWatchTimer& Button::GetLockoutTimer() const
             { return this->LockoutTimer; }
 
-        Bool Button::IsActivated() const
+        Boolean Button::IsActivated() const
             { return ( this->Activation == AS_Activated ); }
 
-        Bool Button::IsOnStandby() const
+        Boolean Button::IsOnStandby() const
             { return ( this->Activation == AS_Activation_Standby ); }
 
-        Bool Button::IsDeactivated() const
+        Boolean Button::IsDeactivated() const
             { return ( this->Activation == AS_Deactivated ); }
 
         const String& Button::GetTypeName() const

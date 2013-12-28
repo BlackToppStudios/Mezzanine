@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -117,7 +117,7 @@ namespace Mezzanine
         /// @brief This adds a manager, in the correct order, to the list that the world calls on.
         /// @param ManagerToAdd The pointer to the manager to be added.
         /// @return Returns true if the manager was successfully added, false if the manager or it's type was non-unique.
-        Bool AddManager(WorldManager* ManagerToAdd);
+        Boolean AddManager(WorldManager* ManagerToAdd);
         /// @brief This is will find the manager of a given type.
         /// @param ManagerToGet The ManagerBase::ManagerTypeName of the manager to get.
         /// @return This returns a pointer to a WorldManager, or a NULL pointer if no matching manager exists.

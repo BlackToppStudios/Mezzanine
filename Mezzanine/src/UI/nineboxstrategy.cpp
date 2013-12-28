@@ -75,7 +75,7 @@ namespace Mezzanine
             /// @brief Interface needed for processing child widgets of screens and widgets.
             /// @param Wid A pointer to the Widget that will be processed.
             /// @return Returns true if a valid result is found.
-            Bool operator()(Widget* Wid)
+            Boolean operator()(Widget* Wid)
             {
                 for( NineBoxStrategy::PartitionVec::iterator It = Partitions->begin() ; It != Partitions->end() ; ++It )
                 {

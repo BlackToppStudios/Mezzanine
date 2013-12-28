@@ -57,7 +57,7 @@ namespace Mezzanine
         {
         public:
             /// @brief Convenience typedef for the compare method to be used by this key.
-            typedef Bool (DeviceCompare)(const MetaCode& First, const MetaCode& Second);
+            typedef Boolean (DeviceCompare)(const MetaCode& First, const MetaCode& Second);
         protected:
             /// @internal
             /// @brief The metacode being used as the compare object.
@@ -88,7 +88,7 @@ namespace Mezzanine
             /// @brief Less-than operator.
             /// @param Other The other key to compare against.
             /// @return Returns true if this key is less than another key.
-            Bool operator<(const MetaCodeKey& Other) const;
+            Boolean operator<(const MetaCodeKey& Other) const;
         };//MetaCodeKey
 	}//Input
 }//Mezzanine

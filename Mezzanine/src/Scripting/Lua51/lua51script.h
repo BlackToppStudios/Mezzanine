@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -113,7 +113,7 @@ namespace Mezzanine
 
                     /// @brief If set this script just calls an existing lua function.
                     /// @todo Add a function to set/get this
-                    Bool FunctionCall;
+                    Boolean FunctionCall;
 
                 public:
                     ///////////////////////////////////////////////////////////////////////////////////////
@@ -124,13 +124,13 @@ namespace Mezzanine
                     /// @brief Compiling Constructor
                     /// @param SourceCode The source of the script to be used in this.
                     /// @param Compiler Defaults to a null pointer. If passed a null pointer this does nothing. If passed a valid LuaScriptingEngine then that engine is used to compile (but not run) this script.
-                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0, Bool JustAFunctionCall = false, String ScriptName = "?");
+                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0, Boolean JustAFunctionCall = false, String ScriptName = "?");
 
                     /// @brief Compiling Cosntructor without pointer
                     /// @param SourceCode The source of the script to be used in this.
                     /// @param
                     /// @param
-                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Bool JustAFunctionCall = false, String ScriptName = "?");
+                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Boolean JustAFunctionCall = false, String ScriptName = "?");
 
                     /// @brief Virtual destructor
                     virtual ~Lua51Script();
@@ -186,7 +186,7 @@ namespace Mezzanine
 
                     /// @brief Another overload to make adding arguments easier, This one adds a Lua51BoolArgument
                     /// @param Arg An Bool to pass into the script
-                    virtual void AddArgument(Bool Arg);
+                    virtual void AddArgument(Boolean Arg);
 
                     /// @brief When called with no arguments this inserts a Lua51nil
                     virtual void AddArgument();

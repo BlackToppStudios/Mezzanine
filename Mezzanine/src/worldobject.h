@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -108,14 +108,14 @@ namespace Mezzanine
 
         /// @brief Gets whether or not this object is currently in the world.
         /// @return Returns a bool indicating if this object has been added to the world.
-        virtual Bool IsInWorld() const = 0;
+        virtual Boolean IsInWorld() const = 0;
 
         /// @brief Checks of the object is static.
         /// @return Returns true if the object is static, false otherwise.
-        virtual Bool IsStatic() const = 0;
+        virtual Boolean IsStatic() const = 0;
         /// @brief Checks of the object is kinematic.
         /// @return Returns true if the object is kinematic, false otherwise.
-        virtual Bool IsKinematic() const = 0;
+        virtual Boolean IsKinematic() const = 0;
 
         /// @brief Populates a container with all of the WorldProxies being used by this WorldObject.
         /// @param Proxies The container of proxies to be populated.

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -106,12 +106,12 @@ namespace Mezzanine
         virtual Physics::SoftProxy* GetSoftProxy() const;
 
         /// @copydoc Mezzanine::WorldObject::IsInWorld() const
-        virtual Bool IsInWorld() const;
+        virtual Boolean IsInWorld() const;
 
         /// @copydoc Mezzanine::WorldObject::IsStatic() const
-        virtual Bool IsStatic() const;
+        virtual Boolean IsStatic() const;
         /// @copydoc Mezzanine::WorldObject::IsKinematic() const
-        virtual Bool IsKinematic() const;
+        virtual Boolean IsKinematic() const;
 
         /// @copydoc Mezzanine::WorldObject::GetProxies(ProxyContainer&)
         virtual void GetProxies(ProxyContainer& Proxies);

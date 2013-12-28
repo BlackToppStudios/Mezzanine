@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -130,16 +130,16 @@ namespace Mezzanine
 
             /// @brief Sets whether or not this BillboardSetProxy will increase the size of it's billboard pool automatically when it's limit is reached.
             /// @param AutoExtend A bool indicating whether or not this proxy is allowed to resize it's own billboard pool.
-            virtual void SetAutoExtend(const Bool AutoExtend);
+            virtual void SetAutoExtend(const Boolean AutoExtend);
             /// @brief Gets whether or not this BillboardSetProxy will increase the size of it's billboard pool automatically when it's limit is reached.
             /// @return Returns true if the billboard pool will automatically be resized when it reaches it's limit, false otherwise.
-            virtual Bool GetAutoExtend() const;
+            virtual Boolean GetAutoExtend() const;
             /// @brief Sets whether direction vectors will be calculated using a more expensive but more accurate algorithm.
             /// @param AccFace True to increase accuracy of billboard directions, false for the more efficient method.
-            virtual void SetAccurateFacing(const Bool AccFace);
+            virtual void SetAccurateFacing(const Boolean AccFace);
             /// @brief Gets whether direction vectors are being calculated using a more expensive but more accurate algorithm.
             /// @return Returns true if this BillboardSetProxy is using the more accurate and more expensive method for directional vectors, false otherwise.
-            virtual Bool GetAccurateFacing() const;
+            virtual Boolean GetAccurateFacing() const;
             /// @brief Sets a new size of the billboard pool in this set.
             /// @param Size The size the billboard pool in this set should be resized to.
             virtual void SetPoolSize(const UInt32 Size);

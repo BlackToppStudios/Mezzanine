@@ -281,13 +281,13 @@ namespace Mezzanine
         const UInt16& QuadRenderable::GetZOrder() const
             { return this->ZOrder; }
 
-        Bool QuadRenderable::CheckOverlap(const QuadRenderable* Quad) const
+        Boolean QuadRenderable::CheckOverlap(const QuadRenderable* Quad) const
             { return this->GetRect().CheckOverlap(Quad->GetRect()); }
 
-        Bool QuadRenderable::IsInside(const Vector2& Point) const
+        Boolean QuadRenderable::IsInside(const Vector2& Point) const
             { return this->GetRect().IsInside(Point); }
 
-        Bool QuadRenderable::IsChildOfScreen() const
+        Boolean QuadRenderable::IsChildOfScreen() const
             { return (this->ParentScreen == this->ParentQuad); }
 
         QuadRenderable* QuadRenderable::GetTopMostQuad()
@@ -323,16 +323,16 @@ namespace Mezzanine
             this->_MarkAllLayersDirty();
         }
 
-        void QuadRenderable::SetMousePassthrough(Bool Enable)
+        void QuadRenderable::SetMousePassthrough(Boolean Enable)
             { this->MousePassthrough = Enable; }
 
-        Bool QuadRenderable::GetMousePassthrough() const
+        Boolean QuadRenderable::GetMousePassthrough() const
             { return this->MousePassthrough; }
 
-        void QuadRenderable::SetManualTransformUpdates(Bool Enable)
+        void QuadRenderable::SetManualTransformUpdates(Boolean Enable)
             { this->ManualTransformUpdates = Enable; }
 
-        Bool QuadRenderable::GetManualTransformUpdates() const
+        Boolean QuadRenderable::GetManualTransformUpdates() const
             { return this->ManualTransformUpdates; }
 
         void QuadRenderable::SetRenderPriority(const UI::RenderPriority& Priority)
@@ -680,7 +680,7 @@ namespace Mezzanine
             return this->ActiveGroup;
         }
 
-        Bool QuadRenderable::RenderLayerGroupExists(const String& Name) const
+        Boolean QuadRenderable::RenderLayerGroupExists(const String& Name) const
         {
             ConstRenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
             return ( It != this->RenderLayerGroups.end() );
@@ -724,7 +724,7 @@ namespace Mezzanine
         {
             RenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
             if( It == this->RenderLayerGroups.end() ) {
-                Bool Empty = ( this->RenderLayerGroups.empty() && this->ActiveGroup == NULL );
+                Boolean Empty = ( this->RenderLayerGroups.empty() && this->ActiveGroup == NULL );
                 RenderLayerGroup* NewGroup = new RenderLayerGroup(Name,this);
                 this->RenderLayerGroups.insert( std::pair<String,RenderLayerGroup*>(Name,NewGroup) );
                 if( Empty ) {
@@ -932,7 +932,7 @@ namespace Mezzanine
         QuadRenderable* QuadRenderable::GetParent() const
             { return this->ParentQuad; }
 
-        QuadRenderable* QuadRenderable::GetNextSibling(Bool Wrap)
+        QuadRenderable* QuadRenderable::GetNextSibling(Boolean Wrap)
         {
             if( this->ParentQuad ) {
                 ConstChildIterator ParentEnd = this->ParentQuad->ChildrenEnd();
@@ -948,7 +948,7 @@ namespace Mezzanine
             return NULL;
         }
 
-        QuadRenderable* QuadRenderable::GetPrevSibling(Bool Wrap)
+        QuadRenderable* QuadRenderable::GetPrevSibling(Boolean Wrap)
         {
             if( this->ParentQuad ) {
                 ConstChildIterator ParentEnd = this->ParentQuad->ChildrenEnd();
@@ -967,7 +967,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // VertexCaching Methods
 
-        void QuadRenderable::SetLocalVertexCaching(Bool Enable)
+        void QuadRenderable::SetLocalVertexCaching(Boolean Enable)
         {
             if(Enable && !VertexCache) {
                 this->VertexCache = new ScreenRenderData();
@@ -978,7 +978,7 @@ namespace Mezzanine
             }
         }
 
-        Bool QuadRenderable::IsVertexCachingEnabled() const
+        Boolean QuadRenderable::IsVertexCachingEnabled() const
         {
             return this->VertexCache != NULL;
         }
@@ -1311,7 +1311,7 @@ namespace Mezzanine
             }
         }
 
-        Bool QuadRenderable::_HasAvailableRenderData() const
+        Boolean QuadRenderable::_HasAvailableRenderData() const
         {
             return this->Visible;
         }

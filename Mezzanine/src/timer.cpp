@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -138,7 +138,7 @@ namespace Mezzanine
     void GoalTimer::SetAutoReset(const bool AutoReset)
         { this->ResetAtGoal = AutoReset; }
 
-    Bool GoalTimer::GetAutoReset() const
+    Boolean GoalTimer::GetAutoReset() const
         { return this->ResetAtGoal; }
 
     void GoalTimer::SetGoalTime(const Whole Goal)
@@ -182,7 +182,7 @@ namespace Mezzanine
         }
     }
 
-    Bool StopWatchTimer::GoalReached()
+    Boolean StopWatchTimer::GoalReached()
         { return this->CurrentTime <= this->GoalTime; }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -211,7 +211,7 @@ namespace Mezzanine
         }
     }
 
-    Bool AlarmTimer::GoalReached()
+    Boolean AlarmTimer::GoalReached()
         { return this->CurrentTime >= this->GoalTime; }
 
     ///////////////////////////////////////////////////////////////////////////////

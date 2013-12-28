@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -196,7 +196,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // RenderableProxy Properties
 
-        void EntityProxy::SetVisible(const Bool Visible)
+        void EntityProxy::SetVisible(const Boolean Visible)
         {
             this->SceneVisible = Visible;
             if( this->GraphicsEntity ) {
@@ -204,12 +204,12 @@ namespace Mezzanine
             }
         }
 
-        Bool EntityProxy::GetVisible() const
+        Boolean EntityProxy::GetVisible() const
         {
             return this->SceneVisible;
         }
 
-        void EntityProxy::SetCastShadows(const Bool CastShadows)
+        void EntityProxy::SetCastShadows(const Boolean CastShadows)
         {
             this->CanCastShadows = CastShadows;
             if( this->GraphicsEntity ) {
@@ -217,12 +217,12 @@ namespace Mezzanine
             }
         }
 
-        Bool EntityProxy::GetCastShadows() const
+        Boolean EntityProxy::GetCastShadows() const
         {
             return this->CanCastShadows;
         }
 
-        Bool EntityProxy::GetReceiveShadows() const
+        Boolean EntityProxy::GetReceiveShadows() const
         {
             return ( this->GraphicsEntity ? this->GraphicsEntity->getReceivesShadows() : false );
         }
@@ -317,7 +317,7 @@ namespace Mezzanine
 
         void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            Bool WasInWorld = false;
+            Boolean WasInWorld = false;
             XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
             if( !InWorldAttrib.Empty() ) {
                 WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );

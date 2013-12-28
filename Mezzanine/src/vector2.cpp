@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -96,22 +96,22 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
 
-    Bool Vector2::operator==(const Mezzanine::Vector2& Vec2) const
+    Boolean Vector2::operator==(const Mezzanine::Vector2& Vec2) const
         { return ( Vec2.X == this->X && Vec2.Y == this->Y ); }
 
-    Bool Vector2::operator!=(const Mezzanine::Vector2& Vec2) const
+    Boolean Vector2::operator!=(const Mezzanine::Vector2& Vec2) const
         { return ( Vec2.X != this->X || Vec2.Y != this->Y ); }
 
-    Bool Vector2::operator==(const Ogre::Vector2& Vec2) const
+    Boolean Vector2::operator==(const Ogre::Vector2& Vec2) const
         { return ( Vec2.x == this->X && Vec2.y == this->Y ); }
 
-    Bool Vector2::operator!=(const Ogre::Vector2& Vec2) const
+    Boolean Vector2::operator!=(const Ogre::Vector2& Vec2) const
         { return ( Vec2.x != this->X || Vec2.y != this->Y ); }
 
-    Bool Vector2::operator<= (const Mezzanine::Vector2 &Vec) const
+    Boolean Vector2::operator<= (const Mezzanine::Vector2 &Vec) const
         { return ( this->X <= Vec.X && this->Y <= Vec.Y); }
 
-    Bool Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
+    Boolean Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
         { return ( this->X >= Vec.X && this->Y >= Vec.Y); }
 
     ///////////////////////////////////////////////////////////////////////////////

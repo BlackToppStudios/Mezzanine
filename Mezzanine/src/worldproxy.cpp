@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -97,7 +97,7 @@ namespace Mezzanine
 
     void WorldProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
     {
-        Bool WasInWorld = false;
+        Boolean WasInWorld = false;
         XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
         if( !InWorldAttrib.Empty() ) {
             WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );

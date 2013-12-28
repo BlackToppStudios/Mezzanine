@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -188,10 +188,10 @@ namespace Mezzanine
     Ray& Ray::operator/=(const Real Factor)
         { this->Destination = ( ( this->Destination - this->Origin ) / Factor ) + this->Origin;  return *this; }
 
-    Bool Ray::operator==(const Ray& Other) const
+    Boolean Ray::operator==(const Ray& Other) const
         { return ( this->Origin == Other.Origin && this->Destination == Other.Destination ); }
 
-    Bool Ray::operator!=(const Ray& Other) const
+    Boolean Ray::operator!=(const Ray& Other) const
         { return ( this->Origin != Other.Origin || this->Destination != Other.Destination ); }
 }
 

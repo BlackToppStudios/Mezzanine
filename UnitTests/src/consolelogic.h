@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -67,7 +67,7 @@ namespace Mezzanine
         ///     -  "Cancel" as "Canceled"
         ///     -  "Unsure", "Inconclusive" as Inconclusive
         /// @return Depends on users input
-        TestResult GetTestAnswerFromStdin(Mezzanine::String Question, Bool FailStatusOnIncorrect = true);
+        TestResult GetTestAnswerFromStdin(Mezzanine::String Question, Boolean FailStatusOnIncorrect = true);
 
     }// Testing
 }// Mezzanine

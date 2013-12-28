@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -82,16 +82,16 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    Bool Sphere::IsInside(const Vector3& ToCheck) const
+    Boolean Sphere::IsInside(const Vector3& ToCheck) const
         { return MathTools::IsInside(*this,ToCheck); }
 
-    Bool Sphere::IsOverlapping(const Sphere& ToCheck) const
+    Boolean Sphere::IsOverlapping(const Sphere& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
 
-    Bool Sphere::IsOverlapping(const AxisAlignedBox& ToCheck) const
+    Boolean Sphere::IsOverlapping(const AxisAlignedBox& ToCheck) const
         { return MathTools::Overlap(ToCheck,*this); }
 
-    Bool Sphere::IsOverlapping(const Plane& ToCheck) const
+    Boolean Sphere::IsOverlapping(const Plane& ToCheck) const
         { return MathTools::Overlap(ToCheck,*this); }
 
     Sphere::RayTestResult Sphere::Intersects(const Ray& ToCheck) const
@@ -163,22 +163,22 @@ namespace Mezzanine
     void Sphere::operator=(const Ogre::Sphere& InternalSphere)
         { this->ExtractOgreSphere(InternalSphere); }
 
-    Bool Sphere::operator>(const Sphere& Other) const
+    Boolean Sphere::operator>(const Sphere& Other) const
         { return ( this->Radius > Other.Radius ); }
 
-    Bool Sphere::operator<(const Sphere& Other) const
+    Boolean Sphere::operator<(const Sphere& Other) const
         { return ( this->Radius < Other.Radius ); }
 
-    Bool Sphere::operator>=(const Sphere& Other) const
+    Boolean Sphere::operator>=(const Sphere& Other) const
         { return ( this->Radius >= Other.Radius ); }
 
-    Bool Sphere::operator<=(const Sphere& Other) const
+    Boolean Sphere::operator<=(const Sphere& Other) const
         { return ( this->Radius <= Other.Radius ); }
 
-    Bool Sphere::operator==(const Sphere& Other) const
+    Boolean Sphere::operator==(const Sphere& Other) const
         { return ( this->Center == Other.Center && this->Radius == Other.Radius ); }
 
-    Bool Sphere::operator!=(const Sphere& Other) const
+    Boolean Sphere::operator!=(const Sphere& Other) const
         { return ( this->Center != Other.Center || this->Radius != Other.Radius ); }
 }//Mezzanine
 

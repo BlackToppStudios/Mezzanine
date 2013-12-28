@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -107,10 +107,10 @@ namespace Mezzanine
             ActivationState Activation;
             /// @internal
             /// @brief Stores whether or not the current activation of this button was triggered by a mouse.
-            Bool MouseActivated;
+            Boolean MouseActivated;
 
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode& Code)
-            virtual Bool HandleInputImpl(const Input::MetaCode& Code);
+            virtual Boolean HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             virtual void ConstructButton();
@@ -118,19 +118,19 @@ namespace Mezzanine
             /// @brief Verifies the provided to code is valid for this button.
             /// @param Code The code to check.
             /// @return Returns true if this code is valid, false otherwise.
-            virtual Bool VertifyActivationCode(const Input::InputCode Code);
+            virtual Boolean VertifyActivationCode(const Input::InputCode Code);
             /// @internal
             /// @brief Attempts to activate this button.
             /// @return Returns true if this button was successfully activated.
-            virtual Bool Activate();
+            virtual Boolean Activate();
             /// @internal
             /// @brief Attempts to deactivate this button.
             /// @return Returns true if this button was successfully deactivated.
-            virtual Bool Deactivate();
+            virtual Boolean Deactivate();
             /// @internal
             /// @brief Attempts to put this button into standby.
             /// @return Returns true if this button was successfully put into standby.
-            virtual Bool Standby();
+            virtual Boolean Standby();
         //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
@@ -163,16 +163,16 @@ namespace Mezzanine
 
             /// @brief Gets whether or not this button can be activated again.
             /// @return Returns true if this button is not ready to be activated again.
-            Bool IsActivationLocked() const;
+            Boolean IsActivationLocked() const;
             /// @brief Gets whether or not this button is currently activated.
             /// @return Returns true if this button is currently activated, false otherwise.
-            Bool IsActivated() const;
+            Boolean IsActivated() const;
             /// @brief Gets whether or not this button is currently on standby.
             /// @return Returns true if this button is currently on activation standby, false otherwise.
-            Bool IsOnStandby() const;
+            Boolean IsOnStandby() const;
             /// @brief Gets whether or not this button is currently deactivated.
             /// @return Retruns true if this button is currently deactivated, false otherwise.
-            Bool IsDeactivated() const;
+            Boolean IsDeactivated() const;
 
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -125,7 +125,7 @@ namespace Mezzanine
         /// @param RayQuery A ManagedRayQuery
         /// @param ActorRay The Ray to follow and see if it hits something
         /// @return True if something is hit, false otherwise.
-        Bool ExecuteQuery(ManagedRayQuery& RayQuery, Ogre::Ray& Ooray)
+        Boolean ExecuteQuery(ManagedRayQuery& RayQuery, Ogre::Ray& Ooray)
         {
             if(RayQuery)          //Double check that the Rayquery is valid
             {
@@ -148,7 +148,7 @@ namespace Mezzanine
     // World Ray Query Results
     ///////////////////////////////////////
 
-    Bool RayQueryTool::ClearReturns()
+    Boolean RayQueryTool::ClearReturns()
     {
         ValidResult = false;
         Offset = Vector3();
@@ -156,7 +156,7 @@ namespace Mezzanine
         return ValidResult;
     }
 
-    Bool RayQueryTool::LastQueryResultsValid() const
+    Boolean RayQueryTool::LastQueryResultsValid() const
         { return ValidResult; }
 
     Vector3 RayQueryTool::LastQueryResultsOffset() const
@@ -173,7 +173,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Ray Queries
     ///////////////////////////////////////
-    Bool RayQueryTool::GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags)
+    Boolean RayQueryTool::GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
         Ogre::Ray Ooray = ObjectRay.GetOgreRay();
@@ -264,7 +264,7 @@ namespace Mezzanine
         }
     }
 
-    Bool RayQueryTool::GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags)
+    Boolean RayQueryTool::GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
         Ogre::Ray Ooray = ObjectRay.GetOgreRay();
@@ -288,7 +288,7 @@ namespace Mezzanine
         }
     }
 
-    Bool RayQueryTool::RayPlaneIntersection(const Ray& QueryRay, const Plane& QueryPlane)
+    Boolean RayQueryTool::RayPlaneIntersection(const Ray& QueryRay, const Plane& QueryPlane)
     {
         try{
             Vector3 u = QueryRay.Destination - QueryRay.Origin;

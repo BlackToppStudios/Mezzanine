@@ -102,7 +102,7 @@ namespace Mezzanine
             /// @copydoc WorldProxy::RemoveFromWorld()
             virtual void RemoveFromWorld() = 0;
             /// @copydoc WorldProxy::IsInWorld() const
-            virtual Bool IsInWorld() const;
+            virtual Boolean IsInWorld() const;
 
             /// @copydoc WorldProxy::GetCreator() const
             virtual WorldManager* GetCreator() const;
@@ -208,7 +208,7 @@ namespace Mezzanine
             /// @brief Gets whether or not anisotropic friction is being used in a specified mode.
             /// @param Mode The Physics::AnisotropicFrictionFlags value to check for.
             /// @return Returns true if the specified mode is the current mode of Anisotropic Friction being used.
-            virtual Bool IsAnisotropicFrictionModeSet(const Whole Mode) const;
+            virtual Boolean IsAnisotropicFrictionModeSet(const Whole Mode) const;
             /// @brief Gets the anisotropic friction factor.
             /// @return Returns a Vector3 representing the anisotropic friction factors on each of the linear axes.
             virtual Vector3 GetAnisotropicFriction() const;

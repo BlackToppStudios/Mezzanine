@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -108,7 +108,7 @@ namespace Mezzanine
             this->ProtoDeSerializeEvents(SelfRoot);
         }
 
-        Bool Widget::HandleInputImpl(const Input::MetaCode& Code)
+        Boolean Widget::HandleInputImpl(const Input::MetaCode& Code)
         {
             return false;
         }
@@ -151,13 +151,13 @@ namespace Mezzanine
         const String& Widget::GetTypeName() const
             { return Widget::TypeName; }
 
-        Bool Widget::IsHovered() const
+        Boolean Widget::IsHovered() const
             { return (this->State & WS_Hovered); }
 
-        Bool Widget::HasFocus() const
+        Boolean Widget::HasFocus() const
             { return (this->State & WS_Focused); }
 
-        Bool Widget::IsBeingDragged() const
+        Boolean Widget::IsBeingDragged() const
             { return (this->State & WS_Dragged); }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -203,7 +203,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
-        void Widget::SetVisible(Bool CanSee)
+        void Widget::SetVisible(Boolean CanSee)
         {
             if( this->Visible == CanSee )
                 return;
@@ -216,12 +216,12 @@ namespace Mezzanine
             }
         }
 
-        Bool Widget::GetVisible() const
+        Boolean Widget::GetVisible() const
         {
             return this->Visible;
         }
 
-        Bool Widget::IsVisible() const
+        Boolean Widget::IsVisible() const
         {
             if( this->ParentQuad ) {
                 return this->Visible && this->ParentQuad->IsVisible();

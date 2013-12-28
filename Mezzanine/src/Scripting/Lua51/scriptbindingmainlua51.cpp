@@ -20755,7 +20755,7 @@ fail:
 static int _wrap_WorldObject_IsInWorld(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::WorldObject::IsInWorld",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldObject::IsInWorld",1,"Mezzanine::WorldObject const *");
@@ -20764,7 +20764,7 @@ static int _wrap_WorldObject_IsInWorld(lua_State* L) {
     SWIG_fail_ptr("WorldObject_IsInWorld",1,SWIGTYPE_p_Mezzanine__WorldObject);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::WorldObject const *)arg1)->IsInWorld();
+  result = (Mezzanine::Boolean)((Mezzanine::WorldObject const *)arg1)->IsInWorld();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -20779,7 +20779,7 @@ fail:
 static int _wrap_WorldObject_IsStatic(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::WorldObject::IsStatic",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldObject::IsStatic",1,"Mezzanine::WorldObject const *");
@@ -20788,7 +20788,7 @@ static int _wrap_WorldObject_IsStatic(lua_State* L) {
     SWIG_fail_ptr("WorldObject_IsStatic",1,SWIGTYPE_p_Mezzanine__WorldObject);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::WorldObject const *)arg1)->IsStatic();
+  result = (Mezzanine::Boolean)((Mezzanine::WorldObject const *)arg1)->IsStatic();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -20803,7 +20803,7 @@ fail:
 static int _wrap_WorldObject_IsKinematic(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::WorldObject::IsKinematic",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::WorldObject::IsKinematic",1,"Mezzanine::WorldObject const *");
@@ -20812,7 +20812,7 @@ static int _wrap_WorldObject_IsKinematic(lua_State* L) {
     SWIG_fail_ptr("WorldObject_IsKinematic",1,SWIGTYPE_p_Mezzanine__WorldObject);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::WorldObject const *)arg1)->IsKinematic();
+  result = (Mezzanine::Boolean)((Mezzanine::WorldObject const *)arg1)->IsKinematic();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -28077,7 +28077,7 @@ fail:
 static int _wrap_AreaEffect_IsInWorld(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AreaEffect::IsInWorld",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::IsInWorld",1,"Mezzanine::AreaEffect const *");
@@ -28086,7 +28086,7 @@ static int _wrap_AreaEffect_IsInWorld(lua_State* L) {
     SWIG_fail_ptr("AreaEffect_IsInWorld",1,SWIGTYPE_p_Mezzanine__AreaEffect);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AreaEffect const *)arg1)->IsInWorld();
+  result = (Mezzanine::Boolean)((Mezzanine::AreaEffect const *)arg1)->IsInWorld();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -28101,7 +28101,7 @@ fail:
 static int _wrap_AreaEffect_IsStatic(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AreaEffect::IsStatic",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::IsStatic",1,"Mezzanine::AreaEffect const *");
@@ -28110,7 +28110,7 @@ static int _wrap_AreaEffect_IsStatic(lua_State* L) {
     SWIG_fail_ptr("AreaEffect_IsStatic",1,SWIGTYPE_p_Mezzanine__AreaEffect);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AreaEffect const *)arg1)->IsStatic();
+  result = (Mezzanine::Boolean)((Mezzanine::AreaEffect const *)arg1)->IsStatic();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -28125,7 +28125,7 @@ fail:
 static int _wrap_AreaEffect_IsKinematic(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AreaEffect::IsKinematic",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AreaEffect::IsKinematic",1,"Mezzanine::AreaEffect const *");
@@ -28134,7 +28134,7 @@ static int _wrap_AreaEffect_IsKinematic(lua_State* L) {
     SWIG_fail_ptr("AreaEffect_IsKinematic",1,SWIGTYPE_p_Mezzanine__AreaEffect);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AreaEffect const *)arg1)->IsKinematic();
+  result = (Mezzanine::Boolean)((Mezzanine::AreaEffect const *)arg1)->IsKinematic();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -31841,7 +31841,7 @@ static int _wrap_new_AxisAlignedBox(lua_State* L) {
 static int _wrap_AxisAlignedBox_IsZero(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AxisAlignedBox *arg1 = (Mezzanine::AxisAlignedBox *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AxisAlignedBox::IsZero",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AxisAlignedBox::IsZero",1,"Mezzanine::AxisAlignedBox const *");
@@ -31850,7 +31850,7 @@ static int _wrap_AxisAlignedBox_IsZero(lua_State* L) {
     SWIG_fail_ptr("AxisAlignedBox_IsZero",1,SWIGTYPE_p_Mezzanine__AxisAlignedBox);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AxisAlignedBox const *)arg1)->IsZero();
+  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->IsZero();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -32048,7 +32048,7 @@ static int _wrap_AxisAlignedBox_IsInside(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AxisAlignedBox *arg1 = (Mezzanine::AxisAlignedBox *) 0 ;
   Mezzanine::Vector3 *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AxisAlignedBox::IsInside",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AxisAlignedBox::IsInside",1,"Mezzanine::AxisAlignedBox const *");
@@ -32063,7 +32063,7 @@ static int _wrap_AxisAlignedBox_IsInside(lua_State* L) {
     SWIG_fail_ptr("AxisAlignedBox_IsInside",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AxisAlignedBox const *)arg1)->IsInside((Mezzanine::Vector3 const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->IsInside((Mezzanine::Vector3 const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -32079,7 +32079,7 @@ static int _wrap_AxisAlignedBox_IsOverlapping__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AxisAlignedBox *arg1 = (Mezzanine::AxisAlignedBox *) 0 ;
   Mezzanine::Sphere *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AxisAlignedBox::IsOverlapping",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AxisAlignedBox::IsOverlapping",1,"Mezzanine::AxisAlignedBox const *");
@@ -32094,7 +32094,7 @@ static int _wrap_AxisAlignedBox_IsOverlapping__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("AxisAlignedBox_IsOverlapping",2,SWIGTYPE_p_Mezzanine__Sphere);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -32110,7 +32110,7 @@ static int _wrap_AxisAlignedBox_IsOverlapping__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AxisAlignedBox *arg1 = (Mezzanine::AxisAlignedBox *) 0 ;
   Mezzanine::AxisAlignedBox *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AxisAlignedBox::IsOverlapping",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AxisAlignedBox::IsOverlapping",1,"Mezzanine::AxisAlignedBox const *");
@@ -32125,7 +32125,7 @@ static int _wrap_AxisAlignedBox_IsOverlapping__SWIG_1(lua_State* L) {
     SWIG_fail_ptr("AxisAlignedBox_IsOverlapping",2,SWIGTYPE_p_Mezzanine__AxisAlignedBox);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -32141,7 +32141,7 @@ static int _wrap_AxisAlignedBox_IsOverlapping__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AxisAlignedBox *arg1 = (Mezzanine::AxisAlignedBox *) 0 ;
   Mezzanine::Plane *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AxisAlignedBox::IsOverlapping",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AxisAlignedBox::IsOverlapping",1,"Mezzanine::AxisAlignedBox const *");
@@ -32156,7 +32156,7 @@ static int _wrap_AxisAlignedBox_IsOverlapping__SWIG_2(lua_State* L) {
     SWIG_fail_ptr("AxisAlignedBox_IsOverlapping",2,SWIGTYPE_p_Mezzanine__Plane);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -32583,7 +32583,7 @@ static int _wrap_AxisAlignedBox___lt(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AxisAlignedBox *arg1 = (Mezzanine::AxisAlignedBox *) 0 ;
   Mezzanine::AxisAlignedBox *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AxisAlignedBox::operator <",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AxisAlignedBox::operator <",1,"Mezzanine::AxisAlignedBox const *");
@@ -32598,7 +32598,7 @@ static int _wrap_AxisAlignedBox___lt(lua_State* L) {
     SWIG_fail_ptr("AxisAlignedBox___lt",2,SWIGTYPE_p_Mezzanine__AxisAlignedBox);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AxisAlignedBox const *)arg1)->operator <((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->operator <((Mezzanine::AxisAlignedBox const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -32614,7 +32614,7 @@ static int _wrap_AxisAlignedBox___le(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AxisAlignedBox *arg1 = (Mezzanine::AxisAlignedBox *) 0 ;
   Mezzanine::AxisAlignedBox *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AxisAlignedBox::operator <=",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AxisAlignedBox::operator <=",1,"Mezzanine::AxisAlignedBox const *");
@@ -32629,7 +32629,7 @@ static int _wrap_AxisAlignedBox___le(lua_State* L) {
     SWIG_fail_ptr("AxisAlignedBox___le",2,SWIGTYPE_p_Mezzanine__AxisAlignedBox);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AxisAlignedBox const *)arg1)->operator <=((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->operator <=((Mezzanine::AxisAlignedBox const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -32645,7 +32645,7 @@ static int _wrap_AxisAlignedBox___eq(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AxisAlignedBox *arg1 = (Mezzanine::AxisAlignedBox *) 0 ;
   Mezzanine::AxisAlignedBox *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::AxisAlignedBox::operator ==",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AxisAlignedBox::operator ==",1,"Mezzanine::AxisAlignedBox const *");
@@ -32660,7 +32660,7 @@ static int _wrap_AxisAlignedBox___eq(lua_State* L) {
     SWIG_fail_ptr("AxisAlignedBox___eq",2,SWIGTYPE_p_Mezzanine__AxisAlignedBox);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::AxisAlignedBox const *)arg1)->operator ==((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->operator ==((Mezzanine::AxisAlignedBox const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -33566,7 +33566,7 @@ fail:
 static int _wrap_RayQueryTool_ClearReturns(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::RayQueryTool::ClearReturns",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RayQueryTool::ClearReturns",1,"Mezzanine::RayQueryTool *");
@@ -33575,7 +33575,7 @@ static int _wrap_RayQueryTool_ClearReturns(lua_State* L) {
     SWIG_fail_ptr("RayQueryTool_ClearReturns",1,SWIGTYPE_p_Mezzanine__RayQueryTool);
   }
 
-  result = (Mezzanine::Bool)(arg1)->ClearReturns();
+  result = (Mezzanine::Boolean)(arg1)->ClearReturns();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -33590,7 +33590,7 @@ fail:
 static int _wrap_RayQueryTool_LastQueryResultsValid(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::RayQueryTool::LastQueryResultsValid",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RayQueryTool::LastQueryResultsValid",1,"Mezzanine::RayQueryTool const *");
@@ -33599,7 +33599,7 @@ static int _wrap_RayQueryTool_LastQueryResultsValid(lua_State* L) {
     SWIG_fail_ptr("RayQueryTool_LastQueryResultsValid",1,SWIGTYPE_p_Mezzanine__RayQueryTool);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::RayQueryTool const *)arg1)->LastQueryResultsValid();
+  result = (Mezzanine::Boolean)((Mezzanine::RayQueryTool const *)arg1)->LastQueryResultsValid();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -33668,7 +33668,7 @@ static int _wrap_RayQueryTool_GetFirstObjectOnRayByPolygon(lua_State* L) {
   Mezzanine::Ray arg2 ;
   Mezzanine::Whole arg3 ;
   Mezzanine::Ray *argp2 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::RayQueryTool::GetFirstObjectOnRayByPolygon",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RayQueryTool::GetFirstObjectOnRayByPolygon",1,"Mezzanine::RayQueryTool *");
@@ -33687,7 +33687,7 @@ static int _wrap_RayQueryTool_GetFirstObjectOnRayByPolygon(lua_State* L) {
 
   SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
   arg3 = (Mezzanine::Whole)lua_tonumber(L, 3);
-  result = (Mezzanine::Bool)(arg1)->GetFirstObjectOnRayByPolygon(arg2,arg3);
+  result = (Mezzanine::Boolean)(arg1)->GetFirstObjectOnRayByPolygon(arg2,arg3);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -33705,7 +33705,7 @@ static int _wrap_RayQueryTool_GetFirstObjectOnRayByAABB(lua_State* L) {
   Mezzanine::Ray arg2 ;
   Mezzanine::Whole arg3 ;
   Mezzanine::Ray *argp2 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::RayQueryTool::GetFirstObjectOnRayByAABB",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RayQueryTool::GetFirstObjectOnRayByAABB",1,"Mezzanine::RayQueryTool *");
@@ -33724,7 +33724,7 @@ static int _wrap_RayQueryTool_GetFirstObjectOnRayByAABB(lua_State* L) {
 
   SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
   arg3 = (Mezzanine::Whole)lua_tonumber(L, 3);
-  result = (Mezzanine::Bool)(arg1)->GetFirstObjectOnRayByAABB(arg2,arg3);
+  result = (Mezzanine::Boolean)(arg1)->GetFirstObjectOnRayByAABB(arg2,arg3);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -33741,7 +33741,7 @@ static int _wrap_RayQueryTool_RayPlaneIntersection(lua_State* L) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   Mezzanine::Ray *arg2 = 0 ;
   Mezzanine::Plane *arg3 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::RayQueryTool::RayPlaneIntersection",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::RayQueryTool::RayPlaneIntersection",1,"Mezzanine::RayQueryTool *");
@@ -33762,7 +33762,7 @@ static int _wrap_RayQueryTool_RayPlaneIntersection(lua_State* L) {
     SWIG_fail_ptr("RayQueryTool_RayPlaneIntersection",3,SWIGTYPE_p_Mezzanine__Plane);
   }
 
-  result = (Mezzanine::Bool)(arg1)->RayPlaneIntersection((Mezzanine::Ray const &)*arg2,(Mezzanine::Plane const &)*arg3);
+  result = (Mezzanine::Boolean)(arg1)->RayPlaneIntersection((Mezzanine::Ray const &)*arg2,(Mezzanine::Plane const &)*arg3);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -35503,7 +35503,7 @@ static int _wrap_Plane_IsOverlapping__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Sphere *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::Plane::IsOverlapping",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::IsOverlapping",1,"Mezzanine::Plane const *");
@@ -35518,7 +35518,7 @@ static int _wrap_Plane_IsOverlapping__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("Plane_IsOverlapping",2,SWIGTYPE_p_Mezzanine__Sphere);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -35534,7 +35534,7 @@ static int _wrap_Plane_IsOverlapping__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::AxisAlignedBox *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::Plane::IsOverlapping",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::IsOverlapping",1,"Mezzanine::Plane const *");
@@ -35549,7 +35549,7 @@ static int _wrap_Plane_IsOverlapping__SWIG_1(lua_State* L) {
     SWIG_fail_ptr("Plane_IsOverlapping",2,SWIGTYPE_p_Mezzanine__AxisAlignedBox);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -35565,7 +35565,7 @@ static int _wrap_Plane_IsOverlapping__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Plane *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::Plane::IsOverlapping",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::IsOverlapping",1,"Mezzanine::Plane const *");
@@ -35580,7 +35580,7 @@ static int _wrap_Plane_IsOverlapping__SWIG_2(lua_State* L) {
     SWIG_fail_ptr("Plane_IsOverlapping",2,SWIGTYPE_p_Mezzanine__Plane);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -35853,7 +35853,7 @@ static int _wrap_Plane___eq(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Plane *arg1 = (Mezzanine::Plane *) 0 ;
   Mezzanine::Plane *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::Plane::operator ==",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Plane::operator ==",1,"Mezzanine::Plane const *");
@@ -35868,7 +35868,7 @@ static int _wrap_Plane___eq(lua_State* L) {
     SWIG_fail_ptr("Plane___eq",2,SWIGTYPE_p_Mezzanine__Plane);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::Plane const *)arg1)->operator ==((Mezzanine::Plane const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::Plane const *)arg1)->operator ==((Mezzanine::Plane const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -36727,7 +36727,7 @@ static int _wrap_Ray___eq(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Ray *arg1 = (Mezzanine::Ray *) 0 ;
   Mezzanine::Ray *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::Ray::operator ==",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Ray::operator ==",1,"Mezzanine::Ray const *");
@@ -36742,7 +36742,7 @@ static int _wrap_Ray___eq(lua_State* L) {
     SWIG_fail_ptr("Ray___eq",2,SWIGTYPE_p_Mezzanine__Ray);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::Ray const *)arg1)->operator ==((Mezzanine::Ray const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::Ray const *)arg1)->operator ==((Mezzanine::Ray const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -37062,7 +37062,7 @@ fail:
 static int _wrap_Timer_IsStopped(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::Timer::IsStopped",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::IsStopped",1,"Mezzanine::Timer *");
@@ -37071,7 +37071,7 @@ static int _wrap_Timer_IsStopped(lua_State* L) {
     SWIG_fail_ptr("Timer_IsStopped",1,SWIGTYPE_p_Mezzanine__Timer);
   }
 
-  result = (Mezzanine::Bool)(arg1)->IsStopped();
+  result = (Mezzanine::Boolean)(arg1)->IsStopped();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -37198,7 +37198,7 @@ fail:
 static int _wrap_GoalTimer_GetAutoReset(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::GoalTimer::GetAutoReset",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::GoalTimer::GetAutoReset",1,"Mezzanine::GoalTimer const *");
@@ -37207,7 +37207,7 @@ static int _wrap_GoalTimer_GetAutoReset(lua_State* L) {
     SWIG_fail_ptr("GoalTimer_GetAutoReset",1,SWIGTYPE_p_Mezzanine__GoalTimer);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::GoalTimer const *)arg1)->GetAutoReset();
+  result = (Mezzanine::Boolean)((Mezzanine::GoalTimer const *)arg1)->GetAutoReset();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -37840,7 +37840,7 @@ static int _wrap_Vector2___eq__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   Mezzanine::Vector2 *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::Vector2::operator ==",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector2::operator ==",1,"Mezzanine::Vector2 const *");
@@ -37855,7 +37855,7 @@ static int _wrap_Vector2___eq__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("Vector2___eq",2,SWIGTYPE_p_Mezzanine__Vector2);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::Vector2 const *)arg1)->operator ==((Mezzanine::Vector2 const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::Vector2 const *)arg1)->operator ==((Mezzanine::Vector2 const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -37871,7 +37871,7 @@ static int _wrap_Vector2___eq__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   Ogre::Vector2 *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::Vector2::operator ==",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector2::operator ==",1,"Mezzanine::Vector2 const *");
@@ -37886,7 +37886,7 @@ static int _wrap_Vector2___eq__SWIG_1(lua_State* L) {
     SWIG_fail_ptr("Vector2___eq",2,SWIGTYPE_p_Ogre__Vector2);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::Vector2 const *)arg1)->operator ==((Ogre::Vector2 const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::Vector2 const *)arg1)->operator ==((Ogre::Vector2 const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -37966,7 +37966,7 @@ static int _wrap_Vector2___le(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Vector2 *arg1 = (Mezzanine::Vector2 *) 0 ;
   Mezzanine::Vector2 *arg2 = 0 ;
-  Mezzanine::Bool result;
+  Mezzanine::Boolean result;
 
   SWIG_check_num_args("Mezzanine::Vector2::operator <=",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Vector2::operator <=",1,"Mezzanine::Vector2 const *");
@@ -37981,7 +37981,7 @@ static int _wrap_Vector2___le(lua_State* L) {
     SWIG_fail_ptr("Vector2___le",2,SWIGTYPE_p_Mezzanine__Vector2);
   }
 
-  result = (Mezzanine::Bool)((Mezzanine::Vector2 const *)arg1)->operator <=((Mezzanine::Vector2 const &)*arg2);
+  result = (Mezzanine::Boolean)((Mezzanine::Vector2 const *)arg1)->operator <=((Mezzanine::Vector2 const &)*arg2);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
 
@@ -39570,7 +39570,7 @@ static swig_type_info _swigt__p_RunningState = {"_p_RunningState", "RunningState
 static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzanine::RawEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_WorkUnitKey = {"_p_WorkUnitKey", "WorkUnitKey *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_XML__Node = {"_p_XML__Node", "XML::Node *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_bool = {"_p_bool", "Mezzanine::Bool *|bool *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_bool = {"_p_bool", "Mezzanine::Boolean *|bool *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btQuaternion = {"_p_btQuaternion", "btQuaternion *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btTransform = {"_p_btTransform", "btTransform *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btVector3 = {"_p_btVector3", "btVector3 *", 0, 0, (void*)0, 0};

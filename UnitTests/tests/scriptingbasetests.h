@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ class scriptingbasetests : public UnitTestGroup
             TEST(StringArg.GetTypeData()==Scripting::GenericString,"ArgumentStringType");
             TEST(StringArg.GetInteger()==7,"ArgumentStringAsInteger");
 
-            Scripting::ScriptArgumentGeneric<Bool> BoolArg(true);
+            Scripting::ScriptArgumentGeneric<Boolean> BoolArg(true);
             TEST(BoolArg.GetTypeData()==Scripting::GenericBool,"ArgumentBoolType");
 
             Scripting::ScriptArgumentGeneric<Scripting::NullArgument> NullArg;

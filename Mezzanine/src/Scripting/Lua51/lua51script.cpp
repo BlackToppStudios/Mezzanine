@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -75,7 +75,7 @@ namespace Mezzanine
             Lua51Script::Lua51Script() : FunctionCall(false)
                 { }
 
-            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler, Bool JustAFunctionCall, String ScriptName)
+            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler, Boolean JustAFunctionCall, String ScriptName)
                 : SourceCode(InitialSourceCode),
                   Name(ScriptName),
                   FunctionCall(JustAFunctionCall)
@@ -84,7 +84,7 @@ namespace Mezzanine
                     { Compile(Compiler); }
             }
 
-            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Bool JustAFunctionCall, String ScriptName)
+            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Boolean JustAFunctionCall, String ScriptName)
                 : SourceCode(InitialSourceCode),
                   Name(ScriptName),
                   FunctionCall(JustAFunctionCall)
@@ -134,7 +134,7 @@ namespace Mezzanine
             void Lua51Script::AddArgument(Char8 *Arg)
                 { AddArgument((String(Arg))); }
 
-            void Lua51Script::AddArgument(Bool Arg)
+            void Lua51Script::AddArgument(Boolean Arg)
                 { AddArgument((Lua51BoolArgument(Arg))); }
 
             void Lua51Script::AddArgument()

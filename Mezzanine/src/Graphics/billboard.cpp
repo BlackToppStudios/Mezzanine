@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -65,13 +65,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Bool Billboard::HasOwnDimensions() const
+        Boolean Billboard::HasOwnDimensions() const
             { return this->GraphicsBillboard->hasOwnDimensions(); }
 
         void Billboard::ResetDimensions()
             { this->GraphicsBillboard->resetDimensions(); }
 
-        Bool Billboard::IsUsingTextureCoordRect() const
+        Boolean Billboard::IsUsingTextureCoordRect() const
             { return this->GraphicsBillboard->isUseTexcoordRect(); }
 
         ///////////////////////////////////////////////////////////////////////////////

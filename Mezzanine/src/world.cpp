@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -104,7 +104,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Upper Management
 
-    Bool World::AddManager(WorldManager* ManagerToAdd)
+    Boolean World::AddManager(WorldManager* ManagerToAdd)
     {
         ManagerBase::ManagerType IType = ManagerToAdd->GetInterfaceType();
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )

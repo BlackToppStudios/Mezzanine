@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -259,10 +259,10 @@ namespace Mezzanine
     const String& ObjectSettingFile::GetFileName() const
         { return this->File; }
 
-    void ObjectSettingFile::SetNeedsSave(Bool Save)
+    void ObjectSettingFile::SetNeedsSave(Boolean Save)
         { this->NeedsSave = Save; }
 
-    Bool ObjectSettingFile::GetNeedsSave() const
+    Boolean ObjectSettingFile::GetNeedsSave() const
         { return this->NeedsSave; }
 
     void ObjectSettingFile::AddGroup(ObjectSettingGroup* Group)
@@ -625,16 +625,16 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Saving Utilities
 
-    void ObjectSettingsHandler::SetAutoGenPath(Bool Enable)
+    void ObjectSettingsHandler::SetAutoGenPath(Boolean Enable)
         { this->AutoGenPath = Enable; }
 
-    Bool ObjectSettingsHandler::GetAutoGenPath() const
+    Boolean ObjectSettingsHandler::GetAutoGenPath() const
         { return this->AutoGenPath; }
 
-    void ObjectSettingsHandler::SetAutoGenFiles(Bool Enable)
+    void ObjectSettingsHandler::SetAutoGenFiles(Boolean Enable)
         { this->AutoGenFiles = Enable; }
 
-    Bool ObjectSettingsHandler::GetAutoGenFiles() const
+    Boolean ObjectSettingsHandler::GetAutoGenFiles() const
         { return this->AutoGenFiles; }
 
     void ObjectSettingsHandler::SaveAllSettings()
@@ -647,7 +647,7 @@ namespace Mezzanine
         for( SettingFilesIterator SettingFileIt = this->SettingFiles.begin() ; SettingFileIt != this->SettingFiles.end() ; ++SettingFileIt )
         {
             ObjectSettingFile* CurrFile = (*SettingFileIt).second;
-            Bool IsCurrentSettingsFile = ( CurrentSettingsSaveFile == CurrFile->GetFileName() );
+            Boolean IsCurrentSettingsFile = ( CurrentSettingsSaveFile == CurrFile->GetFileName() );
             if( CurrFile->GetNeedsSave() || IsCurrentSettingsFile ) {
                 if( IsCurrentSettingsFile )
                     GroupNames.push_back( "Current" );
@@ -719,7 +719,7 @@ namespace Mezzanine
         this->SaveSettingsToFile(GroupNames,FileName,SettingsFilePath);
     }
 
-    void ObjectSettingsHandler::SaveSettingsToXML(XML::Node& RootSettings, Bool SaveCurrent)
+    void ObjectSettingsHandler::SaveSettingsToXML(XML::Node& RootSettings, Boolean SaveCurrent)
     {
         StringVector GroupNames;
 

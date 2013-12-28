@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -252,11 +252,11 @@ namespace Mezzanine
             // Utility and Visibility Methods
 
             /// @copydoc Renderable::SetVisible(Bool)
-            virtual void SetVisible(Bool CanSee);
+            virtual void SetVisible(Boolean CanSee);
             /// @copydoc Renderable::GetVisible() const
-            virtual Bool GetVisible() const;
+            virtual Boolean GetVisible() const;
             /// @copydoc Renderable::IsVisible() const
-            virtual Bool IsVisible() const;
+            virtual Boolean IsVisible() const;
             /// @copydoc Renderable::Show()
             virtual void Show();
             /// @copydoc Renderable::Hide()
@@ -579,7 +579,7 @@ namespace Mezzanine
             /// @param CB The callback implementing how the children are to be processed.
             /// @return Returns the result of the callback, and exits early if true.
             template<typename Callback>
-            Bool _ProcessAllChildren(Callback* CB)
+            Boolean _ProcessAllChildren(Callback* CB)
             {
                 for( ChildIterator ChildIt = this->ChildrenBegin() ; ChildIt != this->ChildrenEnd() ; ++ChildIt )
                 {
@@ -593,7 +593,7 @@ namespace Mezzanine
             /// @param CB The callback implementing how the children are to be processed.
             /// @return Returns the result of the callback, and exits early if true.
             template<typename Callback>
-            Bool _ReverseProcessAllChildren(Callback* CB)
+            Boolean _ReverseProcessAllChildren(Callback* CB)
             {
                 for( ReverseChildIterator RChildIt = this->RChildrenBegin() ; RChildIt != this->RChildrenEnd() ; ++RChildIt )
                 {
@@ -608,7 +608,7 @@ namespace Mezzanine
             /// @param CB The callback implementing how the children are to be processed.
             /// @return Returns the result of the callback, and exits early if true.
             template<typename Callback>
-            static Bool _ProcessAllChildren(Widget* Wid, Callback* CB)
+            static Boolean _ProcessAllChildren(Widget* Wid, Callback* CB)
             {
                 if( (*CB)(Wid) )
                     return true;
@@ -625,7 +625,7 @@ namespace Mezzanine
             /// @param CB The callback implementing how the children are to be processed.
             /// @return Returns the result of the callback, and exits early if true.
             template<typename Callback>
-            static Bool _ReverseProcessAllChildren(Widget* Wid, Callback* CB)
+            static Boolean _ReverseProcessAllChildren(Widget* Wid, Callback* CB)
             {
                 for( ReverseChildIterator RChildIt = Wid->RChildrenBegin() ; RChildIt != Wid->RChildrenEnd() ; ++RChildIt )
                 {

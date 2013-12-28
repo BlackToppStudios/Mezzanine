@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -67,7 +67,7 @@ class resourcetests : public UnitTestGroup
         /// set of checks that need to happen and some situations in which tests will be skipped.
         void CreateRemoveDirectory(const String& TestDirString)
         {
-            Bool Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
+            Boolean Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
             TestOutput << "Does testing directory exists: " << Exists << endl;
             if(Exists)
             {

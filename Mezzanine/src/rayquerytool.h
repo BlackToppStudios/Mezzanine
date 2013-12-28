@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -85,10 +85,10 @@ namespace Mezzanine
             ///////////////////////////////////////
             /// @brief Clears an previously stored return values.
             /// @brief returns false.
-            Bool ClearReturns();
+            Boolean ClearReturns();
             /// @brief Check to see if the last query found anything.
             /// @return True if something was found, false otherwise.
-            Bool LastQueryResultsValid() const;
+            Boolean LastQueryResultsValid() const;
             /// @brief Get an offset from the last query. Depending on the last query, this could be an Offset from a variety of things.
             /// @return A Vector3 if the last query worked and returns an Offset, A empty vector otherwise. Use LastQueryResultsValid() Prior to this.
             Vector3 LastQueryResultsOffset() const;
@@ -115,7 +115,7 @@ namespace Mezzanine
             /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
             /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
             /// @return True if something is found, false otherwise. Use LastQueryResultsOffset() and LastQueryResultsActorPtr() for more details.
-            Bool GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags);
+            Boolean GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags);
 
             /// @brief Partially implemented. This should find the first Object that is on or almost on the a given Ray.
             /// @details This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned.
@@ -125,14 +125,14 @@ namespace Mezzanine
             /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
             /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.
             /// @return True if something is found, false otherwise. Use LastQueryResultsActorPtr() for more details. Any return Offset is empty
-            Bool GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags);
+            Boolean GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags);
 
             /// @brief Where does this Ray Meet this Plane?
             /// @details This does some fancy math to return the point where the ray and the plane intersent.
             /// @param QueryRay This is the Ray that could intersent the plane
             /// @param QueryPlane This is the plane to be interesected.
             /// @return True if something is found, false otherwise. Use LastQueryResultsOffset() for more details. Any return Actor Pointer is NULL;
-            Bool RayPlaneIntersection(const Ray& QueryRay, const Plane& QueryPlane);
+            Boolean RayPlaneIntersection(const Ray& QueryRay, const Plane& QueryPlane);
 
             /// @brief Get a Ray from the current viewport, following the mouse
             /// @details This calls on the graphics subsystem to get a ray from the location of the current camera

@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -304,7 +304,7 @@ class mutextests : public UnitTestGroup
                 Int32 Value = 10;
                 //LogForMutexes.str("");
                 cout << endl << "Creating " << ThreadCount << " threads to read and write into a value proected by a ReadWriteSpinLock" << endl;
-                Bool WriteTest = true;
+                Boolean WriteTest = true;
                 MaxInt Start = GetTimeStamp();
                 for(Whole Counter=0; Counter<ThreadCount; Counter++)
                 {

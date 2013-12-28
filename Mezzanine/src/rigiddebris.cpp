@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -133,13 +133,13 @@ namespace Mezzanine
     Physics::RigidProxy* RigidDebris::GetRigidProxy() const
         { return this->RigProx; }
 
-    Bool RigidDebris::IsInWorld() const
+    Boolean RigidDebris::IsInWorld() const
         { return this->RigProx->IsInWorld(); }
 
-    Bool RigidDebris::IsStatic() const
+    Boolean RigidDebris::IsStatic() const
         { return this->RigProx->IsStatic(); }
 
-    Bool RigidDebris::IsKinematic() const
+    Boolean RigidDebris::IsKinematic() const
         { return this->RigProx->IsKinematic(); }
 
     void RigidDebris::GetProxies(ProxyContainer& Proxies)

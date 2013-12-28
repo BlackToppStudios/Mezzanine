@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -97,7 +97,7 @@ namespace Mezzanine
             }
         }
 
-        Bool RenderableProxy::IsInWorld() const
+        Boolean RenderableProxy::IsInWorld() const
             { return this->InWorld; }
 
         WorldManager* RenderableProxy::GetCreator() const
@@ -106,19 +106,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // RenderableProxy Properties
 
-        void RenderableProxy::SetVisible(const Bool Visible)
+        void RenderableProxy::SetVisible(const Boolean Visible)
             { this->_GetBaseGraphicsObject()->setVisible(Visible); }
 
-        Bool RenderableProxy::GetVisible() const
+        Boolean RenderableProxy::GetVisible() const
             { return this->_GetBaseGraphicsObject()->getVisible(); }
 
-        void RenderableProxy::SetCastShadows(const Bool CastShadows)
+        void RenderableProxy::SetCastShadows(const Boolean CastShadows)
             { this->_GetBaseGraphicsObject()->setCastShadows(CastShadows); }
 
-        Bool RenderableProxy::GetCastShadows() const
+        Boolean RenderableProxy::GetCastShadows() const
             { return this->_GetBaseGraphicsObject()->getCastShadows(); }
 
-        Bool RenderableProxy::GetReceiveShadows() const
+        Boolean RenderableProxy::GetReceiveShadows() const
             { return this->_GetBaseGraphicsObject()->getReceivesShadows(); }
 
         void RenderableProxy::SetLightMask(const UInt32 Mask)
@@ -247,7 +247,7 @@ namespace Mezzanine
 
         void RenderableProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            Bool WasInWorld = false;
+            Boolean WasInWorld = false;
             XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
             if( !InWorldAttrib.Empty() ) {
                 WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );

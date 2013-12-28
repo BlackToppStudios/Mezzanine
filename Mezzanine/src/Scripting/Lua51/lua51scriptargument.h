@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -181,10 +181,10 @@ namespace Mezzanine
             };
 
             /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
-            class MEZZ_LIB Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Bool>
+            class MEZZ_LIB Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Boolean>
             {
                 public:
-                    Lua51BoolArgument(Bool InitialValue = false) : ScriptArgumentGeneric<Bool>(InitialValue)
+                    Lua51BoolArgument(Boolean InitialValue = false) : ScriptArgumentGeneric<Boolean>(InitialValue)
                     {}
 
                     virtual void Push(lua_State* TargetState) const;

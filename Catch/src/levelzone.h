@@ -47,10 +47,10 @@ public:
     /// @brief Checks if an object is inside this zone.
     /// @param Object The object to check inside this zone for.
     /// @return Returns true if the provided object is currently in this zone, false otherwise.
-    virtual Bool IsInside(WorldObject* Object);
+    virtual Boolean IsInside(WorldObject* Object);
     /// @brief Checks if this zone is false.
     /// @return Returns true if this zone contains no objects, false otherwise.
-    virtual Bool IsEmpty();
+    virtual Boolean IsEmpty();
 
     /// @copydoc Mezzanine::WorldObject::GetProxies(ProxyContainer&)
     virtual void GetProxies(ProxyContainer& Proxies);

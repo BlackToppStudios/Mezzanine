@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -129,13 +129,13 @@ namespace Mezzanine
     Physics::SoftProxy* SoftDebris::GetSoftProxy() const
         { return this->SofProx; }
 
-    Bool SoftDebris::IsInWorld() const
+    Boolean SoftDebris::IsInWorld() const
         { return this->SofProx->IsInWorld(); }
 
-    Bool SoftDebris::IsStatic() const
+    Boolean SoftDebris::IsStatic() const
         { return this->SofProx->IsStatic(); }
 
-    Bool SoftDebris::IsKinematic() const
+    Boolean SoftDebris::IsKinematic() const
         { return this->SofProx->IsKinematic(); }
 
     void SoftDebris::GetProxies(ProxyContainer& Proxies)

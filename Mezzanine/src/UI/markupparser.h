@@ -73,7 +73,7 @@ namespace Mezzanine
             /// @brief Const Iterator type for @ref Character instances stored by this class.
             typedef CharacterContainer::const_iterator              ConstCharacterIterator;
             /// @brief An std::pair used to report the result of a MarkupTag being processed any the character it may have generated.
-            typedef std::pair<Bool,Character*>                      ProcessResult;
+            typedef std::pair<Boolean,Character*>                      ProcessResult;
         public:
             /// @brief Class constructor.
             MarkupTag() {  }
@@ -88,7 +88,7 @@ namespace Mezzanine
             virtual const String& GetName() const = 0;
             /// @brief Gets whether or not this tag applies to a range of characters.
             /// @return Returns true if this tag requires a closing tag to accompany to be valid, false otherwise.
-            virtual Bool IsRangeTag() const = 0;
+            virtual Boolean IsRangeTag() const = 0;
 
             /// @brief Processes this tag.
             /// @param Params A NameValuePairMap of all the parameters provided for this tag.

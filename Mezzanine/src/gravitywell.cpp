@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -177,10 +177,10 @@ namespace Mezzanine
     Real GravityWell::GetFieldStrength() const
         { return this->Strength; }
 
-    void GravityWell::SetAllowWorldGravity(Bool WorldGravity)
+    void GravityWell::SetAllowWorldGravity(Boolean WorldGravity)
         { this->AllowWorldGrav = WorldGravity; }
 
-    Bool GravityWell::GetAllowWorldGravity() const
+    Boolean GravityWell::GetAllowWorldGravity() const
         { return this->AllowWorldGrav; }
 
     void GravityWell::SetAttenuation(const Real Amount, const Mezzanine::AttenuationStyle Style)

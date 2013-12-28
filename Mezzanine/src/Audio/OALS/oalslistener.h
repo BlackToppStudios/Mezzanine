@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -87,7 +87,7 @@ namespace Mezzanine
                 ALCcontext* Context;
                 /// @internal
                 /// @brief This tracks whether this listener is in the world and active or not.
-                Bool InWorld;
+                Boolean InWorld;
 
                 /// @internal
                 /// @brief Converts our orientation into something OpanAL can read/use.
