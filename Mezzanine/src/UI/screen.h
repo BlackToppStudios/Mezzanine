@@ -484,12 +484,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created Window.
             /// @param Name The name of the Window.
             /// @param RendRect The Rect representing the position and size of the Window.
-            virtual Window* CreateWidgetWindow(ConstString& Name, const Rect& RendRect);
-            /// @brief Creates a Menu.
-            /// @return Returns a pointer to the created Menu.
-            /// @param Name The name of the Menu.
-            /// @param RendRect The Rect representing the position and size of the Menu.
-            virtual Menu* CreateMenu(ConstString& Name, const Rect& RendRect);//*/
+            virtual Window* CreateWidgetWindow(ConstString& Name, const Rect& RendRect);//*/
 
             ///////////////////////////////////////////////////////////////////////////////
             // Atlas Query

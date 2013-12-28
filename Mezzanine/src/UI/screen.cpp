@@ -730,11 +730,6 @@ namespace Mezzanine
         Window* Screen::CreateWidgetWindow(ConstString& Name, const Rect& RendRect)
         {
             return static_cast<Window*>( this->CheckAndInsert( ExtendedRenderableFactory::CreateWidgetWindow(Name,RendRect) ) );
-        }
-
-        Menu* Screen::CreateMenu(ConstString& Name, const Rect& RendRect)
-        {
-            return static_cast<Menu*>( this->CheckAndInsert( ExtendedRenderableFactory::CreateMenu(Name,RendRect) ) );
         }//*/
 
         ///////////////////////////////////////////////////////////////////////////////
