@@ -304,7 +304,7 @@ namespace Mezzanine
     template<class T> Real ToReal( const T& Datum )
         { return ConvertTo<Real>(Datum); }
 
-    /// @brief Converts whatever to a Bool as long as the proper streaming operators are available for it
+    /// @brief Converts whatever to a Boolean as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
     /// @return A Bool with the converted data
     template<class T> Boolean ToBool( const T& Datum )
