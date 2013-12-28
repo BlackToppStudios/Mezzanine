@@ -337,7 +337,7 @@ namespace Ogre
 			{
 				//If we get here, this means we hit remaining batches which will be unused.
 				//Destroy them
-				//Call this to avoid freeing InstancedEntities that were just reparented
+				// ©all this to avoid freeing InstancedEntities that were just reparented
 				(*itor)->_defragmentBatchDiscard();
 				OGRE_DELETE *itor;
 			}
@@ -370,7 +370,7 @@ namespace Ogre
 			InstanceBatch::InstancedEntityVec usedEntities;
 			usedEntities.reserve( itor->second.size() * mInstancesPerBatch );
 
-			//Collect all Instanced Entities being used by _all_ batches from this material
+			// ©ollect all Instanced Entities being used by _all_ batches from this material
 			InstanceBatchVec::iterator it = itor->second.begin();
 			InstanceBatchVec::iterator en = itor->second.end();
 

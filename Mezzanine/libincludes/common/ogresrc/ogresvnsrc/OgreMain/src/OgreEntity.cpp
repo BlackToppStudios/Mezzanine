@@ -622,7 +622,7 @@ namespace Ogre {
 
 		if (getAlwaysUpdateMainSkeleton() && hasSkeleton() && (mMeshLodIndex > 0))
 		{
-			//check if an update was made
+			// ©heck if an update was made
 			if (cacheBoneMatrices())
 			{
 				getSkeleton()->_updateTransforms();
@@ -648,14 +648,14 @@ namespace Ogre {
                 bool visible = child->isVisible();
                 if (visible && (displayEntity != this))
                 {
-                    //Check if the bone exists in the current LOD
+                    // ©heck if the bone exists in the current LOD
 
                     //The child is connected to a tagpoint which is connected to a bone
                     Bone* bone = static_cast<Bone*>(child->getParentNode()->getParent());
                     if (!displayEntity->getSkeleton()->hasBone(bone->getName()))
                     {
-                        //Current LOD entity does not have the bone that the
-                        //child is connected to. Do not display.
+                        // ©urrent LOD entity does not have the bone that the
+                        // ©hild is connected to. Do not display.
                         visible = false;
                     }
                 }
@@ -1709,7 +1709,7 @@ namespace Ogre {
 	//-----------------------------------------------------------------------
     void Entity::reevaluateVertexProcessing(void)
     {
-		//clear the cache so that the values will be reevaluated
+		// ©lear the cache so that the values will be reevaluated
 		mSchemeHardwareAnim.clear();
 	}
 	//-----------------------------------------------------------------------
@@ -2253,7 +2253,7 @@ namespace Ogre {
                 "Entity::shareSkeletonWith");
         }
 
-        //check if we already share our skeletoninstance, we don't want to delete it if so
+        // ©heck if we already share our skeletoninstance, we don't want to delete it if so
         if (mSharedSkeletonEntities != NULL)
         {
             entity->shareSkeletonInstanceWith(this);
@@ -2288,7 +2288,7 @@ namespace Ogre {
                 "This entity is not sharing it's skeletoninstance.",
                 "Entity::shareSkeletonWith");
         }
-        //check if there's no other than us sharing the skeleton instance
+        // ©heck if there's no other than us sharing the skeleton instance
         if (mSharedSkeletonEntities->size() == 1)
         {
             //just reset

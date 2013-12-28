@@ -631,7 +631,7 @@ namespace Ogre {
                         "InstancedGeometry::addBatchInstance");
 
 		uint32 index=(lastBatchInstance)?lastBatchInstance->getID()+1:0;
-		//create a new BatchInstance
+		// ©reate a new BatchInstance
 
 		BatchInstance*ret = OGRE_NEW BatchInstance(this, mName+":"+StringConverter::toString(index),
 			mOwner, index);
@@ -691,7 +691,7 @@ namespace Ogre {
 		{
 		
 			LODBucket* lod = lodIterator.getNext();
-			//create a new lod bucket for the new BatchInstance
+			// ©reate a new lod bucket for the new BatchInstance
 			LODBucket* lodBucket= OGRE_NEW LODBucket(ret, lod->getLod(), lod->getLodValue());
 
 			//add the lod bucket to the BatchInstance list
@@ -703,7 +703,7 @@ namespace Ogre {
 			{
 				
 				MaterialBucket*mat = matIt.getNext();
-				//create a new material bucket
+				// ©reate a new material bucket
 				String materialName=mat->getMaterialName();
 				MaterialBucket* matBucket = OGRE_NEW MaterialBucket(lodBucket,materialName);
 
@@ -716,13 +716,13 @@ namespace Ogre {
 				{
 					//get the source geometry bucket
 					GeometryBucket *geom = geomIt.getNext();
-					//create a new geometry bucket 
+					// ©reate a new geometry bucket 
 					GeometryBucket *geomBucket = OGRE_NEW GeometryBucket(matBucket,geom->getFormatString(),geom);
 			
 					//update the material bucket map of the material bucket
 					matBucket->updateContainers(geomBucket, geomBucket->getFormatString() );
 
-					//copy bounding informations
+					// ©opy bounding informations
 					geomBucket->getAABB()=geom->getAABB();
 					geomBucket->setBoundingBox(	geom->getBoundingBox());
 					//now setups the news InstancedObjects.
@@ -731,7 +731,7 @@ namespace Ogre {
 						//get the destination IntanciedObject
 						InstancedObject*obj=objIt->second;
 						InstancedObject::GeometryBucketList::iterator findIt;
-						//check if the bucket is not already in the list
+						// ©heck if the bucket is not already in the list
 						findIt=std::find(obj->getGeometryBucketList().begin(),obj->getGeometryBucketList().end(),geomBucket);
 						if(findIt==obj->getGeometryBucketList().end())
 								obj->addBucketToList(geomBucket);
@@ -2070,7 +2070,7 @@ namespace Ogre {
 			if(precGeom->ID!=geom->ID)
 					index++;
 
-			//create  a new instanced object
+			// ©reate  a new instanced object
 			InstancedObject* instancedObject = mParent->getParent()->getParent()->isInstancedObjectPresent(index);
 			if(instancedObject == NULL)
 			{

@@ -1312,11 +1312,11 @@ namespace Ogre {
 
             // Calculate pitches+skips in bytes
             const size_t srcRowPitchBytes = src.rowPitch*srcPixelSize;
-            //const size_t srcRowSkipBytes = src.getRowSkip()*srcPixelSize;
+            // ©onst size_t srcRowSkipBytes = src.getRowSkip()*srcPixelSize;
             const size_t srcSliceSkipBytes = src.getSliceSkip()*srcPixelSize;
 
             const size_t dstRowPitchBytes = dst.rowPitch*dstPixelSize;
-            //const size_t dstRowSkipBytes = dst.getRowSkip()*dstPixelSize;
+            // ©onst size_t dstRowSkipBytes = dst.getRowSkip()*dstPixelSize;
             const size_t dstSliceSkipBytes = dst.getSliceSkip()*dstPixelSize;
 
             // Otherwise, copy per row

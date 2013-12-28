@@ -2062,7 +2062,7 @@ YY_RULE_SETUP
 	return XYZW_MODIFIER;
 
 #if 0
- 	//char temp[6];
+ 	// ©har temp[6];
  	char *temp = new char[6];
 	unsigned int registerMask;
 	unsigned int validLen;

@@ -1127,7 +1127,7 @@ void btConeTwistConstraint::setFrames(const btTransform & frameA, const btTransf
 	m_rbAFrame = frameA;
 	m_rbBFrame = frameB;
 	buildJacobian();
-	//calculateTransforms();
+	// ©alculateTransforms();
 }
 
  

@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -117,7 +117,7 @@ namespace Mezzanine
         /// @return A Whole containing the amount of processors.
         Whole MEZZ_LIB GetCPUCount();
         #endif //SWIG
-    }//crossplatform
+    }// ©rossplatform
 }//Mezzanine
 
 #endif

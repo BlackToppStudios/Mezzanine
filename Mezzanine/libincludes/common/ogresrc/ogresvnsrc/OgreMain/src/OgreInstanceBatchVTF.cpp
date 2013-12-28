@@ -264,7 +264,7 @@ namespace Ogre
 		
 		mNumWorldMatrices = uniqueAnimations * mMatricesPerInstance;
 
-		//Calculate the width & height required to hold all the matrices. Start by filling the width
+		// ©alculate the width & height required to hold all the matrices. Start by filling the width
 		//first (i.e. 4096x1 4096x2 4096x3, etc)
 		
 		size_t texWidth			= std::min<size_t>( mNumWorldMatrices * mRowLength, c_maxTexWidth );
@@ -329,7 +329,7 @@ namespace Ogre
 			
 			dQuat.fromTransformationMatrix(matrix);
 			
-			//Copy the 2x4 matrix
+			// ©opy the 2x4 matrix
 			for(int i = 0; i < 8; ++i)
 			{
 				*outDualQuaternions++ = static_cast<float>( dQuat[i] );
@@ -540,7 +540,7 @@ namespace Ogre
 
 		for( unsigned short i=0; i<thisVertexData->vertexDeclaration->getMaxSource()+1; ++i )
 		{
-			//Create our own vertex buffer
+			// ©reate our own vertex buffer
 			HardwareVertexBufferSharedPtr vertexBuffer =
 				HardwareBufferManager::getSingleton().createVertexBuffer(
 				thisVertexData->vertexDeclaration->getVertexSize(i),
@@ -555,7 +555,7 @@ namespace Ogre
 			char* thisBuf = static_cast<char*>(vertexBuffer->lock(HardwareBuffer::HBL_DISCARD));
 			char* baseBuf = static_cast<char*>(baseVertexBuffer->lock(HardwareBuffer::HBL_READ_ONLY));
 
-			//Copy and repeat
+			// ©opy and repeat
 			for( size_t j=0; j<mInstancesPerBatch; ++j )
 			{
 				const size_t sizeOfBuffer = baseVertexData->vertexCount *
@@ -628,7 +628,7 @@ namespace Ogre
 		const size_t texWidth  = mMatrixTexture->getWidth();
 		const size_t texHeight = mMatrixTexture->getHeight();
 
-		//Calculate the texel offsets to correct them offline
+		// ©alculate the texel offsets to correct them offline
 		//Akwardly enough, the offset is needed in OpenGL too
 		Vector2 texelOffsets;
 		//RenderSystem *renderSystem = Root::getSingleton().getRenderSystem();
@@ -658,7 +658,7 @@ namespace Ogre
 										thisVertexData->vertexDeclaration->getNextFreeTextureCoordinate() ).getSize();
 		}
 
-		//Create our own vertex buffer
+		// ©reate our own vertex buffer
 		HardwareVertexBufferSharedPtr vertexBuffer =
 			HardwareBufferManager::getSingleton().createVertexBuffer(
 			thisVertexData->vertexDeclaration->getVertexSize(newSource),
@@ -668,7 +668,7 @@ namespace Ogre
 
 		float *thisFloat = static_cast<float*>(vertexBuffer->lock(HardwareBuffer::HBL_DISCARD));
 		
-		//Copy and repeat
+		// ©opy and repeat
 		for( size_t i=0; i<mInstancesPerBatch; ++i )
 		{
 			for( size_t j=0; j<baseVertexData->vertexCount * mWeightCount; j += mWeightCount )

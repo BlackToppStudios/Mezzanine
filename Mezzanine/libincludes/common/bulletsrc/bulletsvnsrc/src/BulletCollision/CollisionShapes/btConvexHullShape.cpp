@@ -123,7 +123,7 @@ btVector3	btConvexHullShape::localGetSupportingVertex(const btVector3& vec)const
 
 
 
-//currently just for debugging (drawing), perhaps future support for algebraic continuous collision detection
+// ©urrently just for debugging (drawing), perhaps future support for algebraic continuous collision detection
 //Please note that you can debug-draw btConvexHullShape with the Raytracer Demo
 int	btConvexHullShape::getNumVertices() const
 {

@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -23,7 +23,7 @@ subject to the following restrictions:
 ///If the platform doesn't support placement new, you can disable BT_USE_PLACEMENT_NEW
 ///then the btAlignedObjectArray doesn't support objects with virtual methods, and non-trivial constructors/destructors
 ///You can enable BT_USE_MEMCPY, then swapping elements in the array will use memcpy instead of operator=
-///see discussion here: http://continuousphysics.com/Bullet/phpBB2/viewtopic.php?t=1231 and
+///see discussion here: http:// ©ontinuousphysics.com/Bullet/phpBB2/viewtopic.php?t=1231 and
 ///http://www.continuousphysics.com/Bullet/phpBB2/viewtopic.php?t=1240
 
 #define BT_USE_PLACEMENT_NEW 1
@@ -180,7 +180,7 @@ protected:
 		}
 		
 
-		///clear the array, deallocated memory. Generally it is better to use array.resize(0), to reduce performance overhead of run-time memory (de)allocations.
+		/// ©lear the array, deallocated memory. Generally it is better to use array.resize(0), to reduce performance overhead of run-time memory (de)allocations.
 		SIMD_FORCE_INLINE	void	clear()
 		{
 			destroy(0,size());

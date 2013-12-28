@@ -1807,7 +1807,7 @@ void PS_1_4::test()
     int charsize;
   };
 
-  char TestStr1[] = "   \n\r  //c  \n\r// test\n\r  \t  c   - \n\r ,  e";
+  char TestStr1[] = "   \n\r  // ©  \n\r// test\n\r  \t  c   - \n\r ,  e";
   test1result test1results[] = {
     {'c', 4},
     {'-', 4},

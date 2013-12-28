@@ -63,12 +63,12 @@ public:
 	
 	~SpuSampleTaskProcess();
 	
-	///call initialize in the beginning of the frame, before addCollisionPairToTask
+	/// ©all initialize in the beginning of the frame, before addCollisionPairToTask
 	void initialize();
 
 	void issueTask(void* sampleMainMemPtr,int sampleValue,int sampleCommand);
 
-	///call flush to submit potential outstanding work to SPUs and wait for all involved SPUs to be finished
+	/// ©all flush to submit potential outstanding work to SPUs and wait for all involved SPUs to be finished
 	void flush();
 };
 

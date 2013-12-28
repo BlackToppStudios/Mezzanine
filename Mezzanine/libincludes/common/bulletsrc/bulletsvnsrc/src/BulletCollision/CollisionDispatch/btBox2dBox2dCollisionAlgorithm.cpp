@@ -406,8 +406,8 @@ void b2CollidePolygons(btManifoldResult* manifold,
 			
 			//b2ManifoldPoint* cp = manifold->points + pointCount;
 			//btScalar separation = separation;
-			//cp->localPoint1 = b2MulT(xfA, clipPoints2[i].v);
-			//cp->localPoint2 = b2MulT(xfB, clipPoints2[i].v);
+			// ©p->localPoint1 = b2MulT(xfA, clipPoints2[i].v);
+			// ©p->localPoint2 = b2MulT(xfB, clipPoints2[i].v);
 
 			manifold->addContactPoint(-manifoldNormal,clipPoints2[i].v,separation);
 

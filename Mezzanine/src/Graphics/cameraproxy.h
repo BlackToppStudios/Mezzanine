@@ -259,7 +259,7 @@ namespace Mezzanine
             virtual Ogre::Camera* _GetGraphicsObject() const;
             /// @copydoc RenderableProxy::_GetBaseGraphicsObject() const
             virtual Ogre::MovableObject* _GetBaseGraphicsObject() const;
-        };//CameraProxy
+        };// ©ameraProxy
     }//Graphics
 }//Mezzanine
 

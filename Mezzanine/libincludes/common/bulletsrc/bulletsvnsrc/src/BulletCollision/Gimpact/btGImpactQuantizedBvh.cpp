@@ -69,7 +69,7 @@ float btGImpactQuantizedBvh::getAverageTreeCollisionTime()
 void btQuantizedBvhTree::calc_quantization(
 	GIM_BVH_DATA_ARRAY & primitive_boxes, btScalar boundMargin)
 {
-	//calc globa box
+	// ©alc globa box
 	btAABB global_bound;
 	global_bound.invalidate();
 
@@ -193,7 +193,7 @@ void btQuantizedBvhTree::_build_sub_tree(GIM_BVH_DATA_ARRAY & primitive_boxes, i
 
 		return;
 	}
-	//calculate Best Splitting Axis and where to split it. Sort the incoming 'leafNodes' array within range 'startIndex/endIndex'.
+	// ©alculate Best Splitting Axis and where to split it. Sort the incoming 'leafNodes' array within range 'startIndex/endIndex'.
 
 	//split axis
 	int splitIndex = _calc_splitting_axis(primitive_boxes,startIndex,endIndex);
@@ -204,7 +204,7 @@ void btQuantizedBvhTree::_build_sub_tree(GIM_BVH_DATA_ARRAY & primitive_boxes, i
 			);
 
 
-	//calc this node bounding box
+	// ©alc this node bounding box
 
 	btAABB node_bound;
 	node_bound.invalidate();
@@ -242,7 +242,7 @@ void btQuantizedBvhTree::build_tree(
 	_build_sub_tree(primitive_boxes, 0, primitive_boxes.size());
 }
 
-////////////////////////////////////class btGImpactQuantizedBvh
+//////////////////////////////////// ©lass btGImpactQuantizedBvh
 
 void btGImpactQuantizedBvh::refit()
 {
@@ -257,7 +257,7 @@ void btGImpactQuantizedBvh::refit()
 		}
 		else
 		{
-			//const GIM_BVH_TREE_NODE * nodepointer = get_node_pointer(nodecount);
+			// ©onst GIM_BVH_TREE_NODE * nodepointer = get_node_pointer(nodecount);
 			//get left bound
 			btAABB bound;
 			bound.invalidate();
@@ -317,7 +317,7 @@ bool btGImpactQuantizedBvh::boxQuery(const btAABB & box, btAlignedObjectArray<in
 	while (curIndex < numNodes)
 	{
 
-		//catch bugs in tree data
+		// ©atch bugs in tree data
 
 		bool aabbOverlap = m_box_tree.testQuantizedBoxOverlapp(curIndex, quantizedMin,quantizedMax);
 		bool isleafnode = isLeafNode(curIndex);
@@ -357,7 +357,7 @@ bool btGImpactQuantizedBvh::rayQuery(
 		btAABB bound;
 		getNodeBound(curIndex,bound);
 
-		//catch bugs in tree data
+		// ©atch bugs in tree data
 
 		bool aabbOverlap = bound.collide_ray(ray_origin,ray_dir);
 		bool isleafnode = isLeafNode(curIndex);
@@ -426,14 +426,14 @@ static void _find_quantized_collision_pairs_recursive(
 		else
 		{
 
-			//collide left recursive
+			// ©ollide left recursive
 
 			_find_quantized_collision_pairs_recursive(
 								boxset0,boxset1,
 								collision_pairs,trans_cache_1to0,
 								node0,boxset1->getLeftNode(node1),false);
 
-			//collide right recursive
+			// ©ollide right recursive
 			_find_quantized_collision_pairs_recursive(
 								boxset0,boxset1,
 								collision_pairs,trans_cache_1to0,
@@ -447,14 +447,14 @@ static void _find_quantized_collision_pairs_recursive(
 		if(boxset1->isLeafNode(node1))
 		{
 
-			//collide left recursive
+			// ©ollide left recursive
 			_find_quantized_collision_pairs_recursive(
 								boxset0,boxset1,
 								collision_pairs,trans_cache_1to0,
 								boxset0->getLeftNode(node0),node1,false);
 
 
-			//collide right recursive
+			// ©ollide right recursive
 
 			_find_quantized_collision_pairs_recursive(
 								boxset0,boxset1,
@@ -465,7 +465,7 @@ static void _find_quantized_collision_pairs_recursive(
 		}
 		else
 		{
-			//collide left0 left1
+			// ©ollide left0 left1
 
 
 
@@ -474,7 +474,7 @@ static void _find_quantized_collision_pairs_recursive(
 				collision_pairs,trans_cache_1to0,
 				boxset0->getLeftNode(node0),boxset1->getLeftNode(node1),false);
 
-			//collide left0 right1
+			// ©ollide left0 right1
 
 			_find_quantized_collision_pairs_recursive(
 				boxset0,boxset1,
@@ -482,14 +482,14 @@ static void _find_quantized_collision_pairs_recursive(
 				boxset0->getLeftNode(node0),boxset1->getRightNode(node1),false);
 
 
-			//collide right0 left1
+			// ©ollide right0 left1
 
 			_find_quantized_collision_pairs_recursive(
 				boxset0,boxset1,
 				collision_pairs,trans_cache_1to0,
 				boxset0->getRightNode(node0),boxset1->getLeftNode(node1),false);
 
-			//collide right0 right1
+			// ©ollide right0 right1
 
 			_find_quantized_collision_pairs_recursive(
 				boxset0,boxset1,

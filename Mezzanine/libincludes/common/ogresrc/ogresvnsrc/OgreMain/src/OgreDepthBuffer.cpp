@@ -50,7 +50,7 @@ namespace Ogre
 
 	void DepthBuffer::_setPoolId( uint16 poolId )
 	{
-		//Change the pool Id
+		// ©hange the pool Id
 		mPoolId = poolId;
 
 		//Render Targets were attached to us, but they have a different pool Id,

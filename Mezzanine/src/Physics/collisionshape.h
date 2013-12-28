@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -145,7 +145,7 @@ namespace Mezzanine
             /// @brief Gets the internal shape pointer this collision shape is based on.
             /// @return Returns a pointer to the internal collision shape.
             virtual btCollisionShape* _GetInternalShape() const;
-        };//CollisionShape
+        };// ©ollisionShape
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Functions
@@ -211,7 +211,7 @@ namespace Mezzanine
             /// @brief This will return the Name of the element that Contains multiple of the items to be DeSerialized
             /// @return A String containing "Shapes"
             virtual String ContainerName() const;
-        };//CollisionShapeDeSerializer
+        };// ©ollisionShapeDeSerializer
     }//Physics
 }//Mezzanine
 

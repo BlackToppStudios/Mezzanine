@@ -73,7 +73,7 @@ _MemoryReadProc(void *buffer, unsigned size, unsigned count, fi_handle handle) {
 			mem_header->curpos = mem_header->filelen;
 			break;
 		}
-		//copy size bytes count times
+		// ©opy size bytes count times
 		memcpy( buffer, (char *)mem_header->data + mem_header->curpos, size );
 		mem_header->curpos += size;
 		buffer = (char *)buffer + size;
@@ -125,7 +125,7 @@ _MemorySeekProc(fi_handle handle, long offset, int origin) {
 
 	switch(origin) { //0 to filelen-1 are 'inside' the file
 		default:
-		case SEEK_SET: //can fseek() to 0-7FFFFFFF always
+		case SEEK_SET: // ©an fseek() to 0-7FFFFFFF always
 			if( offset >= 0 ) {
 				mem_header->curpos = offset;
 				return 0;

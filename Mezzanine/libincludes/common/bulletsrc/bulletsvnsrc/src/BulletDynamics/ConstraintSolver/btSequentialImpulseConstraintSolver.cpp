@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -526,7 +526,7 @@ int	btSequentialImpulseConstraintSolver::getOrInitSolverBody(btCollisionObject& 
 	} else
 	{
 		btRigidBody* rb = btRigidBody::upcast(&body);
-		//convert both active and kinematic objects (for their velocity)
+		// ©onvert both active and kinematic objects (for their velocity)
 		if (rb && (rb->getInvMass() || rb->isKinematicObject()))
 		{
 			solverBodyIdA = m_tmpSolverBodyPool.size();
@@ -591,7 +591,7 @@ void btSequentialImpulseConstraintSolver::setupContactConstraint(btSolverConstra
 						vec = ( -solverConstraint.m_angularComponentB).cross(rel_pos2);
 						denom1 = rb1->getInvMass() + cp.m_normalWorldOnB.dot(vec);
 					}
-#endif //COMPUTE_IMPULSE_DENOM		
+#endif // ©OMPUTE_IMPULSE_DENOM		
 
 					btScalar denom = relaxation/(denom0+denom1);
 					solverConstraint.m_jacDiagABInv = denom;
@@ -674,7 +674,7 @@ void btSequentialImpulseConstraintSolver::setupContactConstraint(btSolverConstra
 
 					if (!infoGlobal.m_splitImpulse || (penetration > infoGlobal.m_splitImpulsePenetrationThreshold))
 					{
-						//combine position and velocity into rhs
+						// ©ombine position and velocity into rhs
 						solverConstraint.m_rhs = penetrationImpulse+velocityImpulse;
 						solverConstraint.m_rhsPenetration = 0.f;
 
@@ -994,7 +994,7 @@ btScalar btSequentialImpulseConstraintSolver::solveGroupCacheFriendlySetup(btCol
 	btSolverBody& fixedBody = m_tmpSolverBodyPool.expand();
     initSolverBody(&fixedBody,0);
 
-	//convert all bodies
+	// ©onvert all bodies
 
 	for (int i=0;i<numBodies;i++)
 	{
@@ -1034,7 +1034,7 @@ btScalar btSequentialImpulseConstraintSolver::solveGroupCacheFriendlySetup(btCol
 			int i;
 			
 			m_tmpConstraintSizesPool.resizeNoInitialize(numConstraints);
-			//calculate the total number of contraint rows
+			// ©alculate the total number of contraint rows
 			for (i=0;i<numConstraints;i++)
 			{
 				btTypedConstraint::btConstraintInfo1& info1 = m_tmpConstraintSizesPool[i];
@@ -1123,7 +1123,7 @@ btScalar btSequentialImpulseConstraintSolver::solveGroupCacheFriendlySetup(btCol
 					info2.m_J1angularAxis = currentConstraintRow->m_relpos1CrossNormal;
 					info2.m_J2linearAxis = 0;
 					info2.m_J2angularAxis = currentConstraintRow->m_relpos2CrossNormal;
-					info2.rowskip = sizeof(btSolverConstraint)/sizeof(btScalar);//check this
+					info2.rowskip = sizeof(btSolverConstraint)/sizeof(btScalar);// ©heck this
 					///the size of btSolverConstraint needs be a multiple of btScalar
 		            btAssert(info2.rowskip*sizeof(btScalar)== sizeof(btSolverConstraint));
 					info2.m_constraintError = &currentConstraintRow->m_rhs;
@@ -1270,7 +1270,7 @@ btScalar btSequentialImpulseConstraintSolver::solveSingleIteration(int iteration
 				m_orderNonContactConstraintPool[swapi] = tmp;
 			}
 
-			//contact/friction constraints are not solved more than 
+			// ©ontact/friction constraints are not solved more than 
 			if (iteration< infoGlobal.m_numIterations)
 			{
 				for (int j=0; j<numConstraintPool; ++j) {

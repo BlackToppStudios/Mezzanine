@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -29,7 +29,7 @@ class btConvexPenetrationDepthSolver;
 
 
 ///The convex2dConvex2dAlgorithm collision algorithm support 2d collision detection for btConvex2dShape
-///Currently it requires the btMinkowskiPenetrationDepthSolver, it has support for 2d penetration depth computation
+/// ©urrently it requires the btMinkowskiPenetrationDepthSolver, it has support for 2d penetration depth computation
 class btConvex2dConvex2dAlgorithm : public btActivatingCollisionAlgorithm
 {
 	btSimplexSolverInterface*		m_simplexSolver;

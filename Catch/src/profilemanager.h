@@ -30,7 +30,7 @@ class CatchProfile
         Whole GetHighestScore(const String& LevelName) const;
 
         void SetNewHighScore(const String& LevelName, const Whole& NewHigh);
-};//CatchProfile
+};// ©atchProfile
 
 typedef CatchProfile GameProfile;
 

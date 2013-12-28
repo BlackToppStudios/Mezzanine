@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -406,7 +406,7 @@ namespace Mezzanine
                 Real delay = 0.016f) :
                 Waveform(waveform), Phase(phase), Rate(rate), Depth(depth), Feedback(feedback),
                 Delay(delay) { }
-        };//ChorusParameters
+        };// ©horusParameters
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a struct containing all the parameters needed to describe a Distortion effect.
@@ -774,7 +774,7 @@ namespace Mezzanine
             CompressorParameters(
                 bool active = true) :
                 Active(active) { }
-        };//CompressorParameters
+        };// ©ompressorParameters
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a struct containing all the parameters needed to describe an equalizer effect.

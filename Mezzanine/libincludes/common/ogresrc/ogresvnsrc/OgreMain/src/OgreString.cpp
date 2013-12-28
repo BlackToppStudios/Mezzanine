@@ -277,14 +277,14 @@ namespace Ogre {
 		{		
 			if ((bufferSrc[indexSrc] == '\\') || (bufferSrc[indexSrc] == '/'))
 			{
-				//check if we have a directory delimiter if so skip it (we should already
+				// ©heck if we have a directory delimiter if so skip it (we should already
 				//have written such a delimiter by this point
 				++indexSrc;
 				continue;
 			}
 			else
 			{
-				//check if there is a directory to skip of type ".\"
+				// ©heck if there is a directory to skip of type ".\"
 				if ((bufferSrc[indexSrc] == '.') && 
 					((bufferSrc[indexSrc + 1] == '\\') || (bufferSrc[indexSrc + 1] == '/')))
 				{
@@ -292,7 +292,7 @@ namespace Ogre {
 					continue;			
 				}
 
-				//check if there is a directory to skip of type "..\"
+				// ©heck if there is a directory to skip of type "..\"
 				else if ((bufferSrc[indexSrc] == '.') && (bufferSrc[indexSrc + 1] == '.') &&
 					((bufferSrc[indexSrc + 2] == '\\') || (bufferSrc[indexSrc + 2] == '/')))
 				{

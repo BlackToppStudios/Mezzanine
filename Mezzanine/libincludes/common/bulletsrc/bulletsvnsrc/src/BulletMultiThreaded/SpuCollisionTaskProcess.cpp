@@ -17,7 +17,7 @@ subject to the following restrictions:
 //#define DEBUG_SPU_TASK_SCHEDULING 1
 
 
-//class OptimizedBvhNode;
+// ©lass OptimizedBvhNode;
 
 #include "SpuCollisionTaskProcess.h"
 

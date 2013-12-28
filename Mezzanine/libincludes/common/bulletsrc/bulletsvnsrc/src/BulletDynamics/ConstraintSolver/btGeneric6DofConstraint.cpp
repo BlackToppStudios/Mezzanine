@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -163,7 +163,7 @@ btScalar btRotationalLimitMotor::solveAngularLimits(
 	btScalar target_velocity = m_targetVelocity;
 	btScalar maxMotorForce = m_maxMotorForce;
 
-	//current error correction
+	// ©urrent error correction
 	if (m_currentLimit!=0)
 	{
 		target_velocity = -m_stopERP*m_currentLimitError/(timeStep);
@@ -468,7 +468,7 @@ void btGeneric6DofConstraint::buildJacobian()
 		{
 			m_angularLimits[i].m_accumulatedImpulse = btScalar(0.);
 		}
-		//calculates transform
+		// ©alculates transform
 		calculateTransforms(m_rbA.getCenterOfMassTransform(),m_rbB.getCenterOfMassTransform());
 
 		//  const btVector3& pivotAInW = m_calculatedTransformA.getOrigin();
@@ -502,7 +502,7 @@ void btGeneric6DofConstraint::buildJacobian()
 		// angular part
 		for (i=0;i<3;i++)
 		{
-			//calculates error angle
+			// ©alculates error angle
 			if (testAngularLimitMotor(i))
 			{
 				normalWorld = this->getAxis(i);

@@ -120,7 +120,7 @@ namespace Ogre {
     
     void GLPBRTTManager::requestPBuffer(PixelComponentType ctype, size_t width, size_t height)
     {
-        //Check size
+        // ©heck size
         if(mPBuffers[ctype].pb)
         {
             if(mPBuffers[ctype].pb->getWidth()<width || mPBuffers[ctype].pb->getHeight()<height)

@@ -82,7 +82,7 @@ namespace Ogre
 						else if(entry->paramType == GpuProgramParameters::ACT_WORLD_DUALQUATERNION_ARRAY_2x4 && constDef.constType == GCT_FLOAT4)
 							arraySize /= 2;
 
-						//Check the num of arrays
+						// ©heck the num of arrays
 						size_t retVal = arraySize / numBones;
 
 						if( flags & IM_USE16BIT )
@@ -154,7 +154,7 @@ namespace Ogre
 
 		for( size_t i=0; i<thisVertexData->vertexDeclaration->getMaxSource(); ++i )
 		{
-			//Create our own vertex buffer
+			// ©reate our own vertex buffer
 			HardwareVertexBufferSharedPtr vertexBuffer =
 											HardwareBufferManager::getSingleton().createVertexBuffer(
 											thisVertexData->vertexDeclaration->getVertexSize(i),
@@ -169,7 +169,7 @@ namespace Ogre
 			char* thisBuf = static_cast<char*>(vertexBuffer->lock(HardwareBuffer::HBL_DISCARD));
 			char* baseBuf = static_cast<char*>(baseVertexBuffer->lock(HardwareBuffer::HBL_READ_ONLY));
 
-			//Copy and repeat
+			// ©opy and repeat
 			for( size_t j=0; j<mInstancesPerBatch; ++j )
 			{
 				const size_t sizeOfBuffer = baseVertexData->vertexCount *
@@ -266,7 +266,7 @@ namespace Ogre
 
 		for( size_t i=0; i<=thisVertexData->vertexDeclaration->getMaxSource(); ++i )
 		{
-			//Create our own vertex buffer
+			// ©reate our own vertex buffer
 			HardwareVertexBufferSharedPtr vertexBuffer =
 											HardwareBufferManager::getSingleton().createVertexBuffer(
 											thisVertexData->vertexDeclaration->getVertexSize(i),
@@ -285,7 +285,7 @@ namespace Ogre
 			char* baseBuf = static_cast<char*>(baseVertexBuffer->lock(HardwareBuffer::HBL_READ_ONLY));
 			char *startBuf = baseBuf;
 
-			//Copy and repeat
+			// ©opy and repeat
 			for( size_t j=0; j<mInstancesPerBatch; ++j )
 			{
 				//Repeat source

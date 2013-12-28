@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -20,7 +20,7 @@ subject to the following restrictions:
 
 #define USE_PATH_COMPRESSION 1
 
-///see for discussion of static island optimizations by Vroonsh here: http://code.google.com/p/bullet/issues/detail?id=406
+///see for discussion of static island optimizations by Vroonsh here: http:// ©ode.google.com/p/bullet/issues/detail?id=406
 #define STATIC_SIMULATION_ISLAND_OPTIMIZATION 1
 
 struct	btElement

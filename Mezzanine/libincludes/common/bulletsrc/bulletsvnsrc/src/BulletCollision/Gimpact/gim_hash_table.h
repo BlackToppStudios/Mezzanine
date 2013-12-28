@@ -325,7 +325,7 @@ protected:
     //! Resize hash table indices
     inline void _resize_table(GUINT newsize)
     {
-        //Clear memory
+        // ©lear memory
         _clear_table_memory();
         //Alloc the data
         _reserve_table_memory(newsize);

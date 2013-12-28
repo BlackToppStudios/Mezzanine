@@ -1080,7 +1080,7 @@ void LevelLoader::LoadJustBounce()
     Basket->AddToWorld();
 
     RigidDebris* ElasticFloor = DebrisMan->CreateRigidDebris("ElasticFloor",0);
-    ElasticFloor->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("ElasticBed") );//CShapeMan->GenerateStaticTriMesh("ElasticShape","elastic_bed.mesh",JustBounceGroup));
+    ElasticFloor->GetRigidProxy()->SetCollisionShape( CShapeMan->GetShape("ElasticBed") );// ©ShapeMan->GenerateStaticTriMesh("ElasticShape","elastic_bed.mesh",JustBounceGroup));
     ElasticFloor->GetRigidProxy()->SetRestitution(1.0);
     //ElasticFloor->GetRigidProxy()->SetFriction(0.4);
     ElasticFloor->GetEntityProxy()->SetMesh("elastic_bed.mesh",JustBounceGroup);
@@ -1096,7 +1096,7 @@ void LevelLoader::LoadJustBounce()
     // Create some throwable objects
     //ThrowableData* RubberData = ThrowableGenerator::GetThrowableData("Rubber");
     ThrowableData* WoodData = ThrowableGenerator::GetThrowableData("Wood");
-    Physics::CollisionShape* RubberCS = new Physics::SphereCollisionShape("RubberCS",11.4);//CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
+    Physics::CollisionShape* RubberCS = new Physics::SphereCollisionShape("RubberCS",11.4);// ©ShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
     Physics::CollisionShape* WoodCS = CShapeMan->GenerateConvexHull("WoodCS",WoodData->MeshName,CommonGroup);// */
 
     RigidDebris* Rubber1 = static_cast<RigidDebris*>( ThrowableGenerator::CreateThrowable("Rubber") );

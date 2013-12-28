@@ -112,7 +112,7 @@ bool	btPolyhedralConvexShape::initializePolyhedralFeatures(int shiftVerticesByMa
 
 		btVector3 edges[3];
 		int numEdges = 0;
-		//compute face normals
+		// ©ompute face normals
 
 		do
 		{

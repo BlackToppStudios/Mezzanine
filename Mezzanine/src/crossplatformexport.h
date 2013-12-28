@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@
         #define NONWINDOWS
     #endif
 
-    //Check for windows, but not in a way that overides what is passed on the command prompt
+    // ©heck for windows, but not in a way that overides what is passed on the command prompt
     #ifndef NONWINDOWS
         #ifndef WINDOWS
             #ifdef __WIN32__

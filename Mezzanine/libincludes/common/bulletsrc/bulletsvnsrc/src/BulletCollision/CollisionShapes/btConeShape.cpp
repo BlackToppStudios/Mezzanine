@@ -39,7 +39,7 @@ btConeShape(radius,height)
 	setConeUpIndex(0);
 }
 
-///choose upAxis index
+/// ©hoose upAxis index
 void	btConeShape::setConeUpIndex(int upIndex)
 {
 	switch (upIndex)

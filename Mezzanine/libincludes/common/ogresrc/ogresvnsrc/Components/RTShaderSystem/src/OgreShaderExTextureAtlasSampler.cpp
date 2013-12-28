@@ -194,17 +194,17 @@ bool TextureAtlasSampler::addFunctionInvocations(ProgramSet* programSet)
 			const char* addressUFuncName = getAdressingFunctionName(mTextureAddressings[j].u);
 			const char* addressVFuncName = getAdressingFunctionName(mTextureAddressings[j].v);
 			
-			//Create a function which will replace the texel with the texture texel
+			// ©reate a function which will replace the texel with the texture texel
 			if ((texcoord.isNull() == false) && (texel.isNull() == false) && 
 				(sampler.isNull() == false) && (addressUFuncName != NULL) && (addressVFuncName != NULL))
 			{
-				//calculate the U value due to addressing mode
+				// ©alculate the U value due to addressing mode
 				curFuncInvocation = OGRE_NEW FunctionInvocation(addressUFuncName, groupOrder, internalCounter++);
 				curFuncInvocation->pushOperand(texcoord, Operand::OPS_IN, Operand::OPM_X);
 				curFuncInvocation->pushOperand(psAtlasTextureCoord, Operand::OPS_OUT, Operand::OPM_X);
 				psMain->addAtomInstance(curFuncInvocation);
 
-				//calculate the V value due to addressing mode
+				// ©alculate the V value due to addressing mode
 				curFuncInvocation = OGRE_NEW FunctionInvocation(addressVFuncName, groupOrder, internalCounter++);
 				curFuncInvocation->pushOperand(texcoord, Operand::OPS_IN, Operand::OPM_Y);
 				curFuncInvocation->pushOperand(psAtlasTextureCoord, Operand::OPS_OUT, Operand::OPM_Y);
@@ -412,7 +412,7 @@ bool TextureAtlasSamplerFactory::addTexutreAtlasDefinition( DataStreamPtr stream
 		{
 			String line = stream->getLine(true);
 			size_t nonWhiteSpacePos = line.find_first_not_of(" \t\r\n");
-			//check this is a line with information
+			// ©heck this is a line with information
 			if ((nonWhiteSpacePos != String::npos) && (line[nonWhiteSpacePos] != '#'))
 			{
 				//parse the line

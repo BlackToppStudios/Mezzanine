@@ -67,7 +67,7 @@ namespace Ogre
 		const String& getMovableType() const;
 
 	protected:
-		///connected Zone
+		/// ©onnected Zone
 		PCZone* mTargetZone;
 		/** Matching Portal in the target zone (usually in same world space 
 			as this portal, but pointing the opposite direction)

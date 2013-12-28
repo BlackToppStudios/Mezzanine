@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -130,7 +130,7 @@ public:
 	{
 		CO_COLLISION_OBJECT =1,
 		CO_RIGID_BODY=2,
-		///CO_GHOST_OBJECT keeps track of all objects overlapping its AABB and that pass its collision filter
+		/// ©O_GHOST_OBJECT keeps track of all objects overlapping its AABB and that pass its collision filter
 		///It is useful for collision sensors, explosion objects, character controller etc.
 		CO_GHOST_OBJECT=4,
 		CO_SOFT_BODY=8,

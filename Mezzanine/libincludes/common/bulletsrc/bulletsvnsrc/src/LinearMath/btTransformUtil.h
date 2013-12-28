@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2006 Gino van den Bergen / Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Gino van den Bergen / Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -101,7 +101,7 @@ public:
 		angle = dorn.getAngle();
 		axis = btVector3(dorn.x(),dorn.y(),dorn.z());
 		axis[3] = btScalar(0.);
-		//check for axis length
+		// ©heck for axis length
 		btScalar len = axis.length2();
 		if (len < SIMD_EPSILON*SIMD_EPSILON)
 			axis = btVector3(btScalar(1.),btScalar(0.),btScalar(0.));
@@ -130,7 +130,7 @@ public:
 		angle = dorn.getAngle();
 		axis = btVector3(dorn.x(),dorn.y(),dorn.z());
 		axis[3] = btScalar(0.);
-		//check for axis length
+		// ©heck for axis length
 		btScalar len = axis.length2();
 		if (len < SIMD_EPSILON*SIMD_EPSILON)
 			axis = btVector3(btScalar(1.),btScalar(0.),btScalar(0.));

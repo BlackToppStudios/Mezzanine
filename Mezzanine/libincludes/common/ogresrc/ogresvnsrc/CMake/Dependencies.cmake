@@ -193,7 +193,7 @@ macro_log_feature(Softimage_FOUND "Softimage" "Softimage SDK needed for building
 #######################################################################
 
 find_package(CppUnit)
-macro_log_feature(CppUnit_FOUND "CppUnit" "Library for performing unit tests" "http://cppunit.sourceforge.net" FALSE "" "")
+macro_log_feature(CppUnit_FOUND "CppUnit" "Library for performing unit tests" "http:// ©ppunit.sourceforge.net" FALSE "" "")
 
 #######################################################################
 # Apple-specific

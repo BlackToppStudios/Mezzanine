@@ -157,7 +157,7 @@ void PosixThreadSupport::sendRequest(uint32_t uiCommand, ppu_address_t uiArgumen
 }
 
 
-///check for messages from SPUs
+/// ©heck for messages from SPUs
 void PosixThreadSupport::waitForResponse(unsigned int *puiArgument0, unsigned int *puiArgument1)
 {
 	///We should wait for (one of) the first tasks to finish (or other SPU messages), and report its response
@@ -200,7 +200,7 @@ void PosixThreadSupport::startThreads(ThreadConstructionInfo& threadConstruction
 	m_activeSpuStatus.resize(threadConstructionInfo.m_numThreads);
         
 	mainSemaphore = createSem("main");                
-	//checkPThreadFunction(sem_wait(mainSemaphore));
+	// ©heckPThreadFunction(sem_wait(mainSemaphore));
    
 	for (int i=0;i < threadConstructionInfo.m_numThreads;i++)
 	{

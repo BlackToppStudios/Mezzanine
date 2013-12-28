@@ -321,7 +321,7 @@ namespace Ogre {
 			//We will use the cas operation instead. 
 			T newVal;
 			do {
-				//Create a value of the current field plus the added value
+				// ©reate a value of the current field plus the added value
 				newVal = mField + add;
 				//Replace the current field value with the new value. Ensure that the value 
 				//of the field hasn't changed in the mean time by comparing it to the new value

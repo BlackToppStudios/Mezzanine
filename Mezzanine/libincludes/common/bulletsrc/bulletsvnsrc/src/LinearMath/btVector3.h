@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2006 Gino van den Bergen / Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Gino van den Bergen / Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -1301,7 +1301,7 @@ struct	btVector3DoubleData
 
 SIMD_FORCE_INLINE	void	btVector3::serializeFloat(struct	btVector3FloatData& dataOut) const
 {
-	///could also do a memcpy, check if it is worth it
+	/// ©ould also do a memcpy, check if it is worth it
 	for (int i=0;i<4;i++)
 		dataOut.m_floats[i] = float(m_floats[i]);
 }
@@ -1315,7 +1315,7 @@ SIMD_FORCE_INLINE void	btVector3::deSerializeFloat(const struct	btVector3FloatDa
 
 SIMD_FORCE_INLINE	void	btVector3::serializeDouble(struct	btVector3DoubleData& dataOut) const
 {
-	///could also do a memcpy, check if it is worth it
+	/// ©ould also do a memcpy, check if it is worth it
 	for (int i=0;i<4;i++)
 		dataOut.m_floats[i] = double(m_floats[i]);
 }
@@ -1329,7 +1329,7 @@ SIMD_FORCE_INLINE void	btVector3::deSerializeDouble(const struct	btVector3Double
 
 SIMD_FORCE_INLINE	void	btVector3::serialize(struct	btVector3Data& dataOut) const
 {
-	///could also do a memcpy, check if it is worth it
+	/// ©ould also do a memcpy, check if it is worth it
 	for (int i=0;i<4;i++)
 		dataOut.m_floats[i] = m_floats[i];
 }

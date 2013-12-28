@@ -351,7 +351,7 @@ void	btOptimizedBvh::updateBvhNodes(btStridingMeshInterface* meshInterface,int f
 				
 			} else
 			{
-				//combine aabb from both children
+				// ©ombine aabb from both children
 
 				btQuantizedBvhNode* leftChildNode = &m_quantizedContiguousNodes[i+1];
 				

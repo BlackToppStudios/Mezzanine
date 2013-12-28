@@ -82,15 +82,15 @@ class iterator_range{
 		///informs if there are any elements in the range
 		bool empty() const { return mBegin = mEnd ; }
 
-		///comparison for equality
+		/// ©omparison for equality
 		bool equal( const iterator_range& other ) const  
 		{return mBegin == other.mBegin && mEnd == other.mEnd;}
 
-		///comparison operator for equality
+		/// ©omparison operator for equality
 		bool operator==( const iterator_range& rhs ) const
 		{return equal( rhs ) ;}
 	
-		///comparison operator for inequality
+		/// ©omparison operator for inequality
 		bool operator!=( const iterator_range& rhs ) const { return !operator==(rhs); }
 
 		/**
@@ -151,16 +151,16 @@ struct VectorRange : public iterator_range<typename T::iterator>::type
 	: iterator_range<typename T::iterator>::type( b, e )
 	{}
 
-	///comparison operator for equality
+	/// ©omparison operator for equality
 	bool operator==( const VectorRange& rhs ) const { return equal( rhs) ; }
-	///comparison operator for inequality
+	/// ©omparison operator for inequality
 	bool operator!=( const VectorRange& rhs ) const { return !equal( rhs) ; }
 
 
 #ifdef __Ogre_Iterator_Wrapper_H__
-	///cast operator to a VectorIterator
+	/// ©ast operator to a VectorIterator
 	operator VectorIterator<T>(){return VectorIterator<T>( this->begin(), this->end());}
-	///cast operator to a ConstVectorIterator
+	/// ©ast operator to a ConstVectorIterator
 	operator ConstVectorIterator<T>(){return ConstVectorIterator<T>( this->begin(), this->end());}
 #endif
 	
@@ -210,16 +210,16 @@ struct ConstVectorRange : public iterator_range<typename T::const_iterator>::typ
 	: iterator_range<typename T::const_iterator>::type( rhs.begin(), rhs.end() )
 	{}
 
-	///comparison operator for equality
+	/// ©omparison operator for equality
 	bool operator==( const ConstVectorRange& rhs ) const { return equal( rhs) ; }
-	///comparison operator for inequality
+	/// ©omparison operator for inequality
 	bool operator!=( const ConstVectorRange& rhs ) const { return !equal( rhs) ; }
 	
 	
 
 
 #ifdef __Ogre_Iterator_Wrapper_H__
-	///cast operator to a ConstVectorIterator
+	/// ©ast operator to a ConstVectorIterator
 	operator ConstVectorIterator<T>(){return  ConstVectorIterator<T>( this->begin(),this->end());}
 #endif
 	
@@ -254,16 +254,16 @@ struct MapRange : public iterator_range<typename T::iterator>::type
 	: iterator_range<typename T::iterator>::type( b, e )
 	{}
 
-	///comparison operator for equality
+	/// ©omparison operator for equality
 	bool operator==( const MapRange& rhs ) const { return equal( rhs) ; }
-	///comparison operator for inequality
+	/// ©omparison operator for inequality
 	bool operator!=( const MapRange& rhs ) const { return !equal( rhs) ; }
 
 
 #ifdef __Ogre_Iterator_Wrapper_H__
-	///cast operator to a MapIterator
+	/// ©ast operator to a MapIterator
 	operator MapIterator<T>(){return MapIterator<T>( this->begin(), this->end());}
-	///cast operator to a ConstMapIterator
+	/// ©ast operator to a ConstMapIterator
 	operator ConstMapIterator<T>(){return ConstMapIterator<T>( this->begin(), this->end());}
 #endif
 	
@@ -313,14 +313,14 @@ struct ConstMapRange : public iterator_range<typename T::const_iterator>::type
 	: iterator_range<typename T::const_iterator>::type( rhs.begin(), rhs.end() )
 	{}
 	
-	///comparison operator for equality
+	/// ©omparison operator for equality
 	bool operator==( const ConstMapRange& rhs ) const { return equal( rhs) ; }
-	///comparison operator for inequality
+	/// ©omparison operator for inequality
 	bool operator!=( const ConstMapRange& rhs ) const { return !equal( rhs) ; }
 
 
 #ifdef __Ogre_Iterator_Wrapper_H__
-	///cast operator to a ConstMapIterator
+	/// ©ast operator to a ConstMapIterator
 	operator ConstMapIterator<T>(){return  ConstMapIterator<T>( this->begin(),this->end());}
 #endif
 	

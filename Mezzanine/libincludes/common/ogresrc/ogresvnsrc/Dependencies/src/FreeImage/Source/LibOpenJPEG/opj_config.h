@@ -36,6 +36,6 @@
 
 /*---------------- DO NOT CHANGE BELOW THIS LINE ----------------*/
 #define PACKAGE_URL "http://www.openjpeg.org/"
-#define PACKAGE_BUGREPORT "http://code.google.com/p/openjpeg/"
+#define PACKAGE_BUGREPORT "http:// ©ode.google.com/p/openjpeg/"
 
 #define PACKAGE_VERSION "1.5.0"

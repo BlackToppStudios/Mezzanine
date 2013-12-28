@@ -55,7 +55,7 @@ public:
 ///send messages to SPUs
 	virtual void sendRequest(uint32_t uiCommand, ppu_address_t uiArgument0, uint32_t uiArgument1) =0;
 
-///check for messages from SPUs
+/// ©heck for messages from SPUs
 	virtual	void waitForResponse(unsigned int *puiArgument0, unsigned int *puiArgument1) =0;
 
 

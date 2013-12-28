@@ -125,7 +125,7 @@ void LevelSelectCell::SetSize(const Vector2& Size)
     PreviewBorder->SetSize(Vector2(Size.Y * 1.40,Size.Y * 1.15));
     LevelTitle->SetSize(Vector2(Size.X * 0.6,Size.Y * 0.36));
     EarnedScore->SetSize(Vector2(Size.X * 0.4,Size.Y * 0.36));
-    //CalculateOffsets(Size * ParentScreen->GetViewportDimensions());
+    // ©alculateOffsets(Size * ParentScreen->GetViewportDimensions());
     SetPosition(RelPosition);
 }
 
@@ -138,7 +138,7 @@ void LevelSelectCell::SetActualSize(const Vector2& Size)
     PreviewBorder->SetActualSize(Vector2(Size.Y * 1.40,Size.Y * 1.15));
     LevelTitle->SetActualSize(Vector2(Size.X * 0.6,Size.Y * 0.36));
     EarnedScore->SetActualSize(Vector2(Size.X * 0.4,Size.Y * 0.36));
-    //CalculateOffsets(Size);
+    // ©alculateOffsets(Size);
     SetPosition(RelPosition);
 }
 

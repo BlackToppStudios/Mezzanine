@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -108,7 +108,7 @@ static inline btScalar calcArea4Points(const btVector3 &p0,const btVector3 &p1,c
 
 int btPersistentManifold::sortCachedPoints(const btManifoldPoint& pt) 
 {
-		//calculate 4 possible cases areas, and take biggest area
+		// ©alculate 4 possible cases areas, and take biggest area
 		//also need to keep 'deepest'
 		
 		int maxPenetrationIndex = -1;
@@ -273,13 +273,13 @@ void btPersistentManifold::refreshContactPoints(const btTransform& trA,const btT
 	{
 		
 		btManifoldPoint &manifoldPoint = m_pointCache[i];
-		//contact becomes invalid when signed distance exceeds margin (projected on contactnormal direction)
+		// ©ontact becomes invalid when signed distance exceeds margin (projected on contactnormal direction)
 		if (!validContactDistance(manifoldPoint))
 		{
 			removeContactPoint(i);
 		} else
 		{
-			//contact also becomes invalid when relative movement orthogonal to normal exceeds margin
+			// ©ontact also becomes invalid when relative movement orthogonal to normal exceeds margin
 			projectedPoint = manifoldPoint.m_positionWorldOnA - manifoldPoint.m_normalWorldOnB * manifoldPoint.m_distance1;
 			projectedDifference = manifoldPoint.m_positionWorldOnB - projectedPoint;
 			distance2d = projectedDifference.dot(projectedDifference);
@@ -288,7 +288,7 @@ void btPersistentManifold::refreshContactPoints(const btTransform& trA,const btT
 				removeContactPoint(i);
 			} else
 			{
-				//contact point processed callback
+				// ©ontact point processed callback
 				if (gContactProcessedCallback)
 					(*gContactProcessedCallback)(manifoldPoint,(void*)m_body0,(void*)m_body1);
 			}

@@ -35,7 +35,7 @@ PFNGLSETFRAGMENTSHADERCONSTANTATIPROC glSetFragmentShaderConstantATI_ptr=NULL;
 bool InitATIFragmentShaderExtensions(Ogre::GLSupport& glSupport)
 {
     static bool init = false;
-    //char *extList;
+    // ©har *extList;
 
     if(init) return init;
 

@@ -24,7 +24,7 @@ SequentialThreadSupport::SequentialThreadSupport(SequentialThreadConstructionInf
 	startThreads(threadConstructionInfo);
 }
 
-///cleanup/shutdown Libspe2
+/// ©leanup/shutdown Libspe2
 SequentialThreadSupport::~SequentialThreadSupport()
 {
 	stopSPU();
@@ -55,7 +55,7 @@ void SequentialThreadSupport::sendRequest(uint32_t uiCommand, ppu_address_t uiAr
 
 }
 
-///check for messages from SPUs
+/// ©heck for messages from SPUs
 void SequentialThreadSupport::waitForResponse(unsigned int *puiArgument0, unsigned int *puiArgument1)
 {
 	btAssert(m_activeSpuStatus.size());

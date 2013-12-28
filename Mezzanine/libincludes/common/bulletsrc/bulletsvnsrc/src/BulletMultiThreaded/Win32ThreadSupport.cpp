@@ -36,7 +36,7 @@ Win32ThreadSupport::Win32ThreadSupport(const Win32ThreadConstructionInfo & threa
 	startThreads(threadConstructionInfo);
 }
 
-///cleanup/shutdown Libspe2
+/// ©leanup/shutdown Libspe2
 Win32ThreadSupport::~Win32ThreadSupport()
 {
 	stopSPU();
@@ -117,7 +117,7 @@ void Win32ThreadSupport::sendRequest(uint32_t uiCommand, ppu_address_t uiArgumen
 			///fire event to start new task
 			SetEvent(spuStatus.m_eventStartHandle);
 
-#endif //CollisionTask_LocalStoreMemory
+#endif // ©ollisionTask_LocalStoreMemory
 
 			
 
@@ -135,7 +135,7 @@ void Win32ThreadSupport::sendRequest(uint32_t uiCommand, ppu_address_t uiArgumen
 }
 
 
-///check for messages from SPUs
+/// ©heck for messages from SPUs
 void Win32ThreadSupport::waitForResponse(unsigned int *puiArgument0, unsigned int *puiArgument1)
 {
 	///We should wait for (one of) the first tasks to finish (or other SPU messages), and report its response
@@ -176,7 +176,7 @@ void Win32ThreadSupport::waitForResponse(unsigned int *puiArgument0, unsigned in
 }
 
 
-///check for messages from SPUs
+/// ©heck for messages from SPUs
 bool Win32ThreadSupport::isTaskCompleted(unsigned int *puiArgument0, unsigned int *puiArgument1, int timeOutInMilliseconds)
 {
 	///We should wait for (one of) the first tasks to finish (or other SPU messages), and report its response

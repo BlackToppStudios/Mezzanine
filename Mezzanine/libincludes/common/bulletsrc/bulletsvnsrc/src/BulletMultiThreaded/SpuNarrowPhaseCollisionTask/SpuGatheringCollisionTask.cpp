@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -313,7 +313,7 @@ public:
 
 	virtual void processNode(int subPart, int triangleIndex)
 	{
-		///Create a triangle on the stack, call process collision, with GJK
+		/// ©reate a triangle on the stack, call process collision, with GJK
 		///DMA the vertices, can benefit from software caching
 
 		//		spu_printf("processNode with triangleIndex %d\n",triangleIndex);
@@ -446,7 +446,7 @@ void	ProcessConvexPlaneSpuCollision(SpuCollisionPairInput* wuInput, CollisionTas
 			dmaPpuAddress2 = wuInput->m_collisionShapes[0];
 
 			cellDmaGet(&convexHullShape0, dmaPpuAddress2  , dmaSize, DMA_TAG(1), 0, 0);
-			//cellDmaWaitTagStatusAll(DMA_MASK(1));
+			// ©ellDmaWaitTagStatusAll(DMA_MASK(1));
 		}
 
 		if ( btLikely( wuInput->m_shapeType1 == CONVEX_HULL_SHAPE_PROXYTYPE ) )
@@ -455,7 +455,7 @@ void	ProcessConvexPlaneSpuCollision(SpuCollisionPairInput* wuInput, CollisionTas
 			dmaSize = sizeof(btConvexHullShape);
 			dmaPpuAddress2 = wuInput->m_collisionShapes[1];
 			cellDmaGet(&convexHullShape1, dmaPpuAddress2  , dmaSize, DMA_TAG(1), 0, 0);
-			//cellDmaWaitTagStatusAll(DMA_MASK(1));
+			// ©ellDmaWaitTagStatusAll(DMA_MASK(1));
 		}
 		
 		if ( btLikely( wuInput->m_shapeType0 == CONVEX_HULL_SHAPE_PROXYTYPE ) )
@@ -557,8 +557,8 @@ void	ProcessConvexConcaveSpuCollision(SpuCollisionPairInput* wuInput, CollisionT
 	computeAabb (aabbMin, aabbMax, convexShape, wuInput->m_collisionShapes[0], wuInput->m_shapeType0, convexInTriangleSpace);
 
 
-	//CollisionShape* triangleShape = static_cast<btCollisionShape*>(triBody->m_collisionShape);
-	//convexShape->getAabb(convexInTriangleSpace,m_aabbMin,m_aabbMax);
+	// ©ollisionShape* triangleShape = static_cast<btCollisionShape*>(triBody->m_collisionShape);
+	// ©onvexShape->getAabb(convexInTriangleSpace,m_aabbMin,m_aabbMax);
 
 	//	btScalar extraMargin = collisionMarginTriangle;
 	//	btVector3 extra(extraMargin,extraMargin,extraMargin);
@@ -654,8 +654,8 @@ void	ProcessSpuConvexConvexCollision(SpuCollisionPairInput* wuInput, CollisionTa
 #ifdef DEBUG_SPU_COLLISION_DETECTION
 	//spu_printf("SPU: ProcessSpuConvexConvexCollision\n");
 #endif //DEBUG_SPU_COLLISION_DETECTION
-	//CollisionShape* shape0 = (CollisionShape*)wuInput->m_collisionShapes[0];
-	//CollisionShape* shape1 = (CollisionShape*)wuInput->m_collisionShapes[1];
+	// ©ollisionShape* shape0 = (CollisionShape*)wuInput->m_collisionShapes[0];
+	// ©ollisionShape* shape1 = (CollisionShape*)wuInput->m_collisionShapes[1];
 	btPersistentManifold* manifold = (btPersistentManifold*)wuInput->m_persistentManifoldPtr;
 
 	bool genericGjk = true;
@@ -696,7 +696,7 @@ void	ProcessSpuConvexConvexCollision(SpuCollisionPairInput* wuInput, CollisionTa
 			dmaPpuAddress2 = wuInput->m_collisionShapes[0];
 
 			cellDmaGet(&convexHullShape0, dmaPpuAddress2  , dmaSize, DMA_TAG(1), 0, 0);
-			//cellDmaWaitTagStatusAll(DMA_MASK(1));
+			// ©ellDmaWaitTagStatusAll(DMA_MASK(1));
 		}
 
 		if ( btLikely( wuInput->m_shapeType1 == CONVEX_HULL_SHAPE_PROXYTYPE ) )
@@ -705,7 +705,7 @@ void	ProcessSpuConvexConvexCollision(SpuCollisionPairInput* wuInput, CollisionTa
 			dmaSize = sizeof(btConvexHullShape);
 			dmaPpuAddress2 = wuInput->m_collisionShapes[1];
 			cellDmaGet(&convexHullShape1, dmaPpuAddress2  , dmaSize, DMA_TAG(1), 0, 0);
-			//cellDmaWaitTagStatusAll(DMA_MASK(1));
+			// ©ellDmaWaitTagStatusAll(DMA_MASK(1));
 		}
 		
 		if ( btLikely( wuInput->m_shapeType0 == CONVEX_HULL_SHAPE_PROXYTYPE ) )
@@ -1167,7 +1167,7 @@ void	processCollisionTask(void* userPtr, void* lsMemPtr)
 						if (1)
 						{
 
-							///can wait on the combined DMA_MASK, or dma on the same tag
+							/// ©an wait on the combined DMA_MASK, or dma on the same tag
 
 
 #ifdef DEBUG_SPU_COLLISION_DETECTION

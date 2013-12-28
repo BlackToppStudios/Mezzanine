@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2006 Gino van den Bergen / Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Gino van den Bergen / Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -110,7 +110,7 @@ void	btGeometryUtil::getPlaneEquationsFromVertices(btAlignedObjectArray<btVector
 						{
 							planeEquation[3] = -planeEquation.dot(N1);
 							
-								//check if inside, and replace supportingVertexOut if needed
+								// ©heck if inside, and replace supportingVertexOut if needed
 								if (areVerticesBehindPlane(planeEquation,vertices,btScalar(0.01)))
 								{
 									planeEquationsOut.push_back(planeEquation);
@@ -171,7 +171,7 @@ void	btGeometryUtil::getVerticesFromPlaneEquations(const btAlignedObjectArray<bt
 						potentialVertex += n1n2;
 						potentialVertex *= quotient;
 
-						//check if inside, and replace supportingVertexOut if needed
+						// ©heck if inside, and replace supportingVertexOut if needed
 						if (isPointInsidePlanes(planeEquations,potentialVertex,btScalar(0.01)))
 						{
 							verticesOut.push_back(potentialVertex);

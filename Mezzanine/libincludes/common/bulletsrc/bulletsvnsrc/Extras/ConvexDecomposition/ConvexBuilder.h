@@ -28,7 +28,7 @@ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISI
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -----------------------------------------------------------------------*/
 
-// http://codesuppository.blogspot.com
+// http:// ©odesuppository.blogspot.com
 //
 // mailto: jratcliff@infiniplex.net
 //
@@ -108,5 +108,5 @@ public:
 	ConvexDecompInterface *mCallback;
 };
 
-#endif //CONVEX_BUILDER_H
+#endif // ©ONVEX_BUILDER_H
 

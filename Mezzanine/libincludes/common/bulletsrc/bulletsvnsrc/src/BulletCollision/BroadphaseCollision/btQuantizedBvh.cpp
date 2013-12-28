@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -137,7 +137,7 @@ void	btQuantizedBvh::buildTree	(int startIndex,int endIndex)
 		m_curNodeIndex++;
 		return;	
 	}
-	//calculate Best Splitting Axis and where to split it. Sort the incoming 'leafNodes' array within range 'startIndex/endIndex'.
+	// ©alculate Best Splitting Axis and where to split it. Sort the incoming 'leafNodes' array within range 'startIndex/endIndex'.
 	
 	splitAxis = calcSplittingAxis(startIndex,endIndex);
 
@@ -147,8 +147,8 @@ void	btQuantizedBvh::buildTree	(int startIndex,int endIndex)
 	
 	//set the min aabb to 'inf' or a max value, and set the max aabb to a -inf/minimum value.
 	//the aabb will be expanded during buildTree/mergeInternalNodeAabb with actual node values
-	setInternalNodeAabbMin(m_curNodeIndex,m_bvhAabbMax);//can't use btVector3(SIMD_INFINITY,SIMD_INFINITY,SIMD_INFINITY)) because of quantization
-	setInternalNodeAabbMax(m_curNodeIndex,m_bvhAabbMin);//can't use btVector3(-SIMD_INFINITY,-SIMD_INFINITY,-SIMD_INFINITY)) because of quantization
+	setInternalNodeAabbMin(m_curNodeIndex,m_bvhAabbMax);// ©an't use btVector3(SIMD_INFINITY,SIMD_INFINITY,SIMD_INFINITY)) because of quantization
+	setInternalNodeAabbMax(m_curNodeIndex,m_bvhAabbMin);// ©an't use btVector3(-SIMD_INFINITY,-SIMD_INFINITY,-SIMD_INFINITY)) because of quantization
 	
 	
 	for (i=startIndex;i<endIndex;i++)
@@ -363,7 +363,7 @@ void	btQuantizedBvh::walkStacklessTree(btNodeOverlapCallback* nodeCallback,const
 
 	while (curIndex < m_curNodeIndex)
 	{
-		//catch bugs in tree data
+		// ©atch bugs in tree data
 		btAssert (walkIterations < m_curNodeIndex);
 
 		walkIterations++;
@@ -486,7 +486,7 @@ void	btQuantizedBvh::walkStacklessTreeAgainstRay(btNodeOverlapCallback* nodeCall
 	while (curIndex < m_curNodeIndex)
 	{
 		btScalar param = 1.0;
-		//catch bugs in tree data
+		// ©atch bugs in tree data
 		btAssert (walkIterations < m_curNodeIndex);
 
 		walkIterations++;
@@ -501,7 +501,7 @@ void	btQuantizedBvh::walkStacklessTreeAgainstRay(btNodeOverlapCallback* nodeCall
 		//perhaps profile if it is worth doing the aabbOverlap test first
 
 #ifdef RAYAABB2
-			///careful with this check: need to check division by zero (above) and fix the unQuantize method
+			/// ©areful with this check: need to check division by zero (above) and fix the unQuantize method
 			///thanks Joerg/hiker for the reproduction case!
 			///http://www.bulletphysics.com/Bullet/phpBB3/viewtopic.php?f=9&t=1858
 		rayBoxOverlap = aabbOverlap ? btRayAabb2 (raySource, rayDirectionInverse, sign, bounds, param, 0.0f, lambda_max) : false;
@@ -602,7 +602,7 @@ void	btQuantizedBvh::walkStacklessQuantizedTreeAgainstRay(btNodeOverlapCallback*
 		}
 #endif//VISUALLY_ANALYZE_BVH
 
-		//catch bugs in tree data
+		// ©atch bugs in tree data
 		btAssert (walkIterations < subTreeSize);
 
 		walkIterations++;
@@ -630,7 +630,7 @@ void	btQuantizedBvh::walkStacklessQuantizedTreeAgainstRay(btNodeOverlapCallback*
 			}
 #endif
 #ifdef RAYAABB2
-			///careful with this check: need to check division by zero (above) and fix the unQuantize method
+			/// ©areful with this check: need to check division by zero (above) and fix the unQuantize method
 			///thanks Joerg/hiker for the reproduction case!
 			///http://www.bulletphysics.com/Bullet/phpBB3/viewtopic.php?f=9&t=1858
 
@@ -699,7 +699,7 @@ void	btQuantizedBvh::walkStacklessQuantizedTree(btNodeOverlapCallback* nodeCallb
 		}
 #endif//VISUALLY_ANALYZE_BVH
 
-		//catch bugs in tree data
+		// ©atch bugs in tree data
 		btAssert (walkIterations < subTreeSize);
 
 		walkIterations++;
@@ -849,7 +849,7 @@ bool btQuantizedBvh::serialize(void *o_alignedDataBuffer, unsigned /*i_dataBuffe
 
 /*	if (i_dataBufferSize < calculateSerializeBufferSize() || o_alignedDataBuffer == NULL || (((unsigned)o_alignedDataBuffer & BVH_ALIGNMENT_MASK) != 0))
 	{
-		///check alignedment for buffer?
+		/// ©heck alignedment for buffer?
 		btAssert(0);
 		return false;
 	}

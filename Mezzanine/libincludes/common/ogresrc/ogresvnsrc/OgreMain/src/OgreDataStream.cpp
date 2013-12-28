@@ -647,19 +647,19 @@ namespace Ogre {
 			mInStream->seekg(0, std::ios::end);
 		}
 #endif 		
-		mInStream->clear(); //Clear fail status in case eof was set
+		mInStream->clear(); // ©lear fail status in case eof was set
 		mInStream->seekg(static_cast<std::ifstream::pos_type>(count), std::ios::cur);
     }
     //-----------------------------------------------------------------------
     void FileStreamDataStream::seek( size_t pos )
     {
-		mInStream->clear(); //Clear fail status in case eof was set
+		mInStream->clear(); // ©lear fail status in case eof was set
 		mInStream->seekg(static_cast<std::streamoff>(pos), std::ios::beg);
 	}
 	//-----------------------------------------------------------------------
     size_t FileStreamDataStream::tell(void) const
 	{
-		mInStream->clear(); //Clear fail status in case eof was set
+		mInStream->clear(); // ©lear fail status in case eof was set
 		return (size_t)mInStream->tellg();
 	}
 	//-----------------------------------------------------------------------

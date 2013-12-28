@@ -1,4 +1,4 @@
-//c Copyright 2010 - 2012 BlackTopp Studios Inc.
+// © Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -339,7 +339,7 @@ namespace Mezzanine
             /// @brief Accessor for the internal physics object.
             /// @return Returns a pointer to the internal object of this proxy.
             virtual btCollisionObject* _GetBasePhysicsObject() const = 0;
-        };//CollidableProxy
+        };// ©ollidableProxy
     }//Physics
 }//Mezzanine
 

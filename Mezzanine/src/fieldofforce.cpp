@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -131,7 +131,7 @@ namespace Mezzanine
                     }
                 }
 
-                //Collect necessary data
+                // ©ollect necessary data
                 //InvMass = (*ObjIt)->GetBulletObject()->getInvMass();
                 //if(0 != InvMass)
                 //    AppliedStrength *= (1 / (*ObjIt)->GetBulletObject()->getInvMass());

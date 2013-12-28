@@ -99,7 +99,7 @@ public:
 
 	PosixThreadSupport(ThreadConstructionInfo& threadConstructionInfo);
 
-///cleanup/shutdown Libspe2
+/// ©leanup/shutdown Libspe2
 	virtual	~PosixThreadSupport();
 
 	void	startThreads(ThreadConstructionInfo&	threadInfo);
@@ -108,7 +108,7 @@ public:
 ///send messages to SPUs
 	virtual	void sendRequest(uint32_t uiCommand, ppu_address_t uiArgument0, uint32_t uiArgument1);
 
-///check for messages from SPUs
+/// ©heck for messages from SPUs
 	virtual	void waitForResponse(unsigned int *puiArgument0, unsigned int *puiArgument1);
 
 ///start the spus (can be called at the beginning of each frame, to make sure that the right SPU program is loaded)

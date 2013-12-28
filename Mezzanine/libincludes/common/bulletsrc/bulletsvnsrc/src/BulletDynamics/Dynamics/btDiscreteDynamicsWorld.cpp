@@ -16,7 +16,7 @@ subject to the following restrictions:
 
 #include "btDiscreteDynamicsWorld.h"
 
-//collision detection
+// ©ollision detection
 #include "BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
 #include "BulletCollision/BroadphaseCollision/btSimpleBroadphase.h"
 #include "BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
@@ -152,7 +152,7 @@ struct InplaceSolverIslandCallback : public btSimulationIslandManager::IslandCal
 					break;
 				}
 			}
-			//count the number of constraints in this island
+			// ©ount the number of constraints in this island
 			for (;i<m_numConstraints;i++)
 			{
 				if (btGetConstraintIslandId(m_sortedConstraints[i]) == islandId)
@@ -434,7 +434,7 @@ int	btDiscreteDynamicsWorld::stepSimulation( btScalar timeStep,int maxSubSteps, 
 	if (numSimulationSubSteps)
 	{
 
-		//clamp the number of substeps, to prevent simulation grinding spiralling down to a halt
+		// ©lamp the number of substeps, to prevent simulation grinding spiralling down to a halt
 		int clampedSimulationSteps = (numSimulationSubSteps > maxSubSteps)? maxSubSteps : numSimulationSubSteps;
 
 		saveKinematicState(fixedTimeStep*clampedSimulationSteps);
@@ -497,7 +497,7 @@ void	btDiscreteDynamicsWorld::internalSingleStepSimulation(btScalar timeStep)
 	///solve contact and other joint constraints
 	solveConstraints(getSolverInfo());
 	
-	///CallbackTriggers();
+	/// ©allbackTriggers();
 
 	///integrate transforms
 
@@ -842,7 +842,7 @@ public:
 
 		btCollisionObject* otherObj = (btCollisionObject*) proxy0->m_clientObject;
 
-		//call needsResponse, see http://code.google.com/p/bullet/issues/detail?id=179
+		// ©all needsResponse, see http:// ©ode.google.com/p/bullet/issues/detail?id=179
 		if (m_dispatcher->needsResponse(m_me,otherObj))
 		{
 #if 0
@@ -1221,7 +1221,7 @@ void btDiscreteDynamicsWorld::debugDrawConstraint(btTypedConstraint* constraint)
 				if(drawFrames) getDebugDrawer()->drawTransform(tr, dbgDrawSize);
 				if(drawLimits)
 				{
-					//const btScalar length = btScalar(5);
+					// ©onst btScalar length = btScalar(5);
 					const btScalar length = dbgDrawSize;
 					static int nSegments = 8*4;
 					btScalar fAngleInRadians = btScalar(2.*3.1415926) * (btScalar)(nSegments-1)/btScalar(nSegments);

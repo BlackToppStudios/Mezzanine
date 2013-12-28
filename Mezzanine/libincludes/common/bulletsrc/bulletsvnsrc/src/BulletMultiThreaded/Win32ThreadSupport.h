@@ -93,7 +93,7 @@ public:
 
 	Win32ThreadSupport(const Win32ThreadConstructionInfo& threadConstructionInfo);
 
-///cleanup/shutdown Libspe2
+/// ©leanup/shutdown Libspe2
 	virtual	~Win32ThreadSupport();
 
 	void	startThreads(const Win32ThreadConstructionInfo&	threadInfo);
@@ -102,7 +102,7 @@ public:
 ///send messages to SPUs
 	virtual	void sendRequest(uint32_t uiCommand, ppu_address_t uiArgument0, uint32_t uiArgument1);
 
-///check for messages from SPUs
+/// ©heck for messages from SPUs
 	virtual	void waitForResponse(unsigned int *puiArgument0, unsigned int *puiArgument1);
 
 	virtual bool isTaskCompleted(unsigned int *puiArgument0, unsigned int *puiArgument1, int timeOutInMilliseconds);

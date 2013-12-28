@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -141,7 +141,7 @@ namespace Mezzanine
                 if(manifold == (*ColIt).second->InternalAlgo)
                 {
                     //ManifoldDestructionQueue.push_back(ColIt);
-                    //Collision* ToBeDestroyed = (*ColIt).second;
+                    // ©ollision* ToBeDestroyed = (*ColIt).second;
                     //ToBeDestroyed->GetActorA()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     //ToBeDestroyed->GetActorB()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     delete (*ColIt).second;
@@ -262,7 +262,7 @@ namespace Mezzanine
                 if(manifold == (*ColIt).second->InternalAlgo)
                 {
                     //ManifoldDestructionQueue.push_back(ColIt);
-                    //Collision* ToBeDestroyed = (*ColIt).second;
+                    // ©ollision* ToBeDestroyed = (*ColIt).second;
                     //ToBeDestroyed->GetActorA()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     //ToBeDestroyed->GetActorB()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     delete (*ColIt).second;

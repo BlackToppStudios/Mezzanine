@@ -29,7 +29,7 @@ m_useQuantizedAabbCompression(useQuantizedAabbCompression),
 m_ownsBvh(false)
 {
 	m_shapeType = TRIANGLE_MESH_SHAPE_PROXYTYPE;
-	//construct bvh from meshInterface
+	// ©onstruct bvh from meshInterface
 #ifndef DISABLE_BVH
 
 	if (buildBvh)
@@ -49,7 +49,7 @@ m_useQuantizedAabbCompression(useQuantizedAabbCompression),
 m_ownsBvh(false)
 {
 	m_shapeType = TRIANGLE_MESH_SHAPE_PROXYTYPE;
-	//construct bvh from meshInterface
+	// ©onstruct bvh from meshInterface
 #ifndef DISABLE_BVH
 
 	if (buildBvh)

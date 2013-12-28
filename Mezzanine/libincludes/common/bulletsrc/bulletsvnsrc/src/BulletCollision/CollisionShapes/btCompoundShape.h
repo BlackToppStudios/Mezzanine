@@ -24,7 +24,7 @@ subject to the following restrictions:
 #include "btCollisionMargin.h"
 #include "LinearMath/btAlignedObjectArray.h"
 
-//class btOptimizedBvh;
+// ©lass btOptimizedBvh;
 struct btDbvt;
 
 ATTRIBUTE_ALIGNED16(struct) btCompoundShapeChild
@@ -49,7 +49,7 @@ SIMD_FORCE_INLINE bool operator==(const btCompoundShapeChild& c1, const btCompou
 /// The btCompoundShape allows to store multiple other btCollisionShapes
 /// This allows for moving concave collision objects. This is more general then the static concave btBvhTriangleMeshShape.
 /// It has an (optional) dynamic aabb tree to accelerate early rejection tests. 
-/// @todo: This aabb tree can also be use to speed up ray tests on btCompoundShape, see http://code.google.com/p/bullet/issues/detail?id=25
+/// @todo: This aabb tree can also be use to speed up ray tests on btCompoundShape, see http:// ©ode.google.com/p/bullet/issues/detail?id=25
 /// Currently, removal of child shapes is only supported when disabling the aabb tree (pass 'false' in the constructor of btCompoundShape)
 ATTRIBUTE_ALIGNED16(class) btCompoundShape	: public btCollisionShape
 {
@@ -155,7 +155,7 @@ public:
 
 	void createAabbTreeFromChildren();
 
-	///computes the exact moment of inertia and the transform from the coordinate system defined by the principal axes of the moment of inertia
+	/// ©omputes the exact moment of inertia and the transform from the coordinate system defined by the principal axes of the moment of inertia
 	///and the center of mass to the current coordinate system. "masses" points to an array of masses of the children. The resulting transform
 	///"principal" has to be applied inversely to all children transforms in order for the local coordinate system of the compound
 	///shape to be centered at the center of mass and to coincide with the principal axes. This also necessitates a correction of the world transform

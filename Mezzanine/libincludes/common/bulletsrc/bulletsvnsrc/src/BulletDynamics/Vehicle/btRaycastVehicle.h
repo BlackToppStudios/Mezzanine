@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005 Erwin Coumans http://continuousphysics.com/Bullet/
+ * Copyright (c) 2005 Erwin Coumans http:// ©ontinuousphysics.com/Bullet/
  *
  * Permission to use, copy, modify, distribute and sell this software
  * and its documentation for any purpose is hereby granted without fee,
@@ -75,7 +75,7 @@ private:
 
 public:
 
-	//constructor to create a car from an existing rigidbody
+	// ©onstructor to create a car from an existing rigidbody
 	btRaycastVehicle(const btVehicleTuning& tuning,btRigidBody* chassis,	btVehicleRaycaster* raycaster );
 
 	virtual ~btRaycastVehicle() ;

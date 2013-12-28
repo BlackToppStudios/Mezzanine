@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -496,7 +496,7 @@ class vector3tests : public UnitTestGroup
 
                 Ogre::Vector3 OVec(1.5, 3.1, 7.2);
                 btVector3 BVec(2.3, 9.4, 6.3);
-                //cAudio::cVector3 Vec6(0.3, 3.6, 4.6);
+                // ©Audio::cVector3 Vec6(0.3, 3.6, 4.6);
 
                 MezzVec<<OVec;
                 TEST(Vector3(MezzVec)==Vector3(OVec), "operator<<(Vector3,Ogre::Vector3)");

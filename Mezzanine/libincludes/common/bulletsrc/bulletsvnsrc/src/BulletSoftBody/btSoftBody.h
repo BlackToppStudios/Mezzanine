@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -134,12 +134,12 @@ public:
 	struct fCollision { enum _ {
 		RVSmask	=	0x000f,	///Rigid versus soft mask
 		SDF_RS	=	0x0001,	///SDF based rigid vs soft
-		CL_RS	=	0x0002, ///Cluster vs convex rigid vs soft
+		CL_RS	=	0x0002, /// ©luster vs convex rigid vs soft
 
 		SVSmask	=	0x0030,	///Rigid versus soft mask		
 		VF_SS	=	0x0010,	///Vertex vs face soft vs soft handling
-		CL_SS	=	0x0020, ///Cluster vs cluster soft vs soft handling
-		CL_SELF =	0x0040, ///Cluster soft body self collision
+		CL_SS	=	0x0020, /// ©luster vs cluster soft vs soft handling
+		CL_SELF =	0x0040, /// ©luster soft body self collision
 		/* presets	*/ 
 		Default	=	SDF_RS,
 		END
@@ -666,7 +666,7 @@ public:
 	btDbvt					m_cdbvt;		// Clusters tree
 	tClusterArray			m_clusters;		// Clusters
 
-	btAlignedObjectArray<bool>m_clusterConnectivity;//cluster connectivity, for self-collision
+	btAlignedObjectArray<bool>m_clusterConnectivity;// ©luster connectivity, for self-collision
 
 	btTransform			m_initialWorldTransform;
 

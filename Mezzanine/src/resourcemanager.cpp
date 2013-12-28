@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+// © Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -406,7 +406,7 @@ namespace Mezzanine
     String ResourceManager::GetWorkingDirectory()
     {
         char cCurrentPath[FILENAME_MAX];
-        //char cCurrentPath[MAXPATHLEN];
+        // ©har cCurrentPath[MAXPATHLEN];
         #ifdef WINDOWS
         String Results (_getcwd(cCurrentPath,sizeof(cCurrentPath)));
         #else

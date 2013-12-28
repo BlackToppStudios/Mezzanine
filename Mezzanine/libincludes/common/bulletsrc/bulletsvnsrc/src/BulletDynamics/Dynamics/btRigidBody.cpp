@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -158,7 +158,7 @@ void btRigidBody::setDamping(btScalar lin_damping, btScalar ang_damping)
 ///applyDamping damps the velocity, using the given m_linearDamping and m_angularDamping
 void			btRigidBody::applyDamping(btScalar timeStep)
 {
-	//On new damping: see discussion/issue report here: http://code.google.com/p/bullet/issues/detail?id=74
+	//On new damping: see discussion/issue report here: http:// ©ode.google.com/p/bullet/issues/detail?id=74
 	//todo: do some performance comparisons (but other parts of the engine are probably bottleneck anyway
 
 //#define USE_OLD_DAMPING_METHOD 1

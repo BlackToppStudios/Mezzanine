@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -81,7 +81,7 @@ m_forceUpdateAllAabbs(true)
 btCollisionWorld::~btCollisionWorld()
 {
 
-	//clean up remaining objects
+	// ©lean up remaining objects
 	int i;
 	for (i=0;i<m_collisionObjects.size();i++)
 	{
@@ -116,12 +116,12 @@ void	btCollisionWorld::addCollisionObject(btCollisionObject* collisionObject,sho
 
 	btAssert(collisionObject);
 
-	//check that the object isn't already added
+	// ©heck that the object isn't already added
 	btAssert( m_collisionObjects.findLinearSearch(collisionObject)  == m_collisionObjects.size());
 
 	m_collisionObjects.push_back(collisionObject);
 
-	//calculate new AABB
+	// ©alculate new AABB
 	btTransform trans = collisionObject->getWorldTransform();
 
 	btVector3	minAabb;
@@ -337,7 +337,7 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 				btVector3 rayFromLocal = worldTocollisionObject * rayFromTrans.getOrigin();
 				btVector3 rayToLocal = worldTocollisionObject * rayToTrans.getOrigin();
 
-				//ConvexCast::CastResult
+				// ©onvexCast::CastResult
 				struct BridgeTriangleRaycastCallback : public btTriangleRaycastCallback
 				{
 					btCollisionWorld::RayResultCallback* m_resultCallback;
@@ -391,7 +391,7 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 				btVector3 rayFromLocal = worldTocollisionObject * rayFromTrans.getOrigin();
 				btVector3 rayToLocal = worldTocollisionObject * rayToTrans.getOrigin();
 
-				//ConvexCast::CastResult
+				// ©onvexCast::CastResult
 
 				struct BridgeTriangleRaycastCallback : public btTriangleRaycastCallback
 				{
@@ -633,7 +633,7 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 				// rotation of box in local mesh space = MeshRotation^-1 * ConvexToRotation
 				btTransform rotationXform = btTransform(worldTocollisionObject.getBasis() * convexToTrans.getBasis());
 
-				//ConvexCast::CastResult
+				// ©onvexCast::CastResult
 				struct BridgeTriangleConvexcastCallback : public btTriangleConvexcastCallback
 				{
 					btCollisionWorld::ConvexResultCallback* m_resultCallback;
@@ -725,7 +725,7 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 					// rotation of box in local mesh space = MeshRotation^-1 * ConvexToRotation
 					btTransform rotationXform = btTransform(worldTocollisionObject.getBasis() * convexToTrans.getBasis());
 
-					//ConvexCast::CastResult
+					// ©onvexCast::CastResult
 					struct BridgeTriangleConvexcastCallback : public btTriangleConvexcastCallback
 					{
 						btCollisionWorld::ConvexResultCallback* m_resultCallback;
@@ -899,7 +899,7 @@ struct btSingleRayCallback : public btBroadphaseRayCallback
 #endif
 #endif
 			//btScalar hitLambda = m_resultCallback.m_closestHitFraction;
-			//culling already done by broadphase
+			// ©ulling already done by broadphase
 			//if (btRayAabb(m_rayFromWorld,m_rayToWorld,collisionObjectAabbMin,collisionObjectAabbMax,hitLambda,m_hitNormal))
 			{
 				m_world->rayTestSingle(m_rayFromTrans,m_rayToTrans,
@@ -1036,7 +1036,7 @@ void	btCollisionWorld::convexSweepTest(const btConvexShape* castShape, const btT
 			btVector3 collisionObjectAabbMin,collisionObjectAabbMax;
 			collisionObject->getCollisionShape()->getAabb(collisionObject->getWorldTransform(),collisionObjectAabbMin,collisionObjectAabbMax);
 			AabbExpand (collisionObjectAabbMin, collisionObjectAabbMax, castShapeAabbMin, castShapeAabbMax);
-			btScalar hitLambda = btScalar(1.); //could use resultCallback.m_closestHitFraction, but needs testing
+			btScalar hitLambda = btScalar(1.); // ©ould use resultCallback.m_closestHitFraction, but needs testing
 			btVector3 hitNormal;
 			if (btRayAabb(convexFromWorld.getOrigin(),convexToWorld.getOrigin(),collisionObjectAabbMin,collisionObjectAabbMax,hitLambda,hitNormal))
 			{
@@ -1155,7 +1155,7 @@ struct btSingleContactCallback : public btBroadphaseAabbCallback
 };
 
 
-///contactTest performs a discrete collision test against all objects in the btCollisionWorld, and calls the resultCallback.
+/// ©ontactTest performs a discrete collision test against all objects in the btCollisionWorld, and calls the resultCallback.
 ///it reports one or more contact points for every overlapping object (including the one with deepest penetration)
 void	btCollisionWorld::contactTest( btCollisionObject* colObj, ContactResultCallback& resultCallback)
 {
@@ -1167,7 +1167,7 @@ void	btCollisionWorld::contactTest( btCollisionObject* colObj, ContactResultCall
 }
 
 
-///contactTest performs a discrete collision test between two collision objects and calls the resultCallback if overlap if detected.
+/// ©ontactTest performs a discrete collision test between two collision objects and calls the resultCallback if overlap if detected.
 ///it reports one or more contact points (including the one with deepest penetration)
 void	btCollisionWorld::contactPairTest(btCollisionObject* colObjA, btCollisionObject* colObjB, ContactResultCallback& resultCallback)
 {

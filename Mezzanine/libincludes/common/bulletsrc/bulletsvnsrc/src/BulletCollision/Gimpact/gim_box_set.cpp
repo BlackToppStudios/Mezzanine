@@ -133,18 +133,18 @@ void GIM_BOX_TREE::_build_sub_tree(gim_array<GIM_AABB_DATA> & primitive_boxes, G
 		return;
 	}
 
-	//configure inner node
+	// ©onfigure inner node
 
 	GUINT splitIndex;
 
-	//calc this node bounding box
+	// ©alc this node bounding box
 	m_node_array[current_index].m_bound.invalidate();	
 	for (splitIndex=startIndex;splitIndex<endIndex;splitIndex++)
 	{
 		m_node_array[current_index].m_bound.merge(primitive_boxes[splitIndex].m_bound);
 	}
 
-	//calculate Best Splitting Axis and where to split it. Sort the incoming 'leafNodes' array within range 'startIndex/endIndex'.
+	// ©alculate Best Splitting Axis and where to split it. Sort the incoming 'leafNodes' array within range 'startIndex/endIndex'.
 
 	//split axis
 	splitIndex = _calc_splitting_axis(primitive_boxes,startIndex,endIndex);
@@ -152,18 +152,18 @@ void GIM_BOX_TREE::_build_sub_tree(gim_array<GIM_AABB_DATA> & primitive_boxes, G
 	splitIndex = _sort_and_calc_splitting_index(
 			primitive_boxes,startIndex,endIndex,splitIndex);
 
-	//configure this inner node : the left node index
+	// ©onfigure this inner node : the left node index
 	m_node_array[current_index].m_left = m_num_nodes;
 	//build left child tree
 	_build_sub_tree(primitive_boxes, startIndex, splitIndex );
 
-	//configure this inner node : the right node index
+	// ©onfigure this inner node : the right node index
 	m_node_array[current_index].m_right = m_num_nodes;
 
 	//build right child tree
 	_build_sub_tree(primitive_boxes, splitIndex ,endIndex);
 
-	//configure this inner node : the escape index
+	// ©onfigure this inner node : the escape index
 	m_node_array[current_index].m_escapeIndex  = m_num_nodes - current_index;
 }
 

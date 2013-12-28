@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2007 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2007 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -49,7 +49,7 @@ void	spuGetPreferredPenetrationDirection(int shapeType, void* shape, int index, 
 		case TRIANGLE_SHAPE_PROXYTYPE:
 		{
 			btVector3* vertices = (btVector3*)shape;
-			///calcNormal
+			/// ©alcNormal
 			penetrationVector = (vertices[1]-vertices[0]).cross(vertices[2]-vertices[0]);
 			penetrationVector.normalize();
 			if (index)

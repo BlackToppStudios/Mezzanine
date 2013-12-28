@@ -87,7 +87,7 @@ bool LinearSkinning::resolveParameters(ProgramSet* programSet)
 	//output param
 	mParamOutPositionProj = vsMain->resolveOutputParameter(Parameter::SPS_POSITION, 0, Parameter::SPC_POSITION_PROJECTIVE_SPACE, GCT_FLOAT4);
 
-	//check if parameter retrival went well
+	// ©heck if parameter retrival went well
 	bool isValid =
 		(mParamInPosition.get() != NULL) &&
 		(mParamInNormal.get() != NULL) &&
@@ -123,7 +123,7 @@ bool LinearSkinning::resolveParameters(ProgramSet* programSet)
 		mParamTempFloat4 = vsMain->resolveLocalParameter(Parameter::SPS_UNKNOWN, -1, "TempVal4", GCT_FLOAT4);
 		mParamTempFloat3 = vsMain->resolveLocalParameter(Parameter::SPS_UNKNOWN, -1, "TempVal3", GCT_FLOAT3);
 
-		//check if parameter retrival went well
+		// ©heck if parameter retrival went well
 		isValid &=
 			(mParamInIndices.get() != NULL) &&
 			(mParamInWeights.get() != NULL) &&
@@ -138,7 +138,7 @@ bool LinearSkinning::resolveParameters(ProgramSet* programSet)
 		mParamInWorldMatrix = vsProgram->resolveAutoParameterInt(GpuProgramParameters::ACT_WORLD_MATRIX, 0);
 		mParamInWorldViewProjMatrix = vsProgram->resolveAutoParameterInt(GpuProgramParameters::ACT_WORLDVIEWPROJ_MATRIX, 0);
 
-		//check if parameter retrival went well
+		// ©heck if parameter retrival went well
 		isValid &=
 			(mParamInWorldMatrix.get() != NULL) &&
 			(mParamInWorldViewProjMatrix.get() != NULL);
@@ -289,7 +289,7 @@ void LinearSkinning::addIndexedPositionWeight(Function* vsMain,
 	curFuncInvocation->pushOperand(mParamTempFloat4, Operand::OPS_OUT);
 	vsMain->addAtomInstance(curFuncInvocation);
 
-	//check if on first iteration
+	// ©heck if on first iteration
 	if (index == 0)
 	{
 		//set the local param as the value of the world param
@@ -336,7 +336,7 @@ void LinearSkinning::addIndexedNormalRelatedWeight(Function* vsMain,
 	curFuncInvocation->pushOperand(mParamTempFloat3, Operand::OPS_OUT);
 	vsMain->addAtomInstance(curFuncInvocation);
 
-	//check if on first iteration
+	// ©heck if on first iteration
 	if (index == 0)
 	{
 		//set the local param as the value of the world normal

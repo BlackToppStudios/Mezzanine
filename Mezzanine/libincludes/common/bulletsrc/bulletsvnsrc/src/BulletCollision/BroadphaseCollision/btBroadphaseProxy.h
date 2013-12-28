@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -49,7 +49,7 @@ IMPLICIT_CONVEX_SHAPES_START_HERE,
 	BOX_2D_SHAPE_PROXYTYPE,
 	CONVEX_2D_SHAPE_PROXYTYPE,
 	CUSTOM_CONVEX_SHAPE_TYPE,
-//concave shapes
+// ©oncave shapes
 CONCAVE_SHAPES_START_HERE,
 	//keep all the convex shapetype below here, for the check IsConvexShape in broadphase proxy!
 	TRIANGLE_MESH_SHAPE_PROXYTYPE,
@@ -232,7 +232,7 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 };
 
 /*
-//comparison for set operation, see Solid DT_Encounter
+// ©omparison for set operation, see Solid DT_Encounter
 SIMD_FORCE_INLINE bool operator<(const btBroadphasePair& a, const btBroadphasePair& b) 
 { 
     return a.m_pProxy0 < b.m_pProxy0 || 

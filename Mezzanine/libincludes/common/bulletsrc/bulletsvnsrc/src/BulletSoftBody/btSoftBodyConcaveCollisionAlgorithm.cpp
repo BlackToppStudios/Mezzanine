@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -114,7 +114,7 @@ void btSoftBodyTriangleCallback::processTriangle(btVector3* triangle,int partId,
 		btCollisionShape* tm = shapeIndex->m_childShape;
 		btAssert(tm);
 
-		//copy over user pointers to temporary shape
+		// ©opy over user pointers to temporary shape
 		tm->setUserPointer(m_triBody->getCollisionShape()->getUserPointer());
 
 		btCollisionObjectWrapper softBody(0,m_softBody->getCollisionShape(),m_softBody,m_softBody->getWorldTransform());
@@ -157,7 +157,7 @@ void btSoftBodyTriangleCallback::processTriangle(btVector3* triangle,int partId,
 		//btTriangleShape tm(triangle[0],triangle[1],triangle[2]);	
 		//	tm.setMargin(m_collisionMarginTriangle);
 
-		//copy over user pointers to temporary shape
+		// ©opy over user pointers to temporary shape
 		tm->setUserPointer(m_triBody->getCollisionShape()->getUserPointer());
 
 		
@@ -259,7 +259,7 @@ btScalar btSoftBodyConcaveCollisionAlgorithm::calculateTimeOfImpact(btCollisionO
 		return btScalar(1.);
 	}
 
-	//const btVector3& from = convexbody->m_worldTransform.getOrigin();
+	// ©onst btVector3& from = convexbody->m_worldTransform.getOrigin();
 	//btVector3 to = convexbody->m_interpolationWorldTransform.getOrigin();
 	//todo: only do if the motion exceeds the 'radius'
 
@@ -300,7 +300,7 @@ btScalar btSoftBodyConcaveCollisionAlgorithm::calculateTimeOfImpact(btCollisionO
 			btVoronoiSimplexSolver	simplexSolver;
 			btSubsimplexConvexCast convexCaster(&pointShape,&triShape,&simplexSolver);
 			//GjkConvexCast	convexCaster(&pointShape,convexShape,&simplexSolver);
-			//ContinuousConvexCollision convexCaster(&pointShape,convexShape,&simplexSolver,0);
+			// ©ontinuousConvexCollision convexCaster(&pointShape,convexShape,&simplexSolver,0);
 			//local space?
 
 			if (convexCaster.calcTimeOfImpact(m_ccdSphereFromTrans,m_ccdSphereToTrans,

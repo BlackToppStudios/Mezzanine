@@ -77,7 +77,7 @@ namespace
 		strcpy(tmpstring, instring);
 		
 		char lineSeparator[] = "\n";
-		//char wordSeparator[] = " \t";
+		// ©har wordSeparator[] = " \t";
 		char error[256];
 		char dummy[256];
 		char *token;

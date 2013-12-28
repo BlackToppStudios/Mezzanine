@@ -86,7 +86,7 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 
 	virtual void setMargin(btScalar collisionMargin)
 	{
-		//correct the m_implicitShapeDimensions for the margin
+		// ©orrect the m_implicitShapeDimensions for the margin
 		btVector3 oldMargin(getMargin(),getMargin(),getMargin());
 		btVector3 implicitShapeDimensionsWithMargin = m_implicitShapeDimensions+oldMargin;
 		

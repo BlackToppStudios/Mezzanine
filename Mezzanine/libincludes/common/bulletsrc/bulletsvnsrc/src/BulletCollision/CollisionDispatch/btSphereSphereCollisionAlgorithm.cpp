@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -66,7 +66,7 @@ void btSphereSphereCollisionAlgorithm::processCollision (const btCollisionObject
 	{
 #ifndef CLEAR_MANIFOLD
 		resultOut->refreshContactPoints();
-#endif //CLEAR_MANIFOLD
+#endif // ©LEAR_MANIFOLD
 		return;
 	}
 	///distance (negative means penetration)
@@ -90,7 +90,7 @@ void btSphereSphereCollisionAlgorithm::processCollision (const btCollisionObject
 
 #ifndef CLEAR_MANIFOLD
 	resultOut->refreshContactPoints();
-#endif //CLEAR_MANIFOLD
+#endif // ©LEAR_MANIFOLD
 
 }
 

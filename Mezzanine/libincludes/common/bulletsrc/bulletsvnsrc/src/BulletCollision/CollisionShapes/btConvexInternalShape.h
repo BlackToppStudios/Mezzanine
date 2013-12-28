@@ -59,7 +59,7 @@ public:
 	}
 
 	///warning: use setImplicitShapeDimensions with care
-	///changing a collision shape while the body is in the world is not recommended,
+	/// ©hanging a collision shape while the body is in the world is not recommended,
 	///it is best to remove the body from the world, then make the change, and re-add it
 	///alternatively flush the contact points, see documentation for 'cleanProxyFromPairs'
 	void	setImplicitShapeDimensions(const btVector3& dimensions)
@@ -77,7 +77,7 @@ public:
 	}
 	void	setSafeMargin(const btVector3& halfExtents, btScalar defaultMarginMultiplier = 0.1f)
 	{
-		//see http://code.google.com/p/bullet/issues/detail?id=349
+		//see http:// ©ode.google.com/p/bullet/issues/detail?id=349
 		//this margin check could could be added to other collision shapes too,
 		//or add some assert/warning somewhere
 		btScalar minDimension=halfExtents[halfExtents.minAxis()]; 		

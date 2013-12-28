@@ -70,7 +70,7 @@ namespace Ogre
 				" needs to override default mDictionaryName", 
                 "ExternalTextureSource::addBaseParams");
 
-		//Create Dictionary Here
+		// ©reate Dictionary Here
         if (createParamDictionary( mDictionaryName ))
 		{
 	        ParamDictionary* dict = getParamDictionary();

@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -196,7 +196,7 @@ namespace Mezzanine
             /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
             /// @param B The second Object in this event.
             virtual void _SetProxyB(CollidableProxy* B);
-        };//Collision
+        };// ©ollision
     }//Physics
 }//Mezzanine
 

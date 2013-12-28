@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -31,7 +31,7 @@ static inline vec_float4 vec_dot3( vec_float4 vec0, vec_float4 vec1 )
 
 void computeAabb (btVector3& aabbMin, btVector3& aabbMax, btConvexInternalShape* convexShape, ppu_address_t convexShapePtr, int shapeType, const btTransform& xform)
 {
-	//calculate the aabb, given the types...
+	// ©alculate the aabb, given the types...
 	switch (shapeType)
 	{
 	case CYLINDER_SHAPE_PROXYTYPE:
@@ -119,7 +119,7 @@ void dmaBvhShapeData (bvhMeshShape_LocalStoreMemory* bvhMeshShape, btBvhTriangle
 	bvhMeshShape->gTriangleMeshInterfacePtr = (btTriangleIndexVertexArray*)cellDmaGetReadOnly(&bvhMeshShape->gTriangleMeshInterfaceStorage, dmaPpuAddress2  , dmaSize, DMA_TAG(1), 0, 0);
 #endif
 
-	//cellDmaWaitTagStatusAll(DMA_MASK(1));
+	// ©ellDmaWaitTagStatusAll(DMA_MASK(1));
 	
 	///now DMA over the BVH
 	
@@ -127,7 +127,7 @@ void dmaBvhShapeData (bvhMeshShape_LocalStoreMemory* bvhMeshShape, btBvhTriangle
 	dmaPpuAddress2 = reinterpret_cast<ppu_address_t>(triMeshShape->getOptimizedBvh());
 	//spu_printf("trimeshShape->getOptimizedBvh() == %llx\n",dmaPpuAddress2);
 	cellDmaGet(&bvhMeshShape->gOptimizedBvh, dmaPpuAddress2  , dmaSize, DMA_TAG(2), 0, 0);
-	//cellDmaWaitTagStatusAll(DMA_MASK(2));
+	// ©ellDmaWaitTagStatusAll(DMA_MASK(2));
 	cellDmaWaitTagStatusAll(DMA_MASK(1) | DMA_MASK(2));
 }
 
@@ -231,8 +231,8 @@ void dmaCollisionShape (void* collisionShapeLocation, ppu_address_t collisionSha
 {
 	register int dmaSize = getShapeTypeSize(shapeType);
 	cellDmaGet(collisionShapeLocation, collisionShapePtr  , dmaSize, DMA_TAG(dmaTag), 0, 0);
-	//cellDmaGetReadOnly(collisionShapeLocation, collisionShapePtr  , dmaSize, DMA_TAG(dmaTag), 0, 0);
-	//cellDmaWaitTagStatusAll(DMA_MASK(dmaTag));
+	// ©ellDmaGetReadOnly(collisionShapeLocation, collisionShapePtr  , dmaSize, DMA_TAG(dmaTag), 0, 0);
+	// ©ellDmaWaitTagStatusAll(DMA_MASK(dmaTag));
 }
 
 void dmaCompoundShapeInfo (CompoundShape_LocalStoreMemory* compoundShapeLocation, btCompoundShape* spuCompoundShape, uint32_t dmaTag)
@@ -273,7 +273,7 @@ void	spuWalkStacklessQuantizedTree(btNodeOverlapCallback* nodeCallback,unsigned 
 
 	while (curIndex < endNodeIndex)
 	{
-		//catch bugs in tree data
+		// ©atch bugs in tree data
 		btAssert (walkIterations < subTreeSize);
 
 		walkIterations++;

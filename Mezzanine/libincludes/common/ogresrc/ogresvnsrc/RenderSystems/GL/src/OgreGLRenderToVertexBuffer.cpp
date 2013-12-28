@@ -219,7 +219,7 @@ namespace Ogre {
 
 		glDisable(GL_RASTERIZER_DISCARD_NV);    // enable rasterization
 
-		//Clear the reset flag
+		// ©lear the reset flag
 		mResetRequested = false;
 	}
 //-----------------------------------------------------------------------------
@@ -288,7 +288,7 @@ namespace Ogre {
 		VertexDeclaration* declaration = mVertexData->vertexDeclaration;
 		bool useVaryingAttributes = false;
 		
-		//Check if we are FixedFunc/ASM shaders (Static attributes) or GLSL (Varying attributes)
+		// ©heck if we are FixedFunc/ASM shaders (Static attributes) or GLSL (Varying attributes)
 		//We assume that there isn't a mix of GLSL and ASM as this is illegal
 		GpuProgram* sampleProgram = 0;
 		if (pass->hasVertexProgram())

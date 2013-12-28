@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -89,14 +89,14 @@ btDefaultCollisionConfiguration::btDefaultCollisionConfiguration(const btDefault
 	mem = btAlignedAlloc(sizeof(btBoxBoxCollisionAlgorithm::CreateFunc),16);
 	m_boxBoxCF = new(mem)btBoxBoxCollisionAlgorithm::CreateFunc;
 
-	//convex versus plane
+	// ©onvex versus plane
 	mem = btAlignedAlloc (sizeof(btConvexPlaneCollisionAlgorithm::CreateFunc),16);
 	m_convexPlaneCF = new (mem) btConvexPlaneCollisionAlgorithm::CreateFunc;
 	mem = btAlignedAlloc (sizeof(btConvexPlaneCollisionAlgorithm::CreateFunc),16);
 	m_planeConvexCF = new (mem) btConvexPlaneCollisionAlgorithm::CreateFunc;
 	m_planeConvexCF->m_swapped = true;
 	
-	///calculate maximum element size, big enough to fit any collision algorithm in the memory pool
+	/// ©alculate maximum element size, big enough to fit any collision algorithm in the memory pool
 	int maxSize = sizeof(btConvexConvexAlgorithm);
 	int maxSize2 = sizeof(btConvexConcaveCollisionAlgorithm);
 	int maxSize3 = sizeof(btCompoundCollisionAlgorithm);

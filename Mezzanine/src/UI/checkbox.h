@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -141,7 +141,7 @@ namespace Mezzanine
             virtual void _OnChecked();
             /// @brief Self logic to be executed when this checkbox is unchecked.
             virtual void _OnUnchecked();
-        };//CheckBox
+        };// ©heckBox
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the factory implementation for CheckBox widgets.
@@ -185,7 +185,7 @@ namespace Mezzanine
             virtual Widget* CreateWidget(const XML::Node& XMLNode, Screen* Parent);
             /// @copydoc WidgetFactory::DestroyWidget(Widget*)
             virtual void DestroyWidget(Widget* ToBeDestroyed);
-        };//CheckBoxFactory
+        };// ©heckBoxFactory
     }//UI
 }//Mezzanine
 

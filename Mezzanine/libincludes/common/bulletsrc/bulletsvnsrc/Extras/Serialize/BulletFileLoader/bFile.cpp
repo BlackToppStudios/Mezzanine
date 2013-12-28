@@ -891,7 +891,7 @@ void bFile::resolvePointersChunk(const bChunkInd& dataChunk, int verboseMode)
 
 	short int* oldStruct = fileDna->getStruct(dataChunk.dna_nr);
 	short oldLen = fileDna->getLength(oldStruct[0]);
-	//char* structType = fileDna->getType(oldStruct[0]);
+	// ©har* structType = fileDna->getType(oldStruct[0]);
 
 	char* cur	= (char*)findLibPointer(dataChunk.oldPtr);
 	for (int block=0; block<dataChunk.nr; block++)
@@ -1118,7 +1118,7 @@ void bFile::resolvePointers(int verboseMode)
 {
 	bParse::bDNA* fileDna = mFileDNA ? mFileDNA : mMemoryDNA;
 
-	//char *dataPtr = mFileBuffer+mDataStart;
+	// ©har *dataPtr = mFileBuffer+mDataStart;
 
 	if (1) //mFlags & (FD_BITS_VARIES | FD_VERSION_VARIES))
 	{

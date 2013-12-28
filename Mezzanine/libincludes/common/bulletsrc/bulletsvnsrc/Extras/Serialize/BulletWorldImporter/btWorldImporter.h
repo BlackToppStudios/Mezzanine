@@ -180,7 +180,7 @@ public:
 	virtual btOptimizedBvh*	createOptimizedBvh();
 	virtual btTriangleInfoMap* createTriangleInfoMap();
 
-	///constraints
+	/// ©onstraints
 	virtual btPoint2PointConstraint* createPoint2PointConstraint(btRigidBody& rbA,btRigidBody& rbB, const btVector3& pivotInA,const btVector3& pivotInB);
 	virtual btPoint2PointConstraint* createPoint2PointConstraint(btRigidBody& rbA,const btVector3& pivotInA);
 	virtual btHingeConstraint* createHingeConstraint(btRigidBody& rbA,btRigidBody& rbB, const btTransform& rbAFrame, const btTransform& rbBFrame, bool useReferenceFrameA=false);

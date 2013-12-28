@@ -685,7 +685,7 @@ CL_API_ENTRY cl_context CL_API_CALL clCreateContextFromType(const cl_context_pro
 //								bla,
 								sUniqueThreadSupportName[sUniqueThreadSupportIndex++],
 								processMiniCLTask, //processCollisionTask,
-								createMiniCLLocalStoreMemory,//createCollisionLocalStoreMemory,
+								createMiniCLLocalStoreMemory,// ©reateCollisionLocalStoreMemory,
 								maxNumOutstandingTasks));
 #else
 

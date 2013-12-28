@@ -34,7 +34,7 @@
 		THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -----------------------------------------------------------------------*/
 
-// http://codesuppository.blogspot.com
+// http:// ©odesuppository.blogspot.com
 //
 // mailto: jratcliff@infiniplex.net
 //
@@ -1978,8 +1978,8 @@ ConvexH *ConvexHCrop(ConvexH &convex,const Plane &slice)
 					Plane &p0 = convex.facets[edge0.p];
 					Plane &pa = convex.facets[edgea.p];
 					createdverts.Add(ThreePlaneIntersection(p0,pa,slice));
-					//createdverts.Add(PlaneProject(slice,PlaneLineIntersection(slice,convex.vertices[edge0.v],convex.vertices[edgea.v])));
-					//createdverts.Add(PlaneLineIntersection(slice,convex.vertices[edge0.v],convex.vertices[edgea.v]));
+					// ©reatedverts.Add(PlaneProject(slice,PlaneLineIntersection(slice,convex.vertices[edge0.v],convex.vertices[edgea.v])));
+					// ©reatedverts.Add(PlaneLineIntersection(slice,convex.vertices[edge0.v],convex.vertices[edgea.v]));
 					vout = vertcountunder++;
 				}
 				under_edge_count++;
@@ -2028,8 +2028,8 @@ ConvexH *ConvexHCrop(ConvexH &convex,const Plane &slice)
 					Plane &p0 = convex.facets[edge0.p];
 					Plane &pa = convex.facets[edgea.p];
 					createdverts.Add(ThreePlaneIntersection(p0,pa,slice));
-					//createdverts.Add(PlaneLineIntersection(slice,convex.vertices[edge0.v],convex.vertices[edgea.v]));
-					//createdverts.Add(PlaneProject(slice,PlaneLineIntersection(slice,convex.vertices[edge0.v],convex.vertices[edgea.v])));
+					// ©reatedverts.Add(PlaneLineIntersection(slice,convex.vertices[edge0.v],convex.vertices[edgea.v]));
+					// ©reatedverts.Add(PlaneProject(slice,PlaneLineIntersection(slice,convex.vertices[edge0.v],convex.vertices[edgea.v])));
 					vin = vertcountunder++;
 				}
 				else {

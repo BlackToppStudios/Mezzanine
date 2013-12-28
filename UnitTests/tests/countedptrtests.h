@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -611,7 +611,7 @@ class countedptrtests : public UnitTestGroup
                 DiamondPtr->Value1 = 1;
                 DiamondPtr->Value2 = 2;
                 DiamondPtr->ValueDiamond = 3;
-                //TEST_RESULT(Success, "DiamondCastingConsistency"); //compiling this BS is sort of a test
+                //TEST_RESULT(Success, "DiamondCastingConsistency"); // ©ompiling this BS is sort of a test
 
                 //TestOutput << DiamondPtr.UseCount() << endl;
 
@@ -622,7 +622,7 @@ class countedptrtests : public UnitTestGroup
                 TEST (InternalPtrFromCrossConstruction && 0==InternalPtrFromCrossConstruction->Value, "CrossConstruction")
 
                 VehicleTest* Car1 = new CarTest;
-                //CarTest* Car2 = new CarTest;
+                // ©arTest* Car2 = new CarTest;
 
                 CountedPtr<VehicleTest> Car1Ptr(Car1);
                 //TestOutput << Car1Ptr.UseCount() << endl;

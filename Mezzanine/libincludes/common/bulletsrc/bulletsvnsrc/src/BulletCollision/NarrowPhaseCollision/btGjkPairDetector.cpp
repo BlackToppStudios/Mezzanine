@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -187,7 +187,7 @@ void btGjkPairDetector::getClosestPointsNonVirtual(const ClosestPointInput& inpu
 			{
 				m_degenerateSimplex = 10;
 				checkSimplex=true;
-				//checkPenetration = false;
+				// ©heckPenetration = false;
 				break;
 			}
 
@@ -225,7 +225,7 @@ void btGjkPairDetector::getClosestPointsNonVirtual(const ClosestPointInput& inpu
 #endif
 			btVector3 newCachedSeparatingAxis;
 
-			//calculate the closest point to the origin (update vector v)
+			// ©alculate the closest point to the origin (update vector v)
 			if (!m_simplexSolver->closest(newCachedSeparatingAxis))
 			{
 				m_degenerateSimplex = 3;
@@ -395,7 +395,7 @@ void btGjkPairDetector::getClosestPointsNonVirtual(const ClosestPointInput& inpu
 					///EPA reports no penetration, and the second GJK (using the supporting vector without margin)
 					///reports a valid positive distance. Use the results of the second GJK instead of failing.
 					///thanks to Jacob.Langford for the reproduction case
-					///http://code.google.com/p/bullet/issues/detail?id=250
+					///http:// ©ode.google.com/p/bullet/issues/detail?id=250
 
 				
 					if (m_cachedSeparatingAxis.length2() > btScalar(0.))

@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -89,7 +89,7 @@ void btConvexTriangleCallback::processTriangle(btVector3* triangle,int partId, i
 	btCollisionAlgorithmConstructionInfo ci;
 	ci.m_dispatcher1 = m_dispatcher;
 
-	//const btCollisionObject* ob = static_cast<btCollisionObject*>(m_triBodyWrap->getCollisionObject());
+	// ©onst btCollisionObject* ob = static_cast<btCollisionObject*>(m_triBodyWrap->getCollisionObject());
 
 
 #if 0	
@@ -110,7 +110,7 @@ void btConvexTriangleCallback::processTriangle(btVector3* triangle,int partId, i
 		tm.setMargin(m_collisionMarginTriangle);
 		
 		
-		btCollisionObjectWrapper triObWrap(m_triBodyWrap,&tm,m_triBodyWrap->getCollisionObject(),m_triBodyWrap->getWorldTransform());//correct transform?
+		btCollisionObjectWrapper triObWrap(m_triBodyWrap,&tm,m_triBodyWrap->getCollisionObject(),m_triBodyWrap->getWorldTransform());// ©orrect transform?
 		btCollisionAlgorithm* colAlgo = ci.m_dispatcher1->findAlgorithm(m_convexBodyWrap,&triObWrap,m_manifoldPtr);
 
 		const btCollisionObjectWrapper* tmpWrap = 0;
@@ -161,7 +161,7 @@ void	btConvexTriangleCallback::setTimeStepAndCounters(btScalar collisionMarginTr
 	btTransform convexInTriangleSpace;
 	convexInTriangleSpace = m_triBodyWrap->getWorldTransform().inverse() * m_convexBodyWrap->getWorldTransform();
 	const btCollisionShape* convexShape = static_cast<const btCollisionShape*>(m_convexBodyWrap->getCollisionShape());
-	//CollisionShape* triangleShape = static_cast<btCollisionShape*>(triBody->m_collisionShape);
+	// ©ollisionShape* triangleShape = static_cast<btCollisionShape*>(triBody->m_collisionShape);
 	convexShape->getAabb(convexInTriangleSpace,m_aabbMin,m_aabbMax);
 	btScalar extraMargin = collisionMarginTriangle;
 	btVector3 extra(extraMargin,extraMargin,extraMargin);
@@ -231,7 +231,7 @@ btScalar btConvexConcaveCollisionAlgorithm::calculateTimeOfImpact(btCollisionObj
 		return btScalar(1.);
 	}
 
-	//const btVector3& from = convexbody->m_worldTransform.getOrigin();
+	// ©onst btVector3& from = convexbody->m_worldTransform.getOrigin();
 	//btVector3 to = convexbody->m_interpolationWorldTransform.getOrigin();
 	//todo: only do if the motion exceeds the 'radius'
 
@@ -272,7 +272,7 @@ btScalar btConvexConcaveCollisionAlgorithm::calculateTimeOfImpact(btCollisionObj
 			btVoronoiSimplexSolver	simplexSolver;
 			btSubsimplexConvexCast convexCaster(&pointShape,&triShape,&simplexSolver);
 			//GjkConvexCast	convexCaster(&pointShape,convexShape,&simplexSolver);
-			//ContinuousConvexCollision convexCaster(&pointShape,convexShape,&simplexSolver,0);
+			// ©ontinuousConvexCollision convexCaster(&pointShape,convexShape,&simplexSolver,0);
 			//local space?
 
 			if (convexCaster.calcTimeOfImpact(m_ccdSphereFromTrans,m_ccdSphereToTrans,

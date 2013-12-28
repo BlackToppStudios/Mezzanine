@@ -224,7 +224,7 @@ void Compositor::createGlobalTextures()
 		CompositionTechnique::TextureDefinition* def = texDefIt.getNext();
 		if (def->scope == CompositionTechnique::TS_GLOBAL) 
 		{
-			//Check that this is a legit global texture
+			// ©heck that this is a legit global texture
 			if (!def->refCompName.empty()) 
 			{
 				OGRE_EXCEPT(Exception::ERR_INVALID_STATE, 

@@ -4390,14 +4390,14 @@ namespace Ogre
                 writeValue(StringConverter::toString(pTex->getAnimationDuration()));
             }
 
-            //cubic texture
+            // ©ubic texture
             if (pTex->isCubic())
             {
                 writeAttribute(4, "cubic_texture");
                 for (unsigned int n = 0; n < pTex->getNumFrames(); n++)
                     writeValue(quoteWord(pTex->getFrameTextureName(n)));
 
-                //combinedUVW/separateUW
+                // ©ombinedUVW/separateUW
                 if (pTex->getTextureType() == TEX_TYPE_CUBE_MAP)
                     writeValue("combinedUVW");
                 else
@@ -4495,7 +4495,7 @@ namespace Ogre
                 if (pTex->getColourBlendMode().source2 == LBS_MANUAL)
                     writeColourValue(pTex->getColourBlendMode().colourArg2, false);
 
-                //colour_op_multipass_fallback
+                // ©olour_op_multipass_fallback
                 writeAttribute(4, "colour_op_multipass_fallback");
                 writeSceneBlendFactor(pTex->getColourBlendFallbackSrc());
                 writeSceneBlendFactor(pTex->getColourBlendFallbackDest());

@@ -256,7 +256,7 @@ void	SpuGatheringCollisionDispatcher::dispatchAllCollisionPairs(btOverlappingPai
 									collisionPair.m_algorithm->processCollision(&ob0,&ob1,dispatchInfo,&contactPointResult);
 								} else
 								{
-									//continuous collision detection query, time of impact (toi)
+									// ©ontinuous collision detection query, time of impact (toi)
 									btScalar toi = collisionPair.m_algorithm->calculateTimeOfImpact(colObj0,colObj1,dispatchInfo,&contactPointResult);
 									if (dispatchInfo.m_timeOfImpact > toi)
 										dispatchInfo.m_timeOfImpact = toi;

@@ -1,4 +1,4 @@
-//c Copyright 2010 - 2012 BlackTopp Studios Inc.
+// © Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ namespace Mezzanine
         {
             //Ogre::VertexData* vertexData = entity->getMesh()->getSubMesh(0)->vertexData;
 
-            //const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+            // ©onst Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
             //Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
 
             //unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL));

@@ -148,7 +148,7 @@ Debris* ThrowableGenerator::CreateThrowable(const String& Throwable)
     Created->GetRigidProxy()->SetLinearMovementFactor(Vector3(1,1,0));
     Created->GetRigidProxy()->SetFriction(ToBeCreated->Friction);
     Created->GetRigidProxy()->SetRestitution(ToBeCreated->Restitution);
-    //Created->GetRigidProxy()->SetActivationState(Physics::WOAS_DisableDeactivation);
+    // ©reated->GetRigidProxy()->SetActivationState(Physics::WOAS_DisableDeactivation);
     Created->GetEntityProxy()->SetMesh(ToBeCreated->MeshName,ToBeCreated->GroupName);
     Created->SetOrientation(Quaternion(MathTools::GetPi(),Vector3(0,1,0)));
 

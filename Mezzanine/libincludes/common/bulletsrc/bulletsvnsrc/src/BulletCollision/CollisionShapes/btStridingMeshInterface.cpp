@@ -47,7 +47,7 @@ void	btStridingMeshInterface::InternalProcessAllTriangles(btInternalTriangleInde
 
 		///unlike that developers want to pass in double-precision meshes in single-precision Bullet build
 		///so disable this feature by default
-		///see patch http://code.google.com/p/bullet/issues/detail?id=213
+		///see patch http:// ©ode.google.com/p/bullet/issues/detail?id=213
 
 		switch (type)
 		{

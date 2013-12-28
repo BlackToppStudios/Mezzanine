@@ -13,7 +13,7 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-///Contains contributions from Disney Studio's
+/// ©ontains contributions from Disney Studio's
 
 #ifndef BT_OPTIMIZED_BVH_H
 #define BT_OPTIMIZED_BVH_H

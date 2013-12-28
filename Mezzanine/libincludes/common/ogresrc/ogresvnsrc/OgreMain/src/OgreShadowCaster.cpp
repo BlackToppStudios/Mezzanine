@@ -163,7 +163,7 @@ namespace Ogre {
 		}
 		// End pre-count
 		
-		//Check if index buffer is to small 
+		// ©heck if index buffer is to small 
 		if (preCountIndexes > indexBuffer->getNumIndexes())
 		{
 			LogManager::getSingleton().logMessage(LML_CRITICAL, 
@@ -176,7 +176,7 @@ namespace Ogre {
 				pManager->setShadowIndexBufferSize(preCountIndexes);
 			}
 			
-			//Check that the index buffer size has actually increased
+			// ©heck that the index buffer size has actually increased
 			if (preCountIndexes > indexBuffer->getNumIndexes())
 			{
 				//increasing index buffer size has failed

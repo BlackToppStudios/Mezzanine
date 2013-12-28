@@ -55,7 +55,7 @@ protected:
 	void	fixupCollisionDataPointers(btCollisionShapeData* shapeData);
 	void	fixupConstraintData(btTypedConstraintData* tcd);
 
-	//collision shapes data
+	// ©ollision shapes data
 	void deSerializeCollisionShapeData(TiXmlNode* pParent,btCollisionShapeData* colShapeData);
 	void deSerializeConvexInternalShapeData(TiXmlNode* pParent);
 	void deSerializeStaticPlaneShapeData(TiXmlNode* pParent);
@@ -67,7 +67,7 @@ protected:
 	///bodies
 	void deSerializeRigidBodyFloatData(TiXmlNode* pParent);
 
-	///constraints
+	/// ©onstraints
 	void deSerializeGeneric6DofConstraintData(TiXmlNode* pParent);
 
 	public:

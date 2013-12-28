@@ -135,7 +135,7 @@ struct	btDbvtBroadphase : btBroadphaseInterface
 	///this setAabbForceUpdate is similar to setAabb but always forces the aabb update. 
 	///it is not part of the btBroadphaseInterface but specific to btDbvtBroadphase.
 	///it bypasses certain optimizations that prevent aabb updates (when the aabb shrinks), see
-	///http://code.google.com/p/bullet/issues/detail?id=223
+	///http:// ©ode.google.com/p/bullet/issues/detail?id=223
 	void							setAabbForceUpdate(		btBroadphaseProxy* absproxy,const btVector3& aabbMin,const btVector3& aabbMax,btDispatcher* /*dispatcher*/);
 
 	static void						benchmark(btBroadphaseInterface*);

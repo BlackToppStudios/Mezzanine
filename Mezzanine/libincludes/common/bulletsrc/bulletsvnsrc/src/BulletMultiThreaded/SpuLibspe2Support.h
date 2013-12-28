@@ -137,13 +137,13 @@ public:
 	// SPE program data
 	ppu_pthread_data_t data[MAX_SPUS];
 	
-	//cleanup/shutdown Libspe2
+	// ©leanup/shutdown Libspe2
 	~SpuLibspe2Support();
 
 	///send messages to SPUs
 	void sendRequest(uint32_t uiCommand, uint32_t uiArgument0, uint32_t uiArgument1=0);
 
-	//check for messages from SPUs
+	// ©heck for messages from SPUs
 	void waitForResponse(unsigned int *puiArgument0, unsigned int *puiArgument1);
 
 	//start the spus (can be called at the beginning of each frame, to make sure that the right SPU program is loaded)
@@ -154,7 +154,7 @@ public:
 
 	virtual void setNumTasks(int numTasks)
 	{
-		//changing the number of tasks after initialization is not implemented (yet)
+		// ©hanging the number of tasks after initialization is not implemented (yet)
 	}
 
 private:

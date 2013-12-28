@@ -76,7 +76,7 @@ public:
 			return "Cone";
 		}
 		
-		///choose upAxis index
+		/// ©hoose upAxis index
 		void	setConeUpIndex(int upIndex);
 		
 		int	getConeUpIndex() const

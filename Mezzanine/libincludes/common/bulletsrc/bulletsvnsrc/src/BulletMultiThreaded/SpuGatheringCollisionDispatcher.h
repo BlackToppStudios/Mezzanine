@@ -49,7 +49,7 @@ protected:
 
 public:
 
-	//can be used by SPU collision algorithms	
+	// ©an be used by SPU collision algorithms	
 	SpuCollisionTaskProcess*	getSpuCollisionTaskProcess()
 	{
 			return m_spuCollisionTaskProcess;

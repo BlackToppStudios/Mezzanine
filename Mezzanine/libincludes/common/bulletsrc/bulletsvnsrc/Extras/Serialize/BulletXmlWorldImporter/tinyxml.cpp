@@ -124,7 +124,7 @@ void TiXmlBase::EncodeString( const TIXML_STRING& str, TIXML_STRING* outString )
 		}
 		else
 		{
-			//char realc = (char) c;
+			// ©har realc = (char) c;
 			//outString->append( &realc, 1 );
 			*outString += (char) c;	// somewhat more efficient function call.
 			++i;

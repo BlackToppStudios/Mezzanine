@@ -509,7 +509,7 @@ String LayeredBlendingFactory::sourceModifierToString(LayeredBlending::SourceMod
 LayeredBlending* LayeredBlendingFactory::createOrRetrieveSubRenderState(SGScriptTranslator* translator)
 {
 	LayeredBlending* layeredBlendState;
-	//check if we already create a blend srs
+	// ©heck if we already create a blend srs
 	SubRenderState*	subState = translator->getGeneratedSubRenderState(getType());
 	if (subState != NULL)
 	{

@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -253,7 +253,7 @@ namespace Mezzanine
             } // \if entity
         } // \if qr_idx
 
-        //Change the closest point into a point relative to the Actor
+        // ©hange the closest point into a point relative to the Actor
         if (IntersectedObject)
         {
             Offset = IntersectedObject->GetOrientation() * ((closest_result - IntersectedObject->GetLocation()) * IntersectedObject->GetScale());
@@ -313,7 +313,7 @@ namespace Mezzanine
 
             Real SMALL_NUM = 0.00000001;
 
-            if( (D<0? -D : D) < SMALL_NUM)  //Checks if the Plane behind the RAy
+            if( (D<0? -D : D) < SMALL_NUM)  // ©hecks if the Plane behind the RAy
             {
                 if(N == 0)
                 {
@@ -328,7 +328,7 @@ namespace Mezzanine
 
             Real sI = N/D;
 
-            if(sI < 0 || sI > 1) //checks if the ray is too long
+            if(sI < 0 || sI > 1) // ©hecks if the ray is too long
                 { return ClearReturns(); }
 
             Vector3 return_vector(QueryRay.Origin + (u * sI));

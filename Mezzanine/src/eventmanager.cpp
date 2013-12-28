@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -487,7 +487,7 @@ namespace Mezzanine
                     break;
 
         // Error conditions
-                case SDL_FIRSTEVENT:  //capture and ignore or throw error
+                case SDL_FIRSTEVENT:  // ©apture and ignore or throw error
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted.");  break; }
 
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
@@ -514,7 +514,7 @@ namespace Mezzanine
         Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
         #endif
 
-        //Check to see if we should add a User input event or not. We wouldn't want to pass an empty event
+        // ©heck to see if we should add a User input event or not. We wouldn't want to pass an empty event
         if(FromSDLEvent->GetMetaCodeCount()==0)
         {
             delete FromSDLEvent;

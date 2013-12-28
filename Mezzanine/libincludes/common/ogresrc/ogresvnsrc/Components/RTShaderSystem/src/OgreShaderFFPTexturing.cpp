@@ -804,7 +804,7 @@ void FFPTexturing::copyFrom(const SubRenderState& rhs)
 //-----------------------------------------------------------------------
 bool FFPTexturing::preAddToRenderState(const RenderState* renderState, Pass* srcPass, Pass* dstPass)
 {
-	//count the number of texture units we need to process
+	// ©ount the number of texture units we need to process
 	size_t validTexUnits = 0;
 	for (unsigned short i=0; i < srcPass->getNumTextureUnitStates(); ++i)
 	{		

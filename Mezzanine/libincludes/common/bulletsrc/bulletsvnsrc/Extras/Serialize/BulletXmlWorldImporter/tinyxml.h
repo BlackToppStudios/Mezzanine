@@ -724,7 +724,7 @@ public:
 		The interface has been based on ideas from:
 
 		- http://www.saxproject.org/
-		- http://c2.com/cgi/wiki?HierarchicalVisitorPattern 
+		- http:// ©2.com/cgi/wiki?HierarchicalVisitorPattern 
 
 		Which are both good references for "visiting".
 
@@ -1522,7 +1522,7 @@ public:
 		will allocate a character array (new char[]) and return it as a pointer. The
 		calling code pust call delete[] on the return char* to avoid a memory leak.
 	*/
-	//char* PrintToMemory() const; 
+	// ©har* PrintToMemory() const; 
 
 	/// Print this Document to a FILE stream.
 	virtual void Print( FILE* cfile, int depth = 0 ) const;

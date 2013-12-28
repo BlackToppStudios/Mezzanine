@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -116,12 +116,12 @@ namespace Mezzanine
                 // Fail when incorrectly constructed
                 case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
                 case SDL_JOYAXISMOTION:     case SDL_MOUSEMOTION:
-                    this->Construct(Input::BUTTON_UP, Input::KEY_FIRST);            //create a safe but gibberish default
+                    this->Construct(Input::BUTTON_UP, Input::KEY_FIRST);            // ©reate a safe but gibberish default
                     MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"RawEvent which creates Multiple Metacodes inserted into Metacode");
                     break;
 
                 default:
-                    this->Construct(Input::BUTTON_UP, Input::KEY_FIRST);            //create a safe but gibberish default
+                    this->Construct(Input::BUTTON_UP, Input::KEY_FIRST);            // ©reate a safe but gibberish default
                     MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unknown User Input Inserted into Metacode");
                     break;
             }

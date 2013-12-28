@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -61,13 +61,13 @@ namespace Mezzanine
 
             btVector3 localScaling(1.f,1.f,1.f);
 
-            //calc centroid, to shift vertices around center of mass
+            // ©alc centroid, to shift vertices around center of mass
             btVector3 centroid;
             centroid.setValue(0,0,0);
 
             btAlignedObjectArray<btVector3> vertices;
 
-            //const unsigned int *src = result.mHullIndices;
+            // ©onst unsigned int *src = result.mHullIndices;
             for (unsigned int i=0; i<result.mHullVcount; i++)
             {
                     btVector3 vertex(result.mHullVertices[i*3],result.mHullVertices[i*3+1],result.mHullVertices[i*3+2]);
@@ -77,7 +77,7 @@ namespace Mezzanine
 
             centroid *= 1.f/(float(result.mHullVcount) );
 
-            //const unsigned int *src = result.mHullIndices;
+            // ©onst unsigned int *src = result.mHullIndices;
             for (unsigned int i=0; i<result.mHullVcount; i++)
             {
                 btVector3 vertex(result.mHullVertices[i*3],result.mHullVertices[i*3+1],result.mHullVertices[i*3+2]);

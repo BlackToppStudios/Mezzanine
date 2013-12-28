@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -394,7 +394,7 @@ namespace Mezzanine
             KEY_KBDILLUMUP = 280,
             KEY_EJECT = 281,
             KEY_SLEEP = 282,
-                //Copying from SDL ends here
+                // ©opying from SDL ends here
 
             KEY_LAST            = 379,      ///< The last Keyboard InputCode, all Keys values will be less than this, and all Events will be larger than that
 

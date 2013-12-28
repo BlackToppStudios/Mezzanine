@@ -31,7 +31,7 @@
 		THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -----------------------------------------------------------------------*/
 
-// http://codesuppository.blogspot.com
+// http:// ©odesuppository.blogspot.com
 //
 // mailto: jratcliff@infiniplex.net
 //

@@ -38,7 +38,7 @@ public:
 	
 	btCapsuleShape(btScalar radius,btScalar height);
 
-	///CollisionShape Interface
+	/// ©ollisionShape Interface
 	virtual void	calculateLocalInertia(btScalar mass,btVector3& inertia) const;
 
 	/// btConvexShape Interface
@@ -48,7 +48,7 @@ public:
 	
 	virtual void setMargin(btScalar collisionMargin)
 	{
-		//correct the m_implicitShapeDimensions for the margin
+		// ©orrect the m_implicitShapeDimensions for the margin
 		btVector3 oldMargin(getMargin(),getMargin(),getMargin());
 		btVector3 implicitShapeDimensionsWithMargin = m_implicitShapeDimensions+oldMargin;
 		

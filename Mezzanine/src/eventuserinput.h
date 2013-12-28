@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -155,7 +155,7 @@ namespace Mezzanine
             /// @brief Default destructor.
             virtual ~EventUserInput();
 
-            //code managment functions
+            // ©ode managment functions
             /// @brief Single Data Point constructor.
             /// @return Index The requested MetaCode to return.
             /// @details This function simply retrieves the requested MetaCode. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists

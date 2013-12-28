@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -92,7 +92,7 @@ namespace Mezzanine
             /*btPersistentManifold* getNewManifold(void* b0, void* b1);
             void releaseManifold(btPersistentManifold* manifold);
             void releaseManifoldManual(btPersistentManifold* manifold);// */
-        };//CollisionDispatcher
+        };// ©ollisionDispatcher
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
@@ -133,7 +133,7 @@ namespace Mezzanine
             /*btPersistentManifold* getNewManifold(void* b0, void* b1);
             void releaseManifold(btPersistentManifold* manifold);
             void releaseManifoldManual(btPersistentManifold* manifold);// */
-        };//CollisionDispatcher
+        };// ©ollisionDispatcher
     }//Physics
 }//Mezzanine
 

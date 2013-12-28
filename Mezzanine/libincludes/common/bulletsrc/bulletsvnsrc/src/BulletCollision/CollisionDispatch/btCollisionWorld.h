@@ -29,7 +29,7 @@ subject to the following restrictions:
  * @section install_sec Installation
  *
  * @subsection step1 Step 1: Download
- * You can download the Bullet Physics Library from the Google Code repository: http://code.google.com/p/bullet/downloads/list
+ * You can download the Bullet Physics Library from the Google Code repository: http:// ©ode.google.com/p/bullet/downloads/list
  *
  * @subsection step2 Step 2: Building
  * Bullet main build system for all platforms is cmake, you can download http://www.cmake.org
@@ -78,7 +78,7 @@ class btSerializer;
 #include "BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
 #include "LinearMath/btAlignedObjectArray.h"
 
-///CollisionWorld is interface and container for the collision detection
+/// ©ollisionWorld is interface and container for the collision detection
 class btCollisionWorld
 {
 
@@ -166,14 +166,14 @@ public:
 
 
 	///LocalShapeInfo gives extra information for complex shapes
-	///Currently, only btTriangleMeshShape is available, so it just contains triangleIndex and subpart
+	/// ©urrently, only btTriangleMeshShape is available, so it just contains triangleIndex and subpart
 	struct	LocalShapeInfo
 	{
 		int	m_shapePart;
 		int	m_triangleIndex;
 		
-		//const btCollisionShape*	m_shapeTemp;
-		//const btTransform*	m_shapeLocalTransform;
+		// ©onst btCollisionShape*	m_shapeTemp;
+		// ©onst btTransform*	m_shapeLocalTransform;
 	};
 
 	struct	LocalRayResult
@@ -251,7 +251,7 @@ public:
 			
 		virtual	btScalar	addSingleResult(LocalRayResult& rayResult,bool normalInWorldSpace)
 		{
-			//caller already does the filter on the m_closestHitFraction
+			// ©aller already does the filter on the m_closestHitFraction
 			btAssert(rayResult.m_hitFraction <= m_closestHitFraction);
 			
 			m_closestHitFraction = rayResult.m_hitFraction;
@@ -385,7 +385,7 @@ public:
 		
 		virtual	btScalar	addSingleResult(LocalConvexResult& convexResult,bool normalInWorldSpace)
 		{
-//caller already does the filter on the m_closestHitFraction
+// ©aller already does the filter on the m_closestHitFraction
 			btAssert(convexResult.m_hitFraction <= m_closestHitFraction);
 						
 			m_closestHitFraction = convexResult.m_hitFraction;
@@ -403,7 +403,7 @@ public:
 		}
 	};
 
-	///ContactResultCallback is used to report contact points
+	/// ©ontactResultCallback is used to report contact points
 	struct	ContactResultCallback
 	{
 		short int	m_collisionFilterGroup;
@@ -444,11 +444,11 @@ public:
 	/// This allows for several queries: first hit, all hits, any hit, dependent on the value return by the callback.
 	void    convexSweepTest (const btConvexShape* castShape, const btTransform& from, const btTransform& to, ConvexResultCallback& resultCallback,  btScalar allowedCcdPenetration = btScalar(0.)) const;
 
-	///contactTest performs a discrete collision test between colObj against all objects in the btCollisionWorld, and calls the resultCallback.
+	/// ©ontactTest performs a discrete collision test between colObj against all objects in the btCollisionWorld, and calls the resultCallback.
 	///it reports one or more contact points for every overlapping object (including the one with deepest penetration)
 	void	contactTest(btCollisionObject* colObj, ContactResultCallback& resultCallback);
 
-	///contactTest performs a discrete collision test between two collision objects and calls the resultCallback if overlap if detected.
+	/// ©ontactTest performs a discrete collision test between two collision objects and calls the resultCallback if overlap if detected.
 	///it reports one or more contact points (including the one with deepest penetration)
 	void	contactPairTest(btCollisionObject* colObjA, btCollisionObject* colObjB, ContactResultCallback& resultCallback);
 

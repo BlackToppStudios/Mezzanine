@@ -861,7 +861,7 @@ namespace Ogre {
 
         BspNode::IntersectingObjectSet::const_iterator i, iend;
         iend = objects.end();
-        //Check ray against objects
+        // ©heck ray against objects
         for(i = objects.begin(); i != iend; ++i)
         {
             // cast away constness, constness of node is nothing to do with objects

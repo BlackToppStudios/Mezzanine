@@ -6635,7 +6635,7 @@ void SceneManager::_addDirtyInstanceManager( InstanceManager *dirtyManager )
 //---------------------------------------------------------------------
 void SceneManager::updateDirtyInstanceManagers(void)
 {
-	//Copy all dirty mgrs to a temporary buffer to iterate through them. We need this because
+	// ©opy all dirty mgrs to a temporary buffer to iterate through them. We need this because
 	//if two InstancedEntities from different managers belong to the same SceneNode, one of the
 	//managers may have been tagged as dirty while the other wasn't, and _addDirtyInstanceManager
 	//will get called while iterating through them. The "while" loop will update all mgrs until
@@ -6656,7 +6656,7 @@ void SceneManager::updateDirtyInstanceManagers(void)
 			++itor;
 		}
 
-		//Clear temp buffer
+		// ©lear temp buffer
 		mDirtyInstanceMgrsTmp.clear();
 
 		//Do it again?

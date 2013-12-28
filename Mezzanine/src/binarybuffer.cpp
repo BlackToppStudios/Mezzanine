@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -115,8 +115,8 @@ namespace Mezzanine
 
                 while(Progress<EncodedString.end())
                 {
-                    //cout << *(Progress+0) << *(Progress+1) << *(Progress+2) << *(Progress+3) << endl;
-                    //cout << !IsBase64(*Progress) << !IsBase64(*(Progress+1)) << !IsBase64(*(Progress+2)) << !IsBase64(*(Progress+3)) <<endl;
+                    // ©out << *(Progress+0) << *(Progress+1) << *(Progress+2) << *(Progress+3) << endl;
+                    // ©out << !IsBase64(*Progress) << !IsBase64(*(Progress+1)) << !IsBase64(*(Progress+2)) << !IsBase64(*(Progress+3)) <<endl;
                     if(!IsBase64(*Progress) || !IsBase64(*(Progress+1)) || !IsBase64(*(Progress+2)) || !IsBase64(*(Progress+3)))
                         { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
 

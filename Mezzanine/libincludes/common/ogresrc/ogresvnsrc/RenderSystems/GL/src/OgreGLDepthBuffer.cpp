@@ -78,7 +78,7 @@ namespace Ogre
 	{
 		bool retVal = false;
 
-		//Check standard stuff first.
+		// ©heck standard stuff first.
 		if( mRenderSystem->getCapabilities()->hasCapability( RSC_RTT_DEPTHBUFFER_RESOLUTION_LESSEQUAL ) )
 		{
 			if( !DepthBuffer::isCompatible( renderTarget ) )
@@ -102,13 +102,13 @@ namespace Ogre
 			renderTarget->getCustomAttribute( GLRenderTexture::CustomAttributeString_GLCONTEXT, &windowContext );
 
 			//Non-FBO targets and FBO depth surfaces don't play along, only dummies which match the same
-			//context
+			// ©ontext
 			if( !mDepthBuffer && !mStencilBuffer && mCreatorContext == windowContext )
 				retVal = true;
 		}
 		else
 		{
-			//Check this isn't a dummy non-FBO depth buffer with an FBO target, don't mix them.
+			// ©heck this isn't a dummy non-FBO depth buffer with an FBO target, don't mix them.
 			//If you don't want depth buffer, use a Null Depth Buffer, not a dummy one.
 			if( mDepthBuffer || mStencilBuffer )
 			{

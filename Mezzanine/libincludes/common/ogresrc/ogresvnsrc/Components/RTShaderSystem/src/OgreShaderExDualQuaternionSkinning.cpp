@@ -87,7 +87,7 @@ bool DualQuaternionSkinning::resolveParameters(ProgramSet* programSet)
 	//output param
 	mParamOutPositionProj = vsMain->resolveOutputParameter(Parameter::SPS_POSITION, 0, Parameter::SPC_POSITION_PROJECTIVE_SPACE, GCT_FLOAT4);
 	
-	//check if parameter retrival went well
+	// ©heck if parameter retrival went well
 	bool isValid =
 		(mParamInPosition.get() != NULL) &&
 		(mParamInNormal.get() != NULL) &&
@@ -131,7 +131,7 @@ bool DualQuaternionSkinning::resolveParameters(ProgramSet* programSet)
 		mParamTempFloat4 = vsMain->resolveLocalParameter(Parameter::SPS_UNKNOWN, -1, "TempVal4", GCT_FLOAT4);
 		mParamTempFloat3 = vsMain->resolveLocalParameter(Parameter::SPS_UNKNOWN, -1, "TempVal3", GCT_FLOAT3);
 
-		//check if parameter retrival went well
+		// ©heck if parameter retrival went well
 		isValid &=
 			(mParamInIndices.get() != NULL) &&
 			(mParamInWeights.get() != NULL) &&
@@ -158,7 +158,7 @@ bool DualQuaternionSkinning::resolveParameters(ProgramSet* programSet)
 		mParamInWorldMatrix = vsProgram->resolveAutoParameterInt(GpuProgramParameters::ACT_WORLD_MATRIX, 0);
 		mParamInWorldViewProjMatrix = vsProgram->resolveAutoParameterInt(GpuProgramParameters::ACT_WORLDVIEWPROJ_MATRIX, 0);
 
-		//check if parameter retrival went well
+		// ©heck if parameter retrival went well
 		isValid &=
 			(mParamInWorldMatrix.get() != NULL) &&
 			(mParamInWorldViewProjMatrix.get() != NULL);
@@ -204,7 +204,7 @@ void DualQuaternionSkinning::addPositionCalculations(Function* vsMain, int& func
 	{
 		if(mScalingShearingSupport)
 		{
-			//Construct a scaling and shearing matrix based on the blend weights
+			// ©onstruct a scaling and shearing matrix based on the blend weights
 			for(int i = 0 ; i < getWeightCount() ; ++i)
 			{
 				//Assign the local param based on the current index of the scaling and shearing matrices
@@ -214,7 +214,7 @@ void DualQuaternionSkinning::addPositionCalculations(Function* vsMain, int& func
 				curFuncInvocation->pushOperand(mParamTempFloat3x4, Operand::OPS_OUT);
 				vsMain->addAtomInstance(curFuncInvocation);
 
-				//Calculate the resultant scaling and shearing matrix based on the weights given
+				// ©alculate the resultant scaling and shearing matrix based on the weights given
 				addIndexedPositionWeight(vsMain, i, mParamTempFloat3x4, mParamTempFloat3x4, mParamBlendS, funcCounter);
 			}
 
@@ -272,7 +272,7 @@ void DualQuaternionSkinning::addPositionCalculations(Function* vsMain, int& func
 				adjustForCorrectAntipodality(vsMain, i, funcCounter, mParamTempFloat2x4);
 			}
 
-			//Calculate the resultant dual quaternion based on the weights given
+			// ©alculate the resultant dual quaternion based on the weights given
 			addIndexedPositionWeight(vsMain, i, mParamTempFloat2x4, mParamTempFloat2x4, mParamBlendDQ, funcCounter);
 		}
 
@@ -281,7 +281,7 @@ void DualQuaternionSkinning::addPositionCalculations(Function* vsMain, int& func
 		curFuncInvocation->pushOperand(mParamBlendDQ, Operand::OPS_INOUT);
 		vsMain->addAtomInstance(curFuncInvocation);
 
-		//Calculate the blend position
+		// ©alculate the blend position
 		curFuncInvocation = OGRE_NEW FunctionInvocation(SGX_FUNC_CALCULATE_BLEND_POSITION, FFP_VS_TRANSFORM, funcCounter++);
 		curFuncInvocation->pushOperand(mParamLocalBlendPosition, Operand::OPS_IN);
 		curFuncInvocation->pushOperand(mParamBlendDQ, Operand::OPS_IN);
@@ -325,7 +325,7 @@ void DualQuaternionSkinning::addNormalRelatedCalculations(Function* vsMain,
 	{
 		if(mScalingShearingSupport)
 		{
-			//Calculate the adjoint transpose of the blended scaling and shearing matrix
+			// ©alculate the adjoint transpose of the blended scaling and shearing matrix
 			curFuncInvocation = OGRE_NEW FunctionInvocation(SGX_FUNC_ADJOINT_TRANSPOSE_MATRIX, FFP_VS_TRANSFORM, funcCounter++);
 			curFuncInvocation->pushOperand(mParamBlendS, Operand::OPS_IN);
 			curFuncInvocation->pushOperand(mParamTempFloat3x3, Operand::OPS_OUT);
@@ -410,7 +410,7 @@ void DualQuaternionSkinning::addIndexedPositionWeight(Function* vsMain, int inde
 	curFuncInvocation->pushOperand(pPositionTempParameter, Operand::OPS_OUT);
 	vsMain->addAtomInstance(curFuncInvocation);
 
-	//check if on first iteration
+	// ©heck if on first iteration
 	if (index == 0)
 	{
 		//set the local param as the value of the world param

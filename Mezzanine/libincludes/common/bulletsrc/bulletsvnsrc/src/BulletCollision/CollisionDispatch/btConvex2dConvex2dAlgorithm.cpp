@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -107,7 +107,7 @@ void btConvex2dConvex2dAlgorithm ::processCollision (const btCollisionObjectWrap
 	}
 	resultOut->setPersistentManifold(m_manifoldPtr);
 
-	//comment-out next line to test multi-contact generation
+	// ©omment-out next line to test multi-contact generation
 	//resultOut->getPersistentManifold()->clearManifold();
 
 
@@ -160,7 +160,7 @@ btScalar	btConvex2dConvex2dAlgorithm::calculateTimeOfImpact(btCollisionObject* c
 	///Rather then checking ALL pairs, only calculate TOI when motion exceeds threshold
 
 	///Linear motion for one of objects needs to exceed m_ccdSquareMotionThreshold
-	///col0->m_worldTransform,
+	/// ©ol0->m_worldTransform,
 	btScalar resultFraction = btScalar(1.);
 
 
@@ -189,7 +189,7 @@ btScalar	btConvex2dConvex2dAlgorithm::calculateTimeOfImpact(btCollisionObject* c
 		//SubsimplexConvexCast ccd0(&sphere,min0,&voronoiSimplex);
 		///Simplification, one object is simplified as a sphere
 		btGjkConvexCast ccd1( convex0 ,&sphere1,&voronoiSimplex);
-		//ContinuousConvexCollision ccd(min0,min1,&voronoiSimplex,0);
+		// ©ontinuousConvexCollision ccd(min0,min1,&voronoiSimplex,0);
 		if (ccd1.calcTimeOfImpact(col0->getWorldTransform(),col0->getInterpolationWorldTransform(),
 			col1->getWorldTransform(),col1->getInterpolationWorldTransform(),result))
 		{
@@ -222,7 +222,7 @@ btScalar	btConvex2dConvex2dAlgorithm::calculateTimeOfImpact(btCollisionObject* c
 		//SubsimplexConvexCast ccd0(&sphere,min0,&voronoiSimplex);
 		///Simplification, one object is simplified as a sphere
 		btGjkConvexCast ccd1(&sphere0,convex1,&voronoiSimplex);
-		//ContinuousConvexCollision ccd(min0,min1,&voronoiSimplex,0);
+		// ©ontinuousConvexCollision ccd(min0,min1,&voronoiSimplex,0);
 		if (ccd1.calcTimeOfImpact(col0->getWorldTransform(),col0->getInterpolationWorldTransform(),
 			col1->getWorldTransform(),col1->getInterpolationWorldTransform(),result))
 		{

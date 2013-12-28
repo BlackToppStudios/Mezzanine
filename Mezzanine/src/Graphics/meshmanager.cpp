@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -435,7 +435,7 @@ namespace Mezzanine
             Ogre::ManualObject* boxcorner = new Ogre::ManualObject("TempMan");
             boxcorner->begin(MaterialName);
 
-            //Create a list of data we can play around with
+            // ©reate a list of data we can play around with
             std::vector<IdealPoint> IdealShape; //Vertex                                                        //Normal            //textureCoord
             // Forward Face // 0 /
             IdealShape.push_back( IdealPoint(   Vector3(-Half.X,Half.Y,Half.Z),                                 Vector3(0,0,1),     Vector2(0,0) ));

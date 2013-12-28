@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -46,7 +46,7 @@ struct btContactSolverInfoData
 	btScalar	m_sor;
 	btScalar	m_erp;//used as Baumgarte factor
 	btScalar	m_erp2;//used in Split Impulse
-	btScalar	m_globalCfm;//constraint force mixing
+	btScalar	m_globalCfm;// ©onstraint force mixing
 	int			m_splitImpulse;
 	btScalar	m_splitImpulsePenetrationThreshold;
 	btScalar	m_splitImpulseTurnErp;
@@ -106,7 +106,7 @@ struct btContactSolverInfoDoubleData
 	double		m_sor;
 	double		m_erp;//used as Baumgarte factor
 	double		m_erp2;//used in Split Impulse
-	double		m_globalCfm;//constraint force mixing
+	double		m_globalCfm;// ©onstraint force mixing
 	double		m_splitImpulsePenetrationThreshold;
 	double		m_splitImpulseTurnErp;
 	double		m_linearSlop;
@@ -136,7 +136,7 @@ struct btContactSolverInfoFloatData
 	float		m_erp;//used as Baumgarte factor
 
 	float		m_erp2;//used in Split Impulse
-	float		m_globalCfm;//constraint force mixing
+	float		m_globalCfm;// ©onstraint force mixing
 	float		m_splitImpulsePenetrationThreshold;
 	float		m_splitImpulseTurnErp;
 

@@ -43,7 +43,7 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 	
 	const btVector3& getHalfExtentsWithoutMargin() const
 	{
-		return m_implicitShapeDimensions;//changed in Bullet 2.63: assume the scaling and margin are included
+		return m_implicitShapeDimensions;// ©hanged in Bullet 2.63: assume the scaling and margin are included
 	}
 
 	btCylinderShape (const btVector3& halfExtents);
@@ -58,7 +58,7 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 
 	virtual void setMargin(btScalar collisionMargin)
 	{
-		//correct the m_implicitShapeDimensions for the margin
+		// ©orrect the m_implicitShapeDimensions for the margin
 		btVector3 oldMargin(getMargin(),getMargin(),getMargin());
 		btVector3 implicitShapeDimensionsWithMargin = m_implicitShapeDimensions+oldMargin;
 		

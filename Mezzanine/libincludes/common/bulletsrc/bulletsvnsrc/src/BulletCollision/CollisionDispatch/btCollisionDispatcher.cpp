@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -279,7 +279,7 @@ void btCollisionDispatcher::defaultNearCallback(btBroadphasePair& collisionPair,
 					collisionPair.m_algorithm->processCollision(&obj0Wrap,&obj1Wrap,dispatchInfo,&contactPointResult);
 				} else
 				{
-					//continuous collision detection query, time of impact (toi)
+					// ©ontinuous collision detection query, time of impact (toi)
 					btScalar toi = collisionPair.m_algorithm->calculateTimeOfImpact(colObj0,colObj1,dispatchInfo,&contactPointResult);
 					if (dispatchInfo.m_timeOfImpact > toi)
 						dispatchInfo.m_timeOfImpact = toi;

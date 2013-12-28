@@ -253,7 +253,7 @@ namespace Ogre
 		bool retVal = isInScene();
 		if (retVal) 
 		{
-			//check object is explicitly visible
+			// ©heck object is explicitly visible
 			retVal = isVisible();
 
 			//Object's bounding box is viewed by the camera

@@ -495,7 +495,7 @@ namespace Ogre {
 			rsc->setCapability(RSC_VERTEX_BUFFER_INSTANCE_DATA);
 		}
 
-		//Check if render to vertex buffer (transform feedback in OpenGL)
+		// ©heck if render to vertex buffer (transform feedback in OpenGL)
 		if (GLEW_VERSION_2_0 && 
 			GLEW_NV_transform_feedback)
 		{
@@ -908,7 +908,7 @@ namespace Ogre {
 				LogManager::getSingleton().logMessage("GL: Using framebuffer copy for rendering to textures (worst)");
 				LogManager::getSingleton().logMessage("GL: Warning: RenderTexture size is restricted to size of framebuffer. If you are on Linux, consider using GLX instead of SDL.");
 
-				//Copy method uses the main depth buffer but no other depth buffer
+				// ©opy method uses the main depth buffer but no other depth buffer
 				caps->setCapability(RSC_RTT_MAIN_DEPTHBUFFER_ATTACHABLE);
 				caps->setCapability(RSC_RTT_DEPTHBUFFER_RESOLUTION_LESSEQUAL);
 			}
@@ -3569,7 +3569,7 @@ GL_RGB_SCALE : GL_ALPHA_SCALE, 1);
 				_switchContext(newContext);
 			}
 
-			//Check the FBO's depth buffer status
+			// ©heck the FBO's depth buffer status
 			GLDepthBuffer *depthBuffer = static_cast<GLDepthBuffer*>(target->getDepthBuffer());
 
 			if( target->getDepthBufferPool() != DepthBuffer::POOL_NO_DEPTH &&

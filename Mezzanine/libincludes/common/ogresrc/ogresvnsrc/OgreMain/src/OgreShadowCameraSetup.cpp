@@ -115,14 +115,14 @@ namespace Ogre
 			 Quaternion q;
 			 q.FromAxes(left, up, dir);
 
-			 //convert world space camera position into light space
+			 // ©onvert world space camera position into light space
 			 Vector3 lightSpacePos = q.Inverse() * pos;
 			 
 			 //snap to nearest texel
 			 lightSpacePos.x -= fmod(lightSpacePos.x, worldTexelSize);
 			 lightSpacePos.y -= fmod(lightSpacePos.y, worldTexelSize);
 
-			 //convert back to world space
+			 // ©onvert back to world space
 			 pos = q * lightSpacePos;
 			
 		}

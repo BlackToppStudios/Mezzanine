@@ -109,7 +109,7 @@ namespace Ogre
 			offset = thisVertexData->vertexDeclaration->getVertexSize( newSource );
 		}
 
-		//Create the vertex buffer containing per instance data
+		// ©reate the vertex buffer containing per instance data
 		HardwareVertexBufferSharedPtr vertexBuffer =
 										HardwareBufferManager::getSingleton().createVertexBuffer(
 										thisVertexData->vertexDeclaration->getVertexSize(newSource),
@@ -183,7 +183,7 @@ namespace Ogre
 
 		while( itor != end )
 		{
-			//Cull on an individual basis, the less entities are visible, the less instances we draw.
+			// ©ull on an individual basis, the less entities are visible, the less instances we draw.
 			//No need to use null matrices at all!
 			if( (*itor)->findVisible( currentCamera ) )
 			{
@@ -243,7 +243,7 @@ namespace Ogre
 	{
 		if( !mKeepStatic )
 		{
-			//Completely override base functionality, since we don't cull on an "all-or-nothing" basis
+			// ©ompletely override base functionality, since we don't cull on an "all-or-nothing" basis
 			//and we don't support skeletal animation
 			if( (mRenderOperation.numberOfInstances = updateVertexBuffer( mCurrentCamera )) )
 				queue->addRenderable( this, mRenderQueueID, mRenderQueuePriority );

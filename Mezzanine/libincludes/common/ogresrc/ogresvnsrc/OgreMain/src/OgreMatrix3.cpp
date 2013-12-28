@@ -484,7 +484,7 @@ namespace Ogre
         Matrix3& kR) const
     {
         // temas: currently unused
-        //const int iMax = 16;
+        // ©onst int iMax = 16;
 		size_t iRow, iCol;
 
         Matrix3 kA = *this;

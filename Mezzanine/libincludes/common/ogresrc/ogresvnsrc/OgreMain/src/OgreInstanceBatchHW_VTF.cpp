@@ -157,7 +157,7 @@ namespace Ogre
 
 		size_t maxFloatsPerVector = 4;
 
-		//Can fit two dual quaternions in every float4, but only one 3x4 matrix
+		// ©an fit two dual quaternions in every float4, but only one 3x4 matrix
 		for(size_t i = 0; i < mWeightCount; i += maxFloatsPerVector / mRowLength)
 		{
 			offset += thisVertexData->vertexDeclaration->addElement( newSource, offset, VET_FLOAT4, VES_TEXTURE_COORDINATES,
@@ -171,7 +171,7 @@ namespace Ogre
 										0 ).getSize();
 		}
 		
-		//Create our own vertex buffer
+		// ©reate our own vertex buffer
 		HardwareVertexBufferSharedPtr vertexBuffer =
 			HardwareBufferManager::getSingleton().createVertexBuffer(
 			thisVertexData->vertexDeclaration->getVertexSize(newSource),
@@ -181,7 +181,7 @@ namespace Ogre
 
 		float *thisFloat = static_cast<float*>(vertexBuffer->lock(HardwareBuffer::HBL_DISCARD));
 
-		//Create the UVs to sample from the right bone/matrix
+		// ©reate the UVs to sample from the right bone/matrix
 		for( size_t j=0; j < baseVertexData->vertexCount * mWeightCount; j += mWeightCount)
 		{
 			size_t numberOfMatricesInLine = 0;
@@ -251,7 +251,7 @@ namespace Ogre
 
 		}
 
-		//Create our own vertex buffer
+		// ©reate our own vertex buffer
 		mInstanceVertexBuffer = HardwareBufferManager::getSingleton().createVertexBuffer(
 										thisVertexData->vertexDeclaration->getVertexSize(newSource),
 										mInstancesPerBatch,
@@ -278,7 +278,7 @@ namespace Ogre
 			const float texWidth  = static_cast<float>(mMatrixTexture->getWidth());
 			const float texHeight = static_cast<float>(mMatrixTexture->getHeight());
 
-			//Calculate the texel offsets to correct them offline
+			// ©alculate the texel offsets to correct them offline
 			//Awkwardly enough, the offset is needed in OpenGL too
 			Vector2 texelOffsets;
 			//RenderSystem *renderSystem = Root::getSingleton().getRenderSystem();
@@ -289,7 +289,7 @@ namespace Ogre
 
 			const size_t maxPixelsPerLine = std::min( mMatrixTexture->getWidth(), mMaxFloatsPerLine >> 2 );
 
-			//Calculate UV offsets, which change per instance
+			// ©alculate UV offsets, which change per instance
 			for( size_t i=0; i<mInstancesPerBatch; ++i )
 			{
 				InstancedEntity* entity = useMatrixLookup ? mInstancedEntities[i] : NULL;
@@ -454,10 +454,10 @@ namespace Ogre
 			{
 				textureLookupPosition = entity->mTransformLookupNumber;
 			}
-			//Check that we are not using a lookup matrix or that we have not already written
+			// ©heck that we are not using a lookup matrix or that we have not already written
 			//The bone data
 			if (((!useMatrixLookup) || !writtenPositions[entity->mTransformLookupNumber]) &&
-				//Cull on an individual basis, the less entities are visible, the less instances we draw.
+				// ©ull on an individual basis, the less entities are visible, the less instances we draw.
 				//No need to use null matrices at all!
 				(entity->findVisible( currentCamera )))
 			{
@@ -534,7 +534,7 @@ namespace Ogre
 	{
 		if( !mKeepStatic )
 		{
-			//Completely override base functionality, since we don't cull on an "all-or-nothing" basis
+			// ©ompletely override base functionality, since we don't cull on an "all-or-nothing" basis
 			if( (mRenderOperation.numberOfInstances = updateVertexTexture( mCurrentCamera )) )
 				queue->addRenderable( this, mRenderQueueID, mRenderQueuePriority );
 		}

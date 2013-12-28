@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2006 Gino van den Bergen / Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Gino van den Bergen / Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -404,7 +404,7 @@ public:
 	{
 		btScalar s_squared = 1.f-m_floats[3]*m_floats[3];
 		
-		if (s_squared < btScalar(10.) * SIMD_EPSILON) //Check for divide by zero
+		if (s_squared < btScalar(10.) * SIMD_EPSILON) // ©heck for divide by zero
 			return btVector3(1.0, 0.0, 0.0);  // Arbitrary
 		btScalar s = 1.f/btSqrt(s_squared);
 		return btVector3(m_floats[0] * s, m_floats[1] * s, m_floats[2] * s);

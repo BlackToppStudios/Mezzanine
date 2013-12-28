@@ -306,7 +306,7 @@ SubRenderState*	HardwareSkinningFactory::createInstance(ScriptCompiler* compiler
 		}
 		else
 		{
-			//create and update the hardware skinning sub render state
+			// ©reate and update the hardware skinning sub render state
 			SubRenderState*	subRenderState = createOrRetrieveInstance(translator);
 			HardwareSkinning* hardSkinSrs = static_cast<HardwareSkinning*>(subRenderState);
 			hardSkinSrs->setHardwareSkinningParam(boneCount, weightCount, skinType, correctAntipodalityHandling, scalingShearingSupport);
@@ -329,7 +329,7 @@ void HardwareSkinningFactory::writeInstance(MaterialSerializer* ser, SubRenderSt
 	ser->writeValue(StringConverter::toString(hardSkinSrs->getBoneCount()));
 	ser->writeValue(StringConverter::toString(hardSkinSrs->getWeightCount()));
 
-	//Correct antipodality handling and scaling and shearing support are only really valid for dual quaternion skinning
+	// ©orrect antipodality handling and scaling and shearing support are only really valid for dual quaternion skinning
 	if(hardSkinSrs->getSkinningType() == ST_DUAL_QUATERNION)
 	{
 		ser->writeValue("dual_quaternion");
@@ -449,7 +449,7 @@ bool HardwareSkinningFactory::extractSkeletonData(const Entity* pEntity, ushort&
 	boneCount = 0;
 	weightCount = 0;
 
-	//Check if we have pose animation which the HS sub render state does not 
+	// ©heck if we have pose animation which the HS sub render state does not 
 	//know how to handle
 	bool hasVertexAnim = pEntity->getMesh()->hasVertexAnimation();
 
@@ -471,7 +471,7 @@ bool HardwareSkinningFactory::extractSkeletonData(const Entity* pEntity, ushort&
 			boneCount = std::max<ushort>(boneCount, pSubMesh->blendIndexToBoneIndexMap.size());
 			
 			//go over vertex deceleration 
-			//check that they have blend indices and blend weights
+			// ©heck that they have blend indices and blend weights
 			const VertexElement* pDeclWeights = ro.vertexData->vertexDeclaration->findElementBySemantic(VES_BLEND_WEIGHTS,0);
 			const VertexElement* pDeclIndexes = ro.vertexData->vertexDeclaration->findElementBySemantic(VES_BLEND_INDICES,0);
 			if ((pDeclWeights != NULL) && (pDeclIndexes != NULL))
@@ -512,7 +512,7 @@ bool HardwareSkinningFactory::imprintSkeletonData(const MaterialPtr& pMaterial, 
 			data = (any_cast<HardwareSkinning::SkinningData>(hsAny));
 		}
 
-		//check if we need to update the data
+		// ©heck if we need to update the data
 		if (((data.isValid == true) && (isVaild == false)) ||
 			(data.maxBoneCount < boneCount) ||
 			(data.maxWeightCount < weightCount))

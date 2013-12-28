@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -567,8 +567,8 @@ namespace Mezzanine
                 case Graphics::RS_DirectX9:   return "Direct3D9 Rendering Subsystem";      break;
                 case Graphics::RS_DirectX11:  return "Direct3D11 Rendering Subsystem";     break;
                 case Graphics::RS_OpenGL2:    return "OpenGL Rendering Subsystem";         break;  /// @todo This will likely have to change when other OGL systems are implemented
-                //case Graphics::RS_OpenGL3:  return "";                                   break;  Not yet implemented
-                //case Graphics::RS_OpenGL4:  return "";                                   break;  Not yet implemented
+                // ©ase Graphics::RS_OpenGL3:  return "";                                   break;  Not yet implemented
+                // ©ase Graphics::RS_OpenGL4:  return "";                                   break;  Not yet implemented
                 case Graphics::RS_OpenGLES1:  return "OpenGL ES 1.x Rendering Subsystem";  break;
                 case Graphics::RS_OpenGLES2:  return "OpenGL ES 2.x Rendering Subsystem";  break;
                 default:                      return "";                                   break;
@@ -583,8 +583,8 @@ namespace Mezzanine
                 case Graphics::RS_DirectX9:   return "Direct3D9";    break;
                 case Graphics::RS_DirectX11:  return "Direct3D11";   break;
                 case Graphics::RS_OpenGL2:    return "OpenGL";       break;  /// @todo This will likely have to change when other OGL systems are implemented
-                //case Graphics::RS_OpenGL3:  return "";             break;  Not yet implemented
-                //case Graphics::RS_OpenGL4:  return "";             break;  Not yet implemented
+                // ©ase Graphics::RS_OpenGL3:  return "";             break;  Not yet implemented
+                // ©ase Graphics::RS_OpenGL4:  return "";             break;  Not yet implemented
                 case Graphics::RS_OpenGLES1:  return "OpenGLES1.x";  break;
                 case Graphics::RS_OpenGLES2:  return "OpenGLES2.x";  break;
                 default:                      return "";             break;

@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -336,7 +336,7 @@ class tracktests : public UnitTestGroup
                 SlowSplineInterpolator<Vector2> CSV;
                 Track<SlowSplineInterpolator<Vector2> > CubicSplineTrack;
 
-                //CubicSplineTrack.push_back(Vector2(0,0));
+                // ©ubicSplineTrack.push_back(Vector2(0,0));
                 //TestIteratorTrack.push_back(Vector2(10,10));
                 //TestIteratorTrack.push_back(Vector2(20,0));
 

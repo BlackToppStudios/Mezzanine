@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2012 BlackTopp Studios Inc.
+// © Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -128,7 +128,7 @@ namespace Mezzanine
 
         /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
         virtual void _NotifyEvent(const EventArguments& Args);
-    };//CustomSubscriberSlot
+    };// ©ustomSubscriberSlot
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a subscriber slot class that makes the appropriate call on a functor.
@@ -214,7 +214,7 @@ namespace Mezzanine
 
         /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
         virtual void _NotifyEvent(const EventArguments& Args);
-    };//CFunctionSubscriberSlot
+    };// ©FunctionSubscriberSlot
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a subscriber slot class that triggers a provided script.

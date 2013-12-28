@@ -60,7 +60,7 @@ void SGScriptTranslator::translate(ScriptCompiler* compiler, const AbstractNodeP
 //-----------------------------------------------------------------------------
 SubRenderState* SGScriptTranslator::getGeneratedSubRenderState(const String& typeName)
 {
-	//check if we are in the middle of parsing
+	// ©heck if we are in the middle of parsing
 	if (mGeneratedRenderState)
 	{
 		/** Get the list of the template sub render states composing this render state. */
@@ -98,7 +98,7 @@ void SGScriptTranslator::translateTextureUnit(ScriptCompiler* compiler, const Ab
 		dstTechniqueSchemeName = ShaderGenerator::DEFAULT_SCHEME_NAME;	
 
 
-	//check if technique already created
+	// ©heck if technique already created
 	techniqueCreated = shaderGenerator->hasShaderBasedTechnique(material->getName(), 
 		material->getGroup(),
 		technique->getSchemeName(), 
@@ -237,10 +237,10 @@ void SGScriptTranslator::addSubRenderState(SubRenderState* newSubRenderState,
 {
 	assert(newSubRenderState);
 
-	//check if a different sub render state of the same type already exists
+	// ©heck if a different sub render state of the same type already exists
 	ShaderGenerator* shaderGenerator = ShaderGenerator::getSingletonPtr();
 	
-	//create a new scheme if needed
+	// ©reate a new scheme if needed
 	shaderGenerator->createScheme(dstTechniqueSchemeName);
 	
 	//update the active render state

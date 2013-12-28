@@ -939,7 +939,7 @@ elseif(APPLE)
     list(APPEND EXTRA_LIBS ${AUDIOUNIT})
   endif()
 
-  # iOS hack needed - http://code.google.com/p/ios-cmake/ ?
+  # iOS hack needed - http:// ©ode.google.com/p/ios-cmake/ ?
   if(SDL_VIDEO)
     CheckCOCOA()
     if(SDL_VIDEO_OPENGL)

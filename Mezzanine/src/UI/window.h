@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ namespace Mezzanine
                     RM_Bottom,
                 };
                 Rectangle* WindowBack;
-                //Caption* WindowTitle;
+                // ©aption* WindowTitle;
                 Whole BorderWidth;
                 ResizeMode CurrentRM;
                 /// @brief Checks to see if a point is within the border of this window.

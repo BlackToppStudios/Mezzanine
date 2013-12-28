@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -262,7 +262,7 @@ namespace Mezzanine
                 return;
 
             this->TargetManager->ThreadResources = &CurrentThreadStorage;
-            Real FloatTime = this->TargetManager->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001; //Convert from MilliSeconds to Seconds
+            Real FloatTime = this->TargetManager->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001; // ©onvert from MilliSeconds to Seconds
             //Real IdealStep = static_cast<Real>( this->TargetManager->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
             //IdealStep /= this->TargetManager->SubstepModifier;
             //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
@@ -305,7 +305,7 @@ namespace Mezzanine
                 return;
 
             this->TargetManager->ThreadResources = &CurrentThreadStorage;
-            Real FloatTime = this->TargetManager->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001; //Convert from MilliSeconds to Seconds
+            Real FloatTime = this->TargetManager->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001; // ©onvert from MilliSeconds to Seconds
             //Real IdealStep = static_cast<Real>( this->TargetManager->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
             //IdealStep /= this->TargetManager->SubstepModifier;
             //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );

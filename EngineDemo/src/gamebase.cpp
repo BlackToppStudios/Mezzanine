@@ -22,7 +22,7 @@ class DemoPostInputWorkUnit;
 class DemoPostRenderWorkUnit;
 class DemoPostPhysicsWorkUnit;
 
-//Create the Entresol.... Globally! and set it to hold some actors
+// ©reate the Entresol.... Globally! and set it to hold some actors
 Entresol* TheEntresol = NULL;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
@@ -325,7 +325,7 @@ int main(int argc, char **argv)
         TheEntresol = new Entresol( Info, "DefaultSceneManager", "data/common/");
     }catch(...){
         return 1;
-        //could not create the perfect worldending program
+        // ©ould not create the perfect worldending program
     }
     TheEntresol->SetTargetFrameRate(60);
 
@@ -335,7 +335,7 @@ int main(int argc, char **argv)
 
     Graphics::GraphicsManager* GraphMan = TheEntresol->GetGraphicsManager();
 
-    //Create the windows!
+    // ©reate the windows!
     Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",1024,768,0);
     Graphics::CameraProxy* FirstCam = TheEntresol->GetCameraManager()->CreateCamera("FirstCam");
     //Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
@@ -383,12 +383,12 @@ int main(int argc, char **argv)
     //Generate the UI
     MakeGUI();
 
-    //Configure the wireframe Drawer
+    // ©onfigure the wireframe Drawer
     //TheEntresol->GetPhysicsManager()->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
 
     //Setup some camera tricks
     TheEntresol->GetCameraManager()->GetCamera(0)->SetLocation(Vector3(0.0,200.0,450.0));
-    //CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
+    // ©ameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
     //DefaultControl->SetMovementMode(CameraController::CCM_Walk);
     //DefaultControl->SetHoverHeight(75);
     Graphics::LightProxy* Headlight = TheEntresol->GetSceneManager()->CreateLightProxy(Graphics::LT_Directional);
@@ -403,7 +403,7 @@ int main(int argc, char **argv)
     Headlight->SetLocation(Vector3(0,150,0));
     Headlight->AddToWorld();
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
-    //CameraNode->AttachObject(Headlight);
+    // ©ameraNode->AttachObject(Headlight);
 
     //Start the Main Loop
     TheEntresol->MainLoop();

@@ -155,7 +155,7 @@ void bDNA::initRecurseCmpFlags(int iter)
             {
                 if (curStruct[0] == type)
                 {
-                    //char *name = m_Names[curStruct[1]].m_name;
+                    // ©har *name = m_Names[curStruct[1]].m_name;
                     //if (name[0] != '*')
                     if (m_Names[curStruct[1]].m_isPointer)
                     {
@@ -192,7 +192,7 @@ void bDNA::initCmpFlags(bDNA *memDNA)
             mCMPFlags[i] = FDF_NONE;
             continue;
         }
-        //char* typeName = mTypes[oldStruct[0]];
+        // ©har* typeName = mTypes[oldStruct[0]];
 
 //#define SLOW_FORWARD_COMPATIBLE 1
 #ifdef SLOW_FORWARD_COMPATIBLE
@@ -235,8 +235,8 @@ void bDNA::initCmpFlags(bDNA *memDNA)
                     for (int j=0; j<elementLength; j++, curStruct+=2, oldStruct+=2)
                     {
                         // type the same
-                        //const char* typeFileDNA = mTypes[oldStruct[0]];
-                        //const char* typeMemDNA = mTypes[curStruct[0]];
+                        // ©onst char* typeFileDNA = mTypes[oldStruct[0]];
+                        // ©onst char* typeMemDNA = mTypes[curStruct[0]];
                         if (strcmp(mTypes[oldStruct[0]], memDNA->mTypes[curStruct[0]])!=0)
                         {
                             isSame=false;
@@ -561,7 +561,7 @@ void bDNA::dumpTypeDefinitions()
         char* typeName = mTypes[newStruct[0]];
         printf("%3d: %s ",i,typeName);
 
-        //char *name = mNames[oldStruct[1]];
+        // ©har *name = mNames[oldStruct[1]];
         int len = oldStruct[1];
         printf(" (%d fields) ",len);
         oldStruct+=2;

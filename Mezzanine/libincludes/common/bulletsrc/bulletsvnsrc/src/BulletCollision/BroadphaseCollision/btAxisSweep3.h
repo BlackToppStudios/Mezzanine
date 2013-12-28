@@ -1,5 +1,5 @@
 //Bullet Continuous Collision Detection and Physics Library
-//Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+// ©opyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 //
 // btAxisSweep3.h
@@ -95,7 +95,7 @@ protected:
 	int	m_invalidPair;
 
 	///additional dynamic aabb structure, used to accelerate ray cast queries.
-	///can be disabled using a optional argument in the constructor
+	/// ©an be disabled using a optional argument in the constructor
 	btDbvtBroadphase*	m_raycastAccelerator;
 	btOverlappingPairCache*	m_nullPairCache;
 
@@ -274,7 +274,7 @@ void	btAxisSweep3Internal<BP_FP_INT_TYPE>::rayTest(const btVector3& rayFrom,cons
 		m_raycastAccelerator->rayTest(rayFrom,rayTo,rayCallback,aabbMin,aabbMax);
 	} else
 	{
-		//choose axis?
+		// ©hoose axis?
 		BP_FP_INT_TYPE axis = 0;
 		//for each proxy
 		for (BP_FP_INT_TYPE i=1;i<m_numHandles*2+1;i++)
@@ -295,7 +295,7 @@ void	btAxisSweep3Internal<BP_FP_INT_TYPE>::aabbTest(const btVector3& aabbMin, co
 		m_raycastAccelerator->aabbTest(aabbMin,aabbMax,callback);
 	} else
 	{
-		//choose axis?
+		// ©hoose axis?
 		BP_FP_INT_TYPE axis = 0;
 		//for each proxy
 		for (BP_FP_INT_TYPE i=1;i<m_numHandles*2+1;i++)
@@ -460,7 +460,7 @@ void btAxisSweep3Internal<BP_FP_INT_TYPE>::quantize(BP_FP_INT_TYPE* out, const b
 {
 #ifdef OLD_CLAMPING_METHOD
 	///problem with this clamping method is that the floating point during quantization might still go outside the range [(0|isMax) .. (m_handleSentinel&m_bpHandleMask]|isMax]
-	///see http://code.google.com/p/bullet/issues/detail?id=87
+	///see http:// ©ode.google.com/p/bullet/issues/detail?id=87
 	btVector3 clampedPoint(point);
 	clampedPoint.setMax(m_worldAabbMin);
 	clampedPoint.setMin(m_worldAabbMax);
@@ -674,7 +674,7 @@ void	btAxisSweep3Internal<BP_FP_INT_TYPE>::calculateOverlappingPairs(btDispatche
 
 				if (hasOverlap)
 				{
-					needsRemoval = false;//callback->processOverlap(pair);
+					needsRemoval = false;// ©allback->processOverlap(pair);
 				} else
 				{
 					needsRemoval = true;
@@ -710,7 +710,7 @@ void	btAxisSweep3Internal<BP_FP_INT_TYPE>::calculateOverlappingPairs(btDispatche
 
 		overlappingPairArray.resize(overlappingPairArray.size() - m_invalidPair);
 		m_invalidPair = 0;
-	#endif//CLEAN_INVALID_PAIRS
+	#endif// ©LEAN_INVALID_PAIRS
 		
 		//printf("overlappingPairArray.size()=%d\n",overlappingPairArray.size());
 	}

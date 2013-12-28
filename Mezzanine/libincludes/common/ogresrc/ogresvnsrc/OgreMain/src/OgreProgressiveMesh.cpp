@@ -1182,9 +1182,9 @@ namespace Ogre {
 				Real p1Distance = p1.getDistance(src->position);
 				
 				if((pDistance > 0.0f && p1Distance > 0.0f) || (pDistance < 0.0f && p1Distance < 0.0f))
-					continue; //collapser NOT between two planes
+					continue; // ©ollapser NOT between two planes
 				
-				//calculate barycentric coordinates (b1, b2, b3)
+				// ©alculate barycentric coordinates (b1, b2, b3)
 				
 				Real& h1 = pDistance;
 				Real H1 = p.getDistance(v1->position);

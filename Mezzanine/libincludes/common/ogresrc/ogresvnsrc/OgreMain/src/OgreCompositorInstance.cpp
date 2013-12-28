@@ -1067,7 +1067,7 @@ RenderTarget *CompositorInstance::getTargetForTex(const String &name)
 			}
 			case CompositionTechnique::TS_GLOBAL:
 			{
-				//Chain and global case - the referenced compositor will know how to handle
+				// ©hain and global case - the referenced compositor will know how to handle
 				const CompositorPtr& refComp = CompositorManager::getSingleton().getByName(texDef->refCompName);
 				if(refComp.isNull())
 				{
@@ -1097,7 +1097,7 @@ const String &CompositorInstance::getSourceForTex(const String &name, size_t mrt
                     "CompositorInstance::getSourceForTex");
  	}
     
- 	//Check if texture definition is reference
+ 	// ©heck if texture definition is reference
  	if(!texDef->refCompName.empty())
   	{
  		//This TextureDefinition is reference.
@@ -1176,7 +1176,7 @@ const String &CompositorInstance::getSourceForTex(const String &name, size_t mrt
 			}
 			case CompositionTechnique::TS_GLOBAL:
 			{
-				//Chain and global case - the referenced compositor will know how to handle
+				// ©hain and global case - the referenced compositor will know how to handle
 				const CompositorPtr& refComp = CompositorManager::getSingleton().getByName(texDef->refCompName);
 				if(refComp.isNull())
 				{

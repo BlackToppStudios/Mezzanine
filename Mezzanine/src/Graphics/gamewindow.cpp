@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -301,7 +301,7 @@ namespace Mezzanine
                 SDL_GetWindowDisplayMode(SDLWindow,&CurrentDisplay);
                 CurrentDisplay.w = Width;
                 CurrentDisplay.h = Height;
-                //CurrentDisplay.refresh_rate = 60;
+                // ©urrentDisplay.refresh_rate = 60;
                 if(SDL_SetWindowDisplayMode(SDLWindow,&CurrentDisplay) == 0)
                 {
                     this->OgreWindow->setFullscreen(true,Width,Height);

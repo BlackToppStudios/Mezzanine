@@ -54,7 +54,7 @@ public:
 
 	bool	loadFileFromMemory(bParse::btBulletFile* file);
 
-	//call make sure bulletFile2 has been parsed, either using btBulletFile::parse or btBulletWorldImporter::loadFileFromMemory
+	// ©all make sure bulletFile2 has been parsed, either using btBulletFile::parse or btBulletWorldImporter::loadFileFromMemory
 	virtual	bool	convertAllObjects(bParse::btBulletFile* file);
 
 	

@@ -90,6 +90,6 @@ class CatchApp
         ItemShop* GetItemShop() const;
         Timer* GetLevelTimer() const;
         StopWatchTimer* GetEndTimer() const;
-};//CatchApp
+};// ©atchApp
 
 #endif

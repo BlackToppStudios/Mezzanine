@@ -1,7 +1,7 @@
 
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -62,7 +62,7 @@ void	btVoronoiSimplexSolver::reduceVertices (const btUsageBitfield& usedVerts)
 
 
 
-//clear the simplex, remove all the vertices
+// ©lear the simplex, remove all the vertices
 void btVoronoiSimplexSolver::reset()
 {
 	m_cachedValidClosest = false;
@@ -113,7 +113,7 @@ bool	btVoronoiSimplexSolver::updateClosestVectorAndPoints()
 			};
 		case 2:
 			{
-			//closest point origin from line segment
+			// ©losest point origin from line segment
 					const btVector3& from = m_simplexVectorW[0];
 					const btVector3& to = m_simplexVectorW[1];
 					btVector3 nearest;
@@ -156,7 +156,7 @@ bool	btVoronoiSimplexSolver::updateClosestVectorAndPoints()
 			}
 		case 3: 
 			{ 
-				//closest point origin from triangle 
+				// ©losest point origin from triangle 
 				btVector3 p (btScalar(0.),btScalar(0.),btScalar(0.)); 
 
 				const btVector3& a = m_simplexVectorW[0]; 
@@ -225,7 +225,7 @@ bool	btVoronoiSimplexSolver::updateClosestVectorAndPoints()
 
 				m_cachedValidClosest = m_cachedBC.isValid();
 
-				//closest point origin from tetrahedron
+				// ©losest point origin from tetrahedron
 				break;
 			}
 		default:
@@ -297,7 +297,7 @@ bool btVoronoiSimplexSolver::inSimplex(const btVector3& w)
 			found = true;
 	}
 
-	//check in case lastW is already removed
+	// ©heck in case lastW is already removed
 	if (w == m_lastW)
 		return true;
     	
@@ -378,7 +378,7 @@ bool	btVoronoiSimplexSolver::closestPtPointTriangle(const btVector3& p, const bt
 		result.m_closestPointOnSimplex = c;
 		result.m_usedVertices.usedVertexC = true;
 		result.setBarycentricCoordinates(0,0,1);
-		return true;//c; // barycentric coordinates (0,0,1)
+		return true;// ©; // barycentric coordinates (0,0,1)
 	}
 
     // Check if P in edge region of AC, if so return projection of P onto AC
@@ -495,7 +495,7 @@ bool	btVoronoiSimplexSolver::closestPtPointTetrahedron(const btVector3& p, const
         if (sqDist < bestSqDist) {
 			bestSqDist = sqDist;
 			finalResult.m_closestPointOnSimplex = q;
-			//convert result bitmask!
+			// ©onvert result bitmask!
 			finalResult.m_usedVertices.reset();
 			finalResult.m_usedVertices.usedVertexA = tempResult.m_usedVertices.usedVertexA;
 			finalResult.m_usedVertices.usedVertexB = tempResult.m_usedVertices.usedVertexB;
@@ -516,7 +516,7 @@ bool	btVoronoiSimplexSolver::closestPtPointTetrahedron(const btVector3& p, const
 	{
         closestPtPointTriangle(p, a, c, d,tempResult);
 		btVector3 q = tempResult.m_closestPointOnSimplex;
-		//convert result bitmask!
+		// ©onvert result bitmask!
 
         btScalar sqDist = (q - p).dot( q - p);
         if (sqDist < bestSqDist) 
@@ -544,7 +544,7 @@ bool	btVoronoiSimplexSolver::closestPtPointTetrahedron(const btVector3& p, const
 	{
 		closestPtPointTriangle(p, a, d, b,tempResult);
 		btVector3 q = tempResult.m_closestPointOnSimplex;
-		//convert result bitmask!
+		// ©onvert result bitmask!
 
         btScalar sqDist = (q - p).dot( q - p);
         if (sqDist < bestSqDist) 
@@ -572,7 +572,7 @@ bool	btVoronoiSimplexSolver::closestPtPointTetrahedron(const btVector3& p, const
 	{
         closestPtPointTriangle(p, b, d, c,tempResult);
 		btVector3 q = tempResult.m_closestPointOnSimplex;
-		//convert result bitmask!
+		// ©onvert result bitmask!
         btScalar sqDist = (q - p).dot( q - p);
         if (sqDist < bestSqDist) 
 		{

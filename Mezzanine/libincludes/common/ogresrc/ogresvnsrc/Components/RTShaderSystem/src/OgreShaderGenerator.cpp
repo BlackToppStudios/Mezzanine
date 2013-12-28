@@ -975,13 +975,13 @@ bool ShaderGenerator::cloneShaderBasedTechniques(const String& srcMaterialName,
 			//destination material
 			if (createShaderBasedTechnique(dstMaterialName, trueDstGroupName, srcFromTechniqueScheme, srcToTechniqueScheme))
 			{
-				//check for custom render states in the source material
+				// ©heck for custom render states in the source material
 				unsigned short passCount =  (*itTechEntry)->getSourceTechnique()->getNumPasses();
 				for(unsigned short pi = 0 ; pi < passCount ; ++pi)
 				{
 					if ((*itTechEntry)->hasRenderState(pi))
 					{
-						//copy the custom render state from the source material to the destination material
+						// ©opy the custom render state from the source material to the destination material
 						RenderState* srcRenderState = (*itTechEntry)->getRenderState(pi);
 						RenderState* dstRenderState = getRenderState(srcToTechniqueScheme, dstMaterialName, trueDstGroupName, pi);
 
@@ -1395,7 +1395,7 @@ void ShaderGenerator::setShaderCachePath( const String& cachePath )
 ShaderGenerator::SGMaterialIterator ShaderGenerator::findMaterialEntryIt(const String& materialName, const String& groupName)
 {
 	SGMaterialIterator itMatEntry;
-	//check if we have auto detect request
+	// ©heck if we have auto detect request
 	if (groupName == ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME)
 	{
 		//find the possible first entry
@@ -1419,7 +1419,7 @@ ShaderGenerator::SGMaterialIterator ShaderGenerator::findMaterialEntryIt(const S
 ShaderGenerator::SGMaterialConstIterator ShaderGenerator::findMaterialEntryIt(const String& materialName, const String& groupName) const
 {
 	SGMaterialConstIterator itMatEntry;
-	//check if we have auto detect request
+	// ©heck if we have auto detect request
 	if (groupName == ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME)
 	{
 		//find the possible first entry

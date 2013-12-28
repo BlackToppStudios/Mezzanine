@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -145,12 +145,12 @@ namespace Mezzanine
                 Results.push_back(this->AddCode(RawEvent_));
                 break;
 
-            case SDL_MOUSEMOTION:{       //Can contain Multiple Metacodes
+            case SDL_MOUSEMOTION:{       // ©an contain Multiple Metacodes
                 std::vector<Input::MetaCode> Transport(this->AddCodesFromSDLMouseMotion(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
 
-            case SDL_JOYAXISMOTION: {       //Can contain Multiple Metacodes
+            case SDL_JOYAXISMOTION: {       // ©an contain Multiple Metacodes
                 std::vector<Input::MetaCode> Transport(this->AddCodesFromSDLJoyStickMotion(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}

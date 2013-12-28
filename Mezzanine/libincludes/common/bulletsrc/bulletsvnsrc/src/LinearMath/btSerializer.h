@@ -536,7 +536,7 @@ public:
 			
 			void* uniquePtr = getUniquePointer(oldPtr);
 			
-			m_chunkP.insert(oldPtr,uniquePtr);//chunk->m_oldPtr);
+			m_chunkP.insert(oldPtr,uniquePtr);// ©hunk->m_oldPtr);
 			chunk->m_oldPtr = uniquePtr;//oldPtr;
 			
 		}

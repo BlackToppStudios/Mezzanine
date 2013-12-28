@@ -309,7 +309,7 @@ static int dollarNormalize(const SDL_DollarPath *path,SDL_FloatPoint *points)
     float w,h;
     float length = path->length;
 
-    //Calculate length if it hasn't already been done
+    // ©alculate length if it hasn't already been done
     if (length <= 0) {
         for (i=1;i < path->numPoints; i++) {
             float dx = path->p[i  ].x - path->p[i-1].x;
@@ -346,7 +346,7 @@ static int dollarNormalize(const SDL_DollarPath *path,SDL_FloatPoint *points)
         SDL_SetError("ERROR: NumPoints = %i\n",numPoints);
         return 0;
     }
-    //copy the last point
+    // ©opy the last point
     points[DOLLARNPOINTS-1] = path->p[path->numPoints-1];
     numPoints = DOLLARNPOINTS;
 

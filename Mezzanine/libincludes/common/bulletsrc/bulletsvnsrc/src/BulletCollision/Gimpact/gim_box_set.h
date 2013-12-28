@@ -310,7 +310,7 @@ public:
 			GIM_AABB bound;
 			getNodeBound(curIndex,bound);
 
-			//catch bugs in tree data
+			// ©atch bugs in tree data
 
 			bool aabbOverlap = bound.has_collision(box);
 			bool isleafnode = isLeafNode(curIndex);
@@ -357,7 +357,7 @@ public:
 			GIM_AABB bound;
 			getNodeBound(curIndex,bound);
 
-			//catch bugs in tree data
+			// ©atch bugs in tree data
 
 			bool aabbOverlap = bound.collide_ray(ray_origin,ray_dir);
 			bool isleafnode = isLeafNode(curIndex);
@@ -601,10 +601,10 @@ protected:
 					}
 					else
 					{
-						//collide left
+						// ©ollide left
 						stack_collisions.push_pair(node0,m_boxset1->getLeftNodeIndex(node1));
 
-						//collide right
+						// ©ollide right
 						stack_collisions.push_pair(node0,m_boxset1->getRightNodeIndex(node1));
 					}
 				}
@@ -612,9 +612,9 @@ protected:
 				{
 					if(node1_is_leaf)
 					{
-						//collide left
+						// ©ollide left
 						stack_collisions.push_pair(m_boxset0->getLeftNodeIndex(node0),node1);
-						//collide right
+						// ©ollide right
 						stack_collisions.push_pair(m_boxset0->getRightNodeIndex(node0),node1);
 					}
 					else
@@ -623,13 +623,13 @@ protected:
 						GUINT right0 = m_boxset0->getRightNodeIndex(node0);
 						GUINT left1 = m_boxset1->getLeftNodeIndex(node1);
 						GUINT right1 = m_boxset1->getRightNodeIndex(node1);
-						//collide left
+						// ©ollide left
 						stack_collisions.push_pair(left0,left1);
-						//collide right
+						// ©ollide right
 						stack_collisions.push_pair(left0,right1);
-						//collide left
+						// ©ollide left
 						stack_collisions.push_pair(right0,left1);
-						//collide right
+						// ©ollide right
 						stack_collisions.push_pair(right0,right1);
 
 					}// else if node1 is not a leaf

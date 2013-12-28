@@ -240,7 +240,7 @@ void btCompoundShape::calculatePrincipalAxisTransform(btScalar* masses, btTransf
 		const btTransform& t = m_children[k].m_transform;
 		btVector3 o = t.getOrigin() - center;
 
-		//compute inertia tensor in coordinate system of compound shape
+		// ©ompute inertia tensor in coordinate system of compound shape
 		btMatrix3x3 j = t.getBasis().transpose();
 		j[0] *= i[0];
 		j[1] *= i[1];
@@ -252,7 +252,7 @@ void btCompoundShape::calculatePrincipalAxisTransform(btScalar* masses, btTransf
 		tensor[1] += j[1];
 		tensor[2] += j[2];
 
-		//compute inertia tensor of pointmass at o
+		// ©ompute inertia tensor of pointmass at o
 		btScalar o2 = o.length2();
 		j[0].setValue(o2, 0, 0);
 		j[1].setValue(0, o2, 0);

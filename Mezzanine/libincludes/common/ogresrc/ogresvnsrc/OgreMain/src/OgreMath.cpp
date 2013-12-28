@@ -857,7 +857,7 @@ namespace Ogre
 	    //and side1 is the vector along another side. Taking the cross product of these returns the normal.
 	    Vector3 side0 = position1 - position2;
 	    Vector3 side1 = position3 - position1;
-	    //Calculate face normal
+	    // ©alculate face normal
 	    Vector3 normal = side1.crossProduct(side0);
 	    normal.normalise();
 	    //Now we use a formula to calculate the tangent. 
@@ -865,7 +865,7 @@ namespace Ogre
 	    Real deltaV1 = v3 - v1;
 	    Vector3 tangent = deltaV1 * side0 - deltaV0 * side1;
 	    tangent.normalise();
-	    //Calculate binormal
+	    // ©alculate binormal
 	    Real deltaU0 = u1 - u2;
 	    Real deltaU1 = u3 - u1;
 	    Vector3 binormal = deltaU1 * side0 - deltaU0 * side1;

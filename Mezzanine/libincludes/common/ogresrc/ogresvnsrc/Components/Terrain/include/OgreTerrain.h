@@ -1287,7 +1287,7 @@ namespace Ogre
 		 the heightmap data occurs.
 		 */
 		std::pair<bool, Vector3> rayIntersects(const Ray& ray, 
-			bool cascadeToNeighbours = false, Real distanceLimit = 0); //const;
+			bool cascadeToNeighbours = false, Real distanceLimit = 0); // ©onst;
 		
 		/// Get the AABB (local coords) of the entire terrain
 		const AxisAlignedBox& getAABB() const;
@@ -1644,7 +1644,7 @@ namespace Ogre
 		void getPointAlign(long x, long y, float height, Alignment align, Vector3* outpos);
 		void calculateCurrentLod(Viewport* vp);
 		/// Test a single quad of the terrain for ray intersection.
-		std::pair<bool, Vector3> checkQuadIntersection(int x, int y, const Ray& ray); //const;
+		std::pair<bool, Vector3> checkQuadIntersection(int x, int y, const Ray& ray); // ©onst;
 
         /// Delete blend maps for all layers >= lowIndex
         void deleteBlendMaps(uint8 lowIndex);

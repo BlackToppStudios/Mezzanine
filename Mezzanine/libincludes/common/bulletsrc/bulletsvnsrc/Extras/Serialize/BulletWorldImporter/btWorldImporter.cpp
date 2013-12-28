@@ -881,7 +881,7 @@ btTriangleIndexVertexArray* btWorldImporter::createMeshInterface(btStridingMeshI
 
 btStridingMeshInterfaceData* btWorldImporter::createStridingMeshInterfaceData(btStridingMeshInterfaceData* interfaceData)
 {
-	//create a new btStridingMeshInterfaceData that is an exact copy of shapedata and store it in the WorldImporter
+	// ©reate a new btStridingMeshInterfaceData that is an exact copy of shapedata and store it in the WorldImporter
 	btStridingMeshInterfaceData* newData = new btStridingMeshInterfaceData;
 
 	newData->m_scaling = interfaceData->m_scaling;

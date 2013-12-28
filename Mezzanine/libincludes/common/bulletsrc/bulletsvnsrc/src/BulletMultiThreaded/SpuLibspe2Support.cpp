@@ -28,7 +28,7 @@ SpuLibspe2Support::SpuLibspe2Support(spe_program_handle_t *speprog, int numThrea
 	this->numThreads =  ((numThreads <= spe_cpu_info_get(SPE_COUNT_PHYSICAL_SPES, -1)) ? numThreads : spe_cpu_info_get(SPE_COUNT_PHYSICAL_SPES, -1));
 }
 
-///cleanup/shutdown Libspe2
+/// ©leanup/shutdown Libspe2
 SpuLibspe2Support::~SpuLibspe2Support()
 {
 	
@@ -106,7 +106,7 @@ void SpuLibspe2Support::sendRequest(uint32_t uiCommand, uint32_t uiArgument0, ui
 
 }
 
-///check for messages from SPUs
+/// ©heck for messages from SPUs
 void SpuLibspe2Support::waitForResponse(unsigned int *puiArgument0, unsigned int *puiArgument1)
 {
 	///We should wait for (one of) the first tasks to finish (or other SPU messages), and report its response

@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -29,7 +29,7 @@ m_convexA(convexA),m_convexB(convexB)
 }
 
 ///Typically the conservative advancement reaches solution in a few iterations, clip it to 32 for degenerate cases.
-///See discussion about this here http://continuousphysics.com/Bullet/phpBB2/viewtopic.php?t=565
+///See discussion about this here http:// ©ontinuousphysics.com/Bullet/phpBB2/viewtopic.php?t=565
 #ifdef BT_USE_DOUBLE_PRECISION
 #define MAX_ITERATIONS 64
 #else
@@ -107,7 +107,7 @@ bool	btSubsimplexConvexCast::calcTimeOfImpact(
 				interpolatedTransA.getOrigin().setInterpolate3(fromA.getOrigin(),toA.getOrigin(),lambda);
 				interpolatedTransB.getOrigin().setInterpolate3(fromB.getOrigin(),toB.getOrigin(),lambda);
 				//m_simplexSolver->reset();
-				//check next line
+				// ©heck next line
 				 w = supVertexA-supVertexB;
 				lastLambda = lambda;
 				n = v;

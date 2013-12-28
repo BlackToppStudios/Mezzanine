@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
 	The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -186,8 +186,8 @@ namespace Mezzanine
 /// \n \n
 /// If the provided methods of contact have an issue or not possible due to privacy or other concerns, you can contact the Mezzanine::xml author ( toppij@blacktoppstudios.com )
 /// or pugixml author ( arseny.kapoulkine@gmail.com ) by e-mail directly. If you have an issue that pertains to pugixml and not Mezzanine::xml you can visit the
-/// pugixml issue submission form ( http://code.google.com/p/pugixml/issues/entry ) of the pugixml feature request form
-/// ( http://code.google.com/p/pugixml/issues/entry?template=Feature%20request ).
+/// pugixml issue submission form ( http:// ©ode.google.com/p/pugixml/issues/entry ) of the pugixml feature request form
+/// ( http:// ©ode.google.com/p/pugixml/issues/entry?template=Feature%20request ).
 /// \n \n
 /// @subsection XMLAcknowledgments Acknowledgments
 /// Mezzanine::xml and pugixml could not be developed without the help from many people; some of them are listed in this section. If you've played a part in

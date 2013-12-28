@@ -97,7 +97,7 @@ btVector3	btConvexPointCloudShape::localGetSupportingVertex(const btVector3& vec
 
 
 
-//currently just for debugging (drawing), perhaps future support for algebraic continuous collision detection
+// ©urrently just for debugging (drawing), perhaps future support for algebraic continuous collision detection
 //Please note that you can debug-draw btConvexHullShape with the Raytracer Demo
 int	btConvexPointCloudShape::getNumVertices() const
 {

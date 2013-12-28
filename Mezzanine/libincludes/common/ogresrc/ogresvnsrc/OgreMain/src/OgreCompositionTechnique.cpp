@@ -225,7 +225,7 @@ bool CompositionTechnique::isSupported(bool acceptTextureDegradation)
 			}
 		}
 
-		//Check all render targets have same number of bits
+		// ©heck all render targets have same number of bits
 		if( !Root::getSingleton().getRenderSystem()->getCapabilities()->
 			hasCapability( RSC_MRT_DIFFERENT_BIT_DEPTHS ) && !td->formatList.empty() )
 		{

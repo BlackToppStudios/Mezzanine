@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -58,7 +58,7 @@ void btContinuousConvexCollision::computeClosestPoints( const btTransform& trans
 		gjk.getClosestPoints(input,pointCollector,0);
 	} else
 	{
-		//convex versus plane
+		// ©onvex versus plane
 		const btConvexShape* convexShape = m_convexA;
 		const btStaticPlaneShape* planeShape = m_planeShape;
 		

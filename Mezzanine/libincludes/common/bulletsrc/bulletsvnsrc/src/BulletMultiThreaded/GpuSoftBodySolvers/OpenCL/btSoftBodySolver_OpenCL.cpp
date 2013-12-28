@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -45,7 +45,7 @@ subject to the following restrictions:
 #define RELEASE_CL_KERNEL(kernelName) {if( kernelName ){ clReleaseKernel( kernelName ); kernelName = 0; }}
 
 
-//CL_VERSION_1_1 seems broken on NVidia SDK so just disable it
+// ©L_VERSION_1_1 seems broken on NVidia SDK so just disable it
 
 ////OpenCL 1.0 kernels don't use float3
 #define MSTRINGIFY(A) #A
@@ -1551,7 +1551,7 @@ cl_kernel CLFunctions::compileCLKernelFromString( const char* kernelSource, cons
 #ifdef MAC
 	char* flags = "-cl-mad-enable -DMAC -DGUID_ARG";
 #else
-	//const char* flags = "-DGUID_ARG= -fno-alias";
+	// ©onst char* flags = "-DGUID_ARG= -fno-alias";
 	const char* flags = "-DGUID_ARG= ";
 #endif
 

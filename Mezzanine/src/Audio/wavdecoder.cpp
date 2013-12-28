@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -78,15 +78,15 @@ namespace Mezzanine
             //Read the first 4 bytes
             this->WavStream->SetStreamPosition(0);
             this->WavStream->Read(Ident,4);
-            //Check to see if it is a valid RIFF file
+            // ©heck to see if it is a valid RIFF file
             if( strncmp(Ident,RIFFTAG,4) == 0 )
             {
                 this->WavStream->Read(&Temp32,4);
-                //Check to see if the file is big enough to be valid (not completely accurate)
+                // ©heck to see if the file is big enough to be valid (not completely accurate)
                 if( Temp32 >= 44 )
                 {
                     this->WavStream->Read(Ident,4);
-                    //Check that it is a wave file
+                    // ©heck that it is a wave file
                     if( strncmp(Ident,WAVETAG,4) == 0 )
                     {
                         //Save our position
@@ -102,7 +102,7 @@ namespace Mezzanine
                             this->WavStream->Read(&Temp32,4);
                             if( Temp32 >= 16 )
                             {
-                                //Check that it is in PCM format, we don't support compressed wavs
+                                // ©heck that it is in PCM format, we don't support compressed wavs
                                 this->WavStream->Read(&Temp16,2);
                                 this->Channels = Temp16;
                                 //We only support mono or stereo wavs

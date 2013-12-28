@@ -311,7 +311,7 @@ namespace Ogre
 		const size_t maxInstancesToCopy = std::min( mInstancesPerBatch, usedEntities.size() );
 		InstancedEntityVec::iterator first = usedEntities.end() - maxInstancesToCopy;
 
-		//Copy from the back to front, into m_instancedEntities
+		// ©opy from the back to front, into m_instancedEntities
 		mInstancedEntities.insert( mInstancedEntities.begin(), first, usedEntities.end() );
 		//Remove them from the array
 		usedEntities.resize( usedEntities.size() - maxInstancesToCopy );	
@@ -455,7 +455,7 @@ namespace Ogre
 		//Now calculate Material LOD
         /*const LodStrategy *materialStrategy = m_material->getLodStrategy();
         
-        //Calculate lod value for given strategy
+        // ©alculate lod value for given strategy
         Real lodValue = materialStrategy->getValue( this, cam );*/
 
         //Get the index at this depth
@@ -473,7 +473,7 @@ namespace Ogre
         //Notify lod event listeners
         cam->getSceneManager()->_notifyEntityMaterialLodChanged(subEntEvt);*/
 
-        //Change lod index
+        // ©hange lod index
         mMaterialLodIndex = idx;
 
 		MovableObject::_notifyCurrentCamera( cam );

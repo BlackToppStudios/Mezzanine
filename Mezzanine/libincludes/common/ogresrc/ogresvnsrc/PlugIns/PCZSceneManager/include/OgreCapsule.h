@@ -65,4 +65,4 @@ namespace Ogre
 	};
 }
 
-#endif //CAPSULE3_H
+#endif // ©APSULE3_H

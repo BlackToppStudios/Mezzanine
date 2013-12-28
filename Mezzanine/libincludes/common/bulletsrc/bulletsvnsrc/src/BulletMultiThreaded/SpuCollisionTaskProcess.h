@@ -124,13 +124,13 @@ public:
 	
 	~SpuCollisionTaskProcess();
 	
-	///call initialize in the beginning of the frame, before addCollisionPairToTask
+	/// ©all initialize in the beginning of the frame, before addCollisionPairToTask
 	void initialize2(bool useEpa = false);
 
 	///batch up additional work to a current task for SPU processing. When batch is full, it issues the task.
 	void addWorkToTask(void* pairArrayPtr,int startIndex,int endIndex);
 
-	///call flush to submit potential outstanding work to SPUs and wait for all involved SPUs to be finished
+	/// ©all flush to submit potential outstanding work to SPUs and wait for all involved SPUs to be finished
 	void flush2();
 
 	/// set the maximum number of SPU tasks allocated

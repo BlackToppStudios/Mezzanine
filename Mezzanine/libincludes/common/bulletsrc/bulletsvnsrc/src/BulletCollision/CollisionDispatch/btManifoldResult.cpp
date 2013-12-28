@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -131,7 +131,7 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 	///@todo, check this for any side effects
 	if (insertIndex >= 0)
 	{
-		//const btManifoldPoint& oldPoint = m_manifoldPtr->getContactPoint(insertIndex);
+		// ©onst btManifoldPoint& oldPoint = m_manifoldPtr->getContactPoint(insertIndex);
 		m_manifoldPtr->replaceContactPoint(newPt,insertIndex);
 	} else
 	{

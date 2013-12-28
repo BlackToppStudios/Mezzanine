@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -407,7 +407,7 @@ void			btSoftBodyHelpers::Draw(	btSoftBody* psb,
 				break;
 			case	btSoftBody::Joint::eType::Angular:
 				{
-					//const btSoftBody::AJoint*	pja=(const btSoftBody::AJoint*)pj;
+					// ©onst btSoftBody::AJoint*	pja=(const btSoftBody::AJoint*)pj;
 					const btVector3	o0=pj->m_bodies[0].xform().getOrigin();
 					const btVector3	o1=pj->m_bodies[1].xform().getOrigin();
 					const btVector3	a0=pj->m_bodies[0].xform().getBasis()*pj->m_refs[0];

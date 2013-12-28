@@ -131,7 +131,7 @@ namespace Ogre {
 	{
 		if (!mLinked && !mTriedToLinkAndFailed)
 		{			
-			glGetError(); //Clean up the error. Otherwise will flood log.
+			glGetError(); // ©lean up the error. Otherwise will flood log.
 			mGLHandle = glCreateProgramObjectARB();
 
             GLenum glErr = glGetError();

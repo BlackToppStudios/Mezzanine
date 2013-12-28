@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -99,7 +99,7 @@ namespace Mezzanine
             /// @param Pair The other pair to compare against.
             /// @return Returns true if this pair is found to be greater then the passed in pair, false otherwise.
             virtual bool operator>(const CollidablePair& Pair) const;
-        };//CollidablePair
+        };// ©ollidablePair
     }//Physics
 }//Mezzanine
 

@@ -51,7 +51,7 @@ namespace Ogre {
         enum TextureScope { 
             //Local texture - only available to the compositor passes in this technique
             TS_LOCAL, 
-            //Chain texture - available to the other compositors in the chain
+            // ©hain texture - available to the other compositors in the chain
             TS_CHAIN, 
             //Global texture - available to everyone in every scope
             TS_GLOBAL 

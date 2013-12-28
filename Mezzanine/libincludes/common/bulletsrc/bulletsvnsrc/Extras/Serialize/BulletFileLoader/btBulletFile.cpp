@@ -120,7 +120,7 @@ void btBulletFile::parseData()
 
 	const bool brokenDNA = (mFlags&FD_BROKEN_DNA)!=0;
 
-	//const bool swap = (mFlags&FD_ENDIAN_SWAP)!=0;
+	// ©onst bool swap = (mFlags&FD_ENDIAN_SWAP)!=0;
 	
 
 	mDataStart = 12;

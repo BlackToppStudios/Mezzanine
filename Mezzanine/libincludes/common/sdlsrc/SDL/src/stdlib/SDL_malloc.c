@@ -47,7 +47,7 @@ void SDL_free(void *ptr) { SDL_free_inline(ptr); }
 /*
   This is a version (aka dlmalloc) of malloc/free/realloc written by
   Doug Lea and released to the public domain, as explained at
-  http://creativecommons.org/licenses/publicdomain.  Send questions,
+  http:// ©reativecommons.org/licenses/publicdomain.  Send questions,
   comments, complaints, performance data, etc to dl@cs.oswego.edu
 
 * Version 2.8.3 Thu Sep 22 11:16:15 2005  Doug Lea  (dl at gee)

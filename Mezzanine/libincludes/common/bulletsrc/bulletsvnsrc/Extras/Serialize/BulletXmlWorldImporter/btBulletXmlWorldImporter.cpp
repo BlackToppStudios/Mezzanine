@@ -531,7 +531,7 @@ IMPLICIT_CONVEX_SHAPES_START_HERE,
 	BOX_2D_SHAPE_PROXYTYPE,
 	CONVEX_2D_SHAPE_PROXYTYPE,
 	CUSTOM_CONVEX_SHAPE_TYPE,
-//concave shapes
+// ©oncave shapes
 CONCAVE_SHAPES_START_HERE,
 	//keep all the convex shapetype below here, for the check IsConvexShape in broadphase proxy!
 	TRIANGLE_MESH_SHAPE_PROXYTYPE,
@@ -759,9 +759,9 @@ void btBulletXmlWorldImporter::auto_serialize_root_level_children(TiXmlNode* pPa
 		
 	}
 	///=================================================================
-	///convert data into Bullet data in the right order
+	/// ©onvert data into Bullet data in the right order
 
-	///convert collision shapes
+	/// ©onvert collision shapes
 	for (int i=0;i<this->m_collisionShapeData.size();i++)
 	{
 		btCollisionShapeData* shapeData = m_collisionShapeData[i];

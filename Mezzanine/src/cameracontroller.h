@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -176,7 +176,7 @@ namespace Mezzanine
         /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
         /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
         void Rotate6DOF(Real Yaw, Real Pitch, Real Roll);
-    };//cameracontroller
+    };// ©ameracontroller
 }//Mezzanine
 
 #endif

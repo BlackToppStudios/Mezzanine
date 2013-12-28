@@ -16,7 +16,7 @@ class CatchPreInputWorkUnit : public Threading::DefaultWorkUnit
         virtual ~CatchPreInputWorkUnit();
 
         virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-};//CatchPreInputWorkUnit
+};// ©atchPreInputWorkUnit
 
 class CatchPostInputWorkUnit : public Threading::DefaultWorkUnit
 {
@@ -27,7 +27,7 @@ class CatchPostInputWorkUnit : public Threading::DefaultWorkUnit
         virtual ~CatchPostInputWorkUnit();
 
         virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-};//CatchPostInputWorkUnit
+};// ©atchPostInputWorkUnit
 
 class CatchPostUIWorkUnit : public Threading::DefaultWorkUnit
 {
@@ -39,7 +39,7 @@ class CatchPostUIWorkUnit : public Threading::DefaultWorkUnit
         virtual ~CatchPostUIWorkUnit();
 
         virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-};//CatchPostUIWorkUnit
+};// ©atchPostUIWorkUnit
 
 class CatchPostGraphicsWorkUnit : public Threading::DefaultWorkUnit
 {
@@ -50,6 +50,6 @@ class CatchPostGraphicsWorkUnit : public Threading::DefaultWorkUnit
         virtual ~CatchPostGraphicsWorkUnit();
 
         virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-};//CatchPostGraphicsWorkUnit
+};// ©atchPostGraphicsWorkUnit
 
 #endif

@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -328,10 +328,10 @@ class frameschedulertests : public UnitTestGroup
                 SchedulingTest2.SortWorkUnitsMain();
 
                 TestOutput << "Extracting WorkUnits with the scheduling mechanism: " << endl;
-                //Counter = SchedulingTest2.GetNextWorkUnit();
+                // ©ounter = SchedulingTest2.GetNextWorkUnit();
                 //TestOutput << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
                 //assert( ((PausesWorkUnit*)Counter)->Name == String("FiveHundredThousand-ms") );
-                //Counter->operator()(Storage2, SchedulingTest2);
+                // ©ounter->operator()(Storage2, SchedulingTest2);
                 Counter = SchedulingTest2.GetNextWorkUnit();
                 TestOutput << "Getting the WorkUnit Named " << ((PausesWorkUnit*)Counter)->Name << " and marking it as complete." << endl;
                 TEST(((PausesWorkUnit*)Counter)->Name == String("FiftyThousand-ms"),"TimedSort::FiftyThousand-ms")
@@ -556,7 +556,7 @@ class frameschedulertests : public UnitTestGroup
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                TestOutput << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; // ©
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
@@ -593,7 +593,7 @@ class frameschedulertests : public UnitTestGroup
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                TestOutput << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; // ©
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
@@ -625,7 +625,7 @@ class frameschedulertests : public UnitTestGroup
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                TestOutput << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; // ©
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
@@ -649,7 +649,7 @@ class frameschedulertests : public UnitTestGroup
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
-                TestOutput << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; // ©
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnit());
@@ -827,7 +827,7 @@ class frameschedulertests : public UnitTestGroup
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                TestOutput << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; // ©
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
@@ -864,7 +864,7 @@ class frameschedulertests : public UnitTestGroup
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                TestOutput << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; // ©
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
@@ -896,7 +896,7 @@ class frameschedulertests : public UnitTestGroup
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                TestOutput << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; // ©
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
@@ -920,7 +920,7 @@ class frameschedulertests : public UnitTestGroup
                 Next->operator() (RemovalResource);
                 if(Next->Name=="B") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());
-                TestOutput << Next->Name << " "; //C
+                TestOutput << Next->Name << " "; // ©
                 Next->operator() (RemovalResource);
                 if(Next->Name=="C") { PrepCount++; }
                 Next = static_cast<PausesWorkUnit*>(RemovalScheduler.GetNextWorkUnitAffinity());

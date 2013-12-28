@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -293,7 +293,7 @@ void	btSimpleBroadphase::calculateOverlappingPairs(btDispatcher* dispatcher)
 
 					if (hasOverlap)
 					{
-						needsRemoval = false;//callback->processOverlap(pair);
+						needsRemoval = false;// ©allback->processOverlap(pair);
 					} else
 					{
 						needsRemoval = true;
@@ -329,7 +329,7 @@ void	btSimpleBroadphase::calculateOverlappingPairs(btDispatcher* dispatcher)
 
 			overlappingPairArray.resize(overlappingPairArray.size() - m_invalidPair);
 			m_invalidPair = 0;
-#endif//CLEAN_INVALID_PAIRS
+#endif// ©LEAN_INVALID_PAIRS
 
 		}
 	}

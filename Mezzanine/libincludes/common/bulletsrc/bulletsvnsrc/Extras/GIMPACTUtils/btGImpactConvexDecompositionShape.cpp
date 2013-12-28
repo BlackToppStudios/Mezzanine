@@ -58,14 +58,14 @@ public:
 	virtual void ConvexDecompResult(ConvexDecomposition::ConvexResult &result)
 	{
 
-		//calc centroid, to shift vertices around center of mass
+		// ©alc centroid, to shift vertices around center of mass
 		btVector3 centroid(0,0,0);
 		btAlignedObjectArray<btVector3> vertices;
 
 		if(m_transformSubShapes)
 		{
 
-			//const unsigned int *src = result.mHullIndices;
+			// ©onst unsigned int *src = result.mHullIndices;
 			for (unsigned int i=0; i<result.mHullVcount; i++)
 			{
 				btVector3 vertex(result.mHullVertices[i*3],result.mHullVertices[i*3+1],result.mHullVertices[i*3+2]);
@@ -128,7 +128,7 @@ public:
 
 		trimeshInterface->lock();
 
-		//collect vertices
+		// ©ollect vertices
 		btAlignedObjectArray<float> vertices;
 		vertices.reserve(trimeshInterface->get_vertex_count()*3);
 
@@ -142,7 +142,7 @@ public:
 		}
 
 
-		//collect indices
+		// ©ollect indices
 		btAlignedObjectArray<unsigned int> indices;
 		indices.reserve(trimeshInterface->get_primitive_count()*3);
 
@@ -179,7 +179,7 @@ public:
 		desc.mSkinWidth    = skinWidth;
 		desc.mCallback = this;
 
-		//convexDecomposition.performConvexDecomposition(desc);
+		// ©onvexDecomposition.performConvexDecomposition(desc);
 
 		ConvexBuilder cb(desc.mCallback);
 		cb.process(desc);

@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -236,7 +236,7 @@ void	btHingeConstraint::buildJacobian()
 			}
 		}
 
-		//calculate two perpendicular jointAxis, orthogonal to hingeAxis
+		// ©alculate two perpendicular jointAxis, orthogonal to hingeAxis
 		//these two jointAxis require equal angular velocities for both bodies
 
 		//this is unused for now, it's a todo
@@ -273,7 +273,7 @@ void	btHingeConstraint::buildJacobian()
 			// test angular limit
 			testLimit(m_rbA.getCenterOfMassTransform(),m_rbB.getCenterOfMassTransform());
 
-		//Compute K = J*W*J' for hinge axis
+		// ©ompute K = J*W*J' for hinge axis
 		btVector3 axisA =  getRigidBodyA().getCenterOfMassTransform().getBasis() *  m_rbAFrame.getBasis().getColumn(2);
 		m_kHinge =   1.0f / (getRigidBodyA().computeAngularImpulseDenominator(axisA) +
 							 getRigidBodyB().computeAngularImpulseDenominator(axisA));

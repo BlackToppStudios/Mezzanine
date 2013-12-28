@@ -1,6 +1,6 @@
 /*
 Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2003-2006 Erwin Coumans  http://continuousphysics.com/Bullet/
+Copyright (c) 2003-2006 Erwin Coumans  http:// ©ontinuousphysics.com/Bullet/
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the use of this software.
@@ -180,7 +180,7 @@ plCollisionShapeHandle plNewBoxShape(plReal x, plReal y, plReal z)
 
 plCollisionShapeHandle plNewCapsuleShape(plReal radius, plReal height)
 {
-	//capsule is convex hull of 2 spheres, so use btMultiSphereShape
+	// ©apsule is convex hull of 2 spheres, so use btMultiSphereShape
 	
 	const int numSpheres = 2;
 	btVector3 positions[numSpheres] = {btVector3(0,height,0),btVector3(0,-height,0)};

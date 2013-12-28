@@ -189,7 +189,7 @@ namespace Ogre
 		for ( PortalList::iterator it = mPortals.begin(); it != mPortals.end(); ++it )
 		{
 			Portal * p = *it;
-			//Check if the portal intersects the node
+			// ©heck if the portal intersects the node
 			if (p != ignorePortal && p->intersects(pczsn) != Portal::NO_INTERSECT)
 			{
 				// node is touching this portal

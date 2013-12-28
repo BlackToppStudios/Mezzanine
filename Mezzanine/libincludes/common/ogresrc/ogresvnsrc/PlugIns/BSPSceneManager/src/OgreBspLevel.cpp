@@ -246,7 +246,7 @@ namespace Ogre {
                 sizeof(BspVertex), 
                 q3lvl.mNumVertices + mPatchVertexCount, 
                 HardwareBuffer::HBU_STATIC_WRITE_ONLY);
-        //COPY static vertex data - Note that we can't just block-copy the vertex data because we have to reorder
+        // ©OPY static vertex data - Note that we can't just block-copy the vertex data because we have to reorder
         //    our vertex elements; this is to ensure compatibility with older cards when using
         //    hardware vertex buffers - Direct3D requires that the buffer format maps onto a
         //    FVF in those older drivers. 

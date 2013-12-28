@@ -252,8 +252,8 @@ protected:
 
 			for(i=0;i<curHashtableSize;i++)
 			{
-				//const Value& value = m_valueArray[i];
-				//const Key& key = m_keyArray[i];
+				// ©onst Value& value = m_valueArray[i];
+				// ©onst Key& key = m_keyArray[i];
 
 				int	hashValue = m_keyArray[i].getHash() & (m_valueArray.capacity()-1);	// New hash value with new mask
 				m_next[i] = m_hashTable[hashValue];
