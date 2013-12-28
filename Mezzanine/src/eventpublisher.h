@@ -111,47 +111,22 @@ namespace Mezzanine
         /// @param Sub The custom event subscriber.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
         EventSubscriberSlot* Subscribe(const String& EventName, EventSubscriber* Sub);
-        /// @brief Adds a subscriber to this event.
-        /// @param EventName The name of the event to subscribe to.
-        /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
-        /// @param Sub The custom event subscriber.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, const UInt8 Group, EventSubscriber* Sub);
         /// @brief Subscribes a functor object to this event.
         /// @param EventName The name of the event to subscribe to.
         /// @param Funct The functor to call when the event is fired.
         /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
         EventSubscriberSlot* Subscribe(const String& EventName, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter);
-        /// @brief Subscribes a functor object to this event.
-        /// @param EventName The name of the event to subscribe to.
-        /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
-        /// @param Funct The functor to call when the event is fired.
-        /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, const UInt8 Group, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter);
         /// @brief Subscribes a C-style function to this event.
         /// @param EventName The name of the event to subscribe to.
         /// @param CFunct The C-style function to call when the event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
         EventSubscriberSlot* Subscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
-        /// @brief Subscribes a C-style function to this event.
-        /// @param EventName The name of the event to subscribe to.
-        /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
-        /// @param CFunct The C-style function to call when the event is fired.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, const UInt8 Group, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
         /// @brief Subscribes a script to this event.
         /// @param EventName The name of the event to subscribe to.
         /// @param SubScript The subscribed script to execute when the event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
         EventSubscriberSlot* Subscribe(const String& EventName, Scripting::iScript* SubScript);
-        /// @brief Subscribes a script to this event.
-        /// @param EventName The name of the event to subscribe to.
-        /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
-        /// @param SubScript The subscribed script to execute when the event is fired.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const String& EventName, const UInt8 Group, Scripting::iScript* SubScript);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Unsubscribe Methods
@@ -171,10 +146,6 @@ namespace Mezzanine
         /// @brief Unsubscribes a single subscriber from all events in this publisher.
         /// @param SubSlot The EventSubscriberSlot (and the subscriber it is holding) to be removed.
         void Unsubscribe(EventSubscriberSlot* SubSlot);
-        /// @brief Unsubscribes an entire group from all events in this publisher.
-        /// @param Group The mask for the group of subscribers to remove.
-        /// @return Returns the number of subscribers removed.
-        Whole UnsubscribeGroup(const UInt8 Group);
         /// @brief Unsubscribes all subscribers from all events in this publisher.
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll();
@@ -199,11 +170,6 @@ namespace Mezzanine
         /// @param EventName The name of the event to unsubscribe from.
         /// @param SubSlot The EventSubscriberSlot (and the subscriber it is holding) to be removed.
         void Unsubscribe(const String& EventName, EventSubscriberSlot* SubSlot);
-        /// @brief Unsubscribes an entire group from the named event.
-        /// @param EventName The name of the event to unsubscribe from.
-        /// @param Group The mask for the group of subscribers to remove.
-        /// @return Returns the number of subscribers removed.
-        Whole UnsubscribeGroup(const String& EventName, const UInt8 Group);
         /// @brief Unsubscribes all subscribers from the named Event.
         /// @param EventName The name of the event to unsubscribe from.
         /// @return Returns the number of subscribers removed.

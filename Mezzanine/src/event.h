@@ -42,7 +42,6 @@
 
 #include "eventsubscriber.h"
 #include "eventsubscriberslot.h"
-#include <map>
 
 namespace Mezzanine
 {
@@ -54,11 +53,11 @@ namespace Mezzanine
 	{
     public:
         /// @brief Basic container type for @ref EventSubscriberSlot storage by this class.
-        typedef std::multimap<UInt8,EventSubscriberSlot*>   SlotMap;
+        typedef std::vector<EventSubscriberSlot*>           SlotContainer;
         /// @brief Iterator type for @ref EventSubscriberSlot instances stored by this class.
-        typedef SlotMap::iterator                           SlotIterator;
+        typedef SlotContainer::iterator                     SlotIterator;
         /// @brief Const Iterator type for @ref EventSubscriberSlot instances stored by this class.
-        typedef SlotMap::const_iterator                     ConstSlotIterator;
+        typedef SlotContainer::const_iterator               ConstSlotIterator;
         /// @brief An std::pair type for working with stored @ref EventSubscriberSlot instances.
         typedef std::pair<UInt8,EventSubscriberSlot*>       SlotPair;
     protected:
@@ -67,7 +66,7 @@ namespace Mezzanine
         const String EventName;
         /// @internal
         /// @brief A container storing all the EventSubscriberSlot instances to subscribers.
-        SlotMap Slots;
+        SlotContainer Slots;
     public:
         /// @brief Class constructor.
         /// @param Name The name to be given to this event.
@@ -86,43 +85,22 @@ namespace Mezzanine
         // Subscribe Methods
 
         /// @brief Adds a subscriber to this event.
-        /// @param Sub The custom event subscriber.
+        /// @param Subscriber The custom event subscriber.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(EventSubscriber* Sub);
-        /// @brief Adds a subscriber to this event.
-        /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
-        /// @param Sub The custom event subscriber.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const UInt8 Group, EventSubscriber* Sub);
+        EventSubscriberSlot* Subscribe(EventSubscriber* Subscriber);
         /// @brief Subscribes a functor object to this event.
         /// @param Funct The functor to call when the event is fired.
         /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
         EventSubscriberSlot* Subscribe(FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter);
-        /// @brief Subscribes a functor object to this event.
-        /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
-        /// @param Funct The functor to call when the event is fired.
-        /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const UInt8 Group, FunctorSubscriberSlot::FunctorDefinition* Funct, Bool CleanUpAfter);
         /// @brief Subscribes a C-style function to this event.
         /// @param CFunct The C-style function to call when the event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
         EventSubscriberSlot* Subscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct);
-        /// @brief Subscribes a C-style function to this event.
-        /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
-        /// @param CFunct The C-style function to call when the event is fired.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const UInt8 Group, CFunctionSubscriberSlot::SubscriberFunction* CFunct);
         /// @brief Subscribes a script to this event.
         /// @param SubScript The subscribed script to execute when the event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
         EventSubscriberSlot* Subscribe(Scripting::iScript* SubScript);
-        /// @brief Subscribes a script to this event.
-        /// @param Group The group "mask" to add this subscriber to.  Subscribers will be called in group order.
-        /// @param SubScript The subscribed script to execute when the event is fired.
-        /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(const UInt8 Group, Scripting::iScript* SubScript);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Unsubscribe Methods
@@ -142,10 +120,6 @@ namespace Mezzanine
         /// @brief Unsubscribes a single subscriber from this event.
         /// @param SubSlot The EventSubscriberSlot (and the subscriber it is holding) to be removed.
         void Unsubscribe(EventSubscriberSlot* SubSlot);
-        /// @brief Unsubscribes an entire group from this event.
-        /// @param Group The mask for the group of subscribers to remove.
-        /// @return Returns the number of subscribers removed.
-        Whole UnsubscribeGroup(const UInt8 Group);
         /// @brief Unsubscribes all subscribers from this Event.
         /// @return Returns the number of subscribers removed.
         Whole UnsubscribeAll();
@@ -173,11 +147,6 @@ namespace Mezzanine
         /// @brief Notifies all subscribers of this event that this event is firing.
         /// @param Args The arguments and extra data related to this event.
         void _FireEvent(const EventArguments& Args);
-        /// @internal
-        /// @brief Notifies all subscribers in the specified group of this event that this event is firing.
-        /// @param Group The group of subcribers to be notified.
-        /// @param Args The arguments and extra data related to this event.
-        void _FireGroupEvent(const UInt8 Group, const EventArguments& Args);
 	};//Event
 }//Mezzanine
 

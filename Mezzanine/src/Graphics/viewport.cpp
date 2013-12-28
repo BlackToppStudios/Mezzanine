@@ -51,17 +51,17 @@ namespace Mezzanine
 {
     namespace Graphics
     {
-        Viewport::Viewport(CameraProxy* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow)
-            : Parent(ParentWindow),
-              ViewportCam(ViewportCamera)
+        Viewport::Viewport(CameraProxy* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow) :
+            Parent(ParentWindow),
+            ViewportCam(ViewportCamera)
         {
             Ogre::Camera* ViewCam = ViewportCamera ? ViewportCamera->_GetGraphicsObject() : NULL;
-            OgreViewport = Parent->_GetOgreWindowPointer()->addViewport(ViewCam,ZOrder);
+            this->OgreViewport = this->Parent->_GetOgreWindowPointer()->addViewport(ViewCam,ZOrder);
         }
 
         Viewport::~Viewport()
         {
-            Parent->_GetOgreWindowPointer()->removeViewport(OgreViewport->getZOrder());
+            this->Parent->_GetOgreWindowPointer()->removeViewport(this->OgreViewport->getZOrder());
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -79,81 +79,65 @@ namespace Mezzanine
                 ViewportCam->CameraVP = this;
         }
 
-        CameraProxy* Viewport::GetViewportCamera()
-        {
-            return ViewportCam;
-        }
+        CameraProxy* Viewport::GetViewportCamera() const
+            { return this->ViewportCam; }
 
-        GameWindow* Viewport::GetParentWindow()
+        GameWindow* Viewport::GetParentWindow() const
+            { return this->Parent; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        Integer Viewport::GetZOrder() const
+            { return OgreViewport->getZOrder(); }
+
+        Mezzanine::OrientationMode Viewport::GetOrientationMode() const
         {
-            return Parent;
+            #if OGRE_NO_VIEWPORT_ORIENTATIONMODE != 0
+            return Mezzanine::OM_Degree_0;
+            #else
+            return static_cast<Mezzanine::OrientationMode>( OgreViewport->getOrientationMode() );
+            #endif
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Viewport Metrics Management
 
-        Integer Viewport::GetZOrder() const
-        {
-            return OgreViewport->getZOrder();
-        }
-
         void Viewport::SetDimensions(const Vector2& Position, const Vector2& Size)
-        {
-            SetDimensions(Position.X,Position.Y,Size.X,Size.Y);
-        }
+            { this->SetDimensions(Position.X,Position.Y,Size.X,Size.Y); }
 
         void Viewport::SetDimensions(const Real& Left, const Real& Top, const Real& Width, const Real& Height)
-        {
-            OgreViewport->setDimensions(Left,Top,Width,Height);
-        }
+            { this->OgreViewport->setDimensions(Left,Top,Width,Height); }
 
         Real Viewport::GetLeft() const
-        {
-            return OgreViewport->getLeft();
-        }
+            { return this->OgreViewport->getLeft(); }
 
         Real Viewport::GetTop() const
-        {
-            return OgreViewport->getTop();
-        }
+            { return this->OgreViewport->getTop(); }
 
         Real Viewport::GetWidth() const
-        {
-            return OgreViewport->getWidth();
-        }
+            { return this->OgreViewport->getWidth(); }
 
         Real Viewport::GetHeight() const
-        {
-            return OgreViewport->getHeight();
-        }
+            { return this->OgreViewport->getHeight(); }
 
         Whole Viewport::GetActualLeft() const
-        {
-            return OgreViewport->getActualLeft();
-        }
+            { return this->OgreViewport->getActualLeft(); }
 
         Whole Viewport::GetActualTop() const
-        {
-            return OgreViewport->getActualTop();
-        }
+            { return this->OgreViewport->getActualTop(); }
 
         Whole Viewport::GetActualWidth() const
-        {
-            return OgreViewport->getActualWidth();
-        }
+            { return this->OgreViewport->getActualWidth(); }
 
         Whole Viewport::GetActualHeight() const
-        {
-            return OgreViewport->getActualHeight();
-        }
+            { return this->OgreViewport->getActualHeight(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
         Ogre::Viewport* Viewport::GetOgreViewport() const
-        {
-            return OgreViewport;
-        }
+            { return this->OgreViewport; }
     }//Graphics
 }//Mezzanine
 

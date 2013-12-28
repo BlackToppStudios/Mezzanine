@@ -41,12 +41,9 @@
 #define _uilistbox_cpp
 
 #include "UI/listbox.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/screen.h"
-#include "UI/caption.h"
-#include "UI/rectangle.h"
 #include "UI/scrollbar.h"
-#include "UI/viewportupdatetool.h"
 #include "Input/inputmanager.h"
 #include "Input/metacode.h"
 #include "Input/mouse.h"
@@ -58,13 +55,13 @@ namespace Mezzanine
 {
     namespace UI
     {
-        ListBox::ListBox(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle, Screen* PScreen)
-            : Widget(name,PScreen),
-              Selected(NULL),
-              AutoHideScroll(true),
-              LastScrollValue(0),
-              MaxDisplay(3),
-              SelectionsAdded(1)
+        /*ListBox::ListBox(ConstString& name, const Rect& RendRect, const UI::ScrollbarStyle& ScrollStyle, Screen* PScreen) :
+            Widget(name,PScreen),
+            Selected(NULL),
+            AutoHideScroll(true),
+            LastScrollValue(0),
+            MaxDisplay(3),
+            SelectionsAdded(1)
         {
             /// @todo Currently this class has little support for a border around the selections.
             /// Ideally when the UI system is more complete we'll be able to seemlessly move
@@ -82,32 +79,32 @@ namespace Mezzanine
             SelectionTemplate.VerticalAlign = UI::Txt_Center;
             SelectionTemplate.Priority = UI::RP_Medium;
 
-            RenderableRect ScrollRect, BoxRect;
+            Rect ScrollRect, BoxRect;
             const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            if(Rect.Relative)
+            if(RendRect.Relative)
             {
-                RelPosition = Rect.Position;
-                RelSize = Rect.Size;
+                RelPosition = RendRect.Position;
+                RelSize = RendRect.Size;
 
-                SelectionTemplate.Size = Rect.Size * WinDim;
+                SelectionTemplate.Size = RendRect.Size * WinDim;
 
-                ScrollRect.Position = Vector2((RelPosition.X + RelSize.X) - ((Rect.Size.Y * WinDim.Y) / WinDim.X),RelPosition.Y);
-                ScrollRect.Size = Vector2((Rect.Size.Y * WinDim.Y) / WinDim.X,RelSize.Y * MaxDisplay);
-                ScrollRect.Relative = Rect.Relative;
+                ScrollRect.Position = Vector2((RelPosition.X + RelSize.X) - ((RendRect.Size.Y * WinDim.Y) / WinDim.X),RelPosition.Y);
+                ScrollRect.Size = Vector2((RendRect.Size.Y * WinDim.Y) / WinDim.X,RelSize.Y * MaxDisplay);
+                ScrollRect.Relative = RendRect.Relative;
             }else{
-                RelPosition = Rect.Position / WinDim;
-                RelSize = Rect.Size / WinDim;
+                RelPosition = RendRect.Position / WinDim;
+                RelSize = RendRect.Size / WinDim;
 
-                SelectionTemplate.Size = Rect.Size;
+                SelectionTemplate.Size = RendRect.Size;
 
-                ScrollRect.Position = Vector2((Rect.Position.X + Rect.Size.X) - Rect.Size.Y,Rect.Position.Y);
-                ScrollRect.Size = Vector2(Rect.Size.Y,Rect.Size.Y * MaxDisplay);
-                ScrollRect.Relative = Rect.Relative;
+                ScrollRect.Position = Vector2((RendRect.Position.X + RendRect.Size.X) - RendRect.Size.Y,RendRect.Position.Y);
+                ScrollRect.Size = Vector2(RendRect.Size.Y,RendRect.Size.Y * MaxDisplay);
+                ScrollRect.Relative = RendRect.Relative;
             }
-            BoxRect.Position = Rect.Position;
-            BoxRect.Size.X = Rect.Size.X;
-            BoxRect.Size.Y = Rect.Size.Y * MaxDisplay;
-            BoxRect.Relative = Rect.Relative;
+            BoxRect.Position = RendRect.Position;
+            BoxRect.Size.X = RendRect.Size.X;
+            BoxRect.Size.Y = RendRect.Size.Y * MaxDisplay;
+            BoxRect.Relative = RendRect.Relative;
 
             BoxBack = ParentScreen->CreateRectangle(BoxRect);
             VertScroll = ParentScreen->CreateScrollbar(Name+"Scr",ScrollRect,ScrollStyle);
@@ -223,7 +220,7 @@ namespace Mezzanine
 
         void ListBox::UpdateImpl(bool Force)
         {
-            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredCaption)
             {
                 if(Input::BUTTON_PRESSING == State)
@@ -343,7 +340,7 @@ namespace Mezzanine
         Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
         {
             SelectionsAdded++;
-            RenderableRect SelectionRect(RelPosition,SelectionTemplate.Size / ParentScreen->GetViewportDimensions(),true);
+            Rect SelectionRect(RelPosition,SelectionTemplate.Size / ParentScreen->GetViewportDimensions(),true);
             Caption* Select = ParentScreen->CreateCaption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text);
             if(!BackgroundSprite.empty())
                 Select->SetBackgroundSprite(BackgroundSprite);
@@ -450,9 +447,9 @@ namespace Mezzanine
 
         void ListBox::UpdateDimensions()
         {
-            /*const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
-            SetArea(RelSize * WinDim);
-            SetActualPosition(RelPosition * WinDim);*/
+            //const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            //SetArea(RelSize * WinDim);
+            //SetActualPosition(RelPosition * WinDim);
 
             WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
             RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
@@ -478,7 +475,7 @@ namespace Mezzanine
         UI::Scrollbar* ListBox::GetVertScroll()
         {
             return VertScroll;
-        }
+        }//*/
     }//UI
 }//Mezzanine
 

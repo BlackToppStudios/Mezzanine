@@ -82,302 +82,338 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////
         // TextureAtlas functions
-        TextureAtlas::TextureAtlas(const String& MTAFile, const String& Group)
+
+        TextureAtlas::TextureAtlas(const String& Name, const UInt32& Width, const UInt32& Height) :
+            AtlasName(Name)
         {
             this->TAID = new TextureAtlasInternalData();
-            Load(MTAFile,Group);
-            CalculateCoordinates();
-            Create2DMaterial();
-            Create3DMaterial();
-            MarkupColours.push_back(ColourValue::White());
+            /// @todo This is just a starter code sample for proceadurally generated texture atlases.  Not ready and needs to be completed.
+            String GroupName = "UI";
+            this->TAID->TATexture = Ogre::TextureManager::getSingletonPtr()->createManual(this->AtlasName+"Texture",GroupName,Ogre::TEX_TYPE_2D,Width,Height,0,Ogre::PF_R8G8B8A8,Ogre::TU_DEFAULT);
+            this->Create2DMaterial();
+            this->Create3DMaterial();
+        }
+
+        TextureAtlas::TextureAtlas(XML::Node& AtlasNode)
+        {
+            this->TAID = new TextureAtlasInternalData();
+            // Parse and set the name
+            XML::Attribute NameAttrib = AtlasNode.GetAttribute("Name");
+            if( !NameAttrib.Empty() ) {
+                this->AtlasName = NameAttrib.AsString();
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Empty string being used to set name of Texture Atlas being parsed from XML.");
+            }
+
+            XML::Node TextureNode = AtlasNode.GetChild("Texture");
+            this->ParseTexture( TextureNode );
+            XML::Node FontsNode = AtlasNode.GetChild("Fonts");
+            this->ParseFonts( FontsNode );
+            XML::Node SpritesNode = AtlasNode.GetChild("Sprites");
+            this->ParseSprites( SpritesNode );
+
+            this->Create2DMaterial();
+            this->Create3DMaterial();
         }
 
         TextureAtlas::~TextureAtlas()
         {
-            delete TAID;
+            for( FontDataIterator FontIt = this->Fonts.begin() ; FontIt != this->Fonts.end() ; ++FontIt )
+            {
+                delete (*FontIt).second;
+            }
+            this->Fonts.clear();
+
+            for( SpriteIterator SpriteIt = this->Sprites.begin() ; SpriteIt != this->Sprites.end() ; ++SpriteIt )
+            {
+                delete (*SpriteIt).second;
+            }
+            this->Sprites.clear();
+
+            delete this->TAID;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Private & Setup Functions
 
-        void TextureAtlas::Load(const String& MTAFile, const String& Group)
+        void TextureAtlas::ParseTexture(XML::Node& AtlasTextureNode)
         {
-            Mezzanine::Resource::TextSettingsFile MTA;
-            MTA.Load(MTAFile,Group);
-            Mezzanine::Resource::TextSettingsFile::SectionIterator SecIt = MTA.GetSectionBegin();
-            Mezzanine::Resource::TextSettingsFile::SectionIterator SecEnd = MTA.GetSectionEnd();
-            String AtlasName = MTAFile.substr(0,MTAFile.find_first_of("."));
-            String SectionName;
+            XML::Attribute CurrAttrib;
+            String FileName;
+            String GroupName = "UI";
 
-            SecIt++;
-            while(SecIt != SecEnd)
+            // Get the filename
+            CurrAttrib = AtlasTextureNode.GetAttribute("TexFile");
+            if( !CurrAttrib.Empty() )
+                FileName = CurrAttrib.AsString();
+            else{ MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Empty string parsed for texture file name when parsing Texture Atlas from XML."); }
+
+            // Get the resource group
+            CurrAttrib = AtlasTextureNode.GetAttribute("TexFileGroup");
+            if( !CurrAttrib.Empty() )
+                GroupName = CurrAttrib.AsString();
+
+            // Setup the texture
+            this->TAID->TATexture = Ogre::TextureManager::getSingletonPtr()->getByName(FileName,GroupName);
+            if(this->TAID->TATexture.isNull())
             {
-                SectionName = (*SecIt).first;
-                StringTools::ToLowerCase(SectionName);
-                Mezzanine::Resource::TextSettingsFile::SettingsMap* CurrSection = (*SecIt).second;
+                this->TAID->TATexture = Ogre::TextureManager::getSingletonPtr()->load(FileName,GroupName,Ogre::TEX_TYPE_2D,0);
+            }
 
-                if(SectionName == "texture")
-                    LoadTexture(CurrSection);
-                else if(StringTools::StartsWith(SectionName,"font.",false))
-                {
-                    UInt32 Index = StringTools::ConvertToUInt32(SectionName.substr(5));
-                    GlyphData* GlyphSet = new GlyphData();
-                    Glyphs[Index] = GlyphSet;
+            this->InverseTextureSize.X = 1.0 / this->TAID->TATexture->getWidth();
+            this->InverseTextureSize.Y = 1.0 / this->TAID->TATexture->getHeight();
 
-                    LoadGlyphs(CurrSection, GlyphSet);
-                    LoadKerning(CurrSection, GlyphSet);
-                    LoadVerticalOffsets(CurrSection, GlyphSet);
-                    GlyphSet->Atlas = AtlasName;
-                }
-                else if(SectionName == "sprites")
-                    LoadSprites(CurrSection,AtlasName);
-                SecIt++;
+            // Get the white pixel location
+            CurrAttrib = AtlasTextureNode.GetAttribute("WhitePixel");
+            if( !CurrAttrib.Empty() )
+                this->WhitePixel = StringTools::ConvertToVector2( CurrAttrib.AsString() );
+
+            // Convert the white pixel location to relative
+            this->WhitePixel.X *= this->InverseTextureSize.X;
+            this->WhitePixel.Y *= this->InverseTextureSize.Y;
+        }
+
+        void TextureAtlas::ParseFonts(XML::Node& AtlasFontsNode)
+        {
+            for( XML::NodeIterator FontNode = AtlasFontsNode.begin() ; FontNode != AtlasFontsNode.end() ; ++FontNode )
+            {
+                XML::Attribute CurrAttrib;
+                Vector2 Offset(0,0);
+                FontData* Data = new FontData(this);
+
+                // Get the name
+                CurrAttrib = (*FontNode).GetAttribute("Name");
+                if( !CurrAttrib.Empty() )
+                    Data->_SetName( CurrAttrib.AsString() );
+
+                // Now that we have the name, quickly check if this is unique before we continue to parse
+                FontDataIterator FontIt = Fonts.find(Data->GetName());
+                if( FontIt == Fonts.end() ) { Fonts[Data->GetName()] = Data; }
+                else { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Duplicate name of font:\"" + Data->GetName() + "\", found in atlas:\"" + AtlasName + "\"." ); }
+
+                // Get the horizontal offset if there is any
+                CurrAttrib = (*FontNode).GetAttribute("OffsetX");
+                if( !CurrAttrib.Empty() )
+                    Offset.X = CurrAttrib.AsReal();
+
+                // Get the vertical offset if there is any
+                CurrAttrib = (*FontNode).GetAttribute("OffsetY");
+                if( !CurrAttrib.Empty() )
+                    Offset.Y = CurrAttrib.AsReal();
+
+                // Get the lineheight
+                CurrAttrib = (*FontNode).GetAttribute("LineHeight");
+                if( !CurrAttrib.Empty() )
+                    Data->_SetLineHeight( CurrAttrib.AsReal() );
+
+                // Get the spacelength
+                CurrAttrib = (*FontNode).GetAttribute("SpaceLength");
+                if( !CurrAttrib.Empty() )
+                    Data->_SetSpaceLength( CurrAttrib.AsReal() );
+
+                // Get the baseline
+                CurrAttrib = (*FontNode).GetAttribute("BaseLine");
+                if( !CurrAttrib.Empty() )
+                    Data->_SetBaseLine( CurrAttrib.AsReal() );
+
+                // Get the letterspacing
+                CurrAttrib = (*FontNode).GetAttribute("LetterSpacing");
+                if( !CurrAttrib.Empty() )
+                    Data->_SetLetterSpacing( CurrAttrib.AsReal() );
+
+                // Get the monowidth
+                /*CurrAttrib = (*FontNode).GetAttribute("MonoWidth");
+                if( !CurrAttrib.Empty() )
+                    Data->_SetMonoWidth( CurrAttrib.AsReal() );//*/
+
+                // Get the start of the range
+                /*CurrAttrib = (*FontNode).GetAttribute("RangeBegin");
+                if( !CurrAttrib.Empty() )
+                    Data->_SetRangeBegin( CurrAttrib.AsReal() );//*/
+
+                // Get the end of the range
+                /*CurrAttrib = (*FontNode).GetAttribute("RangeEnd");
+                if( !CurrAttrib.Empty() )
+                    Data->_SetRangeEnd( CurrAttrib.AsReal() );//*/
+
+                // Get the glyphs and parse them
+                XML::Node GlyphsNode = (*FontNode).GetChild("Glyphs");
+                this->ParseGlyphs( GlyphsNode, Offset, Data );
+                // Next parse the kernings for those glyphs
+                XML::Node KerningsNode = (*FontNode).GetChild("Kernings");
+                this->ParseKernings( KerningsNode, Data );
+                // Lastly parse the vertical offsets
+                XML::Node VerticalOffsetsNode = (*FontNode).GetChild("VerticalOffsets");
+                this->ParseVerticalOffsets( VerticalOffsetsNode, Data );
             }
         }
 
-        void TextureAtlas::LoadTexture(Resource::TextSettingsFile::SettingsMap* Config)
+        void TextureAtlas::ParseGlyphs(XML::Node& GlyphsNode, const Vector2& Offset, FontData* FontD)
         {
-            String Name, Data;
-            Resource::TextSettingsFile::SettingsIterator It;
-            for(It = Config->begin() ; It != Config->end() ; ++It)
+            XML::Attribute CurrAttrib;
+            Ogre::RenderSystem* rs = Ogre::Root::getSingletonPtr()->getRenderSystem();
+
+            Real TexelX = rs->getHorizontalTexelOffset();
+            Real TexelY = rs->getVerticalTexelOffset();
+
+            UInt32 ParsedGlyphID = 0;
+            Real Left = 0, Top = 0, Right = 0, Bottom = 0;
+
+            for( XML::NodeIterator GlyphIt = GlyphsNode.begin() ; GlyphIt != GlyphsNode.end() ; ++GlyphIt )
             {
-                Name = It->first;
-                Data = It->second;
+                // Get the ID
+                CurrAttrib = (*GlyphIt).GetAttribute("ID");
+                if( !CurrAttrib.Empty() ) ParsedGlyphID = CurrAttrib.AsUint();
+                else continue;
 
-                size_t Comment = Data.find_first_of('#');
-                if(Comment != String::npos)
-                    Data = Data.substr(0,Comment);
+                // Get the left position
+                CurrAttrib = (*GlyphIt).GetAttribute("PositionX");
+                if( !CurrAttrib.Empty() ) Left = (Offset.X + CurrAttrib.AsReal()) - TexelX;
+                else continue;
 
-                StringTools::ToLowerCase(Name);
+                // Get the top position
+                CurrAttrib = (*GlyphIt).GetAttribute("PositionY");
+                if( !CurrAttrib.Empty() ) Top = (Offset.Y + CurrAttrib.AsReal()) - TexelY;
+                else continue;
 
-                // file texturename ~groupname
-                // >  file myatlas.png
-                // >  file myatlas.png ~loadinggroup
-                if(Name == "file")
-                {
-                    String TextureName = Data;
-                    String GroupName = "UI";
-                    size_t GroupSplit = Data.find_first_of('~');
-                    if(GroupSplit != String::npos)
-                    {
-                        TextureName = Data.substr(0,GroupSplit);
-                        GroupName = Data.substr(GroupSplit+1);
-                        StringTools::Trim(TextureName);
-                        StringTools::Trim(GroupName);
-                    }
-                    this->TAID->TATexture = Ogre::TextureManager::getSingletonPtr()->getByName(Data,GroupName);
-                    if(this->TAID->TATexture.isNull())
-                    {
-                        this->TAID->TATexture = Ogre::TextureManager::getSingletonPtr()->load(TextureName,GroupName,Ogre::TEX_TYPE_2D,0);
-                    }
+                // Get the width
+                CurrAttrib = (*GlyphIt).GetAttribute("SizeX");
+                if( !CurrAttrib.Empty() ) Right = (Left + CurrAttrib.AsReal()) - TexelX;
+                else continue;
 
-                    InverseTextureSize.X = 1.0 / this->TAID->TATexture->getWidth();
-                    InverseTextureSize.Y = 1.0 / this->TAID->TATexture->getHeight();
+                // Get the height
+                CurrAttrib = (*GlyphIt).GetAttribute("SizeY");
+                if( !CurrAttrib.Empty() ) Bottom = (Top + CurrAttrib.AsReal()) - TexelY;
+                else continue;
 
-                    continue;
-                }
-                else if(Name == "whitepixel")
-                {
-                    WhitePixel = StringTools::ConvertToVector2(Data);
-                    WhitePixel.X *= InverseTextureSize.X;
-                    WhitePixel.Y *= InverseTextureSize.Y;
-                }
+                // If we got this far, we have enough data for a valid glyph, create and insert it
+                Glyph* NewGlyph = new Glyph(FontD);
+                NewGlyph->GlyphID = ParsedGlyphID;
+                FontD->_AddGlyph(NewGlyph);
+
+                // Convert the coordinates to relative
+                Left   *= InverseTextureSize.X;
+                Top    *= InverseTextureSize.Y;
+                Right  *= InverseTextureSize.X;
+                Bottom *= InverseTextureSize.Y;
+
+                // Assign the values to the glyph
+                NewGlyph->AtlasCoords[QC_TopLeft].SetValues(Left,Top);
+                NewGlyph->AtlasCoords[QC_TopRight].SetValues(Right,Top);
+                NewGlyph->AtlasCoords[QC_BottomRight].SetValues(Right,Bottom);
+                NewGlyph->AtlasCoords[QC_BottomLeft].SetValues(Left,Bottom);
+
+                // Get or generate the glyph advance
+                CurrAttrib = (*GlyphIt).GetAttribute("Advance");
+                if( !CurrAttrib.Empty() ) NewGlyph->GlyphAdvance = CurrAttrib.AsReal();
+                else NewGlyph->GlyphAdvance = NewGlyph->GetWidth();
             }
         }
 
-        void TextureAtlas::LoadGlyphs(Resource::TextSettingsFile::SettingsMap* Config, GlyphData* GlyphD)
+        void TextureAtlas::ParseKernings(XML::Node& KerningsNode, FontData* FontD)
         {
-            String Name, Data;
-            Resource::TextSettingsFile::SettingsIterator It;
+            XML::Attribute CurrAttrib;
+            UInt32 LeftID = 0;
+            UInt32 RightID = 0;
+            Real Kerning = 0;
 
-            CountedPtr<StringVector> StrValues;
-            Vector2 Offset;
-            for(It = Config->begin() ; It != Config->end() ; ++It)
+            for( XML::NodeIterator KerningNode = KerningsNode.begin() ; KerningNode != KerningsNode.end() ; ++KerningNode )
             {
-                Name = It->first;
-                Data = It->second;
+                // Get the left ID
+                CurrAttrib = (*KerningNode).GetAttribute("Left");
+                if( !CurrAttrib.Empty() ) LeftID = CurrAttrib.AsReal();
+                else continue;
 
-                size_t Comment = Data.find_first_of('#');
-                if(Comment != String::npos)
-                    Data = Data.substr(0, Comment);
-                StringTools::ToLowerCase(Name);
+                // Get the right ID
+                CurrAttrib = (*KerningNode).GetAttribute("Right");
+                if( !CurrAttrib.Empty() ) RightID = CurrAttrib.AsReal();
+                else continue;
 
-                // lineheight x y
-                // >  offset 0 80
-                if (Name == "offset")
-                {
-                    Offset = StringTools::ConvertToVector2(Data);
-                    continue;
-                }
-                // lineheight lineheight
-                // >  lineheight 15
-                else if (Name == "lineheight")
-                {
-                    GlyphD->LineHeight = StringTools::ConvertToReal(Data);
-                    continue;
-                }
-                // spacelength spacelength
-                // >  spacelength 3
-                else if (Name == "spacelength")
-                {
-                    GlyphD->SpaceLength = StringTools::ConvertToReal(Data);
-                    continue;
-                }
-                // spacelength spacelength
-                // >  spacelength 3
-                else if (Name == "baseline")
-                {
-                    GlyphD->Baseline = StringTools::ConvertToReal(Data);
-                    continue;
-                }
-                // monowidth width
-                // >  monowidth 3
-                else if (Name == "monowidth")
-                {
-                    GlyphD->MonoWidth = StringTools::ConvertToReal(Data);
-                    continue;
-                }
-                // range lower upper
-                // >  range 33 126
-                else if (Name == "range")
-                {
-                    Vector2 Range = StringTools::ConvertToVector2(Data);
-                    GlyphD->RangeBegin = (UInt32)Range.X;
-                    GlyphD->RangeEnd = (UInt32)Range.Y;
-                }
-                // kerning kerning
-                // >  kerning -1
-                else if(Name == "letterspacing")
-                {
-                    GlyphD->LetterSpacing = StringTools::ConvertToReal(Data);
-                }
-            }
+                // Get the kerning adjustment
+                CurrAttrib = (*KerningNode).GetAttribute("Adjust");
+                if( !CurrAttrib.Empty() ) Kerning = CurrAttrib.AsReal();
+                else continue;
 
-            for(UInt32 Index = GlyphD->RangeBegin ; Index <= GlyphD->RangeEnd ; Index++)
-            {
-                Glyph* NewGlyph = new Glyph();
-                GlyphD->Glyphs.push_back(NewGlyph);
-
-                std::stringstream GlyphStr;
-                GlyphStr << "glyph_" << Index;
-
-                It = Config->find(GlyphStr.str());
-                if(It == Config->end())
-                    continue;
-
-                StrValues = StringTools::Split((*It).second," ",5);
-
-                if(StrValues->size() < 4)
-                {
-                    continue;
-                }
-
-                NewGlyph->UVLeft    = Offset.X + StringTools::ConvertToReal( StrValues->at(0) );
-                NewGlyph->UVTop     = Offset.Y + StringTools::ConvertToReal( StrValues->at(1) );
-                NewGlyph->UVWidth   = StringTools::ConvertToReal( StrValues->at(2) );
-                NewGlyph->UVHeight  = StringTools::ConvertToReal( StrValues->at(3) );
-                NewGlyph->UVRight   = NewGlyph->UVLeft + NewGlyph->UVWidth;
-                NewGlyph->UVBottom  = NewGlyph->UVTop + NewGlyph->UVHeight;
-
-                if(StrValues->size() == 5) NewGlyph->GlyphAdvance = StringTools::ConvertToReal( StrValues->at(4) );
-                else NewGlyph->GlyphAdvance = NewGlyph->UVWidth;
-
-                NewGlyph->GlyphChar = (GlyphD->Glyphs.size() - 1) + GlyphD->RangeBegin;
+                FontD->GetGlyph(RightID)->Kernings.push_back(KerningInfo(LeftID,Kerning));
             }
         }
 
-        void TextureAtlas::LoadKerning(Resource::TextSettingsFile::SettingsMap* Config, GlyphData* GlyphD)
+        void TextureAtlas::ParseVerticalOffsets(XML::Node& VerticalOffsetsNode, FontData* FontD)
         {
-            String LeftName, Data;
-            Resource::TextSettingsFile::SettingsIterator It;
-            UInt32 LeftGlyphID;
-            UInt32 RightGlyphID;
-            Real Kern;
-            CountedPtr<StringVector> StrValues;
+            XML::Attribute CurrAttrib;
+            UInt32 GlyphID = 0;
+            Real Offset = 0;
 
-            for(It = Config->begin(); It != Config->end(); ++It)
+            for( XML::NodeIterator VerticalOffsetNode = VerticalOffsetsNode.begin() ; VerticalOffsetNode != VerticalOffsetsNode.end() ; ++VerticalOffsetNode )
             {
-                LeftName = It->first;
-                Data = It->second;
-                StringTools::ToLowerCase(LeftName);
+                // Get the glyph ID
+                CurrAttrib = (*VerticalOffsetNode).GetAttribute("GlyphID");
+                if( !CurrAttrib.Empty() ) GlyphID = CurrAttrib.AsUint();
+                else continue;
 
-                if(LeftName.substr(0,6) != "kerning_")
-                    continue;
+                // Get the offset
+                CurrAttrib = (*VerticalOffsetNode).GetAttribute("Offset");
+                if( !CurrAttrib.Empty() ) Offset = CurrAttrib.AsReal();
+                else continue;
 
-                size_t Comment = Data.find_first_of('#');
-                if(Comment != String::npos)
-                    Data = Data.substr(0,Comment);
+                FontD->GetGlyph(GlyphID)->VerticalOffset = Offset;
+            }
+        }
 
-                LeftName = LeftName.substr(8); // chop of kerning_
-                LeftGlyphID = StringTools::ConvertToUInt32(LeftName);
-                StrValues = StringTools::Split(Data," ",2);
+        void TextureAtlas::ParseSprites(XML::Node& AtlasSpritesNode)
+        {
+            XML::Attribute CurrAttrib;
+            Ogre::RenderSystem* rs = Ogre::Root::getSingletonPtr()->getRenderSystem();
 
-                if(StrValues->size() != 2)
-                {
-                    continue;
+            Real TexelX = rs->getHorizontalTexelOffset();
+            Real TexelY = rs->getVerticalTexelOffset();
+
+            String SpriteName;
+            Real Left = 0, Top = 0, Right = 0, Bottom = 0;
+
+            for( XML::NodeIterator SpriteIt = AtlasSpritesNode.begin() ; SpriteIt != AtlasSpritesNode.end() ; ++SpriteIt )
+            {
+                // Get the name
+                CurrAttrib = (*SpriteIt).GetAttribute("Name");
+                if( !CurrAttrib.Empty() ) SpriteName = CurrAttrib.AsString();
+                else continue;
+
+                // Get the left position
+                CurrAttrib = (*SpriteIt).GetAttribute("PositionX");
+                if( !CurrAttrib.Empty() ) Left = CurrAttrib.AsReal() - TexelX;
+                else continue;
+
+                // Get the top position
+                CurrAttrib = (*SpriteIt).GetAttribute("PositionY");
+                if( !CurrAttrib.Empty() ) Top = CurrAttrib.AsReal() - TexelY;
+                else continue;
+
+                // Get the width
+                CurrAttrib = (*SpriteIt).GetAttribute("SizeX");
+                if( !CurrAttrib.Empty() ) Right = (Left + CurrAttrib.AsReal()) - TexelX;
+                else continue;
+
+                // Get the height
+                CurrAttrib = (*SpriteIt).GetAttribute("SizeY");
+                if( !CurrAttrib.Empty() ) Bottom = (Top + CurrAttrib.AsReal()) - TexelY;
+                else continue;
+
+                // Convert the coordinates to relative
+                Left   *= InverseTextureSize.X;
+                Top    *= InverseTextureSize.Y;
+                Right  *= InverseTextureSize.X;
+                Bottom *= InverseTextureSize.Y;
+
+                // If we got this far, we have enough data for a valid sprite, create and insert it
+                Sprite* NewSprite = new Sprite(SpriteName,Top,Left,Bottom,Right);
+                SpriteIterator SpIt = this->Sprites.find(SpriteName);
+                if( SpIt == this->Sprites.end() ) {
+                    this->Sprites.insert(std::pair<String,Sprite*>(SpriteName,NewSprite));
+                }else{
+                    StringStream ExceptionStream;
+                    ExceptionStream << "Sprite named \"" << SpriteName << "\" already exists in Atlas: \"" << this->AtlasName << "\".";
+                    MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,ExceptionStream.str());
                 }
-
-                RightGlyphID = StringTools::ConvertToUInt32(StrValues->at(0));
-                Kern = StringTools::ConvertToReal(StrValues->at(1));
-                GlyphD->Glyphs[RightGlyphID - GlyphD->RangeBegin]->Kernings.push_back(KerningInfo(LeftGlyphID,Kern));
-            }
-        }
-
-        void TextureAtlas::LoadVerticalOffsets(Resource::TextSettingsFile::SettingsMap* Config, GlyphData* GlyphD)
-        {
-            String LeftName, Data;
-            Resource::TextSettingsFile::SettingsIterator It;
-            UInt32 GlyphID;
-            Real VerticalOffset;
-
-            for (It = Config->begin() ; It != Config->end() ; ++It)
-            {
-                LeftName = It->first;
-                Data = It->second;
-                StringTools::ToLowerCase(LeftName);
-
-                if(LeftName.substr(0,15) != "verticaloffset_")
-                    continue;
-
-                size_t Comment = Data.find_first_of('#');
-                if(Comment != String::npos)
-                    Data = Data.substr(0, Comment);
-
-                LeftName = LeftName.substr(15); // chop of VerticalOffset_
-                GlyphID = StringTools::ConvertToUInt32(LeftName);
-                VerticalOffset = StringTools::ConvertToReal(Data);
-                GlyphD->GetGlyph(GlyphID)->VerticalOffset = VerticalOffset;
-            }
-        }
-
-        void TextureAtlas::LoadSprites(Resource::TextSettingsFile::SettingsMap* Config,const String& Atlas)
-        {
-            String SpriteName, Data;
-            Resource::TextSettingsFile::SettingsIterator It;
-
-            CountedPtr<StringVector> StrValues;
-            for(It = Config->begin() ; It != Config->end() ; ++It)
-            {
-                SpriteName = It->first;
-                Data = It->second;
-
-                size_t Comment = Data.find_first_of('#');
-                if(Comment != String::npos)
-                    Data = Data.substr(0, Comment);
-
-                StrValues = StringTools::Split(Data," ",4);
-
-                if(StrValues->size() != 4)
-                    continue;
-
-                Sprite* NewSprite = new Sprite();
-
-                NewSprite->UVLeft = StringTools::ConvertToUInt32(StrValues->at(0));
-                NewSprite->UVTop = StringTools::ConvertToUInt32(StrValues->at(1));
-                NewSprite->SpriteSize.X = StringTools::ConvertToUInt32(StrValues->at(2));
-                NewSprite->SpriteSize.Y = StringTools::ConvertToUInt32(StrValues->at(3));
-                NewSprite->Atlas = Atlas;
-                Sprites[SpriteName] = NewSprite;
             }
         }
 
@@ -442,6 +478,7 @@ namespace Mezzanine
             Ogre::TextureUnitState* TexUnit = MatPass->createTextureUnitState();
             TexUnit->setTextureAddressingMode(Ogre::TextureUnitState::TAM_CLAMP);
             TexUnit->setTextureFiltering(Ogre::FO_NONE, Ogre::FO_NONE, Ogre::FO_NONE);
+            return Material2D;
         }
 
         Ogre::MaterialPtr TextureAtlas::GetOrCreate3DMasterMaterial()
@@ -477,157 +514,68 @@ namespace Mezzanine
             Ogre::TextureUnitState* TexUnit = MatPass->createTextureUnitState();
             TexUnit->setTextureAddressingMode(Ogre::TextureUnitState::TAM_CLAMP);
             TexUnit->setTextureFiltering(Ogre::FO_ANISOTROPIC, Ogre::FO_ANISOTROPIC, Ogre::FO_ANISOTROPIC);
+            return Material3D;
         }
 
-        void TextureAtlas::CalculateCoordinates()
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        const String& TextureAtlas::GetName() const
         {
-            Ogre::RenderSystem* rs = Ogre::Root::getSingletonPtr()->getRenderSystem();
-
-            Real TexelX = rs->getHorizontalTexelOffset();
-            Real TexelY = rs->getVerticalTexelOffset();
-
-            for(std::map<UInt32, GlyphData*>::iterator gd_it = Glyphs.begin(); gd_it != Glyphs.end(); gd_it++)
-            {
-                for(std::vector<Glyph*>::iterator it = (*gd_it).second->Glyphs.begin(); it != (*gd_it).second->Glyphs.end(); it++)
-                {
-                    (*it)->UVLeft        -= TexelX;
-                    (*it)->UVTop         -= TexelY;
-                    (*it)->UVRight       += TexelX;
-                    (*it)->UVBottom      += TexelY;
-
-                    (*it)->UVLeft        *= InverseTextureSize.X;
-                    (*it)->UVTop         *= InverseTextureSize.Y;
-                    (*it)->UVRight       *= InverseTextureSize.X;
-                    (*it)->UVBottom      *= InverseTextureSize.Y;
-
-                    (*it)->AtlasCoords[QC_TopLeft].X = (*it)->UVLeft;
-                    (*it)->AtlasCoords[QC_TopLeft].Y = (*it)->UVTop;
-                    (*it)->AtlasCoords[QC_TopRight].X = (*it)->UVRight;
-                    (*it)->AtlasCoords[QC_TopRight].Y = (*it)->UVTop;
-                    (*it)->AtlasCoords[QC_BottomRight].X = (*it)->UVRight;
-                    (*it)->AtlasCoords[QC_BottomRight].Y = (*it)->UVBottom;
-                    (*it)->AtlasCoords[QC_BottomLeft].X = (*it)->UVLeft;
-                    (*it)->AtlasCoords[QC_BottomLeft].Y = (*it)->UVBottom;
-
-                    (*it)->GlyphSize.X    = (*it)->UVWidth;
-                    (*it)->GlyphSize.Y    = (*it)->UVHeight;
-                }
-            }
-
-            for(std::map<String, Sprite*>::iterator it = Sprites.begin(); it != Sprites.end(); it++)
-            {
-               (*it).second->UVRight    = (*it).second->UVLeft + (*it).second->SpriteSize.X;
-               (*it).second->UVBottom   = (*it).second->UVTop  + (*it).second->SpriteSize.Y;
-
-               (*it).second->UVLeft    *= InverseTextureSize.X;
-               (*it).second->UVTop     *= InverseTextureSize.Y;
-               (*it).second->UVRight   *= InverseTextureSize.X;
-               (*it).second->UVBottom  *= InverseTextureSize.Y;
-
-               (*it).second->AtlasCoords[QC_TopLeft].X = (*it).second->UVLeft;
-               (*it).second->AtlasCoords[QC_TopLeft].Y = (*it).second->UVTop;
-               (*it).second->AtlasCoords[QC_TopRight].X = (*it).second->UVRight;
-               (*it).second->AtlasCoords[QC_TopRight].Y = (*it).second->UVTop;
-               (*it).second->AtlasCoords[QC_BottomRight].X = (*it).second->UVRight;
-               (*it).second->AtlasCoords[QC_BottomRight].Y = (*it).second->UVBottom;
-               (*it).second->AtlasCoords[QC_BottomLeft].X = (*it).second->UVLeft;
-               (*it).second->AtlasCoords[QC_BottomLeft].Y = (*it).second->UVBottom;
-            }
+            return AtlasName;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Information Gathering
 
-        GlyphData* TextureAtlas::GetGlyphData(const UInt32& ID) const
+        FontData* TextureAtlas::GetFont(const String& FontName) const
         {
-            std::map<UInt32, GlyphData*>::const_iterator it = Glyphs.find(ID);
-            if (it == Glyphs.end())
+            ConstFontDataIterator it = Fonts.find(FontName);
+            if (it == Fonts.end())
                 return 0;
             return (*it).second;
         }
 
-        std::map<UInt32, GlyphData*>& TextureAtlas::GetGlyphs()
+        TextureAtlas::FontDataContainer& TextureAtlas::GetFonts()
         {
-            return Glyphs;
+            return Fonts;
         }
 
         Sprite* TextureAtlas::GetSprite(const String& Name) const
         {
-            std::map<String, Sprite*>::const_iterator it = Sprites.find(Name);
+            ConstSpriteIterator it = Sprites.find(Name);
             if (it == Sprites.end())
-            {
-                Entresol::GetSingletonPtr()->Log("Cannot find Sprite named \"" + Name + "\".");
-                return 0;
-            }
+                return NULL;
             return (*it).second;
         }
 
-        std::map<String, Sprite*>& TextureAtlas::GetSprites()
-        {
-            return Sprites;
-        }
+        TextureAtlas::SpriteContainer& TextureAtlas::GetSprites()
+            { return Sprites; }
 
         Vector2 TextureAtlas::GetWhitePixel() const
-        {
-            return WhitePixel;
-        }
+            { return WhitePixel; }
 
         Real TextureAtlas::GetWhitePixelX() const
-        {
-            return WhitePixel.X;
-        }
+            { return WhitePixel.X; }
 
         Real TextureAtlas::GetWhitePixelY() const
-        {
-            return WhitePixel.Y;
-        }
+            { return WhitePixel.Y; }
 
         Vector2 TextureAtlas::GetTextureSize() const
-        {
-            Vector2 Vec(Real(this->TAID->TATexture->getWidth()),Real(this->TAID->TATexture->getHeight()));
-            return Vec;
-        }
+            { return Vector2( Real( this->TAID->TATexture->getWidth() ), Real( this->TAID->TATexture->getHeight() ) ); }
 
         Real TextureAtlas::GetInvTextureCoordsX() const
-        {
-            return 1.0 / Real(this->TAID->TATexture->getWidth());
-        }
+            { return 1.0 / Real(this->TAID->TATexture->getWidth()); }
 
         Real TextureAtlas::GetInvTextureCoordsY() const
-        {
-            return 1.0 / Real(this->TAID->TATexture->getHeight());
-        }
-
-        void TextureAtlas::SetMarkupColour(const UInt32& Index, const ColourValue& Colour)
-        {
-            if(Index < MarkupColours.size())
-            {
-                MarkupColours[Index] = Colour;
-            }else{
-                MarkupColours.push_back(Colour);
-            }
-        }
-
-        ColourValue TextureAtlas::GetMarkupColour(const UInt32& Index) const
-        {
-            if(Index > MarkupColours.size())
-                return ColourValue::White();
-            return MarkupColours[Index];
-        }
-
-        void TextureAtlas::ResetMarkupColours()
-        {
-            MarkupColours.clear();
-            MarkupColours.push_back(ColourValue::White());
-        }
+            { return 1.0 / Real(this->TAID->TATexture->getHeight()); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Functions
 
         Ogre::MaterialPtr TextureAtlas::_GetOrCreate2DMaterial()
         {
-            if(this->TAID->Mat2D.isNull())
-            {
+            if(this->TAID->Mat2D.isNull()) {
                 Create2DMaterial();
             }
             return this->TAID->Mat2D;
@@ -635,27 +583,20 @@ namespace Mezzanine
 
         Ogre::MaterialPtr TextureAtlas::_GetOrCreate3DMaterial()
         {
-            if(this->TAID->Mat3D.isNull())
-            {
+            if(this->TAID->Mat3D.isNull()) {
                 Create3DMaterial();
             }
             return this->TAID->Mat3D;
         }
 
         Ogre::TexturePtr TextureAtlas::_GetTexture()
-        {
-            return this->TAID->TATexture;
-        }
+            { return this->TAID->TATexture; }
 
         Ogre::Pass* TextureAtlas::_Get2DPass() const
-        {
-            return this->TAID->Pass2D;
-        }
+            { return this->TAID->Pass2D; }
 
         Ogre::Pass* TextureAtlas::_Get3DPass() const
-        {
-            return this->TAID->Pass3D;
-        }
+            { return this->TAID->Pass3D; }
     }//UI
 }//Mezzanine
 

@@ -41,21 +41,29 @@
 #define _uiuimanager_cpp
 
 #include "UI/uimanager.h"
-#include "entresol.h"
-#include "mathtool.h"
+#include "UI/textureatlashandler.h"
 #include "UI/textureatlas.h"
-#include "Graphics/cameramanager.h"
-#include "Graphics/graphicsmanager.h"
-#include "eventmanager.h"
-#include "eventuserinput.h"
-#include "resourcemanager.h"
-#include "Graphics/viewport.h"
+#include "UI/hotkeyhandler.h"
+#include "UI/actionhandler.h"
 #include "UI/screen.h"
 #include "UI/button.h"
 #include "UI/widget.h"
 #include "UI/glyph.h"
+
+// includes for the creation and destruction of the global parser
+#include "UI/defaultmarkupparser.h"
+
+#include "Graphics/cameramanager.h"
+#include "Graphics/graphicsmanager.h"
+#include "Graphics/viewport.h"
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"
+#include "eventmanager.h"
+#include "resourcemanager.h"
+
+#include "mathtool.h"
+#include "timer.h"
+#include "entresol.h"
 
 #include <Ogre.h>
 
@@ -84,30 +92,30 @@ namespace Mezzanine
         // Utility
 
         void WidgetUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-        {
-            this->TargetManager->ViewportUpdateChecks();
-            this->TargetManager->ClearButtonActivations();
-            this->TargetManager->HoverChecks();
-            this->TargetManager->HotKeyAndInputCaptureChecks();
-            this->TargetManager->WidgetUpdates();
-        }
+            { this->TargetManager->UpdateScreens(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // UIManager Methods
 
-        //template<> UIManager* Singleton<UIManager>::SingletonPtr = NULL;
-
         UIManager::UIManager() :
             HoveredWidget(NULL),
             WidgetFocus(NULL),
-            InputCapture(NULL),
-            LastWidgetSelected(NULL),
-            ButtonAutoRegister(false),
 
             WidgetUpdateWork(NULL),
-            ThreadResources(NULL)
+            ThreadResources(NULL),
+
+            ButtonAutoRegister(false),
+            MouseMoved(false)
         {
             ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
+            this->AtlasHandler = new TextureAtlasHandler();
+            this->HKHandler = new HotKeyHandler();
+            //this->ActHandler = new ActionHandler();
+
+            // Parser Work
+            MarkupParser* DefaultParser = new DefaultMarkupParser();
+            this->RegisterMarkupParser(DefaultParser->GetName(),DefaultParser);
+            this->RegisterMarkupParser("",DefaultParser);
 
             this->WidgetUpdateWork = new WidgetUpdateWorkUnit(this);
         }
@@ -115,15 +123,23 @@ namespace Mezzanine
         UIManager::UIManager(XML::Node& XMLNode) :
             HoveredWidget(NULL),
             WidgetFocus(NULL),
-            InputCapture(NULL),
-            LastWidgetSelected(NULL),
-            ButtonAutoRegister(false),
 
             WidgetUpdateWork(NULL),
-            ThreadResources(NULL)
+            ThreadResources(NULL),
+
+            ButtonAutoRegister(false),
+            MouseMoved(false)
         {
-            ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+            ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
+            this->AtlasHandler = new TextureAtlasHandler();
+            this->HKHandler = new HotKeyHandler();
+            //this->ActHandler = new ActionHandler();
+
+            // Parser Work
+            MarkupParser* DefaultParser = new DefaultMarkupParser();
+            this->RegisterMarkupParser(DefaultParser->GetName(),DefaultParser);
+            this->RegisterMarkupParser("",DefaultParser);
 
             this->WidgetUpdateWork = new WidgetUpdateWorkUnit(this);
         }
@@ -131,130 +147,126 @@ namespace Mezzanine
         UIManager::~UIManager()
         {
             this->Deinitialize();
-
-            delete WidgetUpdateWork;
-
             this->DestroyAllScreens();
+
+            delete this->WidgetUpdateWork;
         }
 
-        void UIManager::HoverChecks()
+        void UIManager::HandlePreFocusInput(const Input::MetaCode& Code)
         {
-            HoveredWidget = CheckWidgetMouseIsOver();
-            if(HoveredWidget)
-            {
-                Widget* BottomMost = HoveredWidget->GetBottomMostHoveredWidget();
-                if(Widget::W_Button == BottomMost->GetType())
-                {
-                    MouseActivationCheck(static_cast<Button*>(BottomMost));
-                }
-            }
+            if( Code.IsKeyboardEvent() )
+                this->HandlePreFocusKeyboardInput( Code );
+            else if( Code.IsMouseEvent() )
+                this->HandlePreFocusMouseInput( Code );
+            else if( Code.IsControllerEvent() )
+                this->HandlePreFocusControllerInput( Code );
+            /// @todo If other devices are added, appropriate functions should be added to this class, and called here.
         }
 
-        void UIManager::HotKeyAndInputCaptureChecks()
+        void UIManager::HandlePostFocusInput(const Input::MetaCode& Code)
         {
-            if(HotKeys.empty())
-                return;
-            std::vector<Input::InputCode> CapturedCodes;
-            std::list<EventUserInput*>* InputList = EventManager::GetSingletonPtr()->GetAllUserInputEvents();
-            Input::InputCode CurrCode;
-            for( std::list<EventUserInput*>::iterator Ilit = InputList->begin() ; Ilit != InputList->end() ; Ilit++ )
-            {
-                for( Whole X = 0 ; X < (*Ilit)->size() ; X++ )
-                {
-                    CurrCode = (*Ilit)->GetMetaCode(X).GetCode();
-                    if(LastWidgetSelected && LastWidgetSelected->IsInputCaptureWidget())
-                    {
-                        CapturedCodes.push_back(CurrCode);
-                    }else{
-                        HotKeyActivationCheck(CurrCode);
+            if( Code.IsKeyboardEvent() )
+                this->HandlePostFocusKeyboardInput( Code );
+            else if( Code.IsMouseEvent() )
+                this->HandlePostFocusMouseInput( Code );
+            else if( Code.IsControllerEvent() )
+                this->HandlePostFocusControllerInput( Code );
+            /// @todo If other devices are added, appropriate functions should be added to this class, and called here.
+        }
+
+        void UIManager::HandlePreFocusKeyboardInput(const Input::MetaCode& Code)
+        {
+
+        }
+
+        void UIManager::HandlePreFocusMouseInput(const Input::MetaCode& Code)
+        {
+            if( Code.IsMouseButton() ) {
+                if( Input::BUTTON_PRESSING == Code.GetMetaValue() ) {
+                    // Update the focus
+                    //Bool Switched = SwitchFocus(HoveredWidget);
+                    this->SwitchFocus(HoveredWidget);
+
+                    // If we got a valid focus, there is more work to be done
+                    if( this->WidgetFocus ) {
+                        // Regardless of it has changed, lock the focus
+                        if( !FocusIsLocked() ) {
+                            this->WidgetFocus->_OnFocusLocked();
+                            this->FocusLockCode = Code;
+                        }
+
+                        // If we have a new focus, inform it of the input
+                        // Only do this if we switched because if it's an old focus it already had a chance
+                        // at the input code, and we don't want to double dip.
+                        //if( Switched )
+                        //    this->WidgetFocus->_HandleInput(Code);
+                    }
+                }else if( Input::BUTTON_LIFTING == Code.GetMetaValue() ) {
+                    if( this->WidgetFocus ) {
+                        // Check the code to see if we're releasing the focus lock
+                        if( this->FocusLockCode.GetCode() == Code.GetCode() ) {
+                            this->WidgetFocus->_OnFocusUnlocked();
+                            this->FocusLockCode.SetNullValues();
+                        }
+
+                        // Pass on the input
+                        //this->WidgetFocus->_HandleInput(Code);
                     }
                 }
             }
-            if(!CapturedCodes.empty())
-                LastWidgetSelected->GetInputCaptureData()->UpdateCapturedInputs(CapturedCodes);
         }
 
-        void UIManager::WidgetUpdates()
+        void UIManager::HandlePreFocusControllerInput(const Input::MetaCode& Code)
         {
-            if(HoveredWidget)
-                HoveredWidget->Update();
-            if(HoveredWidget || WidgetFocus)
+            /// @todo There is currently nothing that the UI system as a whole needs controller inputs.
+            /// Perhaps when we implement consoles this should be expanded, maybe even sooner then that.
+        }
+
+        void UIManager::HandlePostFocusKeyboardInput(const Input::MetaCode& Code)
+        {
+
+        }
+
+        void UIManager::HandlePostFocusMouseInput(const Input::MetaCode& Code)
+        {
+            if( Code.IsMouseMotionEvent() )
             {
-                Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
-                if(Input::BUTTON_PRESSING == State)
-                {
-                    WidgetFocus = HoveredWidget;
-                }
-                else if(Input::BUTTON_DOWN == State)
-                {
-                    if(HoveredWidget != WidgetFocus && WidgetFocus)
-                        WidgetFocus->Update(true);
-                }
-                else if(Input::BUTTON_LIFTING == State)
-                {
-                    if(HoveredWidget != WidgetFocus && WidgetFocus)
-                        WidgetFocus->Update(true);
-                    else if(HoveredWidget && HoveredWidget == WidgetFocus)
-                        LastWidgetSelected = HoveredWidget;
-                    WidgetFocus = NULL;
-                }
-            }
-            else if(!HoveredWidget && !WidgetFocus)
-            {
-                Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
-                if(LastWidgetSelected && Input::BUTTON_LIFTING == State)
-                    LastWidgetSelected = NULL;
+
             }
         }
 
-        void UIManager::ClearButtonActivations()
+        void UIManager::HandlePostFocusControllerInput(const Input::MetaCode& Code)
         {
-            if(ActivatedButtons.empty())
-                return;
-            for(ButtonIterator It = ActivatedButtons.begin() ; It != ActivatedButtons.end() ; It++ )
-                (*It)->_SetActivation(false);
-            ActivatedButtons.clear();
+            /// @todo There is currently nothing that the UI system as a whole needs controller inputs.
+            /// Perhaps when we implement consoles this should be expanded, maybe even sooner then that.
         }
 
-        void UIManager::ViewportUpdateChecks()
+        bool UIManager::SwitchFocus(Widget* NewFocus)
         {
-            for( Whole x=0 ; x < Screens.size() ; x++ )
-                Screens[x]->CheckViewportSize();
-        }
-
-        void UIManager::MouseActivationCheck(Button* ToCheck)
-        {
-            if(!ToCheck)
-                return;
-
-            Input::Mouse* SysMouse = Input::InputManager::GetSingletonPtr()->GetSystemMouse();
-            const std::vector<Input::InputCode>& MouseCodes = ToCheck->GetMouseActivationButtons();
-            Input::ButtonState State = ToCheck->IsLiftActivation() ? Input::BUTTON_LIFTING : Input::BUTTON_PRESSING;
-
-            for( Whole X = 0 ; X < MouseCodes.size() ; X++ )
+            // Check if the focus is changing at all
+            if( this->WidgetFocus != NewFocus && !this->FocusIsLocked() )
             {
-                Input::InputCode Code = MouseCodes.at(X);
-                if( SysMouse->CheckButtonState(Code,State) )
-                {
-                    ToCheck->_SetActivation(true);
-                    ActivatedButtons.push_back(ToCheck);
-                }
+                // If we already have a focus, drop it
+                if( this->WidgetFocus )
+                    this->WidgetFocus->_OnFocusLost();
+
+                // Assign the new focus
+                this->WidgetFocus = NewFocus;
+
+                // If the new focus is valid, notify it of it's new status
+                if( this->WidgetFocus )
+                    this->WidgetFocus->_OnFocusGained();
+
+                // Acknowledge the focus was changed
+                return true;
             }
+            // Nothing changed
+            return false;
         }
 
-        void UIManager::HotKeyActivationCheck(const Input::InputCode& Code)
+        bool UIManager::FocusIsLocked() const
         {
-            if( Input::KEY_FIRST < Code && Input::KEY_LAST > Code )
-            {
-                std::pair<const HotKeyIterator,const HotKeyIterator> Result = HotKeys.equal_range(Code);
-                if( (*Result.first).first != Code )
-                    return;
-                for( HotKeyIterator It = Result.first ; It != Result.second ; It++ )
-                {
-                    if((*It).second->IsVisible())
-                        (*It).second->_SetActivation(true);
-                }
-            }
+            return ( Input::KEY_UNKNOWN != FocusLockCode.GetCode() );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -262,22 +274,12 @@ namespace Mezzanine
 
         void UIManager::LoadMTA(const String& Name, const String& Group)
         {
-            TextureAtlas* NewAtlas = new TextureAtlas(Name + ".mta",Group);
-            Atlases[Name] = NewAtlas;
+            this->AtlasHandler->LoadAtlasFromFile(Name,Group);
         }
 
         TextureAtlas* UIManager::GetAtlas(const String& AtlasName)
         {
-            /// @todo These NULL returns should probably be exceptions.
-            if("" == AtlasName)
-            {
-                AtlasIterator It = Atlases.begin();
-                if(It != Atlases.end()) return (*It).second;
-                else return NULL;
-            }
-            AtlasIterator It = Atlases.find(AtlasName);
-            if(It != Atlases.end()) return (*It).second;
-            else return NULL;
+            return this->AtlasHandler->GetAtlas(AtlasName);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -285,28 +287,18 @@ namespace Mezzanine
 
         Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Graphics::Viewport* WindowViewport)
         {
-            Screen* MezzScreen = new Screen(ScreenName, Atlas, WindowViewport);
-            Screens.push_back(MezzScreen);
-
-            VisibleScreenIterator It = VisibleScreens.find(WindowViewport);
-            if( VisibleScreens.end() == It )
-            {
-                VisibleScreens.insert( std::pair<Graphics::Viewport*,Screen*>(WindowViewport,MezzScreen) );
-            }else{
-                MezzScreen->Visible = false;
-            }
-
+            Screen* MezzScreen = new Screen(ScreenName,Atlas,WindowViewport,this);
+            this->Screens.push_back(MezzScreen);
             return MezzScreen;
         }
 
         Screen* UIManager::GetScreen(const String& Name)
         {
-            for( ScreenIterator it = Screens.begin() ; it != Screens.end() ; it++ )
+            for( ScreenIterator it = this->Screens.begin() ; it != this->Screens.end() ; it++ )
             {
-                if ( Name == (*it)->GetName() )
-                {
-                    Screen* Screen = (*it);
-                    return Screen;
+                if ( Name == (*it)->GetName() ) {
+                    Screen* MezzScreen = (*it);
+                    return MezzScreen;
                 }
             }
             return 0;
@@ -314,24 +306,21 @@ namespace Mezzanine
 
         Screen* UIManager::GetScreen(const Whole& Index)
         {
-            return Screens[Index];
+            return this->Screens[Index];
         }
 
         Whole UIManager::GetNumScreens()
         {
-            return Screens.size();
+            return this->Screens.size();
         }
 
         void UIManager::DestroyScreen(Screen* Screen)
         {
-            if(Screens.empty())
-                return;
-            for( ScreenIterator it = Screens.begin() ; it != Screens.end() ; it++ )
+            for( ScreenIterator it = this->Screens.begin() ; it != this->Screens.end() ; it++ )
             {
-                if( Screen == (*it) )
-                {
+                if( Screen == (*it) ) {
                     delete (*it);
-                    Screens.erase(it);
+                    this->Screens.erase(it);
                     return;
                 }
             }
@@ -339,77 +328,102 @@ namespace Mezzanine
 
         void UIManager::DestroyAllScreens()
         {
-            if(Screens.empty())
-                return;
-            for( ScreenIterator it = Screens.begin() ; it != Screens.end() ; it++ )
+            for( ScreenIterator it = this->Screens.begin() ; it != this->Screens.end() ; it++ )
             {
                 delete (*it);
             }
-            Screens.clear();
-            return;
+            this->Screens.clear();
+        }
+
+        void UIManager::ShowScreensOnViewport(Graphics::Viewport* WindowViewport)
+        {
+            for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
+            {
+                if( (*ScreenIt)->GetViewport() == WindowViewport ) {
+                    (*ScreenIt)->Show();
+                }
+            }
+        }
+
+        void UIManager::ShowAllScreens()
+        {
+            for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
+            {
+                (*ScreenIt)->Show();
+            }
+        }
+
+        void UIManager::HideScreensOnViewport(Graphics::Viewport* WindowViewport, Screen* Exclude)
+        {
+            for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
+            {
+                if( (*ScreenIt)->GetViewport() == WindowViewport ) {
+                    (*ScreenIt)->Hide();
+                }
+            }
+        }
+
+        void UIManager::HideAllScreens()
+        {
+            for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
+            {
+                (*ScreenIt)->Hide();
+            }
         }
 
         Screen* UIManager::GetVisibleScreenOnViewport(Graphics::Viewport* WindowViewport)
         {
-            VisibleScreenIterator It = VisibleScreens.find(WindowViewport);
-            if( VisibleScreens.end() != It ) return (*It).second;
-            else return NULL;
+            for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
+            {
+                if( (*ScreenIt)->GetViewport() == WindowViewport && (*ScreenIt)->IsVisible() ) {
+                    return (*ScreenIt);
+                }
+            }
+            return NULL;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // HotKey and Activation Management
 
-        void UIManager::BindHotKey(const Input::InputCode& HotKey, Button* BoundButton)
+        void UIManager::BindHotKey(const Input::MetaCode& HotKey, Button* BoundButton)
         {
-            if( Input::KEY_FIRST < HotKey && Input::KEY_LAST > HotKey )
-                HotKeys.insert(std::pair<Input::InputCode,Button*>(HotKey,BoundButton));
+            this->HKHandler->BindHotKey(HotKey,BoundButton);
         }
 
-        void UIManager::UnbindHotKey(const Input::InputCode& HotKey, Button* BoundButton)
+        void UIManager::UnbindHotKey(const Input::MetaCode& HotKey, Button* BoundButton)
         {
-            std::pair<const HotKeyIterator,const HotKeyIterator> Result = HotKeys.equal_range(HotKey);
-            for( HotKeyIterator It = Result.first ; It != Result.second ; It++ )
-            {
-                if(BoundButton == (*It).second)
-                {
-                    HotKeys.erase(It);
-                    return;
-                }
-            }
+            this->HKHandler->UnbindHotKey(HotKey,BoundButton);
         }
 
-        void UIManager::RemoveAllHotKeys()
-        {
-            HotKeys.clear();
-        }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Activation Management
 
         void UIManager::EnableButtonAutoRegister(bool Enable)
         {
-            ButtonAutoRegister = Enable;
+            this->ButtonAutoRegister = Enable;
         }
 
         bool UIManager::ButtonAutoRegisterEnabled()
         {
-            return ButtonAutoRegister;
+            return this->ButtonAutoRegister;
         }
 
-        void UIManager::AddAutoRegisterCode(Input::InputCode Code)
+        void UIManager::AddAutoRegisterCode(const Input::MetaCode& Code)
         {
-            for( CodeIterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
+            for( InputIterator It = this->AutoRegisterCodes.begin() ; It != this->AutoRegisterCodes.end() ; It++ )
             {
                 if((*It)==Code)
                     return;
             }
-            AutoRegisterCodes.push_back(Code);
+            this->AutoRegisterCodes.push_back(Code);
         }
 
-        void UIManager::RemoveAutoRegisterCode(Input::InputCode Code)
+        void UIManager::RemoveAutoRegisterCode(const Input::MetaCode& Code)
         {
-            for( CodeIterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
+            for( InputIterator It = this->AutoRegisterCodes.begin() ; It != this->AutoRegisterCodes.end() ; It++ )
             {
-                if((*It)==Code)
-                {
-                    AutoRegisterCodes.erase(It);
+                if((*It)==Code) {
+                    this->AutoRegisterCodes.erase(It);
                     return;
                 }
             }
@@ -417,101 +431,150 @@ namespace Mezzanine
 
         void UIManager::RemoveAllAutoRegisterCodes()
         {
-            AutoRegisterCodes.clear();
+            this->AutoRegisterCodes.clear();
         }
 
-        UIManager::CodeContainer* UIManager::GetAutoRegisteredCodes()
+        UIManager::InputContainer* UIManager::GetAutoRegisteredCodes()
         {
-            return &AutoRegisterCodes;
+            return &(this->AutoRegisterCodes);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // MarkupParser Management
+
+        void UIManager::RegisterMarkupParser(const String& ParserName, MarkupParser* ToAdd)
+        {
+            MarkupParserIterator MarkupIt = this->MarkupParsers.find(ParserName);
+            if( MarkupIt != this->MarkupParsers.end() ) {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"A MarkupParser with the name \"" + ParserName + "\" is already registered.");
+            }else{
+                this->MarkupParsers.insert( std::pair<String,UI::MarkupParser*>(ParserName,ToAdd) );
+            }
+        }
+
+        bool UIManager::IsMarkupParserRegistered(const String& ParserName) const
+        {
+            ConstMarkupParserIterator MarkupIt = this->MarkupParsers.find(ParserName);
+            return ( MarkupIt != this->MarkupParsers.end() );
+        }
+
+        MarkupParser* UIManager::GetMarkupParser(const String& ParserName) const
+        {
+            ConstMarkupParserIterator MarkupIt = this->MarkupParsers.find(ParserName);
+            if( MarkupIt != this->MarkupParsers.end() ) return (*MarkupIt).second;
+            else return NULL;
+        }
+
+        void UIManager::UnregisterMarkupParser(const String& ParserName)
+        {
+            MarkupParserIterator MarkupIt = this->MarkupParsers.find(ParserName);
+            if( MarkupIt != this->MarkupParsers.end() )
+                this->MarkupParsers.erase(MarkupIt);
+        }
+
+        void UIManager::UnregisterAllMarkupParsers()
+        {
+            this->MarkupParsers.clear();
+        }
+
+        void UIManager::DestroyMarkupParser(const String& ParserName)
+        {
+            MarkupParserIterator MarkupIt = this->MarkupParsers.find(ParserName);
+            if( MarkupIt != this->MarkupParsers.end() ) {
+                delete (*MarkupIt).second;
+                this->MarkupParsers.erase(MarkupIt);
+            }
+        }
+
+        void UIManager::DestroyAllMarkupParsers()
+        {
+            for( MarkupParserIterator MarkupIt = this->MarkupParsers.begin() ; MarkupIt != this->MarkupParsers.end() ; ++MarkupIt )
+            {
+                delete (*MarkupIt).second;
+            }
+            this->MarkupParsers.clear();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Fetch Methods
 
-        Widget* UIManager::GetHoveredWidget()
-        {
-            return HoveredWidget;
-        }
+        Widget* UIManager::GetHoveredWidget() const
+            { return this->HoveredWidget; }
 
-        Widget* UIManager::GetWidgetFocus()
-        {
-            return WidgetFocus;
-        }
+        Widget* UIManager::GetWidgetFocus() const
+            { return this->WidgetFocus; }
 
-        Widget* UIManager::GetWidgetCapturingInput()
-        {
-            return InputCapture;
-        }
+        TextureAtlasHandler* UIManager::GetAtlasHandler() const
+            { return this->AtlasHandler; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        void UIManager::RedrawAll(bool Force)
+        void UIManager::InjectInput(const Input::MetaCode& Code)
         {
-            for( ScreenIterator it = Screens.begin() ; it != Screens.end() ; it++ )
+            switch( Code.GetCode() )
             {
-                (*it)->_RedrawAllIndexes(Force);
+                case Input::MOUSEHORIZONTAL:
+                case Input::MOUSEVERTICAL:
+                {
+                    this->MouseMoved = true;
+                    break;
+                }
+                default:  /* Do Nothing */  break;
             }
+
+            this->InjectedInputs.push_back(Code);
         }
 
-        Widget* UIManager::CheckWidgetMouseIsOver()
+        Widget* UIManager::CheckWidgetUnderPoint(Graphics::Viewport* VP, const Vector2& Point)
         {
-            for( VisibleScreenIterator It = VisibleScreens.begin() ; It != VisibleScreens.end() ; ++It )
-            {
-                if( (*It).second )
-                {
-                    Widget* widget = (*It).second->CheckWidgetMouseIsOver();
-                    if(widget)
-                    {
-                        return widget;
-                    }
-                }
+            Screen* VisScreen = this->GetVisibleScreenOnViewport(VP);
+            if( VisScreen != NULL ) {
+                Widget* Wid = VisScreen->FindHoveredWidget(Point);
+                return Wid;
             }
             return NULL;
         }
 
-        bool UIManager::MouseIsInUISystem()
+        Bool UIManager::MouseIsInUISystem() const
         {
             return (HoveredWidget || WidgetFocus);
         }
 
-        UIManager::GlyphIndexResult UIManager::SuggestGlyphIndex(const Whole& Height, const String& Atlas)
+        UIManager::FontResult UIManager::SuggestGlyphIndex(const Whole& Height, const String& Atlas)
         {
-            TextureAtlas* TheAtlas = NULL;
-            AtlasIterator It = Atlases.find(Atlas);
-            if(It != Atlases.end()) TheAtlas = (*It).second;
-            else
+            TextureAtlas* TheAtlas = AtlasHandler->GetAtlas(Atlas);
+            if(NULL == TheAtlas)
             {
                 MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to access TextureAtlas \"" + Atlas + "\", which does not exist or is not loaded.");
             }
-            std::map<UInt32,GlyphData*>& Glyphs = TheAtlas->GetGlyphs();
-            Whole LargerMatch = 0;
-            Whole SmallerMatch = 0;
+            TextureAtlas::FontDataContainer& Fonts = TheAtlas->GetFonts();
+            String LargerMatch, SmallerMatch;
             Real LargerHeight = 0;
             Real SmallerHeight = 0;
             Real LargerMatchDiff = 1000000.0;
             Real SmallerMatchDiff = 1000000.0;
             Real RequestedHeight = (Real)Height;
 
-            for( std::map<UInt32,GlyphData*>::iterator it = Glyphs.begin() ; it != Glyphs.end() ; it++ )
+            for( TextureAtlas::FontDataIterator it = Fonts.begin() ; it != Fonts.end() ; it++ )
             {
                 Real Diff = 0.0;
-                if((*it).second->LineHeight > RequestedHeight)
+                if((*it).second->GetLineHeight() > RequestedHeight)
                 {
-                    Diff = (*it).second->LineHeight - RequestedHeight;
+                    Diff = (*it).second->GetLineHeight() - RequestedHeight;
                     if(Diff < LargerMatchDiff)
                     {
                         LargerMatch = (*it).first;
-                        LargerHeight = (*it).second->LineHeight;
+                        LargerHeight = (*it).second->GetLineHeight();
                         LargerMatchDiff = Diff;
                         continue;
                     }
                 }else{
-                    Diff = RequestedHeight - (*it).second->LineHeight;
+                    Diff = RequestedHeight - (*it).second->GetLineHeight();
                     if(Diff < SmallerMatchDiff)
                     {
                         SmallerMatch = (*it).first;
-                        SmallerHeight = (*it).second->LineHeight;
+                        SmallerHeight = (*it).second->GetLineHeight();
                         SmallerMatchDiff = Diff;
                         continue;
                     }
@@ -519,20 +582,81 @@ namespace Mezzanine
             }
 
             Real Scale = 1;
-            if(LargerMatch != 0)
+            if(!LargerMatch.empty())
             {
                 Scale = RequestedHeight / LargerHeight;
-                return GlyphIndexResult(LargerMatch,Scale);
+                return FontResult(LargerMatch,Scale);
             }else{
                 Scale = RequestedHeight / SmallerHeight;
-                return GlyphIndexResult(SmallerMatch,Scale);
+                return FontResult(SmallerMatch,Scale);
             }
+        }
+
+        void UIManager::UpdateScreens()
+        {
+            Input::Mouse* SysMouse = Input::InputManager::GetSingletonPtr()->GetSystemMouse();
+
+            // Tell all screens to check if the veiwport dimensions have changed
+            for( ScreenIterator ScIt = this->Screens.begin() ; ScIt != this->Screens.end() ; ++ScIt )
+                (*ScIt)->CheckViewportSize();
+
+            // Inject input delta's from the input system
+            const MetaCodeContainer& Inputs = Input::InputManager::GetSingletonPtr()->GetInputDeltas();
+            // InjectedInputs.insert(InjectedInputs.end(),Inputs.begin(),Inputs.end());  //Commented because we want to use "InjectInput()" so we can filter the codes.
+            for( ConstMetaCodeIterator MCIt = Inputs.begin() ; MCIt != Inputs.end() ; ++MCIt )
+                this->InjectInput( (*MCIt) );
+
+            // Get the hovered quad based on mouse position
+            // We don't care what is hovered so much if the mouse hasn't moved, or is hidden due to relative mode.
+            if( this->MouseMoved && !SysMouse->GetRelativeMode() )
+            {
+                Widget* TempWidget = this->CheckWidgetUnderPoint(SysMouse->GetHoveredViewport(),SysMouse->GetViewportPosition());
+                if( TempWidget != this->HoveredWidget )
+                {
+                    if( this->HoveredWidget ) {
+                        this->HoveredWidget->_OnMouseExit();
+                    }
+
+                    this->HoveredWidget = TempWidget;
+
+                    if( this->HoveredWidget ) {
+                        this->HoveredWidget->_OnMouseEnter();
+                        TheEntresol->Log( "New Hovered Widget Name: " + this->HoveredWidget->GetName() );
+                    }
+                }
+            }
+
+            // Check the focus to see if it's still visible.  Drop focus if it's not.
+            if( this->WidgetFocus && !this->WidgetFocus->GetVisible() )
+            {
+                if( this->FocusIsLocked() ) {
+                    this->WidgetFocus->_OnFocusUnlocked();
+                    this->FocusLockCode.SetNullValues();
+                }
+                this->WidgetFocus->_OnFocusLost();
+                this->WidgetFocus = NULL;
+            }
+
+            // Look at and process all injected inputs accordingly
+            for( InputIterator InIt = this->InjectedInputs.begin() ; InIt != this->InjectedInputs.end() ; ++InIt )
+            {
+                // Allow our pre processes to get first dibs.
+                this->HandlePreFocusInput( (*InIt) );
+
+                // Allow the focus to consume the input if it needs/wants to.
+                if( this->WidgetFocus && this->WidgetFocus->_HandleInput( (*InIt) ) )
+                    continue;
+
+                // If the focus doesn't consume the input, we pass it back to the system.
+                this->HandlePostFocusInput( (*InIt) );
+            }
+            this->MouseMoved = false;
+            this->InjectedInputs.clear();
         }
 
         void UIManager::Initialize()
         {
-            if( !this->Initialized )
-            {
+            if( !this->Initialized ) {
                 this->TheEntresol->GetScheduler().AddWorkUnitMain( this->WidgetUpdateWork, "WidgetUpdateWork" );
                 Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
                 if( InputMan )
@@ -544,8 +668,7 @@ namespace Mezzanine
 
         void UIManager::Deinitialize()
         {
-            if( this->Initialized )
-            {
+            if( this->Initialized ) {
                 this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WidgetUpdateWork );
                 this->WidgetUpdateWork->ClearDependencies();
 
@@ -568,43 +691,20 @@ namespace Mezzanine
             { return "DefaultUIManager"; }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        void UIManager::_NotifyScreenVisibility(Screen* BeingShown, bool Visible)
-        {
-            VisibleScreenIterator It = VisibleScreens.find(BeingShown->GetViewport());
-            if( VisibleScreens.end() != It )
-            {
-                if( (*It).second )
-                    (*It).second->Visible = false;
-
-                if(Visible) (*It).second = BeingShown;
-                else (*It).second = NULL;
-            }else{
-                VisibleScreens.insert( std::pair<Graphics::Viewport*,Screen*>(BeingShown->GetViewport(), ( Visible ? BeingShown : NULL ) ) );
-            }
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
         // DefaultUIManagerFactory Methods
 
         DefaultUIManagerFactory::DefaultUIManagerFactory()
-        {
-        }
+            {  }
 
         DefaultUIManagerFactory::~DefaultUIManagerFactory()
-        {
-        }
+            {  }
 
         String DefaultUIManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultUIManager";
-        }
+            { return "DefaultUIManager"; }
 
         ManagerBase* DefaultUIManagerFactory::CreateManager(NameValuePairList& Params)
         {
-            if(UIManager::SingletonValid())
-            {
+            if( UIManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return UIManager::GetSingletonPtr();
             }else return new UIManager();
@@ -612,17 +712,14 @@ namespace Mezzanine
 
         ManagerBase* DefaultUIManagerFactory::CreateManager(XML::Node& XMLNode)
         {
-            if(UIManager::SingletonValid())
-            {
+            if( UIManager::SingletonValid() ) {
                 /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
                 return UIManager::GetSingletonPtr();
             }else return new UIManager(XMLNode);
         }
 
         void DefaultUIManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-        {
-            delete ToBeDestroyed;
-        }
+            { delete ToBeDestroyed; }
     }//UI
 }//Mezzanine
 

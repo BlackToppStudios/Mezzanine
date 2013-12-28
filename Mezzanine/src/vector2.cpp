@@ -53,39 +53,33 @@
 namespace Mezzanine
 {
     Vector2::Vector2()
-    {
-        X = 0;
-        Y = 0;
-    }
+        { this->SetIdentity(); }
 
     Vector2::Vector2(const Real& xy)
-    {
-        SetValues(xy, xy);
-    }
+        { this->SetValues(xy, xy); }
 
     Vector2::Vector2(const Real& x, const Real& y)
-    {
-        SetValues(x,y);
-    }
+        { this->SetValues(x,y); }
 
     Vector2::Vector2(const Ogre::Vector2& Vec)
-    {
-        ExtractOgreVector2(Vec);
-    }
+        { this->ExtractOgreVector2(Vec); }
 
     Ogre::Vector2 Vector2::GetOgreVector2() const
     {
         Ogre::Vector2 Theirs;
-        Theirs.x=this->X;
-        Theirs.y=this->Y;
+        Theirs.x = this->X;
+        Theirs.y = this->Y;
         return Theirs;
     }
 
     void Vector2::ExtractOgreVector2(const Ogre::Vector2& Ours)
     {
-        this->X=Ours.x;
-        this->Y=Ours.y;
+        this->X = Ours.x;
+        this->Y = Ours.y;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
 
     void Vector2::SetIdentity()
     {
@@ -102,42 +96,28 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
 
-    bool Vector2::operator== (const Mezzanine::Vector2 &Vec2)
-    {
-        if ( Vec2.X == this->X && Vec2.Y == this->Y )
-            { return true; }
-        return false;
-    }
+    Bool Vector2::operator==(const Mezzanine::Vector2& Vec2) const
+        { return ( Vec2.X == this->X && Vec2.Y == this->Y ); }
 
-    bool Vector2::operator!= (const Mezzanine::Vector2 &Vec2)
-    {
-        if ( Vec2.X != this->X || Vec2.Y != this->Y )
-            { return true; }
-        return false;
-    }
+    Bool Vector2::operator!=(const Mezzanine::Vector2& Vec2) const
+        { return ( Vec2.X != this->X || Vec2.Y != this->Y ); }
 
-    bool Vector2::operator== (const Ogre::Vector2 &Vec2)
-    {
-        if ( Vec2.x == this->X && Vec2.y == this->Y )
-            { return true; }
-        return false;
-    }
+    Bool Vector2::operator==(const Ogre::Vector2& Vec2) const
+        { return ( Vec2.x == this->X && Vec2.y == this->Y ); }
 
-    bool Vector2::operator!= (const Ogre::Vector2 &Vec2)
-    {
-        if ( Vec2.x != this->X || Vec2.y != this->Y )
-            { return true; }
-        return false;
-    }
+    Bool Vector2::operator!=(const Ogre::Vector2& Vec2) const
+        { return ( Vec2.x != this->X || Vec2.y != this->Y ); }
 
-    bool Vector2::operator<= (const Mezzanine::Vector2 &Vec) const
+    Bool Vector2::operator<= (const Mezzanine::Vector2 &Vec) const
         { return ( this->X <= Vec.X && this->Y <= Vec.Y); }
-    bool Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
+
+    Bool Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
         { return ( this->X >= Vec.X && this->Y >= Vec.Y); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector2 Arithmetic with Real
-    Vector2 Vector2::operator* (const Real &scalar) const
+
+    Vector2 Vector2::operator* (const Real& scalar) const
     {
         return Vector2(
             this->X * scalar,
@@ -145,7 +125,7 @@ namespace Mezzanine
         );
     }
 
-    Vector2 Vector2::operator/ (const Real &scalar) const
+    Vector2 Vector2::operator/ (const Real& scalar) const
     {
         return Vector2(
             this->X / scalar,
@@ -155,51 +135,82 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector2 Arithmetic and assignment with Real
-    void Vector2::operator*= (const Real &scalar)
+
+    Vector2& Vector2::operator*= (const Real& scalar)
     {
         this->X *= scalar;
         this->Y *= scalar;
+        return *this;
     }
 
-    void Vector2::operator/= (const Real &scalar)
+    Vector2& Vector2::operator/= (const Real& scalar)
     {
         this->X /= scalar;
         this->Y /= scalar;
+        return *this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators
 
-    Vector2 Vector2::operator+ (const Vector2 &Vec2) const
+    Vector2 Vector2::operator+ (const Vector2& Vec2) const
     {
         Vector2 Temp(X,Y);
-        Temp.X+=Vec2.X;
-        Temp.Y+=Vec2.Y;
+        Temp.X += Vec2.X;
+        Temp.Y += Vec2.Y;
         return Temp;
     }
 
-    Vector2 Vector2::operator- (const Vector2 &Vec2) const
+    Vector2 Vector2::operator- (const Vector2& Vec2) const
     {
         Vector2 Temp(X,Y);
-        Temp.X-=Vec2.X;
-        Temp.Y-=Vec2.Y;
+        Temp.X -= Vec2.X;
+        Temp.Y -= Vec2.Y;
         return Temp;
     }
 
-    Vector2 Vector2::operator* (const Vector2 &Vec2) const
+    Vector2 Vector2::operator* (const Vector2& Vec2) const
     {
         Vector2 Temp(X,Y);
-        Temp.X*=Vec2.X;
-        Temp.Y*=Vec2.Y;
+        Temp.X *= Vec2.X;
+        Temp.Y *= Vec2.Y;
         return Temp;
     }
 
-    Vector2 Vector2::operator/ (const Vector2 &Vec2) const
+    Vector2 Vector2::operator/ (const Vector2& Vec2) const
     {
         Vector2 Temp(X,Y);
-        Temp.X/=Vec2.X;
-        Temp.Y/=Vec2.Y;
+        Temp.X /= Vec2.X;
+        Temp.Y /= Vec2.Y;
         return Temp;
+    }
+
+    Vector2& Vector2::operator+= (const Vector2& Vec2)
+    {
+        this->X += Vec2.X;
+        this->Y += Vec2.Y;
+        return *this;
+    }
+
+    Vector2& Vector2::operator-= (const Vector2& Vec2)
+    {
+        this->X -= Vec2.X;
+        this->Y -= Vec2.Y;
+        return *this;
+    }
+
+    Vector2& Vector2::operator*= (const Vector2& Vec2)
+    {
+        this->X *= Vec2.X;
+        this->Y *= Vec2.Y;
+        return *this;
+    }
+
+    Vector2& Vector2::operator/= (const Vector2& Vec2)
+    {
+        this->X /= Vec2.X;
+        this->Y /= Vec2.Y;
+        return *this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -227,7 +238,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
 
-    // Serializable
     void Vector2::ProtoSerialize(XML::Node& CurrentRoot) const
     {
         Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
@@ -249,7 +259,6 @@ namespace Mezzanine
         }
     }
 
-    // DeSerializable
     void Vector2::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
@@ -268,8 +277,7 @@ namespace Mezzanine
 
     String Vector2::SerializableName()
     { return String("Vector2"); }
-
-}
+}//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment

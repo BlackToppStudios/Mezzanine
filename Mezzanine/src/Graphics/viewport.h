@@ -41,6 +41,7 @@
 #define _graphicsviewport_h
 
 #include "vector2.h"
+#include "enumerations.h"
 
 namespace Ogre
 {
@@ -63,82 +64,95 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Viewport
         {
-            protected:
-                Ogre::Viewport* OgreViewport;
-                GameWindow* Parent;
-                CameraProxy* ViewportCam;
-            public:
-                /// @brief Class constructor.
-                /// @param ViewportCamera The CameraProxy that is to be attached to this veiwport.
-                /// @param ZOrder The render order of this viewport relative to other viewports in the game window.
-                /// @param ParentWindow The game window this viewport belongs to.
-                Viewport(CameraProxy* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow);
-                /// @brief Class destructor.
-                ~Viewport();
+        protected:
+            /// @internal
+            /// @brief A pointer to the internal viewport providing this classes functionality.
+            Ogre::Viewport* OgreViewport;
+            /// @internal
+            /// @brief A pointer to the window that created this viewport.
+            GameWindow* Parent;
+            /// @internal
+            /// @brief A pointer to the camera being used to render this viewport, or NULL if one isn't set.
+            CameraProxy* ViewportCam;
+        public:
+            /// @brief Class constructor.
+            /// @param ViewportCamera The CameraProxy that is to be attached to this veiwport.
+            /// @param ZOrder The render order of this viewport relative to other viewports in the game window.
+            /// @param ParentWindow The game window this viewport belongs to.
+            Viewport(CameraProxy* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow);
+            /// @brief Class destructor.
+            ~Viewport();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Camera and parent Management
+            ///////////////////////////////////////////////////////////////////////////////
+            // Camera and parent Management
 
-                /// @brief Sets which CameraProxy is bound to this viewport.
-                /// @param ViewportCamera Pointer to the CameraProxy to be bount to this viewport, or NULL to simply unbind a CameraProxy.
-                void SetCamera(CameraProxy* ViewportCamera);
-                /// @brief Gets the CameraProxy associated with this viewport.
-                /// @return Returns a pointer to the CameraProxy using this viewport.
-                CameraProxy* GetViewportCamera();
-                /// @brief Gets the game window this viewport belongs to.
-                /// @return Returns a pointer to the game window that created this viewport.
-                GameWindow* GetParentWindow();
+            /// @brief Sets which CameraProxy is bound to this viewport.
+            /// @param ViewportCamera Pointer to the CameraProxy to be bount to this viewport, or NULL to simply unbind a CameraProxy.
+            void SetCamera(CameraProxy* ViewportCamera);
+            /// @brief Gets the CameraProxy associated with this viewport.
+            /// @return Returns a pointer to the CameraProxy using this viewport.
+            CameraProxy* GetViewportCamera() const;
+            /// @brief Gets the game window this viewport belongs to.
+            /// @return Returns a pointer to the game window that created this viewport.
+            GameWindow* GetParentWindow() const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Viewport Metrics Management
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-                /// @brief Gets the Zorder assigned to this viewport.
-                /// @return Returns an integer that represents this viewports rendering order in it's parent GameWindow.
-                Integer GetZOrder() const;
-                /// @brief Sets the position and size of this viewport within the game window.
-                /// @param Position Vector2 of relative values(range: 0-1) representing the top left corner of the viewport.
-                /// Values are relative to the game window this viewport belongs to.
-                /// @param Size Vector2 of relative values(range: 0-1) representing the width and height of the viewport.
-                /// Values are relative to the game window this viewport belongs to.
-                void SetDimensions(const Vector2& Position, const Vector2& Size);
-                /// @brief Sets the position and size of this viewport within the game window.
-                /// @param Left A relative value(range: 0-1) representing the leftmost position of the viewport.
-                /// @param Top A relative value(range: 0-1) representing the topmost position of the viewport.
-                /// @param Width A relative value(range: 0-1) representing the width of the viewport.
-                /// @param Height A relative value(range: 0-1) representing the height of the viewport.
-                void SetDimensions(const Real& Left, const Real& Top, const Real& Width, const Real& Height);
-                /// @brief Gets the relative left position of the viewport.
-                /// @return Returns a real representing the relative left position of this veiwport.
-                Real GetLeft() const;
-                /// @brief Gets the relative top position of the viewport.
-                /// @return Returns a real representing the relative top position of this veiwport.
-                Real GetTop() const;
-                /// @brief Gets the relative width of the viewport.
-                /// @return Returns a real representing the relative width of this veiwport.
-                Real GetWidth() const;
-                /// @brief Gets the relative height of the viewport.
-                /// @return Returns a real representing the relative height of this veiwport.
-                Real GetHeight() const;
-                /// @brief Gets the left position of the viewport in pixels.
-                /// @return Returns a whole representing the left position of this veiwport in pixels.
-                Whole GetActualLeft() const;
-                /// @brief Gets the top position of the viewport in pixels.
-                /// @return Returns a whole representing the top position of this veiwport in pixels.
-                Whole GetActualTop() const;
-                /// @brief Gets the width of the viewport in pixels.
-                /// @return Returns a whole representing the width of this veiwport in pixels.
-                Whole GetActualWidth() const;
-                /// @brief Gets the height of the viewport in pixels.
-                /// @return Returns a whole representing the height of this veiwport in pixels.
-                Whole GetActualHeight() const;
+            /// @brief Gets the Zorder assigned to this viewport.
+            /// @return Returns an integer that represents this viewports rendering order in it's parent GameWindow.
+            Integer GetZOrder() const;
+            /// @brief Gets the current Orientation of the viewport.
+            /// @return Returns an enum representing the current orientation of the viewport.
+            Mezzanine::OrientationMode GetOrientationMode() const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Viewport Metrics Management
 
-                /// @internal
-                /// @brief Gets the internal Ogre Viewport.
-                /// @return Returns a pointer to the Ogre Viewport this class is based on.
-                Ogre::Viewport* GetOgreViewport() const;
+            /// @brief Sets the position and size of this viewport within the game window.
+            /// @param Position Vector2 of relative values(range: 0-1) representing the top left corner of the viewport.
+            /// Values are relative to the game window this viewport belongs to.
+            /// @param Size Vector2 of relative values(range: 0-1) representing the width and height of the viewport.
+            /// Values are relative to the game window this viewport belongs to.
+            void SetDimensions(const Vector2& Position, const Vector2& Size);
+            /// @brief Sets the position and size of this viewport within the game window.
+            /// @param Left A relative value(range: 0-1) representing the leftmost position of the viewport.
+            /// @param Top A relative value(range: 0-1) representing the topmost position of the viewport.
+            /// @param Width A relative value(range: 0-1) representing the width of the viewport.
+            /// @param Height A relative value(range: 0-1) representing the height of the viewport.
+            void SetDimensions(const Real& Left, const Real& Top, const Real& Width, const Real& Height);
+            /// @brief Gets the relative left position of the viewport.
+            /// @return Returns a real representing the relative left position of this veiwport.
+            Real GetLeft() const;
+            /// @brief Gets the relative top position of the viewport.
+            /// @return Returns a real representing the relative top position of this veiwport.
+            Real GetTop() const;
+            /// @brief Gets the relative width of the viewport.
+            /// @return Returns a real representing the relative width of this veiwport.
+            Real GetWidth() const;
+            /// @brief Gets the relative height of the viewport.
+            /// @return Returns a real representing the relative height of this veiwport.
+            Real GetHeight() const;
+            /// @brief Gets the left position of the viewport in pixels.
+            /// @return Returns a whole representing the left position of this veiwport in pixels.
+            Whole GetActualLeft() const;
+            /// @brief Gets the top position of the viewport in pixels.
+            /// @return Returns a whole representing the top position of this veiwport in pixels.
+            Whole GetActualTop() const;
+            /// @brief Gets the width of the viewport in pixels.
+            /// @return Returns a whole representing the width of this veiwport in pixels.
+            Whole GetActualWidth() const;
+            /// @brief Gets the height of the viewport in pixels.
+            /// @return Returns a whole representing the height of this veiwport in pixels.
+            Whole GetActualHeight() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Gets the internal Ogre Viewport.
+            /// @return Returns a pointer to the Ogre Viewport this class is based on.
+            Ogre::Viewport* GetOgreViewport() const;
         };//Viewport
     }//Graphics
 }//Mezzanine

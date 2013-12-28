@@ -41,17 +41,17 @@
 #define _uilistbox_h
 
 #include "colourvalue.h"
-#include "uienumerations.h"
+#include "UI/uienumerations.h"
 #include "UI/widget.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        struct TemplateParams
+        /*struct TemplateParams
         {
-            UI::TextHorizontalAlign HorizontalAlign;
-            UI::TextVerticalAlign VerticalAlign;
+            UI::LinearAlignment HorizontalAlign;
+            UI::LinearAlignment VerticalAlign;
             UI::RenderPriority Priority;
             Whole GlyphIndex;
             Whole CursorOffset;
@@ -107,13 +107,13 @@ namespace Mezzanine
             //public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the List Box.
-                /// @param Rect The Rect representing the position and size of the List Box.
+                /// @param RendRect The Rect representing the position and size of the List Box.
                 /// The size portion of this rect would be in reference to the size of a single selection.
                 /// The actual size of this widget will be a result of how many selections are currently being displayed.
                 /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar
                 /// class for more information.
                 /// @param PScreen The parent screen this List Box belongs to.
-                ListBox(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle, Screen* PScreen);
+                ListBox(ConstString& name, const Rect& RendRect, const UI::ScrollbarStyle& ScrollStyle, Screen* PScreen);
                 /// @brief Standard destructor.
                 virtual ~ListBox();
             public:
@@ -152,12 +152,12 @@ namespace Mezzanine
                 /// @details Optional parameter.
                 /// @param HorAlign The horizontal text alignment.  This defaults to UI::Middle.
                 /// @return Returns a reference to this List Box.
-                virtual ListBox& SetTemplateHorizontalAlign(const UI::TextHorizontalAlign& HorAlign);
+                virtual ListBox& SetTemplateHorizontalAlign(const UI::LinearAlignment& HorAlign);
                 /// @brief Sets the vertical alignment to be applied to all created Selections.
                 /// @details Optional parameter.
                 /// @param VertAlign The Vertical text alignment.  This defaults to UI::Center.
                 /// @return Returns a reference to this List Box.
-                virtual ListBox& SetTemplateVerticalAlign(const UI::TextVerticalAlign& VertAlign);
+                virtual ListBox& SetTemplateVerticalAlign(const UI::LinearAlignment& VertAlign);
                 /// @brief Sets the render priority to be applied to all created Selections.
                 /// @details Optional parameter.
                 /// @param Priority The priority with which to render the image.  This defaults to UI::RP_Medium.
@@ -216,7 +216,7 @@ namespace Mezzanine
                 /// @brief Gets the scrollbar used within this List Box.
                 /// @return Returns a pointer to the scrollbar of this List Box.
                 virtual UI::Scrollbar* GetVertScroll();
-        };
+        };//LineList//*/
     }//UI
 }//Mezzanine
 

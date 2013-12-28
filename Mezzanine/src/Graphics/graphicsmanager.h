@@ -119,46 +119,67 @@ namespace Mezzanine
         class MEZZ_LIB GraphicsManager: public ManagerBase, public ObjectSettingsHandler, public Singleton<GraphicsManager>
         {
         public:
-            typedef std::vector<Graphics::GameWindow*>    GameWindowContainer;
+            /// @brief Basic container type for @ref GameWindow storage by this class.
+            typedef std::vector<GameWindow*>              GameWindowContainer;
+            /// @brief Iterator type for @ref GameWindow instances stored by this class.
             typedef GameWindowContainer::iterator         GameWindowIterator;
+            /// @brief Const Iterator type for @ref GameWindow instances stored by this class.
             typedef GameWindowContainer::const_iterator   ConstGameWindowIterator;
+            /// @brief Basic container type for internal plugin storage by this class.
+            typedef std::vector<Ogre::Plugin*>            InternalPluginContainer;
+            /// @brief Basic container type for registered rendersystem type storage by this class.
+            typedef std::vector<RenderSystem>             RenderSystemTypeContainer;
         protected:
-
             /// @internal
             /// @brief The RenderWorkUnit really is an extension of the GraphicsManager, it just exists as a Functor for the sake of simplicity.
             friend class RenderWorkUnit;
+            /// @internal
+            /// @brief Track all statically linked Ogre render systems, usually only one, but could be many.
+            InternalPluginContainer RenderSystems;
+            /// @internal
+            /// @brief A listing of the types of rendersystems Types that correspond to the entry in @ref RenderSystems.
+            RenderSystemTypeContainer RenderSystemTypes;
+            /// @internal
+            /// @brief A container storing all the game windows created by this manager.
+            GameWindowContainer GameWindows;
+            /// @internal
+            /// @brief A container of strings storing all the detected supported resolutions on the current hardware.
+            StringVector SupportedResolutions;
+            /// @internal
+            /// @brief A container of strings storing all the detected names of video devices on the current hardware.
+            StringVector SupportedDevices;
+            /// @internal
+            /// @brief A struct storing the dimensions of the desktop on the current hardware.
+            WindowSettings DesktopSettings;
+            /// @internal
+            /// @brief A pointer to the hidden window storing the context and render resources.
+            GameWindow* PrimaryGameWindow;
 
             /// @internal
             /// @brief The work unit that does all the rendering.
             RenderWorkUnit* RenderWork;
-
             /// @internal
-            /// @brief Can be used for thread safe logging and other thread Specific resources
+            /// @brief Can be used for thread safe logging and other thread Specific resources.
             Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
 
             /// @internal
-            /// @brief Track all statically linked Ogre render systems, usually only one, but could be many.
-            std::vector<Ogre::Plugin*> RenderSystems;
+            /// @brief A RenderSystem enum value storing the RenderSystem type currently in use.
+            Graphics::RenderSystem CurrRenderSys;
+            /// @internal
+            /// @brief Stores whether the internal graphics subsystem has been initialized.
+            Bool OgreBeenInitialized;
 
             /// @internal
-            /// @brief A listing of the types of rendersystems Types that correspond to the entry in @ref RenderSystems .
-            std::vector<Graphics::RenderSystem> RenderSystemTypes;
-
-
-            Graphics::GameWindow* PrimaryGameWindow;
-            bool OgreBeenInitialized;
-            Graphics::RenderSystem CurrRenderSys;
-            WindowSettings DesktopSettings;
-
-            GameWindowContainer GameWindows;
-            StringVector SupportedResolutions;
-            StringVector SupportedDevices;
-
             /// @brief Construct the manager and set sane defaults.
             void Construct();
+            /// @internal
+            /// @brief Initializes the internal graphics subsystem with the currently set configuration.
             void InitOgreRenderSystem();
+            /// @copydoc ObjectSettingsHandler::GetObjectRootNodeName() const
             virtual String GetObjectRootNodeName() const;
+            /// @copydoc ObjectSettingsHandler::AppendCurrentSettings(XML::Node&)
             virtual void AppendCurrentSettings(XML::Node& SettingsRootNode);
+            /// @copydoc ObjectSettingsHandler::ApplySettingGroupImpl(ObjectSettingGroup*)
             virtual void ApplySettingGroupImpl(ObjectSettingGroup* Group);
         public:
             /// @brief Basic constructor
@@ -177,23 +198,30 @@ namespace Mezzanine
             /// @param WindowCaption The caption to be set in the window titlebar.
             /// @param Width The desired width in pixels.
             /// @param Height The desired height in pixels.
-            /// @param Flags Additional misc parameters, see Graphics::GameWindow class for more info.
-            Graphics::GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
+            /// @param Flags Additional misc parameters, see GameWindow class for more info.
+            /// @return Returns a pointer to the created window.
+            GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
             /// @brief Gets a game window by index.
-            /// @return Returns a pointer to the game window requested.
-            Graphics::GameWindow* GetGameWindow(const Whole& Index);
+            /// @param Index The index of the window to retrieve.
+            /// @return Returns a pointer to the game window at the specified index.
+            GameWindow* GetGameWindow(const Whole& Index) const;
+            /// @brief Gets a game window by it's caption text.
+            /// @note If multiple windows have the same caption, the first one found will be returned.
+            /// @param Caption The caption of the window to retrieve.
+            /// @return Returns a pointer to the game window with the specified caption, or NULL if no game windows with that caption exist.
+            GameWindow* GetGameWindow(const String& Caption) const;
             /// @brief Gets the number of game windows within this manager.
             /// @return Returns a Whole representing the number of game windows within this manager.
-            Whole GetNumGameWindows();
+            Whole GetNumGameWindows() const;
             /// @brief Destroys a created game window by index.
             /// @param WindowIndex The index of the window to be destroyed.
-            void DestroyGameWindow(Graphics::GameWindow* ToBeDestroyed);
+            void DestroyGameWindow(GameWindow* ToBeDestroyed);
             /// @brief Destroys every game window created.
             /// @param ExcludePrimary Whether or not you want to spare the primary window created.
             void DestroyAllGameWindows(bool ExcludePrimary = true);
             /// @brief Gets the primary(first) game window.
             /// @return Returns a pointer to the primary game window.
-            Graphics::GameWindow* GetPrimaryGameWindow();
+            GameWindow* GetPrimaryGameWindow();
 
             /// @brief Gets an iterator to the first GameWindow stored in this manager.
             GameWindowIterator BeginGameWindow();

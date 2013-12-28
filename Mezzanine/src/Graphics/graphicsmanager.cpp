@@ -114,20 +114,22 @@ namespace Mezzanine
         //template<> GraphicsManager* Singleton<GraphicsManager>::SingletonPtr = NULL;
 
         GraphicsManager::GraphicsManager() :
+            PrimaryGameWindow(NULL),
             RenderWork(NULL),
             ThreadResources(NULL),
-            OgreBeenInitialized(false),
-            CurrRenderSys(Graphics::RS_OpenGL2)
+            CurrRenderSys(Graphics::RS_OpenGL2),
+            OgreBeenInitialized(false)
         {
             this->Construct();
             this->AutoGenFiles = false;
         }
 
         GraphicsManager::GraphicsManager(XML::Node& XMLNode) :
+            PrimaryGameWindow(NULL),
             RenderWork(NULL),
             ThreadResources(NULL),
-            OgreBeenInitialized(false),
-            CurrRenderSys(Graphics::RS_OpenGL2)
+            CurrRenderSys(Graphics::RS_OpenGL2),
+            OgreBeenInitialized(false)
         {
             this->Construct();
 
@@ -273,7 +275,7 @@ namespace Mezzanine
                 OgreCore->initialise(false,"");
                 this->OgreBeenInitialized = true;
 
-                this->PrimaryGameWindow = new Graphics::GameWindow("Primary",1,1,Graphics::GameWindow::WF_Hidden);
+                this->PrimaryGameWindow = new GameWindow("Primary",1,1,GameWindow::WF_Hidden);
             }
         }
 
@@ -305,12 +307,12 @@ namespace Mezzanine
                 WindowConfigNode.AppendAttribute("FSAA").SetValue( StringTools::ConvertToString( (*WinIt)->GetFSAALevel() ) );
                 /// @todo Currently the maximized setting does nothing in the gamewindow.  If it gets implemented, so does this.
                 //WindowConfigNode.AppendAttribute("Maximized").SetValue( (*WinIt)-> );//
-                for( Graphics::GameWindow::ViewportIterator VPIt = (*WinIt)->BeginViewport() ; VPIt != (*WinIt)->EndViewport() ; ++VPIt )
+                for( GameWindow::ViewportIterator VPIt = (*WinIt)->BeginViewport() ; VPIt != (*WinIt)->EndViewport() ; ++VPIt )
                 {
                     XML::Node ViewportConfigNode = WindowConfigNode.AppendChild("Viewport");
-                    ViewportConfigNode.AppendAttribute("ZOrder").SetValue( (*VPIt).second->GetZOrder() );
-                    ViewportConfigNode.AppendAttribute("Position").SetValue( StringTools::ConvertToString( Vector2((*VPIt).second->GetLeft(),(*VPIt).second->GetTop()) ) );
-                    ViewportConfigNode.AppendAttribute("Size").SetValue( StringTools::ConvertToString( Vector2((*VPIt).second->GetWidth(),(*VPIt).second->GetHeight()) ) );
+                    ViewportConfigNode.AppendAttribute("ZOrder").SetValue( (*VPIt)->GetZOrder() );
+                    ViewportConfigNode.AppendAttribute("Position").SetValue( StringTools::ConvertToString( Vector2((*VPIt)->GetLeft(),(*VPIt)->GetTop()) ) );
+                    ViewportConfigNode.AppendAttribute("Size").SetValue( StringTools::ConvertToString( Vector2((*VPIt)->GetWidth(),(*VPIt)->GetHeight()) ) );
                 }
             }
         }
@@ -370,42 +372,42 @@ namespace Mezzanine
                     if(!CurrSettingValue.empty())
                     {
                         if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | Graphics::GameWindow::WF_Fullscreen);
+                            WinFlags = (WinFlags | GameWindow::WF_Fullscreen);
                     }
                     // Get hidden.
                     CurrSettingValue = (*SubSetIt)->GetSettingValue("Hidden");
                     if(!CurrSettingValue.empty())
                     {
                         if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | Graphics::GameWindow::WF_Hidden);
+                            WinFlags = (WinFlags | GameWindow::WF_Hidden);
                     }
                     // Get vsync.
                     CurrSettingValue = (*SubSetIt)->GetSettingValue("Vsync");
                     if(!CurrSettingValue.empty())
                     {
                         if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | Graphics::GameWindow::WF_VsyncEnabled);
+                            WinFlags = (WinFlags | GameWindow::WF_VsyncEnabled);
                     }
                     // Get resizable.
                     CurrSettingValue = (*SubSetIt)->GetSettingValue("Resizeable");
                     if(!CurrSettingValue.empty())
                     {
                         if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | Graphics::GameWindow::WF_Resizeable);
+                            WinFlags = (WinFlags | GameWindow::WF_Resizeable);
                     }
                     // Get maximized.
                     CurrSettingValue = (*SubSetIt)->GetSettingValue("Maximized");
                     if(!CurrSettingValue.empty())
                     {
                         if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | Graphics::GameWindow::WF_Maximized);
+                            WinFlags = (WinFlags | GameWindow::WF_Maximized);
                     }
                     // Get borderless.
                     CurrSettingValue = (*SubSetIt)->GetSettingValue("Borderless");
                     if(!CurrSettingValue.empty())
                     {
                         if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | Graphics::GameWindow::WF_Borderless);
+                            WinFlags = (WinFlags | GameWindow::WF_Borderless);
                     }
                     // Get the FSAA level
                     CurrSettingValue = (*SubSetIt)->GetSettingValue("FSAA");
@@ -414,21 +416,21 @@ namespace Mezzanine
                         switch (StringTools::ConvertToUInt32(CurrSettingValue))
                         {
                             case 2:
-                                WinFlags = (WinFlags | Graphics::GameWindow::WF_FSAA_2);
+                                WinFlags = (WinFlags | GameWindow::WF_FSAA_2);
                                 break;
                             case 4:
-                                WinFlags = (WinFlags | Graphics::GameWindow::WF_FSAA_4);
+                                WinFlags = (WinFlags | GameWindow::WF_FSAA_4);
                                 break;
                             case 8:
-                                WinFlags = (WinFlags | Graphics::GameWindow::WF_FSAA_8);
+                                WinFlags = (WinFlags | GameWindow::WF_FSAA_8);
                                 break;
                             case 16:
-                                WinFlags = (WinFlags | Graphics::GameWindow::WF_FSAA_16);
+                                WinFlags = (WinFlags | GameWindow::WF_FSAA_16);
                                 break;
                         }
                     }
                     // Finally, construct the window.
-                    Graphics::GameWindow* CurrWindow = this->CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags);
+                    GameWindow* CurrWindow = this->CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags);
                     // Set up the viewports
                     for( ObjectSettingSetContainer::SubSetIterator VPIt = (*SubSetIt)->SubSetBegin() ; VPIt != (*SubSetIt)->SubSetEnd() ; ++VPIt )
                     {
@@ -448,7 +450,7 @@ namespace Mezzanine
                             if(!CurrSettingValue.empty())
                                 Size = StringTools::ConvertToVector2( CurrSettingValue );
 
-                            Graphics::Viewport* CurrViewport = CurrWindow->CreateViewport(NULL,ZO);
+                            Viewport* CurrViewport = CurrWindow->CreateViewport(NULL,ZO);
                             CurrViewport->SetDimensions(Position.X,Position.Y,Size.X,Size.Y);
                         }// if - Viewport
                     }// for - Viewports
@@ -459,27 +461,38 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Window Management
 
-        Graphics::GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
+        GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
         {
             if( !this->OgreBeenInitialized )
                 this->InitOgreRenderSystem();
 
-            Graphics::GameWindow* NewWindow = new Graphics::GameWindow(WindowCaption,Width,Height,Flags);
+            GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags);
             this->GameWindows.push_back(NewWindow);
             return NewWindow;
         }
 
-        Graphics::GameWindow* GraphicsManager::GetGameWindow(const Whole& Index)
+        GameWindow* GraphicsManager::GetGameWindow(const Whole& Index) const
         {
             return this->GameWindows.at(Index);
         }
 
-        Whole GraphicsManager::GetNumGameWindows()
+        GameWindow* GraphicsManager::GetGameWindow(const String& Caption) const
+        {
+            for( ConstGameWindowIterator WinIt = this->GameWindows.begin() ; WinIt != this->GameWindows.end() ; ++WinIt )
+            {
+                if( (*WinIt)->GetWindowCaption() == Caption ) {
+                    return (*WinIt);
+                }
+            }
+            return NULL;
+        }
+
+        Whole GraphicsManager::GetNumGameWindows() const
         {
             return this->GameWindows.size();
         }
 
-        void GraphicsManager::DestroyGameWindow(Graphics::GameWindow* ToBeDestroyed)
+        void GraphicsManager::DestroyGameWindow(GameWindow* ToBeDestroyed)
         {
             for( GameWindowIterator it = this->GameWindows.begin() ; it != this->GameWindows.end() ; it++ )
             {
@@ -505,7 +518,7 @@ namespace Mezzanine
             }
         }
 
-        Graphics::GameWindow* GraphicsManager::GetPrimaryGameWindow()
+        GameWindow* GraphicsManager::GetPrimaryGameWindow()
         {
             return this->PrimaryGameWindow;
         }
@@ -551,13 +564,14 @@ namespace Mezzanine
         {
             switch(RenderSys)
             {
-                case Graphics::RS_DirectX9: return "Direct3D9 Rendering Subsystem"; break;
-                case Graphics::RS_DirectX11: return "Direct3D11 Rendering Subsystem"; break;
-                case Graphics::RS_OpenGL2: return "OpenGL Rendering Subsystem"; break;  /// @todo This will likely have to change when other OGL systems are implemented
-                //case Graphics::RS_OpenGL3: return ""; break;  Not yet implemented
-                //case Graphics::RS_OpenGL4: return ""; break;  Not yet implemented
-                case Graphics::RS_OpenGLES1: return "OpenGL ES 1.x Rendering Subsystem"; break;
-                case Graphics::RS_OpenGLES2: return "OpenGL ES 2.x Rendering Subsystem"; break;
+                case Graphics::RS_DirectX9:   return "Direct3D9 Rendering Subsystem";      break;
+                case Graphics::RS_DirectX11:  return "Direct3D11 Rendering Subsystem";     break;
+                case Graphics::RS_OpenGL2:    return "OpenGL Rendering Subsystem";         break;  /// @todo This will likely have to change when other OGL systems are implemented
+                //case Graphics::RS_OpenGL3:  return "";                                   break;  Not yet implemented
+                //case Graphics::RS_OpenGL4:  return "";                                   break;  Not yet implemented
+                case Graphics::RS_OpenGLES1:  return "OpenGL ES 1.x Rendering Subsystem";  break;
+                case Graphics::RS_OpenGLES2:  return "OpenGL ES 2.x Rendering Subsystem";  break;
+                default:                      return "";                                   break;
             }
             return "";
         }
@@ -566,13 +580,14 @@ namespace Mezzanine
         {
             switch(RenderSys)
             {
-                case Graphics::RS_DirectX9: return "Direct3D9"; break;
-                case Graphics::RS_DirectX11: return "Direct3D11"; break;
-                case Graphics::RS_OpenGL2: return "OpenGL"; break;  /// @todo This will likely have to change when other OGL systems are implemented
-                //case Graphics::RS_OpenGL3: return ""; break;  Not yet implemented
-                //case Graphics::RS_OpenGL4: return ""; break;  Not yet implemented
-                case Graphics::RS_OpenGLES1: return "OpenGLES1.x"; break;
-                case Graphics::RS_OpenGLES2: return "OpenGLES2.x"; break;
+                case Graphics::RS_DirectX9:   return "Direct3D9";    break;
+                case Graphics::RS_DirectX11:  return "Direct3D11";   break;
+                case Graphics::RS_OpenGL2:    return "OpenGL";       break;  /// @todo This will likely have to change when other OGL systems are implemented
+                //case Graphics::RS_OpenGL3:  return "";             break;  Not yet implemented
+                //case Graphics::RS_OpenGL4:  return "";             break;  Not yet implemented
+                case Graphics::RS_OpenGLES1:  return "OpenGLES1.x";  break;
+                case Graphics::RS_OpenGLES2:  return "OpenGLES2.x";  break;
+                default:                      return "";             break;
             }
             return "";
         }

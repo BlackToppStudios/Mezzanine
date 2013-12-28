@@ -47,9 +47,8 @@ namespace Mezzanine
 {
     namespace UI
     {
-        class ListBox;
+        /*class ListBox;
         class Button;
-        class Caption;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DropDownList
         /// @headerfile uidropdownlist.h
@@ -61,12 +60,12 @@ namespace Mezzanine
         {
             protected:
                 friend class RenderableFactory;
-                Caption* Selection;
+                Widget* Selection;
                 Button* ListToggle;
                 UI::ListBox* SelectionList;
                 bool ToggleActivated;
                 /// @brief Internal construction function.
-                void ConstructDropDownList(const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle);
+                void ConstructDropDownList(const Rect& RendRect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle);
                 /// @brief Child specific update method.
                 virtual void UpdateImpl(bool Force = false);
                 /// @brief Child specific visibility method.
@@ -76,25 +75,25 @@ namespace Mezzanine
             //public:
                 /// @brief Class constructor.
                 /// @param name The Name for the Widget.
-                /// @param Rect The renderable rect representing the position and size of this widget.
+                /// @param RendRect The renderable rect representing the position and size of this widget.
                 /// @param LineHeight The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well.
                 /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar class for more information.
                 /// @param parent The parent screen that created this widget.
-                DropDownList(const String& name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle, Screen* parent);
+                DropDownList(const String& name, const Rect& RendRect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle, Screen* parent);
                 /// @brief Class constructor.
                 /// @param name The Name for the Widget.
-                /// @param Rect The renderable rect representing the position and size of ths widget.
+                /// @param RendRect The renderable rect representing the position and size of ths widget.
                 /// @param Glyph The Glyph index to be applied to all text in this widget.  Must be valid.
                 /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar
                 /// class for more information.
                 /// @param parent The parent screen that created this widget.
-                DropDownList(const String& name, const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle, Screen* parent);
+                DropDownList(const String& name, const Rect& RendRect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~DropDownList();
             public:
                 /// @brief Manually sets a selection in the list as "selected".
                 /// @param ToBeSelected A pointer to the selection to set as "selected".
-                virtual void SetSelection(Caption* ToBeSelected);
+                virtual void SetSelection(Widget* ToBeSelected);
                 /// @brief Manually sets a selection in the list as "selected".
                 /// @param ToBeSelected A string containing the name of the selection to set as "selected".
                 virtual void SetSelection(const String& ToBeSelected);
@@ -117,15 +116,15 @@ namespace Mezzanine
                 virtual void UpdateDimensions();
                 /// @brief Gets the caption showing the current selection in this widget.
                 /// @return Returns a pointer to the caption showing the current selection.
-                virtual Caption* GetSelection();
+                virtual Widget* GetSelection();
                 /// @brief Gets the button that toggles the appearance of the listbox in this widget.
                 /// @return Returns a pointer to the button controlling the visibility of the listbox.
                 virtual Button* GetListToggle();
                 /// @brief Gets the listbox showing all the selections in this widget.
                 /// @return Returns a pointer to the listbox containing the possible choices.
-                virtual UI::ListBox* GetSelectionList();
-        };//dropdownlist
-    }//ui
+                virtual ListBox* GetSelectionList();
+        };//dropdownlist//*/
+    }//UI
 }//Mezzanine
 
 #endif

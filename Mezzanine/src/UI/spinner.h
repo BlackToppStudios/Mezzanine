@@ -40,8 +40,9 @@
 #ifndef _uispinner_h
 #define _uispinner_h
 
-#include "UI/widget.h"
-#include "uienumerations.h"
+#include "UI/pageprovider.h"
+#include "UI/widgetfactory.h"
+#include "UI/uienumerations.h"
 
 namespace Mezzanine
 {
@@ -61,8 +62,13 @@ namespace Mezzanine
         /// In the case of the together format, then half of the height is taken and that is used for
         /// both the width and height, and then they are placed on the appropriate side.
         ///////////////////////////////////////
-        class MEZZ_LIB Spinner : public Widget
+        class MEZZ_LIB Spinner : public PageProvider
         {
+            /*
+            /// @internal
+            /// @brief A pointer to the PagedContainer this scrollbar is providing page data for.
+            PagedContainer* Container;
+
             protected:
                 friend class RenderableFactory;
                 Button* Increment;
@@ -108,11 +114,11 @@ namespace Mezzanine
             //public:
                 /// @brief Class constructor.
                 /// @param name The Name for the Widget.
-                /// @param Rect The Rect representing the position and size of the widget.
+                /// @param RendRect The Rect representing the position and size of the widget.
                 /// @param SStyle The layout of buttons this widget will have.  See SpinnerStyle enum or class description for more details.
                 /// @param GlyphHeight The desired relative height of the text you want.
                 /// @param parent The parent screen that created this widget.
-                Spinner(const String& name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent);
+                Spinner(const String& name, const Rect& RendRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~Spinner();
             public:
@@ -164,8 +170,44 @@ namespace Mezzanine
                 /// @brief Gets the value display caption of this widget.
                 /// @return Returns a pointer to the value display caption.
                 virtual Caption* GetValueDisplay();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // PageProvider Methods
+
+            /// @copydoc PageProvider::GetMaxXPages() const
+            virtual Real GetMaxXPages() const;
+            /// @copydoc PageProvider::GetMaxYPages() const
+            virtual Real GetMaxYPages() const;
+
+            /// @copydoc PageProvider::GetCurrentXPage() const
+            virtual Real GetCurrentXPage() const;
+            /// @copydoc PageProvider::GetCurrentYPage() const
+            virtual Real GetCurrentYPage() const;
+
+            /// @brief Sets which axis is primary when determining page position.
+            /// @param Order Which axis should be considered first when determining the page.
+            virtual void SetOrdering(const UI::OrderingPriority Order);
+            /// @brief Gets which axis is primary when determining page position.
+            /// @return Returns a OrderingPriority representing which axis is considered primary for determining page order.
+            virtual UI::OrderingPriority GetOrdering() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc PageProvider::ProtoSerializePageData(XML::Node&) const
+            virtual void ProtoSerializePageData(XML::Node& SelfRoot) const;
+            /// @copydoc PageProvider::ProtoDeSerializePageData(const XML::Node&)
+            virtual void ProtoDeSerializePageData(const XML::Node& SelfRoot);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @copydoc PageProvider::_SetContainer(PagedContainer*)
+            virtual void _SetContainer(PagedContainer* ToUpdate);
+            /// @copydoc PageProvider::_NotifyContainerUpdated()
+            virtual void _NotifyContainerUpdated();//*/
         };//spinner
-    }//ui
+    }//UI
 }//Mezzanine
 
 #endif

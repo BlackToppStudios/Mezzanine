@@ -47,10 +47,10 @@ namespace Mezzanine
 {
     namespace UI
     {
-        class Screen;
-        class ScreenVertexData;
-        class Widget;
         class UIManager;
+        class Screen;
+        class ScreenRenderData;
+        class Widget;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Renderable
         /// @headerfile uirenderable.h
@@ -59,90 +59,121 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB Renderable
         {
-            protected:
-                friend class Widget;
-                UIManager* Manager;
-                Screen* ParentScreen;
-                Widget* ParentWidget;
-                bool Dirty;
-                bool Visible;
-                UInt16 ZOrder;
-                UI::RenderPriority Priority;
-                Vector2 RelPosition;
-                Vector2 RelSize;
-                String Name;
-            //public:
-                /// @brief Class constructor.
-                /// @param name The name to be given to this renderable.
-                /// @param Parent The parent screen that created this renderable.
-                Renderable(const String& name, Screen* Parent);
-                /// @brief Class destructor.
-                virtual ~Renderable();
-            public:
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility Methods
+        public:
+            /// @enum RenderableType
+            /// @brief A small enum to describe the type of renderable this is.
+            enum RenderableType
+            {
+                RT_LineList,
+                RT_Screen,
+                RT_Widget
+            };
+        protected:
+            friend class Widget;
+            /// @internal
+            /// @brief A pointer to the Screen that created this Renderable.
+            Screen* ParentScreen;
+            /// @internal
+            /// @brief Stores whether this Renderable is to be rendered (also dependent on parent visibility).
+            Bool Visible;
+            /// @internal
+            /// @brief Stores whether this Renderables vertices need to be regenerated.
+            Bool Dirty;
+            /// @internal
+            /// @brief The unique name of this Renderable.
+            String Name;
+            /// @internal
+            /// @brief Implementation method for serializing additional sets of data.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
+            /// @internal
+            /// @brief Implementation method for deseriailizing additional sets of data.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
+        //public:
+            /// @brief Blank constructor.
+            /// @note This is primarily useful for (and used as) a basic constructor suitable for XML deserialization post-construction.
+            /// @param Parent The parent screen that created this renderable.
+            Renderable(Screen* Parent);
+            /// @brief Class constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param Parent The parent screen that created this renderable.
+            Renderable(const String& RendName, Screen* Parent);
+            /// @brief Class destructor.
+            virtual ~Renderable();
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
 
-                /// @brief Gets the name of this renderable.
-                /// @return Returns a string containing the name of this renderable.
-                virtual ConstString& GetName() const;
-                /// @brief Gets the currently set ZOrder of this renderable with it's parent.
-                /// @details A renderable without a parent yet will have the default ZOrder of 0, which is a valid ZOrder when it gains a parent.
-                /// In these cases it is recommended to check to see if this renderable has a parent.
-                /// @return Returns a UInt16 representing this renderables ZOrder.
-                virtual const UInt16& GetZOrder() const;
-                /// @brief Updates the dimensions of this renderable to match those of the new screen size.
-                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                virtual void UpdateDimensions() = 0;
+            /// @brief Gets the name of this renderable.
+            /// @return Returns a string containing the name of this renderable.
+            const String& GetName() const;
+            /// @brief Gets the type of renderable this is.
+            /// @return Returns a RenderableType enum value coressponding the type of renderable this is.
+            virtual RenderableType GetRenderableType() const = 0;
+            /// @brief Gets the parent screen of this renderable.
+            /// @return Returns a pointer to the screen this renderable belongs to.
+            Screen* GetScreen() const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Visibility Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Visibility Methods
 
-                /// @brief Sets the visibility of this renderable.
-                /// @param visible Bool determining whether or not this renderable should be visible.
-                virtual void SetVisible(bool visible) = 0;
-                /// @brief Gets the visibility setting of this renderable.
-                /// @return Returns a bool that is the current visibility setting of this renderable.
-                virtual bool GetVisible() const = 0;
-                /// @brief Gets whether or not this renderable is being drawn.
-                /// @details This function will check the visibility of all parent objects to see if it is being
-                /// drawn.  This will not tell you whether or not this renderable has it's own visibility setting
-                /// enabled.  For that see: GetVisible().
-                /// @return Returns a bool representing the visibility of this renderable.
-                virtual bool IsVisible() const = 0;
-                /// @brief Forces this renderable to be shown.
-                virtual void Show() = 0;
-                /// @brief Forces this renderable to hide.
-                virtual void Hide() = 0;
+            /// @brief Sets the visibility of this renderable.
+            /// @param CanSee Bool determining whether or not this renderable should be visible.
+            virtual void SetVisible(Bool CanSee) = 0;
+            /// @brief Gets the visibility setting of this renderable.
+            /// @return Returns a bool that is the current visibility setting of this renderable.
+            virtual Bool GetVisible() const = 0;
+            /// @brief Gets whether or not this renderable is being drawn.
+            /// @details This function will check the visibility of all parent objects to see if it is being
+            /// drawn.  This will not tell you whether or not this renderable has it's own visibility setting
+            /// enabled.  For that see: GetVisible().
+            /// @return Returns a bool representing the visibility of this renderable.
+            virtual Bool IsVisible() const = 0;
+            /// @brief Forces this renderable to be shown.
+            virtual void Show() = 0;
+            /// @brief Forces this renderable to hide.
+            virtual void Hide() = 0;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Render Priority Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
 
-                /// @brief Sets the priority this renderable should be rendered with.
-                /// @details The default value for this is Medium.
-                /// @param Priority The priority level to be used when rendering this renderable.
-                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-                /// @brief Gets the priority this renderable should be rendered with.
-                /// @return Returns an enum value representing this renderables priority level.
-                virtual UI::RenderPriority GetRenderPriority() const;
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that this renderable should be appended to.
+            virtual void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @brief Convert the properties of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
-                /// @internal
-                /// @brief Ssts the ZOrder value for this renderable.
-                /// @warning Under no circumstances would any user need to call this method themselves.  Doing so can damage how things are rendered.
-                /// @param Zorder The ZOrder this renderable has among the renderables belonging to it's parent.
-                virtual void _SetZOrder(const UInt16& Zorder);
-                /// @internal
-                /// @brief Marks this renderable as well as all parent objects as dirty.
-                virtual void _MarkDirty() = 0;
-                /// @internal
-                /// @brief Regenerates the verticies in this renderable.
-                virtual void _Redraw() = 0;
-                /// @internal
-                /// @brief Appends the vertices of this renderable to another vector.
-                /// @param Vertices The vector of vertex's to append to.
-                virtual void _AppendVertices(ScreenVertexData& Vertices) = 0;
+            /// @brief Gets the most derived serializable name of this Renderable.
+            /// @note When creating a new Renderable class verify this method has a valid return for it in order for serialization to work properly.
+            /// @return Returns the name of the XML tag from the most derived class of "this".
+            virtual String GetDerivedSerializableName() const;
+            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Gets whether or not this renderable is dirty.
+            /// @return Returns true if this renderable is dirty, false otherwise.
+            bool _IsDirty() const;
+            /// @internal
+            /// @brief Marks this renderable as dirty, and informs other renderables if needed.
+            virtual void _MarkDirty() = 0;
+            /// @internal
+            /// @brief Appends the vertices of this renderable to another vector.
+            /// @param RenderData The vector of vertex's to append to.
+            virtual void _AppendRenderData(ScreenRenderData& RenderData) = 0;
         };//Renderable
     }//UI
 }//Mezzanine

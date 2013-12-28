@@ -42,9 +42,8 @@
 
 #include "UI/tabset.h"
 #include "UI/screen.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/button.h"
-#include "UI/caption.h"
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"
 
@@ -52,10 +51,10 @@ namespace Mezzanine
 {
     namespace UI
     {
-        TabSet::TabSet(const String& name, const RenderableRect& SetRect, Screen* parent)
-            : Widget(name,parent),
-              SetsAdded(0),
-              VisibleSet(NULL)
+        /*TabSet::TabSet(const String& name, const Rect& SetRect, Screen* parent) :
+            Widget(name,parent),
+            SetsAdded(0),
+            VisibleSet(NULL)
         {
             Type = Widget::W_TabSet;
             TemplateSetRect.Relative = false;
@@ -80,7 +79,7 @@ namespace Mezzanine
 
         void TabSet::UpdateImpl(bool Force)
         {
-            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
                 if(Input::BUTTON_PRESSING == State)
@@ -178,7 +177,7 @@ namespace Mezzanine
             }
         }
 
-        RenderableSetData* TabSet::CreateRenderableSet(const String& Name, const RenderableRect& AccessorRect, const Real& GlyphHeight, const String& Text)
+        RenderableSetData* TabSet::CreateRenderableSet(const String& Name, const Rect& AccessorRect, const Real& GlyphHeight, const String& Text)
         {
             const Vector2& WinDim = ParentScreen->GetViewportDimensions();
 
@@ -301,8 +300,8 @@ namespace Mezzanine
             HoveredSubWidget = NULL;
             VisibleSet = NULL;
             SubRenderables.clear();
-        }
-    }//ui
+        }//*/
+    }//UI
 }//Mezzanine
 
 #endif

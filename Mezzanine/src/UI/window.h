@@ -40,19 +40,20 @@
 #ifndef _uiwindow_h
 #define _uiwindow_h
 
-#include "UI/renderablecontainerwidget.h"
+#include "UI/widget.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
+        /*
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Window
         /// @headerfile uiwindow.h
         /// @brief This is a container widget capable of holding any other widget.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB Window : public EnclosedRenderableContainerWidget
+        class MEZZ_LIB Window : public Widget
         {
             protected:
                 friend class ExtendedRenderableFactory;
@@ -69,7 +70,7 @@ namespace Mezzanine
                     RM_Left,
                     RM_Right,
                     RM_Top,
-                    RM_Bottom
+                    RM_Bottom,
                 };
                 Rectangle* WindowBack;
                 //Caption* WindowTitle;
@@ -86,9 +87,9 @@ namespace Mezzanine
             //public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the window.
-                /// @param Rect The Rect representing the position and size of the window.
+                /// @param RendRect The Rect representing the position and size of the window.
                 /// @param PScreen The parent screen this window belongs to.
-                Window(ConstString& name, const RenderableRect& Rect, Screen* PScreen);
+                Window(ConstString& name, const Rect& RendRect, Screen* PScreen);
                 /// @brief Standard destructor.
                 virtual ~Window();
             public:
@@ -112,7 +113,7 @@ namespace Mezzanine
                 /// @brief Gets the background object of this window.
                 /// @return Returns a pointer to the rectangle that is the background for this window.
                 virtual Rectangle* GetWindowBack();
-        };//window
+        };//Window//*/
     }//UI
 }//Mezzanine
 

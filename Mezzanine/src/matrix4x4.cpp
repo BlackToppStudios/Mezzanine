@@ -42,6 +42,7 @@
 
 #include "matrix4x4.h"
 #include "mathtool.h"
+#include "serialization.h"
 #include "entresol.h"
 
 #include <OgreMatrix3.h>
@@ -49,36 +50,24 @@
 
 namespace Mezzanine
 {
-    Matrix4x4::Matrix4x4()
-    {
-        SetIdentity();
-    }
-
-    Matrix4x4::~Matrix4x4()
-    {
-    }
-
     ///////////////////////////////////////////////////////////////////////////////
-    // Additional Constructors
+    // Construction and Destruction
+
+    Matrix4x4::Matrix4x4()
+        { this->SetIdentity(); }
 
     Matrix4x4::Matrix4x4(const Real& XX, const Real& XY, const Real& XZ, const Real& XW, const Real& YX, const Real& YY, const Real& YZ, const Real& YW,
                          const Real& ZX, const Real& ZY, const Real& ZZ, const Real& ZW, const Real& WX, const Real& WY, const Real& WZ, const Real& WW)
-    {
-        SetValues(XX,XY,XZ,XW,
-                  YX,YY,YZ,YW,
-                  ZX,ZY,ZZ,ZW,
-                  WX,WY,WZ,WW);
-    }
+        { this->SetValues(XX,XY,XZ,XW,YX,YY,YZ,YW,ZX,ZY,ZZ,ZW,WX,WY,WZ,WW); }
 
     Matrix4x4::Matrix4x4(const Ogre::Matrix4& Mat)
-    {
-        ExtractOgreMatrix4x4(Mat);
-    }
+        { this->ExtractOgreMatrix4x4(Mat); }
 
     Matrix4x4::Matrix4x4(const Vector3& Position, const Vector3& Scale, const Quaternion& Rotation)
-    {
-        SetTransform(Position,Scale,Rotation);
-    }
+        { this->SetTransform(Position,Scale,Rotation); }
+
+    Matrix4x4::~Matrix4x4()
+        {  }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Set From Other Data Functions
@@ -86,37 +75,37 @@ namespace Mezzanine
     void Matrix4x4::SetValues(const Real& XX, const Real& XY, const Real& XZ, const Real& XW, const Real& YX, const Real& YY, const Real& YZ, const Real& YW,
                               const Real& ZX, const Real& ZY, const Real& ZZ, const Real& ZW, const Real& WX, const Real& WY, const Real& WZ, const Real& WW)
     {
-        Matrix[0][0] = XX; Matrix[0][1] = XY; Matrix[0][2] = XZ; Matrix[0][3] = XW;
-        Matrix[1][0] = YX; Matrix[1][1] = YY; Matrix[1][2] = YZ; Matrix[1][3] = YW;
-        Matrix[2][0] = ZX; Matrix[2][1] = ZY; Matrix[2][2] = ZZ; Matrix[2][3] = ZW;
-        Matrix[3][0] = WX; Matrix[3][1] = WY; Matrix[3][2] = WZ; Matrix[3][3] = WW;
+        this->Matrix[0][0] = XX; this->Matrix[0][1] = XY; this->Matrix[0][2] = XZ; this->Matrix[0][3] = XW;
+        this->Matrix[1][0] = YX; this->Matrix[1][1] = YY; this->Matrix[1][2] = YZ; this->Matrix[1][3] = YW;
+        this->Matrix[2][0] = ZX; this->Matrix[2][1] = ZY; this->Matrix[2][2] = ZZ; this->Matrix[2][3] = ZW;
+        this->Matrix[3][0] = WX; this->Matrix[3][1] = WY; this->Matrix[3][2] = WZ; this->Matrix[3][3] = WW;
     }
 
     void Matrix4x4::SetTransform(const Vector3& Position, const Vector3& Scale, const Quaternion& Rotation)
     {
         Matrix3x3 Mat3x3(Rotation);
 
-        Matrix[0][0] = Scale.X * Mat3x3.Matrix[0][0]; Matrix[0][1] = Scale.Y * Mat3x3.Matrix[0][1]; Matrix[0][2] = Scale.Z * Mat3x3.Matrix[0][2]; Matrix[0][3] = Position.X;
-        Matrix[1][0] = Scale.X * Mat3x3.Matrix[1][0]; Matrix[1][1] = Scale.Y * Mat3x3.Matrix[1][1]; Matrix[1][2] = Scale.Z * Mat3x3.Matrix[1][2]; Matrix[1][3] = Position.Y;
-        Matrix[2][0] = Scale.X * Mat3x3.Matrix[2][0]; Matrix[2][1] = Scale.Y * Mat3x3.Matrix[2][1]; Matrix[2][2] = Scale.Z * Mat3x3.Matrix[2][2]; Matrix[2][3] = Position.Z;
+        this->Matrix[0][0] = Scale.X * Mat3x3.Matrix[0][0]; this->Matrix[0][1] = Scale.Y * Mat3x3.Matrix[0][1]; this->Matrix[0][2] = Scale.Z * Mat3x3.Matrix[0][2]; this->Matrix[0][3] = Position.X;
+        this->Matrix[1][0] = Scale.X * Mat3x3.Matrix[1][0]; this->Matrix[1][1] = Scale.Y * Mat3x3.Matrix[1][1]; this->Matrix[1][2] = Scale.Z * Mat3x3.Matrix[1][2]; this->Matrix[1][3] = Position.Y;
+        this->Matrix[2][0] = Scale.X * Mat3x3.Matrix[2][0]; this->Matrix[2][1] = Scale.Y * Mat3x3.Matrix[2][1]; this->Matrix[2][2] = Scale.Z * Mat3x3.Matrix[2][2]; this->Matrix[2][3] = Position.Z;
 
-        Matrix[3][0] = 0; Matrix[3][1] = 0; Matrix[3][2] = 0; Matrix[3][3] = 1;
+        this->Matrix[3][0] = 0; this->Matrix[3][1] = 0; this->Matrix[3][2] = 0; this->Matrix[3][3] = 1;
     }
 
     void Matrix4x4::SetIdentity()
     {
-        SetValues(1,0,0,0,
-                  0,1,0,0,
-                  0,0,1,0,
-                  0,0,0,1);
+        this->SetValues(1,0,0,0,
+                        0,1,0,0,
+                        0,0,1,0,
+                        0,0,0,1);
     }
 
     void Matrix4x4::SetZero()
     {
-        SetValues(0,0,0,0,
-                  0,0,0,0,
-                  0,0,0,0,
-                  0,0,0,0);
+        this->SetValues(0,0,0,0,
+                        0,0,0,0,
+                        0,0,0,0,
+                        0,0,0,0);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -124,10 +113,10 @@ namespace Mezzanine
 
     Real Matrix4x4::GetDeterminant() const
     {
-        return Matrix[0][0] * Minor(1,2,3,1,2,3) -
-               Matrix[0][1] * Minor(1,2,3,0,2,3) +
-               Matrix[0][2] * Minor(1,2,3,0,1,3) -
-               Matrix[0][3] * Minor(1,2,3,0,1,2);
+        return this->Matrix[0][0] * Minor(1,2,3,1,2,3) -
+               this->Matrix[0][1] * Minor(1,2,3,0,2,3) +
+               this->Matrix[0][2] * Minor(1,2,3,0,1,3) -
+               this->Matrix[0][3] * Minor(1,2,3,0,1,2);
     }
 
     /*void Matrix4x4::Decompose(Vector3& Position, Vector3& Scale, Quaternion& Rotation) const
@@ -145,33 +134,33 @@ namespace Mezzanine
     {
         Matrix3x3 Ret;
 
-        Ret.Matrix[0][0] = Matrix[0][0];
-        Ret.Matrix[0][1] = Matrix[0][1];
-        Ret.Matrix[0][2] = Matrix[0][2];
-        Ret.Matrix[1][0] = Matrix[1][0];
-        Ret.Matrix[1][1] = Matrix[1][1];
-        Ret.Matrix[1][2] = Matrix[1][2];
-        Ret.Matrix[2][0] = Matrix[2][0];
-        Ret.Matrix[2][1] = Matrix[2][1];
-        Ret.Matrix[2][2] = Matrix[2][2];
+        Ret.Matrix[0][0] = this->Matrix[0][0];
+        Ret.Matrix[0][1] = this->Matrix[0][1];
+        Ret.Matrix[0][2] = this->Matrix[0][2];
+        Ret.Matrix[1][0] = this->Matrix[1][0];
+        Ret.Matrix[1][1] = this->Matrix[1][1];
+        Ret.Matrix[1][2] = this->Matrix[1][2];
+        Ret.Matrix[2][0] = this->Matrix[2][0];
+        Ret.Matrix[2][1] = this->Matrix[2][1];
+        Ret.Matrix[2][2] = this->Matrix[2][2];
 
         return Ret;
     }
 
     void Matrix4x4::ExtractOgreMatrix4x4(const Ogre::Matrix4& temp)
     {
-        Matrix[0][0] = temp[0][0]; Matrix[0][1] = temp[0][1]; Matrix[0][2] = temp[0][2]; Matrix[0][3] = temp[0][3];
-        Matrix[1][0] = temp[1][0]; Matrix[1][1] = temp[1][1]; Matrix[1][2] = temp[1][2]; Matrix[1][3] = temp[1][3];
-        Matrix[2][0] = temp[2][0]; Matrix[2][1] = temp[2][1]; Matrix[2][2] = temp[2][2]; Matrix[2][3] = temp[2][3];
-        Matrix[3][0] = temp[3][0]; Matrix[3][1] = temp[3][1]; Matrix[3][2] = temp[3][2]; Matrix[3][3] = temp[3][3];
+        this->Matrix[0][0] = temp[0][0]; this->Matrix[0][1] = temp[0][1]; this->Matrix[0][2] = temp[0][2]; this->Matrix[0][3] = temp[0][3];
+        this->Matrix[1][0] = temp[1][0]; this->Matrix[1][1] = temp[1][1]; this->Matrix[1][2] = temp[1][2]; this->Matrix[1][3] = temp[1][3];
+        this->Matrix[2][0] = temp[2][0]; this->Matrix[2][1] = temp[2][1]; this->Matrix[2][2] = temp[2][2]; this->Matrix[2][3] = temp[2][3];
+        this->Matrix[3][0] = temp[3][0]; this->Matrix[3][1] = temp[3][1]; this->Matrix[3][2] = temp[3][2]; this->Matrix[3][3] = temp[3][3];
     }
 
     Ogre::Matrix4 Matrix4x4::GetOgreMatrix4x4() const
     {
-        return Ogre::Matrix4(Matrix[0][0], Matrix[1][0], Matrix[2][0], Matrix[3][0],
-                             Matrix[0][1], Matrix[1][1], Matrix[2][1], Matrix[3][1],
-                             Matrix[0][2], Matrix[1][2], Matrix[2][2], Matrix[3][2],
-                             Matrix[0][3], Matrix[1][3], Matrix[2][3], Matrix[3][3]);
+        return Ogre::Matrix4(this->Matrix[0][0], this->Matrix[1][0], this->Matrix[2][0], this->Matrix[3][0],
+                             this->Matrix[0][1], this->Matrix[1][1], this->Matrix[2][1], this->Matrix[3][1],
+                             this->Matrix[0][2], this->Matrix[1][2], this->Matrix[2][2], this->Matrix[3][2],
+                             this->Matrix[0][3], this->Matrix[1][3], this->Matrix[2][3], this->Matrix[3][3]);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -183,7 +172,7 @@ namespace Mezzanine
         {
             for( Whole Col = 0 ; Col < 4 ; ++Col )
             {
-                if(Matrix[Row][Col] != Other.Matrix[Row][Col])
+                if(this->Matrix[Row][Col] != Other.Matrix[Row][Col])
                     return false;
             }
         }
@@ -196,7 +185,7 @@ namespace Mezzanine
         {
             for( Whole Col = 0 ; Col < 4 ; ++Col )
             {
-                if(Matrix[Row][Col] != Other.Matrix[Row][Col])
+                if(this->Matrix[Row][Col] != Other.Matrix[Row][Col])
                     return true;
             }
         }
@@ -210,25 +199,25 @@ namespace Mezzanine
     {
         Matrix4x4 Ret;
 
-        Ret.Matrix[0][0] = Matrix[0][0] + Other.Matrix[0][0];
-        Ret.Matrix[0][1] = Matrix[0][1] + Other.Matrix[0][1];
-        Ret.Matrix[0][2] = Matrix[0][2] + Other.Matrix[0][2];
-        Ret.Matrix[0][3] = Matrix[0][3] + Other.Matrix[0][3];
+        Ret.Matrix[0][0] = this->Matrix[0][0] + Other.Matrix[0][0];
+        Ret.Matrix[0][1] = this->Matrix[0][1] + Other.Matrix[0][1];
+        Ret.Matrix[0][2] = this->Matrix[0][2] + Other.Matrix[0][2];
+        Ret.Matrix[0][3] = this->Matrix[0][3] + Other.Matrix[0][3];
 
-        Ret.Matrix[1][0] = Matrix[1][0] + Other.Matrix[1][0];
-        Ret.Matrix[1][1] = Matrix[1][1] + Other.Matrix[1][1];
-        Ret.Matrix[1][2] = Matrix[1][2] + Other.Matrix[1][2];
-        Ret.Matrix[1][3] = Matrix[1][3] + Other.Matrix[1][3];
+        Ret.Matrix[1][0] = this->Matrix[1][0] + Other.Matrix[1][0];
+        Ret.Matrix[1][1] = this->Matrix[1][1] + Other.Matrix[1][1];
+        Ret.Matrix[1][2] = this->Matrix[1][2] + Other.Matrix[1][2];
+        Ret.Matrix[1][3] = this->Matrix[1][3] + Other.Matrix[1][3];
 
-        Ret.Matrix[2][0] = Matrix[2][0] + Other.Matrix[2][0];
-        Ret.Matrix[2][1] = Matrix[2][1] + Other.Matrix[2][1];
-        Ret.Matrix[2][2] = Matrix[2][2] + Other.Matrix[2][2];
-        Ret.Matrix[2][3] = Matrix[2][3] + Other.Matrix[2][3];
+        Ret.Matrix[2][0] = this->Matrix[2][0] + Other.Matrix[2][0];
+        Ret.Matrix[2][1] = this->Matrix[2][1] + Other.Matrix[2][1];
+        Ret.Matrix[2][2] = this->Matrix[2][2] + Other.Matrix[2][2];
+        Ret.Matrix[2][3] = this->Matrix[2][3] + Other.Matrix[2][3];
 
-        Ret.Matrix[3][0] = Matrix[3][0] + Other.Matrix[3][0];
-        Ret.Matrix[3][1] = Matrix[3][1] + Other.Matrix[3][1];
-        Ret.Matrix[3][2] = Matrix[3][2] + Other.Matrix[3][2];
-        Ret.Matrix[3][3] = Matrix[3][3] + Other.Matrix[3][3];
+        Ret.Matrix[3][0] = this->Matrix[3][0] + Other.Matrix[3][0];
+        Ret.Matrix[3][1] = this->Matrix[3][1] + Other.Matrix[3][1];
+        Ret.Matrix[3][2] = this->Matrix[3][2] + Other.Matrix[3][2];
+        Ret.Matrix[3][3] = this->Matrix[3][3] + Other.Matrix[3][3];
 
         return Ret;
     }
@@ -237,87 +226,87 @@ namespace Mezzanine
     {
         Matrix4x4 Ret;
 
-        Ret.Matrix[0][0] = Matrix[0][0] - Other.Matrix[0][0];
-        Ret.Matrix[0][1] = Matrix[0][1] - Other.Matrix[0][1];
-        Ret.Matrix[0][2] = Matrix[0][2] - Other.Matrix[0][2];
-        Ret.Matrix[0][3] = Matrix[0][3] - Other.Matrix[0][3];
+        Ret.Matrix[0][0] = this->Matrix[0][0] - Other.Matrix[0][0];
+        Ret.Matrix[0][1] = this->Matrix[0][1] - Other.Matrix[0][1];
+        Ret.Matrix[0][2] = this->Matrix[0][2] - Other.Matrix[0][2];
+        Ret.Matrix[0][3] = this->Matrix[0][3] - Other.Matrix[0][3];
 
-        Ret.Matrix[1][0] = Matrix[1][0] - Other.Matrix[1][0];
-        Ret.Matrix[1][1] = Matrix[1][1] - Other.Matrix[1][1];
-        Ret.Matrix[1][2] = Matrix[1][2] - Other.Matrix[1][2];
-        Ret.Matrix[1][3] = Matrix[1][3] - Other.Matrix[1][3];
+        Ret.Matrix[1][0] = this->Matrix[1][0] - Other.Matrix[1][0];
+        Ret.Matrix[1][1] = this->Matrix[1][1] - Other.Matrix[1][1];
+        Ret.Matrix[1][2] = this->Matrix[1][2] - Other.Matrix[1][2];
+        Ret.Matrix[1][3] = this->Matrix[1][3] - Other.Matrix[1][3];
 
-        Ret.Matrix[2][0] = Matrix[2][0] - Other.Matrix[2][0];
-        Ret.Matrix[2][1] = Matrix[2][1] - Other.Matrix[2][1];
-        Ret.Matrix[2][2] = Matrix[2][2] - Other.Matrix[2][2];
-        Ret.Matrix[2][3] = Matrix[2][3] - Other.Matrix[2][3];
+        Ret.Matrix[2][0] = this->Matrix[2][0] - Other.Matrix[2][0];
+        Ret.Matrix[2][1] = this->Matrix[2][1] - Other.Matrix[2][1];
+        Ret.Matrix[2][2] = this->Matrix[2][2] - Other.Matrix[2][2];
+        Ret.Matrix[2][3] = this->Matrix[2][3] - Other.Matrix[2][3];
 
-        Ret.Matrix[3][0] = Matrix[3][0] - Other.Matrix[3][0];
-        Ret.Matrix[3][1] = Matrix[3][1] - Other.Matrix[3][1];
-        Ret.Matrix[3][2] = Matrix[3][2] - Other.Matrix[3][2];
-        Ret.Matrix[3][3] = Matrix[3][3] - Other.Matrix[3][3];
+        Ret.Matrix[3][0] = this->Matrix[3][0] - Other.Matrix[3][0];
+        Ret.Matrix[3][1] = this->Matrix[3][1] - Other.Matrix[3][1];
+        Ret.Matrix[3][2] = this->Matrix[3][2] - Other.Matrix[3][2];
+        Ret.Matrix[3][3] = this->Matrix[3][3] - Other.Matrix[3][3];
 
         return Ret;
     }
 
     Matrix4x4 Matrix4x4::operator*(const Matrix4x4& Other) const
     {
-        return Concatenate(Other);
+        return this->Concatenate(Other);
     }
 
     Matrix4x4& Matrix4x4::operator+=(const Matrix4x4& Other)
     {
-        Matrix[0][0] += Other.Matrix[0][0];
-        Matrix[0][1] += Other.Matrix[0][1];
-        Matrix[0][2] += Other.Matrix[0][2];
-        Matrix[0][3] += Other.Matrix[0][3];
+        this->Matrix[0][0] += Other.Matrix[0][0];
+        this->Matrix[0][1] += Other.Matrix[0][1];
+        this->Matrix[0][2] += Other.Matrix[0][2];
+        this->Matrix[0][3] += Other.Matrix[0][3];
 
-        Matrix[1][0] += Other.Matrix[1][0];
-        Matrix[1][1] += Other.Matrix[1][1];
-        Matrix[1][2] += Other.Matrix[1][2];
-        Matrix[1][3] += Other.Matrix[1][3];
+        this->Matrix[1][0] += Other.Matrix[1][0];
+        this->Matrix[1][1] += Other.Matrix[1][1];
+        this->Matrix[1][2] += Other.Matrix[1][2];
+        this->Matrix[1][3] += Other.Matrix[1][3];
 
-        Matrix[2][0] += Other.Matrix[2][0];
-        Matrix[2][1] += Other.Matrix[2][1];
-        Matrix[2][2] += Other.Matrix[2][2];
-        Matrix[2][3] += Other.Matrix[2][3];
+        this->Matrix[2][0] += Other.Matrix[2][0];
+        this->Matrix[2][1] += Other.Matrix[2][1];
+        this->Matrix[2][2] += Other.Matrix[2][2];
+        this->Matrix[2][3] += Other.Matrix[2][3];
 
-        Matrix[3][0] += Other.Matrix[3][0];
-        Matrix[3][1] += Other.Matrix[3][1];
-        Matrix[3][2] += Other.Matrix[3][2];
-        Matrix[3][3] += Other.Matrix[3][3];
+        this->Matrix[3][0] += Other.Matrix[3][0];
+        this->Matrix[3][1] += Other.Matrix[3][1];
+        this->Matrix[3][2] += Other.Matrix[3][2];
+        this->Matrix[3][3] += Other.Matrix[3][3];
 
         return *this;
     }
 
     Matrix4x4& Matrix4x4::operator-=(const Matrix4x4& Other)
     {
-        Matrix[0][0] -= Other.Matrix[0][0];
-        Matrix[0][1] -= Other.Matrix[0][1];
-        Matrix[0][2] -= Other.Matrix[0][2];
-        Matrix[0][3] -= Other.Matrix[0][3];
+        this->Matrix[0][0] -= Other.Matrix[0][0];
+        this->Matrix[0][1] -= Other.Matrix[0][1];
+        this->Matrix[0][2] -= Other.Matrix[0][2];
+        this->Matrix[0][3] -= Other.Matrix[0][3];
 
-        Matrix[1][0] -= Other.Matrix[1][0];
-        Matrix[1][1] -= Other.Matrix[1][1];
-        Matrix[1][2] -= Other.Matrix[1][2];
-        Matrix[1][3] -= Other.Matrix[1][3];
+        this->Matrix[1][0] -= Other.Matrix[1][0];
+        this->Matrix[1][1] -= Other.Matrix[1][1];
+        this->Matrix[1][2] -= Other.Matrix[1][2];
+        this->Matrix[1][3] -= Other.Matrix[1][3];
 
-        Matrix[2][0] -= Other.Matrix[2][0];
-        Matrix[2][1] -= Other.Matrix[2][1];
-        Matrix[2][2] -= Other.Matrix[2][2];
-        Matrix[2][3] -= Other.Matrix[2][3];
+        this->Matrix[2][0] -= Other.Matrix[2][0];
+        this->Matrix[2][1] -= Other.Matrix[2][1];
+        this->Matrix[2][2] -= Other.Matrix[2][2];
+        this->Matrix[2][3] -= Other.Matrix[2][3];
 
-        Matrix[3][0] -= Other.Matrix[3][0];
-        Matrix[3][1] -= Other.Matrix[3][1];
-        Matrix[3][2] -= Other.Matrix[3][2];
-        Matrix[3][3] -= Other.Matrix[3][3];
+        this->Matrix[3][0] -= Other.Matrix[3][0];
+        this->Matrix[3][1] -= Other.Matrix[3][1];
+        this->Matrix[3][2] -= Other.Matrix[3][2];
+        this->Matrix[3][3] -= Other.Matrix[3][3];
 
         return *this;
     }
 
     Matrix4x4& Matrix4x4::operator*=(const Matrix4x4& Other)
     {
-        *this = Concatenate(Other);
+        *this = this->Concatenate(Other);
         return *this;
     }
 
@@ -328,11 +317,11 @@ namespace Mezzanine
     {
         Vector3 Ret;
 
-        Real InvW = 1.0f / ( Matrix[3][0] * Vec.X + Matrix[3][1] * Vec.Y + Matrix[3][2] * Vec.Z + Matrix[3][3] );
+        Real InvW = 1.0f / ( this->Matrix[3][0] * Vec.X + this->Matrix[3][1] * Vec.Y + this->Matrix[3][2] * Vec.Z + this->Matrix[3][3] );
 
-        Ret.X = ( Matrix[0][0] * Vec.X + Matrix[0][1] * Vec.Y + Matrix[0][2] * Vec.Z + Matrix[0][3] ) * InvW;
-        Ret.Y = ( Matrix[1][0] * Vec.X + Matrix[1][1] * Vec.Y + Matrix[1][2] * Vec.Z + Matrix[1][3] ) * InvW;
-        Ret.Z = ( Matrix[2][0] * Vec.X + Matrix[2][1] * Vec.Y + Matrix[2][2] * Vec.Z + Matrix[2][3] ) * InvW;
+        Ret.X = ( this->Matrix[0][0] * Vec.X + this->Matrix[0][1] * Vec.Y + this->Matrix[0][2] * Vec.Z + this->Matrix[0][3] ) * InvW;
+        Ret.Y = ( this->Matrix[1][0] * Vec.X + this->Matrix[1][1] * Vec.Y + this->Matrix[1][2] * Vec.Z + this->Matrix[1][3] ) * InvW;
+        Ret.Z = ( this->Matrix[2][0] * Vec.X + this->Matrix[2][1] * Vec.Y + this->Matrix[2][2] * Vec.Z + this->Matrix[2][3] ) * InvW;
 
         return Ret;
     }
@@ -340,18 +329,18 @@ namespace Mezzanine
     Matrix4x4 Matrix4x4::operator*(const Real& Scalar) const
     {
         return Matrix4x4(
-                Scalar * Matrix[0][0], Scalar * Matrix[0][1], Scalar * Matrix[0][2], Scalar * Matrix[0][3],
-                Scalar * Matrix[1][0], Scalar * Matrix[1][1], Scalar * Matrix[1][2], Scalar * Matrix[1][3],
-                Scalar * Matrix[2][0], Scalar * Matrix[2][1], Scalar * Matrix[2][2], Scalar * Matrix[2][3],
-                Scalar * Matrix[3][0], Scalar * Matrix[3][1], Scalar * Matrix[3][2], Scalar * Matrix[3][3]);
+                Scalar * this->Matrix[0][0], Scalar * this->Matrix[0][1], Scalar * this->Matrix[0][2], Scalar * this->Matrix[0][3],
+                Scalar * this->Matrix[1][0], Scalar * this->Matrix[1][1], Scalar * this->Matrix[1][2], Scalar * this->Matrix[1][3],
+                Scalar * this->Matrix[2][0], Scalar * this->Matrix[2][1], Scalar * this->Matrix[2][2], Scalar * this->Matrix[2][3],
+                Scalar * this->Matrix[3][0], Scalar * this->Matrix[3][1], Scalar * this->Matrix[3][2], Scalar * this->Matrix[3][3]);
     }
 
     Matrix4x4& Matrix4x4::operator*=(const Real& Scalar)
     {
-        Matrix[0][0] *= Scalar; Matrix[0][1] *= Scalar; Matrix[0][2] *= Scalar; Matrix[0][3] *= Scalar;
-        Matrix[1][0] *= Scalar; Matrix[1][1] *= Scalar; Matrix[1][2] *= Scalar; Matrix[1][3] *= Scalar;
-        Matrix[2][0] *= Scalar; Matrix[2][1] *= Scalar; Matrix[2][2] *= Scalar; Matrix[2][3] *= Scalar;
-        Matrix[3][0] *= Scalar; Matrix[3][1] *= Scalar; Matrix[3][2] *= Scalar; Matrix[3][3] *= Scalar;
+        this->Matrix[0][0] *= Scalar; this->Matrix[0][1] *= Scalar; this->Matrix[0][2] *= Scalar; this->Matrix[0][3] *= Scalar;
+        this->Matrix[1][0] *= Scalar; this->Matrix[1][1] *= Scalar; this->Matrix[1][2] *= Scalar; this->Matrix[1][3] *= Scalar;
+        this->Matrix[2][0] *= Scalar; this->Matrix[2][1] *= Scalar; this->Matrix[2][2] *= Scalar; this->Matrix[2][3] *= Scalar;
+        this->Matrix[3][0] *= Scalar; this->Matrix[3][1] *= Scalar; this->Matrix[3][2] *= Scalar; this->Matrix[3][3] *= Scalar;
         return *this;
     }
 
@@ -364,16 +353,16 @@ namespace Mezzanine
         {
             for( Whole Col = 0 ; Col < 4 ; ++Col )
             {
-                Matrix[Row][Col] = Other.Matrix[Row][Col];
+                this->Matrix[Row][Col] = Other.Matrix[Row][Col];
             }
         }
     }
 
     void Matrix4x4::operator=(const Matrix3x3& Other)
     {
-        Matrix[0][0] = Other.Matrix[0][0]; Matrix[0][1] = Other.Matrix[0][1]; Matrix[0][2] = Other.Matrix[0][2];
-        Matrix[1][0] = Other.Matrix[1][0]; Matrix[1][1] = Other.Matrix[1][1]; Matrix[1][2] = Other.Matrix[1][2];
-        Matrix[2][0] = Other.Matrix[2][0]; Matrix[2][1] = Other.Matrix[2][1]; Matrix[2][2] = Other.Matrix[2][2];
+        this->Matrix[0][0] = Other.Matrix[0][0]; this->Matrix[0][1] = Other.Matrix[0][1]; this->Matrix[0][2] = Other.Matrix[0][2];
+        this->Matrix[1][0] = Other.Matrix[1][0]; this->Matrix[1][1] = Other.Matrix[1][1]; this->Matrix[1][2] = Other.Matrix[1][2];
+        this->Matrix[2][0] = Other.Matrix[2][0]; this->Matrix[2][1] = Other.Matrix[2][1]; this->Matrix[2][2] = Other.Matrix[2][2];
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -381,10 +370,10 @@ namespace Mezzanine
 
     Matrix4x4 Matrix4x4::Transpose() const
     {
-        return Matrix4x4(Matrix[0][0], Matrix[1][0], Matrix[2][0], Matrix[3][0],
-                         Matrix[0][1], Matrix[1][1], Matrix[2][1], Matrix[3][1],
-                         Matrix[0][2], Matrix[1][2], Matrix[2][2], Matrix[3][2],
-                         Matrix[0][3], Matrix[1][3], Matrix[2][3], Matrix[3][3]);
+        return Matrix4x4(this->Matrix[0][0], this->Matrix[1][0], this->Matrix[2][0], this->Matrix[3][0],
+                         this->Matrix[0][1], this->Matrix[1][1], this->Matrix[2][1], this->Matrix[3][1],
+                         this->Matrix[0][2], this->Matrix[1][2], this->Matrix[2][2], this->Matrix[3][2],
+                         this->Matrix[0][3], this->Matrix[1][3], this->Matrix[2][3], this->Matrix[3][3]);
     }
 
     Matrix4x4 Matrix4x4::Adjoint() const
@@ -397,10 +386,10 @@ namespace Mezzanine
 
     Matrix4x4 Matrix4x4::Inverse() const
     {
-        Real m00 = Matrix[0][0], m01 = Matrix[0][1], m02 = Matrix[0][2], m03 = Matrix[0][3];
-        Real m10 = Matrix[1][0], m11 = Matrix[1][1], m12 = Matrix[1][2], m13 = Matrix[1][3];
-        Real m20 = Matrix[2][0], m21 = Matrix[2][1], m22 = Matrix[2][2], m23 = Matrix[2][3];
-        Real m30 = Matrix[3][0], m31 = Matrix[3][1], m32 = Matrix[3][2], m33 = Matrix[3][3];
+        Real m00 = this->Matrix[0][0], m01 = this->Matrix[0][1], m02 = this->Matrix[0][2], m03 = this->Matrix[0][3];
+        Real m10 = this->Matrix[1][0], m11 = this->Matrix[1][1], m12 = this->Matrix[1][2], m13 = this->Matrix[1][3];
+        Real m20 = this->Matrix[2][0], m21 = this->Matrix[2][1], m22 = this->Matrix[2][2], m23 = this->Matrix[2][3];
+        Real m30 = this->Matrix[3][0], m31 = this->Matrix[3][1], m32 = this->Matrix[3][2], m33 = this->Matrix[3][3];
 
         Real v0 = m20 * m31 - m21 * m30;
         Real v1 = m20 * m32 - m22 * m30;
@@ -460,34 +449,146 @@ namespace Mezzanine
     Matrix4x4 Matrix4x4::Concatenate(const Matrix4x4& Mat) const
     {
         Matrix4x4 Ret;
-        Ret.Matrix[0][0] = Matrix[0][0] * Mat.Matrix[0][0] + Matrix[0][1] * Mat.Matrix[1][0] + Matrix[0][2] * Mat.Matrix[2][0] + Matrix[0][3] * Mat.Matrix[3][0];
-        Ret.Matrix[0][1] = Matrix[0][0] * Mat.Matrix[0][1] + Matrix[0][1] * Mat.Matrix[1][1] + Matrix[0][2] * Mat.Matrix[2][1] + Matrix[0][3] * Mat.Matrix[3][1];
-        Ret.Matrix[0][2] = Matrix[0][0] * Mat.Matrix[0][2] + Matrix[0][1] * Mat.Matrix[1][2] + Matrix[0][2] * Mat.Matrix[2][2] + Matrix[0][3] * Mat.Matrix[3][2];
-        Ret.Matrix[0][3] = Matrix[0][0] * Mat.Matrix[0][3] + Matrix[0][1] * Mat.Matrix[1][3] + Matrix[0][2] * Mat.Matrix[2][3] + Matrix[0][3] * Mat.Matrix[3][3];
+        Ret.Matrix[0][0] = this->Matrix[0][0] * Mat.Matrix[0][0] + this->Matrix[0][1] * Mat.Matrix[1][0] + this->Matrix[0][2] * Mat.Matrix[2][0] + this->Matrix[0][3] * Mat.Matrix[3][0];
+        Ret.Matrix[0][1] = this->Matrix[0][0] * Mat.Matrix[0][1] + this->Matrix[0][1] * Mat.Matrix[1][1] + this->Matrix[0][2] * Mat.Matrix[2][1] + this->Matrix[0][3] * Mat.Matrix[3][1];
+        Ret.Matrix[0][2] = this->Matrix[0][0] * Mat.Matrix[0][2] + this->Matrix[0][1] * Mat.Matrix[1][2] + this->Matrix[0][2] * Mat.Matrix[2][2] + this->Matrix[0][3] * Mat.Matrix[3][2];
+        Ret.Matrix[0][3] = this->Matrix[0][0] * Mat.Matrix[0][3] + this->Matrix[0][1] * Mat.Matrix[1][3] + this->Matrix[0][2] * Mat.Matrix[2][3] + this->Matrix[0][3] * Mat.Matrix[3][3];
 
-        Ret.Matrix[1][0] = Matrix[1][0] * Mat.Matrix[0][0] + Matrix[1][1] * Mat.Matrix[1][0] + Matrix[1][2] * Mat.Matrix[2][0] + Matrix[1][3] * Mat.Matrix[3][0];
-        Ret.Matrix[1][1] = Matrix[1][0] * Mat.Matrix[0][1] + Matrix[1][1] * Mat.Matrix[1][1] + Matrix[1][2] * Mat.Matrix[2][1] + Matrix[1][3] * Mat.Matrix[3][1];
-        Ret.Matrix[1][2] = Matrix[1][0] * Mat.Matrix[0][2] + Matrix[1][1] * Mat.Matrix[1][2] + Matrix[1][2] * Mat.Matrix[2][2] + Matrix[1][3] * Mat.Matrix[3][2];
-        Ret.Matrix[1][3] = Matrix[1][0] * Mat.Matrix[0][3] + Matrix[1][1] * Mat.Matrix[1][3] + Matrix[1][2] * Mat.Matrix[2][3] + Matrix[1][3] * Mat.Matrix[3][3];
+        Ret.Matrix[1][0] = this->Matrix[1][0] * Mat.Matrix[0][0] + this->Matrix[1][1] * Mat.Matrix[1][0] + this->Matrix[1][2] * Mat.Matrix[2][0] + this->Matrix[1][3] * Mat.Matrix[3][0];
+        Ret.Matrix[1][1] = this->Matrix[1][0] * Mat.Matrix[0][1] + this->Matrix[1][1] * Mat.Matrix[1][1] + this->Matrix[1][2] * Mat.Matrix[2][1] + this->Matrix[1][3] * Mat.Matrix[3][1];
+        Ret.Matrix[1][2] = this->Matrix[1][0] * Mat.Matrix[0][2] + this->Matrix[1][1] * Mat.Matrix[1][2] + this->Matrix[1][2] * Mat.Matrix[2][2] + this->Matrix[1][3] * Mat.Matrix[3][2];
+        Ret.Matrix[1][3] = this->Matrix[1][0] * Mat.Matrix[0][3] + this->Matrix[1][1] * Mat.Matrix[1][3] + this->Matrix[1][2] * Mat.Matrix[2][3] + this->Matrix[1][3] * Mat.Matrix[3][3];
 
-        Ret.Matrix[2][0] = Matrix[2][0] * Mat.Matrix[0][0] + Matrix[2][1] * Mat.Matrix[1][0] + Matrix[2][2] * Mat.Matrix[2][0] + Matrix[2][3] * Mat.Matrix[3][0];
-        Ret.Matrix[2][1] = Matrix[2][0] * Mat.Matrix[0][1] + Matrix[2][1] * Mat.Matrix[1][1] + Matrix[2][2] * Mat.Matrix[2][1] + Matrix[2][3] * Mat.Matrix[3][1];
-        Ret.Matrix[2][2] = Matrix[2][0] * Mat.Matrix[0][2] + Matrix[2][1] * Mat.Matrix[1][2] + Matrix[2][2] * Mat.Matrix[2][2] + Matrix[2][3] * Mat.Matrix[3][2];
-        Ret.Matrix[2][3] = Matrix[2][0] * Mat.Matrix[0][3] + Matrix[2][1] * Mat.Matrix[1][3] + Matrix[2][2] * Mat.Matrix[2][3] + Matrix[2][3] * Mat.Matrix[3][3];
+        Ret.Matrix[2][0] = this->Matrix[2][0] * Mat.Matrix[0][0] + this->Matrix[2][1] * Mat.Matrix[1][0] + this->Matrix[2][2] * Mat.Matrix[2][0] + this->Matrix[2][3] * Mat.Matrix[3][0];
+        Ret.Matrix[2][1] = this->Matrix[2][0] * Mat.Matrix[0][1] + this->Matrix[2][1] * Mat.Matrix[1][1] + this->Matrix[2][2] * Mat.Matrix[2][1] + this->Matrix[2][3] * Mat.Matrix[3][1];
+        Ret.Matrix[2][2] = this->Matrix[2][0] * Mat.Matrix[0][2] + this->Matrix[2][1] * Mat.Matrix[1][2] + this->Matrix[2][2] * Mat.Matrix[2][2] + this->Matrix[2][3] * Mat.Matrix[3][2];
+        Ret.Matrix[2][3] = this->Matrix[2][0] * Mat.Matrix[0][3] + this->Matrix[2][1] * Mat.Matrix[1][3] + this->Matrix[2][2] * Mat.Matrix[2][3] + this->Matrix[2][3] * Mat.Matrix[3][3];
 
-        Ret.Matrix[3][0] = Matrix[3][0] * Mat.Matrix[0][0] + Matrix[3][1] * Mat.Matrix[1][0] + Matrix[3][2] * Mat.Matrix[2][0] + Matrix[3][3] * Mat.Matrix[3][0];
-        Ret.Matrix[3][1] = Matrix[3][0] * Mat.Matrix[0][1] + Matrix[3][1] * Mat.Matrix[1][1] + Matrix[3][2] * Mat.Matrix[2][1] + Matrix[3][3] * Mat.Matrix[3][1];
-        Ret.Matrix[3][2] = Matrix[3][0] * Mat.Matrix[0][2] + Matrix[3][1] * Mat.Matrix[1][2] + Matrix[3][2] * Mat.Matrix[2][2] + Matrix[3][3] * Mat.Matrix[3][2];
-        Ret.Matrix[3][3] = Matrix[3][0] * Mat.Matrix[0][3] + Matrix[3][1] * Mat.Matrix[1][3] + Matrix[3][2] * Mat.Matrix[2][3] + Matrix[3][3] * Mat.Matrix[3][3];
+        Ret.Matrix[3][0] = this->Matrix[3][0] * Mat.Matrix[0][0] + this->Matrix[3][1] * Mat.Matrix[1][0] + this->Matrix[3][2] * Mat.Matrix[2][0] + this->Matrix[3][3] * Mat.Matrix[3][0];
+        Ret.Matrix[3][1] = this->Matrix[3][0] * Mat.Matrix[0][1] + this->Matrix[3][1] * Mat.Matrix[1][1] + this->Matrix[3][2] * Mat.Matrix[2][1] + this->Matrix[3][3] * Mat.Matrix[3][1];
+        Ret.Matrix[3][2] = this->Matrix[3][0] * Mat.Matrix[0][2] + this->Matrix[3][1] * Mat.Matrix[1][2] + this->Matrix[3][2] * Mat.Matrix[2][2] + this->Matrix[3][3] * Mat.Matrix[3][2];
+        Ret.Matrix[3][3] = this->Matrix[3][0] * Mat.Matrix[0][3] + this->Matrix[3][1] * Mat.Matrix[1][3] + this->Matrix[3][2] * Mat.Matrix[2][3] + this->Matrix[3][3] * Mat.Matrix[3][3];
 
         return Ret;
     }
 
     Real Matrix4x4::Minor(const Whole& Row1, const Whole& Row2, const Whole& Row3, const Whole& Col1, const Whole& Col2, const Whole& Col3) const
     {
-        return Matrix[Row1][Col1] * (Matrix[Row2][Col2] * Matrix[Row3][Col3] - Matrix[Row3][Col2] * Matrix[Row2][Col3]) -
-               Matrix[Row1][Col2] * (Matrix[Row2][Col1] * Matrix[Row3][Col3] - Matrix[Row3][Col1] * Matrix[Row2][Col3]) +
-               Matrix[Row1][Col3] * (Matrix[Row2][Col1] * Matrix[Row3][Col2] - Matrix[Row3][Col1] * Matrix[Row2][Col2]);
+        return this->Matrix[Row1][Col1] * (this->Matrix[Row2][Col2] * this->Matrix[Row3][Col3] - this->Matrix[Row3][Col2] * this->Matrix[Row2][Col3]) -
+               this->Matrix[Row1][Col2] * (this->Matrix[Row2][Col1] * this->Matrix[Row3][Col3] - this->Matrix[Row3][Col1] * this->Matrix[Row2][Col3]) +
+               this->Matrix[Row1][Col3] * (this->Matrix[Row2][Col1] * this->Matrix[Row3][Col2] - this->Matrix[Row3][Col1] * this->Matrix[Row2][Col2]);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void Matrix4x4::ProtoSerialize(XML::Node& CurrentRoot) const
+    {
+        XML::Node MatrixNode = CurrentRoot.AppendChild( this->GetSerializableName() );
+
+        if( MatrixNode.AppendAttribute("Version").SetValue("1") &&
+            MatrixNode.AppendAttribute("XX").SetValue( this->Matrix[0][0] ) &&
+            MatrixNode.AppendAttribute("XY").SetValue( this->Matrix[0][1] ) &&
+            MatrixNode.AppendAttribute("XZ").SetValue( this->Matrix[0][2] ) &&
+            MatrixNode.AppendAttribute("XW").SetValue( this->Matrix[0][3] ) &&
+            MatrixNode.AppendAttribute("YX").SetValue( this->Matrix[1][0] ) &&
+            MatrixNode.AppendAttribute("YY").SetValue( this->Matrix[1][1] ) &&
+            MatrixNode.AppendAttribute("YZ").SetValue( this->Matrix[1][2] ) &&
+            MatrixNode.AppendAttribute("YW").SetValue( this->Matrix[1][3] ) &&
+            MatrixNode.AppendAttribute("ZX").SetValue( this->Matrix[2][0] ) &&
+            MatrixNode.AppendAttribute("ZY").SetValue( this->Matrix[2][1] ) &&
+            MatrixNode.AppendAttribute("ZZ").SetValue( this->Matrix[2][2] ) &&
+            MatrixNode.AppendAttribute("ZW").SetValue( this->Matrix[2][3] ) &&
+            MatrixNode.AppendAttribute("WX").SetValue( this->Matrix[3][0] ) &&
+            MatrixNode.AppendAttribute("WY").SetValue( this->Matrix[3][1] ) &&
+            MatrixNode.AppendAttribute("WZ").SetValue( this->Matrix[3][2] ) &&
+            MatrixNode.AppendAttribute("WW").SetValue( this->Matrix[3][3] ) )
+        {
+            return;
+        }else{
+            SerializeError("Create XML Attributes", this->GetSerializableName(),true);
+        }
+    }
+
+    void Matrix4x4::ProtoDeSerialize(const XML::Node& OneNode)
+    {
+        XML::Attribute CurrAttrib;
+        if( String(OneNode.Name()) == this->GetSerializableName() ) {
+            if( OneNode.GetAttribute("Version").AsInt() == 1 ) {
+                CurrAttrib = OneNode.GetAttribute("XX");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[0][0] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("XY");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[0][1] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("XZ");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[0][2] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("XW");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[0][3] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("YX");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[1][0] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("YY");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[1][1] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("YZ");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[1][2] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("YW");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[1][3] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("ZX");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[2][0] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("ZY");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[2][1] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("ZZ");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[2][2] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("ZW");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[2][3] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("WX");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[3][0] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("WY");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[3][1] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("WZ");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[3][2] = CurrAttrib.AsReal();
+
+                CurrAttrib = OneNode.GetAttribute("WW");
+                if( !CurrAttrib.Empty() )
+                    this->Matrix[3][3] = CurrAttrib.AsReal();
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + this->GetSerializableName() + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + this->GetSerializableName() + ", found a " + String(OneNode.Name()) + ".");
+        }
+    }
+
+    String Matrix4x4::GetSerializableName()
+    {
+        return "Matrix4x4";
     }
 }//Mezzanine
 

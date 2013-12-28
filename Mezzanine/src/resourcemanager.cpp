@@ -438,18 +438,14 @@ namespace Mezzanine
     {
         #ifdef WINDOWS
         TCHAR path_local_appdata[MAX_PATH];
-        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_LOCAL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_local_appdata)))
-        {
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_LOCAL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_local_appdata))) {
             return path_local_appdata;
         }
         #else
         struct passwd* pw = getpwuid(getuid());
-        if(pw)
-        {
+        if(pw) {
             return String(pw->pw_dir);
-        }
-        else
-        {
+        }else{
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve app data directory.");
         }
 
@@ -462,69 +458,61 @@ namespace Mezzanine
         FSRefMakePath( &ref, (UInt8*)&path, PATH_MAX );
         return path;*/
         #endif
+        return "";
     }
 
     String ResourceManager::GetShareableAppDataDir() const
     {
         #ifdef WINDOWS
         TCHAR path_appdata[MAX_PATH];
-        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_appdata)))
-        {
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_appdata))) {
             return path_appdata;
         }
         #else
         struct passwd* pw = getpwuid(getuid());
-        if(pw)
-        {
+        if(pw) {
             return String(pw->pw_dir);
-        }
-        else
-        {
+        }else{
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve home directory.");
         }
         #endif
+        return "";
     }
 
     String ResourceManager::GetCurrentUserDataDir() const
     {
         #ifdef WINDOWS
         TCHAR path_personal[MAX_PATH];
-        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PERSONAL|CSIDL_FLAG_CREATE, NULL, 0, path_personal)))
-        {
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PERSONAL|CSIDL_FLAG_CREATE, NULL, 0, path_personal))) {
             return path_personal;
         }
         #else
         struct passwd* pw = getpwuid(getuid());
-        if(pw)
-        {
+        if(pw) {
             return String(pw->pw_dir);
-        }
-        else
-        {
+        }else{
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve user data directory.");
         }
         #endif
+        return "";
     }
 
     String ResourceManager::GetCommonUserDataDir() const
     {
         #ifdef WINDOWS
         TCHAR path_common_personal[MAX_PATH];
-        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_COMMON_DOCUMENTS|CSIDL_FLAG_CREATE, NULL, 0, path_common_personal)))
-        {
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_COMMON_DOCUMENTS|CSIDL_FLAG_CREATE, NULL, 0, path_common_personal))) {
             return path_common_personal;
         }
         #else
         struct passwd* pw = getpwuid(getuid());
-        if(pw)
-        {
+        if(pw) {
             return String(pw->pw_dir);
-        }
-        else
-        {
+        }else{
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve common data directory.");
         }
         #endif
+        return "";
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -635,9 +623,9 @@ namespace Mezzanine
         Ogre::FileInfoListPtr FileList = this->OgreResource->listResourceFileInfo(Group);
         for( Whole X = 0 ; X < FileList->size() ; ++X )
         {
-            if( FileName == FileList->at(X).filename )
-            {
-                return FileList->at(X).path;
+            if( FileName == FileList->at(X).filename ) {
+                //return FileList->at(X).path;
+                return FileList->at(X).archive->getName() + "/" + FileList->at(X).path;
             }
         }
         return "";

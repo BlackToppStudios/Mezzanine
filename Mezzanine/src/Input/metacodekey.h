@@ -47,53 +47,6 @@ namespace Mezzanine
 {
 	namespace Input
 	{
-	    /// @brief Function used for sorting keyboard metacodes.
-	    /// @param First The first MetaCode to compare.
-	    /// @param Second The second MetaCode to compare.
-	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    bool KeyboardCodeCompare(const MetaCode& First, const MetaCode& Second)
-            { return First.GetCode() < Second.GetCode(); }
-
-	    /// @brief Function used for sorting mouse metacodes.
-	    /// @param First The first MetaCode to compare.
-	    /// @param Second The second MetaCode to compare.
-	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    bool MouseCodeCompare(const MetaCode& First, const MetaCode& Second)
-            { return First.GetCode() < Second.GetCode(); }
-
-	    /// @brief Function used for sorting multitouch metacodes.
-	    /// @param First The first MetaCode to compare.
-	    /// @param Second The second MetaCode to compare.
-	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    bool MultitouchCodeCompare(const MetaCode& First, const MetaCode& Second)
-            { return First.GetCode() < Second.GetCode(); } /// @todo When our support for Multitouch devices expands this may need to be expanded as well.
-
-	    /// @brief Function used for sorting controller metacodes.
-	    /// @param First The first MetaCode to compare.
-	    /// @param Second The second MetaCode to compare.
-	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    bool ControllerCodeCompare(const MetaCode& First, const MetaCode& Second)
-	    {
-	        if( First.GetDeviceIndex() == Second.GetDeviceIndex() ) {
-	            return First.GetCode() < Second.GetCode();
-	        }else{
-                return First.GetDeviceIndex() < Second.GetDeviceIndex();
-	        }
-	    }
-
-	    /// @brief Function used for sorting controller metacodes.
-	    /// @param First The first MetaCode to compare.
-	    /// @param Second The second MetaCode to compare.
-	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    bool SequenceCodeCompare(const MetaCode& First, const MetaCode& Second)
-	    {
-	        if( First.GetDeviceIndex() == Second.GetDeviceIndex() ) {
-	            return First.GetMetaValue() < Second.GetMetaValue();
-	        }else{
-                return First.GetDeviceIndex() < Second.GetDeviceIndex();
-	        }
-	    }
-
 	    ///////////////////////////////////////////////////////////////////////////////
         /// @class MetaCodeKey
         /// @headerfile metacodekey.h
@@ -103,44 +56,31 @@ namespace Mezzanine
         class MEZZ_LIB MetaCodeKey
         {
         public:
-            typedef bool (DeviceCompare)(const MetaCode& First, const MetaCode& Second);
+            /// @brief Convenience typedef for the compare method to be used by this key.
+            typedef Bool (DeviceCompare)(const MetaCode& First, const MetaCode& Second);
         protected:
+            /// @internal
+            /// @brief The metacode being used as the compare object.
             const MetaCode MCode;
+            /// @internal
+            /// @brief The compare method being used for this key.
             DeviceCompare* Compare;
         public:
             /// @brief Class constructor.
             /// @param Code The MetaCode this key is to use for sorting.
-            MetaCodeKey(const MetaCode& Code)
-                : MCode(Code)
-            {
-                switch (MCode.GetDeviceType())
-                {
-                    case Input::DEVICE_KEYBOARD:   Compare = &KeyboardCodeCompare;   break;
-                    case Input::DEVICE_MOUSE:      Compare = &MouseCodeCompare;      break;
-                    case Input::DEVICE_MULTITOUCH: Compare = &MultitouchCodeCompare; break;
-                    case Input::DEVICE_CONTROLLER: Compare = &ControllerCodeCompare; break;
-                    default:
-                    {
-                        if( Input::COMPOUNDINPUT_CUSTOMSEQUENCE == MCode.GetCode() ) { Compare = &SequenceCodeCompare; }
-                        else { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to construct a MetaCodeKey representing an unknown type."); }
-                    }
-                }
-            }
+            MetaCodeKey(const MetaCode& Code);
             /// @brief Copy constructor.
             /// @param Other The other MetaCodeKey to copy.
-            MetaCodeKey(const MetaCodeKey& Other) :
-                MCode(Other.MCode), Compare(Other.Compare)
-                {  }
+            MetaCodeKey(const MetaCodeKey& Other);
             /// @brief Class destructor.
-            ~MetaCodeKey() {  }
+            ~MetaCodeKey();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
             /// @brief Gets the MetaCode this object is using for sorting.
             /// @return Returns a const reference to the MetaCode stored by this object.
-            inline const MetaCode& GetKeyData() const
-                { return MCode; }
+            const MetaCode& GetKeyData() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Operators
@@ -148,14 +88,7 @@ namespace Mezzanine
             /// @brief Less-than operator.
             /// @param Other The other key to compare against.
             /// @return Returns true if this key is less than another key.
-            inline bool operator<(const MetaCodeKey& Other) const
-            {
-                if( this->MCode.GetDeviceType() == Other.MCode.GetDeviceType() ) {
-                    return Compare(MCode,Other.MCode);
-                }else{
-                    return this->MCode.GetDeviceType() < Other.MCode.GetDeviceType();
-                }
-            }
+            Bool operator<(const MetaCodeKey& Other) const;
         };//MetaCodeKey
 	}//Input
 }//Mezzanine

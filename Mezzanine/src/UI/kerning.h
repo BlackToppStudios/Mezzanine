@@ -54,7 +54,7 @@ namespace Mezzanine
             /// @brief Class Constructor.
             /// @param C The Character this Kerning applies to.
             /// @param K The amount of Kerning to apply to the Glyph.
-            KerningInfo(const UInt32& C, const Real& K) : Character(C), Kerning(K) {};
+            KerningInfo(const UInt32& C, const Real& K) : Character(C), Kerning(K) {}
             /// @brief The Character this Kerning applies to.
             UInt32 Character;
             /// @brief The amount of Kerning to apply to the Glyph.

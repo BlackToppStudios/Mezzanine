@@ -41,63 +41,107 @@
 #define _uirenderable_cpp
 
 #include "UI/renderable.h"
-#include "uimanager.h"
+#include "UI/uimanager.h"
+#include "stringtool.h"
+#include "serialization.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        Renderable::Renderable(const String& name, Screen* Parent)
-            : ParentScreen(Parent),
-              ParentWidget(NULL),
-              Dirty(true),
-              Visible(true),
-              ZOrder(0),
-              Priority(UI::RP_Medium),
-              Name(name)
-        {
-            Manager = UIManager::GetSingletonPtr();
-            RelPosition.SetValues(0,0);
-            RelSize.SetValues(0,0);
-        }
+        Renderable::Renderable(Screen* Parent) :
+            ParentScreen(Parent),
+            Visible(true),
+            Dirty(true)
+            {  }
+
+        Renderable::Renderable(const String& RendName, Screen* Parent) :
+            ParentScreen(Parent),
+            Visible(true),
+            Dirty(true),
+            Name(RendName)
+            {  }
 
         Renderable::~Renderable()
-        {
-        }
+            {  }
+
+        void Renderable::ProtoSerializeImpl(XML::Node& SelfRoot) const
+            { this->ProtoSerializeProperties(SelfRoot); }
+
+        void Renderable::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+            { this->ProtoDeSerializeProperties(SelfRoot); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
-        ConstString& Renderable::GetName() const
-        {
-            return Name;
-        }
+        const String& Renderable::GetName() const
+            { return Name; }
 
-        const UInt16& Renderable::GetZOrder() const
-        {
-            return ZOrder;
-        }
+        Screen* Renderable::GetScreen() const
+            { return ParentScreen; }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Render Priority Methods
+        // Serialization
 
-        void Renderable::SetRenderPriority(const UI::RenderPriority& Priority)
+        void Renderable::ProtoSerialize(XML::Node& ParentNode) const
         {
-            this->Priority = Priority;
+            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
+
+            this->ProtoSerializeImpl(SelfRoot);
         }
 
-        UI::RenderPriority Renderable::GetRenderPriority() const
+        void Renderable::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            return Priority;
+            XML::Node PropertiesNode = SelfRoot.AppendChild( Renderable::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("Name").SetValue(this->Name) &&
+                PropertiesNode.AppendAttribute("Visible").SetValue( Visible ? "true" : "false" ) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",Renderable::GetSerializableName() + "Properties",true);
+            }
         }
+
+        void Renderable::ProtoDeSerialize(const XML::Node& SelfRoot)
+        {
+            this->ProtoDeSerializeImpl(SelfRoot);
+        }
+
+        void Renderable::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( Renderable::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("Name");
+                    if( !CurrAttrib.Empty() )
+                        this->Name = CurrAttrib.AsString();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("Visible");
+                    if( !CurrAttrib.Empty() )
+                        this->Visible = CurrAttrib.AsBool();
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Renderable::GetSerializableName() + "Properties") + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Renderable::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String Renderable::GetDerivedSerializableName() const
+            { return Renderable::GetSerializableName(); }
+
+        String Renderable::GetSerializableName()
+            { return "Renderable"; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void Renderable::_SetZOrder(const UInt16& Zorder)
-        {
-            this->ZOrder = Zorder;
-        }
+        bool Renderable::_IsDirty() const
+            { return Dirty; }
     }//UI
 }//Mezzanine
 

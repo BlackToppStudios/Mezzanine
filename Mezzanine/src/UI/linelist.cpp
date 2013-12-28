@@ -41,152 +41,256 @@
 #define _uilinelist_cpp
 
 #include "UI/linelist.h"
-#include "uimanager.h"
+#include "UI/uienumerations.h"
+#include "UI/uimanager.h"
 #include "UI/screen.h"
-#include "UI/vertex.h"
-#include "uienumerations.h"
-#include "UI/viewportupdatetool.h"
-#include "entresol.h"
+#include "UI/simplerenderer.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        LineList::LineList(const String& name, Screen* PScreen)
-            : BasicRenderable(name,PScreen)
+        ///////////////////////////////////////////////////////////////////////////////
+        // LineListRenderer Methods
+
+        class MEZZ_LIB LineListRenderer : public SimpleRenderer
         {
+            protected:
+                LineList* Parent;
+                /// @copydoc SimpleRenderer::RedrawImpl(bool)
+                virtual void RedrawImpl(bool Force)
+                {
+                    if(!this->Parent->IsVisible())
+                    {
+                        this->Dirty = false;
+                        return;
+                    }
+
+                    const LineList::PointVector& Positions = this->Parent->GetPoints();
+                    const ColourValue& Colour = this->Parent->GetLineColour();
+                    const Real& Thickness = this->Parent->GetLineThickness();
+                    bool IsClosed = this->Parent->IsClosed();
+
+                    if(Positions.size() < 2)
+                        return;
+
+                    VertexData Temp;
+                    Real HalfThickness = Thickness * 0.5;
+                    Vector2 PerpNorm, LastLeft, LastRight, ThisLeft, ThisRight, UV = this->Parent->GetScreen()->GetWhitePixel(PriAtlas);
+                    size_t Index = 1;
+                    for(  ; Index < Positions.size() ; Index++ )
+                    {
+                        PerpNorm  = (Positions[Index] - Positions[Index - 1]).Perpendicular().Normalize();
+                        LastLeft  = Positions[Index -1 ] - PerpNorm * HalfThickness;
+                        LastRight = Positions[Index -1 ] + PerpNorm * HalfThickness;
+                        ThisLeft  = Positions[Index] - PerpNorm * HalfThickness;
+                        ThisRight = Positions[Index] + PerpNorm * HalfThickness;
+
+                        // Triangle A
+                        this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
+                        this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
+                        this->PushVertex(LastLeft.X,LastLeft.Y,UV,Colour,PriAtlas);        // Left/Top
+                        // Triangle B
+                        this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
+                        this->PushVertex(ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);      // Right/Bottom
+                        this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
+                    }
+
+                    if(IsClosed)
+                    {
+                        Index = Positions.size() - 1;
+                        PerpNorm  = (Positions[0] - Positions[Index]).Perpendicular().Normalize();
+                        LastLeft  = Positions[Index] - PerpNorm * HalfThickness;
+                        LastRight = Positions[Index] + PerpNorm * HalfThickness;
+                        ThisLeft  = Positions[0] - PerpNorm * HalfThickness;
+                        ThisRight = Positions[0] + PerpNorm * HalfThickness;
+
+                        // Triangle A
+                        this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);       // Left/Bottom
+                        this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);         // Right/Top
+                        this->PushVertex(LastLeft.X,LastLeft.Y,UV,Colour,PriAtlas);         // Left/Top
+                        // Triangle B
+                        this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);       // Left/Bottom
+                        this->PushVertex(ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);       // Right/Bottom
+                        this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);         // Right/Top
+                    }
+                }
+            public:
+                /// @brief Class constructor.
+                /// @param LL The parent LineList this renderer is rendering.
+                LineListRenderer(LineList* LL) : Parent(LL) {}
+                /// @brief Class destructor.
+                ~LineListRenderer() {}
+
+                /// @copydoc UI::SimpleRenderer::_MarkDirty()
+                virtual void _MarkDirty()
+                {
+                    if(this->Dirty)
+                        return;
+                    this->Parent->_MarkDirty();
+                    this->Dirty = true;
+                }
+        };//LineListRenderer
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // LineList Methods
+
+        LineList::LineList(const String& RendName, Screen* PScreen) :
+            Renderable(RendName,PScreen),
+            Renderer(NULL),
+            Thickness(1.0),
+            Closed(false),
+            Priority(UI::RP_Medium)
+        {
+            this->Colour = ColourValue::Black();
+            this->Renderer = new LineListRenderer(this);
         }
 
         LineList::~LineList()
         {
+            delete this->Renderer;
         }
 
-        void LineList::Begin(const Whole& LineThickness, const ColourValue& LineColour)
+        LineList& LineList::Begin(const Whole& LineThickness, const ColourValue& LineColour)
         {
-            Positions.clear();
-            Thickness = LineThickness;
-            Colour = LineColour;
-            _MarkDirty();
+            this->Positions.clear();
+            this->Thickness = LineThickness;
+            this->Colour = LineColour;
+            //_MarkDirty();
+            return *this;
         }
 
-        void LineList::AddPoint(const Real& X, const Real& Y)
+        LineList& LineList::AddPoint(const Real& X, const Real& Y)
         {
-            AddPoint(Vector2(X,Y));
+            this->AddPoint(Vector2(X,Y));
+            return *this;
         }
 
-        void LineList::AddPoint(const Vector2& Position)
+        LineList& LineList::AddPoint(const Vector2& Position)
         {
-            Positions.push_back(Position * ParentScreen->GetViewportDimensions());
+            this->Positions.push_back(Position * this->GetScreen()->GetViewportDimensions());
+            return *this;
         }
 
-        void LineList::AddActualPoint(const Real& X, const Real& Y)
+        LineList& LineList::AddActualPoint(const Real& X, const Real& Y)
         {
-            AddPoint(Vector2(X,Y));
+            this->AddPoint(Vector2(X,Y));
+            return *this;
         }
 
-        void LineList::AddActualPoint(const Vector2& Position)
+        LineList& LineList::AddActualPoint(const Vector2& Position)
         {
-            Positions.push_back(Position);
+            this->Positions.push_back(Position);
+            return *this;
         }
 
         void LineList::End(bool Closed)
         {
-            IsClosed = Closed;
-            _MarkDirty();
+            this->Closed = Closed;
+            //_MarkDirty();
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        Renderable::RenderableType LineList::GetRenderableType() const
+        {
+            return Renderable::RT_LineList;
+        }
+
+        const LineList::PointVector& LineList::GetPoints() const
+        {
+            return this->Positions;
+        }
+
+        bool LineList::IsClosed() const
+        {
+            return this->Closed;
+        }
+
+        const ColourValue& LineList::GetLineColour() const
+        {
+            return this->Colour;
+        }
+
+        const Real& LineList::GetLineThickness() const
+        {
+            return this->Thickness;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Visibility Methods
+
+        void LineList::SetVisible(bool visible)
+        {
+            if( this->Visible == visible )
+                return;
+            this->Visible = visible;
+            //_MarkDirty();
+        }
+
+        bool LineList::GetVisible() const
+        {
+            return this->Visible;
+        }
+
+        bool LineList::IsVisible() const
+        {
+            return (this->Visible && ParentScreen->IsVisible());
+        }
+
+        void LineList::Show()
+        {
+            this->SetVisible(true);
+        }
+
+        void LineList::Hide()
+        {
+            this->SetVisible(false);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
 
         void LineList::UpdateDimensions()
         {
-            Vector2 OldMid = ViewportUpdateTool::GetOldSize() * 0.5;
+            /*Vector2 OldMid = ViewportUpdateTool::GetOldSize() * 0.5;
             Vector2 NewMid = ViewportUpdateTool::GetNewSize() * 0.5;
 
             for( Whole Index = 0 ; Index < Positions.size() ; Index++ )
             {
                 Positions[Index] = (Positions[Index] - OldMid) + NewMid;
-            }
+            }//*/
+            //_MarkDirty();
         }
 
-        void LineList::_Redraw()
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        void LineList::_MarkDirty()
         {
-            if(Dirty == false)
-                return;
-            RenderVertices.clear();
-            if(!Visible)
-            {
-                Dirty = false;
-                return;
-            }
-            if(Positions.size() < 2)
-                return;
-
-            VertexData Temp;
-            Real HalfThickness = Thickness * 0.5;
-            Vector2 PerpNorm, LastLeft, LastRight, ThisLeft, ThisRight, UV = ParentScreen->GetSolidUV(PriAtlas);
-            size_t Index = 1;
-            for(  ; Index < Positions.size() ; Index++ )
-            {
-                PerpNorm  = (Positions[Index] - Positions[Index - 1]).Perpendicular().Normalize();
-                LastLeft  = Positions[Index -1 ] - PerpNorm * HalfThickness;
-                LastRight = Positions[Index -1 ] + PerpNorm * HalfThickness;
-                ThisLeft  = Positions[Index] - PerpNorm * HalfThickness;
-                ThisRight = Positions[Index] + PerpNorm * HalfThickness;
-
-                // Triangle A
-                PushVertex(RenderVertices,Temp,LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
-                PushVertex(RenderVertices,Temp,ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
-                PushVertex(RenderVertices,Temp,LastLeft.X,LastLeft.Y,UV,Colour,PriAtlas);        // Left/Top
-                // Triangle B
-                PushVertex(RenderVertices,Temp,LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
-                PushVertex(RenderVertices,Temp,ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);      // Right/Bottom
-                PushVertex(RenderVertices,Temp,ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
-            }
-
-            if(IsClosed)
-            {
-                Index = Positions.size() - 1;
-                PerpNorm  = (Positions[0] - Positions[Index]).Perpendicular().Normalize();
-                LastLeft  = Positions[Index] - PerpNorm * HalfThickness;
-                LastRight = Positions[Index] + PerpNorm * HalfThickness;
-                ThisLeft  = Positions[0] - PerpNorm * HalfThickness;
-                ThisRight = Positions[0] + PerpNorm * HalfThickness;
-
-                // Triangle A
-                PushVertex(RenderVertices,Temp,LastRight.X,LastRight.Y,UV,Colour,PriAtlas);       // Left/Bottom
-                PushVertex(RenderVertices,Temp,ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);         // Right/Top
-                PushVertex(RenderVertices,Temp,LastLeft.X,LastLeft.Y,UV,Colour,PriAtlas);         // Left/Top
-                // Triangle B
-                PushVertex(RenderVertices,Temp,LastRight.X,LastRight.Y,UV,Colour,PriAtlas);       // Left/Bottom
-                PushVertex(RenderVertices,Temp,ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);       // Right/Bottom
-                PushVertex(RenderVertices,Temp,ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);         // Right/Top
-            }
+            this->Dirty = true;
         }
 
-        void LineList::_AppendVertices(ScreenVertexData& Vertices)
+        void LineList::_AppendRenderData(ScreenRenderData& RenderData)
         {
+            if( this->Renderer->_IsDirty() )
+                this->Renderer->_Redraw(false);
             switch(Priority)
             {
                 case UI::RP_Low:
                 {
-                    for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
-                    {
-                        Vertices.LowVertices.push_back(RenderVertices[X]);
-                    }
+                    this->Renderer->_AppendVertices(RenderData.LowVertices);
                     break;
                 }
                 case UI::RP_Medium:
                 {
-                    for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
-                    {
-                        Vertices.MediumVertices.push_back(RenderVertices[X]);
-                    }
+                    this->Renderer->_AppendVertices(RenderData.MediumVertices);
                     break;
                 }
                 case UI::RP_High:
                 {
-                    for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
-                    {
-                        Vertices.HighVertices.push_back(RenderVertices[X]);
-                    }
+                    this->Renderer->_AppendVertices(RenderData.HighVertices);
                     break;
                 }
             }

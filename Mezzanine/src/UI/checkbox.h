@@ -41,109 +41,151 @@
 #define _uicheckbox_h
 
 #include "datatypes.h"
-#include "UI/widget.h"
+#include "UI/button.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
         class Button;
-        class Caption;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class CheckBox
-        /// @headerfile uicheckbox.h
+        /// @headerfile checkbox.h
         /// @brief This is a simple widget for storing a bool value.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB CheckBox : public Widget
+        class MEZZ_LIB CheckBox : public Button
         {
-            protected:
-                friend class RenderableFactory;
-                friend class UIManager;
-                Button* Box;
-                Caption* Label;
-                std::pair<String,String> UncheckedSet;
-                std::pair<String,String> CheckedSet;
-                Whole GlyphIndex;
-                bool Checked;
-                bool CheckLock;
-                /// @brief Sets both the background and hovered sprites of a set.
-                void SetSpriteSet(std::pair<std::string,std::string>& SpriteSet);
-                //void SetUncheckedSprites();
-                //void SetCheckedSprites();
-                /// @brief Child specific update method.
-                virtual void UpdateImpl(bool Force = false);
-                /// @brief Child specific visibility method.
-                virtual void SetVisibleImpl(bool visible);
-                /// @brief Child specific mouse hover method.
-                virtual bool CheckMouseHoverImpl();
-            //public:
-                /// @brief Class constructor
-                /// @param name The name of the checkbox.
-                /// @param Rect The Rect representing the position and size of the checkbox and label.  The checkbox itself will always be as wide as it is tall, with remaining space going to the label.
-                /// @param LineHeight The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well.
-                /// @param LabelText The text to put into the label.
-                /// @param PScreen Pointer to the Screen that created this checkbox.
-                CheckBox(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, ConstString& LabelText, Screen* PScreen);
-                /// @brief Class constructor
-                /// @param name The name of the checkbox.
-                /// @param Rect The Rect representing the position and size of the checkbox.
-                /// @param Glyph The glyph index to use for the text in the label.
-                /// @param LabelText The text to put into the label.
-                /// @param PScreen Pointer to the Screen that created this checkbox.
-                CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString& LabelText, Screen* PScreen);
-                /// @brief Class destructor.
-                virtual ~CheckBox();
-            public:
-                /// @brief Gets whether this checkbox is checked or not.
-                /// @return Returns a bool representing whether or not this checkbox is checked.
-                virtual bool IsChecked();
-                /// @brief Manually check or uncheck this checkbox.
-                /// @param Check The value to set the status of this checkbox.
-                virtual void ManualCheck(bool Check);
-                /// @brief Sets the text label to be displayed with this checkbox.
-                /// @details If a label hasn't been set when this is called, this funtion will create a
-                /// new one and set it.
-                /// @param Label The text message to display with this checkbox.
-                virtual void SetLabelText(String& LabelText);
-                /// @brief Gets the currently set label being displayed with this checkbox.
-                /// @return Returns a string containing the currently set label.  If no label is set this will
-                /// return an empty string.
-                virtual String GetLabelText();
-                /// @brief Sets the unchecked status sprite and an optional unchecked hovered sprite.
-                /// @param Unchecked The name of the sprite in the Atlas you wish to set as the unchecked status sprite.
-                /// @param Hovered The name of the sprite in the Atlas you with to sed on the unchecked/hovered sprite.
-                /// Leaving this to default or passing in a blank string will cause it to ignore this parameter.
-                virtual void SetUncheckedSprite(ConstString& Unchecked, ConstString& Hovered = "");
-                /// @brief Sets the checked status sprite and an optional checked hovered sprite.
-                /// @param Unchecked The name of the sprite in the Atlas you wish to set as the checked status sprite.
-                /// @param Hovered The name of the sprite in the Atlas you with to sed on the checked/hovered sprite.
-                /// Leaving this to default or passing in a blank string will cause it to ignore this parameter.
-                virtual void SetCheckedSprite(ConstString& Checked, ConstString& Hovered = "");
-                /// @brief Sets the relative position of this checkbox.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Position A vector2 representing the relative position of this checkbox.
-                virtual void SetPosition(const Vector2& Position);
-                /// @brief Sets the pixel position of this checkbox.
-                /// @param Position A vector2 representing the pixel position of this checkbox.
-                virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Sets the relative size of this checkbox.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Size A vector2 representing the relative size of this checkbox.
-                virtual void SetSize(const Vector2& Size);
-                /// @brief Sets the pixel size of this checkbox.
-                /// @param Size A vector2 representing the pixel size of this checkbox.
-                virtual void SetActualSize(const Vector2& Size);
-                /// @brief Updates the dimensions of this widget to match those of the new screen size.
-                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                virtual void UpdateDimensions();
-                /// @brief Gets the Button this checkbox is based on.
-                /// @return Returns a pointer to the button this checkbox is based on.
-                Button* GetCheckBoxButton();
-                /// @brief Gets the label for this checkbox.
-                /// @return Returns a pointer to the label for this checkbox.
-                Caption* GetLabel();
-        };//Checkbox
+        public:
+            /// @enum WidgetStateExt
+            /// @brief Enum describing extended widget states for the CheckBox widget.
+            /// @details
+            enum WidgetStateExt
+            {
+                WS_Checked = 8
+            };
+            /// @brief String containing the type name for this class: "CheckBox".
+            static const String TypeName;
+            /// @brief Event name for when this checkbox is checked.
+            static const String EventChecked;
+            /// @brief Event name for when this checkbox is unchecked.
+            static const String EventUnchecked;
+        protected:
+            friend class CheckBoxFactory;
+            /// @internal
+            /// @brief Stores whether or not the current state of this CheckBox is locked.
+            bool CheckLock;
+            /// @internal
+            /// @brief Contains all the common necessary startup initializations for this class.
+            void ConstructCheckbox();
+            /// @brief Convenience method for checking (or unchecking) this CheckBox.
+            /// @param Check The new state to be given to this CheckBox.
+            void SetChecked(bool Check);
+        //public:
+            /// @brief Blank constructor.
+            /// @param Parent The parent Screen that created this widget.
+            CheckBox(Screen* Parent);
+            /// @brief Standard initialization constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param Parent The parent Screen that created this widget.
+            CheckBox(const String& RendName, Screen* Parent);
+            /// @brief Rect constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param RendRect The rect describing this widget's transform relative to it's parent.
+            /// @param Parent The parent screen that created this renderable.
+            CheckBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created CheckBox will belong to.
+            CheckBox(const XML::Node& XMLNode, Screen* Parent);
+            /// @brief Class destructor.
+            virtual ~CheckBox();
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            /// @brief Gets whether this checkbox is checked or not.
+            /// @return Returns a bool representing whether or not this checkbox is checked.
+            virtual bool IsChecked();
+            /// @brief Gets wether this checkbox is locked into it's current state.
+            /// @return Returns true if this checkbox can't change it's state, false otherwise.
+            virtual bool IsLocked();
+            /// @brief Manually check or uncheck this checkbox.
+            /// @param Check The value to set the status of this checkbox.
+            virtual void ManualCheck(bool Check);
+            /// @brief Locks (or unlocks) the current state of this checkbox.
+            /// @param Lock Whether or not to lock the current state of this checkbox.
+            virtual void SetCheckLock(bool Lock);
+            /// @copydoc Widget::GetTypeName() const
+            virtual const String& GetTypeName() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc Renderable::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+            /// @copydoc Renderable::GetSerializableName()
+            static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Event Methods
+
+            /// @copydoc Button::_OnActivate()
+            virtual void _OnActivate();
+            /// @copydoc Button::_OnDeactivate()
+            virtual void _OnDeactivate();
+            /// @brief Self logic to be executed when this checkbox is checked.
+            virtual void _OnChecked();
+            /// @brief Self logic to be executed when this checkbox is unchecked.
+            virtual void _OnUnchecked();
+        };//CheckBox
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the factory implementation for CheckBox widgets.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB CheckBoxFactory : public WidgetFactory
+        {
+        public:
+            /// @brief Class constructor.
+            CheckBoxFactory() {  }
+            /// @brief Class destructor.
+            virtual ~CheckBoxFactory() {  }
+
+            /// @copydoc WidgetFactory::GetWidgetTypeName() const
+            virtual String GetWidgetTypeName() const;
+
+            /// @brief Creates a new CheckBox.
+            /// @param RendName The name to be given to the created CheckBox.
+            /// @param Parent The screen the created CheckBox will belong to.
+            /// @return Returns a pointer to the created CheckBox.
+            virtual CheckBox* CreateCheckBox(const String& RendName, Screen* Parent);
+            /// @brief Creates a new CheckBox.
+            /// @param RendName The name to be given to the created CheckBox.
+            /// @param RendRect The dimensions that will be assigned to the created CheckBox.
+            /// @param Parent The screen the created CheckBox will belong to.
+            /// @return Returns a pointer to the created CheckBox.
+            virtual CheckBox* CreateCheckBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief Creates a new CheckBox.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created CheckBox will belong to.
+            /// @return Returns a pointer to the created CheckBox.
+            virtual CheckBox* CreateCheckBox(const XML::Node& XMLNode, Screen* Parent);
+
+            /// @copydoc WidgetFactory::CreateWidget(Screen*)
+            virtual Widget* CreateWidget(Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const UnifiedRect&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const XML::Node&, Screen*)
+            virtual Widget* CreateWidget(const XML::Node& XMLNode, Screen* Parent);
+            /// @copydoc WidgetFactory::DestroyWidget(Widget*)
+            virtual void DestroyWidget(Widget* ToBeDestroyed);
+        };//CheckBoxFactory
     }//UI
 }//Mezzanine
 

@@ -41,10 +41,10 @@
 #define _uiwidget_cpp
 
 #include "UI/widget.h"
-#include "UI/basicrenderable.h"
 #include "UI/button.h"
 #include "UI/screen.h"
-#include "uimanager.h"
+
+#include "UI/uimanager.h"
 #include "entresol.h"
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"
@@ -53,306 +53,137 @@ namespace Mezzanine
 {
     namespace UI
     {
-        InputCaptureData::InputCaptureData()
-        {
-        }
+        const String Widget::TypeName              = "GenericWidget";
+        const String Widget::EventMouseEnter       = "MouseEnter";
+        const String Widget::EventMouseExit        = "MouseExit";
+        const String Widget::EventMouseDragStart   = "MouseDragStart";
+        const String Widget::EventMouseDragging    = "MouseDragging";
+        const String Widget::EventMouseDragEnd     = "MouseDragEnd";
+        const String Widget::EventFocusGained      = "FocusGained";
+        const String Widget::EventFocusLost        = "FocusLost";
+        const String Widget::EventFocusLocked      = "FocusLocked";
+        const String Widget::EventFocusUnlocked    = "FocusUnlocked";
+        const String Widget::EventVisibilityShown  = "VisibilityShown";
+        const String Widget::EventVisibilityHidden = "VisibilityHidden";
 
-        InputCaptureData::~InputCaptureData()
-        {
-        }
+        Widget::Widget(Screen* Parent) :
+            QuadRenderable(Parent),
+            HoveredSubWidget(NULL),
+            State(WS_Untouched)
+            { /* Do nothing to leave it blank */ }
 
-        void InputCaptureData::AddInput(const Input::InputCode& Code)
-        {
-            this->insert(Code);
-        }
+        Widget::Widget(const String& RendName, Screen* Parent) :
+            QuadRenderable(RendName,Parent),
+            HoveredSubWidget(NULL),
+            State(WS_Untouched)
+            { this->ConstructWidget(); }
 
-        void InputCaptureData::AddInputRange(const Input::InputCode& Lower, const Input::InputCode& Upper)
-        {
-            for( Input::InputCode Code = Lower ; Code > Upper ; Code + 1 )
-                this->insert(Code);
-        }
+        Widget::Widget(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
+            QuadRenderable(RendName,RendRect,Parent),
+            HoveredSubWidget(NULL),
+            State(WS_Untouched)
+            { this->ConstructWidget(); }
 
-        Whole InputCaptureData::GetNumCapturedInputs()
-        {
-            return this->size();
-        }
-
-        std::vector<Input::InputCode>* InputCaptureData::GetCapturedInputs()
-        {
-            return &CapturedCodes;
-        }
-
-        bool InputCaptureData::IsInputToBeCaptured(const Input::InputCode& Code)
-        {
-            std::set<Input::InputCode>::iterator it = this->find(Code);
-            return it != this->end();
-        }
-
-        void InputCaptureData::UpdateCapturedInputs(std::vector<Input::InputCode>& InputCodes)
-        {
-            CapturedCodes.clear();
-            CapturedCodes.swap(InputCodes);
-        }
-
-        //-----------------------------------------------------
-
-        Widget::Widget(const String& name, Screen* Parent)
-            : Renderable(name,Parent),
-              HoveredSubWidget(NULL),
-              SubWidgetFocus(NULL),
-              CaptureData(NULL),
-              Hovered(false)
-        {
-        }
+        Widget::Widget(const XML::Node& XMLNode, Screen* Parent) :
+            QuadRenderable(Parent),
+            HoveredSubWidget(NULL),
+            State(WS_Untouched)
+            { this->ProtoDeSerialize(XMLNode); }
 
         Widget::~Widget()
+            {  }
+
+        void Widget::ProtoSerializeImpl(XML::Node& SelfRoot) const
         {
-            SubRenderables.clear();
-            if(!Listeners.empty())
-            {
-                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
-                    delete (*It);
-            }
-            Listeners.clear();
+            this->QuadRenderable::ProtoSerializeImpl(SelfRoot);
+            this->ProtoSerializeStateGroupBindings(SelfRoot);
+            this->ProtoSerializeEvents(SelfRoot);
+            /// @todo Seriailze subscribed events?  Scripts at least.
         }
 
-        void Widget::Update(bool Force)
+        void Widget::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
         {
-            if(!Listeners.empty())
-            {
-                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
-                {
-                    (*It)->DoPreUpdateItems();
-                }
-            }
-
-            SubWidgetUpdate(Force);
-            UpdateImpl(Force);
-
-            if(!Listeners.empty())
-            {
-                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
-                {
-                    (*It)->DoPostUpdateItems();
-                }
-            }
+            this->QuadRenderable::ProtoDeSerializeImpl(SelfRoot);
+            this->ProtoDeSerializeStateGroupBindings(SelfRoot);
+            this->ProtoDeSerializeEvents(SelfRoot);
         }
 
-        void Widget::SubWidgetUpdate(bool Force)
+        Bool Widget::HandleInputImpl(const Input::MetaCode& Code)
         {
-            Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
-            if(HoveredSubWidget)
-            {
-                HoveredSubWidget->Update(Force);
-                if(Input::BUTTON_PRESSING == State)
-                {
-                    SubWidgetFocus = HoveredSubWidget;
-                }
-            }
-            if(SubWidgetFocus && (SubWidgetFocus != HoveredSubWidget))
-            {
-                SubWidgetFocusUpdate(true);
-            }
-            else if(Input::BUTTON_DOWN == State && Force)
-            {
-                SubWidgetFocusUpdate(Force);
-            }
-            if(Input::BUTTON_LIFTING == State)
-            {
-                SubWidgetFocus = NULL;
-            }
+            return false;
         }
 
-        void Widget::SubWidgetFocusUpdate(bool Force)
+        void Widget::ConstructWidget()
         {
-            if(SubWidgetFocus)
-                SubWidgetFocus->Update(Force);
-        }
+            // Create our events.
+            this->AddEvent(Widget::EventMouseEnter);
+            this->AddEvent(Widget::EventMouseExit);
+            this->AddEvent(Widget::EventMouseDragStart);
+            this->AddEvent(Widget::EventMouseDragging);
+            this->AddEvent(Widget::EventMouseDragEnd);
+            this->AddEvent(Widget::EventFocusGained);
+            this->AddEvent(Widget::EventFocusLost);
+            this->AddEvent(Widget::EventFocusLocked);
+            this->AddEvent(Widget::EventFocusUnlocked);
+            this->AddEvent(Widget::EventVisibilityShown);
+            this->AddEvent(Widget::EventVisibilityHidden);
 
-        void Widget::AddSubRenderable(const UInt16& Zorder, Renderable* ToAdd)
-        {
-            for( RenderableIterator RendIt = SubRenderables.begin() ; RendIt != SubRenderables.end() ; ++RendIt )
-            {
-                if( (*RendIt)->GetZOrder() > Zorder )
-                {
-                    SubRenderables.insert(RendIt,ToAdd);
-                    ToAdd->ParentWidget = this;
-                    ToAdd->_SetZOrder(Zorder);
-                    return;
-                }
-            }
-            SubRenderables.push_back(ToAdd);
-            ToAdd->ParentWidget = this;
-            ToAdd->_SetZOrder(Zorder);
-            return;
-        }
+            // Create our render groups and bind them
+            RenderLayerGroup* NormalGroup = this->CreateRenderLayerGroup("Normal");
+            RenderLayerGroup* HoveredGroup = this->CreateRenderLayerGroup("Hovered");
 
-        void Widget::ProcessCapturedInputs()
-        {
+            this->StateGroupBindings[ WS_Untouched ] = NormalGroup;
+            this->StateGroupBindings[ WS_Hovered ] = HoveredGroup;
+            this->StateGroupBindings[ WS_Focused ] = NormalGroup;
+            this->StateGroupBindings[ WS_Dragged ] = NormalGroup;
+            this->StateGroupBindings[ WS_Hovered | WS_Focused ] = HoveredGroup;
+            this->StateGroupBindings[ WS_Hovered | WS_Dragged ] = HoveredGroup;
+            this->StateGroupBindings[ WS_Focused | WS_Dragged ] = NormalGroup;
+            this->StateGroupBindings[ WS_Hovered | WS_Focused | WS_Dragged ] = HoveredGroup;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
-        Widget::WidgetType Widget::GetType() const
-        {
-            return Type;
-        }
+        Renderable::RenderableType Widget::GetRenderableType() const
+            { return Renderable::RT_Widget; }
 
-        bool Widget::IsInputCaptureWidget() const
-        {
-            return NULL != CaptureData;
-        }
+        const String& Widget::GetTypeName() const
+            { return Widget::TypeName; }
 
-        bool Widget::IsHovered() const
-        {
-            return Hovered;
-        }
+        Bool Widget::IsHovered() const
+            { return (this->State & WS_Hovered); }
 
-        bool Widget::CheckMouseHover()
-        {
-            if(!IsVisible())
-            {
-                HoveredSubWidget = NULL;
-                Hovered = false;
-            }
-            else if(CheckMouseHoverImpl())
-            {
-                Hovered = true;
-            }
-            else
-            {
-                HoveredSubWidget = NULL;
-                Hovered = false;
-            }
-            if(!Listeners.empty())
-            {
-                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
-                {
-                    (*It)->DoHoverItems();
-                }
-            }
-            return Hovered;
-        }
+        Bool Widget::HasFocus() const
+            { return (this->State & WS_Focused); }
+
+        Bool Widget::IsBeingDragged() const
+            { return (this->State & WS_Dragged); }
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Visibility Methods
+        // State-LayerGroup Binding Methods
 
-        void Widget::SetVisible(bool visible)
+        void Widget::BindGroupToState(const UInt32 BindState, RenderLayerGroup* ToBind)
         {
-            if(this->Visible == visible)
-                return;
-            this->Visible = visible;
-            SetVisibleImpl(visible);
-            if(!Listeners.empty())
+            this->StateGroupBindings[BindState] = ToBind;
+        }
+
+        RenderLayerGroup* Widget::GetGroupBoundToState(const UInt32 BindState) const
+        {
+            ConstStateLayerGroupIterator It = this->StateGroupBindings.find(BindState);
+            if( It != this->StateGroupBindings.end() ) return (*It).second;
+            else return NULL;
+        }
+
+        bool Widget::SetGroupFromState(const UInt32 BindState)
+        {
+            StateLayerGroupIterator It = this->StateGroupBindings.find(BindState);
+            if( It != this->StateGroupBindings.end() )
             {
-                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
-                {
-                    (*It)->DoVisibilityChangeItems();
-                }
+                this->SetActiveGroup( (*It).second );
+                return true;
             }
-        }
-
-        bool Widget::GetVisible() const
-        {
-            return Visible;
-        }
-
-        bool Widget::IsVisible() const
-        {
-            return Visible && ParentScreen->IsVisible();
-        }
-
-        void Widget::Show()
-        {
-            SetVisible(true);
-        }
-
-        void Widget::Hide()
-        {
-            SetVisible(false);
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Transform Methods
-
-        void Widget::SetRect(const RenderableRect& Rect)
-        {
-            if(Rect.Relative)
-            {
-                SetSize(Rect.Size);
-                SetPosition(Rect.Position);
-            }else{
-                SetActualSize(Rect.Size);
-                SetActualPosition(Rect.Position);
-            }
-        }
-
-        RenderableRect Widget::GetRect(bool Relative) const
-        {
-            if(Relative) return RenderableRect(GetPosition(),GetSize(),Relative);
-            else return RenderableRect(GetActualPosition(),GetActualSize(),Relative);
-        }
-
-        Vector2 Widget::GetPosition() const
-        {
-            return RelPosition;
-        }
-
-        Vector2 Widget::GetActualPosition() const
-        {
-            return RelPosition * ParentScreen->GetViewportDimensions();
-        }
-
-        Vector2 Widget::GetSize() const
-        {
-            return RelSize;
-        }
-
-        Vector2 Widget::GetActualSize() const
-        {
-            return RelSize * ParentScreen->GetViewportDimensions();
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Render Priority Methods
-
-        void Widget::SetRenderPriority(const UI::RenderPriority& Priority)
-        {
-            Renderable::SetRenderPriority(Priority);
-            for( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
-            {
-                (*it)->SetRenderPriority(this->Priority);
-            }
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Listener Methods
-
-        void Widget::AddWidgetListener(WidgetListener* Listener)
-        {
-            for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
-            {
-                if( (*It) == Listener )
-                {
-                    MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Listener being added to widget is already registered with widget \"" + Name + "\".");
-                }
-            }
-            Listeners.push_back(Listener);
-            Listener->SetCaller(this);
-        }
-
-        void Widget::RemoveWidgetListener(WidgetListener* Listener)
-        {
-            for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
-            {
-                if( (*It) == Listener )
-                {
-                    Listeners.erase(It);
-                    Listener->SetCaller(NULL);
-                    return;
-                }
-            }
+            else return false;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -360,96 +191,376 @@ namespace Mezzanine
 
         Widget* Widget::GetHoveredSubWidget() const
         {
-            return HoveredSubWidget;
+            return this->HoveredSubWidget;
         }
 
         Widget* Widget::GetBottomMostHoveredWidget()
         {
-            if(HoveredSubWidget) return HoveredSubWidget->GetBottomMostHoveredWidget();
+            if( this->HoveredSubWidget ) return this->HoveredSubWidget->GetBottomMostHoveredWidget();
             else return this;
         }
 
-        Widget* Widget::GetTopMostWidget()
+        ///////////////////////////////////////////////////////////////////////////////
+        // Visibility and Priority Methods
+
+        void Widget::SetVisible(Bool CanSee)
         {
-            if(ParentWidget) return ParentWidget->GetTopMostWidget();
-            else return this;
+            if( this->Visible == CanSee )
+                return;
+            Visible = CanSee;
+            if(CanSee) this->_OnVisibilityShown();
+            else this->_OnVisibilityHidden();
+            for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+            {
+                (*It)->SetVisible(CanSee);
+            }
         }
 
-        Screen* Widget::GetParent() const
+        Bool Widget::GetVisible() const
         {
-            return ParentScreen;
+            return this->Visible;
         }
 
-        InputCaptureData* Widget::GetInputCaptureData() const
+        Bool Widget::IsVisible() const
         {
-            return CaptureData;
+            if( this->ParentQuad ) {
+                return this->Visible && this->ParentQuad->IsVisible();
+            }else{
+                return this->Visible;
+            }
         }
 
-        Widget::RenderableIterator Widget::BeginRenderable()
+        void Widget::Show()
         {
-            return SubRenderables.begin();
+            if( this->Visible == true )
+                return;
+            this->Visible = true;
+            this->_OnVisibilityShown();
+            for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+            {
+                (*It)->Show();
+            }
         }
 
-        Widget::RenderableIterator Widget::EndRenderable()
+        void Widget::Hide()
         {
-            return SubRenderables.end();
+            if( this->Visible == false )
+                return;
+            this->Visible = false;
+            this->_OnVisibilityHidden();
+            for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+            {
+                (*It)->Hide();
+            }
         }
 
-        Widget::ConstRenderableIterator Widget::BeginRenderable() const
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void Widget::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            return SubRenderables.begin();
+            this->QuadRenderable::ProtoSerializeProperties(SelfRoot);
+            XML::Node PropertiesNode = SelfRoot.AppendChild( Widget::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("State").SetValue( this->State ) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",Widget::GetSerializableName() + "Properties",true);
+            }
         }
 
-        Widget::ConstRenderableIterator Widget::EndRenderable() const
+        void Widget::ProtoSerializeStateGroupBindings(XML::Node& SelfRoot) const
         {
-            return SubRenderables.end();
+            XML::Node BindingsNode = SelfRoot.AppendChild( "StateGroupBindings" );
+
+            if( BindingsNode.AppendAttribute("Version").SetValue("1") ) {
+                for( ConstStateLayerGroupIterator BindingIt = this->StateGroupBindings.begin() ; BindingIt != this->StateGroupBindings.end() ; ++BindingIt )
+                {
+                    XML::Node BindingNode = BindingsNode.AppendChild( "StateGroupBinding" );
+
+                    if( BindingNode.AppendAttribute("Version").SetValue("1") &&
+                        BindingNode.AppendAttribute("StateID").SetValue( (*BindingIt).first ) &&
+                        BindingNode.AppendAttribute("LayerGroupName").SetValue( (*BindingIt).second->GetName() ) )
+                    {
+                        continue;
+                    }else{
+                        SerializeError("Create XML Version Attribute","StateGroupBinding",true);
+                    }
+                }
+            }else{
+                SerializeError("Create XML Version Attribute","StateGroupBindings",true);
+            }
+        }
+
+        void Widget::ProtoSerializeEvents(XML::Node& SelfRoot) const
+        {
+            XML::Node EventsNode = SelfRoot.AppendChild( "Events" );
+
+            if( EventsNode.AppendAttribute("Version").SetValue("1") ) {
+                for( ConstEventIterator EvIt = this->Events.begin() ; EvIt != this->Events.end() ; ++EvIt )
+                {
+                    XML::Node BindingNode = EventsNode.AppendChild( "Event" );
+
+                    if( BindingNode.AppendAttribute("Version").SetValue("1") &&
+                        BindingNode.AppendAttribute("Name").SetValue( (*EvIt).first ) )
+                    {
+                        continue;
+                    }else{
+                        SerializeError("Create XML Version Attribute","Event",true);
+                    }
+                }
+            }else{
+                SerializeError("Create XML Version Attribute","Events",true);
+            }
+        }
+
+        void Widget::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->QuadRenderable::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( Widget::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("State");
+                    if( !CurrAttrib.Empty() )
+                        this->State = CurrAttrib.AsUint();
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Widget::GetSerializableName() + "Properties") + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Widget::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        void Widget::ProtoDeSerializeStateGroupBindings(const XML::Node& SelfRoot)
+        {
+            this->StateGroupBindings.clear();
+
+            XML::Attribute CurrAttrib;
+            XML::Node BindingsNode = SelfRoot.GetChild( "StateGroupBindings" );
+
+            if( !BindingsNode.Empty() ) {
+                if( BindingsNode.GetAttribute("Version").AsInt() == 1 ) {
+                    for( XML::NodeIterator BindingNodeIt = BindingsNode.begin() ; BindingNodeIt != BindingsNode.end() ; ++BindingNodeIt )
+                    {
+                        if( (*BindingNodeIt).GetAttribute("Version").AsInt() == 1 ) {
+                            UInt32 StateID = 0;
+                            String LayerGroupName;
+
+                            CurrAttrib = (*BindingNodeIt).GetAttribute("StateID");
+                            if( !CurrAttrib.Empty() )
+                                StateID = CurrAttrib.AsUint();
+
+                            CurrAttrib = (*BindingNodeIt).GetAttribute("LayerGroupName");
+                            if( !CurrAttrib.Empty() )
+                                LayerGroupName = CurrAttrib.AsString();
+
+                            if( !LayerGroupName.empty() ) { //Don't check the StateID because 0 is valid >.>
+                                RenderLayerGroup* NamedGroup = this->GetRenderLayerGroup(LayerGroupName);
+                                if( NamedGroup != NULL ) {
+                                    this->StateGroupBindings.insert( std::pair<UInt32,RenderLayerGroup*>(StateID,NamedGroup) );
+                                }else{
+                                    StringStream ExceptionStream;
+                                    ExceptionStream << "Named RenderLayerGroup \"" << LayerGroupName << "\" not found when deserializing Widget named \"" << this->GetName() << "\".";
+                                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
+                                }
+                            }
+                        }else{
+                            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("StateGroupBindings") + ": Not Version 1.");
+                        }
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("StateGroupBindings") + ": Not Version 1.");
+                }
+            }
+        }
+
+        void Widget::ProtoDeSerializeEvents(const XML::Node& SelfRoot)
+        {
+            this->RemoveAllEvents();
+
+            XML::Attribute CurrAttrib;
+            XML::Node EventsNode = SelfRoot.GetChild( "Events" );
+
+            if( !EventsNode.Empty() ) {
+                if( EventsNode.GetAttribute("Version").AsInt() == 1 ) {
+                    for( XML::NodeIterator EvNodeIt = EventsNode.begin() ; EvNodeIt != EventsNode.end() ; ++EvNodeIt )
+                    {
+                        if( (*EvNodeIt).GetAttribute("Version").AsInt() == 1 ) {
+                            String EvName;
+
+                            CurrAttrib = (*EvNodeIt).GetAttribute("Name");
+                            if( !CurrAttrib.Empty() )
+                                EvName = CurrAttrib.AsString();
+
+                            if( !EvName.empty() ) {
+                                this->AddEvent(EvName);
+                            }
+                        }else{
+                            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("Events") + ": Not Version 1.");
+                        }
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("Events") + ": Not Version 1.");
+                }
+            }
+        }
+
+        String Widget::GetDerivedSerializableName() const
+        {
+            return this->GetTypeName();
+        }
+
+        String Widget::GetSerializableName()
+        {
+            return Widget::TypeName;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+        void Widget::_OnMouseEnter()
+        {
+            this->State |= WS_Hovered;
+            this->SetGroupFromState(this->State);
+
+            WidgetEventArguments Args(Widget::EventMouseEnter,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void Widget::_OnMouseExit()
+        {
+            if( this->State & WS_Hovered )
+            {
+                this->State &= ~WS_Hovered;
+                this->SetGroupFromState(this->State);
+            }
+
+            WidgetEventArguments Args(Widget::EventMouseExit,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void Widget::_OnMouseDragStart()
+        {
+            this->State |= WS_Dragged;
+            this->SetGroupFromState(this->State);
+
+            WidgetEventArguments Args(Widget::EventMouseDragStart,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void Widget::_OnMouseDragging()
+        {
+            WidgetEventArguments Args(Widget::EventMouseDragging,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void Widget::_OnMouseDragEnd()
+        {
+            if( this->State & WS_Dragged )
+            {
+                this->State &= ~WS_Dragged;
+                this->SetGroupFromState(this->State);
+            }
+
+            WidgetEventArguments Args(Widget::EventMouseDragEnd,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void Widget::_OnFocusGained()
+        {
+            this->State |= WS_Focused;
+            this->SetGroupFromState(this->State);
+
+            WidgetEventArguments Args(Widget::EventFocusGained,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void Widget::_OnFocusLost()
+        {
+            if( this->State & WS_Focused )
+            {
+                this->State &= ~WS_Focused;
+                this->SetGroupFromState(this->State);
+            }
+
+            WidgetEventArguments Args(Widget::EventFocusLost,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void Widget::_OnFocusLocked()
+        {
+            WidgetEventArguments Args(Widget::EventFocusLocked,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void Widget::_OnFocusUnlocked()
+        {
+            WidgetEventArguments Args(Widget::EventFocusUnlocked,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void Widget::_OnVisibilityShown()
+        {
+            WidgetEventArguments Args(Widget::EventVisibilityShown,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void Widget::_OnVisibilityHidden()
+        {
+            WidgetEventArguments Args(Widget::EventVisibilityHidden,this->Name);
+            this->FireEvent(Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void Widget::_MarkDirty()
+        bool Widget::_HandleInput(const Input::MetaCode& Code)
         {
-            Dirty = true;
-            if(ParentWidget)
-                ParentWidget->_MarkDirty();
-            else
-                ParentScreen->_RequestIndexRedraw(ZOrder);
-        }
-
-        void Widget::_Redraw()
-        {
-            for( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
-            {
-                if( (*it)->Dirty )
-                    (*it)->_Redraw();
+            if( this->HandleInputImpl(Code) ) {
+                return true;
+            }else{
+                if( this->ParentQuad && Renderable::RT_Widget == this->ParentQuad->GetRenderableType() )
+                    return static_cast<Widget*>(this->ParentQuad)->_HandleInput(Code);
+                else return false;
             }
         }
 
-        void Widget::_AppendVertices(ScreenVertexData& Vertices)
+        void Widget::_NotifyEvent(const EventArguments& Args)
         {
-            for( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
-            {
-                if( (*it)->IsVisible() )
-                    (*it)->_AppendVertices(Vertices);
-            }
+            // Default to doing nothing, must be overridden to add logic if a widget needs it
         }
 
-        //-----------------------------------------------------
+        ///////////////////////////////////////////////////////////////////////////////
+        // ButtonFactory Methods
 
-        WidgetListener::WidgetListener()
-            : Caller(NULL)
-        {
-        }
+        String GenericWidgetFactory::GetWidgetTypeName() const
+            { return Widget::TypeName; }
 
-        WidgetListener::~WidgetListener()
-        {
-        }
+        Widget* GenericWidgetFactory::CreateWidget(const String& RendName, Screen* Parent)
+            { return new Widget(RendName,Parent); }
 
-        void WidgetListener::SetCaller(Widget* Caller)
-        {
-            this->Caller = Caller;
-        }
+        Widget* GenericWidgetFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
+            { return new Widget(RendName,RendRect,Parent); }
+
+        Widget* GenericWidgetFactory::CreateWidget(Screen* Parent)
+            { return new Widget(Parent); }
+
+        Widget* GenericWidgetFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+            { return new Widget(RendName,Parent); }
+
+        Widget* GenericWidgetFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+            { return new Widget(RendName,RendRect,Parent); }
+
+        Widget* GenericWidgetFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return new Widget(XMLNode,Parent); }
+
+        void GenericWidgetFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete ToBeDestroyed; }
     }//UI
 }//Mezzanine
 

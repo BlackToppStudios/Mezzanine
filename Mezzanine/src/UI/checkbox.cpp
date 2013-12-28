@@ -40,247 +40,217 @@
 #ifndef _uicheckbox_cpp
 #define _uicheckbox_cpp
 
-#include "uimanager.h"
+#include "UI/uimanager.h"
 #include "UI/checkbox.h"
 #include "UI/screen.h"
-#include "UI/caption.h"
-#include "UI/button.h"
-#include "UI/viewportupdatetool.h"
-#include "Input/inputmanager.h"
-#include "Input/metacode.h"
-#include "Input/mouse.h"
-#include "entresol.h"
+
+#include "stringtool.h"
+#include "exception.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, ConstString& LabelText, Screen* PScreen)
-            : Widget(name,PScreen),
-              Checked(false),
-              CheckLock(true)
-        {
-            Type = Widget::W_CheckBox;
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            RenderableRect BoxRect, LabelRect;
-            if(Rect.Relative)
-            {
-                RelPosition = Rect.Position;
-                RelSize = Rect.Size;
+        const String CheckBox::TypeName = "CheckBox";
 
-                BoxRect.Position = Rect.Position;
-                BoxRect.Size.X = (Rect.Size.Y * WinDim.Y) / WinDim.X;
-                BoxRect.Size.Y = Rect.Size.Y;
-                BoxRect.Relative = Rect.Relative;
-            }else{
-                RelPosition = Rect.Position / WinDim;
-                RelSize = Rect.Size / WinDim;
+        const String CheckBox::EventChecked = "Checked";
+        const String CheckBox::EventUnchecked = "Unchecked";
 
-                BoxRect.Position = Rect.Position;
-                BoxRect.Size.X = Rect.Size.Y;
-                BoxRect.Size.Y = Rect.Size.Y;
-                BoxRect.Relative = Rect.Relative;
-            }
-            LabelRect.Position.X = Rect.Position.X + BoxRect.Size.X;
-            LabelRect.Position.Y = Rect.Position.Y;
-            LabelRect.Size.X = Rect.Size.X - BoxRect.Size.X;
-            LabelRect.Size.Y = Rect.Size.Y;
-            LabelRect.Relative = Rect.Relative;
+        ///////////////////////////////////////////////////////////////////////////////
+        // CheckBox Methods
 
-            Box = ParentScreen->CreateButton(Name+"CB",BoxRect);
-            Label = ParentScreen->CreateCaption(Name+"CM",LabelRect,LineHeight,LabelText);
-            AddSubRenderable(0,Box);
-            AddSubRenderable(1,Label);
-        }
+        CheckBox::CheckBox(Screen* Parent) :
+            Button(Parent),
+            CheckLock(true)
+            {  }
 
-        CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString& LabelText, Screen* PScreen)
-            : Widget(name,PScreen),
-              GlyphIndex(Glyph),
-              Checked(false),
-              CheckLock(true)
-        {
-            Type = Widget::W_CheckBox;
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            RenderableRect BoxRect, LabelRect;
-            if(Rect.Relative)
-            {
-                RelPosition = Rect.Position;
-                RelSize = Rect.Size;
+        CheckBox::CheckBox(const String& RendName, Screen* Parent) :
+            Button(RendName,Parent),
+            CheckLock(true)
+            { this->ConstructCheckbox(); }
 
-                BoxRect.Position = Rect.Position;
-                BoxRect.Size.X = (Rect.Size.Y * WinDim.Y) / WinDim.X;
-                BoxRect.Size.Y = Rect.Size.Y;
-                BoxRect.Relative = Rect.Relative;
-            }else{
-                RelPosition = Rect.Position / WinDim;
-                RelSize = Rect.Size / WinDim;
+        CheckBox::CheckBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
+            Button(RendName,RendRect,Parent),
+            CheckLock(true)
+            { this->ConstructCheckbox(); }
 
-                BoxRect.Position = Rect.Position;
-                BoxRect.Size.X = Rect.Size.Y;
-                BoxRect.Size.Y = Rect.Size.Y;
-                BoxRect.Relative = Rect.Relative;
-            }
-            LabelRect.Position.X = Rect.Position.X + BoxRect.Size.X;
-            LabelRect.Position.Y = Rect.Position.Y;
-            LabelRect.Size.X = Rect.Size.X - BoxRect.Size.X;
-            LabelRect.Size.Y = Rect.Size.Y;
-            LabelRect.Relative = Rect.Relative;
-
-            Box = ParentScreen->CreateButton(Name+"CB",BoxRect);
-            Label = ParentScreen->CreateCaption(Name+"CM",LabelRect,Glyph,LabelText);
-            AddSubRenderable(0,Box);
-            AddSubRenderable(1,Label);
-        }
+        CheckBox::CheckBox(const XML::Node& XMLNode, Screen* Parent) :
+            Button(Parent),
+            CheckLock(true)
+            { this->ProtoDeSerialize(XMLNode); }
 
         CheckBox::~CheckBox()
+            {  }
+
+        void CheckBox::ConstructCheckbox()
         {
-            ParentScreen->DestroyWidget(Box);
-            ParentScreen->DestroyBasicRenderable(Label);
+            // Add our new events
+            this->AddEvent(CheckBox::EventChecked);
+            this->AddEvent(CheckBox::EventUnchecked);
+            // Add some more render layer groups
+            RenderLayerGroup* CheckedNormalGroup = this->CreateRenderLayerGroup("CheckedNormal");
+            RenderLayerGroup* CheckedHoveredGroup = this->CreateRenderLayerGroup("CheckedHovered");
+
+            this->StateGroupBindings[ WS_Checked ] = CheckedNormalGroup;
+            this->StateGroupBindings[ WS_Checked | WS_Hovered ] = CheckedHoveredGroup;
+            this->StateGroupBindings[ WS_Checked | WS_Focused ] = CheckedNormalGroup;
+            this->StateGroupBindings[ WS_Checked | WS_Dragged ] = CheckedNormalGroup;
+            this->StateGroupBindings[ WS_Checked | WS_Hovered | WS_Focused ] = CheckedHoveredGroup;
+            this->StateGroupBindings[ WS_Checked | WS_Focused | WS_Dragged ] = CheckedNormalGroup;
+            this->StateGroupBindings[ WS_Checked | WS_Dragged | WS_Hovered ] = CheckedHoveredGroup;
+            this->StateGroupBindings[ WS_Checked | WS_Hovered | WS_Focused | WS_Dragged ] = CheckedHoveredGroup;
         }
 
-        void CheckBox::SetSpriteSet(std::pair<std::string,std::string>& SpriteSet)
+        void CheckBox::SetChecked(bool Check)
         {
-            Box->GetClickable()->SetBackgroundSprite(SpriteSet.first);
-            if(!SpriteSet.second.empty())
-                Box->GetClickable()->SetHoveredSprite(SpriteSet.second);
+            if( Check ) this->State |= WS_Checked;
+            else this->State &= ~WS_Checked;
         }
 
-        void CheckBox::UpdateImpl(bool Force)
-        {
-            if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
-            {
-                Input::ButtonState State = Input::InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
-                if(Input::BUTTON_PRESSING == State)
-                {
-                    CheckLock = false;
-                }
-                else if(Input::BUTTON_LIFTING && !CheckLock)
-                {
-                    Checked = !Checked;
-                    if(Checked)
-                    {
-                        SetSpriteSet(CheckedSet);
-                    }else{
-                        SetSpriteSet(UncheckedSet);
-                    }
-                    CheckLock = true;
-                }
-            }
-        }
-
-        void CheckBox::SetVisibleImpl(bool visible)
-        {
-            Box->SetVisible(visible);
-            Label->SetVisible(visible);
-        }
-
-        bool CheckBox::CheckMouseHoverImpl()
-        {
-            if(Box->CheckMouseHover())
-            {
-                HoveredSubWidget = Box;
-                return true;
-            }
-            return false;
-        }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
 
         bool CheckBox::IsChecked()
         {
-            return Checked;
+            return (State & WS_Checked);
+        }
+
+        bool CheckBox::IsLocked()
+        {
+            return CheckLock;
         }
 
         void CheckBox::ManualCheck(bool Check)
         {
-            if(Checked==Check)
+            if( IsChecked() == Check )
                 return;
-            Checked = Check;
-            if(Checked)
+            SetChecked( Check );
+        }
+
+        void CheckBox::SetCheckLock(bool Lock)
+        {
+            this->CheckLock = Lock;
+        }
+
+        const String& CheckBox::GetTypeName() const
+        {
+            return CheckBox::TypeName;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void CheckBox::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->Button::ProtoSerializeProperties(SelfRoot);
+
+            XML::Node PropertiesNode = SelfRoot.AppendChild( CheckBox::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("CheckLock").SetValue( this->CheckLock ? "true" : "false" ) )
             {
-                SetSpriteSet(CheckedSet);
+                return;
             }else{
-                SetSpriteSet(UncheckedSet);
+                SerializeError("Create XML Attribute Values",CheckBox::GetSerializableName() + "Properties",true);
             }
         }
 
-        void CheckBox::SetLabelText(String& LabelText)
+        void CheckBox::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            Label->SetText(LabelText);
+            this->Button::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( CheckBox::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("LockoutTime");
+                    if( !CurrAttrib.Empty() )
+                        this->CheckLock = StringTools::ConvertToBool( CurrAttrib.AsString() );
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (CheckBox::GetSerializableName() + "Properties") + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,CheckBox::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
         }
 
-        String CheckBox::GetLabelText()
+        String CheckBox::GetSerializableName()
         {
-            return Label->GetText();
+            return CheckBox::TypeName;
         }
 
-        void CheckBox::SetUncheckedSprite(ConstString& Unchecked, ConstString& Hovered)
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+        void CheckBox::_OnActivate()
         {
-            UncheckedSet.first = Unchecked;
-            UncheckedSet.second = Hovered;
-            SetSpriteSet(UncheckedSet);
+            Button::_OnActivate();
+            // Currently this needs nothing, may change
         }
 
-        void CheckBox::SetCheckedSprite(ConstString& Checked, ConstString& Hovered)
+        void CheckBox::_OnDeactivate()
         {
-            CheckedSet.first = Checked;
-            CheckedSet.second = Hovered;
+            Button::_OnDeactivate();
+
+            if( this->IsHovered() && !CheckLock )
+            {
+                bool NewState = !this->IsChecked();
+                if( NewState ) this->_OnChecked();
+                else this->_OnUnchecked();
+            }
         }
 
-        void CheckBox::SetPosition(const Vector2& Position)
+        void CheckBox::_OnChecked()
         {
-            RelPosition = Position;
-            Box->SetPosition(Position);
+            this->State |= WS_Checked;
+            this->SetGroupFromState(State);
 
-            Vector2 Adjusted = Position;
-            Adjusted.X+=Box->GetSize().X;
-            Label->SetPosition(Adjusted);
+            WidgetEventArguments Args(CheckBox::EventChecked,this->Name);
+            this->FireEvent(Args);
         }
 
-        void CheckBox::SetActualPosition(const Vector2& Position)
+        void CheckBox::_OnUnchecked()
         {
-            RelPosition = Position / ParentScreen->GetViewportDimensions();
-            Box->SetActualPosition(Position);
+            if( State & WS_Checked )
+            {
+                State &= ~WS_Checked;
+                this->SetGroupFromState(State);
+            }
 
-            Vector2 Adjusted = Position;
-            Adjusted.X+=Box->GetActualSize().X;
-            Label->SetActualPosition(Adjusted);
+            WidgetEventArguments Args(CheckBox::EventUnchecked,this->Name);
+            this->FireEvent(Args);
         }
 
-        void CheckBox::SetSize(const Vector2& Size)
-        {
-            RelSize = Size;
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            Box->SetSize(Vector2((Size.Y * WinDim.Y) / WinDim.X,Size.Y));
-            Label->SetSize(Vector2(Size.X - ((Size.Y * WinDim.Y) / WinDim.X),Size.Y));
-            this->SetPosition(GetPosition());
-        }
+        ///////////////////////////////////////////////////////////////////////////////
+        // CheckBoxFactory Methods
 
-        void CheckBox::SetActualSize(const Vector2& Size)
-        {
-            RelSize = Size / ParentScreen->GetViewportDimensions();
-            Box->SetActualSize(Vector2(Size.Y,Size.Y));
-            Label->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
-            this->SetActualPosition(GetActualPosition());
-        }
+        String CheckBoxFactory::GetWidgetTypeName() const
+            { return CheckBox::TypeName; }
 
-        void CheckBox::UpdateDimensions()
-        {
-            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
-            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
-            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
-            Box->UpdateDimensions();
-            Label->UpdateDimensions();
-            SetPosition(RelPosition);
-        }
+        CheckBox* CheckBoxFactory::CreateCheckBox(const String& RendName, Screen* Parent)
+            { return new CheckBox(RendName,Parent); }
 
-        Button* CheckBox::GetCheckBoxButton()
-        {
-            return Box;
-        }
+        CheckBox* CheckBoxFactory::CreateCheckBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
+            { return new CheckBox(RendName,RendRect,Parent); }
 
-        Caption* CheckBox::GetLabel()
-        {
-            return Label;
-        }
+        CheckBox* CheckBoxFactory::CreateCheckBox(const XML::Node& XMLNode, Screen* Parent)
+            { return new CheckBox(XMLNode,Parent); }
+
+        Widget* CheckBoxFactory::CreateWidget(Screen* Parent)
+            { return new CheckBox(Parent); }
+
+        Widget* CheckBoxFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateCheckBox(RendName,Parent); }
+
+        Widget* CheckBoxFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateCheckBox(RendName,RendRect,Parent); }
+
+        Widget* CheckBoxFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateCheckBox(XMLNode,Parent); }
+
+        void CheckBoxFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<CheckBox*>( ToBeDestroyed ); }
     }//UT
 }//Mezzanine
 

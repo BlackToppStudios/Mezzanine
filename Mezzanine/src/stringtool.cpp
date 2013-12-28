@@ -48,6 +48,46 @@
 #include <cctype>
 //#include <locale>
 
+namespace
+{
+    /// @internal
+    /// @brief Convenience multiplier used for converting a colour value for a single channel to a scalar value.
+    const Mezzanine::Real HexConversionMultiplier = Mezzanine::Real(1.0 / 255.0);
+
+    /// @internal
+    /// @brief Converts a string containing hex to a ColourValue channel.
+    /// @param Hex The Hex value to be converted.
+    /// @return Returns a Real representing the converted Hex string that can be applied to a ColourValue channel.
+    Mezzanine::Real ConvertHexToColourChannel(const Mezzanine::String& Hex)
+    {
+        if( Hex.size() != 2 ) {
+            MEZZ_EXCEPTION(Mezzanine::Exception::PARAMETERS_EXCEPTION,"Hex code requires 2 characters to express a ColourValue channel.");
+        }
+
+        Mezzanine::Real Ret = 0;
+        Mezzanine::StringStream Converter;
+        Converter << std::hex << Hex;
+        Converter >> Ret;
+        return std::min(Ret *= HexConversionMultiplier,Mezzanine::Real(1.0));
+    }
+    /// @internal
+    /// @brief Converts a ColourValue channel to Hex.
+    /// @param Channel The value to be converted to Hex.
+    /// @return Returns a two character string containing the hex expression for the provided channel value.
+    Mezzanine::String ConvertColourChannelToHex(const Mezzanine::Real Channel)
+    {
+        Mezzanine::String Ret;
+        Mezzanine::StringStream Converter;
+        Converter << std::hex << static_cast<Mezzanine::UInt8>( Channel * 255.0 );
+        Converter >> Ret;
+
+        if( Ret.size() == 1 ) {
+            Ret.insert(0,1,'0');
+        }
+        return Ret;
+    }
+}
+
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
@@ -231,6 +271,33 @@ namespace Mezzanine
         std::stringstream converter;
         converter << ToConvert.RedChannel << " " << ToConvert.GreenChannel << " " << ToConvert.BlueChannel << " " << ToConvert.AlphaChannel;
         return converter.str();
+    }
+
+    ColourValue StringTools::ConvertHexToColourValue(const String& ToConvert)
+    {
+        if( ToConvert.size() < 6 ) {
+            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Hex code requires a minimum of 6 characters to express a ColourValue instance.");
+        }
+
+        ColourValue Ret;
+        Ret.RedChannel = ConvertHexToColourChannel( ToConvert.substr(0,2) );
+        Ret.GreenChannel = ConvertHexToColourChannel( ToConvert.substr(2,2) );
+        Ret.BlueChannel = ConvertHexToColourChannel( ToConvert.substr(4,2) );
+
+        if( ToConvert.size() == 6 ) Ret.AlphaChannel = 1.0;
+        else Ret.AlphaChannel = ConvertHexToColourChannel( ToConvert.substr(6,2) );
+
+        return Ret;
+    }
+
+    String StringTools::ConvertToHexString(const ColourValue& ToConvert)
+    {
+        String Ret;
+        Ret.append( ConvertColourChannelToHex(ToConvert.RedChannel) );
+        Ret.append( ConvertColourChannelToHex(ToConvert.GreenChannel) );
+        Ret.append( ConvertColourChannelToHex(ToConvert.BlueChannel) );
+        Ret.append( ConvertColourChannelToHex(ToConvert.AlphaChannel) );
+        return Ret;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

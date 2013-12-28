@@ -1,0 +1,1969 @@
+﻿<?xml version="1.0"?>
+<Atlases>
+	<Atlas Name="EngineDemo_Menu" >
+		<Texture TexFile="EngineDemo_Menu.png" WhitePixel="2046 2046" />
+		<Fonts>
+			<Font Name="Ubuntu-10" LineHeight="17" SpaceLength="3" BaseLine="14" LetterSpacing="-1" MonoWidth="15" RangeBegin="33" RangeEnd="126" >
+				<Glyphs>
+					<Glyph ID="33" PositionX="1" PositionY="0" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="34" PositionX="5" PositionY="0" SizeX="6" SizeY="15" Advance="5" />
+					<Glyph ID="35" PositionX="11" PositionY="0" SizeX="10" SizeY="15" Advance="8" />
+					<Glyph ID="36" PositionX="21" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="37" PositionX="29" PositionY="0" SizeX="12" SizeY="15" Advance="11" />
+					<Glyph ID="38" PositionX="41" PositionY="0" SizeX="10" SizeY="15" Advance="8" />
+					<Glyph ID="39" PositionX="51" PositionY="0" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="40" PositionX="55" PositionY="0" SizeX="5" SizeY="15" Advance="4" />
+					<Glyph ID="41" PositionX="60" PositionY="0" SizeX="5" SizeY="15" Advance="4" />
+					<Glyph ID="42" PositionX="65" PositionY="0" SizeX="7" SizeY="15" Advance="6" />
+					<Glyph ID="43" PositionX="72" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="44" PositionX="80" PositionY="0" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="45" PositionX="84" PositionY="0" SizeX="5" SizeY="15" Advance="3" />
+					<Glyph ID="46" PositionX="89" PositionY="0" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="47" PositionX="93" PositionY="0" SizeX="6" SizeY="15" Advance="5" />
+					<Glyph ID="48" PositionX="99" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="49" PositionX="107" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="50" PositionX="115" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="51" PositionX="123" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="52" PositionX="131" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="53" PositionX="139" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="54" PositionX="147" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="55" PositionX="155" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="56" PositionX="163" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="57" PositionX="171" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="58" PositionX="179" PositionY="0" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="59" PositionX="183" PositionY="0" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="60" PositionX="187" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="61" PositionX="195" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="62" PositionX="203" PositionY="0" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="63" PositionX="211" PositionY="0" SizeX="6" SizeY="15" Advance="5" />
+					<Glyph ID="64" PositionX="217" PositionY="0" SizeX="13" SizeY="15" Advance="12" />
+					<Glyph ID="65" PositionX="230" PositionY="0" SizeX="10" SizeY="15" Advance="8" />
+					<Glyph ID="66" PositionX="240" PositionY="0" SizeX="9" SizeY="15" Advance="8" />
+					<Glyph ID="67" PositionX="0" PositionY="15" SizeX="9" SizeY="15" Advance="8" />
+					<Glyph ID="68" PositionX="9" PositionY="15" SizeX="10" SizeY="15" Advance="9" />
+					<Glyph ID="69" PositionX="19" PositionY="15" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="70" PositionX="27" PositionY="15" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="71" PositionX="35" PositionY="15" SizeX="10" SizeY="15" Advance="8" />
+					<Glyph ID="72" PositionX="45" PositionY="15" SizeX="10" SizeY="15" Advance="9" />
+					<Glyph ID="73" PositionX="55" PositionY="15" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="74" PositionX="59" PositionY="15" SizeX="7" SizeY="15" Advance="6" />
+					<Glyph ID="75" PositionX="66" PositionY="15" SizeX="9" SizeY="15" Advance="8" />
+					<Glyph ID="76" PositionX="75" PositionY="15" SizeX="8" SizeY="15" Advance="6" />
+					<Glyph ID="77" PositionX="83" PositionY="15" SizeX="12" SizeY="15" Advance="11" />
+					<Glyph ID="78" PositionX="95" PositionY="15" SizeX="10" SizeY="15" Advance="9" />
+					<Glyph ID="79" PositionX="105" PositionY="15" SizeX="11" SizeY="15" Advance="10" />
+					<Glyph ID="80" PositionX="116" PositionY="15" SizeX="9" SizeY="15" Advance="8" />
+					<Glyph ID="81" PositionX="125" PositionY="15" SizeX="11" SizeY="15" Advance="10" />
+					<Glyph ID="82" PositionX="136" PositionY="15" SizeX="9" SizeY="15" Advance="8" />
+					<Glyph ID="83" PositionX="145" PositionY="15" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="84" PositionX="153" PositionY="15" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="85" PositionX="161" PositionY="15" SizeX="10" SizeY="15" Advance="9" />
+					<Glyph ID="86" PositionX="171" PositionY="15" SizeX="9" SizeY="15" Advance="8" />
+					<Glyph ID="87" PositionX="180" PositionY="15" SizeX="13" SizeY="15" Advance="12" />
+					<Glyph ID="88" PositionX="193" PositionY="15" SizeX="9" SizeY="15" Advance="8" />
+					<Glyph ID="89" PositionX="202" PositionY="15" SizeX="9" SizeY="15" Advance="7" />
+					<Glyph ID="90" PositionX="211" PositionY="15" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="91" PositionX="219" PositionY="15" SizeX="5" SizeY="15" Advance="4" />
+					<Glyph ID="92" PositionX="224" PositionY="15" SizeX="6" SizeY="15" Advance="5" />
+					<Glyph ID="93" PositionX="230" PositionY="15" SizeX="5" SizeY="15" Advance="4" />
+					<Glyph ID="94" PositionX="235" PositionY="15" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="95" PositionX="243" PositionY="15" SizeX="7" SizeY="15" Advance="6" />
+					<Glyph ID="96" PositionX="250" PositionY="15" SizeX="6" SizeY="15" Advance="5" />
+					<Glyph ID="97" PositionX="0" PositionY="30" SizeX="8" SizeY="15" Advance="6" />
+					<Glyph ID="98" PositionX="8" PositionY="30" SizeX="9" SizeY="15" Advance="7" />
+					<Glyph ID="99" PositionX="17" PositionY="30" SizeX="7" SizeY="15" Advance="6" />
+					<Glyph ID="100" PositionX="24" PositionY="30" SizeX="9" SizeY="15" Advance="7" />
+					<Glyph ID="101" PositionX="33" PositionY="30" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="102" PositionX="41" PositionY="30" SizeX="6" SizeY="15" Advance="5" />
+					<Glyph ID="103" PositionX="47" PositionY="30" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="104" PositionX="55" PositionY="30" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="105" PositionX="63" PositionY="30" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="106" PositionX="67" PositionY="30" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="107" PositionX="71" PositionY="30" SizeX="8" SizeY="15" Advance="6" />
+					<Glyph ID="108" PositionX="79" PositionY="30" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="109" PositionX="83" PositionY="30" SizeX="12" SizeY="15" Advance="11" />
+					<Glyph ID="110" PositionX="95" PositionY="30" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="111" PositionX="103" PositionY="30" SizeX="9" SizeY="15" Advance="7" />
+					<Glyph ID="112" PositionX="112" PositionY="30" SizeX="9" SizeY="15" Advance="7" />
+					<Glyph ID="113" PositionX="121" PositionY="30" SizeX="9" SizeY="15" Advance="7" />
+					<Glyph ID="114" PositionX="130" PositionY="30" SizeX="6" SizeY="15" Advance="5" />
+					<Glyph ID="115" PositionX="136" PositionY="30" SizeX="7" SizeY="15" Advance="5" />
+					<Glyph ID="116" PositionX="143" PositionY="30" SizeX="6" SizeY="15" Advance="5" />
+					<Glyph ID="117" PositionX="149" PositionY="30" SizeX="8" SizeY="15" Advance="7" />
+					<Glyph ID="118" PositionX="157" PositionY="30" SizeX="7" SizeY="15" Advance="6" />
+					<Glyph ID="119" PositionX="164" PositionY="30" SizeX="11" SizeY="15" Advance="10" />
+					<Glyph ID="120" PositionX="175" PositionY="30" SizeX="8" SizeY="15" Advance="6" />
+					<Glyph ID="121" PositionX="183" PositionY="30" SizeX="7" SizeY="15" Advance="6" />
+					<Glyph ID="122" PositionX="190" PositionY="30" SizeX="7" SizeY="15" Advance="6" />
+					<Glyph ID="123" PositionX="197" PositionY="30" SizeX="5" SizeY="15" Advance="4" />
+					<Glyph ID="124" PositionX="202" PositionY="30" SizeX="4" SizeY="15" Advance="3" />
+					<Glyph ID="125" PositionX="206" PositionY="30" SizeX="5" SizeY="15" Advance="4" />
+					<Glyph ID="126" PositionX="211" PositionY="30" SizeX="8" SizeY="15" Advance="7" />
+				</Glyphs>
+				<Kernings>
+					<Kerning Left="39" Right="65" Adjust="-1" />
+					<Kerning Left="39" Right="74" Adjust="-1" />
+					<Kerning Left="42" Right="74" Adjust="-1" />
+					<Kerning Left="46" Right="86" Adjust="-1" />
+					<Kerning Left="46" Right="89" Adjust="-1" />
+					<Kerning Left="58" Right="84" Adjust="-1" />
+					<Kerning Left="65" Right="39" Adjust="-1" />
+					<Kerning Left="65" Right="89" Adjust="-1" />
+					<Kerning Left="70" Right="74" Adjust="-1" />
+					<Kerning Left="76" Right="39" Adjust="-1" />
+					<Kerning Left="76" Right="42" Adjust="-1" />
+					<Kerning Left="76" Right="84" Adjust="-1" />
+					<Kerning Left="76" Right="86" Adjust="-1" />
+					<Kerning Left="76" Right="89" Adjust="-1" />
+					<Kerning Left="80" Right="46" Adjust="-1" />
+					<Kerning Left="80" Right="74" Adjust="-1" />
+					<Kerning Left="84" Right="47" Adjust="-1" />
+					<Kerning Left="84" Right="58" Adjust="-1" />
+					<Kerning Left="84" Right="74" Adjust="-1" />
+					<Kerning Left="84" Right="119" Adjust="-1" />
+					<Kerning Left="86" Right="74" Adjust="-1" />
+					<Kerning Left="89" Right="47" Adjust="-1" />
+					<Kerning Left="89" Right="65" Adjust="-1" />
+					<Kerning Left="89" Right="74" Adjust="-1" />
+				</Kernings>
+			</Font>
+			<Font Name="Ubuntu-12" OffsetX="256" OffsetY="0" LineHeight="20" SpaceLength="3" BaseLine="17" LetterSpacing="-1" MonoWidth="15" RangeBegin="33" RangeEnd="126" >
+				<Glyphs>
+					<Glyph ID="33" PositionX="0" PositionY="0" SizeX="5" SizeY="18" Advance="4" />
+					<Glyph ID="34" PositionX="5" PositionY="0" SizeX="7" SizeY="18" Advance="6" />
+					<Glyph ID="35" PositionX="12" PositionY="0" SizeX="11" SizeY="18" Advance="10" />
+					<Glyph ID="36" PositionX="23" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="37" PositionX="32" PositionY="0" SizeX="14" SizeY="18" Advance="13" />
+					<Glyph ID="38" PositionX="46" PositionY="0" SizeX="11" SizeY="18" Advance="10" />
+					<Glyph ID="39" PositionX="57" PositionY="0" SizeX="4" SizeY="18" Advance="3" />
+					<Glyph ID="40" PositionX="61" PositionY="0" SizeX="6" SizeY="18" Advance="5" />
+					<Glyph ID="41" PositionX="67" PositionY="0" SizeX="6" SizeY="18" Advance="5" />
+					<Glyph ID="42" PositionX="73" PositionY="0" SizeX="8" SizeY="18" Advance="7" />
+					<Glyph ID="43" PositionX="81" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="44" PositionX="90" PositionY="0" SizeX="4" SizeY="18" Advance="4" />
+					<Glyph ID="45" PositionX="94" PositionY="0" SizeX="5" SizeY="18" Advance="4" />
+					<Glyph ID="46" PositionX="99" PositionY="0" SizeX="4" SizeY="18" Advance="4" />
+					<Glyph ID="47" PositionX="103" PositionY="0" SizeX="7" SizeY="18" Advance="6" />
+					<Glyph ID="48" PositionX="110" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="49" PositionX="119" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="50" PositionX="128" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="51" PositionX="137" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="52" PositionX="146" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="53" PositionX="155" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="54" PositionX="164" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="55" PositionX="173" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="56" PositionX="182" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="57" PositionX="191" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="58" PositionX="200" PositionY="0" SizeX="4" SizeY="18" Advance="4" />
+					<Glyph ID="59" PositionX="204" PositionY="0" SizeX="4" SizeY="18" Advance="4" />
+					<Glyph ID="60" PositionX="208" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="61" PositionX="217" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="62" PositionX="226" PositionY="0" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="63" PositionX="235" PositionY="0" SizeX="7" SizeY="18" Advance="6" />
+					<Glyph ID="64" PositionX="0" PositionY="18" SizeX="16" SizeY="18" Advance="15" />
+					<Glyph ID="65" PositionX="16" PositionY="18" SizeX="11" SizeY="18" Advance="10" />
+					<Glyph ID="66" PositionX="27" PositionY="18" SizeX="11" SizeY="18" Advance="10" />
+					<Glyph ID="67" PositionX="38" PositionY="18" SizeX="10" SizeY="18" Advance="10" />
+					<Glyph ID="68" PositionX="48" PositionY="18" SizeX="12" SizeY="18" Advance="11" />
+					<Glyph ID="69" PositionX="60" PositionY="18" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="70" PositionX="70" PositionY="18" SizeX="9" SizeY="18" Advance="8" />
+					<Glyph ID="71" PositionX="79" PositionY="18" SizeX="11" SizeY="18" Advance="10" />
+					<Glyph ID="72" PositionX="90" PositionY="18" SizeX="12" SizeY="18" Advance="11" />
+					<Glyph ID="73" PositionX="102" PositionY="18" SizeX="5" SizeY="18" Advance="4" />
+					<Glyph ID="74" PositionX="107" PositionY="18" SizeX="8" SizeY="18" Advance="8" />
+					<Glyph ID="75" PositionX="115" PositionY="18" SizeX="11" SizeY="18" Advance="10" />
+					<Glyph ID="76" PositionX="126" PositionY="18" SizeX="9" SizeY="18" Advance="8" />
+					<Glyph ID="77" PositionX="135" PositionY="18" SizeX="15" SizeY="18" Advance="14" />
+					<Glyph ID="78" PositionX="150" PositionY="18" SizeX="12" SizeY="18" Advance="11" />
+					<Glyph ID="79" PositionX="162" PositionY="18" SizeX="13" SizeY="18" Advance="12" />
+					<Glyph ID="80" PositionX="175" PositionY="18" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="81" PositionX="185" PositionY="18" SizeX="13" SizeY="18" Advance="12" />
+					<Glyph ID="82" PositionX="198" PositionY="18" SizeX="11" SizeY="18" Advance="10" />
+					<Glyph ID="83" PositionX="209" PositionY="18" SizeX="9" SizeY="18" Advance="8" />
+					<Glyph ID="84" PositionX="218" PositionY="18" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="85" PositionX="228" PositionY="18" SizeX="12" SizeY="18" Advance="11" />
+					<Glyph ID="86" PositionX="240" PositionY="18" SizeX="11" SizeY="18" Advance="10" />
+					<Glyph ID="87" PositionX="0" PositionY="36" SizeX="16" SizeY="18" Advance="15" />
+					<Glyph ID="88" PositionX="16" PositionY="36" SizeX="11" SizeY="18" Advance="10" />
+					<Glyph ID="89" PositionX="27" PositionY="36" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="90" PositionX="37" PositionY="36" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="91" PositionX="47" PositionY="36" SizeX="6" SizeY="18" Advance="5" />
+					<Glyph ID="92" PositionX="53" PositionY="36" SizeX="7" SizeY="18" Advance="6" />
+					<Glyph ID="93" PositionX="60" PositionY="36" SizeX="6" SizeY="18" Advance="5" />
+					<Glyph ID="94" PositionX="66" PositionY="36" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="95" PositionX="75" PositionY="36" SizeX="8" SizeY="18" Advance="8" />
+					<Glyph ID="96" PositionX="83" PositionY="36" SizeX="6" SizeY="18" Advance="6" />
+					<Glyph ID="97" PositionX="89" PositionY="36" SizeX="9" SizeY="18" Advance="8" />
+					<Glyph ID="98" PositionX="98" PositionY="36" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="99" PositionX="108" PositionY="36" SizeX="8" SizeY="18" Advance="7" />
+					<Glyph ID="100" PositionX="116" PositionY="36" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="101" PositionX="126" PositionY="36" SizeX="9" SizeY="18" Advance="9" />
+					<Glyph ID="102" PositionX="135" PositionY="36" SizeX="7" SizeY="18" Advance="6" />
+					<Glyph ID="103" PositionX="142" PositionY="36" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="104" PositionX="152" PositionY="36" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="105" PositionX="162" PositionY="36" SizeX="4" SizeY="18" Advance="4" />
+					<Glyph ID="106" PositionX="166" PositionY="36" SizeX="4" SizeY="18" Advance="4" />
+					<Glyph ID="107" PositionX="170" PositionY="36" SizeX="9" SizeY="18" Advance="8" />
+					<Glyph ID="108" PositionX="179" PositionY="36" SizeX="5" SizeY="18" Advance="4" />
+					<Glyph ID="109" PositionX="184" PositionY="36" SizeX="14" SizeY="18" Advance="13" />
+					<Glyph ID="110" PositionX="198" PositionY="36" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="111" PositionX="208" PositionY="36" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="112" PositionX="218" PositionY="36" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="113" PositionX="228" PositionY="36" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="114" PositionX="238" PositionY="36" SizeX="7" SizeY="18" Advance="6" />
+					<Glyph ID="115" PositionX="245" PositionY="36" SizeX="8" SizeY="18" Advance="7" />
+					<Glyph ID="116" PositionX="0" PositionY="54" SizeX="7" SizeY="18" Advance="6" />
+					<Glyph ID="117" PositionX="7" PositionY="54" SizeX="10" SizeY="18" Advance="9" />
+					<Glyph ID="118" PositionX="17" PositionY="54" SizeX="8" SizeY="18" Advance="8" />
+					<Glyph ID="119" PositionX="25" PositionY="54" SizeX="13" SizeY="18" Advance="12" />
+					<Glyph ID="120" PositionX="38" PositionY="54" SizeX="9" SizeY="18" Advance="8" />
+					<Glyph ID="121" PositionX="47" PositionY="54" SizeX="8" SizeY="18" Advance="8" />
+					<Glyph ID="122" PositionX="55" PositionY="54" SizeX="8" SizeY="18" Advance="7" />
+					<Glyph ID="123" PositionX="63" PositionY="54" SizeX="6" SizeY="18" Advance="5" />
+					<Glyph ID="124" PositionX="69" PositionY="54" SizeX="5" SizeY="18" Advance="4" />
+					<Glyph ID="125" PositionX="74" PositionY="54" SizeX="6" SizeY="18" Advance="5" />
+					<Glyph ID="126" PositionX="80" PositionY="54" SizeX="9" SizeY="18" Advance="9" />
+				</Glyphs>
+				<Kernings>
+					<Kerning Left="39" Right="65" Adjust="-1" />
+					<Kerning Left="39" Right="74" Adjust="-1" />
+					<Kerning Left="42" Right="65" Adjust="-1" />
+					<Kerning Left="42" Right="74" Adjust="-1" />
+					<Kerning Left="46" Right="84" Adjust="-1" />
+					<Kerning Left="46" Right="86" Adjust="-1" />
+					<Kerning Left="46" Right="89" Adjust="-1" />
+					<Kerning Left="47" Right="74" Adjust="-1" />
+					<Kerning Left="58" Right="84" Adjust="-1" />
+					<Kerning Left="65" Right="39" Adjust="-1" />
+					<Kerning Left="65" Right="42" Adjust="-1" />
+					<Kerning Left="65" Right="84" Adjust="-1" />
+					<Kerning Left="65" Right="86" Adjust="-1" />
+					<Kerning Left="65" Right="89" Adjust="-1" />
+					<Kerning Left="70" Right="46" Adjust="-1" />
+					<Kerning Left="70" Right="74" Adjust="-1" />
+					<Kerning Left="76" Right="39" Adjust="-2" />
+					<Kerning Left="76" Right="42" Adjust="-2" />
+					<Kerning Left="76" Right="45" Adjust="-1" />
+					<Kerning Left="76" Right="84" Adjust="-1" />
+					<Kerning Left="76" Right="86" Adjust="-1" />
+					<Kerning Left="76" Right="89" Adjust="-1" />
+					<Kerning Left="80" Right="46" Adjust="-1" />
+					<Kerning Left="80" Right="47" Adjust="-1" />
+					<Kerning Left="80" Right="74" Adjust="-1" />
+					<Kerning Left="84" Right="46" Adjust="-1" />
+					<Kerning Left="84" Right="47" Adjust="-1" />
+					<Kerning Left="84" Right="58" Adjust="-1" />
+					<Kerning Left="84" Right="65" Adjust="-1" />
+					<Kerning Left="84" Right="74" Adjust="-1" />
+					<Kerning Left="84" Right="119" Adjust="-1" />
+					<Kerning Left="86" Right="46" Adjust="-1" />
+					<Kerning Left="86" Right="47" Adjust="-1" />
+					<Kerning Left="86" Right="65" Adjust="-1" />
+					<Kerning Left="86" Right="74" Adjust="-1" />
+					<Kerning Left="89" Right="46" Adjust="-1" />
+					<Kerning Left="89" Right="47" Adjust="-1" />
+					<Kerning Left="89" Right="65" Adjust="-1" />
+					<Kerning Left="89" Right="74" Adjust="-1" />
+				</Kernings>
+			</Font>
+			<Font Name="Ubuntu-14" OffsetX="512" OffsetY="0" LineHeight="24" SpaceLength="4" BaseLine="20" LetterSpacing="-1" MonoWidth="15" RangeBegin="33" RangeEnd="126" >
+				<Glyphs>
+					<Glyph ID="33" PositionX="1" PositionY="0" SizeX="6" SizeY="22" Advance="5" />
+					<Glyph ID="34" PositionX="7" PositionY="0" SizeX="9" SizeY="22" Advance="8" />
+					<Glyph ID="35" PositionX="16" PositionY="0" SizeX="14" SizeY="22" Advance="12" />
+					<Glyph ID="36" PositionX="30" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="37" PositionX="42" PositionY="0" SizeX="17" SizeY="22" Advance="16" />
+					<Glyph ID="38" PositionX="59" PositionY="0" SizeX="14" SizeY="22" Advance="12" />
+					<Glyph ID="39" PositionX="73" PositionY="0" SizeX="5" SizeY="22" Advance="4" />
+					<Glyph ID="40" PositionX="78" PositionY="0" SizeX="7" SizeY="22" Advance="6" />
+					<Glyph ID="41" PositionX="85" PositionY="0" SizeX="7" SizeY="22" Advance="6" />
+					<Glyph ID="42" PositionX="92" PositionY="0" SizeX="10" SizeY="22" Advance="9" />
+					<Glyph ID="43" PositionX="102" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="44" PositionX="114" PositionY="0" SizeX="6" SizeY="22" Advance="4" />
+					<Glyph ID="45" PositionX="120" PositionY="0" SizeX="7" SizeY="22" Advance="5" />
+					<Glyph ID="46" PositionX="127" PositionY="0" SizeX="6" SizeY="22" Advance="4" />
+					<Glyph ID="47" PositionX="133" PositionY="0" SizeX="8" SizeY="22" Advance="7" />
+					<Glyph ID="48" PositionX="141" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="49" PositionX="153" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="50" PositionX="165" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="51" PositionX="177" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="52" PositionX="189" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="53" PositionX="201" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="54" PositionX="213" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="55" PositionX="225" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="56" PositionX="237" PositionY="0" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="57" PositionX="0" PositionY="22" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="58" PositionX="12" PositionY="22" SizeX="6" SizeY="22" Advance="4" />
+					<Glyph ID="59" PositionX="18" PositionY="22" SizeX="6" SizeY="22" Advance="4" />
+					<Glyph ID="60" PositionX="24" PositionY="22" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="61" PositionX="36" PositionY="22" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="62" PositionX="48" PositionY="22" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="63" PositionX="60" PositionY="22" SizeX="9" SizeY="22" Advance="7" />
+					<Glyph ID="64" PositionX="69" PositionY="22" SizeX="19" SizeY="22" Advance="18" />
+					<Glyph ID="65" PositionX="88" PositionY="22" SizeX="14" SizeY="22" Advance="12" />
+					<Glyph ID="66" PositionX="102" PositionY="22" SizeX="13" SizeY="22" Advance="12" />
+					<Glyph ID="67" PositionX="115" PositionY="22" SizeX="13" SizeY="22" Advance="12" />
+					<Glyph ID="68" PositionX="128" PositionY="22" SizeX="15" SizeY="22" Advance="13" />
+					<Glyph ID="69" PositionX="143" PositionY="22" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="70" PositionX="155" PositionY="22" SizeX="11" SizeY="22" Advance="10" />
+					<Glyph ID="71" PositionX="166" PositionY="22" SizeX="14" SizeY="22" Advance="13" />
+					<Glyph ID="72" PositionX="180" PositionY="22" SizeX="15" SizeY="22" Advance="13" />
+					<Glyph ID="73" PositionX="195" PositionY="22" SizeX="6" SizeY="22" Advance="5" />
+					<Glyph ID="74" PositionX="201" PositionY="22" SizeX="10" SizeY="22" Advance="9" />
+					<Glyph ID="75" PositionX="211" PositionY="22" SizeX="13" SizeY="22" Advance="12" />
+					<Glyph ID="76" PositionX="224" PositionY="22" SizeX="11" SizeY="22" Advance="10" />
+					<Glyph ID="77" PositionX="235" PositionY="22" SizeX="18" SizeY="22" Advance="16" />
+					<Glyph ID="78" PositionX="0" PositionY="44" SizeX="15" SizeY="22" Advance="14" />
+					<Glyph ID="79" PositionX="15" PositionY="44" SizeX="16" SizeY="22" Advance="15" />
+					<Glyph ID="80" PositionX="31" PositionY="44" SizeX="13" SizeY="22" Advance="11" />
+					<Glyph ID="81" PositionX="44" PositionY="44" SizeX="16" SizeY="22" Advance="15" />
+					<Glyph ID="82" PositionX="60" PositionY="44" SizeX="13" SizeY="22" Advance="12" />
+					<Glyph ID="83" PositionX="73" PositionY="44" SizeX="11" SizeY="22" Advance="10" />
+					<Glyph ID="84" PositionX="84" PositionY="44" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="85" PositionX="96" PositionY="44" SizeX="14" SizeY="22" Advance="13" />
+					<Glyph ID="86" PositionX="110" PositionY="44" SizeX="14" SizeY="22" Advance="12" />
+					<Glyph ID="87" PositionX="124" PositionY="44" SizeX="19" SizeY="22" Advance="17" />
+					<Glyph ID="88" PositionX="143" PositionY="44" SizeX="13" SizeY="22" Advance="12" />
+					<Glyph ID="89" PositionX="156" PositionY="44" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="90" PositionX="168" PositionY="44" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="91" PositionX="180" PositionY="44" SizeX="7" SizeY="22" Advance="6" />
+					<Glyph ID="92" PositionX="187" PositionY="44" SizeX="8" SizeY="22" Advance="7" />
+					<Glyph ID="93" PositionX="195" PositionY="44" SizeX="7" SizeY="22" Advance="6" />
+					<Glyph ID="94" PositionX="202" PositionY="44" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="95" PositionX="214" PositionY="44" SizeX="10" SizeY="22" Advance="9" />
+					<Glyph ID="96" PositionX="224" PositionY="44" SizeX="8" SizeY="22" Advance="7" />
+					<Glyph ID="97" PositionX="232" PositionY="44" SizeX="11" SizeY="22" Advance="10" />
+					<Glyph ID="98" PositionX="243" PositionY="44" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="99" PositionX="0" PositionY="66" SizeX="10" SizeY="22" Advance="9" />
+					<Glyph ID="100" PositionX="10" PositionY="66" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="101" PositionX="22" PositionY="66" SizeX="12" SizeY="22" Advance="10" />
+					<Glyph ID="102" PositionX="34" PositionY="66" SizeX="8" SizeY="22" Advance="7" />
+					<Glyph ID="103" PositionX="42" PositionY="66" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="104" PositionX="54" PositionY="66" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="105" PositionX="66" PositionY="66" SizeX="6" SizeY="22" Advance="4" />
+					<Glyph ID="106" PositionX="72" PositionY="66" SizeX="6" SizeY="22" Advance="4" />
+					<Glyph ID="107" PositionX="78" PositionY="66" SizeX="11" SizeY="22" Advance="10" />
+					<Glyph ID="108" PositionX="89" PositionY="66" SizeX="6" SizeY="22" Advance="5" />
+					<Glyph ID="109" PositionX="95" PositionY="66" SizeX="18" SizeY="22" Advance="16" />
+					<Glyph ID="110" PositionX="113" PositionY="66" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="111" PositionX="125" PositionY="66" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="112" PositionX="137" PositionY="66" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="113" PositionX="149" PositionY="66" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="114" PositionX="161" PositionY="66" SizeX="8" SizeY="22" Advance="7" />
+					<Glyph ID="115" PositionX="169" PositionY="66" SizeX="9" SizeY="22" Advance="8" />
+					<Glyph ID="116" PositionX="178" PositionY="66" SizeX="9" SizeY="22" Advance="7" />
+					<Glyph ID="117" PositionX="187" PositionY="66" SizeX="12" SizeY="22" Advance="11" />
+					<Glyph ID="118" PositionX="199" PositionY="66" SizeX="11" SizeY="22" Advance="9" />
+					<Glyph ID="119" PositionX="210" PositionY="66" SizeX="16" SizeY="22" Advance="15" />
+					<Glyph ID="120" PositionX="226" PositionY="66" SizeX="11" SizeY="22" Advance="9" />
+					<Glyph ID="121" PositionX="237" PositionY="66" SizeX="10" SizeY="22" Advance="9" />
+					<Glyph ID="122" PositionX="0" PositionY="88" SizeX="10" SizeY="22" Advance="9" />
+					<Glyph ID="123" PositionX="10" PositionY="88" SizeX="7" SizeY="22" Advance="6" />
+					<Glyph ID="124" PositionX="17" PositionY="88" SizeX="6" SizeY="22" Advance="5" />
+					<Glyph ID="125" PositionX="23" PositionY="88" SizeX="7" SizeY="22" Advance="6" />
+					<Glyph ID="126" PositionX="30" PositionY="88" SizeX="12" SizeY="22" Advance="10" />
+				</Glyphs>
+				<Kernings>
+					<Kerning Left="39" Right="65" Adjust="-1" />
+					<Kerning Left="39" Right="74" Adjust="-2" />
+					<Kerning Left="42" Right="65" Adjust="-1" />
+					<Kerning Left="42" Right="74" Adjust="-2" />
+					<Kerning Left="46" Right="84" Adjust="-1" />
+					<Kerning Left="46" Right="86" Adjust="-1" />
+					<Kerning Left="46" Right="89" Adjust="-1" />
+					<Kerning Left="47" Right="74" Adjust="-1" />
+					<Kerning Left="58" Right="84" Adjust="-1" />
+					<Kerning Left="64" Right="89" Adjust="-1" />
+					<Kerning Left="65" Right="39" Adjust="-1" />
+					<Kerning Left="65" Right="42" Adjust="-1" />
+					<Kerning Left="65" Right="84" Adjust="-1" />
+					<Kerning Left="65" Right="86" Adjust="-1" />
+					<Kerning Left="65" Right="89" Adjust="-1" />
+					<Kerning Left="70" Right="46" Adjust="-1" />
+					<Kerning Left="70" Right="47" Adjust="-1" />
+					<Kerning Left="70" Right="74" Adjust="-1" />
+					<Kerning Left="76" Right="39" Adjust="-2" />
+					<Kerning Left="76" Right="42" Adjust="-2" />
+					<Kerning Left="76" Right="45" Adjust="-1" />
+					<Kerning Left="76" Right="84" Adjust="-2" />
+					<Kerning Left="76" Right="86" Adjust="-1" />
+					<Kerning Left="76" Right="89" Adjust="-2" />
+					<Kerning Left="80" Right="46" Adjust="-1" />
+					<Kerning Left="80" Right="47" Adjust="-1" />
+					<Kerning Left="80" Right="74" Adjust="-1" />
+					<Kerning Left="84" Right="46" Adjust="-1" />
+					<Kerning Left="84" Right="47" Adjust="-1" />
+					<Kerning Left="84" Right="58" Adjust="-1" />
+					<Kerning Left="84" Right="65" Adjust="-1" />
+					<Kerning Left="84" Right="74" Adjust="-1" />
+					<Kerning Left="84" Right="99" Adjust="-1" />
+					<Kerning Left="84" Right="100" Adjust="-1" />
+					<Kerning Left="84" Right="101" Adjust="-1" />
+					<Kerning Left="84" Right="103" Adjust="-1" />
+					<Kerning Left="84" Right="111" Adjust="-1" />
+					<Kerning Left="84" Right="113" Adjust="-1" />
+					<Kerning Left="84" Right="119" Adjust="-1" />
+					<Kerning Left="86" Right="46" Adjust="-1" />
+					<Kerning Left="86" Right="47" Adjust="-1" />
+					<Kerning Left="86" Right="65" Adjust="-1" />
+					<Kerning Left="86" Right="74" Adjust="-1" />
+					<Kerning Left="87" Right="74" Adjust="-1" />
+					<Kerning Left="89" Right="46" Adjust="-1" />
+					<Kerning Left="89" Right="47" Adjust="-1" />
+					<Kerning Left="89" Right="64" Adjust="-1" />
+					<Kerning Left="89" Right="65" Adjust="-1" />
+					<Kerning Left="89" Right="74" Adjust="-2" />
+					<Kerning Left="90" Right="45" Adjust="-1" />
+					<Kerning Left="102" Right="46" Adjust="-1" />
+					<Kerning Left="114" Right="46" Adjust="-1" />
+				</Kernings>
+			</Font>
+			<Font Name="Ubuntu-16" OffsetX="768" OffsetY="0" LineHeight="26" SpaceLength="5" BaseLine="22" LetterSpacing="-1" MonoWidth="15" RangeBegin="33" RangeEnd="126" >
+				<Glyphs>
+					<Glyph ID="33" PositionX="1" PositionY="0" SizeX="7" SizeY="24" Advance="5" />
+					<Glyph ID="34" PositionX="8" PositionY="0" SizeX="10" SizeY="24" Advance="8" />
+					<Glyph ID="35" PositionX="18" PositionY="0" SizeX="15" SizeY="24" Advance="14" />
+					<Glyph ID="36" PositionX="33" PositionY="0" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="37" PositionX="46" PositionY="0" SizeX="20" SizeY="24" Advance="18" />
+					<Glyph ID="38" PositionX="66" PositionY="0" SizeX="15" SizeY="24" Advance="14" />
+					<Glyph ID="39" PositionX="81" PositionY="0" SizeX="6" SizeY="24" Advance="5" />
+					<Glyph ID="40" PositionX="87" PositionY="0" SizeX="8" SizeY="24" Advance="6" />
+					<Glyph ID="41" PositionX="95" PositionY="0" SizeX="8" SizeY="24" Advance="6" />
+					<Glyph ID="42" PositionX="103" PositionY="0" SizeX="11" SizeY="24" Advance="10" />
+					<Glyph ID="43" PositionX="114" PositionY="0" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="44" PositionX="127" PositionY="0" SizeX="6" SizeY="24" Advance="5" />
+					<Glyph ID="45" PositionX="133" PositionY="0" SizeX="8" SizeY="24" Advance="6" />
+					<Glyph ID="46" PositionX="141" PositionY="0" SizeX="6" SizeY="24" Advance="5" />
+					<Glyph ID="47" PositionX="147" PositionY="0" SizeX="9" SizeY="24" Advance="8" />
+					<Glyph ID="48" PositionX="156" PositionY="0" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="49" PositionX="169" PositionY="0" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="50" PositionX="182" PositionY="0" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="51" PositionX="195" PositionY="0" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="52" PositionX="208" PositionY="0" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="53" PositionX="221" PositionY="0" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="54" PositionX="234" PositionY="0" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="55" PositionX="0" PositionY="24" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="56" PositionX="13" PositionY="24" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="57" PositionX="26" PositionY="24" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="58" PositionX="39" PositionY="24" SizeX="6" SizeY="24" Advance="5" />
+					<Glyph ID="59" PositionX="45" PositionY="24" SizeX="6" SizeY="24" Advance="5" />
+					<Glyph ID="60" PositionX="51" PositionY="24" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="61" PositionX="64" PositionY="24" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="62" PositionX="77" PositionY="24" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="63" PositionX="90" PositionY="24" SizeX="10" SizeY="24" Advance="8" />
+					<Glyph ID="64" PositionX="100" PositionY="24" SizeX="22" SizeY="24" Advance="20" />
+					<Glyph ID="65" PositionX="122" PositionY="24" SizeX="15" SizeY="24" Advance="14" />
+					<Glyph ID="66" PositionX="137" PositionY="24" SizeX="15" SizeY="24" Advance="13" />
+					<Glyph ID="67" PositionX="152" PositionY="24" SizeX="14" SizeY="24" Advance="13" />
+					<Glyph ID="68" PositionX="166" PositionY="24" SizeX="16" SizeY="24" Advance="15" />
+					<Glyph ID="69" PositionX="182" PositionY="24" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="70" PositionX="195" PositionY="24" SizeX="13" SizeY="24" Advance="11" />
+					<Glyph ID="71" PositionX="208" PositionY="24" SizeX="16" SizeY="24" Advance="14" />
+					<Glyph ID="72" PositionX="224" PositionY="24" SizeX="16" SizeY="24" Advance="15" />
+					<Glyph ID="73" PositionX="240" PositionY="24" SizeX="7" SizeY="24" Advance="5" />
+					<Glyph ID="74" PositionX="0" PositionY="48" SizeX="12" SizeY="24" Advance="10" />
+					<Glyph ID="75" PositionX="12" PositionY="48" SizeX="15" SizeY="24" Advance="13" />
+					<Glyph ID="76" PositionX="27" PositionY="48" SizeX="12" SizeY="24" Advance="11" />
+					<Glyph ID="77" PositionX="39" PositionY="48" SizeX="20" SizeY="24" Advance="18" />
+					<Glyph ID="78" PositionX="59" PositionY="48" SizeX="17" SizeY="24" Advance="15" />
+					<Glyph ID="79" PositionX="76" PositionY="48" SizeX="18" SizeY="24" Advance="16" />
+					<Glyph ID="80" PositionX="94" PositionY="48" SizeX="14" SizeY="24" Advance="13" />
+					<Glyph ID="81" PositionX="108" PositionY="48" SizeX="18" SizeY="24" Advance="16" />
+					<Glyph ID="82" PositionX="126" PositionY="48" SizeX="15" SizeY="24" Advance="13" />
+					<Glyph ID="83" PositionX="141" PositionY="48" SizeX="13" SizeY="24" Advance="11" />
+					<Glyph ID="84" PositionX="154" PositionY="48" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="85" PositionX="167" PositionY="48" SizeX="16" SizeY="24" Advance="14" />
+					<Glyph ID="86" PositionX="183" PositionY="48" SizeX="15" SizeY="24" Advance="14" />
+					<Glyph ID="87" PositionX="198" PositionY="48" SizeX="21" SizeY="24" Advance="19" />
+					<Glyph ID="88" PositionX="219" PositionY="48" SizeX="15" SizeY="24" Advance="13" />
+					<Glyph ID="89" PositionX="234" PositionY="48" SizeX="14" SizeY="24" Advance="12" />
+					<Glyph ID="90" PositionX="0" PositionY="72" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="91" PositionX="13" PositionY="72" SizeX="8" SizeY="24" Advance="7" />
+					<Glyph ID="92" PositionX="21" PositionY="72" SizeX="9" SizeY="24" Advance="8" />
+					<Glyph ID="93" PositionX="30" PositionY="72" SizeX="8" SizeY="24" Advance="7" />
+					<Glyph ID="94" PositionX="38" PositionY="72" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="95" PositionX="51" PositionY="72" SizeX="12" SizeY="24" Advance="10" />
+					<Glyph ID="96" PositionX="63" PositionY="72" SizeX="9" SizeY="24" Advance="8" />
+					<Glyph ID="97" PositionX="72" PositionY="72" SizeX="12" SizeY="24" Advance="11" />
+					<Glyph ID="98" PositionX="84" PositionY="72" SizeX="14" SizeY="24" Advance="12" />
+					<Glyph ID="99" PositionX="98" PositionY="72" SizeX="11" SizeY="24" Advance="9" />
+					<Glyph ID="100" PositionX="109" PositionY="72" SizeX="14" SizeY="24" Advance="12" />
+					<Glyph ID="101" PositionX="123" PositionY="72" SizeX="13" SizeY="24" Advance="11" />
+					<Glyph ID="102" PositionX="136" PositionY="72" SizeX="9" SizeY="24" Advance="8" />
+					<Glyph ID="103" PositionX="145" PositionY="72" SizeX="14" SizeY="24" Advance="12" />
+					<Glyph ID="104" PositionX="159" PositionY="72" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="105" PositionX="172" PositionY="72" SizeX="7" SizeY="24" Advance="5" />
+					<Glyph ID="106" PositionX="179" PositionY="72" SizeX="7" SizeY="24" Advance="5" />
+					<Glyph ID="107" PositionX="186" PositionY="72" SizeX="12" SizeY="24" Advance="11" />
+					<Glyph ID="108" PositionX="198" PositionY="72" SizeX="7" SizeY="24" Advance="5" />
+					<Glyph ID="109" PositionX="205" PositionY="72" SizeX="20" SizeY="24" Advance="18" />
+					<Glyph ID="110" PositionX="225" PositionY="72" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="111" PositionX="238" PositionY="72" SizeX="14" SizeY="24" Advance="12" />
+					<Glyph ID="112" PositionX="0" PositionY="96" SizeX="14" SizeY="24" Advance="12" />
+					<Glyph ID="113" PositionX="14" PositionY="96" SizeX="14" SizeY="24" Advance="12" />
+					<Glyph ID="114" PositionX="28" PositionY="96" SizeX="9" SizeY="24" Advance="8" />
+					<Glyph ID="115" PositionX="37" PositionY="96" SizeX="11" SizeY="24" Advance="9" />
+					<Glyph ID="116" PositionX="48" PositionY="96" SizeX="10" SizeY="24" Advance="8" />
+					<Glyph ID="117" PositionX="58" PositionY="96" SizeX="13" SizeY="24" Advance="12" />
+					<Glyph ID="118" PositionX="71" PositionY="96" SizeX="12" SizeY="24" Advance="10" />
+					<Glyph ID="119" PositionX="83" PositionY="96" SizeX="18" SizeY="24" Advance="16" />
+					<Glyph ID="120" PositionX="101" PositionY="96" SizeX="12" SizeY="24" Advance="10" />
+					<Glyph ID="121" PositionX="113" PositionY="96" SizeX="12" SizeY="24" Advance="10" />
+					<Glyph ID="122" PositionX="125" PositionY="96" SizeX="11" SizeY="24" Advance="10" />
+					<Glyph ID="123" PositionX="136" PositionY="96" SizeX="8" SizeY="24" Advance="7" />
+					<Glyph ID="124" PositionX="144" PositionY="96" SizeX="7" SizeY="24" Advance="6" />
+					<Glyph ID="125" PositionX="151" PositionY="96" SizeX="8" SizeY="24" Advance="7" />
+					<Glyph ID="126" PositionX="159" PositionY="96" SizeX="13" SizeY="24" Advance="12" />
+				</Glyphs>
+				<Kernings>
+					<Kerning Left="39" Right="65" Adjust="-1" />
+					<Kerning Left="39" Right="74" Adjust="-2" />
+					<Kerning Left="42" Right="65" Adjust="-1" />
+					<Kerning Left="42" Right="74" Adjust="-2" />
+					<Kerning Left="45" Right="84" Adjust="-1" />
+					<Kerning Left="45" Right="89" Adjust="-1" />
+					<Kerning Left="46" Right="84" Adjust="-1" />
+					<Kerning Left="46" Right="86" Adjust="-1" />
+					<Kerning Left="46" Right="89" Adjust="-1" />
+					<Kerning Left="47" Right="65" Adjust="-1" />
+					<Kerning Left="47" Right="74" Adjust="-1" />
+					<Kerning Left="58" Right="84" Adjust="-1" />
+					<Kerning Left="64" Right="89" Adjust="-1" />
+					<Kerning Left="65" Right="39" Adjust="-1" />
+					<Kerning Left="65" Right="42" Adjust="-1" />
+					<Kerning Left="65" Right="84" Adjust="-1" />
+					<Kerning Left="65" Right="86" Adjust="-1" />
+					<Kerning Left="65" Right="89" Adjust="-1" />
+					<Kerning Left="70" Right="46" Adjust="-1" />
+					<Kerning Left="70" Right="47" Adjust="-1" />
+					<Kerning Left="70" Right="74" Adjust="-1" />
+					<Kerning Left="70" Right="97" Adjust="-1" />
+					<Kerning Left="75" Right="45" Adjust="-1" />
+					<Kerning Left="75" Right="119" Adjust="-1" />
+					<Kerning Left="76" Right="39" Adjust="-2" />
+					<Kerning Left="76" Right="42" Adjust="-2" />
+					<Kerning Left="76" Right="45" Adjust="-1" />
+					<Kerning Left="76" Right="84" Adjust="-2" />
+					<Kerning Left="76" Right="86" Adjust="-2" />
+					<Kerning Left="76" Right="89" Adjust="-2" />
+					<Kerning Left="80" Right="46" Adjust="-1" />
+					<Kerning Left="80" Right="47" Adjust="-1" />
+					<Kerning Left="80" Right="65" Adjust="-1" />
+					<Kerning Left="80" Right="74" Adjust="-2" />
+					<Kerning Left="84" Right="45" Adjust="-1" />
+					<Kerning Left="84" Right="46" Adjust="-1" />
+					<Kerning Left="84" Right="47" Adjust="-1" />
+					<Kerning Left="84" Right="58" Adjust="-1" />
+					<Kerning Left="84" Right="64" Adjust="-1" />
+					<Kerning Left="84" Right="65" Adjust="-1" />
+					<Kerning Left="84" Right="74" Adjust="-1" />
+					<Kerning Left="84" Right="99" Adjust="-1" />
+					<Kerning Left="84" Right="100" Adjust="-1" />
+					<Kerning Left="84" Right="101" Adjust="-1" />
+					<Kerning Left="84" Right="103" Adjust="-1" />
+					<Kerning Left="84" Right="111" Adjust="-1" />
+					<Kerning Left="84" Right="113" Adjust="-1" />
+					<Kerning Left="84" Right="119" Adjust="-1" />
+					<Kerning Left="86" Right="46" Adjust="-1" />
+					<Kerning Left="86" Right="47" Adjust="-1" />
+					<Kerning Left="86" Right="65" Adjust="-1" />
+					<Kerning Left="86" Right="74" Adjust="-2" />
+					<Kerning Left="87" Right="47" Adjust="-1" />
+					<Kerning Left="87" Right="74" Adjust="-1" />
+					<Kerning Left="89" Right="45" Adjust="-1" />
+					<Kerning Left="89" Right="46" Adjust="-1" />
+					<Kerning Left="89" Right="47" Adjust="-1" />
+					<Kerning Left="89" Right="64" Adjust="-1" />
+					<Kerning Left="89" Right="65" Adjust="-1" />
+					<Kerning Left="89" Right="74" Adjust="-2" />
+					<Kerning Left="89" Right="99" Adjust="-1" />
+					<Kerning Left="89" Right="100" Adjust="-1" />
+					<Kerning Left="89" Right="101" Adjust="-1" />
+					<Kerning Left="89" Right="103" Adjust="-1" />
+					<Kerning Left="89" Right="111" Adjust="-1" />
+					<Kerning Left="89" Right="113" Adjust="-1" />
+					<Kerning Left="90" Right="45" Adjust="-1" />
+					<Kerning Left="102" Right="46" Adjust="-1" />
+					<Kerning Left="114" Right="46" Adjust="-1" />
+				</Kernings>
+			</Font>
+			<Font Name="Ubuntu-18" OffsetX="0" OffsetY="256" LineHeight="29" SpaceLength="5" BaseLine="24" LetterSpacing="-1" MonoWidth="15" RangeBegin="33" RangeEnd="126" >
+				<Glyphs>
+					<Glyph ID="33" PositionX="0" PositionY="0" SizeX="7" SizeY="27" Advance="6" />
+					<Glyph ID="34" PositionX="7" PositionY="0" SizeX="11" SizeY="27" Advance="10" />
+					<Glyph ID="35" PositionX="18" PositionY="0" SizeX="17" SizeY="27" Advance="16" />
+					<Glyph ID="36" PositionX="35" PositionY="0" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="37" PositionX="50" PositionY="0" SizeX="22" SizeY="27" Advance="21" />
+					<Glyph ID="38" PositionX="72" PositionY="0" SizeX="17" SizeY="27" Advance="16" />
+					<Glyph ID="39" PositionX="89" PositionY="0" SizeX="7" SizeY="27" Advance="5" />
+					<Glyph ID="40" PositionX="96" PositionY="0" SizeX="9" SizeY="27" Advance="8" />
+					<Glyph ID="41" PositionX="105" PositionY="0" SizeX="9" SizeY="27" Advance="8" />
+					<Glyph ID="42" PositionX="114" PositionY="0" SizeX="12" SizeY="27" Advance="11" />
+					<Glyph ID="43" PositionX="126" PositionY="0" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="44" PositionX="141" PositionY="0" SizeX="7" SizeY="27" Advance="6" />
+					<Glyph ID="45" PositionX="148" PositionY="0" SizeX="8" SizeY="27" Advance="7" />
+					<Glyph ID="46" PositionX="156" PositionY="0" SizeX="7" SizeY="27" Advance="6" />
+					<Glyph ID="47" PositionX="163" PositionY="0" SizeX="10" SizeY="27" Advance="9" />
+					<Glyph ID="48" PositionX="173" PositionY="0" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="49" PositionX="188" PositionY="0" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="50" PositionX="203" PositionY="0" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="51" PositionX="218" PositionY="0" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="52" PositionX="233" PositionY="0" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="53" PositionX="0" PositionY="27" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="54" PositionX="15" PositionY="27" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="55" PositionX="30" PositionY="27" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="56" PositionX="45" PositionY="27" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="57" PositionX="60" PositionY="27" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="58" PositionX="75" PositionY="27" SizeX="7" SizeY="27" Advance="6" />
+					<Glyph ID="59" PositionX="82" PositionY="27" SizeX="7" SizeY="27" Advance="6" />
+					<Glyph ID="60" PositionX="89" PositionY="27" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="61" PositionX="104" PositionY="27" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="62" PositionX="119" PositionY="27" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="63" PositionX="134" PositionY="27" SizeX="11" SizeY="27" Advance="9" />
+					<Glyph ID="64" PositionX="145" PositionY="27" SizeX="24" SizeY="27" Advance="23" />
+					<Glyph ID="65" PositionX="169" PositionY="27" SizeX="17" SizeY="27" Advance="16" />
+					<Glyph ID="66" PositionX="186" PositionY="27" SizeX="16" SizeY="27" Advance="15" />
+					<Glyph ID="67" PositionX="202" PositionY="27" SizeX="16" SizeY="27" Advance="15" />
+					<Glyph ID="68" PositionX="218" PositionY="27" SizeX="18" SizeY="27" Advance="17" />
+					<Glyph ID="69" PositionX="236" PositionY="27" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="70" PositionX="0" PositionY="54" SizeX="14" SizeY="27" Advance="13" />
+					<Glyph ID="71" PositionX="14" PositionY="54" SizeX="17" SizeY="27" Advance="16" />
+					<Glyph ID="72" PositionX="31" PositionY="54" SizeX="18" SizeY="27" Advance="17" />
+					<Glyph ID="73" PositionX="49" PositionY="54" SizeX="7" SizeY="27" Advance="6" />
+					<Glyph ID="74" PositionX="56" PositionY="54" SizeX="13" SizeY="27" Advance="12" />
+					<Glyph ID="75" PositionX="69" PositionY="54" SizeX="16" SizeY="27" Advance="15" />
+					<Glyph ID="76" PositionX="85" PositionY="54" SizeX="13" SizeY="27" Advance="12" />
+					<Glyph ID="77" PositionX="98" PositionY="54" SizeX="22" SizeY="27" Advance="21" />
+					<Glyph ID="78" PositionX="120" PositionY="54" SizeX="19" SizeY="27" Advance="17" />
+					<Glyph ID="79" PositionX="139" PositionY="54" SizeX="20" SizeY="27" Advance="19" />
+					<Glyph ID="80" PositionX="159" PositionY="54" SizeX="16" SizeY="27" Advance="14" />
+					<Glyph ID="81" PositionX="175" PositionY="54" SizeX="20" SizeY="27" Advance="19" />
+					<Glyph ID="82" PositionX="195" PositionY="54" SizeX="16" SizeY="27" Advance="15" />
+					<Glyph ID="83" PositionX="211" PositionY="54" SizeX="14" SizeY="27" Advance="13" />
+					<Glyph ID="84" PositionX="225" PositionY="54" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="85" PositionX="0" PositionY="81" SizeX="18" SizeY="27" Advance="16" />
+					<Glyph ID="86" PositionX="18" PositionY="81" SizeX="17" SizeY="27" Advance="16" />
+					<Glyph ID="87" PositionX="35" PositionY="81" SizeX="24" SizeY="27" Advance="22" />
+					<Glyph ID="88" PositionX="59" PositionY="81" SizeX="16" SizeY="27" Advance="15" />
+					<Glyph ID="89" PositionX="75" PositionY="81" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="90" PositionX="90" PositionY="81" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="91" PositionX="105" PositionY="81" SizeX="9" SizeY="27" Advance="8" />
+					<Glyph ID="92" PositionX="114" PositionY="81" SizeX="10" SizeY="27" Advance="9" />
+					<Glyph ID="93" PositionX="124" PositionY="81" SizeX="9" SizeY="27" Advance="8" />
+					<Glyph ID="94" PositionX="133" PositionY="81" SizeX="15" SizeY="27" Advance="13" />
+					<Glyph ID="95" PositionX="148" PositionY="81" SizeX="13" SizeY="27" Advance="12" />
+					<Glyph ID="96" PositionX="161" PositionY="81" SizeX="10" SizeY="27" Advance="9" />
+					<Glyph ID="97" PositionX="171" PositionY="81" SizeX="13" SizeY="27" Advance="12" />
+					<Glyph ID="98" PositionX="184" PositionY="81" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="99" PositionX="199" PositionY="81" SizeX="12" SizeY="27" Advance="11" />
+					<Glyph ID="100" PositionX="211" PositionY="81" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="101" PositionX="226" PositionY="81" SizeX="14" SizeY="27" Advance="13" />
+					<Glyph ID="102" PositionX="240" PositionY="81" SizeX="10" SizeY="27" Advance="9" />
+					<Glyph ID="103" PositionX="0" PositionY="108" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="104" PositionX="15" PositionY="108" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="105" PositionX="30" PositionY="108" SizeX="7" SizeY="27" Advance="6" />
+					<Glyph ID="106" PositionX="37" PositionY="108" SizeX="7" SizeY="27" Advance="6" />
+					<Glyph ID="107" PositionX="44" PositionY="108" SizeX="13" SizeY="27" Advance="12" />
+					<Glyph ID="108" PositionX="57" PositionY="108" SizeX="7" SizeY="27" Advance="6" />
+					<Glyph ID="109" PositionX="64" PositionY="108" SizeX="22" SizeY="27" Advance="21" />
+					<Glyph ID="110" PositionX="86" PositionY="108" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="111" PositionX="101" PositionY="108" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="112" PositionX="116" PositionY="108" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="113" PositionX="131" PositionY="108" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="114" PositionX="146" PositionY="108" SizeX="10" SizeY="27" Advance="9" />
+					<Glyph ID="115" PositionX="156" PositionY="108" SizeX="12" SizeY="27" Advance="10" />
+					<Glyph ID="116" PositionX="168" PositionY="108" SizeX="10" SizeY="27" Advance="9" />
+					<Glyph ID="117" PositionX="178" PositionY="108" SizeX="15" SizeY="27" Advance="14" />
+					<Glyph ID="118" PositionX="193" PositionY="108" SizeX="13" SizeY="27" Advance="12" />
+					<Glyph ID="119" PositionX="206" PositionY="108" SizeX="20" SizeY="27" Advance="19" />
+					<Glyph ID="120" PositionX="226" PositionY="108" SizeX="13" SizeY="27" Advance="12" />
+					<Glyph ID="121" PositionX="239" PositionY="108" SizeX="13" SizeY="27" Advance="12" />
+					<Glyph ID="122" PositionX="0" PositionY="135" SizeX="12" SizeY="27" Advance="11" />
+					<Glyph ID="123" PositionX="12" PositionY="135" SizeX="9" SizeY="27" Advance="8" />
+					<Glyph ID="124" PositionX="21" PositionY="135" SizeX="7" SizeY="27" Advance="6" />
+					<Glyph ID="125" PositionX="28" PositionY="135" SizeX="9" SizeY="27" Advance="8" />
+					<Glyph ID="126" PositionX="37" PositionY="135" SizeX="15" SizeY="27" Advance="13" />
+				</Glyphs>
+				<Kernings>
+					<Kerning Left="39" Right="65" Adjust="-1" />
+					<Kerning Left="39" Right="74" Adjust="-3" />
+					<Kerning Left="41" Right="89" Adjust="-1" />
+					<Kerning Left="42" Right="65" Adjust="-1" />
+					<Kerning Left="42" Right="74" Adjust="-2" />
+					<Kerning Left="45" Right="84" Adjust="-1" />
+					<Kerning Left="45" Right="89" Adjust="-1" />
+					<Kerning Left="46" Right="84" Adjust="-1" />
+					<Kerning Left="46" Right="86" Adjust="-1" />
+					<Kerning Left="46" Right="89" Adjust="-1" />
+					<Kerning Left="47" Right="65" Adjust="-1" />
+					<Kerning Left="47" Right="74" Adjust="-1" />
+					<Kerning Left="58" Right="84" Adjust="-2" />
+					<Kerning Left="64" Right="84" Adjust="-1" />
+					<Kerning Left="64" Right="89" Adjust="-1" />
+					<Kerning Left="65" Right="39" Adjust="-1" />
+					<Kerning Left="65" Right="42" Adjust="-1" />
+					<Kerning Left="65" Right="84" Adjust="-1" />
+					<Kerning Left="65" Right="86" Adjust="-1" />
+					<Kerning Left="65" Right="89" Adjust="-1" />
+					<Kerning Left="68" Right="47" Adjust="-1" />
+					<Kerning Left="68" Right="89" Adjust="-1" />
+					<Kerning Left="68" Right="93" Adjust="-1" />
+					<Kerning Left="69" Right="93" Adjust="-1" />
+					<Kerning Left="70" Right="46" Adjust="-1" />
+					<Kerning Left="70" Right="47" Adjust="-1" />
+					<Kerning Left="70" Right="65" Adjust="-1" />
+					<Kerning Left="70" Right="74" Adjust="-1" />
+					<Kerning Left="70" Right="93" Adjust="-1" />
+					<Kerning Left="70" Right="97" Adjust="-1" />
+					<Kerning Left="75" Right="45" Adjust="-1" />
+					<Kerning Left="75" Right="119" Adjust="-1" />
+					<Kerning Left="76" Right="39" Adjust="-3" />
+					<Kerning Left="76" Right="42" Adjust="-3" />
+					<Kerning Left="76" Right="45" Adjust="-1" />
+					<Kerning Left="76" Right="67" Adjust="-1" />
+					<Kerning Left="76" Right="71" Adjust="-1" />
+					<Kerning Left="76" Right="79" Adjust="-1" />
+					<Kerning Left="76" Right="81" Adjust="-1" />
+					<Kerning Left="76" Right="84" Adjust="-2" />
+					<Kerning Left="76" Right="86" Adjust="-2" />
+					<Kerning Left="76" Right="87" Adjust="-1" />
+					<Kerning Left="76" Right="89" Adjust="-2" />
+					<Kerning Left="79" Right="47" Adjust="-1" />
+					<Kerning Left="79" Right="89" Adjust="-1" />
+					<Kerning Left="79" Right="93" Adjust="-1" />
+					<Kerning Left="80" Right="46" Adjust="-2" />
+					<Kerning Left="80" Right="47" Adjust="-1" />
+					<Kerning Left="80" Right="65" Adjust="-1" />
+					<Kerning Left="80" Right="74" Adjust="-2" />
+					<Kerning Left="80" Right="93" Adjust="-1" />
+					<Kerning Left="81" Right="89" Adjust="-1" />
+					<Kerning Left="84" Right="45" Adjust="-1" />
+					<Kerning Left="84" Right="46" Adjust="-1" />
+					<Kerning Left="84" Right="47" Adjust="-2" />
+					<Kerning Left="84" Right="58" Adjust="-2" />
+					<Kerning Left="84" Right="64" Adjust="-1" />
+					<Kerning Left="84" Right="65" Adjust="-1" />
+					<Kerning Left="84" Right="74" Adjust="-2" />
+					<Kerning Left="84" Right="97" Adjust="-1" />
+					<Kerning Left="84" Right="99" Adjust="-1" />
+					<Kerning Left="84" Right="100" Adjust="-1" />
+					<Kerning Left="84" Right="101" Adjust="-1" />
+					<Kerning Left="84" Right="103" Adjust="-1" />
+					<Kerning Left="84" Right="111" Adjust="-1" />
+					<Kerning Left="84" Right="113" Adjust="-1" />
+					<Kerning Left="84" Right="115" Adjust="-1" />
+					<Kerning Left="84" Right="119" Adjust="-1" />
+					<Kerning Left="85" Right="47" Adjust="-1" />
+					<Kerning Left="86" Right="46" Adjust="-1" />
+					<Kerning Left="86" Right="47" Adjust="-1" />
+					<Kerning Left="86" Right="65" Adjust="-1" />
+					<Kerning Left="86" Right="74" Adjust="-2" />
+					<Kerning Left="86" Right="99" Adjust="-1" />
+					<Kerning Left="86" Right="100" Adjust="-1" />
+					<Kerning Left="86" Right="101" Adjust="-1" />
+					<Kerning Left="86" Right="103" Adjust="-1" />
+					<Kerning Left="86" Right="111" Adjust="-1" />
+					<Kerning Left="86" Right="113" Adjust="-1" />
+					<Kerning Left="87" Right="47" Adjust="-1" />
+					<Kerning Left="87" Right="74" Adjust="-1" />
+					<Kerning Left="89" Right="40" Adjust="-1" />
+					<Kerning Left="89" Right="45" Adjust="-1" />
+					<Kerning Left="89" Right="46" Adjust="-1" />
+					<Kerning Left="89" Right="47" Adjust="-2" />
+					<Kerning Left="89" Right="64" Adjust="-1" />
+					<Kerning Left="89" Right="65" Adjust="-1" />
+					<Kerning Left="89" Right="67" Adjust="-1" />
+					<Kerning Left="89" Right="71" Adjust="-1" />
+					<Kerning Left="89" Right="74" Adjust="-2" />
+					<Kerning Left="89" Right="79" Adjust="-1" />
+					<Kerning Left="89" Right="81" Adjust="-1" />
+					<Kerning Left="89" Right="97" Adjust="-1" />
+					<Kerning Left="89" Right="99" Adjust="-1" />
+					<Kerning Left="89" Right="100" Adjust="-1" />
+					<Kerning Left="89" Right="101" Adjust="-1" />
+					<Kerning Left="89" Right="103" Adjust="-1" />
+					<Kerning Left="89" Right="111" Adjust="-1" />
+					<Kerning Left="89" Right="113" Adjust="-1" />
+					<Kerning Left="90" Right="45" Adjust="-1" />
+					<Kerning Left="90" Right="93" Adjust="-1" />
+					<Kerning Left="91" Right="67" Adjust="-1" />
+					<Kerning Left="91" Right="71" Adjust="-1" />
+					<Kerning Left="91" Right="79" Adjust="-1" />
+					<Kerning Left="91" Right="81" Adjust="-1" />
+					<Kerning Left="91" Right="90" Adjust="-1" />
+					<Kerning Left="102" Right="46" Adjust="-1" />
+					<Kerning Left="102" Right="47" Adjust="-1" />
+					<Kerning Left="114" Right="46" Adjust="-1" />
+					<Kerning Left="114" Right="47" Adjust="-1" />
+					<Kerning Left="114" Right="63" Adjust="-1" />
+				</Kernings>
+			</Font>
+			<Font Name="Ubuntu-20" OffsetX="256" OffsetY="256" LineHeight="33" SpaceLength="6" BaseLine="27" LetterSpacing="-1" MonoWidth="15" RangeBegin="33" RangeEnd="126" >
+				<Glyphs>
+					<Glyph ID="33" PositionX="1" PositionY="0" SizeX="9" SizeY="31" Advance="7" />
+					<Glyph ID="34" PositionX="10" PositionY="0" SizeX="13" SizeY="31" Advance="11" />
+					<Glyph ID="35" PositionX="23" PositionY="0" SizeX="20" SizeY="31" Advance="18" />
+					<Glyph ID="36" PositionX="43" PositionY="0" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="37" PositionX="60" PositionY="0" SizeX="25" SizeY="31" Advance="23" />
+					<Glyph ID="38" PositionX="85" PositionY="0" SizeX="20" SizeY="31" Advance="18" />
+					<Glyph ID="39" PositionX="105" PositionY="0" SizeX="8" SizeY="31" Advance="6" />
+					<Glyph ID="40" PositionX="113" PositionY="0" SizeX="10" SizeY="31" Advance="8" />
+					<Glyph ID="41" PositionX="123" PositionY="0" SizeX="10" SizeY="31" Advance="8" />
+					<Glyph ID="42" PositionX="133" PositionY="0" SizeX="14" SizeY="31" Advance="13" />
+					<Glyph ID="43" PositionX="147" PositionY="0" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="44" PositionX="164" PositionY="0" SizeX="8" SizeY="31" Advance="6" />
+					<Glyph ID="45" PositionX="172" PositionY="0" SizeX="9" SizeY="31" Advance="8" />
+					<Glyph ID="46" PositionX="181" PositionY="0" SizeX="8" SizeY="31" Advance="6" />
+					<Glyph ID="47" PositionX="189" PositionY="0" SizeX="12" SizeY="31" Advance="10" />
+					<Glyph ID="48" PositionX="201" PositionY="0" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="49" PositionX="218" PositionY="0" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="50" PositionX="235" PositionY="0" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="51" PositionX="0" PositionY="31" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="52" PositionX="17" PositionY="31" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="53" PositionX="34" PositionY="31" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="54" PositionX="51" PositionY="31" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="55" PositionX="68" PositionY="31" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="56" PositionX="85" PositionY="31" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="57" PositionX="102" PositionY="31" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="58" PositionX="119" PositionY="31" SizeX="8" SizeY="31" Advance="6" />
+					<Glyph ID="59" PositionX="127" PositionY="31" SizeX="8" SizeY="31" Advance="6" />
+					<Glyph ID="60" PositionX="135" PositionY="31" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="61" PositionX="152" PositionY="31" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="62" PositionX="169" PositionY="31" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="63" PositionX="186" PositionY="31" SizeX="12" SizeY="31" Advance="11" />
+					<Glyph ID="64" PositionX="198" PositionY="31" SizeX="27" SizeY="31" Advance="25" />
+					<Glyph ID="65" PositionX="225" PositionY="31" SizeX="20" SizeY="31" Advance="18" />
+					<Glyph ID="66" PositionX="0" PositionY="62" SizeX="19" SizeY="31" Advance="17" />
+					<Glyph ID="67" PositionX="19" PositionY="62" SizeX="18" SizeY="31" Advance="16" />
+					<Glyph ID="68" PositionX="37" PositionY="62" SizeX="21" SizeY="31" Advance="19" />
+					<Glyph ID="69" PositionX="58" PositionY="62" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="70" PositionX="75" PositionY="62" SizeX="16" SizeY="31" Advance="14" />
+					<Glyph ID="71" PositionX="91" PositionY="62" SizeX="20" SizeY="31" Advance="18" />
+					<Glyph ID="72" PositionX="111" PositionY="62" SizeX="21" SizeY="31" Advance="19" />
+					<Glyph ID="73" PositionX="132" PositionY="62" SizeX="9" SizeY="31" Advance="7" />
+					<Glyph ID="74" PositionX="141" PositionY="62" SizeX="15" SizeY="31" Advance="13" />
+					<Glyph ID="75" PositionX="156" PositionY="62" SizeX="19" SizeY="31" Advance="17" />
+					<Glyph ID="76" PositionX="175" PositionY="62" SizeX="16" SizeY="31" Advance="14" />
+					<Glyph ID="77" PositionX="191" PositionY="62" SizeX="25" SizeY="31" Advance="23" />
+					<Glyph ID="78" PositionX="216" PositionY="62" SizeX="21" SizeY="31" Advance="19" />
+					<Glyph ID="79" PositionX="0" PositionY="93" SizeX="23" SizeY="31" Advance="21" />
+					<Glyph ID="80" PositionX="23" PositionY="93" SizeX="18" SizeY="31" Advance="16" />
+					<Glyph ID="81" PositionX="41" PositionY="93" SizeX="23" SizeY="31" Advance="21" />
+					<Glyph ID="82" PositionX="64" PositionY="93" SizeX="19" SizeY="31" Advance="17" />
+					<Glyph ID="83" PositionX="83" PositionY="93" SizeX="16" SizeY="31" Advance="14" />
+					<Glyph ID="84" PositionX="99" PositionY="93" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="85" PositionX="116" PositionY="93" SizeX="20" SizeY="31" Advance="18" />
+					<Glyph ID="86" PositionX="136" PositionY="93" SizeX="19" SizeY="31" Advance="17" />
+					<Glyph ID="87" PositionX="155" PositionY="93" SizeX="27" SizeY="31" Advance="25" />
+					<Glyph ID="88" PositionX="182" PositionY="93" SizeX="19" SizeY="31" Advance="17" />
+					<Glyph ID="89" PositionX="201" PositionY="93" SizeX="18" SizeY="31" Advance="16" />
+					<Glyph ID="90" PositionX="219" PositionY="93" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="91" PositionX="236" PositionY="93" SizeX="10" SizeY="31" Advance="9" />
+					<Glyph ID="92" PositionX="0" PositionY="124" SizeX="12" SizeY="31" Advance="10" />
+					<Glyph ID="93" PositionX="12" PositionY="124" SizeX="10" SizeY="31" Advance="9" />
+					<Glyph ID="94" PositionX="22" PositionY="124" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="95" PositionX="39" PositionY="124" SizeX="15" SizeY="31" Advance="13" />
+					<Glyph ID="96" PositionX="54" PositionY="124" SizeX="12" SizeY="31" Advance="10" />
+					<Glyph ID="97" PositionX="66" PositionY="124" SizeX="16" SizeY="31" Advance="14" />
+					<Glyph ID="98" PositionX="82" PositionY="124" SizeX="17" SizeY="31" Advance="16" />
+					<Glyph ID="99" PositionX="99" PositionY="124" SizeX="14" SizeY="31" Advance="12" />
+					<Glyph ID="100" PositionX="113" PositionY="124" SizeX="17" SizeY="31" Advance="16" />
+					<Glyph ID="101" PositionX="130" PositionY="124" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="102" PositionX="147" PositionY="124" SizeX="12" SizeY="31" Advance="10" />
+					<Glyph ID="103" PositionX="159" PositionY="124" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="104" PositionX="176" PositionY="124" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="105" PositionX="193" PositionY="124" SizeX="8" SizeY="31" Advance="6" />
+					<Glyph ID="106" PositionX="201" PositionY="124" SizeX="8" SizeY="31" Advance="6" />
+					<Glyph ID="107" PositionX="209" PositionY="124" SizeX="16" SizeY="31" Advance="14" />
+					<Glyph ID="108" PositionX="225" PositionY="124" SizeX="9" SizeY="31" Advance="7" />
+					<Glyph ID="109" PositionX="0" PositionY="155" SizeX="25" SizeY="31" Advance="23" />
+					<Glyph ID="110" PositionX="25" PositionY="155" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="111" PositionX="42" PositionY="155" SizeX="17" SizeY="31" Advance="16" />
+					<Glyph ID="112" PositionX="59" PositionY="155" SizeX="17" SizeY="31" Advance="16" />
+					<Glyph ID="113" PositionX="76" PositionY="155" SizeX="17" SizeY="31" Advance="16" />
+					<Glyph ID="114" PositionX="93" PositionY="155" SizeX="12" SizeY="31" Advance="10" />
+					<Glyph ID="115" PositionX="105" PositionY="155" SizeX="13" SizeY="31" Advance="12" />
+					<Glyph ID="116" PositionX="118" PositionY="155" SizeX="12" SizeY="31" Advance="10" />
+					<Glyph ID="117" PositionX="130" PositionY="155" SizeX="17" SizeY="31" Advance="15" />
+					<Glyph ID="118" PositionX="147" PositionY="155" SizeX="15" SizeY="31" Advance="13" />
+					<Glyph ID="119" PositionX="162" PositionY="155" SizeX="23" SizeY="31" Advance="21" />
+					<Glyph ID="120" PositionX="185" PositionY="155" SizeX="15" SizeY="31" Advance="13" />
+					<Glyph ID="121" PositionX="200" PositionY="155" SizeX="15" SizeY="31" Advance="13" />
+					<Glyph ID="122" PositionX="215" PositionY="155" SizeX="14" SizeY="31" Advance="12" />
+					<Glyph ID="123" PositionX="229" PositionY="155" SizeX="10" SizeY="31" Advance="9" />
+					<Glyph ID="124" PositionX="239" PositionY="155" SizeX="9" SizeY="31" Advance="7" />
+					<Glyph ID="125" PositionX="0" PositionY="186" SizeX="10" SizeY="31" Advance="9" />
+					<Glyph ID="126" PositionX="10" PositionY="186" SizeX="17" SizeY="31" Advance="15" />
+				</Glyphs>
+				<Kernings>
+					<Kerning Left="39" Right="65" Adjust="-2" />
+					<Kerning Left="39" Right="74" Adjust="-3" />
+					<Kerning Left="41" Right="89" Adjust="-1" />
+					<Kerning Left="42" Right="65" Adjust="-1" />
+					<Kerning Left="42" Right="74" Adjust="-3" />
+					<Kerning Left="45" Right="84" Adjust="-1" />
+					<Kerning Left="45" Right="89" Adjust="-1" />
+					<Kerning Left="46" Right="84" Adjust="-1" />
+					<Kerning Left="46" Right="86" Adjust="-2" />
+					<Kerning Left="46" Right="87" Adjust="-1" />
+					<Kerning Left="46" Right="89" Adjust="-2" />
+					<Kerning Left="47" Right="65" Adjust="-1" />
+					<Kerning Left="47" Right="74" Adjust="-1" />
+					<Kerning Left="58" Right="84" Adjust="-2" />
+					<Kerning Left="58" Right="89" Adjust="-1" />
+					<Kerning Left="64" Right="84" Adjust="-1" />
+					<Kerning Left="64" Right="88" Adjust="-1" />
+					<Kerning Left="64" Right="89" Adjust="-1" />
+					<Kerning Left="65" Right="39" Adjust="-2" />
+					<Kerning Left="65" Right="42" Adjust="-1" />
+					<Kerning Left="65" Right="84" Adjust="-1" />
+					<Kerning Left="65" Right="86" Adjust="-1" />
+					<Kerning Left="65" Right="89" Adjust="-2" />
+					<Kerning Left="68" Right="47" Adjust="-1" />
+					<Kerning Left="68" Right="63" Adjust="-1" />
+					<Kerning Left="68" Right="89" Adjust="-1" />
+					<Kerning Left="68" Right="93" Adjust="-1" />
+					<Kerning Left="69" Right="93" Adjust="-1" />
+					<Kerning Left="70" Right="46" Adjust="-1" />
+					<Kerning Left="70" Right="47" Adjust="-1" />
+					<Kerning Left="70" Right="65" Adjust="-1" />
+					<Kerning Left="70" Right="74" Adjust="-2" />
+					<Kerning Left="70" Right="93" Adjust="-1" />
+					<Kerning Left="70" Right="97" Adjust="-1" />
+					<Kerning Left="75" Right="45" Adjust="-1" />
+					<Kerning Left="75" Right="119" Adjust="-1" />
+					<Kerning Left="76" Right="39" Adjust="-3" />
+					<Kerning Left="76" Right="42" Adjust="-3" />
+					<Kerning Left="76" Right="45" Adjust="-1" />
+					<Kerning Left="76" Right="67" Adjust="-1" />
+					<Kerning Left="76" Right="71" Adjust="-1" />
+					<Kerning Left="76" Right="79" Adjust="-1" />
+					<Kerning Left="76" Right="81" Adjust="-1" />
+					<Kerning Left="76" Right="84" Adjust="-3" />
+					<Kerning Left="76" Right="86" Adjust="-2" />
+					<Kerning Left="76" Right="87" Adjust="-1" />
+					<Kerning Left="76" Right="89" Adjust="-3" />
+					<Kerning Left="76" Right="118" Adjust="-1" />
+					<Kerning Left="76" Right="119" Adjust="-1" />
+					<Kerning Left="79" Right="47" Adjust="-1" />
+					<Kerning Left="79" Right="89" Adjust="-1" />
+					<Kerning Left="79" Right="93" Adjust="-1" />
+					<Kerning Left="80" Right="46" Adjust="-2" />
+					<Kerning Left="80" Right="47" Adjust="-1" />
+					<Kerning Left="80" Right="65" Adjust="-1" />
+					<Kerning Left="80" Right="74" Adjust="-2" />
+					<Kerning Left="80" Right="93" Adjust="-1" />
+					<Kerning Left="81" Right="89" Adjust="-1" />
+					<Kerning Left="84" Right="45" Adjust="-1" />
+					<Kerning Left="84" Right="46" Adjust="-2" />
+					<Kerning Left="84" Right="47" Adjust="-2" />
+					<Kerning Left="84" Right="58" Adjust="-2" />
+					<Kerning Left="84" Right="64" Adjust="-1" />
+					<Kerning Left="84" Right="65" Adjust="-1" />
+					<Kerning Left="84" Right="74" Adjust="-2" />
+					<Kerning Left="84" Right="97" Adjust="-1" />
+					<Kerning Left="84" Right="99" Adjust="-1" />
+					<Kerning Left="84" Right="100" Adjust="-1" />
+					<Kerning Left="84" Right="101" Adjust="-1" />
+					<Kerning Left="84" Right="103" Adjust="-1" />
+					<Kerning Left="84" Right="110" Adjust="-1" />
+					<Kerning Left="84" Right="111" Adjust="-1" />
+					<Kerning Left="84" Right="112" Adjust="-1" />
+					<Kerning Left="84" Right="113" Adjust="-1" />
+					<Kerning Left="84" Right="114" Adjust="-1" />
+					<Kerning Left="84" Right="115" Adjust="-1" />
+					<Kerning Left="84" Right="119" Adjust="-2" />
+					<Kerning Left="85" Right="47" Adjust="-1" />
+					<Kerning Left="85" Right="93" Adjust="-1" />
+					<Kerning Left="86" Right="46" Adjust="-2" />
+					<Kerning Left="86" Right="47" Adjust="-1" />
+					<Kerning Left="86" Right="64" Adjust="-1" />
+					<Kerning Left="86" Right="65" Adjust="-1" />
+					<Kerning Left="86" Right="74" Adjust="-2" />
+					<Kerning Left="86" Right="99" Adjust="-1" />
+					<Kerning Left="86" Right="100" Adjust="-1" />
+					<Kerning Left="86" Right="101" Adjust="-1" />
+					<Kerning Left="86" Right="103" Adjust="-1" />
+					<Kerning Left="86" Right="111" Adjust="-1" />
+					<Kerning Left="86" Right="113" Adjust="-1" />
+					<Kerning Left="87" Right="46" Adjust="-1" />
+					<Kerning Left="87" Right="47" Adjust="-1" />
+					<Kerning Left="87" Right="74" Adjust="-1" />
+					<Kerning Left="87" Right="93" Adjust="-1" />
+					<Kerning Left="88" Right="119" Adjust="-1" />
+					<Kerning Left="89" Right="40" Adjust="-1" />
+					<Kerning Left="89" Right="45" Adjust="-1" />
+					<Kerning Left="89" Right="46" Adjust="-1" />
+					<Kerning Left="89" Right="47" Adjust="-2" />
+					<Kerning Left="89" Right="58" Adjust="-1" />
+					<Kerning Left="89" Right="64" Adjust="-1" />
+					<Kerning Left="89" Right="65" Adjust="-2" />
+					<Kerning Left="89" Right="67" Adjust="-1" />
+					<Kerning Left="89" Right="71" Adjust="-1" />
+					<Kerning Left="89" Right="74" Adjust="-3" />
+					<Kerning Left="89" Right="79" Adjust="-1" />
+					<Kerning Left="89" Right="81" Adjust="-1" />
+					<Kerning Left="89" Right="97" Adjust="-1" />
+					<Kerning Left="89" Right="99" Adjust="-1" />
+					<Kerning Left="89" Right="100" Adjust="-1" />
+					<Kerning Left="89" Right="101" Adjust="-1" />
+					<Kerning Left="89" Right="103" Adjust="-1" />
+					<Kerning Left="89" Right="109" Adjust="-1" />
+					<Kerning Left="89" Right="110" Adjust="-1" />
+					<Kerning Left="89" Right="111" Adjust="-1" />
+					<Kerning Left="89" Right="112" Adjust="-1" />
+					<Kerning Left="89" Right="113" Adjust="-1" />
+					<Kerning Left="89" Right="114" Adjust="-1" />
+					<Kerning Left="90" Right="45" Adjust="-1" />
+					<Kerning Left="90" Right="93" Adjust="-1" />
+					<Kerning Left="91" Right="67" Adjust="-1" />
+					<Kerning Left="91" Right="71" Adjust="-1" />
+					<Kerning Left="91" Right="79" Adjust="-1" />
+					<Kerning Left="91" Right="81" Adjust="-1" />
+					<Kerning Left="91" Right="85" Adjust="-1" />
+					<Kerning Left="91" Right="87" Adjust="-1" />
+					<Kerning Left="91" Right="90" Adjust="-1" />
+					<Kerning Left="98" Right="39" Adjust="-1" />
+					<Kerning Left="102" Right="41" Adjust="1" />
+					<Kerning Left="102" Right="46" Adjust="-1" />
+					<Kerning Left="102" Right="47" Adjust="-1" />
+					<Kerning Left="102" Right="93" Adjust="1" />
+					<Kerning Left="102" Right="125" Adjust="1" />
+					<Kerning Left="104" Right="39" Adjust="-1" />
+					<Kerning Left="114" Right="46" Adjust="-1" />
+					<Kerning Left="114" Right="47" Adjust="-1" />
+					<Kerning Left="114" Right="63" Adjust="-1" />
+					<Kerning Left="116" Right="45" Adjust="-1" />
+					<Kerning Left="118" Right="63" Adjust="-1" />
+				</Kernings>
+			</Font>
+			<Font Name="Ubuntu-22" OffsetX="512" OffsetY="256" LineHeight="35" SpaceLength="6" BaseLine="29" LetterSpacing="-1" MonoWidth="15" RangeBegin="33" RangeEnd="126" >
+				<Glyphs>
+					<Glyph ID="33" PositionX="0" PositionY="0" SizeX="9" SizeY="33" Advance="8" />
+					<Glyph ID="34" PositionX="9" PositionY="0" SizeX="13" SizeY="33" Advance="12" />
+					<Glyph ID="35" PositionX="22" PositionY="0" SizeX="20" SizeY="33" Advance="19" />
+					<Glyph ID="36" PositionX="42" PositionY="0" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="37" PositionX="59" PositionY="0" SizeX="26" SizeY="33" Advance="25" />
+					<Glyph ID="38" PositionX="85" PositionY="0" SizeX="20" SizeY="33" Advance="19" />
+					<Glyph ID="39" PositionX="105" PositionY="0" SizeX="8" SizeY="33" Advance="7" />
+					<Glyph ID="40" PositionX="113" PositionY="0" SizeX="10" SizeY="33" Advance="9" />
+					<Glyph ID="41" PositionX="123" PositionY="0" SizeX="10" SizeY="33" Advance="9" />
+					<Glyph ID="42" PositionX="133" PositionY="0" SizeX="15" SizeY="33" Advance="14" />
+					<Glyph ID="43" PositionX="148" PositionY="0" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="44" PositionX="165" PositionY="0" SizeX="8" SizeY="33" Advance="7" />
+					<Glyph ID="45" PositionX="173" PositionY="0" SizeX="9" SizeY="33" Advance="8" />
+					<Glyph ID="46" PositionX="182" PositionY="0" SizeX="8" SizeY="33" Advance="7" />
+					<Glyph ID="47" PositionX="190" PositionY="0" SizeX="12" SizeY="33" Advance="11" />
+					<Glyph ID="48" PositionX="202" PositionY="0" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="49" PositionX="219" PositionY="0" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="50" PositionX="236" PositionY="0" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="51" PositionX="0" PositionY="33" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="52" PositionX="17" PositionY="33" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="53" PositionX="34" PositionY="33" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="54" PositionX="51" PositionY="33" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="55" PositionX="68" PositionY="33" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="56" PositionX="85" PositionY="33" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="57" PositionX="102" PositionY="33" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="58" PositionX="119" PositionY="33" SizeX="8" SizeY="33" Advance="7" />
+					<Glyph ID="59" PositionX="127" PositionY="33" SizeX="8" SizeY="33" Advance="7" />
+					<Glyph ID="60" PositionX="135" PositionY="33" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="61" PositionX="152" PositionY="33" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="62" PositionX="169" PositionY="33" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="63" PositionX="186" PositionY="33" SizeX="12" SizeY="33" Advance="12" />
+					<Glyph ID="64" PositionX="198" PositionY="33" SizeX="29" SizeY="33" Advance="28" />
+					<Glyph ID="65" PositionX="227" PositionY="33" SizeX="20" SizeY="33" Advance="19" />
+					<Glyph ID="66" PositionX="0" PositionY="66" SizeX="20" SizeY="33" Advance="19" />
+					<Glyph ID="67" PositionX="20" PositionY="66" SizeX="19" SizeY="33" Advance="18" />
+					<Glyph ID="68" PositionX="39" PositionY="66" SizeX="22" SizeY="33" Advance="21" />
+					<Glyph ID="69" PositionX="61" PositionY="66" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="70" PositionX="78" PositionY="66" SizeX="16" SizeY="33" Advance="15" />
+					<Glyph ID="71" PositionX="94" PositionY="66" SizeX="20" SizeY="33" Advance="19" />
+					<Glyph ID="72" PositionX="114" PositionY="66" SizeX="21" SizeY="33" Advance="20" />
+					<Glyph ID="73" PositionX="135" PositionY="66" SizeX="8" SizeY="33" Advance="8" />
+					<Glyph ID="74" PositionX="143" PositionY="66" SizeX="15" SizeY="33" Advance="14" />
+					<Glyph ID="75" PositionX="158" PositionY="66" SizeX="19" SizeY="33" Advance="18" />
+					<Glyph ID="76" PositionX="177" PositionY="66" SizeX="16" SizeY="33" Advance="15" />
+					<Glyph ID="77" PositionX="193" PositionY="66" SizeX="26" SizeY="33" Advance="25" />
+					<Glyph ID="78" PositionX="219" PositionY="66" SizeX="22" SizeY="33" Advance="21" />
+					<Glyph ID="79" PositionX="0" PositionY="99" SizeX="24" SizeY="33" Advance="23" />
+					<Glyph ID="80" PositionX="24" PositionY="99" SizeX="19" SizeY="33" Advance="18" />
+					<Glyph ID="81" PositionX="43" PositionY="99" SizeX="24" SizeY="33" Advance="23" />
+					<Glyph ID="82" PositionX="67" PositionY="99" SizeX="19" SizeY="33" Advance="18" />
+					<Glyph ID="83" PositionX="86" PositionY="99" SizeX="16" SizeY="33" Advance="15" />
+					<Glyph ID="84" PositionX="102" PositionY="99" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="85" PositionX="119" PositionY="99" SizeX="21" SizeY="33" Advance="20" />
+					<Glyph ID="86" PositionX="140" PositionY="99" SizeX="20" SizeY="33" Advance="19" />
+					<Glyph ID="87" PositionX="160" PositionY="99" SizeX="28" SizeY="33" Advance="27" />
+					<Glyph ID="88" PositionX="188" PositionY="99" SizeX="19" SizeY="33" Advance="18" />
+					<Glyph ID="89" PositionX="207" PositionY="99" SizeX="18" SizeY="33" Advance="17" />
+					<Glyph ID="90" PositionX="225" PositionY="99" SizeX="18" SizeY="33" Advance="16" />
+					<Glyph ID="91" PositionX="243" PositionY="99" SizeX="10" SizeY="33" Advance="9" />
+					<Glyph ID="92" PositionX="0" PositionY="132" SizeX="12" SizeY="33" Advance="11" />
+					<Glyph ID="93" PositionX="12" PositionY="132" SizeX="10" SizeY="33" Advance="9" />
+					<Glyph ID="94" PositionX="22" PositionY="132" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="95" PositionX="39" PositionY="132" SizeX="15" SizeY="33" Advance="14" />
+					<Glyph ID="96" PositionX="54" PositionY="132" SizeX="12" SizeY="33" Advance="11" />
+					<Glyph ID="97" PositionX="66" PositionY="132" SizeX="16" SizeY="33" Advance="15" />
+					<Glyph ID="98" PositionX="82" PositionY="132" SizeX="18" SizeY="33" Advance="17" />
+					<Glyph ID="99" PositionX="100" PositionY="132" SizeX="14" SizeY="33" Advance="13" />
+					<Glyph ID="100" PositionX="114" PositionY="132" SizeX="18" SizeY="33" Advance="17" />
+					<Glyph ID="101" PositionX="132" PositionY="132" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="102" PositionX="149" PositionY="132" SizeX="12" SizeY="33" Advance="11" />
+					<Glyph ID="103" PositionX="161" PositionY="132" SizeX="18" SizeY="33" Advance="17" />
+					<Glyph ID="104" PositionX="179" PositionY="132" SizeX="17" SizeY="33" Advance="16" />
+					<Glyph ID="105" PositionX="196" PositionY="132" SizeX="8" SizeY="33" Advance="7" />
+					<Glyph ID="106" PositionX="204" PositionY="132" SizeX="8" SizeY="33" Advance="7" />
+					<Glyph ID="107" PositionX="212" PositionY="132" SizeX="16" SizeY="33" Advance="15" />
+					<Glyph ID="108" PositionX="228" PositionY="132" SizeX="9" SizeY="33" Advance="8" />
+					<Glyph ID="109" PositionX="0" PositionY="165" SizeX="26" SizeY="33" Advance="25" />
+					<Glyph ID="110" PositionX="26" PositionY="165" SizeX="18" SizeY="33" Advance="17" />
+					<Glyph ID="111" PositionX="44" PositionY="165" SizeX="18" SizeY="33" Advance="17" />
+					<Glyph ID="112" PositionX="62" PositionY="165" SizeX="18" SizeY="33" Advance="17" />
+					<Glyph ID="113" PositionX="80" PositionY="165" SizeX="18" SizeY="33" Advance="17" />
+					<Glyph ID="114" PositionX="98" PositionY="165" SizeX="12" SizeY="33" Advance="11" />
+					<Glyph ID="115" PositionX="110" PositionY="165" SizeX="14" SizeY="33" Advance="13" />
+					<Glyph ID="116" PositionX="124" PositionY="165" SizeX="12" SizeY="33" Advance="11" />
+					<Glyph ID="117" PositionX="136" PositionY="165" SizeX="18" SizeY="33" Advance="17" />
+					<Glyph ID="118" PositionX="154" PositionY="165" SizeX="15" SizeY="33" Advance="14" />
+					<Glyph ID="119" PositionX="169" PositionY="165" SizeX="24" SizeY="33" Advance="22" />
+					<Glyph ID="120" PositionX="193" PositionY="165" SizeX="16" SizeY="33" Advance="15" />
+					<Glyph ID="121" PositionX="209" PositionY="165" SizeX="15" SizeY="33" Advance="14" />
+					<Glyph ID="122" PositionX="224" PositionY="165" SizeX="14" SizeY="33" Advance="13" />
+					<Glyph ID="123" PositionX="238" PositionY="165" SizeX="10" SizeY="33" Advance="9" />
+					<Glyph ID="124" PositionX="0" PositionY="198" SizeX="9" SizeY="33" Advance="8" />
+					<Glyph ID="125" PositionX="9" PositionY="198" SizeX="10" SizeY="33" Advance="9" />
+					<Glyph ID="126" PositionX="19" PositionY="198" SizeX="17" SizeY="33" Advance="16" />
+				</Glyphs>
+				<Kernings>
+					<Kerning Left="39" Right="65" Adjust="-2" />
+					<Kerning Left="39" Right="74" Adjust="-3" />
+					<Kerning Left="41" Right="86" Adjust="-1" />
+					<Kerning Left="41" Right="89" Adjust="-1" />
+					<Kerning Left="42" Right="65" Adjust="-1" />
+					<Kerning Left="42" Right="74" Adjust="-3" />
+					<Kerning Left="45" Right="84" Adjust="-1" />
+					<Kerning Left="45" Right="89" Adjust="-1" />
+					<Kerning Left="46" Right="84" Adjust="-2" />
+					<Kerning Left="46" Right="86" Adjust="-2" />
+					<Kerning Left="46" Right="87" Adjust="-1" />
+					<Kerning Left="46" Right="89" Adjust="-2" />
+					<Kerning Left="47" Right="65" Adjust="-1" />
+					<Kerning Left="47" Right="74" Adjust="-2" />
+					<Kerning Left="47" Right="89" Adjust="1" />
+					<Kerning Left="58" Right="84" Adjust="-2" />
+					<Kerning Left="58" Right="89" Adjust="-1" />
+					<Kerning Left="64" Right="84" Adjust="-1" />
+					<Kerning Left="64" Right="86" Adjust="-1" />
+					<Kerning Left="64" Right="88" Adjust="-1" />
+					<Kerning Left="64" Right="89" Adjust="-1" />
+					<Kerning Left="64" Right="90" Adjust="-1" />
+					<Kerning Left="65" Right="39" Adjust="-2" />
+					<Kerning Left="65" Right="42" Adjust="-1" />
+					<Kerning Left="65" Right="84" Adjust="-1" />
+					<Kerning Left="65" Right="86" Adjust="-1" />
+					<Kerning Left="65" Right="89" Adjust="-2" />
+					<Kerning Left="66" Right="93" Adjust="-1" />
+					<Kerning Left="68" Right="47" Adjust="-1" />
+					<Kerning Left="68" Right="63" Adjust="-1" />
+					<Kerning Left="68" Right="89" Adjust="-1" />
+					<Kerning Left="68" Right="93" Adjust="-1" />
+					<Kerning Left="69" Right="93" Adjust="-1" />
+					<Kerning Left="70" Right="46" Adjust="-1" />
+					<Kerning Left="70" Right="47" Adjust="-1" />
+					<Kerning Left="70" Right="65" Adjust="-1" />
+					<Kerning Left="70" Right="74" Adjust="-2" />
+					<Kerning Left="70" Right="93" Adjust="-1" />
+					<Kerning Left="70" Right="97" Adjust="-1" />
+					<Kerning Left="70" Right="120" Adjust="-1" />
+					<Kerning Left="74" Right="47" Adjust="-1" />
+					<Kerning Left="74" Right="93" Adjust="-1" />
+					<Kerning Left="75" Right="45" Adjust="-1" />
+					<Kerning Left="75" Right="65" Adjust="1" />
+					<Kerning Left="75" Right="67" Adjust="-1" />
+					<Kerning Left="75" Right="71" Adjust="-1" />
+					<Kerning Left="75" Right="79" Adjust="-1" />
+					<Kerning Left="75" Right="81" Adjust="-1" />
+					<Kerning Left="75" Right="119" Adjust="-1" />
+					<Kerning Left="76" Right="39" Adjust="-3" />
+					<Kerning Left="76" Right="42" Adjust="-4" />
+					<Kerning Left="76" Right="45" Adjust="-2" />
+					<Kerning Left="76" Right="67" Adjust="-1" />
+					<Kerning Left="76" Right="71" Adjust="-1" />
+					<Kerning Left="76" Right="79" Adjust="-1" />
+					<Kerning Left="76" Right="81" Adjust="-1" />
+					<Kerning Left="76" Right="84" Adjust="-3" />
+					<Kerning Left="76" Right="86" Adjust="-2" />
+					<Kerning Left="76" Right="87" Adjust="-1" />
+					<Kerning Left="76" Right="89" Adjust="-3" />
+					<Kerning Left="76" Right="118" Adjust="-1" />
+					<Kerning Left="76" Right="119" Adjust="-1" />
+					<Kerning Left="79" Right="47" Adjust="-1" />
+					<Kerning Left="79" Right="63" Adjust="-1" />
+					<Kerning Left="79" Right="89" Adjust="-1" />
+					<Kerning Left="79" Right="93" Adjust="-1" />
+					<Kerning Left="80" Right="46" Adjust="-2" />
+					<Kerning Left="80" Right="47" Adjust="-1" />
+					<Kerning Left="80" Right="65" Adjust="-1" />
+					<Kerning Left="80" Right="74" Adjust="-2" />
+					<Kerning Left="80" Right="93" Adjust="-1" />
+					<Kerning Left="81" Right="63" Adjust="-1" />
+					<Kerning Left="81" Right="89" Adjust="-1" />
+					<Kerning Left="84" Right="45" Adjust="-1" />
+					<Kerning Left="84" Right="46" Adjust="-2" />
+					<Kerning Left="84" Right="47" Adjust="-2" />
+					<Kerning Left="84" Right="58" Adjust="-2" />
+					<Kerning Left="84" Right="64" Adjust="-1" />
+					<Kerning Left="84" Right="65" Adjust="-1" />
+					<Kerning Left="84" Right="74" Adjust="-2" />
+					<Kerning Left="84" Right="97" Adjust="-1" />
+					<Kerning Left="84" Right="99" Adjust="-1" />
+					<Kerning Left="84" Right="100" Adjust="-1" />
+					<Kerning Left="84" Right="101" Adjust="-1" />
+					<Kerning Left="84" Right="103" Adjust="-1" />
+					<Kerning Left="84" Right="109" Adjust="-1" />
+					<Kerning Left="84" Right="110" Adjust="-1" />
+					<Kerning Left="84" Right="111" Adjust="-1" />
+					<Kerning Left="84" Right="112" Adjust="-1" />
+					<Kerning Left="84" Right="113" Adjust="-1" />
+					<Kerning Left="84" Right="114" Adjust="-1" />
+					<Kerning Left="84" Right="115" Adjust="-1" />
+					<Kerning Left="84" Right="117" Adjust="-1" />
+					<Kerning Left="84" Right="119" Adjust="-2" />
+					<Kerning Left="85" Right="47" Adjust="-1" />
+					<Kerning Left="85" Right="93" Adjust="-1" />
+					<Kerning Left="86" Right="46" Adjust="-2" />
+					<Kerning Left="86" Right="47" Adjust="-1" />
+					<Kerning Left="86" Right="64" Adjust="-1" />
+					<Kerning Left="86" Right="65" Adjust="-1" />
+					<Kerning Left="86" Right="74" Adjust="-2" />
+					<Kerning Left="86" Right="99" Adjust="-1" />
+					<Kerning Left="86" Right="100" Adjust="-1" />
+					<Kerning Left="86" Right="101" Adjust="-1" />
+					<Kerning Left="86" Right="103" Adjust="-1" />
+					<Kerning Left="86" Right="111" Adjust="-1" />
+					<Kerning Left="86" Right="113" Adjust="-1" />
+					<Kerning Left="87" Right="46" Adjust="-1" />
+					<Kerning Left="87" Right="47" Adjust="-1" />
+					<Kerning Left="87" Right="74" Adjust="-1" />
+					<Kerning Left="87" Right="93" Adjust="-1" />
+					<Kerning Left="88" Right="93" Adjust="-1" />
+					<Kerning Left="88" Right="119" Adjust="-1" />
+					<Kerning Left="89" Right="40" Adjust="-1" />
+					<Kerning Left="89" Right="45" Adjust="-1" />
+					<Kerning Left="89" Right="46" Adjust="-1" />
+					<Kerning Left="89" Right="47" Adjust="-2" />
+					<Kerning Left="89" Right="58" Adjust="-1" />
+					<Kerning Left="89" Right="64" Adjust="-1" />
+					<Kerning Left="89" Right="65" Adjust="-2" />
+					<Kerning Left="89" Right="67" Adjust="-1" />
+					<Kerning Left="89" Right="71" Adjust="-1" />
+					<Kerning Left="89" Right="74" Adjust="-3" />
+					<Kerning Left="89" Right="79" Adjust="-1" />
+					<Kerning Left="89" Right="81" Adjust="-1" />
+					<Kerning Left="89" Right="89" Adjust="1" />
+					<Kerning Left="89" Right="97" Adjust="-1" />
+					<Kerning Left="89" Right="99" Adjust="-1" />
+					<Kerning Left="89" Right="100" Adjust="-1" />
+					<Kerning Left="89" Right="101" Adjust="-1" />
+					<Kerning Left="89" Right="103" Adjust="-1" />
+					<Kerning Left="89" Right="109" Adjust="-1" />
+					<Kerning Left="89" Right="110" Adjust="-1" />
+					<Kerning Left="89" Right="111" Adjust="-1" />
+					<Kerning Left="89" Right="112" Adjust="-1" />
+					<Kerning Left="89" Right="113" Adjust="-1" />
+					<Kerning Left="89" Right="114" Adjust="-1" />
+					<Kerning Left="89" Right="117" Adjust="-1" />
+					<Kerning Left="90" Right="45" Adjust="-1" />
+					<Kerning Left="90" Right="67" Adjust="-1" />
+					<Kerning Left="90" Right="71" Adjust="-1" />
+					<Kerning Left="90" Right="79" Adjust="-1" />
+					<Kerning Left="90" Right="81" Adjust="-1" />
+					<Kerning Left="90" Right="93" Adjust="-1" />
+					<Kerning Left="90" Right="123" Adjust="-1" />
+					<Kerning Left="91" Right="67" Adjust="-1" />
+					<Kerning Left="91" Right="71" Adjust="-1" />
+					<Kerning Left="91" Right="79" Adjust="-1" />
+					<Kerning Left="91" Right="81" Adjust="-1" />
+					<Kerning Left="91" Right="85" Adjust="-1" />
+					<Kerning Left="91" Right="87" Adjust="-1" />
+					<Kerning Left="91" Right="88" Adjust="-1" />
+					<Kerning Left="91" Right="90" Adjust="-1" />
+					<Kerning Left="98" Right="39" Adjust="-1" />
+					<Kerning Left="102" Right="41" Adjust="1" />
+					<Kerning Left="102" Right="45" Adjust="-1" />
+					<Kerning Left="102" Right="46" Adjust="-1" />
+					<Kerning Left="102" Right="47" Adjust="-1" />
+					<Kerning Left="102" Right="93" Adjust="1" />
+					<Kerning Left="102" Right="125" Adjust="1" />
+					<Kerning Left="104" Right="39" Adjust="-1" />
+					<Kerning Left="114" Right="46" Adjust="-1" />
+					<Kerning Left="114" Right="47" Adjust="-1" />
+					<Kerning Left="114" Right="63" Adjust="-1" />
+					<Kerning Left="116" Right="45" Adjust="-1" />
+					<Kerning Left="118" Right="46" Adjust="-1" />
+					<Kerning Left="118" Right="63" Adjust="-1" />
+					<Kerning Left="119" Right="63" Adjust="-1" />
+					<Kerning Left="122" Right="93" Adjust="-1" />
+					<Kerning Left="125" Right="90" Adjust="-1" />
+				</Kernings>
+			</Font>
+			<Font Name="Ubuntu-24" OffsetX="768" OffsetY="256" LineHeight="40" SpaceLength="7" BaseLine="33" LetterSpacing="-1" MonoWidth="15" RangeBegin="33" RangeEnd="126" >
+				<Glyphs>
+					<Glyph ID="33" PositionX="1" PositionY="0" SizeX="10" SizeY="36" Advance="9" />
+					<Glyph ID="34" PositionX="11" PositionY="0" SizeX="15" SizeY="36" Advance="13" />
+					<Glyph ID="35" PositionX="26" PositionY="0" SizeX="23" SizeY="36" Advance="21" />
+					<Glyph ID="36" PositionX="49" PositionY="0" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="37" PositionX="69" PositionY="0" SizeX="29" SizeY="36" Advance="27" />
+					<Glyph ID="38" PositionX="98" PositionY="0" SizeX="23" SizeY="36" Advance="21" />
+					<Glyph ID="39" PositionX="121" PositionY="0" SizeX="9" SizeY="36" Advance="7" />
+					<Glyph ID="40" PositionX="130" PositionY="0" SizeX="12" SizeY="36" Advance="10" />
+					<Glyph ID="41" PositionX="142" PositionY="0" SizeX="12" SizeY="36" Advance="10" />
+					<Glyph ID="42" PositionX="154" PositionY="0" SizeX="17" SizeY="36" Advance="15" />
+					<Glyph ID="43" PositionX="171" PositionY="0" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="44" PositionX="191" PositionY="0" SizeX="9" SizeY="36" Advance="8" />
+					<Glyph ID="45" PositionX="200" PositionY="0" SizeX="11" SizeY="36" Advance="9" />
+					<Glyph ID="46" PositionX="211" PositionY="0" SizeX="9" SizeY="36" Advance="8" />
+					<Glyph ID="47" PositionX="220" PositionY="0" SizeX="14" SizeY="36" Advance="12" />
+					<Glyph ID="48" PositionX="234" PositionY="0" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="49" PositionX="0" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="50" PositionX="20" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="51" PositionX="40" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="52" PositionX="60" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="53" PositionX="80" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="54" PositionX="100" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="55" PositionX="120" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="56" PositionX="140" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="57" PositionX="160" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="58" PositionX="180" PositionY="36" SizeX="9" SizeY="36" Advance="8" />
+					<Glyph ID="59" PositionX="189" PositionY="36" SizeX="9" SizeY="36" Advance="8" />
+					<Glyph ID="60" PositionX="198" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="61" PositionX="218" PositionY="36" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="62" PositionX="0" PositionY="72" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="63" PositionX="20" PositionY="72" SizeX="14" SizeY="36" Advance="13" />
+					<Glyph ID="64" PositionX="34" PositionY="72" SizeX="32" SizeY="36" Advance="30" />
+					<Glyph ID="65" PositionX="66" PositionY="72" SizeX="23" SizeY="36" Advance="21" />
+					<Glyph ID="66" PositionX="89" PositionY="72" SizeX="22" SizeY="36" Advance="20" />
+					<Glyph ID="67" PositionX="111" PositionY="72" SizeX="21" SizeY="36" Advance="20" />
+					<Glyph ID="68" PositionX="132" PositionY="72" SizeX="24" SizeY="36" Advance="23" />
+					<Glyph ID="69" PositionX="156" PositionY="72" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="70" PositionX="176" PositionY="72" SizeX="19" SizeY="36" Advance="17" />
+					<Glyph ID="71" PositionX="195" PositionY="72" SizeX="23" SizeY="36" Advance="21" />
+					<Glyph ID="72" PositionX="218" PositionY="72" SizeX="24" SizeY="36" Advance="22" />
+					<Glyph ID="73" PositionX="242" PositionY="72" SizeX="10" SizeY="36" Advance="8" />
+					<Glyph ID="74" PositionX="0" PositionY="108" SizeX="17" SizeY="36" Advance="16" />
+					<Glyph ID="75" PositionX="17" PositionY="108" SizeX="22" SizeY="36" Advance="20" />
+					<Glyph ID="76" PositionX="39" PositionY="108" SizeX="18" SizeY="36" Advance="16" />
+					<Glyph ID="77" PositionX="57" PositionY="108" SizeX="30" SizeY="36" Advance="28" />
+					<Glyph ID="78" PositionX="87" PositionY="108" SizeX="25" SizeY="36" Advance="23" />
+					<Glyph ID="79" PositionX="112" PositionY="108" SizeX="27" SizeY="36" Advance="25" />
+					<Glyph ID="80" PositionX="139" PositionY="108" SizeX="21" SizeY="36" Advance="19" />
+					<Glyph ID="81" PositionX="160" PositionY="108" SizeX="27" SizeY="36" Advance="25" />
+					<Glyph ID="82" PositionX="187" PositionY="108" SizeX="22" SizeY="36" Advance="20" />
+					<Glyph ID="83" PositionX="209" PositionY="108" SizeX="18" SizeY="36" Advance="17" />
+					<Glyph ID="84" PositionX="227" PositionY="108" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="85" PositionX="0" PositionY="144" SizeX="24" SizeY="36" Advance="22" />
+					<Glyph ID="86" PositionX="24" PositionY="144" SizeX="23" SizeY="36" Advance="21" />
+					<Glyph ID="87" PositionX="47" PositionY="144" SizeX="32" SizeY="36" Advance="30" />
+					<Glyph ID="88" PositionX="79" PositionY="144" SizeX="22" SizeY="36" Advance="20" />
+					<Glyph ID="89" PositionX="101" PositionY="144" SizeX="21" SizeY="36" Advance="19" />
+					<Glyph ID="90" PositionX="122" PositionY="144" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="91" PositionX="142" PositionY="144" SizeX="12" SizeY="36" Advance="10" />
+					<Glyph ID="92" PositionX="154" PositionY="144" SizeX="14" SizeY="36" Advance="12" />
+					<Glyph ID="93" PositionX="168" PositionY="144" SizeX="12" SizeY="36" Advance="10" />
+					<Glyph ID="94" PositionX="180" PositionY="144" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="95" PositionX="200" PositionY="144" SizeX="17" SizeY="36" Advance="16" />
+					<Glyph ID="96" PositionX="217" PositionY="144" SizeX="13" SizeY="36" Advance="12" />
+					<Glyph ID="97" PositionX="230" PositionY="144" SizeX="18" SizeY="36" Advance="16" />
+					<Glyph ID="98" PositionX="0" PositionY="180" SizeX="20" SizeY="36" Advance="19" />
+					<Glyph ID="99" PositionX="20" PositionY="180" SizeX="16" SizeY="36" Advance="15" />
+					<Glyph ID="100" PositionX="36" PositionY="180" SizeX="20" SizeY="36" Advance="19" />
+					<Glyph ID="101" PositionX="56" PositionY="180" SizeX="19" SizeY="36" Advance="18" />
+					<Glyph ID="102" PositionX="75" PositionY="180" SizeX="14" SizeY="36" Advance="12" />
+					<Glyph ID="103" PositionX="89" PositionY="180" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="104" PositionX="109" PositionY="180" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="105" PositionX="129" PositionY="180" SizeX="9" SizeY="36" Advance="8" />
+					<Glyph ID="106" PositionX="138" PositionY="180" SizeX="9" SizeY="36" Advance="8" />
+					<Glyph ID="107" PositionX="147" PositionY="180" SizeX="18" SizeY="36" Advance="16" />
+					<Glyph ID="108" PositionX="165" PositionY="180" SizeX="10" SizeY="36" Advance="8" />
+					<Glyph ID="109" PositionX="175" PositionY="180" SizeX="29" SizeY="36" Advance="27" />
+					<Glyph ID="110" PositionX="204" PositionY="180" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="111" PositionX="224" PositionY="180" SizeX="20" SizeY="36" Advance="19" />
+					<Glyph ID="112" PositionX="0" PositionY="216" SizeX="20" SizeY="36" Advance="19" />
+					<Glyph ID="113" PositionX="20" PositionY="216" SizeX="20" SizeY="36" Advance="19" />
+					<Glyph ID="114" PositionX="40" PositionY="216" SizeX="14" SizeY="36" Advance="12" />
+					<Glyph ID="115" PositionX="54" PositionY="216" SizeX="16" SizeY="36" Advance="14" />
+					<Glyph ID="116" PositionX="70" PositionY="216" SizeX="14" SizeY="36" Advance="13" />
+					<Glyph ID="117" PositionX="84" PositionY="216" SizeX="20" SizeY="36" Advance="18" />
+					<Glyph ID="118" PositionX="104" PositionY="216" SizeX="17" SizeY="36" Advance="16" />
+					<Glyph ID="119" PositionX="121" PositionY="216" SizeX="27" SizeY="36" Advance="25" />
+					<Glyph ID="120" PositionX="148" PositionY="216" SizeX="18" SizeY="36" Advance="16" />
+					<Glyph ID="121" PositionX="166" PositionY="216" SizeX="17" SizeY="36" Advance="16" />
+					<Glyph ID="122" PositionX="183" PositionY="216" SizeX="16" SizeY="36" Advance="15" />
+					<Glyph ID="123" PositionX="199" PositionY="216" SizeX="12" SizeY="36" Advance="10" />
+					<Glyph ID="124" PositionX="211" PositionY="216" SizeX="10" SizeY="36" Advance="9" />
+					<Glyph ID="125" PositionX="221" PositionY="216" SizeX="12" SizeY="36" Advance="10" />
+					<Glyph ID="126" PositionX="233" PositionY="216" SizeX="20" SizeY="36" Advance="18" />
+				</Glyphs>
+				<Kernings>
+					<Kerning Left="39" Right="65" Adjust="-2" />
+					<Kerning Left="39" Right="74" Adjust="-3" />
+					<Kerning Left="41" Right="86" Adjust="-1" />
+					<Kerning Left="41" Right="89" Adjust="-1" />
+					<Kerning Left="42" Right="65" Adjust="-2" />
+					<Kerning Left="42" Right="74" Adjust="-3" />
+					<Kerning Left="45" Right="84" Adjust="-1" />
+					<Kerning Left="45" Right="88" Adjust="-1" />
+					<Kerning Left="45" Right="89" Adjust="-1" />
+					<Kerning Left="46" Right="79" Adjust="-1" />
+					<Kerning Left="46" Right="81" Adjust="-1" />
+					<Kerning Left="46" Right="84" Adjust="-2" />
+					<Kerning Left="46" Right="86" Adjust="-2" />
+					<Kerning Left="46" Right="87" Adjust="-1" />
+					<Kerning Left="46" Right="89" Adjust="-2" />
+					<Kerning Left="47" Right="65" Adjust="-1" />
+					<Kerning Left="47" Right="74" Adjust="-2" />
+					<Kerning Left="47" Right="86" Adjust="1" />
+					<Kerning Left="47" Right="89" Adjust="1" />
+					<Kerning Left="58" Right="84" Adjust="-2" />
+					<Kerning Left="58" Right="89" Adjust="-1" />
+					<Kerning Left="64" Right="84" Adjust="-1" />
+					<Kerning Left="64" Right="86" Adjust="-1" />
+					<Kerning Left="64" Right="88" Adjust="-1" />
+					<Kerning Left="64" Right="89" Adjust="-1" />
+					<Kerning Left="64" Right="90" Adjust="-1" />
+					<Kerning Left="65" Right="39" Adjust="-2" />
+					<Kerning Left="65" Right="42" Adjust="-2" />
+					<Kerning Left="65" Right="65" Adjust="1" />
+					<Kerning Left="65" Right="84" Adjust="-2" />
+					<Kerning Left="65" Right="86" Adjust="-2" />
+					<Kerning Left="65" Right="89" Adjust="-2" />
+					<Kerning Left="66" Right="93" Adjust="-1" />
+					<Kerning Left="68" Right="41" Adjust="-1" />
+					<Kerning Left="68" Right="46" Adjust="-1" />
+					<Kerning Left="68" Right="47" Adjust="-1" />
+					<Kerning Left="68" Right="63" Adjust="-1" />
+					<Kerning Left="68" Right="89" Adjust="-1" />
+					<Kerning Left="68" Right="93" Adjust="-1" />
+					<Kerning Left="69" Right="93" Adjust="-1" />
+					<Kerning Left="70" Right="46" Adjust="-2" />
+					<Kerning Left="70" Right="47" Adjust="-1" />
+					<Kerning Left="70" Right="65" Adjust="-1" />
+					<Kerning Left="70" Right="74" Adjust="-2" />
+					<Kerning Left="70" Right="93" Adjust="-1" />
+					<Kerning Left="70" Right="97" Adjust="-1" />
+					<Kerning Left="70" Right="120" Adjust="-1" />
+					<Kerning Left="74" Right="47" Adjust="-1" />
+					<Kerning Left="74" Right="93" Adjust="-1" />
+					<Kerning Left="75" Right="42" Adjust="-1" />
+					<Kerning Left="75" Right="45" Adjust="-1" />
+					<Kerning Left="75" Right="65" Adjust="1" />
+					<Kerning Left="75" Right="67" Adjust="-1" />
+					<Kerning Left="75" Right="71" Adjust="-1" />
+					<Kerning Left="75" Right="79" Adjust="-1" />
+					<Kerning Left="75" Right="81" Adjust="-1" />
+					<Kerning Left="75" Right="119" Adjust="-1" />
+					<Kerning Left="76" Right="39" Adjust="-4" />
+					<Kerning Left="76" Right="42" Adjust="-4" />
+					<Kerning Left="76" Right="45" Adjust="-2" />
+					<Kerning Left="76" Right="67" Adjust="-1" />
+					<Kerning Left="76" Right="71" Adjust="-1" />
+					<Kerning Left="76" Right="79" Adjust="-1" />
+					<Kerning Left="76" Right="81" Adjust="-1" />
+					<Kerning Left="76" Right="84" Adjust="-3" />
+					<Kerning Left="76" Right="86" Adjust="-3" />
+					<Kerning Left="76" Right="87" Adjust="-1" />
+					<Kerning Left="76" Right="89" Adjust="-3" />
+					<Kerning Left="76" Right="93" Adjust="-1" />
+					<Kerning Left="76" Right="118" Adjust="-1" />
+					<Kerning Left="76" Right="119" Adjust="-1" />
+					<Kerning Left="79" Right="46" Adjust="-1" />
+					<Kerning Left="79" Right="47" Adjust="-1" />
+					<Kerning Left="79" Right="63" Adjust="-1" />
+					<Kerning Left="79" Right="89" Adjust="-1" />
+					<Kerning Left="79" Right="93" Adjust="-1" />
+					<Kerning Left="80" Right="46" Adjust="-2" />
+					<Kerning Left="80" Right="47" Adjust="-2" />
+					<Kerning Left="80" Right="65" Adjust="-1" />
+					<Kerning Left="80" Right="74" Adjust="-3" />
+					<Kerning Left="80" Right="93" Adjust="-1" />
+					<Kerning Left="80" Right="101" Adjust="-1" />
+					<Kerning Left="81" Right="46" Adjust="-1" />
+					<Kerning Left="81" Right="63" Adjust="-1" />
+					<Kerning Left="81" Right="89" Adjust="-1" />
+					<Kerning Left="82" Right="93" Adjust="-1" />
+					<Kerning Left="84" Right="45" Adjust="-1" />
+					<Kerning Left="84" Right="46" Adjust="-2" />
+					<Kerning Left="84" Right="47" Adjust="-2" />
+					<Kerning Left="84" Right="58" Adjust="-2" />
+					<Kerning Left="84" Right="64" Adjust="-1" />
+					<Kerning Left="84" Right="65" Adjust="-2" />
+					<Kerning Left="84" Right="74" Adjust="-2" />
+					<Kerning Left="84" Right="93" Adjust="-1" />
+					<Kerning Left="84" Right="97" Adjust="-1" />
+					<Kerning Left="84" Right="99" Adjust="-1" />
+					<Kerning Left="84" Right="100" Adjust="-1" />
+					<Kerning Left="84" Right="101" Adjust="-1" />
+					<Kerning Left="84" Right="103" Adjust="-1" />
+					<Kerning Left="84" Right="109" Adjust="-1" />
+					<Kerning Left="84" Right="110" Adjust="-1" />
+					<Kerning Left="84" Right="111" Adjust="-1" />
+					<Kerning Left="84" Right="112" Adjust="-1" />
+					<Kerning Left="84" Right="113" Adjust="-1" />
+					<Kerning Left="84" Right="114" Adjust="-1" />
+					<Kerning Left="84" Right="115" Adjust="-1" />
+					<Kerning Left="84" Right="117" Adjust="-1" />
+					<Kerning Left="84" Right="119" Adjust="-2" />
+					<Kerning Left="85" Right="47" Adjust="-1" />
+					<Kerning Left="85" Right="93" Adjust="-1" />
+					<Kerning Left="86" Right="40" Adjust="-1" />
+					<Kerning Left="86" Right="46" Adjust="-2" />
+					<Kerning Left="86" Right="47" Adjust="-2" />
+					<Kerning Left="86" Right="64" Adjust="-1" />
+					<Kerning Left="86" Right="65" Adjust="-2" />
+					<Kerning Left="86" Right="74" Adjust="-3" />
+					<Kerning Left="86" Right="86" Adjust="1" />
+					<Kerning Left="86" Right="89" Adjust="1" />
+					<Kerning Left="86" Right="99" Adjust="-1" />
+					<Kerning Left="86" Right="100" Adjust="-1" />
+					<Kerning Left="86" Right="101" Adjust="-1" />
+					<Kerning Left="86" Right="103" Adjust="-1" />
+					<Kerning Left="86" Right="111" Adjust="-1" />
+					<Kerning Left="86" Right="113" Adjust="-1" />
+					<Kerning Left="87" Right="46" Adjust="-1" />
+					<Kerning Left="87" Right="47" Adjust="-1" />
+					<Kerning Left="87" Right="74" Adjust="-1" />
+					<Kerning Left="87" Right="93" Adjust="-1" />
+					<Kerning Left="88" Right="93" Adjust="-1" />
+					<Kerning Left="88" Right="119" Adjust="-1" />
+					<Kerning Left="89" Right="40" Adjust="-1" />
+					<Kerning Left="89" Right="45" Adjust="-1" />
+					<Kerning Left="89" Right="46" Adjust="-2" />
+					<Kerning Left="89" Right="47" Adjust="-2" />
+					<Kerning Left="89" Right="58" Adjust="-1" />
+					<Kerning Left="89" Right="64" Adjust="-1" />
+					<Kerning Left="89" Right="65" Adjust="-2" />
+					<Kerning Left="89" Right="67" Adjust="-1" />
+					<Kerning Left="89" Right="71" Adjust="-1" />
+					<Kerning Left="89" Right="74" Adjust="-3" />
+					<Kerning Left="89" Right="79" Adjust="-1" />
+					<Kerning Left="89" Right="81" Adjust="-1" />
+					<Kerning Left="89" Right="86" Adjust="1" />
+					<Kerning Left="89" Right="89" Adjust="1" />
+					<Kerning Left="89" Right="97" Adjust="-1" />
+					<Kerning Left="89" Right="99" Adjust="-1" />
+					<Kerning Left="89" Right="100" Adjust="-1" />
+					<Kerning Left="89" Right="101" Adjust="-1" />
+					<Kerning Left="89" Right="103" Adjust="-1" />
+					<Kerning Left="89" Right="109" Adjust="-1" />
+					<Kerning Left="89" Right="110" Adjust="-1" />
+					<Kerning Left="89" Right="111" Adjust="-1" />
+					<Kerning Left="89" Right="112" Adjust="-1" />
+					<Kerning Left="89" Right="113" Adjust="-1" />
+					<Kerning Left="89" Right="114" Adjust="-1" />
+					<Kerning Left="89" Right="117" Adjust="-1" />
+					<Kerning Left="90" Right="45" Adjust="-1" />
+					<Kerning Left="90" Right="67" Adjust="-1" />
+					<Kerning Left="90" Right="71" Adjust="-1" />
+					<Kerning Left="90" Right="79" Adjust="-1" />
+					<Kerning Left="90" Right="81" Adjust="-1" />
+					<Kerning Left="90" Right="93" Adjust="-1" />
+					<Kerning Left="90" Right="123" Adjust="-1" />
+					<Kerning Left="91" Right="67" Adjust="-1" />
+					<Kerning Left="91" Right="71" Adjust="-1" />
+					<Kerning Left="91" Right="79" Adjust="-1" />
+					<Kerning Left="91" Right="81" Adjust="-1" />
+					<Kerning Left="91" Right="84" Adjust="-1" />
+					<Kerning Left="91" Right="85" Adjust="-1" />
+					<Kerning Left="91" Right="87" Adjust="-1" />
+					<Kerning Left="91" Right="88" Adjust="-1" />
+					<Kerning Left="91" Right="90" Adjust="-1" />
+					<Kerning Left="98" Right="39" Adjust="-1" />
+					<Kerning Left="99" Right="45" Adjust="-1" />
+					<Kerning Left="102" Right="41" Adjust="1" />
+					<Kerning Left="102" Right="45" Adjust="-1" />
+					<Kerning Left="102" Right="46" Adjust="-1" />
+					<Kerning Left="102" Right="47" Adjust="-1" />
+					<Kerning Left="102" Right="93" Adjust="1" />
+					<Kerning Left="102" Right="125" Adjust="1" />
+					<Kerning Left="104" Right="39" Adjust="-1" />
+					<Kerning Left="110" Right="39" Adjust="-1" />
+					<Kerning Left="111" Right="39" Adjust="-1" />
+					<Kerning Left="112" Right="39" Adjust="-1" />
+					<Kerning Left="114" Right="45" Adjust="-1" />
+					<Kerning Left="114" Right="46" Adjust="-1" />
+					<Kerning Left="114" Right="47" Adjust="-1" />
+					<Kerning Left="114" Right="63" Adjust="-1" />
+					<Kerning Left="116" Right="45" Adjust="-1" />
+					<Kerning Left="118" Right="46" Adjust="-1" />
+					<Kerning Left="118" Right="47" Adjust="-1" />
+					<Kerning Left="118" Right="63" Adjust="-1" />
+					<Kerning Left="119" Right="46" Adjust="-1" />
+					<Kerning Left="119" Right="63" Adjust="-1" />
+					<Kerning Left="122" Right="93" Adjust="-1" />
+					<Kerning Left="125" Right="90" Adjust="-1" />
+				</Kernings>
+			</Font>
+			<Font Name="Ubuntu-26" OffsetX="0" OffsetY="512" LineHeight="42" SpaceLength="8" BaseLine="35" LetterSpacing="-1" MonoWidth="15" RangeBegin="33" RangeEnd="126" >
+				<Glyphs>
+					<Glyph ID="33" PositionX="0" PositionY="0" SizeX="10" SizeY="40" Advance="10" />
+					<Glyph ID="34" PositionX="10" PositionY="0" SizeX="16" SizeY="40" Advance="15" />
+					<Glyph ID="35" PositionX="26" PositionY="0" SizeX="24" SizeY="40" Advance="23" />
+					<Glyph ID="36" PositionX="50" PositionY="0" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="37" PositionX="71" PositionY="0" SizeX="31" SizeY="40" Advance="30" />
+					<Glyph ID="38" PositionX="102" PositionY="0" SizeX="24" SizeY="40" Advance="23" />
+					<Glyph ID="39" PositionX="126" PositionY="0" SizeX="9" SizeY="40" Advance="8" />
+					<Glyph ID="40" PositionX="135" PositionY="0" SizeX="12" SizeY="40" Advance="11" />
+					<Glyph ID="41" PositionX="147" PositionY="0" SizeX="12" SizeY="40" Advance="11" />
+					<Glyph ID="42" PositionX="159" PositionY="0" SizeX="18" SizeY="40" Advance="17" />
+					<Glyph ID="43" PositionX="177" PositionY="0" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="44" PositionX="198" PositionY="0" SizeX="9" SizeY="40" Advance="8" />
+					<Glyph ID="45" PositionX="207" PositionY="0" SizeX="11" SizeY="40" Advance="10" />
+					<Glyph ID="46" PositionX="218" PositionY="0" SizeX="9" SizeY="40" Advance="8" />
+					<Glyph ID="47" PositionX="227" PositionY="0" SizeX="14" SizeY="40" Advance="13" />
+					<Glyph ID="48" PositionX="0" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="49" PositionX="21" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="50" PositionX="42" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="51" PositionX="63" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="52" PositionX="84" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="53" PositionX="105" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="54" PositionX="126" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="55" PositionX="147" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="56" PositionX="168" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="57" PositionX="189" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="58" PositionX="210" PositionY="40" SizeX="9" SizeY="40" Advance="8" />
+					<Glyph ID="59" PositionX="219" PositionY="40" SizeX="9" SizeY="40" Advance="8" />
+					<Glyph ID="60" PositionX="228" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="61" PositionX="0" PositionY="80" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="62" PositionX="21" PositionY="80" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="63" PositionX="42" PositionY="80" SizeX="15" SizeY="40" Advance="14" />
+					<Glyph ID="64" PositionX="57" PositionY="80" SizeX="35" SizeY="40" Advance="34" />
+					<Glyph ID="65" PositionX="92" PositionY="80" SizeX="24" SizeY="40" Advance="23" />
+					<Glyph ID="66" PositionX="116" PositionY="80" SizeX="24" SizeY="40" Advance="23" />
+					<Glyph ID="67" PositionX="140" PositionY="80" SizeX="23" SizeY="40" Advance="22" />
+					<Glyph ID="68" PositionX="163" PositionY="80" SizeX="26" SizeY="40" Advance="25" />
+					<Glyph ID="69" PositionX="189" PositionY="80" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="70" PositionX="210" PositionY="80" SizeX="20" SizeY="40" Advance="19" />
+					<Glyph ID="71" PositionX="230" PositionY="80" SizeX="25" SizeY="40" Advance="24" />
+					<Glyph ID="72" PositionX="0" PositionY="120" SizeX="26" SizeY="40" Advance="25" />
+					<Glyph ID="73" PositionX="26" PositionY="120" SizeX="10" SizeY="40" Advance="9" />
+					<Glyph ID="74" PositionX="36" PositionY="120" SizeX="18" SizeY="40" Advance="18" />
+					<Glyph ID="75" PositionX="54" PositionY="120" SizeX="23" SizeY="40" Advance="22" />
+					<Glyph ID="76" PositionX="77" PositionY="120" SizeX="19" SizeY="40" Advance="18" />
+					<Glyph ID="77" PositionX="96" PositionY="120" SizeX="32" SizeY="40" Advance="31" />
+					<Glyph ID="78" PositionX="128" PositionY="120" SizeX="27" SizeY="40" Advance="26" />
+					<Glyph ID="79" PositionX="155" PositionY="120" SizeX="28" SizeY="40" Advance="27" />
+					<Glyph ID="80" PositionX="183" PositionY="120" SizeX="22" SizeY="40" Advance="21" />
+					<Glyph ID="81" PositionX="205" PositionY="120" SizeX="28" SizeY="40" Advance="27" />
+					<Glyph ID="82" PositionX="233" PositionY="120" SizeX="23" SizeY="40" Advance="22" />
+					<Glyph ID="83" PositionX="0" PositionY="160" SizeX="20" SizeY="40" Advance="19" />
+					<Glyph ID="84" PositionX="20" PositionY="160" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="85" PositionX="41" PositionY="160" SizeX="25" SizeY="40" Advance="24" />
+					<Glyph ID="86" PositionX="66" PositionY="160" SizeX="24" SizeY="40" Advance="23" />
+					<Glyph ID="87" PositionX="90" PositionY="160" SizeX="34" SizeY="40" Advance="33" />
+					<Glyph ID="88" PositionX="124" PositionY="160" SizeX="23" SizeY="40" Advance="22" />
+					<Glyph ID="89" PositionX="147" PositionY="160" SizeX="22" SizeY="40" Advance="21" />
+					<Glyph ID="90" PositionX="169" PositionY="160" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="91" PositionX="190" PositionY="160" SizeX="12" SizeY="40" Advance="11" />
+					<Glyph ID="92" PositionX="202" PositionY="160" SizeX="14" SizeY="40" Advance="13" />
+					<Glyph ID="93" PositionX="216" PositionY="160" SizeX="12" SizeY="40" Advance="11" />
+					<Glyph ID="94" PositionX="228" PositionY="160" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="95" PositionX="0" PositionY="200" SizeX="18" SizeY="40" Advance="17" />
+					<Glyph ID="96" PositionX="18" PositionY="200" SizeX="14" SizeY="40" Advance="13" />
+					<Glyph ID="97" PositionX="32" PositionY="200" SizeX="19" SizeY="40" Advance="18" />
+					<Glyph ID="98" PositionX="51" PositionY="200" SizeX="22" SizeY="40" Advance="21" />
+					<Glyph ID="99" PositionX="73" PositionY="200" SizeX="17" SizeY="40" Advance="16" />
+					<Glyph ID="100" PositionX="90" PositionY="200" SizeX="22" SizeY="40" Advance="21" />
+					<Glyph ID="101" PositionX="112" PositionY="200" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="102" PositionX="133" PositionY="200" SizeX="14" SizeY="40" Advance="13" />
+					<Glyph ID="103" PositionX="147" PositionY="200" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="104" PositionX="168" PositionY="200" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="105" PositionX="189" PositionY="200" SizeX="10" SizeY="40" Advance="9" />
+					<Glyph ID="106" PositionX="199" PositionY="200" SizeX="10" SizeY="40" Advance="9" />
+					<Glyph ID="107" PositionX="209" PositionY="200" SizeX="19" SizeY="40" Advance="18" />
+					<Glyph ID="108" PositionX="228" PositionY="200" SizeX="10" SizeY="40" Advance="9" />
+					<Glyph ID="109" PositionX="256" PositionY="0" SizeX="31" SizeY="40" Advance="30" />
+					<Glyph ID="110" PositionX="287" PositionY="0" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="111" PositionX="308" PositionY="0" SizeX="22" SizeY="40" Advance="21" />
+					<Glyph ID="112" PositionX="330" PositionY="0" SizeX="22" SizeY="40" Advance="21" />
+					<Glyph ID="113" PositionX="352" PositionY="0" SizeX="22" SizeY="40" Advance="21" />
+					<Glyph ID="114" PositionX="374" PositionY="0" SizeX="14" SizeY="40" Advance="13" />
+					<Glyph ID="115" PositionX="388" PositionY="0" SizeX="17" SizeY="40" Advance="16" />
+					<Glyph ID="116" PositionX="405" PositionY="0" SizeX="15" SizeY="40" Advance="14" />
+					<Glyph ID="117" PositionX="420" PositionY="0" SizeX="21" SizeY="40" Advance="20" />
+					<Glyph ID="118" PositionX="441" PositionY="0" SizeX="19" SizeY="40" Advance="18" />
+					<Glyph ID="119" PositionX="460" PositionY="0" SizeX="28" SizeY="40" Advance="27" />
+					<Glyph ID="120" PositionX="488" PositionY="0" SizeX="19" SizeY="40" Advance="18" />
+					<Glyph ID="121" PositionX="256" PositionY="40" SizeX="18" SizeY="40" Advance="17" />
+					<Glyph ID="122" PositionX="274" PositionY="40" SizeX="17" SizeY="40" Advance="16" />
+					<Glyph ID="123" PositionX="291" PositionY="40" SizeX="12" SizeY="40" Advance="12" />
+					<Glyph ID="124" PositionX="303" PositionY="40" SizeX="10" SizeY="40" Advance="10" />
+					<Glyph ID="125" PositionX="313" PositionY="40" SizeX="12" SizeY="40" Advance="12" />
+					<Glyph ID="126" PositionX="325" PositionY="40" SizeX="21" SizeY="40" Advance="20" />
+				</Glyphs>
+				<Kernings>
+					<Kerning Left="39" Right="65" Adjust="-2" />
+					<Kerning Left="39" Right="74" Adjust="-4" />
+					<Kerning Left="40" Right="67" Adjust="-1" />
+					<Kerning Left="40" Right="71" Adjust="-1" />
+					<Kerning Left="40" Right="79" Adjust="-1" />
+					<Kerning Left="40" Right="81" Adjust="-1" />
+					<Kerning Left="41" Right="84" Adjust="-1" />
+					<Kerning Left="41" Right="86" Adjust="-1" />
+					<Kerning Left="41" Right="88" Adjust="-1" />
+					<Kerning Left="41" Right="89" Adjust="-1" />
+					<Kerning Left="42" Right="65" Adjust="-2" />
+					<Kerning Left="42" Right="74" Adjust="-4" />
+					<Kerning Left="45" Right="74" Adjust="-1" />
+					<Kerning Left="45" Right="84" Adjust="-1" />
+					<Kerning Left="45" Right="88" Adjust="-1" />
+					<Kerning Left="45" Right="89" Adjust="-1" />
+					<Kerning Left="46" Right="67" Adjust="-1" />
+					<Kerning Left="46" Right="71" Adjust="-1" />
+					<Kerning Left="46" Right="74" Adjust="1" />
+					<Kerning Left="46" Right="79" Adjust="-1" />
+					<Kerning Left="46" Right="81" Adjust="-1" />
+					<Kerning Left="46" Right="84" Adjust="-2" />
+					<Kerning Left="46" Right="86" Adjust="-2" />
+					<Kerning Left="46" Right="87" Adjust="-1" />
+					<Kerning Left="46" Right="89" Adjust="-2" />
+					<Kerning Left="47" Right="65" Adjust="-1" />
+					<Kerning Left="47" Right="74" Adjust="-2" />
+					<Kerning Left="47" Right="84" Adjust="1" />
+					<Kerning Left="47" Right="86" Adjust="1" />
+					<Kerning Left="47" Right="89" Adjust="1" />
+					<Kerning Left="58" Right="84" Adjust="-3" />
+					<Kerning Left="58" Right="89" Adjust="-1" />
+					<Kerning Left="64" Right="84" Adjust="-1" />
+					<Kerning Left="64" Right="86" Adjust="-1" />
+					<Kerning Left="64" Right="88" Adjust="-1" />
+					<Kerning Left="64" Right="89" Adjust="-1" />
+					<Kerning Left="64" Right="90" Adjust="-1" />
+					<Kerning Left="65" Right="39" Adjust="-2" />
+					<Kerning Left="65" Right="42" Adjust="-2" />
+					<Kerning Left="65" Right="65" Adjust="1" />
+					<Kerning Left="65" Right="74" Adjust="1" />
+					<Kerning Left="65" Right="84" Adjust="-2" />
+					<Kerning Left="65" Right="86" Adjust="-2" />
+					<Kerning Left="65" Right="89" Adjust="-2" />
+					<Kerning Left="66" Right="93" Adjust="-1" />
+					<Kerning Left="67" Right="45" Adjust="-1" />
+					<Kerning Left="67" Right="123" Adjust="-1" />
+					<Kerning Left="68" Right="41" Adjust="-1" />
+					<Kerning Left="68" Right="46" Adjust="-1" />
+					<Kerning Left="68" Right="47" Adjust="-1" />
+					<Kerning Left="68" Right="63" Adjust="-1" />
+					<Kerning Left="68" Right="89" Adjust="-1" />
+					<Kerning Left="68" Right="93" Adjust="-1" />
+					<Kerning Left="68" Right="125" Adjust="-1" />
+					<Kerning Left="69" Right="67" Adjust="-1" />
+					<Kerning Left="69" Right="71" Adjust="-1" />
+					<Kerning Left="69" Right="79" Adjust="-1" />
+					<Kerning Left="69" Right="81" Adjust="-1" />
+					<Kerning Left="69" Right="93" Adjust="-1" />
+					<Kerning Left="70" Right="46" Adjust="-2" />
+					<Kerning Left="70" Right="47" Adjust="-2" />
+					<Kerning Left="70" Right="65" Adjust="-1" />
+					<Kerning Left="70" Right="74" Adjust="-2" />
+					<Kerning Left="70" Right="93" Adjust="-1" />
+					<Kerning Left="70" Right="97" Adjust="-1" />
+					<Kerning Left="70" Right="109" Adjust="-1" />
+					<Kerning Left="70" Right="110" Adjust="-1" />
+					<Kerning Left="70" Right="112" Adjust="-1" />
+					<Kerning Left="70" Right="114" Adjust="-1" />
+					<Kerning Left="70" Right="120" Adjust="-1" />
+					<Kerning Left="74" Right="47" Adjust="-1" />
+					<Kerning Left="74" Right="93" Adjust="-1" />
+					<Kerning Left="75" Right="42" Adjust="-1" />
+					<Kerning Left="75" Right="45" Adjust="-1" />
+					<Kerning Left="75" Right="65" Adjust="1" />
+					<Kerning Left="75" Right="67" Adjust="-1" />
+					<Kerning Left="75" Right="71" Adjust="-1" />
+					<Kerning Left="75" Right="79" Adjust="-1" />
+					<Kerning Left="75" Right="81" Adjust="-1" />
+					<Kerning Left="75" Right="119" Adjust="-1" />
+					<Kerning Left="76" Right="39" Adjust="-4" />
+					<Kerning Left="76" Right="42" Adjust="-4" />
+					<Kerning Left="76" Right="45" Adjust="-2" />
+					<Kerning Left="76" Right="65" Adjust="1" />
+					<Kerning Left="76" Right="67" Adjust="-1" />
+					<Kerning Left="76" Right="71" Adjust="-1" />
+					<Kerning Left="76" Right="74" Adjust="1" />
+					<Kerning Left="76" Right="79" Adjust="-1" />
+					<Kerning Left="76" Right="81" Adjust="-1" />
+					<Kerning Left="76" Right="84" Adjust="-4" />
+					<Kerning Left="76" Right="86" Adjust="-3" />
+					<Kerning Left="76" Right="87" Adjust="-1" />
+					<Kerning Left="76" Right="89" Adjust="-4" />
+					<Kerning Left="76" Right="93" Adjust="-1" />
+					<Kerning Left="76" Right="118" Adjust="-1" />
+					<Kerning Left="76" Right="119" Adjust="-1" />
+					<Kerning Left="79" Right="41" Adjust="-1" />
+					<Kerning Left="79" Right="46" Adjust="-1" />
+					<Kerning Left="79" Right="47" Adjust="-1" />
+					<Kerning Left="79" Right="63" Adjust="-1" />
+					<Kerning Left="79" Right="89" Adjust="-1" />
+					<Kerning Left="79" Right="93" Adjust="-1" />
+					<Kerning Left="79" Right="125" Adjust="-1" />
+					<Kerning Left="80" Right="46" Adjust="-3" />
+					<Kerning Left="80" Right="47" Adjust="-2" />
+					<Kerning Left="80" Right="65" Adjust="-1" />
+					<Kerning Left="80" Right="74" Adjust="-3" />
+					<Kerning Left="80" Right="93" Adjust="-1" />
+					<Kerning Left="80" Right="101" Adjust="-1" />
+					<Kerning Left="81" Right="46" Adjust="-1" />
+					<Kerning Left="81" Right="63" Adjust="-1" />
+					<Kerning Left="81" Right="89" Adjust="-1" />
+					<Kerning Left="82" Right="65" Adjust="1" />
+					<Kerning Left="82" Right="93" Adjust="-1" />
+					<Kerning Left="84" Right="45" Adjust="-1" />
+					<Kerning Left="84" Right="46" Adjust="-2" />
+					<Kerning Left="84" Right="47" Adjust="-3" />
+					<Kerning Left="84" Right="58" Adjust="-3" />
+					<Kerning Left="84" Right="64" Adjust="-1" />
+					<Kerning Left="84" Right="65" Adjust="-2" />
+					<Kerning Left="84" Right="74" Adjust="-3" />
+					<Kerning Left="84" Right="89" Adjust="1" />
+					<Kerning Left="84" Right="93" Adjust="-1" />
+					<Kerning Left="84" Right="97" Adjust="-1" />
+					<Kerning Left="84" Right="99" Adjust="-1" />
+					<Kerning Left="84" Right="100" Adjust="-1" />
+					<Kerning Left="84" Right="101" Adjust="-1" />
+					<Kerning Left="84" Right="103" Adjust="-1" />
+					<Kerning Left="84" Right="109" Adjust="-1" />
+					<Kerning Left="84" Right="110" Adjust="-1" />
+					<Kerning Left="84" Right="111" Adjust="-1" />
+					<Kerning Left="84" Right="112" Adjust="-1" />
+					<Kerning Left="84" Right="113" Adjust="-1" />
+					<Kerning Left="84" Right="114" Adjust="-1" />
+					<Kerning Left="84" Right="115" Adjust="-1" />
+					<Kerning Left="84" Right="117" Adjust="-1" />
+					<Kerning Left="84" Right="119" Adjust="-2" />
+					<Kerning Left="84" Right="122" Adjust="-1" />
+					<Kerning Left="85" Right="47" Adjust="-1" />
+					<Kerning Left="85" Right="93" Adjust="-1" />
+					<Kerning Left="86" Right="40" Adjust="-1" />
+					<Kerning Left="86" Right="46" Adjust="-2" />
+					<Kerning Left="86" Right="47" Adjust="-2" />
+					<Kerning Left="86" Right="64" Adjust="-1" />
+					<Kerning Left="86" Right="65" Adjust="-2" />
+					<Kerning Left="86" Right="74" Adjust="-3" />
+					<Kerning Left="86" Right="84" Adjust="1" />
+					<Kerning Left="86" Right="86" Adjust="1" />
+					<Kerning Left="86" Right="89" Adjust="1" />
+					<Kerning Left="86" Right="93" Adjust="-1" />
+					<Kerning Left="86" Right="99" Adjust="-1" />
+					<Kerning Left="86" Right="100" Adjust="-1" />
+					<Kerning Left="86" Right="101" Adjust="-1" />
+					<Kerning Left="86" Right="103" Adjust="-1" />
+					<Kerning Left="86" Right="109" Adjust="-1" />
+					<Kerning Left="86" Right="110" Adjust="-1" />
+					<Kerning Left="86" Right="111" Adjust="-1" />
+					<Kerning Left="86" Right="112" Adjust="-1" />
+					<Kerning Left="86" Right="113" Adjust="-1" />
+					<Kerning Left="86" Right="114" Adjust="-1" />
+					<Kerning Left="87" Right="46" Adjust="-1" />
+					<Kerning Left="87" Right="47" Adjust="-1" />
+					<Kerning Left="87" Right="74" Adjust="-2" />
+					<Kerning Left="87" Right="93" Adjust="-1" />
+					<Kerning Left="87" Right="97" Adjust="-1" />
+					<Kerning Left="88" Right="45" Adjust="-1" />
+					<Kerning Left="88" Right="93" Adjust="-1" />
+					<Kerning Left="88" Right="119" Adjust="-1" />
+					<Kerning Left="89" Right="40" Adjust="-1" />
+					<Kerning Left="89" Right="45" Adjust="-1" />
+					<Kerning Left="89" Right="46" Adjust="-2" />
+					<Kerning Left="89" Right="47" Adjust="-2" />
+					<Kerning Left="89" Right="58" Adjust="-1" />
+					<Kerning Left="89" Right="64" Adjust="-2" />
+					<Kerning Left="89" Right="65" Adjust="-2" />
+					<Kerning Left="89" Right="67" Adjust="-1" />
+					<Kerning Left="89" Right="71" Adjust="-1" />
+					<Kerning Left="89" Right="74" Adjust="-4" />
+					<Kerning Left="89" Right="79" Adjust="-1" />
+					<Kerning Left="89" Right="81" Adjust="-1" />
+					<Kerning Left="89" Right="84" Adjust="1" />
+					<Kerning Left="89" Right="86" Adjust="1" />
+					<Kerning Left="89" Right="89" Adjust="1" />
+					<Kerning Left="89" Right="97" Adjust="-1" />
+					<Kerning Left="89" Right="99" Adjust="-1" />
+					<Kerning Left="89" Right="100" Adjust="-1" />
+					<Kerning Left="89" Right="101" Adjust="-1" />
+					<Kerning Left="89" Right="103" Adjust="-1" />
+					<Kerning Left="89" Right="109" Adjust="-1" />
+					<Kerning Left="89" Right="110" Adjust="-1" />
+					<Kerning Left="89" Right="111" Adjust="-1" />
+					<Kerning Left="89" Right="112" Adjust="-1" />
+					<Kerning Left="89" Right="113" Adjust="-1" />
+					<Kerning Left="89" Right="114" Adjust="-1" />
+					<Kerning Left="89" Right="117" Adjust="-1" />
+					<Kerning Left="89" Right="122" Adjust="-1" />
+					<Kerning Left="90" Right="45" Adjust="-2" />
+					<Kerning Left="90" Right="67" Adjust="-1" />
+					<Kerning Left="90" Right="71" Adjust="-1" />
+					<Kerning Left="90" Right="79" Adjust="-1" />
+					<Kerning Left="90" Right="81" Adjust="-1" />
+					<Kerning Left="90" Right="93" Adjust="-1" />
+					<Kerning Left="90" Right="123" Adjust="-1" />
+					<Kerning Left="91" Right="65" Adjust="-1" />
+					<Kerning Left="91" Right="67" Adjust="-1" />
+					<Kerning Left="91" Right="71" Adjust="-1" />
+					<Kerning Left="91" Right="74" Adjust="-1" />
+					<Kerning Left="91" Right="79" Adjust="-1" />
+					<Kerning Left="91" Right="81" Adjust="-1" />
+					<Kerning Left="91" Right="84" Adjust="-1" />
+					<Kerning Left="91" Right="85" Adjust="-1" />
+					<Kerning Left="91" Right="86" Adjust="-1" />
+					<Kerning Left="91" Right="87" Adjust="-1" />
+					<Kerning Left="91" Right="88" Adjust="-1" />
+					<Kerning Left="91" Right="90" Adjust="-1" />
+					<Kerning Left="97" Right="63" Adjust="-1" />
+					<Kerning Left="97" Right="93" Adjust="-1" />
+					<Kerning Left="98" Right="39" Adjust="-1" />
+					<Kerning Left="98" Right="63" Adjust="-1" />
+					<Kerning Left="98" Right="93" Adjust="-1" />
+					<Kerning Left="99" Right="45" Adjust="-1" />
+					<Kerning Left="102" Right="41" Adjust="1" />
+					<Kerning Left="102" Right="45" Adjust="-1" />
+					<Kerning Left="102" Right="46" Adjust="-1" />
+					<Kerning Left="102" Right="47" Adjust="-1" />
+					<Kerning Left="102" Right="93" Adjust="1" />
+					<Kerning Left="102" Right="125" Adjust="1" />
+					<Kerning Left="104" Right="39" Adjust="-1" />
+					<Kerning Left="104" Right="93" Adjust="-1" />
+					<Kerning Left="107" Right="103" Adjust="-1" />
+					<Kerning Left="107" Right="111" Adjust="-1" />
+					<Kerning Left="109" Right="39" Adjust="-1" />
+					<Kerning Left="109" Right="93" Adjust="-1" />
+					<Kerning Left="110" Right="39" Adjust="-1" />
+					<Kerning Left="110" Right="63" Adjust="-1" />
+					<Kerning Left="110" Right="93" Adjust="-1" />
+					<Kerning Left="111" Right="39" Adjust="-1" />
+					<Kerning Left="111" Right="63" Adjust="-1" />
+					<Kerning Left="111" Right="93" Adjust="-1" />
+					<Kerning Left="112" Right="39" Adjust="-1" />
+					<Kerning Left="112" Right="63" Adjust="-1" />
+					<Kerning Left="112" Right="93" Adjust="-1" />
+					<Kerning Left="113" Right="106" Adjust="1" />
+					<Kerning Left="114" Right="45" Adjust="-1" />
+					<Kerning Left="114" Right="46" Adjust="-1" />
+					<Kerning Left="114" Right="47" Adjust="-1" />
+					<Kerning Left="114" Right="63" Adjust="-1" />
+					<Kerning Left="116" Right="45" Adjust="-1" />
+					<Kerning Left="118" Right="46" Adjust="-1" />
+					<Kerning Left="118" Right="47" Adjust="-1" />
+					<Kerning Left="118" Right="63" Adjust="-1" />
+					<Kerning Left="119" Right="46" Adjust="-1" />
+					<Kerning Left="119" Right="47" Adjust="-1" />
+					<Kerning Left="119" Right="63" Adjust="-1" />
+					<Kerning Left="122" Right="93" Adjust="-1" />
+					<Kerning Left="122" Right="123" Adjust="-1" />
+					<Kerning Left="123" Right="71" Adjust="-1" />
+					<Kerning Left="123" Right="79" Adjust="-1" />
+					<Kerning Left="123" Right="81" Adjust="-1" />
+					<Kerning Left="125" Right="88" Adjust="-1" />
+					<Kerning Left="125" Right="90" Adjust="-1" />
+				</Kernings>
+			</Font>
+		</Fonts>
+	</Atlas>
+</Atlases>
