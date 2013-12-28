@@ -286,7 +286,7 @@ namespace Mezzanine
         Widget* Screen::CheckAndInsertExcept(Widget* ToInsert)
         {
             String WidgetName = ToInsert->GetName();
-            std::pair<WidgetIterator,Bool> InsertReturn = this->Widgets.insert( std::pair<String,Widget*>(WidgetName,ToInsert) );
+            std::pair<WidgetIterator,Boolean> InsertReturn = this->Widgets.insert( std::pair<String,Widget*>(WidgetName,ToInsert) );
             if( !InsertReturn.second )
                 { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists."); }
             return ToInsert;
@@ -364,13 +364,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility and Visibility Methods
 
-        void Screen::SetVisible(Bool CanSee)
+        void Screen::SetVisible(Boolean CanSee)
             { this->Visible = CanSee; }
 
-        Bool Screen::GetVisible() const
+        Boolean Screen::GetVisible() const
             { return this->Visible; }
 
-        Bool Screen::IsVisible() const
+        Boolean Screen::IsVisible() const
             { return this->Visible; }
 
         void Screen::Show()
@@ -887,7 +887,7 @@ namespace Mezzanine
 
         void Screen::_RenderScreen()
         {
-            Bool Force = false;
+            Boolean Force = false;
             if(Orientation != this->GameViewport->GetOrientationMode() ) {
                 this->Orientation = GameViewport->GetOrientationMode();
                 if(this->Orientation == Mezzanine::OM_Degree_90)

@@ -54,10 +54,10 @@ namespace Mezzanine
     {
         /// @brief This is a type used for the ray intersection tests performed on Planes.
         /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Bool,Vector3> PlaneRayTestResult;
+        typedef std::pair<Boolean,Vector3> PlaneRayTestResult;
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Bool,Ray> GeometryRayTestResult;
+        typedef std::pair<Boolean,Ray> GeometryRayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Predefined Constants
@@ -162,44 +162,44 @@ namespace Mezzanine
         /// @param Box The AABB to check if the point is inside.
         /// @param Point The point in 3D space to check if it is within the AABB.
         /// @return Returns true if the provided point is within the AABB, false otherwise.
-        Bool MEZZ_LIB IsInside(const AxisAlignedBox& Box, const Vector3& Point);
+        Boolean MEZZ_LIB IsInside(const AxisAlignedBox& Box, const Vector3& Point);
         /// @brief Checks to see if a point in 3D space is within a Sphere.
         /// @param Ball The Sphere to check if the point is inside.
         /// @param Point The point in 3D space to check if it is within the Sphere.
         /// @return Returns true if the provided point is within the sphere, false otherwise.
-        Bool MEZZ_LIB IsInside(const Sphere& Ball, const Vector3& Point);
+        Boolean MEZZ_LIB IsInside(const Sphere& Ball, const Vector3& Point);
 
         /// @brief Checks to see if an AABB and Sphere are overlapping.
         /// @param Box The AABB to check for overlap.
         /// @param Ball The Sphere to check for overlap.
         /// @return Returns true if the AABB and Sphere overlap, false otherwise.
-        Bool MEZZ_LIB Overlap(const AxisAlignedBox& Box, const Sphere& Ball);
+        Boolean MEZZ_LIB Overlap(const AxisAlignedBox& Box, const Sphere& Ball);
         /// @brief Checks to see if an AANN and Plane are overlapping.
         /// @param Box The AABB to check for overlap.
         /// @param Surface The Plane to check for overlap.
         /// @return Returns true if the AABB and Pland overlap, false otherwise.
-        Bool MEZZ_LIB Overlap(const AxisAlignedBox& Box, const Plane& Surface);
+        Boolean MEZZ_LIB Overlap(const AxisAlignedBox& Box, const Plane& Surface);
         /// @brief Checks to see if a Plane and Sphere are overlapping.
         /// @param Surface The Plane to check for overlap.
         /// @param Ball The Sphere to check for overlap.
         /// @return Returns true if the Plane and Sphere overlap, false otherwise.
-        Bool MEZZ_LIB Overlap(const Plane& Surface, const Sphere& Ball);
+        Boolean MEZZ_LIB Overlap(const Plane& Surface, const Sphere& Ball);
 
         /// @brief Checks to see if two AABBs are overlapping.
         /// @param Box1 The first AABB to check for overlap.
         /// @param Box2 The second AABB to check for overlap.
         /// @return Returns true if the two AABBs are overlapping, false otherwise.
-        Bool MEZZ_LIB Overlap(const AxisAlignedBox& Box1, const AxisAlignedBox& Box2);
+        Boolean MEZZ_LIB Overlap(const AxisAlignedBox& Box1, const AxisAlignedBox& Box2);
         /// @brief Checks to see if two Spheres are overlapping.
         /// @param Ball1 The first Sphere to check for overlap.
         /// @param Ball2 The second Sphere to check for overlap.
         /// @return Returns true if the two Spheres are overlapping, false otherwise.
-        Bool MEZZ_LIB Overlap(const Sphere& Ball1, const Sphere& Ball2);
+        Boolean MEZZ_LIB Overlap(const Sphere& Ball1, const Sphere& Ball2);
         /// @brief Checks to see if two Planes are overlapping.
         /// @param Surface1 The first Plane to check for overlap.
         /// @param Surface2 The second Plane to check for overlap.
         /// @return Returns true if the two Planes are overlapping, false otherwise.
-        Bool MEZZ_LIB Overlap(const Plane& Surface1, const Plane& Surface2);
+        Boolean MEZZ_LIB Overlap(const Plane& Surface1, const Plane& Surface2);
 
         /// @brief Checks to see if a ray intersects with a Plane.
         /// @param Surface The Plane to check for intersection.

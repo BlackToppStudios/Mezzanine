@@ -625,7 +625,7 @@ namespace Mezzanine
         #endif
     }
 
-    void Entresol::BreakMainLoop(Bool Break)
+    void Entresol::BreakMainLoop(Boolean Break)
     {
         if(Break)
         {

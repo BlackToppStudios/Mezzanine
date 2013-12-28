@@ -95,11 +95,11 @@ namespace Mezzanine
 
                 /// @brief Get the Argument as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Bool GetBool() const = 0;
+                virtual Boolean GetBool() const = 0;
 
                 /// @brief Is this value representing a Null/Nil value.
                 /// @return True if ths argument is null, false if it is anything other Type. This may of may not for language specific semantics.
-                virtual Bool IsNull() const = 0;
+                virtual Boolean IsNull() const = 0;
 
                 /// @brief Get data about the underlying specific to the scripting system using the argument.
                 /// @return An Integer containing scripting langauge specific data.
@@ -176,12 +176,12 @@ namespace Mezzanine
 
                 /// @brief Get the Argument as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Bool GetBool() const
+                virtual Boolean GetBool() const
                     { return ToBool(Datum); }
 
                 /// @brief Is this value representing a Null/Nil value.
                 /// @return This will return true if the string representation of this is empty and the Integer representation equals 0, this could and should be overridden on derived scripting arguments
-                virtual Bool IsNull() const
+                virtual Boolean IsNull() const
                     { return GetString()=="" && GetInteger()==0; }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -252,12 +252,12 @@ namespace Mezzanine
 
                 /// @brief Get the Integer as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Bool GetBool() const
-                    { return Bool(Datum); }
+                virtual Boolean GetBool() const
+                    { return Boolean(Datum); }
 
                 /// @brief Is this value representing a Null/Nil value.
                 /// @return In most languages 0 is a valid value for Integers, so any value in this is assumed to not be NULL. This should be overridden if different behavior is required.
-                virtual Bool IsNull() const
+                virtual Boolean IsNull() const
                     { return false; }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -328,12 +328,12 @@ namespace Mezzanine
 
                 /// @brief Get the Whole Number as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Bool GetBool() const
-                    { return Bool(Datum); }
+                virtual Boolean GetBool() const
+                    { return Boolean(Datum); }
 
                 /// @brief Is this value representing a Null/Nil value.
                 /// @return In most languages 0 is a valid value for Whole Numbers, so any value in this is assumedto not be NULL. This should be overridden if different behavior is required.
-                virtual Bool IsNull() const
+                virtual Boolean IsNull() const
                     { return false; }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -404,12 +404,12 @@ namespace Mezzanine
 
                 /// @brief Get the String as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Bool GetBool() const
+                virtual Boolean GetBool() const
                     { return ToBool(Datum); }
 
                 /// @brief Is this value representing a Null/Nil value.
                 /// @return In most languages "" is a valid value for Strings, so any value in this is assumed to not be NULL. This should be overridden if different behavior is required.
-                virtual Bool IsNull() const
+                virtual Boolean IsNull() const
                     { return false; }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -480,12 +480,12 @@ namespace Mezzanine
 
                 /// @brief Get the Real as a Bool
                 /// @return The Real value lexographically converted as an @ref Bool
-                virtual Bool GetBool() const
-                    { return Bool(Datum); }
+                virtual Boolean GetBool() const
+                    { return Boolean(Datum); }
 
                 /// @brief Is this value representing a Null/Nil value.
                 /// @return In most languages 0.0 is a valid value for Real Numbers, so any value in this is assumed to not be NULL. This should be overridden if different behavior is required.
-                virtual Bool IsNull() const
+                virtual Boolean IsNull() const
                     { return false; }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -513,20 +513,20 @@ namespace Mezzanine
         /// @details Scripting Languages that require algorithms specific to boolean values should add required functionality
         /// to a type derived from this.
         template <>
-        class MEZZ_LIB ScriptArgumentGeneric<Bool> : public iScriptArgument
+        class MEZZ_LIB ScriptArgumentGeneric<Boolean> : public iScriptArgument
         {
             protected:
                 /// @brief The Bool actual data.
-                Bool Datum;
+                Boolean Datum;
 
             public:
                 /// @brief To make working with this easier.
-                typedef Bool Type;
+                typedef Boolean Type;
 
                 /// @brief Create an initialized Argument
                 /// @param InitialValue The value to initialize the Argument Integer value with.
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
-                ScriptArgumentGeneric(Bool InitialValue) :
+                ScriptArgumentGeneric(Boolean InitialValue) :
                     Datum(InitialValue)
                     {}
 
@@ -556,22 +556,22 @@ namespace Mezzanine
 
                 /// @brief Get the Bool.
                 /// @return The Bool.
-                virtual Bool GetBool() const
+                virtual Boolean GetBool() const
                     { return Datum; }
 
                 /// @brief Is this value representing a Null/Nil value.
                 /// @return In most languages false is a valid value for Bools, so any value in this is assumed to not be NULL. This should be overridden if different behavior is required.
-                virtual Bool IsNull() const
+                virtual Boolean IsNull() const
                     { return false; }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
                 /// @param NewValue The new value for this.
-                virtual void SetValue(Bool NewValue)
+                virtual void SetValue(Boolean NewValue)
                     { Datum=NewValue; }
 
                 /// @brief Get the raw primitive to value.
                 /// @return The internal value that meaningful operations can be performed on.
-                virtual Bool GetValue() const
+                virtual Boolean GetValue() const
                     { return Datum; }
 
                 /// @brief Get data about this being a Bool
@@ -581,7 +581,7 @@ namespace Mezzanine
 
                 /// @brief Get a pointer to the most Derived type of this class
                 /// @return A pointer of the most derived pointing to this.
-                virtual ScriptArgumentGeneric<Bool>* GetMostDerived()
+                virtual ScriptArgumentGeneric<Boolean>* GetMostDerived()
                     { return this; }
         }; //ScriptArgumentGeneric<Bool>
 
@@ -634,12 +634,12 @@ namespace Mezzanine
 
                 /// @brief Get as a Bool.
                 /// @return False.
-                virtual Bool GetBool() const
+                virtual Boolean GetBool() const
                     { return false; }
 
                 /// @brief Is this value representing a Null/Nil value.
                 /// @return In most languages false is a valid value for Bools, so any value in this is assumed to not be NULL. This should be overridden if different behavior is required.
-                virtual Bool IsNull() const
+                virtual Boolean IsNull() const
                     { return true; }
 
                 /// @brief Provide an overload point to change assignment that operators will use.
@@ -757,11 +757,11 @@ namespace Mezzanine
 
     /// @brief Marks ScriptArgumentGeneric<Real> for internal reference counting if a CountedPtr checks
     template <>
-    class ReferenceCountTraits <Scripting::ScriptArgumentGeneric<Bool> >
+    class ReferenceCountTraits <Scripting::ScriptArgumentGeneric<Boolean> >
     {
         public:
             /// @brief The type that maintains the Reference count for ScriptArgumentGeneric<Bool> with be ScriptArgumentGeneric<Bool> itself
-            typedef Scripting::ScriptArgumentGeneric<Bool> RefCountType;
+            typedef Scripting::ScriptArgumentGeneric<Boolean> RefCountType;
 
             /// @brief Given a pointer to the raw object this will return a pointer to an initialized reference count
             /// @param Target A pointer to a Scripting::ScriptArgumentGeneric<Bool> that will simply be returned

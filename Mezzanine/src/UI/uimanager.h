@@ -376,7 +376,7 @@ namespace Mezzanine
             /// @brief Checks to see if the mouse is over a UI element.
             /// @details This should only be called on after this manager does it's main loop items for best results.
             /// @return Returns true if the mouse is over a visable UI element, false if not.
-            Bool MouseIsInUISystem() const;
+            Boolean MouseIsInUISystem() const;
             /// @brief Suggests a glyph index based on the desired actual height.
             /// @param Height The desired Height of the glyph wanted in pixels.
             /// @param Atlas The altas to search.

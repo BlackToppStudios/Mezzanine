@@ -85,7 +85,7 @@ namespace Mezzanine
             Viewport* CameraVP;
             /// @internal
             /// @brief A bool storing whether or not the FixedYawAxis is being used.
-            Bool UseFixedYaw;
+            Boolean UseFixedYaw;
 
             /// @internal
             /// @brief Creates an internal Camera to be used by the calling instance.
@@ -127,7 +127,7 @@ namespace Mezzanine
 
             /// @brief Gets whether this cameras Yaw rotation is based on a fixed axis.
             /// @return Returns true if a fixed Yaw axis is enabled and in use, false otherwise.
-            virtual Bool IsFixedYawEnabled() const;
+            virtual Boolean IsFixedYawEnabled() const;
 
             /// @brief Sets the direction the camera faces based on a 3D point.
             /// @param TargetLoc The location in the world to look at.
@@ -232,7 +232,7 @@ namespace Mezzanine
             /// @remarks This function is automatically called on by the camera constructor.
             /// @param UseFixed Enable or disable the locking of the axis.
             /// @param Axis The axis to lock, defaults to the Y axis.
-            virtual void SetFixedYawAxis(const Bool UseFixed, const Vector3& Axis = Vector3::Unit_Y());
+            virtual void SetFixedYawAxis(const Boolean UseFixed, const Vector3& Axis = Vector3::Unit_Y());
             /// @brief If fixed yaw is enabled, on which axis is yawing disabled.
             /// @return Returns a Vector3 of 0s if disable, otherwise this return the Fixed Yaw Axis.
             virtual Vector3 GetFixedYawAxis() const;

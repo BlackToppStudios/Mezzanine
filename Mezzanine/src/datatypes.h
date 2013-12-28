@@ -142,7 +142,6 @@ namespace Mezzanine
     /// double, or even something more extreme like a GMP datatype. Most likely this
     /// switch would require atleast some troubleshooting.
     typedef float Real;
-
     /// @typedef PreciseReal
     /// @brief A Real number that is at least as precise as the Real and could be considerabll moreso
     typedef double PreciseReal;
@@ -152,7 +151,6 @@ namespace Mezzanine
     /// @details This is a typedef to unsigned Long. but could be smaller in some situations.  In
     /// general it will be the most efficient unsigned type for math.
     typedef unsigned long Whole;
-
     /// @typedef Integer
     /// @brief A datatype used to represent any integer close to.
     /// @details This is a typedef to int, but could int16 or smaller to improve performance in some situtations, In general it will be the most efficient signed type for math.
@@ -163,12 +161,10 @@ namespace Mezzanine
     /// @details This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is
     /// changed, The Character typedef should be adjusted accordingly.
     typedef std::string String;
-
     /// @typedef WideString
     /// @brief A wide version of the String typedef.
     /// @details Wide strings are seldom used, but often come in handy when dealing with Unicode strings.
     typedef std::wstring WideString;
-
     /// @typedef ConstString
     /// @brief A Datatype used to a series of imutable characters.
     /// @details This is a typedef to const String, but could change.
@@ -182,7 +178,7 @@ namespace Mezzanine
     /// @typedef Bool
     /// @brief Generally acts a single bit, true or false
     /// @details Normally just a bool, but on some platform alignment matters more than size, so this could be as large as one cpu word in size.
-    typedef bool Bool;
+    typedef bool Boolean;
 
     /// @typedef StringStream
     /// @brief A Datatype used for streaming operations with strings.
@@ -202,7 +198,6 @@ namespace Mezzanine
     #else
         typedef long long MaxInt;
     #endif
-
 
     /// @typedef TimeMarker
     /// @brief A datatype used to indicate a specific point in time, or a timestamp.
@@ -304,11 +299,11 @@ namespace Mezzanine
     template<class T> Real ToReal( const T& Datum )
         { return ConvertTo<Real>(Datum); }
 
-    /// @brief Converts whatever to a Bool as long as the proper streaming operators are available for it
+    /// @brief Converts whatever to a Boolean as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
     /// @return A Bool with the converted data
-    template<class T> Bool ToBool( const T& Datum )
-        { return ConvertTo<Bool>(Datum); }
+    template<class T> Boolean ToBool( const T& Datum )
+        { return ConvertTo<Boolean>(Datum); }
 
     /// @brief Converts whatever to a float as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted

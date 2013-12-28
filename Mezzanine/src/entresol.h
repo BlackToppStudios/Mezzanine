@@ -595,7 +595,7 @@ namespace Mezzanine
             /// @param Break If true this will break the main loop after the next iteration or the end of the current one. If false the main loop will just keep running.
             /// @details If called while not in the main loop, it will affect the next main loop iteration.
             /// This function is thread safe and can be called from any work unit at any time.
-            void BreakMainLoop(Bool Break = true);
+            void BreakMainLoop(Boolean Break = true);
 
             /// @brief How many frames have elasped?
             /// @return A Whole containing the currect 0 based frame number.

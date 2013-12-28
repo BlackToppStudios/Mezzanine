@@ -65,8 +65,8 @@ namespace Mezzanine
 
         void LayoutStrategy::Layout(const Rect& OldSelfRect, const Rect& NewSelfRect, const ChildContainer& ChildQuads)
         {
-            Bool QuadPositionUpdated = (OldSelfRect.Position != NewSelfRect.Position);
-            Bool QuadSizeUpdated = (OldSelfRect.Size != NewSelfRect.Size);
+            Boolean QuadPositionUpdated = (OldSelfRect.Position != NewSelfRect.Position);
+            Boolean QuadSizeUpdated = (OldSelfRect.Size != NewSelfRect.Size);
             for( ConstChildIterator ChildIt = ChildQuads.begin() ; ChildIt != ChildQuads.end() ; ++ChildIt )
             {
                 QuadRenderable* Child = (*ChildIt);

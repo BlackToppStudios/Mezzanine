@@ -77,7 +77,7 @@ namespace Mezzanine
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.  @n @n
         /// The first member stores whether or not there was a hit.  The second member stores the point where it was hit.
-        typedef std::pair<Bool,Vector3> RayTestResult;
+        typedef std::pair<Boolean,Vector3> RayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -149,15 +149,15 @@ namespace Mezzanine
         /// @brief Checks to see if a sphere overlaps with this Plane.
         /// @param ToCheck The sphere to check for overlap.
         /// @return Returns true if the provided sphere overlaps with this Plane, false otherwise.
-        Bool IsOverlapping(const Sphere& ToCheck) const;
+        Boolean IsOverlapping(const Sphere& ToCheck) const;
         /// @brief Checks to see if an AABB overlaps with this Plane.
         /// @param ToCheck The AABB to check for overlap.
         /// @return Returns true if the AABB overlaps with this Plane, false otherwise.
-        Bool IsOverlapping(const AxisAlignedBox& ToCheck) const;
+        Boolean IsOverlapping(const AxisAlignedBox& ToCheck) const;
         /// @brief Checks to see if another Plane intersects this one.
         /// @param ToCheck The other Plane to check for intersection.
         /// @return Returns true if the provided Plane intersects with this Plane, false otherwise.
-        Bool IsOverlapping(const Plane& ToCheck) const;
+        Boolean IsOverlapping(const Plane& ToCheck) const;
         /// @brief Checks to see if a ray intersects this Plane.
         /// @param ToCheck The ray to check for a hit.
         /// @return Returns true if the ray intersects this Plane, false otherwise.
@@ -201,11 +201,11 @@ namespace Mezzanine
         /// @brief Equality operator.
         /// @param Other The other Plane to compare with.
         /// @return Returns true if this Plane is the same as the other provided Plane, false otherwise.
-        Bool operator==(const Plane& Other) const;
+        Boolean operator==(const Plane& Other) const;
         /// @brief Inequality operator.
         /// @param Other The other Plane to compare with.
         /// @return Returns true if this Plane is not the same as the other provided Plane, false otherwise.
-        Bool operator!=(const Plane& Other) const;
+        Boolean operator!=(const Plane& Other) const;
     };//Plane
 }//Mezzanine
 

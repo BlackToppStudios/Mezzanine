@@ -99,7 +99,7 @@ namespace Mezzanine
             }
         }
 
-        Bool MenuEntry::PushOntoStack()
+        Boolean MenuEntry::PushOntoStack()
         {
             if( this->MenuStack ) {
                 if( ( this->IsRootEntry() && this->MenuStack->empty() ) ||
@@ -116,7 +116,7 @@ namespace Mezzanine
             return false;
         }
 
-        Bool MenuEntry::PopFromStack()
+        Boolean MenuEntry::PopFromStack()
         {
             if( this->MenuStack ) {
                 if( !(this->MenuStack->empty()) && this->MenuStack->back() == this ) {
@@ -131,7 +131,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
-        Bool MenuEntry::IsRootEntry() const
+        Boolean MenuEntry::IsRootEntry() const
         {
             if( this->ParentQuad->GetRenderableType() == Renderable::RT_Widget ) {
                 return ( static_cast<Widget*>( this->ParentQuad )->GetTypeName() != MenuEntry::TypeName );
@@ -186,7 +186,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
-        void MenuEntry::SetVisible(Bool CanSee)
+        void MenuEntry::SetVisible(Boolean CanSee)
         {
             if( CanSee ) {
                 if( !this->AutoHideEntry || ( this->MenuStack ? this->MenuStack->back() == this : false ) ) {
@@ -211,10 +211,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // MenuEntry Properties
 
-        void MenuEntry::SetAutoHide(Bool AutoHide)
+        void MenuEntry::SetAutoHide(Boolean AutoHide)
             { this->AutoHideEntry = AutoHide; }
 
-        Bool MenuEntry::GetAutoHide() const
+        Boolean MenuEntry::GetAutoHide() const
             { return this->AutoHideEntry; }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -395,13 +395,13 @@ namespace Mezzanine
 
             if( this->PushButton == EventWidget && this->PopButton == EventWidget ) {
                 // Since we are toggling, attempt to push first.  It'll automatically do the checks needed for pushing.
-                Bool PushResult = this->PushOntoStack();
+                Boolean PushResult = this->PushOntoStack();
                 if( !PushResult ) {
                     // If it failed to push, try popping.
-                    Bool PopResult = this->PopFromStack();
+                    Boolean PopResult = this->PopFromStack();
                     if( !PopResult ) {
                         // If even that failed, then we almost certainly need to do a rollback
-                        Bool IsRoot = this->IsRootEntry();
+                        Boolean IsRoot = this->IsRootEntry();
                         this->RollBackToEntry( IsRoot ? this : static_cast<MenuEntry*>( this->ParentQuad ) );
                         if( !IsRoot ) {
                             // Last attempt
@@ -410,10 +410,10 @@ namespace Mezzanine
                     }
                 }
             }else if( this->PushButton == EventWidget ) {
-                Bool PushResult = this->PushOntoStack();
+                Boolean PushResult = this->PushOntoStack();
                 if( !PushResult ) {
                     // Attempt a rollback
-                    Bool IsRoot = this->IsRootEntry();
+                    Boolean IsRoot = this->IsRootEntry();
                     this->RollBackToEntry( IsRoot ? this : static_cast<MenuEntry*>( this->ParentQuad ) );
                     if( !IsRoot ) {
                         // Last attempt
@@ -434,7 +434,7 @@ namespace Mezzanine
             if( this->ParentQuad != NewParent ) {
                 if( this->MenuStack != NULL ) {
                     MenuEntryContainer* OldStack = this->MenuStack;
-                    Bool DestroyOldStack = this->IsRootEntry();
+                    Boolean DestroyOldStack = this->IsRootEntry();
 
                     this->QuadRenderable::_NotifyParenthood(NewParent);
 
@@ -453,7 +453,7 @@ namespace Mezzanine
             }
         }
 
-        Bool MenuEntry::_HasAvailableRenderData() const
+        Boolean MenuEntry::_HasAvailableRenderData() const
         {
             if( this->MenuStack ) {
                 ConstMenuEntryIterator MenuIt = std::find(this->MenuStack->begin(),this->MenuStack->end(),this);

@@ -209,12 +209,12 @@ namespace Mezzanine
             return this->CharTraits.CharColour;
         }
 
-        void Character::SetHighlighted(Bool Highlight)
+        void Character::SetHighlighted(Boolean Highlight)
         {
             this->Highlighted = ( this->IsHighlightable() && Highlight );
         }
 
-        Bool Character::GetHighlighted() const
+        Boolean Character::GetHighlighted() const
         {
             return this->Highlighted;
         }
@@ -232,35 +232,35 @@ namespace Mezzanine
             return this->CharTraits;
         }
 
-        Bool Character::IsGlyph() const
+        Boolean Character::IsGlyph() const
         {
             return (NULL != this->CharGlyph);
         }
 
-        Bool Character::IsSprite() const
+        Boolean Character::IsSprite() const
         {
             return (NULL != this->CharSprite);
         }
 
-        Bool Character::IsRenderable() const
+        Boolean Character::IsRenderable() const
         {
             if( this->CharGlyph && this->CharGlyph->IsWhitespace() ) return false;
             else return true;
         }
 
-        Bool Character::IsHighlightable() const
+        Boolean Character::IsHighlightable() const
         {
             if( this->CharGlyph && this->CharGlyph->IsNewLine() ) return false;
             else return true;
         }
 
-        Bool Character::IsWhiteSpace() const
+        Boolean Character::IsWhiteSpace() const
         {
             if( this->CharGlyph && this->CharGlyph->IsWhitespace() ) return true;
             else return false;
         }
 
-        Bool Character::IsNewLine() const
+        Boolean Character::IsNewLine() const
         {
             if( this->CharGlyph && this->CharGlyph->IsNewLine() ) return true;
             else return false;
@@ -287,7 +287,7 @@ namespace Mezzanine
             }
         }
 
-        Bool Character::IsCustomSizeSet() const
+        Boolean Character::IsCustomSizeSet() const
         {
             const Vector2 Test(-1,-1);
             return (this->CustomSize != Test);

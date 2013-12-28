@@ -536,7 +536,7 @@ namespace Mezzanine
             return NULL;
         }
 
-        Bool UIManager::MouseIsInUISystem() const
+        Boolean UIManager::MouseIsInUISystem() const
         {
             return (HoveredWidget || WidgetFocus);
         }

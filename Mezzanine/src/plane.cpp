@@ -141,13 +141,13 @@ namespace Mezzanine
     Real Plane::GetDistance(const Vector3& Point) const
         { return ( this->Normal.DotProduct(Point) + this->Distance ); }
 
-    Bool Plane::IsOverlapping(const Sphere& ToCheck) const
+    Boolean Plane::IsOverlapping(const Sphere& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
 
-    Bool Plane::IsOverlapping(const AxisAlignedBox& ToCheck) const
+    Boolean Plane::IsOverlapping(const AxisAlignedBox& ToCheck) const
         { return MathTools::Overlap(ToCheck,*this); }
 
-    Bool Plane::IsOverlapping(const Plane& ToCheck) const
+    Boolean Plane::IsOverlapping(const Plane& ToCheck) const
         { return MathTools::Overlap(*this,ToCheck); }
 
     Plane::RayTestResult Plane::Intersects(const Ray& ToCheck) const
@@ -225,10 +225,10 @@ namespace Mezzanine
     void Plane::operator=(const Ogre::Plane& InternalPlane)
         { this->ExtractOgrePlane(InternalPlane); }
 
-    Bool Plane::operator==(const Plane& Other) const
+    Boolean Plane::operator==(const Plane& Other) const
         { return ( this->Normal == Other.Normal && this->Distance == Other.Distance ); }
 
-    Bool Plane::operator!=(const Plane& Other) const
+    Boolean Plane::operator!=(const Plane& Other) const
         { return ( this->Normal != Other.Normal || this->Distance != Other.Distance ); }
 }
 

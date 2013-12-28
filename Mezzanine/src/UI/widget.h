@@ -149,7 +149,7 @@ namespace Mezzanine
             /// @brief Consumes input for this widget's use.
             /// @param Code The input to be processed.
             /// @return Returns true if the input was handled, false otherwise.
-            virtual Bool HandleInputImpl(const Input::MetaCode& Code);
+            virtual Boolean HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             void ConstructWidget();
@@ -183,13 +183,13 @@ namespace Mezzanine
             virtual const String& GetTypeName() const;
             /// @brief Gets the result of the last mouse hover check.
             /// @return Returns whether or not the mouse was hovering over this widget during the last check.
-            virtual Bool IsHovered() const;
+            virtual Boolean IsHovered() const;
             /// @brief Gets whether or not this widget currently has focus.
             /// @return True if this widget has focus, false otherwise.
-            virtual Bool HasFocus() const;
+            virtual Boolean HasFocus() const;
             /// @brief Gets whether or not this widget is being dragged.
             /// @return Returns true if this widget is being dragged, false otherwise.
-            virtual Bool IsBeingDragged() const;
+            virtual Boolean IsBeingDragged() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // State-LayerGroup Binding Methods
@@ -221,11 +221,11 @@ namespace Mezzanine
             // Visibility and Priority Methods
 
             /// @copydoc Renderable::SetVisible(Bool)
-            virtual void SetVisible(Bool CanSee);
+            virtual void SetVisible(Boolean CanSee);
             /// @copydoc Renderable::GetVisible() const
-            virtual Bool GetVisible() const;
+            virtual Boolean GetVisible() const;
             /// @copydoc Renderable::IsVisible() const
-            virtual Bool IsVisible() const;
+            virtual Boolean IsVisible() const;
             /// @copydoc Renderable::Show()
             virtual void Show();
             /// @copydoc Renderable::Hide()

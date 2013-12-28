@@ -53,7 +53,7 @@ John Blackwood - makoenergy02@gmail.com
 
 namespace
 {
-    Mezzanine::Bool IsConvex(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    Mezzanine::Boolean IsConvex(const Mezzanine::Physics::CollisionShape::ShapeType Type)
     {
         switch( Type )
         {
@@ -77,17 +77,17 @@ namespace
         }
     }
 
-    Mezzanine::Bool IsCompound(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    Mezzanine::Boolean IsCompound(const Mezzanine::Physics::CollisionShape::ShapeType Type)
     {
         return Type == Mezzanine::Physics::CollisionShape::ST_Compound;
     }
 
-    Mezzanine::Bool IsStaticTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    Mezzanine::Boolean IsStaticTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
     {
         return Type == Mezzanine::Physics::CollisionShape::ST_StaticTriMesh;
     }
 
-    Mezzanine::Bool IsDynamicTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    Mezzanine::Boolean IsDynamicTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
     {
         return Type == Mezzanine::Physics::CollisionShape::ST_DynamicTriMesh;
     }
@@ -298,7 +298,7 @@ namespace Mezzanine
         AxisAlignedBox CollidableProxy::GetAABB() const
             { return ( this->IsInWorld() ? AxisAlignedBox( Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMin ), Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMax ) ) : AxisAlignedBox() ); }
 
-        Bool CollidableProxy::IsInWorld() const
+        Boolean CollidableProxy::IsInWorld() const
             { return ( this->_GetBasePhysicsObject()->getBroadphaseHandle() != NULL ); }
 
         WorldManager* CollidableProxy::GetCreator() const
@@ -502,7 +502,7 @@ namespace Mezzanine
             return Physics::AFF_AnisotropicFrictionDisabled;
         }
 
-        Bool CollidableProxy::IsAnisotropicFrictionModeSet(const Whole Mode) const
+        Boolean CollidableProxy::IsAnisotropicFrictionModeSet(const Whole Mode) const
             { return this->_GetBasePhysicsObject()->hasAnisotropicFriction(Mode); }
 
         Vector3 CollidableProxy::GetAnisotropicFriction() const
@@ -709,7 +709,7 @@ namespace Mezzanine
 
         void CollidableProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            Bool WasInWorld = false;
+            Boolean WasInWorld = false;
             XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
             if( !InWorldAttrib.Empty() ) {
                 WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );

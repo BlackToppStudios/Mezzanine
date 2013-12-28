@@ -238,13 +238,13 @@ namespace Mezzanine
             UI::RenderPriority Priority;
             /// @internal
             /// @brief Controls whether or not this Quad will be considered for mouse hover checks.
-            Bool MousePassthrough;
+            Boolean MousePassthrough;
             /// @internal
             /// @brief Controls whether or not this Quad and it's children will recieve automatic transform updates.
-            Bool ManualTransformUpdates;
+            Boolean ManualTransformUpdates;
             /// @internal
             /// @brief Determines whether or not this Quad needs all of it's layers refreshed.  Usually after a transform update.
-            Bool AllLayersDirty;
+            Boolean AllLayersDirty;
 
             /// @copydoc Renderable::ProtoSerializeImpl(XML::Node&) const
             virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
@@ -291,14 +291,14 @@ namespace Mezzanine
             /// @brief Checks to see if another Quad is overlapping with this one.
             /// @param Quad The other Quad to check for overlap.
             /// @return Returns true if this quad overlaps with the provided quad, false otherwise.
-            virtual Bool CheckOverlap(const QuadRenderable* Quad) const;
+            virtual Boolean CheckOverlap(const QuadRenderable* Quad) const;
             /// @brief Checks to see if a point in 2D space is inside this quad.
             /// @param Point The point in 2D space to check.
             /// @return Returns true if the provided point is within this quad, false otherwise.
-            virtual Bool IsInside(const Vector2& Point) const;
+            virtual Boolean IsInside(const Vector2& Point) const;
             /// @brief Gets whether or not this QuadRenderable is a direct child of it's screen.
             /// @return Returns true if the screen is this QuadRenderable's parent, false otherwise.
-            virtual Bool IsChildOfScreen() const;
+            virtual Boolean IsChildOfScreen() const;
             /// @brief Gets the QuadRenderable that is both an ancestor of this quad, and a direct child of the screen.
             /// @note Since the screen is pretty much always the root and you can get the screen through other methods,
             /// that isn't factored in when searching.  If this quad is a direct child of the screen, this will be returned.
@@ -324,7 +324,7 @@ namespace Mezzanine
             /// @brief Sets whether or not this quad should be skipped when determining if the mouse is hovered over this quad.
             /// @note This does not affect the ability for the children of this quad to be detected and/or checked.
             /// @param Enable True if you want to have this quad be skipped for mouse hover checks, false if you want this quad checked.
-            virtual void SetMousePassthrough(Bool Enable);
+            virtual void SetMousePassthrough(Boolean Enable);
             /// @brief Gets whether or not Mouse Passthrough is enabled.
             /// @return Returns true if Mouse Passthrough is enabled, false otherwise.
             virtual bool GetMousePassthrough() const;
@@ -333,7 +333,7 @@ namespace Mezzanine
             /// updated, just that it has special logic for doing so located elsewhere from the normal logic.  Example: Transform updates to be
             /// applied to the scroller of a scrollbar.
             /// @param Enable True to make this quad skip automatic updating and intent to provide that logic explicitly elsewhere, false for automatic transform updates.
-            virtual void SetManualTransformUpdates(Bool Enable);
+            virtual void SetManualTransformUpdates(Boolean Enable);
             /// @brief Gets whether or not this quad will be automatically updated when parent transforms are updated.
             /// @return Returns true if this quad needs manual updating, false if it recieves automatic updates.
             virtual bool GetManualTransformUpdates() const;
@@ -568,7 +568,7 @@ namespace Mezzanine
             /// @brief Checks to see if a RenderLayerGroup exists.
             /// @param Name The name of the RenderLayerGroup to check for.
             /// @return Returns true if the named RenderLayerGroup exists in this renderable.
-            Bool RenderLayerGroupExists(const String& Name) const;
+            Boolean RenderLayerGroupExists(const String& Name) const;
             /// @brief Gets the number of RenderLayerGroup's created for this renderable.
             /// @return Returns a UInt32 containing the number of RenderLayerGroups in this renderable.
             UInt32 GetNumRenderLayerGroups() const;
@@ -733,11 +733,11 @@ namespace Mezzanine
             /// @brief Gets the QuadRenderable after this one among the QuadRenderables owned by it's parent.
             /// @param Wrap Whether or not you want to return the first QuadRenderable owned by this Quad's parent if this Quad is last.
             /// @return Returns a pointer to the next QuadRenderable (by sort order).
-            QuadRenderable* GetNextSibling(Bool Wrap = true);
+            QuadRenderable* GetNextSibling(Boolean Wrap = true);
             /// @brief Gets the QuadRenderable before this one among the QuadRenderables owned by it's parent.
             /// @param Wrap Whether or not you want to return the last QuadRenderable owned by this Quad's parent if this Quad is first.
             /// @return Returns a pointer to the previous QuadRenderable (by sort order).
-            QuadRenderable* GetPrevSibling(Bool Wrap = true);
+            QuadRenderable* GetPrevSibling(Boolean Wrap = true);
 
             ///////////////////////////////////////////////////////////////////////////////
             // VertexCaching Methods
@@ -753,10 +753,10 @@ namespace Mezzanine
             /// It is also important to note that this cache is only used when the "_AppendVerticesCascading" method
             /// is called.
             /// @param Enable Whether to enable or disable this feature.
-            void SetLocalVertexCaching(Bool Enable);
+            void SetLocalVertexCaching(Boolean Enable);
             /// @brief Gets whether or not vertex caching is enabled for this Quad.
             /// @return Returns true if this Quad caches the vertex's of it and it's children, false otherwise.
-            Bool IsVertexCachingEnabled() const;
+            Boolean IsVertexCachingEnabled() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -826,7 +826,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Checks if there are available render data from this QuadRenderable (or it's subrenderables).
             /// @return Returns true if this QuadRenderable has render data that can be appended, false otherwise.
-            virtual Bool _HasAvailableRenderData() const;
+            virtual Boolean _HasAvailableRenderData() const;
         };//QuadRenderable
     }//UI
 }//Mezzanine

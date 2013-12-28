@@ -62,10 +62,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
-        void TextCursor::SetVisible(Bool Visible)
+        void TextCursor::SetVisible(Boolean Visible)
             { this->Visibility = Visible; }
 
-        Bool TextCursor::GetVisible() const
+        Boolean TextCursor::GetVisible() const
             { return this->Visibility; }
 
         void TextCursor::SetCursorIndex(const Integer& Index)

@@ -65,13 +65,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Bool Billboard::HasOwnDimensions() const
+        Boolean Billboard::HasOwnDimensions() const
             { return this->GraphicsBillboard->hasOwnDimensions(); }
 
         void Billboard::ResetDimensions()
             { this->GraphicsBillboard->resetDimensions(); }
 
-        Bool Billboard::IsUsingTextureCoordRect() const
+        Boolean Billboard::IsUsingTextureCoordRect() const
             { return this->GraphicsBillboard->isUseTexcoordRect(); }
 
         ///////////////////////////////////////////////////////////////////////////////
