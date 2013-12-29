@@ -63,11 +63,44 @@ namespace Mezzanine
             /// @internal
             /// @brief A pointer to the TextLayer that is the target to be edited when this widget processes input.
             TextLayer* EditLayer;
-        public:
-            /// @brief Class constructor.
-            EditBox();
+        //public:
+            /// @brief Blank constructor.
+            /// @param Parent The parent Screen that created this widget.
+            EditBox(Screen* Parent);
+            /// @brief Standard initialization constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param Parent The parent Screen that created this widget.
+            EditBox(const String& RendName, Screen* Parent);
+            /// @brief Rect constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param RendRect The rect describing this widget's transform relative to it's parent.
+            /// @param Parent The parent screen that created this renderable.
+            EditBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created EditBox will belong to.
+            EditBox(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~EditBox();
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // EditBox Properties
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // EditBox Configuration
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Event Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
         };//EditBox
     }//UI
 }//Mezzanine

@@ -46,8 +46,28 @@ namespace Mezzanine
 {
     namespace UI
     {
-        EditBox::EditBox() :
-            Widget(NULL)
+        const String EditBox::TypeName = "EditBox";
+
+        EditBox::EditBox(Screen* Parent) :
+            Widget(Parent)
+        {
+
+        }
+
+        EditBox::EditBox(const String& RendName, Screen* Parent) :
+            Widget(RendName,Parent)
+        {
+
+        }
+
+        EditBox::EditBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
+            Widget(RendName,RendRect,Parent)
+        {
+
+        }
+
+        EditBox::EditBox(const XML::Node& XMLNode, Screen* Parent) :
+            Widget(Parent)
         {
 
         }
@@ -56,6 +76,24 @@ namespace Mezzanine
         {
 
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // EditBox Properties
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // EditBox Configuration
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
     }//UI
 }//Mezzanine
 

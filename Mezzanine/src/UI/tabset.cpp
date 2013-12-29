@@ -51,6 +51,59 @@ namespace Mezzanine
 {
     namespace UI
     {
+        const String TabSet::TypeName = "TabSet";
+
+        TabSet::TabSet(Screen* Parent) :
+            StackedContainer(Parent)
+        {
+
+        }
+
+        TabSet::TabSet(const String& RendName, Screen* Parent) :
+            StackedContainer(RendName,Parent)
+        {
+
+        }
+
+        TabSet::TabSet(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
+            StackedContainer(RendName,RendRect,Parent)
+        {
+
+        }
+
+        TabSet::TabSet(const XML::Node& XMLNode, Screen* Parent) :
+            StackedContainer(Parent)
+        {
+
+        }
+
+        TabSet::~TabSet()
+        {
+
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Visibility and Priority Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // TabSet Properties
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // TabSet Configuration
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+
         /*TabSet::TabSet(const String& name, const Rect& SetRect, Screen* parent) :
             Widget(name,parent),
             SetsAdded(0),
@@ -124,57 +177,6 @@ namespace Mezzanine
                 return true;
             }
             return false;
-        }
-
-        void TabSet::SetLocation(const Vector2& Position)
-        {
-            TemplateSetRect.Position = Position;
-            for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-            {
-                (*it)->Collection->SetActualPosition(Position);
-            }
-        }
-
-        void TabSet::SetArea(const Vector2& Size)
-        {
-            TemplateSetRect.Size = Size;
-            for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-            {
-                (*it)->Collection->SetActualSize(Size);
-            }
-        }
-
-        void TabSet::SetPosition(const Vector2& Position)
-        {
-            RelPosition = Position;
-            SetLocation(Position * ParentScreen->GetViewportDimensions());
-        }
-
-        void TabSet::SetActualPosition(const Vector2& Position)
-        {
-            RelPosition = Position / ParentScreen->GetViewportDimensions();
-            SetLocation(Position);
-        }
-
-        void TabSet::SetSize(const Vector2& Size)
-        {
-            RelSize = Size;
-            SetArea(Size * ParentScreen->GetViewportDimensions());
-        }
-
-        void TabSet::SetActualSize(const Vector2& Size)
-        {
-            RelSize = Size / ParentScreen->GetViewportDimensions();
-            SetArea(Size);
-        }
-
-        void TabSet::UpdateDimensions()
-        {
-            for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-            {
-                (*it)->Accessor->UpdateDimensions();
-                (*it)->Collection->UpdateDimensions();
-            }
         }
 
         RenderableSetData* TabSet::CreateRenderableSet(const String& Name, const Rect& AccessorRect, const Real& GlyphHeight, const String& Text)

@@ -52,13 +52,49 @@ namespace Mezzanine
         ///////////////////////////////////////
         class RadioButton : public Widget
         {
+        public:
+            /// @brief String containing the type name for this class: "RadioButton".
+            static const String TypeName;
         protected:
             friend class RadioButtonFactory;
-        public:
-            /// @brief Class constructor.
-            RadioButton();
+        //public:
+            /// @brief Blank constructor.
+            /// @param Parent The parent Screen that created this widget.
+            RadioButton(Screen* Parent);
+            /// @brief Standard initialization constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param Parent The parent Screen that created this widget.
+            RadioButton(const String& RendName, Screen* Parent);
+            /// @brief Rect constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param RendRect The rect describing this widget's transform relative to it's parent.
+            /// @param Parent The parent screen that created this renderable.
+            RadioButton(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created RadioButton will belong to.
+            RadioButton(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~RadioButton();
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // RadioButton Properties
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // RadioButton Configuration
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Event Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
         };//RadioButton
     }//UI
 }//Mezzanine

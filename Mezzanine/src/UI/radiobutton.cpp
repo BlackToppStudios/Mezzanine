@@ -46,8 +46,28 @@ namespace Mezzanine
 {
     namespace UI
     {
-        RadioButton::RadioButton() :
-            Widget(NULL)
+        const String RadioButton::TypeName = "RadioButton";
+
+        RadioButton::RadioButton(Screen* Parent) :
+            Widget(Parent)
+        {
+
+        }
+
+        RadioButton::RadioButton(const String& RendName, Screen* Parent) :
+            Widget(RendName,Parent)
+        {
+
+        }
+
+        RadioButton::RadioButton(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
+            Widget(RendName,RendRect,Parent)
+        {
+
+        }
+
+        RadioButton::RadioButton(const XML::Node& XMLNode, Screen* Parent) :
+            Widget(Parent)
         {
 
         }
@@ -56,6 +76,24 @@ namespace Mezzanine
         {
 
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // RadioButton Properties
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // RadioButton Configuration
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
     }//UI
 }//Mezzanine
 
