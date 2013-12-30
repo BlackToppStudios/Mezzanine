@@ -657,7 +657,7 @@ namespace Mezzanine
             if( It != this->RenderLayerGroups.end() ) {
                 this->SetActiveGroup( (*It).second );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" does not exist in LayeredRenderable: \"" + GetName() + "\"." );
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" does not exist in QuadRenderable: \"" + GetName() + "\"." );
             }
         }
 
