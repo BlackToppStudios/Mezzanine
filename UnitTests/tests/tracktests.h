@@ -66,7 +66,7 @@ class tracktests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-/*            TestOutput.precision(10);
+            TestOutput.precision(10);
             TestOutput << std::fixed << "Epsilon of the Vector3: " << numeric_limits<Vector3>::epsilon();
 
             {
@@ -331,16 +331,23 @@ class tracktests : public UnitTestGroup
                 SmoothTrackIterator<LinearInterpolator<Vector3> > IndexIter2(&TestIteratorTrack,.9,1.0/100.0);
                 TEST(IndexIter1[10] == IndexIter2, "SmoothTrackIterator[]");
             }
-*/
+
             {
                 //SlowSplineInterpolator<Vector2> CSV;
-                //Track<SlowSplineInterpolator<Vector2> > CubicSplineTrack;
 
-                // ©ubicSplineTrack.push_back(Vector2(0,0));
+                //Track<SlowSplineInterpolator<Vector2> > CubicSplineTrack;
+                //CubicSplineTrack.push_back(Vector2(0,0));
                 //TestIteratorTrack.push_back(Vector2(10,10));
                 //TestIteratorTrack.push_back(Vector2(20,0));
+            }
+
+            {
 
             }
+
+
+
+
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

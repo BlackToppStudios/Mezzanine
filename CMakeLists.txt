@@ -557,7 +557,7 @@ set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_A
 ###############################################################################
 # Perform Platform Specific Tasks for build options and configuration.
 
-# Fprce cmake to use Clang on MacOS
+# Force cmake to use Clang on MacOS
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     include(CMakeForceCompiler)
     CMAKE_FORCE_C_COMPILER(clang GNU)
@@ -571,7 +571,7 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 Message(STATUS "Starting Subproject Configuration.")
 add_subdirectory (Mezzanine)
 add_subdirectory (EngineDemo)
-add_subdirectory (Catch)
+#add_subdirectory (Catch)
 add_subdirectory (UnitTests)
 Message(STATUS "Finishing Subproject Configuration.")
 

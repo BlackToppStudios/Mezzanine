@@ -183,7 +183,6 @@ namespace Mezzanine
             typedef typename ParentType::SmoothIteratorType SmoothIteratorType;
 
 
-
             Track(typename DataContainerType::iterator Begin,
                   typename DataContainerType::iterator End)
                 : ParentType(Begin,End)
@@ -204,8 +203,6 @@ namespace Mezzanine
                            Percentage
                        );
             }
-
-
 
     };
 

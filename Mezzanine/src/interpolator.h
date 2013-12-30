@@ -50,6 +50,9 @@
 #ifndef SWIG // STD headers are bad for Swig
     #include <cmath>
     #include <iterator>
+
+    #include <iostream>
+    #include <typeinfo>
 #endif
 
 namespace Mezzanine
@@ -252,6 +255,16 @@ namespace Mezzanine
             template<typename TIterator>
             static T Interpolate(TIterator Begin, TIterator End, Real Location)
             {
+                /*std::vector<T> Points;
+                std::cout << "Unknown Type            : " << typeid(TIterator).name() << std::endl
+                          << "Vector<T>               : " << typeid(std::vector<T>).name() << std::endl
+                          << "Vector<T>::iterator     : " << typeid(typename std::vector<T>::iterator).name() << std::endl
+                          << "Storage                 : " << typeid(Storage).name() << std::endl
+                          << "Storage::iterator       : " << typeid(typename Storage::iterator).name() << std::endl
+                          << "Storage::const_iterator : " << typeid(typename Storage::const_iterator).name() << std::endl
+                          << "Is the unknown type a Storage::const_iterator? " << (typeid(typename Storage::const_iterator)==typeid(TIterator)) << std::endl
+                             ;
+                Points.insert(Points.end(),Begin,End);// */
                 std::vector<T> Points(Begin, End);
                 std::vector<Real> Spacing(Points.size());
                 Real JumpSize = 1/PreciseReal(Points.size()-1);
