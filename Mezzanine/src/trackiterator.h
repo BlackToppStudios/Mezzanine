@@ -45,6 +45,8 @@
 #ifndef SWIG // STD headers are bad for Swig
     #include <cmath>
     #include <limits>
+
+    #include "crossplatform.h"
 #endif
 
 
@@ -60,7 +62,7 @@ namespace Mezzanine
     /// track it targets and gets the point on the track that corresponds with is current
     /// location. For example, presume SomeTrack is a valid track instance:
     /// @code
-    /// SmoothTrackIterator<Vector3> Iter(&SomeTrack,0.0,1.0/200.0);
+    /// SmoothTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,1.0/200.0);
     ///
     /// for(Whole Counter = 0; Counter<200; Counter++
     /// {
@@ -110,12 +112,12 @@ namespace Mezzanine
                 { Location += Step * PreciseReal(Steps); }
 
         public:
-            /// @brief The constructor for and iterator
-            /// @details Tracks
+            /// @brief The constructor for an iterator that can take an arbitrary amount steps through a series of data points
+            /// @details If default constructed this cannot be dereferenced and is only useful for comparisons
             /// @param TrackToIterate Which track with this work against.
             /// @param WhereToStart Where on the track (range 0 to 1) Should iteration start.
             /// @param Increment When incremented how much should the location change? Defaults to .01 to create 100 steps.
-            SmoothTrackIterator(const TargetTrackType* const TrackToIterate, Real WhereToStart = 0.0, Real Increment = 0.01)
+            SmoothTrackIterator(const TargetTrackType* const TrackToIterate = 0, Real WhereToStart = 0.0, Real Increment = 0.01)
                 : TargetTrack(TrackToIterate), Location(WhereToStart), Step(Increment)
                 {}
             /// @brief Create a copy of an SmoothTrackIterator.
@@ -129,7 +131,6 @@ namespace Mezzanine
             /// @return A SmoothTrackIterator<InterpolatableType>
             SmoothTrackIterator<InterpolatorType>& operator=(const ThisType& Other)
             {
-                //TargetTrack=Other.TargetTrack;
                 Location=Other.Location;
                 Step=Other.Step;
                 return *this;
@@ -140,7 +141,7 @@ namespace Mezzanine
             /// @return True if the track is the same and the location on the track is close enough to be within 1 epsilon.
             bool operator==(const ThisType& Other) const
             {
-                return TargetTrack==Other.TargetTrack &&
+                return //TargetTrack==Other.TargetTrack &&
                        (Other.Location-std::numeric_limits<Real>::epsilon())<=Location &&
                        Location<=(Other.Location+std::numeric_limits<Real>::epsilon());
             }
@@ -321,8 +322,11 @@ namespace Mezzanine
     /// complete its journey, if we increment and dereference this 500 milliseconds
     /// after it was instantiated it will return 5.0. This is the point halfway
     /// through the range of the track because the time is halfway consumed.
+    /// @n @n
+    /// Here is a code sample that takes 3/4 of a second to iterate over the first
+    /// quarter of the data in a track
     /// @code
-    /// TimedTrackIterator<Vector3> Iter(&SomeTrack,0.0,0.25,750);
+    /// TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,0.25,750);
     ///
     /// bool SimulationIsStillRunning = true;
     /// While(SimulationIsStillRunning)
@@ -339,57 +343,73 @@ namespace Mezzanine
     ///   SimulationIsStillRunning = DoOtherSimulationStuff();
     /// }
     /// @endcode
-    /// This code will output 200 Vector3's lying on the path define by the track, which
-    /// are each separated b approximately 0.5% ofthe tracks full length. If the track is
-    /// small this could look pretty smooth
+    /// This code will emit to the standard output at least one Vector3 to the standard
+    /// output. All output will be between(inclusive) 0.0 and 0.25 with times closer to
+    /// the iterator creation time being near 0.0 and times closer to 750
     template<typename InterpolatorType>
     class TimedTrackIterator
-    {/*
+    {
         public:
             /// @brief The type the interpolator this works with uses.
             typedef typename InterpolatorType::InterpolatableType InterpolatableType;
             /// @brief What type is this iterator working with.
             typedef InterpolatableType value_type;
-            /// @brief When doing iterator math what is the type of math results
-            typedef Real difference_type;
             /// @brief The type of a pointer to the iterated type
             typedef InterpolatableType* pointer;
             /// @brief The type of a reference to the iterated type
             typedef InterpolatableType& reference;
             /// @brief This almost supports random access iteration, it does not support any kind of writing to the container
-            typedef std::random_access_iterator_tag iterator_category;
+            typedef std::input_iterator_tag iterator_category;
             /// @brief What kind of track with this iterate over
             typedef TrackBase<InterpolatorType> TargetTrackType;
             /// @brief The kind of this iterator.
-            typedef SmoothTrackIterator<InterpolatorType> ThisType;
+            typedef TimedTrackIterator<InterpolatorType> ThisType;
 
         protected:
+            Real StartRange;
+            Real EndRange;
+
+            /// @brief What Time does iteration start at
+            MaxInt StartTime;
+            /// Where is this iterator now.
+            MaxInt CurrentTime;
+            /// @brief What Time does iteration ed at
+            MaxInt EndTime;
+
             /// @brief The track this works against.
             const TargetTrackType* const TargetTrack;
-            /// @brief Where on the track are we?
-            Real Location;
-            /// @brief How far should this
-            Real Step;
 
-            /// @brief Move the iterator in the direction of the step.
-            void Increment()
-                { Location += Step; }
-            /// @brief Move the iterator in the opposite direction from the step.
-            void Decrement()
-                { Location -= Step; }
-            /// @brief Move the iterator a multiple (including negative multiples) of the step.
-            void StepAdjust(Integer Steps)
-                { Location += Step * PreciseReal(Steps); }
-
+            /// @brief Update the current location of this iterator based on the current time
+            void Update()
+            {
+                MaxInt Now = crossplatform::GetTimeStamp();
+                if(Now<StartTime)
+                    { CurrentTime = StartTime; }
+                if(EndTime<Now)
+                    { CurrentTime = EndTime; }
+                CurrentTime=Now;
+            }
         public:
             /// @brief The constructor for and iterator
             /// @details Tracks
             /// @param TrackToIterate Which track with this work against.
-            /// @param WhereToStart Where on the track (range 0 to 1) Should iteration start.
-            /// @param Increment When incremented how much should the location change? Defaults to .01 to create 100 steps.
-            SmoothTrackIterator(const TargetTrackType* const TrackToIterate, Real WhereToStart = 0.0, Real Increment = 0.01)
-                : TargetTrack(TrackToIterate), Location(WhereToStart), Step(Increment)
-                {}
+            /// @param StartOnTrack In the range of 0.0 to 1.0 Where on the track should iteration start
+            /// @param EndOnTrack In the range of 0.0 to 1.0 Where on the track should iteration end
+            /// @param Duration
+            /// @param WhenToStart
+            TimedTrackIterator(const TargetTrackType* const TrackToIterate = 0,
+                               Real StartOnTrack = 0.0,
+                               Real EndOnTrack = 1.0,
+                               MaxInt Duration = 1000,
+                               MaxInt WhenToStart = crossplatform::GetTimeStamp())
+                : StartRange(StartOnTrack),
+                  EndRange(EndOnTrack),
+                  StartTime(WhenToStart),
+                  EndTime(Duration+StartTime),
+                  TargetTrack(TrackToIterate)
+                { Update(); }
+            /*
+
             /// @brief Create a copy of an SmoothTrackIterator.
             /// @param Copy The SmoothTrackIterator to copy.
             SmoothTrackIterator(const ThisType& Copy)
