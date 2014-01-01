@@ -366,7 +366,9 @@ namespace Mezzanine
             typedef TimedTrackIterator<InterpolatorType> ThisType;
 
         protected:
+            /// @brief Where Should Iteration Start
             Real StartRange;
+            /// @brief Where should iteration stop
             Real EndRange;
 
             /// @brief What Time does iteration start at
@@ -408,14 +410,19 @@ namespace Mezzanine
                   EndTime(Duration+StartTime),
                   TargetTrack(TrackToIterate)
                 { Update(); }
-            /*
 
-            /// @brief Create a copy of an SmoothTrackIterator.
-            /// @param Copy The SmoothTrackIterator to copy.
-            SmoothTrackIterator(const ThisType& Copy)
-                : TargetTrack(Copy.TargetTrack), Location(Copy.Location), Step(Copy.Step)
-                {}
 
+            /// @brief Create a copy of an TimedTrackIterator.
+            /// @param Copy The TimedTrackIterator to copy.
+            TimedTrackIterator(const ThisType& Copy)
+                : StartRange(Copy.StartRange),
+                  EndRange(Copy.EndRange),
+                  StartTime(Copy.StartTime),
+                  CurrentTime(Copy.CurrentTime),
+                  EndTime(Copy.EndTime),
+                  TargetTrack(Copy.TargetTrack)
+                { }
+/*
             /// @brief Change this SmoothTrackIterator to match another (Except for Track)
             /// @param Other The SmoothTrackIterator to copy, except for its target track
             /// @return A SmoothTrackIterator<InterpolatableType>
