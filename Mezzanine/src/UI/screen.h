@@ -377,6 +377,15 @@ namespace Mezzanine
             /// @param RendRect The rect describing this MenuButton's transform relative to it's parent.
             /// @return Returns a pointer to the created MenuButton.
             virtual MenuButton* CreateMenuButton(const String& Name, const UnifiedRect& RendRect);
+            /// @brief Creates a RadioButton.
+            /// @param Name The name to be given to this RadioButton.
+            /// @return Returns a pointer to the created RadioButton.
+            virtual RadioButton* CreateRadioButton(const String& Name);
+            /// @brief Creates a RadioButton.
+            /// @param Name The name to be given to this RadioButton.
+            /// @param RendRect The rect describing this RadioButton's transform relative to it's parent.
+            /// @return Returns a pointer to the created RadioButton.
+            virtual RadioButton* CreateRadioButton(const String& Name, const UnifiedRect& RendRect);
             /// @brief Creates a CheckBox.
             /// @param Name The name of the CheckBox.
             /// @return Returns a pointer to the created CheckBox.

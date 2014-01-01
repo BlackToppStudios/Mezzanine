@@ -492,6 +492,9 @@ namespace Mezzanine
             // MenuButton
             FactIt = this->WidgetFactories.find( MenuButton::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new MenuButtonFactory() );
+            // RadioButton
+            FactIt = this->WidgetFactories.find( RadioButton::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new RadioButtonFactory() );
             // CheckBox
             FactIt = this->WidgetFactories.find( CheckBox::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new CheckBoxFactory() );
@@ -608,6 +611,20 @@ namespace Mezzanine
         MenuButton* Screen::CreateMenuButton(const String& Name, const UnifiedRect& RendRect)
         {
             MenuButton* NewButton = static_cast<MenuButtonFactory*>( this->GetWidgetFactoryExcept( MenuButton::TypeName ) )->CreateMenuButton( Name, RendRect, this );
+            this->CheckAndInsertExcept( NewButton );
+            return NewButton;
+        }
+
+        RadioButton* Screen::CreateRadioButton(const String& Name)
+        {
+            RadioButton* NewButton = static_cast<RadioButtonFactory*>( this->GetWidgetFactoryExcept( RadioButton::TypeName ) )->CreateRadioButton( Name, this );
+            this->CheckAndInsertExcept( NewButton );
+            return NewButton;
+        }
+
+        RadioButton* Screen::CreateRadioButton(const String& Name, const UnifiedRect& RendRect)
+        {
+            RadioButton* NewButton = static_cast<RadioButtonFactory*>( this->GetWidgetFactoryExcept( RadioButton::TypeName ) )->CreateRadioButton( Name, RendRect, this );
             this->CheckAndInsertExcept( NewButton );
             return NewButton;
         }

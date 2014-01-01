@@ -51,32 +51,35 @@ namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // CheckBox Static Members
+
         const String CheckBox::TypeName = "CheckBox";
 
-        const String CheckBox::EventChecked = "Checked";
-        const String CheckBox::EventUnchecked = "Unchecked";
+        const String CheckBox::EventSelected = "Selected";
+        const String CheckBox::EventDeselected = "Deselected";
 
         ///////////////////////////////////////////////////////////////////////////////
         // CheckBox Methods
 
         CheckBox::CheckBox(Screen* Parent) :
             Button(Parent),
-            CheckLock(true)
+            SelectLock(true)
             {  }
 
         CheckBox::CheckBox(const String& RendName, Screen* Parent) :
             Button(RendName,Parent),
-            CheckLock(true)
+            SelectLock(true)
             { this->ConstructCheckbox(); }
 
         CheckBox::CheckBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Button(RendName,RendRect,Parent),
-            CheckLock(true)
+            SelectLock(true)
             { this->ConstructCheckbox(); }
 
         CheckBox::CheckBox(const XML::Node& XMLNode, Screen* Parent) :
             Button(Parent),
-            CheckLock(true)
+            SelectLock(true)
             { this->ProtoDeSerialize(XMLNode); }
 
         CheckBox::~CheckBox()
@@ -85,51 +88,47 @@ namespace Mezzanine
         void CheckBox::ConstructCheckbox()
         {
             // Add our new events
-            this->AddEvent(CheckBox::EventChecked);
-            this->AddEvent(CheckBox::EventUnchecked);
+            this->AddEvent(CheckBox::EventSelected);
+            this->AddEvent(CheckBox::EventDeselected);
             // Add some more render layer groups
-            RenderLayerGroup* CheckedNormalGroup = this->CreateRenderLayerGroup("CheckedNormal");
-            RenderLayerGroup* CheckedHoveredGroup = this->CreateRenderLayerGroup("CheckedHovered");
+            RenderLayerGroup* SelectedNormalGroup = this->CreateRenderLayerGroup("SelectedNormal");
+            RenderLayerGroup* SelectedHoveredGroup = this->CreateRenderLayerGroup("SelectedHovered");
 
-            this->StateGroupBindings[ WS_Checked ] = CheckedNormalGroup;
-            this->StateGroupBindings[ WS_Checked | WS_Hovered ] = CheckedHoveredGroup;
-            this->StateGroupBindings[ WS_Checked | WS_Focused ] = CheckedNormalGroup;
-            this->StateGroupBindings[ WS_Checked | WS_Dragged ] = CheckedNormalGroup;
-            this->StateGroupBindings[ WS_Checked | WS_Hovered | WS_Focused ] = CheckedHoveredGroup;
-            this->StateGroupBindings[ WS_Checked | WS_Focused | WS_Dragged ] = CheckedNormalGroup;
-            this->StateGroupBindings[ WS_Checked | WS_Dragged | WS_Hovered ] = CheckedHoveredGroup;
-            this->StateGroupBindings[ WS_Checked | WS_Hovered | WS_Focused | WS_Dragged ] = CheckedHoveredGroup;
-        }
-
-        void CheckBox::SetChecked(bool Check)
-        {
-            if( Check ) this->State |= WS_Checked;
-            else this->State &= ~WS_Checked;
+            this->StateGroupBindings[ WS_Selected ] = SelectedNormalGroup;
+            this->StateGroupBindings[ WS_Selected | WS_Hovered ] = SelectedHoveredGroup;
+            this->StateGroupBindings[ WS_Selected | WS_Focused ] = SelectedNormalGroup;
+            this->StateGroupBindings[ WS_Selected | WS_Dragged ] = SelectedNormalGroup;
+            this->StateGroupBindings[ WS_Selected | WS_Hovered | WS_Focused ] = SelectedHoveredGroup;
+            this->StateGroupBindings[ WS_Selected | WS_Focused | WS_Dragged ] = SelectedNormalGroup;
+            this->StateGroupBindings[ WS_Selected | WS_Dragged | WS_Hovered ] = SelectedHoveredGroup;
+            this->StateGroupBindings[ WS_Selected | WS_Hovered | WS_Focused | WS_Dragged ] = SelectedHoveredGroup;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
-        bool CheckBox::IsChecked()
+        Boolean CheckBox::IsSelected()
         {
-            return (State & WS_Checked);
+            return (this->State & WS_Selected);
         }
 
-        bool CheckBox::IsLocked()
+        Boolean CheckBox::IsLocked()
         {
-            return CheckLock;
+            return this->SelectLock;
         }
 
-        void CheckBox::ManualCheck(bool Check)
+        void CheckBox::ManualSelect(Boolean Select)
         {
-            if( IsChecked() == Check )
-                return;
-            SetChecked( Check );
+            if( this->IsSelected() != Select ) {
+                Boolean NewState = !this->IsSelected();
+                if( NewState ) this->_OnSelected();
+                else this->_OnDeselected();
+            }
         }
 
-        void CheckBox::SetCheckLock(bool Lock)
+        void CheckBox::SetSelectLock(Boolean Lock)
         {
-            this->CheckLock = Lock;
+            this->SelectLock = Lock;
         }
 
         const String& CheckBox::GetTypeName() const
@@ -147,7 +146,7 @@ namespace Mezzanine
             XML::Node PropertiesNode = SelfRoot.AppendChild( CheckBox::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-                PropertiesNode.AppendAttribute("CheckLock").SetValue( this->CheckLock ? "true" : "false" ) )
+                PropertiesNode.AppendAttribute("SelectLock").SetValue( this->SelectLock ? "true" : "false" ) )
             {
                 return;
             }else{
@@ -166,7 +165,7 @@ namespace Mezzanine
                 if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
                     CurrAttrib = PropertiesNode.GetAttribute("LockoutTime");
                     if( !CurrAttrib.Empty() )
-                        this->CheckLock = StringTools::ConvertToBool( CurrAttrib.AsString() );
+                        this->SelectLock = StringTools::ConvertToBool( CurrAttrib.AsString() );
                 }else{
                     MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (CheckBox::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
@@ -185,40 +184,36 @@ namespace Mezzanine
 
         void CheckBox::_OnActivate()
         {
-            Button::_OnActivate();
+            this->Button::_OnActivate();
             // Currently this needs nothing, may change
         }
 
         void CheckBox::_OnDeactivate()
         {
-            Button::_OnDeactivate();
+            this->Button::_OnDeactivate();
 
-            if( this->IsHovered() && !CheckLock )
-            {
-                bool NewState = !this->IsChecked();
-                if( NewState ) this->_OnChecked();
-                else this->_OnUnchecked();
+            if( this->IsHovered() && !this->SelectLock ) {
+                Boolean NewState = !this->IsSelected();
+                if( NewState ) this->_OnSelected();
+                else this->_OnDeselected();
             }
         }
 
-        void CheckBox::_OnChecked()
+        void CheckBox::_OnSelected()
         {
-            this->State |= WS_Checked;
-            this->SetGroupFromState(State);
+            this->State |= WS_Selected;
+            this->SetGroupFromState(this->State);
 
-            WidgetEventArguments Args(CheckBox::EventChecked,this->Name);
+            WidgetEventArguments Args(CheckBox::EventSelected,this->Name);
             this->FireEvent(Args);
         }
 
-        void CheckBox::_OnUnchecked()
+        void CheckBox::_OnDeselected()
         {
-            if( State & WS_Checked )
-            {
-                State &= ~WS_Checked;
-                this->SetGroupFromState(State);
-            }
+            this->State &= ~WS_Selected;
+            this->SetGroupFromState(this->State);
 
-            WidgetEventArguments Args(CheckBox::EventUnchecked,this->Name);
+            WidgetEventArguments Args(CheckBox::EventDeselected,this->Name);
             this->FireEvent(Args);
         }
 
