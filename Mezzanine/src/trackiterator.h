@@ -147,7 +147,7 @@ namespace Mezzanine
             }
             /// @brief Is this SmoothTrackIterator not on the same track and in the same place as another.
             /// @param Other The Other SmoothTrackIterator to compare this one too.
-            /// @return True if the track is the same and the location on the track is close enough to be within 1 epsilon.
+            /// @return False if the track is the same and the location on the track is close enough to be within 1 epsilon.
             bool operator!=(const ThisType& Other) const
                 { return !operator==(Other); }
 
@@ -391,6 +391,17 @@ namespace Mezzanine
                     { CurrentTime = EndTime; }
                 CurrentTime=Now;
             }
+
+            InterpolatableType GetDereferenced() const
+            {
+                MaxInt Length(EndTime - StartTime);
+                MaxInt Progress(CurrentTime - StartTime);
+                Real RangeLength(EndRange - StartRange);
+
+                Real AdjustedProgress( PreciseReal((Progress)/PreciseReal(Length)) * PreciseReal(RangeLength) + PreciseReal(StartRange) );
+                return TargetTrack->GetInterpolated(AdjustedProgress);
+            }
+
         public:
             /// @brief The constructor for and iterator
             /// @details Tracks
@@ -410,8 +421,6 @@ namespace Mezzanine
                   EndTime(Duration+StartTime),
                   TargetTrack(TrackToIterate)
                 { Update(); }
-
-
             /// @brief Create a copy of an TimedTrackIterator.
             /// @param Copy The TimedTrackIterator to copy.
             TimedTrackIterator(const ThisType& Copy)
@@ -422,66 +431,49 @@ namespace Mezzanine
                   EndTime(Copy.EndTime),
                   TargetTrack(Copy.TargetTrack)
                 { }
-/*
-            /// @brief Change this SmoothTrackIterator to match another (Except for Track)
-            /// @param Other The SmoothTrackIterator to copy, except for its target track
-            /// @return A SmoothTrackIterator<InterpolatableType>
-            SmoothTrackIterator<InterpolatorType>& operator=(const ThisType& Other)
+            /// @brief Change this TimedTrackIterator to match another (Except for Track)
+            /// @param Other The TimedTrackIterator to copy, except for its target track
+            /// @return A TimedTrackIterator<InterpolatableType>
+            TimedTrackIterator<InterpolatorType>& operator= (const ThisType& Other)
             {
-                //TargetTrack=Other.TargetTrack;
-                Location=Other.Location;
-                Step=Other.Step;
+                StartRange=Other.StartRange;
+                EndRange=Other.EndRange;
+                StartTime=Other.StartTime;
+                CurrentTime=Other.CurrentTime;
+                EndTime=Other.EndTime;
                 return *this;
             }
 
-            /// @brief Is this SmoothTrackIterator on the same track and in the same place as another.
-            /// @param Other The Other SmoothTrackIterator to compare this one too.
-            /// @return True if the track is the same and the location on the track is close enough to be within 1 epsilon.
-            bool operator==(const ThisType& Other) const
+            /// @brief Is this TimedTrackIterator on the same track and in the same place as another.
+            /// @param Other The Other TimedTrackIterator to compare this one too.
+            /// @return True if the track is the same and the location on the same track.
+            bool operator== (const ThisType& Other) const
             {
                 return TargetTrack==Other.TargetTrack &&
-                       (Other.Location-std::numeric_limits<Real>::epsilon())<=Location &&
-                       Location<=(Other.Location+std::numeric_limits<Real>::epsilon());
+                       StartRange==Other.StartRange &&
+                       EndRange==Other.EndRange &&
+                       StartTime==Other.StartTime &&
+                       CurrentTime==Other.CurrentTime &&
+                       EndTime==Other.EndTime;
             }
-            /// @brief Is this SmoothTrackIterator not on the same track and in the same place as another.
-            /// @param Other The Other SmoothTrackIterator to compare this one too.
-            /// @return True if the track is the same and the location on the track is close enough to be within 1 epsilon.
-            bool operator!=(const ThisType& Other) const
+            /// @brief Is this TimedTrackIterator not on the same track and in the same place as another.
+            /// @param Other The Other TimedTrackIterator to compare this one too.
+            /// @return False if the track is the same and the location on the same track.
+            bool operator!= (const ThisType& Other) const
                 { return !operator==(Other); }
 
-            /// @brief Get the current location on the SmoothTrackIterator
+            /// @brief Get the location on track from the last time it was incremented
             /// @return An instance of InterpolatableType that is read only
             /// @warning Most iterators return a reference, to allow changes in the underlying container. This returns points that are not stored, so they cannot be changed.
             /// @note Everytime this is called this it calls the interpolator in the Target Track, This should run in constant time, but is much slower than normal pointer dereferences.
             virtual InterpolatableType operator*() const
-                { return TargetTrack->GetInterpolated(Location); }
+                { return GetDereferenced(); }
             /// @brief Derefernce this with the syntax for pointer member access.
             /// @return A Counted pointer to a temporary InterpolatableType instance.
             /// @warning This is read only because it is not stored anywhere.
             /// @note Everytime this is called it calls the interpolator in the Target Track.
             virtual CountedPtr<InterpolatableType> operator->() const
-                { return CountedPtr<InterpolatableType> (new InterpolatableType(TargetTrack->GetInterpolated(Location))); }
-
-            /// @brief Move the SmoothTrackIterator backwards on the track by on step.
-            /// @details The iterator is moved to a new position by subtracting the
-            /// step from the current location.
-            /// @return A Reference to this iterator after the change has been made.
-            ThisType& operator--()
-            {
-                Decrement();
-                return *this;
-            }
-            /// @brief Move the SmoothTrackIterator backwards on the track and get a copy of its location before
-            /// @details Like the prefix -- this moves the iterator, but this returns a copy
-            /// of the iterator before being increment.
-            /// @return An iterator that is a copy of this one before the decrement.
-            /// @note Even though the results of this could be assignable doing so is useless without storing the results in a new iterator so this is made const.
-            const ThisType operator--(int)
-            {
-                ThisType Results(*this);
-                Decrement();
-                return Results;
-            }
+                { return CountedPtr<InterpolatableType> (new InterpolatableType(GetDereferenced())); }
 
             /// @brief Move the SmoothTrackIterator forwards on the track by on step.
             /// @details The iterator is moved to a new position by adding the
@@ -489,7 +481,7 @@ namespace Mezzanine
             /// @return A Reference to this iterator after the change has been made.
             ThisType& operator++()
             {
-                Increment();
+                Update();
                 return *this;
             }
             /// @brief Move the SmoothTrackIterator forwards on the track and get a copy of its location before
@@ -500,114 +492,11 @@ namespace Mezzanine
             const ThisType operator++(int)
             {
                 ThisType Results(*this);
-                Increment();
+                Update();
                 return Results;
             }
+    };
 
-            /// @brief Is the Iterator inside the track?
-            /// @return This returns 0 if iterator is in the bounds of the track, -1 if before and 1 if after the bounds of the track.
-            Integer BoundsCheck() const
-            {
-                if(1.0 < Location)
-                    { return 1; }
-                if(0.0 > Location)
-                    { return -1; }
-                return 0;
-            }
-            /// @brief If this is iterator is beyond the bounds of the track it target *wrap* it around to the other side
-            /// @details Since the location on the track is stored as a value between 0.0 and 1.0 as long asthe step is
-            /// less than ,subtracting or adding one will preserve the apparent offset from the last location on looped
-            /// tracks
-            /// @return True if the bounds where outside the track and false if they where not.
-            bool BoundsCorrect()
-            {
-                Real Original = Location;
-                while(1.0<Location)
-                    { Location--; }
-                while(0.0>Location)
-                    { Location++; }
-                return Original!=Location;
-            }
-
-            /// @brief Move a copy of this iterator a multiple of steps relative to the amount added
-            /// @return A reference to this iterator to allow multiple math operations.
-            /// @note Even though the results of this could be assignable doing so is useless without storing the results in a new iterator so this is made const.
-            const ThisType operator+(Integer Steps)
-            {
-                ThisType Results(*this);
-                Results.StepAdjust(Steps);
-                return Results;
-            }
-            /// @brief Move a copy this iterator a negativemultiple of steps relative to the amount subtract
-            /// @return A reference to this iterator to allow multiple math operations.
-            /// @note Even though the results of this could be assignable doing so is useless without storing the results in a new iterator so this is made const.
-            const ThisType operator-(Integer Steps)
-            {
-                ThisType Results(*this);
-                Results.StepAdjust(-Steps);
-                return Results;
-            }
-
-            /// @brief Move this iterator a given amount of steps forward
-            /// @return A reference to this iterator so it could be used in other operations
-            ThisType& operator+=(Integer Steps)
-            {
-                StepAdjust(Steps);
-                return *this;
-            }
-            /// @brief Move this iterator a given amount of steps backwards
-            /// @return A reference to this iterator so it could be used in other operations
-            ThisType& operator-=(Integer Steps)
-            {
-                StepAdjust(-Steps);
-                return *this;
-            }
-
-            /// @brief Compare which iterator is further along the track
-            /// @note The target track and the step size are ignored. This allows for potentially non-sensensical comparison.
-            /// @param Right The value on the right of the <.
-            /// @return true if this iterator is closer to the start of its track than right one, false otherwise.
-            bool operator<(const ThisType& Right)
-                { return Location < Right.Location; }
-            /// @brief Compare which iterator is further toward the track beginning.
-            /// @note The target track and the step size are ignored. This allows for potentially non-sensensical comparison.
-            /// @param Right The value on the right of the >.
-            /// @return true if the other iterator is closer to the start of its track than right one, false otherwise.
-            bool operator>(const ThisType& Right)
-                { return Location > Right.Location; }
-            /// @brief Compare which iterator is further along the track
-            /// @note The target track and the step size are ignored. This allows for potentially non-sensensical comparison.
-            /// @param Right The value on the right of the <=.
-            /// @return true if this iterator is closer to the start of its track than right one(or they are equidistant), false otherwise.
-            bool operator<=(const ThisType& Right)
-                { return Location <= Right.Location; }
-            /// @brief Compare which iterator is further toward the track beginning.
-            /// @note The target track and the step size are ignored. This allows for potentially non-sensensical comparison.
-            /// @param Right The value on the right of the >=.
-            /// @return true if the other iterator is closer to the start of its track than right one(or they are equidistant), false otherwise.
-            bool operator>=(const ThisType& Right)
-                { return Location >= Right.Location; }
-
-            /// @brief Get an iterator an arbitrary number of steps forward or backwards.
-            /// @note Even though the results of this could be assignable doing so is useless without storing the results in a new iterator so this is made const.
-            /// @param Steps How many times to increment or decrement the iterator.
-            const ThisType operator[](Integer Steps)
-                { return *this + Steps; }
-    */};
-/*
-    /// @brief This allows for addition with and an Integer on the Left hand side, such as: 2 + Iter
-    /// @param Steps The Integer on the left.
-    /// @param Iter The SmoothTrackIterator on the right.
-    template<typename InterpolatableType>
-    SmoothTrackIterator<InterpolatableType>&  operator+(Integer Steps, SmoothTrackIterator<InterpolatableType>& Iter)
-        { return Iter + Steps; }
-    /// @brief This allows for subtraction with and an Integer on the Left hand side, such as: 2 + Iter
-    /// @param Steps The Integer on the left.
-    /// @param Iter The SmoothTrackIterator on the right.
-    template<typename InterpolatableType>
-    SmoothTrackIterator<InterpolatableType>&  operator-(Integer Steps, SmoothTrackIterator<InterpolatableType>& Iter)
-        { return Iter - Steps; }
-*/
 
 
 
