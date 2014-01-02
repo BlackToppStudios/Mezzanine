@@ -392,6 +392,8 @@ namespace Mezzanine
                 CurrentTime=Now;
             }
 
+            /// @brief Do the math for determining where/when the iterator is.
+            /// @return A value on the track corresponding to how far through time
             InterpolatableType GetDereferenced() const
             {
                 MaxInt Length(EndTime - StartTime);
@@ -406,10 +408,10 @@ namespace Mezzanine
             /// @brief The constructor for and iterator
             /// @details Tracks
             /// @param TrackToIterate Which track with this work against.
-            /// @param StartOnTrack In the range of 0.0 to 1.0 Where on the track should iteration start
-            /// @param EndOnTrack In the range of 0.0 to 1.0 Where on the track should iteration end
-            /// @param Duration
-            /// @param WhenToStart
+            /// @param StartOnTrack In the range of 0.0 to 1.0 Where on the track should iteration start. Defaults to 0.0.
+            /// @param EndOnTrack In the range of 0.0 to 1.0 Where on the track should iteration end. Defaults to 1.0.
+            /// @param Duration In milliseconds how long should traversing the range of the track take. Defaults to 1 second.
+            /// @param WhenToStart The time iteration should start. Defaults to now.
             TimedTrackIterator(const TargetTrackType* const TrackToIterate = 0,
                                Real StartOnTrack = 0.0,
                                Real EndOnTrack = 1.0,
@@ -468,7 +470,7 @@ namespace Mezzanine
             /// @note Everytime this is called this it calls the interpolator in the Target Track, This should run in constant time, but is much slower than normal pointer dereferences.
             virtual InterpolatableType operator*() const
                 { return GetDereferenced(); }
-            /// @brief Derefernce this with the syntax for pointer member access.
+            /// @brief Dereference this with the syntax for pointer member access.
             /// @return A Counted pointer to a temporary InterpolatableType instance.
             /// @warning This is read only because it is not stored anywhere.
             /// @note Everytime this is called it calls the interpolator in the Target Track.
@@ -495,6 +497,12 @@ namespace Mezzanine
                 Update();
                 return Results;
             }
+
+            bool AtEnd() const
+                { return EndTime == CurrentTime; }
+
+            bool AtStart() const
+                { return StartTime == CurrentTime; }
     };
 
 

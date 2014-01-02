@@ -342,6 +342,16 @@ class tracktests : public UnitTestGroup
             }
 
             {
+                Track< LinearInterpolator<Vector3> > SomeTrack;
+                SomeTrack.push_back(Vector3(0,0,0));
+                SomeTrack.push_back(Vector3(1,10,20));
+                TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,0.25,750);
+
+                // This loop should take 3/4 of a second and end on .25, 2.5, 5
+                while(!Iter.AtEnd())
+                {
+                    TestOutput << *Iter << endl;
+                }
 
             }
 
