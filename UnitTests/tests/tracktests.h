@@ -46,6 +46,7 @@
 #include "trackiterator.h"
 #include "exception.h"
 #include "vector3.h"
+#include "Threading/thread.h"
 
 
 /// @file
@@ -342,20 +343,45 @@ class tracktests : public UnitTestGroup
             }
 
             {
+                TestOutput << endl << "Timed Track Iterator, iterating from the range 0.0 to 0.25 on a linear track of Vector3s starting at 0,0,0 and ending at 1,10,20" << endl;
                 Track< LinearInterpolator<Vector3> > SomeTrack;
                 SomeTrack.push_back(Vector3(0,0,0));
                 SomeTrack.push_back(Vector3(1,10,20));
-                TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,0.25,750);
+                MaxInt TestDuration(750000);
+                TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,0.25,TestDuration);
 
-                // This loop should take 3/4 of a second and end on .25, 2.5, 5
+                TEST((*Iter == Vector3(0,0,0)) , "TimedTrackIterator-Start");
+                TestOutput  << "Start Location: ";
                 while(!Iter.AtEnd())
                 {
                     TestOutput << *Iter << endl;
+                    Iter++;
+                    Threading::this_thread::sleep_for(10000);
                 }
-
+                TestOutput << "End Location: " << *Iter << endl;
+                TEST((*Iter == Vector3(0.25,2.5,5)) , "TimedTrackIterator-End");
             }
 
+            {
+                TestOutput << endl << "Timed Track Iterator, iterating from the range 0.25 to 0.0 on a linear track of Vector3s starting at 0,0,0 and ending at 1,10,20" << endl;
+                Track< LinearInterpolator<Vector3> > SomeTrack;
+                SomeTrack.push_back(Vector3(0,0,0));
+                SomeTrack.push_back(Vector3(1,10,20));
+                MaxInt TestDuration(750000);
+                TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.25,0.0,TestDuration);
 
+                TEST((*Iter == Vector3(0.25,2.5,5)) , "TimedTrackIterator-BackwardStart");
+                TestOutput  << "Start Location: ";
+                while(!Iter.AtEnd())
+                {
+                    TestOutput << *Iter << endl;
+                    Iter++;
+                    Threading::this_thread::sleep_for(10000);
+                }
+                TestOutput << "End Location: " << *Iter << endl;
+                TEST((*Iter == Vector3(0,0,0)) , "TimedTrackIterator-BackwardEnd");
+
+            }
 
 
         }

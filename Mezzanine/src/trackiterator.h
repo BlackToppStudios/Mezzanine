@@ -323,8 +323,12 @@ namespace Mezzanine
     /// after it was instantiated it will return 5.0. This is the point halfway
     /// through the range of the track because the time is halfway consumed.
     /// @n @n
+    /// This iterator must be bounds checked to be safe to use. If incremented before
+    /// its start time its current location is set to its start time, if incremented
+    /// past its end time its current location becoms its end time.
+    /// @n @n
     /// Here is a code sample that takes 3/4 of a second to iterate over the first
-    /// quarter of the data in a track
+    /// quarter of the data in a track.
     /// @code
     /// TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,0.25,750);
     ///
@@ -366,11 +370,6 @@ namespace Mezzanine
             typedef TimedTrackIterator<InterpolatorType> ThisType;
 
         protected:
-            /// @brief Where Should Iteration Start
-            Real StartRange;
-            /// @brief Where should iteration stop
-            Real EndRange;
-
             /// @brief What Time does iteration start at
             MaxInt StartTime;
             /// Where is this iterator now.
@@ -381,15 +380,20 @@ namespace Mezzanine
             /// @brief The track this works against.
             const TargetTrackType* const TargetTrack;
 
+            /// @brief Where Should Iteration Start
+            Real StartRange;
+            /// @brief Where should iteration stop
+            Real EndRange;
+
             /// @brief Update the current location of this iterator based on the current time
             void Update()
             {
                 MaxInt Now = crossplatform::GetTimeStamp();
+                CurrentTime=Now;
                 if(Now<StartTime)
                     { CurrentTime = StartTime; }
                 if(EndTime<Now)
                     { CurrentTime = EndTime; }
-                CurrentTime=Now;
             }
 
             /// @brief Do the math for determining where/when the iterator is.
@@ -410,28 +414,28 @@ namespace Mezzanine
             /// @param TrackToIterate Which track with this work against.
             /// @param StartOnTrack In the range of 0.0 to 1.0 Where on the track should iteration start. Defaults to 0.0.
             /// @param EndOnTrack In the range of 0.0 to 1.0 Where on the track should iteration end. Defaults to 1.0.
-            /// @param Duration In milliseconds how long should traversing the range of the track take. Defaults to 1 second.
+            /// @param Duration In microseconds how long should traversing the range of the track take. Defaults to 1 second.
             /// @param WhenToStart The time iteration should start. Defaults to now.
             TimedTrackIterator(const TargetTrackType* const TrackToIterate = 0,
                                Real StartOnTrack = 0.0,
                                Real EndOnTrack = 1.0,
-                               MaxInt Duration = 1000,
+                               MaxInt Duration = 1000000,
                                MaxInt WhenToStart = crossplatform::GetTimeStamp())
-                : StartRange(StartOnTrack),
-                  EndRange(EndOnTrack),
-                  StartTime(WhenToStart),
-                  EndTime(Duration+StartTime),
-                  TargetTrack(TrackToIterate)
+                : StartTime(WhenToStart),
+                  EndTime(Duration+WhenToStart),
+                  TargetTrack(TrackToIterate),
+                  StartRange(StartOnTrack),
+                  EndRange(EndOnTrack)
                 { Update(); }
             /// @brief Create a copy of an TimedTrackIterator.
             /// @param Copy The TimedTrackIterator to copy.
             TimedTrackIterator(const ThisType& Copy)
-                : StartRange(Copy.StartRange),
-                  EndRange(Copy.EndRange),
-                  StartTime(Copy.StartTime),
+                : StartTime(Copy.StartTime),
                   CurrentTime(Copy.CurrentTime),
                   EndTime(Copy.EndTime),
-                  TargetTrack(Copy.TargetTrack)
+                  TargetTrack(Copy.TargetTrack),
+                  StartRange(Copy.StartRange),
+                  EndRange(Copy.EndRange)
                 { }
             /// @brief Change this TimedTrackIterator to match another (Except for Track)
             /// @param Other The TimedTrackIterator to copy, except for its target track
@@ -477,16 +481,14 @@ namespace Mezzanine
             virtual CountedPtr<InterpolatableType> operator->() const
                 { return CountedPtr<InterpolatableType> (new InterpolatableType(GetDereferenced())); }
 
-            /// @brief Move the SmoothTrackIterator forwards on the track by on step.
-            /// @details The iterator is moved to a new position by adding the
-            /// step from the current location.
+            /// @brief Move the TimedTrackIterator forwards on the track by an amount proportionate to time elapsed.
             /// @return A Reference to this iterator after the change has been made.
             ThisType& operator++()
             {
                 Update();
                 return *this;
             }
-            /// @brief Move the SmoothTrackIterator forwards on the track and get a copy of its location before
+            /// @brief Move the TimedTrackIterator forwards on the track by an amount proportionate to time elapsed.
             /// @details Like the prefix ++ this moves the iterator, but this returns a copy
             /// of the iterator before being incremented.
             /// @return An iterator that is a copy of this one before the decrement.
@@ -498,9 +500,13 @@ namespace Mezzanine
                 return Results;
             }
 
+            /// @brief Is this iterator at the end of its range on the track
+            /// @return True if the iterator has been incremented to its bounds
             bool AtEnd() const
                 { return EndTime == CurrentTime; }
 
+            /// @brief Is this iterator at the beginning of its range on the track
+            /// @return True if the iterator has not been incremented or its time has not yet come.
             bool AtStart() const
                 { return StartTime == CurrentTime; }
     };
