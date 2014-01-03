@@ -386,9 +386,8 @@ namespace Mezzanine
             Real EndRange;
 
             /// @brief Update the current location of this iterator based on the current time
-            void Update()
+            void Update(MaxInt Now = crossplatform::GetTimeStamp())
             {
-                MaxInt Now = crossplatform::GetTimeStamp();
                 CurrentTime=Now;
                 if(Now<StartTime)
                     { CurrentTime = StartTime; }
@@ -426,7 +425,7 @@ namespace Mezzanine
                   TargetTrack(TrackToIterate),
                   StartRange(StartOnTrack),
                   EndRange(EndOnTrack)
-                { Update(); }
+                { Update(WhenToStart); }
             /// @brief Create a copy of an TimedTrackIterator.
             /// @param Copy The TimedTrackIterator to copy.
             TimedTrackIterator(const ThisType& Copy)

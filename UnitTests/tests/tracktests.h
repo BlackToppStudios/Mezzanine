@@ -347,6 +347,7 @@ class tracktests : public UnitTestGroup
                 Track< LinearInterpolator<Vector3> > SomeTrack;
                 SomeTrack.push_back(Vector3(0,0,0));
                 SomeTrack.push_back(Vector3(1,10,20));
+                MaxInt StartTime(crossplatform::GetTimeStamp());
                 MaxInt TestDuration(750000);
                 TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,0.25,TestDuration);
 
