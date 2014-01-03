@@ -299,11 +299,10 @@ namespace Mezzanine
             /// @brief Gets whether or not this QuadRenderable is a direct child of it's screen.
             /// @return Returns true if the screen is this QuadRenderable's parent, false otherwise.
             virtual Boolean IsChildOfScreen() const;
-            /// @brief Gets the QuadRenderable that is both an ancestor of this quad, and a direct child of the screen.
-            /// @note Since the screen is pretty much always the root and you can get the screen through other methods,
-            /// that isn't factored in when searching.  If this quad is a direct child of the screen, this will be returned.
-            /// @return Returns a pointer to the QuadRenderable that is both an ancestor of this quad, and a direct child of the screen.
-            virtual QuadRenderable* GetTopMostQuad();
+            /// @brief Gets the height needed for this quadrenderable to be able to completely display text in it's child text layers.
+            /// @return Returns a Real representing the pixel height this quad needs to be to display it's largest batch of text among it's text layers.
+            virtual Real GetIdealHeightForText() const;
+
             /// @brief Updates the dimensions of this QuadRenderable based on the transform of it's parent.
             /// @details This is a convenience function that will call the more descriptive version of "UpdateDimensions" on this objects parent using its
             /// existing dimensions as both parameters, causing all of its children to be updated (including this).  This method can be expensive based on
@@ -744,6 +743,11 @@ namespace Mezzanine
             /// @param Wrap Whether or not you want to return the last QuadRenderable owned by this Quad's parent if this Quad is first.
             /// @return Returns a pointer to the previous QuadRenderable (by sort order).
             QuadRenderable* GetPrevSibling(Boolean Wrap = true);
+            /// @brief Gets the QuadRenderable that is both an ancestor of this quad, and a direct child of the screen.
+            /// @note Since the screen is pretty much always the root and you can get the screen through other methods,
+            /// that isn't factored in when searching.  If this quad is a direct child of the screen, this will be returned.
+            /// @return Returns a pointer to the QuadRenderable that is both an ancestor of this quad, and a direct child of the screen.
+            virtual QuadRenderable* GetTopMostQuad();
 
             ///////////////////////////////////////////////////////////////////////////////
             // VertexCaching Methods

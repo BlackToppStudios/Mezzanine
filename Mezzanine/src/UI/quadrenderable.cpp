@@ -290,10 +290,19 @@ namespace Mezzanine
         Boolean QuadRenderable::IsChildOfScreen() const
             { return (this->ParentScreen == this->ParentQuad); }
 
-        QuadRenderable* QuadRenderable::GetTopMostQuad()
+        Real QuadRenderable::GetIdealHeightForText() const
         {
-            if(this->IsChildOfScreen()) return this;
-            else return (this->ParentQuad ? this->ParentQuad->GetTopMostQuad() : this );
+            Real Ret = 0;
+            for( ConstRenderLayerIterator LayerIt = this->RenderLayers.begin() ; LayerIt != this->RenderLayers.end() ; ++LayerIt )
+            {
+                RenderLayer::RenderLayerType LayerType = (*LayerIt)->GetLayerType();
+                if( LayerType == RenderLayer::RLT_MultiLineText || LayerType == RenderLayer::RLT_SingleLineText ) {
+                    Real LayerHeight = static_cast<TextLayer*>( *LayerIt )->GetTotalHeight();
+                    if( LayerHeight > Ret )
+                        Ret = LayerHeight;
+                }
+            }
+            return Ret;
         }
 
         void QuadRenderable::UpdateDimensions()
@@ -962,6 +971,12 @@ namespace Mezzanine
                 }
             }
             return NULL;
+        }
+
+        QuadRenderable* QuadRenderable::GetTopMostQuad()
+        {
+            if(this->IsChildOfScreen()) return this;
+            else return (this->ParentQuad ? this->ParentQuad->GetTopMostQuad() : this );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
