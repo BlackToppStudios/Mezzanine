@@ -44,6 +44,8 @@
 #include "UI/character.h"
 #include "UI/textlayer.h"
 
+#include "mathtool.h"
+
 namespace Mezzanine
 {
     namespace UI
@@ -127,13 +129,13 @@ namespace Mezzanine
         Real Character::GetCharacterAdvance(Glyph* Prev) const
         {
             if( this->IsCustomSizeSet() ) {
-                return this->CustomSize.X;
+                return MathTools::Floor( this->CustomSize.X );
             }else{
                 Real Desired = this->Layer->GetDesiredLineHeight();
                 if( Desired > 0 ) {
-                    return ( this->GetUnscaledCharacterAdvance(Prev) * ( Desired / this->GetUnscaledLineHeight() ) ) * this->Layer->GetManualTextScale().X;
+                    return MathTools::Floor( ( this->GetUnscaledCharacterAdvance(Prev) * ( Desired / this->GetUnscaledLineHeight() ) ) * this->Layer->GetManualTextScale().X );
                 }else{
-                    return this->GetUnscaledCharacterAdvance(Prev) * this->Layer->GetManualTextScale().X;
+                    return MathTools::Floor( this->GetUnscaledCharacterAdvance(Prev) * this->Layer->GetManualTextScale().X );
                 }
             }
         }
@@ -141,7 +143,7 @@ namespace Mezzanine
         Real Character::GetUnscaledCharacterAdvance(Glyph* Prev) const
         {
             if( this->IsCustomSizeSet() ) {
-                return this->CustomSize.X;
+                return MathTools::Floor( this->CustomSize.X );
             }else if( this->IsGlyph() ) {
                 return this->CharGlyph->GlyphAdvance + ( Prev != NULL ? this->CharGlyph->GetKerning(Prev->GlyphID) : 0 );
             }else if( this->IsSprite() ) {
@@ -154,9 +156,9 @@ namespace Mezzanine
         {
             Real Desired = this->Layer->GetDesiredLineHeight();
             if( Desired > 0 ) {
-                return Desired * this->Layer->GetManualTextScale().X;
+                return MathTools::Floor( Desired * this->Layer->GetManualTextScale().X );
             }
-            return this->GetUnscaledLineHeight() * this->Layer->GetManualTextScale().X;
+            return MathTools::Floor( this->GetUnscaledLineHeight() * this->Layer->GetManualTextScale().X );
         }
 
         Real Character::GetUnscaledLineHeight() const
@@ -175,9 +177,9 @@ namespace Mezzanine
         {
             Real Desired = this->Layer->GetDesiredLineHeight();
             if( Desired > 0 ) {
-                return ( this->GetUnscaledVerticalOffset() * ( Desired / this->GetUnscaledLineHeight() ) ) * this->Layer->GetManualTextScale().X;
+                return MathTools::Floor( ( this->GetUnscaledVerticalOffset() * ( Desired / this->GetUnscaledLineHeight() ) ) * this->Layer->GetManualTextScale().X );
             }
-            return this->GetUnscaledVerticalOffset() * this->Layer->GetManualTextScale().X;
+            return MathTools::Floor( this->GetUnscaledVerticalOffset() * this->Layer->GetManualTextScale().X );
         }
 
         Real Character::GetUnscaledVerticalOffset() const
@@ -331,16 +333,20 @@ namespace Mezzanine
 
         Vector2 Character::GetCharacterSize() const
         {
+            Vector2 Ret;
             if( this->IsCustomSizeSet() ) {
-                return this->CustomSize;
+                Ret = this->CustomSize;
             }else{
                 Real Desired = this->Layer->GetDesiredLineHeight();
                 if( Desired > 0 ) {
-                    return ( this->GetUnscaledCharacterSize() * ( Desired / this->GetUnscaledCharacterSize().Y ) ) * this->Layer->GetManualTextScale().X;
+                    Ret = ( ( this->GetUnscaledCharacterSize() * ( Desired / this->GetUnscaledCharacterSize().Y ) ) * this->Layer->GetManualTextScale().X );
                 }else{
-                    return this->GetUnscaledCharacterSize() * this->Layer->GetManualTextScale().X;
+                    Ret = ( this->GetUnscaledCharacterSize() * this->Layer->GetManualTextScale().X );
                 }
             }
+            MathTools::Floor( Ret.X );
+            MathTools::Floor( Ret.Y );
+            return Ret;
         }
 
         Vector2 Character::GetUnscaledCharacterSize() const
