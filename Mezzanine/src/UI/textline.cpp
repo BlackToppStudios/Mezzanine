@@ -228,16 +228,15 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Character Management
 
-        bool TextLine::AppendCharacter(Character* ToAdd)
+        Boolean TextLine::AppendCharacter(Character* ToAdd)
         {
             CharacterIterator Last = this->GetLastCharacter();
-            Real CharAdvance = ToAdd->GetCharacterAdvance( Last != this->Characters.end() ? (*Last)->GetCharGlyph() : NULL ) * this->Parent->GetTextScale().X;
+            Real CharAdvance = ToAdd->GetCharacterAdvance( Last != this->Characters.end() ? (*Last)->GetCharGlyph() : NULL );
             Real AddedLength = this->CurrLength + CharAdvance;
 
-            if( AddedLength <= this->GetMaxWidth() )
-            {
+            if( AddedLength <= this->GetMaxWidth() ) {
                 this->CurrLength = AddedLength;
-                this->TallestHeight = std::max(this->TallestHeight,ToAdd->GetLineHeight() * this->Parent->GetTextScale().Y);
+                this->TallestHeight = std::max(this->TallestHeight,ToAdd->GetLineHeight());
                 this->AppendToBack(ToAdd);
                 this->RecalculateOffsets();
                 return true;
@@ -246,10 +245,10 @@ namespace Mezzanine
             return false;
         }
 
-        bool TextLine::AppendCharacters(TextLine::CharacterContainer& ToAdd)
+        Boolean TextLine::AppendCharacters(TextLine::CharacterContainer& ToAdd)
             { return this->AppendCharacters(ToAdd.begin(),ToAdd.end()); }
 
-        bool TextLine::AppendCharacters(TextLine::CharacterIteratorPair Pair)
+        Boolean TextLine::AppendCharacters(TextLine::CharacterIteratorPair Pair)
             { return this->AppendCharacters(Pair.first,Pair.second); }
 
         TextLine::CharacterIterator TextLine::AppendFittingCharacters(TextLine::CharacterContainer& ToAdd)
@@ -334,7 +333,7 @@ namespace Mezzanine
 
         Character* LeftToRightTextLine::GetSecondFromLastCharacter() const
         {
-            if( this->Characters.size() > 1 ) return *(++this->Characters.rbegin());
+            if( this->Characters.size() > 1 ) return *(++(this->Characters.rbegin()));
             else return NULL;
         }
 
@@ -345,7 +344,7 @@ namespace Mezzanine
             for( CharacterIterator CharIt = this->Characters.begin() ; CharIt != this->Characters.end() ; ++CharIt )
             {
                 (*CharIt)->SetLengthOffset(CursorPosition);
-                CursorPosition += (*CharIt)->GetCharacterAdvance( Previous != NULL ? Previous->GetCharGlyph() : NULL ) * Parent->GetTextScale().X;
+                CursorPosition += (*CharIt)->GetCharacterAdvance( Previous != NULL ? Previous->GetCharGlyph() : NULL );
                 Previous = (*CharIt);
             }
             this->Parent->_MarkDirty();
@@ -372,21 +371,20 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Character Management
 
-        bool LeftToRightTextLine::AppendCharacters(TextLine::CharacterIterator First, TextLine::CharacterIterator Last)
+        Boolean LeftToRightTextLine::AppendCharacters(TextLine::CharacterIterator First, TextLine::CharacterIterator Last)
         {
             if( First == Last )
                 return false;
 
             // Set up data to be used
             Real Tallest = 0, SequenceLength = 0;
-            Vector2 CharScaling = this->Parent->GetTextScale();
             Character* Previous = ( this->GetLastCharacter() != this->Characters.end() ? *(this->GetLastCharacter()) : NULL  );
 
             // Collect the data we need from the provided characters
             for( CharacterIterator CharIt = First ; CharIt != Last ; ++CharIt )
             {
-                SequenceLength += ((*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph()) * CharScaling.X);
-                Tallest = std::max(Tallest,(*CharIt)->GetLineHeight() * CharScaling.Y);
+                SequenceLength += (*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph());
+                Tallest = std::max(Tallest,(*CharIt)->GetLineHeight());
             }
 
             Real AddedLength = SequenceLength + this->CurrLength;
@@ -409,7 +407,6 @@ namespace Mezzanine
 
             // Set up data to be used
             Real MaxWidth = GetMaxWidth();
-            Vector2 CharScaling = this->Parent->GetTextScale();
             Character* Previous = ( this->GetLastCharacter() != this->Characters.end() ? *(this->GetLastCharacter()) : NULL  );
 
             // Setup our iterator that will be used with our return and append operations
@@ -418,7 +415,7 @@ namespace Mezzanine
             // Loop through our range
             for(  ; CharIt != Last ; ++CharIt )
             {
-                Real CharAdvance = ((*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph()) * CharScaling.X);
+                Real CharAdvance = (*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph());
                 Real AddedLength = CurrLength + CharAdvance;
                 if( AddedLength <= MaxWidth )
                 {
@@ -491,7 +488,7 @@ namespace Mezzanine
             Character* Previous = NULL;
             for( ReverseCharacterIterator CharIt = this->Characters.rbegin() ; CharIt != this->Characters.rend() ; ++CharIt )
             {
-                CursorPosition -= (*CharIt)->GetCharacterAdvance( Previous != NULL ? Previous->GetCharGlyph() : NULL ) * this->Parent->GetTextScale().X;
+                CursorPosition -= (*CharIt)->GetCharacterAdvance( Previous != NULL ? Previous->GetCharGlyph() : NULL );
                 (*CharIt)->SetLengthOffset(CursorPosition);
                 Previous = (*CharIt);
             }
@@ -519,14 +516,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Character Management
 
-        bool RightToLeftTextLine::AppendCharacters(TextLine::CharacterIterator First, TextLine::CharacterIterator Last)
+        Boolean RightToLeftTextLine::AppendCharacters(TextLine::CharacterIterator First, TextLine::CharacterIterator Last)
         {
             if( First == Last )
                 return false;
 
             // Set up data to be used
             Real Tallest = 0, SequenceLength = 0;
-            Vector2 CharScaling = this->Parent->GetTextScale();
             Character* Previous = ( this->GetLastCharacter() != this->Characters.end() ? *(this->GetLastCharacter()) : NULL  );
 
             // Setup our iterators for iteration (format provided is for insertion)
@@ -538,8 +534,8 @@ namespace Mezzanine
             // Collect the data we need from the provided characters
             for( CharacterIterator CharIt = LastCopy ; CharIt != FirstCopy ; --CharIt )
             {
-                SequenceLength += ((*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph()) * CharScaling.X);
-                Tallest = std::max(Tallest,(*CharIt)->GetLineHeight() * CharScaling.Y);
+                SequenceLength += (*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph());
+                Tallest = std::max(Tallest,(*CharIt)->GetLineHeight());
             }
 
             Real AddedLength = SequenceLength + this->CurrLength;
@@ -562,7 +558,6 @@ namespace Mezzanine
 
             // Set up data to be used
             Real MaxWidth = GetMaxWidth();
-            Vector2 CharScaling = this->Parent->GetTextScale();
             Character* Previous = ( this->GetLastCharacter() != this->Characters.end() ? *(this->GetLastCharacter()) : NULL  );
 
             // Setup our iterators for iteration (format provided is for insertion)
@@ -577,7 +572,7 @@ namespace Mezzanine
             // Loop through our range
             for(  ; CharIt != FirstCopy ; --CharIt )
             {
-                Real CharAdvance = ((*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph()) * CharScaling.X);
+                Real CharAdvance = (*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph());
                 Real AddedLength = CurrLength + CharAdvance;
                 if( AddedLength <= MaxWidth )
                 {

@@ -60,16 +60,20 @@ namespace Mezzanine
     {
         TextLayer::TextLayer(QuadRenderable* ParentRenderable) :
             RenderLayer(ParentRenderable),
+            ManualCharScaling(1.0,1.0),
 
-            CharScaling(1.0,1.0),
-            HighlightStart(-1),
-            HighlightEnd(-1),
-            HorizontalOrder(UI::TO_Left_To_Right), // Default to english
-            VerticalAlign(UI::LA_TopLeft),
-            ScalingChanged(false),
             MUParser(NULL),
             Cursor(NULL),
-            TextTokens(NULL)
+            TextTokens(NULL),
+
+            HighlightStart(-1),
+            HighlightEnd(-1),
+            AutoCharScaling(0.0),
+
+            AutoCharScalingMode(TextLayer::SM_NoAutoScaling),
+            HorizontalOrder(UI::TO_Left_To_Right), // Default to english
+            VerticalAlign(UI::LA_TopLeft),
+            ScalingChanged(false)
         {
             // Set our colour defaults
             this->DefaultCharTraits.CharColour = ColourValue::White();
@@ -77,9 +81,6 @@ namespace Mezzanine
             this->InactiveHLColour = ColourValue::Gray();
             this->ActiveHLColour.AlphaChannel = 0.5;
             this->InactiveHLColour.AlphaChannel = 0.5;
-
-            // Set relative height default
-            this->RelLineHeight = 0.0;
 
             // Create our one free line for text
             this->CreateTextLine();
@@ -92,16 +93,20 @@ namespace Mezzanine
 
         TextLayer::TextLayer(const String& FontName, QuadRenderable* ParentRenderable) :
             RenderLayer(ParentRenderable),
+            ManualCharScaling(1.0,1.0),
 
-            CharScaling(1.0,1.0),
-            HighlightStart(-1),
-            HighlightEnd(-1),
-            HorizontalOrder(UI::TO_Left_To_Right), // Default to english
-            VerticalAlign(UI::LA_TopLeft),
-            ScalingChanged(false),
             MUParser(NULL),
             Cursor(NULL),
-            TextTokens(NULL)
+            TextTokens(NULL),
+
+            HighlightStart(-1),
+            HighlightEnd(-1),
+            AutoCharScaling(0.0),
+
+            AutoCharScalingMode(TextLayer::SM_NoAutoScaling),
+            HorizontalOrder(UI::TO_Left_To_Right), // Default to english
+            VerticalAlign(UI::LA_TopLeft),
+            ScalingChanged(false)
         {
             // Set our colour defaults
             this->DefaultCharTraits.CharColour = ColourValue::White();
@@ -109,9 +114,6 @@ namespace Mezzanine
             this->InactiveHLColour = ColourValue::Gray();
             this->ActiveHLColour.AlphaChannel = 0.5;
             this->InactiveHLColour.AlphaChannel = 0.5;
-
-            // Set relative height default
-            this->RelLineHeight = 0.0;
 
             // Set our font
             this->DefaultCharTraits.CharFont = Parent->GetScreen()->GetFont(FontName,PriAtlas);
@@ -125,16 +127,20 @@ namespace Mezzanine
 
         TextLayer::TextLayer(const Real& LineHeight, QuadRenderable* ParentRenderable) :
             RenderLayer(ParentRenderable),
+            ManualCharScaling(1.0,1.0),
 
-            CharScaling(1.0,1.0),
-            HighlightStart(-1),
-            HighlightEnd(-1),
-            HorizontalOrder(UI::TO_Left_To_Right), // Default to english
-            VerticalAlign(UI::LA_TopLeft),
-            ScalingChanged(false),
             MUParser(NULL),
             Cursor(NULL),
-            TextTokens(NULL)
+            TextTokens(NULL),
+
+            HighlightStart(-1),
+            HighlightEnd(-1),
+            AutoCharScaling(LineHeight),
+
+            AutoCharScalingMode(TextLayer::SM_ScreenRelative),
+            HorizontalOrder(UI::TO_Left_To_Right), // Default to english
+            VerticalAlign(UI::LA_TopLeft),
+            ScalingChanged(false)
         {
             // Set our colour defaults
             this->DefaultCharTraits.CharColour = ColourValue::White();
@@ -144,10 +150,9 @@ namespace Mezzanine
             this->InactiveHLColour.AlphaChannel = 0.5;
 
             // Set our font
-            this->RelLineHeight = LineHeight;
-            UIManager::FontResult Result = UIManager::GetSingletonPtr()->SuggestGlyphIndex(static_cast<UInt32>(LineHeight * Parent->GetActualSize().Y),PriAtlas);
+            UIManager::FontResult Result = UIManager::GetSingletonPtr()->SuggestGlyphIndex(static_cast<UInt32>(this->AutoCharScaling * Parent->GetActualSize().Y),PriAtlas);
             this->DefaultCharTraits.CharFont = this->Parent->GetScreen()->GetFont(Result.first,PriAtlas);
-            this->SetTextScale(Vector2(Result.second,Result.second));
+            //this->SetTextScale(Vector2(Result.second,Result.second));
 
             // Create our one free line for text
             this->CreateTextLine();
@@ -212,8 +217,8 @@ namespace Mezzanine
                         continue;
 
                     String CharAtlas = CurrChar->GetAtlasName();
-                    Real VertOffset = CurrChar->GetVerticalOffset() * this->CharScaling.Y;
-                    Vector2 CharSize = CurrChar->GetCharacterSize() * this->CharScaling;
+                    Real VertOffset = CurrChar->GetVerticalOffset();
+                    Vector2 CharSize = CurrChar->GetCharacterSize();
                     ColourValue CharColour = CurrChar->GetCharacterColour();
                     CursorX = ActDims.Position.X + CurrChar->GetLengthOffset();
 
@@ -278,16 +283,6 @@ namespace Mezzanine
             }
         }
 
-        Real TextLayer::GetTotalHeight() const
-        {
-            Real Ret = 0;
-            for( ConstTextLineIterator TextIt = TextLines.begin() ; TextIt != TextLines.end() ; ++TextIt )
-            {
-                Ret += (*TextIt)->GetLineHeight();
-            }
-            return Ret;
-        }
-
         void TextLayer::RecalculateOffsets()
         {
             // Get the actual starting position on the Y axis
@@ -316,8 +311,7 @@ namespace Mezzanine
 
         bool TextLayer::SetMarkupParser(MarkupParser* Parser)
         {
-            if( Parser != NULL )
-            {
+            if( Parser != NULL ) {
                 this->MUParser = Parser;
                 return true;
             }else{
@@ -341,8 +335,30 @@ namespace Mezzanine
 
         void TextLayer::SetScale(const Vector2& Scaling)
         {
-            RenderLayer::SetScale(Scaling);
+            this->RenderLayer::SetScale(Scaling);
             this->ScalingChanged = true;
+        }
+
+        Real TextLayer::GetTotalHeight() const
+        {
+            Real Ret = 0;
+            for( ConstTextLineIterator TextIt = this->TextLines.begin() ; TextIt != this->TextLines.end() ; ++TextIt )
+            {
+                Ret += (*TextIt)->GetLineHeight();
+            }
+            return Ret;
+        }
+
+        Real TextLayer::GetDesiredLineHeight() const
+        {
+            switch( this->AutoCharScalingMode )
+            {
+                case TextLayer::SM_ScreenRelative:   return ( this->Parent->GetScreen()->GetActualSize().Y * this->AutoCharScaling );   break;
+                case TextLayer::SM_ParentRelative:   return ( this->Parent->GetActualSize().Y * this->AutoCharScaling );                break;
+                case TextLayer::SM_LayerRelative:    return ( this->GetAreaRect().Size.Y * this->AutoCharScaling );                     break;
+                case TextLayer::SM_NoAutoScaling:
+                default:                             return 0;                                                                          break;
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -394,21 +410,9 @@ namespace Mezzanine
             return this->TextTokens->GetRawString();
         }
 
-        void TextLayer::SetTextScale(const Vector2& Scale)
-        {
-            this->CharScaling = Scale;
-            this->_MarkDirty();
-        }
-
-        const Vector2& TextLayer::GetTextScale() const
-        {
-            return CharScaling;
-        }
-
         void TextLayer::SetTextColour(const ColourValue& Colour)
         {
-            if( this->DefaultCharTraits.CharColour != Colour )
-            {
+            if( this->DefaultCharTraits.CharColour != Colour ) {
                 this->DefaultCharTraits.CharColour = Colour;
                 this->_MarkDirty();
             }
@@ -419,14 +423,35 @@ namespace Mezzanine
             return this->DefaultCharTraits.CharColour;
         }
 
-        void TextLayer::SetAutoScaleText(bool Enable)
+        void TextLayer::SetManualTextScale(const Vector2& Scale)
         {
-            /// @todo Implement This.
+            this->ManualCharScaling = Scale;
+            this->ScalingChanged = true;
+            this->_MarkDirty();
         }
 
-        bool TextLayer::GetAutoScaleText() const
+        const Vector2& TextLayer::GetManualTextScale() const
         {
-            /// @todo Implement This.
+            return this->ManualCharScaling;
+        }
+
+        void TextLayer::SetAutoTextScale(const TextLayer::ScalingMode Mode, const Real Scalar)
+        {
+            if( this->AutoCharScalingMode != Mode || this->AutoCharScaling != Scalar ) {
+                this->AutoCharScalingMode = Mode;
+                this->AutoCharScaling = Scalar;
+                this->ScalingChanged = true;
+            }
+        }
+
+        TextLayer::ScalingMode TextLayer::GetAutoTextScalingMode() const
+        {
+            return this->AutoCharScalingMode;
+        }
+
+        Real TextLayer::GetAutoTextScalar() const
+        {
+            return this->AutoCharScaling;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -434,8 +459,7 @@ namespace Mezzanine
 
         void TextLayer::SetDefaultFont(FontData* NewFont)
         {
-            if(NewFont != this->DefaultCharTraits.CharFont && NewFont)
-            {
+            if(NewFont != this->DefaultCharTraits.CharFont && NewFont) {
                 this->DefaultCharTraits.CharFont = NewFont;
                 this->_MarkDirty();
             }else{
@@ -465,8 +489,7 @@ namespace Mezzanine
 
         void TextLayer::SetActiveHighlightBackgroundColour(const ColourValue& Colour)
         {
-            if( this->ActiveHLColour != Colour )
-            {
+            if( this->ActiveHLColour != Colour ) {
                 this->ActiveHLColour = Colour;
                 this->_MarkDirty();
             }
@@ -479,8 +502,7 @@ namespace Mezzanine
 
         void TextLayer::SetInactiveHighlightBackgroundColour(const ColourValue& Colour)
         {
-            if( this->InactiveHLColour != Colour )
-            {
+            if( this->InactiveHLColour != Colour ) {
                 this->InactiveHLColour = Colour;
                 this->_MarkDirty();
             }
@@ -501,8 +523,7 @@ namespace Mezzanine
         void TextLayer::Highlight(const Integer Index)
         {
             this->ClearHighlights();
-            if( Index < this->Characters.size() )
-            {
+            if( Index < this->Characters.size() ) {
                 CharacterIterator ToHighlight = this->GetCharacterIteratorAtIndex(Index);
                 (*ToHighlight)->SetHighlighted(true);
 
@@ -685,24 +706,16 @@ namespace Mezzanine
         }
 
         TextLayer::TextLineIterator TextLayer::BeginTextLine()
-        {
-            return this->TextLines.begin();
-        }
+            { return this->TextLines.begin(); }
 
         TextLayer::TextLineIterator TextLayer::EndTextLine()
-        {
-            return this->TextLines.end();
-        }
+            { return this->TextLines.end(); }
 
         TextLayer::ConstTextLineIterator TextLayer::BeginTextLine() const
-        {
-            return this->TextLines.begin();
-        }
+            { return this->TextLines.begin(); }
 
         TextLayer::ConstTextLineIterator TextLayer::EndTextLine() const
-        {
-            return this->TextLines.end();
-        }
+            { return this->TextLines.end(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Character Methods
@@ -750,8 +763,7 @@ namespace Mezzanine
 
         TextLayer::CharacterIterator TextLayer::GetCharacterIteratorAtIndex(const Integer Index)
         {
-            if( 0 > Index || Index >= this->Characters.size() )
-            {
+            if( 0 > Index || Index >= this->Characters.size() ) {
                 return --(this->Characters.end());
             }else{
                 UInt32 Count = Index;
@@ -767,8 +779,7 @@ namespace Mezzanine
 
         TextLayer::ConstCharacterIterator TextLayer::GetCharacterIteratorAtIndex(const Integer Index) const
         {
-            if( 0 > Index || Index >= this->Characters.size() )
-            {
+            if( 0 > Index || Index >= this->Characters.size() ) {
                 return --(this->Characters.end());
             }else{
                 UInt32 Count = Index;
@@ -855,24 +866,16 @@ namespace Mezzanine
         }
 
         TextLayer::CharacterIterator TextLayer::BeginCharacter()
-        {
-            return this->Characters.begin();
-        }
+            { return this->Characters.begin(); }
 
         TextLayer::CharacterIterator TextLayer::EndCharacter()
-        {
-            return this->Characters.end();
-        }
+            { return this->Characters.end(); }
 
         TextLayer::ConstCharacterIterator TextLayer::BeginCharacter() const
-        {
-            return this->Characters.begin();
-        }
+            { return this->Characters.begin(); }
 
         TextLayer::ConstCharacterIterator TextLayer::EndCharacter() const
-        {
-            return this->Characters.end();
-        }
+            { return this->Characters.end(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
@@ -894,7 +897,8 @@ namespace Mezzanine
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
                 PropertiesNode.AppendAttribute("HighlightStart").SetValue(this->HighlightStart) &&
                 PropertiesNode.AppendAttribute("HighlightEnd").SetValue(this->HighlightEnd) &&
-                PropertiesNode.AppendAttribute("RelLineHeight").SetValue(this->RelLineHeight) &&
+                PropertiesNode.AppendAttribute("AutoCharScaling").SetValue(this->AutoCharScaling) &&
+                PropertiesNode.AppendAttribute("AutoCharScalingMode").SetValue(this->AutoCharScalingMode) &&
                 PropertiesNode.AppendAttribute("HorizontalOrder").SetValue(this->HorizontalOrder) &&
                 PropertiesNode.AppendAttribute("VerticalAlign").SetValue(this->VerticalAlign) &&
                 PropertiesNode.AppendAttribute("ScalingChanged").SetValue(this->ScalingChanged) &&
@@ -907,8 +911,8 @@ namespace Mezzanine
                 this->ActiveHLColour.ProtoSerialize( ActiveHLColourNode );
                 XML::Node InactiveHLColourNode = PropertiesNode.AppendChild("InactiveHLColour");
                 this->InactiveHLColour.ProtoSerialize( InactiveHLColourNode );
-                XML::Node CharScalingNode = PropertiesNode.AppendChild("CharScaling");
-                this->CharScaling.ProtoSerialize( CharScalingNode );
+                XML::Node CharScalingNode = PropertiesNode.AppendChild("ManualCharScaling");
+                this->ManualCharScaling.ProtoSerialize( CharScalingNode );
 
                 return;
             }else{
@@ -970,9 +974,13 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->HighlightEnd = CurrAttrib.AsInt();
 
-                    CurrAttrib = PropertiesNode.GetAttribute("RelLineHeight");
+                    CurrAttrib = PropertiesNode.GetAttribute("AutoCharScaling");
                     if( !CurrAttrib.Empty() )
-                        this->RelLineHeight = CurrAttrib.AsReal();
+                        this->AutoCharScaling = CurrAttrib.AsReal();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AutoCharScalingMode");
+                    if( !CurrAttrib.Empty() )
+                        this->AutoCharScalingMode = static_cast<TextLayer::ScalingMode>( CurrAttrib.AsWhole() );
 
                     CurrAttrib = PropertiesNode.GetAttribute("HorizontalOrder");
                     if( !CurrAttrib.Empty() )
@@ -998,9 +1006,9 @@ namespace Mezzanine
                     if( !InactiveHLColourNode.Empty() )
                         this->InactiveHLColour.ProtoDeSerialize(InactiveHLColourNode);
 
-                    XML::Node CharScalingNode = PropertiesNode.GetChild("CharScaling").GetFirstChild();
+                    XML::Node CharScalingNode = PropertiesNode.GetChild("ManualCharScaling").GetFirstChild();
                     if( !CharScalingNode.Empty() )
-                        this->CharScaling.ProtoDeSerialize(CharScalingNode);
+                        this->ManualCharScaling.ProtoDeSerialize(CharScalingNode);
                 }else{
                     MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (TextLayer::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
@@ -1039,14 +1047,10 @@ namespace Mezzanine
         }
 
         String TextLayer::GetDerivedSerializableName() const
-        {
-            return TextLayer::GetSerializableName();
-        }
+            { return TextLayer::GetSerializableName(); }
 
         String TextLayer::GetSerializableName()
-        {
-            return "TextLayer";
-        }
+            { return "TextLayer"; }
     }//UI
 }//Mezzanine
 

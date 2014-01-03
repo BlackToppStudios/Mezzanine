@@ -126,24 +126,61 @@ namespace Mezzanine
 
         Real Character::GetCharacterAdvance(Glyph* Prev) const
         {
-            if( this->IsGlyph() ) {
-                if( this->IsCustomSizeSet() ) return this->CustomSize.X;
-                else return this->CharGlyph->GlyphAdvance + ( Prev != NULL ? this->CharGlyph->GetKerning(Prev->GlyphID) : 0 );
-            }else if( this->IsSprite() ) {
-                return this->GetCharacterSize().X;
+            if( this->IsCustomSizeSet() ) {
+                return this->CustomSize.X;
             }else{
-                return 0;
+                Real Desired = this->Layer->GetDesiredLineHeight();
+                if( Desired > 0 ) {
+                    return ( this->GetUnscaledCharacterAdvance(Prev) * ( Desired / this->GetUnscaledLineHeight() ) ) * this->Layer->GetManualTextScale().X;
+                }else{
+                    return this->GetUnscaledCharacterAdvance(Prev) * this->Layer->GetManualTextScale().X;
+                }
             }
+        }
+
+        Real Character::GetUnscaledCharacterAdvance(Glyph* Prev) const
+        {
+            if( this->IsCustomSizeSet() ) {
+                return this->CustomSize.X;
+            }else if( this->IsGlyph() ) {
+                return this->CharGlyph->GlyphAdvance + ( Prev != NULL ? this->CharGlyph->GetKerning(Prev->GlyphID) : 0 );
+            }else if( this->IsSprite() ) {
+                return this->CharSprite->GetWidth();
+            }
+            return 0;
         }
 
         Real Character::GetLineHeight() const
         {
-            if( this->IsGlyph() ) return this->CharGlyph->Font->GetLineHeight();
-            else if( this->IsSprite() ) return this->GetCharacterSize().Y;
-            else return 0;
+            Real Desired = this->Layer->GetDesiredLineHeight();
+            if( Desired > 0 ) {
+                return Desired * this->Layer->GetManualTextScale().X;
+            }
+            return this->GetUnscaledLineHeight() * this->Layer->GetManualTextScale().X;
+        }
+
+        Real Character::GetUnscaledLineHeight() const
+        {
+            if( this->IsCustomSizeSet() ) {
+                return this->CustomSize.Y;
+            }else if( this->IsGlyph() ) {
+                return this->CharGlyph->Font->GetLineHeight();
+            }else if( this->IsSprite() ) {
+                return this->CharSprite->GetHeight();
+            }
+            return 0;
         }
 
         Real Character::GetVerticalOffset() const
+        {
+            Real Desired = this->Layer->GetDesiredLineHeight();
+            if( Desired > 0 ) {
+                return ( this->GetUnscaledVerticalOffset() * ( Desired / this->GetUnscaledLineHeight() ) ) * this->Layer->GetManualTextScale().X;
+            }
+            return this->GetUnscaledVerticalOffset() * this->Layer->GetManualTextScale().X;
+        }
+
+        Real Character::GetUnscaledVerticalOffset() const
         {
             // If this is a glyph, combine the manual vertical offset for low hanging letters as well as the difference between the baseline and lineheight.
             // In almost all cases the combined offset should be a positive number, elevating the normal letters and thus making everything more centered.
@@ -195,8 +232,7 @@ namespace Mezzanine
 
         void Character::SetCharacterColour(const ColourValue& Colour)
         {
-            if( this->CharTraits.CharColour != Colour )
-            {
+            if( this->CharTraits.CharColour != Colour ) {
                 this->CharTraits.CharColour = Colour;
 
                 if( !Highlighted )
@@ -295,8 +331,29 @@ namespace Mezzanine
 
         Vector2 Character::GetCharacterSize() const
         {
-            if( this->IsCustomSizeSet() ) return CustomSize;
-            else return ( this->CharGlyph ? this->CharGlyph->GetSize() : this->CharSprite->GetSize() );
+            if( this->IsCustomSizeSet() ) {
+                return this->CustomSize;
+            }else{
+                Real Desired = this->Layer->GetDesiredLineHeight();
+                if( Desired > 0 ) {
+                    return ( this->GetUnscaledCharacterSize() * ( Desired / this->GetUnscaledCharacterSize().Y ) ) * this->Layer->GetManualTextScale().X;
+                }else{
+                    return this->GetUnscaledCharacterSize() * this->Layer->GetManualTextScale().X;
+                }
+            }
+        }
+
+        Vector2 Character::GetUnscaledCharacterSize() const
+        {
+            if( this->IsCustomSizeSet() ) {
+                return this->CustomSize;
+            }else if( this->IsGlyph() ) {
+                return this->CharGlyph->GetSize();
+            }else if( this->IsSprite() ) {
+                return this->CharSprite->GetSize();
+            }else{
+                return Vector2();
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////

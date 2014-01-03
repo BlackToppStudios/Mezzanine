@@ -75,11 +75,11 @@ namespace Mezzanine
             typedef std::pair<Character*,Vector2>                   OffsetResultPair;
         protected:
             /// @internal
+            /// @brief Vector containing all the characters belonging to this TextLine.
+            CharacterContainer Characters;
+            /// @internal
             /// @brief The parent layer this text line belongs to.
             TextLayer* Parent;
-            /// @internal
-            /// @brief The alignment of the text on the X axis in this line.
-            UI::LinearAlignment Alignment;
             /// @internal
             /// @brief The current length of this TextLine.
             Real CurrLength;
@@ -90,8 +90,8 @@ namespace Mezzanine
             /// @brief The offset in pixels from the parent layer on the Y axis.
             Real PositionOffset;
             /// @internal
-            /// @brief Vector containing all the characters belonging to this TextLine.
-            CharacterContainer Characters;
+            /// @brief The alignment of the text on the X axis in this line.
+            UI::LinearAlignment Alignment;
 
             /// @internal
             /// @brief Gets the maximum width this text line can be.
@@ -181,20 +181,20 @@ namespace Mezzanine
             /// @brief Adds a Character to the end of this TextLine.
             /// @param ToAdd The Character to be added.
             /// @return Returns true if the character was successfully added, false otherwise.
-            bool AppendCharacter(Character* ToAdd);
+            Boolean AppendCharacter(Character* ToAdd);
             /// @brief Adds a series of Characters to the end of this TextLine.
             /// @param ToAdd A container storing all Characters to attempt to add.
             /// @return Returns true if all characters were successfully added, false otherwise.
-            bool AppendCharacters(CharacterContainer& ToAdd);
+            Boolean AppendCharacters(CharacterContainer& ToAdd);
             /// @brief Adds a series of Characters to the end of this TextLine.
             /// @param Pair An std::pair containing iterators to both the first and last Characters in a sequence to attempt to append.
             /// @return Returns true if all characters were successfully added, false otherwise.
-            bool AppendCharacters(CharacterIteratorPair Pair);
+            Boolean AppendCharacters(CharacterIteratorPair Pair);
             /// @brief Adds a series of Characters to the end of this TextLine.
             /// @param First Iterator to the first Character in the series to be added.
             /// @param Last Iterator to one passed the last Character in the series to be added.
             /// @return Returns true if all characters were successfully added, false otherwise.
-            virtual bool AppendCharacters(CharacterIterator First, CharacterIterator Last) = 0;
+            virtual Boolean AppendCharacters(CharacterIterator First, CharacterIterator Last) = 0;
             /// @brief Adds as many Characters in a range as will fit to this TextLine.
             /// @param ToAdd A container storing all Characters to attempt to add.
             /// @return Returns a CharacterIterator to the first character that was not added in the range.  This can be the left-most non-added Character when added to
@@ -293,7 +293,7 @@ namespace Mezzanine
             // Character Management
 
             /// @copydoc TextLine::AppendCharacters(CharacterIterator First, CharacterIterator Last)
-            bool AppendCharacters(CharacterIterator First, CharacterIterator Last);
+            Boolean AppendCharacters(CharacterIterator First, CharacterIterator Last);
             /// @copydoc TextLine::AppendCharactersAppendFittingCharacters(CharacterIterator First, CharacterIterator Last)
             CharacterIterator AppendFittingCharacters(CharacterIterator First, CharacterIterator Last);
 
@@ -341,7 +341,7 @@ namespace Mezzanine
             // Character Management
 
             /// @copydoc TextLine::AppendCharacters(CharacterIterator First, CharacterIterator Last)
-            bool AppendCharacters(CharacterIterator First, CharacterIterator Last);
+            Boolean AppendCharacters(CharacterIterator First, CharacterIterator Last);
             /// @copydoc TextLine::AppendCharactersAppendFittingCharacters(CharacterIterator First, CharacterIterator Last)
             CharacterIterator AppendFittingCharacters(CharacterIterator First, CharacterIterator Last);
 
