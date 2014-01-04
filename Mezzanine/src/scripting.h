@@ -67,7 +67,20 @@ namespace Mezzanine
 }
 
 /// @page ScriptingManual
-/// The scripting system is included the Mezzanine::Scripting namespace.
+/// The scripting system is included the Mezzanine::Scripting namespace. It is primarily
+/// composed of four interface classes, four abstract classes. An implementation of a
+/// scripting system should implement these four classes in a sub-namespacef
+///     - Mezzanine::Scripting::iScript
+///     - Mezzanine::Scripting::iScriptArgument
+///     - Mezzanine::Scripting::iScriptingManager
+///     - Mezzanine::Scripting::iScriptWorkUnit
+///
+/// Many scripting languages suitable for being embedded in games have a number of
+/// similar traits. All have some kind of runtime that mustbe initialized, this
+/// runtime accepts strings of script source and performs the steps the source
+/// desribe. Some keep internal track of the source other expect the the caller to
+/// do so. Most allow passing arguments into scripts and accepting return values.
+/// Some allow the script to be compiled to a byte and others do not. A scripting manager is
 /// @n @n
 /// Whether or
 /// not this is updated can be controlled by the Mezz_SWIG CMake Flag. When this flag
