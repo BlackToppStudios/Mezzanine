@@ -159,14 +159,14 @@ namespace Mezzanine
 
             /// @brief Creates a new HorizontalScrollbar.
             /// @param RendName The name to be given to the created HorizontalScrollbar.
-            /// @param Style An enum value representing how you want your scrollbar constructed.  See @ref UI::ScrollbarStyle enum for more info.
+            /// @param Style An enum value representing how to position the button layout of the scrollbar.  See @ref UI::ScrollbarStyle enum for more info.
             /// @param Parent The screen the created HorizontalScrollbar will belong to.
             /// @return Returns a pointer to the created HorizontalScrollbar.
             virtual HorizontalScrollbar* CreateHorizontalScrollbar(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent);
             /// @brief Creates a new HorizontalScrollbar.
             /// @param RendName The name to be given to the created HorizontalScrollbar.
             /// @param RendRect The dimensions that will be assigned to the created HorizontalScrollbar.
-            /// @param Style An enum value representing how you want your scrollbar constructed.  See @ref UI::ScrollbarStyle enum for more info.
+            /// @param Style An enum value representing how to position the button layout of the scrollbar.  See @ref UI::ScrollbarStyle enum for more info.
             /// @param Parent The screen the created HorizontalScrollbar will belong to.
             /// @return Returns a pointer to the created HorizontalScrollbar.
             virtual HorizontalScrollbar* CreateHorizontalScrollbar(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent);
