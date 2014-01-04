@@ -55,11 +55,31 @@ namespace Mezzanine
     /// In general each languages Interpretter/Engine/Compiler/VM is locating in its own
     /// subnamespace in the associated manager. Here is a list of Languages compiled in
     /// this build.
+    /// @n @n
+    ///    - @ref ScriptingManual
+    ///
     LINKLUAMANUAL
+
+
 
     namespace Scripting
         {}
 }
+
+/// @page ScriptingManual
+/// The scripting system is included the Mezzanine::Scripting namespace.
+/// @n @n
+/// Whether or
+/// not this is updated can be controlled by the Mezz_SWIG CMake Flag. When this flag
+/// is enabled a SWIG_Mezzanine build target is added to the project. To satisfy
+/// build systems this target/project compiles src/blank.cpp as the only files.
+/// During the build steps in that target it attempt to Swig from the command line.
+/// @n @n
+/// This can be run manually by invoking that target specifically. For example:
+/// @code
+/// $make SWIG_Mezzanine
+/// ninja SWIG_Mezzanine
+/// @endcode
 
 #include "Scripting/script.h"
 #include "Scripting/scriptargument.h"
@@ -74,11 +94,6 @@ namespace Mezzanine
     #include "Scripting/Lua51/lua51scriptargument.h"
     #include "Scripting/Lua51/lua51scriptingengine.h"
     #include "Scripting/Lua51/lua51workunit.h"
-#endif
-
-
-#ifdef MEZZTCL      // Just an example for future logic, not actually implemented
-    #include "Scripting/Tcl/scriptingtcl.h"
 #endif
 
 
