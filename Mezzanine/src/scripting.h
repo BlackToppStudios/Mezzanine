@@ -55,11 +55,44 @@ namespace Mezzanine
     /// In general each languages Interpretter/Engine/Compiler/VM is locating in its own
     /// subnamespace in the associated manager. Here is a list of Languages compiled in
     /// this build.
+    /// @n @n
+    ///    - @ref ScriptingManual
+    ///
     LINKLUAMANUAL
+
+
 
     namespace Scripting
         {}
 }
+
+/// @page ScriptingManual
+/// The scripting system is included the Mezzanine::Scripting namespace. It is primarily
+/// composed of four interface classes, four abstract classes. An implementation of a
+/// scripting system should implement these four classes in a sub-namespacef
+///     - Mezzanine::Scripting::iScript
+///     - Mezzanine::Scripting::iScriptArgument
+///     - Mezzanine::Scripting::iScriptingManager
+///     - Mezzanine::Scripting::iScriptWorkUnit
+///
+/// Many scripting languages suitable for being embedded in games have a number of
+/// similar traits. All have some kind of runtime that mustbe initialized, this
+/// runtime accepts strings of script source and performs the steps the source
+/// desribe. Some keep internal track of the source other expect the the caller to
+/// do so. Most allow passing arguments into scripts and accepting return values.
+/// Some allow the script to be compiled to a byte and others do not. A scripting manager is
+/// @n @n
+/// Whether or
+/// not this is updated can be controlled by the Mezz_SWIG CMake Flag. When this flag
+/// is enabled a SWIG_Mezzanine build target is added to the project. To satisfy
+/// build systems this target/project compiles src/blank.cpp as the only files.
+/// During the build steps in that target it attempt to Swig from the command line.
+/// @n @n
+/// This can be run manually by invoking that target specifically. For example:
+/// @code
+/// $make SWIG_Mezzanine
+/// ninja SWIG_Mezzanine
+/// @endcode
 
 #include "Scripting/script.h"
 #include "Scripting/scriptargument.h"
@@ -74,11 +107,6 @@ namespace Mezzanine
     #include "Scripting/Lua51/lua51scriptargument.h"
     #include "Scripting/Lua51/lua51scriptingengine.h"
     #include "Scripting/Lua51/lua51workunit.h"
-#endif
-
-
-#ifdef MEZZTCL      // Just an example for future logic, not actually implemented
-    #include "Scripting/Tcl/scriptingtcl.h"
 #endif
 
 

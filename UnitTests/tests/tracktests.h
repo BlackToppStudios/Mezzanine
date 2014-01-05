@@ -46,6 +46,7 @@
 #include "trackiterator.h"
 #include "exception.h"
 #include "vector3.h"
+#include "Threading/thread.h"
 
 
 /// @file
@@ -66,7 +67,7 @@ class tracktests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-/*            TestOutput.precision(10);
+            TestOutput.precision(10);
             TestOutput << std::fixed << "Epsilon of the Vector3: " << numeric_limits<Vector3>::epsilon();
 
             {
@@ -331,16 +332,59 @@ class tracktests : public UnitTestGroup
                 SmoothTrackIterator<LinearInterpolator<Vector3> > IndexIter2(&TestIteratorTrack,.9,1.0/100.0);
                 TEST(IndexIter1[10] == IndexIter2, "SmoothTrackIterator[]");
             }
-*/
+
             {
                 //SlowSplineInterpolator<Vector2> CSV;
-                //Track<SlowSplineInterpolator<Vector2> > CubicSplineTrack;
 
-                // ©ubicSplineTrack.push_back(Vector2(0,0));
+                //Track<SlowSplineInterpolator<Vector2> > CubicSplineTrack;
+                //CubicSplineTrack.push_back(Vector2(0,0));
                 //TestIteratorTrack.push_back(Vector2(10,10));
                 //TestIteratorTrack.push_back(Vector2(20,0));
+            }
+
+            {
+                TestOutput << endl << "Timed Track Iterator, iterating from the range 0.0 to 0.25 on a linear track of Vector3s starting at 0,0,0 and ending at 1,10,20" << endl;
+                Track< LinearInterpolator<Vector3> > SomeTrack;
+                SomeTrack.push_back(Vector3(0,0,0));
+                SomeTrack.push_back(Vector3(1,10,20));
+                MaxInt StartTime(crossplatform::GetTimeStamp());
+                MaxInt TestDuration(750000);
+                TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,0.25,TestDuration);
+
+                TEST((*Iter == Vector3(0,0,0)) , "TimedTrackIterator-Start");
+                TestOutput  << "Start Location: ";
+                while(!Iter.AtEnd())
+                {
+                    TestOutput << *Iter << endl;
+                    Iter++;
+                    Threading::this_thread::sleep_for(10000);
+                }
+                TestOutput << "End Location: " << *Iter << endl;
+                TEST((*Iter == Vector3(0.25,2.5,5)) , "TimedTrackIterator-End");
+            }
+
+            {
+                TestOutput << endl << "Timed Track Iterator, iterating from the range 0.25 to 0.0 on a linear track of Vector3s starting at 0,0,0 and ending at 1,10,20" << endl;
+                Track< LinearInterpolator<Vector3> > SomeTrack;
+                SomeTrack.push_back(Vector3(0,0,0));
+                SomeTrack.push_back(Vector3(1,10,20));
+                MaxInt TestDuration(750000);
+                TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.25,0.0,TestDuration);
+
+                TEST((*Iter == Vector3(0.25,2.5,5)) , "TimedTrackIterator-BackwardStart");
+                TestOutput  << "Start Location: ";
+                while(!Iter.AtEnd())
+                {
+                    TestOutput << *Iter << endl;
+                    Iter++;
+                    Threading::this_thread::sleep_for(10000);
+                }
+                TestOutput << "End Location: " << *Iter << endl;
+                TEST((*Iter == Vector3(0,0,0)) , "TimedTrackIterator-BackwardEnd");
 
             }
+
+
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

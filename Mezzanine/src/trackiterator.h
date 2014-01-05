@@ -45,6 +45,8 @@
 #ifndef SWIG // STD headers are bad for Swig
     #include <cmath>
     #include <limits>
+
+    #include "crossplatform.h"
 #endif
 
 
@@ -60,7 +62,7 @@ namespace Mezzanine
     /// track it targets and gets the point on the track that corresponds with is current
     /// location. For example, presume SomeTrack is a valid track instance:
     /// @code
-    /// SmoothTrackIterator<Vector3> Iter(&SomeTrack,0.0,1.0/200.0);
+    /// SmoothTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,1.0/200.0);
     ///
     /// for(Whole Counter = 0; Counter<200; Counter++
     /// {
@@ -74,10 +76,8 @@ namespace Mezzanine
     class SmoothTrackIterator
     {
         public:
-
+            /// @brief The type the interpolator this works with uses.
             typedef typename InterpolatorType::InterpolatableType InterpolatableType;
-
-            // Iterator traits
             /// @brief What type is this iterator working with.
             typedef InterpolatableType value_type;
             /// @brief When doing iterator math what is the type of math results
@@ -88,10 +88,9 @@ namespace Mezzanine
             typedef InterpolatableType& reference;
             /// @brief This almost supports random access iteration, it does not support any kind of writing to the container
             typedef std::random_access_iterator_tag iterator_category;
-
             /// @brief What kind of track with this iterate over
             typedef TrackBase<InterpolatorType> TargetTrackType;
-
+            /// @brief The kind of this iterator.
             typedef SmoothTrackIterator<InterpolatorType> ThisType;
 
         protected:
@@ -113,12 +112,12 @@ namespace Mezzanine
                 { Location += Step * PreciseReal(Steps); }
 
         public:
-            /// @brief The constructor for and iterator
-            /// @details Tracks
+            /// @brief The constructor for an iterator that can take an arbitrary amount steps through a series of data points
+            /// @details If default constructed this cannot be dereferenced and is only useful for comparisons
             /// @param TrackToIterate Which track with this work against.
             /// @param WhereToStart Where on the track (range 0 to 1) Should iteration start.
             /// @param Increment When incremented how much should the location change? Defaults to .01 to create 100 steps.
-            SmoothTrackIterator(const TargetTrackType* const TrackToIterate, Real WhereToStart = 0.0, Real Increment = 0.01)
+            SmoothTrackIterator(const TargetTrackType* const TrackToIterate = 0, Real WhereToStart = 0.0, Real Increment = 0.01)
                 : TargetTrack(TrackToIterate), Location(WhereToStart), Step(Increment)
                 {}
             /// @brief Create a copy of an SmoothTrackIterator.
@@ -132,7 +131,6 @@ namespace Mezzanine
             /// @return A SmoothTrackIterator<InterpolatableType>
             SmoothTrackIterator<InterpolatorType>& operator=(const ThisType& Other)
             {
-                //TargetTrack=Other.TargetTrack;
                 Location=Other.Location;
                 Step=Other.Step;
                 return *this;
@@ -143,13 +141,13 @@ namespace Mezzanine
             /// @return True if the track is the same and the location on the track is close enough to be within 1 epsilon.
             bool operator==(const ThisType& Other) const
             {
-                return TargetTrack==Other.TargetTrack &&
+                return //TargetTrack==Other.TargetTrack &&
                        (Other.Location-std::numeric_limits<Real>::epsilon())<=Location &&
                        Location<=(Other.Location+std::numeric_limits<Real>::epsilon());
             }
             /// @brief Is this SmoothTrackIterator not on the same track and in the same place as another.
             /// @param Other The Other SmoothTrackIterator to compare this one too.
-            /// @return True if the track is the same and the location on the track is close enough to be within 1 epsilon.
+            /// @return False if the track is the same and the location on the track is close enough to be within 1 epsilon.
             bool operator!=(const ThisType& Other) const
                 { return !operator==(Other); }
 
@@ -170,7 +168,7 @@ namespace Mezzanine
             /// @details The iterator is moved to a new position by subtracting the
             /// step from the current location.
             /// @return A Reference to this iterator after the change has been made.
-            ThisType&  operator--()
+            ThisType& operator--()
             {
                 Decrement();
                 return *this;
@@ -180,7 +178,7 @@ namespace Mezzanine
             /// of the iterator before being increment.
             /// @return An iterator that is a copy of this one before the decrement.
             /// @note Even though the results of this could be assignable doing so is useless without storing the results in a new iterator so this is made const.
-            const ThisType  operator--(int)
+            const ThisType operator--(int)
             {
                 ThisType Results(*this);
                 Decrement();
@@ -191,7 +189,7 @@ namespace Mezzanine
             /// @details The iterator is moved to a new position by adding the
             /// step from the current location.
             /// @return A Reference to this iterator after the change has been made.
-            ThisType&  operator++()
+            ThisType& operator++()
             {
                 Increment();
                 return *this;
@@ -201,7 +199,7 @@ namespace Mezzanine
             /// of the iterator before being incremented.
             /// @return An iterator that is a copy of this one before the decrement.
             /// @note Even though the results of this could be assignable doing so is useless without storing the results in a new iterator so this is made const.
-            const ThisType  operator++(int)
+            const ThisType operator++(int)
             {
                 ThisType Results(*this);
                 Increment();
@@ -252,7 +250,6 @@ namespace Mezzanine
                 return Results;
             }
 
-
             /// @brief Move this iterator a given amount of steps forward
             /// @return A reference to this iterator so it could be used in other operations
             ThisType& operator+=(Integer Steps)
@@ -298,7 +295,6 @@ namespace Mezzanine
             /// @param Steps How many times to increment or decrement the iterator.
             const ThisType operator[](Integer Steps)
                 { return *this + Steps; }
-
     };
 
     /// @brief This allows for addition with and an Integer on the Left hand side, such as: 2 + Iter
@@ -313,6 +309,209 @@ namespace Mezzanine
     template<typename InterpolatableType>
     SmoothTrackIterator<InterpolatableType>&  operator-(Integer Steps, SmoothTrackIterator<InterpolatableType>& Iter)
         { return Iter - Steps; }
+
+
+
+
+    /// @brief This will take the same amount of clock time to iterate over a range.
+    /// @details This will spread movement over a range of a track evenly throughout
+    /// a period of time. For example if you have a track of Real values ranging
+    /// from 0.0 to 10.0, interpolating the point at 0.0 will return 0.0 and the
+    /// point 1.0 will return 10.0. Continuing this example if we were to define an
+    /// iterator over this range that will take exactly 1,000 milliseconds to
+    /// complete its journey, if we increment and dereference this 500 milliseconds
+    /// after it was instantiated it will return 5.0. This is the point halfway
+    /// through the range of the track because the time is halfway consumed.
+    /// @n @n
+    /// This iterator must be bounds checked to be safe to use. If incremented before
+    /// its start time its current location is set to its start time, if incremented
+    /// past its end time its current location becoms its end time.
+    /// @n @n
+    /// Here is a code sample that takes 3/4 of a second to iterate over the first
+    /// quarter of the data in a track.
+    /// @code
+    /// TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,0.25,750);
+    ///
+    /// bool SimulationIsStillRunning = true;
+    /// While(SimulationIsStillRunning)
+    /// {
+    ///   // This does not increment the iterator like normal iterators, it
+    ///   // just updates an internal record of time
+    ///   Iter++;
+    ///
+    ///   // When de-referencing the time is update
+    ///   std::cout << *Iter << std::endl;
+    ///
+    ///   // DoOtherSimulationStuff will return false when the simulation end, and
+    ///   // presumably it does all the other stuff
+    ///   SimulationIsStillRunning = DoOtherSimulationStuff();
+    /// }
+    /// @endcode
+    /// This code will emit to the standard output at least one Vector3 to the standard
+    /// output. All output will be between(inclusive) 0.0 and 0.25 with times closer to
+    /// the iterator creation time being near 0.0 and times closer to 750
+    template<typename InterpolatorType>
+    class TimedTrackIterator
+    {
+        public:
+            /// @brief The type the interpolator this works with uses.
+            typedef typename InterpolatorType::InterpolatableType InterpolatableType;
+            /// @brief What type is this iterator working with.
+            typedef InterpolatableType value_type;
+            /// @brief The type of a pointer to the iterated type
+            typedef InterpolatableType* pointer;
+            /// @brief The type of a reference to the iterated type
+            typedef InterpolatableType& reference;
+            /// @brief This almost supports random access iteration, it does not support any kind of writing to the container
+            typedef std::input_iterator_tag iterator_category;
+            /// @brief What kind of track with this iterate over
+            typedef TrackBase<InterpolatorType> TargetTrackType;
+            /// @brief The kind of this iterator.
+            typedef TimedTrackIterator<InterpolatorType> ThisType;
+
+        protected:
+            /// @brief What Time does iteration start at
+            MaxInt StartTime;
+            /// Where is this iterator now.
+            MaxInt CurrentTime;
+            /// @brief What Time does iteration ed at
+            MaxInt EndTime;
+
+            /// @brief The track this works against.
+            const TargetTrackType* const TargetTrack;
+
+            /// @brief Where Should Iteration Start
+            Real StartRange;
+            /// @brief Where should iteration stop
+            Real EndRange;
+
+            /// @brief Update the current location of this iterator based on the current time
+            void Update(MaxInt Now = crossplatform::GetTimeStamp())
+            {
+                CurrentTime=Now;
+                if(Now<StartTime)
+                    { CurrentTime = StartTime; }
+                if(EndTime<Now)
+                    { CurrentTime = EndTime; }
+            }
+
+            /// @brief Do the math for determining where/when the iterator is.
+            /// @return A value on the track corresponding to how far through time
+            InterpolatableType GetDereferenced() const
+            {
+                MaxInt Length(EndTime - StartTime);
+                MaxInt Progress(CurrentTime - StartTime);
+                Real RangeLength(EndRange - StartRange);
+
+                Real AdjustedProgress( PreciseReal((Progress)/PreciseReal(Length)) * PreciseReal(RangeLength) + PreciseReal(StartRange) );
+                return TargetTrack->GetInterpolated(AdjustedProgress);
+            }
+
+        public:
+            /// @brief The constructor for and iterator
+            /// @details Tracks
+            /// @param TrackToIterate Which track with this work against.
+            /// @param StartOnTrack In the range of 0.0 to 1.0 Where on the track should iteration start. Defaults to 0.0.
+            /// @param EndOnTrack In the range of 0.0 to 1.0 Where on the track should iteration end. Defaults to 1.0.
+            /// @param Duration In microseconds how long should traversing the range of the track take. Defaults to 1 second.
+            /// @param WhenToStart The time iteration should start. Defaults to now.
+            TimedTrackIterator(const TargetTrackType* const TrackToIterate = 0,
+                               Real StartOnTrack = 0.0,
+                               Real EndOnTrack = 1.0,
+                               MaxInt Duration = 1000000,
+                               MaxInt WhenToStart = crossplatform::GetTimeStamp())
+                : StartTime(WhenToStart),
+                  EndTime(Duration+WhenToStart),
+                  TargetTrack(TrackToIterate),
+                  StartRange(StartOnTrack),
+                  EndRange(EndOnTrack)
+                { Update(WhenToStart); }
+            /// @brief Create a copy of an TimedTrackIterator.
+            /// @param Copy The TimedTrackIterator to copy.
+            TimedTrackIterator(const ThisType& Copy)
+                : StartTime(Copy.StartTime),
+                  CurrentTime(Copy.CurrentTime),
+                  EndTime(Copy.EndTime),
+                  TargetTrack(Copy.TargetTrack),
+                  StartRange(Copy.StartRange),
+                  EndRange(Copy.EndRange)
+                { }
+            /// @brief Change this TimedTrackIterator to match another (Except for Track)
+            /// @param Other The TimedTrackIterator to copy, except for its target track
+            /// @return A TimedTrackIterator<InterpolatableType>
+            TimedTrackIterator<InterpolatorType>& operator= (const ThisType& Other)
+            {
+                StartRange=Other.StartRange;
+                EndRange=Other.EndRange;
+                StartTime=Other.StartTime;
+                CurrentTime=Other.CurrentTime;
+                EndTime=Other.EndTime;
+                return *this;
+            }
+
+            /// @brief Is this TimedTrackIterator on the same track and in the same place as another.
+            /// @param Other The Other TimedTrackIterator to compare this one too.
+            /// @return True if the track is the same and the location on the same track.
+            bool operator== (const ThisType& Other) const
+            {
+                return TargetTrack==Other.TargetTrack &&
+                       StartRange==Other.StartRange &&
+                       EndRange==Other.EndRange &&
+                       StartTime==Other.StartTime &&
+                       CurrentTime==Other.CurrentTime &&
+                       EndTime==Other.EndTime;
+            }
+            /// @brief Is this TimedTrackIterator not on the same track and in the same place as another.
+            /// @param Other The Other TimedTrackIterator to compare this one too.
+            /// @return False if the track is the same and the location on the same track.
+            bool operator!= (const ThisType& Other) const
+                { return !operator==(Other); }
+
+            /// @brief Get the location on track from the last time it was incremented
+            /// @return An instance of InterpolatableType that is read only
+            /// @warning Most iterators return a reference, to allow changes in the underlying container. This returns points that are not stored, so they cannot be changed.
+            /// @note Everytime this is called this it calls the interpolator in the Target Track, This should run in constant time, but is much slower than normal pointer dereferences.
+            virtual InterpolatableType operator*() const
+                { return GetDereferenced(); }
+            /// @brief Dereference this with the syntax for pointer member access.
+            /// @return A Counted pointer to a temporary InterpolatableType instance.
+            /// @warning This is read only because it is not stored anywhere.
+            /// @note Everytime this is called it calls the interpolator in the Target Track.
+            virtual CountedPtr<InterpolatableType> operator->() const
+                { return CountedPtr<InterpolatableType> (new InterpolatableType(GetDereferenced())); }
+
+            /// @brief Move the TimedTrackIterator forwards on the track by an amount proportionate to time elapsed.
+            /// @return A Reference to this iterator after the change has been made.
+            ThisType& operator++()
+            {
+                Update();
+                return *this;
+            }
+            /// @brief Move the TimedTrackIterator forwards on the track by an amount proportionate to time elapsed.
+            /// @details Like the prefix ++ this moves the iterator, but this returns a copy
+            /// of the iterator before being incremented.
+            /// @return An iterator that is a copy of this one before the decrement.
+            /// @note Even though the results of this could be assignable doing so is useless without storing the results in a new iterator so this is made const.
+            const ThisType operator++(int)
+            {
+                ThisType Results(*this);
+                Update();
+                return Results;
+            }
+
+            /// @brief Is this iterator at the end of its range on the track
+            /// @return True if the iterator has been incremented to its bounds
+            bool AtEnd() const
+                { return EndTime == CurrentTime; }
+
+            /// @brief Is this iterator at the beginning of its range on the track
+            /// @return True if the iterator has not been incremented or its time has not yet come.
+            bool AtStart() const
+                { return StartTime == CurrentTime; }
+    };
+
+
+
 
 }//Mezzanine
 

@@ -167,9 +167,17 @@ namespace Mezzanine
             const_iterator end() const
                 { return DataElements.end(); }
 
+            /// @brief Add another entry to the spline
+            /// @details Adjust the time series to evenly distribute it between 0 and 1 for
+            /// each entry, including the new one DataToAdd
             void push_back(const DataSeriesType& DataToAdd)
             {
+                // This needs to be implemented still.
+                std::vector<TimeSeriesType> x;
+                std::vector<DataSeriesType> y;
 
+
+                CalculateElements(x,y);
             }
 
             /* Evaluate at multiple locations, assuming xx is sorted ascending */
