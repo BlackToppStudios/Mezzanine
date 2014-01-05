@@ -64,7 +64,7 @@ namespace Mezzanine
         /// @struct RenderLayerGroup
         /// @headerfile layeredrenderable.h
         /// @brief This class stores a group of render layers that can be set to be rendered.
-        /// @details A LayeredRenderable can only render one group of layers at a time, but a single layer can be added to
+        /// @details A QuadRenderable can only render one group of layers at a time, but a single layer can be added to
         /// as many RenderLayerGroup's as the user see's fit.
         ///////////////////////////////////////
         struct MEZZ_LIB RenderLayerGroup
@@ -168,7 +168,7 @@ namespace Mezzanine
         /// nor are they in the order they will be rendered in.  To get either of these bits of information you
         /// must check the active RenderLayerGroup and check the RenderLayers there. @n @n
         /// Also only one RenderLayerGroup may render at a time, but a single RenderLayer can be shared between
-        /// as many groups under the same LayeredRenderable as you want.
+        /// as many groups under the same QuadRenderable as you want.
         ///////////////////////////////////////
         class MEZZ_LIB QuadRenderable : public Renderable
         {
@@ -337,11 +337,15 @@ namespace Mezzanine
             /// @return Returns true if this quad needs manual updating, false if it recieves automatic updates.
             virtual bool GetManualTransformUpdates() const;
 
-            /// @brief Sets the priority this LayeredRenderable should be rendered with.
+            /// @brief Sets the priority this QuadRenderable should be rendered with.
             /// @note The default value for this is Medium.
-            /// @param Priority The priority level to be used when rendering this LayeredRenderable.
-            virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-            /// @brief Gets the priority this LayeredRenderable should be rendered with.
+            /// @param RP The priority level to be used when rendering this QuadRenderable.
+            virtual void SetRenderPriority(const UI::RenderPriority RP);
+            /// @brief Sets the priority this QuadRenderable and all it's children should be rendered with.
+            /// @note The default value for this is Medium.
+            /// @param RP The priority level to be used when rendering this QuadRenderable and it's children.
+            virtual void SetRenderPriorityCascading(const UI::RenderPriority RP);
+            /// @brief Gets the priority this QuadRenderable should be rendered with.
             /// @return Returns an enum value representing this renderables priority level.
             virtual UI::RenderPriority GetRenderPriority() const;
 
@@ -622,7 +626,7 @@ namespace Mezzanine
             /// @brief Destroy's a RenderLayerGroup by pointer.
             /// @param ToBeDestroyed The RenderLayerGroup to be destroyed.
             void DestroyRenderLayerGroup(RenderLayerGroup* ToBeDestroyed);
-            /// @brief Destroy's all RenderLayerGroups being stored/managed by this LayeredRenderable.
+            /// @brief Destroy's all RenderLayerGroups being stored/managed by this QuadRenderable.
             void DestroyAllRenderLayerGroups();
 
             /// @brief Gets an iterator to the first RenderLayerGroup.

@@ -344,8 +344,15 @@ namespace Mezzanine
         Boolean QuadRenderable::GetManualTransformUpdates() const
             { return this->ManualTransformUpdates; }
 
-        void QuadRenderable::SetRenderPriority(const UI::RenderPriority& Priority)
-            { this->Priority = Priority; }
+        void QuadRenderable::SetRenderPriority(const UI::RenderPriority RP)
+            { this->Priority = RP; }
+
+        void QuadRenderable::SetRenderPriorityCascading(const UI::RenderPriority RP)
+        {
+            this->SetRenderPriority(RP);
+            for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
+                (*ChildIt)->SetRenderPriorityCascading(RP);
+        }
 
         UI::RenderPriority QuadRenderable::GetRenderPriority() const
             { return this->Priority; }
