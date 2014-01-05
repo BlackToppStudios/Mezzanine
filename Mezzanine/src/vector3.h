@@ -100,7 +100,7 @@ namespace Mezzanine
         Real GetAxisValue(const StandardAxis& Axis) const;
 #endif // \SWIG
 
-        /// @copydoc GetAxisValue(StandardAxis Axis) const
+        /// @copydoc GetAxisValue(const StandardAxis& Axis) const
         Real GetAxisValue(const Whole& Axis) const;
 
 #ifndef SWIG // Since these functions differ only by constness, they make no sense to most(all?) scripting languages
@@ -108,17 +108,17 @@ namespace Mezzanine
         /// @param Axis Which axis to retrieve.
         /// @return Either X, Y or Z as indicated by the value passed in.
         Real& GetAxisValue(const StandardAxis& Axis);
-        /// @copydoc GetAxisValue(StandardAxis Axis)
+        /// @copydoc GetAxisValue(const StandardAxis& Axis)
         Real& GetAxisValue(const Whole& Axis);
 #endif // \SWIG
 
-        /// @copydoc GetAxisValue(StandardAxis Axis) const
+        /// @copydoc GetAxisValue(const StandardAxis& Axis) const
         Real operator[] (const StandardAxis& Axis) const;
-        /// @copydoc GetAxisValue(StandardAxis Axis) const
+        /// @copydoc GetAxisValue(const StandardAxis& Axis) const
         Real operator[] (const Whole& Axis) const;
-        /// @copydoc GetAxisValue(StandardAxis Axis)
+        /// @copydoc GetAxisValue(const StandardAxis& Axis)
         Real& operator[] (const StandardAxis& Axis);
-        /// @copydoc GetAxisValue(StandardAxis Axis)
+        /// @copydoc GetAxisValue(const StandardAxis& Axis)
         Real& operator[] (const Whole& Axis);
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -184,10 +184,12 @@ namespace Mezzanine
         /// @brief Assignment operator to convert from Bullet Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
         /// @param Vec This is a btVector3 that will be copied
+        /// @return A reference to the assigned Vector3 to allow chained expresions
         Vector3& operator= (const btVector3 &Vec);
         /// @brief Assignment operator to convert from Ogre Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
         /// @param Vec This is a Ogre::Vector3 that will be copied.
+        /// @return A reference to the assigned Vector3 to allow chained expresions
         Vector3& operator= (const Ogre::Vector3 &Vec);
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -195,20 +197,23 @@ namespace Mezzanine
 
         /// @brief Additive Inverse Operator
         /// @details Returns the opposite Vector3 relative to 0,0,0
+        /// @return A copy of Vector3 with the signs on each value flipped
         Vector3 operator- ();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Vector3 Arithmetic with Real
 
-        /// @brief Scaling by multiplication
-        /// @details This Multiplies X, Y and Z by scalar
-        /// @return This returns a Vector3 that has been scaled
-        /// @param scalar This is the amount to scale the Vector3 by
+        /// @brief Scaling by multiplication.
+        /// @details This Multiplies X, Y and Z by scalar.
+        /// @return This returns a Vector3 that has been scaled.
+        /// @param scalar This is the amount to scale the Vector3 by.
+        /// @return A copy of Vector3 scaled by the amount passed.
         Vector3 operator* (const Real &scalar) const;
-        /// @brief Scaling by Division
-        /// @details This Diisionn X, Y and Z by scalar
-        /// @return This returns a Vector3 that has been scaled
-        /// @param scalar This is the amount to scale the Vector3 by
+        /// @brief Scaling by Division.
+        /// @details This Diisionn X, Y and Z by scalar.
+        /// @return This returns a Vector3 that has been scaled.
+        /// @param scalar This is the amount to scale the Vector3 by.
+        /// @return A copy of Vector3 scaled by the amount passed.
         Vector3 operator/ (const Real &scalar) const;
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -217,48 +222,50 @@ namespace Mezzanine
         /// @brief Scaling by multiplication.
         /// @details This Multiplies X, Y and Z by scalar and stores the changes in this Vector3.
         /// @param scalar This is the amount to scale the Vector3 by.
+        /// @return A reference to the assigned Vector3 to allow chained expresions.
         Vector3& operator*= (const Real &scalar);
         /// @brief Scaling by Division
         /// @details This Division X, Y and Z by scalar and and stores the changes in this Vector3.
-        /// @param scalar This is the amount to scale the Vector3 by
+        /// @param scalar This is the amount to scale the Vector3 by.
+        /// @return A reference to the assigned Vector3 to allow chained expresions.
         Vector3& operator/= (const Real &scalar);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Equality Comparison operators
 
         /// @brief Equality Comparison Operator.
-        /// @details Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns false.
+        /// @return Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns false.
         /// @param Vec This is the other Mezzanine::Vector3.
         bool operator== (const Mezzanine::Vector3 &Vec) const;
         /// @brief Equality Comparison Operator.
-        /// @details Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match this returns false.
+        /// @return Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match this returns false.
         /// @param Vec This is an btVector3 that needs to be compared with this.
         bool operator== (const btVector3 &Vec) const;
         /// @brief Equality Comparison Operator.
-        /// @details Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false.
+        /// @return Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false.
         /// @param Vec This is an Ogre::Vector3 that needs to be compared with this.
         bool operator== (const Ogre::Vector3 &Vec) const;
 
         /// @brief Inequality Comparison Operator.
-        /// @details Returns true if X!=X, Y!=Y or Z!=Z. If all of those match this returns false.
+        /// @return Returns true if X!=X, Y!=Y or Z!=Z. If all of those match this returns false.
         /// @param Vec This is the other Mezzanine::Vector3.
         bool operator!= (const Mezzanine::Vector3 &Vec) const;
         /// @brief Inequality Comparison Operator.
-        /// @details Returns true if X!=getX(), Y!=getY() or Z!=getZ(). If all of those match this returns false.
+        /// @return Returns true if X!=getX(), Y!=getY() or Z!=getZ(). If all of those match this returns false.
         /// @param Vec This is an btVector3 that needs to be compared with this.
         bool operator!= (const btVector3 &Vec) const;
         /// @brief Inequality Comparison Operator.
-        /// @details Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false.
+        /// @return Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false.
         /// @param Vec This is an Ogre::Vector3 that needs to be compared with this.
         bool operator!= (const Ogre::Vector3 &Vec) const;
 
         /// @brief Less or Equal Comparison Operator.
-        /// @details Returns true if X<=X, Y<=Y and Z<=Z. If any of those do not hold this returns false.
+        /// @return Returns true if X<=X, Y<=Y and Z<=Z. If any of those do not hold this returns false.
         /// @param Vec This is the other Mezzanine::Vector3.
         /// @note Used primarily for testing. This is not implement for use with other kinds of Vector3 implementations as it is widely considered useless.
         bool operator<= (const Mezzanine::Vector3 &Vec) const;
         /// @brief Greater than or Equal Comparison Operator.
-        /// @details Returns true if X>=X, Y>=Y and Z>=Z. If any of those do not hold this returns false.
+        /// @return Returns true if X>=X, Y>=Y and Z>=Z. If any of those do not hold this returns false.
         /// @param Vec This is the other Mezzanine::Vector3.
         /// @note Used primarily for testing. This is not implement for use with other kinds of Vector3 implementations as it is widely considered useless.
         bool operator>= (const Mezzanine::Vector3 &Vec) const;
@@ -269,18 +276,22 @@ namespace Mezzanine
         /// @brief Addition Operator
         /// @details Allows for addition from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator+ (const Vector3 &Vec) const;
         /// @brief Subraction Operator
         /// @details Allows for subtraction from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator- (const Vector3 &Vec) const;
         /// @brief Multiplaction Operator
         /// @details Allows for multiplaction from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator* (const Vector3 &Vec) const;
         /// @brief Division Operator
         /// @details Allows for division from a Mezzanine::Vector3
         /// @param Vec This is the other Mezzanine::Vector3
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator/ (const Vector3 &Vec) const;
 
         /////////////////////////////////////////////////////////////////////
@@ -289,18 +300,22 @@ namespace Mezzanine
         /// @brief Bullet Addition Operator
         /// @details Allows for addition  between a Mezzanine::Vector3 and a btVector3
         /// @param Vec This is the btVector3 to be added
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator+ (const btVector3 &Vec) const;
         /// @brief Bullet Subtraction Operator
         /// @details Allows for subtraction  between a Mezzanine::Vector3 and a btVector3
         /// @param Vec This is the btVector3 to be subtracted
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator- (const btVector3 &Vec) const;
         /// @brief Bullet Multiplication Operator
         /// @details Allows for multiplication  between a Mezzanine::Vector3 and a btVector3
         /// @param Vec This is the btVector3 to be multiplied
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator* (const btVector3 &Vec) const;
         /// @brief Bullet Division Operator
         /// @details Allows for division  between a Mezzanine::Vector3 and a btVector3
         /// @param Vec This is the btVector3 to be divided
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator/ (const btVector3 &Vec) const;
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -309,18 +324,22 @@ namespace Mezzanine
         /// @brief Ogre Addition Operator
         /// @details Allows for addition  between a Mezzanine::Vector3 and a Ogre::Vector3
         /// @param Vec This is the Ogre::Vector3 to be added
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator+ (const Ogre::Vector3 &Vec) const;
         /// @brief Ogre Subtraction Operator
         /// @details Allows for subtraction  between a Mezzanine::Vector3 and a Ogre::Vector3
         /// @param Vec This is the Ogre::Vector3 to be subtracted
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator- (const Ogre::Vector3 &Vec) const;
         /// @brief Ogre Multiplication Operator
         /// @details Allows for multiplying  between a Mezzanine::Vector3 and a Ogre::Vector3
-        /// @param Vec This is the Ogre::Vector3 to be multiplied
+        /// @param Vec This is the Ogre::Vector3 to be multiplied.
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator* (const Ogre::Vector3 &Vec) const;
-        /// @brief Ogre Division Operator
+        /// @brief Ogre Division Operator.
         /// @details Allows for division  between a Mezzanine::Vector3 and a Ogre::Vector3
-        /// @param Vec This is the Ogre::Vector3 to be divided
+        /// @param Vec This is the Ogre::Vector3 to be divided.
+        /// @return A copy of the calculated Vector3 to allow chained expresions.
         Vector3 operator/ (const Ogre::Vector3 &Vec) const;
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -351,9 +370,10 @@ namespace Mezzanine
         /// @return At a vector3 that is the normal of this Vector3 or 0,0,0 if the current Vector is all 0s
         Vector3 GetNormal() const;
         /// @brief This will get the direction between two points.
-        /// @details This returns the direction expressed as a vector between this vector and another provided vector.
-        /// The vector the results vector is relative to this vector.
+        /// @details This returns the direction expressed as a vector between this vector
+        /// and another provided vector.
         /// @param Destination The point in space to determine the direction for.
+        /// @return A normalized Vector3 that indicates the direction from this vector to another.
         Vector3 GetDirection(const Vector3& Destination) const;
         /// @brief This will inverse the reals in the vector.
         /// @details This function will inverse all the reals in the vector.
@@ -412,6 +432,7 @@ namespace Mezzanine
 
         /// @brief Gets a Bullet vector3.
         /// @details Creates a Bullet vector3 with values equal to this class and returns it.
+        /// @return A Bullet Vector3 containing the same value as the Mezzanine::Vector3
         btVector3 GetBulletVector3() const;
         /// @brief Copies an existing Bullet vector3.
         /// @details This function will copy the values stored in an existing Bullet vector3
@@ -420,6 +441,7 @@ namespace Mezzanine
         void ExtractBulletVector3(const btVector3& temp);
         /// @brief Gets a Ogre vector3.
         /// @details Creates a Ogre vector3 with values equal to this class and returns it.
+        /// @return A Ogre Vector3 containing the same value as the Mezzanine::Vector3
         Ogre::Vector3 GetOgreVector3() const;
         /// @brief Copies an existing Ogre vector3.
         /// @details This function will copy the values stored in an existing Ogre vector3
