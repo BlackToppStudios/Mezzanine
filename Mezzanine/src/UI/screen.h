@@ -377,6 +377,15 @@ namespace Mezzanine
             /// @param RendRect The rect describing this MenuButton's transform relative to it's parent.
             /// @return Returns a pointer to the created MenuButton.
             virtual MenuButton* CreateMenuButton(const String& Name, const UnifiedRect& RendRect);
+            /// @brief Creates a RadioButton.
+            /// @param Name The name to be given to this RadioButton.
+            /// @return Returns a pointer to the created RadioButton.
+            virtual RadioButton* CreateRadioButton(const String& Name);
+            /// @brief Creates a RadioButton.
+            /// @param Name The name to be given to this RadioButton.
+            /// @param RendRect The rect describing this RadioButton's transform relative to it's parent.
+            /// @return Returns a pointer to the created RadioButton.
+            virtual RadioButton* CreateRadioButton(const String& Name, const UnifiedRect& RendRect);
             /// @brief Creates a CheckBox.
             /// @param Name The name of the CheckBox.
             /// @return Returns a pointer to the created CheckBox.
@@ -484,12 +493,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created Window.
             /// @param Name The name of the Window.
             /// @param RendRect The Rect representing the position and size of the Window.
-            virtual Window* CreateWidgetWindow(ConstString& Name, const Rect& RendRect);
-            /// @brief Creates a Menu.
-            /// @return Returns a pointer to the created Menu.
-            /// @param Name The name of the Menu.
-            /// @param RendRect The Rect representing the position and size of the Menu.
-            virtual Menu* CreateMenu(ConstString& Name, const Rect& RendRect);//*/
+            virtual Window* CreateWidgetWindow(ConstString& Name, const Rect& RendRect);//*/
 
             ///////////////////////////////////////////////////////////////////////////////
             // Atlas Query

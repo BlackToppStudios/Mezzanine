@@ -112,12 +112,22 @@ namespace Mezzanine
             /// @param Prev The glyph prior to this one in the parent TextLine.  Needed for kerning information.
             /// @return Returns a Real representing the number of pixels to advance.
             Real GetCharacterAdvance(Glyph* Prev) const;
+            /// @brief Gets the amount of pixels to advance the cursor after placing this character without scaling applied.
+            /// @param Prev The glyph prior to this one in the parent TextLine.  Needed for kerning information.
+            /// @return Returns a Real representing the number of pixels to advance.
+            Real GetUnscaledCharacterAdvance(Glyph* Prev) const;
             /// @brief Gets the height a line needs to be to support rendering this character.
             /// @return Returns a Real representing how tall a TextLine needs to be to support this character in pixels.
             Real GetLineHeight() const;
+            /// @brief Gets the height a line needs to be to support rendering this character without scaling applied.
+            /// @return Returns a Real representing how tall a TextLine needs to be to support this character in pixels before scaling.
+            Real GetUnscaledLineHeight() const;
             /// @brief Gets the vertical adjustment for this character.
             /// @return Returns a Real representing the position adjustment on the Y axis in pixels.
             Real GetVerticalOffset() const;
+            /// @brief Gets the vertical adjustment for this character without scaling applied.
+            /// @return Returns a Real representing the position adjustment on the Y axis in pixels before scaling.
+            Real GetUnscaledVerticalOffset() const;
 
             /// @brief Gets the atlas this character is using for rendering.
             /// @return Returns a pointer to this characters atlas.
@@ -199,8 +209,11 @@ namespace Mezzanine
             /// @return Returns true if a custom size has been provided for this character, false if it is using it's default size.
             Boolean IsCustomSizeSet() const;
             /// @brief Gets the rendered size of this character.
-            /// @return Returns a Vector2 containing the size this character is to be rendered at before scaling.
+            /// @return Returns a Vector2 containing the size this character is to be rendered at after scaling.
             Vector2 GetCharacterSize() const;
+            /// @brief Gets the rendered size of this character without any scaling applied.
+            /// @return Returns a Vector2 containing the size this character is to be rendered at before scaling.
+            Vector2 GetUnscaledCharacterSize() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Fetch Methods

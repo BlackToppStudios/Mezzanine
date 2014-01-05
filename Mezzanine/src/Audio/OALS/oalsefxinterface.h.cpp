@@ -59,6 +59,15 @@ namespace Mezzanine
     {
         namespace OALS
         {
+            /// @internal
+            /// @brief Convenience typedef so the compiler isn't confused about what is going on.
+            typedef void (VoidFunct)();
+            /// @internal
+            /// @brief Helper method for the conversion of void* to (void*)().
+            /// @param FunctName The name of the function to be retrieved.
+            /// @return Returns a void function pointer which can be more conveniently casted without issue.
+            VoidFunct* FetchFunctionPointer(const String& FunctName);
+
             ///////////////////////////////////////////////////////////////////////////////
             /// @internal
             /// @brief This is a class for the binding of internal methods belonging to the EFX extension.
@@ -68,7 +77,7 @@ namespace Mezzanine
             {
                 /// @internal
                 /// @brief This indicates whether or not all the methods saved are valid and ready for use.
-                bool Supported;
+                Boolean Supported;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Effect Methods
@@ -184,60 +193,10 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Class constructor.
                 /// @param Device The OpenAL device this interface will check for EFX support.
-                EFXInterface(ALCdevice* Device)
-                    : Supported(false)
-                {
-                    if(alcIsExtensionPresent(Device,"ALC_EXT_EFX"))
-                    {
-                        // Get function pointers
-                        alGenEffects = (LPALGENEFFECTS)alGetProcAddress("alGenEffects");
-                        alDeleteEffects = (LPALDELETEEFFECTS )alGetProcAddress("alDeleteEffects");
-                        alIsEffect = (LPALISEFFECT )alGetProcAddress("alIsEffect");
-                        alEffecti = (LPALEFFECTI)alGetProcAddress("alEffecti");
-                        alEffectiv = (LPALEFFECTIV)alGetProcAddress("alEffectiv");
-                        alEffectf = (LPALEFFECTF)alGetProcAddress("alEffectf");
-                        alEffectfv = (LPALEFFECTFV)alGetProcAddress("alEffectfv");
-                        alGetEffecti = (LPALGETEFFECTI)alGetProcAddress("alGetEffecti");
-                        alGetEffectiv = (LPALGETEFFECTIV)alGetProcAddress("alGetEffectiv");
-                        alGetEffectf = (LPALGETEFFECTF)alGetProcAddress("alGetEffectf");
-                        alGetEffectfv = (LPALGETEFFECTFV)alGetProcAddress("alGetEffectfv");
-                        alGenFilters = (LPALGENFILTERS)alGetProcAddress("alGenFilters");
-                        alDeleteFilters = (LPALDELETEFILTERS)alGetProcAddress("alDeleteFilters");
-                        alIsFilter = (LPALISFILTER)alGetProcAddress("alIsFilter");
-                        alFilteri = (LPALFILTERI)alGetProcAddress("alFilteri");
-                        alFilteriv = (LPALFILTERIV)alGetProcAddress("alFilteriv");
-                        alFilterf = (LPALFILTERF)alGetProcAddress("alFilterf");
-                        alFilterfv = (LPALFILTERFV)alGetProcAddress("alFilterfv");
-                        alGetFilteri = (LPALGETFILTERI )alGetProcAddress("alGetFilteri");
-                        alGetFilteriv= (LPALGETFILTERIV )alGetProcAddress("alGetFilteriv");
-                        alGetFilterf = (LPALGETFILTERF )alGetProcAddress("alGetFilterf");
-                        alGetFilterfv= (LPALGETFILTERFV )alGetProcAddress("alGetFilterfv");
-                        alGenAuxiliaryEffectSlots = (LPALGENAUXILIARYEFFECTSLOTS)alGetProcAddress("alGenAuxiliaryEffectSlots");
-                        alDeleteAuxiliaryEffectSlots = (LPALDELETEAUXILIARYEFFECTSLOTS)alGetProcAddress("alDeleteAuxiliaryEffectSlots");
-                        alIsAuxiliaryEffectSlot = (LPALISAUXILIARYEFFECTSLOT)alGetProcAddress("alIsAuxiliaryEffectSlot");
-                        alAuxiliaryEffectSloti = (LPALAUXILIARYEFFECTSLOTI)alGetProcAddress("alAuxiliaryEffectSloti");
-                        alAuxiliaryEffectSlotiv = (LPALAUXILIARYEFFECTSLOTIV)alGetProcAddress("alAuxiliaryEffectSlotiv");
-                        alAuxiliaryEffectSlotf = (LPALAUXILIARYEFFECTSLOTF)alGetProcAddress("alAuxiliaryEffectSlotf");
-                        alAuxiliaryEffectSlotfv = (LPALAUXILIARYEFFECTSLOTFV)alGetProcAddress("alAuxiliaryEffectSlotfv");
-                        alGetAuxiliaryEffectSloti = (LPALGETAUXILIARYEFFECTSLOTI)alGetProcAddress("alGetAuxiliaryEffectSloti");
-                        alGetAuxiliaryEffectSlotiv = (LPALGETAUXILIARYEFFECTSLOTIV)alGetProcAddress("alGetAuxiliaryEffectSlotiv");
-                        alGetAuxiliaryEffectSlotf = (LPALGETAUXILIARYEFFECTSLOTF)alGetProcAddress("alGetAuxiliaryEffectSlotf");
-                        alGetAuxiliaryEffectSlotfv = (LPALGETAUXILIARYEFFECTSLOTFV)alGetProcAddress("alGetAuxiliaryEffectSlotfv");
-
-                        if( alGenEffects &&	alDeleteEffects && alIsEffect && alEffecti && alEffectiv &&	alEffectf &&
-                            alEffectfv && alGetEffecti && alGetEffectiv && alGetEffectf && alGetEffectfv &&	alGenFilters &&
-                            alDeleteFilters && alIsFilter && alFilteri && alFilteriv &&	alFilterf && alFilterfv &&
-                            alGetFilteri &&	alGetFilteriv && alGetFilterf && alGetFilterfv && alGenAuxiliaryEffectSlots &&
-                            alDeleteAuxiliaryEffectSlots &&	alIsAuxiliaryEffectSlot && alAuxiliaryEffectSloti &&
-                            alAuxiliaryEffectSlotiv && alAuxiliaryEffectSlotf && alAuxiliaryEffectSlotfv &&
-                            alGetAuxiliaryEffectSloti && alGetAuxiliaryEffectSlotiv && alGetAuxiliaryEffectSlotf &&
-                            alGetAuxiliaryEffectSlotfv )
-                            Supported = true;
-                    }
-                }
+                EFXInterface(ALCdevice* Device);
                 /// @internal
                 /// @brief Class destructor.
-                ~EFXInterface() {  }
+                ~EFXInterface();
             };//EFXInterface
         }//OALS
     }//Audio

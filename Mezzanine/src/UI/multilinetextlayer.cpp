@@ -58,7 +58,7 @@ namespace Mezzanine
 
         MultiLineTextLayer::MultiLineTextLayer(const String& FontName, QuadRenderable* ParentRenderable) :
             TextLayer(FontName,ParentRenderable)
-            { this->RelLineHeight = 0.0; }
+            {  }
 
         MultiLineTextLayer::MultiLineTextLayer(const Real& LineHeight, QuadRenderable* ParentRenderable) :
             TextLayer(LineHeight,ParentRenderable)

@@ -41,21 +41,322 @@
 #define _uiradiobutton_cpp
 
 #include "UI/radiobutton.h"
+#include "UI/screen.h"
+
+#include "stringtool.h"
+#include "serialization.h"
+#include "exception.h"
+
+#include <algorithm>
 
 namespace Mezzanine
 {
     namespace UI
     {
-        RadioButton::RadioButton() :
-            Widget(NULL)
-        {
+        ///////////////////////////////////////////////////////////////////////////////
+        // RadioButtonGroup Methods
 
+        RadioButtonGroup::RadioButtonGroup() :
+            CurrentSelection(NULL)
+            {  }
+
+        RadioButtonGroup::~RadioButtonGroup()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        void RadioButtonGroup::AddButtonToGroup(RadioButton* ToAdd)
+        {
+            RadioButtonIterator RadioIt = std::find(this->GroupButtons.begin(),this->GroupButtons.end(),ToAdd);
+            if( RadioIt == this->GroupButtons.end() ) {
+                this->GroupButtons.push_back( ToAdd );
+            }
         }
+
+        Whole RadioButtonGroup::GetNumButtons() const
+        {
+            return this->GroupButtons.size();
+        }
+
+        void RadioButtonGroup::RemoveButtonFromGroup(RadioButton* ToRemove)
+        {
+            RadioButtonIterator RadioIt = std::find(this->GroupButtons.begin(),this->GroupButtons.end(),ToRemove);
+            if( RadioIt != this->GroupButtons.end() ) {
+                this->GroupButtons.erase( RadioIt );
+            }
+        }
+
+        void RadioButtonGroup::SelectButton(RadioButton* ToSelect)
+        {
+            this->DeselectOtherButtons(ToSelect);
+            this->CurrentSelection = ToSelect;
+            if( this->CurrentSelection != NULL ) {
+                this->CurrentSelection->ManualSelect(true);
+            }
+        }
+
+        void RadioButtonGroup::DeselectOtherButtons(RadioButton* Exclude)
+        {
+            for( RadioButtonIterator RadioIt = this->GroupButtons.begin() ; RadioIt != this->GroupButtons.end() ; ++RadioIt )
+            {
+                if( (*RadioIt) != Exclude ) {
+                    (*RadioIt)->ManualSelect(false);
+                }
+            }
+        }
+
+        RadioButtonGroup::RadioButtonIterator RadioButtonGroup::RadioButtonBegin()
+            { return this->GroupButtons.begin(); }
+
+        RadioButtonGroup::RadioButtonIterator RadioButtonGroup::RadioButtonEnd()
+            { return this->GroupButtons.end(); }
+
+        RadioButtonGroup::ConstRadioButtonIterator RadioButtonGroup::RadioButtonBegin() const
+            { return this->GroupButtons.begin(); }
+
+        RadioButtonGroup::ConstRadioButtonIterator RadioButtonGroup::RadioButtonEnd() const
+            { return this->GroupButtons.end(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        void RadioButtonGroup::_NotifyButtonSelected(RadioButton* Selected)
+        {
+            this->DeselectOtherButtons(Selected);
+            this->CurrentSelection = Selected;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // RadioButton Static Members
+
+        const String RadioButton::TypeName = "RadioButton";
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // RadioButton Methods
+
+        RadioButton::RadioButton(Screen* Parent) :
+            CheckBox(Parent)
+            {  }
+
+        RadioButton::RadioButton(const String& RendName, Screen* Parent) :
+            CheckBox(RendName,Parent)
+            {  }
+
+        RadioButton::RadioButton(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
+            CheckBox(RendName,RendRect,Parent)
+            {  }
+
+        RadioButton::RadioButton(const XML::Node& XMLNode, Screen* Parent) :
+            CheckBox(Parent)
+            { this->ProtoDeSerialize(XMLNode); }
 
         RadioButton::~RadioButton()
-        {
+            { this->RemoveFromButtonGroup(); }
 
+        void RadioButton::ProtoSerializeImpl(XML::Node& SelfRoot) const
+        {
+            this->Widget::ProtoSerializeImpl(SelfRoot);
+            this->ProtoSerializeGroupButtons(SelfRoot);
         }
+
+        void RadioButton::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+        {
+            this->Widget::ProtoDeSerializeImpl(SelfRoot);
+            this->ProtoDeSerializeGroupButtons(SelfRoot);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // RadioButton Properties
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // RadioButton Configuration
+
+        void RadioButton::AddToButtonGroup(RadioButton* ToAdd)
+        {
+            RadioButtonGroup* OtherGroup = ToAdd->_GetButtonGroup();
+            if( this->ButtonGroup != NULL ) {
+                if( OtherGroup == NULL ) {
+                    this->ButtonGroup->AddButtonToGroup(ToAdd);
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to add RadioButton to another group when it already has one.");
+                }
+            }else{
+                if( OtherGroup != NULL ) {
+                    OtherGroup->AddButtonToGroup(this);
+                }else{
+                    OtherGroup = new RadioButtonGroup();
+                    OtherGroup->AddButtonToGroup(this);
+                    OtherGroup->AddButtonToGroup(ToAdd);
+                }
+            }
+        }
+
+        void RadioButton::RemoveFromButtonGroup()
+        {
+            if( this->ButtonGroup != NULL ) {
+                this->ButtonGroup->RemoveButtonFromGroup(this);
+
+                if( this->ButtonGroup->GetNumButtons() == 0 ) {
+                    delete this->ButtonGroup;
+                }
+
+                this->ButtonGroup = NULL;
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void RadioButton::ProtoSerializeGroupButtons(XML::Node& SelfRoot) const
+        {
+            XML::Node ButtonsNode = SelfRoot.AppendChild( "GroupButtons" );
+
+            if( ButtonsNode.AppendAttribute("Version").SetValue("1") ) {
+                RadioButtonGroup::ConstRadioButtonIterator ButBeg = this->ButtonGroup->RadioButtonBegin();
+                RadioButtonGroup::ConstRadioButtonIterator ButEnd = this->ButtonGroup->RadioButtonEnd();
+                for( RadioButtonGroup::ConstRadioButtonIterator ButIt = ButBeg ; ButIt != ButEnd ; ++ButIt )
+                {
+                    XML::Node ButtonNode = ButtonsNode.AppendChild( "GroupButton" );
+
+                    if( ButtonNode.AppendAttribute("Version").SetValue("1") &&
+                        ButtonNode.AppendAttribute("GroupButtonName").SetValue( (*ButIt)->GetName() ) )
+                    {
+                        continue;
+                    }else{
+                        SerializeError("Create XML Version Attribute","GroupButton",true);
+                    }
+                }
+            }else{
+                SerializeError("Create XML Version Attribute","GroupButtons",true);
+            }
+        }
+
+        void RadioButton::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->CheckBox::ProtoSerializeProperties(SelfRoot);
+        }
+
+        void RadioButton::ProtoDeSerializeGroupButtons(const XML::Node& SelfRoot)
+        {
+            this->RemoveFromButtonGroup();
+
+            XML::Attribute CurrAttrib;
+            XML::Node ButtonsNode = SelfRoot.GetChild( "GroupButtons" );
+
+            if( !ButtonsNode.Empty() ) {
+                if( ButtonsNode.GetAttribute("Version").AsInt() == 1 ) {
+                    for( XML::NodeIterator ButtonNodeIt = ButtonsNode.begin() ; ButtonNodeIt != ButtonsNode.end() ; ++ButtonNodeIt )
+                    {
+                        if( (*ButtonNodeIt).GetAttribute("Version").AsInt() == 1 ) {
+                            String GroupButtonName;
+
+                            CurrAttrib = (*ButtonNodeIt).GetAttribute("GroupButtonName");
+                            if( !CurrAttrib.Empty() )
+                                GroupButtonName = CurrAttrib.AsString();
+
+                            if( !GroupButtonName.empty() ) {
+                                Widget* NamedButton = this->ParentScreen->GetWidget(GroupButtonName);
+                                if( NamedButton != NULL && NamedButton->GetTypeName() == RadioButton::TypeName ) {
+                                    this->AddToButtonGroup( static_cast<RadioButton*>( NamedButton ) );
+                                }else{
+                                    StringStream ExceptionStream;
+                                    ExceptionStream << "Named Widget \"" << GroupButtonName << "\" not found or not a RadioButton when deserializing Widget named \"" << this->GetName() << "\".";
+                                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
+                                }
+                            }
+                        }else{
+                            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("GroupButtons") + ": Not Version 1.");
+                        }
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("GroupButtons") + ": Not Version 1.");
+                }
+            }
+        }
+
+        void RadioButton::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->CheckBox::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( RadioButton::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("LockoutTime");
+                    if( !CurrAttrib.Empty() )
+                        this->SelectLock = StringTools::ConvertToBool( CurrAttrib.AsString() );
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (RadioButton::GetSerializableName() + "Properties") + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,RadioButton::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String RadioButton::GetSerializableName()
+        {
+            return RadioButton::TypeName;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+        void RadioButton::_OnSelected()
+        {
+            if( this->ButtonGroup != NULL ) {
+                this->ButtonGroup->_NotifyButtonSelected(this);
+            }
+            this->CheckBox::_OnSelected();
+        }
+
+        void RadioButton::_OnDeselected()
+        {
+            // For now do nothing extra
+            this->CheckBox::_OnDeselected();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        RadioButtonGroup* RadioButton::_GetButtonGroup() const
+        {
+            return this->ButtonGroup;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // RadioButtonFactory Methods
+
+        String RadioButtonFactory::GetWidgetTypeName() const
+            { return RadioButton::TypeName; }
+
+        RadioButton* RadioButtonFactory::CreateRadioButton(const String& RendName, Screen* Parent)
+            { return new RadioButton(RendName,Parent); }
+
+        RadioButton* RadioButtonFactory::CreateRadioButton(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
+            { return new RadioButton(RendName,RendRect,Parent); }
+
+        RadioButton* RadioButtonFactory::CreateRadioButton(const XML::Node& XMLNode, Screen* Parent)
+            { return new RadioButton(XMLNode,Parent); }
+
+        Widget* RadioButtonFactory::CreateWidget(Screen* Parent)
+            { return new RadioButton(Parent); }
+
+        Widget* RadioButtonFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateRadioButton(RendName,Parent); }
+
+        Widget* RadioButtonFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateRadioButton(RendName,RendRect,Parent); }
+
+        Widget* RadioButtonFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateRadioButton(XMLNode,Parent); }
+
+        void RadioButtonFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<RadioButton*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 

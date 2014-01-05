@@ -59,28 +59,26 @@ namespace Mezzanine
         public:
             /// @enum WidgetStateExt
             /// @brief Enum describing extended widget states for the CheckBox widget.
-            /// @details
             enum WidgetStateExt
             {
-                WS_Checked = 8
+                WS_Selected = 8
             };
+
             /// @brief String containing the type name for this class: "CheckBox".
             static const String TypeName;
-            /// @brief Event name for when this checkbox is checked.
-            static const String EventChecked;
-            /// @brief Event name for when this checkbox is unchecked.
-            static const String EventUnchecked;
+            /// @brief Event name for when this checkbox is Selected.
+            static const String EventSelected;
+            /// @brief Event name for when this checkbox is Deselected.
+            static const String EventDeselected;
         protected:
             friend class CheckBoxFactory;
             /// @internal
             /// @brief Stores whether or not the current state of this CheckBox is locked.
-            bool CheckLock;
+            Boolean SelectLock;
+
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             void ConstructCheckbox();
-            /// @brief Convenience method for checking (or unchecking) this CheckBox.
-            /// @param Check The new state to be given to this CheckBox.
-            void SetChecked(bool Check);
         //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
@@ -104,18 +102,18 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
-            /// @brief Gets whether this checkbox is checked or not.
-            /// @return Returns a bool representing whether or not this checkbox is checked.
-            virtual bool IsChecked();
+            /// @brief Gets whether this checkbox is selected or not.
+            /// @return Returns a bool representing whether or not this checkbox is selected.
+            virtual Boolean IsSelected();
             /// @brief Gets wether this checkbox is locked into it's current state.
             /// @return Returns true if this checkbox can't change it's state, false otherwise.
-            virtual bool IsLocked();
-            /// @brief Manually check or uncheck this checkbox.
-            /// @param Check The value to set the status of this checkbox.
-            virtual void ManualCheck(bool Check);
+            virtual Boolean IsLocked();
+            /// @brief Manually select or deselect this checkbox.
+            /// @param Select The value to set the status of this checkbox.
+            virtual void ManualSelect(Boolean Select);
             /// @brief Locks (or unlocks) the current state of this checkbox.
             /// @param Lock Whether or not to lock the current state of this checkbox.
-            virtual void SetCheckLock(bool Lock);
+            virtual void SetSelectLock(Boolean Lock);
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
 
@@ -137,11 +135,11 @@ namespace Mezzanine
             virtual void _OnActivate();
             /// @copydoc Button::_OnDeactivate()
             virtual void _OnDeactivate();
-            /// @brief Self logic to be executed when this checkbox is checked.
-            virtual void _OnChecked();
-            /// @brief Self logic to be executed when this checkbox is unchecked.
-            virtual void _OnUnchecked();
-        };// ©heckBox
+            /// @brief Self logic to be executed when this checkbox is selected.
+            virtual void _OnSelected();
+            /// @brief Self logic to be executed when this checkbox is deselected.
+            virtual void _OnDeselected();
+        };//CheckBox
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the factory implementation for CheckBox widgets.
@@ -185,7 +183,7 @@ namespace Mezzanine
             virtual Widget* CreateWidget(const XML::Node& XMLNode, Screen* Parent);
             /// @copydoc WidgetFactory::DestroyWidget(Widget*)
             virtual void DestroyWidget(Widget* ToBeDestroyed);
-        };// ©heckBoxFactory
+        };//CheckBoxFactory
     }//UI
 }//Mezzanine
 

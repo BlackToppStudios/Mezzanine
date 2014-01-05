@@ -290,10 +290,19 @@ namespace Mezzanine
         Boolean QuadRenderable::IsChildOfScreen() const
             { return (this->ParentScreen == this->ParentQuad); }
 
-        QuadRenderable* QuadRenderable::GetTopMostQuad()
+        Real QuadRenderable::GetIdealHeightForText() const
         {
-            if(this->IsChildOfScreen()) return this;
-            else return (this->ParentQuad ? this->ParentQuad->GetTopMostQuad() : this );
+            Real Ret = 0;
+            for( ConstRenderLayerIterator LayerIt = this->RenderLayers.begin() ; LayerIt != this->RenderLayers.end() ; ++LayerIt )
+            {
+                RenderLayer::RenderLayerType LayerType = (*LayerIt)->GetLayerType();
+                if( LayerType == RenderLayer::RLT_MultiLineText || LayerType == RenderLayer::RLT_SingleLineText ) {
+                    Real LayerHeight = static_cast<TextLayer*>( *LayerIt )->GetTotalHeight();
+                    if( LayerHeight > Ret )
+                        Ret = LayerHeight;
+                }
+            }
+            return Ret;
         }
 
         void QuadRenderable::UpdateDimensions()
@@ -335,8 +344,15 @@ namespace Mezzanine
         Boolean QuadRenderable::GetManualTransformUpdates() const
             { return this->ManualTransformUpdates; }
 
-        void QuadRenderable::SetRenderPriority(const UI::RenderPriority& Priority)
-            { this->Priority = Priority; }
+        void QuadRenderable::SetRenderPriority(const UI::RenderPriority RP)
+            { this->Priority = RP; }
+
+        void QuadRenderable::SetRenderPriorityCascading(const UI::RenderPriority RP)
+        {
+            this->SetRenderPriority(RP);
+            for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
+                (*ChildIt)->SetRenderPriorityCascading(RP);
+        }
 
         UI::RenderPriority QuadRenderable::GetRenderPriority() const
             { return this->Priority; }
@@ -657,7 +673,7 @@ namespace Mezzanine
             if( It != this->RenderLayerGroups.end() ) {
                 this->SetActiveGroup( (*It).second );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" does not exist in LayeredRenderable: \"" + GetName() + "\"." );
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" does not exist in QuadRenderable: \"" + GetName() + "\"." );
             }
         }
 
@@ -962,6 +978,12 @@ namespace Mezzanine
                 }
             }
             return NULL;
+        }
+
+        QuadRenderable* QuadRenderable::GetTopMostQuad()
+        {
+            if(this->IsChildOfScreen()) return this;
+            else return (this->ParentQuad ? this->ParentQuad->GetTopMostQuad() : this );
         }
 
         ///////////////////////////////////////////////////////////////////////////////

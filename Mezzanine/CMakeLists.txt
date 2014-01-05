@@ -682,6 +682,7 @@ if(Mezz_Audio_UseOALS)
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsaudiomanagerfactory.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffect.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalseffectshandler.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsefxinterface.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsfilter.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalslistener.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/OALS/oalsrecorder.cpp"

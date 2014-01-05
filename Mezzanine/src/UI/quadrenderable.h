@@ -64,7 +64,7 @@ namespace Mezzanine
         /// @struct RenderLayerGroup
         /// @headerfile layeredrenderable.h
         /// @brief This class stores a group of render layers that can be set to be rendered.
-        /// @details A LayeredRenderable can only render one group of layers at a time, but a single layer can be added to
+        /// @details A QuadRenderable can only render one group of layers at a time, but a single layer can be added to
         /// as many RenderLayerGroup's as the user see's fit.
         ///////////////////////////////////////
         struct MEZZ_LIB RenderLayerGroup
@@ -168,7 +168,7 @@ namespace Mezzanine
         /// nor are they in the order they will be rendered in.  To get either of these bits of information you
         /// must check the active RenderLayerGroup and check the RenderLayers there. @n @n
         /// Also only one RenderLayerGroup may render at a time, but a single RenderLayer can be shared between
-        /// as many groups under the same LayeredRenderable as you want.
+        /// as many groups under the same QuadRenderable as you want.
         ///////////////////////////////////////
         class MEZZ_LIB QuadRenderable : public Renderable
         {
@@ -299,11 +299,10 @@ namespace Mezzanine
             /// @brief Gets whether or not this QuadRenderable is a direct child of it's screen.
             /// @return Returns true if the screen is this QuadRenderable's parent, false otherwise.
             virtual Boolean IsChildOfScreen() const;
-            /// @brief Gets the QuadRenderable that is both an ancestor of this quad, and a direct child of the screen.
-            /// @note Since the screen is pretty much always the root and you can get the screen through other methods,
-            /// that isn't factored in when searching.  If this quad is a direct child of the screen, this will be returned.
-            /// @return Returns a pointer to the QuadRenderable that is both an ancestor of this quad, and a direct child of the screen.
-            virtual QuadRenderable* GetTopMostQuad();
+            /// @brief Gets the height needed for this quadrenderable to be able to completely display text in it's child text layers.
+            /// @return Returns a Real representing the pixel height this quad needs to be to display it's largest batch of text among it's text layers.
+            virtual Real GetIdealHeightForText() const;
+
             /// @brief Updates the dimensions of this QuadRenderable based on the transform of it's parent.
             /// @details This is a convenience function that will call the more descriptive version of "UpdateDimensions" on this objects parent using its
             /// existing dimensions as both parameters, causing all of its children to be updated (including this).  This method can be expensive based on
@@ -338,11 +337,15 @@ namespace Mezzanine
             /// @return Returns true if this quad needs manual updating, false if it recieves automatic updates.
             virtual bool GetManualTransformUpdates() const;
 
-            /// @brief Sets the priority this LayeredRenderable should be rendered with.
+            /// @brief Sets the priority this QuadRenderable should be rendered with.
             /// @note The default value for this is Medium.
-            /// @param Priority The priority level to be used when rendering this LayeredRenderable.
-            virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-            /// @brief Gets the priority this LayeredRenderable should be rendered with.
+            /// @param RP The priority level to be used when rendering this QuadRenderable.
+            virtual void SetRenderPriority(const UI::RenderPriority RP);
+            /// @brief Sets the priority this QuadRenderable and all it's children should be rendered with.
+            /// @note The default value for this is Medium.
+            /// @param RP The priority level to be used when rendering this QuadRenderable and it's children.
+            virtual void SetRenderPriorityCascading(const UI::RenderPriority RP);
+            /// @brief Gets the priority this QuadRenderable should be rendered with.
             /// @return Returns an enum value representing this renderables priority level.
             virtual UI::RenderPriority GetRenderPriority() const;
 
@@ -454,20 +457,23 @@ namespace Mezzanine
             /// @return Returns a pointer to the created layer.
             SingleLineTextLayer* CreateSingleLineTextLayer(const String& FontName, const GroupOrderEntryVector& Entrys);
             /// @brief Creats a SingleLineTextLayer for this renderable.
-            /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
-            /// @param LineHeight The height of the text to display relative to the parent renderable's height.
+            /// @note This will not add the created layer to any group, thus it must be added manually to be rendered. @n @n
+            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
+            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
             /// @return Returns a pointer to the created layer.
             SingleLineTextLayer* CreateSingleLineTextLayer(const Real& LineHeight);
             /// @brief Creats a SingleLineTextLayer for this renderable.
-            /// @note If the requested group does not exist it will be created.
-            /// @param LineHeight The height of the text to display relative to the parent renderable's height.
+            /// @note If the requested group does not exist it will be created. @n @n
+            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
+            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
             /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
             /// @param GroupName The name of the group the created TextLayer should be added to.
             /// @return Returns a pointer to the created layer.
             SingleLineTextLayer* CreateSingleLineTextLayer(const Real& LineHeight, const UInt16 ZOrder, const String& GroupName);
             /// @brief Creates a SingleLineTextLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created.
-            /// @param LineHeight The height of the text to display relative to the parent renderable's height.
+            /// @note If the requested groups do not exist they will be created. @n @n
+            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
+            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
             /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
             /// @return Returns a pointer to the created layer.
             SingleLineTextLayer* CreateSingleLineTextLayer(const Real& LineHeight, const GroupOrderEntryVector& Entrys);
@@ -506,20 +512,23 @@ namespace Mezzanine
             /// @return Returns a pointer to the created layer.
             MultiLineTextLayer* CreateMultiLineTextLayer(const String& FontName, const GroupOrderEntryVector& Entrys);
             /// @brief Creats a MultiLineTextLayer for this renderable.
-            /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
-            /// @param LineHeight The height of the text to display relative to the parent renderable's height.
+            /// @note This will not add the created layer to any group, thus it must be added manually to be rendered. @n @n
+            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
+            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
             /// @return Returns a pointer to the created layer.
             MultiLineTextLayer* CreateMultiLineTextLayer(const Real& LineHeight);
             /// @brief Creats a MultiLineTextLayer for this renderable.
-            /// @note If the requested group does not exist it will be created.
-            /// @param LineHeight The height of the text to display relative to the parent renderable's height.
+            /// @note If the requested group does not exist it will be created. @n @n
+            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
+            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
             /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
             /// @param GroupName The name of the group the created TextLayer should be added to.
             /// @return Returns a pointer to the created layer.
             MultiLineTextLayer* CreateMultiLineTextLayer(const Real& LineHeight, const UInt16 ZOrder, const String& GroupName);
             /// @brief Creates a MultiLineTextLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created.
-            /// @param LineHeight The height of the text to display relative to the parent renderable's height.
+            /// @note If the requested groups do not exist they will be created. @n @n
+            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
+            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
             /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
             /// @return Returns a pointer to the created layer.
             MultiLineTextLayer* CreateMultiLineTextLayer(const Real& LineHeight, const GroupOrderEntryVector& Entrys);
@@ -617,7 +626,7 @@ namespace Mezzanine
             /// @brief Destroy's a RenderLayerGroup by pointer.
             /// @param ToBeDestroyed The RenderLayerGroup to be destroyed.
             void DestroyRenderLayerGroup(RenderLayerGroup* ToBeDestroyed);
-            /// @brief Destroy's all RenderLayerGroups being stored/managed by this LayeredRenderable.
+            /// @brief Destroy's all RenderLayerGroups being stored/managed by this QuadRenderable.
             void DestroyAllRenderLayerGroups();
 
             /// @brief Gets an iterator to the first RenderLayerGroup.
@@ -738,6 +747,11 @@ namespace Mezzanine
             /// @param Wrap Whether or not you want to return the last QuadRenderable owned by this Quad's parent if this Quad is first.
             /// @return Returns a pointer to the previous QuadRenderable (by sort order).
             QuadRenderable* GetPrevSibling(Boolean Wrap = true);
+            /// @brief Gets the QuadRenderable that is both an ancestor of this quad, and a direct child of the screen.
+            /// @note Since the screen is pretty much always the root and you can get the screen through other methods,
+            /// that isn't factored in when searching.  If this quad is a direct child of the screen, this will be returned.
+            /// @return Returns a pointer to the QuadRenderable that is both an ancestor of this quad, and a direct child of the screen.
+            virtual QuadRenderable* GetTopMostQuad();
 
             ///////////////////////////////////////////////////////////////////////////////
             // VertexCaching Methods

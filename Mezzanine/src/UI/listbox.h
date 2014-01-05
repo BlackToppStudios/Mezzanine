@@ -48,6 +48,96 @@ namespace Mezzanine
 {
     namespace UI
     {
+        class VerticalScrollbar;
+        class VerticalContainer;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a struct for the storage of parameters to be set on created ListBox list items.
+        /// @details
+        ///////////////////////////////////////
+        struct ListItemParameters
+        {
+            //UI::LinearAlignment HorizontalAlign;
+            //UI::LinearAlignment VerticalAlign;
+            //UI::RenderPriority Priority;
+            //Whole CursorOffset;
+            //Real TextScale;
+            //Vector2 Size;
+            //ColourValue TextColour;
+            //ColourValue BackgroundColour;
+        };
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a widget for displaying a list of captions in a box.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB ListBox : public Widget
+        {
+        public:
+            /// @brief Convenience typedef for objects that will be used to represent list items in this ListBox.
+            typedef Widget ListItem;
+            /// @brief String containing the type name for this class: "ListBox".
+            static const String TypeName;
+        protected:
+            friend class ListBoxFactory;
+            /// @internal
+            /// @brief A pointer to the vertical scrollbar responsible for the visible list items.
+            VerticalScrollbar* VScroll;
+            /// @internal
+            /// @brief A pointer to the vertical container storing all the list items.
+            VerticalContainer* VContainer;
+            /// @internal
+            /// @brief Stores whether or not the scrollbar of this listbox should hide when there is 1 page or less of list items.
+            Boolean AutoHideScroll;
+        //public:
+            /// @brief Blank constructor.
+            /// @param Parent The parent Screen that created this widget.
+            ListBox(Screen* Parent);
+            /// @brief Standard initialization constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param Parent The parent Screen that created this widget.
+            ListBox(const String& RendName, Screen* Parent);
+            /// @brief Rect constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param RendRect The rect describing this widget's transform relative to it's parent.
+            /// @param Parent The parent screen that created this renderable.
+            ListBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created ListBox will belong to.
+            ListBox(const XML::Node& XMLNode, Screen* Parent);
+            /// @brief Class destructor.
+            virtual ~ListBox();
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // ListBox Properties
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // ListBox Configuration
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @copydoc Renderable::ProtoSerializeProperties(XML::Node&) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @copydoc Renderable::ProtoDeSerializeProperties(const XML::Node&)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+
+            /// @copydoc Renderable::GetSerializableName()
+            static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Event Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+        };//ListBox
+
+
+
         /*struct TemplateParams
         {
             UI::LinearAlignment HorizontalAlign;
@@ -61,16 +151,6 @@ namespace Mezzanine
             ColourValue BackgroundColour;
         };
 
-        class Rectangle;
-        class Button;
-        class Caption;
-        class Scrollbar;
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class ListBox
-        /// @headerfile uilistbox.h
-        /// @brief This is a widget for displaying a list of captions in a box.
-        /// @details
-        ///////////////////////////////////////
         class MEZZ_LIB ListBox : public Widget
         {
             public:
@@ -94,16 +174,6 @@ namespace Mezzanine
                 virtual void ScrollHideCheck();
                 /// @brief Checks to see if the current size of the selection needs adjusting.
                 virtual void SelectionSizeCheck(UI::Caption* Selection);
-                /// @brief Internal utility to set the size of this widget.
-                virtual void SetArea(const Vector2& Area);
-                /// @brief Updates the list of Visible buttons and hides the rest.
-                virtual void DrawList();
-                /// @brief Child specific update method.
-                virtual void UpdateImpl(bool Force = false);
-                /// @brief Child specific visibility method.
-                virtual void SetVisibleImpl(bool visible);
-                /// @brief Child specific mouse hover method.
-                virtual bool CheckMouseHoverImpl();
             //public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the List Box.
@@ -180,42 +250,6 @@ namespace Mezzanine
                 /// @brief Destroys a selectable caption.
                 /// @param ToBeDestroyed A pointer to the caption you want destroyed and removed from this list.
                 virtual void DestroySelection(Caption* ToBeDestroyed);
-                /// @brief Sets the selection within this list to be "selected".
-                /// @param ToBeSelected A pointer to the caption to be set as "selected".
-                virtual void SetSelected(Caption* ToBeSelected);
-                /// @brief Sets the maximum number of selections to display at once before the scrollbar appears.
-                /// @param MaxSelections The maximum number of selections to display at once before requiring a scrollbar.
-                /// This indirectly controls the max size of this widget.
-                virtual void SetMaxDisplayedSelections(const Whole& MaxSelections);
-                /// @brief Eanbles or disables the scrollbar autohide.
-                /// @param AutoHide A bool indicating whether or not to auto hide the scrollbar.
-                virtual void SetAutoHideScroll(bool AutoHide);
-                /// @brief Sets the relative position of this List Box.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Position A vector2 representing the relative position of this List Box.
-                virtual void SetPosition(const Vector2& Position);
-                /// @brief Sets the pixel position of this List Box.
-                /// @param Position A vector2 representing the pixel position of this List Box.
-                virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Sets the relative size of this List Box.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Size A vector2 representing the relative size of this List Box.
-                virtual void SetSize(const Vector2& Size);
-                /// @brief Sets the pixel size of this List Box.
-                /// @param Size A vector2 representing the pixel size of this List Box.
-                virtual void SetActualSize(const Vector2& Size);
-                /// @brief Updates the dimensions of this widget to match those of the new screen size.
-                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                virtual void UpdateDimensions();
-                /// @brief Gets the currently selected caption.
-                /// @return Returns a pointer to the currently selected caption, or NULL if none are selected.
-                virtual Caption* GetSelected();
-                /// @brief Gets the background of this List Box.
-                /// @return Returns a pointer to the background of this List Box.
-                virtual Rectangle* GetBoxBack();
-                /// @brief Gets the scrollbar used within this List Box.
-                /// @return Returns a pointer to the scrollbar of this List Box.
-                virtual UI::Scrollbar* GetVertScroll();
         };//LineList//*/
     }//UI
 }//Mezzanine

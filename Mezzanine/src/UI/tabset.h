@@ -40,13 +40,66 @@
 #ifndef _uitabset_h
 #define _uitabset_h
 
-#include "datatypes.h"
-#include "UI/widget.h"
+#include "UI/stackedcontainer.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a widget that stores sets of renderables but only displays one at a time.
+        /// @details This widget is useful for tabbed option displays.
+        ///////////////////////////////////////
+        class MEZZ_LIB TabSet : public StackedContainer
+        {
+        public:
+            /// @brief String containing the type name for this class: "TabSet".
+            static const String TypeName;
+        protected:
+            friend class TabSetFactory;
+        //public:
+            /// @brief Blank constructor.
+            /// @param Parent The parent Screen that created this widget.
+            TabSet(Screen* Parent);
+            /// @brief Standard initialization constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param Parent The parent Screen that created this widget.
+            TabSet(const String& RendName, Screen* Parent);
+            /// @brief Rect constructor.
+            /// @param RendName The name to be given to this renderable.
+            /// @param RendRect The rect describing this widget's transform relative to it's parent.
+            /// @param Parent The parent screen that created this renderable.
+            TabSet(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created TabSet will belong to.
+            TabSet(const XML::Node& XMLNode, Screen* Parent);
+            /// @brief Class destructor.
+            virtual ~TabSet();
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Visibility and Priority Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // TabSet Properties
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // TabSet Configuration
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Event Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+        };//TabSet
+
         /*class Button;
         typedef class EnclosedRenderableContainerWidget RenderableCollection;
         ///////////////////////////////////////////////////////////////////////////////
@@ -103,35 +156,6 @@ namespace Mezzanine
                 /// @brief Class destructor.
                 virtual ~TabSet();
             public:
-                /// @brief Sets the relative position of this widget.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0. @n @n
-                /// This function will only set the position of the common Set area used by all sets in this widget,
-                /// and will not change the position of the accessors related to those sets.  Accessors must be set
-                /// independantly.
-                /// @param Position A vector2 representing the relative position of this widget.
-                virtual void SetPosition(const Vector2& Position);
-                /// @brief Sets the pixel position of this widget.
-                /// @details This function will only set the position of the common Set area used by all sets in this widget,
-                /// and will not change the position of the accessors related to those sets.  Accessors must be set
-                /// independantly.
-                /// @param Position A vector2 representing the pixel position of this widget.
-                virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Sets the relative size of this widget.
-                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0. @n @n
-                /// This function will only set the size of the common Set area used by all sets in this widget,
-                /// and will not change the size of the accessors related to those sets.  Accessors must be set
-                /// independantly.
-                /// @param Size A vector2 representing the relative size of this widget.
-                virtual void SetSize(const Vector2& Size);
-                /// @brief Sets the pixel size of this widget.
-                /// @details This function will only set the size of the common Set area used by all sets in this widget,
-                /// and will not change the size of the accessors related to those sets.  Accessors must be set
-                /// independantly.
-                /// @param Size A vector2 representing the pixel size of this widget.
-                virtual void SetActualSize(const Vector2& Size);
-                /// @brief Updates the dimensions of this widget to match those of the new screen size.
-                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                virtual void UpdateDimensions();
                 ///////////////////////////////////////////////////////////////////////////////
                 // Creating and working with Renderable Sets
                 ///////////////////////////////////////

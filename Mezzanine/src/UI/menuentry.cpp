@@ -93,8 +93,8 @@ namespace Mezzanine
 
         MenuEntry::~MenuEntry()
         {
-            this->_NotifyStack(NULL);
             if( this->IsRootEntry() && this->MenuStack ) {
+                this->_NotifyStack(NULL);
                 delete this->MenuStack;
             }
         }

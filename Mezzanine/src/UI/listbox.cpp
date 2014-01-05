@@ -55,6 +55,85 @@ namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // ListBox Static Members
+
+        const String ListBox::TypeName = "ListBox";
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // ListBox Methods
+
+        ListBox::ListBox(Screen* Parent) :
+            Widget(Parent)
+        {
+
+        }
+
+        ListBox::ListBox(const String& RendName, Screen* Parent) :
+            Widget(RendName,Parent)
+        {
+
+        }
+
+        ListBox::ListBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
+            Widget(RendName,RendRect,Parent)
+        {
+
+        }
+
+        ListBox::ListBox(const XML::Node& XMLNode, Screen* Parent) :
+            Widget(Parent)
+        {
+
+        }
+
+        ListBox::~ListBox()
+        {
+
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // ListBox Properties
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // ListBox Configuration
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void ListBox::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->Widget::ProtoSerializeProperties(SelfRoot);
+        }
+
+        void ListBox::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->Widget::ProtoDeSerializeProperties(SelfRoot);
+        }
+
+        String ListBox::GetSerializableName()
+        {
+            return ListBox::TypeName;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+
+
+
+
+
+
+
+
+
         /*ListBox::ListBox(ConstString& name, const Rect& RendRect, const UI::ScrollbarStyle& ScrollStyle, Screen* PScreen) :
             Widget(name,PScreen),
             Selected(NULL),
@@ -165,107 +244,6 @@ namespace Mezzanine
             {
                 Selection->SetActualSize(TargetSize);
             }
-        }
-
-        void ListBox::SetArea(const Vector2& Area)
-        {
-            RelSize = Area / ParentScreen->GetViewportDimensions();
-            BoxBack->SetActualSize(Area);
-            Vector2 ScrollP((GetActualPosition().X + Area.X) - VertScroll->GetActualSize().X,GetActualPosition().Y);
-            Vector2 ScrollS(VertScroll->GetActualSize().X,Area.Y);
-            VertScroll->SetActualPosition(ScrollP);
-            VertScroll->SetActualSize(ScrollS);
-        }
-
-        void ListBox::DrawList()
-        {
-            if(Selections.empty())
-                return;
-            ScrollHideCheck();
-            VisibleSelections.clear();
-            Whole FirstCaption = 0;
-            if(MaxDisplay < Selections.size())
-            {
-                Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)(Selections.size() - MaxDisplay);
-                FirstCaption = (Whole)(ToBeRounded + 0.5);
-            }
-            Vector2 SelectionPos = GetActualPosition();
-            Real ActualInc = SelectionTemplate.Size.Y;
-
-            for( Whole w = 0 ; w < FirstCaption ; ++w )
-            {
-                Selections[w]->SetPosition(GetPosition());
-                Selections[w]->Hide();
-                SelectionSizeCheck(Selections[w]);
-            }
-            Whole Displayed = FirstCaption+MaxDisplay > Selections.size() ? Selections.size() : FirstCaption+MaxDisplay;
-            for( Whole x = FirstCaption ; x < Displayed ; ++x )
-            {
-                VisibleSelections.push_back(Selections[x]);
-                Selections[x]->SetVisible(this->IsVisible());
-            }
-            for( Whole y = Displayed ; y < Selections.size() ; ++y )
-            {
-                Selections[y]->SetPosition(GetPosition());
-                Selections[y]->Hide();
-                SelectionSizeCheck(Selections[y]);
-            }
-            for( Whole z = 0 ; z < VisibleSelections.size() ; ++z )
-            {
-                VisibleSelections[z]->SetActualPosition(SelectionPos);
-                SelectionPos.Y+=ActualInc;
-                SelectionSizeCheck(VisibleSelections[z]);
-            }
-        }
-
-        void ListBox::UpdateImpl(bool Force)
-        {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
-            if(HoveredCaption)
-            {
-                if(Input::BUTTON_PRESSING == State)
-                {
-                    SetSelected(HoveredCaption);
-                }
-            }
-            if(LastScrollValue != VertScroll->GetScrollerValue())
-            {
-                DrawList();
-                LastScrollValue = VertScroll->GetScrollerValue();
-            }
-        }
-
-        void ListBox::SetVisibleImpl(bool visible)
-        {
-            BoxBack->SetVisible(visible);
-            DrawList();
-        }
-
-        bool ListBox::CheckMouseHoverImpl()
-        {
-            for( std::vector<Caption*>::iterator it = VisibleSelections.begin() ; it != VisibleSelections.end() ; it++ )
-            {
-                if((*it)->CheckMouseHover())
-                {
-                    HoveredSubWidget = NULL;
-                    HoveredCaption = (*it);
-                    return true;
-                }
-            }
-            if(VertScroll->CheckMouseHover())
-            {
-                HoveredSubWidget = VertScroll;
-                HoveredCaption = NULL;
-                return true;
-            }
-            else if(BoxBack->CheckMouseHover())
-            {
-                HoveredSubWidget = NULL;
-                HoveredCaption = NULL;
-                return true;
-            }
-            HoveredCaption = NULL;
-            return false;
         }
 
         ListBox& ListBox::SetTemplateSize(const Vector2& Size, bool Relative)
@@ -394,87 +372,6 @@ namespace Mezzanine
                 }
             }
             ParentScreen->DestroyBasicRenderable(ToBeDestroyed);
-        }
-
-        void ListBox::SetSelected(Caption* ToBeSelected)
-        {
-            /// @todo Maybe add a checker to verify the caption belongs to this widget?
-            Selected = ToBeSelected;
-        }
-
-        void ListBox::SetMaxDisplayedSelections(const Whole& MaxSelections)
-        {
-            MaxDisplay = MaxSelections;
-            Vector2 NewBackSize = SelectionTemplate.Size;
-            NewBackSize.Y*=MaxDisplay;
-            SetArea(NewBackSize);
-            ScrollerSizeCheck();
-        }
-
-        void ListBox::SetAutoHideScroll(bool AutoHide)
-        {
-            AutoHideScroll = AutoHide;
-            ScrollHideCheck();
-        }
-
-        void ListBox::SetPosition(const Vector2& Position)
-        {
-            RelPosition = Position;
-            Vector2 ScrollOffset = VertScroll->GetPosition() - RelPosition;
-            BoxBack->SetPosition(Position);
-            VertScroll->SetPosition(Position + ScrollOffset);
-            DrawList();
-        }
-
-        void ListBox::SetActualPosition(const Vector2& Position)
-        {
-            RelPosition = Position / ParentScreen->GetViewportDimensions();
-            Vector2 ScrollOffset = VertScroll->GetActualPosition() - (RelPosition * ParentScreen->GetViewportDimensions());
-            BoxBack->SetActualPosition(Position);
-            VertScroll->SetActualPosition(Position + ScrollOffset);
-            DrawList();
-        }
-
-        void ListBox::SetSize(const Vector2& Size)
-        {
-            // Size is set implicitly
-        }
-
-        void ListBox::SetActualSize(const Vector2& Size)
-        {
-            // Size is set implicitly
-        }
-
-        void ListBox::UpdateDimensions()
-        {
-            // ©onst Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
-            //SetArea(RelSize * WinDim);
-            //SetActualPosition(RelPosition * WinDim);
-
-            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
-            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
-            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
-            Real Scale = ViewportUpdateTool::GetNewSize().Y / ViewportUpdateTool::GetOldSize().Y;
-            BoxBack->UpdateDimensions();
-            VertScroll->UpdateDimensions();
-            SelectionTemplate.Size*=Scale;
-            DrawList();
-            SetPosition(RelPosition);
-        }
-
-        Caption* ListBox::GetSelected()
-        {
-            return Selected;
-        }
-
-        Rectangle* ListBox::GetBoxBack()
-        {
-            return BoxBack;
-        }
-
-        UI::Scrollbar* ListBox::GetVertScroll()
-        {
-            return VertScroll;
         }//*/
     }//UI
 }//Mezzanine
