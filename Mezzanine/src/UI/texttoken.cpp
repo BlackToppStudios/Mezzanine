@@ -99,7 +99,7 @@ namespace Mezzanine
                 // Verify the encoding and count the characters
                 UInt32 BufPos = 0;
                 Int32 BytesAdvance = 0;
-                Char8 ConversionBuffer[4];
+                //Char8 ConversionBuffer[4];
                 while( BufPos < Size )
                 {
                     if( Unicode::GetIntFromCharacter(BytesAdvance,Characters + BufPos) < 0 ) {
@@ -127,7 +127,7 @@ namespace Mezzanine
                 UInt32 SourceBufPos = 0;
                 UInt32 ConvBufPos = 0;
                 UInt32 ConvBufSize = Size * 4; // Max size needed
-                Char8 ConversionBuffer[ConvBufSize];
+                Char8* ConversionBuffer = new Char8[ConvBufSize];
                 while( SourceBufPos < Size )
                 {
                     BytesAdvance = Unicode::GetCharacterFromInt(&(ConversionBuffer[ConvBufPos]),ConvBufSize - ConvBufPos,Characters[SourceBufPos]);
@@ -140,6 +140,7 @@ namespace Mezzanine
                 }
 
                 this->Text.insert(RawIndex,ConversionBuffer,ConvBufPos);
+                delete[] ConversionBuffer;
                 return Size;
             }
             return 0;
@@ -364,6 +365,7 @@ namespace Mezzanine
             // Just return the last token and it's max index.
             Ret.first = --(this->Tokens.end());
             Ret.second = (*Ret.first)->GetRenderCharacterSize();
+            return Ret;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -428,7 +430,7 @@ namespace Mezzanine
         {
             TokenIndexPair Result = this->GetTokenIndex(Index);
             UInt32 Ret = (*Result.first)->InsertCharacter(Result.second,UChar);
-            if( Ret = 0 ) {
+            if( Ret == 0 ) {
                 // If we're here, then we're probably on a token that isn't a text token, or behaving like one.
                 // There are a number of conditions depending on tag types that could cause this, so instead of trying to troubleshoot them, lets just insert a new text token.
                 TextToken* NewToken = new TextToken(&UChar,1);
@@ -442,7 +444,7 @@ namespace Mezzanine
         {
             TokenIndexPair Result = this->GetTokenIndex(Index);
             UInt32 Ret = (*Result.first)->InsertCharacters(Result.second,Characters,Size);
-            if( Ret = 0 ) {
+            if( Ret == 0 ) {
                 // If we're here, then we're probably on a token that isn't a text token, or behaving like one.
                 // There are a number of conditions depending on tag types that could cause this, so instead of trying to troubleshoot them, lets just insert a new text token.
                 TextToken* NewToken = new TextToken(Characters,Size);
@@ -456,7 +458,7 @@ namespace Mezzanine
         {
             TokenIndexPair Result = this->GetTokenIndex(Index);
             UInt32 Ret = (*Result.first)->InsertCharacters(Result.second,Characters,Size);
-            if( Ret = 0 ) {
+            if( Ret == 0 ) {
                 // If we're here, then we're probably on a token that isn't a text token, or behaving like one.
                 // There are a number of conditions depending on tag types that could cause this, so instead of trying to troubleshoot them, lets just insert a new text token.
                 TextToken* NewToken = new TextToken(Characters,Size);
