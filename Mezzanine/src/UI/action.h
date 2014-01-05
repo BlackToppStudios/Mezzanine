@@ -84,8 +84,12 @@ namespace Mezzanine
             static const String EventActionDeactivated;
         protected:
             friend class ActionHandler;
-            ActionHandler* Parent;
+            /// @internal
+            /// @brief The name of this action.
             const String ActionName;
+            /// @internal
+            /// @brief A pointer to the handler that owns this Action.
+            ActionHandler* Parent;
         //public:
             /// @brief Class constructor.
             /// @param Name The name to be given to the action.
@@ -113,7 +117,7 @@ namespace Mezzanine
             /// @brief Handles input passed to this Action.
             /// @param Code The MetaCode to be processed.
             /// @return Returns true if this input was consumed/handled, false otherwise.
-            bool _HandleInput(const Input::MetaCode& Code);
+            Boolean _HandleInput(const Input::MetaCode& Code);
         };//Action
     }//UI
 }//Mezzanine

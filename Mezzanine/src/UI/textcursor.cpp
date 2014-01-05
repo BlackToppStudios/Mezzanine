@@ -148,8 +148,7 @@ namespace Mezzanine
         void TextCursor::RemoveLeftCharacter()
         {
             UInt32 NumChars = this->Layer->GetNumCharacters();
-            if( NumChars > 0 )
-            {
+            if( NumChars > 0 ) {
                 if( this->IndexPosition < 0 || this->IndexPosition > this->Layer->GetNumCharacters() ) {
                     this->Layer->RemoveCharacterAtIndex( NumChars - 1 );
                 }else{
@@ -161,8 +160,7 @@ namespace Mezzanine
         void TextCursor::RemoveRightCharacter()
         {
             UInt32 NumChars = this->Layer->GetNumCharacters();
-            if( NumChars > 0 )
-            {
+            if( NumChars > 0 ) {
                 if( this->IndexPosition < 0 || this->IndexPosition > NumChars ) {
                     // Nothing to be done, may fill out other logic later.
                 }else{
