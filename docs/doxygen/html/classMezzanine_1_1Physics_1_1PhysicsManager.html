@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -104,7 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Physics_1_1PhysicsManager__inherit__graph.svg" width="198" height="214"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Physics_1_1PhysicsManager__inherit__graph.svg" width="182" height="211"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -118,16 +118,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:afc82657d492a34f7ba5a3ef7eb6a8ad1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc82657d492a34f7ba5a3ef7eb6a8ad1"></a>
-typedef std::map&lt; <a class="el" href="classMezzanine_1_1ObjectPair.html">ObjectPair</a>, <br class="typebreak"/>
-<a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Collision</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#afc82657d492a34f7ba5a3ef7eb6a8ad1">CollisionContainer</a></td></tr>
-<tr class="memdesc:afc82657d492a34f7ba5a3ef7eb6a8ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Collision</a> storage by this class. <br/></td></tr>
-<tr class="separator:afc82657d492a34f7ba5a3ef7eb6a8ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a473abb24c8ded36507346f41d52c7a4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a473abb24c8ded36507346f41d52c7a4f"></a>
+typedef std::map<br class="typebreak"/>
+&lt; <a class="el" href="classMezzanine_1_1Physics_1_1CollidablePair.html">CollidablePair</a>, <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Collision</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a473abb24c8ded36507346f41d52c7a4f">CollisionContainer</a></td></tr>
+<tr class="memdesc:a473abb24c8ded36507346f41d52c7a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Collision</a> storage by this class. <br/></td></tr>
+<tr class="separator:a473abb24c8ded36507346f41d52c7a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecff4e6e6b0dd3bef87c7e14669b1338"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecff4e6e6b0dd3bef87c7e14669b1338"></a>
 typedef <br class="typebreak"/>
 CollisionContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#aecff4e6e6b0dd3bef87c7e14669b1338">CollisionIterator</a></td></tr>
 <tr class="memdesc:aecff4e6e6b0dd3bef87c7e14669b1338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Collision</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:aecff4e6e6b0dd3bef87c7e14669b1338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9036d750fd2fe47601416738f22fee1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9036d750fd2fe47601416738f22fee1"></a>
+typedef std::pair<br class="typebreak"/>
+&lt; <a class="el" href="classMezzanine_1_1Physics_1_1CollidablePair.html">CollidablePair</a>, <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Collision</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ad9036d750fd2fe47601416738f22fee1">CollisionSortPair</a></td></tr>
+<tr class="memdesc:ad9036d750fd2fe47601416738f22fee1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A std::pair to assist with collision sorting operations. <br/></td></tr>
+<tr class="separator:ad9036d750fd2fe47601416738f22fee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a546020b4fbf97e797bb099e365c1b9a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a546020b4fbf97e797bb099e365c1b9a8"></a>
 typedef <br class="typebreak"/>
 CollisionContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a546020b4fbf97e797bb099e365c1b9a8">ConstCollisionIterator</a></td></tr>
@@ -141,7 +146,7 @@ ConstraintContainer::const_iterator&#160;</td><td class="memItemRight" valign="b
 <tr class="memitem:a88a30e2ed48587e0e959fc9cac3bc784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88a30e2ed48587e0e959fc9cac3bc784"></a>
 typedef <br class="typebreak"/>
 ProxyContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a88a30e2ed48587e0e959fc9cac3bc784">ConstProxyIterator</a></td></tr>
-<tr class="memdesc:a88a30e2ed48587e0e959fc9cac3bc784"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html">PhysicsProxy</a> instances stored by this class. <br/></td></tr>
+<tr class="memdesc:a88a30e2ed48587e0e959fc9cac3bc784"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:a88a30e2ed48587e0e959fc9cac3bc784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8065dfaca8fd9ab3350b78720976aa4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8065dfaca8fd9ab3350b78720976aa4f"></a>
 typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html">Constraint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a8065dfaca8fd9ab3350b78720976aa4f">ConstraintContainer</a></td></tr>
@@ -157,14 +162,14 @@ typedef <br class="typebreak"/>
 WorldTriggerContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a4644d2315ca265cce0783a6fc901749d">ConstWorldTriggerIterator</a></td></tr>
 <tr class="memdesc:a4644d2315ca265cce0783a6fc901749d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1WorldTrigger.html">WorldTrigger</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:a4644d2315ca265cce0783a6fc901749d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a419a2200388a63e463a2420a9c58acdc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a419a2200388a63e463a2420a9c58acdc"></a>
+<tr class="memitem:a8c9bbdbe361009c0b5b3992510e9b241"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c9bbdbe361009c0b5b3992510e9b241"></a>
 typedef std::vector<br class="typebreak"/>
-&lt; <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html">PhysicsProxy</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a419a2200388a63e463a2420a9c58acdc">ProxyContainer</a></td></tr>
-<tr class="memdesc:a419a2200388a63e463a2420a9c58acdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html">PhysicsProxy</a> storage by this class. <br/></td></tr>
-<tr class="separator:a419a2200388a63e463a2420a9c58acdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+&lt; <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a8c9bbdbe361009c0b5b3992510e9b241">ProxyContainer</a></td></tr>
+<tr class="memdesc:a8c9bbdbe361009c0b5b3992510e9b241"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic container type for <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> storage by this class. <br/></td></tr>
+<tr class="separator:a8c9bbdbe361009c0b5b3992510e9b241"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae96647b1b1b49c1eeb52921d06b0c6c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae96647b1b1b49c1eeb52921d06b0c6c9"></a>
 typedef ProxyContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ae96647b1b1b49c1eeb52921d06b0c6c9">ProxyIterator</a></td></tr>
-<tr class="memdesc:ae96647b1b1b49c1eeb52921d06b0c6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html">PhysicsProxy</a> instances stored by this class. <br/></td></tr>
+<tr class="memdesc:ae96647b1b1b49c1eeb52921d06b0c6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:ae96647b1b1b49c1eeb52921d06b0c6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3fd11323d6629e183dbecf65174a766"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3fd11323d6629e183dbecf65174a766"></a>
 typedef std::vector<br class="typebreak"/>
@@ -215,12 +220,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a12d0f3e68c31cb848c1d1b7359913951"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html">GhostProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a12d0f3e68c31cb848c1d1b7359913951">CreateGhostProxy</a> ()</td></tr>
 <tr class="memdesc:a12d0f3e68c31cb848c1d1b7359913951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html" title="This is the proxy object for ghost objects with no contact response.">GhostProxy</a>.  <a href="#a12d0f3e68c31cb848c1d1b7359913951">More...</a><br/></td></tr>
 <tr class="separator:a12d0f3e68c31cb848c1d1b7359913951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b4193a93121d72532b5f8fe8e787bda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html">GhostProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a4b4193a93121d72532b5f8fe8e787bda">CreateGhostProxy</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
+<tr class="memdesc:a4b4193a93121d72532b5f8fe8e787bda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html" title="This is the proxy object for ghost objects with no contact response.">GhostProxy</a>.  <a href="#a4b4193a93121d72532b5f8fe8e787bda">More...</a><br/></td></tr>
+<tr class="separator:a4b4193a93121d72532b5f8fe8e787bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a708906345b5415a0eaa40b5bc878eadc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html">RigidProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a708906345b5415a0eaa40b5bc878eadc">CreateRigidProxy</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mass)</td></tr>
 <tr class="memdesc:a708906345b5415a0eaa40b5bc878eadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled.">RigidProxy</a>.  <a href="#a708906345b5415a0eaa40b5bc878eadc">More...</a><br/></td></tr>
 <tr class="separator:a708906345b5415a0eaa40b5bc878eadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bfbc282a78f3a18fd1cbccdac39b98e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html">RigidProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a1bfbc282a78f3a18fd1cbccdac39b98e">CreateRigidProxy</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
+<tr class="memdesc:a1bfbc282a78f3a18fd1cbccdac39b98e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled.">RigidProxy</a>.  <a href="#a1bfbc282a78f3a18fd1cbccdac39b98e">More...</a><br/></td></tr>
+<tr class="separator:a1bfbc282a78f3a18fd1cbccdac39b98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25f288a441428630d5adadad74354005"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html">SoftProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a25f288a441428630d5adadad74354005">CreateSoftProxy</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mass)</td></tr>
 <tr class="memdesc:a25f288a441428630d5adadad74354005"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html" title="This is the proxy object for soft/compressable bodies.">SoftProxy</a>.  <a href="#a25f288a441428630d5adadad74354005">More...</a><br/></td></tr>
 <tr class="separator:a25f288a441428630d5adadad74354005"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dea47aaa127d9d3fac68a067c60ae7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html">SoftProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a7dea47aaa127d9d3fac68a067c60ae7d">CreateSoftProxy</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
+<tr class="memdesc:a7dea47aaa127d9d3fac68a067c60ae7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html" title="This is the proxy object for soft/compressable bodies.">SoftProxy</a>.  <a href="#a7dea47aaa127d9d3fac68a067c60ae7d">More...</a><br/></td></tr>
+<tr class="separator:a7dea47aaa127d9d3fac68a067c60ae7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa9ca6914153308a765a8740d6d2eadf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#afa9ca6914153308a765a8740d6d2eadf">Deinitialize</a> ()</td></tr>
 <tr class="memdesc:afa9ca6914153308a765a8740d6d2eadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes this manager from any necessary configuration so it can be safely disposed of.  <a href="#afa9ca6914153308a765a8740d6d2eadf">More...</a><br/></td></tr>
 <tr class="separator:afa9ca6914153308a765a8740d6d2eadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -233,24 +247,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a11fc996c5f5f5c8d24feb1eaccf651cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2636acb7fae322e24fb8c10e9612578b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2636acb7fae322e24fb8c10e9612578b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a2636acb7fae322e24fb8c10e9612578b">DestroyAllProxies</a> ()</td></tr>
-<tr class="memdesc:a2636acb7fae322e24fb8c10e9612578b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all stored <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a> instances. <br/></td></tr>
+<tr class="memdesc:a2636acb7fae322e24fb8c10e9612578b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all stored <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> instances. <br/></td></tr>
 <tr class="separator:a2636acb7fae322e24fb8c10e9612578b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a50f1d0024d20958bc5c5c5f8fc1005"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a50f1d0024d20958bc5c5c5f8fc1005"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a6a50f1d0024d20958bc5c5c5f8fc1005">DestroyAllWorldTriggers</a> ()</td></tr>
 <tr class="memdesc:a6a50f1d0024d20958bc5c5c5f8fc1005"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all triggers currently in the manager. <br/></td></tr>
 <tr class="separator:a6a50f1d0024d20958bc5c5c5f8fc1005"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdb19d056d32a0b2d845ab81a1459171"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#afdb19d056d32a0b2d845ab81a1459171">DestroyProxy</a> (<a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html">PhysicsProxy</a> *ToBeDestroyed)</td></tr>
-<tr class="memdesc:afdb19d056d32a0b2d845ab81a1459171"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a>.  <a href="#afdb19d056d32a0b2d845ab81a1459171">More...</a><br/></td></tr>
-<tr class="separator:afdb19d056d32a0b2d845ab81a1459171"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad46bcf08367d58defc2c5316320277d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ad46bcf08367d58defc2c5316320277d0">DestroyProxy</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *ToBeDestroyed)</td></tr>
+<tr class="memdesc:ad46bcf08367d58defc2c5316320277d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a>.  <a href="#ad46bcf08367d58defc2c5316320277d0">More...</a><br/></td></tr>
+<tr class="separator:ad46bcf08367d58defc2c5316320277d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22ad8bb3a07a89a19d1a2f93f6d2de99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#aecff4e6e6b0dd3bef87c7e14669b1338">CollisionIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a22ad8bb3a07a89a19d1a2f93f6d2de99">EndCollision</a> ()</td></tr>
 <tr class="memdesc:a22ad8bb3a07a89a19d1a2f93f6d2de99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a CollisionIterator to one past the last <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>.  <a href="#a22ad8bb3a07a89a19d1a2f93f6d2de99">More...</a><br/></td></tr>
 <tr class="separator:a22ad8bb3a07a89a19d1a2f93f6d2de99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82e12561e2b757ebb3a15389c55f867a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a546020b4fbf97e797bb099e365c1b9a8">ConstCollisionIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a82e12561e2b757ebb3a15389c55f867a">EndCollision</a> () const </td></tr>
 <tr class="memdesc:a82e12561e2b757ebb3a15389c55f867a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstCollisionIterator to one past the last <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>.  <a href="#a82e12561e2b757ebb3a15389c55f867a">More...</a><br/></td></tr>
 <tr class="separator:a82e12561e2b757ebb3a15389c55f867a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a266149cc7526d8d40a48eec901fe9e14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Physics::Collision</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a266149cc7526d8d40a48eec901fe9e14">GetCollision</a> (<a class="el" href="classMezzanine_1_1ObjectPair.html">ObjectPair</a> *Pair)</td></tr>
-<tr class="memdesc:a266149cc7526d8d40a48eec901fe9e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> by object pair.  <a href="#a266149cc7526d8d40a48eec901fe9e14">More...</a><br/></td></tr>
-<tr class="separator:a266149cc7526d8d40a48eec901fe9e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cff5138316d4f18ef6d1af217c22676"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Physics::Collision</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a3cff5138316d4f18ef6d1af217c22676">GetCollision</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollidablePair.html">CollidablePair</a> *Pair)</td></tr>
+<tr class="memdesc:a3cff5138316d4f18ef6d1af217c22676"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> by collidable pair.  <a href="#a3cff5138316d4f18ef6d1af217c22676">More...</a><br/></td></tr>
+<tr class="separator:a3cff5138316d4f18ef6d1af217c22676"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae460723cdf5f8b64c1fef70b477b6bb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html">Physics::Constraint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ae460723cdf5f8b64c1fef70b477b6bb9">GetConstraint</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
 <tr class="memdesc:ae460723cdf5f8b64c1fef70b477b6bb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a constraint by index.  <a href="#ae460723cdf5f8b64c1fef70b477b6bb9">More...</a><br/></td></tr>
 <tr class="separator:ae460723cdf5f8b64c1fef70b477b6bb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -260,9 +274,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:ae6ca101ec427ec846249500aea4d5508"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ae6ca101ec427ec846249500aea4d5508">GetDebugRenderingMode</a> () const </td></tr>
 <tr class="memdesc:ae6ca101ec427ec846249500aea4d5508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is <a class="el" href="namespaceMezzanine_1_1Physics.html" title="This namespace is for all the classes belonging to the Physics Subsystem.">Physics</a> Debug Drawing currently enabled?  <a href="#ae6ca101ec427ec846249500aea4d5508">More...</a><br/></td></tr>
 <tr class="separator:ae6ca101ec427ec846249500aea4d5508"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a4c429fddc2a58f8e0611b83f1f4f04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a5a4c429fddc2a58f8e0611b83f1f4f04">GetGravity</a> ()</td></tr>
-<tr class="memdesc:a5a4c429fddc2a58f8e0611b83f1f4f04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the gravity.  <a href="#a5a4c429fddc2a58f8e0611b83f1f4f04">More...</a><br/></td></tr>
-<tr class="separator:a5a4c429fddc2a58f8e0611b83f1f4f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46dab7d45238ca1d6c263670022bd512"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a46dab7d45238ca1d6c263670022bd512">GetImplementationTypeName</a> () const </td></tr>
 <tr class="memdesc:a46dab7d45238ca1d6c263670022bd512"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Allows any manager name to be sent to a stream. Primarily used for logging.  <a href="#a46dab7d45238ca1d6c263670022bd512">More...</a><br/></td></tr>
 <tr class="separator:a46dab7d45238ca1d6c263670022bd512"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -276,20 +287,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a4e72a9f8c52ff364be82cce4f86150ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of constraints currently in the world.  <a href="#a4e72a9f8c52ff364be82cce4f86150ce">More...</a><br/></td></tr>
 <tr class="separator:a4e72a9f8c52ff364be82cce4f86150ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae325cf83155ff7ddae15a69c66fdb763"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ae325cf83155ff7ddae15a69c66fdb763">GetNumProxies</a> () const </td></tr>
-<tr class="memdesc:ae325cf83155ff7ddae15a69c66fdb763"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a> instances in this manager.  <a href="#ae325cf83155ff7ddae15a69c66fdb763">More...</a><br/></td></tr>
+<tr class="memdesc:ae325cf83155ff7ddae15a69c66fdb763"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> instances in this manager.  <a href="#ae325cf83155ff7ddae15a69c66fdb763">More...</a><br/></td></tr>
 <tr class="separator:ae325cf83155ff7ddae15a69c66fdb763"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafaa8b1a2434504c2367498e2bd9ee40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#aafaa8b1a2434504c2367498e2bd9ee40">GetNumWorldTriggers</a> ()</td></tr>
 <tr class="memdesc:aafaa8b1a2434504c2367498e2bd9ee40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of triggers currently in the world.  <a href="#aafaa8b1a2434504c2367498e2bd9ee40">More...</a><br/></td></tr>
 <tr class="separator:aafaa8b1a2434504c2367498e2bd9ee40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add5220e754bf2ebf4e8b117647259fbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html">PhysicsProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#add5220e754bf2ebf4e8b117647259fbf">GetProxy</a> (const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Index) const </td></tr>
-<tr class="memdesc:add5220e754bf2ebf4e8b117647259fbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a> instance by index.  <a href="#add5220e754bf2ebf4e8b117647259fbf">More...</a><br/></td></tr>
-<tr class="separator:add5220e754bf2ebf4e8b117647259fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2163acbd4c9f6ab09c3fece66280e904"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a2163acbd4c9f6ab09c3fece66280e904">GetProxy</a> (const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Index) const </td></tr>
+<tr class="memdesc:a2163acbd4c9f6ab09c3fece66280e904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> instance by index.  <a href="#a2163acbd4c9f6ab09c3fece66280e904">More...</a><br/></td></tr>
+<tr class="separator:a2163acbd4c9f6ab09c3fece66280e904"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5929e06ed5493b8efc8f04c1b9dc7b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html">Threading::DefaultWorkUnit</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ab5929e06ed5493b8efc8f04c1b9dc7b6">GetSimulationWork</a> ()</td></tr>
 <tr class="memdesc:ab5929e06ed5493b8efc8f04c1b9dc7b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a pointer to the work unit that steps the simulation.  <a href="#ab5929e06ed5493b8efc8f04c1b9dc7b6">More...</a><br/></td></tr>
 <tr class="separator:ab5929e06ed5493b8efc8f04c1b9dc7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e88d83d4acb09aa9f4e50ae4b64becd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a8e88d83d4acb09aa9f4e50ae4b64becd">GetSoftGravity</a> ()</td></tr>
-<tr class="memdesc:a8e88d83d4acb09aa9f4e50ae4b64becd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the soft body gravity.  <a href="#a8e88d83d4acb09aa9f4e50ae4b64becd">More...</a><br/></td></tr>
-<tr class="separator:a8e88d83d4acb09aa9f4e50ae4b64becd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85a431dac812177cea080b9bdf84f665"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a85a431dac812177cea080b9bdf84f665">GetWorldGravity</a> ()</td></tr>
+<tr class="memdesc:a85a431dac812177cea080b9bdf84f665"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the gravity.  <a href="#a85a431dac812177cea080b9bdf84f665">More...</a><br/></td></tr>
+<tr class="separator:a85a431dac812177cea080b9bdf84f665"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b1465320b9590aadc7b1af403125864"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a5b1465320b9590aadc7b1af403125864">GetWorldSoftGravity</a> ()</td></tr>
+<tr class="memdesc:a5b1465320b9590aadc7b1af403125864"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the soft body gravity.  <a href="#a5b1465320b9590aadc7b1af403125864">More...</a><br/></td></tr>
+<tr class="separator:a5b1465320b9590aadc7b1af403125864"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a397a8242c84df207e3af00c07ba5001c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1WorldTrigger.html">WorldTrigger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a397a8242c84df207e3af00c07ba5001c">GetWorldTrigger</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
 <tr class="memdesc:a397a8242c84df207e3af00c07ba5001c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a trigger by name.  <a href="#a397a8242c84df207e3af00c07ba5001c">More...</a><br/></td></tr>
 <tr class="separator:a397a8242c84df207e3af00c07ba5001c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -315,9 +329,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a3fb56a6e3d9b80f56b27fbb78d3e54c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a3fb56a6e3d9b80f56b27fbb78d3e54c7">RemoveCollision</a> (<a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Physics::Collision</a> *Col)</td></tr>
 <tr class="memdesc:a3fb56a6e3d9b80f56b27fbb78d3e54c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an existing collision from the world.  <a href="#a3fb56a6e3d9b80f56b27fbb78d3e54c7">More...</a><br/></td></tr>
 <tr class="separator:a3fb56a6e3d9b80f56b27fbb78d3e54c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1d7926fbeb7be7e4a0c37fa2dc16ee6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ae1d7926fbeb7be7e4a0c37fa2dc16ee6">RemoveCollisionsContainingObject</a> (<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *Object)</td></tr>
-<tr class="memdesc:ae1d7926fbeb7be7e4a0c37fa2dc16ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all stored collisions that involve the specified Object.  <a href="#ae1d7926fbeb7be7e4a0c37fa2dc16ee6">More...</a><br/></td></tr>
-<tr class="separator:ae1d7926fbeb7be7e4a0c37fa2dc16ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab76490594ad18deced029e8beb2d4ddc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ab76490594ad18deced029e8beb2d4ddc">RemoveCollisionsContainingProxy</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *Proxy)</td></tr>
+<tr class="memdesc:ab76490594ad18deced029e8beb2d4ddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all stored collisions that involve the specified <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a>.  <a href="#ab76490594ad18deced029e8beb2d4ddc">More...</a><br/></td></tr>
+<tr class="separator:ab76490594ad18deced029e8beb2d4ddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb0ccd361c92e10b97d1c3671d8bd9c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#adb0ccd361c92e10b97d1c3671d8bd9c6">RemoveConstraint</a> (<a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html">Physics::Constraint</a> *Con)</td></tr>
 <tr class="memdesc:adb0ccd361c92e10b97d1c3671d8bd9c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a constraint from the world.  <a href="#adb0ccd361c92e10b97d1c3671d8bd9c6">More...</a><br/></td></tr>
 <tr class="separator:adb0ccd361c92e10b97d1c3671d8bd9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -330,18 +344,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a6f7ed795ac22f8d578873f1c2d32da13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a6f7ed795ac22f8d578873f1c2d32da13">SetDebugRenderingMode</a> (const <a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> DebugRenderingMode)</td></tr>
 <tr class="memdesc:a6f7ed795ac22f8d578873f1c2d32da13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables and Disables <a class="el" href="namespaceMezzanine_1_1Physics.html" title="This namespace is for all the classes belonging to the Physics Subsystem.">Physics</a> Debug Drawing.  <a href="#a6f7ed795ac22f8d578873f1c2d32da13">More...</a><br/></td></tr>
 <tr class="separator:a6f7ed795ac22f8d578873f1c2d32da13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75f2d42737c69959c27c99b90bfba714"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a75f2d42737c69959c27c99b90bfba714">SetGravity</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;pgrav)</td></tr>
-<tr class="memdesc:a75f2d42737c69959c27c99b90bfba714"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the gravity.  <a href="#a75f2d42737c69959c27c99b90bfba714">More...</a><br/></td></tr>
-<tr class="separator:a75f2d42737c69959c27c99b90bfba714"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a927829deef136599409dbe4a457caa7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a927829deef136599409dbe4a457caa7f">SetIndividualGravity</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *Actor, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;igrav)</td></tr>
-<tr class="memdesc:a927829deef136599409dbe4a457caa7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the gravity to be applied to a single object.  <a href="#a927829deef136599409dbe4a457caa7f">More...</a><br/></td></tr>
-<tr class="separator:a927829deef136599409dbe4a457caa7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0a94fae485c6a5a7757d91c6591a52c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#aa0a94fae485c6a5a7757d91c6591a52c">SetSimulationSubstepModifier</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Modifier)</td></tr>
 <tr class="memdesc:aa0a94fae485c6a5a7757d91c6591a52c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the modifier to be used when stepping the physics simulation.  <a href="#aa0a94fae485c6a5a7757d91c6591a52c">More...</a><br/></td></tr>
 <tr class="separator:aa0a94fae485c6a5a7757d91c6591a52c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80c884aa03664abee01cd2b1f2fba65f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a80c884aa03664abee01cd2b1f2fba65f">SetSoftGravity</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;sgrav)</td></tr>
-<tr class="memdesc:a80c884aa03664abee01cd2b1f2fba65f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the gravity for soft bodies.  <a href="#a80c884aa03664abee01cd2b1f2fba65f">More...</a><br/></td></tr>
-<tr class="separator:a80c884aa03664abee01cd2b1f2fba65f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27d92a7b065a085af9ce0d7a95b468f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a27d92a7b065a085af9ce0d7a95b468f1">SetWorldGravity</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;pgrav)</td></tr>
+<tr class="memdesc:a27d92a7b065a085af9ce0d7a95b468f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the gravity.  <a href="#a27d92a7b065a085af9ce0d7a95b468f1">More...</a><br/></td></tr>
+<tr class="separator:a27d92a7b065a085af9ce0d7a95b468f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac48f350372b5a9fc51266f36eef89714"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ac48f350372b5a9fc51266f36eef89714">SetWorldSoftGravity</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;sgrav)</td></tr>
+<tr class="memdesc:ac48f350372b5a9fc51266f36eef89714"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the gravity for soft bodies.  <a href="#ac48f350372b5a9fc51266f36eef89714">More...</a><br/></td></tr>
+<tr class="separator:ac48f350372b5a9fc51266f36eef89714"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a304f54165e5db658020c466f857f51b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a304f54165e5db658020c466f857f51b4">SimulationIsPaused</a> ()</td></tr>
 <tr class="memdesc:a304f54165e5db658020c466f857f51b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Whether or not the simulation is currently paused.  <a href="#a304f54165e5db658020c466f857f51b4">More...</a><br/></td></tr>
 <tr class="separator:a304f54165e5db658020c466f857f51b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -436,7 +447,7 @@ btSequentialImpulseConstraintSolver *&#160;</td><td class="memItemRight" valign=
 btThreadSupportInterface *&#160;</td><td class="memItemRight" valign="bottom"><b>BulletSolverThreads</b></td></tr>
 <tr class="separator:a30d7ffd8bede6447b0027f27aff08f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1915f3a4692b48eea5889e62fc402a2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1915f3a4692b48eea5889e62fc402a2a"></a>
-<a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#afc82657d492a34f7ba5a3ef7eb6a8ad1">CollisionContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Collisions</b></td></tr>
+<a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a473abb24c8ded36507346f41d52c7a4f">CollisionContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Collisions</b></td></tr>
 <tr class="separator:a1915f3a4692b48eea5889e62fc402a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac98ab5350f29cf37559bc125510cd027"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac98ab5350f29cf37559bc125510cd027"></a>
 <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a8065dfaca8fd9ab3350b78720976aa4f">ConstraintContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Constraints</b></td></tr>
@@ -451,7 +462,7 @@ btThreadSupportInterface *&#160;</td><td class="memItemRight" valign="bottom"><b
 btGhostPairCallback *&#160;</td><td class="memItemRight" valign="bottom"><b>GhostCallback</b></td></tr>
 <tr class="separator:aae91878ad47c9376979832b0c558e7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac505a93e865815fa15a0845b089dc206"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac505a93e865815fa15a0845b089dc206"></a>
-<a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a419a2200388a63e463a2420a9c58acdc">ProxyContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Proxies</b></td></tr>
+<a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#a8c9bbdbe361009c0b5b3992510e9b241">ProxyContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Proxies</b></td></tr>
 <tr class="separator:ac505a93e865815fa15a0845b089dc206"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66f052154864af1ed2f9a49e32b58bde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66f052154864af1ed2f9a49e32b58bde"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>SimulationPaused</b></td></tr>
@@ -530,7 +541,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>This is simply a place for storing all the <a class="el" href="namespaceMezzanine_1_1Physics.html" title="This namespace is for all the classes belonging to the Physics Subsystem.">Physics</a> Related functions. </p>
 <p>This is a place for storing items related to Debug physics drawing, Adding constraints, screwing with gravity and doing other physics Related features. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00239">239</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00236">236</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a12bb0a6a9e555187d8fdab82da4faf0f"></a>
 <div class="memitem">
@@ -548,7 +559,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Simple Constructor. </p>
 <p>This constructor will assign some sane default values and will create a physics world that can be used immediately </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00375">375</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00374">374</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -575,7 +586,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00402">402</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00401">401</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -601,7 +612,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00427">427</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00426">426</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -629,7 +640,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Deconstructor. </p>
 <p>This deletes all those crazy pointers that Bullet, the physics subsystem need. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00507">507</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00506">506</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -649,7 +660,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>This returns a pointer to the bullet physics world. This is for internal use only. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01214">1214</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01234">1234</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -668,7 +679,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>This returns a pointer to the bullet physics world. This is for internal use only. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01217">1217</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01237">1237</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -706,7 +717,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00867">867</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00882">882</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -733,7 +744,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00909">909</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00924">924</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -753,7 +764,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Get an CollisionIterator to the first <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>An CollisionIterator to the first <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01016">1016</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01030">1030</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -773,7 +784,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Get a ConstCollisionIterator to the first <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ConstCollisionIterator to the first <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01026">1026</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01040">1040</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -793,7 +804,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Clears all data relating to actors and other simulation objects from the physics world. </p>
 <p>This is best used with simulation cleanup. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01068">1068</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01082">1082</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -848,7 +859,34 @@ Additional Inherited Members</h2></td></tr>
 <p>Creates a new <a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html" title="This is the proxy object for ghost objects with no contact response.">GhostProxy</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the created proxy. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00809">809</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00799">799</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4b4193a93121d72532b5f8fe8e787bda"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html">GhostProxy</a> * Mezzanine::Physics::PhysicsManager::CreateGhostProxy </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>SelfRoot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html" title="This is the proxy object for ghost objects with no contact response.">GhostProxy</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SelfRoot</td><td>An <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the data to populate this class with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the created proxy. </dd></dl>
+
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00806">806</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -875,7 +913,34 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the created proxy. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00816">816</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00813">813</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1bfbc282a78f3a18fd1cbccdac39b98e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html">RigidProxy</a> * Mezzanine::Physics::PhysicsManager::CreateRigidProxy </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>SelfRoot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled.">RigidProxy</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SelfRoot</td><td>An <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the data to populate this class with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the created proxy. </dd></dl>
+
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00820">820</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -902,7 +967,34 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the created proxy. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00823">823</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00827">827</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7dea47aaa127d9d3fac68a067c60ae7d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html">SoftProxy</a> * Mezzanine::Physics::PhysicsManager::CreateSoftProxy </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>SelfRoot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="classMezzanine_1_1Physics_1_1SoftProxy.html" title="This is the proxy object for soft/compressable bodies.">SoftProxy</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SelfRoot</td><td>An <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the data to populate this class with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the created proxy. </dd></dl>
+
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00834">834</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -931,7 +1023,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#ab13bf1e752c3b54c7c392ba9a869fb72">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01157">1157</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01177">1177</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -951,33 +1043,33 @@ Additional Inherited Members</h2></td></tr>
 <p>Destroys all constraints currently in the manager. </p>
 <p>In practice it is cleaner to remove constraints from the world before removing any constrained actors. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00896">896</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00911">911</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="afdb19d056d32a0b2d845ab81a1459171"></a>
+<a class="anchor" id="ad46bcf08367d58defc2c5316320277d0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Physics::PhysicsManager::DestroyProxy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html">PhysicsProxy</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td>
           <td class="paramname"><em>ToBeDestroyed</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Deletes a <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a>. </p>
+<p>Deletes a <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ToBeDestroyed</td><td>A pointer to the <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a> you want deleted. </td></tr>
+    <tr><td class="paramname">ToBeDestroyed</td><td>A pointer to the <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> you want deleted. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00843">843</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00850">850</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -997,7 +1089,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Get a CollisionIterator to one past the last <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>A CollisionIterator to one past the last <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01021">1021</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01035">1035</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1017,34 +1109,34 @@ Additional Inherited Members</h2></td></tr>
 <p>Get a ConstCollisionIterator to one past the last <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>A ConstCollisionIterator to one past the last <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01031">1031</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01045">1045</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a266149cc7526d8d40a48eec901fe9e14"></a>
+<a class="anchor" id="a3cff5138316d4f18ef6d1af217c22676"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Physics::Collision</a> * Mezzanine::Physics::PhysicsManager::GetCollision </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1ObjectPair.html">ObjectPair</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1CollidablePair.html">CollidablePair</a> *&#160;</td>
           <td class="paramname"><em>Pair</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets a <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> by object pair. </p>
+<p>Gets a <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> by collidable pair. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Pair</td><td>A pair of objects. </td></tr>
+    <tr><td class="paramname">Pair</td><td>A pair of CollidableProxies. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> if a collision for the provided pair exists, NULL otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00958">958</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00973">973</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1071,7 +1163,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the specified constraint. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00873">873</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00888">888</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1091,7 +1183,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets a pointer to the work unit that updates the debug drawer. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Physics_1_1DebugDrawWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer.">DebugDrawWorkUnit</a> used by this manager. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01197">1197</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01217">1217</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1112,28 +1204,7 @@ Additional Inherited Members</h2></td></tr>
 <p>lets you check if <a class="el" href="namespaceMezzanine_1_1Physics.html" title="This namespace is for all the classes belonging to the Physics Subsystem.">Physics</a> Debug Drawing is enabled or not. </p>
 <dl class="section return"><dt>Returns</dt><dd>1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01047">1047</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5a4c429fddc2a58f8e0611b83f1f4f04"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::Physics::PhysicsManager::GetGravity </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the gravity. </p>
-<p>Gets the currently set world gravity. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns the currently set world gravity. </dd></dl>
-
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00780">780</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01061">1061</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1163,7 +1234,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#ac41d60f674e75d3d16b5544f4feb199c">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01208">1208</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01228">1228</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1194,7 +1265,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a388aa37ed71b8667785b789c137aa8c6">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01205">1205</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01225">1225</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1214,7 +1285,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets the number of Collisions currently in the world. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a whole representing the number of Collisions in the world. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00965">965</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00980">980</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1234,7 +1305,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets the number of constraints currently in the world. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a whole representing the number of constraints in the world. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00878">878</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00893">893</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1251,10 +1322,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the number of <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a> instances in this manager. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a UInt32 representing the number of <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a> instances contained in this manager. </dd></dl>
+<p>Gets the number of <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> instances in this manager. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a UInt32 representing the number of <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> instances contained in this manager. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00838">838</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00847">847</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1274,16 +1345,16 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets the number of triggers currently in the world. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a whole representing the number of triggers in the world. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00931">931</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00946">946</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="add5220e754bf2ebf4e8b117647259fbf"></a>
+<a class="anchor" id="a2163acbd4c9f6ab09c3fece66280e904"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html">PhysicsProxy</a> * Mezzanine::Physics::PhysicsManager::GetProxy </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> * Mezzanine::Physics::PhysicsManager::GetProxy </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>&#160;</td>
           <td class="paramname"><em>Index</em></td><td>)</td>
@@ -1292,16 +1363,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets a <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a> instance by index. </p>
+<p>Gets a <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> instance by index. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Index</td><td>The index of the <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a> to be retrieved. </td></tr>
+    <tr><td class="paramname">Index</td><td>The index of the <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> to be retrieved. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a> at the specified index. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00833">833</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00844">844</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1321,16 +1392,37 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets a pointer to the work unit that steps the simulation. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the DefaultWorkUnit that steps the simulation. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01187">1187</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01207">1207</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8e88d83d4acb09aa9f4e50ae4b64becd"></a>
+<a class="anchor" id="a85a431dac812177cea080b9bdf84f665"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::Physics::PhysicsManager::GetSoftGravity </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::Physics::PhysicsManager::GetWorldGravity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the gravity. </p>
+<p>Gets the currently set world gravity. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the currently set world gravity. </dd></dl>
+
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00779">779</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5b1465320b9590aadc7b1af403125864"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::Physics::PhysicsManager::GetWorldSoftGravity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1342,7 +1434,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets the currently set soft body world gravity. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the currently set soft body world gravity. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00791">791</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00790">790</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1369,7 +1461,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the named trigger, or NULL if it doesn't exist. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00914">914</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00929">929</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1396,7 +1488,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the trigger at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00926">926</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00941">941</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1416,7 +1508,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets a pointer to the work unit that updates all WorldTriggers. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Physics_1_1WorldTriggerUpdateWorkUnit.html" title="This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers.">WorldTriggerUpdateWorkUnit</a> used by this manager. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01192">1192</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01212">1212</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1445,7 +1537,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1WorldManager.html#aff20d85e7c60f85b7e9b7bb909262bac">Mezzanine::WorldManager</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01118">1118</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01132">1132</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1481,7 +1573,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1WorldManager.html#aed3eada3b6c854199f0f1ee8a92e8087">Mezzanine::WorldManager</a>.</p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01098">1098</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01112">1112</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1507,7 +1599,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00762">762</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00761">761</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1534,7 +1626,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Checks the internal collision data and generates/updates collisions as necessary. </p>
 <p>This function is automatically called every step. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000088">Todo:</a></b></dt><dd>This is an absurd round-about way to get the data we need, and bullet will probably have to be extended to change this so it's actually good. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000103">Todo:</a></b></dt><dd>This is an absurd round-about way to get the data we need, and bullet will probably have to be extended to change this so it's actually good. </dd></dl>
 
 <p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00697">697</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
@@ -1591,33 +1683,33 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00970">970</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00985">985</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae1d7926fbeb7be7e4a0c37fa2dc16ee6"></a>
+<a class="anchor" id="ab76490594ad18deced029e8beb2d4ddc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::Physics::PhysicsManager::RemoveCollisionsContainingObject </td>
+          <td class="memname">void Mezzanine::Physics::PhysicsManager::RemoveCollisionsContainingProxy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td>
-          <td class="paramname"><em>Object</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td>
+          <td class="paramname"><em>Proxy</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Removes all stored collisions that involve the specified Object. </p>
+<p>Removes all stored collisions that involve the specified <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Object</td><td>The Object which will have all of it's collisions removed. </td></tr>
+    <tr><td class="paramname">Proxy</td><td>The Proxy which will have all of it's collisions removed. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00984">984</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00999">999</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1644,7 +1736,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00883">883</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00898">898</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1671,7 +1763,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00936">936</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00951">951</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1698,7 +1790,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01055">1055</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01069">1069</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1725,72 +1817,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01039">1039</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a75f2d42737c69959c27c99b90bfba714"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::Physics::PhysicsManager::SetGravity </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
-          <td class="paramname"><em>pgrav</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets the gravity. </p>
-<p>Sets the strength and direction of gravity within the world. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pgrav</td><td><a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the strength and direction of gravity. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00775">775</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a927829deef136599409dbe4a457caa7f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::Physics::PhysicsManager::SetIndividualGravity </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *&#160;</td>
-          <td class="paramname"><em>Actor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
-          <td class="paramname"><em>igrav</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets the gravity to be applied to a single object. </p>
-<p>This function does not change the global gravity, only how gravity behaves for this specific object. Note: This function only works on <a class="el" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>'s. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Actor</td><td>The actor whos gravity is to be changed. </td></tr>
-    <tr><td class="paramname">igrav</td><td>The value of the gravity to be applied. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00797">797</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01053">1053</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1817,16 +1844,43 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01093">1093</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l01107">1107</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a80c884aa03664abee01cd2b1f2fba65f"></a>
+<a class="anchor" id="a27d92a7b065a085af9ce0d7a95b468f1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::Physics::PhysicsManager::SetSoftGravity </td>
+          <td class="memname">void Mezzanine::Physics::PhysicsManager::SetWorldGravity </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>pgrav</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the gravity. </p>
+<p>Sets the strength and direction of gravity within the world. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pgrav</td><td><a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the strength and direction of gravity. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00774">774</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac48f350372b5a9fc51266f36eef89714"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Physics::PhysicsManager::SetWorldSoftGravity </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
           <td class="paramname"><em>sgrav</em></td><td>)</td>
@@ -1844,7 +1898,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00786">786</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00785">785</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1864,7 +1918,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets Whether or not the simulation is currently paused. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns whether or not the simulation is paused. </dd></dl>
 
-<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00767">767</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8cpp_source.html#l00766">766</a> of file <a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1889,7 +1943,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>The work unit that updates the debug drawer with the latest physics rendering. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00307">307</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00306">306</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1913,7 +1967,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>The work unit that does the stepping of the simulation. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00301">301</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00300">300</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1937,7 +1991,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Can be used for thread safe logging and other thread specific resources. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00310">310</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00309">309</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
 
 </div>
 </div>
@@ -1961,16 +2015,16 @@ Additional Inherited Members</h2></td></tr>
 
 <p>The work unit that processes all world triggers. </p>
 
-<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00304">304</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="physicsmanager_8h_source.html#l00303">303</a> of file <a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a></li>
-<li>/home/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="physicsmanager_8h_source.html">physicsmanager.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="physicsmanager_8cpp_source.html">physicsmanager.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:44 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

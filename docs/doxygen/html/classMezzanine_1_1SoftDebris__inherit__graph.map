@@ -1,0 +1,5 @@
+<map id="Mezzanine::SoftDebris" name="Mezzanine::SoftDebris">
+<area shape="rect" id="node2" href="$classMezzanine_1_1Debris.html" title="A simple world object without a large structure ideal for representing loose small objects..." alt="" coords="28,177,153,205"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="11,99,171,127"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="5,6,176,50"/>
+</map>

@@ -1,6 +1,6 @@
 <map id="Mezzanine::DirectoryPermissionException" name="Mezzanine::DirectoryPermissionException">
-<area shape="rect" id="node2" href="$classMezzanine_1_1DirectoryException.html" title="Thrown when there is an unknown issue with a file." alt="" coords="9,237,225,267"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it." alt="" coords="31,160,204,189"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions." alt="" coords="37,83,197,112"/>
-<area shape="rect" id="node8" title="STL class." alt="" coords="61,5,173,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1DirectoryException.html" title="Thrown when there is an unknown issue with a file." alt="" coords="9,238,204,266"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it." alt="" coords="28,161,185,189"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions." alt="" coords="35,83,179,111"/>
+<area shape="rect" id="node8" title="STL class." alt="" coords="57,6,156,34"/>
 </map>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/managerfactory.h Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerfactory.h Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">managerfactory.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2010 - 2011 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -145,32 +145,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">            /// @brief Class constructor.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ManagerFactory.html#a21c9a43ece820424aefc19c66bfe9d72">   62</a></span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerFactory.html#a21c9a43ece820424aefc19c66bfe9d72" title="Class constructor.">ManagerFactory</a>() {};<span class="comment"></span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ManagerFactory.html#a21c9a43ece820424aefc19c66bfe9d72">   62</a></span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerFactory.html#a21c9a43ece820424aefc19c66bfe9d72" title="Class constructor.">ManagerFactory</a>() {  };<span class="comment"></span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">            /// @brief Class destructor.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ManagerFactory.html#af5f8539aa539a02111a210ca58e0e762">   64</a></span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerFactory.html#af5f8539aa539a02111a210ca58e0e762" title="Class destructor.">~ManagerFactory</a>() {};</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ManagerFactory.html#af5f8539aa539a02111a210ca58e0e762">   64</a></span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerFactory.html#af5f8539aa539a02111a210ca58e0e762" title="Class destructor.">~ManagerFactory</a>() {  };</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span>            <span class="comment">// Virtual Methods</span><span class="comment"></span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">            /// @brief Gets the name of the Manager that is created by this factory.</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">            /// @return Returns the typename of the manager created by this factory.</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> GetManagerTypeName() <span class="keyword">const</span> = 0;<span class="comment"></span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            /// @brief Creates a manager of the type represented by this factory.</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            /// @param Params A NameValuePairList containing the params to be applied during construction.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">            /// @return Returns a pointer to the manager created.</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit.">ManagerBase</a>* CreateManager(<a class="code" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28" title="This is a datatype mostly used for describing settings or parameters that can&#39;t be declared in advanc...">NameValuePairList</a>&amp; Params) = 0;<span class="comment"></span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">            /// @brief Creates a manager from XML.</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">            /// @param XMLNode The node of the xml document to construct from.</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">            /// @return Returns a pointer to the manager created.</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit.">ManagerBase</a>* CreateManager(<a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; XMLNode) = 0;<span class="comment"></span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">            /// @brief Destroys a Manager created by this factory.</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">            /// @param ToBeDestroyed A pointer to the manager to be destroyed.</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroyManager(<a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit.">ManagerBase</a>* ToBeDestroyed) = 0;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    };<span class="comment">//ManagerFactory</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">            /// @brief Gets the name of the Manager that is created by this factory.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">            /// @return Returns the typename of the manager created by this factory.</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> GetManagerTypeName() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            /// @brief Creates a manager of the type represented by this factory.</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            /// @param Params A NameValuePairList containing the params to be applied during construction.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            /// @return Returns a pointer to the manager created.</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit.">ManagerBase</a>* CreateManager(<a class="code" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28" title="This is a datatype mostly used for describing settings or parameters that can&#39;t be declared in advanc...">NameValuePairList</a>&amp; Params) = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">            /// @brief Creates a manager from XML.</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">            /// @param XMLNode The node of the xml document to construct from.</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">            /// @return Returns a pointer to the manager created.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit.">ManagerBase</a>* CreateManager(<a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; XMLNode) = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">            /// @brief Destroys a Manager created by this factory.</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">            /// @param ToBeDestroyed A pointer to the manager to be destroyed.</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroyManager(<a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit.">ManagerBase</a>* ToBeDestroyed) = 0;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    };<span class="comment">//ManagerFactory</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

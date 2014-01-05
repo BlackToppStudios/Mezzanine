@@ -1,6 +1,6 @@
 <map id="Mezzanine::Physics::MeshCollisionShape" name="Mezzanine::Physics::MeshCollisionShape">
-<area shape="rect" id="node5" href="$classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh." alt="" coords="405,5,619,51"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies." alt="" coords="437,74,587,121"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh." alt="" coords="415,143,609,190"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes." alt="" coords="7,74,151,121"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh." alt="" coords="379,5,573,49"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies." alt="" coords="408,71,544,115"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh." alt="" coords="387,138,565,182"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes." alt="" coords="5,71,139,115"/>
 </map>

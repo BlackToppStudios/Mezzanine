@@ -1,0 +1,6 @@
+<map id="Mezzanine::UI::DefaultMarkupParser" name="Mezzanine::UI::DefaultMarkupParser">
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1MarkupParser.html" title="This is a base class for the parsing of markup texts contained in text layers." alt="" coords="57,305,244,333"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1MarkupTag.html" title="This is a base class for tags that implement the functionality of a markup language." alt="" coords="5,102,179,130"/>
+<area shape="rect" id="node8" title="STL class." alt="" coords="203,102,277,130"/>
+<area shape="rect" id="node10" title="STL class." alt="" coords="180,6,300,50"/>
+</map>

@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -93,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This exists once per object managed by a group of shared pointer to track items in memory.  
  <a href="classMezzanine_1_1ReferenceCount.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="smartptr_8h_source.html">smartptr.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="countedptr_8h_source.html">countedptr.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -128,7 +128,7 @@ class Mezzanine::ReferenceCount&lt; TypePointedTo &gt;</h3>
 <p>This exists to track the pointer to the managed object, and stores the single counter of existing references. Only one of these should be created for each group of pointers managing the same object. </p>
 <dl class="section note"><dt>Note</dt><dd>It should be extremely rare to need to create one of these outside of pointer implemenation. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00097">97</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00096">96</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a665204be224695929234e56288689bf5"></a>
 <div class="memitem">
@@ -173,7 +173,7 @@ template&lt;typename TypePointedTo &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00110">110</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00109">109</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -204,7 +204,7 @@ template&lt;typename TypePointedTo &gt; </div>
 <p>Decrease the reference count by one and return the updated count. </p>
 <dl class="section return"><dt>Returns</dt><dd>The updated count; </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00125">125</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00124">124</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -234,7 +234,7 @@ template&lt;typename TypePointedTo &gt; </div>
 <p>Get a pointer to the Target as a The most derived type in of this object*. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer, for use with CountedPtrCast </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00140">140</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00139">139</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -264,7 +264,7 @@ template&lt;typename TypePointedTo &gt; </div>
 <p>Get the current amount of references. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Whole with the current reference count </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00135">135</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00134">134</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -294,7 +294,7 @@ template&lt;typename TypePointedTo &gt; </div>
 <p>Gets the actual pointer to the target. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Pointer of the targeted type to the object being managed. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00130">130</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00129">129</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -324,15 +324,15 @@ template&lt;typename TypePointedTo &gt; </div>
 <p>Increase the reference count by one and return the updated count. </p>
 <dl class="section return"><dt>Returns</dt><dd>The updated count; </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00120">120</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00119">119</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/<a class="el" href="smartptr_8h_source.html">smartptr.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="countedptr_8h_source.html">countedptr.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:41 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

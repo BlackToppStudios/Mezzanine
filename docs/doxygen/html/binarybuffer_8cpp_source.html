@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/binarybuffer.cpp Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/binarybuffer.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">binarybuffer.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="binarybuffer_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<a href="binarybuffer_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -201,8 +201,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <span class="keywordflow">while</span>(Progress&lt;EncodedString.end())</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                    <span class="comment">//cout &lt;&lt; *(Progress+0) &lt;&lt; *(Progress+1) &lt;&lt; *(Progress+2) &lt;&lt; *(Progress+3) &lt;&lt; endl;</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                    <span class="comment">//cout &lt;&lt; !IsBase64(*Progress) &lt;&lt; !IsBase64(*(Progress+1)) &lt;&lt; !IsBase64(*(Progress+2)) &lt;&lt; !IsBase64(*(Progress+3)) &lt;&lt;endl;</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                    <span class="comment">// ©out &lt;&lt; *(Progress+0) &lt;&lt; *(Progress+1) &lt;&lt; *(Progress+2) &lt;&lt; *(Progress+3) &lt;&lt; endl;</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                    <span class="comment">// ©out &lt;&lt; !IsBase64(*Progress) &lt;&lt; !IsBase64(*(Progress+1)) &lt;&lt; !IsBase64(*(Progress+2)) &lt;&lt; !IsBase64(*(Progress+3)) &lt;&lt;endl;</span></div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                    <span class="keywordflow">if</span>(!<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35" title="Is a character a valid Base64 character.">IsBase64</a>(*Progress) || !<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35" title="Is a character a valid Base64 character.">IsBase64</a>(*(Progress+1)) || !<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35" title="Is a character a valid Base64 character.">IsBase64</a>(*(Progress+2)) || !<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35" title="Is a character a valid Base64 character.">IsBase64</a>(*(Progress+3)))</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                        { MEZZ_EXCEPTION(<a class="code" href="classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a7a0bd380eb3a0e6d02ff8f51ceeda54c" title="When used a instance of ParametersException is thrown. Thrown when parameters are checked at runtime ...">Exception::PARAMETERS_EXCEPTION</a>, <span class="stringliteral">&quot;Base64 contains an invalid character and cannot be decoded.&quot;</span>); }</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
@@ -359,93 +359,95 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        }</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <span class="comment">// Code change to Match BTS naming conventions and formatting</span></div>
-<div class="line"><a name="l00277"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35">  277</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35" title="Is a character a valid Base64 character.">IsBase64</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Character)</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            { <span class="keywordflow">return</span> (isalnum(Character) || (Character == <span class="charliteral">&#39;+&#39;</span>) || (Character == <span class="charliteral">&#39;/&#39;</span>) || (Character == <span class="charliteral">&#39;=&#39;</span>)); }</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
-<div class="line"><a name="l00280"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9">  280</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9" title="Converts the contents of a String into a String containing a base64 encoded String.">Base64Encode</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <span class="keyword">const</span>&amp; Unencoded)</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9" title="Converts the contents of a String into a String containing a base64 encoded String.">Base64Encode</a>((<a class="code" href="namespaceMezzanine.html#aa5f38583d9025e05fa33d6e32e97b457" title="An 8-bit unsigned integer.">UInt8</a> <span class="keyword">const</span>*)Unencoded.c_str(), Unencoded.size()); }</div>
+<div class="line"><a name="l00276"></a><span class="lineno"><a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html#ac736caa2ee725a0ac622e4dc7ef855f5">  276</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> <a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html#ac736caa2ee725a0ac622e4dc7ef855f5" title="Even though this class is intended to have its internals modifieddirectly in some cases...">BinaryBuffer::GetSize</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html#a7d818c0f96de38e39c2a27e0f7682b4a" title="How many bytes is Binary in size. This is set to 0 if Binary is invalid and should be a null pointer...">Size</a>; }</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="comment">// Code change to Match BTS naming conventions and formatting</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35">  280</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35" title="Is a character a valid Base64 character.">IsBase64</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> Character)</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            { <span class="keywordflow">return</span> (isalnum(Character) || (Character == <span class="charliteral">&#39;+&#39;</span>) || (Character == <span class="charliteral">&#39;/&#39;</span>) || (Character == <span class="charliteral">&#39;=&#39;</span>)); }</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
-<div class="line"><a name="l00283"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a67704bac672a59003cbcd963cd338c92">  283</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9" title="Converts the contents of a String into a String containing a base64 encoded String.">Base64Encode</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html" title="A way to store and pass binary buffers, for example compiled bytecode.">BinaryBuffer</a> &amp;Buffer)</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9" title="Converts the contents of a String into a String containing a base64 encoded String.">Base64Encode</a>((<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#aa5f38583d9025e05fa33d6e32e97b457" title="An 8-bit unsigned integer.">UInt8</a>*) Buffer.<a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html#a99e9cadde8687dc8b304413608327b7c" title="A pointer to the actual binary data.">Binary</a>,Buffer.<a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html#a7d818c0f96de38e39c2a27e0f7682b4a" title="How many bytes is Binary in size. This is set to 0 if Binary is invalid and should be a null pointer...">Size</a>); }</div>
+<div class="line"><a name="l00283"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9">  283</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9" title="Converts the contents of a String into a String containing a base64 encoded String.">Base64Encode</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <span class="keyword">const</span>&amp; Unencoded)</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9" title="Converts the contents of a String into a String containing a base64 encoded String.">Base64Encode</a>((<a class="code" href="namespaceMezzanine.html#aa5f38583d9025e05fa33d6e32e97b457" title="An 8-bit unsigned integer.">UInt8</a> <span class="keyword">const</span>*)Unencoded.c_str(), Unencoded.size()); }</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        <span class="comment">// Code change to Match BTS naming conventions and formatting</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a6fe28da03ba8c9f4fd03860e9b6826ee">  287</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9" title="Converts the contents of a String into a String containing a base64 encoded String.">Base64Encode</a>(<a class="code" href="namespaceMezzanine.html#aa5f38583d9025e05fa33d6e32e97b457" title="An 8-bit unsigned integer.">UInt8</a> <span class="keyword">const</span>* BytesToEncode, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Length)</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        {</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> Results;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            Results.reserve(<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a97766f570470a3c3a457faef28b6239f" title="From the size of a binary get the exact size in 8bit bytes.">PredictBase64StringSizeFromBinarySize</a>(Length));</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            <span class="keywordtype">int</span> j = 0;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> char_array_3[3];</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> char_array_4[4];</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            <span class="keywordflow">while</span> (Length--)</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            {</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                char_array_3[i++] = *(BytesToEncode++);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                <span class="keywordflow">if</span> (i == 3)</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                {</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                    char_array_4[0] = (char_array_3[0] &amp; 0xfc) &gt;&gt; 2;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                    char_array_4[1] = ((char_array_3[0] &amp; 0x03) &lt;&lt; 4) + ((char_array_3[1] &amp; 0xf0) &gt;&gt; 4);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                    char_array_4[2] = ((char_array_3[1] &amp; 0x0f) &lt;&lt; 2) + ((char_array_3[2] &amp; 0xc0) &gt;&gt; 6);</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                    char_array_4[3] = char_array_3[2] &amp; 0x3f;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                    <span class="keywordflow">for</span>(i = 0; (i &lt;4) ; i++)</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                        { Results += Base64Chars[char_array_4[i]]; }</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                    i = 0;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                }</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            }</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            <span class="keywordflow">if</span> (i)</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            {</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                <span class="keywordflow">for</span>(j = i; j &lt; 3; j++)</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                    { char_array_3[j] = <span class="charliteral">&#39;\0&#39;</span>; }</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                char_array_4[0] = (char_array_3[0] &amp; 0xfc) &gt;&gt; 2;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                char_array_4[1] = ((char_array_3[0] &amp; 0x03) &lt;&lt; 4) + ((char_array_3[1] &amp; 0xf0) &gt;&gt; 4);</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                char_array_4[2] = ((char_array_3[1] &amp; 0x0f) &lt;&lt; 2) + ((char_array_3[2] &amp; 0xc0) &gt;&gt; 6);</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                char_array_4[3] = char_array_3[2] &amp; 0x3f;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                <span class="keywordflow">for</span> (j = 0; (j &lt; i + 1); j++)</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                    { Results += Base64Chars[char_array_4[j]]; }</div>
+<div class="line"><a name="l00286"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a67704bac672a59003cbcd963cd338c92">  286</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9" title="Converts the contents of a String into a String containing a base64 encoded String.">Base64Encode</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html" title="A way to store and pass binary buffers, for example compiled bytecode.">BinaryBuffer</a> &amp;Buffer)</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9" title="Converts the contents of a String into a String containing a base64 encoded String.">Base64Encode</a>((<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#aa5f38583d9025e05fa33d6e32e97b457" title="An 8-bit unsigned integer.">UInt8</a>*) Buffer.<a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html#a99e9cadde8687dc8b304413608327b7c" title="A pointer to the actual binary data.">Binary</a>,Buffer.<a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html#a7d818c0f96de38e39c2a27e0f7682b4a" title="How many bytes is Binary in size. This is set to 0 if Binary is invalid and should be a null pointer...">Size</a>); }</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <span class="comment">// Code change to Match BTS naming conventions and formatting</span></div>
+<div class="line"><a name="l00290"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a6fe28da03ba8c9f4fd03860e9b6826ee">  290</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a3c082328654156419fc24f832a1f8fd9" title="Converts the contents of a String into a String containing a base64 encoded String.">Base64Encode</a>(<a class="code" href="namespaceMezzanine.html#aa5f38583d9025e05fa33d6e32e97b457" title="An 8-bit unsigned integer.">UInt8</a> <span class="keyword">const</span>* BytesToEncode, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Length)</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        {</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> Results;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            Results.reserve(<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a97766f570470a3c3a457faef28b6239f" title="From the size of a binary get the exact size in 8bit bytes.">PredictBase64StringSizeFromBinarySize</a>(Length));</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            <span class="keywordtype">int</span> j = 0;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> char_array_3[3];</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> char_array_4[4];</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            <span class="keywordflow">while</span> (Length--)</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            {</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                char_array_3[i++] = *(BytesToEncode++);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                <span class="keywordflow">if</span> (i == 3)</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                {</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                    char_array_4[0] = (char_array_3[0] &amp; 0xfc) &gt;&gt; 2;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                    char_array_4[1] = ((char_array_3[0] &amp; 0x03) &lt;&lt; 4) + ((char_array_3[1] &amp; 0xf0) &gt;&gt; 4);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                    char_array_4[2] = ((char_array_3[1] &amp; 0x0f) &lt;&lt; 2) + ((char_array_3[2] &amp; 0xc0) &gt;&gt; 6);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                    char_array_4[3] = char_array_3[2] &amp; 0x3f;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                    <span class="keywordflow">for</span>(i = 0; (i &lt;4) ; i++)</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                        { Results += Base64Chars[char_array_4[i]]; }</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                    i = 0;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                }</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            }</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            <span class="keywordflow">if</span> (i)</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            {</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                <span class="keywordflow">for</span>(j = i; j &lt; 3; j++)</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                    { char_array_3[j] = <span class="charliteral">&#39;\0&#39;</span>; }</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                char_array_4[0] = (char_array_3[0] &amp; 0xfc) &gt;&gt; 2;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                char_array_4[1] = ((char_array_3[0] &amp; 0x03) &lt;&lt; 4) + ((char_array_3[1] &amp; 0xf0) &gt;&gt; 4);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                char_array_4[2] = ((char_array_3[1] &amp; 0x0f) &lt;&lt; 2) + ((char_array_3[2] &amp; 0xc0) &gt;&gt; 6);</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                char_array_4[3] = char_array_3[2] &amp; 0x3f;</div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                <span class="keywordflow">while</span>((i++ &lt; 3))</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                { Results += <span class="charliteral">&#39;=&#39;</span>; }</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            }</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            <span class="keywordflow">return</span> Results;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        }</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                <span class="keywordflow">for</span> (j = 0; (j &lt; i + 1); j++)</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                    { Results += Base64Chars[char_array_4[j]]; }</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                <span class="keywordflow">while</span>((i++ &lt; 3))</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                { Results += <span class="charliteral">&#39;=&#39;</span>; }</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            }</div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        <span class="comment">// Code change to Match BTS naming conventions and formatting, then eventually refactored algorithm to adjust return type and switch from Olog(n) to O(n).</span></div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <span class="comment">// This one is guaranteed exactly one memory allocation(+= on String likely only doubles allocation repeatidly), less copying, and in general is simpler</span></div>
-<div class="line"><a name="l00335"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#ade49f2e19e1c1e20ffd1e46e516913df">  335</a></span>&#160;        <a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html" title="A way to store and pass binary buffers, for example compiled bytecode.">BinaryBuffer</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#ade49f2e19e1c1e20ffd1e46e516913df" title="Convert Base64 stuff back to binary.">Base64Decode</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <span class="keyword">const</span>&amp; EncodedString)</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;        {</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            <a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html" title="A way to store and pass binary buffers, for example compiled bytecode.">BinaryBuffer</a> Results(<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#ad9651d034b51497f37b69d52b605f6a8" title="From an encoded string get the exact size of the decode binary in 8bit bytes.">PredictBinarySizeFromBase64String</a>(EncodedString));</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;            Base64DecodeImpl(EncodedString, Results);</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            <span class="keywordflow">return</span> Results;</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        }</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            <span class="keywordflow">return</span> Results;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        }</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;        <span class="comment">// Code change to Match BTS naming conventions and formatting, then eventually refactored algorithm to adjust return type and switch from Olog(n) to O(n).</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        <span class="comment">// This one is guaranteed exactly one memory allocation(+= on String likely only doubles allocation repeatidly), less copying, and in general is simpler</span></div>
+<div class="line"><a name="l00338"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#ade49f2e19e1c1e20ffd1e46e516913df">  338</a></span>&#160;        <a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html" title="A way to store and pass binary buffers, for example compiled bytecode.">BinaryBuffer</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#ade49f2e19e1c1e20ffd1e46e516913df" title="Convert Base64 stuff back to binary.">Base64Decode</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <span class="keyword">const</span>&amp; EncodedString)</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        {</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;            <a class="code" href="classMezzanine_1_1BinaryTools_1_1BinaryBuffer.html" title="A way to store and pass binary buffers, for example compiled bytecode.">BinaryBuffer</a> Results(<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#ad9651d034b51497f37b69d52b605f6a8" title="From an encoded string get the exact size of the decode binary in 8bit bytes.">PredictBinarySizeFromBase64String</a>(EncodedString));</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            Base64DecodeImpl(EncodedString, Results);</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
-<div class="line"><a name="l00344"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#ad9651d034b51497f37b69d52b605f6a8">  344</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#ad9651d034b51497f37b69d52b605f6a8" title="From an encoded string get the exact size of the decode binary in 8bit bytes.">PredictBinarySizeFromBase64String</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <span class="keyword">const</span>&amp; EncodedString)</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        {</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            <span class="keywordflow">if</span>(EncodedString.size()&lt;4)</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                { MEZZ_EXCEPTION(<a class="code" href="classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a7a0bd380eb3a0e6d02ff8f51ceeda54c" title="When used a instance of ParametersException is thrown. Thrown when parameters are checked at runtime ...">Exception::PARAMETERS_EXCEPTION</a>, <span class="stringliteral">&quot;It is not possible to have a base64 string less than 4 bytes in length, but one was received.&quot;</span>) }</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            <span class="keywordflow">return</span> EncodedString.size()/4*3 - ( EncodedString.at(EncodedString.size()-2)==<span class="charliteral">&#39;=&#39;</span> ?1:0) - ( EncodedString.at(EncodedString.size()-1)==<span class="charliteral">&#39;=&#39;</span> ?1:0);</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;        }</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            <span class="keywordflow">return</span> Results;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        }</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
+<div class="line"><a name="l00347"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#ad9651d034b51497f37b69d52b605f6a8">  347</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#ad9651d034b51497f37b69d52b605f6a8" title="From an encoded string get the exact size of the decode binary in 8bit bytes.">PredictBinarySizeFromBase64String</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <span class="keyword">const</span>&amp; EncodedString)</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        {</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            <span class="keywordflow">if</span>(EncodedString.size()&lt;4)</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                { MEZZ_EXCEPTION(<a class="code" href="classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a7a0bd380eb3a0e6d02ff8f51ceeda54c" title="When used a instance of ParametersException is thrown. Thrown when parameters are checked at runtime ...">Exception::PARAMETERS_EXCEPTION</a>, <span class="stringliteral">&quot;It is not possible to have a base64 string less than 4 bytes in length, but one was received.&quot;</span>) }</div>
 <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
-<div class="line"><a name="l00352"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a97766f570470a3c3a457faef28b6239f">  352</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a97766f570470a3c3a457faef28b6239f" title="From the size of a binary get the exact size in 8bit bytes.">PredictBase64StringSizeFromBinarySize</a>(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> Length)</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        {</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            <span class="keywordflow">return</span> (Length+2)/3*4;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        }</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    } <span class="comment">// BinaryTools</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            <span class="keywordflow">return</span> EncodedString.size()/4*3 - ( EncodedString.at(EncodedString.size()-2)==<span class="charliteral">&#39;=&#39;</span> ?1:0) - ( EncodedString.at(EncodedString.size()-1)==<span class="charliteral">&#39;=&#39;</span> ?1:0);</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        }</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div>
+<div class="line"><a name="l00355"></a><span class="lineno"><a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a97766f570470a3c3a457faef28b6239f">  355</a></span>&#160;        <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> <a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a97766f570470a3c3a457faef28b6239f" title="From the size of a binary get the exact size in 8bit bytes.">PredictBase64StringSizeFromBinarySize</a>(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> Length)</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            { <span class="keywordflow">return</span> (Length+2)/3*4; }</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    } <span class="comment">// BinaryTools</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

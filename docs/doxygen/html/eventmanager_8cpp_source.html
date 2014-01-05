@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/eventmanager.cpp Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/eventmanager.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">eventmanager.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -573,7 +573,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;                    <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;</div>
 <div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;        <span class="comment">// Error conditions</span></div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;                <span class="keywordflow">case</span> SDL_FIRSTEVENT:  <span class="comment">//capture and ignore or throw error</span></div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;                <span class="keywordflow">case</span> SDL_FIRSTEVENT:  <span class="comment">// ©apture and ignore or throw error</span></div>
 <div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;                    { MEZZ_EXCEPTION(<a class="code" href="classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a7a0bd380eb3a0e6d02ff8f51ceeda54c" title="When used a instance of ParametersException is thrown. Thrown when parameters are checked at runtime ...">Exception::PARAMETERS_EXCEPTION</a>,<span class="stringliteral">&quot;Unexpected &#39;FIRSTEVENT&#39; event in event manager. User input seems corrupted.&quot;</span>);  <span class="keywordflow">break</span>; }</div>
 <div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;</div>
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;                <span class="keywordflow">case</span> SDL_QUIT:          <span class="comment">//when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function</span></div>
@@ -600,7 +600,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="comment">        Entresol::GetSingletonPtr()-&gt;DoMainLoopLogging();//*/</span></div>
 <div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="preprocessor">        #endif</span></div>
 <div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;        <span class="comment">//Check to see if we should add a User input event or not. We wouldn&#39;t want to pass an empty event</span></div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;        <span class="comment">// ©heck to see if we should add a User input event or not. We wouldn&#39;t want to pass an empty event</span></div>
 <div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;        <span class="keywordflow">if</span>(FromSDLEvent-&gt;<a class="code" href="classMezzanine_1_1EventUserInput.html#ae4eaa259b090f4b76a5aad89a7217ea5" title="Retrieves a count of the stored Metacodes.">GetMetaCodeCount</a>()==0)</div>
 <div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;        {</div>
 <div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;            <span class="keyword">delete</span> FromSDLEvent;</div>
@@ -902,6 +902,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

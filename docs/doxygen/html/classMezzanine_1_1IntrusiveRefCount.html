@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -93,13 +93,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>A sample class that implements a minimal intrusive reference counting scheme.  
  <a href="classMezzanine_1_1IntrusiveRefCount.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="smartptr_8h_source.html">smartptr.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="countedptr_8h_source.html">countedptr.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Mezzanine::IntrusiveRefCount:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1IntrusiveRefCount__inherit__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1IntrusiveRefCount__inherit__graph.svg" width="635" height="550"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -133,7 +133,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="textblock"><p>A sample class that implements a minimal intrusive reference counting scheme. </p>
 <p>It might work to inherit from this, however on some platforms multiple inheritance comes with the exact same cost intrusive pointers are designed to avoid. This should be used as an example of how to implement a reference counted object. </p>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00148">148</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00147">147</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a58532cea9e9c0017e54c6c724a8cd147"></a>
 <div class="memitem">
@@ -159,7 +159,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Decrease the reference count by one and return the updated count. </p>
 <dl class="section return"><dt>Returns</dt><dd>The updated count; </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00166">166</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00165">165</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -187,9 +187,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Get a pointer to the most Derived type of this class. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer of the most derived pointing to this. </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Bool_01_4.html#a92b389857d952c895785f2bdef3d5cf4">Mezzanine::Scripting::ScriptArgumentGeneric&lt; Bool &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Real_01_4.html#afcbaa9ccc263453607e6c85468d6fe48">Mezzanine::Scripting::ScriptArgumentGeneric&lt; Real &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01String_01_4.html#af0a40679fc692f188df05070c4019ddd">Mezzanine::Scripting::ScriptArgumentGeneric&lt; String &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Whole_01_4.html#ab7eca63fe8babf850c2eb9fbb0dcf667">Mezzanine::Scripting::ScriptArgumentGeneric&lt; Whole &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Integer_01_4.html#a123ed522da986f9a3466e53b4ef2f946">Mezzanine::Scripting::ScriptArgumentGeneric&lt; Integer &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric.html#a266d0fa0127a954331a0a1e48fa29afa">Mezzanine::Scripting::ScriptArgumentGeneric&lt; T &gt;</a>, and <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptArgument.html#a32e2920498238fed30fbc21952957c70">Mezzanine::Scripting::iScriptArgument</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01NullArgument_01_4.html#ad9bc20f1f032d4f4e5b20e56ff2cdfbf">Mezzanine::Scripting::ScriptArgumentGeneric&lt; NullArgument &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Boolean_01_4.html#ad0a876e7223c67c49102722de12706d7">Mezzanine::Scripting::ScriptArgumentGeneric&lt; Boolean &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Real_01_4.html#afcbaa9ccc263453607e6c85468d6fe48">Mezzanine::Scripting::ScriptArgumentGeneric&lt; Real &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01String_01_4.html#af0a40679fc692f188df05070c4019ddd">Mezzanine::Scripting::ScriptArgumentGeneric&lt; String &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Whole_01_4.html#ab7eca63fe8babf850c2eb9fbb0dcf667">Mezzanine::Scripting::ScriptArgumentGeneric&lt; Whole &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Integer_01_4.html#a123ed522da986f9a3466e53b4ef2f946">Mezzanine::Scripting::ScriptArgumentGeneric&lt; Integer &gt;</a>, <a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric.html#a266d0fa0127a954331a0a1e48fa29afa">Mezzanine::Scripting::ScriptArgumentGeneric&lt; T &gt;</a>, and <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptArgument.html#a32e2920498238fed30fbc21952957c70">Mezzanine::Scripting::iScriptArgument</a>.</p>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00181">181</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00180">180</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -217,7 +217,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Get the current amount of references. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Whole with the current reference count </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00176">176</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00175">175</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -245,7 +245,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets the actual pointer to the target. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Pointer of the targeted type to the object being managed. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00171">171</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00170">170</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -273,15 +273,15 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Increase the reference count by one and return the updated count. </p>
 <dl class="section return"><dt>Returns</dt><dd>The updated count; </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00161">161</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00160">160</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/<a class="el" href="smartptr_8h_source.html">smartptr.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="countedptr_8h_source.html">countedptr.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:40 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

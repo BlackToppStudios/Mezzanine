@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/enumerations.h File Reference</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/enumerations.h File Reference</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="enumerations_8h__incl.svg" width="100%" height="518"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="enumerations_8h__incl.svg" width="100%" height="516"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -162,17 +162,22 @@ Enumerations</h2></td></tr>
 <br/>
 &#160;&#160;<b>PT_Graphics_First</b> = 4, 
 <b>PT_Graphics_BillboardSetProxy</b> = 4, 
-<b>PT_Graphics_EntityProxy</b> = 8, 
-<b>PT_Graphics_LightProxy</b> = 16, 
+<b>PT_Graphics_CameraProxy</b> = 8, 
+<b>PT_Graphics_EntityProxy</b> = 16, 
 <br/>
-&#160;&#160;<b>PT_Graphics_ParticleSystemProxy</b> = 32, 
-<b>PT_Graphics_Last</b> = 32, 
-<b>PT_Physics_First</b> = 64, 
-<b>PT_Physics_GhostProxy</b> = 64, 
+&#160;&#160;<b>PT_Graphics_LightProxy</b> = 32, 
+<b>PT_Graphics_ParticleSystemProxy</b> = 64, 
+<b>PT_Graphics_Last</b> = 64, 
+<b>PT_Physics_First</b> = 128, 
 <br/>
-&#160;&#160;<b>PT_Physics_RigidProxy</b> = 128, 
-<b>PT_Physics_SoftProxy</b> = 256, 
-<b>PT_Physics_Last</b> = 256
+&#160;&#160;<b>PT_Physics_GhostProxy</b> = 128, 
+<b>PT_Physics_RigidProxy</b> = 256, 
+<b>PT_Physics_SoftProxy</b> = 512, 
+<b>PT_Physics_Last</b> = 512, 
+<br/>
+&#160;&#160;<b>PT_Audio_All_Proxies</b> = ( PT_Audio_Listener | PT_Audio_SoundProxy ), 
+<b>PT_Graphics_All_Proxies</b> = ( PT_Graphics_BillboardSetProxy | PT_Graphics_CameraProxy |PT_Graphics_EntityProxy |PT_Graphics_LightProxy |PT_Graphics_ParticleSystemProxy ), 
+<b>PT_Physics_All_Proxies</b> = ( PT_Physics_GhostProxy | PT_Physics_RigidProxy | PT_Physics_SoftProxy )
 <br/>
  }</td></tr>
 <tr class="memdesc:aae8e2202c4d5a81566c2b8940478b68b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by all World proxies to describe what their derived types are.  <a href="namespaceMezzanine.html#aae8e2202c4d5a81566c2b8940478b68b">More...</a><br/></td></tr>
@@ -196,43 +201,51 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ad81c74de3529f1e643bd145173924ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to define what frame of reference is to be used when positioning or rotating objects.  <a href="namespaceMezzanine.html#ad81c74de3529f1e643bd145173924ed3">More...</a><br/></td></tr>
 <tr class="separator:ad81c74de3529f1e643bd145173924ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8cd04f706f4998be62f454b7119c718"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">Mezzanine::WorldAndSceneObjectType</a> { <br/>
-&#160;&#160;<b>WSO_ActorFirst</b> = 1, 
-<b>WSO_ActorRigid</b> = 1, 
-<b>WSO_ActorCharacter</b> = 2, 
-<b>WSO_ActorUnknown</b> = 4, 
+<tr class="memitem:a30335416fc857844e8360c84d1d1b56c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>WorldObjectType</b> { <br/>
+&#160;&#160;<b>WO_TerrainFirst</b> = 1, 
+<b>WO_MeshTerrain</b> = 1, 
+<b>WO_HeightfieldTerrain</b> = 2, 
+<b>WO_VectorFieldTerrain</b> = 4, 
 <br/>
-&#160;&#160;<b>WSO_ActorLast</b> = 8, 
-<b>WSO_TerrainFirst</b> = 16, 
-<b>WSO_MeshTerrain</b> = 16, 
-<b>WSO_HeightfieldTerrain</b> = 32, 
+&#160;&#160;<b>WO_VoxelTerrain</b> = 8, 
+<b>WO_MarchingCubeTerrain</b> = 16, 
+<b>WO_UnknownTerrain</b> = 32, 
+<b>WO_TerrainLast</b> = 32, 
 <br/>
-&#160;&#160;<b>WSO_VectorFieldTerrain</b> = 64, 
-<b>WSO_VoxelTerrain</b> = 128, 
-<b>WSO_MarchingCubeTerrain</b> = 256, 
-<b>WSO_UnknownTerrain</b> = 512, 
+&#160;&#160;<b>WO_DebrisFirst</b> = 64, 
+<b>WO_DebrisRigid</b> = 64, 
+<b>WO_DebrisSoft</b> = 128, 
+<b>WO_DebrisUnknown</b> = 256, 
 <br/>
-&#160;&#160;<b>WSO_TerrainLast</b> = 512, 
-<b>WSO_AEFirst</b> = 1024, 
-<b>WSO_AEGravityField</b> = 1024, 
-<b>WSO_AEGravityWell</b> = 2048, 
+&#160;&#160;<b>WO_DebrisLast</b> = 256, 
+<b>WO_AreaEffectFirst</b> = 512, 
+<b>WO_AreaEffectGravityField</b> = 512, 
+<b>WO_AreaEffectGravityWell</b> = 1024, 
 <br/>
-&#160;&#160;<b>WSO_AEFieldOfForce</b> = 4069, 
-<b>WSO_AEPlaceHolder1</b> = 8192, 
-<b>WSO_AEPlaceHolder2</b> = 16384, 
-<b>WSO_AEUnknown</b> = 32768, 
+&#160;&#160;<b>WO_AreaEffectFieldOfForce</b> = 2048, 
+<b>WO_AreaEffectPlaceHolder1</b> = 4069, 
+<b>WO_AreaEffectPlaceHolder2</b> = 8192, 
+<b>WO_AreaEffectUnknown</b> = 16384, 
 <br/>
-&#160;&#160;<b>WSO_AELast</b> = 32768, 
-<b>WSO_Camera</b> = 65536, 
-<b>WSO_Entity</b> = 131072, 
-<b>WSO_Light</b> = 262144, 
+&#160;&#160;<b>WO_AreaEffectLast</b> = 16384, 
+<b>WO_ActorFirst</b> = 32768, 
+<b>WO_ActorPlaceHolder1</b> = 32768, 
+<b>WO_ActorPlaceHolder2</b> = 65536, 
 <br/>
-&#160;&#160;<b>WSO_ParticleEffect</b> = 524288, 
-<b>WSO_WorldNode</b> = 1048576
+&#160;&#160;<b>WO_ActorPlaceHolder3</b> = 131072, 
+<b>WO_ActorLast</b> = 131072, 
+<b>WO_VehicleFirst</b> = 262144, 
+<b>WO_VehiclePlaceHolder1</b> = 262144, 
+<br/>
+&#160;&#160;<b>WO_VehiclePlaceHolder2</b> = 524288, 
+<b>WO_VehiclePlaceHolder3</b> = 1048576, 
+<b>WO_VehiclePlaceHolder4</b> = 2097152, 
+<b>WO_VehiclePlaceHolder5</b> = 4194304, 
+<br/>
+&#160;&#160;<b>WO_VehicleLast</b> = 4194304
 <br/>
  }</td></tr>
-<tr class="memdesc:ae8cd04f706f4998be62f454b7119c718"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by various classes to help identify what class an object is.  <a href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">More...</a><br/></td></tr>
-<tr class="separator:ae8cd04f706f4998be62f454b7119c718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a30335416fc857844e8360c84d1d1b56c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Any global enumerations shared between multiple classes is to be declared here. </p>
@@ -240,6 +253,6 @@ Enumerations</h2></td></tr>
 <p>Definition in file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:38 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:10 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

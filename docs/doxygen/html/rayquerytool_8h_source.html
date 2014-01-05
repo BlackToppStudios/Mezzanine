@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/rayquerytool.h Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/rayquerytool.h Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">rayquerytool.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -141,103 +141,109 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">class </span>Plane;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">class </span>Vector3WActor;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">class </span>Ray;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">class </span>ActorBase;<span class="comment"></span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">    /// @class RayQueryTool</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">    /// @headerfile rayquerytool.h</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">    /// @brief This provides a number of optional tools for working with a Mezzanine::World</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">    /// @details Currently this allows for more seamless mouse use, including &#39;picking&#39;</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    /// of objects with the mouse, and associated functionality.</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">    ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.html">   68</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1RayQueryTool.html" title="This provides a number of optional tools for working with a Mezzanine::World.">RayQueryTool</a><span class="comment">// : public InputQueryTool</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            /// @internal</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            /// @brief An Ogre construct used to find information about the locations of graphical object</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> Ogre::RaySceneQuery* RayQuery;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">            /// @internal</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">            /// @brief Creates a ray query data structure if one hasn&#39;t already been created.</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <span class="keywordtype">void</span> VerifyRayQuery();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">            /// @internal</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">            /// @brief used to get information about 3d graphical objects at specific locations</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <span class="keywordtype">void</span> GetMeshInformation(Ogre::Entity *entity,</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                <span class="keywordtype">size_t</span> &amp;vertex_count,</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                                Ogre::Vector3* &amp;vertices,</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                                <span class="keywordtype">size_t</span> &amp;index_count,</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                                <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>* &amp;indices,</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                                <span class="keyword">const</span> Ogre::Vector3 &amp;position,</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                                <span class="keyword">const</span> Ogre::Quaternion &amp;orient,</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                <span class="keyword">const</span> Ogre::Vector3 &amp;scale);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment"></span>            <span class="comment">// Basic Stuff</span><span class="comment"></span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">            ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">            /// @brief Basic Constructor.</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">            /// @details This creates a WorldQueryTool Ready to run queries on the the world you pass it.</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1RayQueryTool.html" title="This provides a number of optional tools for working with a Mezzanine::World.">RayQueryTool</a>();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">            /// @brief Destructor</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">            /// @details Deletes everything in the world query tool.</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment"></span>            ~<a class="code" href="classMezzanine_1_1RayQueryTool.html" title="This provides a number of optional tools for working with a Mezzanine::World.">RayQueryTool</a>();</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment"></span>            <span class="comment">// World Ray Queries</span><span class="comment"></span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">            ///////////////////////////////////////</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">            /// @brief This will find the first Actor to intesect the Given ray.</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">            /// @details This use the graphics subsystem to cast a ray in the world. If the ray passes through any the triangles in an actor</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">            /// This will return that actor. This function runs in linear time relative to the amount of triangles in 3d meshes near the the</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">            /// ray being cast. This will start at ray.from and go to ray.to .</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">            /// @param ActorRay The Ray to search along.</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">            /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">            /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">            /// @return This returns a pointer to an Vector3WActor, which contains the first actor along the ray and the point of intersection Relative to the actor</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* GetFirstActorOnRayByPolygon(<a class="code" href="classMezzanine_1_1Ray.html" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a> ActorRay, <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> ObjectFlags);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">            /// @brief Partially implemented. This should find the first Actor that is on or almost on the a given Ray.</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">            /// @details This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned.</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">            /// Presently this is untested and does not return the Offset of the intersection. This should perform faster than WorldQueryTool::GetFirstActorOnRayByPolygon</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">            /// but not by a known amount.</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">            /// @param ActorRay The Ray to search along.</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">            /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">            /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">            /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* GetFirstActorOnRayByAABB(<a class="code" href="classMezzanine_1_1Ray.html" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a> ActorRay, <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> ObjectFlags);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">            /// @brief This will find the actor under the mouse.</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">            /// @details This will use</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">            /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">            /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">            /// @param RayLength The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0.</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">            /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB.</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">            /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* GetActorUnderMouse(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> ObjectFlags, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> RayLength=1000.0, <span class="keywordtype">bool</span> UsePolygon=<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">            /// @brief Where does this Ray Meet this Plane?</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">            /// @details This does some fancy math to return the point where the ray and the plane intersent.</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">            /// This returns a NULL pointer in the event the ray and plane do not meet, or are completely coterminous.</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">            /// @param QueryRay This is the Ray that could intersent the plane</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">            /// @param QueryPlane This is the plane to be interesected.</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">            /// @return This returns a pointer to a vector that matches where the intersection of the plane and Ray, if possible</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>* RayPlaneIntersection(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Ray.html" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a> &amp;QueryRay, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a> &amp;QueryPlane);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">            /// @brief Get a Ray from the current viewport, following the mouse</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">            /// @details This calls on the graphics subsystem to get a ray from the location of the current camera</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">            /// @param Length how long of a ray do you want? Thsi defaults to 1000</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">            /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1Ray.html" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a>* GetMouseRay(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Length=1000);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    };</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;}</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">class </span>Ray;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">class </span>WorldObject;<span class="comment"></span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">    /// @class RayQueryTool</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">    /// @headerfile rayquerytool.h</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">    /// @brief This provides a number of optional tools for working with a Mezzanine::World</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">    /// @details Currently this allows for more seamless mouse use, including &#39;picking&#39;</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">    /// of objects with the mouse, and associated functionality.</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="classMezzanine_1_1RayQueryTool.html">   67</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1RayQueryTool.html" title="This provides a number of optional tools for working with a Mezzanine::World.">RayQueryTool</a><span class="comment">// : public InputQueryTool</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">private</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            /// @brief True if the last Query yielded a meaningful Result.</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span>            <span class="keywordtype">bool</span> ValidResult;<span class="comment"></span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            /// @brief An Offset or location from something meaningful to the last query.</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Offset;<span class="comment"></span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">            /// @brief If there is an WorldObject result to a query the result will be stored in this.</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">            /// @warning This is weak reference, Some other system could delete out from under us and we cannot delete this.</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a>* IntersectedObject;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">            /// @brief Create a RayQueryTool ready for querying</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1RayQueryTool.html" title="This provides a number of optional tools for working with a Mezzanine::World.">RayQueryTool</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>            <span class="comment">// Query Results</span><span class="comment"></span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">            ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">            /// @brief Clears an previously stored return values.</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">            /// @brief returns false.</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"></span>            Boolean ClearReturns();<span class="comment"></span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">            /// @brief Check to see if the last query found anything.</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">            /// @return True if something was found, false otherwise.</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"></span>            Boolean LastQueryResultsValid() <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">            /// @brief Get an offset from the last query. Depending on the last query, this could be an Offset from a variety of things.</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">            /// @return A Vector3 if the last query worked and returns an Offset, A empty vector otherwise. Use LastQueryResultsValid() Prior to this.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> LastQueryResultsOffset() <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">            /// @brief It is common to ray query for WorldObjects, if so the results can be retrieved with this.</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">            /// @return A pointer to an WorldObject if the last query returns a WorldObject and worked, a Null pointer otherwise. Use LastQueryResultsValid() Prior to this.</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">            /// @warning Does not confer ownership of WorldObject, do not delete pointers returned by this unless you have taken special steps.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a>* LastQueryResultsObjectPtr() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keyword">protected</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment"></span>            <span class="comment">// Query Helpers</span><span class="comment"></span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">            ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment"></span>            <span class="comment">// Ray Queries</span><span class="comment"></span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">            ///////////////////////////////////////</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">            /// @brief This will find the first Object to intesect the Given ray.</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">            /// @details This use the graphics subsystem to cast a ray in the world. If the ray passes through any the triangles in an actor</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">            /// This will return that actor. This function runs in linear time relative to the amount of triangles in 3d meshes near the the</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">            /// ray being cast. This will start at ray.from and go to ray.to .</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">            /// @param ActorRay The Ray to search along.</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">            /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">            /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">            /// @return True if something is found, false otherwise. Use LastQueryResultsOffset() and LastQueryResultsActorPtr() for more details.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment"></span>            Boolean GetFirstObjectOnRayByPolygon(<a class="code" href="classMezzanine_1_1Ray.html" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a> ObjectRay, <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> ObjectFlags);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">            /// @brief Partially implemented. This should find the first Object that is on or almost on the a given Ray.</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">            /// @details This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned.</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">            /// Presently this is untested and does not return the Offset of the intersection. This should perform faster than WorldQueryTool::GetFirstActorOnRayByPolygon</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">            /// but not by a known amount.</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">            /// @param ActorRay The Ray to search along.</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">            /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">            /// See WorldAndSceneObjectType in enumerations.h for a listing of objects to use as flags.</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">            /// @return True if something is found, false otherwise. Use LastQueryResultsActorPtr() for more details. Any return Offset is empty</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment"></span>            Boolean GetFirstObjectOnRayByAABB(<a class="code" href="classMezzanine_1_1Ray.html" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a> ObjectRay, <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> ObjectFlags);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">            /// @brief Where does this Ray Meet this Plane?</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">            /// @details This does some fancy math to return the point where the ray and the plane intersent.</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">            /// @param QueryRay This is the Ray that could intersent the plane</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">            /// @param QueryPlane This is the plane to be interesected.</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">            /// @return True if something is found, false otherwise. Use LastQueryResultsOffset() for more details. Any return Actor Pointer is NULL;</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment"></span>            Boolean RayPlaneIntersection(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Ray.html" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a>&amp; QueryRay, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a>&amp; QueryPlane);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">            /// @brief Get a Ray from the current viewport, following the mouse</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">            /// @details This calls on the graphics subsystem to get a ray from the location of the current camera</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">            /// @param Length how long of a ray do you want? Thsi defaults to 1000</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">            /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1Ray.html" title="This represents a line placed in 3D space and is used with spacial queries.">Ray</a> GetMouseRay(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Length=1000);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment"></span>            <span class="comment">// Serialization</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">            /// @brief Convert this class to an XML::Node ready for serialization</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> ProtoSerialize(<a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; CurrentRoot) <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="comment">            /// @brief Take the data stored in an XML and overwrite this instance of this object with it</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">            /// @param OneNode and XML::Node containing the data.</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> ProtoDeSerialize(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; OneNode);<span class="comment"></span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">            /// @return A string containing &quot;Vector3&quot;</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> SerializableName();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    };<span class="comment">//RayQueryTool</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

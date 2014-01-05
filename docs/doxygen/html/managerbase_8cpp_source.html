@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/managerbase.cpp Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">managerbase.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -161,174 +161,193 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
 <div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ManagerBase.html#aa148d67ebe4538adcd74d3f02f7ddc97">   76</a></span>&#160;    <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1ManagerBase.html#aa148d67ebe4538adcd74d3f02f7ddc97" title="Gets the string form of the type of manager.">ManagerBase::GetTypeAsString</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a>&amp; <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerType</a>)</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">switch</span> (ManagerType)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">switch</span>( ManagerType )</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_ActorManager:</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;ActorManager&quot;</span>;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_AreaEffectManager:</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;AreaEffectManager&quot;</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_AnimationManager:</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;AnimationManager&quot;</span>;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_AudioManager:</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;AudioManager&quot;</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_AreaEffectManager:</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;AreaEffectManager&quot;</span>;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_CameraManager:</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;CameraManager&quot;</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_AudioManager:</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;AudioManager&quot;</span>;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_CollisionShapeManager:</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;CollisionShapeManager&quot;</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_CameraManager:</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;CameraManager&quot;</span>;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_EventManager:</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;EventManager&quot;</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_CollisionShapeManager:</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;CollisionShapeManager&quot;</span>;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_GraphicsManager:</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;GraphicsManager&quot;</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_CompositorManager:</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;CompositorManager&quot;</span>;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_InputManager:</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;InputManager&quot;</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_DebrisManager:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;DebrisManager&quot;</span>;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_LogManager:</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;LogManager&quot;</span>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_EventManager:</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;EventManager&quot;</span>;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_MeshManager:</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;MeshManager&quot;</span>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_GraphicsManager:</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;GraphicsManager&quot;</span>;</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_NetworkManager:</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;NetworkManager&quot;</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_InputManager:</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;InputManager&quot;</span>;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_PagingManager:</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;PagingManager&quot;</span>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_LogManager:</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;LogManager&quot;</span>;</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_PhysicsManager:</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;PhysicsManager&quot;</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_MeshManager:</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;MeshManager&quot;</span>;</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_ResourceManager:</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;ResourceManager&quot;</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_NetworkManager:</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;NetworkManager&quot;</span>;</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_SceneManager:</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;SceneManager&quot;</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_PagingManager:</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;PagingManager&quot;</span>;</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_ScriptingManager:</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;ScriptingManager&quot;</span>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_PhysicsManager:</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;PhysicsManager&quot;</span>;</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_SoundScapeManager:</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;SoundScapeManager&quot;</span>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_ResourceManager:</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;ResourceManager&quot;</span>;</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_TerrainManager:</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;TerrainManager&quot;</span>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_SceneManager:</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;SceneManager&quot;</span>;</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_UIManager:</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;UIManager&quot;</span>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_ScriptingManager:</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;ScriptingManager&quot;</span>;</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_VehicleManager:</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;VehicleManager&quot;</span>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_SoundScapeManager:</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;SoundScapeManager&quot;</span>;</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e" title="This, and values above it, is what User created managers that do not derive from any other managers a...">ManagerBase::MT_UserCreated</a>:</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;UserCreated&quot;</span>;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_TerrainManager:</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;TerrainManager&quot;</span>;</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;Unknown&quot;</span>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_UIManager:</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;UIManager&quot;</span>;</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    }</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
-<div class="line"><a name="l00149"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ManagerBase.html#acb0c0b9192f8ce94c725d5550e8439f6">  149</a></span>&#160;    <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a> <a class="code" href="classMezzanine_1_1ManagerBase.html#acb0c0b9192f8ce94c725d5550e8439f6" title="Gets the type of manager requested from a string.">ManagerBase::GetTypeFromString</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; ManagerName)</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    {</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> Lower = ManagerName;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <a class="code" href="namespaceMezzanine_1_1StringTools.html#a2fbec65ef6cb15cdfff7a962153d61cf" title="Converts all upper case characters in a string to their respective lower case.">StringTools::ToLowerCase</a>(Lower);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">switch</span> ( Lower.at(0) )</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;a&#39;</span>:</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            {</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                <span class="keywordflow">if</span>( <span class="charliteral">&#39;c&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_ActorManager;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;r&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_AreaEffectManager;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;u&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_AudioManager;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;c&#39;</span>:</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            {</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                <span class="keywordflow">if</span>( <span class="charliteral">&#39;a&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_CameraManager;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;o&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_CollisionShapeManager;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;e&#39;</span>:</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_EventManager;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            }</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;g&#39;</span>:</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            {</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_GraphicsManager;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            }</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;i&#39;</span>:</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            {</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_InputManager;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            }</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;l&#39;</span>:</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            {</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_LogManager;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            }</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;m&#39;</span>:</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            {</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_MeshManager;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            }</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;n&#39;</span>:</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            {</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_NetworkManager;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;p&#39;</span>:</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            {</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keywordflow">if</span>( <span class="charliteral">&#39;a&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_PagingManager;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;h&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_PhysicsManager;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            }</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;r&#39;</span>:</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            {</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_ResourceManager;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            }</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;s&#39;</span>:</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            {</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                <span class="keywordflow">if</span>( <span class="charliteral">&#39;o&#39;</span> == Lower.at(1) ) {</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                    <span class="keywordflow">return</span> ManagerBase::MT_SoundScapeManager;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                    <span class="comment">// Both of these start with the same two letters, so skip to the third.</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                    <span class="keywordflow">if</span>( <span class="charliteral">&#39;e&#39;</span> == Lower.at(2) ) <span class="keywordflow">return</span> ManagerBase::MT_SceneManager;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;r&#39;</span> == Lower.at(2) ) <span class="keywordflow">return</span> ManagerBase::MT_ScriptingManager;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                }</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            }</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;t&#39;</span>:</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_TerrainManager;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            }</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;u&#39;</span>:</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            {</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                <span class="keywordflow">if</span>( <span class="charliteral">&#39;i&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_UIManager;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;s&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e" title="This, and values above it, is what User created managers that do not derive from any other managers a...">ManagerBase::MT_UserCreated</a>;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            }</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;v&#39;</span>:</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            {</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_VehicleManager;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="comment">//If we got this far, there was a problem with the string provided.</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        MEZZ_EXCEPTION(<a class="code" href="classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a7a0bd380eb3a0e6d02ff8f51ceeda54c" title="When used a instance of ParametersException is thrown. Thrown when parameters are checked at runtime ...">Exception::PARAMETERS_EXCEPTION</a>,<span class="stringliteral">&quot;Attempting to get ManagerType from string, but no match was found.  Is the string valid?&quot;</span>);</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keywordflow">case</span> ManagerBase::MT_VehicleManager:</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;VehicleManager&quot;</span>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e" title="This, and values above it, is what User created managers that do not derive from any other managers a...">ManagerBase::MT_UserCreated</a>:</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;UserCreated&quot;</span>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;Unknown&quot;</span>;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        }</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    }</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ManagerBase.html#acb0c0b9192f8ce94c725d5550e8439f6">  158</a></span>&#160;    <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6c">ManagerBase::ManagerType</a> <a class="code" href="classMezzanine_1_1ManagerBase.html#acb0c0b9192f8ce94c725d5550e8439f6" title="Gets the type of manager requested from a string.">ManagerBase::GetTypeFromString</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; ManagerName)</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> Lower = ManagerName;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <a class="code" href="namespaceMezzanine_1_1StringTools.html#a2fbec65ef6cb15cdfff7a962153d61cf" title="Converts all upper case characters in a string to their respective lower case.">StringTools::ToLowerCase</a>(Lower);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">switch</span> ( Lower.at(0) )</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;a&#39;</span>:</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            {</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                <span class="keywordflow">if</span>( <span class="charliteral">&#39;c&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_ActorManager;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;n&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_AnimationManager;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;r&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_AreaEffectManager;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;u&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_AudioManager;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            }</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;c&#39;</span>:</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            {</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                <span class="keywordflow">if</span>( <span class="charliteral">&#39;a&#39;</span> == Lower.at(1) ) {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    <span class="keywordflow">return</span> ManagerBase::MT_CameraManager;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                }<span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;o&#39;</span> == Lower.at(1) ) {</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                    <span class="keywordflow">if</span>( <span class="charliteral">&#39;l&#39;</span> == Lower.at(2) ) <span class="keywordflow">return</span> ManagerBase::MT_CollisionShapeManager;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;m&#39;</span> == Lower.at(2) ) <span class="keywordflow">return</span> ManagerBase::MT_CompositorManager;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            }</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;d&#39;</span>:</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            {</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_DebrisManager;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            }</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;e&#39;</span>:</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_EventManager;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;g&#39;</span>:</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_GraphicsManager;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;i&#39;</span>:</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            {</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_InputManager;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            }</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;l&#39;</span>:</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_LogManager;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;m&#39;</span>:</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_MeshManager;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;n&#39;</span>:</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            {</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_NetworkManager;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            }</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;p&#39;</span>:</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            {</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                <span class="keywordflow">if</span>( <span class="charliteral">&#39;a&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_PagingManager;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;h&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_PhysicsManager;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            }</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;r&#39;</span>:</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_ResourceManager;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            }</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;s&#39;</span>:</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                <span class="keywordflow">if</span>( <span class="charliteral">&#39;o&#39;</span> == Lower.at(1) ) {</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                    <span class="keywordflow">return</span> ManagerBase::MT_SoundScapeManager;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                    <span class="comment">// Both of these start with the same two letters, so skip to the third.</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                    <span class="keywordflow">if</span>( <span class="charliteral">&#39;e&#39;</span> == Lower.at(2) ) <span class="keywordflow">return</span> ManagerBase::MT_SceneManager;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;r&#39;</span> == Lower.at(2) ) <span class="keywordflow">return</span> ManagerBase::MT_ScriptingManager;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                }</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;t&#39;</span>:</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            {</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_TerrainManager;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            }</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;u&#39;</span>:</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                <span class="keywordflow">if</span>( <span class="charliteral">&#39;i&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> ManagerBase::MT_UIManager;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span>( <span class="charliteral">&#39;s&#39;</span> == Lower.at(1) ) <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e" title="This, and values above it, is what User created managers that do not derive from any other managers a...">ManagerBase::MT_UserCreated</a>;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            }</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;v&#39;</span>:</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            {</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                <span class="keywordflow">return</span> ManagerBase::MT_VehicleManager;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            }</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        }</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="comment">//If we got this far, there was a problem with the string provided.</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        MEZZ_EXCEPTION(<a class="code" href="classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a7a0bd380eb3a0e6d02ff8f51ceeda54c" title="When used a instance of ParametersException is thrown. Thrown when parameters are checked at runtime ...">Exception::PARAMETERS_EXCEPTION</a>,<span class="stringliteral">&quot;Attempting to get ManagerType from string, but no match was found.  Is the string valid?&quot;</span>);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    }</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

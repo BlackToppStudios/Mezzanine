@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/Physics/collisionshapemanager.cpp Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/collisionshapemanager.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li><li class="navelem"><a class="el" href="dir_61c0ec937c468b49b332752e9f643e74.html">Physics</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li><li class="navelem"><a class="el" href="dir_f4a558a26acb75b95d8d3b9eaf634b1d.html">Physics</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">collisionshapemanager.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -128,7 +128,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;Physics/collisionshapemanager.h&quot;</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;Graphics/mesh.h&quot;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;meshmanager.h&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;Graphics/meshmanager.h&quot;</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="resourcemanager_8h.html" title="The defintion of the Resource Manager.">resourcemanager.h</a>&quot;</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;Physics/collisionshape.h&quot;</span></div>
@@ -164,7 +164,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">template</span>&lt;&gt; Physics::CollisionShapeManager* Singleton&lt;Physics::CollisionShapeManager&gt;::SingletonPtr = NULL;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">namespace </span>Physics</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    {</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">//template&lt;&gt; CollisionShapeManager* Singleton&lt;CollisionShapeManager&gt;::SingletonPtr = NULL;</span></div>
@@ -496,7 +496,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;</div>
 <div class="line"><a name="l00411"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#af6baed1c850a5c00e7694037362d36ab">  411</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.html" title="A simple convex shape built from a low number of points in local space.">ConvexHullCollisionShape</a>* <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#aa6c041b8a66210b1c3fb83f19d9ed3c7" title="Generates a Convex Hull from a provided mesh.">CollisionShapeManager::GenerateConvexHull</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; MeshName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Group, <span class="keywordtype">bool</span> UseAllSubmeshes)</div>
 <div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        {</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            <a class="code" href="classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Graphics::Mesh</a>* ObjectMesh = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">MeshManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1MeshManager.html#a1165cfd040bce804af9644dcdfc8deab" title="Loads a mesh file from disk and prepares it for use.">LoadMesh</a>(MeshName,Group);</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            <a class="code" href="classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Graphics::Mesh</a>* ObjectMesh = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Graphics::MeshManager::GetSingletonPtr</a>()-&gt;LoadMesh(MeshName,Group);</div>
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#aa6c041b8a66210b1c3fb83f19d9ed3c7" title="Generates a Convex Hull from a provided mesh.">GenerateConvexHull</a>(Name,ObjectMesh,UseAllSubmeshes);</div>
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        }</div>
 <div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div>
@@ -508,7 +508,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;</div>
 <div class="line"><a name="l00423"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#a65decee845d8b730cfe1c00b3715dc9c">  423</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">DynamicMeshCollisionShape</a>* <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#a2a3734a226250374c87413c2e4728eb9" title="Generates a mesh shape for dynamic objects.">CollisionShapeManager::GenerateDynamicTriMesh</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; MeshName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Group, <span class="keywordtype">bool</span> UseAllSubmeshes)</div>
 <div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;        {</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            <a class="code" href="classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Graphics::Mesh</a>* ObjectMesh = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">MeshManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1MeshManager.html#a1165cfd040bce804af9644dcdfc8deab" title="Loads a mesh file from disk and prepares it for use.">LoadMesh</a>(MeshName,Group);</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            <a class="code" href="classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Graphics::Mesh</a>* ObjectMesh = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Graphics::MeshManager::GetSingletonPtr</a>()-&gt;LoadMesh(MeshName,Group);</div>
 <div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#a2a3734a226250374c87413c2e4728eb9" title="Generates a mesh shape for dynamic objects.">GenerateDynamicTriMesh</a>(Name,ObjectMesh,UseAllSubmeshes);</div>
 <div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;        }</div>
 <div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;</div>
@@ -520,7 +520,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;</div>
 <div class="line"><a name="l00435"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#ac28892ed480e0bedee0aaa5abb7728fd">  435</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a>* <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#a2c62e801a45fea7cab64de1cb256f9a1" title="Generates a mesh shape for static objects.">CollisionShapeManager::GenerateStaticTriMesh</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; MeshName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Group, <span class="keywordtype">bool</span> UseAllSubmeshes)</div>
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;        {</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            <a class="code" href="classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Graphics::Mesh</a>* ObjectMesh = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">MeshManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1MeshManager.html#a1165cfd040bce804af9644dcdfc8deab" title="Loads a mesh file from disk and prepares it for use.">LoadMesh</a>(MeshName,Group);</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            <a class="code" href="classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Graphics::Mesh</a>* ObjectMesh = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Graphics::MeshManager::GetSingletonPtr</a>()-&gt;LoadMesh(MeshName,Group);</div>
 <div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;            <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#a2c62e801a45fea7cab64de1cb256f9a1" title="Generates a mesh shape for static objects.">GenerateStaticTriMesh</a>(Name,ObjectMesh,UseAllSubmeshes);</div>
 <div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        }</div>
 <div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;</div>
@@ -658,7 +658,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;</div>
 <div class="line"><a name="l00573"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#a78eeb8c6712ba6bc0832356ef4ea12fd">  573</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1CompoundCollisionShape.html" title="A collision shape composed of many other collision shapes placed and oriented in local space...">CompoundCollisionShape</a>* <a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#a321fa0626c84f543bcf7a0295aebdd74" title="Generates a compound shape of Convex Hulls from a provided mesh.">CollisionShapeManager::PerformConvexDecomposition</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; MeshName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a>&amp; Group, <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> Depth, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> CPercent, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> PPercent, <span class="keywordtype">bool</span> UseAllSubmeshes)</div>
 <div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;        {</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;            <a class="code" href="classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Graphics::Mesh</a>* ObjectMesh = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">MeshManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1MeshManager.html#a1165cfd040bce804af9644dcdfc8deab" title="Loads a mesh file from disk and prepares it for use.">LoadMesh</a>(MeshName,Group);</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;            <a class="code" href="classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh.">Graphics::Mesh</a>* ObjectMesh = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Graphics::MeshManager::GetSingletonPtr</a>()-&gt;LoadMesh(MeshName,Group);</div>
 <div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;            <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1CollisionShapeManager.html#a321fa0626c84f543bcf7a0295aebdd74" title="Generates a compound shape of Convex Hulls from a provided mesh.">PerformConvexDecomposition</a>(Name,ObjectMesh,Depth,CPercent,PPercent,UseAllSubmeshes);</div>
 <div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;        }</div>
 <div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;<span class="comment"></span></div>
@@ -889,6 +889,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

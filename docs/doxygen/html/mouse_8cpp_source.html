@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/Input/mouse.cpp Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/mouse.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li><li class="navelem"><a class="el" href="dir_b4919bb1272d0c2c5250ed9804008353.html">Input</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li><li class="navelem"><a class="el" href="dir_4358ccd54f293adf03e83e7f75aaa22b.html">Input</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">mouse.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -233,9 +233,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            <span class="keywordflow">if</span>( NULL != Focus )</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            {</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                <a class="code" href="classMezzanine_1_1Graphics_1_1GameWindow.html" title="This class is for creating and managing game windows.">Graphics::GameWindow</a>* Win = <span class="keyword">static_cast&lt;</span><a class="code" href="classMezzanine_1_1Graphics_1_1GameWindow.html" title="This class is for creating and managing game windows.">Graphics::GameWindow</a>*<span class="keyword">&gt;</span>(Focus-&gt;data-&gt;data);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <span class="keywordflow">for</span>( Graphics::GameWindow::ReverseViewportIterator ViewIt = Win-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1GameWindow.html#a38d5f9f5b0c2d0e620df2b8dfff73cf9" title="Gets an iterator to the last viewport in this window.">ReverseBeginViewport</a>() ; ViewIt != Win-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1GameWindow.html#af618978bcd16959d7a046e085fd21a88" title="Gets an iterator to one before the first viewport in this window.">ReverseEndViewport</a>() ; ++ViewIt )</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <span class="keywordflow">for</span>( <a class="code" href="classMezzanine_1_1Graphics_1_1GameWindow.html#a9b690c52c05a5a7fb56453b52bb9fc2e" title="Reverse Iterator type for Viewport instances stored by this class.">Graphics::GameWindow::ReverseViewportIterator</a> ViewIt = Win-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1GameWindow.html#a38d5f9f5b0c2d0e620df2b8dfff73cf9" title="Gets an iterator to the last viewport in this window.">ReverseBeginViewport</a>() ; ViewIt != Win-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1GameWindow.html#af618978bcd16959d7a046e085fd21a88" title="Gets an iterator to one before the first viewport in this window.">ReverseEndViewport</a>() ; ++ViewIt )</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                {</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                    <a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Graphics::Viewport</a>* VP = (*ViewIt).second;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                    <a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Graphics::Viewport</a>* VP = (*ViewIt);</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                    <span class="keywordflow">if</span>( (this-&gt;Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> &gt;= (<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)(VP-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.html#a49bf53a411c00967c7018ed05729fcaa" title="Gets the left position of the viewport in pixels.">GetActualLeft</a>()) &amp;&amp; this-&gt;Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> &lt;= (<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)(VP-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.html#a49bf53a411c00967c7018ed05729fcaa" title="Gets the left position of the viewport in pixels.">GetActualLeft</a>() + VP-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.html#a222e02a696c9a87a2e27ce456649e555" title="Gets the width of the viewport in pixels.">GetActualWidth</a>())) &amp;&amp;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                        (this-&gt;Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> &gt;= (<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)(VP-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.html#adb770d349b8dedd922072dcfc03c329d" title="Gets the top position of the viewport in pixels.">GetActualTop</a>()) &amp;&amp; this-&gt;Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> &lt;= (<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)(VP-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.html#adb770d349b8dedd922072dcfc03c329d" title="Gets the top position of the viewport in pixels.">GetActualTop</a>() + VP-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.html#adadc72d5828d7e1854c4a2c62518706c" title="Gets the height of the viewport in pixels.">GetActualHeight</a>()) ) )</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                    {</div>
@@ -301,7 +301,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> this-&gt;CurrentViewport; }</div>
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
 <div class="line"><a name="l00217"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Input_1_1Mouse.html#ac72abde5becd9f77d5eeb23fe127fe00">  217</a></span>&#160;        <a class="code" href="classMezzanine_1_1Graphics_1_1GameWindow.html" title="This class is for creating and managing game windows.">Graphics::GameWindow</a>* <a class="code" href="classMezzanine_1_1Input_1_1Mouse.html#ac72abde5becd9f77d5eeb23fe127fe00" title="Gets a pointer to the window with the current mouse focus.">Mouse::GetHoveredWindow</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> ( this-&gt;CurrentViewport ? this-&gt;CurrentViewport-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.html#ac653462d6cce274a78543bf3dee16da2" title="Gets the game window this viewport belongs to.">GetParentWindow</a>() : NULL ); }</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> ( this-&gt;CurrentViewport ? this-&gt;CurrentViewport-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1Viewport.html#a3a7d207306467cd4e99850536a563be1" title="Gets the game window this viewport belongs to.">GetParentWindow</a>() : NULL ); }</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
 <div class="line"><a name="l00220"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Input_1_1Mouse.html#ac957a837bfd3319bc869ee15e53d9f7e">  220</a></span>&#160;        <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; <a class="code" href="classMezzanine_1_1Input_1_1Mouse.html#ac957a837bfd3319bc869ee15e53d9f7e" title="Gets the position of the mouse cursor relative to the origin of the window with the mouse focus...">Mouse::GetWindowPosition</a>()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="keyword">            </span>{ <span class="keywordflow">return</span> this-&gt;Position; }</div>
@@ -377,6 +377,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

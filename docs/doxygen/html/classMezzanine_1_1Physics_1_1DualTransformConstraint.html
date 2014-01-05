@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>All constraints that track rotation and location of the Pivot relative to each Actor inherit from this.  
+<p>All constraints that track rotation and location of the Pivot relative to each <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> inherit from this.  
  <a href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="dualtransformconstraint_8h_source.html">dualtransformconstraint.h</a>&gt;</code></p>
@@ -100,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Physics_1_1DualTransformConstraint__inherit__graph.svg" width="100%" height="472"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Physics_1_1DualTransformConstraint__inherit__graph.svg" width="100%" height="465"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -121,7 +121,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abeaea8f45ef114e1cdd6b60237146675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the relative rotation for ActorA.  <a href="#abeaea8f45ef114e1cdd6b60237146675">More...</a><br/></td></tr>
 <tr class="separator:abeaea8f45ef114e1cdd6b60237146675"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac99e355b81c341b548c6f3774fbc150f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html#ac99e355b81c341b548c6f3774fbc150f">GetPivotATransform</a> () const =0</td></tr>
-<tr class="memdesc:ac99e355b81c341b548c6f3774fbc150f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current Rotation and Location of Actor A.  <a href="#ac99e355b81c341b548c6f3774fbc150f">More...</a><br/></td></tr>
+<tr class="memdesc:ac99e355b81c341b548c6f3774fbc150f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current Rotation and Location of <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> A.  <a href="#ac99e355b81c341b548c6f3774fbc150f">More...</a><br/></td></tr>
 <tr class="separator:ac99e355b81c341b548c6f3774fbc150f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75fae3c8c191ffc12bbafba25a932bcd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html#a75fae3c8c191ffc12bbafba25a932bcd">GetPivotBLocation</a> () const </td></tr>
 <tr class="memdesc:a75fae3c8c191ffc12bbafba25a932bcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the location of the pivot relative to ActorB's Center of gravity.  <a href="#a75fae3c8c191ffc12bbafba25a932bcd">More...</a><br/></td></tr>
@@ -130,7 +130,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a149ffbf5a67811d97d8c7f1861a5e9c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the relative rotation for ActorB.  <a href="#a149ffbf5a67811d97d8c7f1861a5e9c1">More...</a><br/></td></tr>
 <tr class="separator:a149ffbf5a67811d97d8c7f1861a5e9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4046d2ad79328c20b99be3a1dadef36e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html#a4046d2ad79328c20b99be3a1dadef36e">GetPivotBTransform</a> () const =0</td></tr>
-<tr class="memdesc:a4046d2ad79328c20b99be3a1dadef36e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current Rotation and Location of Actor B.  <a href="#a4046d2ad79328c20b99be3a1dadef36e">More...</a><br/></td></tr>
+<tr class="memdesc:a4046d2ad79328c20b99be3a1dadef36e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current Rotation and Location of <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> B.  <a href="#a4046d2ad79328c20b99be3a1dadef36e">More...</a><br/></td></tr>
 <tr class="separator:a4046d2ad79328c20b99be3a1dadef36e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42bbe8d59b2db5db2c53bb5fcdbb252d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html#a42bbe8d59b2db5db2c53bb5fcdbb252d">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
 <tr class="memdesc:a42bbe8d59b2db5db2c53bb5fcdbb252d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it.  <a href="#a42bbe8d59b2db5db2c53bb5fcdbb252d">More...</a><br/></td></tr>
@@ -160,18 +160,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a14b64969522c386d459133c44d363e9d inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a14b64969522c386d459133c44d363e9d">~Constraint</a> ()</td></tr>
 <tr class="memdesc:a14b64969522c386d459133c44d363e9d inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#a14b64969522c386d459133c44d363e9d">More...</a><br/></td></tr>
 <tr class="separator:a14b64969522c386d459133c44d363e9d inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68014c60417df353bf60d27008f36f20 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a68014c60417df353bf60d27008f36f20">GetActorA</a> () const </td></tr>
-<tr class="memdesc:a68014c60417df353bf60d27008f36f20 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the first actor this constraint applies to.  <a href="#a68014c60417df353bf60d27008f36f20">More...</a><br/></td></tr>
-<tr class="separator:a68014c60417df353bf60d27008f36f20 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26a1d3a51c28f88a7fdd7d9233f2156a inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a26a1d3a51c28f88a7fdd7d9233f2156a">GetActorB</a> () const </td></tr>
-<tr class="memdesc:a26a1d3a51c28f88a7fdd7d9233f2156a inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the second actor this constraint applies to.  <a href="#a26a1d3a51c28f88a7fdd7d9233f2156a">More...</a><br/></td></tr>
-<tr class="separator:a26a1d3a51c28f88a7fdd7d9233f2156a inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9649e5c2bfbd0fa19caf876ed039544 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">virtual btTypedConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#aa9649e5c2bfbd0fa19caf876ed039544">GetConstraintBase</a> () const =0</td></tr>
 <tr class="memdesc:aa9649e5c2bfbd0fa19caf876ed039544 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Bullet constraint that this class encapsulates.  <a href="#aa9649e5c2bfbd0fa19caf876ed039544">More...</a><br/></td></tr>
 <tr class="separator:aa9649e5c2bfbd0fa19caf876ed039544 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b0e508ffc28d0f51c87cb0f4a5feb1b inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a3b0e508ffc28d0f51c87cb0f4a5feb1b">GetParam</a> (<a class="el" href="namespaceMezzanine_1_1Physics.html#aa640f4c4b2baf4a4039db76fd792d2c1">ConstraintParam</a> Param, int Axis=-1) const </td></tr>
 <tr class="memdesc:a3b0e508ffc28d0f51c87cb0f4a5feb1b inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets value of constraint parameters.  <a href="#a3b0e508ffc28d0f51c87cb0f4a5feb1b">More...</a><br/></td></tr>
 <tr class="separator:a3b0e508ffc28d0f51c87cb0f4a5feb1b inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cebb1896838d252afb2d9cc119dc23c inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html">RigidProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a0cebb1896838d252afb2d9cc119dc23c">GetProxyA</a> () const </td></tr>
+<tr class="memdesc:a0cebb1896838d252afb2d9cc119dc23c inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the first Proxy this constraint applies to.  <a href="#a0cebb1896838d252afb2d9cc119dc23c">More...</a><br/></td></tr>
+<tr class="separator:a0cebb1896838d252afb2d9cc119dc23c inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ef9dadde4ddedec4c86d46c3a236b61 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html">RigidProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a4ef9dadde4ddedec4c86d46c3a236b61">GetProxyB</a> () const </td></tr>
+<tr class="memdesc:a4ef9dadde4ddedec4c86d46c3a236b61 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the second Proxy this constraint applies to.  <a href="#a4ef9dadde4ddedec4c86d46c3a236b61">More...</a><br/></td></tr>
+<tr class="separator:a4ef9dadde4ddedec4c86d46c3a236b61 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43e33a64cad92068ad8153bf7f9a72e7 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a43e33a64cad92068ad8153bf7f9a72e7">HasParamBeenSet</a> (<a class="el" href="namespaceMezzanine_1_1Physics.html#aa640f4c4b2baf4a4039db76fd792d2c1">ConstraintParam</a> Param, int Axis) const =0</td></tr>
 <tr class="memdesc:a43e33a64cad92068ad8153bf7f9a72e7 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Has the given Param on the Given Axis been set yet.  <a href="#a43e33a64cad92068ad8153bf7f9a72e7">More...</a><br/></td></tr>
 <tr class="separator:a43e33a64cad92068ad8153bf7f9a72e7 inherit pub_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,35 +222,23 @@ typedef std::vector<br class="typebreak"/>
 <tr class="memitem:a6bc5779694ddc3c7166694c258f6611a inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a6bc5779694ddc3c7166694c258f6611a">Constraint</a> ()</td></tr>
 <tr class="memdesc:a6bc5779694ddc3c7166694c258f6611a inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">No initialization constructor.  <a href="#a6bc5779694ddc3c7166694c258f6611a">More...</a><br/></td></tr>
 <tr class="separator:a6bc5779694ddc3c7166694c258f6611a inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dd0d94feeb3d15c650aa2fcb5352110 inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0dd0d94feeb3d15c650aa2fcb5352110"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a0dd0d94feeb3d15c650aa2fcb5352110">SetBodies</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *Act1, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *Act2)</td></tr>
-<tr class="memdesc:a0dd0d94feeb3d15c650aa2fcb5352110 inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Internal actor pointers. <br/></td></tr>
-<tr class="separator:a0dd0d94feeb3d15c650aa2fcb5352110 inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af59242ad0a54f1805090ab1a30b38f7e inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af59242ad0a54f1805090ab1a30b38f7e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#af59242ad0a54f1805090ab1a30b38f7e">SetBodies</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *Act1)</td></tr>
-<tr class="memdesc:af59242ad0a54f1805090ab1a30b38f7e inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Internal actor pointers. <br/></td></tr>
-<tr class="separator:af59242ad0a54f1805090ab1a30b38f7e inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2d226858ba60db81e3e091e5751a793 inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#ae2d226858ba60db81e3e091e5751a793">SetBodies</a> (<a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html">RigidProxy</a> *Prox1, <a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html">RigidProxy</a> *Prox2)</td></tr>
+<tr class="memdesc:ae2d226858ba60db81e3e091e5751a793 inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Internal Proxy pointers.  <a href="#ae2d226858ba60db81e3e091e5751a793">More...</a><br/></td></tr>
+<tr class="separator:ae2d226858ba60db81e3e091e5751a793 inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2eb4ab73987fb848f2069fa389fb868 inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#aa2eb4ab73987fb848f2069fa389fb868">SetBodies</a> (<a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html">RigidProxy</a> *Prox1)</td></tr>
+<tr class="memdesc:aa2eb4ab73987fb848f2069fa389fb868 inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Internal Proxy pointers.  <a href="#aa2eb4ab73987fb848f2069fa389fb868">More...</a><br/></td></tr>
+<tr class="separator:aa2eb4ab73987fb848f2069fa389fb868 inherit pro_methods_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1Physics_1_1Constraint')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html">Mezzanine::Physics::Constraint</a></td></tr>
-<tr class="memitem:ac06f89c49c66ccfbc6114b5ccf12f136 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac06f89c49c66ccfbc6114b5ccf12f136"></a>
-<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#ac06f89c49c66ccfbc6114b5ccf12f136">ActA</a></td></tr>
-<tr class="memdesc:ac06f89c49c66ccfbc6114b5ccf12f136 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">First Actor the constraint applies to. <br/></td></tr>
-<tr class="separator:ac06f89c49c66ccfbc6114b5ccf12f136 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a414546db222be9c8befac5826bbe88fb inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a414546db222be9c8befac5826bbe88fb"></a>
-<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a414546db222be9c8befac5826bbe88fb">ActB</a></td></tr>
-<tr class="memdesc:a414546db222be9c8befac5826bbe88fb inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second Actor the constraint applies to. <br/></td></tr>
-<tr class="separator:a414546db222be9c8befac5826bbe88fb inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adef4626e3c28e717058d18ff80f4c104 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adef4626e3c28e717058d18ff80f4c104"></a>
-btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#adef4626e3c28e717058d18ff80f4c104">BodyA</a></td></tr>
-<tr class="memdesc:adef4626e3c28e717058d18ff80f4c104 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">First rigid body the constraint applies to. <br/></td></tr>
-<tr class="separator:adef4626e3c28e717058d18ff80f4c104 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83db6ff278bb5e7d51ebec87f3ab7279 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83db6ff278bb5e7d51ebec87f3ab7279"></a>
-btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a83db6ff278bb5e7d51ebec87f3ab7279">BodyB</a></td></tr>
-<tr class="memdesc:a83db6ff278bb5e7d51ebec87f3ab7279 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second rigid body the constraint applies to(if applicable). <br/></td></tr>
-<tr class="separator:a83db6ff278bb5e7d51ebec87f3ab7279 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65daad0041230c7b3654aa4a104dd549 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html">RigidProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a65daad0041230c7b3654aa4a104dd549">ProxA</a></td></tr>
+<tr class="memdesc:a65daad0041230c7b3654aa4a104dd549 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">The first Collidable this constraint applies to.  <a href="#a65daad0041230c7b3654aa4a104dd549">More...</a><br/></td></tr>
+<tr class="separator:a65daad0041230c7b3654aa4a104dd549 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e9ba0e4beba1f53220cd1a329fffbb8 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1RigidProxy.html">RigidProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a1e9ba0e4beba1f53220cd1a329fffbb8">ProxB</a></td></tr>
+<tr class="memdesc:a1e9ba0e4beba1f53220cd1a329fffbb8 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="mdescLeft">&#160;</td><td class="mdescRight">The second Collidable this constraint applies to.  <a href="#a1e9ba0e4beba1f53220cd1a329fffbb8">More...</a><br/></td></tr>
+<tr class="separator:a1e9ba0e4beba1f53220cd1a329fffbb8 inherit pro_attribs_classMezzanine_1_1Physics_1_1Constraint"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>All constraints that track rotation and location of the Pivot relative to each Actor inherit from this. </p>
-<p>Since not all contraints provide tracking for the Actor <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> (location/rotation of the pivot) we subdivided the constraints to unify the interface of those that could be unified. This stores nothing, but provides uniform access to the transform and rotation functions. <br/>
+<div class="textblock"><p>All constraints that track rotation and location of the Pivot relative to each <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> inherit from this. </p>
+<p>Since not all contraints provide tracking for the <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> (location/rotation of the pivot) we subdivided the constraints to unify the interface of those that could be unified. This stores nothing, but provides uniform access to the transform and rotation functions. <br/>
  <br/>
  Any deriving class must implement every thing from TypedConstraint and the four set/get <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> function. It is expected that more derived classes will implement the Set/Get Pivot/Rotation Functino in a more efficient Manner if a more efficient way exists. The non-transform get/set function are implmented in terms of the get/set transform function extra copies of values and extra reading/writing may occur if the compiler weakly optimizes. Of course, implementing more functions could slow down the software if it no longer fits in CPU caches. As always benchmark if this is something that may be critically slowing you down. </p>
 
@@ -337,7 +325,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </table>
 </div><div class="memdoc">
 
-<p>Get the current Rotation and Location of Actor A. </p>
+<p>Get the current Rotation and Location of <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> A. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns a <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a> </dd></dl>
 
 <p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.html#a79e020e03997bcd3f4b709c2393cf5d7">Mezzanine::Physics::HingeConstraint</a>, <a class="el" href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html#aadb9299471aacd1881b7d5ebf1a3ca44">Mezzanine::Physics::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SliderConstraint.html#ace7bf4b6a5601295b172db8cd951c809">Mezzanine::Physics::SliderConstraint</a>.</p>
@@ -425,7 +413,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </table>
 </div><div class="memdoc">
 
-<p>Get the current Rotation and Location of Actor B. </p>
+<p>Get the current Rotation and Location of <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> B. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns a <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a> </dd></dl>
 
 <p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.html#a16d0dc95b0e22c81a86dda9aef9c9c18">Mezzanine::Physics::HingeConstraint</a>, <a class="el" href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html#ae919099f5f6f6bbe12122cc528d03e12">Mezzanine::Physics::Generic6DofConstraint</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1SliderConstraint.html#a188aa77d77193cf77fed9bc61b008557">Mezzanine::Physics::SliderConstraint</a>.</p>
@@ -499,7 +487,7 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </table>
   </dd>
 </dl>
-<p>This stores each Actor's <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> </p>
+<p>This stores each <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a>'s <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> </p>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Physics_1_1Constraint.html#a409dc513af191e413cc8a4cde269243c">Mezzanine::Physics::Constraint</a>.</p>
 
@@ -754,11 +742,11 @@ btRigidBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="dualtransformconstraint_8h_source.html">dualtransformconstraint.h</a></li>
-<li>/home/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="dualtransformconstraint_8cpp_source.html">dualtransformconstraint.cpp</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="dualtransformconstraint_8h_source.html">dualtransformconstraint.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="dualtransformconstraint_8cpp_source.html">dualtransformconstraint.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:44 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

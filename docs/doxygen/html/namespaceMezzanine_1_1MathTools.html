@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -82,8 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Mezzanine::MathTools Namespace Reference</div>  </div>
 </div><!--header-->
@@ -94,12 +93,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ad9cec48dc39795457a1580962bcdd18b"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; <a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>, <a class="el" href="classMezzanine_1_1Ray.html">Ray</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#ad9cec48dc39795457a1580962bcdd18b">GeometryRayTestResult</a></td></tr>
-<tr class="memdesc:ad9cec48dc39795457a1580962bcdd18b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a type used for the return of a ray intersection test.  <a href="#ad9cec48dc39795457a1580962bcdd18b">More...</a><br/></td></tr>
-<tr class="separator:ad9cec48dc39795457a1580962bcdd18b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac42ff87c1656772e30f2cec91b3110e"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; <a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>, <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#aac42ff87c1656772e30f2cec91b3110e">PlaneRayTestResult</a></td></tr>
-<tr class="memdesc:aac42ff87c1656772e30f2cec91b3110e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a type used for the ray intersection tests performed on Planes.  <a href="#aac42ff87c1656772e30f2cec91b3110e">More...</a><br/></td></tr>
-<tr class="separator:aac42ff87c1656772e30f2cec91b3110e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5166de08fc274a5208daaf640a16066d"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; Boolean, <a class="el" href="classMezzanine_1_1Ray.html">Ray</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a5166de08fc274a5208daaf640a16066d">GeometryRayTestResult</a></td></tr>
+<tr class="memdesc:a5166de08fc274a5208daaf640a16066d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a type used for the return of a ray intersection test.  <a href="#a5166de08fc274a5208daaf640a16066d">More...</a><br/></td></tr>
+<tr class="separator:a5166de08fc274a5208daaf640a16066d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba88405f2cae06ec1918df588ae4c7cf"><td class="memItemLeft" align="right" valign="top">typedef std::pair&lt; Boolean, <br class="typebreak"/>
+<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#aba88405f2cae06ec1918df588ae4c7cf">PlaneRayTestResult</a></td></tr>
+<tr class="memdesc:aba88405f2cae06ec1918df588ae4c7cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a type used for the ray intersection tests performed on Planes.  <a href="#aba88405f2cae06ec1918df588ae4c7cf">More...</a><br/></td></tr>
+<tr class="separator:aba88405f2cae06ec1918df588ae4c7cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -130,39 +130,63 @@ Functions</h2></td></tr>
 <tr class="memitem:a2a3f4925e7fc5408a9a4307c7cefcb41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a2a3f4925e7fc5408a9a4307c7cefcb41">Fmod</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Numerator, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Denominator)</td></tr>
 <tr class="memdesc:a2a3f4925e7fc5408a9a4307c7cefcb41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modulo, fo' Reals. Returns the remainder of the division between two Reals.  <a href="#a2a3f4925e7fc5408a9a4307c7cefcb41">More...</a><br/></td></tr>
 <tr class="separator:a2a3f4925e7fc5408a9a4307c7cefcb41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ce5d673b41793c13031e0e1e52cea7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1MathTools.html#aac42ff87c1656772e30f2cec91b3110e">PlaneRayTestResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a9ce5d673b41793c13031e0e1e52cea7c">Intersects</a> (const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;Surface, const <a class="el" href="classMezzanine_1_1Ray.html">Ray</a> &amp;Cast)</td></tr>
+<tr class="memitem:a53d570d27552c1db8f076959d8aaa48a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53d570d27552c1db8f076959d8aaa48a"></a>
+<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a53d570d27552c1db8f076959d8aaa48a">GetDegToRadMultiplier</a> ()</td></tr>
+<tr class="memdesc:a53d570d27552c1db8f076959d8aaa48a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a multiplier used in converting Degree angular units to Radians. <br/></td></tr>
+<tr class="separator:a53d570d27552c1db8f076959d8aaa48a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cabadf90fa2d86035a83785723b9c6d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3cabadf90fa2d86035a83785723b9c6d"></a>
+<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a3cabadf90fa2d86035a83785723b9c6d">GetHalfPi</a> ()</td></tr>
+<tr class="memdesc:a3cabadf90fa2d86035a83785723b9c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets half of Pi. <br/></td></tr>
+<tr class="separator:a3cabadf90fa2d86035a83785723b9c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abccadb8fd9e47b1b1acd77c8ac24de2b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abccadb8fd9e47b1b1acd77c8ac24de2b"></a>
+<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#abccadb8fd9e47b1b1acd77c8ac24de2b">GetPi</a> ()</td></tr>
+<tr class="memdesc:abccadb8fd9e47b1b1acd77c8ac24de2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Pi. <br/></td></tr>
+<tr class="separator:abccadb8fd9e47b1b1acd77c8ac24de2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26c8ffdabf6ebd5ce976e4c42d40686c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26c8ffdabf6ebd5ce976e4c42d40686c"></a>
+<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a26c8ffdabf6ebd5ce976e4c42d40686c">GetQuarterPi</a> ()</td></tr>
+<tr class="memdesc:a26c8ffdabf6ebd5ce976e4c42d40686c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Quarter Pi. <br/></td></tr>
+<tr class="separator:a26c8ffdabf6ebd5ce976e4c42d40686c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7814488f28217f976fa75e753c81bcdd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7814488f28217f976fa75e753c81bcdd"></a>
+<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a7814488f28217f976fa75e753c81bcdd">GetRadToDegMultiplier</a> ()</td></tr>
+<tr class="memdesc:a7814488f28217f976fa75e753c81bcdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a multiplier used in converting Radian angular units to degrees. <br/></td></tr>
+<tr class="separator:a7814488f28217f976fa75e753c81bcdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96b7f083791efc5195a3b945dac6474b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96b7f083791efc5195a3b945dac6474b"></a>
+<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a96b7f083791efc5195a3b945dac6474b">GetTwoPi</a> ()</td></tr>
+<tr class="memdesc:a96b7f083791efc5195a3b945dac6474b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets Pi times two. <br/></td></tr>
+<tr class="separator:a96b7f083791efc5195a3b945dac6474b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce5d673b41793c13031e0e1e52cea7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1MathTools.html#aba88405f2cae06ec1918df588ae4c7cf">PlaneRayTestResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a9ce5d673b41793c13031e0e1e52cea7c">Intersects</a> (const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;Surface, const <a class="el" href="classMezzanine_1_1Ray.html">Ray</a> &amp;Cast)</td></tr>
 <tr class="memdesc:a9ce5d673b41793c13031e0e1e52cea7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a ray intersects with a <a class="el" href="classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a>.  <a href="#a9ce5d673b41793c13031e0e1e52cea7c">More...</a><br/></td></tr>
 <tr class="separator:a9ce5d673b41793c13031e0e1e52cea7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04d52b823a7cd78fb78fc20564428992"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1MathTools.html#ad9cec48dc39795457a1580962bcdd18b">GeometryRayTestResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a04d52b823a7cd78fb78fc20564428992">Intersects</a> (const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box, const <a class="el" href="classMezzanine_1_1Ray.html">Ray</a> &amp;Cast)</td></tr>
+<tr class="memitem:a04d52b823a7cd78fb78fc20564428992"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a5166de08fc274a5208daaf640a16066d">GeometryRayTestResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a04d52b823a7cd78fb78fc20564428992">Intersects</a> (const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box, const <a class="el" href="classMezzanine_1_1Ray.html">Ray</a> &amp;Cast)</td></tr>
 <tr class="memdesc:a04d52b823a7cd78fb78fc20564428992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a ray intersects with an AABB.  <a href="#a04d52b823a7cd78fb78fc20564428992">More...</a><br/></td></tr>
 <tr class="separator:a04d52b823a7cd78fb78fc20564428992"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5665308939092303037b0d78d56b3b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1MathTools.html#ad9cec48dc39795457a1580962bcdd18b">GeometryRayTestResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#af5665308939092303037b0d78d56b3b6">Intersects</a> (const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball, const <a class="el" href="classMezzanine_1_1Ray.html">Ray</a> &amp;Cast)</td></tr>
+<tr class="memitem:af5665308939092303037b0d78d56b3b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a5166de08fc274a5208daaf640a16066d">GeometryRayTestResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#af5665308939092303037b0d78d56b3b6">Intersects</a> (const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball, const <a class="el" href="classMezzanine_1_1Ray.html">Ray</a> &amp;Cast)</td></tr>
 <tr class="memdesc:af5665308939092303037b0d78d56b3b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a ray intersects with a <a class="el" href="classMezzanine_1_1Sphere.html" title="This is a generic sphere class used for spacial queries.">Sphere</a>.  <a href="#af5665308939092303037b0d78d56b3b6">More...</a><br/></td></tr>
 <tr class="separator:af5665308939092303037b0d78d56b3b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59f747965acca6403ab369810a2cc8c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a59f747965acca6403ab369810a2cc8c3">IsInside</a> (const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Point)</td></tr>
-<tr class="memdesc:a59f747965acca6403ab369810a2cc8c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a point in 3D space is within an AABB.  <a href="#a59f747965acca6403ab369810a2cc8c3">More...</a><br/></td></tr>
-<tr class="separator:a59f747965acca6403ab369810a2cc8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f37f22d6ce37ec42ce311ab7aaf1f36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a9f37f22d6ce37ec42ce311ab7aaf1f36">IsInside</a> (const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Point)</td></tr>
-<tr class="memdesc:a9f37f22d6ce37ec42ce311ab7aaf1f36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a point in 3D space is within a <a class="el" href="classMezzanine_1_1Sphere.html" title="This is a generic sphere class used for spacial queries.">Sphere</a>.  <a href="#a9f37f22d6ce37ec42ce311ab7aaf1f36">More...</a><br/></td></tr>
-<tr class="separator:a9f37f22d6ce37ec42ce311ab7aaf1f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab411c297c7bc1b4295ef3ac36951f3fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#ab411c297c7bc1b4295ef3ac36951f3fa">Overlap</a> (const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box, const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball)</td></tr>
-<tr class="memdesc:ab411c297c7bc1b4295ef3ac36951f3fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if an AABB and <a class="el" href="classMezzanine_1_1Sphere.html" title="This is a generic sphere class used for spacial queries.">Sphere</a> are overlapping.  <a href="#ab411c297c7bc1b4295ef3ac36951f3fa">More...</a><br/></td></tr>
-<tr class="separator:ab411c297c7bc1b4295ef3ac36951f3fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c785100f9edb116977cce70251505b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a5c785100f9edb116977cce70251505b5">Overlap</a> (const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box, const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;Surface)</td></tr>
-<tr class="memdesc:a5c785100f9edb116977cce70251505b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if an AANN and <a class="el" href="classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a> are overlapping.  <a href="#a5c785100f9edb116977cce70251505b5">More...</a><br/></td></tr>
-<tr class="separator:a5c785100f9edb116977cce70251505b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a915a6d98ae01545cbcbdcb1a6ad182d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a915a6d98ae01545cbcbdcb1a6ad182d1">Overlap</a> (const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;Surface, const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball)</td></tr>
-<tr class="memdesc:a915a6d98ae01545cbcbdcb1a6ad182d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a <a class="el" href="classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a> and <a class="el" href="classMezzanine_1_1Sphere.html" title="This is a generic sphere class used for spacial queries.">Sphere</a> are overlapping.  <a href="#a915a6d98ae01545cbcbdcb1a6ad182d1">More...</a><br/></td></tr>
-<tr class="separator:a915a6d98ae01545cbcbdcb1a6ad182d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66247d98a48b862c2f739cef131cd488"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a66247d98a48b862c2f739cef131cd488">Overlap</a> (const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box1, const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box2)</td></tr>
-<tr class="memdesc:a66247d98a48b862c2f739cef131cd488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if two AABBs are overlapping.  <a href="#a66247d98a48b862c2f739cef131cd488">More...</a><br/></td></tr>
-<tr class="separator:a66247d98a48b862c2f739cef131cd488"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abde1089e54547b5de02e8ae32bc13eb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#abde1089e54547b5de02e8ae32bc13eb9">Overlap</a> (const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball1, const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball2)</td></tr>
-<tr class="memdesc:abde1089e54547b5de02e8ae32bc13eb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if two Spheres are overlapping.  <a href="#abde1089e54547b5de02e8ae32bc13eb9">More...</a><br/></td></tr>
-<tr class="separator:abde1089e54547b5de02e8ae32bc13eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a4a9d1ec4e2b810b4962feea834cedc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a7a4a9d1ec4e2b810b4962feea834cedc">Overlap</a> (const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;Surface1, const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;Surface2)</td></tr>
-<tr class="memdesc:a7a4a9d1ec4e2b810b4962feea834cedc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if two Planes are overlapping.  <a href="#a7a4a9d1ec4e2b810b4962feea834cedc">More...</a><br/></td></tr>
-<tr class="separator:a7a4a9d1ec4e2b810b4962feea834cedc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb805318fe70c06258deaa94666f76b4"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#aeb805318fe70c06258deaa94666f76b4">IsInside</a> (const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Point)</td></tr>
+<tr class="memdesc:aeb805318fe70c06258deaa94666f76b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a point in 3D space is within an AABB.  <a href="#aeb805318fe70c06258deaa94666f76b4">More...</a><br/></td></tr>
+<tr class="separator:aeb805318fe70c06258deaa94666f76b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab025eaab0468339be43a92db0300c3ef"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#ab025eaab0468339be43a92db0300c3ef">IsInside</a> (const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Point)</td></tr>
+<tr class="memdesc:ab025eaab0468339be43a92db0300c3ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a point in 3D space is within a <a class="el" href="classMezzanine_1_1Sphere.html" title="This is a generic sphere class used for spacial queries.">Sphere</a>.  <a href="#ab025eaab0468339be43a92db0300c3ef">More...</a><br/></td></tr>
+<tr class="separator:ab025eaab0468339be43a92db0300c3ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4a66fa4aa66246cc61bacf96f406ac0"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#ab4a66fa4aa66246cc61bacf96f406ac0">Overlap</a> (const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box, const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball)</td></tr>
+<tr class="memdesc:ab4a66fa4aa66246cc61bacf96f406ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if an AABB and <a class="el" href="classMezzanine_1_1Sphere.html" title="This is a generic sphere class used for spacial queries.">Sphere</a> are overlapping.  <a href="#ab4a66fa4aa66246cc61bacf96f406ac0">More...</a><br/></td></tr>
+<tr class="separator:ab4a66fa4aa66246cc61bacf96f406ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a3f560ceb2c0535aa8db7e2791f2c43"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a6a3f560ceb2c0535aa8db7e2791f2c43">Overlap</a> (const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box, const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;Surface)</td></tr>
+<tr class="memdesc:a6a3f560ceb2c0535aa8db7e2791f2c43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if an AANN and <a class="el" href="classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a> are overlapping.  <a href="#a6a3f560ceb2c0535aa8db7e2791f2c43">More...</a><br/></td></tr>
+<tr class="separator:a6a3f560ceb2c0535aa8db7e2791f2c43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dde9c46f884f6e7dc55da692fc6321d"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a5dde9c46f884f6e7dc55da692fc6321d">Overlap</a> (const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;Surface, const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball)</td></tr>
+<tr class="memdesc:a5dde9c46f884f6e7dc55da692fc6321d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a <a class="el" href="classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a> and <a class="el" href="classMezzanine_1_1Sphere.html" title="This is a generic sphere class used for spacial queries.">Sphere</a> are overlapping.  <a href="#a5dde9c46f884f6e7dc55da692fc6321d">More...</a><br/></td></tr>
+<tr class="separator:a5dde9c46f884f6e7dc55da692fc6321d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50a34c201474e2ec66a6f47f7602f4db"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a50a34c201474e2ec66a6f47f7602f4db">Overlap</a> (const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box1, const <a class="el" href="classMezzanine_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;Box2)</td></tr>
+<tr class="memdesc:a50a34c201474e2ec66a6f47f7602f4db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if two AABBs are overlapping.  <a href="#a50a34c201474e2ec66a6f47f7602f4db">More...</a><br/></td></tr>
+<tr class="separator:a50a34c201474e2ec66a6f47f7602f4db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd02b8fc2d815d7b0de9e86cea73132e"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#acd02b8fc2d815d7b0de9e86cea73132e">Overlap</a> (const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball1, const <a class="el" href="classMezzanine_1_1Sphere.html">Sphere</a> &amp;Ball2)</td></tr>
+<tr class="memdesc:acd02b8fc2d815d7b0de9e86cea73132e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if two Spheres are overlapping.  <a href="#acd02b8fc2d815d7b0de9e86cea73132e">More...</a><br/></td></tr>
+<tr class="separator:acd02b8fc2d815d7b0de9e86cea73132e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11cdfd5dd1629eefe5a188529490461e"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a11cdfd5dd1629eefe5a188529490461e">Overlap</a> (const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;Surface1, const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;Surface2)</td></tr>
+<tr class="memdesc:a11cdfd5dd1629eefe5a188529490461e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if two Planes are overlapping.  <a href="#a11cdfd5dd1629eefe5a188529490461e">More...</a><br/></td></tr>
+<tr class="separator:a11cdfd5dd1629eefe5a188529490461e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac279270af7bdfc7aa01613489cd88fc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#ac279270af7bdfc7aa01613489cd88fc4">Pow</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Val, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Power)</td></tr>
 <tr class="memdesc:ac279270af7bdfc7aa01613489cd88fc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raises a Real to a power.  <a href="#ac279270af7bdfc7aa01613489cd88fc4">More...</a><br/></td></tr>
 <tr class="separator:ac279270af7bdfc7aa01613489cd88fc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,39 +205,16 @@ Functions</h2></td></tr>
 <tr class="memitem:a757e5de704fba63a013c7617fbc068c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a757e5de704fba63a013c7617fbc068c8">WithinTolerance</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;First, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Second, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Tolerance)</td></tr>
 <tr class="memdesc:a757e5de704fba63a013c7617fbc068c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if two Reals are within a certain range of each other.  <a href="#a757e5de704fba63a013c7617fbc068c8">More...</a><br/></td></tr>
 <tr class="separator:a757e5de704fba63a013c7617fbc068c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:af23f38d7122e61fee46a0a5f54b96075"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af23f38d7122e61fee46a0a5f54b96075"></a>
-const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#af23f38d7122e61fee46a0a5f54b96075">DegToRadMult</a> = <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>( <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>( 4.0 * <a class="el" href="namespaceMezzanine_1_1MathTools.html#aac7df4c31bbccd1eee7f65d0a4ac7c60">MathTools::ATan</a>(1.0) ) / <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>(180.0) )</td></tr>
-<tr class="memdesc:af23f38d7122e61fee46a0a5f54b96075"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a convenience multiplier for the conversion of Degrees to Radians. <br/></td></tr>
-<tr class="separator:af23f38d7122e61fee46a0a5f54b96075"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac907947ecd4e638ac37023b6048b6854"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac907947ecd4e638ac37023b6048b6854"></a>
-const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#ac907947ecd4e638ac37023b6048b6854">HalfPi</a> = ( <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>( 4.0 * <a class="el" href="namespaceMezzanine_1_1MathTools.html#aac7df4c31bbccd1eee7f65d0a4ac7c60">MathTools::ATan</a>(1.0) ) ) * 0.5</td></tr>
-<tr class="memdesc:ac907947ecd4e638ac37023b6048b6854"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is Pi * 0.5. <br/></td></tr>
-<tr class="separator:ac907947ecd4e638ac37023b6048b6854"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe336bed2608181d296a50d4b4a244eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe336bed2608181d296a50d4b4a244eb"></a>
-const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#abe336bed2608181d296a50d4b4a244eb">Pi</a> = <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>( 4.0 * <a class="el" href="namespaceMezzanine_1_1MathTools.html#aac7df4c31bbccd1eee7f65d0a4ac7c60">MathTools::ATan</a>(1.0) )</td></tr>
-<tr class="memdesc:abe336bed2608181d296a50d4b4a244eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is Pi. <br/></td></tr>
-<tr class="separator:abe336bed2608181d296a50d4b4a244eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97c54439798d179da04ac9bb8e2a7569"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97c54439798d179da04ac9bb8e2a7569"></a>
-const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a97c54439798d179da04ac9bb8e2a7569">RadToDegMult</a> = <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>( <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>(180.0) / <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>( 4.0 * <a class="el" href="namespaceMezzanine_1_1MathTools.html#aac7df4c31bbccd1eee7f65d0a4ac7c60">MathTools::ATan</a>(1.0) ) )</td></tr>
-<tr class="memdesc:a97c54439798d179da04ac9bb8e2a7569"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a convenience multiplier for the conversion of Radians to Degrees. <br/></td></tr>
-<tr class="separator:a97c54439798d179da04ac9bb8e2a7569"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46fd618b810e5febee165a62e7ac3c3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46fd618b810e5febee165a62e7ac3c3c"></a>
-const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a46fd618b810e5febee165a62e7ac3c3c">TwoPi</a> = ( <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>( 4.0 * <a class="el" href="namespaceMezzanine_1_1MathTools.html#aac7df4c31bbccd1eee7f65d0a4ac7c60">MathTools::ATan</a>(1.0) ) ) * 2.0</td></tr>
-<tr class="memdesc:a46fd618b810e5febee165a62e7ac3c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is Pi * 2. <br/></td></tr>
-<tr class="separator:a46fd618b810e5febee165a62e7ac3c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This namespace is the home of a number of utility variables and methods to facilitate various math related tasks. </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="ad9cec48dc39795457a1580962bcdd18b"></a>
+<a class="anchor" id="a5166de08fc274a5208daaf640a16066d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::pair&lt;<a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>,<a class="el" href="classMezzanine_1_1Ray.html">Ray</a>&gt; <a class="el" href="namespaceMezzanine_1_1MathTools.html#ad9cec48dc39795457a1580962bcdd18b">Mezzanine::MathTools::GeometryRayTestResult</a></td>
+          <td class="memname">typedef std::pair&lt;Boolean,<a class="el" href="classMezzanine_1_1Ray.html">Ray</a>&gt; <a class="el" href="namespaceMezzanine_1_1MathTools.html#a5166de08fc274a5208daaf640a16066d">Mezzanine::MathTools::GeometryRayTestResult</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -225,12 +226,12 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 
 </div>
 </div>
-<a class="anchor" id="aac42ff87c1656772e30f2cec91b3110e"></a>
+<a class="anchor" id="aba88405f2cae06ec1918df588ae4c7cf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::pair&lt;<a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a>,<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&gt; <a class="el" href="namespaceMezzanine_1_1MathTools.html#aac42ff87c1656772e30f2cec91b3110e">Mezzanine::MathTools::PlaneRayTestResult</a></td>
+          <td class="memname">typedef std::pair&lt;Boolean,<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&gt; <a class="el" href="namespaceMezzanine_1_1MathTools.html#aba88405f2cae06ec1918df588ae4c7cf">Mezzanine::MathTools::PlaneRayTestResult</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -266,7 +267,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the principal value of the arc Cosine of the angle provided in Radians. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00128">128</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00158">158</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -293,7 +294,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the principal value of the arc Sine of the angle provided in Radians. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00131">131</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00161">161</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -320,7 +321,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the principal value of the arc Tangent of the angle provided in Radians. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00134">134</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00164">164</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -347,7 +348,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the result of the rounding. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00095">95</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00125">125</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -374,7 +375,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the Cosine of the angle provided. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00119">119</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00149">149</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -401,7 +402,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the converted number in Radians. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00140">140</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00170">170</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -428,7 +429,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the absolute value of the Real. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00107">107</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00137">137</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -455,7 +456,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the result of the rounding. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00098">98</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00128">128</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -493,7 +494,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the remainder of division between the two Reals passed in. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00110">110</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00140">140</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -502,7 +503,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine_1_1MathTools.html#aac42ff87c1656772e30f2cec91b3110e">PlaneRayTestResult</a> Mezzanine::MathTools::Intersects </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1MathTools.html#aba88405f2cae06ec1918df588ae4c7cf">PlaneRayTestResult</a> Mezzanine::MathTools::Intersects </td>
           <td>(</td>
           <td class="paramtype">const Plane &amp;&#160;</td>
           <td class="paramname"><em>Surface</em>, </td>
@@ -531,7 +532,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the ray intersects with the provided <a class="el" href="classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00208">208</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00238">238</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -540,7 +541,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine_1_1MathTools.html#ad9cec48dc39795457a1580962bcdd18b">GeometryRayTestResult</a> Mezzanine::MathTools::Intersects </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a5166de08fc274a5208daaf640a16066d">GeometryRayTestResult</a> Mezzanine::MathTools::Intersects </td>
           <td>(</td>
           <td class="paramtype">const AxisAlignedBox &amp;&#160;</td>
           <td class="paramname"><em>Box</em>, </td>
@@ -569,7 +570,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a std::pair containing whether or not the ray hit, and if it did also a ray that is the subsection of the casted ray that went through the AABB. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00225">225</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00255">255</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -578,7 +579,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine_1_1MathTools.html#ad9cec48dc39795457a1580962bcdd18b">GeometryRayTestResult</a> Mezzanine::MathTools::Intersects </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1MathTools.html#a5166de08fc274a5208daaf640a16066d">GeometryRayTestResult</a> Mezzanine::MathTools::Intersects </td>
           <td>(</td>
           <td class="paramtype">const Sphere &amp;&#160;</td>
           <td class="paramname"><em>Ball</em>, </td>
@@ -607,16 +608,16 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a std::pair containing whether or not the ray hit, and if it did also a ray that is the subsection of the casted ray that went through the <a class="el" href="classMezzanine_1_1Sphere.html" title="This is a generic sphere class used for spacial queries.">Sphere</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00270">270</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00300">300</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a59f747965acca6403ab369810a2cc8c3"></a>
+<a class="anchor" id="aeb805318fe70c06258deaa94666f76b4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a> Mezzanine::MathTools::IsInside </td>
+          <td class="memname">Boolean Mezzanine::MathTools::IsInside </td>
           <td>(</td>
           <td class="paramtype">const AxisAlignedBox &amp;&#160;</td>
           <td class="paramname"><em>Box</em>, </td>
@@ -645,16 +646,16 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the provided point is within the AABB, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00152">152</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00182">182</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9f37f22d6ce37ec42ce311ab7aaf1f36"></a>
+<a class="anchor" id="ab025eaab0468339be43a92db0300c3ef"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a> Mezzanine::MathTools::IsInside </td>
+          <td class="memname">Boolean Mezzanine::MathTools::IsInside </td>
           <td>(</td>
           <td class="paramtype">const Sphere &amp;&#160;</td>
           <td class="paramname"><em>Ball</em>, </td>
@@ -683,16 +684,16 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the provided point is within the sphere, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00159">159</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00189">189</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab411c297c7bc1b4295ef3ac36951f3fa"></a>
+<a class="anchor" id="ab4a66fa4aa66246cc61bacf96f406ac0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a> Mezzanine::MathTools::Overlap </td>
+          <td class="memname">Boolean Mezzanine::MathTools::Overlap </td>
           <td>(</td>
           <td class="paramtype">const AxisAlignedBox &amp;&#160;</td>
           <td class="paramname"><em>Box</em>, </td>
@@ -721,16 +722,16 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the AABB and <a class="el" href="classMezzanine_1_1Sphere.html" title="This is a generic sphere class used for spacial queries.">Sphere</a> overlap, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00164">164</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00194">194</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5c785100f9edb116977cce70251505b5"></a>
+<a class="anchor" id="a6a3f560ceb2c0535aa8db7e2791f2c43"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a> Mezzanine::MathTools::Overlap </td>
+          <td class="memname">Boolean Mezzanine::MathTools::Overlap </td>
           <td>(</td>
           <td class="paramtype">const AxisAlignedBox &amp;&#160;</td>
           <td class="paramname"><em>Box</em>, </td>
@@ -759,16 +760,16 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the AABB and Pland overlap, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00181">181</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00211">211</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a915a6d98ae01545cbcbdcb1a6ad182d1"></a>
+<a class="anchor" id="a5dde9c46f884f6e7dc55da692fc6321d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a> Mezzanine::MathTools::Overlap </td>
+          <td class="memname">Boolean Mezzanine::MathTools::Overlap </td>
           <td>(</td>
           <td class="paramtype">const Plane &amp;&#160;</td>
           <td class="paramname"><em>Surface</em>, </td>
@@ -797,16 +798,16 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the <a class="el" href="classMezzanine_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a> and <a class="el" href="classMezzanine_1_1Sphere.html" title="This is a generic sphere class used for spacial queries.">Sphere</a> overlap, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00186">186</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00216">216</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a66247d98a48b862c2f739cef131cd488"></a>
+<a class="anchor" id="a50a34c201474e2ec66a6f47f7602f4db"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a> Mezzanine::MathTools::Overlap </td>
+          <td class="memname">Boolean Mezzanine::MathTools::Overlap </td>
           <td>(</td>
           <td class="paramtype">const AxisAlignedBox &amp;&#160;</td>
           <td class="paramname"><em>Box1</em>, </td>
@@ -835,16 +836,16 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the two AABBs are overlapping, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00191">191</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00221">221</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="abde1089e54547b5de02e8ae32bc13eb9"></a>
+<a class="anchor" id="acd02b8fc2d815d7b0de9e86cea73132e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a> Mezzanine::MathTools::Overlap </td>
+          <td class="memname">Boolean Mezzanine::MathTools::Overlap </td>
           <td>(</td>
           <td class="paramtype">const Sphere &amp;&#160;</td>
           <td class="paramname"><em>Ball1</em>, </td>
@@ -873,16 +874,16 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the two Spheres are overlapping, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00197">197</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00227">227</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7a4a9d1ec4e2b810b4962feea834cedc"></a>
+<a class="anchor" id="a11cdfd5dd1629eefe5a188529490461e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a942580f9d14a57c4a192270eb78f7d57">Bool</a> Mezzanine::MathTools::Overlap </td>
+          <td class="memname">Boolean Mezzanine::MathTools::Overlap </td>
           <td>(</td>
           <td class="paramtype">const Plane &amp;&#160;</td>
           <td class="paramname"><em>Surface1</em>, </td>
@@ -911,7 +912,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the two Planes are overlapping, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00203">203</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00233">233</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -949,7 +950,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the Raised Eeal. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00101">101</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00131">131</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -976,7 +977,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the converted number in Degrees. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00143">143</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00173">173</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -1003,7 +1004,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the Sine of the angle provided. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00122">122</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00152">152</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -1030,7 +1031,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the calculated square root. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00104">104</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00134">134</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -1057,7 +1058,7 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the Tangent of the angle provided. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00125">125</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00155">155</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
@@ -1102,12 +1103,12 @@ const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the two numbers are within the amount specified by Tolerance of each other, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00113">113</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="mathtool_8cpp_source.html#l00143">143</a> of file <a class="el" href="mathtool_8cpp_source.html">mathtool.cpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

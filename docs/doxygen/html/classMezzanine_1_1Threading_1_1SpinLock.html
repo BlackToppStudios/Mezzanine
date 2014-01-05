@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -93,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>A mutex like construct that never makes a system call and uses CPU instructions instead.  
  <a href="classMezzanine_1_1Threading_1_1SpinLock.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="mutex_8h_source.html">mutex.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="spinlock_8h_source.html">spinlock.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -106,20 +106,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a56c7ad29cd7f8fb14a034795b6a989e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
 <tr class="separator:a56c7ad29cd7f8fb14a034795b6a989e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2ad51111a49d2092704eb9035045eca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1SpinLock.html#ae2ad51111a49d2092704eb9035045eca">Lock</a> ()</td></tr>
-<tr class="memdesc:ae2ad51111a49d2092704eb9035045eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock the SpinLoc.  <a href="#ae2ad51111a49d2092704eb9035045eca">More...</a><br/></td></tr>
+<tr class="memdesc:ae2ad51111a49d2092704eb9035045eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock the <a class="el" href="classMezzanine_1_1Threading_1_1SpinLock.html" title="A mutex like construct that never makes a system call and uses CPU instructions instead.">SpinLock</a>.  <a href="#ae2ad51111a49d2092704eb9035045eca">More...</a><br/></td></tr>
 <tr class="separator:ae2ad51111a49d2092704eb9035045eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2659487f9df5247575ebe8400389829b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1SpinLock.html#a2659487f9df5247575ebe8400389829b">TryLock</a> ()</td></tr>
 <tr class="memdesc:a2659487f9df5247575ebe8400389829b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to lock the spinlock.  <a href="#a2659487f9df5247575ebe8400389829b">More...</a><br/></td></tr>
 <tr class="separator:a2659487f9df5247575ebe8400389829b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c8521e77c11d03554447ab80b798e4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1SpinLock.html#a8c8521e77c11d03554447ab80b798e4a">Unlock</a> ()</td></tr>
-<tr class="memdesc:a8c8521e77c11d03554447ab80b798e4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock the splinlock.  <a href="#a8c8521e77c11d03554447ab80b798e4a">More...</a><br/></td></tr>
+<tr class="memdesc:a8c8521e77c11d03554447ab80b798e4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock the spinlock.  <a href="#a8c8521e77c11d03554447ab80b798e4a">More...</a><br/></td></tr>
 <tr class="separator:a8c8521e77c11d03554447ab80b798e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A mutex like construct that never makes a system call and uses CPU instructions instead. </p>
-<p>This should be used when delay is likely to be measured in CPUs cycles and almost certainly a short while. For pauses of unknown length use a <a class="el" href="classMezzanine_1_1Threading_1_1Mutex.html" title="A cross-platform abstraction of the OS&#39;s mutex.">Mutex</a> so that the OS is informed it could schedule another thread. </p>
+<p>This should be used when delay is likely to be measured in CPUs cycles and almost certainly a short while. For pauses of unknown length use a <a class="el" href="classMezzanine_1_1Threading_1_1Mutex.html" title="A cross-platform abstraction of the OS&#39;s mutex.">Mutex</a> so that the OS is informed it could schedule another thread. <br/>
+ <br/>
+ This is compatible with the <a class="el" href="classMezzanine_1_1Threading_1_1lock__guard.html" title="Lock guard class.">lock_guard</a> class. </p>
 
-<p>Definition at line <a class="el" href="mutex_8h_source.html#l00151">151</a> of file <a class="el" href="mutex_8h_source.html">mutex.h</a>.</p>
+<p>Definition at line <a class="el" href="spinlock_8h_source.html#l00083">83</a> of file <a class="el" href="spinlock_8h_source.html">spinlock.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ae2ad51111a49d2092704eb9035045eca"></a>
 <div class="memitem">
@@ -134,11 +136,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lock the SpinLoc. </p>
+<p>Lock the <a class="el" href="classMezzanine_1_1Threading_1_1SpinLock.html" title="A mutex like construct that never makes a system call and uses CPU instructions instead.">SpinLock</a>. </p>
 <p>The method will block the calling thread until a lock on the <a class="el" href="classMezzanine_1_1Threading_1_1SpinLock.html" title="A mutex like construct that never makes a system call and uses CPU instructions instead.">SpinLock</a> can be obtained. The <a class="el" href="classMezzanine_1_1Threading_1_1SpinLock.html" title="A mutex like construct that never makes a system call and uses CPU instructions instead.">SpinLock</a> remains locked until <code>unlock()</code> is called. </p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="classMezzanine_1_1Threading_1_1lock__guard.html" title="Lock guard class.">lock_guard</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="mutex_8cpp_source.html#l00120">120</a> of file <a class="el" href="mutex_8cpp_source.html">mutex.cpp</a>.</p>
+<p>Definition at line <a class="el" href="spinlock_8cpp_source.html#l00061">61</a> of file <a class="el" href="spinlock_8cpp_source.html">spinlock.cpp</a>.</p>
 
 </div>
 </div>
@@ -159,7 +161,7 @@ Public Member Functions</h2></td></tr>
 <p>The method will try to lock the <a class="el" href="classMezzanine_1_1Threading_1_1SpinLock.html" title="A mutex like construct that never makes a system call and uses CPU instructions instead.">SpinLock</a>. If it fails, the function will return immediately (non-blocking). </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if the lock was acquired, or <code>false</code> if the lock could not be acquired. </dd></dl>
 
-<p>Definition at line <a class="el" href="mutex_8cpp_source.html#l00126">126</a> of file <a class="el" href="mutex_8cpp_source.html">mutex.cpp</a>.</p>
+<p>Definition at line <a class="el" href="spinlock_8cpp_source.html#l00067">67</a> of file <a class="el" href="spinlock_8cpp_source.html">spinlock.cpp</a>.</p>
 
 </div>
 </div>
@@ -176,19 +178,19 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unlock the splinlock. </p>
+<p>Unlock the spinlock. </p>
 <p>If any threads are waiting for the lock on this mutex, one of them will be unblocked. </p>
 
-<p>Definition at line <a class="el" href="mutex_8cpp_source.html#l00129">129</a> of file <a class="el" href="mutex_8cpp_source.html">mutex.cpp</a>.</p>
+<p>Definition at line <a class="el" href="spinlock_8cpp_source.html#l00070">70</a> of file <a class="el" href="spinlock_8cpp_source.html">spinlock.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/Threading/<a class="el" href="mutex_8h_source.html">mutex.h</a></li>
-<li>/home/Code/Mezzanine/Mezzanine/src/Threading/<a class="el" href="mutex_8cpp_source.html">mutex.cpp</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/<a class="el" href="spinlock_8h_source.html">spinlock.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/<a class="el" href="spinlock_8cpp_source.html">spinlock.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

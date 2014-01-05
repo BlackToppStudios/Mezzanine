@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -118,9 +118,9 @@ typedef <br class="typebreak"/>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abefedf41dd20b1f55b0140ee09ce2d91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#abefedf41dd20b1f55b0140ee09ce2d91">FrameScheduler</a> (std::fstream *_LogDestination=new std::fstream(&quot;Mezzanine.log&quot;, std::ios::out|std::ios::trunc), <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> StartingThreadCount=<a class="el" href="namespaceMezzanine.html#a54770ebe820d051bcede29001a2c6973">GetCPUCount</a>())</td></tr>
-<tr class="memdesc:abefedf41dd20b1f55b0140ee09ce2d91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Framescheduler that owns a filestream for logging.  <a href="#abefedf41dd20b1f55b0140ee09ce2d91">More...</a><br/></td></tr>
-<tr class="separator:abefedf41dd20b1f55b0140ee09ce2d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74ffd83cf4246be246b4904e847bc831"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a74ffd83cf4246be246b4904e847bc831">FrameScheduler</a> (std::fstream *_LogDestination=0, <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> StartingThreadCount=<a class="el" href="namespaceMezzanine.html#a54770ebe820d051bcede29001a2c6973">GetCPUCount</a>())</td></tr>
+<tr class="memdesc:a74ffd83cf4246be246b4904e847bc831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Framescheduler that owns a filestream for logging.  <a href="#a74ffd83cf4246be246b4904e847bc831">More...</a><br/></td></tr>
+<tr class="separator:a74ffd83cf4246be246b4904e847bc831"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa216416f31cab79eb433f4d76d48fe13"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#aa216416f31cab79eb433f4d76d48fe13">FrameScheduler</a> (std::ostream *_LogDestination, <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> StartingThreadCount=<a class="el" href="namespaceMezzanine.html#a54770ebe820d051bcede29001a2c6973">GetCPUCount</a>())</td></tr>
 <tr class="memdesc:aa216416f31cab79eb433f4d76d48fe13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Framescheduler, that logs to an unowned stream.  <a href="#aa216416f31cab79eb433f4d76d48fe13">More...</a><br/></td></tr>
 <tr class="separator:aa216416f31cab79eb433f4d76d48fe13"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,12 +186,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a45299a4ebe34674b09c7b40ccccae8ce"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a45299a4ebe34674b09c7b40ccccae8ce">GetThreadCount</a> ()</td></tr>
 <tr class="memdesc:a45299a4ebe34674b09c7b40ccccae8ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of threads that will be used to execute WorkUnits a the start of the next frame.  <a href="#a45299a4ebe34674b09c7b40ccccae8ce">More...</a><br/></td></tr>
 <tr class="separator:a45299a4ebe34674b09c7b40ccccae8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26aaf64a3f83bcdf35d4ce62c4e85ce2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a4def4aedbcbe9e23ee0a3488c8604b7f">Resource</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a26aaf64a3f83bcdf35d4ce62c4e85ce2">GetThreadResource</a> (<a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ab80a197432af548bef187c39328355bc">Thread::id</a> ID=<a class="el" href="namespaceMezzanine_1_1Threading_1_1this__thread.html#a9d7f994aed04273d2ab06b103fc381de">this_thread::get_id</a>())</td></tr>
-<tr class="memdesc:a26aaf64a3f83bcdf35d4ce62c4e85ce2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="namespaceMezzanine_1_1Resource.html" title="This namespace is for all the classes belonging to the non-network I/O Subsystem.">Resource</a> to go with a thread of a given ID.  <a href="#a26aaf64a3f83bcdf35d4ce62c4e85ce2">More...</a><br/></td></tr>
-<tr class="separator:a26aaf64a3f83bcdf35d4ce62c4e85ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3a097d958a2a79dbd4aeeadd0daa3ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ac0e305210456ef0132dc20c06aa292dd">Logger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#ad3a097d958a2a79dbd4aeeadd0daa3ca">GetThreadUsableLogger</a> (<a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ab80a197432af548bef187c39328355bc">Thread::id</a> ID=<a class="el" href="namespaceMezzanine_1_1Threading_1_1this__thread.html#a9d7f994aed04273d2ab06b103fc381de">this_thread::get_id</a>())</td></tr>
-<tr class="memdesc:ad3a097d958a2a79dbd4aeeadd0daa3ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the logger safe to use this thread.  <a href="#ad3a097d958a2a79dbd4aeeadd0daa3ca">More...</a><br/></td></tr>
-<tr class="separator:ad3a097d958a2a79dbd4aeeadd0daa3ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78a749cb509260f38ea6612b89d97f1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a4def4aedbcbe9e23ee0a3488c8604b7f">Resource</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a78a749cb509260f38ea6612b89d97f1c">GetThreadResource</a> (<a class="el" href="classMezzanine_1_1Threading_1_1ThreadId.html">ThreadId</a> ID=<a class="el" href="namespaceMezzanine_1_1Threading_1_1this__thread.html#a474742b1fee1b6067a03928b6100e9d9">this_thread::get_id</a>())</td></tr>
+<tr class="memdesc:a78a749cb509260f38ea6612b89d97f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="namespaceMezzanine_1_1Resource.html" title="This namespace is for all the classes belonging to the non-network I/O Subsystem.">Resource</a> to go with a thread of a given ID.  <a href="#a78a749cb509260f38ea6612b89d97f1c">More...</a><br/></td></tr>
+<tr class="separator:a78a749cb509260f38ea6612b89d97f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a086deefdba81ca9dad14f8d2a6efdab3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ac0e305210456ef0132dc20c06aa292dd">Logger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a086deefdba81ca9dad14f8d2a6efdab3">GetThreadUsableLogger</a> (<a class="el" href="classMezzanine_1_1Threading_1_1ThreadId.html">ThreadId</a> ID=<a class="el" href="namespaceMezzanine_1_1Threading_1_1this__thread.html#a474742b1fee1b6067a03928b6100e9d9">this_thread::get_id</a>())</td></tr>
+<tr class="memdesc:a086deefdba81ca9dad14f8d2a6efdab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the logger safe to use this thread.  <a href="#a086deefdba81ca9dad14f8d2a6efdab3">More...</a><br/></td></tr>
+<tr class="separator:a086deefdba81ca9dad14f8d2a6efdab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4d2716a54859732eec1f0f4eb1d8aa6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#ad4d2716a54859732eec1f0f4eb1d8aa6">GetWorkUnitAffinityCount</a> () const </td></tr>
 <tr class="memdesc:ad4d2716a54859732eec1f0f4eb1d8aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the amount of <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time.">iWorkUnit</a> ready to be scheduled in the Affinity pool.  <a href="#ad4d2716a54859732eec1f0f4eb1d8aa6">More...</a><br/></td></tr>
 <tr class="separator:ad4d2716a54859732eec1f0f4eb1d8aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -346,10 +346,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="el" href="classMezzanine_1_1Threading_1_1SpinLock.html">SpinLock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#aa4ef9b15bd154a8fc3f5a74b34e64629">LogResources</a></td></tr>
 <tr class="memdesc:aa4ef9b15bd154a8fc3f5a74b34e64629"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protects DoubleBufferedResources during creation from being accessed by the <a class="el" href="classMezzanine_1_1Threading_1_1LogAggregator.html" title="Gather all the thread specific logs and commit them to the main log.">LogAggregator</a>. <br/></td></tr>
 <tr class="separator:aa4ef9b15bd154a8fc3f5a74b34e64629"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a633d3581c851f0831fa79fddea89864a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a633d3581c851f0831fa79fddea89864a"></a>
-<a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ab80a197432af548bef187c39328355bc">Thread::id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a633d3581c851f0831fa79fddea89864a">MainThreadID</a></td></tr>
-<tr class="memdesc:a633d3581c851f0831fa79fddea89864a"><td class="mdescLeft">&#160;</td><td class="mdescRight">For some task it is important to know the ID of the main thread. <br/></td></tr>
-<tr class="separator:a633d3581c851f0831fa79fddea89864a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e78999f8224259b438874034a7f68c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e78999f8224259b438874034a7f68c1"></a>
+<a class="el" href="classMezzanine_1_1Threading_1_1ThreadId.html">ThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a9e78999f8224259b438874034a7f68c1">MainThreadID</a></td></tr>
+<tr class="memdesc:a9e78999f8224259b438874034a7f68c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">For some task it is important to know the ID of the main thread. <br/></td></tr>
+<tr class="separator:a9e78999f8224259b438874034a7f68c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1dc6612d0328abc5d3842ca90adda03"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#ae1dc6612d0328abc5d3842ca90adda03">NeedToLogDeps</a></td></tr>
 <tr class="memdesc:ae1dc6612d0328abc5d3842ca90adda03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Brief Do we have to log ependencies have they changed since last logged?  <a href="#ae1dc6612d0328abc5d3842ca90adda03">More...</a><br/></td></tr>
 <tr class="separator:ae1dc6612d0328abc5d3842ca90adda03"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -400,9 +400,9 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorkSorter</b></td><
 <div class="textblock"><p>This is central object in this algorithm, it is responsible for spawning threads and managing the order that work units are executed. </p>
 <p>For a detailed description of the <a class="el" href="ThreadingManual.html#algorithm_sec">Algorithm</a> this implements see the <a class="el" href="ThreadingManual.html#algorithm_sec">Algorithm</a> section on the Main page. </p>
 
-<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00076">76</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00075">75</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="abefedf41dd20b1f55b0140ee09ce2d91"></a>
+<a class="anchor" id="a74ffd83cf4246be246b4904e847bc831"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -410,7 +410,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorkSorter</b></td><
           <td class="memname">Mezzanine::Threading::FrameScheduler::FrameScheduler </td>
           <td>(</td>
           <td class="paramtype">std::fstream *&#160;</td>
-          <td class="paramname"><em>_LogDestination</em> = <code>new&#160;std::fstream(&quot;Mezzanine.log&quot;,&#160;std::ios::out&#160;|&#160;std::ios::trunc)</code>, </td>
+          <td class="paramname"><em>_LogDestination</em> = <code>0</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -429,7 +429,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>WorkSorter</b></td><
 <p>Create a Framescheduler that owns a filestream for logging. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_LogDestination</td><td>An fstream that will be closed and deleted when this framescheduler is destroyed. Defaults to a new Filestream Logging to 'Log.txt'. </td></tr>
+    <tr><td class="paramname">_LogDestination</td><td>An fstream that will be closed and deleted when this framescheduler is destroyed. Defaults to a new Filestream Logging to local file. </td></tr>
     <tr><td class="paramname">StartingThreadCount</td><td>How many threads. Defaults to the value returned by <a class="el" href="namespaceMezzanine.html#a54770ebe820d051bcede29001a2c6973">GetCPUCount()</a>. </td></tr>
   </table>
   </dd>
@@ -1087,15 +1087,15 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 
 </div>
 </div>
-<a class="anchor" id="a26aaf64a3f83bcdf35d4ce62c4e85ce2"></a>
+<a class="anchor" id="a78a749cb509260f38ea6612b89d97f1c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a4def4aedbcbe9e23ee0a3488c8604b7f">FrameScheduler::Resource</a> * Mezzanine::Threading::FrameScheduler::GetThreadResource </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ab80a197432af548bef187c39328355bc">Thread::id</a>&#160;</td>
-          <td class="paramname"><em>ID</em> = <code><a class="el" href="namespaceMezzanine_1_1Threading_1_1this__thread.html#a9d7f994aed04273d2ab06b103fc381de">this_thread::get_id</a>()</code></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Threading_1_1ThreadId.html">ThreadId</a>&#160;</td>
+          <td class="paramname"><em>ID</em> = <code><a class="el" href="namespaceMezzanine_1_1Threading_1_1this__thread.html#a474742b1fee1b6067a03928b6100e9d9">this_thread::get_id</a>()</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1118,15 +1118,15 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 
 </div>
 </div>
-<a class="anchor" id="ad3a097d958a2a79dbd4aeeadd0daa3ca"></a>
+<a class="anchor" id="a086deefdba81ca9dad14f8d2a6efdab3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespaceMezzanine.html#ac0e305210456ef0132dc20c06aa292dd">Logger</a> * Mezzanine::Threading::FrameScheduler::GetThreadUsableLogger </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Threading_1_1Thread.html#ab80a197432af548bef187c39328355bc">Thread::id</a>&#160;</td>
-          <td class="paramname"><em>ID</em> = <code><a class="el" href="namespaceMezzanine_1_1Threading_1_1this__thread.html#a9d7f994aed04273d2ab06b103fc381de">this_thread::get_id</a>()</code></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Threading_1_1ThreadId.html">ThreadId</a>&#160;</td>
+          <td class="paramname"><em>ID</em> = <code><a class="el" href="namespaceMezzanine_1_1Threading_1_1this__thread.html#a474742b1fee1b6067a03928b6100e9d9">this_thread::get_id</a>()</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1371,7 +1371,7 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 
 <p>This is the 5th step (of 6) in a frame. </p>
 <p>Take any steps required to prepare all owned WorkUnits for execution next frame. This usually includes reseting all the work units running state to <a class="el" href="namespaceMezzanine_1_1Threading.html#a1a21883adf1ed757a3926c29a5486a8eabbce5705b2c11ab3749cd3081e760233">NotStarted</a>. This can cause work units to be executed multiple times if a thread is still executing. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000095">Todo:</a></b></dt><dd>could be replace with a parallel for, or a monopoly </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000109">Todo:</a></b></dt><dd>could be replace with a parallel for, or a monopoly </dd></dl>
 
 <p>Definition at line <a class="el" href="framescheduler_8cpp_source.html#l00601">601</a> of file <a class="el" href="framescheduler_8cpp_source.html">framescheduler.cpp</a>.</p>
 
@@ -1761,7 +1761,7 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 <p>Wait until this frame has consumed its fair share of a second. This uses the value passed in <a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a36c450ded7b1df6276dafc699cdf1ee2">SetFrameRate</a> to determine what portion of a second each frame should use. If a frame took too long to execute this calculates that and returns. <br/>
  <br/>
  Wait 1/TargetFrame seconds, minus time already run. This also starts the timer for the next frame so any other logic that needs to run after the frame does not interfere with frame timing. Because This is designed to wait fractions of a second any amount of waiting above 1 second fails automaticall. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000096">Todo:</a></b></dt><dd>Replace hard-code timeout with compiler/define/cmake_option </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000110">Todo:</a></b></dt><dd>Replace hard-code timeout with compiler/define/cmake_option </dd></dl>
 
 <p>Definition at line <a class="el" href="framescheduler_8cpp_source.html#l00614">614</a> of file <a class="el" href="framescheduler_8cpp_source.html">framescheduler.cpp</a>.</p>
 
@@ -1789,9 +1789,9 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 <p>This structure allows reverse lookup of dependencies. </p>
 <p>This is is a key part of the workunit sorting algorithm. This is calculated during calls to generate <a class="el" href="classMezzanine_1_1Threading_1_1WorkUnitKey.html">WorkUnitKey</a>s, </p>
 <dl class="section warning"><dt>Warning</dt><dd></dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000097">Todo:</a></b></dt><dd>write this warning, it is important, but not easy to lay out. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000111">Todo:</a></b></dt><dd>write this warning, it is important, but not easy to lay out. </dd></dl>
 
-<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00120">120</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00119">119</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
 
 </div>
 </div>
@@ -1816,7 +1816,7 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 <p>Used to store a count of frames from the begining of game execution. </p>
 <dl class="section warning"><dt>Warning</dt><dd>At 60 Frames per second this loops in 2 years, 3 months, 6 days and around 18 hours, this may not be suitable for high uptime servers. Using a MaxInt fixes this. </dd></dl>
 
-<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00191">191</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00190">190</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
 
 </div>
 </div>
@@ -1841,7 +1841,7 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 <p>Brief Do we have to log ependencies have they changed since last logged? </p>
 <p>Since each workunit tracks its own dependencies this cannot easily be directly checked. There is a function to set and since dependencies are likely to be between adding a working and runninf a frame, adding a workunit sets this flag. </p>
 
-<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00209">209</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00208">208</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
 
 </div>
 </div>
@@ -1866,7 +1866,7 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 <p>This maintains ownership of all the thread specific resources. </p>
 <dl class="section note"><dt>Note</dt><dd>There should be the same amount or more of these than entries in the Threads vector. </dd></dl>
 
-<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00129">129</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00128">128</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
 
 </div>
 </div>
@@ -1891,7 +1891,7 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 <p>A way to track an arbitrary number of threads. </p>
 <dl class="section note"><dt>Note</dt><dd>There should never be more of these than Resources, and if there are more at the beginning of a frame the resources will be created in <a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#aa2cc09939a4779cbb6c0affcb0b1431e" title="This is the 2nd step (of 6) in a frame.">CreateThreads()</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00133">133</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00132">132</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
 
 </div>
 </div>
@@ -1916,7 +1916,7 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 <p>A collection of <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html">iWorkUnit</a>s that must be run on the main thread. </p>
 <p>This is very similar to <a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#af5c99359d324eb79b9080464b32be098">WorkUnitsMain</a> except that the <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html">iWorkUnit</a>s are only run in the main thread and are sorted by calls to <a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a518ad64baf64d3dde2819aa580055249">SortWorkUnitsAll</a> or <a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a80628895bdad74d03e5ac3b247e58741">SortWorkUnitsAffinity</a> . </p>
 
-<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00101">101</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00100">100</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
 
 </div>
 </div>
@@ -1941,16 +1941,16 @@ This uses a Spinlock to prevent accesss to ThreadSpecificResources that the <a c
 <p>A collection of all the work units that are not Monopolies and do not have affinity for a given thread. </p>
 <p>This stores a sorted listing(currently a vector) of <a class="el" href="classMezzanine_1_1Threading_1_1WorkUnitKey.html">WorkUnitKey</a> instances. These include just the metadata required for sorting <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html">iWorkUnit</a>s. Higher priority <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html">iWorkUnit</a>s are higher/later in the collection. This list is sorted by calls to <a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a9f2e92ae7cbd9e4179da6aa895d766fe">SortWorkUnitsMain</a> or <a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a518ad64baf64d3dde2819aa580055249">SortWorkUnitsAll</a>. </p>
 
-<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00090">90</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="framescheduler_8h_source.html#l00089">89</a> of file <a class="el" href="framescheduler_8h_source.html">framescheduler.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/Threading/<a class="el" href="framescheduler_8h_source.html">framescheduler.h</a></li>
-<li>/home/Code/Mezzanine/Mezzanine/src/Threading/<a class="el" href="framescheduler_8cpp_source.html">framescheduler.cpp</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/<a class="el" href="framescheduler_8h_source.html">framescheduler.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/<a class="el" href="framescheduler_8cpp_source.html">framescheduler.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

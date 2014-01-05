@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -102,6 +102,12 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CapsuleCollisionShape.html">CapsuleCollisionShape</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A capsule physics shape.  <a href="classMezzanine_1_1Physics_1_1CapsuleCollisionShape.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidablePair.html">CollidablePair</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a helper class for storing pairs of collidable proxies in associative containers.  <a href="classMezzanine_1_1Physics_1_1CollidablePair.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a proxy from which physics objects that can collide with each other are handled.  <a href="classMezzanine_1_1Physics_1_1CollidableProxy.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html">Collision</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an event class used to track collsions in the physics world.  <a href="classMezzanine_1_1Physics_1_1Collision.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,7 +153,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A factory responsible for the creation and destruction of the default physicsmanager.  <a href="classMezzanine_1_1Physics_1_1DefaultPhysicsManagerFactory.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html">DualTransformConstraint</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">All constraints that track rotation and location of the Pivot relative to each Actor inherit from this.  <a href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">All constraints that track rotation and location of the Pivot relative to each <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> inherit from this.  <a href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html">DynamicMeshCollisionShape</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A triangle mesh collsion shape based on a graphics mesh.  <a href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html#details">More...</a><br/></td></tr>
@@ -189,9 +195,6 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html">PhysicsManager</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is simply a place for storing all the <a class="el" href="namespaceMezzanine_1_1Physics.html" title="This namespace is for all the classes belonging to the Physics Subsystem.">Physics</a> Related functions.  <a href="classMezzanine_1_1Physics_1_1PhysicsManager.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html">PhysicsProxy</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a proxy from which physics objects are handled.  <a href="classMezzanine_1_1Physics_1_1PhysicsProxy.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1PlaneCollisionShape.html">PlaneCollisionShape</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Flat wall/floor of limitless size.  <a href="classMezzanine_1_1Physics_1_1PlaneCollisionShape.html#details">More...</a><br/></td></tr>
@@ -298,6 +301,28 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:aceae26973345191e504f266bea446cd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used by physics proxies to help determine collision response behavior of a proxy. <br/></td></tr>
 <tr class="separator:aceae26973345191e504f266bea446cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbcd3965312c21f7e4308dd61a6e9de5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.html#abbcd3965312c21f7e4308dd61a6e9de5">CollisionState</a> { <b>Col_Begin</b>, 
+<b>Col_Contacts_Updated</b>, 
+<b>Col_End</b>
+ }</td></tr>
+<tr class="memdesc:abbcd3965312c21f7e4308dd61a6e9de5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum specifying the state change occuring in the collision. <br/></td></tr>
+<tr class="separator:abbcd3965312c21f7e4308dd61a6e9de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69338266181e8c9fa76843aefca2f820"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820">CollisionType</a> { <br/>
+&#160;&#160;<a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820a57fd2206584433487488937fcc382228">Col_Actor_Actor</a>, 
+<a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820a77d52774dda9c073f564b03e3ab84f99">Col_Actor_AreaEffect</a>, 
+<a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820a4cb1b95a5038953d1c8ad07f3ca516c5">Col_Actor_Debris</a>, 
+<a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820ab4d012d705af0f84763d2f2a06b08738">Col_Actor_Terrain</a>, 
+<br/>
+&#160;&#160;<a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820abab05787c7bbab70d398225d2ed3d2a3">Col_AreaEffect_AreaEffect</a>, 
+<a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820a0c0facd864a64960f41e6b5020df9910">Col_AreaEffect_Debris</a>, 
+<a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820ae6d9d0a6a0de1b6487f02a234e90502d">Col_AreaEffect_Terrain</a>, 
+<a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820a79a6a0d0f99198b86e55909d738e67f3">Col_Debris_Debris</a>, 
+<br/>
+&#160;&#160;<a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820a24f1dfca3f29ce468f836da744169798">Col_Debris_Terrain</a>
+<br/>
+ }</td></tr>
+<tr class="memdesc:a69338266181e8c9fa76843aefca2f820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum specifying what kind of collision this class is storing.  <a href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820">More...</a><br/></td></tr>
+<tr class="separator:a69338266181e8c9fa76843aefca2f820"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa640f4c4b2baf4a4039db76fd792d2c1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Physics.html#aa640f4c4b2baf4a4039db76fd792d2c1">ConstraintParam</a> { <a class="el" href="namespaceMezzanine_1_1Physics.html#aa640f4c4b2baf4a4039db76fd792d2c1ac8dc98db8c9881c5836a27d5b34fd787">Con_ERP</a> = 1, 
 <b>Con_Stop_ERP</b> = 2, 
 <a class="el" href="namespaceMezzanine_1_1Physics.html#aa640f4c4b2baf4a4039db76fd792d2c1ac7067723ec3340acdf2941f1a4f56569">Con_CFM</a> = 3, 
@@ -385,7 +410,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This is used by physics proxies to help determine the behavior of it's anistropic friction behavior. </p>
-<p>See the documentation on the <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsProxy.html" title="This is a proxy from which physics objects are handled.">PhysicsProxy</a> class for more details. </p>
+<p>See the documentation on the PhysicsProxy class for more details. </p>
 
 <p>Definition at line <a class="el" href="physicsenumerations_8h_source.html#l00064">64</a> of file <a class="el" href="physicsenumerations_8h_source.html">physicsenumerations.h</a>.</p>
 
@@ -405,6 +430,51 @@ Variables</h2></td></tr>
 <p>You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with any of the existing groups defined here. Simply pass in the Whole where appropriate. </p>
 
 <p>Definition at line <a class="el" href="physicsenumerations_8h_source.html#l00075">75</a> of file <a class="el" href="physicsenumerations_8h_source.html">physicsenumerations.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a69338266181e8c9fa76843aefca2f820"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceMezzanine_1_1Physics.html#a69338266181e8c9fa76843aefca2f820">Mezzanine::Physics::CollisionType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enum specifying what kind of collision this class is storing. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a69338266181e8c9fa76843aefca2f820a57fd2206584433487488937fcc382228"></a>Col_Actor_Actor</em>&nbsp;</td><td class="fielddoc">
+<p>Specifies a collision between two Actors. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a69338266181e8c9fa76843aefca2f820a77d52774dda9c073f564b03e3ab84f99"></a>Col_Actor_AreaEffect</em>&nbsp;</td><td class="fielddoc">
+<p>Specifies a collision between an <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> and an AreaRffect. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a69338266181e8c9fa76843aefca2f820a4cb1b95a5038953d1c8ad07f3ca516c5"></a>Col_Actor_Debris</em>&nbsp;</td><td class="fielddoc">
+<p>Specifies a collision between an <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> and a <a class="el" href="classMezzanine_1_1Debris.html" title="A simple world object without a large structure ideal for representing loose small objects...">Debris</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a69338266181e8c9fa76843aefca2f820ab4d012d705af0f84763d2f2a06b08738"></a>Col_Actor_Terrain</em>&nbsp;</td><td class="fielddoc">
+<p>Specifies a collision between an <a class="el" href="classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit.">Actor</a> and some Terrain. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a69338266181e8c9fa76843aefca2f820abab05787c7bbab70d398225d2ed3d2a3"></a>Col_AreaEffect_AreaEffect</em>&nbsp;</td><td class="fielddoc">
+<p>Specifies a collision between two AreaEffects. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a69338266181e8c9fa76843aefca2f820a0c0facd864a64960f41e6b5020df9910"></a>Col_AreaEffect_Debris</em>&nbsp;</td><td class="fielddoc">
+<p>Specifies a collision between an <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a> and a <a class="el" href="classMezzanine_1_1Debris.html" title="A simple world object without a large structure ideal for representing loose small objects...">Debris</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a69338266181e8c9fa76843aefca2f820ae6d9d0a6a0de1b6487f02a234e90502d"></a>Col_AreaEffect_Terrain</em>&nbsp;</td><td class="fielddoc">
+<p>Specifies a collision between an <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a> and some Terrain. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a69338266181e8c9fa76843aefca2f820a79a6a0d0f99198b86e55909d738e67f3"></a>Col_Debris_Debris</em>&nbsp;</td><td class="fielddoc">
+<p>Specifies a collision between two <a class="el" href="classMezzanine_1_1Debris.html" title="A simple world object without a large structure ideal for representing loose small objects...">Debris</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a69338266181e8c9fa76843aefca2f820a24f1dfca3f29ce468f836da744169798"></a>Col_Debris_Terrain</em>&nbsp;</td><td class="fielddoc">
+<p>Specifies a collision between a <a class="el" href="classMezzanine_1_1Debris.html" title="A simple world object without a large structure ideal for representing loose small objects...">Debris</a> and some Terrain. </p>
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="physicsenumerations_8h_source.html#l00117">117</a> of file <a class="el" href="physicsenumerations_8h_source.html">physicsenumerations.h</a>.</p>
 
 </div>
 </div>
@@ -429,7 +499,7 @@ Variables</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00064">64</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00061">61</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
@@ -446,7 +516,7 @@ Variables</h2></td></tr>
 <p>This is a collection of flags designed to describe what to draw when the Debug Drawer is enabled. </p>
 <p>Most of these options work, with the exception of text-based modes and contact point modes. </p>
 
-<p>Definition at line <a class="el" href="physicsenumerations_8h_source.html#l00109">109</a> of file <a class="el" href="physicsenumerations_8h_source.html">physicsenumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="physicsenumerations_8h_source.html#l00133">133</a> of file <a class="el" href="physicsenumerations_8h_source.html">physicsenumerations.h</a>.</p>
 
 </div>
 </div>
@@ -569,9 +639,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to a <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a> of the Correct Type with the values stored in the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a>. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000079">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">DynamicMeshCollisionShape</a> can be deserialized </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000080">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">SoftCollisionShape</a> can be deserialized </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000081">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1Physics_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a> can be deserialized </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000094">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1Physics_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">DynamicMeshCollisionShape</a> can be deserialized </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000095">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1Physics_1_1SoftCollisionShape.html" title="A collision shape for soft proxies.">SoftCollisionShape</a> can be deserialized </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000096">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1Physics_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a> can be deserialized </dd></dl>
 
 <p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l00221">221</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
 
@@ -715,12 +785,12 @@ Variables</h2></td></tr>
 <p>How many ConstraintParam Exist. </p>
 <p>Used in some algorithms and we didn't want it to look like a magic so we defined it here. </p>
 
-<p>Definition at line <a class="el" href="constraint_8h_source.html#l00085">85</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="constraint_8h_source.html#l00082">82</a> of file <a class="el" href="constraint_8h_source.html">constraint.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

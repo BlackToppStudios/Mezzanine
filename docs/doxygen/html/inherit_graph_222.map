@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space." alt="" coords="5,5,152,35"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1LayoutStrategy.html" title="This is a base class for the algorithms used by QuadRenderables to determine how they should update t..." alt="" coords="5,46,200,74"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1HorizontalLayoutStrategy.html" title="This is a specialization of a layout strategy where a group of quads are sized and placed in a linear..." alt="" coords="260,5,425,49"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1VerticalLayoutStrategy.html" title="This is a specialization of a layout strategy where a group of quads are sized and placed in a linear..." alt="" coords="248,71,437,115"/>
 </map>

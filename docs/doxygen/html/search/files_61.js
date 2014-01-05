@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['actorbase_2ecpp',['actorbase.cpp',['../actorbase_8cpp.html',1,'']]],
-  ['actorbase_2eh',['actorbase.h',['../actorbase_8h.html',1,'']]],
-  ['actorserializer_2eh',['actorserializer.h',['../actorserializer_8h.html',1,'']]],
+  ['actor_2ecpp',['actor.cpp',['../actor_8cpp.html',1,'']]],
+  ['actor_2eh',['actor.h',['../actor_8h.html',1,'']]],
   ['asynchronousfileloadingworkunit_2ecpp',['asynchronousfileloadingworkunit.cpp',['../asynchronousfileloadingworkunit_8cpp.html',1,'']]],
   ['asynchronousfileloadingworkunit_2eh',['asynchronousfileloadingworkunit.h',['../asynchronousfileloadingworkunit_8h.html',1,'']]],
   ['asynchronousworkunit_2ecpp',['asynchronousworkunit.cpp',['../asynchronousworkunit_8cpp.html',1,'']]],

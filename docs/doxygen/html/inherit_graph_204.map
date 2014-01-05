@@ -1,29 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="7,245,196,275"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1BasicRenderable.html" title="Base class for renderables that generate verticies." alt="" coords="245,85,469,115"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets." alt="" coords="277,405,437,435"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1AreaRenderable.html" title="This class defines a renderable that covers an area, such as a rectangle or circle." alt="" coords="519,32,737,61"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1LineList.html" title="This is an object comprised of a series of lines." alt="" coords="545,85,711,115"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours." alt="" coords="820,32,1001,61"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text." alt="" coords="1095,5,1263,35"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display." alt="" coords="1084,59,1273,88"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1Activatable.html" title="This is a helper class that encapsulates the functionality of an object that can be activated to take..." alt="" coords="533,139,723,168"/>
-<area shape="rect" id="node21" href="$classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class." alt="" coords="557,192,699,221"/>
-<area shape="rect" id="node23" href="$classMezzanine_1_1UI_1_1CellGrid.html" title="This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surfac..." alt="" coords="544,245,712,275"/>
-<area shape="rect" id="node29" href="$classMezzanine_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value." alt="" coords="537,299,719,328"/>
-<area shape="rect" id="node31" href="$classMezzanine_1_1UI_1_1DropDownList.html" title="A widget that displays one selection from a list that can have it&#39;s visibility toggled." alt="" coords="525,352,731,381"/>
-<area shape="rect" id="node33" href="$classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box." alt="" coords="547,405,709,435"/>
-<area shape="rect" id="node35" href="$classMezzanine_1_1UI_1_1Menu.html" title="This class is a control mechanism for multiple windows in a heirarchy." alt="" coords="551,459,705,488"/>
-<area shape="rect" id="node37" href="$classMezzanine_1_1UI_1_1RadioButton.html" title="This is a simple widget where only one of it&#39;s selections can be selected at a time." alt="" coords="529,512,727,541"/>
-<area shape="rect" id="node39" href="$classMezzanine_1_1UI_1_1RenderableContainerWidget.html" title="This is an interface class for the two types of Renderable Container Widgets." alt="" coords="533,565,723,611"/>
-<area shape="rect" id="node49" href="$classMezzanine_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget." alt="" coords="541,635,715,664"/>
-<area shape="rect" id="node51" href="$classMezzanine_1_1UI_1_1Spinner.html" title="This is a simple widget for a numeric variable in a box." alt="" coords="544,688,712,717"/>
-<area shape="rect" id="node53" href="$classMezzanine_1_1UI_1_1TabSet.html" title="This is a widget that stores sets of renderables but only displays one at a time." alt="" coords="548,741,708,771"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button." alt="" coords="829,139,992,168"/>
-<area shape="rect" id="node25" href="$classMezzanine_1_1UI_1_1PagedCellGrid.html" title="This is a specialization of the cell grid that allows you to use a spinner to navigate through pages ..." alt="" coords="807,219,1015,248"/>
-<area shape="rect" id="node27" href="$classMezzanine_1_1UI_1_1ScrolledCellGrid.html" title="This is a specialization of the cell grid that allows you to use scrollbars to navigate the cells on ..." alt="" coords="801,272,1020,301"/>
-<area shape="rect" id="node41" href="$classMezzanine_1_1UI_1_1EnclosedRenderableContainerWidget.html" title="This is an abstract class for the creation and storage of widgets to be used by other classes..." alt="" coords="787,530,1035,577"/>
-<area shape="rect" id="node47" href="$classMezzanine_1_1UI_1_1OpenRenderableContainerWidget.html" title="Mezzanine::UI::OpenRenderable\lContainerWidget" alt="" coords="799,599,1023,646"/>
-<area shape="rect" id="node43" href="$classMezzanine_1_1UI_1_1Window.html" title="This is a container widget capable of holding any other widget." alt="" coords="1096,539,1261,568"/>
-<area shape="rect" id="node45" href="$classMezzanine_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget..." alt="" coords="1324,539,1524,568"/>
+<area shape="rect" id="node1" href="$structMezzanine_1_1Time.html" title="A container for the metrics of time relevant for the timer class." alt="" coords="7,5,124,33"/>
 </map>

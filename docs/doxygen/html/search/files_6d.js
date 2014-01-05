@@ -1,6 +1,8 @@
 var searchData=
 [
   ['macros_2eh',['macros.h',['../macros_8h.html',1,'']]],
+  ['managedptr_2ecpp',['managedptr.cpp',['../managedptr_8cpp.html',1,'']]],
+  ['managedptr_2eh',['managedptr.h',['../managedptr_8h.html',1,'']]],
   ['memorymanagement_2ecpp',['memorymanagement.cpp',['../memorymanagement_8cpp.html',1,'']]],
   ['memorymanagement_2eh',['memorymanagement.h',['../memorymanagement_8h.html',1,'']]],
   ['memorystream_2eh',['memorystream.h',['../memorystream_8h.html',1,'']]],

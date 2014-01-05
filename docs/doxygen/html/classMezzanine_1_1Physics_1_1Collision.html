@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -83,7 +83,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
@@ -107,22 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:a65c483a4ea1e7faf02539e7e0c18af7f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a65c483a4ea1e7faf02539e7e0c18af7f">CollisionState</a> { <b>Col_Begin</b>, 
-<b>Col_Contacts_Updated</b>, 
-<b>Col_End</b>
- }</td></tr>
-<tr class="memdesc:a65c483a4ea1e7faf02539e7e0c18af7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum specifying the state change occuring in the collision. <br/></td></tr>
-<tr class="separator:a65c483a4ea1e7faf02539e7e0c18af7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8edd5e33671b8d36beba784461c467fa"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a8edd5e33671b8d36beba784461c467fa">CollisionType</a> { <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a8edd5e33671b8d36beba784461c467faa13569659514b4893ed2854787b3a6c8b">Col_Actor_Actor</a>, 
-<a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a8edd5e33671b8d36beba784461c467faa53cb79f065d1fe5e13f3fae019210a28">Col_Actor_Terrain</a>, 
-<a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a8edd5e33671b8d36beba784461c467faaaa930333af142124e8ede4bfbf0799cb">Col_Actor_AreaEffect</a>, 
-<a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a8edd5e33671b8d36beba784461c467faab06dbd6d4238575aa112d099b00b4c50">Col_AreaEffect_Terrain</a>
- }</td></tr>
-<tr class="memdesc:a8edd5e33671b8d36beba784461c467fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum specifying what kind of collision this class is storing.  <a href="classMezzanine_1_1Physics_1_1Collision.html#a8edd5e33671b8d36beba784461c467fa">More...</a><br/></td></tr>
-<tr class="separator:a8edd5e33671b8d36beba784461c467fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1587ff6881a11d74de2ebdaa5a9c6c98"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1587ff6881a11d74de2ebdaa5a9c6c98"></a>
@@ -135,6 +118,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a41d3634cfe0bb09e768c585dd87c172a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a41d3634cfe0bb09e768c585dd87c172a">~Collision</a> ()</td></tr>
 <tr class="memdesc:a41d3634cfe0bb09e768c585dd87c172a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor.  <a href="#a41d3634cfe0bb09e768c585dd87c172a">More...</a><br/></td></tr>
 <tr class="separator:a41d3634cfe0bb09e768c585dd87c172a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b1b4ac7a7d74f4727559d7d542926b9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a3b1b4ac7a7d74f4727559d7d542926b9">_SetProxyA</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *A)</td></tr>
+<tr class="memdesc:a3b1b4ac7a7d74f4727559d7d542926b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the first Collidable this collision applies to.  <a href="#a3b1b4ac7a7d74f4727559d7d542926b9">More...</a><br/></td></tr>
+<tr class="separator:a3b1b4ac7a7d74f4727559d7d542926b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87c5e2bd638d020f9851c6691cc4f40f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a87c5e2bd638d020f9851c6691cc4f40f">_SetProxyB</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *B)</td></tr>
+<tr class="memdesc:a87c5e2bd638d020f9851c6691cc4f40f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the second Collidable this collision applies to.  <a href="#a87c5e2bd638d020f9851c6691cc4f40f">More...</a><br/></td></tr>
+<tr class="separator:a87c5e2bd638d020f9851c6691cc4f40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24ee6b3ac25d2d3e96e785484df8861b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a24ee6b3ac25d2d3e96e785484df8861b">GetAge</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Point)</td></tr>
 <tr class="memdesc:a24ee6b3ac25d2d3e96e785484df8861b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of simulation steps the contact point has existed.  <a href="#a24ee6b3ac25d2d3e96e785484df8861b">More...</a><br/></td></tr>
 <tr class="separator:a24ee6b3ac25d2d3e96e785484df8861b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,23 +146,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa59132582c677f785722f399136fd15b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of contact points this collision is storing.  <a href="#aa59132582c677f785722f399136fd15b">More...</a><br/></td></tr>
 <tr class="separator:aa59132582c677f785722f399136fd15b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3168d303173550e255b811536bd3d696"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a3168d303173550e255b811536bd3d696">GetObjectA</a> () const </td></tr>
-<tr class="memdesc:a3168d303173550e255b811536bd3d696"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the first Object this collision applies to.  <a href="#a3168d303173550e255b811536bd3d696">More...</a><br/></td></tr>
+<tr class="memdesc:a3168d303173550e255b811536bd3d696"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the parent Object of <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> A.  <a href="#a3168d303173550e255b811536bd3d696">More...</a><br/></td></tr>
 <tr class="separator:a3168d303173550e255b811536bd3d696"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39e66f2b9d0b0428b8f4d4be0afccf3b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a39e66f2b9d0b0428b8f4d4be0afccf3b">GetObjectB</a> () const </td></tr>
-<tr class="memdesc:a39e66f2b9d0b0428b8f4d4be0afccf3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the second Object this collision applies to.  <a href="#a39e66f2b9d0b0428b8f4d4be0afccf3b">More...</a><br/></td></tr>
+<tr class="memdesc:a39e66f2b9d0b0428b8f4d4be0afccf3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the parent Object of <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> B.  <a href="#a39e66f2b9d0b0428b8f4d4be0afccf3b">More...</a><br/></td></tr>
 <tr class="separator:a39e66f2b9d0b0428b8f4d4be0afccf3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28a4adc58bb5687280ba534219f30ce1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a28a4adc58bb5687280ba534219f30ce1">GetProxyA</a> () const </td></tr>
+<tr class="memdesc:a28a4adc58bb5687280ba534219f30ce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the first <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> this collision applies to.  <a href="#a28a4adc58bb5687280ba534219f30ce1">More...</a><br/></td></tr>
+<tr class="separator:a28a4adc58bb5687280ba534219f30ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f7269f4a1a61266d85681830dfeac0e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a6f7269f4a1a61266d85681830dfeac0e">GetProxyB</a> () const </td></tr>
+<tr class="memdesc:a6f7269f4a1a61266d85681830dfeac0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the second <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> this collision applies to.  <a href="#a6f7269f4a1a61266d85681830dfeac0e">More...</a><br/></td></tr>
+<tr class="separator:a6f7269f4a1a61266d85681830dfeac0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39d9ab1f2e1c8e95f6ef295cd3dfc8bb"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a39d9ab1f2e1c8e95f6ef295cd3dfc8bb">GetWorldLocation</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Point)</td></tr>
 <tr class="memdesc:a39d9ab1f2e1c8e95f6ef295cd3dfc8bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the location in the world where the collision occured.  <a href="#a39d9ab1f2e1c8e95f6ef295cd3dfc8bb">More...</a><br/></td></tr>
 <tr class="separator:a39d9ab1f2e1c8e95f6ef295cd3dfc8bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a005dd39377d4c9698d483ea4c949661d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a005dd39377d4c9698d483ea4c949661d">PairsMatch</a> (<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *A, <a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *B) const </td></tr>
-<tr class="memdesc:a005dd39377d4c9698d483ea4c949661d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function to see if the provided pair match the pair in this class.  <a href="#a005dd39377d4c9698d483ea4c949661d">More...</a><br/></td></tr>
+<tr class="memdesc:a005dd39377d4c9698d483ea4c949661d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function to see if the provided <a class="el" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a> pair match the pair in this class.  <a href="#a005dd39377d4c9698d483ea4c949661d">More...</a><br/></td></tr>
 <tr class="separator:a005dd39377d4c9698d483ea4c949661d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a416dcae314a8e58448e8fca69d8ca0bc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a416dcae314a8e58448e8fca69d8ca0bc">SetObjectA</a> (<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *A)</td></tr>
-<tr class="memdesc:a416dcae314a8e58448e8fca69d8ca0bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the first Object this collision applies to.  <a href="#a416dcae314a8e58448e8fca69d8ca0bc">More...</a><br/></td></tr>
-<tr class="separator:a416dcae314a8e58448e8fca69d8ca0bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fda32b6e98a832ae77ffb65ff1d7a90"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a5fda32b6e98a832ae77ffb65ff1d7a90">SetObjectB</a> (<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *B)</td></tr>
-<tr class="memdesc:a5fda32b6e98a832ae77ffb65ff1d7a90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the second Object this collision applies to.  <a href="#a5fda32b6e98a832ae77ffb65ff1d7a90">More...</a><br/></td></tr>
-<tr class="separator:a5fda32b6e98a832ae77ffb65ff1d7a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecc6e740603d0aa194150f7fe03be9ba"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#aecc6e740603d0aa194150f7fe03be9ba">PairsMatch</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *A, <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *B) const </td></tr>
+<tr class="memdesc:aecc6e740603d0aa194150f7fe03be9ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function to see if the provided <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> pair match the pair in this class.  <a href="#aecc6e740603d0aa194150f7fe03be9ba">More...</a><br/></td></tr>
+<tr class="separator:aecc6e740603d0aa194150f7fe03be9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bf695adb67469c67d0d05b93d66671b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bf695adb67469c67d0d05b93d66671b"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a9bf695adb67469c67d0d05b93d66671b">Update</a> ()</td></tr>
 <tr class="memdesc:a9bf695adb67469c67d0d05b93d66671b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates this collisions contact point data if it needs updating. <br/></td></tr>
@@ -181,9 +173,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a697894c8073232c35ba16a3597e2396d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a697894c8073232c35ba16a3597e2396d">Collision</a> (<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *A, <a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *B, btCollisionAlgorithm *PhysicsAlgo)</td></tr>
-<tr class="memdesc:a697894c8073232c35ba16a3597e2396d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="#a697894c8073232c35ba16a3597e2396d">More...</a><br/></td></tr>
-<tr class="separator:a697894c8073232c35ba16a3597e2396d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35862f7c87e5b9ce1795cb23c5dc4118"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a35862f7c87e5b9ce1795cb23c5dc4118">Collision</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *A, <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *B, btCollisionAlgorithm *PhysicsAlgo)</td></tr>
+<tr class="memdesc:a35862f7c87e5b9ce1795cb23c5dc4118"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="#a35862f7c87e5b9ce1795cb23c5dc4118">More...</a><br/></td></tr>
+<tr class="separator:a35862f7c87e5b9ce1795cb23c5dc4118"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a835bcb309381b9a34fb5c4492819b6ae"><td class="memItemLeft" align="right" valign="top">btManifoldPoint &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a835bcb309381b9a34fb5c4492819b6ae">GetManifoldPoint</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
 <tr class="memdesc:a835bcb309381b9a34fb5c4492819b6ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal function responsible for fetching the appropriate contact point.  <a href="#a835bcb309381b9a34fb5c4492819b6ae">More...</a><br/></td></tr>
 <tr class="separator:a835bcb309381b9a34fb5c4492819b6ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,26 +185,21 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a205e1ba5d417ad2ceca8d15313a1dee9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a205e1ba5d417ad2ceca8d15313a1dee9"></a>
-btCollisionAlgorithm *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a205e1ba5d417ad2ceca8d15313a1dee9">InternalAlgo</a></td></tr>
-<tr class="memdesc:a205e1ba5d417ad2ceca8d15313a1dee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The internal collision class this event is based on. <br/></td></tr>
+<tr class="memitem:a205e1ba5d417ad2ceca8d15313a1dee9"><td class="memItemLeft" align="right" valign="top">btCollisionAlgorithm *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a205e1ba5d417ad2ceca8d15313a1dee9">InternalAlgo</a></td></tr>
+<tr class="memdesc:a205e1ba5d417ad2ceca8d15313a1dee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The internal collision class this event is based on.  <a href="#a205e1ba5d417ad2ceca8d15313a1dee9">More...</a><br/></td></tr>
 <tr class="separator:a205e1ba5d417ad2ceca8d15313a1dee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c51a03f800dbf49a89c2096a348e385"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c51a03f800dbf49a89c2096a348e385"></a>
-<a class="el" href="structMezzanine_1_1Physics_1_1CollisionInternalData.html">CollisionInternalData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a7c51a03f800dbf49a89c2096a348e385">InternalData</a></td></tr>
-<tr class="memdesc:a7c51a03f800dbf49a89c2096a348e385"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of manifolds that apply to this collision. <br/></td></tr>
+<tr class="memitem:a7c51a03f800dbf49a89c2096a348e385"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMezzanine_1_1Physics_1_1CollisionInternalData.html">CollisionInternalData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a7c51a03f800dbf49a89c2096a348e385">InternalData</a></td></tr>
+<tr class="memdesc:a7c51a03f800dbf49a89c2096a348e385"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of manifolds that apply to this collision.  <a href="#a7c51a03f800dbf49a89c2096a348e385">More...</a><br/></td></tr>
 <tr class="separator:a7c51a03f800dbf49a89c2096a348e385"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ffb31ca3e7a563d48e4a9481d41416a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ffb31ca3e7a563d48e4a9481d41416a"></a>
-<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a3ffb31ca3e7a563d48e4a9481d41416a">ObjectA</a></td></tr>
-<tr class="memdesc:a3ffb31ca3e7a563d48e4a9481d41416a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The first Object involved in the collision. <br/></td></tr>
-<tr class="separator:a3ffb31ca3e7a563d48e4a9481d41416a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26aeca8abd0bccc89e15c7eacfb694ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26aeca8abd0bccc89e15c7eacfb694ee"></a>
-<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a26aeca8abd0bccc89e15c7eacfb694ee">ObjectB</a></td></tr>
-<tr class="memdesc:a26aeca8abd0bccc89e15c7eacfb694ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">The second Object invovled in the collision. <br/></td></tr>
-<tr class="separator:a26aeca8abd0bccc89e15c7eacfb694ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a753645ddf49ea549e18cc54a21095eb6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a753645ddf49ea549e18cc54a21095eb6"></a>
-std::vector&lt; <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a753645ddf49ea549e18cc54a21095eb6">PenetrationDistances</a></td></tr>
-<tr class="memdesc:a753645ddf49ea549e18cc54a21095eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This stores the distance of each contact point in this collision, for using to track updates. <br/></td></tr>
+<tr class="memitem:a753645ddf49ea549e18cc54a21095eb6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a753645ddf49ea549e18cc54a21095eb6">PenetrationDistances</a></td></tr>
+<tr class="memdesc:a753645ddf49ea549e18cc54a21095eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This stores the distance of each contact point in this collision, for using to track updates.  <a href="#a753645ddf49ea549e18cc54a21095eb6">More...</a><br/></td></tr>
 <tr class="separator:a753645ddf49ea549e18cc54a21095eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16fb845f379baafe6a6bced0803a49bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a16fb845f379baafe6a6bced0803a49bd">ProxyA</a></td></tr>
+<tr class="memdesc:a16fb845f379baafe6a6bced0803a49bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The first <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> involved in the collision.  <a href="#a16fb845f379baafe6a6bced0803a49bd">More...</a><br/></td></tr>
+<tr class="separator:a16fb845f379baafe6a6bced0803a49bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8d6061a13126a711846017775a04674"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#ac8d6061a13126a711846017775a04674">ProxyB</a></td></tr>
+<tr class="memdesc:ac8d6061a13126a711846017775a04674"><td class="mdescLeft">&#160;</td><td class="mdescRight">The second <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> invovled in the collision.  <a href="#ac8d6061a13126a711846017775a04674">More...</a><br/></td></tr>
+<tr class="separator:ac8d6061a13126a711846017775a04674"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -230,40 +217,9 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 <div class="textblock"><p>This is an event class used to track collsions in the physics world. </p>
 <p>This class will be used for tracking collisions in the physics world and will keep track of basic data related to the collision. This class stores the information in the form of contact points. Often when a collision occurs there will be more then one place where the collision occured, this is a contact point. Internally collisions only store up to a maximum of 4 contact points. When querying for collision information, you have to provide the desired contact point index, and it must be valid. If the requested index isn't valid an exception will be thrown. So always make sure to verify with <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#aa59132582c677f785722f399136fd15b" title="Gets the number of contact points this collision is storing.">GetNumContactPoints()</a>. </p>
 
-<p>Definition at line <a class="el" href="collision_8h_source.html#l00073">73</a> of file <a class="el" href="collision_8h_source.html">collision.h</a>.</p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
-<a class="anchor" id="a8edd5e33671b8d36beba784461c467fa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html#a8edd5e33671b8d36beba784461c467fa">Mezzanine::Physics::Collision::CollisionType</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enum specifying what kind of collision this class is storing. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a8edd5e33671b8d36beba784461c467faa13569659514b4893ed2854787b3a6c8b"></a>Col_Actor_Actor</em>&nbsp;</td><td class="fielddoc">
-<p>Specifies a collision between two Actors. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a8edd5e33671b8d36beba784461c467faa53cb79f065d1fe5e13f3fae019210a28"></a>Col_Actor_Terrain</em>&nbsp;</td><td class="fielddoc">
-<p>Specifies a collision between an Actor and some Terrain. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a8edd5e33671b8d36beba784461c467faaaa930333af142124e8ede4bfbf0799cb"></a>Col_Actor_AreaEffect</em>&nbsp;</td><td class="fielddoc">
-<p>Specifies a collision between an Actor and an AreaRffect. </p>
-</td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a8edd5e33671b8d36beba784461c467faab06dbd6d4238575aa112d099b00b4c50"></a>Col_AreaEffect_Terrain</em>&nbsp;</td><td class="fielddoc">
-<p>Specifies a collision between an <a class="el" href="classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a> and some Terrain. </p>
-</td></tr>
-</table>
-
-<p>Definition at line <a class="el" href="collision_8h_source.html#l00086">86</a> of file <a class="el" href="collision_8h_source.html">collision.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a697894c8073232c35ba16a3597e2396d"></a>
+<p>Definition at line <a class="el" href="collision_8h_source.html#l00072">72</a> of file <a class="el" href="collision_8h_source.html">collision.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a35862f7c87e5b9ce1795cb23c5dc4118"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -273,13 +229,13 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
         <tr>
           <td class="memname">Mezzanine::Physics::Collision::Collision </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td>
           <td class="paramname"><em>A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td>
           <td class="paramname"><em>B</em>, </td>
         </tr>
         <tr>
@@ -305,14 +261,14 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 <p>This will construct a basic event class with the minimum data needed. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">A</td><td>The first Object involved in the collision. </td></tr>
-    <tr><td class="paramname">B</td><td>The second Object invovled in the collision. </td></tr>
+    <tr><td class="paramname">A</td><td>The first <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> involved in the collision. </td></tr>
+    <tr><td class="paramname">B</td><td>The second <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> invovled in the collision. </td></tr>
     <tr><td class="paramname">PhysicsAlgo</td><td>The internal algorithm used for generating collision data. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00064">64</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00067">67</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -338,7 +294,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00085">85</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00095">95</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -366,11 +322,81 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 <p>Class Destructor. </p>
 <p>Basic Class Destructor. </p>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00098">98</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00108">108</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3b1b4ac7a7d74f4727559d7d542926b9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Physics::Collision::_SetProxyA </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td>
+          <td class="paramname"><em>A</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the first Collidable this collision applies to. </p>
+<dl class="section warning"><dt>Warning</dt><dd><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> events can't/shouldn't have the bodies they apply to changed. This function exists mostly just for the blank constructor when you need to set them afterward. If you attempt to set this when the pointer is already set, it will log the event but otherwise silently fail. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>The first Object in this event. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00258">258</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a87c5e2bd638d020f9851c6691cc4f40f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Physics::Collision::_SetProxyB </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td>
+          <td class="paramname"><em>B</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the second Collidable this collision applies to. </p>
+<dl class="section warning"><dt>Warning</dt><dd><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> events can't/shouldn't have the bodies they apply to changed. This function exists mostly just for the blank constructor when you need to set them afterward. If you attempt to set this when the pointer is already set, it will log the event but otherwise silently fail. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">B</td><td>The second Object in this event. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00271">271</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a24ee6b3ac25d2d3e96e785484df8861b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -402,7 +428,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Whole representing the amount of simulation steps a point has existed. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00200">200</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00252">252</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -437,7 +463,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a real representing the amount of force applied from the collision. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00190">190</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00246">246</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -473,7 +499,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a real representing the depth of penetration between the two objects in this collision. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00195">195</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00249">249</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -508,7 +534,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a vector3 with the point of the collision in ObjectA's local space. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00175">175</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00237">237</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -543,7 +569,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a vector3 with the point of the collision in ObjectB's local space. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00180">180</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00240">240</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -571,7 +597,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 
 <p>Internal function responsible for fetching the appropriate contact point. </p>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00105">105</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00123">123</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -606,7 +632,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a vector3 representing the collision normal for a contact point. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00185">185</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00243">243</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -634,7 +660,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 <p>Gets the number of contact points this collision is storing. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of contact points that currently exist for this collision. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00163">163</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00227">227</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -659,10 +685,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </table>
 </div><div class="memdoc">
 
-<p>Gets the first Object this collision applies to. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the first Object in this event. </dd></dl>
+<p>Gets the parent Object of <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> A. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the parent <a class="el" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a> of CollidableProxyA. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00142">142</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00157">157</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -687,10 +713,66 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </table>
 </div><div class="memdoc">
 
-<p>Gets the second Object this collision applies to. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the second Object in this event. </dd></dl>
+<p>Gets the parent Object of <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> B. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the parent <a class="el" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a> of CollidableProxyB. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00158">158</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00160">160</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a28a4adc58bb5687280ba534219f30ce1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> * Mezzanine::Physics::Collision::GetProxyA </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the first <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> this collision applies to. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the first <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> in this event. </dd></dl>
+
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00151">151</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6f7269f4a1a61266d85681830dfeac0e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> * Mezzanine::Physics::Collision::GetProxyB </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the second <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> this collision applies to. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the second <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> in this event. </dd></dl>
+
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00154">154</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -725,7 +807,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a vector3 containing the approximate world location of the collision. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00168">168</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00230">230</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -761,21 +843,21 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </table>
 </div><div class="memdoc">
 
-<p>Convenience function to see if the provided pair match the pair in this class. </p>
+<p>Convenience function to see if the provided <a class="el" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a> pair match the pair in this class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">A</td><td>The first object to be compared. Will be checked against both objects in this collision. </td></tr>
-    <tr><td class="paramname">B</td><td>The second object to be compared. Will be checked against both objects in this collision. </td></tr>
+    <tr><td class="paramname">A</td><td>The first <a class="el" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a> to be compared. Will be checked against both objects in this collision. </td></tr>
+    <tr><td class="paramname">B</td><td>The second <a class="el" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a> to be compared. Will be checked against both objects in this collision. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a bool, true if the pairs match, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00205">205</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00163">163</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a416dcae314a8e58448e8fca69d8ca0bc"></a>
+<a class="anchor" id="aecc6e740603d0aa194150f7fe03be9ba"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -783,11 +865,21 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::Physics::Collision::SetObjectA </td>
+          <td class="memname">bool Mezzanine::Physics::Collision::PairsMatch </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td>
-          <td class="paramname"><em>A</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a> *&#160;</td>
+          <td class="paramname"><em>B</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -797,51 +889,17 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 </table>
 </div><div class="memdoc">
 
-<p>Sets the first Object this collision applies to. </p>
-<dl class="section warning"><dt>Warning</dt><dd><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> events can't/shouldn't have the bodies they apply to changed. This function exists mostly just for the blank constructor when you need to set them afterward. If you attempt to set this when the pointer is already set, it will log the event but otherwise silently fail. </dd></dl>
+<p>Convenience function to see if the provided <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> pair match the pair in this class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">A</td><td>The first Object in this event. </td></tr>
+    <tr><td class="paramname">A</td><td>The first <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> to be compared. Will be checked against both objects in this collision. </td></tr>
+    <tr><td class="paramname">B</td><td>The second <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> to be compared. Will be checked against both objects in this collision. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a bool, true if the pairs match, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00131">131</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5fda32b6e98a832ae77ffb65ff1d7a90"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::Physics::Collision::SetObjectB </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td>
-          <td class="paramname"><em>B</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the second Object this collision applies to. </p>
-<dl class="section warning"><dt>Warning</dt><dd><a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> events can't/shouldn't have the bodies they apply to changed. This function exists mostly just for the blank constructor when you need to set them afterward. If you attempt to set this when the pointer is already set, it will log the event but otherwise silently fail. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">B</td><td>The second Object in this event. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00147">147</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00176">176</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
 </div>
 </div>
@@ -868,16 +926,137 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Physics::
 
 <p>Updates the PenetrationDistances vector on this object. </p>
 
-<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00120">120</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+<p>Definition at line <a class="el" href="collision_8cpp_source.html#l00137">137</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a205e1ba5d417ad2ceca8d15313a1dee9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">btCollisionAlgorithm* Mezzanine::Physics::Collision::InternalAlgo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The internal collision class this event is based on. </p>
+
+<p>Definition at line <a class="el" href="collision_8h_source.html#l00081">81</a> of file <a class="el" href="collision_8h_source.html">collision.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7c51a03f800dbf49a89c2096a348e385"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structMezzanine_1_1Physics_1_1CollisionInternalData.html">CollisionInternalData</a>* Mezzanine::Physics::Collision::InternalData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Array of manifolds that apply to this collision. </p>
+
+<p>Definition at line <a class="el" href="collision_8h_source.html#l00084">84</a> of file <a class="el" href="collision_8h_source.html">collision.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a753645ddf49ea549e18cc54a21095eb6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&gt; Mezzanine::Physics::Collision::PenetrationDistances</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This stores the distance of each contact point in this collision, for using to track updates. </p>
+
+<p>Definition at line <a class="el" href="collision_8h_source.html#l00093">93</a> of file <a class="el" href="collision_8h_source.html">collision.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a16fb845f379baafe6a6bced0803a49bd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a>* Mezzanine::Physics::Collision::ProxyA</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The first <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> involved in the collision. </p>
+
+<p>Definition at line <a class="el" href="collision_8h_source.html#l00087">87</a> of file <a class="el" href="collision_8h_source.html">collision.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac8d6061a13126a711846017775a04674"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">CollidableProxy</a>* Mezzanine::Physics::Collision::ProxyB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The second <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled.">CollidableProxy</a> invovled in the collision. </p>
+
+<p>Definition at line <a class="el" href="collision_8h_source.html#l00090">90</a> of file <a class="el" href="collision_8h_source.html">collision.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="collision_8h_source.html">collision.h</a></li>
-<li>/home/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="collision_8cpp_source.html">collision.cpp</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="collision_8h_source.html">collision.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="collision_8cpp_source.html">collision.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <map id="Mezzanine::Physics::MultiSphereCollisionShape" name="Mezzanine::Physics::MultiSphereCollisionShape">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1PrimitiveCollisionShape.html" title="This is the base class for all Primitive shapes." alt="" coords="16,299,192,346"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes." alt="" coords="32,201,176,247"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="61,104,147,133"/>
-<area shape="rect" id="node8" title="STL class." alt="" coords="36,6,172,53"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1PrimitiveCollisionShape.html" title="This is the base class for all Primitive shapes." alt="" coords="15,291,177,335"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes." alt="" coords="29,195,163,239"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="59,102,133,130"/>
+<area shape="rect" id="node8" title="STL class." alt="" coords="36,6,156,50"/>
 </map>
