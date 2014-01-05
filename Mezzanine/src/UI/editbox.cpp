@@ -46,7 +46,13 @@ namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // EditBox Static Members
+
         const String EditBox::TypeName = "EditBox";
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // EditBox Methods
 
         EditBox::EditBox(Screen* Parent) :
             Widget(Parent)
