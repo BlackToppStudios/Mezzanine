@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -103,7 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1ResourceManager__inherit__graph.svg" width="387" height="136"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1ResourceManager__inherit__graph.svg" width="350" height="134"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -152,31 +152,34 @@ NamedDataStreamContainer::iterator&#160;</td><td class="memItemRight" valign="bo
 &#160;&#160;<b>MT_AudioManager</b> = 1, 
 <b>MT_AnimationManager</b>, 
 <b>MT_CollisionShapeManager</b>, 
-<b>MT_GraphicsManager</b>, 
+<b>MT_CompositorManager</b>, 
 <br/>
-&#160;&#160;<b>MT_EventManager</b>, 
+&#160;&#160;<b>MT_GraphicsManager</b>, 
+<b>MT_EventManager</b>, 
 <b>MT_InputManager</b>, 
 <b>MT_LogManager</b>, 
-<b>MT_MaterialManager</b>, 
 <br/>
-&#160;&#160;<b>MT_MeshManager</b>, 
+&#160;&#160;<b>MT_MaterialManager</b>, 
+<b>MT_MeshManager</b>, 
 <b>MT_NetworkManager</b>, 
 <b>MT_ResourceManager</b>, 
-<b>MT_ScriptingManager</b>, 
 <br/>
-&#160;&#160;<b>MT_UIManager</b>, 
+&#160;&#160;<b>MT_ScriptingManager</b>, 
+<b>MT_UIManager</b>, 
 <b>MT_ActorManager</b> = 100, 
 <b>MT_AreaEffectManager</b>, 
-<b>MT_CameraManager</b>, 
 <br/>
-&#160;&#160;<b>MT_PagingManager</b>, 
+&#160;&#160;<b>MT_CameraManager</b>, 
+<b>MT_DebrisManager</b>, 
+<b>MT_PagingManager</b>, 
 <b>MT_PhysicsManager</b>, 
-<b>MT_SceneManager</b>, 
-<b>MT_SoundScapeManager</b>, 
 <br/>
-&#160;&#160;<b>MT_TerrainManager</b>, 
+&#160;&#160;<b>MT_SceneManager</b>, 
+<b>MT_SoundScapeManager</b>, 
+<b>MT_TerrainManager</b>, 
 <b>MT_VehicleManager</b>, 
-<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
+<br/>
+&#160;&#160;<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
 <br/>
  }</td></tr>
 <tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -464,7 +467,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00100">100</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00099">99</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -489,9 +492,9 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000034">Todo:</a></b></dt><dd>This class currently doesn't initialize anything from <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a>, if that changes this constructor needs to be expanded. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000036">Todo:</a></b></dt><dd>This class currently doesn't initialize anything from <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a>, if that changes this constructor needs to be expanded. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00108">108</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00107">107</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -517,7 +520,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 </div><div class="memdoc">
 <p>Class Destructor. </p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00114">114</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00113">113</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -546,7 +549,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 
 <p>Adds an asset group name to the list of known AssetGroups. </p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00577">577</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00564">564</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -599,7 +602,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00587">587</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00574">574</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -634,7 +637,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "c.txt" or "crash.exe" </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00205">205</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00204">204</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -668,7 +671,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00345">345</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00344">344</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -694,7 +697,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00593">593</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00580">580</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -733,7 +736,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a> to the stream to the provided buffer. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00550">550</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00537">537</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -779,7 +782,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a> to the stream to the provided buffer. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00557">557</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00544">544</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -831,9 +834,9 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a> to the stream to the provided buffer. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000036">Todo:</a></b></dt><dd>Once we have our own AssetGroup implementation we need to implement this. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000038">Todo:</a></b></dt><dd>Once we have our own AssetGroup implementation we need to implement this. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00564">564</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00551">551</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -869,7 +872,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the directory was created, false in the case of a non-critical error. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00131">131</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00130">130</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -896,7 +899,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if all directories were created, false in the case of a non-critical error. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00359">359</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00358">358</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -942,7 +945,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00621">621</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00608">608</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -971,7 +974,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#ab13bf1e752c3b54c7c392ba9a869fb72">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00680">680</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00667">667</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -996,9 +999,9 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000037">Todo:</a></b></dt><dd>This is a bit of a hack, but needs to be here until we can upgrade our resource system. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000039">Todo:</a></b></dt><dd>This is a bit of a hack, but needs to be here until we can upgrade our resource system. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00599">599</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00586">586</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1033,7 +1036,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>If passed "/a/b/c.txt" or "c:\windirs\crash.exe" this will return "/a/b/" or "c:\windirs\" </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00191">191</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00190">190</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1074,7 +1077,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00169">169</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00168">168</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1109,7 +1112,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="namespaceMezzanine.html#a25d7f893350196fa99e164f78df3538b">ArchiveType</a> corresponding to the string provided, or AT_Invalid if it is invalid. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00699">699</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00686">686</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1148,7 +1151,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string containing the path to the file. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00634">634</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00621">621</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1168,7 +1171,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 <p>Gets the path to the directory intended for game saves and user profile data for all users. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string containing the path to the Common User Data Directory. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00510">510</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00500">500</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1188,7 +1191,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 <p>Gets the path to the directory intended for game saves and user profile data for the current user. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string containing the path to the Current User Data Directory. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00489">489</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00482">482</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1224,7 +1227,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00387">387</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00386">386</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1252,7 +1255,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 <p>Get the character used to separate directories. </p>
 <dl class="section return"><dt>Returns</dt><dd>Backslash '\' on windows and Forward slash '/' on other operating systems. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00219">219</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00218">218</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1272,7 +1275,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 <p>Get the pathname where engine data is stored. </p>
 <dl class="section return"><dt>Returns</dt><dd>A String that contains the pathname </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00419">419</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00418">418</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1321,7 +1324,7 @@ static <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManag
 Not all system provide all the needed information to determine the executable directory </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A String containing the path to the current executable. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00331">331</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00330">330</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1341,7 +1344,7 @@ Not all system provide all the needed information to determine the executable di
 <p>Get the Path to the current executable, in a fast way if possible. </p>
 <dl class="section return"><dt>Returns</dt><dd>A String containing the path to the current executable. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00342">342</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00341">341</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1391,7 +1394,7 @@ Not all system provide all the needed information to determine the executable di
 Not all system provide all the needed information to determine the executable directory </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>If a whole path is present in ArgVars[0] this returns the directory part of that path, if this uses the executable file this returns '.', otherwise this with return "" indicating it is not usable. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00273">273</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00272">272</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1411,7 +1414,7 @@ Not all system provide all the needed information to determine the executable di
 <p>Uses the main parameters stored on an instance of <a class="el" href="classMezzanine_1_1ResourceManager.html" title="This is the manager responsible for the loading and unloading of files.">Mezzanine::ResourceManager</a> to attempt determine executable directory. </p>
 <dl class="section return"><dt>Returns</dt><dd>Either a valid Path, '.' if the working dir is likely correct or "" if nothing could be determined. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00299">299</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00298">298</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1439,7 +1442,7 @@ Not all system provide all the needed information to determine the executable di
 <p>Used a system call to get the curent Directory the executable is in. This make an external system call and is likely slower than GetExecutableDirFromArg. </p>
 <dl class="section return"><dt>Returns</dt><dd>This will return the current path this executable is stored in. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00302">302</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00301">301</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1469,7 +1472,7 @@ Not all system provide all the needed information to determine the executable di
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#ac41d60f674e75d3d16b5544f4feb199c">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00715">715</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00702">702</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1500,7 +1503,7 @@ Not all system provide all the needed information to determine the executable di
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a388aa37ed71b8667785b789c137aa8c6">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00712">712</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00699">699</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1520,7 +1523,7 @@ Not all system provide all the needed information to determine the executable di
 <p>Gets the path to the directory intended for game and engine config data that is not meant to be shared. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string containing the path to the Local Application Data Directory. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00438">438</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00437">437</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1548,7 +1551,7 @@ Not all system provide all the needed information to determine the executable di
 <p>Get the character used to separate entries in the system PATH. </p>
 <dl class="section return"><dt>Returns</dt><dd>Semicolon ';' on windows and Forward slash ':' on other operating systems. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00228">228</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00227">227</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1568,7 +1571,7 @@ Not all system provide all the needed information to determine the executable di
 <p>Gets the dot-and-extention of this platforms plugins. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the platform appropriate extention for plugin files. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00650">650</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00637">637</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1596,7 +1599,7 @@ Not all system provide all the needed information to determine the executable di
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An derivative of std::istream a <a class="el" href="classMezzanine_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a> that will pull it's data from the desired resource. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00661">661</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00648">648</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1616,7 +1619,7 @@ Not all system provide all the needed information to determine the executable di
 <p>Gets the path to the directory intended for game and engine config data that is allowed to be shared. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a string containing the path to the Shareable Application Data Directory. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00468">468</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00464">464</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1651,7 +1654,7 @@ Not all system provide all the needed information to determine the executable di
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A String that represents the <a class="el" href="namespaceMezzanine.html#a25d7f893350196fa99e164f78df3538b">ArchiveType</a> passed. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00685">685</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00672">672</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1686,7 +1689,7 @@ Not all system provide all the needed information to determine the executable di
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A collection of directories that this system will for executables in the order they will be checked. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00237">237</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00236">236</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1714,7 +1717,7 @@ Not all system provide all the needed information to determine the executable di
 <p>Get the working directory as a <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">Mezzanine::String</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>The Directory the game was called from (not nescessarilly the location of the executable), as a <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">Mezzanine::String</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00407">407</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00406">406</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1741,7 +1744,7 @@ Not all system provide all the needed information to determine the executable di
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00626">626</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00613">613</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1770,7 +1773,7 @@ Not all system provide all the needed information to determine the executable di
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a864e3cac11928a602c1db28fa2d52ee2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00675">675</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00662">662</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1806,9 +1809,9 @@ Not all system provide all the needed information to determine the executable di
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000035">Todo:</a></b></dt><dd>This entire method is a bit of a hack. When the resource system gets refactored it should go through our archives or whatever equivalent. Since we currently have to put up with <a class="el" href="namespaceOgre.html">Ogre</a>'s system, we'll use it for now as a hack. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000037">Todo:</a></b></dt><dd>This entire method is a bit of a hack. When the resource system gets refactored it should go through our archives or whatever equivalent. Since we currently have to put up with <a class="el" href="namespaceOgre.html">Ogre</a>'s system, we'll use it for now as a hack. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00534">534</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00521">521</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1848,7 +1851,7 @@ Not all system provide all the needed information to determine the executable di
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00181">181</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00180">180</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1876,7 +1879,7 @@ Not all system provide all the needed information to determine the executable di
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the actual path of the variable provided. </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00424">424</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00423">423</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1913,7 +1916,7 @@ Not all system provide all the needed information to determine the executable di
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00122">122</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00121">121</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1948,9 +1951,9 @@ Not all system provide all the needed information to determine the executable di
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>If the executable is not found "" is returned otherwise the first directory in the PATH containing it is returned. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>This function is case sensitive and not all operating systems are. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000040">Todo:</a></b></dt><dd>Add support for extension handling on windows. "cmd" should find "cmd.exe" in system32, but currently "cmd.exe" needs to be searched </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000042">Todo:</a></b></dt><dd>Add support for extension handling on windows. "cmd" should find "cmd.exe" in system32, but currently "cmd.exe" needs to be searched </dd></dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00258">258</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00257">257</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2150,11 +2153,11 @@ Not all system provide all the needed information to determine the executable di
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/<a class="el" href="resourcemanager_8h_source.html">resourcemanager.h</a></li>
-<li>/home/Code/Mezzanine/Mezzanine/src/<a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="resourcemanager_8h_source.html">resourcemanager.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:41 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

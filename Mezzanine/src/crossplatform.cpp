@@ -62,12 +62,12 @@
 //Selective Includes
 #ifdef WINDOWS
     #include <windows.h>
-	#include <cstdlib>//for sleep
+    #include <cstdlib>//for sleep
     #include <Winuser.h>
-	#include "SDL_syswm.h" //for the needed commands
+    #include "SDL_syswm.h" //for the needed commands
     #include <direct.h> // for _getcwd
 #else
-	#include <unistd.h>//for sleep and getcwd
+    #include <unistd.h>//for sleep and getcwd
     #include <sys/time.h>
 #endif
 
@@ -83,9 +83,9 @@ namespace Mezzanine
             #ifdef WINDOWS
                 return "Windows";
             #endif
-			#ifdef MACOSX
-				return "MacOSX";
-			#endif
+            #ifdef MACOSX
+                return "MacOSX";
+            #endif
         }
 
         void SanitizeWindowedRes(const Whole& Width, const Whole& Height, Whole& ActualWidth, Whole& ActualHeight)
@@ -108,7 +108,7 @@ namespace Mezzanine
         Whole GetTimeStampResolution()
             { return Mezzanine::GetTimeStampResolution(); }
 
-        Whole MEZZ_LIB GetCPUCount()
+        Whole GetCPUCount()
             { return Mezzanine::GetCPUCount(); }
 
     }// ©rossplatform

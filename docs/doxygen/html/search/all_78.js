@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['x',['X',['../classMezzanine_1_1Quaternion.html#afe9d0fceef87816390f4181aadd9e683',1,'Mezzanine::Quaternion::X()'],['../classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1',1,'Mezzanine::Vector2::X()'],['../classMezzanine_1_1Vector3.html#aa858d9bc5ac5ad1b685b7088c94c05f6',1,'Mezzanine::Vector3::X()']]],
+  ['x',['x',['../classMezzanine_1_1CubicSplineElement.html#a31b7a83d7f7f723e7ffca8e215108dfe',1,'Mezzanine::CubicSplineElement::x()'],['../classMezzanine_1_1Quaternion.html#afe9d0fceef87816390f4181aadd9e683',1,'Mezzanine::Quaternion::X()'],['../classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1',1,'Mezzanine::Vector2::X()'],['../classMezzanine_1_1Vector3.html#aa858d9bc5ac5ad1b685b7088c94c05f6',1,'Mezzanine::Vector3::X()'],['../classMezzanine_1_1UI_1_1UnifiedVec2.html#ab2106185b3fbdbcbf82dacc55dc7e299',1,'Mezzanine::UI::UnifiedVec2::X()']]],
   ['xmlboilerplate_2ecpp',['xmlboilerplate.cpp',['../xmlboilerplate_8cpp.html',1,'']]],
   ['xmlboilerplate_2eh',['xmlboilerplate.h',['../xmlboilerplate_8h.html',1,'']]],
   ['xmlenumerations_2eh',['xmlenumerations.h',['../xmlenumerations_8h.html',1,'']]],
@@ -30,12 +30,13 @@ var searchData=
   ['xpathtypenumber',['XPathTypeNumber',['../namespaceMezzanine_1_1XML.html#a9bd26a1f9b2d49df236a663038cd77eeaa9e63bb1a0f8538b26dd994ba6353758',1,'Mezzanine::XML']]],
   ['xpathtypestring',['XPathTypeString',['../namespaceMezzanine_1_1XML.html#a9bd26a1f9b2d49df236a663038cd77eeae324e3275db7af01393dc81c08ec994b',1,'Mezzanine::XML']]],
   ['xpathvaluetype',['XPathValueType',['../namespaceMezzanine_1_1XML.html#a9bd26a1f9b2d49df236a663038cd77ee',1,'Mezzanine::XML']]],
-  ['xpathvariable',['XPathVariable',['../classMezzanine_1_1XML_1_1XPathVariable.html#aaeeb9b60c9b6db6ea15fac8246e6f448',1,'Mezzanine::XML::XPathVariable::XPathVariable()'],['../classMezzanine_1_1XML_1_1XPathVariable.html#a76e5930abe9ed3a46ec4f88c66480b4f',1,'Mezzanine::XML::XPathVariable::XPathVariable(const XPathVariable &amp;)']]],
   ['xpathvariable',['XPathVariable',['../classMezzanine_1_1XML_1_1XPathVariable.html',1,'Mezzanine::XML']]],
+  ['xpathvariable',['XPathVariable',['../classMezzanine_1_1XML_1_1XPathVariable.html#aaeeb9b60c9b6db6ea15fac8246e6f448',1,'Mezzanine::XML::XPathVariable::XPathVariable()'],['../classMezzanine_1_1XML_1_1XPathVariable.html#a76e5930abe9ed3a46ec4f88c66480b4f',1,'Mezzanine::XML::XPathVariable::XPathVariable(const XPathVariable &amp;)']]],
   ['xpathvariable_2ecpp',['xpathvariable.cpp',['../xpathvariable_8cpp.html',1,'']]],
   ['xpathvariable_2eh',['xpathvariable.h',['../xpathvariable_8h.html',1,'']]],
-  ['xpathvariableset',['XPathVariableSet',['../classMezzanine_1_1XML_1_1XPathVariableSet.html',1,'Mezzanine::XML']]],
   ['xpathvariableset',['XPathVariableSet',['../classMezzanine_1_1XML_1_1XPathVariableSet.html#ae0e40a30f02610609c16950b47000761',1,'Mezzanine::XML::XPathVariableSet']]],
+  ['xpathvariableset',['XPathVariableSet',['../classMezzanine_1_1XML_1_1XPathVariableSet.html',1,'Mezzanine::XML']]],
   ['xpathvariableset_2ecpp',['xpathvariableset.cpp',['../xpathvariableset_8cpp.html',1,'']]],
-  ['xpathvariableset_2eh',['xpathvariableset.h',['../xpathvariableset_8h.html',1,'']]]
+  ['xpathvariableset_2eh',['xpathvariableset.h',['../xpathvariableset_8h.html',1,'']]],
+  ['xprovider',['XProvider',['../classMezzanine_1_1UI_1_1PagedContainer.html#a4858d21bfaf4605eef859d7e13c5a903',1,'Mezzanine::UI::PagedContainer']]]
 ];

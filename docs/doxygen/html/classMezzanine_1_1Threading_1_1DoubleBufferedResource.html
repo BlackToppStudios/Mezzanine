@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -131,7 +131,7 @@ class Mezzanine::Threading::DoubleBufferedResource&lt; T &gt;</h3>
 <p>A thread specific resource that uses double buffering to avoid multithreaded synchronization mechanisms. </p>
 <p>It is intended for a <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time.">Mezzanine::Threading::iWorkUnit</a> "iWorkUnit" like the to provide asynchronous access to resources that to not need immediate atomicity. For example, it is ok if logs are gathered asynchronously and aggregated later as long no log messages are damaged, lost or taken out of order. This allows IO and other potentially expensive tasks to be used without blocking the current thread. </p>
 
-<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00073">73</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
+<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00070">70</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a2047b7dee35eef0c761c43cb03a20929"></a>
 <div class="memitem">
@@ -159,7 +159,7 @@ template&lt;typename T &gt; </div>
 <p>A Constructor that creates default versions of the resources. </p>
 <p>This calls the default constructors for type T. </p>
 
-<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00085">85</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
+<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00082">82</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
 
 </div>
 </div>
@@ -206,7 +206,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00104">104</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
+<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00101">101</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
 
 </div>
 </div>
@@ -237,7 +237,7 @@ template&lt;typename T &gt; </div>
 <p>Get a reference to the resource that can be committed. </p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the commitable resource </dd></dl>
 
-<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00128">128</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
+<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00125">125</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
 
 </div>
 </div>
@@ -267,7 +267,7 @@ template&lt;typename T &gt; </div>
 <p>Get a pointer to the resource that can be committed. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the commitable resource </dd></dl>
 
-<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00118">118</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
+<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00115">115</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
 
 </div>
 </div>
@@ -297,7 +297,7 @@ template&lt;typename T &gt; </div>
 <p>Get a reference to the resource that can be used. </p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the usable resource </dd></dl>
 
-<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00123">123</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
+<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00120">120</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
 
 </div>
 </div>
@@ -327,15 +327,15 @@ template&lt;typename T &gt; </div>
 <p>Get a pointer to the resource that can be used. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the usable resource </dd></dl>
 
-<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00113">113</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
+<p>Definition at line <a class="el" href="doublebufferedresource_8h_source.html#l00110">110</a> of file <a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/Threading/<a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/<a class="el" href="doublebufferedresource_8h_source.html">doublebufferedresource.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:15 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

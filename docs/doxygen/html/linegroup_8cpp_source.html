@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/linegroup.cpp Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/linegroup.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">linegroup.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -127,7 +127,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _LINEGROUP_cpp</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;linegroup.h&quot;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;scenemanager.h&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;Graphics/scenemanager.h&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;entresol.h&quot;</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &lt;Ogre.h&gt;</span></div>
@@ -253,7 +253,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00167"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Internal_1_1Line3D.html#aba094b777224fd906d44abb34da5f2f2">  167</a></span>&#160;        <a class="code" href="classMezzanine_1_1Internal_1_1Line3D.html#aba094b777224fd906d44abb34da5f2f2" title="Default Constructor.">Line3D::Line3D</a>()</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        {</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            mRenderOp.vertexData = <span class="keyword">new</span> Ogre::VertexData();</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Internal_1_1Line3D.html#a9fee04f9f5e7343963381d20c0153194" title="Pointer to the node that will be used exclusively for this renderable.">SelfNode</a> = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Entresol::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1Entresol.html#a5934c98e4d29964346597baf2c4d01da" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;getRootSceneNode()-&gt;createChildSceneNode();</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Internal_1_1Line3D.html#a9fee04f9f5e7343963381d20c0153194" title="Pointer to the node that will be used exclusively for this renderable.">SelfNode</a> = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Entresol::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1Entresol.html#a1b2e14446586a0f1087f672eb548ee24" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1SceneManager.html#a0891c59bf67bd5b4526c9454f3a36f8f" title="Gets the internal Ogre Scene Manager pointer.">_GetGraphicsWorldPointer</a>()-&gt;getRootSceneNode()-&gt;createChildSceneNode();</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="comment">// Initialization stuff</span></div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            mRenderOp.indexData = 0;</div>
@@ -287,7 +287,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
 <div class="line"><a name="l00202"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Internal_1_1Line3D.html#ab325fc72b35e881c0c80b5c84ba09a66">  202</a></span>&#160;        <a class="code" href="classMezzanine_1_1Internal_1_1Line3D.html#ab325fc72b35e881c0c80b5c84ba09a66" title="Destructor.">Line3D::~Line3D</a>()</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        {</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Entresol::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1Entresol.html#a5934c98e4d29964346597baf2c4d01da" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;destroySceneNode(this-&gt;<a class="code" href="classMezzanine_1_1Internal_1_1Line3D.html#a9fee04f9f5e7343963381d20c0153194" title="Pointer to the node that will be used exclusively for this renderable.">SelfNode</a>);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Entresol::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1Entresol.html#a1b2e14446586a0f1087f672eb548ee24" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="classMezzanine_1_1Graphics_1_1SceneManager.html#a0891c59bf67bd5b4526c9454f3a36f8f" title="Gets the internal Ogre Scene Manager pointer.">_GetGraphicsWorldPointer</a>()-&gt;destroySceneNode(this-&gt;<a class="code" href="classMezzanine_1_1Internal_1_1Line3D.html#a9fee04f9f5e7343963381d20c0153194" title="Pointer to the node that will be used exclusively for this renderable.">SelfNode</a>);</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="keyword">delete</span> mRenderOp.vertexData;</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        }</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
@@ -363,10 +363,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                    *prPos++ = CurrVertex.<a class="code" href="structMezzanine_1_1Internal_1_1LineVertex.html#a8644f01e98d12fe7e5240b90a3779aed" title="Vertex position.">Position</a>.<a class="code" href="classMezzanine_1_1Vector3.html#a9b887faced986921956f20f3e4cb8ddc" title="Coordinate on the Z vector.">Z</a>;</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                    <span class="comment">// Colour assignment</span></div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                    *prPos++ = CurrVertex.<a class="code" href="structMezzanine_1_1Internal_1_1LineVertex.html#a59463b95b6003c9309dc53311403aa8b" title="Vertex colour.">Colour</a>.<a class="code" href="classMezzanine_1_1ColourValue.html#a81fc3a8ae319f7d273afbd45d35c7ae2" title="Value from 0.0 to 1.0 representing the amount of red present in the colour. 1.0 if very red...">R</a>;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                    *prPos++ = CurrVertex.<a class="code" href="structMezzanine_1_1Internal_1_1LineVertex.html#a59463b95b6003c9309dc53311403aa8b" title="Vertex colour.">Colour</a>.<a class="code" href="classMezzanine_1_1ColourValue.html#a8991eb598d82e40a284d2d14717fa59b" title="Value from 0.0 to 1.0 representing the amount of green present in the colour. 1.0 if very green...">G</a>;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                    *prPos++ = CurrVertex.<a class="code" href="structMezzanine_1_1Internal_1_1LineVertex.html#a59463b95b6003c9309dc53311403aa8b" title="Vertex colour.">Colour</a>.<a class="code" href="classMezzanine_1_1ColourValue.html#afade1a83b0a698395acf9d831327fa5c" title="Value from 0.0 to 1.0 representing the amount of blue present in the colour. 1.0 if very blue...">B</a>;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                    *prPos++ = CurrVertex.<a class="code" href="structMezzanine_1_1Internal_1_1LineVertex.html#a59463b95b6003c9309dc53311403aa8b" title="Vertex colour.">Colour</a>.<a class="code" href="classMezzanine_1_1ColourValue.html#adb3001981a22ed063e57867add137b78" title="Value from 0.0 to 1.0 representing the transparency of the colours. 1.0 is opaque and 0...">A</a>;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                    *prPos++ = CurrVertex.<a class="code" href="structMezzanine_1_1Internal_1_1LineVertex.html#a59463b95b6003c9309dc53311403aa8b" title="Vertex colour.">Colour</a>.<a class="code" href="classMezzanine_1_1ColourValue.html#a7fe00f4ae4b7ef404b8052b41c0d3505" title="Value from 0.0 to 1.0 representing the amount of red present in the colour. 1.0 if very red...">RedChannel</a>;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                    *prPos++ = CurrVertex.<a class="code" href="structMezzanine_1_1Internal_1_1LineVertex.html#a59463b95b6003c9309dc53311403aa8b" title="Vertex colour.">Colour</a>.<a class="code" href="classMezzanine_1_1ColourValue.html#a88cd149f8f7fc8a2b3fb2bbbf036c783" title="Value from 0.0 to 1.0 representing the amount of green present in the colour. 1.0 if very green...">GreenChannel</a>;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                    *prPos++ = CurrVertex.<a class="code" href="structMezzanine_1_1Internal_1_1LineVertex.html#a59463b95b6003c9309dc53311403aa8b" title="Vertex colour.">Colour</a>.<a class="code" href="classMezzanine_1_1ColourValue.html#a0569ee802716292e132e63de02134257" title="Value from 0.0 to 1.0 representing the amount of blue present in the colour. 1.0 if very blue...">BlueChannel</a>;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                    *prPos++ = CurrVertex.<a class="code" href="structMezzanine_1_1Internal_1_1LineVertex.html#a59463b95b6003c9309dc53311403aa8b" title="Vertex colour.">Colour</a>.<a class="code" href="classMezzanine_1_1ColourValue.html#a5a4b379ec515381615a1bbafd75fcc85" title="Value from 0.0 to 1.0 representing the transparency of the colours. 1.0 is opaque and 0...">AlphaChannel</a>;</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                    <span class="comment">// Bounds checking</span></div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                    <span class="keywordflow">if</span>(CurrVertex.<a class="code" href="structMezzanine_1_1Internal_1_1LineVertex.html#a8644f01e98d12fe7e5240b90a3779aed" title="Vertex position.">Position</a>.<a class="code" href="classMezzanine_1_1Vector3.html#aa858d9bc5ac5ad1b685b7088c94c05f6" title="Coordinate on the X vector.">X</a> &lt; vaabMin.<a class="code" href="classMezzanine_1_1Vector3.html#aa858d9bc5ac5ad1b685b7088c94c05f6" title="Coordinate on the X vector.">X</a>)</div>
@@ -494,6 +494,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

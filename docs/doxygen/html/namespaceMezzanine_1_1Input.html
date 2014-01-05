@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -749,7 +749,7 @@ Functions</h2></td></tr>
 <p>KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ab722ac9d149cd84c0db5080b46a3721aa06f6fff49fc74ef51a642df7a6095604"></a>KEY_UNKNOWN</em>&nbsp;</td><td class="fielddoc">
-<p>KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. </p>
+<p>KEY_UNKNOWN This is used for unsupported keys or keys that are not in <a class="el" href="namespaceMezzanine_1_1Unicode.html" title="A dumping ground for any feature that only relates to unicode work.">Unicode</a>. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ab722ac9d149cd84c0db5080b46a3721aa36e684c6be88f56b98f3e423e4058b48"></a>KEY_BACKSLASH</em>&nbsp;</td><td class="fielddoc">
 <p>Located at the lower left of the return key on ISO keyboards and at the right end of the QWERTY row on ANSI keyboards. Produces REVERSE SOLIDUS (backslash) and VERTICAL LINE in a US layout, REVERSE SOLIDUS and VERTICAL LINE in a UK Mac layout, NUMBER SIGN and TILDE in a UK Windows layout, DOLLAR SIGN and POUND SIGN in a Swiss German layout, NUMBER SIGN and APOSTROPHE in a German layout, GRAVE ACCENT and POUND SIGN in a French Mac layout, and ASTERISK and MICRO SIGN in a French Windows layout. </p>
@@ -836,7 +836,7 @@ Functions</h2></td></tr>
 <p>The last <a class="el" href="classMezzanine_1_1Input_1_1Keyboard.html" title="This class represents the keyboard input device.">Keyboard</a> InputCode, all Keys values will be less than this, and all Events will be larger than that. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ab722ac9d149cd84c0db5080b46a3721aafc985e22693bb973d313dfdda1e6f0ca"></a>MOUSE_FIRST</em>&nbsp;</td><td class="fielddoc">
-<p>The First <a class="el" href="classMezzanine_1_1Input_1_1Mouse.html" title="This class represents the mouse input device.">Mouse</a> event, all <a class="el" href="classMezzanine_1_1Input_1_1Mouse.html" title="This class represents the mouse input device.">Mouse</a> Event values will be more than this. </p>
+<p>The First <a class="el" href="classMezzanine_1_1Input_1_1Mouse.html" title="This class represents the mouse input device.">Mouse</a> event, all <a class="el" href="classMezzanine_1_1Input_1_1Mouse.html" title="This class represents the mouse input device.">Mouse</a> <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired.">Event</a> values will be more than this. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ab722ac9d149cd84c0db5080b46a3721aa51c8e36634404817d5dd7fe166ef7e49"></a>MOUSEBUTTON</em>&nbsp;</td><td class="fielddoc">
 <p>This is the generic Some mouse button code. You can add the number of the mouse button to this and you will get the approriate code. Example (MOUSEBUTTON_1 == MOUSEBUTTON + 1) </p>
@@ -875,7 +875,7 @@ Functions</h2></td></tr>
 <p>The last Multi Touch event. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ab722ac9d149cd84c0db5080b46a3721aa66e79d13cb111562c33530a4b7177faa"></a>CONTROLLER_FIRST</em>&nbsp;</td><td class="fielddoc">
-<p>The First JoyStick event, all <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick.">Controller</a> Event values will be more than this. </p>
+<p>The First JoyStick event, all <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick.">Controller</a> <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired.">Event</a> values will be more than this. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ab722ac9d149cd84c0db5080b46a3721aa6f5f6200757ebd66c4eb2c74a63c3d88"></a>CONTROLLERBUTTON</em>&nbsp;</td><td class="fielddoc">
 <p>This is the generic Some stickbutton button code. You can add the number of the jpystick button to this and you will get the approriate code. Example (JOYSTICKBUTTON_1 == JOYSTICKBUTTON + 1) </p>
@@ -933,7 +933,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Function used for sorting controller metacodes. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000073">Todo:</a></b></dt><dd>When our support for Multitouch devices expands this may need to be expanded as well. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">First</td><td>The first <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> to compare. </td></tr>
@@ -943,7 +942,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if First should be placed before Second, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacodekey_8h_source.html#l00075">75</a> of file <a class="el" href="metacodekey_8h_source.html">metacodekey.h</a>.</p>
+<p>Definition at line <a class="el" href="metacodekey_8cpp_source.html#l00084">84</a> of file <a class="el" href="metacodekey_8cpp_source.html">metacodekey.cpp</a>.</p>
 
 </div>
 </div>
@@ -981,7 +980,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if First should be placed before Second, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacodekey_8h_source.html#l00054">54</a> of file <a class="el" href="metacodekey_8h_source.html">metacodekey.h</a>.</p>
+<p>Definition at line <a class="el" href="metacodekey_8cpp_source.html#l00056">56</a> of file <a class="el" href="metacodekey_8cpp_source.html">metacodekey.cpp</a>.</p>
 
 </div>
 </div>
@@ -1019,7 +1018,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if First should be placed before Second, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacodekey_8h_source.html#l00061">61</a> of file <a class="el" href="metacodekey_8h_source.html">metacodekey.h</a>.</p>
+<p>Definition at line <a class="el" href="metacodekey_8cpp_source.html#l00065">65</a> of file <a class="el" href="metacodekey_8cpp_source.html">metacodekey.cpp</a>.</p>
 
 </div>
 </div>
@@ -1056,8 +1055,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if First should be placed before Second, false otherwise. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000089">Todo:</a></b></dt><dd>When our support for Multitouch devices expands this may need to be expanded as well. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacodekey_8h_source.html#l00068">68</a> of file <a class="el" href="metacodekey_8h_source.html">metacodekey.h</a>.</p>
+<p>Definition at line <a class="el" href="metacodekey_8cpp_source.html#l00074">74</a> of file <a class="el" href="metacodekey_8cpp_source.html">metacodekey.cpp</a>.</p>
 
 </div>
 </div>
@@ -1095,12 +1095,12 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if First should be placed before Second, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacodekey_8h_source.html#l00088">88</a> of file <a class="el" href="metacodekey_8h_source.html">metacodekey.h</a>.</p>
+<p>Definition at line <a class="el" href="metacodekey_8cpp_source.html#l00097">97</a> of file <a class="el" href="metacodekey_8cpp_source.html">metacodekey.cpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

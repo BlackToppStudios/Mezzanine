@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -102,7 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Physics_1_1CollisionShapeManager__inherit__graph.svg" width="422" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Physics_1_1CollisionShapeManager__inherit__graph.svg" width="382" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -110,7 +110,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Physics_1_1CollisionShapeManager__coll__graph.svg" width="100%" height="482"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Physics_1_1CollisionShapeManager__coll__graph.svg" width="100%" height="477"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -147,31 +147,34 @@ typedef ShapeVector::iterator&#160;</td><td class="memItemRight" valign="bottom"
 &#160;&#160;<b>MT_AudioManager</b> = 1, 
 <b>MT_AnimationManager</b>, 
 <b>MT_CollisionShapeManager</b>, 
-<b>MT_GraphicsManager</b>, 
+<b>MT_CompositorManager</b>, 
 <br/>
-&#160;&#160;<b>MT_EventManager</b>, 
+&#160;&#160;<b>MT_GraphicsManager</b>, 
+<b>MT_EventManager</b>, 
 <b>MT_InputManager</b>, 
 <b>MT_LogManager</b>, 
-<b>MT_MaterialManager</b>, 
 <br/>
-&#160;&#160;<b>MT_MeshManager</b>, 
+&#160;&#160;<b>MT_MaterialManager</b>, 
+<b>MT_MeshManager</b>, 
 <b>MT_NetworkManager</b>, 
 <b>MT_ResourceManager</b>, 
-<b>MT_ScriptingManager</b>, 
 <br/>
-&#160;&#160;<b>MT_UIManager</b>, 
+&#160;&#160;<b>MT_ScriptingManager</b>, 
+<b>MT_UIManager</b>, 
 <b>MT_ActorManager</b> = 100, 
 <b>MT_AreaEffectManager</b>, 
-<b>MT_CameraManager</b>, 
 <br/>
-&#160;&#160;<b>MT_PagingManager</b>, 
+&#160;&#160;<b>MT_CameraManager</b>, 
+<b>MT_DebrisManager</b>, 
+<b>MT_PagingManager</b>, 
 <b>MT_PhysicsManager</b>, 
-<b>MT_SceneManager</b>, 
-<b>MT_SoundScapeManager</b>, 
 <br/>
-&#160;&#160;<b>MT_TerrainManager</b>, 
+&#160;&#160;<b>MT_SceneManager</b>, 
+<b>MT_SoundScapeManager</b>, 
+<b>MT_TerrainManager</b>, 
 <b>MT_VehicleManager</b>, 
-<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
+<br/>
+&#160;&#160;<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
 <br/>
  }</td></tr>
 <tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -390,7 +393,7 @@ static CollisionShapeManager *&#160;</td><td class="memItemRight" valign="bottom
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000082">Todo:</a></b></dt><dd>This class currently doesn't initialize anything from <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a>, if that changes this constructor needs to be expanded. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000097">Todo:</a></b></dt><dd>This class currently doesn't initialize anything from <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a>, if that changes this constructor needs to be expanded. </dd></dl>
 
 <p>Definition at line <a class="el" href="collisionshapemanager_8cpp_source.html#l00090">90</a> of file <a class="el" href="collisionshapemanager_8cpp_source.html">collisionshapemanager.cpp</a>.</p>
 
@@ -1174,7 +1177,7 @@ static CollisionShapeManager *&#160;</td><td class="memItemRight" valign="bottom
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000083">Todo:</a></b></dt><dd>Replace this stack allocated stream for one initialized from the <a class="el" href="namespaceMezzanine_1_1Resource.html" title="This namespace is for all the classes belonging to the non-network I/O Subsystem.">Resource</a> Manager, after the system is ready. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000098">Todo:</a></b></dt><dd>Replace this stack allocated stream for one initialized from the <a class="el" href="namespaceMezzanine_1_1Resource.html" title="This namespace is for all the classes belonging to the non-network I/O Subsystem.">Resource</a> Manager, after the system is ready. </dd></dl>
 
 <p>Definition at line <a class="el" href="collisionshapemanager_8cpp_source.html#l00582">582</a> of file <a class="el" href="collisionshapemanager_8cpp_source.html">collisionshapemanager.cpp</a>.</p>
 
@@ -1463,7 +1466,7 @@ static CollisionShapeManager *&#160;</td><td class="memItemRight" valign="bottom
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000084">Todo:</a></b></dt><dd>Replace this stack allocated stream for one initialized from the <a class="el" href="namespaceMezzanine_1_1Resource.html" title="This namespace is for all the classes belonging to the non-network I/O Subsystem.">Resource</a> Manager, after the system is ready. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000099">Todo:</a></b></dt><dd>Replace this stack allocated stream for one initialized from the <a class="el" href="namespaceMezzanine_1_1Resource.html" title="This namespace is for all the classes belonging to the non-network I/O Subsystem.">Resource</a> Manager, after the system is ready. </dd></dl>
 
 <p>Definition at line <a class="el" href="collisionshapemanager_8cpp_source.html#l00603">603</a> of file <a class="el" href="collisionshapemanager_8cpp_source.html">collisionshapemanager.cpp</a>.</p>
 
@@ -1555,7 +1558,7 @@ static CollisionShapeManager *&#160;</td><td class="memItemRight" valign="bottom
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000085">Todo:</a></b></dt><dd>Replace this stack allocated stream for one initialized from the <a class="el" href="namespaceMezzanine_1_1Resource.html" title="This namespace is for all the classes belonging to the non-network I/O Subsystem.">Resource</a> Manager, after the system is ready. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000100">Todo:</a></b></dt><dd>Replace this stack allocated stream for one initialized from the <a class="el" href="namespaceMezzanine_1_1Resource.html" title="This namespace is for all the classes belonging to the non-network I/O Subsystem.">Resource</a> Manager, after the system is ready. </dd></dl>
 
 <p>Definition at line <a class="el" href="collisionshapemanager_8cpp_source.html#l00624">624</a> of file <a class="el" href="collisionshapemanager_8cpp_source.html">collisionshapemanager.cpp</a>.</p>
 
@@ -1682,11 +1685,11 @@ static CollisionShapeManager *&#160;</td><td class="memItemRight" valign="bottom
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="collisionshapemanager_8h_source.html">collisionshapemanager.h</a></li>
-<li>/home/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="collisionshapemanager_8cpp_source.html">collisionshapemanager.cpp</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="collisionshapemanager_8h_source.html">collisionshapemanager.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="collisionshapemanager_8cpp_source.html">collisionshapemanager.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:14 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

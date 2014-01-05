@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -84,12 +84,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classMezzanine_1_1Matrix4x4-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Mezzanine::Matrix4x4 Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A 4x4 matrix math class for the representation of full transforms.  
+ <a href="classMezzanine_1_1Matrix4x4.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="matrix4x4_8h_source.html">matrix4x4.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -117,13 +123,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abe22ec7824d294d68ac6182ea1fed5c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combines the translation/rotation of two Matricies.  <a href="#abe22ec7824d294d68ac6182ea1fed5c9">More...</a><br/></td></tr>
 <tr class="separator:abe22ec7824d294d68ac6182ea1fed5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e4c5a55410bf4d75d1ba0a960b07461"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix4x4.html#a7e4c5a55410bf4d75d1ba0a960b07461">ExtractOgreMatrix4x4</a> (const Ogre::Matrix4 &amp;temp)</td></tr>
-<tr class="memdesc:a7e4c5a55410bf4d75d1ba0a960b07461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the data from an <a class="el" href="namespaceOgre.html">Ogre</a> <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> and applies it to this.  <a href="#a7e4c5a55410bf4d75d1ba0a960b07461">More...</a><br/></td></tr>
+<tr class="memdesc:a7e4c5a55410bf4d75d1ba0a960b07461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the data from an <a class="el" href="namespaceOgre.html">Ogre</a> <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> and applies it to this.  <a href="#a7e4c5a55410bf4d75d1ba0a960b07461">More...</a><br/></td></tr>
 <tr class="separator:a7e4c5a55410bf4d75d1ba0a960b07461"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbe25840db867b09851027688fbca25d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix4x4.html#acbe25840db867b09851027688fbca25d">GetDeterminant</a> () const </td></tr>
 <tr class="memdesc:acbe25840db867b09851027688fbca25d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Determinant of this Matrix.  <a href="#acbe25840db867b09851027688fbca25d">More...</a><br/></td></tr>
 <tr class="separator:acbe25840db867b09851027688fbca25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82c48555352de02a8e8fec1bd48f8699"><td class="memItemLeft" align="right" valign="top">Ogre::Matrix4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix4x4.html#a82c48555352de02a8e8fec1bd48f8699">GetOgreMatrix4x4</a> () const </td></tr>
-<tr class="memdesc:a82c48555352de02a8e8fec1bd48f8699"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an <a class="el" href="namespaceOgre.html">Ogre</a> copy of this <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a>.  <a href="#a82c48555352de02a8e8fec1bd48f8699">More...</a><br/></td></tr>
+<tr class="memdesc:a82c48555352de02a8e8fec1bd48f8699"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an <a class="el" href="namespaceOgre.html">Ogre</a> copy of this <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a>.  <a href="#a82c48555352de02a8e8fec1bd48f8699">More...</a><br/></td></tr>
 <tr class="separator:a82c48555352de02a8e8fec1bd48f8699"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfef465fa32bb60cda6a7f21a61c7016"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Matrix3x3.html">Matrix3x3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix4x4.html#abfef465fa32bb60cda6a7f21a61c7016">GetRotationAsMatrix3x3</a> () const </td></tr>
 <tr class="memdesc:abfef465fa32bb60cda6a7f21a61c7016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the rotation portion of this Matrix as a <a class="el" href="classMezzanine_1_1Matrix3x3.html" title="This is a 3x3 Matrix class used for representing rotations and scaling in an object.">Matrix3x3</a>.  <a href="#abfef465fa32bb60cda6a7f21a61c7016">More...</a><br/></td></tr>
@@ -176,6 +182,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae9930131974ed84a89dab482b8473d3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix4x4.html#ae9930131974ed84a89dab482b8473d3c">operator==</a> (const <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> &amp;Other) const </td></tr>
 <tr class="memdesc:ae9930131974ed84a89dab482b8473d3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality comparison operator.  <a href="#ae9930131974ed84a89dab482b8473d3c">More...</a><br/></td></tr>
 <tr class="separator:ae9930131974ed84a89dab482b8473d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17095871a60d027dace06dabaa34c667"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix4x4.html#a17095871a60d027dace06dabaa34c667">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
+<tr class="memdesc:a17095871a60d027dace06dabaa34c667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it.  <a href="#a17095871a60d027dace06dabaa34c667">More...</a><br/></td></tr>
+<tr class="separator:a17095871a60d027dace06dabaa34c667"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81f6a0876e1017af7b49ca1b11ff8768"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix4x4.html#a81f6a0876e1017af7b49ca1b11ff8768">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr class="memdesc:a81f6a0876e1017af7b49ca1b11ff8768"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#a81f6a0876e1017af7b49ca1b11ff8768">More...</a><br/></td></tr>
+<tr class="separator:a81f6a0876e1017af7b49ca1b11ff8768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98e92577c1990358b559675fd910744f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix4x4.html#a98e92577c1990358b559675fd910744f">SetIdentity</a> ()</td></tr>
 <tr class="memdesc:a98e92577c1990358b559675fd910744f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets all values in this Matrix to Identity values.  <a href="#a98e92577c1990358b559675fd910744f">More...</a><br/></td></tr>
 <tr class="separator:a98e92577c1990358b559675fd910744f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,6 +206,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a1330573388a3070bc747bad97d93d3e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Transpose of this Matrix.  <a href="#a1330573388a3070bc747bad97d93d3e9">More...</a><br/></td></tr>
 <tr class="separator:a1330573388a3070bc747bad97d93d3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a89f262d931b8fd8b758a72210fa441ec"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix4x4.html#a89f262d931b8fd8b758a72210fa441ec">GetSerializableName</a> ()</td></tr>
+<tr class="memdesc:a89f262d931b8fd8b758a72210fa441ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> tag this class will leave behind as its instances are serialized.  <a href="#a89f262d931b8fd8b758a72210fa441ec">More...</a><br/></td></tr>
+<tr class="separator:a89f262d931b8fd8b758a72210fa441ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ab2743b0013e37a3fc294500e1bbed227"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2743b0013e37a3fc294500e1bbed227"></a>
@@ -202,8 +220,10 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ab2743b0013e37a3fc294500e1bbed227"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="matrix4x4_8h_source.html#l00057">57</a> of file <a class="el" href="matrix4x4_8h_source.html">matrix4x4.h</a>.</p>
+<div class="textblock"><p>A 4x4 matrix math class for the representation of full transforms. </p>
+<p>4x4 matricies are commonly used by graphics subsystems. </p>
+
+<p>Definition at line <a class="el" href="matrix4x4_8h_source.html#l00059">59</a> of file <a class="el" href="matrix4x4_8h_source.html">matrix4x4.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a02ee16f22f14fc8632b901379606001c"></a>
 <div class="memitem">
@@ -316,7 +336,7 @@ Public Attributes</h2></td></tr>
 <p>Explict Initialization constructor. </p>
 <p>Provides initialization for every number in the matrix. </p>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00064">64</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00059">59</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -342,7 +362,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00073">73</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00063">63</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -386,7 +406,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00078">78</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00066">66</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -405,9 +425,9 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the Adjoint of this Matrix. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a new <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> that is the Adjoint of this. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a new <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> that is the Adjoint of this. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00390">390</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00379">379</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -434,7 +454,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the product of the two Matricies. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00460">460</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00449">449</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -452,15 +472,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the data from an <a class="el" href="namespaceOgre.html">Ogre</a> <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> and applies it to this. </p>
+<p>Gets the data from an <a class="el" href="namespaceOgre.html">Ogre</a> <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> and applies it to this. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">temp</td><td>The <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> to copy from. </td></tr>
+    <tr><td class="paramname">temp</td><td>The <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> to copy from. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00161">161</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00150">150</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -480,7 +500,7 @@ Public Attributes</h2></td></tr>
 <p>Gets the Determinant of this Matrix. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the Determinant of this Matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00125">125</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00114">114</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -497,10 +517,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets an <a class="el" href="namespaceOgre.html">Ogre</a> copy of this <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns an <a class="el" href="namespaceOgre.html">Ogre</a> <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> with the same values as this <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a>. </dd></dl>
+<p>Gets an <a class="el" href="namespaceOgre.html">Ogre</a> copy of this <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns an <a class="el" href="namespaceOgre.html">Ogre</a> <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> with the same values as this <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00169">169</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00158">158</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -520,7 +540,7 @@ Public Attributes</h2></td></tr>
 <p>Gets the rotation portion of this Matrix as a <a class="el" href="classMezzanine_1_1Matrix3x3.html" title="This is a 3x3 Matrix class used for representing rotations and scaling in an object.">Matrix3x3</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Matrix3x3.html" title="This is a 3x3 Matrix class used for representing rotations and scaling in an object.">Matrix3x3</a> that expresses the rotation of this Matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00144">144</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00133">133</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -540,7 +560,35 @@ Public Attributes</h2></td></tr>
 <p>Gets the rotation portion of this Matrix as a <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> that expresses the rotation of this Matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00138">138</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00127">127</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a89f262d931b8fd8b758a72210fa441ec"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::Matrix4x4::GetSerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> tag this class will leave behind as its instances are serialized. </p>
+<dl class="section return"><dt>Returns</dt><dd>A string containing "Matrix4x4". </dd></dl>
+
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00589">589</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -558,9 +606,9 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the Inverse of this Matrix. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a new <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> that is this Matrix inversed. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a new <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> that is this Matrix inversed. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00398">398</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00387">387</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -626,7 +674,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real containing the minor of the Matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00486">486</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00475">475</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -647,13 +695,13 @@ Public Attributes</h2></td></tr>
 <p>Inequality comparison operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> to compare against. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> to compare against. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns true if the two <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a>'s are not equal, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the two <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a>'s are not equal, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00193">193</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00182">182</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -674,13 +722,13 @@ Public Attributes</h2></td></tr>
 <p>Multiplication operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> to multiply this by. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> to multiply this by. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a fresh <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a fresh <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00263">263</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00252">252</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -707,7 +755,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the rotation and translation of this Matrix applied to it. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00327">327</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00316">316</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -732,9 +780,9 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a new <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> that is a copy of this <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> with each of it's members multiplied by the scaler. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a new <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> that is a copy of this <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> with each of it's members multiplied by the scaler. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00340">340</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00329">329</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -755,13 +803,13 @@ Public Attributes</h2></td></tr>
 <p>Multiplication Assignment operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> to add to this. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> to add to this. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a reference to *this. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00318">318</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00307">307</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -786,9 +834,9 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a reference to *this, being the modified <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a reference to *this, being the modified <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00349">349</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00338">338</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -809,13 +857,13 @@ Public Attributes</h2></td></tr>
 <p>Addition operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> to add to this. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> to add to this. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a fresh <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a fresh <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00209">209</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00198">198</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -836,13 +884,13 @@ Public Attributes</h2></td></tr>
 <p>Addition Assignment operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> to add to this. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> to add to this. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a reference to *this. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00268">268</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00257">257</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -863,13 +911,13 @@ Public Attributes</h2></td></tr>
 <p>Subtraction operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> to subtract from this. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> to subtract from this. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a fresh <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a fresh <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00236">236</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00225">225</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -890,13 +938,13 @@ Public Attributes</h2></td></tr>
 <p>Subtraction Assignment operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> to subtract from this. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> to subtract from this. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a reference to *this. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00293">293</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00282">282</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -917,12 +965,12 @@ Public Attributes</h2></td></tr>
 <p>Assignment operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> to copy from. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> to copy from. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00361">361</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00350">350</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -949,7 +997,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00372">372</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00361">361</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -970,13 +1018,65 @@ Public Attributes</h2></td></tr>
 <p>Equality comparison operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> to compare against. </td></tr>
+    <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> to compare against. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns true if the two <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a>'s are equal, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the two <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a>'s are equal, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00180">180</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00169">169</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a17095871a60d027dace06dabaa34c667"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Matrix4x4::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00513">513</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a81f6a0876e1017af7b49ca1b11ff8768"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Matrix4x4::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> hierarchy that all this <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00485">485</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -996,7 +1096,7 @@ Public Attributes</h2></td></tr>
 <p>Sets all values in this Matrix to Identity values. </p>
 <p>Identity values for a 4x4 matrix is all zeros except for the values at [0][0], [1][1], [2][2], [3][3], which are set to one. </p>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00106">106</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00095">95</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -1040,7 +1140,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00095">95</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00084">84</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
@@ -1058,19 +1158,19 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the Transpose of this Matrix. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>I'm not gonna lie, I have no idea what the hell the Transpose of a 4x4 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a new <a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> that is a Transposed copy of this. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>I'm not gonna lie, I have no idea what the hell the Transpose of a 4x4 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a new <a class="el" href="classMezzanine_1_1Matrix4x4.html" title="A 4x4 matrix math class for the representation of full transforms.">Matrix4x4</a> that is a Transposed copy of this. </dd></dl>
 
-<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00382">382</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
+<p>Definition at line <a class="el" href="matrix4x4_8cpp_source.html#l00371">371</a> of file <a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/<a class="el" href="matrix4x4_8h_source.html">matrix4x4.h</a></li>
-<li>/home/Code/Mezzanine/Mezzanine/src/<a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="matrix4x4_8h_source.html">matrix4x4.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="matrix4x4_8cpp_source.html">matrix4x4.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:41 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

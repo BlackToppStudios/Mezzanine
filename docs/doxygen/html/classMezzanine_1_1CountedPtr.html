@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -97,13 +97,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>A simple reference counting pointer.  
  <a href="classMezzanine_1_1CountedPtr.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="smartptr_8h_source.html">smartptr.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="countedptr_8h_source.html">countedptr.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::CountedPtr&lt; TypePointedTo &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1CountedPtr__coll__graph.svg" width="235" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1CountedPtr__coll__graph.svg" width="216" height="166"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -236,7 +236,7 @@ class Mezzanine::CountedPtr&lt; TypePointedTo &gt;</h3>
 If you intead to have covariant pointers (Multiple pointers to the same item but with different type date, like more base or more derived pointers) all classes pointed to must have virtual deconstructors </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The basis of this class originated externally, please see the counted pointer from <a href="http://ootips.org/yonat/4dev/smart-pointers.html">http://ootips.org/yonat/4dev/smart-pointers.html</a> which came with written permission for use stated as "Feel free to use my own smart pointers in your code" on that page. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00071">71</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00070">70</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab53831e2af99d19396cfab5016c640bd"></a>
 <div class="memitem">
@@ -273,7 +273,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00346">346</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00346">346</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -315,7 +315,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00361">361</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00361">361</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -359,7 +359,7 @@ template&lt;typename OtherPointer &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00368">368</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00368">368</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -405,7 +405,7 @@ template&lt;typename AnyReferenceCountType &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00311">311</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00311">311</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -441,7 +441,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00333">333</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00333">333</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -478,7 +478,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This name was chosen to match standard compliant names, and should be usable in templates that require this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00458">458</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00458">458</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -515,7 +515,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This name was chosen to match standard compliant names, and should be usable in templates that require this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00463">463</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00463">463</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -545,7 +545,7 @@ template&lt;typename TypePointedTo&gt; </div>
 <p>Get the internal Reference count. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to internal reference count of this pointer. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00494">494</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00494">494</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -575,7 +575,7 @@ template&lt;typename TypePointedTo&gt; </div>
 <p>Returns true if this pointer points to something. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Without C++11 this can be accidentally easily be cast to a bool and can do sill things. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00488">488</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00488">488</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -611,7 +611,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00445">445</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00445">445</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -647,7 +647,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00451">451</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00451">451</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -685,7 +685,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to this. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00433">433</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00433">433</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -723,7 +723,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This returns true if this and Other use the same reference count and pointer. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00483">483</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00483">483</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -752,7 +752,7 @@ template&lt;typename TypePointedTo&gt; </div>
 
 <p>Reset this to point at nothing. </p>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00383">383</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00383">383</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -788,7 +788,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00388">388</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00388">388</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -824,7 +824,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00398">398</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00398">398</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -860,7 +860,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00403">403</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00403">403</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -896,7 +896,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00413">413</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00413">413</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -933,7 +933,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This name was chosen to match standard compliant names, and should be usable in templates that require this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00470">470</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00470">470</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -970,7 +970,7 @@ template&lt;typename TypePointedTo&gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This name was chosen to match standard compliant names, and should be usable in templates that require this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00475">475</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00475">475</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -1007,7 +1007,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00425">425</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00425">425</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -1044,7 +1044,7 @@ template&lt;typename TypePointedTo&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00420">420</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00420">420</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -1089,10 +1089,10 @@ template&lt;typename ReturnType , typename OtherPointerTargetType &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/<a class="el" href="smartptr_8h_source.html">smartptr.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="countedptr_8h_source.html">countedptr.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:40 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:11 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

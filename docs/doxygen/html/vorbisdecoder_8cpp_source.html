@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/Audio/vorbisdecoder.cpp Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/vorbisdecoder.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li><li class="navelem"><a class="el" href="dir_1c8a5c654534094d884033768b4843f2.html">Audio</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li><li class="navelem"><a class="el" href="dir_71ddc9d13dd987de7c5d58d0d602157d.html">Audio</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">vorbisdecoder.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -308,72 +308,74 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                    <span class="keywordflow">return</span> ( ov_raw_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), Position ) == 0 );</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                }</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            }</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordtype">bool</span> VorbisDecoder::Seek(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Seconds, <span class="keywordtype">bool</span> Relative)</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        {</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            <span class="keywordflow">if</span>( this-&gt;IsSeekingSupported() )</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            {</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                <span class="keywordflow">if</span>( Relative ) {</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                    <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> CurrTime = ov_time_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                    <span class="keywordflow">return</span> ( ov_time_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), CurrTime + Seconds ) == 0 );</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                    <span class="keywordflow">return</span> ( ov_time_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), Seconds ) == 0 );</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> VorbisDecoder::ReadAudioData(<span class="keywordtype">void</span>* Output, <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> Amount)</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        {</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid ) {</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465" title="A datatype used to represent any integer close to.">Integer</a> Temp = 0;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465" title="A datatype used to represent any integer close to.">Integer</a> Ret = ov_read( &amp;(this-&gt;VDID-&gt;VorbisFile), (<a class="code" href="namespaceMezzanine.html#ab4f5efed51a1f6fc1799c821c3daf4b7" title="A datatype to represent one character.">Char8</a>*)Output, Amount, 0, 2, 1, &amp;Temp );</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                <span class="keywordflow">return</span> Ret;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            }</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        }</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment"></span>        <span class="comment">// Stream Stats</span></div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> VorbisDecoder::GetTotalTime()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            <span class="keywordflow">return</span> ov_time_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 );</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        }</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> VorbisDecoder::GetCurrentTime()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            <span class="keywordflow">return</span> ov_time_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        }</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> VorbisDecoder::GetTotalSize()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            <span class="keywordflow">return</span> ov_pcm_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 ) * this-&gt;VDID-&gt;VorbisInfo-&gt;channels;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        }</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> VorbisDecoder::GetCompressedSize()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            <span class="keywordflow">return</span> ov_raw_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 );</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        }</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> VorbisDecoder::GetCurrentPosition()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            <span class="keywordflow">return</span> ov_pcm_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) ) * this-&gt;VDID-&gt;VorbisInfo-&gt;channels;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        }</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> VorbisDecoder::GetCurrentCompressedPosition()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            <span class="keywordflow">return</span> ov_raw_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        }</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    }<span class="comment">//Audio</span></div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="preprocessor">#endif //ENABLE_VORBIS_ENCODE</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        }</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <span class="keywordtype">bool</span> VorbisDecoder::Seek(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Seconds, <span class="keywordtype">bool</span> Relative)</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <span class="keywordflow">if</span>( this-&gt;IsSeekingSupported() )</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            {</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                <span class="keywordflow">if</span>( Relative ) {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                    <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> CurrTime = ov_time_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                    <span class="keywordflow">return</span> ( ov_time_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), CurrTime + Seconds ) == 0 );</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                    <span class="keywordflow">return</span> ( ov_time_seek( &amp;(this-&gt;VDID-&gt;VorbisFile), Seconds ) == 0 );</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        }</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> VorbisDecoder::ReadAudioData(<span class="keywordtype">void</span>* Output, <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> Amount)</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="keywordflow">if</span>( this-&gt;Valid ) {</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465" title="A datatype used to represent any integer close to.">Integer</a> Temp = 0;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                <a class="code" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465" title="A datatype used to represent any integer close to.">Integer</a> Ret = ov_read( &amp;(this-&gt;VDID-&gt;VorbisFile), (<a class="code" href="namespaceMezzanine.html#ab4f5efed51a1f6fc1799c821c3daf4b7" title="A datatype to represent one character.">Char8</a>*)Output, Amount, 0, 2, 1, &amp;Temp );</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                <span class="keywordflow">return</span> Ret;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            }</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment"></span>        <span class="comment">// Stream Stats</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> VorbisDecoder::GetTotalTime()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            <span class="keywordflow">return</span> ov_time_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 );</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        }</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> VorbisDecoder::GetCurrentTime()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <span class="keywordflow">return</span> ov_time_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        }</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> VorbisDecoder::GetTotalSize()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            <span class="keywordflow">return</span> ov_pcm_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 ) * this-&gt;VDID-&gt;VorbisInfo-&gt;channels;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        }</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> VorbisDecoder::GetCompressedSize()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            <span class="keywordflow">return</span> ov_raw_total( &amp;(this-&gt;VDID-&gt;VorbisFile), -1 );</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        }</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> VorbisDecoder::GetCurrentPosition()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="keywordflow">return</span> ov_pcm_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) ) * this-&gt;VDID-&gt;VorbisInfo-&gt;channels;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a> VorbisDecoder::GetCurrentCompressedPosition()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <span class="keywordflow">return</span> ov_raw_tell( &amp;(this-&gt;VDID-&gt;VorbisFile) );</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        }</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    }<span class="comment">//Audio</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="preprocessor">#endif //ENABLE_VORBIS_ENCODE</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

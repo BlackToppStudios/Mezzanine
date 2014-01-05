@@ -1,5 +1,0 @@
-<map id="Mezzanine::WorldNode" name="Mezzanine::WorldNode">
-<area shape="rect" id="node2" href="$classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them." alt="" coords="5,83,213,112"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1AttachableBase.html" title="This class is the base class for other attachable classes and is responsible for transform updates to..." alt="" coords="124,5,321,35"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent." alt="" coords="237,83,435,112"/>
-</map>

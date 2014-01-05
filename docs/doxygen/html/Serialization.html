@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -106,12 +106,12 @@ Serialization and XML</h2>
  The simplest, most performant way to work around the issues that cross-hierarchical relationships presented was to ignore them. More specifically, throw an exception if an object reference during deserialization is not present. Then we ask that programmers who write could that must store, transmit and reconstruct class instances be aware of the following preconditions So can produce their own solutions:</p>
 <ul>
 <li>CollisionShapes must come before Actors and AreaEffects</li>
-<li>WorldNodes must come before Actors, <a class="el" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a> and ParticleEffects. (this is still work in progress).<ul>
+<li>WorldNodes must come before Actors, Light and ParticleEffects. (this is still work in progress).<ul>
 <li>Currently WorldNodes try to find the objects that are attached to them, and the attached tries to find the world node. (if one does not exist, this silently fails)</li>
 </ul>
 </li>
 <li>Actors must come before constraints.</li>
-<li>Actors may have a <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a> inside them, if this is the case, then the actor must come before Lights and ParticleEffects Attached to it.</li>
+<li>Actors may have a WorldNode inside them, if this is the case, then the actor must come before Lights and ParticleEffects Attached to it.</li>
 <li>Actors must be done before SoundSets</li>
 <li>Sounds must be done before SoundSet (Still in progress)</li>
 </ul>
@@ -130,7 +130,7 @@ Make a Serializable or a DeSerializable</h3>
  Integrating with the DeSerialization code is pretty easy too. There are two functions you are expected to implement to create a DeSerializable: </p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> DeSerializableClass::ProtoDeSerialize(<span class="keyword">const</span> XML::Node&amp;);</div>
 <div class="line"><span class="keyword">static</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A datatype used to a series of characters.">String</a> DeSerializableClass::SerializableName();</div>
-</div><!-- fragment --><p> The SerializableName() is expected to simply return the name of the xml elements this class will DeSerialize. For example A <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Mezzanine::Vector3</a> returns "Vector3", and a <a class="el" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a> return "ActorRigid". If a class is both DeSerializable and serializable it makes sense to call this function when assigning the name to the Serialized <a class="el" href="classMezzanine_1_1Node.html">Node</a> it creates. <br/>
+</div><!-- fragment --><p> The SerializableName() is expected to simply return the name of the xml elements this class will DeSerialize. For example A <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Mezzanine::Vector3</a> returns "Vector3", and a Mezzanine::ActorRigid return "ActorRigid". If a class is both DeSerializable and serializable it makes sense to call this function when assigning the name to the Serialized <a class="el" href="classMezzanine_1_1Node.html">Node</a> it creates. <br/>
  <br/>
  ProtoDeSerialize(const XML::Node&amp;), accepts a <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>. The <a class="el" href="classMezzanine_1_1Node.html">Node</a> passed to it would correspond to the Serialized <a class="el" href="classMezzanine_1_1Node.html">Node</a> created by the ProtoSerialize(XML::Node&amp;) function listed above. If xml is created by something then this is calling code is expecting this function to be the correct deserialization function. It is advisable but not required to verify the name of the xml node matches what is expected and that the 'Version' is something this code can handle. It is also advisable that every piece of data pulled out is verified the best it can be. If exceptions are thrown for every discrepency, then programmers using this will create xml and code that produce no discrepencies. <br/>
  <br/>
@@ -181,18 +181,18 @@ Integrating with External XML Providers</h3>
 Serialization Operators</h2>
 <p>The stream insertion (&lt;&lt;) and stream extraction (&gt;&gt;) operators can be used for serializing and deserializing most items in the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace.">Mezzanine</a> engine.</p>
 <p>Unfortunately due to conflict with the stream insertion operators provided with the iostreams library these couldn't be made into a template. That doesn't mean that they are difficult to implement. Here is a typical implemenation of stream insertion operators for <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace.">XML</a> serialization: </p>
-<div class="fragment"><div class="line">std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; ActorToSerialize)</div>
+<div class="fragment"><div class="line">std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> Mezzanine::ActorRigid&amp; ActorToSerialize)</div>
 <div class="line">{</div>
 <div class="line">    <a class="code" href="namespaceMezzanine.html#a9015c5e668e14b857a27888c56934148" title="Convert any class that supports serialization or has a serializer to a string of chars in a stream...">Serialize</a>(stream, ActorToSerialize);</div>
 <div class="line">    <span class="keywordflow">return</span> stream;</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line">std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; x)</div>
+<div class="line">std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, Mezzanine::ActorRigid&amp; x)</div>
 <div class="line">    { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.html#ad8989ea81ccd1ad6d59a11921f0239a4" title="Deserialize the next xml tag in the stream into a specific in memory class instance.">DeSerialize</a>(stream, x); }</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; x)</div>
-<div class="line">    { x.<a class="code" href="classMezzanine_1_1ActorRigid.html#abec93275a1d839ade34a142b090aea31" title="Take the data stored in an XML and overwrite this instance of this object with it.">ProtoDeSerialize</a>(OneNode); }</div>
-</div><!-- fragment --><p> You will want to implement these functions with the appropriate type. The type <a class="el" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a> is used purely as example Though this is actual working code and was in the engine at one point, the current code is more sophiscticated <br/>
+<div class="line"><span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, Mezzanine::ActorRigid&amp; x)</div>
+<div class="line">    { x.ProtoDeSerialize(OneNode); }</div>
+</div><!-- fragment --><p> You will want to implement these functions with the appropriate type. The type Mezzanine::ActorRigid is used purely as example Though this is actual working code and was in the engine at one point, the current code is more sophiscticated <br/>
  <br/>
  The function operator&lt;&lt; simply calls Serialize and returns the stream, so it has all the pre and cost conditions of the Serialize function listed in the <a class="el" href="Serialization.html#serializationmaking">Make a Serializable or a DeSerializable</a> section. <br/>
  <br/>
@@ -205,6 +205,6 @@ Other little Things</h2>
 </div><!-- fragment --><p> Both of these functions throw a <a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a> with the descriptive text of "Could not {FailedTo} during {ClassName} [De]Serialization." If SOrD (Serialize Or Deserialize) is true the "De" is not printed. </p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:39 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:11 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

@@ -1,0 +1,4 @@
+<map id="Mezzanine::UI::LayoutStrategy" name="Mezzanine::UI::LayoutStrategy">
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1HorizontalLayoutStrategy.html" title="This is a specialization of a layout strategy where a group of quads are sized and placed in a linear..." alt="" coords="5,83,171,127"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1VerticalLayoutStrategy.html" title="This is a specialization of a layout strategy where a group of quads are sized and placed in a linear..." alt="" coords="195,83,384,127"/>
+</map>

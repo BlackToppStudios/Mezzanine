@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['nel',['NEL',['../classMezzanine_1_1UI_1_1Glyph.html#a30a1c92fdc703dcadd2f0412e49d109aad9ffae123a8ac76b6575f61fd81b7469',1,'Mezzanine::UI::Glyph']]],
   ['nodecdata',['NodeCdata',['../namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aa497686cf05c2f6472bef7b46965ac32c',1,'Mezzanine::XML']]],
   ['nodecomment',['NodeComment',['../namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aad49fcbae52d40cca7aecbb34a90ba76f',1,'Mezzanine::XML']]],
   ['nodedeclaration',['NodeDeclaration',['../namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aa7074acbee9f2436f766e6cdf2190a886',1,'Mezzanine::XML']]],

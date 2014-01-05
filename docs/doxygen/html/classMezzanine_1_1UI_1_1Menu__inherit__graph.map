@@ -1,4 +1,0 @@
-<map id="Mezzanine::UI::Menu" name="Mezzanine::UI::Menu">
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets." alt="" coords="20,83,180,112"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="5,5,195,35"/>
-</map>

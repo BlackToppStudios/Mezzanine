@@ -16,5 +16,6 @@ var searchData=
   ['this_5fthread',['this_thread',['../namespaceMezzanine_1_1Threading_1_1this__thread.html',1,'Mezzanine::Threading']]],
   ['threading',['Threading',['../namespaceMezzanine_1_1Threading.html',1,'Mezzanine']]],
   ['ui',['UI',['../namespaceMezzanine_1_1UI.html',1,'Mezzanine']]],
+  ['unicode',['Unicode',['../namespaceMezzanine_1_1Unicode.html',1,'Mezzanine']]],
   ['xml',['XML',['../namespaceMezzanine_1_1XML.html',1,'Mezzanine']]]
 ];

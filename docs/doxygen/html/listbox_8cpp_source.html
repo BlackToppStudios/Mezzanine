@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/UI/listbox.cpp Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/listbox.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li><li class="navelem"><a class="el" href="dir_3ebf96fe972d575a9a92716dce298e4c.html">UI</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li><li class="navelem"><a class="el" href="dir_21a8013b59e784a746e4b784a76b76a9.html">UI</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">listbox.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -127,450 +127,447 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _uilistbox_cpp</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;UI/listbox.h&quot;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;uimanager.h&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;UI/uimanager.h&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;UI/screen.h&quot;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;UI/caption.h&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;UI/rectangle.h&quot;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;UI/scrollbar.h&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;UI/viewportupdatetool.h&quot;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;Input/inputmanager.h&quot;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#include &quot;Input/metacode.h&quot;</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#include &quot;Input/mouse.h&quot;</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#include &quot;entresol.h&quot;</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">namespace </span>UI</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a61be46079aca37b5592d046699a6e8cb">   61</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a61be46079aca37b5592d046699a6e8cb" title="Standard initialization constructor.">ListBox::ListBox</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a5998a9bf372a7e92605c0c461736e763" title="Used by the scrollbar class to determine what styling should be used for the scrollbar.">UI::ScrollbarStyle</a>&amp; ScrollStyle, <a class="code" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a>* PScreen)</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            : <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,PScreen),</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;              Selected(NULL),</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;              AutoHideScroll(true),</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;              LastScrollValue(0),</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;              MaxDisplay(3),</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;              SelectionsAdded(1)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {<span class="comment"></span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">            /// @todo Currently this class has little support for a border around the selections.</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            /// Ideally when the UI system is more complete we&#39;ll be able to seemlessly move</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            /// objects around different layers and thus have more control over z-order.  When</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            /// that happens we should add a rect to this class be be placed over the selections</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">            /// for use with a border or other kind of decoration.</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>            Type = Widget::W_ListBox;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="comment">// Set some sane template defaults</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            SelectionTemplate.BackgroundColour = <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>(1.0,1.0,1.0,1.0);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            SelectionTemplate.TextColour = <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>(0.0,0.0,0.0,1.0);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            SelectionTemplate.TextScale = 1.0;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            SelectionTemplate.CursorOffset = 0.0;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            SelectionTemplate.HorizontalAlign = UI::Txt_Middle;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            SelectionTemplate.VerticalAlign = UI::Txt_Center;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            SelectionTemplate.Priority = UI::RP_Medium;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a> ScrollRect, BoxRect;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">if</span>(Rect.Relative)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                RelPosition = Rect.Position;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                RelSize = Rect.Size;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                SelectionTemplate.Size = Rect.Size * WinDim;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                ScrollRect.Position = <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>((RelPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>) - ((Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>),RelPosition.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                ScrollRect.Size = <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>((Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * MaxDisplay);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                ScrollRect.Relative = Rect.Relative;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                RelPosition = Rect.Position / WinDim;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                RelSize = Rect.Size / WinDim;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                SelectionTemplate.Size = Rect.Size;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                ScrollRect.Position = <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>((Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>) - Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                ScrollRect.Size = <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * MaxDisplay);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                ScrollRect.Relative = Rect.Relative;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            BoxRect.Position = Rect.Position;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * MaxDisplay;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            BoxRect.Relative = Rect.Relative;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            BoxBack = ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1RenderableFactory.html#a3a5d5fd375e4abfadf07129aad978633" title="Creates a rectangle.">CreateRectangle</a>(BoxRect);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            VertScroll = ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a15abb3fb39aff9c1c019f6ba31263741" title="Creates a Scrollbar. ">CreateScrollbar</a>(Name+<span class="stringliteral">&quot;Scr&quot;</span>,ScrollRect,ScrollStyle);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad6575e6720477274153924b316e5b1d4" title="Forces this renderable to hide. ">Hide</a>();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab5eb25c91db2a9931111a1942871d042" title="Adds a renderable as a subrenderable to this widget.">AddSubRenderable</a>(0,BoxBack);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab5eb25c91db2a9931111a1942871d042" title="Adds a renderable as a subrenderable to this widget.">AddSubRenderable</a>(1,VertScroll);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a1fa312d9bc349a7a3b254afde3de81bd">  120</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a1fa312d9bc349a7a3b254afde3de81bd" title="Standard destructor.">ListBox::~ListBox</a>()</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        {</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1RenderableFactory.html#a4b096c189774ce766d4ed5483232faa3" title="Destroys a BasicRenderable.">DestroyBasicRenderable</a>(BoxBack);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <span class="keywordflow">if</span>(!Selections.empty())</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            {</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                <span class="keywordflow">for</span>( std::vector&lt;Caption*&gt;::iterator it = Selections.begin() ; it != Selections.end() ; it++ )</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                    ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1RenderableFactory.html#a4b096c189774ce766d4ed5483232faa3" title="Destroys a BasicRenderable.">DestroyBasicRenderable</a>( *it );</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                }</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                Selections.clear();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            VisibleSelections.clear();</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        }</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a352816786d0688c7522c1c5ffdadd416">  134</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a352816786d0688c7522c1c5ffdadd416" title="Checks to make sure the Scroller is the appropriate size.">ListBox::ScrollerSizeCheck</a>()</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        {</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> ScrollerSize = (<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)MaxDisplay / (<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)Selections.size();</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#ab0eb07194c16e262a5a842077eb27e3b" title="Sets the length(or height) of the scroller based on the relative size of it&#39;s background.">SetScrollerSize</a>(ScrollerSize);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        }</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ab66f2d1e50943a19f1c125237ee0af62">  140</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ab66f2d1e50943a19f1c125237ee0af62" title="Checks to see if the scrollbar should be hidden or not.">ListBox::ScrollHideCheck</a>()</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        {</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keywordflow">if</span>(!<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a543fa0c3bdee98591fcd77eb75d25258" title="Gets whether or not this renderable is being drawn. ">IsVisible</a>())</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad6575e6720477274153924b316e5b1d4" title="Forces this renderable to hide. ">Hide</a>();</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            <span class="keywordflow">if</span>(!AutoHideScroll)</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            {</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a863195baafaee7ab8a0887c660525bf6" title="Forces this renderable to be shown. ">Show</a>();</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">if</span>(Selections.size() &gt; MaxDisplay)</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a863195baafaee7ab8a0887c660525bf6" title="Forces this renderable to be shown. ">Show</a>();</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ad6575e6720477274153924b316e5b1d4" title="Forces this renderable to hide. ">Hide</a>();</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a215031e08cffa9ecdf5984a6f5905ce1">  158</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a215031e08cffa9ecdf5984a6f5905ce1" title="Checks to see if the current size of the selection needs adjusting.">ListBox::SelectionSizeCheck</a>(<a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">UI::Caption</a>* Selection)</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        {</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrSize = Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1AreaRenderable.html#a54ea7f6a2c0b4c5dd6c7ac8c917782ad" title="Gets the size of this renderable in pixels.">GetActualSize</a>();</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> TargetSize;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="keywordflow">if</span>(VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a543fa0c3bdee98591fcd77eb75d25258" title="Gets whether or not this renderable is being drawn. ">IsVisible</a>())</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                TargetSize = <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(SelectionTemplate.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acd8f1a20e80c7f4218c38fe961215469" title="Sets the pixel size of this widget.">GetActualSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,SelectionTemplate.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                TargetSize = SelectionTemplate.Size;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <span class="keywordflow">if</span>(CurrSize != TargetSize)</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            {</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                Selection-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274" title="Sets the size of this renderable in pixels. ">SetActualSize</a>(TargetSize);</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            }</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        }</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
-<div class="line"><a name="l00173"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a157f39b08affbdde167de25151319f0c">  173</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a157f39b08affbdde167de25151319f0c" title="Internal utility to set the size of this widget.">ListBox::SetArea</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Area)</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        {</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            RelSize = Area / ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            BoxBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274" title="Sets the size of this renderable in pixels. ">SetActualSize</a>(Area);</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ScrollP((<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afa615f27b3b95d4f847f5d779371209a" title="Sets the pixel position of this widget.">GetActualPosition</a>().X + Area.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>) - VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acd8f1a20e80c7f4218c38fe961215469" title="Sets the pixel size of this widget.">GetActualSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afa615f27b3b95d4f847f5d779371209a" title="Sets the pixel position of this widget.">GetActualPosition</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ScrollS(VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#acd8f1a20e80c7f4218c38fe961215469" title="Sets the pixel size of this widget.">GetActualSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,Area.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#a24034754316c9bc241e07fe4acbf6a62" title="Sets the pixel position of this widget.">SetActualPosition</a>(ScrollP);</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#ac026591a6a40d0d6e0bf4c321dc57628" title="Sets the pixel size of this widget.">SetActualSize</a>(ScrollS);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        }</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
-<div class="line"><a name="l00183"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a59322b6ee0e6aa017e9b878f677d3154">  183</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a59322b6ee0e6aa017e9b878f677d3154" title="Updates the list of Visible buttons and hides the rest.">ListBox::DrawList</a>()</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        {</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            <span class="keywordflow">if</span>(Selections.empty())</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ab66f2d1e50943a19f1c125237ee0af62" title="Checks to see if the scrollbar should be hidden or not.">ScrollHideCheck</a>();</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            VisibleSelections.clear();</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> FirstCaption = 0;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="keywordflow">if</span>(MaxDisplay &lt; Selections.size())</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            {</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> ToBeRounded = VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#a418afe88c4b88759e7c7ddd5ca7cd8ab" title="Get the currnent scroll position represented by a value between 0 and 1.">GetScrollerValue</a>() * (<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)(Selections.size() - MaxDisplay);</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                FirstCaption = (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a>)(ToBeRounded + 0.5);</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> SelectionPos = <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afa615f27b3b95d4f847f5d779371209a" title="Sets the pixel position of this widget.">GetActualPosition</a>();</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> ActualInc = SelectionTemplate.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> w = 0 ; w &lt; FirstCaption ; ++w )</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            {</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                Selections[w]-&gt;SetPosition(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab498fab9f2b18236a301faa0aed9cb0d" title="Gets the relative position of this widget.">GetPosition</a>());</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                Selections[w]-&gt;Hide();</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a215031e08cffa9ecdf5984a6f5905ce1" title="Checks to see if the current size of the selection needs adjusting.">SelectionSizeCheck</a>(Selections[w]);</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            }</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> Displayed = FirstCaption+MaxDisplay &gt; Selections.size() ? Selections.size() : FirstCaption+MaxDisplay;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> x = FirstCaption ; x &lt; Displayed ; ++x )</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            {</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                VisibleSelections.push_back(Selections[x]);</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                Selections[x]-&gt;SetVisible(this-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a543fa0c3bdee98591fcd77eb75d25258" title="Gets whether or not this renderable is being drawn. ">IsVisible</a>());</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            }</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> y = Displayed ; y &lt; Selections.size() ; ++y )</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            {</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                Selections[y]-&gt;SetPosition(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab498fab9f2b18236a301faa0aed9cb0d" title="Gets the relative position of this widget.">GetPosition</a>());</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                Selections[y]-&gt;Hide();</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a215031e08cffa9ecdf5984a6f5905ce1" title="Checks to see if the current size of the selection needs adjusting.">SelectionSizeCheck</a>(Selections[y]);</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            }</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a> z = 0 ; z &lt; VisibleSelections.size() ; ++z )</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            {</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                VisibleSelections[z]-&gt;SetActualPosition(SelectionPos);</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                SelectionPos.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>+=ActualInc;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a215031e08cffa9ecdf5984a6f5905ce1" title="Checks to see if the current size of the selection needs adjusting.">SelectionSizeCheck</a>(VisibleSelections[z]);</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            }</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        }</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
-<div class="line"><a name="l00224"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a929549e3a6a88d31cd16c9483a631379">  224</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a929549e3a6a88d31cd16c9483a631379" title="Child specific update method.">ListBox::UpdateImpl</a>(<span class="keywordtype">bool</span> Force)</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        {</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            <a class="code" href="namespaceMezzanine_1_1Input.html#a6dace303a881a50244c5130492f85b61" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">Input::ButtonState</a> State = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">Input::InputManager::GetSingletonPtr</a>()-&gt;GetSystemMouse()-&gt;GetButtonState(1);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            <span class="keywordflow">if</span>(HoveredCaption)</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            {</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                <span class="keywordflow">if</span>(<a class="code" href="namespaceMezzanine_1_1Input.html#a6dace303a881a50244c5130492f85b61a5beafdd93feb57496cfc110a0684e163">Input::BUTTON_PRESSING</a> == State)</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                {</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                    <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a81ddebed01b1503478c2fa7b75ce4b24" title="Sets the selection within this list to be &quot;selected&quot;.">SetSelected</a>(HoveredCaption);</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                }</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            }</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            <span class="keywordflow">if</span>(LastScrollValue != VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#a418afe88c4b88759e7c7ddd5ca7cd8ab" title="Get the currnent scroll position represented by a value between 0 and 1.">GetScrollerValue</a>())</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            {</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a59322b6ee0e6aa017e9b878f677d3154" title="Updates the list of Visible buttons and hides the rest.">DrawList</a>();</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                LastScrollValue = VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#a418afe88c4b88759e7c7ddd5ca7cd8ab" title="Get the currnent scroll position represented by a value between 0 and 1.">GetScrollerValue</a>();</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        }</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
-<div class="line"><a name="l00241"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ad70ab1d9652ff71ca110034d2f0e1986">  241</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ad70ab1d9652ff71ca110034d2f0e1986" title="Child specific visibility method.">ListBox::SetVisibleImpl</a>(<span class="keywordtype">bool</span> visible)</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        {</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            BoxBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a77de1d06e85d8497d3a6ddffc4b994f1" title="Sets the visibility of this renderable. ">SetVisible</a>(visible);</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a59322b6ee0e6aa017e9b878f677d3154" title="Updates the list of Visible buttons and hides the rest.">DrawList</a>();</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        }</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
-<div class="line"><a name="l00247"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#abc5d9bc871a42788cd2c64f91663513e">  247</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#abc5d9bc871a42788cd2c64f91663513e" title="Child specific mouse hover method.">ListBox::CheckMouseHoverImpl</a>()</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        {</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            <span class="keywordflow">for</span>( std::vector&lt;Caption*&gt;::iterator it = VisibleSelections.begin() ; it != VisibleSelections.end() ; it++ )</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            {</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                <span class="keywordflow">if</span>((*it)-&gt;CheckMouseHover())</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                {</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                    HoveredSubWidget = NULL;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                    HoveredCaption = (*it);</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                }</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            }</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            <span class="keywordflow">if</span>(VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a66f1b21671530de8f7696185c7080d7b" title="Checks to see if the current mouse position is over this widget.">CheckMouseHover</a>())</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            {</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                HoveredSubWidget = VertScroll;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                HoveredCaption = NULL;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            }</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(BoxBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ad4d0f9a0e2a445acea1ef0a2d1edfc09" title="Determines whether the mouse is over this renderable. ">CheckMouseHover</a>())</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            {</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                HoveredSubWidget = NULL;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                HoveredCaption = NULL;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            }</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            HoveredCaption = NULL;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        }</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
-<div class="line"><a name="l00274"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#af96485460545e5c77ae3b8640c274f0a">  274</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#af96485460545e5c77ae3b8640c274f0a" title="Sets the size to be applied to all created Selections.">ListBox::SetTemplateSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size, <span class="keywordtype">bool</span> Relative)</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        {</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            <span class="keywordflow">if</span>(Relative)</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            {</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                this-&gt;SelectionTemplate.Size = Size * WinDim;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewSize = <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * MaxDisplay);</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a157f39b08affbdde167de25151319f0c" title="Internal utility to set the size of this widget.">SetArea</a>(NewSize * WinDim);</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                this-&gt;SelectionTemplate.Size = Size;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewSize = <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * MaxDisplay);</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a157f39b08affbdde167de25151319f0c" title="Internal utility to set the size of this widget.">SetArea</a>(NewSize);</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            }</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        }</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a7aaf12f4ac3d15f059761646fc111b48">  290</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a7aaf12f4ac3d15f059761646fc111b48" title="Sets the glyph index to be applied to all created Selections.">ListBox::SetTemplateGlyphIndex</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations.">Glyph</a>)</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        {</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            this-&gt;SelectionTemplate.GlyphIndex = Glyph;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        }</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
-<div class="line"><a name="l00296"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#aa60c0565e8f114162d90de6ef646becf">  296</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#aa60c0565e8f114162d90de6ef646becf" title="Sets the text colour to be applied to all created Selections.">ListBox::SetTemplateTextColour</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; TextColour)</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        {</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            this-&gt;SelectionTemplate.TextColour = TextColour;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        }</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
-<div class="line"><a name="l00302"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a220465a3c68071ad7b168f98ac191cd3">  302</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a220465a3c68071ad7b168f98ac191cd3" title="Sets the text scale to be applied to all created Selections.">ListBox::SetTemplateTextScale</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Scale)</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        {</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;            this-&gt;SelectionTemplate.TextScale = Scale;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        }</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
-<div class="line"><a name="l00308"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a2ce73aa7cca0365ef052de34b387fb8f">  308</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a2ce73aa7cca0365ef052de34b387fb8f" title="Set the cursor offset to be applied to all created Selections.">ListBox::SetTemplateCursorOffset</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a>&amp; Offset)</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        {</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            this-&gt;SelectionTemplate.CursorOffset = Offset;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        }</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
-<div class="line"><a name="l00314"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a1a2f8bd297f505c405ae80cff0d0ce22">  314</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a1a2f8bd297f505c405ae80cff0d0ce22" title="Sets the background colour to be applied to all created Selections.">ListBox::SetTemplateBackgroundColour</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; BackgroundColour)</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        {</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            this-&gt;SelectionTemplate.BackgroundColour = BackgroundColour;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        }</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
-<div class="line"><a name="l00320"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#afcbed87ee667512e55b6bb4249582189">  320</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#afcbed87ee667512e55b6bb4249582189" title="Sets the horizontal alignment to be applied to all created Selections.">ListBox::SetTemplateHorizontalAlign</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#aebbd46e62bb20d958f1915c1ec6cc549" title="Used by UI classes to determine the placement of text within a given area.">UI::TextHorizontalAlign</a>&amp; HorAlign)</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        {</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            this-&gt;SelectionTemplate.HorizontalAlign = HorAlign;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        }</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div>
-<div class="line"><a name="l00326"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a985a72063a7aa760c2aebd562b7adfa9">  326</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a985a72063a7aa760c2aebd562b7adfa9" title="Sets the vertical alignment to be applied to all created Selections.">ListBox::SetTemplateVerticalAlign</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ab35e3845e2541698245262cc17147ae9" title="Used by UI classes to determine the placement of text within a given area.">UI::TextVerticalAlign</a>&amp; VertAlign)</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        {</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            this-&gt;SelectionTemplate.VerticalAlign = VertAlign;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        }</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
-<div class="line"><a name="l00332"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ae4b5fd90298eaf10677011ecfaf7487c">  332</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">ListBox</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ae4b5fd90298eaf10677011ecfaf7487c" title="Sets the render priority to be applied to all created Selections.">ListBox::SetTemplateRenderPriority</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a>&amp; Priority)</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        {</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            this-&gt;SelectionTemplate.Priority = Priority;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;        }</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
-<div class="line"><a name="l00338"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a65730a3d35fdddea0499d90991a31bcc">  338</a></span>&#160;        <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1TemplateParams.html">UI::TemplateParams</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a65730a3d35fdddea0499d90991a31bcc" title="Gets the struct containing all the current template parameters used when creating a new selections...">ListBox::GetTemplateInfo</a>()</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        {</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;            <span class="keywordflow">return</span> this-&gt;SelectionTemplate;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        }</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;</div>
-<div class="line"><a name="l00343"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#aa2133933ef147bb658ddb9e7102cbddd">  343</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#aa2133933ef147bb658ddb9e7102cbddd" title="Adds a selectable caption to the list to be displayed.">ListBox::AddSelection</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a> &amp;Text, <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; BackgroundSprite)</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        {</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            SelectionsAdded++;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a> SelectionRect(RelPosition,SelectionTemplate.Size / ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>(),<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* Select = ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1RenderableFactory.html#a1f5cd9fd18062cf09fd340a931a3d897" title="Creates a caption.">CreateCaption</a>(name,SelectionRect,SelectionTemplate.GlyphIndex,Text);</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            <span class="keywordflow">if</span>(!BackgroundSprite.empty())</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                Select-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a0e9e0664fd82258df48145cfe9d6000d" title="Sets the background image(if provided in the atlas) of the renderable.">SetBackgroundSprite</a>(BackgroundSprite);</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            <span class="keywordflow">if</span>(SelectionTemplate.BackgroundColour != <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>(1.0,1.0,1.0,1.0))</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;                Select-&gt;SetBackgroundColour(SelectionTemplate.BackgroundColour);</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            <span class="keywordflow">if</span>(SelectionTemplate.CursorOffset != 0)</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                Select-&gt;SetCursorOffset(SelectionTemplate.CursorOffset);</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            <span class="keywordflow">if</span>(SelectionTemplate.TextScale != 1)</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                Select-&gt;SetTextScale(SelectionTemplate.TextScale);</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            Select-&gt;SetTextColour(SelectionTemplate.TextColour);</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            Select-&gt;HorizontallyAlign(SelectionTemplate.HorizontalAlign);</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            Select-&gt;VerticallyAlign(SelectionTemplate.VerticalAlign);</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;            Select-&gt;SetRenderPriority(SelectionTemplate.Priority);</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            Select-&gt;Hide();</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            Selections.push_back(Select);</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab5eb25c91db2a9931111a1942871d042" title="Adds a renderable as a subrenderable to this widget.">AddSubRenderable</a>(SelectionsAdded,Select);</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a352816786d0688c7522c1c5ffdadd416" title="Checks to make sure the Scroller is the appropriate size.">ScrollerSizeCheck</a>();</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a59322b6ee0e6aa017e9b878f677d3154" title="Updates the list of Visible buttons and hides the rest.">DrawList</a>();</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;            <span class="keywordflow">return</span> Select;</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        }</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;</div>
-<div class="line"><a name="l00368"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a793bd0f547a9f87ea74eb4204d591506">  368</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a793bd0f547a9f87ea74eb4204d591506" title="Gets a caption by name.">ListBox::GetSelection</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a> &amp;Name)</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        {</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            <span class="keywordflow">for</span> ( std::vector&lt;Caption*&gt;::iterator it = Selections.begin() ; it != Selections.end() ; it++ )</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            {</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                <span class="keywordflow">if</span> ( Name == (*it)-&gt;GetName() )</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                {</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                    <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">UI::Caption</a>* button = (*it);</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                    <span class="keywordflow">return</span> button;</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                }</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            }</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        }</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;</div>
-<div class="line"><a name="l00381"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a3926e83fb6bbde6205f156ea5c989edf">  381</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a3926e83fb6bbde6205f156ea5c989edf" title="Destroys a selectable caption.">ListBox::DestroySelection</a>(<a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* ToBeDestroyed)</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        {</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            <span class="keywordflow">for</span> ( std::vector&lt;Caption*&gt;::iterator it = Selections.begin() ; it != Selections.end() ; it++ )</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;            {</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                <span class="keywordflow">if</span> ( ToBeDestroyed == (*it) )</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                {</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                    Selections.erase(it);</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                }</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            }</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            <span class="keywordflow">for</span> ( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            {</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                <span class="keywordflow">if</span>( (*it) == ToBeDestroyed )</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                {</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                    SubRenderables.erase(it);</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                }</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;            }</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;            ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1RenderableFactory.html#a4b096c189774ce766d4ed5483232faa3" title="Destroys a BasicRenderable.">DestroyBasicRenderable</a>(ToBeDestroyed);</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        }</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;</div>
-<div class="line"><a name="l00402"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a81ddebed01b1503478c2fa7b75ce4b24">  402</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a81ddebed01b1503478c2fa7b75ce4b24" title="Sets the selection within this list to be &quot;selected&quot;.">ListBox::SetSelected</a>(<a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* ToBeSelected)</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;        {<span class="comment"></span></div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="comment">            /// @todo Maybe add a checker to verify the caption belongs to this widget?</span></div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;<span class="comment"></span>            Selected = ToBeSelected;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        }</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div>
-<div class="line"><a name="l00408"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#aec97a9717ade30b67b6bdf56329da13a">  408</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#aec97a9717ade30b67b6bdf56329da13a" title="Sets the maximum number of selections to display at once before the scrollbar appears.">ListBox::SetMaxDisplayedSelections</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size.">Whole</a>&amp; MaxSelections)</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        {</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            MaxDisplay = MaxSelections;</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;            <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewBackSize = SelectionTemplate.Size;</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;            NewBackSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>*=MaxDisplay;</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a157f39b08affbdde167de25151319f0c" title="Internal utility to set the size of this widget.">SetArea</a>(NewBackSize);</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a352816786d0688c7522c1c5ffdadd416" title="Checks to make sure the Scroller is the appropriate size.">ScrollerSizeCheck</a>();</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        }</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div>
-<div class="line"><a name="l00417"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a2bbbd32e977bf60ca9c91fd8bff8a7bd">  417</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a2bbbd32e977bf60ca9c91fd8bff8a7bd" title="Eanbles or disables the scrollbar autohide.">ListBox::SetAutoHideScroll</a>(<span class="keywordtype">bool</span> AutoHide)</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        {</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;            AutoHideScroll = AutoHide;</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ab66f2d1e50943a19f1c125237ee0af62" title="Checks to see if the scrollbar should be hidden or not.">ScrollHideCheck</a>();</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        }</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;</div>
-<div class="line"><a name="l00423"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a7446cdc56d606fe52090e13ee8078124">  423</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a7446cdc56d606fe52090e13ee8078124" title="Sets the relative position of this List Box.">ListBox::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;        {</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            RelPosition = Position;</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ScrollOffset = VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab498fab9f2b18236a301faa0aed9cb0d" title="Gets the relative position of this widget.">GetPosition</a>() - RelPosition;</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;            BoxBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a95511f0a8505f07892434bdc363a7674" title="Sets the relative top left position of this renderable. ">SetPosition</a>(Position);</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;            VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#a7c0f281e287500a52a735ded33d71fa6" title="Sets the relative position of this widget in pixels.">SetPosition</a>(Position + ScrollOffset);</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a59322b6ee0e6aa017e9b878f677d3154" title="Updates the list of Visible buttons and hides the rest.">DrawList</a>();</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;        }</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;</div>
-<div class="line"><a name="l00432"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a0bf39153416d2010e5bf36601873c73e">  432</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a0bf39153416d2010e5bf36601873c73e" title="Sets the pixel position of this List Box.">ListBox::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;        {</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;            RelPosition = Position / ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;            <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ScrollOffset = VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afa615f27b3b95d4f847f5d779371209a" title="Sets the pixel position of this widget.">GetActualPosition</a>() - (RelPosition * ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>());</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;            BoxBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ae0fa331126efedd6517a0a7775bdbbcb" title="Sets the top left position of this renderable in pixels. ">SetActualPosition</a>(Position);</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#a24034754316c9bc241e07fe4acbf6a62" title="Sets the pixel position of this widget.">SetActualPosition</a>(Position + ScrollOffset);</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a59322b6ee0e6aa017e9b878f677d3154" title="Updates the list of Visible buttons and hides the rest.">DrawList</a>();</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        }</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;</div>
-<div class="line"><a name="l00441"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a69058a4d45eeb28da12993d17a878ce2">  441</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a69058a4d45eeb28da12993d17a878ce2" title="Sets the relative size of this List Box.">ListBox::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        {</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;            <span class="comment">// Size is set implicitly</span></div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        }</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;</div>
-<div class="line"><a name="l00446"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ad277b2268dd5439c05ce300addf31815">  446</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ad277b2268dd5439c05ce300addf31815" title="Sets the pixel size of this List Box.">ListBox::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        {</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;            <span class="comment">// Size is set implicitly</span></div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        }</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;</div>
-<div class="line"><a name="l00451"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a7bad6cce9fa22e882cc74f62a51fabdb">  451</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a7bad6cce9fa22e882cc74f62a51fabdb" title="Updates the dimensions of this widget to match those of the new screen size.">ListBox::UpdateDimensions</a>()</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        {</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;            <span class="comment">/*const Vector2&amp; WinDim = ParentLayer-&gt;GetParent()-&gt;GetViewportDimensions();</span></div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">            SetArea(RelSize * WinDim);</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment">            SetActualPosition(RelPosition * WinDim);*/</span></div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;            WidgetResult Result = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#af735913610e633fb127b08c146e7d16d" title="Updates a widgets position as needed.">ViewportUpdateTool::UpdateWidget</a>(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;            RelPosition = Result.first / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>();</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;            RelSize = Result.second / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>();</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Scale = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a52e8cfef8e1e4054a7b281c2b42df50e" title="Gets the previous size of the viewport prior to this update.">ViewportUpdateTool::GetOldSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;            BoxBack-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a86d759d43ec0c1d429c572a782405e8c" title="Updates the dimensions of this renderable to match those of the new screen size.">UpdateDimensions</a>();</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;            VertScroll-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html#ad9e54e999910371173280b827f80f504" title="Updates the dimensions of this widget to match those of the new screen size.">UpdateDimensions</a>();</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;            SelectionTemplate.Size*=Scale;</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a59322b6ee0e6aa017e9b878f677d3154" title="Updates the list of Visible buttons and hides the rest.">DrawList</a>();</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;            <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a7446cdc56d606fe52090e13ee8078124" title="Sets the relative position of this List Box.">SetPosition</a>(RelPosition);</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        }</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;</div>
-<div class="line"><a name="l00468"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ae2b97c85a09fd6d74f659c1dc9cd125c">  468</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ae2b97c85a09fd6d74f659c1dc9cd125c" title="Gets the currently selected caption.">ListBox::GetSelected</a>()</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;        {</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;            <span class="keywordflow">return</span> Selected;</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;        }</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;</div>
-<div class="line"><a name="l00473"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ac24fd38d4300b8788b3e42ba2a17c6f7">  473</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#ac24fd38d4300b8788b3e42ba2a17c6f7" title="Gets the background of this List Box.">ListBox::GetBoxBack</a>()</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        {</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;            <span class="keywordflow">return</span> BoxBack;</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;        }</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;</div>
-<div class="line"><a name="l00478"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a68873b3f128512572564ef11e9b48309">  478</a></span>&#160;        <a class="code" href="classMezzanine_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">UI::Scrollbar</a>* <a class="code" href="classMezzanine_1_1UI_1_1ListBox.html#a68873b3f128512572564ef11e9b48309" title="Gets the scrollbar used within this List Box.">ListBox::GetVertScroll</a>()</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;        {</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;            <span class="keywordflow">return</span> VertScroll;</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;        }</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    }<span class="comment">//UI</span></div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;UI/scrollbar.h&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;Input/inputmanager.h&quot;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;Input/metacode.h&quot;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;Input/mouse.h&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;entresol.h&quot;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">namespace </span>UI</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">/*ListBox::ListBox(ConstString&amp; name, const Rect&amp; RendRect, const UI::ScrollbarStyle&amp; ScrollStyle, Screen* PScreen) :</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">            Widget(name,PScreen),</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">            Selected(NULL),</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">            AutoHideScroll(true),</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">            LastScrollValue(0),</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">            MaxDisplay(3),</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">            SelectionsAdded(1)</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">        {</span><span class="comment"></span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">            /// @todo Currently this class has little support for a border around the selections.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">            /// Ideally when the UI system is more complete we&#39;ll be able to seemlessly move</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">            /// objects around different layers and thus have more control over z-order.  When</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">            /// that happens we should add a rect to this class be be placed over the selections</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            /// for use with a border or other kind of decoration.</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span>            Type = Widget::W_ListBox;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            // Set some sane template defaults</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            SelectionTemplate.BackgroundColour = ColourValue(1.0,1.0,1.0,1.0);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            SelectionTemplate.TextColour = ColourValue(0.0,0.0,0.0,1.0);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            SelectionTemplate.TextScale = 1.0;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            SelectionTemplate.CursorOffset = 0.0;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            SelectionTemplate.HorizontalAlign = UI::Txt_Middle;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            SelectionTemplate.VerticalAlign = UI::Txt_Center;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            SelectionTemplate.Priority = UI::RP_Medium;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            Rect ScrollRect, BoxRect;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            const Vector2&amp; WinDim = ParentScreen-&gt;GetViewportDimensions();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            if(RendRect.Relative)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                RelPosition = RendRect.Position;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                RelSize = RendRect.Size;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                SelectionTemplate.Size = RendRect.Size * WinDim;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                ScrollRect.Position = Vector2((RelPosition.X + RelSize.X) - ((RendRect.Size.Y * WinDim.Y) / WinDim.X),RelPosition.Y);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                ScrollRect.Size = Vector2((RendRect.Size.Y * WinDim.Y) / WinDim.X,RelSize.Y * MaxDisplay);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                ScrollRect.Relative = RendRect.Relative;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            }else{</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                RelPosition = RendRect.Position / WinDim;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                RelSize = RendRect.Size / WinDim;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                SelectionTemplate.Size = RendRect.Size;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                ScrollRect.Position = Vector2((RendRect.Position.X + RendRect.Size.X) - RendRect.Size.Y,RendRect.Position.Y);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                ScrollRect.Size = Vector2(RendRect.Size.Y,RendRect.Size.Y * MaxDisplay);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                ScrollRect.Relative = RendRect.Relative;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            BoxRect.Position = RendRect.Position;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            BoxRect.Size.X = RendRect.Size.X;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            BoxRect.Size.Y = RendRect.Size.Y * MaxDisplay;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            BoxRect.Relative = RendRect.Relative;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            BoxBack = ParentScreen-&gt;CreateRectangle(BoxRect);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            VertScroll = ParentScreen-&gt;CreateScrollbar(Name+&quot;Scr&quot;,ScrollRect,ScrollStyle);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            VertScroll-&gt;Hide();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            AddSubRenderable(0,BoxBack);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            AddSubRenderable(1,VertScroll);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        ListBox::~ListBox()</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            ParentScreen-&gt;DestroyBasicRenderable(BoxBack);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            if(!Selections.empty())</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                for( std::vector&lt;Caption*&gt;::iterator it = Selections.begin() ; it != Selections.end() ; it++ )</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                    ParentScreen-&gt;DestroyBasicRenderable( *it );</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                Selections.clear();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            VisibleSelections.clear();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        void ListBox::ScrollerSizeCheck()</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            Real ScrollerSize = (Real)MaxDisplay / (Real)Selections.size();</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            VertScroll-&gt;SetScrollerSize(ScrollerSize);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        void ListBox::ScrollHideCheck()</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            if(!IsVisible())</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            {</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                VertScroll-&gt;Hide();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                return;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            if(!AutoHideScroll)</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                VertScroll-&gt;Show();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                return;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            }</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            if(Selections.size() &gt; MaxDisplay)</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                VertScroll-&gt;Show();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            else</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                VertScroll-&gt;Hide();</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        }</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        void ListBox::SelectionSizeCheck(UI::Caption* Selection)</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            const Vector2&amp; WinDim = ParentScreen-&gt;GetViewportDimensions();</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            Vector2 CurrSize = Selection-&gt;GetActualSize();</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            Vector2 TargetSize;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            if(VertScroll-&gt;IsVisible())</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                TargetSize = Vector2(SelectionTemplate.Size.X - VertScroll-&gt;GetActualSize().X,SelectionTemplate.Size.Y);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            else</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                TargetSize = SelectionTemplate.Size;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            if(CurrSize != TargetSize)</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            {</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                Selection-&gt;SetActualSize(TargetSize);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        void ListBox::SetArea(const Vector2&amp; Area)</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            RelSize = Area / ParentScreen-&gt;GetViewportDimensions();</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            BoxBack-&gt;SetActualSize(Area);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            Vector2 ScrollP((GetActualPosition().X + Area.X) - VertScroll-&gt;GetActualSize().X,GetActualPosition().Y);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            Vector2 ScrollS(VertScroll-&gt;GetActualSize().X,Area.Y);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            VertScroll-&gt;SetActualPosition(ScrollP);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            VertScroll-&gt;SetActualSize(ScrollS);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        }</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        void ListBox::DrawList()</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            if(Selections.empty())</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                return;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            ScrollHideCheck();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            VisibleSelections.clear();</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            Whole FirstCaption = 0;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            if(MaxDisplay &lt; Selections.size())</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                Real ToBeRounded = VertScroll-&gt;GetScrollerValue() * (Real)(Selections.size() - MaxDisplay);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                FirstCaption = (Whole)(ToBeRounded + 0.5);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            Vector2 SelectionPos = GetActualPosition();</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            Real ActualInc = SelectionTemplate.Size.Y;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            for( Whole w = 0 ; w &lt; FirstCaption ; ++w )</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            {</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                Selections[w]-&gt;SetPosition(GetPosition());</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                Selections[w]-&gt;Hide();</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                SelectionSizeCheck(Selections[w]);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            }</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            Whole Displayed = FirstCaption+MaxDisplay &gt; Selections.size() ? Selections.size() : FirstCaption+MaxDisplay;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            for( Whole x = FirstCaption ; x &lt; Displayed ; ++x )</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                VisibleSelections.push_back(Selections[x]);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                Selections[x]-&gt;SetVisible(this-&gt;IsVisible());</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            for( Whole y = Displayed ; y &lt; Selections.size() ; ++y )</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                Selections[y]-&gt;SetPosition(GetPosition());</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                Selections[y]-&gt;Hide();</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                SelectionSizeCheck(Selections[y]);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            }</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            for( Whole z = 0 ; z &lt; VisibleSelections.size() ; ++z )</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            {</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                VisibleSelections[z]-&gt;SetActualPosition(SelectionPos);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                SelectionPos.Y+=ActualInc;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                SelectionSizeCheck(VisibleSelections[z]);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            }</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        void ListBox::UpdateImpl(bool Force)</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        {</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            Input::ButtonState State = InputManager::GetSingletonPtr()-&gt;GetSystemMouse()-&gt;GetButtonState(1);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            if(HoveredCaption)</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                if(Input::BUTTON_PRESSING == State)</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                    SetSelected(HoveredCaption);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                }</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            }</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            if(LastScrollValue != VertScroll-&gt;GetScrollerValue())</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                DrawList();</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                LastScrollValue = VertScroll-&gt;GetScrollerValue();</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            }</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        }</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        void ListBox::SetVisibleImpl(bool visible)</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        {</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            BoxBack-&gt;SetVisible(visible);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            DrawList();</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        }</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        bool ListBox::CheckMouseHoverImpl()</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            for( std::vector&lt;Caption*&gt;::iterator it = VisibleSelections.begin() ; it != VisibleSelections.end() ; it++ )</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            {</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                if((*it)-&gt;CheckMouseHover())</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                {</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                    HoveredSubWidget = NULL;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                    HoveredCaption = (*it);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                    return true;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                }</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            }</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;            if(VertScroll-&gt;CheckMouseHover())</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            {</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                HoveredSubWidget = VertScroll;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                HoveredCaption = NULL;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                return true;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            }</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            else if(BoxBack-&gt;CheckMouseHover())</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            {</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                HoveredSubWidget = NULL;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                HoveredCaption = NULL;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                return true;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            }</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            HoveredCaption = NULL;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            return false;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        }</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        ListBox&amp; ListBox::SetTemplateSize(const Vector2&amp; Size, bool Relative)</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        {</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            const Vector2&amp; WinDim = ParentScreen-&gt;GetViewportDimensions();</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            if(Relative)</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            {</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                this-&gt;SelectionTemplate.Size = Size * WinDim;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                Vector2 NewSize = Vector2(Size.X,Size.Y * MaxDisplay);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                SetArea(NewSize * WinDim);</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            }else{</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                this-&gt;SelectionTemplate.Size = Size;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                Vector2 NewSize = Vector2(Size.X,Size.Y * MaxDisplay);</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                SetArea(NewSize);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            }</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            return *this;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        }</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        ListBox&amp; ListBox::SetTemplateGlyphIndex(const Whole&amp; Glyph)</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        {</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            this-&gt;SelectionTemplate.GlyphIndex = Glyph;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            return *this;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        }</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        ListBox&amp; ListBox::SetTemplateTextColour(const ColourValue&amp; TextColour)</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        {</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            this-&gt;SelectionTemplate.TextColour = TextColour;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            return *this;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        }</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        ListBox&amp; ListBox::SetTemplateTextScale(const Real&amp; Scale)</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        {</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            this-&gt;SelectionTemplate.TextScale = Scale;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;            return *this;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        }</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        ListBox&amp; ListBox::SetTemplateCursorOffset(const Whole&amp; Offset)</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        {</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            this-&gt;SelectionTemplate.CursorOffset = Offset;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            return *this;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        }</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        ListBox&amp; ListBox::SetTemplateBackgroundColour(const ColourValue&amp; BackgroundColour)</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        {</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            this-&gt;SelectionTemplate.BackgroundColour = BackgroundColour;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            return *this;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        }</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        ListBox&amp; ListBox::SetTemplateHorizontalAlign(const UI::TextHorizontalAlign&amp; HorAlign)</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        {</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            this-&gt;SelectionTemplate.HorizontalAlign = HorAlign;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            return *this;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        }</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        ListBox&amp; ListBox::SetTemplateVerticalAlign(const UI::TextVerticalAlign&amp; VertAlign)</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        {</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            this-&gt;SelectionTemplate.VerticalAlign = VertAlign;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            return *this;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        }</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        ListBox&amp; ListBox::SetTemplateRenderPriority(const UI::RenderPriority&amp; Priority)</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        {</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            this-&gt;SelectionTemplate.Priority = Priority;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            return *this;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        }</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        const UI::TemplateParams&amp; ListBox::GetTemplateInfo()</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;        {</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            return this-&gt;SelectionTemplate;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        }</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        Caption* ListBox::AddSelection(ConstString&amp; name, ConstString &amp;Text, ConstString&amp; BackgroundSprite)</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        {</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            SelectionsAdded++;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;            Rect SelectionRect(RelPosition,SelectionTemplate.Size / ParentScreen-&gt;GetViewportDimensions(),true);</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            Caption* Select = ParentScreen-&gt;CreateCaption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text);</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            if(!BackgroundSprite.empty())</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                Select-&gt;SetBackgroundSprite(BackgroundSprite);</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            if(SelectionTemplate.BackgroundColour != ColourValue(1.0,1.0,1.0,1.0))</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                Select-&gt;SetBackgroundColour(SelectionTemplate.BackgroundColour);</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;            if(SelectionTemplate.CursorOffset != 0)</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                Select-&gt;SetCursorOffset(SelectionTemplate.CursorOffset);</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;            if(SelectionTemplate.TextScale != 1)</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                Select-&gt;SetTextScale(SelectionTemplate.TextScale);</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            Select-&gt;SetTextColour(SelectionTemplate.TextColour);</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            Select-&gt;HorizontallyAlign(SelectionTemplate.HorizontalAlign);</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;            Select-&gt;VerticallyAlign(SelectionTemplate.VerticalAlign);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            Select-&gt;SetRenderPriority(SelectionTemplate.Priority);</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            Select-&gt;Hide();</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            Selections.push_back(Select);</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;            AddSubRenderable(SelectionsAdded,Select);</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            ScrollerSizeCheck();</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;            DrawList();</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            return Select;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        }</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        Caption* ListBox::GetSelection(ConstString &amp;Name)</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        {</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;            for ( std::vector&lt;Caption*&gt;::iterator it = Selections.begin() ; it != Selections.end() ; it++ )</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            {</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                if ( Name == (*it)-&gt;GetName() )</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                {</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                    UI::Caption* button = (*it);</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                    return button;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                }</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;            }</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            return 0;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        }</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        void ListBox::DestroySelection(Caption* ToBeDestroyed)</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        {</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            for ( std::vector&lt;Caption*&gt;::iterator it = Selections.begin() ; it != Selections.end() ; it++ )</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            {</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                if ( ToBeDestroyed == (*it) )</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                {</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                    Selections.erase(it);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                    break;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                }</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;            }</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;            for ( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            {</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                if( (*it) == ToBeDestroyed )</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                {</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                    SubRenderables.erase(it);</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                    break;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                }</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            }</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            ParentScreen-&gt;DestroyBasicRenderable(ToBeDestroyed);</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        }</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        void ListBox::SetSelected(Caption* ToBeSelected)</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        {<span class="comment"></span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="comment">            /// @todo Maybe add a checker to verify the caption belongs to this widget?</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;<span class="comment"></span>            Selected = ToBeSelected;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;        }</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        void ListBox::SetMaxDisplayedSelections(const Whole&amp; MaxSelections)</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        {</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            MaxDisplay = MaxSelections;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            Vector2 NewBackSize = SelectionTemplate.Size;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            NewBackSize.Y*=MaxDisplay;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            SetArea(NewBackSize);</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;            ScrollerSizeCheck();</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        }</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        void ListBox::SetAutoHideScroll(bool AutoHide)</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        {</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;            AutoHideScroll = AutoHide;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;            ScrollHideCheck();</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        }</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;        void ListBox::SetPosition(const Vector2&amp; Position)</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        {</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;            RelPosition = Position;</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;            Vector2 ScrollOffset = VertScroll-&gt;GetPosition() - RelPosition;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;            BoxBack-&gt;SetPosition(Position);</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            VertScroll-&gt;SetPosition(Position + ScrollOffset);</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            DrawList();</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;        }</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;        void ListBox::SetActualPosition(const Vector2&amp; Position)</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;        {</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            RelPosition = Position / ParentScreen-&gt;GetViewportDimensions();</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;            Vector2 ScrollOffset = VertScroll-&gt;GetActualPosition() - (RelPosition * ParentScreen-&gt;GetViewportDimensions());</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;            BoxBack-&gt;SetActualPosition(Position);</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;            VertScroll-&gt;SetActualPosition(Position + ScrollOffset);</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;            DrawList();</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;        }</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;        void ListBox::SetSize(const Vector2&amp; Size)</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        {</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;            // Size is set implicitly</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        }</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;        void ListBox::SetActualSize(const Vector2&amp; Size)</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        {</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;            // Size is set implicitly</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        }</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        void ListBox::UpdateDimensions()</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        {</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;            // ©onst Vector2&amp; WinDim = ParentLayer-&gt;GetParent()-&gt;GetViewportDimensions();</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;            //SetArea(RelSize * WinDim);</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;            //SetActualPosition(RelPosition * WinDim);</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;            RelSize = Result.second / ViewportUpdateTool::GetNewSize();</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;            Real Scale = ViewportUpdateTool::GetNewSize().Y / ViewportUpdateTool::GetOldSize().Y;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;            BoxBack-&gt;UpdateDimensions();</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;            VertScroll-&gt;UpdateDimensions();</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;            SelectionTemplate.Size*=Scale;</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;            DrawList();</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;            SetPosition(RelPosition);</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;        }</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        Caption* ListBox::GetSelected()</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        {</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;            return Selected;</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;        }</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;        Rectangle* ListBox::GetBoxBack()</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;        {</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;            return BoxBack;</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;        }</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;        UI::Scrollbar* ListBox::GetVertScroll()</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;        {</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;            return VertScroll;</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;        }//*/</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    }<span class="comment">//UI</span></div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:36 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:09 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

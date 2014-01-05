@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This is used to deduce at compile if a specific class has built-in reference counting or needs an external reference count.  
  <a href="classMezzanine_1_1ReferenceCountTraits.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="smartptr_8h_source.html">smartptr.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="countedptr_8h_source.html">countedptr.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -124,7 +124,7 @@ class Mezzanine::ReferenceCountTraits&lt; T &gt;</h3>
  <br/>
  The <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace.">Mezzanine</a> provides a Reference count class that can be used with any type at the cost of extra dereferences. Some types (Scripts) have their own internal reference count that when used will increase the locality (since the reference count is part of the managed object) and reduce dereferences to exactly one. Since the <a class="el" href="classMezzanine_1_1CountedPtr.html" title="A simple reference counting pointer.">CountedPtr</a> is the size of a native pointer if it is used with an internal reference count, the only signifigant overhead should be the counting itself. </p>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00088">88</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00087">87</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="abceef39cb083f306a4629fbee4292baf"></a>
 <div class="memitem">
@@ -141,7 +141,7 @@ template&lt;typename T&gt; </div>
 <p>Used to determine if the data a <a class="el" href="classMezzanine_1_1CountedPtr.html" title="A simple reference counting pointer.">CountedPtr</a> is managing can be cast. </p>
 <p>This uses the <a class="el" href="namespaceMezzanine.html#ad937b4d169586b963a9545c39fe66739">CountedPointerCastingState</a> to enter a value the Template MetaProgramming Machinery will understand. </p>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00222">222</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00221">221</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
@@ -180,15 +180,15 @@ template&lt;typename T&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>This will return a pointer to a valid reference counter. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>The default implemetation call new with a matching delete in CounterPtr::~CountedPtr . If no allocations are required this may simply return the passed parameter. </dd></dl>
 
-<p>Definition at line <a class="el" href="smartptr_8h_source.html#l00217">217</a> of file <a class="el" href="smartptr_8h_source.html">smartptr.h</a>.</p>
+<p>Definition at line <a class="el" href="countedptr_8h_source.html#l00216">216</a> of file <a class="el" href="countedptr_8h_source.html">countedptr.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/<a class="el" href="smartptr_8h_source.html">smartptr.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="countedptr_8h_source.html">countedptr.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:41 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

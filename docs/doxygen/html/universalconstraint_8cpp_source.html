@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/Code/Mezzanine/Mezzanine/src/Physics/universalconstraint.cpp Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/universalconstraint.cpp Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_df2e1c8414b6a086be441ff04537838a.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_2b71fc9949116feedacddb93a79d832d.html">src</a></li><li class="navelem"><a class="el" href="dir_61c0ec937c468b49b332752e9f643e74.html">Physics</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.html">src</a></li><li class="navelem"><a class="el" href="dir_f4a558a26acb75b95d8d3b9eaf634b1d.html">Physics</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">universalconstraint.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2013 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -126,52 +126,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#ifndef _physicsuniversalconstraint_cpp</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _physicsuniversalconstraint_cpp</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;universalconstraint.h&quot;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;stringtool.h&quot;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="serialization_8h.html" title="The interface for serialization.">serialization.h</a>&quot;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &lt;btBulletDynamicsCommon.h&gt;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;Physics/universalconstraint.h&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;Physics/rigidproxy.h&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;stringtool.h&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="serialization_8h.html" title="The interface for serialization.">serialization.h</a>&quot;</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">namespace </span>Physics</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {<span class="comment"></span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">        /////////////////////////////////////////</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"></span>        <span class="comment">// UniversalConstraint Constraint Functions</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        UniversalConstraint::UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, <span class="keyword">const</span> Vector3&amp; Anchor, <span class="keyword">const</span> Vector3&amp; Axis1, <span class="keyword">const</span> Vector3&amp; Axis2)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <a class="code" href="classMezzanine_1_1Physics_1_1Constraint.html#a0dd0d94feeb3d15c650aa2fcb5352110" title="Sets the Internal actor pointers.">SetBodies</a>(ActorA,ActorB);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            btVector3 temp1(Anchor.GetBulletVector3());</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            btVector3 temp2(Axis1.GetBulletVector3());</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            btVector3 temp3(Axis2.GetBulletVector3());</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a> = <span class="keyword">new</span> btUniversalConstraint(*<a class="code" href="classMezzanine_1_1Physics_1_1Constraint.html#adef4626e3c28e717058d18ff80f4c104" title="First rigid body the constraint applies to.">BodyA</a>, *<a class="code" href="classMezzanine_1_1Physics_1_1Constraint.html#a83db6ff278bb5e7d51ebec87f3ab7279" title="Second rigid body the constraint applies to(if applicable).">BodyB</a>, temp1, temp2, temp3);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <a class="code" href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html#ae3d7e21b9b64c1218d8ea6f9646b7089" title="Bullet constraint that this class encapsulates.">Generic6dof</a> = <a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a4a75fd14d1cc3f2ea624b048f1cd37c6">   67</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a4a75fd14d1cc3f2ea624b048f1cd37c6" title="Class destructor.">UniversalConstraint::~UniversalConstraint</a>()</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keyword">delete</span> <a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a> = NULL;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <a class="code" href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html#ae3d7e21b9b64c1218d8ea6f9646b7089" title="Bullet constraint that this class encapsulates.">Generic6dof</a> = NULL;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">void</span> UniversalConstraint::SetUpperLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Max, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang2Max)</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a>-&gt;setUpperLimit(Ang1Max, Ang2Max);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &lt;btBulletDynamicsCommon.h&gt;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">namespace </span>Mezzanine</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">namespace </span>Physics</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {<span class="comment"></span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">        /////////////////////////////////////////</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span>        <span class="comment">// UniversalConstraint Constraint Functions</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#ad5b90e862df574c17ce28e73cb30a7b3">   58</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#ad5b90e862df574c17ce28e73cb30a7b3" title="Class constructor.">UniversalConstraint::UniversalConstraint</a>(<a class="code" href="classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled.">RigidProxy</a>* ProxyA, <a class="code" href="classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled.">RigidProxy</a>* ProxyB, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Anchor, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Axis1, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Axis2)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1Constraint.html#ae2d226858ba60db81e3e091e5751a793" title="Sets the Internal Proxy pointers.">SetBodies</a>(ProxyA,ProxyB);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            btVector3 temp1(Anchor.<a class="code" href="classMezzanine_1_1Vector3.html#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>());</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            btVector3 temp2(Axis1.<a class="code" href="classMezzanine_1_1Vector3.html#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>());</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            btVector3 temp3(Axis2.<a class="code" href="classMezzanine_1_1Vector3.html#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>());</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a> = <span class="keyword">new</span> btUniversalConstraint(*(<a class="code" href="classMezzanine_1_1Physics_1_1Constraint.html#a65daad0041230c7b3654aa4a104dd549" title="The first Collidable this constraint applies to.">ProxA</a>-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1RigidProxy.html#a7bd8b6083923d594fcab1c48935dabb1" title="Accessor for the internal rigid body physics proxy.">_GetPhysicsObject</a>()), *(<a class="code" href="classMezzanine_1_1Physics_1_1Constraint.html#a1e9ba0e4beba1f53220cd1a329fffbb8" title="The second Collidable this constraint applies to.">ProxB</a>-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1RigidProxy.html#a7bd8b6083923d594fcab1c48935dabb1" title="Accessor for the internal rigid body physics proxy.">_GetPhysicsObject</a>()), temp1, temp2, temp3);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html#ae3d7e21b9b64c1218d8ea6f9646b7089" title="Bullet constraint that this class encapsulates.">Generic6dof</a> = this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a4a75fd14d1cc3f2ea624b048f1cd37c6">   69</a></span>&#160;        <a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a4a75fd14d1cc3f2ea624b048f1cd37c6" title="Class destructor.">UniversalConstraint::~UniversalConstraint</a>()</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keyword">delete</span> this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a> = NULL;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html#ae3d7e21b9b64c1218d8ea6f9646b7089" title="Bullet constraint that this class encapsulates.">Generic6dof</a> = NULL;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">void</span> UniversalConstraint::SetUpperLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Max, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang2Max)</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            { this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a>-&gt;setUpperLimit(Ang1Max, Ang2Max); }</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordtype">void</span> UniversalConstraint::SetLowerLimit(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang1Min, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Ang2Min)</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a>-&gt;setLowerLimit(Ang1Min, Ang2Min);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }<span class="comment">//Physics</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            { this-&gt;<a class="code" href="classMezzanine_1_1Physics_1_1UniversalConstraint.html#a7ba0df60615540063273d14aacc0d789" title="Bullet constraint that this class encapsulates.">Universal</a>-&gt;setLowerLimit(Ang1Min, Ang2Min); }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }<span class="comment">//Physics</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

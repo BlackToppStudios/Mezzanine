@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -93,8 +93,8 @@ Engine Structure</h1>
 <p>Some classes are focal points for functionality and internally unify a number of components to do what they do. These managers sometimes conceal a large amount of complexity and try to present a concise API. Managers ( <a class="el" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit.">Mezzanine::ManagerBase</a> instances ) generally have a rigid place in the structure of the running program. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?" or "how do you detect if two objects are colliding?". Managers are owned either by the <a class="el" href="classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library.">Mezzanine::Entresol</a> or a <a class="el" href="classMezzanine_1_1World.html" title="This class represents a world for objects to interact within.">Mezzanine::World</a> depending on their roles and technical limitations.</p>
 <p>The <a class="el" href="classMezzanine_1_1Threading_1_1FrameScheduler.html" title="This is central object in this algorithm, it is responsible for spawning threads and managing the ord...">Mezzanine::Threading::FrameScheduler</a> is responsible for running the work each task requires. Most managers mantain one or more of <a class="el" href="classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time.">Mezzanine::Threading::iWorkUnit</a> implementations/instances to do work each frame. The FrameScheduler performs some heuristics and manages when and where the workunits will be run. Generally these are created early in the lifetime of a game and destroyed near the end.</p>
 <p>Other classes are more similar to data, things like the <a class="el" href="classMezzanine_1_1Vector3.html">Mezzanine::Vector3</a> and the <a class="el" href="classMezzanine_1_1Quaternion.html">Mezzanine::Quaternion</a>. You can create these things whenever you like and generally have good support for integrating into a various parts of the system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more sophisticated classes for a variety of reasons. Some of these are small enough to pass around value and some are not.</p>
-<p>There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled and most commonly created, deleted and otherwised managed through managers. Many of these classes like the <a class="el" href="classMezzanine_1_1Light.html">Mezzanine::Light</a> or <a class="el" href="classMezzanine_1_1ActorRigid.html">Mezzanine::ActorRigid</a> are present inside the game simulation as well as having a presence as in the simulation visible to the user.</p>
-<p>Some classes are that really are just convient places to put functions, things like the <a class="el" href="classMezzanine_1_1ActorRigidDeSerializer.html">Mezzanine::ActorRigidDeSerializer</a> and the Mezzanine::StringTool are good examples of these logical grouping of functions.</p>
+<p>There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled and most commonly created, deleted and otherwised managed through managers. Many of these classes like the Mezzanine::Light or Mezzanine::ActorRigid are present inside the game simulation as well as having a presence as in the simulation visible to the user.</p>
+<p>Some classes are that really are just convient places to put functions, things like the Mezzanine::ActorRigidDeSerializer and the Mezzanine::StringTool are good examples of these logical grouping of functions.</p>
 <h2><a class="anchor" id="managers"></a>
 Managers</h2>
 <p>The canonical source for the list of managers is the ManagerBase::ManagerType enum.</p>
@@ -107,15 +107,15 @@ A list of Managers in the Mezzanine</h3>
 <ul>
 <li><a class="el" href="classMezzanine_1_1ActorManager.html">Mezzanine::ActorManager</a> - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton</li>
 <li>Mezzanine::AudioManager - Play, stop and otherwise work with sound and music.</li>
-<li><a class="el" href="classMezzanine_1_1CameraManager.html">Mezzanine::CameraManager</a> - Add/remove Multiple camera's from the world</li>
+<li>Mezzanine::CameraManager - Add/remove Multiple camera's from the world</li>
 <li>Mezzanine::CollisionShapeManager - Store/create/delete shapes that can be used for physics and collision detection</li>
 <li><a class="el" href="classMezzanine_1_1EventManager.html">Mezzanine::EventManager</a> - Get messages and events from the operating system (and user, but that will change)</li>
 <li>Mezzanine::GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.</li>
-<li><a class="el" href="classMezzanine_1_1MeshManager.html">Mezzanine::MeshManager</a> - Manage Meshes that can be rendered to the the screen.</li>
+<li>Mezzanine::MeshManager - Manage Meshes that can be rendered to the the screen.</li>
 <li>Mezzanine::NetworkManager - Manages the transmission and retreival of network traffic.</li>
 <li>Mezzanine::PhysicsManager - Control settings that have to do with the physics simulation.</li>
 <li><a class="el" href="classMezzanine_1_1ResourceManager.html">Mezzanine::ResourceManager</a> - Loads Files and locate them in an efficient way.</li>
-<li><a class="el" href="classMezzanine_1_1SceneManager.html">Mezzanine::SceneManager</a> - Control Lighting, skyboxes, particle effects etc...</li>
+<li>Mezzanine::SceneManager - Control Lighting, skyboxes, particle effects etc...</li>
 <li>Mezzanine::TimerManager - Create and delete a variety of timers.</li>
 <li><a class="el" href="classMezzanine_1_1TerrainManager.html">Mezzanine::TerrainManager</a> - Work with terrain components like height maps.</li>
 <li>Mezzanine::UIManager - Create and manage buttons, scrollbars and other widgets.</li>
@@ -139,7 +139,6 @@ Compound Data Type</h2>
 <p><a class="el" href="classMezzanine_1_1Transform.html">Mezzanine::Transform</a></p>
 <p><a class="el" href="classMezzanine_1_1Vector2.html">Mezzanine::Vector2</a></p>
 <p><a class="el" href="classMezzanine_1_1Vector3.html">Mezzanine::Vector3</a></p>
-<p><a class="el" href="classMezzanine_1_1Vector3WActor.html">Mezzanine::Vector3WActor</a></p>
 <h2><a class="anchor" id="SimpleDataTypes"></a>
 Simple Data Types</h2>
 <p>Mezzanine::Character</p>
@@ -148,10 +147,10 @@ Simple Data Types</h2>
 <p><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">Mezzanine::String</a></p>
 <p><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Mezzanine::Whole</a></p>
 <dl class="section user"><dt>There are also a variety of enumerations. Aspect Ratio...</dt><dd></dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Fill out the Simple Data Types with all the enumerations.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>Fill out the Simple Data Types with all the enumerations.</dd></dl>
 <h1><a class="anchor" id="Sophisticated"></a>
 Sophisticated Systems</h1>
-<p><a class="el" href="classMezzanine_1_1ActorBase.html">Actors - Items in the world</a></p>
+<p>Actors - Items in the world</p>
 <p><a class="el" href="classMezzanine_1_1EventBase.html">Mezzanine::EventBase</a></p>
 <p>Mezzanine::GraphicsManager</p>
 <p><a class="el" href="XMLManual.html">Mezzanine::xml Manual</a></p>
@@ -164,6 +163,6 @@ Licensing Information</h1>
 <p><a class="el" href="OriginalpugixmlLicense.html">XML MIT License</a> </p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>

@@ -19,7 +19,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber">September&nbsp;24,&nbsp;2013</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"/></a>MezzanineEngine&#160;<span id="projectnumber"></span></div>
   </td>
  </tr>
  </tbody>
@@ -100,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1WorldManager__inherit__graph.svg" width="100%" height="594"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1WorldManager__inherit__graph.svg" width="651" height="456"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -108,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1WorldManager__coll__graph.svg" width="519" height="427"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1WorldManager__coll__graph.svg" width="471" height="416"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -193,31 +193,34 @@ Additional Inherited Members</h2></td></tr>
 &#160;&#160;<b>MT_AudioManager</b> = 1, 
 <b>MT_AnimationManager</b>, 
 <b>MT_CollisionShapeManager</b>, 
-<b>MT_GraphicsManager</b>, 
+<b>MT_CompositorManager</b>, 
 <br/>
-&#160;&#160;<b>MT_EventManager</b>, 
+&#160;&#160;<b>MT_GraphicsManager</b>, 
+<b>MT_EventManager</b>, 
 <b>MT_InputManager</b>, 
 <b>MT_LogManager</b>, 
-<b>MT_MaterialManager</b>, 
 <br/>
-&#160;&#160;<b>MT_MeshManager</b>, 
+&#160;&#160;<b>MT_MaterialManager</b>, 
+<b>MT_MeshManager</b>, 
 <b>MT_NetworkManager</b>, 
 <b>MT_ResourceManager</b>, 
-<b>MT_ScriptingManager</b>, 
 <br/>
-&#160;&#160;<b>MT_UIManager</b>, 
+&#160;&#160;<b>MT_ScriptingManager</b>, 
+<b>MT_UIManager</b>, 
 <b>MT_ActorManager</b> = 100, 
 <b>MT_AreaEffectManager</b>, 
-<b>MT_CameraManager</b>, 
 <br/>
-&#160;&#160;<b>MT_PagingManager</b>, 
+&#160;&#160;<b>MT_CameraManager</b>, 
+<b>MT_DebrisManager</b>, 
+<b>MT_PagingManager</b>, 
 <b>MT_PhysicsManager</b>, 
-<b>MT_SceneManager</b>, 
-<b>MT_SoundScapeManager</b>, 
 <br/>
-&#160;&#160;<b>MT_TerrainManager</b>, 
+&#160;&#160;<b>MT_SceneManager</b>, 
+<b>MT_SoundScapeManager</b>, 
+<b>MT_TerrainManager</b>, 
 <b>MT_VehicleManager</b>, 
-<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
+<br/>
+&#160;&#160;<a class="el" href="classMezzanine_1_1ManagerBase.html#a9a6f3e238f66cbc68dfec11e4160aa6caf1bafaadc056164a0e4c183917edd06e">MT_UserCreated</a> = 512
 <br/>
  }</td></tr>
 <tr class="separator:a9a6f3e238f66cbc68dfec11e4160aa6c inherit pub_types_classMezzanine_1_1ManagerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -329,7 +332,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a864e3cac11928a602c1db28fa2d52ee2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ae14da3bda7269e4c86190f9f3ca5e9a6">Mezzanine::Physics::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1SceneManager.html#a8a3b5cb55a06669d0fe64510c1b1a854">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1Audio_1_1SoundScapeManager.html#a567b70d0af3b1b5affbd65b3ad788adc">Mezzanine::Audio::SoundScapeManager</a>, <a class="el" href="classMezzanine_1_1AreaEffectManager.html#a3f92d91e7ca182cec5ab717105caf1ed">Mezzanine::AreaEffectManager</a>, <a class="el" href="classMezzanine_1_1ActorManager.html#a3b5b383066473d09243d13ad702c4868">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.html#a4b7f0d25f77306bca4b5c885e35363cc">Mezzanine::CameraManager</a>, and <a class="el" href="classMezzanine_1_1TerrainManager.html#abe9550c9c6565bbd0610dcaa20eedc0c">Mezzanine::TerrainManager</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ae14da3bda7269e4c86190f9f3ca5e9a6">Mezzanine::Physics::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1Graphics_1_1SceneManager.html#a0dd03ca451d9ed45177a0f13660df781">Mezzanine::Graphics::SceneManager</a>, <a class="el" href="classMezzanine_1_1Audio_1_1SoundScapeManager.html#a567b70d0af3b1b5affbd65b3ad788adc">Mezzanine::Audio::SoundScapeManager</a>, <a class="el" href="classMezzanine_1_1AreaEffectManager.html#a3f92d91e7ca182cec5ab717105caf1ed">Mezzanine::AreaEffectManager</a>, <a class="el" href="classMezzanine_1_1DebrisManager.html#aaf7002d4ebcc23eb7fbb78e60ebea4f1">Mezzanine::DebrisManager</a>, <a class="el" href="classMezzanine_1_1ActorManager.html#a3b5b383066473d09243d13ad702c4868">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1Graphics_1_1CameraManager.html#a7c435f34b711516018f7979dd5f16a50">Mezzanine::Graphics::CameraManager</a>, and <a class="el" href="classMezzanine_1_1TerrainManager.html#abe9550c9c6565bbd0610dcaa20eedc0c">Mezzanine::TerrainManager</a>.</p>
 
 <p>Definition at line <a class="el" href="worldmanager_8cpp_source.html#l00070">70</a> of file <a class="el" href="worldmanager_8cpp_source.html">worldmanager.cpp</a>.</p>
 
@@ -393,7 +396,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ac604afded57760a99e43f5269a95674b">Mezzanine::Physics::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1SceneManager.html#a050e1021418283893e3dd7aed6caae3f">Mezzanine::SceneManager</a>, <a class="el" href="classMezzanine_1_1Audio_1_1SoundScapeManager.html#a0423f3975392feaa7ca09b5bfed479a1">Mezzanine::Audio::SoundScapeManager</a>, <a class="el" href="classMezzanine_1_1ActorManager.html#a64828a88938ee9d8e88da43e4aea0c1f">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1AreaEffectManager.html#a972850ed5ddd786ce975705c31287256">Mezzanine::AreaEffectManager</a>, <a class="el" href="classMezzanine_1_1CameraManager.html#a25c157c8279e670dc1d2947577c22c0a">Mezzanine::CameraManager</a>, and <a class="el" href="classMezzanine_1_1TerrainManager.html#ab957beb89750370e2c851359a6d0ef0d">Mezzanine::TerrainManager</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html#ac604afded57760a99e43f5269a95674b">Mezzanine::Physics::PhysicsManager</a>, <a class="el" href="classMezzanine_1_1Graphics_1_1SceneManager.html#aa619fd23ce4dda162aaf78a2ebe72b4e">Mezzanine::Graphics::SceneManager</a>, <a class="el" href="classMezzanine_1_1Audio_1_1SoundScapeManager.html#a0423f3975392feaa7ca09b5bfed479a1">Mezzanine::Audio::SoundScapeManager</a>, <a class="el" href="classMezzanine_1_1AreaEffectManager.html#a972850ed5ddd786ce975705c31287256">Mezzanine::AreaEffectManager</a>, <a class="el" href="classMezzanine_1_1DebrisManager.html#a858e8f8cc963fec049c98ded8f8ca6ec">Mezzanine::DebrisManager</a>, <a class="el" href="classMezzanine_1_1ActorManager.html#a64828a88938ee9d8e88da43e4aea0c1f">Mezzanine::ActorManager</a>, <a class="el" href="classMezzanine_1_1Graphics_1_1CameraManager.html#ada975637eef7ccb01ca9864ae657b301">Mezzanine::Graphics::CameraManager</a>, and <a class="el" href="classMezzanine_1_1TerrainManager.html#ab957beb89750370e2c851359a6d0ef0d">Mezzanine::TerrainManager</a>.</p>
 
 </div>
 </div>
@@ -447,11 +450,11 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/Code/Mezzanine/Mezzanine/src/<a class="el" href="worldmanager_8h_source.html">worldmanager.h</a></li>
-<li>/home/Code/Mezzanine/Mezzanine/src/<a class="el" href="worldmanager_8cpp_source.html">worldmanager.cpp</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="worldmanager_8h_source.html">worldmanager.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="worldmanager_8cpp_source.html">worldmanager.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 24 2013 00:55:42 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
+Generated on Sun Jan 5 2014 15:07:13 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1</small></address>
 </body>
 </html>
