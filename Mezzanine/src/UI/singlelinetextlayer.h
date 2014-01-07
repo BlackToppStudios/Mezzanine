@@ -65,6 +65,7 @@ namespace Mezzanine
             /// @copydoc TextLayer::GetOffsetAtIndex(const Integer Index)
             virtual CharOffsetPair GetOffsetAtIndexImpl(const Integer Index);
             /// @brief Gets a pointer to the only textline in this layer.
+            /// @return Returns a pointer to the one and only textline in this layer.
             virtual TextLine* GetLine() const;
         public:
             /// @brief No-Font constructor.
