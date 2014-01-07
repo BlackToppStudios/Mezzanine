@@ -82,6 +82,7 @@ namespace Mezzanine
             /// @internal
             /// @brief The unique name of this Renderable.
             String Name;
+
             /// @internal
             /// @brief Implementation method for serializing additional sets of data.
             /// @param SelfRoot The root node containing all the serialized data for this instance.

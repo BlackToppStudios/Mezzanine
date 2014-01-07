@@ -145,7 +145,7 @@ namespace Mezzanine
             /// @brief Gets the internal shape pointer this collision shape is based on.
             /// @return Returns a pointer to the internal collision shape.
             virtual btCollisionShape* _GetInternalShape() const;
-        };// ©ollisionShape
+        };//CollisionShape
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Functions
