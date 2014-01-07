@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1Playlist.html" target="_top" xlink:title="This class is a list of sounds with common playlist features.">
+<a xlink:href="classMezzanine_1_1Audio_1_1Playlist.html" target="_top" xlink:title="This class is a list of sounds with common playlist features. ">
 <polygon fill="white" stroke="black" points="0.5,-71 0.5,-91 127.5,-91 127.5,-71 0.5,-71"/>
 <text text-anchor="middle" x="64" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Playlist</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="0,-131 0,-151 128,-151 128,-131 0,-131"/>
 <text text-anchor="middle" x="64" y="-138" font-family="FreeSans" font-size="10.00">std::list&lt; Audio::iSound * &gt;</text>
 </a>
@@ -52,7 +52,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1iSound.html" target="_top" xlink:title="This is an interface class for a non&#45;spacialized sound.">
+<a xlink:href="classMezzanine_1_1Audio_1_1iSound.html" target="_top" xlink:title="This is an interface class for a non&#45;spacialized sound. ">
 <polygon fill="white" stroke="black" points="145,-71 145,-91 271,-91 271,-71 145,-71"/>
 <text text-anchor="middle" x="208" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iSound</text>
 </a>

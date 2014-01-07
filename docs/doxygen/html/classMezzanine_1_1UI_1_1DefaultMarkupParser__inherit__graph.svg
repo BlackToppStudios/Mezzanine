@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1MarkupParser.html" target="_top" xlink:title="This is a base class for the parsing of markup texts contained in text layers.">
+<a xlink:href="classMezzanine_1_1UI_1_1MarkupParser.html" target="_top" xlink:title="This is a base class for the parsing of markup texts contained in text layers. ">
 <polygon fill="white" stroke="black" points="1.5,-71 1.5,-91 142.5,-91 142.5,-71 1.5,-71"/>
 <text text-anchor="middle" x="72" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MarkupParser</text>
 </a>

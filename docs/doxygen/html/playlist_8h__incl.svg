@@ -6,6 +6,20 @@
 <!-- Title: /home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/playlist.h Pages: 1 -->
 <!--zoomable 274 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -61,7 +75,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream.">
+<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream. ">
 <polygon fill="white" stroke="black" points="587,-175 587,-195 703,-195 703,-175 587,-175"/>
 <text text-anchor="middle" x="645" y="-182" font-family="FreeSans" font-size="10.00">Resource/datastream.h</text>
 </a>
@@ -235,7 +249,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1059.5,-1 1059.5,-21 1102.5,-21 1102.5,-1 1059.5,-1"/>
 <text text-anchor="middle" x="1081" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -252,7 +266,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node21 -->
 <g id="node42" class="node"><title>Node21</title>
-<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe.">
+<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe. ">
 <polygon fill="white" stroke="black" points="618,-117 618,-137 688,-137 688,-117 618,-117"/>
 <text text-anchor="middle" x="653" y="-124" font-family="FreeSans" font-size="10.00">countedptr.h</text>
 </a>

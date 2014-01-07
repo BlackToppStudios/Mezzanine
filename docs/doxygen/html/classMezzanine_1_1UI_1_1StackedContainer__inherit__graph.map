@@ -1,8 +1,9 @@
 <map id="Mezzanine::UI::StackedContainer" name="Mezzanine::UI::StackedContainer">
-<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1MenuEntry.html" title="This class is an entry for a single window/widget in a menu." alt="" coords="235,315,403,343"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets." alt="" coords="245,161,392,189"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout." alt="" coords="5,83,208,111"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="20,6,193,34"/>
-<area shape="rect" id="node8" href="$classMezzanine_1_1EventPublisher.html" title="This is the base class for any class that generates and publishes events to subscribers." alt="" coords="232,83,405,111"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1EventSubscriber.html" title="This is a base class for all classes that subscribe to events." alt="" coords="429,83,611,111"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1MenuEntry.html" title="This class is an entry for a single window/widget in a menu. " alt="" coords="144,315,312,343"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1TabSet.html" title="This is a widget that stores sets of renderables but only displays one at a time. ..." alt="" coords="336,315,485,343"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. " alt="" coords="245,161,392,189"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. " alt="" coords="5,83,208,111"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy. " alt="" coords="20,6,193,34"/>
+<area shape="rect" id="node8" href="$classMezzanine_1_1EventPublisher.html" title="This is the base class for any class that generates and publishes events to subscribers. " alt="" coords="232,83,405,111"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1EventSubscriber.html" title="This is a base class for all classes that subscribe to events. " alt="" coords="429,83,611,111"/>
 </map>

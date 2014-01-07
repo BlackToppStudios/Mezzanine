@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 127,-24 127,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1iEffect.html" target="_top" xlink:title="This is an interface class for an effect that can be applied to a sound.">
+<a xlink:href="classMezzanine_1_1Audio_1_1iEffect.html" target="_top" xlink:title="This is an interface class for an effect that can be applied to a sound. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 122,-20 122,-0 0,-0"/>
 <text text-anchor="middle" x="61" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iEffect</text>
 </a>

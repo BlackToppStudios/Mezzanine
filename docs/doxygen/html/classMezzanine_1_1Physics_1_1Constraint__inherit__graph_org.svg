@@ -69,7 +69,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html" target="_top" xlink:title="Create simple but specific limits on any axis of movement or rotation.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html" target="_top" xlink:title="Create simple but specific limits on any axis of movement or rotation. ">
 <polygon fill="white" stroke="black" points="300.5,-150 300.5,-182 419.5,-182 419.5,-150 300.5,-150"/>
 <text text-anchor="start" x="308.5" y="-169" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="360" y="-157" font-family="FreeSans" font-size="10.00">::Generic6DofConstraint</text>

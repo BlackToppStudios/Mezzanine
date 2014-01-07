@@ -1,8 +1,8 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h">
 <area shape="rect" id="node3" href="$binarybuffer_8h_source.html" title="binarybuffer.h" alt="" coords="653,193,749,221"/>
-<area shape="rect" id="node41" href="$scriptargument_8h.html" title="This file has the interfaces for Script Arguments and the associated dependency chain." alt="" coords="736,115,853,143"/>
-<area shape="rect" id="node44" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe." alt="" coords="829,193,923,221"/>
+<area shape="rect" id="node41" href="$scriptargument_8h.html" title="This file has the interfaces for Script Arguments and the associated dependency chain. " alt="" coords="736,115,853,143"/>
+<area shape="rect" id="node44" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="829,193,923,221"/>
 <area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="749,270,835,298"/>
 <area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,347,149,375"/>
-<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1419,347,1475,375"/>
+<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1419,347,1475,375"/>
 </map>

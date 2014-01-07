@@ -1,4 +1,4 @@
 <map id="Mezzanine::DebrisUpdateWorkUnit" name="Mezzanine::DebrisUpdateWorkUnit">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="41,99,188,143"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="41,6,188,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="41,99,188,143"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="41,6,188,50"/>
 </map>

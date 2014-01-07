@@ -1,4 +1,4 @@
 <map id="Mezzanine::Actor" name="Mezzanine::Actor">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="11,99,171,127"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="5,6,176,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world. " alt="" coords="11,99,171,127"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="5,6,176,50"/>
 </map>

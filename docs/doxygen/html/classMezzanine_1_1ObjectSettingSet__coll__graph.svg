@@ -28,7 +28,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.html" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.html" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s. ">
 <polygon fill="white" stroke="black" points="113,-1 113,-33 239,-33 239,-1 113,-1"/>
 <text text-anchor="start" x="121" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="176" y="-8" font-family="FreeSans" font-size="10.00">SetContainer</text>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="16.5,-317 16.5,-337 73.5,-337 73.5,-317 16.5,-317"/>
 <text text-anchor="middle" x="45" y="-324" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -78,7 +78,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="-0.5,-377 -0.5,-409 90.5,-409 90.5,-377 -0.5,-377"/>
 <text text-anchor="start" x="7.5" y="-396" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="45" y="-384" font-family="FreeSans" font-size="10.00"> char &gt;</text>

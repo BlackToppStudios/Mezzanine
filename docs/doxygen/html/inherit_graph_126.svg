@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 169,-24 169,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1LinearInterpolator.html" target="_top" xlink:title="A simple functor for interpolating data points in a simple way.">
+<a xlink:href="classMezzanine_1_1LinearInterpolator.html" target="_top" xlink:title="A simple functor for interpolating data points in a simple way. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 164,-20 164,-0 0,-0"/>
 <text text-anchor="middle" x="82" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::LinearInterpolator&lt; T &gt;</text>
 </a>

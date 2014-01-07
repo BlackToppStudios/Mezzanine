@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::Threading::DefaultWorkUnit Pages: 1 -->
 <!--zoomable 804 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -49,7 +63,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ActorUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of actors.">
+<a xlink:href="classMezzanine_1_1ActorUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of actors. ">
 <polygon fill="white" stroke="black" points="293.5,-776 293.5,-796 454.5,-796 454.5,-776 293.5,-776"/>
 <text text-anchor="middle" x="374" y="-783" font-family="FreeSans" font-size="10.00">Mezzanine::ActorUpdateWorkUnit</text>
 </a>
@@ -61,7 +75,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1AreaEffectUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of AreaEffects.">
+<a xlink:href="classMezzanine_1_1AreaEffectUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of AreaEffects. ">
 <polygon fill="white" stroke="black" points="303,-726 303,-758 445,-758 445,-726 303,-726"/>
 <text text-anchor="start" x="311" y="-745" font-family="FreeSans" font-size="10.00">Mezzanine::AreaEffectUpdate</text>
 <text text-anchor="middle" x="374" y="-733" font-family="FreeSans" font-size="10.00">WorkUnit</text>
@@ -74,7 +88,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1iBufferUpdate2DWorkUnit.html" target="_top" xlink:title="This is the work unit for updating audio buffers as necessary for audio playback.">
+<a xlink:href="classMezzanine_1_1Audio_1_1iBufferUpdate2DWorkUnit.html" target="_top" xlink:title="This is the work unit for updating audio buffers as necessary for audio playback. ...">
 <polygon fill="white" stroke="black" points="312.5,-676 312.5,-708 435.5,-708 435.5,-676 312.5,-676"/>
 <text text-anchor="start" x="320.5" y="-695" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iBuffer</text>
 <text text-anchor="middle" x="374" y="-683" font-family="FreeSans" font-size="10.00">Update2DWorkUnit</text>
@@ -87,7 +101,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1iBufferUpdate3DWorkUnit.html" target="_top" xlink:title="This is the work unit for updating audio buffers as necessary for audio playback.">
+<a xlink:href="classMezzanine_1_1Audio_1_1iBufferUpdate3DWorkUnit.html" target="_top" xlink:title="This is the work unit for updating audio buffers as necessary for audio playback. ...">
 <polygon fill="white" stroke="black" points="312.5,-626 312.5,-658 435.5,-658 435.5,-626 312.5,-626"/>
 <text text-anchor="start" x="320.5" y="-645" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iBuffer</text>
 <text text-anchor="middle" x="374" y="-633" font-family="FreeSans" font-size="10.00">Update3DWorkUnit</text>
@@ -113,7 +127,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1DebrisUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of Debris.">
+<a xlink:href="classMezzanine_1_1DebrisUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of Debris. ">
 <polygon fill="white" stroke="black" points="292,-538 292,-558 456,-558 456,-538 292,-538"/>
 <text text-anchor="middle" x="374" y="-545" font-family="FreeSans" font-size="10.00">Mezzanine::DebrisUpdateWorkUnit</text>
 </a>
@@ -137,7 +151,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1Input_1_1DeviceUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer.">
+<a xlink:href="classMezzanine_1_1Input_1_1DeviceUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer. ">
 <polygon fill="white" stroke="black" points="313,-450 313,-482 435,-482 435,-450 313,-450"/>
 <text text-anchor="start" x="321" y="-469" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Device</text>
 <text text-anchor="middle" x="374" y="-457" font-family="FreeSans" font-size="10.00">UpdateWorkUnit</text>
@@ -150,7 +164,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1DebugDrawWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer.">
+<a xlink:href="classMezzanine_1_1Physics_1_1DebugDrawWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer. ">
 <polygon fill="white" stroke="black" points="319,-400 319,-432 429,-432 429,-400 319,-400"/>
 <text text-anchor="start" x="327" y="-419" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="374" y="-407" font-family="FreeSans" font-size="10.00">::DebugDrawWorkUnit</text>
@@ -176,7 +190,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1WorldTriggerUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers.">
+<a xlink:href="classMezzanine_1_1Physics_1_1WorldTriggerUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers. ">
 <polygon fill="white" stroke="black" points="301,-300 301,-332 447,-332 447,-300 301,-300"/>
 <text text-anchor="start" x="309" y="-319" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="374" y="-307" font-family="FreeSans" font-size="10.00">::WorldTriggerUpdateWorkUnit</text>
@@ -189,7 +203,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptWorkUnit.html" target="_top" xlink:title="The interface for a container of script that can be executed each frame.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptWorkUnit.html" target="_top" xlink:title="The interface for a container of script that can be executed each frame. ">
 <polygon fill="white" stroke="black" points="321.5,-250 321.5,-282 426.5,-282 426.5,-250 321.5,-250"/>
 <text text-anchor="start" x="329.5" y="-269" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="374" y="-257" font-family="FreeSans" font-size="10.00">::iScriptWorkUnit</text>
@@ -215,7 +229,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node17 -->
 <g id="node33" class="node"><title>Node17</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1LogAggregator.html" target="_top" xlink:title="Gather all the thread specific logs and commit them to the main log.">
+<a xlink:href="classMezzanine_1_1Threading_1_1LogAggregator.html" target="_top" xlink:title="Gather all the thread specific logs and commit them to the main log. ">
 <polygon fill="white" stroke="black" points="319,-150 319,-182 429,-182 429,-150 319,-150"/>
 <text text-anchor="start" x="327" y="-169" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="374" y="-157" font-family="FreeSans" font-size="10.00">::LogAggregator</text>
@@ -228,7 +242,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node18 -->
 <g id="node35" class="node"><title>Node18</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" target="_top" xlink:title="A kind of workunit given exclusive runtime so it can consume time on multiple threads.">
+<a xlink:href="classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" target="_top" xlink:title="A kind of workunit given exclusive runtime so it can consume time on multiple threads. ">
 <polygon fill="white" stroke="black" points="319,-100 319,-132 429,-132 429,-100 319,-100"/>
 <text text-anchor="start" x="327" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="374" y="-107" font-family="FreeSans" font-size="10.00">::MonopolyWorkUnit</text>
@@ -241,7 +255,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1WorkSorter.html" target="_top" xlink:title="Sorts all of the WorkUnits in the FrameScheduler.">
+<a xlink:href="classMezzanine_1_1Threading_1_1WorkSorter.html" target="_top" xlink:title="Sorts all of the WorkUnits in the FrameScheduler. ">
 <polygon fill="white" stroke="black" points="319,-50 319,-82 429,-82 429,-50 319,-50"/>
 <text text-anchor="start" x="327" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="374" y="-57" font-family="FreeSans" font-size="10.00">::WorkSorter</text>
@@ -254,7 +268,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node22 -->
 <g id="node43" class="node"><title>Node22</title>
-<a xlink:href="classMezzanine_1_1UI_1_1WidgetUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of widgets in the UI system.">
+<a xlink:href="classMezzanine_1_1UI_1_1WidgetUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of widgets in the UI system. ">
 <polygon fill="white" stroke="black" points="303,-0 303,-32 445,-32 445,-0 303,-0"/>
 <text text-anchor="start" x="311" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::UI::WidgetUpdate</text>
 <text text-anchor="middle" x="374" y="-7" font-family="FreeSans" font-size="10.00">WorkUnit</text>
@@ -267,7 +281,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="0,-400 0,-432 110,-432 110,-400 0,-400"/>
 <text text-anchor="start" x="8" y="-419" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="55" y="-407" font-family="FreeSans" font-size="10.00">::iWorkUnit</text>
@@ -293,7 +307,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.html" target="_top" xlink:title="This does the main loop processing for required to make the Graphics Manager function.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.html" target="_top" xlink:title="This does the main loop processing for required to make the Graphics Manager function. ">
 <polygon fill="white" stroke="black" points="518.5,-125 518.5,-157 623.5,-157 623.5,-125 518.5,-125"/>
 <text text-anchor="start" x="526.5" y="-144" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="571" y="-132" font-family="FreeSans" font-size="10.00">::RenderWorkUnit</text>

@@ -6,6 +6,20 @@
 <!-- Title: /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.cpp Pages: 1 -->
 <!--zoomable 448 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -49,7 +63,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="writer_8h.html" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy.">
+<a xlink:href="writer_8h.html" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy. ">
 <polygon fill="white" stroke="black" points="231.5,-349 231.5,-369 302.5,-369 302.5,-349 231.5,-349"/>
 <text text-anchor="middle" x="267" y="-356" font-family="FreeSans" font-size="10.00">XML/writer.h</text>
 </a>
@@ -247,7 +261,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="939.5,-1 939.5,-21 982.5,-21 982.5,-1 939.5,-1"/>
 <text text-anchor="middle" x="961" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -319,7 +333,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node27 -->
 <g id="node53" class="node"><title>Node27</title>
-<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream.">
+<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream. ">
 <polygon fill="white" stroke="black" points="640,-175 640,-195 756,-195 756,-175 640,-175"/>
 <text text-anchor="middle" x="698" y="-182" font-family="FreeSans" font-size="10.00">Resource/datastream.h</text>
 </a>
@@ -331,7 +345,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node30 -->
 <g id="node61" class="node"><title>Node30</title>
-<a xlink:href="filestream_8h.html" target="_top" xlink:title="Declaration of FileStream.">
+<a xlink:href="filestream_8h.html" target="_top" xlink:title="Declaration of FileStream. ">
 <polygon fill="white" stroke="black" points="747.5,-233 747.5,-253 856.5,-253 856.5,-233 747.5,-233"/>
 <text text-anchor="middle" x="802" y="-240" font-family="FreeSans" font-size="10.00">Resource/filestream.h</text>
 </a>
@@ -355,7 +369,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node32 -->
 <g id="node68" class="node"><title>Node32</title>
-<a xlink:href="memorystream_8h.html" target="_top" xlink:title="Declaration of MemoryStream.">
+<a xlink:href="memorystream_8h.html" target="_top" xlink:title="Declaration of MemoryStream. ">
 <polygon fill="white" stroke="black" points="561.5,-233 561.5,-253 692.5,-253 692.5,-233 561.5,-233"/>
 <text text-anchor="middle" x="627" y="-240" font-family="FreeSans" font-size="10.00">Resource/memorystream.h</text>
 </a>
@@ -384,7 +398,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node28 -->
 <g id="node56" class="node"><title>Node28</title>
-<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe.">
+<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe. ">
 <polygon fill="white" stroke="black" points="562,-117 562,-137 632,-137 632,-117 562,-117"/>
 <text text-anchor="middle" x="597" y="-124" font-family="FreeSans" font-size="10.00">countedptr.h</text>
 </a>

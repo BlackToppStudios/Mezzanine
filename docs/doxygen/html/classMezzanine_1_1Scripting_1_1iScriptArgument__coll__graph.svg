@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1IntrusiveRefCount.html" target="_top" xlink:title="A sample class that implements a minimal intrusive reference counting scheme.">
+<a xlink:href="classMezzanine_1_1IntrusiveRefCount.html" target="_top" xlink:title="A sample class that implements a minimal intrusive reference counting scheme. ">
 <polygon fill="white" stroke="black" points="-0.5,-71 -0.5,-91 142.5,-91 142.5,-71 -0.5,-71"/>
 <text text-anchor="middle" x="71" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::IntrusiveRefCount</text>
 </a>

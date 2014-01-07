@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1TrackBase.html" target="_top" xlink:title="A base type that provides container features for different tracks.">
+<a xlink:href="classMezzanine_1_1TrackBase.html" target="_top" xlink:title="A base type that provides container features for different tracks. ">
 <polygon fill="white" stroke="black" points="17.5,-141 17.5,-173 130.5,-173 130.5,-141 17.5,-141"/>
 <text text-anchor="start" x="25.5" y="-160" font-family="FreeSans" font-size="10.00">Mezzanine::TrackBase</text>
 <text text-anchor="middle" x="74" y="-148" font-family="FreeSans" font-size="10.00">&lt; InterpolatorType &gt;</text>

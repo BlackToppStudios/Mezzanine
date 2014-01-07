@@ -1,11 +1,12 @@
 <map id="Mezzanine::UI::WidgetFactory" name="Mezzanine::UI::WidgetFactory">
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1ButtonFactory.html" title="This is the factory implementation for Button widgets." alt="" coords="256,5,445,33"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1CheckBoxFactory.html" title="This is the factory implementation for CheckBox widgets." alt="" coords="245,55,456,83"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1GenericWidgetFactory.html" title="This is the factory implementation for generic widgets." alt="" coords="255,106,447,150"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1HorizontalContainerFactory.html" title="This is the factory implementation for HorizontalContainer widgets." alt="" coords="268,173,433,217"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1HorizontalScrollbarFactory.html" title="This is the factory implementation for HorizontalScrollbar widgets." alt="" coords="268,239,433,283"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1MenuButtonFactory.html" title="This is the factory implementation for MenuButton widgets." alt="" coords="261,306,440,350"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1MenuEntryFactory.html" title="This is the factory implementation for MenuEntry widgets." alt="" coords="267,373,435,417"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1VerticalContainerFactory.html" title="This is the factory implementation for VerticalContainer widgets." alt="" coords="248,439,453,483"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1UI_1_1VerticalScrollbarFactory.html" title="This is the factory implementation for VerticalScrollbar widgets." alt="" coords="249,506,452,550"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1ButtonFactory.html" title="This is the factory implementation for Button widgets. " alt="" coords="256,5,445,33"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1CheckBoxFactory.html" title="This is the factory implementation for CheckBox widgets. " alt="" coords="245,55,456,83"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1GenericWidgetFactory.html" title="This is the factory implementation for generic widgets. " alt="" coords="255,106,447,150"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1HorizontalContainerFactory.html" title="This is the factory implementation for HorizontalContainer widgets. " alt="" coords="268,173,433,217"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1HorizontalScrollbarFactory.html" title="This is the factory implementation for HorizontalScrollbar widgets. " alt="" coords="268,239,433,283"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1MenuButtonFactory.html" title="This is the factory implementation for MenuButton widgets. " alt="" coords="261,306,440,350"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1MenuEntryFactory.html" title="This is the factory implementation for MenuEntry widgets. " alt="" coords="267,373,435,417"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1RadioButtonFactory.html" title="This is the factory implementation for RadioButton widgets. " alt="" coords="261,439,440,483"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1UI_1_1VerticalContainerFactory.html" title="This is the factory implementation for VerticalContainer widgets. " alt="" coords="248,506,453,550"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1UI_1_1VerticalScrollbarFactory.html" title="This is the factory implementation for VerticalScrollbar widgets. " alt="" coords="249,573,452,617"/>
 </map>

@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1LeftToRightTextLine.html" target="_top" xlink:title="This is a TextLine specialization class for text read from the left to the right.">
+<a xlink:href="classMezzanine_1_1UI_1_1LeftToRightTextLine.html" target="_top" xlink:title="This is a TextLine specialization class for text read from the left to the right. ...">
 <polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-33 130.5,-33 130.5,-1 -0.5,-1"/>
 <text text-anchor="start" x="7.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::LeftToRight</text>
 <text text-anchor="middle" x="65" y="-8" font-family="FreeSans" font-size="10.00">TextLine</text>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1RightToLeftTextLine.html" target="_top" xlink:title="This is a TextLine specialization class for text read from the right to the left.">
+<a xlink:href="classMezzanine_1_1UI_1_1RightToLeftTextLine.html" target="_top" xlink:title="This is a TextLine specialization class for text read from the right to the left. ...">
 <polygon fill="white" stroke="black" points="147.5,-1 147.5,-33 278.5,-33 278.5,-1 147.5,-1"/>
 <text text-anchor="start" x="155.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::RightToLeft</text>
 <text text-anchor="middle" x="213" y="-8" font-family="FreeSans" font-size="10.00">TextLine</text>

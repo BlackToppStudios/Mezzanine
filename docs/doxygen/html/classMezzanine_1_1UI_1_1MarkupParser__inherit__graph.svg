@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1DefaultMarkupParser.html" target="_top" xlink:title="This class implements the default set of tags used by the UI markup system.">
+<a xlink:href="classMezzanine_1_1UI_1_1DefaultMarkupParser.html" target="_top" xlink:title="This class implements the default set of tags used by the UI markup system. ">
 <polygon fill="white" stroke="black" points="0,-1 0,-33 144,-33 144,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::DefaultMarkup</text>
 <text text-anchor="middle" x="72" y="-8" font-family="FreeSans" font-size="10.00">Parser</text>

@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::UI::ScreenRenderData Pages: 1 -->
 <!--zoomable 154 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -62,7 +76,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="structMezzanine_1_1UI_1_1VertexData.html" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
+<a xlink:href="structMezzanine_1_1UI_1_1VertexData.html" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered. ">
 <polygon fill="white" stroke="black" points="364,-45 364,-65 492,-65 492,-45 364,-45"/>
 <text text-anchor="middle" x="428" y="-52" font-family="FreeSans" font-size="10.00">Mezzanine::UI::VertexData</text>
 </a>
@@ -75,7 +89,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="structMezzanine_1_1UI_1_1Vertex.html" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
+<a xlink:href="structMezzanine_1_1UI_1_1Vertex.html" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered. ">
 <polygon fill="white" stroke="black" points="194,-69 194,-89 302,-89 302,-69 194,-69"/>
 <text text-anchor="middle" x="248" y="-76" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Vertex</text>
 </a>
@@ -88,7 +102,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen. ">
 <polygon fill="white" stroke="black" points="10,-126 10,-146 110,-146 110,-126 10,-126"/>
 <text text-anchor="middle" x="60" y="-133" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -114,7 +128,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
+<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space. ">
 <polygon fill="white" stroke="black" points="10,-50 10,-70 110,-70 110,-50 10,-50"/>
 <text text-anchor="middle" x="60" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>
@@ -127,7 +141,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="219.5,-19 219.5,-39 276.5,-39 276.5,-19 219.5,-19"/>
 <text text-anchor="middle" x="248" y="-26" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -140,7 +154,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node9 -->
 <g id="node16" class="node"><title>Node9</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="14.5,-0 14.5,-32 105.5,-32 105.5,-0 14.5,-0"/>
 <text text-anchor="start" x="22.5" y="-19" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="60" y="-7" font-family="FreeSans" font-size="10.00"> char &gt;</text>

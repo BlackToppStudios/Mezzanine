@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1WidgetEventArguments.html" target="_top" xlink:title="This is the base class for widget specific event arguments.">
+<a xlink:href="classMezzanine_1_1UI_1_1WidgetEventArguments.html" target="_top" xlink:title="This is the base class for widget specific event arguments. ">
 <polygon fill="white" stroke="black" points="61.5,-73 61.5,-105 196.5,-105 196.5,-73 61.5,-73"/>
 <text text-anchor="start" x="69.5" y="-92" font-family="FreeSans" font-size="10.00">Mezzanine::UI::WidgetEvent</text>
 <text text-anchor="middle" x="129" y="-80" font-family="FreeSans" font-size="10.00">Arguments</text>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="70.5,-225 70.5,-245 127.5,-245 127.5,-225 70.5,-225"/>
 <text text-anchor="middle" x="99" y="-232" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -67,7 +67,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="53.5,-285 53.5,-317 144.5,-317 144.5,-285 53.5,-285"/>
 <text text-anchor="start" x="61.5" y="-304" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="99" y="-292" font-family="FreeSans" font-size="10.00"> char &gt;</text>

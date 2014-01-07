@@ -40,7 +40,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1RenderLayer.html" target="_top" xlink:title="This is the base class for the types of layers that can be added to a renderable.">
+<a xlink:href="classMezzanine_1_1UI_1_1RenderLayer.html" target="_top" xlink:title="This is the base class for the types of layers that can be added to a renderable. ...">
 <polygon fill="white" stroke="black" points="173.5,-129 173.5,-149 308.5,-149 308.5,-129 173.5,-129"/>
 <text text-anchor="middle" x="241" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::UI::RenderLayer</text>
 </a>
@@ -52,7 +52,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1UI_1_1ImageLayer.html" target="_top" xlink:title="This layer is for placing images and basic colours in it&#39;s parents&#39; quad space.">
+<a xlink:href="classMezzanine_1_1UI_1_1ImageLayer.html" target="_top" xlink:title="This layer is for placing images and basic colours in it&#39;s parents&#39; quad space. ">
 <polygon fill="white" stroke="black" points="103.5,-71 103.5,-91 234.5,-91 234.5,-71 103.5,-71"/>
 <text text-anchor="middle" x="169" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ImageLayer</text>
 </a>
@@ -64,7 +64,7 @@
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1UI_1_1TextLayer.html" target="_top" xlink:title="This is a base class for render layers that render text.">
+<a xlink:href="classMezzanine_1_1UI_1_1TextLayer.html" target="_top" xlink:title="This is a base class for render layers that render text. ">
 <polygon fill="white" stroke="black" points="251.5,-71 251.5,-91 374.5,-91 374.5,-71 251.5,-71"/>
 <text text-anchor="middle" x="313" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TextLayer</text>
 </a>
@@ -76,7 +76,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1UI_1_1MultiLineTextLayer.html" target="_top" xlink:title="This is a render layer specializing in multi&#45;line text.">
+<a xlink:href="classMezzanine_1_1UI_1_1MultiLineTextLayer.html" target="_top" xlink:title="This is a render layer specializing in multi&#45;line text. ">
 <polygon fill="white" stroke="black" points="182,-1 182,-33 302,-33 302,-1 182,-1"/>
 <text text-anchor="start" x="190" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MultiLine</text>
 <text text-anchor="middle" x="242" y="-8" font-family="FreeSans" font-size="10.00">TextLayer</text>
@@ -89,7 +89,7 @@
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1UI_1_1SingleLineTextLayer.html" target="_top" xlink:title="This is a render layer specializing in single&#45;line text.">
+<a xlink:href="classMezzanine_1_1UI_1_1SingleLineTextLayer.html" target="_top" xlink:title="This is a render layer specializing in single&#45;line text. ">
 <polygon fill="white" stroke="black" points="320,-1 320,-33 446,-33 446,-1 320,-1"/>
 <text text-anchor="start" x="328" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::SingleLine</text>
 <text text-anchor="middle" x="383" y="-8" font-family="FreeSans" font-size="10.00">TextLayer</text>

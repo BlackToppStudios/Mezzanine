@@ -6,6 +6,20 @@
 <!-- Title: /home/sqeaky/Code/Mezzanine/Mezzanine/src/unicode.h Pages: 1 -->
 <!--zoomable 112 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -49,7 +63,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="unicode_8cpp.html" target="_top" xlink:title="This contains simple tools for indexing with UTF8 characters swiftly.">
+<a xlink:href="unicode_8cpp.html" target="_top" xlink:title="This contains simple tools for indexing with UTF8 characters swiftly. ">
 <polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-33 150.5,-33 150.5,-1 -0.5,-1"/>
 <text text-anchor="start" x="7.5" y="-20" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="75" y="-8" font-family="FreeSans" font-size="10.00">/Mezzanine/src/unicode.cpp</text>

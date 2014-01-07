@@ -6,6 +6,20 @@
 <!-- Title: /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/dagframescheduler.h Pages: 1 -->
 <!--zoomable 358 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -63,7 +77,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine.">
+<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine. ">
 <polygon fill="white" stroke="black" points="188.37,-71 188.37,-103 339.37,-103 339.37,-71 188.37,-71"/>
 <text text-anchor="start" x="196.37" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="263.87" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mezzanine.h</text>
@@ -90,7 +104,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="actor_8cpp.html" target="_top" xlink:title="Code used by all actors is implemented here.">
+<a xlink:href="actor_8cpp.html" target="_top" xlink:title="Code used by all actors is implemented here. ">
 <polygon fill="white" stroke="black" points="6536.37,-147 6536.37,-179 6687.37,-179 6687.37,-147 6536.37,-147"/>
 <text text-anchor="start" x="6544.37" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="6611.87" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actor.cpp</text>
@@ -290,7 +304,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="rigiddebris_8cpp.html" target="_top" xlink:title="This file contains the implementation for the debris class that does not deform.">
+<a xlink:href="rigiddebris_8cpp.html" target="_top" xlink:title="This file contains the implementation for the debris class that does not deform. ">
 <polygon fill="white" stroke="black" points="3744.37,-147 3744.37,-179 3895.37,-179 3895.37,-147 3744.37,-147"/>
 <text text-anchor="start" x="3752.37" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3819.87" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/rigiddebris.cpp</text>

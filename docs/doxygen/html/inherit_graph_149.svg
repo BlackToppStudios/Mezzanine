@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 97,-24 97,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Plane.html" target="_top" xlink:title="This is used to represent a flat infinite slice of the game world.">
+<a xlink:href="classMezzanine_1_1Plane.html" target="_top" xlink:title="This is used to represent a flat infinite slice of the game world. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 92,-20 92,-0 0,-0"/>
 <text text-anchor="middle" x="46" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::Plane</text>
 </a>

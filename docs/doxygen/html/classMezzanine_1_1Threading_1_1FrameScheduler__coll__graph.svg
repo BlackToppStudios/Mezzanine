@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::Threading::FrameScheduler Pages: 1 -->
 <!--zoomable 466 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -61,7 +75,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" target="_top" xlink:title="A thread specific collection of double&#45;buffered and algorithm specific resources.">
+<a xlink:href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" target="_top" xlink:title="A thread specific collection of double&#45;buffered and algorithm specific resources. ...">
 <polygon fill="white" stroke="black" points="672.5,-426 672.5,-458 791.5,-458 791.5,-426 672.5,-426"/>
 <text text-anchor="start" x="680.5" y="-445" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="732" y="-433" font-family="FreeSans" font-size="10.00">::ThreadSpecificStorage</text>
@@ -75,7 +89,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1SpinLock.html" target="_top" xlink:title="A mutex like construct that never makes a system call and uses CPU instructions instead.">
+<a xlink:href="classMezzanine_1_1Threading_1_1SpinLock.html" target="_top" xlink:title="A mutex like construct that never makes a system call and uses CPU instructions instead. ">
 <polygon fill="white" stroke="black" points="940,-376 940,-408 1050,-408 1050,-376 940,-376"/>
 <text text-anchor="start" x="948" y="-395" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="995" y="-383" font-family="FreeSans" font-size="10.00">::SpinLock</text>
@@ -104,7 +118,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="438,-178 438,-210 548,-210 548,-178 438,-178"/>
 <text text-anchor="start" x="446" y="-197" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="493" y="-185" font-family="FreeSans" font-size="10.00">::DefaultWorkUnit</text>
@@ -141,7 +155,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="0,-209 0,-241 110,-241 110,-209 0,-209"/>
 <text text-anchor="start" x="8" y="-228" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="55" y="-216" font-family="FreeSans" font-size="10.00">::iWorkUnit</text>
@@ -178,7 +192,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node15 -->
 <g id="node32" class="node"><title>Node15</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1WorkUnitKey.html" target="_top" xlink:title="Stores data about a single work unit so that it can easily be sorted.">
+<a xlink:href="classMezzanine_1_1Threading_1_1WorkUnitKey.html" target="_top" xlink:title="Stores data about a single work unit so that it can easily be sorted. ">
 <polygon fill="white" stroke="black" points="197,-114 197,-146 307,-146 307,-114 197,-114"/>
 <text text-anchor="start" x="205" y="-133" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="252" y="-121" font-family="FreeSans" font-size="10.00">::WorkUnitKey</text>
@@ -204,7 +218,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1Thread.html" target="_top" xlink:title="A small wrapper around the system thread.">
+<a xlink:href="classMezzanine_1_1Threading_1_1Thread.html" target="_top" xlink:title="A small wrapper around the system thread. ">
 <polygon fill="white" stroke="black" points="677,-228 677,-260 787,-260 787,-228 677,-228"/>
 <text text-anchor="start" x="685" y="-247" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="732" y="-235" font-family="FreeSans" font-size="10.00">::Thread</text>
@@ -218,7 +232,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1WorkSorter.html" target="_top" xlink:title="Sorts all of the WorkUnits in the FrameScheduler.">
+<a xlink:href="classMezzanine_1_1Threading_1_1WorkSorter.html" target="_top" xlink:title="Sorts all of the WorkUnits in the FrameScheduler. ">
 <polygon fill="white" stroke="black" points="677,-128 677,-160 787,-160 787,-128 677,-128"/>
 <text text-anchor="start" x="685" y="-147" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="732" y="-135" font-family="FreeSans" font-size="10.00">::WorkSorter</text>
@@ -237,7 +251,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node18 -->
 <g id="node39" class="node"><title>Node18</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" target="_top" xlink:title="A kind of workunit given exclusive runtime so it can consume time on multiple threads.">
+<a xlink:href="classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" target="_top" xlink:title="A kind of workunit given exclusive runtime so it can consume time on multiple threads. ">
 <polygon fill="white" stroke="black" points="677,-178 677,-210 787,-210 787,-178 677,-178"/>
 <text text-anchor="start" x="685" y="-197" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="732" y="-185" font-family="FreeSans" font-size="10.00">::MonopolyWorkUnit</text>
@@ -282,7 +296,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node16 -->
 <g id="node35" class="node"><title>Node16</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1ThreadId.html" target="_top" xlink:title="The thread ID is a unique identifier for each thread.">
+<a xlink:href="classMezzanine_1_1Threading_1_1ThreadId.html" target="_top" xlink:title="The thread ID is a unique identifier for each thread. ">
 <polygon fill="white" stroke="black" points="940,-88 940,-120 1050,-120 1050,-88 940,-88"/>
 <text text-anchor="start" x="948" y="-107" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="995" y="-95" font-family="FreeSans" font-size="10.00">::ThreadId</text>
@@ -314,7 +328,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node19 -->
 <g id="node43" class="node"><title>Node19</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="961,-11 961,-31 1029,-31 1029,-11 961,-11"/>
 <text text-anchor="middle" x="995" y="-18" font-family="FreeSans" font-size="10.00">std::ostream</text>
 </a>
@@ -327,7 +341,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node45" class="node"><title>Node20</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="684,-0 684,-32 780,-32 780,-0 684,-0"/>
 <text text-anchor="start" x="692" y="-19" font-family="FreeSans" font-size="10.00">std::basic_ostream</text>
 <text text-anchor="middle" x="732" y="-7" font-family="FreeSans" font-size="10.00">&lt; char &gt;</text>
@@ -340,7 +354,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node21 -->
 <g id="node47" class="node"><title>Node21</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="438,-6 438,-26 548,-26 548,-6 438,-6"/>
 <text text-anchor="middle" x="493" y="-13" font-family="FreeSans" font-size="10.00">std::basic_ios&lt; Char &gt;</text>
 </a>
@@ -352,7 +366,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node22 -->
 <g id="node49" class="node"><title>Node22</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="216.5,-6 216.5,-26 287.5,-26 287.5,-6 216.5,-6"/>
 <text text-anchor="middle" x="252" y="-13" font-family="FreeSans" font-size="10.00">std::ios_base</text>
 </a>

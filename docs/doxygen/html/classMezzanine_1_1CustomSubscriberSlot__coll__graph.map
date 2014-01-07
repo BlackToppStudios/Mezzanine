@@ -1,7 +1,7 @@
 <map id="Mezzanine::CustomSubscriberSlot" name="Mezzanine::CustomSubscriberSlot">
-<area shape="rect" id="node2" href="$classMezzanine_1_1EventSubscriberSlot.html" title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods." alt="" coords="96,14,301,42"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired." alt="" coords="138,225,258,253"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="556,123,630,151"/>
-<area shape="rect" id="node8" title="STL class." alt="" coords="536,6,656,50"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1EventSubscriber.html" title="This is a base class for all classes that subscribe to events." alt="" coords="330,14,512,42"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1EventSubscriberSlot.html" title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods. " alt="" coords="96,14,301,42"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. " alt="" coords="138,225,258,253"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="556,123,630,151"/>
+<area shape="rect" id="node8" title="STL class. " alt="" coords="536,6,656,50"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1EventSubscriber.html" title="This is a base class for all classes that subscribe to events. " alt="" coords="330,14,512,42"/>
 </map>

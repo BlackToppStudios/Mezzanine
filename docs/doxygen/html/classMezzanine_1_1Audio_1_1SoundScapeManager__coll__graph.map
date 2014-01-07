@@ -1,7 +1,7 @@
 <map id="Mezzanine::Audio::SoundScapeManager" name="Mezzanine::Audio::SoundScapeManager">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance." alt="" coords="243,195,413,223"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit." alt="" coords="244,107,412,135"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library." alt="" coords="364,6,497,34"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldManager.html" title="This is the base class for all managers that belong to a single world instance. " alt="" coords="243,195,413,223"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the Entresol and World Managers inherit. " alt="" coords="244,107,412,135"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library. " alt="" coords="364,6,497,34"/>
 <area shape="rect" id="node8" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="445,99,587,143"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within." alt="" coords="347,398,469,426"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. " alt="" coords="347,398,469,426"/>
 </map>

@@ -1,4 +1,4 @@
 <map id="Mezzanine::Audio::iBufferUpdate2DWorkUnit" name="Mezzanine::Audio::iBufferUpdate2DWorkUnit">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="13,99,160,143"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="13,6,160,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="13,99,160,143"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="13,6,160,50"/>
 </map>

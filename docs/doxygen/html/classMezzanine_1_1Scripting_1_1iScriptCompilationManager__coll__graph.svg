@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptingManager.html" target="_top" xlink:title="What a scripting manager should look like.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptingManager.html" target="_top" xlink:title="What a scripting manager should look like. ">
 <polygon fill="white" stroke="black" points="15.5,-73 15.5,-105 120.5,-105 120.5,-73 15.5,-73"/>
 <text text-anchor="start" x="23.5" y="-92" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="68" y="-80" font-family="FreeSans" font-size="10.00">::iScriptingManager</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit. ">
 <polygon fill="white" stroke="black" points="5,-151 5,-171 131,-171 131,-151 5,-151"/>
 <text text-anchor="middle" x="68" y="-158" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library. ">
 <polygon fill="white" stroke="black" points="94.5,-227 94.5,-247 195.5,-247 195.5,-227 94.5,-227"/>
 <text text-anchor="middle" x="145" y="-234" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>

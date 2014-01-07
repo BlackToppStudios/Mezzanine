@@ -31,7 +31,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1StopWatchTimer.html" target="_top" xlink:title="This is a timer class for counting down to a specified time.">
+<a xlink:href="classMezzanine_1_1StopWatchTimer.html" target="_top" xlink:title="This is a timer class for counting down to a specified time. ">
 <polygon fill="white" stroke="black" points="346,-50 346,-70 486,-70 486,-50 346,-50"/>
 <text text-anchor="middle" x="416" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::StopWatchTimer</text>
 </a>
@@ -56,7 +56,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Timer.html" target="_top" xlink:title="A base timer class for the different timers.">
+<a xlink:href="classMezzanine_1_1Timer.html" target="_top" xlink:title="A base timer class for the different timers. ">
 <polygon fill="white" stroke="black" points="0,-50 0,-70 92,-70 92,-50 0,-50"/>
 <text text-anchor="middle" x="46" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>
@@ -80,7 +80,7 @@
 </g>
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Input_1_1MetaCode.html" target="_top" xlink:title="This Determines the kind of user input.">
+<a xlink:href="classMezzanine_1_1Input_1_1MetaCode.html" target="_top" xlink:title="This Determines the kind of user input. ">
 <polygon fill="white" stroke="black" points="130.5,-6 130.5,-26 267.5,-26 267.5,-6 130.5,-6"/>
 <text text-anchor="middle" x="199" y="-13" font-family="FreeSans" font-size="10.00">Mezzanine::Input::MetaCode</text>
 </a>

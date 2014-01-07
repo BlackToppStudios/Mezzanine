@@ -18,7 +18,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="workunitkey_8h.html" target="_top" xlink:title="This file defines the metadata used to sort workunits.">
+<a xlink:href="workunitkey_8h.html" target="_top" xlink:title="This file defines the metadata used to sort workunits. ">
 <polygon fill="white" stroke="black" points="552.5,-117 552.5,-137 627.5,-137 627.5,-117 552.5,-117"/>
 <text text-anchor="middle" x="590" y="-124" font-family="FreeSans" font-size="10.00">workunitkey.h</text>
 </a>
@@ -204,7 +204,7 @@
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1059.5,-1 1059.5,-21 1102.5,-21 1102.5,-1 1059.5,-1"/>
 <text text-anchor="middle" x="1081" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

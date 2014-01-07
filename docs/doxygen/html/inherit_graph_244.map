@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1TextureAtlasHandler.html" title="This handles the creation, storage and overall handling of Texture Atlases." alt="" coords="7,5,185,49"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1TextToken.html" title="This class represents a normal text segment from the source string. " alt="" coords="7,42,175,70"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1TagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="225,42,391,70"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1InsertTagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="460,5,623,49"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1RangeTagToken.html" title="This struct represents a markup tag segment from the source string. " alt="" coords="440,71,643,99"/>
 </map>

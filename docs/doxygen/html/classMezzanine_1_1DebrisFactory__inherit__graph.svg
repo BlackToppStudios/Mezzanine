@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1RigidDebrisFactory.html" target="_top" xlink:title="A base factory type for the creation of non&#45;deformable Debris objects.">
+<a xlink:href="classMezzanine_1_1RigidDebrisFactory.html" target="_top" xlink:title="A base factory type for the creation of non&#45;deformable Debris objects. ">
 <polygon fill="white" stroke="black" points="0,-1 0,-21 148,-21 148,-1 0,-1"/>
 <text text-anchor="middle" x="74" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::RigidDebrisFactory</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1SoftDebrisFactory.html" target="_top" xlink:title="A base factory type for the creation of deformable Debris objects.">
+<a xlink:href="classMezzanine_1_1SoftDebrisFactory.html" target="_top" xlink:title="A base factory type for the creation of deformable Debris objects. ">
 <polygon fill="white" stroke="black" points="166,-1 166,-21 310,-21 310,-1 166,-1"/>
 <text text-anchor="middle" x="238" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::SoftDebrisFactory</text>
 </a>

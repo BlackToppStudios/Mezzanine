@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="169.5,-277.995 169.5,-297.995 226.5,-297.995 226.5,-277.995 169.5,-277.995"/>
 <text text-anchor="middle" x="198" y="-284.995" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -66,7 +66,7 @@
 </g>
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1UI_1_1FontData.html" target="_top" xlink:title="This class represents a collection of Glyphs in a common visual style.">
+<a xlink:href="classMezzanine_1_1UI_1_1FontData.html" target="_top" xlink:title="This class represents a collection of Glyphs in a common visual style. ">
 <polygon fill="white" stroke="black" points="618.5,-105.995 618.5,-125.995 739.5,-125.995 739.5,-105.995 618.5,-105.995"/>
 <text text-anchor="middle" x="679" y="-112.995" font-family="FreeSans" font-size="10.00">Mezzanine::UI::FontData</text>
 </a>
@@ -90,7 +90,7 @@
 </g>
 <!-- Node14 -->
 <g id="node32" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Sprite.html" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad.">
+<a xlink:href="classMezzanine_1_1UI_1_1Sprite.html" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad. ">
 <polygon fill="white" stroke="black" points="625.5,-301.995 625.5,-321.995 732.5,-321.995 732.5,-301.995 625.5,-301.995"/>
 <text text-anchor="middle" x="679" y="-308.995" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Sprite</text>
 </a>
@@ -103,7 +103,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="0.5,-271.995 0.5,-303.995 91.5,-303.995 91.5,-271.995 0.5,-271.995"/>
 <text text-anchor="start" x="8.5" y="-290.995" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="46" y="-278.995" font-family="FreeSans" font-size="10.00"> char &gt;</text>
@@ -128,7 +128,7 @@
 </g>
 <!-- Node10 -->
 <g id="node20" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Glyph.html" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
+<a xlink:href="classMezzanine_1_1UI_1_1Glyph.html" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations. ...">
 <polygon fill="white" stroke="black" points="840,-46.9952 840,-66.9952 946,-66.9952 946,-46.9952 840,-46.9952"/>
 <text text-anchor="middle" x="893" y="-53.9952" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Glyph</text>
 </a>
@@ -147,7 +147,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen. ">
 <polygon fill="white" stroke="black" points="148,-3.99522 148,-23.9952 248,-23.9952 248,-3.99522 148,-3.99522"/>
 <text text-anchor="middle" x="198" y="-10.9952" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -213,7 +213,7 @@
 </g>
 <!-- Node12 -->
 <g id="node26" class="node"><title>Node12</title>
-<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.html" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
+<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.html" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph. ">
 <polygon fill="white" stroke="black" points="390.5,-19.9952 390.5,-39.9952 521.5,-39.9952 521.5,-19.9952 390.5,-19.9952"/>
 <text text-anchor="middle" x="456" y="-26.9952" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>

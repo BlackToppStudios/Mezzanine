@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::Internal::EventManagerInternalData Pages: 1 -->
 <!--zoomable 245 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -62,7 +76,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="449,-174 449,-206 559,-206 559,-174 449,-174"/>
 <text text-anchor="start" x="457" y="-193" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="504" y="-181" font-family="FreeSans" font-size="10.00">::DefaultWorkUnit</text>
@@ -75,7 +89,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="0,-205 0,-237 110,-237 110,-205 0,-205"/>
 <text text-anchor="start" x="8" y="-224" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="55" y="-212" font-family="FreeSans" font-size="10.00">::iWorkUnit</text>
@@ -120,7 +134,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1EventManager.html" target="_top" xlink:title="This is a container for Events and facilitates the transfer of data.">
+<a xlink:href="classMezzanine_1_1EventManager.html" target="_top" xlink:title="This is a container for Events and facilitates the transfer of data. ">
 <polygon fill="white" stroke="black" points="440,-94 440,-114 568,-114 568,-94 440,-94"/>
 <text text-anchor="middle" x="504" y="-101" font-family="FreeSans" font-size="10.00">Mezzanine::EventManager</text>
 </a>
@@ -147,7 +161,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit. ">
 <polygon fill="white" stroke="black" points="203,-91 203,-111 329,-111 329,-91 203,-91"/>
 <text text-anchor="middle" x="266" y="-98" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -159,7 +173,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library. ">
 <polygon fill="white" stroke="black" points="4.5,-56 4.5,-76 105.5,-76 105.5,-56 4.5,-56"/>
 <text text-anchor="middle" x="55" y="-63" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -220,7 +234,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node14 -->
 <g id="node29" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1EventBase.html" target="_top" xlink:title="The base class for all events.">
+<a xlink:href="classMezzanine_1_1EventBase.html" target="_top" xlink:title="The base class for all events. ">
 <polygon fill="white" stroke="black" points="447.5,-6 447.5,-26 560.5,-26 560.5,-6 447.5,-6"/>
 <text text-anchor="middle" x="504" y="-13" font-family="FreeSans" font-size="10.00">Mezzanine::EventBase</text>
 </a>

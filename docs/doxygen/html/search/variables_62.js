@@ -7,5 +7,6 @@ var searchData=
   ['bluechannel',['BlueChannel',['../classMezzanine_1_1ColourValue.html#a0569ee802716292e132e63de02134257',1,'Mezzanine::ColourValue']]],
   ['bottom',['Bottom',['../classMezzanine_1_1UI_1_1Sprite.html#a05768c2323c762b1034136f62c34688d',1,'Mezzanine::UI::Sprite']]],
   ['boundmenu',['BoundMenu',['../classMezzanine_1_1UI_1_1MenuButton.html#acb5090d54af53954191b1611310b45eb',1,'Mezzanine::UI::MenuButton']]],
-  ['buttonautoregister',['ButtonAutoRegister',['../classMezzanine_1_1UI_1_1UIManager.html#a6de177753b5cfdd4ea8570823cb512dd',1,'Mezzanine::UI::UIManager']]]
+  ['buttonautoregister',['ButtonAutoRegister',['../classMezzanine_1_1UI_1_1UIManager.html#a6de177753b5cfdd4ea8570823cb512dd',1,'Mezzanine::UI::UIManager']]],
+  ['buttongroup',['ButtonGroup',['../classMezzanine_1_1UI_1_1RadioButton.html#afddc636d8a90757143999bfc9b5d08fc',1,'Mezzanine::UI::RadioButton']]]
 ];

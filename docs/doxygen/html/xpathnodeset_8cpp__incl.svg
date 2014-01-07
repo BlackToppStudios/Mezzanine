@@ -6,6 +6,20 @@
 <!-- Title: /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xpathnodeset.cpp Pages: 1 -->
 <!--zoomable 390 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -49,7 +63,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="xpathnodeset_8h.html" target="_top" xlink:title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet.">
+<a xlink:href="xpathnodeset_8h.html" target="_top" xlink:title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet. ">
 <polygon fill="white" stroke="black" points="455,-291 455,-311 559,-311 559,-291 455,-291"/>
 <text text-anchor="middle" x="507" y="-298" font-family="FreeSans" font-size="10.00">XML/xpathnodeset.h</text>
 </a>
@@ -73,7 +87,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
-<a xlink:href="xpathnode_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathNode.">
+<a xlink:href="xpathnode_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathNode. ">
 <polygon fill="white" stroke="black" points="498,-233 498,-253 590,-253 590,-233 498,-233"/>
 <text text-anchor="middle" x="544" y="-240" font-family="FreeSans" font-size="10.00">XML/xpathnode.h</text>
 </a>
@@ -247,7 +261,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1059.5,-1 1059.5,-21 1102.5,-21 1102.5,-1 1059.5,-1"/>
 <text text-anchor="middle" x="1081" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -264,7 +278,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node22 -->
 <g id="node44" class="node"><title>Node22</title>
-<a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes.">
+<a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes. ">
 <polygon fill="white" stroke="black" points="600,-175 600,-195 668,-195 668,-175 600,-175"/>
 <text text-anchor="middle" x="634" y="-182" font-family="FreeSans" font-size="10.00">XML/node.h</text>
 </a>
@@ -293,7 +307,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node24 -->
 <g id="node50" class="node"><title>Node24</title>
-<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class.">
+<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class. ">
 <polygon fill="white" stroke="black" points="711.5,-117 711.5,-137 794.5,-137 794.5,-117 711.5,-117"/>
 <text text-anchor="middle" x="753" y="-124" font-family="FreeSans" font-size="10.00">XML/attribute.h</text>
 </a>
@@ -305,7 +319,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node25 -->
 <g id="node53" class="node"><title>Node25</title>
-<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template.">
+<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template. ">
 <polygon fill="white" stroke="black" points="812,-117 812,-137 910,-137 910,-117 812,-117"/>
 <text text-anchor="middle" x="861" y="-124" font-family="FreeSans" font-size="10.00">XML/objectrange.h</text>
 </a>

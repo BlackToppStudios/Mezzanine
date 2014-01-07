@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1TagToken.html" target="_top" xlink:title="This struct represents a markup tag segment from the source string.">
+<a xlink:href="classMezzanine_1_1UI_1_1TagToken.html" target="_top" xlink:title="This struct represents a markup tag segment from the source string. ">
 <polygon fill="white" stroke="black" points="75.5,-71 75.5,-91 200.5,-91 200.5,-71 75.5,-71"/>
 <text text-anchor="middle" x="138" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TagToken</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1InsertTagToken.html" target="_top" xlink:title="This struct represents a markup tag segment from the source string.">
+<a xlink:href="classMezzanine_1_1UI_1_1InsertTagToken.html" target="_top" xlink:title="This struct represents a markup tag segment from the source string. ">
 <polygon fill="white" stroke="black" points="0,-1 0,-33 122,-33 122,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::InsertTag</text>
 <text text-anchor="middle" x="61" y="-8" font-family="FreeSans" font-size="10.00">Token</text>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1RangeTagToken.html" target="_top" xlink:title="This struct represents a markup tag segment from the source string.">
+<a xlink:href="classMezzanine_1_1UI_1_1RangeTagToken.html" target="_top" xlink:title="This struct represents a markup tag segment from the source string. ">
 <polygon fill="white" stroke="black" points="140,-7 140,-27 292,-27 292,-7 140,-7"/>
 <text text-anchor="middle" x="216" y="-14" font-family="FreeSans" font-size="10.00">Mezzanine::UI::RangeTagToken</text>
 </a>

@@ -19,7 +19,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Bone.html" target="_top" xlink:title="This class encapsulates the bones contained in a skeleton used for animation.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1Bone.html" target="_top" xlink:title="This class encapsulates the bones contained in a skeleton used for animation. ">
 <polygon fill="white" stroke="black" points="164.5,-0 164.5,-32 269.5,-32 269.5,-0 164.5,-0"/>
 <text text-anchor="start" x="172.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="217" y="-7" font-family="FreeSans" font-size="10.00">::Bone</text>

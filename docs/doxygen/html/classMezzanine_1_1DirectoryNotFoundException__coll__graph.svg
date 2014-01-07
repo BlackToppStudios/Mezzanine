@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1DirectoryException.html" target="_top" xlink:title="Thrown when there is an unknown issue with a file.">
+<a xlink:href="classMezzanine_1_1DirectoryException.html" target="_top" xlink:title="Thrown when there is an unknown issue with a file. ">
 <polygon fill="white" stroke="black" points="-0.5,-71 -0.5,-91 146.5,-91 146.5,-71 -0.5,-71"/>
 <text text-anchor="middle" x="73" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::DirectoryException</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1IOException.html" target="_top" xlink:title="Thrown when there was an issue with IO but very little was known about it.">
+<a xlink:href="classMezzanine_1_1IOException.html" target="_top" xlink:title="Thrown when there was an issue with IO but very little was known about it. ">
 <polygon fill="white" stroke="black" points="13.5,-129 13.5,-149 132.5,-149 132.5,-129 13.5,-129"/>
 <text text-anchor="middle" x="73" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::IOException</text>
 </a>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">
 <polygon fill="white" stroke="black" points="18.5,-187 18.5,-207 127.5,-207 127.5,-187 18.5,-187"/>
 <text text-anchor="middle" x="73" y="-194" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="35.5,-245 35.5,-265 110.5,-265 110.5,-245 35.5,-245"/>
 <text text-anchor="middle" x="73" y="-252" font-family="FreeSans" font-size="10.00">std::exception</text>
 </a>

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1MarkupParser.html" target="_top" xlink:title="This is a base class for the parsing of markup texts contained in text layers.">
+<a xlink:href="classMezzanine_1_1UI_1_1MarkupParser.html" target="_top" xlink:title="This is a base class for the parsing of markup texts contained in text layers. ">
 <polygon fill="white" stroke="black" points="38.5,-73 38.5,-93 179.5,-93 179.5,-73 38.5,-73"/>
 <text text-anchor="middle" x="109" y="-80" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MarkupParser</text>
 </a>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1MarkupTag.html" target="_top" xlink:title="This is a base class for tags that implement the functionality of a markup language.">
+<a xlink:href="classMezzanine_1_1UI_1_1MarkupTag.html" target="_top" xlink:title="This is a base class for tags that implement the functionality of a markup language. ">
 <polygon fill="white" stroke="black" points="0,-225 0,-245 130,-245 130,-225 0,-225"/>
 <text text-anchor="middle" x="65" y="-232" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MarkupTag</text>
 </a>
@@ -54,7 +54,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="147.5,-225 147.5,-245 204.5,-245 204.5,-225 147.5,-225"/>
 <text text-anchor="middle" x="176" y="-232" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -67,7 +67,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="130.5,-285 130.5,-317 221.5,-317 221.5,-285 130.5,-285"/>
 <text text-anchor="start" x="138.5" y="-304" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="176" y="-292" font-family="FreeSans" font-size="10.00"> char &gt;</text>

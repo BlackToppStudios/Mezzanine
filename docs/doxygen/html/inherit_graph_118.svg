@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 143,-24 143,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Input_1_1MetaCode.html" target="_top" xlink:title="This Determines the kind of user input.">
+<a xlink:href="classMezzanine_1_1Input_1_1MetaCode.html" target="_top" xlink:title="This Determines the kind of user input. ">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-20 137.5,-20 137.5,-0 0.5,-0"/>
 <text text-anchor="middle" x="69" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::Input::MetaCode</text>
 </a>

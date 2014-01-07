@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 191,-24 191,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1SlowSplineInterpolator.html" target="_top" xlink:title="If something specifically needs the linear interpolator for T they should use this.">
+<a xlink:href="classMezzanine_1_1SlowSplineInterpolator.html" target="_top" xlink:title="If something specifically needs the linear interpolator for T they should use this. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 186,-20 186,-0 0,-0"/>
 <text text-anchor="middle" x="93" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::SlowSplineInterpolator&lt; T &gt;</text>
 </a>

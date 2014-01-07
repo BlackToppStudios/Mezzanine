@@ -7,7 +7,7 @@ var searchData=
   ['managerbase',['ManagerBase',['../classMezzanine_1_1ManagerBase.html#a6ee3249f71f330394e81e349370d57a8',1,'Mezzanine::ManagerBase']]],
   ['managerconstructioninfo',['ManagerConstructionInfo',['../classMezzanine_1_1Physics_1_1ManagerConstructionInfo.html#a1b787be3969b54dea8673c9fa0ea0b8e',1,'Mezzanine::Physics::ManagerConstructionInfo']]],
   ['managerfactory',['ManagerFactory',['../classMezzanine_1_1ManagerFactory.html#a21c9a43ece820424aefc19c66bfe9d72',1,'Mezzanine::ManagerFactory']]],
-  ['manualcheck',['ManualCheck',['../classMezzanine_1_1UI_1_1CheckBox.html#a83801877bb5b9de0f61895dabe4d0c62',1,'Mezzanine::UI::CheckBox']]],
+  ['manualselect',['ManualSelect',['../classMezzanine_1_1UI_1_1CheckBox.html#a68489bf7be652c2b5f39ca00ba64dede',1,'Mezzanine::UI::CheckBox']]],
   ['markupparser',['MarkupParser',['../classMezzanine_1_1UI_1_1MarkupParser.html#a1c058db02fb6c040b30491587f419ba5',1,'Mezzanine::UI::MarkupParser']]],
   ['markuptag',['MarkupTag',['../classMezzanine_1_1UI_1_1MarkupTag.html#a5a85d906cf3c83d35af9cd3ba87cb6c8',1,'Mezzanine::UI::MarkupTag']]],
   ['maroon',['Maroon',['../classMezzanine_1_1ColourValue.html#a265fec4dd95074e9436c1b8d131f22ea',1,'Mezzanine::ColourValue']]],

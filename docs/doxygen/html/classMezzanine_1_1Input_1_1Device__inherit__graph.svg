@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Input_1_1ButtonDevice.html" target="_top" xlink:title="This is a base class for all input devices with buttons.">
+<a xlink:href="classMezzanine_1_1Input_1_1ButtonDevice.html" target="_top" xlink:title="This is a base class for all input devices with buttons. ">
 <polygon fill="white" stroke="black" points="158,-59 158,-91 280,-91 280,-59 158,-59"/>
 <text text-anchor="start" x="166" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Button</text>
 <text text-anchor="middle" x="219" y="-66" font-family="FreeSans" font-size="10.00">Device</text>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Input_1_1Controller.html" target="_top" xlink:title="This class represents a controller input device, such as a gamepad or joystick.">
+<a xlink:href="classMezzanine_1_1Input_1_1Controller.html" target="_top" xlink:title="This class represents a controller input device, such as a gamepad or joystick. ">
 <polygon fill="white" stroke="black" points="0,-1 0,-21 134,-21 134,-1 0,-1"/>
 <text text-anchor="middle" x="67" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Controller</text>
 </a>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Input_1_1Keyboard.html" target="_top" xlink:title="This class represents the keyboard input device.">
+<a xlink:href="classMezzanine_1_1Input_1_1Keyboard.html" target="_top" xlink:title="This class represents the keyboard input device. ">
 <polygon fill="white" stroke="black" points="152,-1 152,-21 286,-21 286,-1 152,-1"/>
 <text text-anchor="middle" x="219" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Keyboard</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Input_1_1Mouse.html" target="_top" xlink:title="This class represents the mouse input device.">
+<a xlink:href="classMezzanine_1_1Input_1_1Mouse.html" target="_top" xlink:title="This class represents the mouse input device. ">
 <polygon fill="white" stroke="black" points="304,-1 304,-21 426,-21 426,-1 304,-1"/>
 <text text-anchor="middle" x="365" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Mouse</text>
 </a>

@@ -1,12 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1WidgetFactory.html" title="This is a base class for factories that construct the widgets available to the UI subsystem..." alt="" coords="7,247,196,275"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1ButtonFactory.html" title="This is the factory implementation for Button widgets." alt="" coords="256,5,445,33"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1CheckBoxFactory.html" title="This is the factory implementation for CheckBox widgets." alt="" coords="245,55,456,83"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1GenericWidgetFactory.html" title="This is the factory implementation for generic widgets." alt="" coords="255,106,447,150"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1HorizontalContainerFactory.html" title="This is the factory implementation for HorizontalContainer widgets." alt="" coords="268,173,433,217"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1HorizontalScrollbarFactory.html" title="This is the factory implementation for HorizontalScrollbar widgets." alt="" coords="268,239,433,283"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1MenuButtonFactory.html" title="This is the factory implementation for MenuButton widgets." alt="" coords="261,306,440,350"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1MenuEntryFactory.html" title="This is the factory implementation for MenuEntry widgets." alt="" coords="267,373,435,417"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1VerticalContainerFactory.html" title="This is the factory implementation for VerticalContainer widgets." alt="" coords="248,439,453,483"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1UI_1_1VerticalScrollbarFactory.html" title="This is the factory implementation for VerticalScrollbar widgets." alt="" coords="249,506,452,550"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1VertexCollectFunctor.html" title="Simple functor for appending all vertices in the renderable tree to a vector. " alt="" coords="5,5,189,49"/>
 </map>

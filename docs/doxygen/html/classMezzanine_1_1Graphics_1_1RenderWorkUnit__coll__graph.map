@@ -1,6 +1,6 @@
 <map id="Mezzanine::Graphics::RenderWorkUnit" name="Mezzanine::Graphics::RenderWorkUnit">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" title="A kind of workunit given exclusive runtime so it can consume time on multiple threads." alt="" coords="771,39,917,83"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="573,39,720,83"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="5,5,152,49"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" title="A kind of workunit given exclusive runtime so it can consume time on multiple threads. " alt="" coords="771,39,917,83"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="573,39,720,83"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="5,5,152,49"/>
 <area shape="rect" id="node11" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="257,106,425,150"/>
 </map>

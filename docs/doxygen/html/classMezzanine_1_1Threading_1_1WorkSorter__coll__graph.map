@@ -1,6 +1,6 @@
 <map id="Mezzanine::Threading::WorkSorter" name="Mezzanine::Threading::WorkSorter">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="589,77,736,121"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="5,122,152,166"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Threading_1_1WorkUnitKey.html" title="Stores data about a single work unit so that it can easily be sorted." alt="" coords="268,189,415,233"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="589,77,736,121"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="5,122,152,166"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Threading_1_1WorkUnitKey.html" title="Stores data about a single work unit so that it can easily be sorted. " alt="" coords="268,189,415,233"/>
 <area shape="rect" id="node9" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="257,5,425,49"/>
 </map>

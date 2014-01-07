@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen. ">
 <polygon fill="white" stroke="black" points="0,-71 0,-91 100,-91 100,-71 0,-71"/>
 <text text-anchor="middle" x="50" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
+<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space. ">
 <polygon fill="white" stroke="black" points="254,-71 254,-91 354,-91 354,-71 254,-71"/>
 <text text-anchor="middle" x="304" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>

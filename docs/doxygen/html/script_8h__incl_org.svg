@@ -30,7 +30,7 @@
 </g>
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
-<a xlink:href="scriptargument_8h.html" target="_top" xlink:title="This file has the interfaces for Script Arguments and the associated dependency chain.">
+<a xlink:href="scriptargument_8h.html" target="_top" xlink:title="This file has the interfaces for Script Arguments and the associated dependency chain. ">
 <polygon fill="white" stroke="black" points="548,-175 548,-195 636,-195 636,-175 548,-175"/>
 <text text-anchor="middle" x="592" y="-182" font-family="FreeSans" font-size="10.00">scriptargument.h</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node22 -->
 <g id="node44" class="node"><title>Node22</title>
-<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe.">
+<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe. ">
 <polygon fill="white" stroke="black" points="618,-117 618,-137 688,-137 688,-117 618,-117"/>
 <text text-anchor="middle" x="653" y="-124" font-family="FreeSans" font-size="10.00">countedptr.h</text>
 </a>
@@ -228,7 +228,7 @@
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1059.5,-1 1059.5,-21 1102.5,-21 1102.5,-1 1059.5,-1"/>
 <text text-anchor="middle" x="1081" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

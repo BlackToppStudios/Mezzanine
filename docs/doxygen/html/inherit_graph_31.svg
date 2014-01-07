@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 121,-36 121,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1CountedPtr.html" target="_top" xlink:title="A simple reference counting pointer.">
+<a xlink:href="classMezzanine_1_1CountedPtr.html" target="_top" xlink:title="A simple reference counting pointer. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-32 116,-32 116,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::CountedPtr</text>
 <text text-anchor="middle" x="58" y="-7" font-family="FreeSans" font-size="10.00">&lt; TypePointedTo &gt;</text>

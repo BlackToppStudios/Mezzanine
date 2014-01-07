@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1AttachableChild.html" target="_top" xlink:title="This class is the base class for objects that can be attached to AttachableParent.">
+<a xlink:href="classMezzanine_1_1AttachableChild.html" target="_top" xlink:title="This class is the base class for objects that can be attached to AttachableParent. ">
 <polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-21 134.5,-21 134.5,-1 -0.5,-1"/>
 <text text-anchor="middle" x="67" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableChild</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1AttachableParent.html" target="_top" xlink:title="Base class for objects that can have attachables attached to them.">
+<a xlink:href="classMezzanine_1_1AttachableParent.html" target="_top" xlink:title="Base class for objects that can have attachables attached to them. ">
 <polygon fill="white" stroke="black" points="152,-1 152,-21 294,-21 294,-1 152,-1"/>
 <text text-anchor="middle" x="223" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableParent</text>
 </a>

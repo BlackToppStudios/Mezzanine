@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::Input::Controller Pages: 1 -->
 <!--zoomable 326 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -48,7 +62,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Input_1_1ButtonDevice.html" target="_top" xlink:title="This is a base class for all input devices with buttons.">
+<a xlink:href="classMezzanine_1_1Input_1_1ButtonDevice.html" target="_top" xlink:title="This is a base class for all input devices with buttons. ">
 <polygon fill="white" stroke="black" points="1090,-195 1090,-227 1212,-227 1212,-195 1090,-195"/>
 <text text-anchor="start" x="1098" y="-214" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Button</text>
 <text text-anchor="middle" x="1151" y="-202" font-family="FreeSans" font-size="10.00">Device</text>
@@ -61,7 +75,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Input_1_1Device.html" target="_top" xlink:title="This is a base class for all input devices.">
+<a xlink:href="classMezzanine_1_1Input_1_1Device.html" target="_top" xlink:title="This is a base class for all input devices. ">
 <polygon fill="white" stroke="black" points="840,-248 840,-268 962,-268 962,-248 840,-248"/>
 <text text-anchor="middle" x="901" y="-255" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Device</text>
 </a>
@@ -73,7 +87,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Input_1_1SequenceContainer.html" target="_top" xlink:title="This class stores and provides utilities for sequenced inputs and their operations.">
+<a xlink:href="classMezzanine_1_1Input_1_1SequenceContainer.html" target="_top" xlink:title="This class stores and provides utilities for sequenced inputs and their operations. ">
 <polygon fill="white" stroke="black" points="614.5,-242 614.5,-274 751.5,-274 751.5,-242 614.5,-242"/>
 <text text-anchor="start" x="622.5" y="-261" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Sequence</text>
 <text text-anchor="middle" x="683" y="-249" font-family="FreeSans" font-size="10.00">Container</text>
@@ -101,7 +115,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1StopWatchTimer.html" target="_top" xlink:title="This is a timer class for counting down to a specified time.">
+<a xlink:href="classMezzanine_1_1StopWatchTimer.html" target="_top" xlink:title="This is a timer class for counting down to a specified time. ">
 <polygon fill="white" stroke="black" points="346,-248 346,-268 486,-268 486,-248 346,-248"/>
 <text text-anchor="middle" x="416" y="-255" font-family="FreeSans" font-size="10.00">Mezzanine::StopWatchTimer</text>
 </a>
@@ -126,7 +140,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1Timer.html" target="_top" xlink:title="A base timer class for the different timers.">
+<a xlink:href="classMezzanine_1_1Timer.html" target="_top" xlink:title="A base timer class for the different timers. ">
 <polygon fill="white" stroke="black" points="0,-248 0,-268 92,-268 92,-248 0,-248"/>
 <text text-anchor="middle" x="46" y="-255" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>
@@ -150,7 +164,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node10 -->
 <g id="node18" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1Input_1_1MetaCode.html" target="_top" xlink:title="This Determines the kind of user input.">
+<a xlink:href="classMezzanine_1_1Input_1_1MetaCode.html" target="_top" xlink:title="This Determines the kind of user input. ">
 <polygon fill="white" stroke="black" points="130.5,-204 130.5,-224 267.5,-224 267.5,-204 130.5,-204"/>
 <text text-anchor="middle" x="199" y="-211" font-family="FreeSans" font-size="10.00">Mezzanine::Input::MetaCode</text>
 </a>
@@ -198,7 +212,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node14 -->
 <g id="node26" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen. ">
 <polygon fill="white" stroke="black" points="851,-122 851,-142 951,-142 951,-122 851,-122"/>
 <text text-anchor="middle" x="901" y="-129" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -223,7 +237,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node16 -->
 <g id="node30" class="node"><title>Node16</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="1122.5,-38 1122.5,-58 1179.5,-58 1179.5,-38 1122.5,-38"/>
 <text text-anchor="middle" x="1151" y="-45" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -236,7 +250,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node17 -->
 <g id="node32" class="node"><title>Node17</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="855.5,-32 855.5,-64 946.5,-64 946.5,-32 855.5,-32"/>
 <text text-anchor="start" x="863.5" y="-51" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="901" y="-39" font-family="FreeSans" font-size="10.00"> char &gt;</text>

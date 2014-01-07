@@ -27,7 +27,7 @@
 </g>
 <!-- Node11 -->
 <g id="node26" class="node"><title>Node11</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Glyph.html" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
+<a xlink:href="classMezzanine_1_1UI_1_1Glyph.html" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations. ...">
 <polygon fill="white" stroke="black" points="961,-68 961,-88 1067,-88 1067,-68 961,-68"/>
 <text text-anchor="middle" x="1014" y="-75" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Glyph</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="130.5,-298 130.5,-318 187.5,-318 187.5,-298 130.5,-298"/>
 <text text-anchor="middle" x="159" y="-305" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -83,7 +83,7 @@
 </g>
 <!-- Node8 -->
 <g id="node16" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Sprite.html" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad.">
+<a xlink:href="classMezzanine_1_1UI_1_1Sprite.html" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad. ">
 <polygon fill="white" stroke="black" points="960.5,-306 960.5,-326 1067.5,-326 1067.5,-306 960.5,-306"/>
 <text text-anchor="middle" x="1014" y="-313" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Sprite</text>
 </a>
@@ -96,7 +96,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="0.5,-292 0.5,-324 91.5,-324 91.5,-292 0.5,-292"/>
 <text text-anchor="start" x="8.5" y="-311" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="46" y="-299" font-family="FreeSans" font-size="10.00"> char &gt;</text>
@@ -127,7 +127,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen. ">
 <polygon fill="white" stroke="black" points="503,-119 503,-139 603,-139 603,-119 503,-119"/>
 <text text-anchor="middle" x="553" y="-126" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -207,7 +207,7 @@
 </g>
 <!-- Node13 -->
 <g id="node32" class="node"><title>Node13</title>
-<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.html" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
+<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.html" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph. ">
 <polygon fill="white" stroke="black" points="487.5,-68 487.5,-88 618.5,-88 618.5,-68 487.5,-68"/>
 <text text-anchor="middle" x="553" y="-75" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>

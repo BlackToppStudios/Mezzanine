@@ -11,14 +11,14 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-138 369,-138 369,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods.">
+<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods. ">
 <polygon fill="white" stroke="black" points="0,-57 0,-77 154,-77 154,-57 0,-57"/>
 <text text-anchor="middle" x="77" y="-64" font-family="FreeSans" font-size="10.00">Mezzanine::EventSubscriberSlot</text>
 </a>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1CFunctionSubscriberSlot.html" target="_top" xlink:title="This is a subscriber slot class that triggers a Free/C&#45;style function.">
+<a xlink:href="classMezzanine_1_1CFunctionSubscriberSlot.html" target="_top" xlink:title="This is a subscriber slot class that triggers a Free/C&#45;style function. ">
 <polygon fill="white" stroke="black" points="190,-114 190,-134 364,-134 364,-114 190,-114"/>
 <text text-anchor="middle" x="277" y="-121" font-family="FreeSans" font-size="10.00">Mezzanine::CFunctionSubscriberSlot</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1FunctorSubscriberSlot.html" target="_top" xlink:title="This is a subscriber slot class that makes the appropriate call on a functor.">
+<a xlink:href="classMezzanine_1_1FunctorSubscriberSlot.html" target="_top" xlink:title="This is a subscriber slot class that makes the appropriate call on a functor. ">
 <polygon fill="white" stroke="black" points="195.5,-38 195.5,-58 358.5,-58 358.5,-38 195.5,-38"/>
 <text text-anchor="middle" x="277" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::FunctorSubscriberSlot</text>
 </a>
@@ -54,7 +54,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1ScriptSubscriberSlot.html" target="_top" xlink:title="This is a subscriber slot class that triggers a provided script.">
+<a xlink:href="classMezzanine_1_1ScriptSubscriberSlot.html" target="_top" xlink:title="This is a subscriber slot class that triggers a provided script. ">
 <polygon fill="white" stroke="black" points="199.5,-0 199.5,-20 354.5,-20 354.5,-0 199.5,-0"/>
 <text text-anchor="middle" x="277" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::ScriptSubscriberSlot</text>
 </a>

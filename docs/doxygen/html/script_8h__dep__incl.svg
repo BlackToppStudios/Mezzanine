@@ -45,7 +45,7 @@
 </g>
 <!-- Node7 -->
 <g id="node14" class="node"><title>Node7</title>
-<a xlink:href="scriptworkunit_8h.html" target="_top" xlink:title="This file has the interfaces for ScriptsWorkUnit.">
+<a xlink:href="scriptworkunit_8h.html" target="_top" xlink:title="This file has the interfaces for ScriptsWorkUnit. ">
 <polygon fill="white" stroke="black" points="15.5702,-223 15.5702,-267 166.57,-267 166.57,-223 15.5702,-223"/>
 <text text-anchor="start" x="23.5702" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="23.5702" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Scripting</text>
@@ -59,7 +59,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine.">
+<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine. ">
 <polygon fill="white" stroke="black" points="15.5702,-71 15.5702,-103 166.57,-103 166.57,-71 15.5702,-71"/>
 <text text-anchor="start" x="23.5702" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="91.0702" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mezzanine.h</text>
@@ -90,7 +90,7 @@
 </g>
 <!-- Node6 -->
 <g id="node12" class="node"><title>Node6</title>
-<a xlink:href="scriptingmanager_8cpp.html" target="_top" xlink:title="The implementation (WTF!!) of the Interface for Scripting Managers.">
+<a xlink:href="scriptingmanager_8cpp.html" target="_top" xlink:title="The implementation (WTF!!) of the Interface for Scripting Managers. ">
 <polygon fill="white" stroke="black" points="183.57,-141 183.57,-185 334.57,-185 334.57,-141 183.57,-141"/>
 <text text-anchor="start" x="191.57" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="191.57" y="-160" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Scripting</text>

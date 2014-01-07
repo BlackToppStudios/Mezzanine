@@ -41,7 +41,7 @@
 </g>
 <!-- Node21 -->
 <g id="node42" class="node"><title>Node21</title>
-<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class.">
+<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class. ">
 <polygon fill="white" stroke="black" points="608.5,-117 608.5,-137 691.5,-137 691.5,-117 608.5,-117"/>
 <text text-anchor="middle" x="650" y="-124" font-family="FreeSans" font-size="10.00">XML/attribute.h</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node22 -->
 <g id="node45" class="node"><title>Node22</title>
-<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template.">
+<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template. ">
 <polygon fill="white" stroke="black" points="709,-117 709,-137 807,-137 807,-117 709,-117"/>
 <text text-anchor="middle" x="758" y="-124" font-family="FreeSans" font-size="10.00">XML/objectrange.h</text>
 </a>
@@ -227,7 +227,7 @@
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1059.5,-1 1059.5,-21 1102.5,-21 1102.5,-1 1059.5,-1"/>
 <text text-anchor="middle" x="1081" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

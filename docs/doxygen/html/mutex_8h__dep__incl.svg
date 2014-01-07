@@ -6,6 +6,20 @@
 <!-- Title: /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/mutex.h Pages: 1 -->
 <!--zoomable 850 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -64,7 +78,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="workunit_8h.html" target="_top" xlink:title="This file has the definition of the workunit.">
+<a xlink:href="workunit_8h.html" target="_top" xlink:title="This file has the definition of the workunit. ">
 <polygon fill="white" stroke="black" points="5648.5,-551 5648.5,-595 5799.5,-595 5799.5,-551 5648.5,-551"/>
 <text text-anchor="start" x="5656.5" y="-582" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5656.5" y="-570" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
@@ -106,7 +120,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="framescheduler_8h.html" target="_top" xlink:title="This file has the Declarations for the main FrameScheduler class.">
+<a xlink:href="framescheduler_8h.html" target="_top" xlink:title="This file has the Declarations for the main FrameScheduler class. ">
 <polygon fill="white" stroke="black" points="5223.5,-633 5223.5,-677 5374.5,-677 5374.5,-633 5223.5,-633"/>
 <text text-anchor="start" x="5231.5" y="-664" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5231.5" y="-652" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
@@ -154,7 +168,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node52 -->
 <g id="node114" class="node"><title>Node52</title>
-<a xlink:href="framescheduler_8cpp.html" target="_top" xlink:title="This is the core object implementation for this algorithm.">
+<a xlink:href="framescheduler_8cpp.html" target="_top" xlink:title="This is the core object implementation for this algorithm. ">
 <polygon fill="white" stroke="black" points="4806.5,-305 4806.5,-349 4957.5,-349 4957.5,-305 4806.5,-305"/>
 <text text-anchor="start" x="4814.5" y="-336" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="4814.5" y="-324" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
@@ -201,7 +215,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node54 -->
 <g id="node118" class="node"><title>Node54</title>
-<a xlink:href="monopoly_8h.html" target="_top" xlink:title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread.">
+<a xlink:href="monopoly_8h.html" target="_top" xlink:title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread. ">
 <polygon fill="white" stroke="black" points="5012.5,-387 5012.5,-431 5163.5,-431 5163.5,-387 5012.5,-387"/>
 <text text-anchor="start" x="5020.5" y="-418" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5020.5" y="-406" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
@@ -307,7 +321,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node91 -->
 <g id="node249" class="node"><title>Node91</title>
-<a xlink:href="scriptworkunit_8h.html" target="_top" xlink:title="This file has the interfaces for ScriptsWorkUnit.">
+<a xlink:href="scriptworkunit_8h.html" target="_top" xlink:title="This file has the interfaces for ScriptsWorkUnit. ">
 <polygon fill="white" stroke="black" points="6506.5,-469 6506.5,-513 6657.5,-513 6657.5,-469 6506.5,-469"/>
 <text text-anchor="start" x="6514.5" y="-500" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="6514.5" y="-488" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Scripting</text>
@@ -360,7 +374,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node100 -->
 <g id="node281" class="node"><title>Node100</title>
-<a xlink:href="workunit_8cpp.html" target="_top" xlink:title="This file has the implementation of the Mezzanine::Threading::DefaultWorkUnit.">
+<a xlink:href="workunit_8cpp.html" target="_top" xlink:title="This file has the implementation of the Mezzanine::Threading::DefaultWorkUnit. ">
 <polygon fill="white" stroke="black" points="5845.5,-469 5845.5,-513 5996.5,-513 5996.5,-469 5845.5,-469"/>
 <text text-anchor="start" x="5853.5" y="-500" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5853.5" y="-488" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
@@ -393,7 +407,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node50 -->
 <g id="node109" class="node"><title>Node50</title>
-<a xlink:href="asynchronousworkunit_8cpp.html" target="_top" xlink:title="Contains very little actually.">
+<a xlink:href="asynchronousworkunit_8cpp.html" target="_top" xlink:title="Contains very little actually. ">
 <polygon fill="white" stroke="black" points="6340.5,-387 6340.5,-431 6491.5,-431 6491.5,-387 6340.5,-387"/>
 <text text-anchor="start" x="6348.5" y="-418" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="6348.5" y="-406" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
@@ -439,7 +453,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
-<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine.">
+<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine. ">
 <polygon fill="white" stroke="black" points="4860.5,-71 4860.5,-103 5011.5,-103 5011.5,-71 4860.5,-71"/>
 <text text-anchor="start" x="4868.5" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="4936" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mezzanine.h</text>
@@ -466,7 +480,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="actor_8cpp.html" target="_top" xlink:title="Code used by all actors is implemented here.">
+<a xlink:href="actor_8cpp.html" target="_top" xlink:title="Code used by all actors is implemented here. ">
 <polygon fill="white" stroke="black" points="5251.5,-147 5251.5,-179 5402.5,-179 5402.5,-147 5251.5,-147"/>
 <text text-anchor="start" x="5259.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="5327" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actor.cpp</text>
@@ -666,7 +680,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node26 -->
 <g id="node51" class="node"><title>Node26</title>
-<a xlink:href="rigiddebris_8cpp.html" target="_top" xlink:title="This file contains the implementation for the debris class that does not deform.">
+<a xlink:href="rigiddebris_8cpp.html" target="_top" xlink:title="This file contains the implementation for the debris class that does not deform. ">
 <polygon fill="white" stroke="black" points="1939.5,-147 1939.5,-179 2090.5,-179 2090.5,-147 1939.5,-147"/>
 <text text-anchor="start" x="1947.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2015" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/rigiddebris.cpp</text>
@@ -1020,7 +1034,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node53 -->
 <g id="node116" class="node"><title>Node53</title>
-<a xlink:href="frameschedulerworkunits_8cpp.html" target="_top" xlink:title="The implementation of any workunits the framescheduler needs to work correctly.">
+<a xlink:href="frameschedulerworkunits_8cpp.html" target="_top" xlink:title="The implementation of any workunits the framescheduler needs to work correctly. ">
 <polygon fill="white" stroke="black" points="5332.5,-305 5332.5,-349 5483.5,-349 5483.5,-305 5332.5,-305"/>
 <text text-anchor="start" x="5340.5" y="-336" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5340.5" y="-324" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
@@ -1049,7 +1063,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node62 -->
 <g id="node148" class="node"><title>Node62</title>
-<a xlink:href="monopoly_8cpp.html" target="_top" xlink:title="Contains the minimal implementation for the monopoly base class.">
+<a xlink:href="monopoly_8cpp.html" target="_top" xlink:title="Contains the minimal implementation for the monopoly base class. ">
 <polygon fill="white" stroke="black" points="5012.5,-305 5012.5,-349 5163.5,-349 5163.5,-305 5012.5,-305"/>
 <text text-anchor="start" x="5020.5" y="-336" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5020.5" y="-324" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
@@ -1281,7 +1295,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node65 -->
 <g id="node169" class="node"><title>Node65</title>
-<a xlink:href="billboardsetproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping billboard functionality.">
+<a xlink:href="billboardsetproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping billboard functionality. ">
 <polygon fill="white" stroke="black" points="503.5,-141 503.5,-185 654.5,-185 654.5,-141 503.5,-141"/>
 <text text-anchor="start" x="511.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="511.5" y="-160" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
@@ -1295,7 +1309,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node66 -->
 <g id="node172" class="node"><title>Node66</title>
-<a xlink:href="cameraproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping camera functionality.">
+<a xlink:href="cameraproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping camera functionality. ">
 <polygon fill="white" stroke="black" points="671.5,-141 671.5,-185 822.5,-185 822.5,-141 671.5,-141"/>
 <text text-anchor="start" x="679.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="679.5" y="-160" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
@@ -1323,7 +1337,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node68 -->
 <g id="node176" class="node"><title>Node68</title>
-<a xlink:href="lightproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping light functionality.">
+<a xlink:href="lightproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping light functionality. ">
 <polygon fill="white" stroke="black" points="-0.5,-141 -0.5,-185 150.5,-185 150.5,-141 -0.5,-141"/>
 <text text-anchor="start" x="7.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="7.5" y="-160" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
@@ -1337,7 +1351,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node69 -->
 <g id="node178" class="node"><title>Node69</title>
-<a xlink:href="particlesystemproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping particle functionality.">
+<a xlink:href="particlesystemproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping particle functionality. ">
 <polygon fill="white" stroke="black" points="167.5,-141 167.5,-185 318.5,-185 318.5,-141 167.5,-141"/>
 <text text-anchor="start" x="175.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="175.5" y="-160" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>

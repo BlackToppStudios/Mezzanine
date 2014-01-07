@@ -6,6 +6,20 @@
 <!-- Title: /home/sqeaky/Code/Mezzanine/Mezzanine/src/axisalignedbox.h Pages: 1 -->
 <!--zoomable 428 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -62,7 +76,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine.">
+<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine. ">
 <polygon fill="white" stroke="black" points="3669.5,-71 3669.5,-103 3820.5,-103 3820.5,-71 3669.5,-71"/>
 <text text-anchor="start" x="3677.5" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3745" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mezzanine.h</text>
@@ -361,7 +375,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node15 -->
 <g id="node33" class="node"><title>Node15</title>
-<a xlink:href="rigiddebris_8cpp.html" target="_top" xlink:title="This file contains the implementation for the debris class that does not deform.">
+<a xlink:href="rigiddebris_8cpp.html" target="_top" xlink:title="This file contains the implementation for the debris class that does not deform. ">
 <polygon fill="white" stroke="black" points="3841.5,-147 3841.5,-179 3992.5,-179 3992.5,-147 3841.5,-147"/>
 <text text-anchor="start" x="3849.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3917" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/rigiddebris.cpp</text>
@@ -581,7 +595,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node41 -->
 <g id="node92" class="node"><title>Node41</title>
-<a xlink:href="particlesystemproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping particle functionality.">
+<a xlink:href="particlesystemproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping particle functionality. ">
 <polygon fill="white" stroke="black" points="4823.5,-223 4823.5,-267 4974.5,-267 4974.5,-223 4823.5,-223"/>
 <text text-anchor="start" x="4831.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="4831.5" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
@@ -595,7 +609,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node43 -->
 <g id="node99" class="node"><title>Node43</title>
-<a xlink:href="cameraproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping camera functionality.">
+<a xlink:href="cameraproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping camera functionality. ">
 <polygon fill="white" stroke="black" points="5887.5,-223 5887.5,-267 6038.5,-267 6038.5,-223 5887.5,-223"/>
 <text text-anchor="start" x="5895.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5895.5" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
@@ -622,7 +636,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node52 -->
 <g id="node120" class="node"><title>Node52</title>
-<a xlink:href="billboardsetproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping billboard functionality.">
+<a xlink:href="billboardsetproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping billboard functionality. ">
 <polygon fill="white" stroke="black" points="4991.5,-223 4991.5,-267 5142.5,-267 5142.5,-223 4991.5,-223"/>
 <text text-anchor="start" x="4999.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="4999.5" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
@@ -636,7 +650,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node54 -->
 <g id="node126" class="node"><title>Node54</title>
-<a xlink:href="lightproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping light functionality.">
+<a xlink:href="lightproxy_8h.html" target="_top" xlink:title="This file contains the declaration for the World proxy wrapping light functionality. ">
 <polygon fill="white" stroke="black" points="5159.5,-223 5159.5,-267 5310.5,-267 5310.5,-223 5159.5,-223"/>
 <text text-anchor="start" x="5167.5" y="-254" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5167.5" y="-242" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
@@ -732,7 +746,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node42 -->
 <g id="node96" class="node"><title>Node42</title>
-<a xlink:href="particlesystemproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping particle functionality.">
+<a xlink:href="particlesystemproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping particle functionality. ">
 <polygon fill="white" stroke="black" points="4707.5,-141 4707.5,-185 4858.5,-185 4858.5,-141 4707.5,-141"/>
 <text text-anchor="start" x="4715.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="4715.5" y="-160" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
@@ -783,7 +797,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node47 -->
 <g id="node108" class="node"><title>Node47</title>
-<a xlink:href="cameraproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping camera functionality.">
+<a xlink:href="cameraproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping camera functionality. ">
 <polygon fill="white" stroke="black" points="5887.5,-141 5887.5,-185 6038.5,-185 6038.5,-141 5887.5,-141"/>
 <text text-anchor="start" x="5895.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5895.5" y="-160" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
@@ -862,7 +876,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node53 -->
 <g id="node123" class="node"><title>Node53</title>
-<a xlink:href="billboardsetproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping billboard functionality.">
+<a xlink:href="billboardsetproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping billboard functionality. ">
 <polygon fill="white" stroke="black" points="5043.5,-141 5043.5,-185 5194.5,-185 5194.5,-141 5043.5,-141"/>
 <text text-anchor="start" x="5051.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5051.5" y="-160" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>
@@ -886,7 +900,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node55 -->
 <g id="node129" class="node"><title>Node55</title>
-<a xlink:href="lightproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping light functionality.">
+<a xlink:href="lightproxy_8cpp.html" target="_top" xlink:title="This file contains the implementation for the World proxy wrapping light functionality. ">
 <polygon fill="white" stroke="black" points="5379.5,-141 5379.5,-185 5530.5,-185 5530.5,-141 5379.5,-141"/>
 <text text-anchor="start" x="5387.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5387.5" y="-160" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Graphics</text>

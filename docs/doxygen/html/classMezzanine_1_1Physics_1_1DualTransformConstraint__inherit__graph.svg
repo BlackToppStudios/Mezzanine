@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::Physics::DualTransformConstraint Pages: 1 -->
 <!--zoomable 165 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -49,7 +63,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html" target="_top" xlink:title="Create simple but specific limits on any axis of movement or rotation.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html" target="_top" xlink:title="Create simple but specific limits on any axis of movement or rotation. ">
 <polygon fill="white" stroke="black" points="300.5,-100 300.5,-132 419.5,-132 419.5,-100 300.5,-100"/>
 <text text-anchor="start" x="308.5" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="360" y="-107" font-family="FreeSans" font-size="10.00">::Generic6DofConstraint</text>
@@ -88,7 +102,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.html" target="_top" xlink:title="This is the base class for all constraints supported.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.html" target="_top" xlink:title="This is the base class for all constraints supported. ">
 <polygon fill="white" stroke="black" points="0,-50 0,-82 100,-82 100,-50 0,-50"/>
 <text text-anchor="start" x="8" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="50" y="-57" font-family="FreeSans" font-size="10.00">::Constraint</text>

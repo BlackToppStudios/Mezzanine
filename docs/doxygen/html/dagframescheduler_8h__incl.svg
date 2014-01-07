@@ -6,6 +6,20 @@
 <!-- Title: /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/dagframescheduler.h Pages: 1 -->
 <!--zoomable 576 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -74,7 +88,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1263.87,-1 1263.87,-21 1306.87,-21 1306.87,-1 1263.87,-1"/>
 <text text-anchor="middle" x="1285.37" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -122,7 +136,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node23 -->
 <g id="node48" class="node"><title>Node23</title>
-<a xlink:href="workunit_8h.html" target="_top" xlink:title="This file has the definition of the workunit.">
+<a xlink:href="workunit_8h.html" target="_top" xlink:title="This file has the definition of the workunit. ">
 <polygon fill="white" stroke="black" points="617.368,-349 617.368,-369 677.368,-369 677.368,-349 617.368,-349"/>
 <text text-anchor="middle" x="647.368" y="-356" font-family="FreeSans" font-size="10.00">workunit.h</text>
 </a>
@@ -134,7 +148,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node24 -->
 <g id="node51" class="node"><title>Node24</title>
-<a xlink:href="framescheduler_8h.html" target="_top" xlink:title="This file has the Declarations for the main FrameScheduler class.">
+<a xlink:href="framescheduler_8h.html" target="_top" xlink:title="This file has the Declarations for the main FrameScheduler class. ">
 <polygon fill="white" stroke="black" points="473.368,-291 473.368,-311 563.368,-311 563.368,-291 473.368,-291"/>
 <text text-anchor="middle" x="518.368" y="-298" font-family="FreeSans" font-size="10.00">framescheduler.h</text>
 </a>
@@ -170,7 +184,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node27 -->
 <g id="node60" class="node"><title>Node27</title>
-<a xlink:href="mutex_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools.">
+<a xlink:href="mutex_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools. ">
 <polygon fill="white" stroke="black" points="756.368,-175 756.368,-195 806.368,-195 806.368,-175 756.368,-175"/>
 <text text-anchor="middle" x="781.368" y="-182" font-family="FreeSans" font-size="10.00">mutex.h</text>
 </a>
@@ -182,7 +196,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node28 -->
 <g id="node62" class="node"><title>Node28</title>
-<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically.">
+<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically. ">
 <polygon fill="white" stroke="black" points="716.368,-117 716.368,-137 814.368,-137 814.368,-117 716.368,-117"/>
 <text text-anchor="middle" x="765.368" y="-124" font-family="FreeSans" font-size="10.00">atomicoperations.h</text>
 </a>
@@ -194,7 +208,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node29 -->
 <g id="node65" class="node"><title>Node29</title>
-<a xlink:href="workunitkey_8h.html" target="_top" xlink:title="This file defines the metadata used to sort workunits.">
+<a xlink:href="workunitkey_8h.html" target="_top" xlink:title="This file defines the metadata used to sort workunits. ">
 <polygon fill="white" stroke="black" points="922.868,-233 922.868,-253 997.868,-253 997.868,-233 922.868,-233"/>
 <text text-anchor="middle" x="960.368" y="-240" font-family="FreeSans" font-size="10.00">workunitkey.h</text>
 </a>
@@ -206,7 +220,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node30 -->
 <g id="node68" class="node"><title>Node30</title>
-<a xlink:href="spinlock_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools, and at least one MutexLike object.">
+<a xlink:href="spinlock_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools, and at least one MutexLike object. ">
 <polygon fill="white" stroke="black" points="436.868,-233 436.868,-253 495.868,-253 495.868,-233 436.868,-233"/>
 <text text-anchor="middle" x="466.368" y="-240" font-family="FreeSans" font-size="10.00">spinlock.h</text>
 </a>
@@ -218,7 +232,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node31 -->
 <g id="node72" class="node"><title>Node31</title>
-<a xlink:href="rollingaverage_8h.html" target="_top" xlink:title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage.">
+<a xlink:href="rollingaverage_8h.html" target="_top" xlink:title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage. ">
 <polygon fill="white" stroke="black" points="298.868,-233 298.868,-253 381.868,-253 381.868,-233 298.868,-233"/>
 <text text-anchor="middle" x="340.368" y="-240" font-family="FreeSans" font-size="10.00">rollingaverage.h</text>
 </a>
@@ -230,7 +244,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node32 -->
 <g id="node75" class="node"><title>Node32</title>
-<a xlink:href="barrier_8h.html" target="_top" xlink:title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive.">
+<a xlink:href="barrier_8h.html" target="_top" xlink:title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive. ">
 <polygon fill="white" stroke="black" points="687.868,-175 687.868,-195 738.868,-195 738.868,-175 687.868,-175"/>
 <text text-anchor="middle" x="713.368" y="-182" font-family="FreeSans" font-size="10.00">barrier.h</text>
 </a>
@@ -242,7 +256,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node33 -->
 <g id="node81" class="node"><title>Node33</title>
-<a xlink:href="threadingenumerations_8h.html" target="_top" xlink:title="Any enumerations the threading library requires are all declared here.">
+<a xlink:href="threadingenumerations_8h.html" target="_top" xlink:title="Any enumerations the threading library requires are all declared here. ">
 <polygon fill="white" stroke="black" points="885.368,-291 885.368,-311 1007.37,-311 1007.37,-291 885.368,-291"/>
 <text text-anchor="middle" x="946.368" y="-298" font-family="FreeSans" font-size="10.00">threadingenumerations.h</text>
 </a>
@@ -266,7 +280,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node35 -->
 <g id="node97" class="node"><title>Node35</title>
-<a xlink:href="lockguard_8h.html" target="_top" xlink:title="Declares a tool for automatically unlocking a mutex in an exception safe way.">
+<a xlink:href="lockguard_8h.html" target="_top" xlink:title="Declares a tool for automatically unlocking a mutex in an exception safe way. ">
 <polygon fill="white" stroke="black" points="1277.37,-407 1277.37,-427 1343.37,-427 1343.37,-407 1277.37,-407"/>
 <text text-anchor="middle" x="1310.37" y="-414" font-family="FreeSans" font-size="10.00">lockguard.h</text>
 </a>
@@ -278,7 +292,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node36 -->
 <g id="node99" class="node"><title>Node36</title>
-<a xlink:href="logtools_8h.html" target="_top" xlink:title="The definitions of the logging tools.">
+<a xlink:href="logtools_8h.html" target="_top" xlink:title="The definitions of the logging tools. ">
 <polygon fill="white" stroke="black" points="1014.87,-233 1014.87,-253 1071.87,-253 1071.87,-233 1014.87,-233"/>
 <text text-anchor="middle" x="1043.37" y="-240" font-family="FreeSans" font-size="10.00">logtools.h</text>
 </a>
@@ -290,7 +304,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node38 -->
 <g id="node105" class="node"><title>Node38</title>
-<a xlink:href="monopoly_8h.html" target="_top" xlink:title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread.">
+<a xlink:href="monopoly_8h.html" target="_top" xlink:title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread. ">
 <polygon fill="white" stroke="black" points="238.868,-407 238.868,-427 303.868,-427 303.868,-407 238.868,-407"/>
 <text text-anchor="middle" x="271.368" y="-414" font-family="FreeSans" font-size="10.00">monopoly.h</text>
 </a>
@@ -302,7 +316,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node39 -->
 <g id="node111" class="node"><title>Node39</title>
-<a xlink:href="readwritespinlock_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools, and at least one MutexLike object.">
+<a xlink:href="readwritespinlock_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools, and at least one MutexLike object. ">
 <polygon fill="white" stroke="black" points="1215.37,-465 1215.37,-485 1313.37,-485 1313.37,-465 1215.37,-465"/>
 <text text-anchor="middle" x="1264.37" y="-472" font-family="FreeSans" font-size="10.00">readwritespinlock.h</text>
 </a>

@@ -19,7 +19,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library. ">
 <polygon fill="white" stroke="black" points="144.5,-6 144.5,-26 245.5,-26 245.5,-6 144.5,-6"/>
 <text text-anchor="middle" x="195" y="-13" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>

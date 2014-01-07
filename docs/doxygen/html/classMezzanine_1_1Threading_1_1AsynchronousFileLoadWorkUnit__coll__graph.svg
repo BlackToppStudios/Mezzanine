@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::Threading::AsynchronousFileLoadWorkUnit Pages: 1 -->
 <!--zoomable 203 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -62,7 +76,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="426,-137 426,-169 536,-169 536,-137 426,-137"/>
 <text text-anchor="start" x="434" y="-156" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="481" y="-144" font-family="FreeSans" font-size="10.00">::DefaultWorkUnit</text>
@@ -75,7 +89,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="0,-163 0,-195 110,-195 110,-163 0,-163"/>
 <text text-anchor="start" x="8" y="-182" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="55" y="-170" font-family="FreeSans" font-size="10.00">::iWorkUnit</text>
@@ -120,7 +134,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1Thread.html" target="_top" xlink:title="A small wrapper around the system thread.">
+<a xlink:href="classMezzanine_1_1Threading_1_1Thread.html" target="_top" xlink:title="A small wrapper around the system thread. ">
 <polygon fill="white" stroke="black" points="621,-87 621,-119 731,-119 731,-87 621,-87"/>
 <text text-anchor="start" x="629" y="-106" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="676" y="-94" font-family="FreeSans" font-size="10.00">::Thread</text>
@@ -145,7 +159,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1RawFile.html" target="_top" xlink:title="A simple in memory representation of a file.">
+<a xlink:href="classMezzanine_1_1Threading_1_1RawFile.html" target="_top" xlink:title="A simple in memory representation of a file. ">
 <polygon fill="white" stroke="black" points="426,-44 426,-76 536,-76 536,-44 426,-44"/>
 <text text-anchor="start" x="434" y="-63" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="481" y="-51" font-family="FreeSans" font-size="10.00">::RawFile</text>
@@ -170,7 +184,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="452.5,-6 452.5,-26 509.5,-26 509.5,-6 452.5,-6"/>
 <text text-anchor="middle" x="481" y="-13" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -183,7 +197,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="206.5,-0 206.5,-32 297.5,-32 297.5,-0 206.5,-0"/>
 <text text-anchor="start" x="214.5" y="-19" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="252" y="-7" font-family="FreeSans" font-size="10.00"> char &gt;</text>

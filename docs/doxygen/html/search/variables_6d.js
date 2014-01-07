@@ -3,6 +3,7 @@ var searchData=
   ['mainthreadid',['MainThreadID',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#a9e78999f8224259b438874034a7f68c1',1,'Mezzanine::Threading::FrameScheduler']]],
   ['manager',['Manager',['../classMezzanine_1_1Graphics_1_1GameWindow.html#a99cf8ca3fee087a7c8b6bd04bccfa89b',1,'Mezzanine::Graphics::GameWindow::Manager()'],['../classMezzanine_1_1Graphics_1_1RenderableProxy.html#a8612a62c0996245cccffb1216b7a520c',1,'Mezzanine::Graphics::RenderableProxy::Manager()'],['../classMezzanine_1_1Physics_1_1CollidableProxy.html#a43689a4e58c02f20b55c6bc1461e8f3f',1,'Mezzanine::Physics::CollidableProxy::Manager()']]],
   ['manifolds',['Manifolds',['../structMezzanine_1_1Physics_1_1CollisionInternalData.html#a29f0584d75c48a9be83519b7f31d99a7',1,'Mezzanine::Physics::CollisionInternalData']]],
+  ['manualcharscaling',['ManualCharScaling',['../classMezzanine_1_1UI_1_1TextLayer.html#a383fc97b750a0a5e5b664e5681652181',1,'Mezzanine::UI::TextLayer']]],
   ['manualcheck',['ManualCheck',['../structMezzanine_1_1Internal_1_1EventManagerInternalData.html#a42d7514700fdbfef4c7fd7d2b5d28be8',1,'Mezzanine::Internal::EventManagerInternalData']]],
   ['manualtransformupdates',['ManualTransformUpdates',['../classMezzanine_1_1UI_1_1QuadRenderable.html#acf85d3063de3dc613666fb3f53e52f9b',1,'Mezzanine::UI::QuadRenderable']]],
   ['marg',['mArg',['../structMezzanine_1_1Threading_1_1__thread__start__info.html#a222f0b4b2db625b87a83a5d5e5ac6058',1,'Mezzanine::Threading::_thread_start_info']]],

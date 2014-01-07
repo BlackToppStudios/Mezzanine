@@ -2,6 +2,6 @@
 <area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1Generic6DofSpringConstraint.html" title="Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion..." alt="" coords="613,5,808,49"/>
 <area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1UniversalConstraint.html" title="Mezzanine::Physics\l::UniversalConstraint" alt="" coords="641,71,780,115"/>
 <area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1DualTransformConstraint.html" title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi..." alt="" coords="187,38,357,82"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported." alt="" coords="5,38,139,82"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported. " alt="" coords="5,38,139,82"/>
 <area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1Hinge2Constraint.html" title="Mezzanine::Physics\l::Hinge2Constraint" alt="" coords="856,5,989,49"/>
 </map>

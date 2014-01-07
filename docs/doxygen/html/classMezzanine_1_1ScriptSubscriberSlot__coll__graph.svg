@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods.">
+<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods. ">
 <polygon fill="white" stroke="black" points="67.6322,-159 67.6322,-179 221.632,-179 221.632,-159 67.6322,-159"/>
 <text text-anchor="middle" x="144.632" y="-166" font-family="FreeSans" font-size="10.00">Mezzanine::EventSubscriberSlot</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Event.html" target="_top" xlink:title="This class represents a given event that can be subscribed to and/or fired.">
+<a xlink:href="classMezzanine_1_1Event.html" target="_top" xlink:title="This class represents a given event that can be subscribed to and/or fired. ">
 <polygon fill="white" stroke="black" points="99.1322,-1 99.1322,-21 190.132,-21 190.132,-1 99.1322,-1"/>
 <text text-anchor="middle" x="144.632" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::Event</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="403.132,-77 403.132,-97 460.132,-97 460.132,-77 403.132,-77"/>
 <text text-anchor="middle" x="431.632" y="-84" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -66,7 +66,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="386.132,-153 386.132,-185 477.132,-185 477.132,-153 386.132,-153"/>
 <text text-anchor="start" x="394.132" y="-172" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="431.632" y="-160" font-family="FreeSans" font-size="10.00"> char &gt;</text>
@@ -85,7 +85,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScript.html" target="_top" xlink:title="The interface for a script.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScript.html" target="_top" xlink:title="The interface for a script. ">
 <polygon fill="white" stroke="black" points="256.132,-153 256.132,-185 361.132,-185 361.132,-153 256.132,-153"/>
 <text text-anchor="start" x="264.132" y="-172" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="308.632" y="-160" font-family="FreeSans" font-size="10.00">::iScript</text>
