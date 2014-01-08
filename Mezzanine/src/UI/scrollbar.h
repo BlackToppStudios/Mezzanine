@@ -110,6 +110,9 @@ namespace Mezzanine
             /// @internal
             /// @brief The distance the scroller is to be moved when the up, left, down, or right buttons are clicked.
             Real IncrementDistance;
+            /// @internal
+            /// @brief Stores whether or not this scrollbar should hide when there is 1 page or less of list items.  Only used when this is set as a PageProvider.
+            Boolean AutoHideScroll;
 
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode&)
             virtual bool HandleInputImpl(const Input::MetaCode& Code);
@@ -168,12 +171,14 @@ namespace Mezzanine
             /// Like other values, the top and left represent origin(0) values.
             /// @return Returns the stored scroll position.
             virtual Real GetScrollerValue() const = 0;
+
             /// @brief Sets the length(or height) of the scroller based on the relative size of it's background.
             /// @param Size The relative size you with to set the scroller to.  Range: 0.0 to 1.0
             virtual void SetScrollerSize(const Real& Size) = 0;
             /// @brief Gets the size of the scroller relative to the ScrollBack.
             /// @return Returns a Real representing size of the scroller on the relevant axis relative to the ScrollBack.
             virtual Real GetScrollerSize() const = 0;
+
             /// @brief Sets the relative distance the scroller will move when the up/left or down/right buttons are pressed.
             /// @remarks Default: 0.1.
             /// @param IncDist A real representing the amount to increment.  Can be negative.
@@ -181,6 +186,13 @@ namespace Mezzanine
             /// @brief Gets the relative distance the scroller will move on a button press.
             /// @return Returns a Real representing the relative distance to be moved on a button press.
             virtual Real GetIncrementDistance() const;
+
+            /// @brief Sets whether or not this scrollbar will hide when it's set page container has less than one page to display.
+            /// @param AutoHide True to make this hide when this scrollbars page container doesn't have more than one page to display, false to make this always visible.
+            virtual void SetAutoHide(Boolean AutoHide);
+            /// @brief Gets whether or not this scrollbar will hide when it's set page container has less than one page to display.
+            /// @return Returns true if this scrollbar is hiding when it's page container has less then one page to display, false if it's always visible.
+            virtual Boolean GetAutoHide() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Fetch Methods

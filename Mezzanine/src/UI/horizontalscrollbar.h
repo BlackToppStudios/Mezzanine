@@ -112,6 +112,16 @@ namespace Mezzanine
             virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Visibility and Priority Methods
+
+            /// @copydoc Renderable::SetVisible(Bool)
+            virtual void SetVisible(Boolean CanSee);
+            /// @copydoc Renderable::Show()
+            virtual void Show();
+            /// @copydoc Renderable::Hide()
+            virtual void Hide();
+
+            ///////////////////////////////////////////////////////////////////////////////
             // PageProvider Methods
 
             /// @copydoc PageProvider::GetMaxXPages() const

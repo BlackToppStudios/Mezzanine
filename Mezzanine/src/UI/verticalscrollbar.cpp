@@ -392,6 +392,36 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Visibility and Priority Methods
+
+        void VerticalScrollbar::SetVisible(Boolean CanSee)
+        {
+            if( this->AutoHideScroll && CanSee ) {
+                if( this->GetMaxYPages() > 1.0 ) {
+                    this->SetVisible(CanSee);
+                }
+            }else{
+                this->Widget::SetVisible(CanSee);
+            }
+        }
+
+        void VerticalScrollbar::Show()
+        {
+            if( this->AutoHideScroll ) {
+                if( this->GetMaxYPages() > 1.0 ) {
+                    this->Show();
+                }
+            }else{
+                this->Widget::Show();
+            }
+        }
+
+        void VerticalScrollbar::Hide()
+        {
+            this->Widget::Hide();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // PageProvider Methods
 
         Real VerticalScrollbar::GetMaxXPages() const
@@ -460,12 +490,22 @@ namespace Mezzanine
         void VerticalScrollbar::_NotifyContainerUpdated()
         {
             if( this->Container != NULL ) {
+                // Update the scroller size
                 Real YView = this->Container->GetActualSize().Y;
                 Real YWork = this->Container->GetActualWorkAreaSize().Y;
                 if( YWork > 0 ) {
                     this->SetScrollerSize( YView / YWork );
                 }else{
                     this->SetScrollerSize( 1.0 );
+                }
+
+                // AutoHide check
+                if( this->AutoHideScroll ) {
+                    if( this->GetMaxYPages() <= 1.0 ) {
+                        this->Hide();
+                    }else{
+                        this->Show();
+                    }
                 }
             }
         }

@@ -392,6 +392,36 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Visibility and Priority Methods
+
+        void HorizontalScrollbar::SetVisible(Boolean CanSee)
+        {
+            if( this->AutoHideScroll && CanSee ) {
+                if( this->GetMaxXPages() > 1.0 ) {
+                    this->SetVisible(CanSee);
+                }
+            }else{
+                this->Widget::SetVisible(CanSee);
+            }
+        }
+
+        void HorizontalScrollbar::Show()
+        {
+            if( this->AutoHideScroll ) {
+                if( this->GetMaxXPages() > 1.0 ) {
+                    this->Show();
+                }
+            }else{
+                this->Widget::Show();
+            }
+        }
+
+        void HorizontalScrollbar::Hide()
+        {
+            this->Widget::Hide();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // PageProvider Methods
 
         Real HorizontalScrollbar::GetMaxXPages() const
@@ -460,12 +490,22 @@ namespace Mezzanine
         void HorizontalScrollbar::_NotifyContainerUpdated()
         {
             if( this->Container != NULL ) {
+                // Update the scroller size
                 Real XView = this->Container->GetActualSize().X;
                 Real XWork = this->Container->GetActualWorkAreaSize().X;
                 if( XWork > 0 ) {
                     this->SetScrollerSize( XView / XWork );
                 }else{
                     this->SetScrollerSize( 1.0 );
+                }
+
+                // AutoHide check
+                if( this->AutoHideScroll ) {
+                    if( this->GetMaxYPages() <= 1.0 ) {
+                        this->Hide();
+                    }else{
+                        this->Show();
+                    }
                 }
             }
         }

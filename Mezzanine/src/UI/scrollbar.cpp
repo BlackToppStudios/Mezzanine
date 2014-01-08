@@ -65,7 +65,8 @@ namespace Mezzanine
             UpLeftButton(NULL),
             DownRightButton(NULL),
             ChildLock(NULL),
-            IncrementDistance(0.01)
+            IncrementDistance(0.01),
+            AutoHideScroll(false)
             {  }
 
         Scrollbar::Scrollbar(const String& RendName, Screen* Parent) :
@@ -75,7 +76,8 @@ namespace Mezzanine
             UpLeftButton(NULL),
             DownRightButton(NULL),
             ChildLock(NULL),
-            IncrementDistance(0.01)
+            IncrementDistance(0.01),
+            AutoHideScroll(false)
             { this->AddEvent(Scrollbar::EventScrollValueChanged); }
 
         Scrollbar::Scrollbar(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
@@ -85,7 +87,8 @@ namespace Mezzanine
             UpLeftButton(NULL),
             DownRightButton(NULL),
             ChildLock(NULL),
-            IncrementDistance(0.01)
+            IncrementDistance(0.01),
+            AutoHideScroll(false)
             { this->AddEvent(Scrollbar::EventScrollValueChanged); }
 
         Scrollbar::~Scrollbar()
@@ -145,14 +148,16 @@ namespace Mezzanine
         // Utility Methods
 
         void Scrollbar::SetIncrementDistance(const Real& IncDist)
-        {
-            this->IncrementDistance = IncDist;
-        }
+            { this->IncrementDistance = IncDist; }
 
         Real Scrollbar::GetIncrementDistance() const
-        {
-            return this->IncrementDistance;
-        }
+            { return this->IncrementDistance; }
+
+        void Scrollbar::SetAutoHide(Boolean AutoHide)
+            { this->AutoHideScroll = AutoHide; }
+
+        Boolean Scrollbar::GetAutoHide() const
+            { return this->AutoHideScroll; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Fetch Methods
@@ -178,7 +183,8 @@ namespace Mezzanine
             XML::Node PropertiesNode = SelfRoot.AppendChild( Scrollbar::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-                PropertiesNode.AppendAttribute("IncrementDistance").SetValue( this->IncrementDistance ) )
+                PropertiesNode.AppendAttribute("IncrementDistance").SetValue( this->IncrementDistance ) &&
+                PropertiesNode.AppendAttribute("AutoHideScroll").SetValue( this->AutoHideScroll ) )
             {
                 return;
             }else{
@@ -197,7 +203,11 @@ namespace Mezzanine
                 if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
                     CurrAttrib = PropertiesNode.GetAttribute("IncrementDistance");
                     if( !CurrAttrib.Empty() )
-                        this->IncrementDistance = CurrAttrib.AsReal();
+                        this->SetIncrementDistance( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AutoHideScroll");
+                    if( !CurrAttrib.Empty() )
+                        this->SetAutoHide( CurrAttrib.AsBool() );
                 }else{
                     MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Scrollbar::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
