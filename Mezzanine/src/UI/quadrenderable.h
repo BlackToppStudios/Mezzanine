@@ -291,8 +291,13 @@ namespace Mezzanine
             /// @brief Gets the highest ZOrder among the children of this QuadRenderable.
             /// @note This method assumes the children are ordered.  If you alter the ZOrder of children often, ensure you call UpdateChildOrder after
             /// the alterations so this method will work.
-            /// @return Returns a UInt16 representing the highest ZOrder of all the children in this QuadRenderable.
+            /// @return Returns a UInt16 representing the highest ZOrder of all the children in this QuadRenderable, or 0 if this quad has no children.
             virtual UInt16 GetHighestChildZOrder() const;
+            /// @brief Gets the lowest ZOrder among the children of this QuadRenderable.
+            /// @note This method assumes the children are ordered.  If you alter the ZOrder of children often, ensure you call UpdateChildOrder after
+            /// the alterations so this method will work.
+            /// @return Returns a UInt16 representing the lowest ZOrder of all the children in this QuadRenderable, or 0 if this quad has no children.
+            virtual UInt16 GetLowestChildZOrder() const;
             /// @brief Updates the order of children in this QuadRenderable based on the ZOrder set on each child.
             virtual void UpdateChildOrder();
 

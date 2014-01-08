@@ -284,23 +284,26 @@ namespace Mezzanine
         UInt16 QuadRenderable::GetHighestChildZOrder() const
             { return ( this->ChildWidgets.empty() ? 0 : this->ChildWidgets.back()->GetZOrder() ); }
 
+        UInt16 QuadRenderable::GetLowestChildZOrder() const
+            { return ( this->ChildWidgets.empty() ? 0 : this->ChildWidgets.front()->GetZOrder() ); }
+
         void QuadRenderable::UpdateChildOrder()
         {
             ChildContainer TempContainer;
             this->ChildWidgets.swap(TempContainer);
             for( ChildIterator TempIt = TempContainer.begin() ; TempIt != TempContainer.end() ; ++TempIt )
             {
-                UInt16 Zorder = Child->GetZOrder();
+                UInt16 Zorder = (*TempIt)->GetZOrder();
                 for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
                 {
-                    if( (*It)->GetZOrder() > Zorder ) {
-                        this->ChildWidgets.insert(It,Child);
-                        Child->_MarkAllChildrenDirty();
+                    if( (*ChildIt)->GetZOrder() > Zorder ) {
+                        this->ChildWidgets.insert(ChildIt,(*TempIt));
+                        (*TempIt)->_MarkAllChildrenDirty();
                         return;
                     }
                 }
-                this->ChildWidgets.push_back(Child);
-                Child->_MarkAllChildrenDirty();
+                this->ChildWidgets.push_back(*TempIt);
+                (*TempIt)->_MarkAllChildrenDirty();
             }
         }
 
@@ -908,8 +911,8 @@ namespace Mezzanine
         {
             for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
             {
-                if( Child == (*It) ) {
-                    Child->_NotifyParenthood(NULL);
+                if( ToBeDestroyed == (*It) ) {
+                    ToBeDestroyed->_NotifyParenthood(NULL);
                     this->ChildWidgets.erase(It);
                     this->ParentScreen->DestroyWidget(ToBeDestroyed);
                     this->_MarkDirty();
