@@ -303,7 +303,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:315: Warning: Member MetaCodeContainer (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/metacode.h:316: Warning: Member MetaCodeIterator (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/enumerations.h:165: Warning: Member WorldObjectType (enumeration) of namespace Mezzanine is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.cpp:66: Warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:70: Warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/countedptr.h:646: Warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/countedptr.h:646: Warning: argument 'OtherPointerTargetType' of command @param is not found in the argument list of Mezzanine::CountedPtrCast(CountedPtr< OtherPointerTargetType > &Original)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/countedptr.h:664: Warning: argument 'ReturnType' of command @param is not found in the argument list of Mezzanine::CountedPtrDynamicCast(CountedPtr< OtherPointerTargetType > &Original)
@@ -826,8 +826,6 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:1290: Warning: Member iterator (typedef) of class Mezzanine::Trie is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector2.h:124: Warning: return type of member Mezzanine::Vector2::operator<= is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/vector2.h:129: Warning: return type of member Mezzanine::Vector2::operator>= is not documented
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/vector3.h:405: Warning: The following parameters of Mezzanine::Vector3::GetRotationToAxis(const Vector3 &Axis, const Vector3 &FallBackAxis=Vector3()) const are not documented:
-  parameter 'FallBackAxis'
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:822: Warning: Member const_iterator (typedef) of class Mezzanine::VectorItems is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:825: Warning: Member EndNodeItemClass (typedef) of class Mezzanine::VectorItems is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:819: Warning: Member Item (typedef) of class Mezzanine::VectorItems is not documented.

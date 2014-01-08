@@ -16844,18 +16844,6 @@ fail:
 }
 
 
-SWIGINTERN VALUE
-_wrap_print_hello(int argc, VALUE *argv, VALUE self) {
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  Mezzanine::PrintHello();
-  return Qnil;
-fail:
-  return Qnil;
-}
-
-
 static swig_class SwigClassVector3;
 
 SWIGINTERN VALUE
@@ -45378,7 +45366,6 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassInvalidAssignment.mark = 0;
   SwigClassInvalidAssignment.destroy = (void (*)(void *)) free_Mezzanine_InvalidAssignment;
   SwigClassInvalidAssignment.trackObjects = 0;
-  rb_define_module_function(mMezzanine, "print_hello", VALUEFUNC(_wrap_print_hello), -1);
   
   SwigClassVector3.klass = rb_define_class_under(mMezzanine, "Vector3", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Vector3, (void *) &SwigClassVector3);
