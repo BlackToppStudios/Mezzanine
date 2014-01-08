@@ -196,6 +196,18 @@ namespace Mezzanine
             this->SubscribeToChildEvents();
         }
 
+        Boolean VerticalScrollbar::HandleMouseWheelInput(const Input::MetaCode& Code)
+        {
+            if( Code.GetCode() == Input::MOUSEWHEELVERTICAL && this->IsHovered() ) {
+                if( Code.GetMetaValue() == Input::DIRECTIONALMOTION_UPLEFT ) {
+                    return this->ButtonScroll( this->UpLeftButton );
+                }else if( Code.GetMetaValue() == Input::DIRECTIONALMOTION_DOWNRIGHT ) {
+                    return this->ButtonScroll( this->DownRightButton );
+                }
+            }
+            return false;
+        }
+
         Real VerticalScrollbar::GetUpperScrollLimit() const
         {
             return this->ScrollBack->GetActualPosition().Y + this->ScrollBack->GetActualSize().Y;

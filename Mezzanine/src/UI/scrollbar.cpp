@@ -114,7 +114,7 @@ namespace Mezzanine
                     return this->MouseScroll(Delta);
                 }
             }
-            return false;
+            return this->HandleMouseWheelInput(Code);
         }
 
         void Scrollbar::SubscribeToChildEvents()

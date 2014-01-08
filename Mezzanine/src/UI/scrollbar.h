@@ -115,7 +115,12 @@ namespace Mezzanine
             Boolean AutoHideScroll;
 
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode&)
-            virtual bool HandleInputImpl(const Input::MetaCode& Code);
+            virtual Boolean HandleInputImpl(const Input::MetaCode& Code);
+            /// @internal
+            /// @brief Checks for and handles mouse wheel input.
+            /// @param Code The input to be processed.
+            /// @return Returns true if the input was handled and consumed, false otherwise.
+            virtual Boolean HandleMouseWheelInput(const Input::MetaCode& Code) = 0;
             /// @internal
             /// @brief Subscribes to all the events of this scrollbars children we care about.  Used only on construction.
             virtual void SubscribeToChildEvents();
