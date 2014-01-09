@@ -197,6 +197,11 @@ namespace Mezzanine
             Child->Subscribe(Widget::EventFocusGained,this);
         }
 
+        void PagedContainer::AddChild(Widget* Child, const UInt16 ZOrder)
+        {
+            this->QuadRenderable::AddChild(Child,ZOrder);
+        }
+
         void PagedContainer::RemoveChild(Widget* Child)
         {
             if( this->LastFocusedChild == Child ) {

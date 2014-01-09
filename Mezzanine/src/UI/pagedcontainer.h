@@ -202,6 +202,8 @@ namespace Mezzanine
 
             /// @copydoc QuadRenderable::AddChild(Widget*)
             virtual void AddChild(Widget* Child);
+            /// @copydoc QuadRenderable::AddChild(Widget*,const UInt16)
+            virtual void AddChild(Widget* Child, const UInt16 ZOrder);
             /// @copydoc QuadRenderable::RemoveChild(Widget*)
             virtual void RemoveChild(Widget* Child);
             /// @copydoc QuadRenderable::RemoveAllChildren()
