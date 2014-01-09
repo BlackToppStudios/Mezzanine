@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="31.5,-71 31.5,-91 96.5,-91 96.5,-71 31.5,-71"/>
 <text text-anchor="middle" x="64" y="-78" font-family="FreeSans" font-size="10.00">std::istream</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="17.5,-129 17.5,-161 110.5,-161 110.5,-129 17.5,-129"/>
 <text text-anchor="start" x="25.5" y="-148" font-family="FreeSans" font-size="10.00">std::basic_istream</text>
 <text text-anchor="middle" x="64" y="-136" font-family="FreeSans" font-size="10.00">&lt; char &gt;</text>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="9,-199 9,-219 119,-219 119,-199 9,-199"/>
 <text text-anchor="middle" x="64" y="-206" font-family="FreeSans" font-size="10.00">std::basic_ios&lt; Char &gt;</text>
 </a>
@@ -54,7 +54,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="28.5,-257 28.5,-277 99.5,-277 99.5,-257 28.5,-257"/>
 <text text-anchor="middle" x="64" y="-264" font-family="FreeSans" font-size="10.00">std::ios_base</text>
 </a>

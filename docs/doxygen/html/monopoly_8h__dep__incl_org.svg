@@ -45,7 +45,7 @@
 </g>
 <!-- Node51 -->
 <g id="node122" class="node"><title>Node51</title>
-<a xlink:href="framescheduler_8cpp.html" target="_top" xlink:title="This is the core object implementation for this algorithm.">
+<a xlink:href="framescheduler_8cpp.html" target="_top" xlink:title="This is the core object implementation for this algorithm. ">
 <polygon fill="white" stroke="black" points="5698.5,-305 5698.5,-349 5849.5,-349 5849.5,-305 5698.5,-305"/>
 <text text-anchor="start" x="5706.5" y="-336" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5706.5" y="-324" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
@@ -59,7 +59,7 @@
 </g>
 <!-- Node52 -->
 <g id="node124" class="node"><title>Node52</title>
-<a xlink:href="monopoly_8cpp.html" target="_top" xlink:title="Contains the minimal implementation for the monopoly base class.">
+<a xlink:href="monopoly_8cpp.html" target="_top" xlink:title="Contains the minimal implementation for the monopoly base class. ">
 <polygon fill="white" stroke="black" points="5866.5,-305 5866.5,-349 6017.5,-349 6017.5,-305 5866.5,-305"/>
 <text text-anchor="start" x="5874.5" y="-336" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="start" x="5874.5" y="-324" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
@@ -86,7 +86,7 @@
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine.">
+<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine. ">
 <polygon fill="white" stroke="black" points="5195.5,-71 5195.5,-103 5346.5,-103 5346.5,-71 5195.5,-71"/>
 <text text-anchor="start" x="5203.5" y="-90" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="5271" y="-78" font-family="FreeSans" font-size="10.00">/Mezzanine/src/mezzanine.h</text>
@@ -113,7 +113,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="actor_8cpp.html" target="_top" xlink:title="Code used by all actors is implemented here.">
+<a xlink:href="actor_8cpp.html" target="_top" xlink:title="Code used by all actors is implemented here. ">
 <polygon fill="white" stroke="black" points="3735.5,-147 3735.5,-179 3886.5,-179 3886.5,-147 3735.5,-147"/>
 <text text-anchor="start" x="3743.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="3811" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/actor.cpp</text>
@@ -313,7 +313,7 @@
 </g>
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
-<a xlink:href="rigiddebris_8cpp.html" target="_top" xlink:title="This file contains the implementation for the debris class that does not deform.">
+<a xlink:href="rigiddebris_8cpp.html" target="_top" xlink:title="This file contains the implementation for the debris class that does not deform. ">
 <polygon fill="white" stroke="black" points="2787.5,-147 2787.5,-179 2938.5,-179 2938.5,-147 2787.5,-147"/>
 <text text-anchor="start" x="2795.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
 <text text-anchor="middle" x="2863" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/rigiddebris.cpp</text>

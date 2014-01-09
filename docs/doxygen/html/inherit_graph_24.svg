@@ -11,14 +11,14 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-138 307,-138 307,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1EventBase.html" target="_top" xlink:title="The base class for all events.">
+<a xlink:href="classMezzanine_1_1EventBase.html" target="_top" xlink:title="The base class for all events. ">
 <polygon fill="white" stroke="black" points="0.5,-76 0.5,-96 113.5,-96 113.5,-76 0.5,-76"/>
 <text text-anchor="middle" x="57" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::EventBase</text>
 </a>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1EventGameWindow.html" target="_top" xlink:title="Convey the message that Something happened to a game window.">
+<a xlink:href="classMezzanine_1_1EventGameWindow.html" target="_top" xlink:title="Convey the message that Something happened to a game window. ">
 <polygon fill="white" stroke="black" points="150.5,-114 150.5,-134 301.5,-134 301.5,-114 150.5,-114"/>
 <text text-anchor="middle" x="226" y="-121" font-family="FreeSans" font-size="10.00">Mezzanine::EventGameWindow</text>
 </a>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1EventQuit.html" target="_top" xlink:title="This is intended to convey the message that quitting needs to happen.">
+<a xlink:href="classMezzanine_1_1EventQuit.html" target="_top" xlink:title="This is intended to convey the message that quitting needs to happen. ">
 <polygon fill="white" stroke="black" points="171.5,-76 171.5,-96 280.5,-96 280.5,-76 171.5,-76"/>
 <text text-anchor="middle" x="226" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::EventQuit</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1EventUserInput.html" target="_top" xlink:title="This is a container for MetaCodes that is used in the EventManager.">
+<a xlink:href="classMezzanine_1_1EventUserInput.html" target="_top" xlink:title="This is a container for MetaCodes that is used in the EventManager. ">
 <polygon fill="white" stroke="black" points="160,-38 160,-58 292,-58 292,-38 160,-38"/>
 <text text-anchor="middle" x="226" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::EventUserInput</text>
 </a>
@@ -54,7 +54,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="15.5,-19 15.5,-39 98.5,-39 98.5,-19 15.5,-19"/>
 <text text-anchor="middle" x="57" y="-26" font-family="FreeSans" font-size="10.00">std::vector&lt; T &gt;</text>
 </a>
@@ -66,7 +66,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1SoundSet.html" target="_top" xlink:title="This is a vector that stores sounds.">
+<a xlink:href="classMezzanine_1_1Audio_1_1SoundSet.html" target="_top" xlink:title="This is a vector that stores sounds. ">
 <polygon fill="white" stroke="black" points="156.5,-0 156.5,-20 295.5,-20 295.5,-0 156.5,-0"/>
 <text text-anchor="middle" x="226" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundSet</text>
 </a>

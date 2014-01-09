@@ -16,7 +16,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Scrollbar.html" target="_top" xlink:title="This is the scrollbar base class.">
+<a xlink:href="classMezzanine_1_1UI_1_1Scrollbar.html" target="_top" xlink:title="This is the scrollbar base class. ">
 <polygon fill="white" stroke="black" points="108.5,-71 108.5,-91 227.5,-91 227.5,-71 108.5,-71"/>
 <text text-anchor="middle" x="168" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Scrollbar</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Spinner.html" target="_top" xlink:title="This is a simple widget for a numeric variable in a box.">
+<a xlink:href="classMezzanine_1_1UI_1_1Spinner.html" target="_top" xlink:title="This is a simple widget for a numeric variable in a box. ">
 <polygon fill="white" stroke="black" points="245,-71 245,-91 359,-91 359,-71 245,-71"/>
 <text text-anchor="middle" x="302" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Spinner</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Widget.html" target="_top" xlink:title="This is the base class for all widgets.">
+<a xlink:href="classMezzanine_1_1UI_1_1Widget.html" target="_top" xlink:title="This is the base class for all widgets. ">
 <polygon fill="white" stroke="black" points="179.5,-187 179.5,-207 290.5,-207 290.5,-187 179.5,-187"/>
 <text text-anchor="middle" x="235" y="-194" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
@@ -52,7 +52,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1QuadRenderable.html" target="_top" xlink:title="This represents a nestable quad for an object in a GUI layout.">
+<a xlink:href="classMezzanine_1_1UI_1_1QuadRenderable.html" target="_top" xlink:title="This represents a nestable quad for an object in a GUI layout. ">
 <polygon fill="white" stroke="black" points="-0.5,-245 -0.5,-265 152.5,-265 152.5,-245 -0.5,-245"/>
 <text text-anchor="middle" x="76" y="-252" font-family="FreeSans" font-size="10.00">Mezzanine::UI::QuadRenderable</text>
 </a>
@@ -64,7 +64,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
+<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy. ">
 <polygon fill="white" stroke="black" points="11,-303 11,-323 141,-323 141,-303 11,-303"/>
 <text text-anchor="middle" x="76" y="-310" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
@@ -76,7 +76,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1EventPublisher.html" target="_top" xlink:title="This is the base class for any class that generates and publishes events to subscribers.">
+<a xlink:href="classMezzanine_1_1EventPublisher.html" target="_top" xlink:title="This is the base class for any class that generates and publishes events to subscribers. ">
 <polygon fill="white" stroke="black" points="169.5,-245 169.5,-265 300.5,-265 300.5,-245 169.5,-245"/>
 <text text-anchor="middle" x="235" y="-252" font-family="FreeSans" font-size="10.00">Mezzanine::EventPublisher</text>
 </a>
@@ -88,7 +88,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1EventSubscriber.html" target="_top" xlink:title="This is a base class for all classes that subscribe to events.">
+<a xlink:href="classMezzanine_1_1EventSubscriber.html" target="_top" xlink:title="This is a base class for all classes that subscribe to events. ">
 <polygon fill="white" stroke="black" points="317.5,-245 317.5,-265 454.5,-265 454.5,-245 317.5,-245"/>
 <text text-anchor="middle" x="386" y="-252" font-family="FreeSans" font-size="10.00">Mezzanine::EventSubscriber</text>
 </a>
@@ -100,7 +100,7 @@
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1UI_1_1HorizontalScrollbar.html" target="_top" xlink:title="This is a scrollbar class aligned on the X axis.">
+<a xlink:href="classMezzanine_1_1UI_1_1HorizontalScrollbar.html" target="_top" xlink:title="This is a scrollbar class aligned on the X axis. ">
 <polygon fill="white" stroke="black" points="28,-1 28,-33 152,-33 152,-1 28,-1"/>
 <text text-anchor="start" x="36" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Horizontal</text>
 <text text-anchor="middle" x="90" y="-8" font-family="FreeSans" font-size="10.00">Scrollbar</text>
@@ -113,7 +113,7 @@
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1UI_1_1VerticalScrollbar.html" target="_top" xlink:title="This is a scrollbar class aligned on the Y axis.">
+<a xlink:href="classMezzanine_1_1UI_1_1VerticalScrollbar.html" target="_top" xlink:title="This is a scrollbar class aligned on the Y axis. ">
 <polygon fill="white" stroke="black" points="170,-7 170,-27 322,-27 322,-7 170,-7"/>
 <text text-anchor="middle" x="246" y="-14" font-family="FreeSans" font-size="10.00">Mezzanine::UI::VerticalScrollbar</text>
 </a>

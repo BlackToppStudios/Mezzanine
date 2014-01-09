@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::WorldProxy Pages: 1 -->
 <!--zoomable 390 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -48,7 +62,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1iListener.html" target="_top" xlink:title="This is an interface class for a listener (such as a player) in the 3D audio world.">
+<a xlink:href="classMezzanine_1_1Audio_1_1iListener.html" target="_top" xlink:title="This is an interface class for a listener (such as a player) in the 3D audio world. ">
 <polygon fill="white" stroke="black" points="324,-313 324,-333 456,-333 456,-313 324,-313"/>
 <text text-anchor="middle" x="390" y="-320" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iListener</text>
 </a>
@@ -60,7 +74,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1SoundProxy.html" target="_top" xlink:title="This is a proxy class for representing a sound being played in 3D space.">
+<a xlink:href="classMezzanine_1_1Audio_1_1SoundProxy.html" target="_top" xlink:title="This is a proxy class for representing a sound being played in 3D space. ">
 <polygon fill="white" stroke="black" points="316,-275 316,-295 464,-295 464,-275 316,-275"/>
 <text text-anchor="middle" x="390" y="-282" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundProxy</text>
 </a>
@@ -85,7 +99,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1CollidableProxy.html" target="_top" xlink:title="This is a proxy from which physics objects that can collide with each other are handled.">
+<a xlink:href="classMezzanine_1_1Physics_1_1CollidableProxy.html" target="_top" xlink:title="This is a proxy from which physics objects that can collide with each other are handled. ">
 <polygon fill="white" stroke="black" points="340,-75 340,-107 440,-107 440,-75 340,-75"/>
 <text text-anchor="start" x="348" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="390" y="-82" font-family="FreeSans" font-size="10.00">::CollidableProxy</text>
@@ -98,7 +112,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1TransformableObject.html" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
+<a xlink:href="classMezzanine_1_1TransformableObject.html" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated. ">
 <polygon fill="white" stroke="black" points="0,-247 0,-279 128,-279 128,-247 0,-247"/>
 <text text-anchor="start" x="8" y="-266" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="64" y="-254" font-family="FreeSans" font-size="10.00">Object</text>
@@ -124,7 +138,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1CameraProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a camera in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1CameraProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a camera in the scene. ">
 <polygon fill="white" stroke="black" points="502.5,-300 502.5,-332 607.5,-332 607.5,-300 502.5,-300"/>
 <text text-anchor="start" x="510.5" y="-319" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="555" y="-307" font-family="FreeSans" font-size="10.00">::CameraProxy</text>
@@ -137,7 +151,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1EntityProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a mesh in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1EntityProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a mesh in the scene. ">
 <polygon fill="white" stroke="black" points="502.5,-250 502.5,-282 607.5,-282 607.5,-250 502.5,-250"/>
 <text text-anchor="start" x="510.5" y="-269" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="555" y="-257" font-family="FreeSans" font-size="10.00">::EntityProxy</text>
@@ -150,7 +164,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1LightProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating lighting in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1LightProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating lighting in the scene. ">
 <polygon fill="white" stroke="black" points="502.5,-200 502.5,-232 607.5,-232 607.5,-200 502.5,-200"/>
 <text text-anchor="start" x="510.5" y="-219" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="555" y="-207" font-family="FreeSans" font-size="10.00">::LightProxy</text>
@@ -163,7 +177,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1ParticleSystemProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating particles in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1ParticleSystemProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating particles in the scene. ">
 <polygon fill="white" stroke="black" points="500,-150 500,-182 610,-182 610,-150 500,-150"/>
 <text text-anchor="start" x="508" y="-169" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="555" y="-157" font-family="FreeSans" font-size="10.00">::ParticleSystemProxy</text>
@@ -176,7 +190,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1GhostProxy.html" target="_top" xlink:title="This is the proxy object for ghost objects with no contact response.">
+<a xlink:href="classMezzanine_1_1Physics_1_1GhostProxy.html" target="_top" xlink:title="This is the proxy object for ghost objects with no contact response. ">
 <polygon fill="white" stroke="black" points="505,-100 505,-132 605,-132 605,-100 505,-100"/>
 <text text-anchor="start" x="513" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="555" y="-107" font-family="FreeSans" font-size="10.00">::GhostProxy</text>
@@ -189,7 +203,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.html" target="_top" xlink:title="This is a proxy from which rigid body proxys are handled.">
+<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.html" target="_top" xlink:title="This is a proxy from which rigid body proxys are handled. ">
 <polygon fill="white" stroke="black" points="505,-50 505,-82 605,-82 605,-50 505,-50"/>
 <text text-anchor="start" x="513" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="555" y="-57" font-family="FreeSans" font-size="10.00">::RigidProxy</text>
@@ -202,7 +216,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1SoftProxy.html" target="_top" xlink:title="This is the proxy object for soft/compressable bodies.">
+<a xlink:href="classMezzanine_1_1Physics_1_1SoftProxy.html" target="_top" xlink:title="This is the proxy object for soft/compressable bodies. ">
 <polygon fill="white" stroke="black" points="505,-0 505,-32 605,-32 605,-0 505,-0"/>
 <text text-anchor="start" x="513" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="555" y="-7" font-family="FreeSans" font-size="10.00">::SoftProxy</text>

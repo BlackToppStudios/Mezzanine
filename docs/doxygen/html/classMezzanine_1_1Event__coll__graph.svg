@@ -16,7 +16,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods.">
+<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods. ">
 <polygon fill="white" stroke="black" points="0,-83 0,-103 154,-103 154,-83 0,-83"/>
 <text text-anchor="middle" x="77" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::EventSubscriberSlot</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="123.5,-223 123.5,-243 180.5,-243 180.5,-223 123.5,-223"/>
 <text text-anchor="middle" x="152" y="-230" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="106.5,-283 106.5,-315 197.5,-315 197.5,-283 106.5,-283"/>
 <text text-anchor="start" x="114.5" y="-302" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="152" y="-290" font-family="FreeSans" font-size="10.00"> char &gt;</text>

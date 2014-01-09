@@ -1,4 +1,4 @@
 <map id="Mezzanine::Audio::iListener" name="Mezzanine::Audio::iListener">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldProxy.html" title="This is the base class for proxy objects belonging to the various 3D subsystems." alt="" coords="16,99,171,127"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="8,6,179,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldProxy.html" title="This is the base class for proxy objects belonging to the various 3D subsystems. " alt="" coords="16,99,171,127"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="8,6,179,50"/>
 </map>

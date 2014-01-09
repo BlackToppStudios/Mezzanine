@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-211 743,-211 743,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.html" target="_top" xlink:title="This is the base class for all constraints supported.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.html" target="_top" xlink:title="This is the base class for all constraints supported. ">
 <polygon fill="white" stroke="black" points="0,-75 0,-107 100,-107 100,-75 0,-75"/>
 <text text-anchor="start" x="8" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="50" y="-82" font-family="FreeSans" font-size="10.00">::Constraint</text>
@@ -71,7 +71,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html" target="_top" xlink:title="Create simple but specific limits on any axis of movement or rotation.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html" target="_top" xlink:title="Create simple but specific limits on any axis of movement or rotation. ">
 <polygon fill="white" stroke="black" points="300.5,-150 300.5,-182 419.5,-182 419.5,-150 300.5,-150"/>
 <text text-anchor="start" x="308.5" y="-169" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="360" y="-157" font-family="FreeSans" font-size="10.00">::Generic6DofConstraint</text>

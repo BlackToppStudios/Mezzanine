@@ -30,7 +30,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit. ">
 <polygon fill="white" stroke="black" points="875,-286 875,-306 1001,-306 1001,-286 875,-286"/>
 <text text-anchor="middle" x="938" y="-293" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library. ">
 <polygon fill="white" stroke="black" points="664.5,-251 664.5,-271 765.5,-271 765.5,-251 664.5,-251"/>
 <text text-anchor="middle" x="715" y="-258" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -91,7 +91,7 @@
 </g>
 <!-- Node7 -->
 <g id="node14" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1ResourceInputStream.html" target="_top" xlink:title="A stream from a file, can read from zip files as well.">
+<a xlink:href="classMezzanine_1_1ResourceInputStream.html" target="_top" xlink:title="A stream from a file, can read from zip files as well. ">
 <polygon fill="white" stroke="black" points="650.5,-185 650.5,-217 779.5,-217 779.5,-185 650.5,-185"/>
 <text text-anchor="start" x="658.5" y="-204" font-family="FreeSans" font-size="10.00">Mezzanine::ResourceInput</text>
 <text text-anchor="middle" x="715" y="-192" font-family="FreeSans" font-size="10.00">Stream</text>
@@ -105,7 +105,7 @@
 </g>
 <!-- Node8 -->
 <g id="node16" class="node"><title>Node8</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="426.5,-191 426.5,-211 491.5,-211 491.5,-191 426.5,-191"/>
 <text text-anchor="middle" x="459" y="-198" font-family="FreeSans" font-size="10.00">std::istream</text>
 </a>
@@ -117,7 +117,7 @@
 </g>
 <!-- Node9 -->
 <g id="node18" class="node"><title>Node9</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="258.5,-185 258.5,-217 351.5,-217 351.5,-185 258.5,-185"/>
 <text text-anchor="start" x="266.5" y="-204" font-family="FreeSans" font-size="10.00">std::basic_istream</text>
 <text text-anchor="middle" x="305" y="-192" font-family="FreeSans" font-size="10.00">&lt; char &gt;</text>
@@ -130,7 +130,7 @@
 </g>
 <!-- Node10 -->
 <g id="node20" class="node"><title>Node10</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="110,-191 110,-211 220,-211 220,-191 110,-191"/>
 <text text-anchor="middle" x="165" y="-198" font-family="FreeSans" font-size="10.00">std::basic_ios&lt; Char &gt;</text>
 </a>
@@ -142,7 +142,7 @@
 </g>
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="0.5,-191 0.5,-211 71.5,-211 71.5,-191 0.5,-191"/>
 <text text-anchor="middle" x="36" y="-198" font-family="FreeSans" font-size="10.00">std::ios_base</text>
 </a>
@@ -166,7 +166,7 @@
 </g>
 <!-- Node13 -->
 <g id="node26" class="node"><title>Node13</title>
-<a xlink:href="classMezzanine_1_1CountedPtr.html" target="_top" xlink:title="A simple reference counting pointer.">
+<a xlink:href="classMezzanine_1_1CountedPtr.html" target="_top" xlink:title="A simple reference counting pointer. ">
 <polygon fill="white" stroke="black" points="657,-122 657,-154 773,-154 773,-122 657,-122"/>
 <text text-anchor="start" x="665" y="-141" font-family="FreeSans" font-size="10.00">Mezzanine::CountedPtr</text>
 <text text-anchor="middle" x="715" y="-129" font-family="FreeSans" font-size="10.00">&lt; TypePointedTo &gt;</text>
@@ -206,7 +206,7 @@
 </g>
 <!-- Node15 -->
 <g id="node30" class="node"><title>Node15</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="686.5,-46 686.5,-66 743.5,-66 743.5,-46 686.5,-46"/>
 <text text-anchor="middle" x="715" y="-53" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -236,7 +236,7 @@
 </g>
 <!-- Node16 -->
 <g id="node32" class="node"><title>Node16</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="413.5,-40 413.5,-72 504.5,-72 504.5,-40 413.5,-40"/>
 <text text-anchor="start" x="421.5" y="-59" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="459" y="-47" font-family="FreeSans" font-size="10.00"> char &gt;</text>

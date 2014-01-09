@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 125,-24 125,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1iFilter.html" target="_top" xlink:title="This is an interface class for the application of filters to audio playback.">
+<a xlink:href="classMezzanine_1_1Audio_1_1iFilter.html" target="_top" xlink:title="This is an interface class for the application of filters to audio playback. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 120,-20 120,-0 0,-0"/>
 <text text-anchor="middle" x="60" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iFilter</text>
 </a>

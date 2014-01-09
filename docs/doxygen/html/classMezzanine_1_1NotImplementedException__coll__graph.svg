@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">
 <polygon fill="white" stroke="black" points="14.5,-71 14.5,-91 123.5,-91 123.5,-71 14.5,-71"/>
 <text text-anchor="middle" x="69" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="31.5,-129 31.5,-149 106.5,-149 106.5,-129 31.5,-129"/>
 <text text-anchor="middle" x="69" y="-136" font-family="FreeSans" font-size="10.00">std::exception</text>
 </a>

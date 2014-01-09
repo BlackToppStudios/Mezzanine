@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 155,-36 155,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="structMezzanine_1_1Threading_1_1DefaultThreadSpecificStorage.html" target="_top" xlink:title="Use this to change the default resource type.">
+<a xlink:href="structMezzanine_1_1Threading_1_1DefaultThreadSpecificStorage.html" target="_top" xlink:title="Use this to change the default resource type. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-32 150,-32 150,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="75" y="-7" font-family="FreeSans" font-size="10.00">::DefaultThreadSpecificStorage</text>

@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 125,-36 125,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1DeSerializer.html" target="_top" xlink:title="A tool for deserializing classes with specific issues deserializing them.">
+<a xlink:href="classMezzanine_1_1DeSerializer.html" target="_top" xlink:title="A tool for deserializing classes with specific issues deserializing them. ">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-32 119.5,-32 119.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::DeSerializer</text>
 <text text-anchor="middle" x="60" y="-7" font-family="FreeSans" font-size="10.00">&lt; DeSerializable &gt;</text>

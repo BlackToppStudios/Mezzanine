@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="document_8h.html" target="_top" xlink:title="The definition of the XML::Document Class.">
+<a xlink:href="document_8h.html" target="_top" xlink:title="The definition of the XML::Document Class. ">
 <polygon fill="white" stroke="black" points="381,-407 381,-427 471,-427 471,-407 381,-407"/>
 <text text-anchor="middle" x="426" y="-414" font-family="FreeSans" font-size="10.00">XML/document.h</text>
 </a>
@@ -65,7 +65,7 @@
 </g>
 <!-- Node23 -->
 <g id="node48" class="node"><title>Node23</title>
-<a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes.">
+<a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes. ">
 <polygon fill="white" stroke="black" points="304,-175 304,-195 372,-195 372,-175 304,-175"/>
 <text text-anchor="middle" x="338" y="-182" font-family="FreeSans" font-size="10.00">XML/node.h</text>
 </a>
@@ -77,7 +77,7 @@
 </g>
 <!-- Node26 -->
 <g id="node58" class="node"><title>Node26</title>
-<a xlink:href="writer_8h.html" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy.">
+<a xlink:href="writer_8h.html" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy. ">
 <polygon fill="white" stroke="black" points="483.5,-349 483.5,-369 554.5,-369 554.5,-349 483.5,-349"/>
 <text text-anchor="middle" x="519" y="-356" font-family="FreeSans" font-size="10.00">XML/writer.h</text>
 </a>
@@ -89,7 +89,7 @@
 </g>
 <!-- Node33 -->
 <g id="node73" class="node"><title>Node33</title>
-<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream.">
+<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream. ">
 <polygon fill="white" stroke="black" points="892,-175 892,-195 1008,-195 1008,-175 892,-175"/>
 <text text-anchor="middle" x="950" y="-182" font-family="FreeSans" font-size="10.00">Resource/datastream.h</text>
 </a>
@@ -263,7 +263,7 @@
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="869.5,-1 869.5,-21 912.5,-21 912.5,-1 869.5,-1"/>
 <text text-anchor="middle" x="891" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -300,7 +300,7 @@
 </g>
 <!-- Node24 -->
 <g id="node52" class="node"><title>Node24</title>
-<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class.">
+<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class. ">
 <polygon fill="white" stroke="black" points="365.5,-117 365.5,-137 448.5,-137 448.5,-117 365.5,-117"/>
 <text text-anchor="middle" x="407" y="-124" font-family="FreeSans" font-size="10.00">XML/attribute.h</text>
 </a>
@@ -312,7 +312,7 @@
 </g>
 <!-- Node25 -->
 <g id="node55" class="node"><title>Node25</title>
-<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template.">
+<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template. ">
 <polygon fill="white" stroke="black" points="212,-117 212,-137 310,-137 310,-117 212,-117"/>
 <text text-anchor="middle" x="261" y="-124" font-family="FreeSans" font-size="10.00">XML/objectrange.h</text>
 </a>
@@ -416,7 +416,7 @@
 </g>
 <!-- Node36 -->
 <g id="node81" class="node"><title>Node36</title>
-<a xlink:href="filestream_8h.html" target="_top" xlink:title="Declaration of FileStream.">
+<a xlink:href="filestream_8h.html" target="_top" xlink:title="Declaration of FileStream. ">
 <polygon fill="white" stroke="black" points="977.5,-233 977.5,-253 1086.5,-253 1086.5,-233 977.5,-233"/>
 <text text-anchor="middle" x="1032" y="-240" font-family="FreeSans" font-size="10.00">Resource/filestream.h</text>
 </a>
@@ -440,7 +440,7 @@
 </g>
 <!-- Node38 -->
 <g id="node88" class="node"><title>Node38</title>
-<a xlink:href="memorystream_8h.html" target="_top" xlink:title="Declaration of MemoryStream.">
+<a xlink:href="memorystream_8h.html" target="_top" xlink:title="Declaration of MemoryStream. ">
 <polygon fill="white" stroke="black" points="1103.5,-233 1103.5,-253 1234.5,-253 1234.5,-233 1103.5,-233"/>
 <text text-anchor="middle" x="1169" y="-240" font-family="FreeSans" font-size="10.00">Resource/memorystream.h</text>
 </a>
@@ -469,7 +469,7 @@
 </g>
 <!-- Node34 -->
 <g id="node76" class="node"><title>Node34</title>
-<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe.">
+<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe. ">
 <polygon fill="white" stroke="black" points="809,-117 809,-137 879,-137 879,-117 809,-117"/>
 <text text-anchor="middle" x="844" y="-124" font-family="FreeSans" font-size="10.00">countedptr.h</text>
 </a>

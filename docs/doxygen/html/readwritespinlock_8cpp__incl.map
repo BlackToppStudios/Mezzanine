@@ -1,9 +1,9 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/readwritespinlock.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/readwritespinlock.cpp">
-<area shape="rect" id="node3" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically." alt="" coords="687,115,817,143"/>
-<area shape="rect" id="node41" href="$readwritespinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object." alt="" coords="841,115,972,143"/>
+<area shape="rect" id="node3" href="$atomicoperations_8h.html" title="Simple thread safe ways to check and change a specified variable atomically. " alt="" coords="687,115,817,143"/>
+<area shape="rect" id="node41" href="$readwritespinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object. " alt="" coords="841,115,972,143"/>
 <area shape="rect" id="node46" href="$crossplatformincludes_8h.html" title="This file determines what features are offered by the compiler that this library can take advantage o..." alt="" coords="996,115,1151,143"/>
 <area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="709,193,795,221"/>
 <area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1331,270,1475,298"/>
-<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1251,270,1307,298"/>
-<area shape="rect" id="node44" href="$lockguard_8h.html" title="Declares a tool for automatically unlocking a mutex in an exception safe way." alt="" coords="863,193,951,221"/>
+<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1251,270,1307,298"/>
+<area shape="rect" id="node44" href="$lockguard_8h.html" title="Declares a tool for automatically unlocking a mutex in an exception safe way. " alt="" coords="863,193,951,221"/>
 </map>

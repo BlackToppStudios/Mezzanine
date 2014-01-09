@@ -27,7 +27,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen. ">
 <polygon fill="white" stroke="black" points="223,-5 223,-25 323,-25 323,-5 223,-5"/>
 <text text-anchor="middle" x="273" y="-12" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -54,7 +54,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1FontData.html" target="_top" xlink:title="This class represents a collection of Glyphs in a common visual style.">
+<a xlink:href="classMezzanine_1_1UI_1_1FontData.html" target="_top" xlink:title="This class represents a collection of Glyphs in a common visual style. ">
 <polygon fill="white" stroke="black" points="868.5,-115 868.5,-135 989.5,-135 989.5,-115 868.5,-115"/>
 <text text-anchor="middle" x="929" y="-122" font-family="FreeSans" font-size="10.00">Mezzanine::UI::FontData</text>
 </a>
@@ -78,7 +78,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="650.5,-217 650.5,-237 707.5,-237 707.5,-217 650.5,-217"/>
 <text text-anchor="middle" x="679" y="-224" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -114,7 +114,7 @@
 </g>
 <!-- Node9 -->
 <g id="node19" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Sprite.html" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad.">
+<a xlink:href="classMezzanine_1_1UI_1_1Sprite.html" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad. ">
 <polygon fill="white" stroke="black" points="1484.5,-226 1484.5,-246 1591.5,-246 1591.5,-226 1484.5,-226"/>
 <text text-anchor="middle" x="1538" y="-233" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Sprite</text>
 </a>
@@ -127,7 +127,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="435.5,-211 435.5,-243 526.5,-243 526.5,-211 435.5,-211"/>
 <text text-anchor="start" x="443.5" y="-230" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="481" y="-218" font-family="FreeSans" font-size="10.00"> char &gt;</text>
@@ -207,7 +207,7 @@
 </g>
 <!-- Node13 -->
 <g id="node32" class="node"><title>Node13</title>
-<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.html" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
+<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.html" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph. ">
 <polygon fill="white" stroke="black" points="0.5,-76 0.5,-96 131.5,-96 131.5,-76 0.5,-76"/>
 <text text-anchor="middle" x="66" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>

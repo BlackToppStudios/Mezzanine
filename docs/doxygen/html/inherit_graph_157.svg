@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 181,-36 181,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScriptCompilable_01_4.html" target="_top" xlink:title="Marks iScriptCompilable for internal reference counting if a CountedPtr checks.">
+<a xlink:href="classMezzanine_1_1ReferenceCountTraits_3_01Scripting_1_1iScriptCompilable_01_4.html" target="_top" xlink:title="Marks iScriptCompilable for internal reference counting if a CountedPtr checks. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-32 176,-32 176,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::ReferenceCount</text>
 <text text-anchor="middle" x="88" y="-7" font-family="FreeSans" font-size="10.00">Traits&lt; Scripting::iScriptCompilable &gt;</text>

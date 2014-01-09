@@ -17,7 +17,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1MemoryOutOfBoundsException.html" target="_top" xlink:title="Thrown when attempted to access something that really should note be accessed.">
+<a xlink:href="classMezzanine_1_1MemoryOutOfBoundsException.html" target="_top" xlink:title="Thrown when attempted to access something that really should note be accessed. ">
 <polygon fill="white" stroke="black" points="0,-1 0,-33 160,-33 160,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::MemoryOutOfBounds</text>
 <text text-anchor="middle" x="80" y="-8" font-family="FreeSans" font-size="10.00">Exception</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1OutOfMemoryException.html" target="_top" xlink:title="Thrown when A memory allocation was attempted and failed.">
+<a xlink:href="classMezzanine_1_1OutOfMemoryException.html" target="_top" xlink:title="Thrown when A memory allocation was attempted and failed. ">
 <polygon fill="white" stroke="black" points="178,-7 178,-27 348,-27 348,-7 178,-7"/>
 <text text-anchor="middle" x="263" y="-14" font-family="FreeSans" font-size="10.00">Mezzanine::OutOfMemoryException</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">
 <polygon fill="white" stroke="black" points="116.5,-141 116.5,-161 225.5,-161 225.5,-141 116.5,-141"/>
 <text text-anchor="middle" x="171" y="-148" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>
@@ -54,7 +54,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="133.5,-199 133.5,-219 208.5,-219 208.5,-199 133.5,-199"/>
 <text text-anchor="middle" x="171" y="-206" font-family="FreeSans" font-size="10.00">std::exception</text>
 </a>

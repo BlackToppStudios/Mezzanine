@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Internal_1_1Line3D.html" target="_top" xlink:title="Does the bulk of the work that that the Mezzanine::LineGroup performs.">
+<a xlink:href="classMezzanine_1_1Internal_1_1Line3D.html" target="_top" xlink:title="Does the bulk of the work that that the Mezzanine::LineGroup performs. ">
 <polygon fill="white" stroke="black" points="132.5,-0 132.5,-32 231.5,-32 231.5,-0 132.5,-0"/>
 <text text-anchor="start" x="140.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Internal</text>
 <text text-anchor="middle" x="182" y="-7" font-family="FreeSans" font-size="10.00">::Line3D</text>

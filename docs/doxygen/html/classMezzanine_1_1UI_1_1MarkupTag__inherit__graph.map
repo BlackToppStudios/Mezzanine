@@ -1,5 +1,5 @@
 <map id="Mezzanine::UI::MarkupTag" name="Mezzanine::UI::MarkupTag">
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1DefaultColourTag.html" title="This class implements a character colour changing tag." alt="" coords="227,5,435,33"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1DefaultFontTag.html" title="This class implements a character font changing tag." alt="" coords="232,55,429,83"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1DefaultSpriteTag.html" title="This class implements a sprite inserting tag." alt="" coords="228,106,433,134"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1DefaultColourTag.html" title="This class implements a character colour changing tag. " alt="" coords="227,5,435,33"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1DefaultFontTag.html" title="This class implements a character font changing tag. " alt="" coords="232,55,429,83"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1DefaultSpriteTag.html" title="This class implements a sprite inserting tag. " alt="" coords="228,106,433,134"/>
 </map>

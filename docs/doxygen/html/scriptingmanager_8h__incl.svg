@@ -6,6 +6,20 @@
 <!-- Title: /home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptingmanager.h Pages: 1 -->
 <!--zoomable 634 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -62,7 +76,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node54 -->
 <g id="node157" class="node"><title>Node54</title>
-<a xlink:href="scriptargument_8h.html" target="_top" xlink:title="This file has the interfaces for Script Arguments and the associated dependency chain.">
+<a xlink:href="scriptargument_8h.html" target="_top" xlink:title="This file has the interfaces for Script Arguments and the associated dependency chain. ">
 <polygon fill="white" stroke="black" points="2244.5,-175 2244.5,-195 2373.5,-195 2373.5,-175 2244.5,-175"/>
 <text text-anchor="middle" x="2309" y="-182" font-family="FreeSans" font-size="10.00">Scripting/scriptargument.h</text>
 </a>
@@ -74,7 +88,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node55 -->
 <g id="node161" class="node"><title>Node55</title>
-<a xlink:href="script_8h.html" target="_top" xlink:title="This file has the interfaces for Scripts and tag derived classes.">
+<a xlink:href="script_8h.html" target="_top" xlink:title="This file has the interfaces for Scripts and tag derived classes. ">
 <polygon fill="white" stroke="black" points="2412.5,-233 2412.5,-253 2501.5,-253 2501.5,-233 2412.5,-233"/>
 <text text-anchor="middle" x="2457" y="-240" font-family="FreeSans" font-size="10.00">Scripting/script.h</text>
 </a>
@@ -289,7 +303,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="74.5,-1 74.5,-21 117.5,-21 117.5,-1 74.5,-1"/>
 <text text-anchor="middle" x="96" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -306,7 +320,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node22 -->
 <g id="node45" class="node"><title>Node22</title>
-<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template.">
+<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template. ">
 <polygon fill="white" stroke="black" points="295,-233 295,-253 393,-253 393,-233 295,-233"/>
 <text text-anchor="middle" x="344" y="-240" font-family="FreeSans" font-size="10.00">XML/objectrange.h</text>
 </a>
@@ -318,7 +332,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node23 -->
 <g id="node48" class="node"><title>Node23</title>
-<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class.">
+<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class. ">
 <polygon fill="white" stroke="black" points="486.5,-233 486.5,-253 569.5,-253 569.5,-233 486.5,-233"/>
 <text text-anchor="middle" x="528" y="-240" font-family="FreeSans" font-size="10.00">XML/attribute.h</text>
 </a>
@@ -330,7 +344,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node24 -->
 <g id="node51" class="node"><title>Node24</title>
-<a xlink:href="attributeiterator_8h.html" target="_top" xlink:title="Contains the defintion of the AttributeIterator class.">
+<a xlink:href="attributeiterator_8h.html" target="_top" xlink:title="Contains the defintion of the AttributeIterator class. ">
 <polygon fill="white" stroke="black" points="641.5,-349 641.5,-369 754.5,-369 754.5,-349 641.5,-349"/>
 <text text-anchor="middle" x="698" y="-356" font-family="FreeSans" font-size="10.00">XML/attributeiterator.h</text>
 </a>
@@ -342,7 +356,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node25 -->
 <g id="node54" class="node"><title>Node25</title>
-<a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes.">
+<a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes. ">
 <polygon fill="white" stroke="black" points="464,-291 464,-311 532,-311 532,-291 464,-291"/>
 <text text-anchor="middle" x="498" y="-298" font-family="FreeSans" font-size="10.00">XML/node.h</text>
 </a>
@@ -366,7 +380,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node27 -->
 <g id="node62" class="node"><title>Node27</title>
-<a xlink:href="document_8h.html" target="_top" xlink:title="The definition of the XML::Document Class.">
+<a xlink:href="document_8h.html" target="_top" xlink:title="The definition of the XML::Document Class. ">
 <polygon fill="white" stroke="black" points="1362,-407 1362,-427 1452,-427 1452,-407 1362,-407"/>
 <text text-anchor="middle" x="1407" y="-414" font-family="FreeSans" font-size="10.00">XML/document.h</text>
 </a>
@@ -390,7 +404,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node29 -->
 <g id="node71" class="node"><title>Node29</title>
-<a xlink:href="writer_8h.html" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy.">
+<a xlink:href="writer_8h.html" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy. ">
 <polygon fill="white" stroke="black" points="1347.5,-349 1347.5,-369 1418.5,-369 1418.5,-349 1347.5,-349"/>
 <text text-anchor="middle" x="1383" y="-356" font-family="FreeSans" font-size="10.00">XML/writer.h</text>
 </a>
@@ -426,7 +440,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node45 -->
 <g id="node116" class="node"><title>Node45</title>
-<a xlink:href="nodetext_8h.html" target="_top" xlink:title="The declaration of the XML::NodeText class.">
+<a xlink:href="nodetext_8h.html" target="_top" xlink:title="The declaration of the XML::NodeText class. ">
 <polygon fill="white" stroke="black" points="354,-349 354,-369 438,-369 438,-349 354,-349"/>
 <text text-anchor="middle" x="396" y="-356" font-family="FreeSans" font-size="10.00">XML/nodetext.h</text>
 </a>
@@ -438,7 +452,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node46 -->
 <g id="node123" class="node"><title>Node46</title>
-<a xlink:href="treewalker_8h.html" target="_top" xlink:title="This defines the TreeWalker Interface.">
+<a xlink:href="treewalker_8h.html" target="_top" xlink:title="This defines the TreeWalker Interface. ">
 <polygon fill="white" stroke="black" points="494,-349 494,-369 586,-369 586,-349 494,-349"/>
 <text text-anchor="middle" x="540" y="-356" font-family="FreeSans" font-size="10.00">XML/treewalker.h</text>
 </a>
@@ -462,7 +476,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node48 -->
 <g id="node132" class="node"><title>Node48</title>
-<a xlink:href="xpathnode_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathNode.">
+<a xlink:href="xpathnode_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathNode. ">
 <polygon fill="white" stroke="black" points="810,-349 810,-369 902,-369 902,-349 810,-349"/>
 <text text-anchor="middle" x="856" y="-356" font-family="FreeSans" font-size="10.00">XML/xpathnode.h</text>
 </a>
@@ -474,7 +488,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node49 -->
 <g id="node136" class="node"><title>Node49</title>
-<a xlink:href="xpathnodeset_8h.html" target="_top" xlink:title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet.">
+<a xlink:href="xpathnodeset_8h.html" target="_top" xlink:title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet. ">
 <polygon fill="white" stroke="black" points="934,-407 934,-427 1038,-427 1038,-407 934,-407"/>
 <text text-anchor="middle" x="986" y="-414" font-family="FreeSans" font-size="10.00">XML/xpathnodeset.h</text>
 </a>
@@ -486,7 +500,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node50 -->
 <g id="node140" class="node"><title>Node50</title>
-<a xlink:href="xpathparseresult_8h.html" target="_top" xlink:title="Has all the classes for the XPath implementation.">
+<a xlink:href="xpathparseresult_8h.html" target="_top" xlink:title="Has all the classes for the XPath implementation. ">
 <polygon fill="white" stroke="black" points="219.5,-349 219.5,-369 336.5,-369 336.5,-349 219.5,-349"/>
 <text text-anchor="middle" x="278" y="-356" font-family="FreeSans" font-size="10.00">XML/xpathparseresult.h</text>
 </a>
@@ -498,7 +512,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node51 -->
 <g id="node144" class="node"><title>Node51</title>
-<a xlink:href="xpathvariable_8h.html" target="_top" xlink:title="The XPathVariable class definition.">
+<a xlink:href="xpathvariable_8h.html" target="_top" xlink:title="The XPathVariable class definition. ">
 <polygon fill="white" stroke="black" points="1156,-291 1156,-311 1260,-311 1260,-291 1156,-291"/>
 <text text-anchor="middle" x="1208" y="-298" font-family="FreeSans" font-size="10.00">XML/xpathvariable.h</text>
 </a>
@@ -510,7 +524,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node52 -->
 <g id="node148" class="node"><title>Node52</title>
-<a xlink:href="xpathvariableset_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathVariableSet.">
+<a xlink:href="xpathvariableset_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathVariableSet. ">
 <polygon fill="white" stroke="black" points="984,-291 984,-311 1100,-311 1100,-291 984,-291"/>
 <text text-anchor="middle" x="1042" y="-298" font-family="FreeSans" font-size="10.00">XML/xpathvariableset.h</text>
 </a>
@@ -522,7 +536,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node53 -->
 <g id="node152" class="node"><title>Node53</title>
-<a xlink:href="xpathquery_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathQuery .">
+<a xlink:href="xpathquery_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathQuery . ">
 <polygon fill="white" stroke="black" points="306,-407 306,-427 400,-427 400,-407 306,-407"/>
 <text text-anchor="middle" x="353" y="-414" font-family="FreeSans" font-size="10.00">XML/xpathquery.h</text>
 </a>
@@ -604,7 +618,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node36 -->
 <g id="node86" class="node"><title>Node36</title>
-<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream.">
+<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream. ">
 <polygon fill="white" stroke="black" points="1090,-175 1090,-195 1206,-195 1206,-175 1090,-175"/>
 <text text-anchor="middle" x="1148" y="-182" font-family="FreeSans" font-size="10.00">Resource/datastream.h</text>
 </a>
@@ -708,7 +722,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node39 -->
 <g id="node94" class="node"><title>Node39</title>
-<a xlink:href="filestream_8h.html" target="_top" xlink:title="Declaration of FileStream.">
+<a xlink:href="filestream_8h.html" target="_top" xlink:title="Declaration of FileStream. ">
 <polygon fill="white" stroke="black" points="952.5,-233 952.5,-253 1061.5,-253 1061.5,-233 952.5,-233"/>
 <text text-anchor="middle" x="1007" y="-240" font-family="FreeSans" font-size="10.00">Resource/filestream.h</text>
 </a>
@@ -732,7 +746,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node41 -->
 <g id="node101" class="node"><title>Node41</title>
-<a xlink:href="memorystream_8h.html" target="_top" xlink:title="Declaration of MemoryStream.">
+<a xlink:href="memorystream_8h.html" target="_top" xlink:title="Declaration of MemoryStream. ">
 <polygon fill="white" stroke="black" points="1078.5,-233 1078.5,-253 1209.5,-253 1209.5,-233 1078.5,-233"/>
 <text text-anchor="middle" x="1144" y="-240" font-family="FreeSans" font-size="10.00">Resource/memorystream.h</text>
 </a>
@@ -761,7 +775,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node37 -->
 <g id="node89" class="node"><title>Node37</title>
-<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe.">
+<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe. ">
 <polygon fill="white" stroke="black" points="2245,-117 2245,-137 2315,-137 2315,-117 2245,-117"/>
 <text text-anchor="middle" x="2280" y="-124" font-family="FreeSans" font-size="10.00">countedptr.h</text>
 </a>

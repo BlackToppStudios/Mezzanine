@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 133,-36 133,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="structMezzanine_1_1DefaultRollingAverage.html" target="_top" xlink:title="Use this to get the default rolling average for a given type.">
+<a xlink:href="structMezzanine_1_1DefaultRollingAverage.html" target="_top" xlink:title="Use this to get the default rolling average for a given type. ">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-32 127.5,-32 127.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultRolling</text>
 <text text-anchor="middle" x="64" y="-7" font-family="FreeSans" font-size="10.00">Average&lt; RecordType &gt;</text>

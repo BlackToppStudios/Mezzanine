@@ -1,28 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1EventPublisher.html" title="This is the base class for any class that generates and publishes events to subscribers." alt="" coords="243,135,416,163"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1Action.html" title="This class represents an action to be taken. Can have multiple inputs bound to it." alt="" coords="483,135,627,163"/>
-<area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets." alt="" coords="481,186,628,214"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button." alt="" coords="709,34,856,62"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1EditBox.html" title="Widget for handling the input and manipulation of text." alt="" coords="707,85,859,113"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1UI_1_1LayoutContainer.html" title="This is the base class for container objects that automatically position it&#39;s children." alt="" coords="683,135,883,163"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1PagedContainer.html" title="This is the base class for containers that have a render area and work area of different sizes..." alt="" coords="683,186,883,214"/>
-<area shape="rect" id="node27" href="$classMezzanine_1_1UI_1_1PageProvider.html" title="This is the base class for interpretting widget values to page positions." alt="" coords="691,237,875,265"/>
-<area shape="rect" id="node37" href="$classMezzanine_1_1UI_1_1RadioButton.html" title="This is a simple widget where only one of it&#39;s selections can be selected at a time." alt="" coords="693,287,872,315"/>
-<area shape="rect" id="node39" href="$classMezzanine_1_1UI_1_1StackedContainer.html" title="This is the base class for containers that stack their children one on top of the other..." alt="" coords="677,338,888,366"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value." alt="" coords="953,5,1119,33"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MenuButton.html" title="This is a button with additional data used to track the binding to a MenuEntry which can be serialize..." alt="" coords="947,55,1125,83"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1UI_1_1GridContainer.html" title="This is a container class for placing child objects on a 2 dimensional grid." alt="" coords="943,131,1129,159"/>
-<area shape="rect" id="node21" href="$classMezzanine_1_1UI_1_1LinearContainer.html" title="This is a container class for placing child objects in succession on a single axis." alt="" coords="937,182,1135,210"/>
-<area shape="rect" id="node23" href="$classMezzanine_1_1UI_1_1HorizontalContainer.html" title="A layout container that aligns it&#39;s children along a common X axis." alt="" coords="1205,114,1371,158"/>
-<area shape="rect" id="node25" href="$classMezzanine_1_1UI_1_1VerticalContainer.html" title="A layout container that aligns it&#39;s children along a common Y axis." alt="" coords="1185,181,1391,209"/>
-<area shape="rect" id="node29" href="$classMezzanine_1_1UI_1_1Scrollbar.html" title="This is the scrollbar base class." alt="" coords="957,237,1115,265"/>
-<area shape="rect" id="node35" href="$classMezzanine_1_1UI_1_1Spinner.html" title="This is a simple widget for a numeric variable in a box." alt="" coords="960,287,1112,315"/>
-<area shape="rect" id="node31" href="$classMezzanine_1_1UI_1_1HorizontalScrollbar.html" title="This is a scrollbar class aligned on the X axis." alt="" coords="1205,231,1371,275"/>
-<area shape="rect" id="node33" href="$classMezzanine_1_1UI_1_1VerticalScrollbar.html" title="This is a scrollbar class aligned on the Y axis." alt="" coords="1187,298,1389,326"/>
-<area shape="rect" id="node41" href="$classMezzanine_1_1UI_1_1MenuEntry.html" title="This class is an entry for a single window/widget in a menu." alt="" coords="952,338,1120,366"/>
-<area shape="rect" id="node42" href="$classMezzanine_1_1EventSubscriber.html" title="This is a base class for all classes that subscribe to events." alt="" coords="239,186,420,214"/>
-<area shape="rect" id="node44" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="5,262,179,290"/>
-<area shape="rect" id="node46" href="$classMezzanine_1_1UI_1_1LineList.html" title="This is an object comprised of a series of lines." alt="" coords="253,237,405,265"/>
-<area shape="rect" id="node48" href="$classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout." alt="" coords="228,287,431,315"/>
-<area shape="rect" id="node50" href="$classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al..." alt="" coords="480,287,629,315"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1UI_1_1RadioButtonGroup.html" title="This is a class designed to facilitate operations across an entire group of RadioButtons. " alt="" coords="5,5,184,49"/>
 </map>

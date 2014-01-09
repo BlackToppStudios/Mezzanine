@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1WidgetEventArguments.html" target="_top" xlink:title="This is the base class for widget specific event arguments.">
+<a xlink:href="classMezzanine_1_1UI_1_1WidgetEventArguments.html" target="_top" xlink:title="This is the base class for widget specific event arguments. ">
 <polygon fill="white" stroke="black" points="0.5,-71 0.5,-103 135.5,-103 135.5,-71 0.5,-71"/>
 <text text-anchor="start" x="8.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::UI::WidgetEvent</text>
 <text text-anchor="middle" x="68" y="-78" font-family="FreeSans" font-size="10.00">Arguments</text>

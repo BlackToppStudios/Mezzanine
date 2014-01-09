@@ -1,13 +1,13 @@
 <map id="Mezzanine::WorldObject" name="Mezzanine::WorldObject">
-<area shape="rect" id="node5" href="$classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit." alt="" coords="452,55,572,83"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects." alt="" coords="439,106,585,134"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Actor.html" title="This is the base class from which all the actors inherit. " alt="" coords="452,55,572,83"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects. " alt="" coords="439,106,585,134"/>
 <area shape="rect" id="node15" href="$classMezzanine_1_1Debris.html" title="A simple world object without a large structure ideal for representing loose small objects..." alt="" coords="449,157,575,185"/>
-<area shape="rect" id="node21" href="$classMezzanine_1_1TerrainBase.html" title="This is the base class from which all the terrains inherit." alt="" coords="433,233,591,261"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="5,123,176,167"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1FieldOfForce.html" title="This is field that applies force in a direction, and doesn&#39;t tamper with gravity." alt="" coords="641,5,804,33"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1GravityField.html" title="This is an implementation of the AreaEffect class that alters gravity in a region." alt="" coords="644,55,801,83"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1GravityWell.html" title="This is a gravity well implementation of the AreaEffect class." alt="" coords="645,106,800,134"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1RigidDebris.html" title="A non&#45;deformable debris." alt="" coords="645,157,800,185"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1SoftDebris.html" title="A deformable debris." alt="" coords="648,207,797,235"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1TerrainBase.html" title="This is the base class from which all the terrains inherit. " alt="" coords="433,233,591,261"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="5,123,176,167"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1FieldOfForce.html" title="This is field that applies force in a direction, and doesn&#39;t tamper with gravity. ..." alt="" coords="641,5,804,33"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1GravityField.html" title="This is an implementation of the AreaEffect class that alters gravity in a region. " alt="" coords="644,55,801,83"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1GravityWell.html" title="This is a gravity well implementation of the AreaEffect class. " alt="" coords="645,106,800,134"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1RigidDebris.html" title="A non&#45;deformable debris. " alt="" coords="645,157,800,185"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1SoftDebris.html" title="A deformable debris. " alt="" coords="648,207,797,235"/>
 <area shape="rect" id="node23" href="$classMezzanine_1_1MeshTerrain.html" title="Mezzanine::MeshTerrain" alt="" coords="643,258,803,286"/>
 </map>

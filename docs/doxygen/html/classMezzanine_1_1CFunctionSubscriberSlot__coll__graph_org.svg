@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods.">
+<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods. ">
 <polygon fill="white" stroke="black" points="184,-159 184,-179 338,-179 338,-159 184,-159"/>
 <text text-anchor="middle" x="261" y="-166" font-family="FreeSans" font-size="10.00">Mezzanine::EventSubscriberSlot</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Event.html" target="_top" xlink:title="This class represents a given event that can be subscribed to and/or fired.">
+<a xlink:href="classMezzanine_1_1Event.html" target="_top" xlink:title="This class represents a given event that can be subscribed to and/or fired. ">
 <polygon fill="white" stroke="black" points="320.5,-1 320.5,-21 411.5,-21 411.5,-1 320.5,-1"/>
 <text text-anchor="middle" x="366" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::Event</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="443.5,-77 443.5,-97 500.5,-97 500.5,-77 443.5,-77"/>
 <text text-anchor="middle" x="472" y="-84" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -66,7 +66,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="426.5,-153 426.5,-185 517.5,-185 517.5,-153 426.5,-153"/>
 <text text-anchor="start" x="434.5" y="-172" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="472" y="-160" font-family="FreeSans" font-size="10.00"> char &gt;</text>

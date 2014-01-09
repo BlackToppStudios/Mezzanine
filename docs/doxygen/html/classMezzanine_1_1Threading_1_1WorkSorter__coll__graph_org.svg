@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="438,-84 438,-116 548,-116 548,-84 438,-84"/>
 <text text-anchor="start" x="446" y="-103" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="493" y="-91" font-family="FreeSans" font-size="10.00">::DefaultWorkUnit</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="0,-50 0,-82 110,-82 110,-50 0,-50"/>
 <text text-anchor="start" x="8" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="55" y="-57" font-family="FreeSans" font-size="10.00">::iWorkUnit</text>
@@ -55,7 +55,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1WorkUnitKey.html" target="_top" xlink:title="Stores data about a single work unit so that it can easily be sorted.">
+<a xlink:href="classMezzanine_1_1Threading_1_1WorkUnitKey.html" target="_top" xlink:title="Stores data about a single work unit so that it can easily be sorted. ">
 <polygon fill="white" stroke="black" points="197,-0 197,-32 307,-32 307,-0 197,-0"/>
 <text text-anchor="start" x="205" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="252" y="-7" font-family="FreeSans" font-size="10.00">::WorkUnitKey</text>

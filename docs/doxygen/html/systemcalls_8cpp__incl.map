@@ -3,5 +3,5 @@
 <area shape="rect" id="node39" href="$systemcalls_8h.html" title="This file defines a minimalistic cross&#45;platform thread that the scheduler uses to schedule tasks..." alt="" coords="805,115,904,143"/>
 <area shape="rect" id="node42" href="$crossplatformincludes_8h.html" title="This file determines what features are offered by the compiler that this library can take advantage o..." alt="" coords="931,115,1085,143"/>
 <area shape="rect" id="node5" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1331,270,1475,298"/>
-<area shape="rect" id="node37" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1251,270,1307,298"/>
+<area shape="rect" id="node37" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1251,270,1307,298"/>
 </map>

@@ -17,7 +17,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1GraphicsManager.html" target="_top" xlink:title="This is intended to store basic graphics setting for the user.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1GraphicsManager.html" target="_top" xlink:title="This is intended to store basic graphics setting for the user. ">
 <polygon fill="white" stroke="black" points="737.5,-281 737.5,-313 842.5,-313 842.5,-281 737.5,-281"/>
 <text text-anchor="start" x="745.5" y="-300" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="790" y="-288" font-family="FreeSans" font-size="10.00">::GraphicsManager</text>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node32 -->
 <g id="node78" class="node"><title>Node32</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Viewport.html" target="_top" xlink:title="This class is for creating and managing viewports within a game window.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1Viewport.html" target="_top" xlink:title="This class is for creating and managing viewports within a game window. ">
 <polygon fill="white" stroke="black" points="1735.5,-387 1735.5,-419 1840.5,-419 1840.5,-387 1735.5,-387"/>
 <text text-anchor="start" x="1743.5" y="-406" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="1788" y="-394" font-family="FreeSans" font-size="10.00">::Viewport</text>
@@ -56,7 +56,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="structMezzanine_1_1WindowSettings.html" target="_top" xlink:title="This stores all the basic configuration options a game window supports.">
+<a xlink:href="structMezzanine_1_1WindowSettings.html" target="_top" xlink:title="This stores all the basic configuration options a game window supports. ">
 <polygon fill="white" stroke="black" points="1038,-579 1038,-599 1174,-599 1174,-579 1038,-579"/>
 <text text-anchor="middle" x="1106" y="-586" font-family="FreeSans" font-size="10.00">Mezzanine::WindowSettings</text>
 </a>
@@ -95,7 +95,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit. ">
 <polygon fill="white" stroke="black" points="900,-1001 900,-1021 1026,-1021 1026,-1001 900,-1001"/>
 <text text-anchor="middle" x="963" y="-1008" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -107,7 +107,7 @@
 </g>
 <!-- Node40 -->
 <g id="node96" class="node"><title>Node40</title>
-<a xlink:href="classMezzanine_1_1WorldManager.html" target="_top" xlink:title="This is the base class for all managers that belong to a single world instance.">
+<a xlink:href="classMezzanine_1_1WorldManager.html" target="_top" xlink:title="This is the base class for all managers that belong to a single world instance. ">
 <polygon fill="white" stroke="black" points="2456.5,-935 2456.5,-955 2585.5,-955 2585.5,-935 2456.5,-935"/>
 <text text-anchor="middle" x="2521" y="-942" font-family="FreeSans" font-size="10.00">Mezzanine::WorldManager</text>
 </a>
@@ -119,7 +119,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library. ">
 <polygon fill="white" stroke="black" points="1013.5,-1077 1013.5,-1097 1114.5,-1097 1114.5,-1077 1013.5,-1077"/>
 <text text-anchor="middle" x="1064" y="-1084" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -151,7 +151,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingsHandler.html" target="_top" xlink:title="An abstract class for other classes that manage groups of settings.">
+<a xlink:href="classMezzanine_1_1ObjectSettingsHandler.html" target="_top" xlink:title="An abstract class for other classes that manage groups of settings. ">
 <polygon fill="white" stroke="black" points="1257.5,-387 1257.5,-419 1388.5,-419 1388.5,-387 1257.5,-387"/>
 <text text-anchor="start" x="1265.5" y="-406" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettings</text>
 <text text-anchor="middle" x="1323" y="-394" font-family="FreeSans" font-size="10.00">Handler</text>
@@ -176,7 +176,7 @@
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingFile.html" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s.">
+<a xlink:href="classMezzanine_1_1ObjectSettingFile.html" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s. ">
 <polygon fill="white" stroke="black" points="1497,-683 1497,-703 1639,-703 1639,-683 1497,-683"/>
 <text text-anchor="middle" x="1568" y="-690" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingFile</text>
 </a>
@@ -189,7 +189,7 @@
 </g>
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingGroup.html" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
+<a xlink:href="classMezzanine_1_1ObjectSettingGroup.html" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together. ">
 <polygon fill="white" stroke="black" points="1617,-573 1617,-605 1743,-605 1743,-573 1617,-573"/>
 <text text-anchor="start" x="1625" y="-592" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="1680" y="-580" font-family="FreeSans" font-size="10.00">Group</text>
@@ -203,7 +203,7 @@
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="1621.5,-777 1621.5,-797 1678.5,-797 1678.5,-777 1621.5,-777"/>
 <text text-anchor="middle" x="1650" y="-784" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -229,7 +229,7 @@
 </g>
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.html" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.html" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s. ">
 <polygon fill="white" stroke="black" points="1743,-677 1743,-709 1869,-709 1869,-677 1743,-677"/>
 <text text-anchor="start" x="1751" y="-696" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="1806" y="-684" font-family="FreeSans" font-size="10.00">SetContainer</text>
@@ -278,7 +278,7 @@
 </g>
 <!-- Node33 -->
 <g id="node81" class="node"><title>Node33</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1CameraProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a camera in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1CameraProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a camera in the scene. ">
 <polygon fill="white" stroke="black" points="2034.5,-281 2034.5,-313 2139.5,-313 2139.5,-281 2034.5,-281"/>
 <text text-anchor="start" x="2042.5" y="-300" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="2087" y="-288" font-family="FreeSans" font-size="10.00">::CameraProxy</text>
@@ -292,7 +292,7 @@
 </g>
 <!-- Node37 -->
 <g id="node89" class="node"><title>Node37</title>
-<a xlink:href="classMezzanine_1_1WorldObject.html" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world.">
+<a xlink:href="classMezzanine_1_1WorldObject.html" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world. ">
 <polygon fill="white" stroke="black" points="2456,-683 2456,-703 2576,-703 2576,-683 2456,-683"/>
 <text text-anchor="middle" x="2516" y="-690" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObject</text>
 </a>
@@ -305,7 +305,7 @@
 </g>
 <!-- Node58 -->
 <g id="node147" class="node"><title>Node58</title>
-<a xlink:href="classMezzanine_1_1WorldTrigger.html" target="_top" xlink:title="This is an abstract class for creating in&#45;game triggers.">
+<a xlink:href="classMezzanine_1_1WorldTrigger.html" target="_top" xlink:title="This is an abstract class for creating in&#45;game triggers. ">
 <polygon fill="white" stroke="black" points="537,-683 537,-703 659,-703 659,-683 537,-683"/>
 <text text-anchor="middle" x="598" y="-690" font-family="FreeSans" font-size="10.00">Mezzanine::WorldTrigger</text>
 </a>
@@ -318,7 +318,7 @@
 </g>
 <!-- Node61 -->
 <g id="node154" class="node"><title>Node61</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.html" target="_top" xlink:title="This is the base class for all collision shapes.">
+<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.html" target="_top" xlink:title="This is the base class for all collision shapes. ">
 <polygon fill="white" stroke="black" points="1695,-625 1695,-657 1795,-657 1795,-625 1695,-625"/>
 <text text-anchor="start" x="1703" y="-644" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="1745" y="-632" font-family="FreeSans" font-size="10.00">::CollisionShape</text>
@@ -332,7 +332,7 @@
 </g>
 <!-- Node63 -->
 <g id="node161" class="node"><title>Node63</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1SceneManagerData.html" target="_top" xlink:title="Stores internal data for the SCeneManager to keep it from cluttering the Header file.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1SceneManagerData.html" target="_top" xlink:title="Stores internal data for the SCeneManager to keep it from cluttering the Header file. ">
 <polygon fill="white" stroke="black" points="2687.5,-175 2687.5,-207 2794.5,-207 2794.5,-175 2687.5,-175"/>
 <text text-anchor="start" x="2695.5" y="-194" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="2741" y="-182" font-family="FreeSans" font-size="10.00">::SceneManagerData</text>
@@ -347,7 +347,7 @@
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="1604.5,-853 1604.5,-885 1695.5,-885 1695.5,-853 1604.5,-853"/>
 <text text-anchor="start" x="1612.5" y="-872" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="1650" y="-860" font-family="FreeSans" font-size="10.00"> char &gt;</text>
@@ -389,7 +389,7 @@
 </g>
 <!-- Node16 -->
 <g id="node31" class="node"><title>Node16</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSet.html" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSet.html" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object. ">
 <polygon fill="white" stroke="black" points="1851.5,-579 1851.5,-599 1992.5,-599 1992.5,-579 1851.5,-579"/>
 <text text-anchor="middle" x="1922" y="-586" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
@@ -459,7 +459,7 @@
 </g>
 <!-- Node22 -->
 <g id="node55" class="node"><title>Node22</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" target="_top" xlink:title="A thread specific collection of double&#45;buffered and algorithm specific resources.">
+<a xlink:href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" target="_top" xlink:title="A thread specific collection of double&#45;buffered and algorithm specific resources. ...">
 <polygon fill="white" stroke="black" points="1523.5,-387 1523.5,-419 1642.5,-419 1642.5,-387 1523.5,-387"/>
 <text text-anchor="start" x="1531.5" y="-406" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="1583" y="-394" font-family="FreeSans" font-size="10.00">::ThreadSpecificStorage</text>
@@ -473,7 +473,7 @@
 </g>
 <!-- Node46 -->
 <g id="node112" class="node"><title>Node46</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1PhysicsManager.html" target="_top" xlink:title="This is simply a place for storing all the Physics Related functions.">
+<a xlink:href="classMezzanine_1_1Physics_1_1PhysicsManager.html" target="_top" xlink:title="This is simply a place for storing all the Physics Related functions. ">
 <polygon fill="white" stroke="black" points="1383,-83 1383,-115 1483,-115 1483,-83 1383,-83"/>
 <text text-anchor="start" x="1391" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="1433" y="-90" font-family="FreeSans" font-size="10.00">::PhysicsManager</text>
@@ -501,7 +501,7 @@
 </g>
 <!-- Node23 -->
 <g id="node57" class="node"><title>Node23</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.html" target="_top" xlink:title="This does the main loop processing for required to make the Graphics Manager function.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1RenderWorkUnit.html" target="_top" xlink:title="This does the main loop processing for required to make the Graphics Manager function. ">
 <polygon fill="white" stroke="black" points="260.5,-387 260.5,-419 365.5,-419 365.5,-387 260.5,-387"/>
 <text text-anchor="start" x="268.5" y="-406" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="313" y="-394" font-family="FreeSans" font-size="10.00">::RenderWorkUnit</text>
@@ -515,7 +515,7 @@
 </g>
 <!-- Node24 -->
 <g id="node59" class="node"><title>Node24</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" target="_top" xlink:title="A kind of workunit given exclusive runtime so it can consume time on multiple threads.">
+<a xlink:href="classMezzanine_1_1Threading_1_1MonopolyWorkUnit.html" target="_top" xlink:title="A kind of workunit given exclusive runtime so it can consume time on multiple threads. ">
 <polygon fill="white" stroke="black" points="256,-481 256,-513 366,-513 366,-481 256,-481"/>
 <text text-anchor="start" x="264" y="-500" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="311" y="-488" font-family="FreeSans" font-size="10.00">::MonopolyWorkUnit</text>
@@ -528,7 +528,7 @@
 </g>
 <!-- Node25 -->
 <g id="node61" class="node"><title>Node25</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" target="_top" xlink:title="Default implementation of WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="150,-573 150,-605 260,-605 260,-573 150,-573"/>
 <text text-anchor="start" x="158" y="-592" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="205" y="-580" font-family="FreeSans" font-size="10.00">::DefaultWorkUnit</text>
@@ -547,7 +547,7 @@
 </g>
 <!-- Node55 -->
 <g id="node137" class="node"><title>Node55</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1DebugDrawWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer.">
+<a xlink:href="classMezzanine_1_1Physics_1_1DebugDrawWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of the physics debug drawer. ">
 <polygon fill="white" stroke="black" points="45,-1 45,-33 155,-33 155,-1 45,-1"/>
 <text text-anchor="start" x="53" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="100" y="-8" font-family="FreeSans" font-size="10.00">::DebugDrawWorkUnit</text>
@@ -560,7 +560,7 @@
 </g>
 <!-- Node56 -->
 <g id="node141" class="node"><title>Node56</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1WorldTriggerUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers.">
+<a xlink:href="classMezzanine_1_1Physics_1_1WorldTriggerUpdateWorkUnit.html" target="_top" xlink:title="This is a Mezzanine::Threading::iWorkUnit for the updating of WorldTriggers. ">
 <polygon fill="white" stroke="black" points="1269,-1 1269,-33 1415,-33 1415,-1 1269,-1"/>
 <text text-anchor="start" x="1277" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="1342" y="-8" font-family="FreeSans" font-size="10.00">::WorldTriggerUpdateWorkUnit</text>
@@ -573,7 +573,7 @@
 </g>
 <!-- Node26 -->
 <g id="node63" class="node"><title>Node26</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time.">
+<a xlink:href="classMezzanine_1_1Threading_1_1iWorkUnit.html" target="_top" xlink:title="Interface of a WorkUnit. This represents on piece of work through time. ">
 <polygon fill="white" stroke="black" points="168,-771 168,-803 278,-803 278,-771 168,-771"/>
 <text text-anchor="start" x="176" y="-790" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
 <text text-anchor="middle" x="223" y="-778" font-family="FreeSans" font-size="10.00">::iWorkUnit</text>
@@ -678,7 +678,7 @@
 </g>
 <!-- Node69 -->
 <g id="node179" class="node"><title>Node69</title>
-<a xlink:href="classMezzanine_1_1CameraController.html" target="_top" xlink:title="This is a simplified controller class for use with cameras.">
+<a xlink:href="classMezzanine_1_1CameraController.html" target="_top" xlink:title="This is a simplified controller class for use with cameras. ">
 <polygon fill="white" stroke="black" points="2289,-181 2289,-201 2431,-201 2431,-181 2289,-181"/>
 <text text-anchor="middle" x="2360" y="-188" font-family="FreeSans" font-size="10.00">Mezzanine::CameraController</text>
 </a>
@@ -726,7 +726,7 @@
 </g>
 <!-- Node35 -->
 <g id="node85" class="node"><title>Node35</title>
-<a xlink:href="classMezzanine_1_1WorldProxy.html" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems.">
+<a xlink:href="classMezzanine_1_1WorldProxy.html" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems. ">
 <polygon fill="white" stroke="black" points="2376,-579 2376,-599 2492,-599 2492,-579 2376,-579"/>
 <text text-anchor="middle" x="2434" y="-586" font-family="FreeSans" font-size="10.00">Mezzanine::WorldProxy</text>
 </a>
@@ -738,7 +738,7 @@
 </g>
 <!-- Node45 -->
 <g id="node109" class="node"><title>Node45</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1CollidableProxy.html" target="_top" xlink:title="This is a proxy from which physics objects that can collide with each other are handled.">
+<a xlink:href="classMezzanine_1_1Physics_1_1CollidableProxy.html" target="_top" xlink:title="This is a proxy from which physics objects that can collide with each other are handled. ">
 <polygon fill="white" stroke="black" points="1852,-481 1852,-513 1952,-513 1952,-481 1852,-481"/>
 <text text-anchor="start" x="1860" y="-500" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="1902" y="-488" font-family="FreeSans" font-size="10.00">::CollidableProxy</text>
@@ -751,7 +751,7 @@
 </g>
 <!-- Node36 -->
 <g id="node87" class="node"><title>Node36</title>
-<a xlink:href="classMezzanine_1_1TransformableObject.html" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
+<a xlink:href="classMezzanine_1_1TransformableObject.html" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated. ">
 <polygon fill="white" stroke="black" points="2352,-771 2352,-803 2480,-803 2480,-771 2352,-771"/>
 <text text-anchor="start" x="2360" y="-790" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="2416" y="-778" font-family="FreeSans" font-size="10.00">Object</text>
@@ -775,7 +775,7 @@
 </g>
 <!-- Node38 -->
 <g id="node92" class="node"><title>Node38</title>
-<a xlink:href="classMezzanine_1_1World.html" target="_top" xlink:title="This class represents a world for objects to interact within.">
+<a xlink:href="classMezzanine_1_1World.html" target="_top" xlink:title="This class represents a world for objects to interact within. ">
 <polygon fill="white" stroke="black" points="2503,-777 2503,-797 2595,-797 2595,-777 2503,-777"/>
 <text text-anchor="middle" x="2549" y="-784" font-family="FreeSans" font-size="10.00">Mezzanine::World</text>
 </a>
@@ -821,7 +821,7 @@
 </g>
 <!-- Node67 -->
 <g id="node173" class="node"><title>Node67</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1CameraManager.html" target="_top" xlink:title="This is the manager class for all camera functions.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1CameraManager.html" target="_top" xlink:title="This is the manager class for all camera functions. ">
 <polygon fill="white" stroke="black" points="2193.5,-1 2193.5,-33 2298.5,-33 2298.5,-1 2193.5,-1"/>
 <text text-anchor="start" x="2201.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="2246" y="-8" font-family="FreeSans" font-size="10.00">::CameraManager</text>
@@ -846,7 +846,7 @@
 </g>
 <!-- Node42 -->
 <g id="node103" class="node"><title>Node42</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Collision.html" target="_top" xlink:title="This is an event class used to track collsions in the physics world.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Collision.html" target="_top" xlink:title="This is an event class used to track collsions in the physics world. ">
 <polygon fill="white" stroke="black" points="2020,-387 2020,-419 2120,-419 2120,-387 2020,-387"/>
 <text text-anchor="start" x="2028" y="-406" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="2070" y="-394" font-family="FreeSans" font-size="10.00">::Collision</text>
@@ -883,7 +883,7 @@
 </g>
 <!-- Node44 -->
 <g id="node107" class="node"><title>Node44</title>
-<a xlink:href="structMezzanine_1_1Physics_1_1CollisionInternalData.html" target="_top" xlink:title="Used to insulate the interface from the implementation details for bullet.">
+<a xlink:href="structMezzanine_1_1Physics_1_1CollisionInternalData.html" target="_top" xlink:title="Used to insulate the interface from the implementation details for bullet. ">
 <polygon fill="white" stroke="black" points="2008,-481 2008,-513 2118,-513 2118,-481 2008,-481"/>
 <text text-anchor="start" x="2016" y="-500" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="2063" y="-488" font-family="FreeSans" font-size="10.00">::CollisionInternalData</text>
@@ -904,7 +904,7 @@
 </g>
 <!-- Node49 -->
 <g id="node121" class="node"><title>Node49</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.html" target="_top" xlink:title="This is a proxy from which rigid body proxys are handled.">
+<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.html" target="_top" xlink:title="This is a proxy from which rigid body proxys are handled. ">
 <polygon fill="white" stroke="black" points="1406,-387 1406,-419 1506,-419 1506,-387 1406,-387"/>
 <text text-anchor="start" x="1414" y="-406" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="1456" y="-394" font-family="FreeSans" font-size="10.00">::RigidProxy</text>
@@ -928,7 +928,7 @@
 </g>
 <!-- Node52 -->
 <g id="node130" class="node"><title>Node52</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1CollidablePair.html" target="_top" xlink:title="This is a helper class for storing pairs of collidable proxies in associative containers.">
+<a xlink:href="classMezzanine_1_1Physics_1_1CollidablePair.html" target="_top" xlink:title="This is a helper class for storing pairs of collidable proxies in associative containers. ">
 <polygon fill="white" stroke="black" points="1858,-387 1858,-419 1958,-419 1958,-387 1858,-387"/>
 <text text-anchor="start" x="1866" y="-406" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="1908" y="-394" font-family="FreeSans" font-size="10.00">::CollidablePair</text>
@@ -972,7 +972,7 @@
 </g>
 <!-- Node48 -->
 <g id="node119" class="node"><title>Node48</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.html" target="_top" xlink:title="This is the base class for all constraints supported.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.html" target="_top" xlink:title="This is the base class for all constraints supported. ">
 <polygon fill="white" stroke="black" points="1301,-281 1301,-313 1401,-313 1401,-281 1301,-281"/>
 <text text-anchor="start" x="1309" y="-300" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="1351" y="-288" font-family="FreeSans" font-size="10.00">::Constraint</text>
@@ -1011,7 +1011,7 @@
 </g>
 <!-- Node53 -->
 <g id="node133" class="node"><title>Node53</title>
-<a xlink:href="classMezzanine_1_1debug_1_1InternalDebugDrawer.html" target="_top" xlink:title="This is used to draw wireframse for the Physics subsystem.">
+<a xlink:href="classMezzanine_1_1debug_1_1InternalDebugDrawer.html" target="_top" xlink:title="This is used to draw wireframse for the Physics subsystem. ">
 <polygon fill="white" stroke="black" points="1789,-175 1789,-207 1919,-207 1919,-175 1789,-175"/>
 <text text-anchor="start" x="1797" y="-194" font-family="FreeSans" font-size="10.00">Mezzanine::debug::Internal</text>
 <text text-anchor="middle" x="1854" y="-182" font-family="FreeSans" font-size="10.00">DebugDrawer</text>
@@ -1064,7 +1064,7 @@
 </g>
 <!-- Node59 -->
 <g id="node150" class="node"><title>Node59</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1ManagerConstructionInfo.html" target="_top" xlink:title="This is a helper class storing information needed for the construction of a PhysicsManager.">
+<a xlink:href="classMezzanine_1_1Physics_1_1ManagerConstructionInfo.html" target="_top" xlink:title="This is a helper class storing information needed for the construction of a PhysicsManager. ">
 <polygon fill="white" stroke="black" points="2108.5,-228 2108.5,-260 2237.5,-260 2237.5,-228 2108.5,-228"/>
 <text text-anchor="start" x="2116.5" y="-247" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="2173" y="-235" font-family="FreeSans" font-size="10.00">::ManagerConstructionInfo</text>
@@ -1078,7 +1078,7 @@
 </g>
 <!-- Node60 -->
 <g id="node152" class="node"><title>Node60</title>
-<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
+<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space. ">
 <polygon fill="white" stroke="black" points="2316,-393 2316,-413 2416,-413 2416,-393 2316,-393"/>
 <text text-anchor="middle" x="2366" y="-400" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>
@@ -1099,7 +1099,7 @@
 </g>
 <!-- Node64 -->
 <g id="node164" class="node"><title>Node64</title>
-<a xlink:href="classMezzanine_1_1Plane.html" target="_top" xlink:title="This is used to represent a flat infinite slice of the game world.">
+<a xlink:href="classMezzanine_1_1Plane.html" target="_top" xlink:title="This is used to represent a flat infinite slice of the game world. ">
 <polygon fill="white" stroke="black" points="2585,-287 2585,-307 2677,-307 2677,-287 2585,-287"/>
 <text text-anchor="middle" x="2631" y="-294" font-family="FreeSans" font-size="10.00">Mezzanine::Plane</text>
 </a>
@@ -1148,7 +1148,7 @@
 </g>
 <!-- Node65 -->
 <g id="node167" class="node"><title>Node65</title>
-<a xlink:href="classMezzanine_1_1Quaternion.html" target="_top" xlink:title="This is used to store information about rotation in 3d space.">
+<a xlink:href="classMezzanine_1_1Quaternion.html" target="_top" xlink:title="This is used to store information about rotation in 3d space. ">
 <polygon fill="white" stroke="black" points="2855,-287 2855,-307 2969,-307 2969,-287 2855,-287"/>
 <text text-anchor="middle" x="2912" y="-294" font-family="FreeSans" font-size="10.00">Mezzanine::Quaternion</text>
 </a>
@@ -1185,7 +1185,7 @@
 </g>
 <!-- Node70 -->
 <g id="node181" class="node"><title>Node70</title>
-<a xlink:href="structMezzanine_1_1AngleLimits.html" target="_top" xlink:title="Boundaries for rotation on one axis.">
+<a xlink:href="structMezzanine_1_1AngleLimits.html" target="_top" xlink:title="Boundaries for rotation on one axis. ">
 <polygon fill="white" stroke="black" points="2340.5,-287 2340.5,-307 2457.5,-307 2457.5,-287 2340.5,-287"/>
 <text text-anchor="middle" x="2399" y="-294" font-family="FreeSans" font-size="10.00">Mezzanine::AngleLimits</text>
 </a>
@@ -1200,7 +1200,7 @@
 </g>
 <!-- Node71 -->
 <g id="node183" class="node"><title>Node71</title>
-<a xlink:href="classMezzanine_1_1RayQueryTool.html" target="_top" xlink:title="This provides a number of optional tools for working with a Mezzanine::World.">
+<a xlink:href="classMezzanine_1_1RayQueryTool.html" target="_top" xlink:title="This provides a number of optional tools for working with a Mezzanine::World. ">
 <polygon fill="white" stroke="black" points="2195,-287 2195,-307 2323,-307 2323,-287 2195,-287"/>
 <text text-anchor="middle" x="2259" y="-294" font-family="FreeSans" font-size="10.00">Mezzanine::RayQueryTool</text>
 </a>

@@ -11,14 +11,14 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 237,-24 237,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="0,-0 0,-20 68,-20 68,-0 0,-0"/>
 <text text-anchor="middle" x="34" y="-7" font-family="FreeSans" font-size="10.00">std::list&lt; T &gt;</text>
 </a>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1Playlist.html" target="_top" xlink:title="This class is a list of sounds with common playlist features.">
+<a xlink:href="classMezzanine_1_1Audio_1_1Playlist.html" target="_top" xlink:title="This class is a list of sounds with common playlist features. ">
 <polygon fill="white" stroke="black" points="104.5,-0 104.5,-20 231.5,-20 231.5,-0 104.5,-0"/>
 <text text-anchor="middle" x="168" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Playlist</text>
 </a>

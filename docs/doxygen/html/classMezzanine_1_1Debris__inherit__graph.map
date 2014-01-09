@@ -1,6 +1,6 @@
 <map id="Mezzanine::Debris" name="Mezzanine::Debris">
-<area shape="rect" id="node7" href="$classMezzanine_1_1RigidDebris.html" title="A non&#45;deformable debris." alt="" coords="5,254,160,282"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1SoftDebris.html" title="A deformable debris." alt="" coords="184,254,333,282"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="91,99,251,127"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="85,6,256,50"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1RigidDebris.html" title="A non&#45;deformable debris. " alt="" coords="5,254,160,282"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1SoftDebris.html" title="A deformable debris. " alt="" coords="184,254,333,282"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world. " alt="" coords="91,99,251,127"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="85,6,256,50"/>
 </map>

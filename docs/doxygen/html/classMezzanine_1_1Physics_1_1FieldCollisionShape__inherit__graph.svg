@@ -17,7 +17,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1HeightfieldCollisionShape.html" target="_top" xlink:title="A series of values that store hieght in a grid like fashion.">
+<a xlink:href="classMezzanine_1_1Physics_1_1HeightfieldCollisionShape.html" target="_top" xlink:title="A series of values that store hieght in a grid like fashion. ">
 <polygon fill="white" stroke="black" points="278,-50 278,-82 408,-82 408,-50 278,-50"/>
 <text text-anchor="start" x="286" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="343" y="-57" font-family="FreeSans" font-size="10.00">::HeightfieldCollisionShape</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1PlaneCollisionShape.html" target="_top" xlink:title="A Flat wall/floor of limitless size.">
+<a xlink:href="classMezzanine_1_1Physics_1_1PlaneCollisionShape.html" target="_top" xlink:title="A Flat wall/floor of limitless size. ">
 <polygon fill="white" stroke="black" points="288,-0 288,-32 398,-32 398,-0 288,-0"/>
 <text text-anchor="start" x="296" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="343" y="-7" font-family="FreeSans" font-size="10.00">::PlaneCollisionShape</text>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.html" target="_top" xlink:title="This is the base class for all collision shapes.">
+<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.html" target="_top" xlink:title="This is the base class for all collision shapes. ">
 <polygon fill="white" stroke="black" points="0,-25 0,-57 100,-57 100,-25 0,-25"/>
 <text text-anchor="start" x="8" y="-44" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="50" y="-32" font-family="FreeSans" font-size="10.00">::CollisionShape</text>

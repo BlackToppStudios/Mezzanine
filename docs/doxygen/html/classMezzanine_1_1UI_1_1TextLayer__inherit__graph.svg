@@ -16,7 +16,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1UI_1_1MultiLineTextLayer.html" target="_top" xlink:title="This is a render layer specializing in multi&#45;line text.">
+<a xlink:href="classMezzanine_1_1UI_1_1MultiLineTextLayer.html" target="_top" xlink:title="This is a render layer specializing in multi&#45;line text. ">
 <polygon fill="white" stroke="black" points="0,-1 0,-33 120,-33 120,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MultiLine</text>
 <text text-anchor="middle" x="60" y="-8" font-family="FreeSans" font-size="10.00">TextLayer</text>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1UI_1_1SingleLineTextLayer.html" target="_top" xlink:title="This is a render layer specializing in single&#45;line text.">
+<a xlink:href="classMezzanine_1_1UI_1_1SingleLineTextLayer.html" target="_top" xlink:title="This is a render layer specializing in single&#45;line text. ">
 <polygon fill="white" stroke="black" points="138,-1 138,-33 264,-33 264,-1 138,-1"/>
 <text text-anchor="start" x="146" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::SingleLine</text>
 <text text-anchor="middle" x="201" y="-8" font-family="FreeSans" font-size="10.00">TextLayer</text>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1RenderLayer.html" target="_top" xlink:title="This is the base class for the types of layers that can be added to a renderable.">
+<a xlink:href="classMezzanine_1_1UI_1_1RenderLayer.html" target="_top" xlink:title="This is the base class for the types of layers that can be added to a renderable. ...">
 <polygon fill="white" stroke="black" points="62.5,-129 62.5,-149 197.5,-149 197.5,-129 62.5,-129"/>
 <text text-anchor="middle" x="130" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::UI::RenderLayer</text>
 </a>
@@ -66,7 +66,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1SimpleRenderer.html" target="_top" xlink:title="A simple class providing basic methods to generate vertices with.">
+<a xlink:href="classMezzanine_1_1UI_1_1SimpleRenderer.html" target="_top" xlink:title="A simple class providing basic methods to generate vertices with. ">
 <polygon fill="white" stroke="black" points="55,-245 55,-265 205,-265 205,-245 55,-245"/>
 <text text-anchor="middle" x="130" y="-252" font-family="FreeSans" font-size="10.00">Mezzanine::UI::SimpleRenderer</text>
 </a>

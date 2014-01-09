@@ -17,7 +17,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Bone.html" target="_top" xlink:title="This class encapsulates the bones contained in a skeleton used for animation.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1Bone.html" target="_top" xlink:title="This class encapsulates the bones contained in a skeleton used for animation. ">
 <polygon fill="white" stroke="black" points="57.5,-71 57.5,-103 162.5,-103 162.5,-71 57.5,-71"/>
 <text text-anchor="start" x="65.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="110" y="-78" font-family="FreeSans" font-size="10.00">::Bone</text>
@@ -61,7 +61,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1InternalSkeletonData.html" target="_top" xlink:title="This class is used to store the internal structures needed by the Skeleton class.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1InternalSkeletonData.html" target="_top" xlink:title="This class is used to store the internal structures needed by the Skeleton class. ...">
 <polygon fill="white" stroke="black" points="142,-235 142,-267 254,-267 254,-235 142,-235"/>
 <text text-anchor="start" x="150" y="-254" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="198" y="-242" font-family="FreeSans" font-size="10.00">::InternalSkeletonData</text>

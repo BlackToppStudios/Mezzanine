@@ -22,7 +22,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1TagToken.html" target="_top" xlink:title="This struct represents a markup tag segment from the source string.">
+<a xlink:href="classMezzanine_1_1UI_1_1TagToken.html" target="_top" xlink:title="This struct represents a markup tag segment from the source string. ">
 <polygon fill="white" stroke="black" points="60.0198,-61 60.0198,-81 185.02,-81 185.02,-61 60.0198,-61"/>
 <text text-anchor="middle" x="122.52" y="-68" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TagToken</text>
 </a>
@@ -34,7 +34,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1TextToken.html" target="_top" xlink:title="This class represents a normal text segment from the source string.">
+<a xlink:href="classMezzanine_1_1UI_1_1TextToken.html" target="_top" xlink:title="This class represents a normal text segment from the source string. ">
 <polygon fill="white" stroke="black" points="59.0198,-131 59.0198,-151 186.02,-151 186.02,-131 59.0198,-131"/>
 <text text-anchor="middle" x="122.52" y="-138" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TextToken</text>
 </a>
@@ -46,7 +46,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="94.0198,-213 94.0198,-233 151.02,-233 151.02,-213 94.0198,-213"/>
 <text text-anchor="middle" x="122.52" y="-220" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -77,7 +77,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="77.0198,-273 77.0198,-305 168.02,-305 168.02,-273 77.0198,-273"/>
 <text text-anchor="start" x="85.0198" y="-292" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="122.52" y="-280" font-family="FreeSans" font-size="10.00"> char &gt;</text>

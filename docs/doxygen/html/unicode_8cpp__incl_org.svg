@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="unicode_8h.html" target="_top" xlink:title="This contains simple tools for indexing with UTF8 characters swiftly.">
+<a xlink:href="unicode_8h.html" target="_top" xlink:title="This contains simple tools for indexing with UTF8 characters swiftly. ">
 <polygon fill="white" stroke="black" points="599,-117 599,-137 657,-137 657,-117 599,-117"/>
 <text text-anchor="middle" x="628" y="-124" font-family="FreeSans" font-size="10.00">unicode.h</text>
 </a>
@@ -213,7 +213,7 @@
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1059.5,-1 1059.5,-21 1102.5,-21 1102.5,-1 1059.5,-1"/>
 <text text-anchor="middle" x="1081" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

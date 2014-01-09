@@ -11,14 +11,14 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-408 473,-408 473,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1IntrusiveRefCount.html" target="_top" xlink:title="A sample class that implements a minimal intrusive reference counting scheme.">
+<a xlink:href="classMezzanine_1_1IntrusiveRefCount.html" target="_top" xlink:title="A sample class that implements a minimal intrusive reference counting scheme. ">
 <polygon fill="white" stroke="black" points="0.5,-198 0.5,-218 143.5,-218 143.5,-198 0.5,-198"/>
 <text text-anchor="middle" x="72" y="-205" font-family="FreeSans" font-size="10.00">Mezzanine::IntrusiveRefCount</text>
 </a>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.html" target="_top" xlink:title="The interface for a script argument.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.html" target="_top" xlink:title="The interface for a script argument. ">
 <polygon fill="white" stroke="black" points="180.5,-192 180.5,-224 285.5,-224 285.5,-192 180.5,-192"/>
 <text text-anchor="start" x="188.5" y="-211" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="233" y="-199" font-family="FreeSans" font-size="10.00">::iScriptArgument</text>

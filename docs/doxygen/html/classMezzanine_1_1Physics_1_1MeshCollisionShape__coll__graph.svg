@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.html" target="_top" xlink:title="This is the base class for all collision shapes.">
+<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.html" target="_top" xlink:title="This is the base class for all collision shapes. ">
 <polygon fill="white" stroke="black" points="4,-73 4,-105 104,-105 104,-73 4,-73"/>
 <text text-anchor="start" x="12" y="-92" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="54" y="-80" font-family="FreeSans" font-size="10.00">::CollisionShape</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="25.5,-155 25.5,-175 82.5,-175 82.5,-155 25.5,-155"/>
 <text text-anchor="middle" x="54" y="-162" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="8.5,-215 8.5,-247 99.5,-247 99.5,-215 8.5,-215"/>
 <text text-anchor="start" x="16.5" y="-234" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="54" y="-222" font-family="FreeSans" font-size="10.00"> char &gt;</text>

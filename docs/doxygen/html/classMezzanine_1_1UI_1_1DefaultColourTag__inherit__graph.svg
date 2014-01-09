@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1MarkupTag.html" target="_top" xlink:title="This is a base class for tags that implement the functionality of a markup language.">
+<a xlink:href="classMezzanine_1_1UI_1_1MarkupTag.html" target="_top" xlink:title="This is a base class for tags that implement the functionality of a markup language. ">
 <polygon fill="white" stroke="black" points="13,-59 13,-79 143,-79 143,-59 13,-59"/>
 <text text-anchor="middle" x="78" y="-66" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MarkupTag</text>
 </a>

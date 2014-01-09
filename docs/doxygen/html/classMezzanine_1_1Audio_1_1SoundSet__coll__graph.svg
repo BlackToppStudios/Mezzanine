@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="12.5,-61 12.5,-81 125.5,-81 125.5,-61 12.5,-61"/>
 <text text-anchor="middle" x="69" y="-68" font-family="FreeSans" font-size="10.00">std::vector&lt; iSound * &gt;</text>
 </a>

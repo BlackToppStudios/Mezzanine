@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1BufferedRollingAverage.html" target="_top" xlink:title="A RollingAverage that stores a copy of each record. and does the math when queried.">
+<a xlink:href="classMezzanine_1_1BufferedRollingAverage.html" target="_top" xlink:title="A RollingAverage that stores a copy of each record. and does the math when queried. ">
 <polygon fill="white" stroke="black" points="171.5,-50 171.5,-82 302.5,-82 302.5,-50 171.5,-50"/>
 <text text-anchor="start" x="179.5" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::BufferedRolling</text>
 <text text-anchor="middle" x="237" y="-57" font-family="FreeSans" font-size="10.00">Average&lt; RecordType &gt;</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1WeightedRollingAverage.html" target="_top" xlink:title="A weighted average that does math with every insertion and stores nothing.">
+<a xlink:href="classMezzanine_1_1WeightedRollingAverage.html" target="_top" xlink:title="A weighted average that does math with every insertion and stores nothing. ">
 <polygon fill="white" stroke="black" points="168.5,-0 168.5,-32 305.5,-32 305.5,-0 168.5,-0"/>
 <text text-anchor="start" x="176.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::WeightedRolling</text>
 <text text-anchor="middle" x="237" y="-7" font-family="FreeSans" font-size="10.00">Average&lt; RecordType &gt;</text>

@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 177,-24 177,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1EventGameWindowData.html" target="_top" xlink:title="used to keep private in one place that is actually private.">
+<a xlink:href="classMezzanine_1_1EventGameWindowData.html" target="_top" xlink:title="used to keep private in one place that is actually private. ">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-20 171.5,-20 171.5,-0 0.5,-0"/>
 <text text-anchor="middle" x="86" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::EventGameWindowData</text>
 </a>

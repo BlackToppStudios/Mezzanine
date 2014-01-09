@@ -14,7 +14,6 @@ var searchData=
   ['rel',['Rel',['../classMezzanine_1_1UI_1_1UnifiedDim.html#a8f9e599339fc520ed92ffcd9d4b41823',1,'Mezzanine::UI::UnifiedDim']]],
   ['relative',['Relative',['../classMezzanine_1_1UI_1_1Rect.html#afac8473983abbdaab48dd1fb7fa7a362',1,'Mezzanine::UI::Rect']]],
   ['releasetime',['ReleaseTime',['../structMezzanine_1_1Audio_1_1AutowahParameters.html#a06eba34309d1ee743b4f51a51fa28bda',1,'Mezzanine::Audio::AutowahParameters']]],
-  ['rellineheight',['RelLineHeight',['../classMezzanine_1_1UI_1_1TextLayer.html#afce2cbd03a2e5aa5cc8284880a21d470',1,'Mezzanine::UI::TextLayer']]],
   ['removedobjects',['RemovedObjects',['../classMezzanine_1_1AreaEffect.html#a7a5c623bdbdb6250012955e401561b52',1,'Mezzanine::AreaEffect']]],
   ['renderdist',['RenderDist',['../classMezzanine_1_1Graphics_1_1EntityProxy.html#a1b89e13913c5964853e1457f0e31cacf',1,'Mezzanine::Graphics::EntityProxy']]],
   ['renderer',['Renderer',['../classMezzanine_1_1UI_1_1LineList.html#aaefc1e2de2b698a61d3d96b5bf0fb840',1,'Mezzanine::UI::LineList']]],

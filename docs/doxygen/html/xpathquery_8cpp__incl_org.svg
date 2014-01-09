@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="xpathquery_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathQuery .">
+<a xlink:href="xpathquery_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathQuery . ">
 <polygon fill="white" stroke="black" points="370,-291 370,-311 464,-311 464,-291 370,-291"/>
 <text text-anchor="middle" x="417" y="-298" font-family="FreeSans" font-size="10.00">XML/xpathquery.h</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node22 -->
 <g id="node44" class="node"><title>Node22</title>
-<a xlink:href="xpathparseresult_8h.html" target="_top" xlink:title="Has all the classes for the XPath implementation.">
+<a xlink:href="xpathparseresult_8h.html" target="_top" xlink:title="Has all the classes for the XPath implementation. ">
 <polygon fill="white" stroke="black" points="531.5,-233 531.5,-253 648.5,-253 648.5,-233 531.5,-233"/>
 <text text-anchor="middle" x="590" y="-240" font-family="FreeSans" font-size="10.00">XML/xpathparseresult.h</text>
 </a>
@@ -227,7 +227,7 @@
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1059.5,-1 1059.5,-21 1102.5,-21 1102.5,-1 1059.5,-1"/>
 <text text-anchor="middle" x="1081" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -249,7 +249,7 @@
 </g>
 <!-- Node23 -->
 <g id="node47" class="node"><title>Node23</title>
-<a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes.">
+<a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes. ">
 <polygon fill="white" stroke="black" points="556,-175 556,-195 624,-195 624,-175 556,-175"/>
 <text text-anchor="middle" x="590" y="-182" font-family="FreeSans" font-size="10.00">XML/node.h</text>
 </a>
@@ -271,7 +271,7 @@
 </g>
 <!-- Node24 -->
 <g id="node51" class="node"><title>Node24</title>
-<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class.">
+<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class. ">
 <polygon fill="white" stroke="black" points="494.5,-117 494.5,-137 577.5,-137 577.5,-117 494.5,-117"/>
 <text text-anchor="middle" x="536" y="-124" font-family="FreeSans" font-size="10.00">XML/attribute.h</text>
 </a>
@@ -283,7 +283,7 @@
 </g>
 <!-- Node25 -->
 <g id="node54" class="node"><title>Node25</title>
-<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template.">
+<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template. ">
 <polygon fill="white" stroke="black" points="595,-117 595,-137 693,-137 693,-117 595,-117"/>
 <text text-anchor="middle" x="644" y="-124" font-family="FreeSans" font-size="10.00">XML/objectrange.h</text>
 </a>

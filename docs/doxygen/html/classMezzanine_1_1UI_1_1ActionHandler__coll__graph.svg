@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::UI::ActionHandler Pages: 1 -->
 <!--zoomable 342 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -48,7 +62,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Action.html" target="_top" xlink:title="This class represents an action to be taken. Can have multiple inputs bound to it.">
+<a xlink:href="classMezzanine_1_1UI_1_1Action.html" target="_top" xlink:title="This class represents an action to be taken. Can have multiple inputs bound to it. ">
 <polygon fill="white" stroke="black" points="930.5,-174 930.5,-194 1039.5,-194 1039.5,-174 930.5,-174"/>
 <text text-anchor="middle" x="985" y="-181" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Action</text>
 </a>
@@ -101,7 +115,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1EventPublisher.html" target="_top" xlink:title="This is the base class for any class that generates and publishes events to subscribers.">
+<a xlink:href="classMezzanine_1_1EventPublisher.html" target="_top" xlink:title="This is the base class for any class that generates and publishes events to subscribers. ">
 <polygon fill="white" stroke="black" points="701.5,-136 701.5,-156 832.5,-156 832.5,-136 701.5,-136"/>
 <text text-anchor="middle" x="767" y="-143" font-family="FreeSans" font-size="10.00">Mezzanine::EventPublisher</text>
 </a>
@@ -124,7 +138,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="130.5,-114 130.5,-134 187.5,-134 187.5,-114 130.5,-114"/>
 <text text-anchor="middle" x="159" y="-121" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -145,7 +159,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1Event.html" target="_top" xlink:title="This class represents a given event that can be subscribed to and/or fired.">
+<a xlink:href="classMezzanine_1_1Event.html" target="_top" xlink:title="This class represents a given event that can be subscribed to and/or fired. ">
 <polygon fill="white" stroke="black" points="276.5,-81 276.5,-101 367.5,-101 367.5,-81 276.5,-81"/>
 <text text-anchor="middle" x="322" y="-88" font-family="FreeSans" font-size="10.00">Mezzanine::Event</text>
 </a>
@@ -164,7 +178,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="0.5,-108 0.5,-140 91.5,-140 91.5,-108 0.5,-108"/>
 <text text-anchor="start" x="8.5" y="-127" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="46" y="-115" font-family="FreeSans" font-size="10.00"> char &gt;</text>
@@ -183,7 +197,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods.">
+<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods. ">
 <polygon fill="white" stroke="black" points="464,-28 464,-48 618,-48 618,-28 464,-28"/>
 <text text-anchor="middle" x="541" y="-35" font-family="FreeSans" font-size="10.00">Mezzanine::EventSubscriberSlot</text>
 </a>
@@ -220,7 +234,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node12 -->
 <g id="node26" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1Input_1_1MetaCodeKey.html" target="_top" xlink:title="A key class for MetaCodes to be used in associative containers.">
+<a xlink:href="classMezzanine_1_1Input_1_1MetaCodeKey.html" target="_top" xlink:title="A key class for MetaCodes to be used in associative containers. ">
 <polygon fill="white" stroke="black" points="908,-117 908,-137 1062,-137 1062,-117 908,-117"/>
 <text text-anchor="middle" x="985" y="-124" font-family="FreeSans" font-size="10.00">Mezzanine::Input::MetaCodeKey</text>
 </a>
@@ -233,7 +247,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node13 -->
 <g id="node28" class="node"><title>Node13</title>
-<a xlink:href="classMezzanine_1_1Input_1_1MetaCode.html" target="_top" xlink:title="This Determines the kind of user input.">
+<a xlink:href="classMezzanine_1_1Input_1_1MetaCode.html" target="_top" xlink:title="This Determines the kind of user input. ">
 <polygon fill="white" stroke="black" points="698.5,-98 698.5,-118 835.5,-118 835.5,-98 698.5,-98"/>
 <text text-anchor="middle" x="767" y="-105" font-family="FreeSans" font-size="10.00">Mezzanine::Input::MetaCode</text>
 </a>

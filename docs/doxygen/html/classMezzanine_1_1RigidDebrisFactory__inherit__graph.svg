@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1DebrisFactory.html" target="_top" xlink:title="A base factory type for the creation of Debris objects.">
+<a xlink:href="classMezzanine_1_1DebrisFactory.html" target="_top" xlink:title="A base factory type for the creation of Debris objects. ">
 <polygon fill="white" stroke="black" points="11,-59 11,-79 137,-79 137,-59 11,-59"/>
 <text text-anchor="middle" x="74" y="-66" font-family="FreeSans" font-size="10.00">Mezzanine::DebrisFactory</text>
 </a>

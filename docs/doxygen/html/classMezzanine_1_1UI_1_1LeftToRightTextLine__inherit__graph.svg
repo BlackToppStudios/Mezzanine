@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1TextLine.html" target="_top" xlink:title="This represents a single line of text to be rendered by a TextLayer.">
+<a xlink:href="classMezzanine_1_1UI_1_1TextLine.html" target="_top" xlink:title="This represents a single line of text to be rendered by a TextLayer. ">
 <polygon fill="white" stroke="black" points="6,-71 6,-91 124,-91 124,-71 6,-71"/>
 <text text-anchor="middle" x="65" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TextLine</text>
 </a>

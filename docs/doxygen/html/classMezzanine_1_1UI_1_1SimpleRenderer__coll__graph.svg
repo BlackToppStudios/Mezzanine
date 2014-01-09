@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="353.5,-223 353.5,-243 410.5,-243 410.5,-223 353.5,-223"/>
 <text text-anchor="middle" x="382" y="-230" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="structMezzanine_1_1UI_1_1VertexData.html" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
+<a xlink:href="structMezzanine_1_1UI_1_1VertexData.html" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered. ">
 <polygon fill="white" stroke="black" points="226,-153 226,-173 354,-173 354,-153 226,-153"/>
 <text text-anchor="middle" x="290" y="-160" font-family="FreeSans" font-size="10.00">Mezzanine::UI::VertexData</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="371.5,-293 371.5,-325 462.5,-325 462.5,-293 371.5,-293"/>
 <text text-anchor="start" x="379.5" y="-312" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="417" y="-300" font-family="FreeSans" font-size="10.00"> char &gt;</text>
@@ -73,7 +73,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="structMezzanine_1_1UI_1_1Vertex.html" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
+<a xlink:href="structMezzanine_1_1UI_1_1Vertex.html" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered. ">
 <polygon fill="white" stroke="black" points="158,-223 158,-243 266,-243 266,-223 158,-223"/>
 <text text-anchor="middle" x="212" y="-230" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Vertex</text>
 </a>
@@ -86,7 +86,7 @@
 </g>
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen. ">
 <polygon fill="white" stroke="black" points="0,-299 0,-319 100,-319 100,-299 0,-299"/>
 <text text-anchor="middle" x="50" y="-306" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -112,7 +112,7 @@
 </g>
 <!-- Node9 -->
 <g id="node16" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
+<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space. ">
 <polygon fill="white" stroke="black" points="254,-299 254,-319 354,-319 354,-299 254,-299"/>
 <text text-anchor="middle" x="304" y="-306" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>

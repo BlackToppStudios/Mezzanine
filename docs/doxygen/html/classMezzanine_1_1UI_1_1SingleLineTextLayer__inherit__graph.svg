@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1TextLayer.html" target="_top" xlink:title="This is a base class for render layers that render text.">
+<a xlink:href="classMezzanine_1_1UI_1_1TextLayer.html" target="_top" xlink:title="This is a base class for render layers that render text. ">
 <polygon fill="white" stroke="black" points="13.5,-71 13.5,-91 136.5,-91 136.5,-71 13.5,-71"/>
 <text text-anchor="middle" x="75" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TextLayer</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1RenderLayer.html" target="_top" xlink:title="This is the base class for the types of layers that can be added to a renderable.">
+<a xlink:href="classMezzanine_1_1UI_1_1RenderLayer.html" target="_top" xlink:title="This is the base class for the types of layers that can be added to a renderable. ...">
 <polygon fill="white" stroke="black" points="7.5,-129 7.5,-149 142.5,-149 142.5,-129 7.5,-129"/>
 <text text-anchor="middle" x="75" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::UI::RenderLayer</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1UI_1_1SimpleRenderer.html" target="_top" xlink:title="A simple class providing basic methods to generate vertices with.">
+<a xlink:href="classMezzanine_1_1UI_1_1SimpleRenderer.html" target="_top" xlink:title="A simple class providing basic methods to generate vertices with. ">
 <polygon fill="white" stroke="black" points="0,-245 0,-265 150,-265 150,-245 0,-245"/>
 <text text-anchor="middle" x="75" y="-252" font-family="FreeSans" font-size="10.00">Mezzanine::UI::SimpleRenderer</text>
 </a>

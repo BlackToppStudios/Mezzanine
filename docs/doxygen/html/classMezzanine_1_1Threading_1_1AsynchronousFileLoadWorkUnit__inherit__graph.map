@@ -1,5 +1,5 @@
 <map id="Mezzanine::Threading::AsynchronousFileLoadWorkUnit" name="Mezzanine::Threading::AsynchronousFileLoadWorkUnit">
 <area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1iAsynchronousWorkUnit.html" title="The interface for a WorkUnit that will keep running when the rest of the scheduler is paused..." alt="" coords="29,193,192,237"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="37,99,184,143"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="37,6,184,50"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="37,99,184,143"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="37,6,184,50"/>
 </map>

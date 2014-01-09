@@ -18,7 +18,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="spinlock_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools, and at least one MutexLike object.">
+<a xlink:href="spinlock_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools, and at least one MutexLike object. ">
 <polygon fill="white" stroke="black" points="511.5,-117 511.5,-137 570.5,-137 570.5,-117 511.5,-117"/>
 <text text-anchor="middle" x="541" y="-124" font-family="FreeSans" font-size="10.00">spinlock.h</text>
 </a>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
-<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically.">
+<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically. ">
 <polygon fill="white" stroke="black" points="588,-117 588,-137 686,-137 686,-117 588,-117"/>
 <text text-anchor="middle" x="637" y="-124" font-family="FreeSans" font-size="10.00">atomicoperations.h</text>
 </a>
@@ -228,7 +228,7 @@
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="933.5,-1 933.5,-21 976.5,-21 976.5,-1 933.5,-1"/>
 <text text-anchor="middle" x="955" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>

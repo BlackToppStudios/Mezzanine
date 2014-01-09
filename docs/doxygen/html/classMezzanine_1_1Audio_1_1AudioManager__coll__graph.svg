@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::Audio::AudioManager Pages: 1 -->
 <!--zoomable 444 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -62,7 +76,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit. ">
 <polygon fill="white" stroke="black" points="1014,-416.376 1014,-436.376 1140,-436.376 1140,-416.376 1014,-416.376"/>
 <text text-anchor="middle" x="1077" y="-423.376" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -74,7 +88,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library. ">
 <polygon fill="white" stroke="black" points="792.5,-387.376 792.5,-407.376 893.5,-407.376 893.5,-387.376 792.5,-387.376"/>
 <text text-anchor="middle" x="843" y="-394.376" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -106,7 +120,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingsHandler.html" target="_top" xlink:title="An abstract class for other classes that manage groups of settings.">
+<a xlink:href="classMezzanine_1_1ObjectSettingsHandler.html" target="_top" xlink:title="An abstract class for other classes that manage groups of settings. ">
 <polygon fill="white" stroke="black" points="1011.5,-275.376 1011.5,-307.376 1142.5,-307.376 1142.5,-275.376 1011.5,-275.376"/>
 <text text-anchor="start" x="1019.5" y="-294.376" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettings</text>
 <text text-anchor="middle" x="1077" y="-282.376" font-family="FreeSans" font-size="10.00">Handler</text>
@@ -131,7 +145,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingFile.html" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s.">
+<a xlink:href="classMezzanine_1_1ObjectSettingFile.html" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s. ">
 <polygon fill="white" stroke="black" points="294,-180.376 294,-200.376 436,-200.376 436,-180.376 294,-180.376"/>
 <text text-anchor="middle" x="365" y="-187.376" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingFile</text>
 </a>
@@ -144,7 +158,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingGroup.html" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
+<a xlink:href="classMezzanine_1_1ObjectSettingGroup.html" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together. ">
 <polygon fill="white" stroke="black" points="564,-120.376 564,-152.376 690,-152.376 690,-120.376 564,-120.376"/>
 <text text-anchor="start" x="572" y="-139.376" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="627" y="-127.376" font-family="FreeSans" font-size="10.00">Group</text>
@@ -158,7 +172,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="130.5,-213.376 130.5,-233.376 187.5,-233.376 187.5,-213.376 130.5,-213.376"/>
 <text text-anchor="middle" x="159" y="-220.376" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -184,7 +198,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.html" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.html" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s. ">
 <polygon fill="white" stroke="black" points="302,-74.3755 302,-106.376 428,-106.376 428,-74.3755 302,-74.3755"/>
 <text text-anchor="start" x="310" y="-93.3755" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="365" y="-81.3755" font-family="FreeSans" font-size="10.00">SetContainer</text>
@@ -222,7 +236,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="0.5,-207.376 0.5,-239.376 91.5,-239.376 91.5,-207.376 0.5,-207.376"/>
 <text text-anchor="start" x="8.5" y="-226.376" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="46" y="-214.376" font-family="FreeSans" font-size="10.00"> char &gt;</text>
@@ -264,7 +278,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSet.html" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSet.html" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object. ">
 <polygon fill="white" stroke="black" points="556.5,-27.3755 556.5,-47.3755 697.5,-47.3755 697.5,-27.3755 556.5,-27.3755"/>
 <text text-anchor="middle" x="627" y="-34.3755" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
@@ -329,7 +343,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node19 -->
 <g id="node47" class="node"><title>Node19</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1iDecoderFactory.html" target="_top" xlink:title="This is an interface class for factories that create decoders.">
+<a xlink:href="classMezzanine_1_1Audio_1_1iDecoderFactory.html" target="_top" xlink:title="This is an interface class for factories that create decoders. ">
 <polygon fill="white" stroke="black" points="776,-24.3755 776,-56.3755 910,-56.3755 910,-24.3755 776,-24.3755"/>
 <text text-anchor="start" x="784" y="-43.3755" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iDecoder</text>
 <text text-anchor="middle" x="843" y="-31.3755" font-family="FreeSans" font-size="10.00">Factory</text>

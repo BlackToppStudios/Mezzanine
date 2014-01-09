@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1TagToken.html" target="_top" xlink:title="This struct represents a markup tag segment from the source string.">
+<a xlink:href="classMezzanine_1_1UI_1_1TagToken.html" target="_top" xlink:title="This struct represents a markup tag segment from the source string. ">
 <polygon fill="white" stroke="black" points="13.5,-59 13.5,-79 138.5,-79 138.5,-59 13.5,-59"/>
 <text text-anchor="middle" x="76" y="-66" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TagToken</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1TextToken.html" target="_top" xlink:title="This class represents a normal text segment from the source string.">
+<a xlink:href="classMezzanine_1_1UI_1_1TextToken.html" target="_top" xlink:title="This class represents a normal text segment from the source string. ">
 <polygon fill="white" stroke="black" points="12.5,-117 12.5,-137 139.5,-137 139.5,-117 12.5,-117"/>
 <text text-anchor="middle" x="76" y="-124" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TextToken</text>
 </a>

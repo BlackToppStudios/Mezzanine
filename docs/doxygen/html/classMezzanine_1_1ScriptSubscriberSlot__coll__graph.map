@@ -1,7 +1,7 @@
 <map id="Mezzanine::ScriptSubscriberSlot" name="Mezzanine::ScriptSubscriberSlot">
-<area shape="rect" id="node2" href="$classMezzanine_1_1EventSubscriberSlot.html" title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods." alt="" coords="96,14,301,42"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired." alt="" coords="138,225,258,253"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="544,123,618,151"/>
-<area shape="rect" id="node8" title="STL class." alt="" coords="521,6,641,50"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Scripting_1_1iScript.html" title="The interface for a script." alt="" coords="348,6,486,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1EventSubscriberSlot.html" title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods. " alt="" coords="96,14,301,42"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. " alt="" coords="138,225,258,253"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="544,123,618,151"/>
+<area shape="rect" id="node8" title="STL class. " alt="" coords="521,6,641,50"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Scripting_1_1iScript.html" title="The interface for a script. " alt="" coords="348,6,486,50"/>
 </map>

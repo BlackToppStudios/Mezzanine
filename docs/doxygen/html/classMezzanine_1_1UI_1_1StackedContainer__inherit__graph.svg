@@ -16,19 +16,31 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1UI_1_1MenuEntry.html" target="_top" xlink:title="This class is an entry for a single window/widget in a menu.">
-<polygon fill="white" stroke="black" points="171.5,-1 171.5,-21 298.5,-21 298.5,-1 171.5,-1"/>
-<text text-anchor="middle" x="235" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MenuEntry</text>
+<a xlink:href="classMezzanine_1_1UI_1_1MenuEntry.html" target="_top" xlink:title="This class is an entry for a single window/widget in a menu. ">
+<polygon fill="white" stroke="black" points="103.5,-1 103.5,-21 230.5,-21 230.5,-1 103.5,-1"/>
+<text text-anchor="middle" x="167" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MenuEntry</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node7 -->
 <g id="edge12" class="edge"><title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M235,-48.8902C235,-39.6201 235,-29.0083 235,-21.3776"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="231.5,-48.8971 235,-58.8972 238.5,-48.8972 231.5,-48.8971"/>
+<path fill="none" stroke="midnightblue" d="M215.245,-52.1504C203.58,-42.2003 189.183,-29.9207 179.167,-21.3776"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="213.276,-55.0706 223.155,-58.8972 217.818,-49.7447 213.276,-55.0706"/>
+</g>
+<!-- Node8 -->
+<g id="node15" class="node"><title>Node8</title>
+<a xlink:href="classMezzanine_1_1UI_1_1TabSet.html" target="_top" xlink:title="This is a widget that stores sets of renderables but only displays one at a time. ...">
+<polygon fill="white" stroke="black" points="247.5,-1 247.5,-21 360.5,-21 360.5,-1 247.5,-1"/>
+<text text-anchor="middle" x="304" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::UI::TabSet</text>
+</a>
+</g>
+<!-- Node1&#45;&gt;Node8 -->
+<g id="edge14" class="edge"><title>Node1&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M254.701,-52.4396C266.598,-42.4391 281.392,-30.0036 291.654,-21.3776"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="252.422,-49.7834 247.019,-58.8972 256.926,-55.1418 252.422,-49.7834"/>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Widget.html" target="_top" xlink:title="This is the base class for all widgets.">
+<a xlink:href="classMezzanine_1_1UI_1_1Widget.html" target="_top" xlink:title="This is the base class for all widgets. ">
 <polygon fill="white" stroke="black" points="179.5,-117 179.5,-137 290.5,-137 290.5,-117 179.5,-117"/>
 <text text-anchor="middle" x="235" y="-124" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
@@ -40,7 +52,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1QuadRenderable.html" target="_top" xlink:title="This represents a nestable quad for an object in a GUI layout.">
+<a xlink:href="classMezzanine_1_1UI_1_1QuadRenderable.html" target="_top" xlink:title="This represents a nestable quad for an object in a GUI layout. ">
 <polygon fill="white" stroke="black" points="-0.5,-175 -0.5,-195 152.5,-195 152.5,-175 -0.5,-175"/>
 <text text-anchor="middle" x="76" y="-182" font-family="FreeSans" font-size="10.00">Mezzanine::UI::QuadRenderable</text>
 </a>
@@ -52,7 +64,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
+<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy. ">
 <polygon fill="white" stroke="black" points="11,-233 11,-253 141,-253 141,-233 11,-233"/>
 <text text-anchor="middle" x="76" y="-240" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
@@ -64,7 +76,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1EventPublisher.html" target="_top" xlink:title="This is the base class for any class that generates and publishes events to subscribers.">
+<a xlink:href="classMezzanine_1_1EventPublisher.html" target="_top" xlink:title="This is the base class for any class that generates and publishes events to subscribers. ">
 <polygon fill="white" stroke="black" points="169.5,-175 169.5,-195 300.5,-195 300.5,-175 169.5,-175"/>
 <text text-anchor="middle" x="235" y="-182" font-family="FreeSans" font-size="10.00">Mezzanine::EventPublisher</text>
 </a>
@@ -76,7 +88,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1EventSubscriber.html" target="_top" xlink:title="This is a base class for all classes that subscribe to events.">
+<a xlink:href="classMezzanine_1_1EventSubscriber.html" target="_top" xlink:title="This is a base class for all classes that subscribe to events. ">
 <polygon fill="white" stroke="black" points="317.5,-175 317.5,-195 454.5,-195 454.5,-175 317.5,-175"/>
 <text text-anchor="middle" x="386" y="-182" font-family="FreeSans" font-size="10.00">Mezzanine::EventSubscriber</text>
 </a>

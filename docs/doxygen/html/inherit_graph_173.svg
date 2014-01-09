@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-86 341,-86 341,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1RollingAverage.html" target="_top" xlink:title="The interface for rolling averages used in the Mezzanine, and threading library.">
+<a xlink:href="classMezzanine_1_1RollingAverage.html" target="_top" xlink:title="The interface for rolling averages used in the Mezzanine, and threading library. ">
 <polygon fill="white" stroke="black" points="0.5,-25 0.5,-57 131.5,-57 131.5,-25 0.5,-25"/>
 <text text-anchor="start" x="8.5" y="-44" font-family="FreeSans" font-size="10.00">Mezzanine::RollingAverage</text>
 <text text-anchor="middle" x="66" y="-32" font-family="FreeSans" font-size="10.00">&lt; RecordType &gt;</text>
@@ -19,7 +19,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1BufferedRollingAverage.html" target="_top" xlink:title="A RollingAverage that stores a copy of each record. and does the math when queried.">
+<a xlink:href="classMezzanine_1_1BufferedRollingAverage.html" target="_top" xlink:title="A RollingAverage that stores a copy of each record. and does the math when queried. ">
 <polygon fill="white" stroke="black" points="186.5,-50 186.5,-82 317.5,-82 317.5,-50 186.5,-50"/>
 <text text-anchor="start" x="194.5" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::BufferedRolling</text>
 <text text-anchor="middle" x="252" y="-57" font-family="FreeSans" font-size="10.00">Average&lt; RecordType &gt;</text>
@@ -32,7 +32,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1WeightedRollingAverage.html" target="_top" xlink:title="A weighted average that does math with every insertion and stores nothing.">
+<a xlink:href="classMezzanine_1_1WeightedRollingAverage.html" target="_top" xlink:title="A weighted average that does math with every insertion and stores nothing. ">
 <polygon fill="white" stroke="black" points="168,-0 168,-32 336,-32 336,-0 168,-0"/>
 <text text-anchor="start" x="176" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::WeightedRolling</text>
 <text text-anchor="middle" x="252" y="-7" font-family="FreeSans" font-size="10.00">Average&lt; RecordType, MathType &gt;</text>

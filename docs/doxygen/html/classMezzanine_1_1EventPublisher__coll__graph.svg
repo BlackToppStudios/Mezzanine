@@ -27,7 +27,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="61.5,-223 61.5,-243 118.5,-243 118.5,-223 61.5,-223"/>
 <text text-anchor="middle" x="90" y="-230" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Event.html" target="_top" xlink:title="This class represents a given event that can be subscribed to and/or fired.">
+<a xlink:href="classMezzanine_1_1Event.html" target="_top" xlink:title="This class represents a given event that can be subscribed to and/or fired. ">
 <polygon fill="white" stroke="black" points="123.5,-153 123.5,-173 214.5,-173 214.5,-153 123.5,-153"/>
 <text text-anchor="middle" x="169" y="-160" font-family="FreeSans" font-size="10.00">Mezzanine::Event</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="44.5,-283 44.5,-315 135.5,-315 135.5,-283 44.5,-283"/>
 <text text-anchor="start" x="52.5" y="-302" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="90" y="-290" font-family="FreeSans" font-size="10.00"> char &gt;</text>
@@ -72,7 +72,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods.">
+<a xlink:href="classMezzanine_1_1EventSubscriberSlot.html" target="_top" xlink:title="This class represents a slot in an event that can be subscribed to via subscribers, functors, or methods. ">
 <polygon fill="white" stroke="black" points="148,-83 148,-103 302,-103 302,-83 148,-83"/>
 <text text-anchor="middle" x="225" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::EventSubscriberSlot</text>
 </a>

@@ -1,10 +1,10 @@
 <map id="Mezzanine::Threading::AsynchronousFileLoadWorkUnit" name="Mezzanine::Threading::AsynchronousFileLoadWorkUnit">
 <area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1iAsynchronousWorkUnit.html" title="The interface for a WorkUnit that will keep running when the rest of the scheduler is paused..." alt="" coords="825,39,988,83"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="573,39,720,83"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="5,5,152,49"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="573,39,720,83"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="5,5,152,49"/>
 <area shape="rect" id="node11" href="$structMezzanine_1_1DefaultRollingAverage.html" title="Mezzanine::DefaultRolling\lAverage\&lt; Whole \&gt;" alt="" coords="257,106,425,150"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Threading_1_1Thread.html" title="A small wrapper around the system thread." alt="" coords="833,106,980,150"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1Threading_1_1RawFile.html" title="A simple in memory representation of a file." alt="" coords="573,163,720,207"/>
-<area shape="rect" id="node21" title="STL class." alt="" coords="609,230,684,258"/>
-<area shape="rect" id="node23" title="STL class." alt="" coords="281,222,401,266"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Threading_1_1Thread.html" title="A small wrapper around the system thread. " alt="" coords="833,106,980,150"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1Threading_1_1RawFile.html" title="A simple in memory representation of a file. " alt="" coords="573,163,720,207"/>
+<area shape="rect" id="node21" title="STL class. " alt="" coords="609,230,684,258"/>
+<area shape="rect" id="node23" title="STL class. " alt="" coords="281,222,401,266"/>
 </map>

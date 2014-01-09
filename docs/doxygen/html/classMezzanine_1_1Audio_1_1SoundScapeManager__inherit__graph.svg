@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1WorldManager.html" target="_top" xlink:title="This is the base class for all managers that belong to a single world instance.">
+<a xlink:href="classMezzanine_1_1WorldManager.html" target="_top" xlink:title="This is the base class for all managers that belong to a single world instance. ">
 <polygon fill="white" stroke="black" points="11.5,-71 11.5,-91 140.5,-91 140.5,-71 11.5,-71"/>
 <text text-anchor="middle" x="76" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::WorldManager</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the Entresol and World Managers inherit. ">
 <polygon fill="white" stroke="black" points="13,-129 13,-149 139,-149 139,-129 13,-129"/>
 <text text-anchor="middle" x="76" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>

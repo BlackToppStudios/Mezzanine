@@ -41,7 +41,7 @@
 </g>
 <!-- Node58 -->
 <g id="node167" class="node"><title>Node58</title>
-<a xlink:href="workunit_8h.html" target="_top" xlink:title="This file has the definition of the workunit.">
+<a xlink:href="workunit_8h.html" target="_top" xlink:title="This file has the definition of the workunit. ">
 <polygon fill="white" stroke="black" points="2681,-349 2681,-369 2787,-369 2787,-349 2681,-349"/>
 <text text-anchor="middle" x="2734" y="-356" font-family="FreeSans" font-size="10.00">Threading/workunit.h</text>
 </a>
@@ -65,7 +65,7 @@
 </g>
 <!-- Node55 -->
 <g id="node159" class="node"><title>Node55</title>
-<a xlink:href="enumerations_8h.html" target="_top" xlink:title="Any global enumerations shared between multiple classes is to be declared here.">
+<a xlink:href="enumerations_8h.html" target="_top" xlink:title="Any global enumerations shared between multiple classes is to be declared here. ">
 <polygon fill="white" stroke="black" points="2464,-523 2464,-543 2546,-543 2546,-523 2464,-523"/>
 <text text-anchor="middle" x="2505" y="-530" font-family="FreeSans" font-size="10.00">enumerations.h</text>
 </a>
@@ -268,7 +268,7 @@
 </g>
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="2929.5,-1 2929.5,-21 2972.5,-21 2972.5,-1 2929.5,-1"/>
 <text text-anchor="middle" x="2951" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -285,7 +285,7 @@
 </g>
 <!-- Node23 -->
 <g id="node47" class="node"><title>Node23</title>
-<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template.">
+<a xlink:href="objectrange_8h.html" target="_top" xlink:title="Contains the implementation of the ObjectRange class template. ">
 <polygon fill="white" stroke="black" points="1944,-233 1944,-253 2042,-253 2042,-233 1944,-233"/>
 <text text-anchor="middle" x="1993" y="-240" font-family="FreeSans" font-size="10.00">XML/objectrange.h</text>
 </a>
@@ -297,7 +297,7 @@
 </g>
 <!-- Node24 -->
 <g id="node50" class="node"><title>Node24</title>
-<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class.">
+<a xlink:href="attribute_8h.html" target="_top" xlink:title="Contains the definition for the XML::Attribute class. ">
 <polygon fill="white" stroke="black" points="1729.5,-233 1729.5,-253 1812.5,-253 1812.5,-233 1729.5,-233"/>
 <text text-anchor="middle" x="1771" y="-240" font-family="FreeSans" font-size="10.00">XML/attribute.h</text>
 </a>
@@ -309,7 +309,7 @@
 </g>
 <!-- Node25 -->
 <g id="node53" class="node"><title>Node25</title>
-<a xlink:href="attributeiterator_8h.html" target="_top" xlink:title="Contains the defintion of the AttributeIterator class.">
+<a xlink:href="attributeiterator_8h.html" target="_top" xlink:title="Contains the defintion of the AttributeIterator class. ">
 <polygon fill="white" stroke="black" points="1823.5,-349 1823.5,-369 1936.5,-369 1936.5,-349 1823.5,-349"/>
 <text text-anchor="middle" x="1880" y="-356" font-family="FreeSans" font-size="10.00">XML/attributeiterator.h</text>
 </a>
@@ -321,7 +321,7 @@
 </g>
 <!-- Node26 -->
 <g id="node56" class="node"><title>Node26</title>
-<a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes.">
+<a xlink:href="node_8h.html" target="_top" xlink:title="This defines the Mezzanine::XML::Node one of the central XML classes. ">
 <polygon fill="white" stroke="black" points="1906,-291 1906,-311 1974,-311 1974,-291 1906,-291"/>
 <text text-anchor="middle" x="1940" y="-298" font-family="FreeSans" font-size="10.00">XML/node.h</text>
 </a>
@@ -345,7 +345,7 @@
 </g>
 <!-- Node28 -->
 <g id="node64" class="node"><title>Node28</title>
-<a xlink:href="document_8h.html" target="_top" xlink:title="The definition of the XML::Document Class.">
+<a xlink:href="document_8h.html" target="_top" xlink:title="The definition of the XML::Document Class. ">
 <polygon fill="white" stroke="black" points="1216,-407 1216,-427 1306,-427 1306,-407 1216,-407"/>
 <text text-anchor="middle" x="1261" y="-414" font-family="FreeSans" font-size="10.00">XML/document.h</text>
 </a>
@@ -369,7 +369,7 @@
 </g>
 <!-- Node30 -->
 <g id="node73" class="node"><title>Node30</title>
-<a xlink:href="writer_8h.html" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy.">
+<a xlink:href="writer_8h.html" target="_top" xlink:title="The definitions for all of the XML::Writer inheritance hierarchy. ">
 <polygon fill="white" stroke="black" points="663.5,-349 663.5,-369 734.5,-369 734.5,-349 663.5,-349"/>
 <text text-anchor="middle" x="699" y="-356" font-family="FreeSans" font-size="10.00">XML/writer.h</text>
 </a>
@@ -405,7 +405,7 @@
 </g>
 <!-- Node46 -->
 <g id="node118" class="node"><title>Node46</title>
-<a xlink:href="nodetext_8h.html" target="_top" xlink:title="The declaration of the XML::NodeText class.">
+<a xlink:href="nodetext_8h.html" target="_top" xlink:title="The declaration of the XML::NodeText class. ">
 <polygon fill="white" stroke="black" points="2404,-349 2404,-369 2488,-369 2488,-349 2404,-349"/>
 <text text-anchor="middle" x="2446" y="-356" font-family="FreeSans" font-size="10.00">XML/nodetext.h</text>
 </a>
@@ -417,7 +417,7 @@
 </g>
 <!-- Node47 -->
 <g id="node125" class="node"><title>Node47</title>
-<a xlink:href="treewalker_8h.html" target="_top" xlink:title="This defines the TreeWalker Interface.">
+<a xlink:href="treewalker_8h.html" target="_top" xlink:title="This defines the TreeWalker Interface. ">
 <polygon fill="white" stroke="black" points="2030,-349 2030,-369 2122,-369 2122,-349 2030,-349"/>
 <text text-anchor="middle" x="2076" y="-356" font-family="FreeSans" font-size="10.00">XML/treewalker.h</text>
 </a>
@@ -441,7 +441,7 @@
 </g>
 <!-- Node49 -->
 <g id="node134" class="node"><title>Node49</title>
-<a xlink:href="xpathnode_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathNode.">
+<a xlink:href="xpathnode_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathNode. ">
 <polygon fill="white" stroke="black" points="2140,-349 2140,-369 2232,-369 2232,-349 2140,-349"/>
 <text text-anchor="middle" x="2186" y="-356" font-family="FreeSans" font-size="10.00">XML/xpathnode.h</text>
 </a>
@@ -453,7 +453,7 @@
 </g>
 <!-- Node50 -->
 <g id="node138" class="node"><title>Node50</title>
-<a xlink:href="xpathnodeset_8h.html" target="_top" xlink:title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet.">
+<a xlink:href="xpathnodeset_8h.html" target="_top" xlink:title="This file contains the defintion of the Mezzanine::XML::XPathNodeSet. ">
 <polygon fill="white" stroke="black" points="2134,-407 2134,-427 2238,-427 2238,-407 2134,-407"/>
 <text text-anchor="middle" x="2186" y="-414" font-family="FreeSans" font-size="10.00">XML/xpathnodeset.h</text>
 </a>
@@ -465,7 +465,7 @@
 </g>
 <!-- Node51 -->
 <g id="node142" class="node"><title>Node51</title>
-<a xlink:href="xpathparseresult_8h.html" target="_top" xlink:title="Has all the classes for the XPath implementation.">
+<a xlink:href="xpathparseresult_8h.html" target="_top" xlink:title="Has all the classes for the XPath implementation. ">
 <polygon fill="white" stroke="black" points="1461.5,-349 1461.5,-369 1578.5,-369 1578.5,-349 1461.5,-349"/>
 <text text-anchor="middle" x="1520" y="-356" font-family="FreeSans" font-size="10.00">XML/xpathparseresult.h</text>
 </a>
@@ -477,7 +477,7 @@
 </g>
 <!-- Node52 -->
 <g id="node146" class="node"><title>Node52</title>
-<a xlink:href="xpathvariable_8h.html" target="_top" xlink:title="The XPathVariable class definition.">
+<a xlink:href="xpathvariable_8h.html" target="_top" xlink:title="The XPathVariable class definition. ">
 <polygon fill="white" stroke="black" points="1150,-291 1150,-311 1254,-311 1254,-291 1150,-291"/>
 <text text-anchor="middle" x="1202" y="-298" font-family="FreeSans" font-size="10.00">XML/xpathvariable.h</text>
 </a>
@@ -489,7 +489,7 @@
 </g>
 <!-- Node53 -->
 <g id="node150" class="node"><title>Node53</title>
-<a xlink:href="xpathvariableset_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathVariableSet.">
+<a xlink:href="xpathvariableset_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathVariableSet. ">
 <polygon fill="white" stroke="black" points="1464,-291 1464,-311 1580,-311 1580,-291 1464,-291"/>
 <text text-anchor="middle" x="1522" y="-298" font-family="FreeSans" font-size="10.00">XML/xpathvariableset.h</text>
 </a>
@@ -501,7 +501,7 @@
 </g>
 <!-- Node54 -->
 <g id="node154" class="node"><title>Node54</title>
-<a xlink:href="xpathquery_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathQuery .">
+<a xlink:href="xpathquery_8h.html" target="_top" xlink:title="The definition of the Mezzanine::XML::XPathQuery . ">
 <polygon fill="white" stroke="black" points="1402,-407 1402,-427 1496,-427 1496,-407 1402,-407"/>
 <text text-anchor="middle" x="1449" y="-414" font-family="FreeSans" font-size="10.00">XML/xpathquery.h</text>
 </a>
@@ -583,7 +583,7 @@
 </g>
 <!-- Node37 -->
 <g id="node88" class="node"><title>Node37</title>
-<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream.">
+<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream. ">
 <polygon fill="white" stroke="black" points="776,-175 776,-195 892,-195 892,-175 776,-175"/>
 <text text-anchor="middle" x="834" y="-182" font-family="FreeSans" font-size="10.00">Resource/datastream.h</text>
 </a>
@@ -687,7 +687,7 @@
 </g>
 <!-- Node40 -->
 <g id="node96" class="node"><title>Node40</title>
-<a xlink:href="filestream_8h.html" target="_top" xlink:title="Declaration of FileStream.">
+<a xlink:href="filestream_8h.html" target="_top" xlink:title="Declaration of FileStream. ">
 <polygon fill="white" stroke="black" points="190.5,-233 190.5,-253 299.5,-253 299.5,-233 190.5,-233"/>
 <text text-anchor="middle" x="245" y="-240" font-family="FreeSans" font-size="10.00">Resource/filestream.h</text>
 </a>
@@ -711,7 +711,7 @@
 </g>
 <!-- Node42 -->
 <g id="node103" class="node"><title>Node42</title>
-<a xlink:href="memorystream_8h.html" target="_top" xlink:title="Declaration of MemoryStream.">
+<a xlink:href="memorystream_8h.html" target="_top" xlink:title="Declaration of MemoryStream. ">
 <polygon fill="white" stroke="black" points="316.5,-233 316.5,-253 447.5,-253 447.5,-233 316.5,-233"/>
 <text text-anchor="middle" x="382" y="-240" font-family="FreeSans" font-size="10.00">Resource/memorystream.h</text>
 </a>
@@ -740,7 +740,7 @@
 </g>
 <!-- Node38 -->
 <g id="node91" class="node"><title>Node38</title>
-<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe.">
+<a xlink:href="countedptr_8h.html" target="_top" xlink:title="This file describes and implements a reference counted pointer that is NOT threadsafe. ">
 <polygon fill="white" stroke="black" points="862,-117 862,-137 932,-137 932,-117 862,-117"/>
 <text text-anchor="middle" x="897" y="-124" font-family="FreeSans" font-size="10.00">countedptr.h</text>
 </a>
@@ -907,7 +907,7 @@
 </g>
 <!-- Node56 -->
 <g id="node161" class="node"><title>Node56</title>
-<a xlink:href="macros_8h.html" target="_top" xlink:title="All convience/utility macros for the Mezzanine are to be placed here.">
+<a xlink:href="macros_8h.html" target="_top" xlink:title="All convience/utility macros for the Mezzanine are to be placed here. ">
 <polygon fill="white" stroke="black" points="2507,-465 2507,-485 2563,-485 2563,-465 2507,-465"/>
 <text text-anchor="middle" x="2535" y="-472" font-family="FreeSans" font-size="10.00">macros.h</text>
 </a>
@@ -934,7 +934,7 @@
 </g>
 <!-- Node59 -->
 <g id="node170" class="node"><title>Node59</title>
-<a xlink:href="framescheduler_8h.html" target="_top" xlink:title="This file has the Declarations for the main FrameScheduler class.">
+<a xlink:href="framescheduler_8h.html" target="_top" xlink:title="This file has the Declarations for the main FrameScheduler class. ">
 <polygon fill="white" stroke="black" points="2567,-291 2567,-311 2657,-311 2657,-291 2567,-291"/>
 <text text-anchor="middle" x="2612" y="-298" font-family="FreeSans" font-size="10.00">framescheduler.h</text>
 </a>
@@ -958,7 +958,7 @@
 </g>
 <!-- Node63 -->
 <g id="node181" class="node"><title>Node63</title>
-<a xlink:href="mutex_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools.">
+<a xlink:href="mutex_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools. ">
 <polygon fill="white" stroke="black" points="2778,-175 2778,-195 2828,-195 2828,-175 2778,-175"/>
 <text text-anchor="middle" x="2803" y="-182" font-family="FreeSans" font-size="10.00">mutex.h</text>
 </a>
@@ -970,7 +970,7 @@
 </g>
 <!-- Node65 -->
 <g id="node186" class="node"><title>Node65</title>
-<a xlink:href="workunitkey_8h.html" target="_top" xlink:title="This file defines the metadata used to sort workunits.">
+<a xlink:href="workunitkey_8h.html" target="_top" xlink:title="This file defines the metadata used to sort workunits. ">
 <polygon fill="white" stroke="black" points="2363.5,-233 2363.5,-253 2438.5,-253 2438.5,-233 2363.5,-233"/>
 <text text-anchor="middle" x="2401" y="-240" font-family="FreeSans" font-size="10.00">workunitkey.h</text>
 </a>
@@ -982,7 +982,7 @@
 </g>
 <!-- Node67 -->
 <g id="node193" class="node"><title>Node67</title>
-<a xlink:href="rollingaverage_8h.html" target="_top" xlink:title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage.">
+<a xlink:href="rollingaverage_8h.html" target="_top" xlink:title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage. ">
 <polygon fill="white" stroke="black" points="2783.5,-233 2783.5,-253 2866.5,-253 2866.5,-233 2783.5,-233"/>
 <text text-anchor="middle" x="2825" y="-240" font-family="FreeSans" font-size="10.00">rollingaverage.h</text>
 </a>
@@ -994,7 +994,7 @@
 </g>
 <!-- Node69 -->
 <g id="node202" class="node"><title>Node69</title>
-<a xlink:href="threadingenumerations_8h.html" target="_top" xlink:title="Any enumerations the threading library requires are all declared here.">
+<a xlink:href="threadingenumerations_8h.html" target="_top" xlink:title="Any enumerations the threading library requires are all declared here. ">
 <polygon fill="white" stroke="black" points="2960,-175 2960,-195 3082,-195 3082,-175 2960,-175"/>
 <text text-anchor="middle" x="3021" y="-182" font-family="FreeSans" font-size="10.00">threadingenumerations.h</text>
 </a>
@@ -1045,7 +1045,7 @@
 </g>
 <!-- Node66 -->
 <g id="node189" class="node"><title>Node66</title>
-<a xlink:href="spinlock_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools, and at least one MutexLike object.">
+<a xlink:href="spinlock_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools, and at least one MutexLike object. ">
 <polygon fill="white" stroke="black" points="2401.5,-117 2401.5,-137 2460.5,-137 2460.5,-117 2401.5,-117"/>
 <text text-anchor="middle" x="2431" y="-124" font-family="FreeSans" font-size="10.00">spinlock.h</text>
 </a>
@@ -1062,7 +1062,7 @@
 </g>
 <!-- Node68 -->
 <g id="node196" class="node"><title>Node68</title>
-<a xlink:href="barrier_8h.html" target="_top" xlink:title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive.">
+<a xlink:href="barrier_8h.html" target="_top" xlink:title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive. ">
 <polygon fill="white" stroke="black" points="2617.5,-175 2617.5,-195 2668.5,-195 2668.5,-175 2617.5,-175"/>
 <text text-anchor="middle" x="2643" y="-182" font-family="FreeSans" font-size="10.00">barrier.h</text>
 </a>
@@ -1094,7 +1094,7 @@
 </g>
 <!-- Node64 -->
 <g id="node183" class="node"><title>Node64</title>
-<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically.">
+<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically. ">
 <polygon fill="white" stroke="black" points="2594,-117 2594,-137 2692,-137 2692,-117 2594,-117"/>
 <text text-anchor="middle" x="2643" y="-124" font-family="FreeSans" font-size="10.00">atomicoperations.h</text>
 </a>

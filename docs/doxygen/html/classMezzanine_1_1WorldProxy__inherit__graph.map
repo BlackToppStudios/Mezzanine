@@ -1,15 +1,15 @@
 <map id="Mezzanine::WorldProxy" name="Mezzanine::WorldProxy">
-<area shape="rect" id="node5" href="$classMezzanine_1_1Audio_1_1iListener.html" title="This is an interface class for a listener (such as a player) in the 3D audio world." alt="" coords="437,70,613,98"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Audio_1_1SoundProxy.html" title="This is a proxy class for representing a sound being played in 3D space." alt="" coords="427,121,624,149"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Audio_1_1iListener.html" title="This is an interface class for a listener (such as a player) in the 3D audio world. " alt="" coords="437,70,613,98"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Audio_1_1SoundProxy.html" title="This is a proxy class for representing a sound being played in 3D space. " alt="" coords="427,121,624,149"/>
 <area shape="rect" id="node9" href="$classMezzanine_1_1Graphics_1_1RenderableProxy.html" title="This is the base proxy class for world proxies wrapping functionality of the graphics subsystem..." alt="" coords="456,171,595,215"/>
-<area shape="rect" id="node21" href="$classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled." alt="" coords="459,371,592,415"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="5,142,176,186"/>
+<area shape="rect" id="node21" href="$classMezzanine_1_1Physics_1_1CollidableProxy.html" title="This is a proxy from which physics objects that can collide with each other are handled. " alt="" coords="459,371,592,415"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1TransformableObject.html" title="This is an interface for all 3D objects that can have their full transforms manipulated. " alt="" coords="5,142,176,186"/>
 <area shape="rect" id="node11" href="$classMezzanine_1_1Graphics_1_1BillboardSetProxy.html" title="This is the proxy class for placing and manipulating a set of 2D billboards in the scene..." alt="" coords="676,5,815,49"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Graphics_1_1CameraProxy.html" title="This is the proxy class for placing and manipulating a camera in the scene." alt="" coords="676,71,815,115"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1Graphics_1_1EntityProxy.html" title="This is the proxy class for placing and manipulating a mesh in the scene." alt="" coords="676,138,815,182"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1Graphics_1_1LightProxy.html" title="This is the proxy class for placing and manipulating lighting in the scene." alt="" coords="676,205,815,249"/>
-<area shape="rect" id="node19" href="$classMezzanine_1_1Graphics_1_1ParticleSystemProxy.html" title="This is the proxy class for placing and manipulating particles in the scene." alt="" coords="672,271,819,315"/>
-<area shape="rect" id="node23" href="$classMezzanine_1_1Physics_1_1GhostProxy.html" title="This is the proxy object for ghost objects with no contact response." alt="" coords="679,338,812,382"/>
-<area shape="rect" id="node25" href="$classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled." alt="" coords="679,405,812,449"/>
-<area shape="rect" id="node27" href="$classMezzanine_1_1Physics_1_1SoftProxy.html" title="This is the proxy object for soft/compressable bodies." alt="" coords="679,471,812,515"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Graphics_1_1CameraProxy.html" title="This is the proxy class for placing and manipulating a camera in the scene. " alt="" coords="676,71,815,115"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1Graphics_1_1EntityProxy.html" title="This is the proxy class for placing and manipulating a mesh in the scene. " alt="" coords="676,138,815,182"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1Graphics_1_1LightProxy.html" title="This is the proxy class for placing and manipulating lighting in the scene. " alt="" coords="676,205,815,249"/>
+<area shape="rect" id="node19" href="$classMezzanine_1_1Graphics_1_1ParticleSystemProxy.html" title="This is the proxy class for placing and manipulating particles in the scene. " alt="" coords="672,271,819,315"/>
+<area shape="rect" id="node23" href="$classMezzanine_1_1Physics_1_1GhostProxy.html" title="This is the proxy object for ghost objects with no contact response. " alt="" coords="679,338,812,382"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1Physics_1_1RigidProxy.html" title="This is a proxy from which rigid body proxys are handled. " alt="" coords="679,405,812,449"/>
+<area shape="rect" id="node27" href="$classMezzanine_1_1Physics_1_1SoftProxy.html" title="This is the proxy object for soft/compressable bodies. " alt="" coords="679,471,812,515"/>
 </map>

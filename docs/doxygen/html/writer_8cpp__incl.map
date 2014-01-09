@@ -1,18 +1,18 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.cpp">
-<area shape="rect" id="node3" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy." alt="" coords="315,99,408,127"/>
+<area shape="rect" id="node3" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy. " alt="" coords="315,99,408,127"/>
 <area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="717,486,803,514"/>
 <area shape="rect" id="node41" href="$resource_8h_source.html" title="resource.h" alt="" coords="677,177,757,205"/>
 <area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1339,563,1483,591"/>
-<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1259,563,1315,591"/>
+<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1259,563,1315,591"/>
 <area shape="rect" id="node43" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="1221,254,1437,282"/>
 <area shape="rect" id="node45" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="43,254,173,282"/>
 <area shape="rect" id="node47" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="197,254,317,282"/>
 <area shape="rect" id="node49" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="341,254,493,282"/>
 <area shape="rect" id="node51" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="517,254,680,282"/>
-<area shape="rect" id="node53" href="$datastream_8h.html" title="Declaration of DataStream." alt="" coords="859,331,1013,359"/>
-<area shape="rect" id="node61" href="$filestream_8h.html" title="Declaration of FileStream." alt="" coords="1003,254,1147,282"/>
+<area shape="rect" id="node53" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="859,331,1013,359"/>
+<area shape="rect" id="node61" href="$filestream_8h.html" title="Declaration of FileStream. " alt="" coords="1003,254,1147,282"/>
 <area shape="rect" id="node64" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="1105,409,1263,437"/>
-<area shape="rect" id="node68" href="$memorystream_8h.html" title="Declaration of MemoryStream." alt="" coords="755,254,928,282"/>
+<area shape="rect" id="node68" href="$memorystream_8h.html" title="Declaration of MemoryStream. " alt="" coords="755,254,928,282"/>
 <area shape="rect" id="node71" href="$textsettingsfile_8h_source.html" title="Resource/textsettingsfile.h" alt="" coords="632,331,803,359"/>
-<area shape="rect" id="node56" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe." alt="" coords="755,409,848,437"/>
+<area shape="rect" id="node56" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="755,409,848,437"/>
 </map>

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1InternalTextureData.html" target="_top" xlink:title="This class is used to store the internal structures needed by the Texture class.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1InternalTextureData.html" target="_top" xlink:title="This class is used to store the internal structures needed by the Texture class. ">
 <polygon fill="white" stroke="black" points="0,-83 0,-115 106,-115 106,-83 0,-83"/>
 <text text-anchor="start" x="8" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="53" y="-90" font-family="FreeSans" font-size="10.00">::InternalTextureData</text>

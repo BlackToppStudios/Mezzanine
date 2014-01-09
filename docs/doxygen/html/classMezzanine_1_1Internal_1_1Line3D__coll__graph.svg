@@ -39,7 +39,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="structMezzanine_1_1Internal_1_1LineVertex.html" target="_top" xlink:title="A small declaration of what our vertexs look like for when we write to the buffers.">
+<a xlink:href="structMezzanine_1_1Internal_1_1LineVertex.html" target="_top" xlink:title="A small declaration of what our vertexs look like for when we write to the buffers. ">
 <polygon fill="white" stroke="black" points="145.5,-165 145.5,-197 244.5,-197 244.5,-165 145.5,-165"/>
 <text text-anchor="start" x="153.5" y="-184" font-family="FreeSans" font-size="10.00">Mezzanine::Internal</text>
 <text text-anchor="middle" x="195" y="-172" font-family="FreeSans" font-size="10.00">::LineVertex</text>
@@ -66,7 +66,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
+<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space. ">
 <polygon fill="white" stroke="black" points="209,-247 209,-267 309,-267 309,-247 209,-247"/>
 <text text-anchor="middle" x="259" y="-254" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>

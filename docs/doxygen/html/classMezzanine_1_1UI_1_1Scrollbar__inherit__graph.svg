@@ -16,7 +16,7 @@
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1UI_1_1HorizontalScrollbar.html" target="_top" xlink:title="This is a scrollbar class aligned on the X axis.">
+<a xlink:href="classMezzanine_1_1UI_1_1HorizontalScrollbar.html" target="_top" xlink:title="This is a scrollbar class aligned on the X axis. ">
 <polygon fill="white" stroke="black" points="95,-1 95,-33 219,-33 219,-1 95,-1"/>
 <text text-anchor="start" x="103" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Horizontal</text>
 <text text-anchor="middle" x="157" y="-8" font-family="FreeSans" font-size="10.00">Scrollbar</text>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1UI_1_1VerticalScrollbar.html" target="_top" xlink:title="This is a scrollbar class aligned on the Y axis.">
+<a xlink:href="classMezzanine_1_1UI_1_1VerticalScrollbar.html" target="_top" xlink:title="This is a scrollbar class aligned on the Y axis. ">
 <polygon fill="white" stroke="black" points="237,-7 237,-27 389,-27 389,-7 237,-7"/>
 <text text-anchor="middle" x="313" y="-14" font-family="FreeSans" font-size="10.00">Mezzanine::UI::VerticalScrollbar</text>
 </a>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1PageProvider.html" target="_top" xlink:title="This is the base class for interpretting widget values to page positions.">
+<a xlink:href="classMezzanine_1_1UI_1_1PageProvider.html" target="_top" xlink:title="This is the base class for interpretting widget values to page positions. ">
 <polygon fill="white" stroke="black" points="165.5,-129 165.5,-149 304.5,-149 304.5,-129 165.5,-129"/>
 <text text-anchor="middle" x="235" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::UI::PageProvider</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Widget.html" target="_top" xlink:title="This is the base class for all widgets.">
+<a xlink:href="classMezzanine_1_1UI_1_1Widget.html" target="_top" xlink:title="This is the base class for all widgets. ">
 <polygon fill="white" stroke="black" points="179.5,-187 179.5,-207 290.5,-207 290.5,-187 179.5,-187"/>
 <text text-anchor="middle" x="235" y="-194" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
@@ -65,7 +65,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1QuadRenderable.html" target="_top" xlink:title="This represents a nestable quad for an object in a GUI layout.">
+<a xlink:href="classMezzanine_1_1UI_1_1QuadRenderable.html" target="_top" xlink:title="This represents a nestable quad for an object in a GUI layout. ">
 <polygon fill="white" stroke="black" points="-0.5,-245 -0.5,-265 152.5,-265 152.5,-245 -0.5,-245"/>
 <text text-anchor="middle" x="76" y="-252" font-family="FreeSans" font-size="10.00">Mezzanine::UI::QuadRenderable</text>
 </a>
@@ -77,7 +77,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
+<a xlink:href="classMezzanine_1_1UI_1_1Renderable.html" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy. ">
 <polygon fill="white" stroke="black" points="11,-303 11,-323 141,-323 141,-303 11,-303"/>
 <text text-anchor="middle" x="76" y="-310" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
@@ -89,7 +89,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1EventPublisher.html" target="_top" xlink:title="This is the base class for any class that generates and publishes events to subscribers.">
+<a xlink:href="classMezzanine_1_1EventPublisher.html" target="_top" xlink:title="This is the base class for any class that generates and publishes events to subscribers. ">
 <polygon fill="white" stroke="black" points="169.5,-245 169.5,-265 300.5,-265 300.5,-245 169.5,-245"/>
 <text text-anchor="middle" x="235" y="-252" font-family="FreeSans" font-size="10.00">Mezzanine::EventPublisher</text>
 </a>
@@ -101,7 +101,7 @@
 </g>
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1EventSubscriber.html" target="_top" xlink:title="This is a base class for all classes that subscribe to events.">
+<a xlink:href="classMezzanine_1_1EventSubscriber.html" target="_top" xlink:title="This is a base class for all classes that subscribe to events. ">
 <polygon fill="white" stroke="black" points="317.5,-245 317.5,-265 454.5,-265 454.5,-245 317.5,-245"/>
 <text text-anchor="middle" x="386" y="-252" font-family="FreeSans" font-size="10.00">Mezzanine::EventSubscriber</text>
 </a>

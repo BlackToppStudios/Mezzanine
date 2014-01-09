@@ -18,7 +18,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.html" target="_top" xlink:title="The interface for a script argument.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.html" target="_top" xlink:title="The interface for a script argument. ">
 <polygon fill="white" stroke="black" points="27.5,-95 27.5,-127 132.5,-127 132.5,-95 27.5,-95"/>
 <text text-anchor="start" x="35.5" y="-114" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="80" y="-102" font-family="FreeSans" font-size="10.00">::iScriptArgument</text>
@@ -31,7 +31,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1IntrusiveRefCount.html" target="_top" xlink:title="A sample class that implements a minimal intrusive reference counting scheme.">
+<a xlink:href="classMezzanine_1_1IntrusiveRefCount.html" target="_top" xlink:title="A sample class that implements a minimal intrusive reference counting scheme. ">
 <polygon fill="white" stroke="black" points="-0.5,-173 -0.5,-193 142.5,-193 142.5,-173 -0.5,-173"/>
 <text text-anchor="middle" x="71" y="-180" font-family="FreeSans" font-size="10.00">Mezzanine::IntrusiveRefCount</text>
 </a>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="167.5,-101 167.5,-121 224.5,-121 224.5,-101 167.5,-101"/>
 <text text-anchor="middle" x="196" y="-108" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
@@ -56,7 +56,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:title="STL class.">
+<a xlink:title="STL class. ">
 <polygon fill="white" stroke="#bfbfbf" points="159.5,-167 159.5,-199 250.5,-199 250.5,-167 159.5,-167"/>
 <text text-anchor="start" x="167.5" y="-186" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="205" y="-174" font-family="FreeSans" font-size="10.00"> char &gt;</text>

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1WorldObject.html" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world.">
+<a xlink:href="classMezzanine_1_1WorldObject.html" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world. ">
 <polygon fill="white" stroke="black" points="164,-466 164,-486 284,-486 284,-466 164,-466"/>
 <text text-anchor="middle" x="224" y="-473" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObject</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
-<a xlink:href="classMezzanine_1_1WorldProxy.html" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems.">
+<a xlink:href="classMezzanine_1_1WorldProxy.html" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems. ">
 <polygon fill="white" stroke="black" points="166,-300 166,-320 282,-320 282,-300 166,-300"/>
 <text text-anchor="middle" x="224" y="-307" font-family="FreeSans" font-size="10.00">Mezzanine::WorldProxy</text>
 </a>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Actor.html" target="_top" xlink:title="This is the base class from which all the actors inherit.">
+<a xlink:href="classMezzanine_1_1Actor.html" target="_top" xlink:title="This is the base class from which all the actors inherit. ">
 <polygon fill="white" stroke="black" points="349,-552 349,-572 439,-572 439,-552 349,-552"/>
 <text text-anchor="middle" x="394" y="-559" font-family="FreeSans" font-size="10.00">Mezzanine::Actor</text>
 </a>
@@ -53,7 +53,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1AreaEffect.html" target="_top" xlink:title="This class is used to define area&#39;s in the world that have unique effects.">
+<a xlink:href="classMezzanine_1_1AreaEffect.html" target="_top" xlink:title="This class is used to define area&#39;s in the world that have unique effects. ">
 <polygon fill="white" stroke="black" points="338.5,-514 338.5,-534 449.5,-534 449.5,-514 338.5,-514"/>
 <text text-anchor="middle" x="394" y="-521" font-family="FreeSans" font-size="10.00">Mezzanine::AreaEffect</text>
 </a>
@@ -77,7 +77,7 @@
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
-<a xlink:href="classMezzanine_1_1TerrainBase.html" target="_top" xlink:title="This is the base class from which all the terrains inherit.">
+<a xlink:href="classMezzanine_1_1TerrainBase.html" target="_top" xlink:title="This is the base class from which all the terrains inherit. ">
 <polygon fill="white" stroke="black" points="334.5,-409 334.5,-429 453.5,-429 453.5,-409 334.5,-409"/>
 <text text-anchor="middle" x="394" y="-416" font-family="FreeSans" font-size="10.00">Mezzanine::TerrainBase</text>
 </a>
@@ -89,7 +89,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1FieldOfForce.html" target="_top" xlink:title="This is field that applies force in a direction, and doesn&#39;t tamper with gravity.">
+<a xlink:href="classMezzanine_1_1FieldOfForce.html" target="_top" xlink:title="This is field that applies force in a direction, and doesn&#39;t tamper with gravity. ...">
 <polygon fill="white" stroke="black" points="504.5,-590 504.5,-610 627.5,-610 627.5,-590 504.5,-590"/>
 <text text-anchor="middle" x="566" y="-597" font-family="FreeSans" font-size="10.00">Mezzanine::FieldOfForce</text>
 </a>
@@ -101,7 +101,7 @@
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1GravityField.html" target="_top" xlink:title="This is an implementation of the AreaEffect class that alters gravity in a region.">
+<a xlink:href="classMezzanine_1_1GravityField.html" target="_top" xlink:title="This is an implementation of the AreaEffect class that alters gravity in a region. ">
 <polygon fill="white" stroke="black" points="507,-552 507,-572 625,-572 625,-552 507,-552"/>
 <text text-anchor="middle" x="566" y="-559" font-family="FreeSans" font-size="10.00">Mezzanine::GravityField</text>
 </a>
@@ -113,7 +113,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1GravityWell.html" target="_top" xlink:title="This is a gravity well implementation of the AreaEffect class.">
+<a xlink:href="classMezzanine_1_1GravityWell.html" target="_top" xlink:title="This is a gravity well implementation of the AreaEffect class. ">
 <polygon fill="white" stroke="black" points="508,-514 508,-534 624,-534 624,-514 508,-514"/>
 <text text-anchor="middle" x="566" y="-521" font-family="FreeSans" font-size="10.00">Mezzanine::GravityWell</text>
 </a>
@@ -125,7 +125,7 @@
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1RigidDebris.html" target="_top" xlink:title="A non&#45;deformable debris.">
+<a xlink:href="classMezzanine_1_1RigidDebris.html" target="_top" xlink:title="A non&#45;deformable debris. ">
 <polygon fill="white" stroke="black" points="508,-476 508,-496 624,-496 624,-476 508,-476"/>
 <text text-anchor="middle" x="566" y="-483" font-family="FreeSans" font-size="10.00">Mezzanine::RigidDebris</text>
 </a>
@@ -137,7 +137,7 @@
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1SoftDebris.html" target="_top" xlink:title="A deformable debris.">
+<a xlink:href="classMezzanine_1_1SoftDebris.html" target="_top" xlink:title="A deformable debris. ">
 <polygon fill="white" stroke="black" points="510,-438 510,-458 622,-458 622,-438 510,-438"/>
 <text text-anchor="middle" x="566" y="-445" font-family="FreeSans" font-size="10.00">Mezzanine::SoftDebris</text>
 </a>
@@ -161,7 +161,7 @@
 </g>
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1iListener.html" target="_top" xlink:title="This is an interface class for a listener (such as a player) in the 3D audio world.">
+<a xlink:href="classMezzanine_1_1Audio_1_1iListener.html" target="_top" xlink:title="This is an interface class for a listener (such as a player) in the 3D audio world. ">
 <polygon fill="white" stroke="black" points="328,-338 328,-358 460,-358 460,-338 328,-338"/>
 <text text-anchor="middle" x="394" y="-345" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::iListener</text>
 </a>
@@ -173,7 +173,7 @@
 </g>
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1SoundProxy.html" target="_top" xlink:title="This is a proxy class for representing a sound being played in 3D space.">
+<a xlink:href="classMezzanine_1_1Audio_1_1SoundProxy.html" target="_top" xlink:title="This is a proxy class for representing a sound being played in 3D space. ">
 <polygon fill="white" stroke="black" points="320,-300 320,-320 468,-320 468,-300 320,-300"/>
 <text text-anchor="middle" x="394" y="-307" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundProxy</text>
 </a>
@@ -198,7 +198,7 @@
 </g>
 <!-- Node22 -->
 <g id="node43" class="node"><title>Node22</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1CollidableProxy.html" target="_top" xlink:title="This is a proxy from which physics objects that can collide with each other are handled.">
+<a xlink:href="classMezzanine_1_1Physics_1_1CollidableProxy.html" target="_top" xlink:title="This is a proxy from which physics objects that can collide with each other are handled. ">
 <polygon fill="white" stroke="black" points="344,-75 344,-107 444,-107 444,-75 344,-75"/>
 <text text-anchor="start" x="352" y="-94" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="394" y="-82" font-family="FreeSans" font-size="10.00">::CollidableProxy</text>
@@ -224,7 +224,7 @@
 </g>
 <!-- Node18 -->
 <g id="node35" class="node"><title>Node18</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1CameraProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a camera in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1CameraProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a camera in the scene. ">
 <polygon fill="white" stroke="black" points="513.5,-300 513.5,-332 618.5,-332 618.5,-300 513.5,-300"/>
 <text text-anchor="start" x="521.5" y="-319" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="566" y="-307" font-family="FreeSans" font-size="10.00">::CameraProxy</text>
@@ -237,7 +237,7 @@
 </g>
 <!-- Node19 -->
 <g id="node37" class="node"><title>Node19</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1EntityProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a mesh in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1EntityProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a mesh in the scene. ">
 <polygon fill="white" stroke="black" points="513.5,-250 513.5,-282 618.5,-282 618.5,-250 513.5,-250"/>
 <text text-anchor="start" x="521.5" y="-269" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="566" y="-257" font-family="FreeSans" font-size="10.00">::EntityProxy</text>
@@ -250,7 +250,7 @@
 </g>
 <!-- Node20 -->
 <g id="node39" class="node"><title>Node20</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1LightProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating lighting in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1LightProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating lighting in the scene. ">
 <polygon fill="white" stroke="black" points="513.5,-200 513.5,-232 618.5,-232 618.5,-200 513.5,-200"/>
 <text text-anchor="start" x="521.5" y="-219" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="566" y="-207" font-family="FreeSans" font-size="10.00">::LightProxy</text>
@@ -263,7 +263,7 @@
 </g>
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1ParticleSystemProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating particles in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1ParticleSystemProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating particles in the scene. ">
 <polygon fill="white" stroke="black" points="511,-150 511,-182 621,-182 621,-150 511,-150"/>
 <text text-anchor="start" x="519" y="-169" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="566" y="-157" font-family="FreeSans" font-size="10.00">::ParticleSystemProxy</text>
@@ -276,7 +276,7 @@
 </g>
 <!-- Node23 -->
 <g id="node45" class="node"><title>Node23</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1GhostProxy.html" target="_top" xlink:title="This is the proxy object for ghost objects with no contact response.">
+<a xlink:href="classMezzanine_1_1Physics_1_1GhostProxy.html" target="_top" xlink:title="This is the proxy object for ghost objects with no contact response. ">
 <polygon fill="white" stroke="black" points="516,-100 516,-132 616,-132 616,-100 516,-100"/>
 <text text-anchor="start" x="524" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="566" y="-107" font-family="FreeSans" font-size="10.00">::GhostProxy</text>
@@ -289,7 +289,7 @@
 </g>
 <!-- Node24 -->
 <g id="node47" class="node"><title>Node24</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.html" target="_top" xlink:title="This is a proxy from which rigid body proxys are handled.">
+<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.html" target="_top" xlink:title="This is a proxy from which rigid body proxys are handled. ">
 <polygon fill="white" stroke="black" points="516,-50 516,-82 616,-82 616,-50 516,-50"/>
 <text text-anchor="start" x="524" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="566" y="-57" font-family="FreeSans" font-size="10.00">::RigidProxy</text>
@@ -302,7 +302,7 @@
 </g>
 <!-- Node25 -->
 <g id="node49" class="node"><title>Node25</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1SoftProxy.html" target="_top" xlink:title="This is the proxy object for soft/compressable bodies.">
+<a xlink:href="classMezzanine_1_1Physics_1_1SoftProxy.html" target="_top" xlink:title="This is the proxy object for soft/compressable bodies. ">
 <polygon fill="white" stroke="black" points="516,-0 516,-32 616,-32 616,-0 516,-0"/>
 <text text-anchor="start" x="524" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="566" y="-7" font-family="FreeSans" font-size="10.00">::SoftProxy</text>

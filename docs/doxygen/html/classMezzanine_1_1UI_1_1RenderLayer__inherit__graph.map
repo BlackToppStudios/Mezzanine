@@ -1,8 +1,8 @@
 <map id="Mezzanine::UI::RenderLayer" name="Mezzanine::UI::RenderLayer">
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1ImageLayer.html" title="This layer is for placing images and basic colours in it&#39;s parents&#39; quad space." alt="" coords="5,238,179,266"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1TextLayer.html" title="This is a base class for render layers that render text." alt="" coords="203,238,365,266"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1ImageLayer.html" title="This layer is for placing images and basic colours in it&#39;s parents&#39; quad space. " alt="" coords="5,238,179,266"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1TextLayer.html" title="This is a base class for render layers that render text. " alt="" coords="203,238,365,266"/>
 <area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1QuadRenderer.html" title="Mezzanine::UI::QuadRenderer" alt="" coords="93,83,283,111"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1SimpleRenderer.html" title="A simple class providing basic methods to generate vertices with." alt="" coords="88,6,288,34"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MultiLineTextLayer.html" title="This is a render layer specializing in multi&#45;line text." alt="" coords="109,315,269,359"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1SingleLineTextLayer.html" title="This is a render layer specializing in single&#45;line text." alt="" coords="293,315,461,359"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1SimpleRenderer.html" title="A simple class providing basic methods to generate vertices with. " alt="" coords="88,6,288,34"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MultiLineTextLayer.html" title="This is a render layer specializing in multi&#45;line text. " alt="" coords="109,315,269,359"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1SingleLineTextLayer.html" title="This is a render layer specializing in single&#45;line text. " alt="" coords="293,315,461,359"/>
 </map>

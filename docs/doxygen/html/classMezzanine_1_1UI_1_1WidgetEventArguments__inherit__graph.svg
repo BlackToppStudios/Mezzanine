@@ -30,7 +30,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1ScrollbarValueChangedArguments.html" target="_top" xlink:title="This is the EventArguments class for when the scrollvalue of a scrollbar is updated.">
+<a xlink:href="classMezzanine_1_1UI_1_1ScrollbarValueChangedArguments.html" target="_top" xlink:title="This is the EventArguments class for when the scrollvalue of a scrollbar is updated. ">
 <polygon fill="white" stroke="black" points="348.5,-0 348.5,-32 473.5,-32 473.5,-0 348.5,-0"/>
 <text text-anchor="start" x="356.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Scrollbar</text>
 <text text-anchor="middle" x="411" y="-7" font-family="FreeSans" font-size="10.00">ValueChangedArguments</text>

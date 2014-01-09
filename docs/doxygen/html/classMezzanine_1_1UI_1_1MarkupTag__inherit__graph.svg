@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1UI_1_1DefaultColourTag.html" target="_top" xlink:title="This class implements a character colour changing tag.">
+<a xlink:href="classMezzanine_1_1UI_1_1DefaultColourTag.html" target="_top" xlink:title="This class implements a character colour changing tag. ">
 <polygon fill="white" stroke="black" points="166,-76 166,-96 322,-96 322,-76 166,-76"/>
 <text text-anchor="middle" x="244" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::UI::DefaultColourTag</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1UI_1_1DefaultFontTag.html" target="_top" xlink:title="This class implements a character font changing tag.">
+<a xlink:href="classMezzanine_1_1UI_1_1DefaultFontTag.html" target="_top" xlink:title="This class implements a character font changing tag. ">
 <polygon fill="white" stroke="black" points="170,-38 170,-58 318,-58 318,-38 170,-38"/>
 <text text-anchor="middle" x="244" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::UI::DefaultFontTag</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1UI_1_1DefaultSpriteTag.html" target="_top" xlink:title="This class implements a sprite inserting tag.">
+<a xlink:href="classMezzanine_1_1UI_1_1DefaultSpriteTag.html" target="_top" xlink:title="This class implements a sprite inserting tag. ">
 <polygon fill="white" stroke="black" points="167,-0 167,-20 321,-20 321,-0 167,-0"/>
 <text text-anchor="middle" x="244" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::UI::DefaultSpriteTag</text>
 </a>

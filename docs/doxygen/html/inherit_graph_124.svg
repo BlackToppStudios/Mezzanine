@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 113,-24 113,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1IntHandle.html" target="_top" xlink:title="Sample implementation for a ManagedPtr.">
+<a xlink:href="classMezzanine_1_1IntHandle.html" target="_top" xlink:title="Sample implementation for a ManagedPtr. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 108,-20 108,-0 0,-0"/>
 <text text-anchor="middle" x="54" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::IntHandle</text>
 </a>

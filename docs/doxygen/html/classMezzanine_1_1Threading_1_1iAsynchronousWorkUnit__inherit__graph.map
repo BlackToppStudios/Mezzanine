@@ -1,5 +1,5 @@
 <map id="Mezzanine::Threading::iAsynchronousWorkUnit" name="Mezzanine::Threading::iAsynchronousWorkUnit">
 <area shape="rect" id="node7" href="$classMezzanine_1_1Threading_1_1AsynchronousFileLoadWorkUnit.html" title="This is intended to load files asynchronously and continue doing so whether or not other the FrameSch..." alt="" coords="5,286,216,330"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time." alt="" coords="37,99,184,143"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time." alt="" coords="37,6,184,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Threading_1_1DefaultWorkUnit.html" title="Default implementation of WorkUnit. This represents on piece of work through time. " alt="" coords="37,99,184,143"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Threading_1_1iWorkUnit.html" title="Interface of a WorkUnit. This represents on piece of work through time. " alt="" coords="37,6,184,50"/>
 </map>

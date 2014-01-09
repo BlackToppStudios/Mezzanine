@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1TrackLooped.html" target="_top" xlink:title="A track that keeps an extra data point in the track to make sure it loops.">
+<a xlink:href="classMezzanine_1_1TrackLooped.html" target="_top" xlink:title="A track that keeps an extra data point in the track to make sure it loops. ">
 <polygon fill="white" stroke="black" points="12.5,-1 12.5,-33 135.5,-33 135.5,-1 12.5,-1"/>
 <text text-anchor="start" x="20.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::TrackLooped</text>
 <text text-anchor="middle" x="74" y="-8" font-family="FreeSans" font-size="10.00">&lt; InterpolatorType &gt;</text>

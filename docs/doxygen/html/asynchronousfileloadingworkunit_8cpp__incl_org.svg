@@ -30,7 +30,7 @@
 </g>
 <!-- Node28 -->
 <g id="node60" class="node"><title>Node28</title>
-<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically.">
+<a xlink:href="atomicoperations_8h.html" target="_top" xlink:title="Simple thread safe ways to check and change a specified variable atomically. ">
 <polygon fill="white" stroke="black" points="656,-117 656,-137 754,-137 754,-117 656,-117"/>
 <text text-anchor="middle" x="705" y="-124" font-family="FreeSans" font-size="10.00">atomicoperations.h</text>
 </a>
@@ -88,7 +88,7 @@
 </g>
 <!-- Node23 -->
 <g id="node46" class="node"><title>Node23</title>
-<a xlink:href="workunit_8h.html" target="_top" xlink:title="This file has the definition of the workunit.">
+<a xlink:href="workunit_8h.html" target="_top" xlink:title="This file has the definition of the workunit. ">
 <polygon fill="white" stroke="black" points="670,-349 670,-369 730,-369 730,-349 670,-349"/>
 <text text-anchor="middle" x="700" y="-356" font-family="FreeSans" font-size="10.00">workunit.h</text>
 </a>
@@ -262,7 +262,7 @@
 </g>
 <!-- Node21 -->
 <g id="node41" class="node"><title>Node21</title>
-<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor.">
+<a xlink:href="swig_8h.html" target="_top" xlink:title="Used to give commands specifically to the SWIG preprocessor. ">
 <polygon fill="white" stroke="black" points="1059.5,-1 1059.5,-21 1102.5,-21 1102.5,-1 1059.5,-1"/>
 <text text-anchor="middle" x="1081" y="-8" font-family="FreeSans" font-size="10.00">swig.h</text>
 </a>
@@ -284,7 +284,7 @@
 </g>
 <!-- Node24 -->
 <g id="node49" class="node"><title>Node24</title>
-<a xlink:href="framescheduler_8h.html" target="_top" xlink:title="This file has the Declarations for the main FrameScheduler class.">
+<a xlink:href="framescheduler_8h.html" target="_top" xlink:title="This file has the Declarations for the main FrameScheduler class. ">
 <polygon fill="white" stroke="black" points="534,-291 534,-311 624,-311 624,-291 534,-291"/>
 <text text-anchor="middle" x="579" y="-298" font-family="FreeSans" font-size="10.00">framescheduler.h</text>
 </a>
@@ -308,7 +308,7 @@
 </g>
 <!-- Node27 -->
 <g id="node58" class="node"><title>Node27</title>
-<a xlink:href="mutex_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools.">
+<a xlink:href="mutex_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools. ">
 <polygon fill="white" stroke="black" points="725,-175 725,-195 775,-195 775,-175 725,-175"/>
 <text text-anchor="middle" x="750" y="-182" font-family="FreeSans" font-size="10.00">mutex.h</text>
 </a>
@@ -320,7 +320,7 @@
 </g>
 <!-- Node29 -->
 <g id="node63" class="node"><title>Node29</title>
-<a xlink:href="workunitkey_8h.html" target="_top" xlink:title="This file defines the metadata used to sort workunits.">
+<a xlink:href="workunitkey_8h.html" target="_top" xlink:title="This file defines the metadata used to sort workunits. ">
 <polygon fill="white" stroke="black" points="400.5,-233 400.5,-253 475.5,-253 475.5,-233 400.5,-233"/>
 <text text-anchor="middle" x="438" y="-240" font-family="FreeSans" font-size="10.00">workunitkey.h</text>
 </a>
@@ -332,7 +332,7 @@
 </g>
 <!-- Node31 -->
 <g id="node70" class="node"><title>Node31</title>
-<a xlink:href="rollingaverage_8h.html" target="_top" xlink:title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage.">
+<a xlink:href="rollingaverage_8h.html" target="_top" xlink:title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage. ">
 <polygon fill="white" stroke="black" points="750.5,-233 750.5,-253 833.5,-253 833.5,-233 750.5,-233"/>
 <text text-anchor="middle" x="792" y="-240" font-family="FreeSans" font-size="10.00">rollingaverage.h</text>
 </a>
@@ -344,7 +344,7 @@
 </g>
 <!-- Node33 -->
 <g id="node79" class="node"><title>Node33</title>
-<a xlink:href="threadingenumerations_8h.html" target="_top" xlink:title="Any enumerations the threading library requires are all declared here.">
+<a xlink:href="threadingenumerations_8h.html" target="_top" xlink:title="Any enumerations the threading library requires are all declared here. ">
 <polygon fill="white" stroke="black" points="810,-117 810,-137 932,-137 932,-117 810,-117"/>
 <text text-anchor="middle" x="871" y="-124" font-family="FreeSans" font-size="10.00">threadingenumerations.h</text>
 </a>
@@ -388,7 +388,7 @@
 </g>
 <!-- Node30 -->
 <g id="node66" class="node"><title>Node30</title>
-<a xlink:href="spinlock_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools, and at least one MutexLike object.">
+<a xlink:href="spinlock_8h.html" target="_top" xlink:title="Declares a Mutex, Mutex tools, and at least one MutexLike object. ">
 <polygon fill="white" stroke="black" points="465.5,-117 465.5,-137 524.5,-137 524.5,-117 465.5,-117"/>
 <text text-anchor="middle" x="495" y="-124" font-family="FreeSans" font-size="10.00">spinlock.h</text>
 </a>
@@ -405,7 +405,7 @@
 </g>
 <!-- Node32 -->
 <g id="node73" class="node"><title>Node32</title>
-<a xlink:href="barrier_8h.html" target="_top" xlink:title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive.">
+<a xlink:href="barrier_8h.html" target="_top" xlink:title="The declaration of the Mezzanine::Threading::Barrier Barrier synchronization primitive. ">
 <polygon fill="white" stroke="black" points="564.5,-175 564.5,-195 615.5,-195 615.5,-175 564.5,-175"/>
 <text text-anchor="middle" x="590" y="-182" font-family="FreeSans" font-size="10.00">barrier.h</text>
 </a>

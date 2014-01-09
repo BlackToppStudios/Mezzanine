@@ -6,6 +6,20 @@
 <!-- Title: Mezzanine::Graphics::RenderableProxy Pages: 1 -->
 <!--zoomable 240 -->
 <svg id="main" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" onload="init(evt)">
+<style type="text/css"><![CDATA[
+.edge:hover path { stroke: red; }
+.edge:hover polygon { stroke: red; fill: red; }
+]]></style>
+<script type="text/javascript"><![CDATA[
+var edges = document.getElementsByTagName('g');
+if (edges && edges.length) {
+  for (var i=0;i<edges.length;i++) {
+    if (edges[i].id.substr(0,4)=='edge') {
+      edges[i].setAttribute('class','edge');
+    }
+  }
+}
+]]></script>
         <defs>
                 <circle id="rim" cx="0" cy="0" r="7"/>
                 <circle id="rim2" cx="0" cy="0" r="3.5"/>
@@ -62,7 +76,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1CameraProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a camera in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1CameraProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a camera in the scene. ">
 <polygon fill="white" stroke="black" points="460.5,-150 460.5,-182 565.5,-182 565.5,-150 460.5,-150"/>
 <text text-anchor="start" x="468.5" y="-169" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="513" y="-157" font-family="FreeSans" font-size="10.00">::CameraProxy</text>
@@ -75,7 +89,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1EntityProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a mesh in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1EntityProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating a mesh in the scene. ">
 <polygon fill="white" stroke="black" points="460.5,-100 460.5,-132 565.5,-132 565.5,-100 460.5,-100"/>
 <text text-anchor="start" x="468.5" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="513" y="-107" font-family="FreeSans" font-size="10.00">::EntityProxy</text>
@@ -88,7 +102,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1LightProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating lighting in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1LightProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating lighting in the scene. ">
 <polygon fill="white" stroke="black" points="460.5,-50 460.5,-82 565.5,-82 565.5,-50 460.5,-50"/>
 <text text-anchor="start" x="468.5" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="513" y="-57" font-family="FreeSans" font-size="10.00">::LightProxy</text>
@@ -101,7 +115,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1ParticleSystemProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating particles in the scene.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1ParticleSystemProxy.html" target="_top" xlink:title="This is the proxy class for placing and manipulating particles in the scene. ">
 <polygon fill="white" stroke="black" points="458,-0 458,-32 568,-32 568,-0 458,-0"/>
 <text text-anchor="start" x="466" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="513" y="-7" font-family="FreeSans" font-size="10.00">::ParticleSystemProxy</text>
@@ -114,7 +128,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1WorldProxy.html" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems.">
+<a xlink:href="classMezzanine_1_1WorldProxy.html" target="_top" xlink:title="This is the base class for proxy objects belonging to the various 3D subsystems. ">
 <polygon fill="white" stroke="black" points="164,-106 164,-126 280,-126 280,-106 164,-106"/>
 <text text-anchor="middle" x="222" y="-113" font-family="FreeSans" font-size="10.00">Mezzanine::WorldProxy</text>
 </a>
@@ -126,7 +140,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1TransformableObject.html" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated.">
+<a xlink:href="classMezzanine_1_1TransformableObject.html" target="_top" xlink:title="This is an interface for all 3D objects that can have their full transforms manipulated. ">
 <polygon fill="white" stroke="black" points="0,-100 0,-132 128,-132 128,-100 0,-100"/>
 <text text-anchor="start" x="8" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::Transformable</text>
 <text text-anchor="middle" x="64" y="-107" font-family="FreeSans" font-size="10.00">Object</text>
