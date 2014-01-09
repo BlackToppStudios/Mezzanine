@@ -54,7 +54,7 @@ namespace Mezzanine
     /// @page Serialization
     /// @section SerializationMain
     /// Serialization is the process of converting a class instance into a serial sequence of bits. DeSerialization is taking those
-    /// bits and reconstructing th e original object without losing anything of value (in practice the only things not saved are cached
+    /// bits and reconstructing the original object without losing anything of value (in theory the only things not saved are cached
     /// values or values calulated as they are needed). These bits could be just about anything, because of its ubiquity we chose
     /// to serialize to xml (or something so similar as to be indistinguishable from standard xml). This allows a wide variety of tools
     /// to be used when working with and verifying these serialized classes. Additionally, transmitting and storing xml is easy to do,
@@ -71,7 +71,7 @@ namespace Mezzanine
     ///     - @ref serializationmisc
     /// @subsection serializationxml Serialization and XML
     /// The process of serializing doesn't just convert from class instance to text. Since our end goal is to convert live objects to
-    /// XML it only make sense to closely integrate with the Mezzanine::xml portion of the engine. If you plan on writing serialization
+    /// XML it makes sense to closely integrate the Mezzanine::xml portion of the engine. If you plan on writing serialization
     /// and deserialization code you should read the following parts of the @ref XMLManual at a minimum:
     ///     - @ref XMLDOM
     ///     - @ref XMLAccessingBasics
@@ -81,15 +81,15 @@ namespace Mezzanine
     /// The central object that will carry information during this process is the Mezzanine::XML::Node. The Mezzanine::XML::Node is an excellent
     /// tool for converting and storing data in a single unified heirarchy.
     /// \n \n
-    /// C++ and most object oriented languages heavily imply that class inheritance should be structured as hierarchies. Additionally
-    /// Hierarchies are implied when complex class have other complex class or datatypes as members. Both of these structures map
+    /// C++ and most other object oriented languages heavily imply that class inheritance should be structured as hierarchies. Additionally
+    /// Hierarchies are implied when complex class has other complex classes or datatypes as members. Both of these structures map
     /// cleanly onto the kind of hierarchies that a well formed xml documents provide.
     /// \n \n
     /// There are some relationships in video game objects that cross normal hierarchical boundaries. For example, A constraint
     /// references two actors, and defines a relationship between them. When serialized the constraint simply stores the name of
     /// the actor and looks it up in the actor manager during deserialization. This implies that the actors exist already, or that
     /// there is some mechanism to create the constraint and fill in the actor later. Several mechanisms were discussed to
-    /// accomplish this, some include: two passes of processing were constraintw would be done in the second pass, a work queue that
+    /// accomplish this, some include: two passes of processing where constraint would be done in the second pass, a work queue that
     /// would store objects that couldn't be deserialized yet, a prefetcher that would dig through the xml to find the required
     /// object.
     /// \n \n
@@ -100,7 +100,7 @@ namespace Mezzanine
     /// \n \n
     /// The simplest, most performant way to work around the issues that cross-hierarchical relationships presented was to ignore
     /// them. More specifically, throw an exception if an object reference during deserialization is not present. Then we ask that
-    /// programmers who write could that must store, transmit and reconstruct class instances be aware of the following preconditions
+    /// programmers who write code that must store, transmit and reconstruct class instances be aware of the following preconditions
     /// So can produce their own solutions:
     ///     - CollisionShapes must come before Actors and AreaEffects
     ///     - WorldNodes must come before Actors, Light and ParticleEffects. (this is still work in progress).
@@ -111,7 +111,7 @@ namespace Mezzanine
     ///     - Sounds must be done before SoundSet (Still in progress)
     ///
     /// The easyiest way to meet these conditions and not consume an inordinate amount of computing resources, is to pay attention
-    /// to the order that items are serialized in. If a program serializes the worldnodes, then the actors, then everything  else
+    /// to the order that items are serialized in. If a program serializes the worldnodes, then the actors, then everything else
     /// it will have relatively little trouble making it work.
     /// @subsection serializationintegration Integrate Serialization into Your Code
     /// There several ways to interact with the current serialization system. One might have to create a class that can be

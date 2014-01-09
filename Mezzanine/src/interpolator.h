@@ -53,11 +53,12 @@
 
     #include <iostream>
     #include <typeinfo>
+
+    #include "XML/xml.h"
 #endif
 
 namespace Mezzanine
 {
-
     // Forward declaration
     template <typename InterpolatableType, typename InterpolatorType> class TrackStorage;
 
@@ -179,7 +180,50 @@ namespace Mezzanine
 
                 return GetInterpolatedFromMultiple(Begin, End, Location);
             }
+
+            void ProtoSerialize(XML::Node& CurrentRoot) const
+            {
+                Mezzanine::XML::Node LinearInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
+
+                if(LinearInterpolaterNode)
+                {
+                    Mezzanine::XML::Attribute VersionAttr = LinearInterpolaterNode.AppendAttribute("Version");
+                    if( VersionAttr  )
+                    {
+                        if( VersionAttr.SetValue("1") )
+                        {
+                            return;
+                        }else{
+                            SerializeError("Create XML Attribute Values", SerializableName(),true);
+                        }
+                    }else{
+                        SerializeError("Create XML Attributes", SerializableName(),true);
+                    }
+                }else{
+                    SerializeError("Create XML Serialization Node", SerializableName(),true);
+                }
+            }
+
+            void ProtoDeSerialize(const XML::Node& OneNode)
+            {
+                if ( String(OneNode.Name())==String(SerializableName()) )
+                {
+                    if(OneNode.GetAttribute("Version").AsInt() == 1)
+                    {
+                        return; // Class currently stores no data.
+                    }else{
+                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                }
+
+            }
+
+            static String SerializableName()
+                { return String("LinearInterpolator"); }
     };
+
 
     /// @brief A simple functor for interpolating data points in a simple way.
     /// @details This interpolator provides different guarantees different from the linear one:
@@ -237,6 +281,7 @@ namespace Mezzanine
     ///     - Execution time is O^N.
     ///     - This shape defined by interpolating a set of these *will* leave a Convex Hull(or Axis Aligned Bounding Box) that could contain the data.
     ///     - Will be able to interpolated arbitrary sets of data points.
+    /// @warning This can interpolate cubic splines, but it cannot be used with the track at present.
     template <typename T>
     class MEZZ_LIB SlowSplineInterpolator
     {
@@ -284,5 +329,28 @@ namespace Mezzanine
 
 
 } // /namespace Mezzanine
+
+
+#ifndef SWIG
+
+/// @brief Used to Serialize an Mezzanine::LinearInterpolator to a human readable stream
+/// @details The current XML format is extremely simple because there no data: '<LinearInterpolator Version="1" />'.
+/// @param Lint The Mezzanine::LinearInterpolator to be converted to characters.
+/// @param stream The place to send the characters, that define the Mezzanine::LinearInterpolator.
+/// @return Get an std::ostream that was written to, this allow chaining of the << operators.
+template<typename T>
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::LinearInterpolator<T>& Lint);
+
+/// @brief Used to de-serialize an Mezzanine::LinearInterpolator from a stream
+/// @details This does nothing at the moment, but the instant state is required...
+/// @param Lint The Mezzanine::LinearInterpolator that will accept the values from the xml
+/// @param stream The place to get the characters from, that define the Mezzanine::LinearInterpolator.
+/// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
+/// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
+template<typename T>
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::LinearInterpolator<T>& Lint);
+
+
+#endif
 
 #endif // Include guard
