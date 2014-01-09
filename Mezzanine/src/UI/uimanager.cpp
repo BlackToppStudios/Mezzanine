@@ -241,7 +241,7 @@ namespace Mezzanine
             /// Perhaps when we implement consoles this should be expanded, maybe even sooner then that.
         }
 
-        bool UIManager::SwitchFocus(Widget* NewFocus)
+        Boolean UIManager::SwitchFocus(Widget* NewFocus)
         {
             // Check if the focus is changing at all
             if( this->WidgetFocus != NewFocus && !this->FocusIsLocked() )
@@ -264,7 +264,7 @@ namespace Mezzanine
             return false;
         }
 
-        bool UIManager::FocusIsLocked() const
+        Boolean UIManager::FocusIsLocked() const
         {
             return ( Input::KEY_UNKNOWN != FocusLockCode.GetCode() );
         }
@@ -398,12 +398,12 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Activation Management
 
-        void UIManager::EnableButtonAutoRegister(bool Enable)
+        void UIManager::EnableButtonAutoRegister(Boolean Enable)
         {
             this->ButtonAutoRegister = Enable;
         }
 
-        bool UIManager::ButtonAutoRegisterEnabled()
+        Boolean UIManager::ButtonAutoRegisterEnabled()
         {
             return this->ButtonAutoRegister;
         }
@@ -452,7 +452,7 @@ namespace Mezzanine
             }
         }
 
-        bool UIManager::IsMarkupParserRegistered(const String& ParserName) const
+        Boolean UIManager::IsMarkupParserRegistered(const String& ParserName) const
         {
             ConstMarkupParserIterator MarkupIt = this->MarkupParsers.find(ParserName);
             return ( MarkupIt != this->MarkupParsers.end() );
@@ -608,8 +608,7 @@ namespace Mezzanine
 
             // Get the hovered quad based on mouse position
             // We don't care what is hovered so much if the mouse hasn't moved, or is hidden due to relative mode.
-            if( this->MouseMoved && !SysMouse->GetRelativeMode() )
-            {
+            if( this->MouseMoved && !SysMouse->GetRelativeMode() ) {
                 Widget* TempWidget = this->CheckWidgetUnderPoint(SysMouse->GetHoveredViewport(),SysMouse->GetViewportPosition());
                 if( TempWidget != this->HoveredWidget )
                 {
@@ -621,20 +620,26 @@ namespace Mezzanine
 
                     if( this->HoveredWidget ) {
                         this->HoveredWidget->_OnMouseEnter();
-                        TheEntresol->Log( "New Hovered Widget Name: " + this->HoveredWidget->GetName() );
                     }
                 }
             }
 
-            // Check the focus to see if it's still visible.  Drop focus if it's not.
-            if( this->WidgetFocus && !this->WidgetFocus->GetVisible() )
-            {
+            // Check the focus to see if it's still visible.  If it isn't, attempt to pass focus to the next available parent.
+            if( this->WidgetFocus && !this->WidgetFocus->GetVisible() ) {
+                // Clear the focus lock
                 if( this->FocusIsLocked() ) {
                     this->WidgetFocus->_OnFocusUnlocked();
                     this->FocusLockCode.SetNullValues();
                 }
-                this->WidgetFocus->_OnFocusLost();
-                this->WidgetFocus = NULL;
+
+                // Find the next available parent
+                Widget* PassedFocus = this->WidgetFocus;
+                do{
+                    PassedFocus = ( PassedFocus->GetParent()->IsWidget() ? static_cast<Widget*>(PassedFocus->GetParent()) : NULL );
+                }while( PassedFocus != NULL && !PassedFocus->IsVisible() )
+
+                // Switch the focus, even if it is NULL
+                this->SwitchFocus(PassedFocus);
             }
 
             // Look at and process all injected inputs accordingly
