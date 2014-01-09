@@ -116,6 +116,13 @@ namespace Mezzanine
             /// @return Returns a pointer to the screen this renderable belongs to.
             Screen* GetScreen() const;
 
+            /// @brief Gets whether or not this renderable is a Widget.
+            /// @return Returns true if this renderable is a Widget, false otherwise.
+            Boolean IsWidget() const;
+            /// @brief Gets whether or not this renderable is a Screen.
+            /// @return Returns true if this renderable is a Screen, false otherwise.
+            Boolean IsScreen() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility Methods
 

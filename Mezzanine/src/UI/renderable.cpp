@@ -75,10 +75,16 @@ namespace Mezzanine
         // Utility Methods
 
         const String& Renderable::GetName() const
-            { return Name; }
+            { return this->Name; }
 
         Screen* Renderable::GetScreen() const
-            { return ParentScreen; }
+            { return this->ParentScreen; }
+
+        Boolean Renderable::IsWidget() const
+            { return this->GetRenderableType() == Renderable::RT_Widget; }
+
+        Boolean Renderable::IsScreen() const
+            { return this->GetRenderableType() == Renderable::RT_Screen; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
