@@ -136,19 +136,6 @@ namespace Mezzanine
             /// @brief Gets the pixel position of the lower limit the scroller can be placed on.
             /// @return Returns a Real representing the scrollers limit limit.
             virtual Real GetLowerScrollLimit() const = 0;
-            /// @internal
-            /// @brief Performs the operations for when the scroller is directly manipulated by the mouse.
-            /// @return Returns true if the scroller was successfully moved, false otherwise.
-            virtual bool MouseScroll(const Vector2& MouseDelta) = 0;
-            /// @internal
-            /// @brief Performs the operations for when the scrollback is clicked on to manipulate the scroller.
-            /// @param HitPosition The location on the scroll back where the mouse was clicked (in screen coordinates).
-            /// @return Returns true if the scroller was successfully moved, false otherwise.
-            virtual bool ScrollBackScroll(const Vector2& HitPosition) = 0;
-            /// @internal
-            /// @brief Performs the operations for when one of the buttons is pressed to manipulate the scroller.
-            /// @return Returns true if the scroller was successfully moved, false otherwise.
-            virtual bool ButtonScroll(Button* TheButton) = 0;
         //public:
             /// @brief Blank constructor.
             /// @param Parent The parent screen that created this scrollbar.
@@ -239,6 +226,21 @@ namespace Mezzanine
 
             /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
             virtual void _NotifyEvent(const EventArguments& Args);
+            /// @internal
+            /// @brief Performs the operations for when the scroller is directly manipulated by the mouse.
+            /// @param MouseDelta The amount in pixels the mouse has moved since the last frame.
+            /// @return Returns true if the scroller was successfully moved, false otherwise.
+            virtual Boolean _MouseScroll(const Vector2& MouseDelta) = 0;
+            /// @internal
+            /// @brief Performs the operations for when the scrollback is clicked on to manipulate the scroller.
+            /// @param HitPosition The location on the scroll back where the mouse was clicked (in screen coordinates).
+            /// @return Returns true if the scroller was successfully moved, false otherwise.
+            virtual Boolean _ScrollBackScroll(const Vector2& HitPosition) = 0;
+            /// @internal
+            /// @brief Performs the operations for when one of the buttons is pressed to manipulate the scroller.
+            /// @param TheButton The button that was activated (or to simulate an activation for).
+            /// @return Returns true if the scroller was successfully moved, false otherwise.
+            virtual Boolean _ButtonScroll(Button* TheButton) = 0;
         };//Scrollbar
     }//UI
 }//Mezzanine

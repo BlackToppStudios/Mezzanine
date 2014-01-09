@@ -200,9 +200,9 @@ namespace Mezzanine
         {
             if( Code.GetCode() == Input::MOUSEWHEELHORIZONTAL && this->IsHovered() ) {
                 if( Code.GetMetaValue() == Input::DIRECTIONALMOTION_UPLEFT ) {
-                    return this->ButtonScroll( this->UpLeftButton );
+                    return this->_ButtonScroll( this->UpLeftButton );
                 }else if( Code.GetMetaValue() == Input::DIRECTIONALMOTION_DOWNRIGHT ) {
-                    return this->ButtonScroll( this->DownRightButton );
+                    return this->_ButtonScroll( this->DownRightButton );
                 }
             }
             return false;
@@ -216,108 +216,6 @@ namespace Mezzanine
         Real HorizontalScrollbar::GetLowerScrollLimit() const
         {
             return this->ScrollBack->GetActualPosition().X;
-        }
-
-        bool HorizontalScrollbar::MouseScroll(const Vector2& MouseDelta)
-        {
-            if( this->ChildLock == this->Scroller && MouseDelta.X != 0 )
-            {
-                const Real OldScrollerValue = this->GetScrollerValue();
-                const Rect OldScrollerRect = this->Scroller->GetRect();
-                Rect NewScrollerRect;
-                NewScrollerRect.Size = OldScrollerRect.Size;
-
-                NewScrollerRect.Position.X = OldScrollerRect.Position.X + MouseDelta.X;
-                NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
-
-                NewScrollerRect.Position.X = std::min(NewScrollerRect.Position.X,this->GetUpperScrollLimit() - OldScrollerRect.Size.X);
-                NewScrollerRect.Position.X = std::max(NewScrollerRect.Position.X,this->GetLowerScrollLimit());
-
-                this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
-
-                const Real NewScrollerValue = this->GetScrollerValue();
-                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
-
-                return true;
-            }
-            return false;
-        }
-
-        bool HorizontalScrollbar::ScrollBackScroll(const Vector2& HitPosition)
-        {
-            if( this->ChildLock == this->ScrollBack )
-            {
-                const Real OldScrollerValue = this->GetScrollerValue();
-                const Rect OldScrollerRect = this->Scroller->GetRect();
-                Rect NewScrollerRect;
-                NewScrollerRect.Size = OldScrollerRect.Size;
-
-                // Early escape in case of error, but in general this shouldn't happen.
-                if( HitPosition.X == -1.0 || HitPosition.Y == -1.0 )
-                    return false;
-
-                if( HitPosition.X < OldScrollerRect.Position.X ) { // Check for above
-                    NewScrollerRect.Position.X = ( OldScrollerRect.Position.X - OldScrollerRect.Size.X >= this->GetLowerScrollLimit() ?
-                                                   this->GetLowerScrollLimit() : OldScrollerRect.Position.X - OldScrollerRect.Size.X );
-                    NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
-                }else if( HitPosition.X > OldScrollerRect.Position.X + OldScrollerRect.Size.X ) { // Check for below
-                    NewScrollerRect.Position.X = ( OldScrollerRect.Position.X + ( OldScrollerRect.Size.X * 2 ) >= this->GetUpperScrollLimit() ?
-                                                   this->GetUpperScrollLimit() - OldScrollerRect.Size.X : OldScrollerRect.Position.X + OldScrollerRect.Size.X );
-                    NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
-                }
-
-                this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
-
-                const Real NewScrollerValue = this->GetScrollerValue();
-                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
-
-                return true;
-            }
-            return false;
-        }
-
-        bool HorizontalScrollbar::ButtonScroll(Button* TheButton)
-        {
-            if( this->ChildLock == this->UpLeftButton ) {
-                const Real OldScrollerValue = this->GetScrollerValue();
-                const Rect OldScrollerRect = this->Scroller->GetRect();
-                Rect NewScrollerRect;
-                NewScrollerRect.Size = OldScrollerRect.Size;
-
-                Real ScrollDist = -(this->ScrollBack->GetActualSize().X * this->IncrementDistance);
-                NewScrollerRect.Position.X = OldScrollerRect.Position.X + ScrollDist;
-                NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
-
-                NewScrollerRect.Position.X = std::min(NewScrollerRect.Position.X,this->GetUpperScrollLimit() - OldScrollerRect.Size.X);
-                NewScrollerRect.Position.X = std::max(NewScrollerRect.Position.X,this->GetLowerScrollLimit());
-
-                this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
-
-                const Real NewScrollerValue = this->GetScrollerValue();
-                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
-
-                return true;
-            }else if( this->ChildLock == this->DownRightButton ) {
-                const Real OldScrollerValue = this->GetScrollerValue();
-                const Rect OldScrollerRect = this->Scroller->GetRect();
-                Rect NewScrollerRect;
-                NewScrollerRect.Size = OldScrollerRect.Size;
-
-                Real ScrollDist = this->ScrollBack->GetActualSize().X * this->IncrementDistance;
-                NewScrollerRect.Position.X = OldScrollerRect.Position.X + ScrollDist;
-                NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
-
-                NewScrollerRect.Position.X = std::min(NewScrollerRect.Position.X,this->GetUpperScrollLimit() - OldScrollerRect.Size.X);
-                NewScrollerRect.Position.X = std::max(NewScrollerRect.Position.X,this->GetLowerScrollLimit());
-
-                this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
-
-                const Real NewScrollerValue = this->GetScrollerValue();
-                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
-
-                return true;
-            }
-            return false;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -520,6 +418,108 @@ namespace Mezzanine
                     }
                 }
             }
+        }
+
+        Boolean HorizontalScrollbar::_MouseScroll(const Vector2& MouseDelta)
+        {
+            if( this->ChildLock == this->Scroller && MouseDelta.X != 0 )
+            {
+                const Real OldScrollerValue = this->GetScrollerValue();
+                const Rect OldScrollerRect = this->Scroller->GetRect();
+                Rect NewScrollerRect;
+                NewScrollerRect.Size = OldScrollerRect.Size;
+
+                NewScrollerRect.Position.X = OldScrollerRect.Position.X + MouseDelta.X;
+                NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
+
+                NewScrollerRect.Position.X = std::min(NewScrollerRect.Position.X,this->GetUpperScrollLimit() - OldScrollerRect.Size.X);
+                NewScrollerRect.Position.X = std::max(NewScrollerRect.Position.X,this->GetLowerScrollLimit());
+
+                this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
+
+                const Real NewScrollerValue = this->GetScrollerValue();
+                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+
+                return true;
+            }
+            return false;
+        }
+
+        Boolean HorizontalScrollbar::_ScrollBackScroll(const Vector2& HitPosition)
+        {
+            if( this->ChildLock == this->ScrollBack )
+            {
+                const Real OldScrollerValue = this->GetScrollerValue();
+                const Rect OldScrollerRect = this->Scroller->GetRect();
+                Rect NewScrollerRect;
+                NewScrollerRect.Size = OldScrollerRect.Size;
+
+                // Early escape in case of error, but in general this shouldn't happen.
+                if( HitPosition.X == -1.0 || HitPosition.Y == -1.0 )
+                    return false;
+
+                if( HitPosition.X < OldScrollerRect.Position.X ) { // Check for above
+                    NewScrollerRect.Position.X = ( OldScrollerRect.Position.X - OldScrollerRect.Size.X >= this->GetLowerScrollLimit() ?
+                                                   this->GetLowerScrollLimit() : OldScrollerRect.Position.X - OldScrollerRect.Size.X );
+                    NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
+                }else if( HitPosition.X > OldScrollerRect.Position.X + OldScrollerRect.Size.X ) { // Check for below
+                    NewScrollerRect.Position.X = ( OldScrollerRect.Position.X + ( OldScrollerRect.Size.X * 2 ) >= this->GetUpperScrollLimit() ?
+                                                   this->GetUpperScrollLimit() - OldScrollerRect.Size.X : OldScrollerRect.Position.X + OldScrollerRect.Size.X );
+                    NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
+                }
+
+                this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
+
+                const Real NewScrollerValue = this->GetScrollerValue();
+                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+
+                return true;
+            }
+            return false;
+        }
+
+        Boolean HorizontalScrollbar::_ButtonScroll(Button* TheButton)
+        {
+            if( this->ChildLock == this->UpLeftButton ) {
+                const Real OldScrollerValue = this->GetScrollerValue();
+                const Rect OldScrollerRect = this->Scroller->GetRect();
+                Rect NewScrollerRect;
+                NewScrollerRect.Size = OldScrollerRect.Size;
+
+                Real ScrollDist = -(this->ScrollBack->GetActualSize().X * this->IncrementDistance);
+                NewScrollerRect.Position.X = OldScrollerRect.Position.X + ScrollDist;
+                NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
+
+                NewScrollerRect.Position.X = std::min(NewScrollerRect.Position.X,this->GetUpperScrollLimit() - OldScrollerRect.Size.X);
+                NewScrollerRect.Position.X = std::max(NewScrollerRect.Position.X,this->GetLowerScrollLimit());
+
+                this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
+
+                const Real NewScrollerValue = this->GetScrollerValue();
+                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+
+                return true;
+            }else if( this->ChildLock == this->DownRightButton ) {
+                const Real OldScrollerValue = this->GetScrollerValue();
+                const Rect OldScrollerRect = this->Scroller->GetRect();
+                Rect NewScrollerRect;
+                NewScrollerRect.Size = OldScrollerRect.Size;
+
+                Real ScrollDist = this->ScrollBack->GetActualSize().X * this->IncrementDistance;
+                NewScrollerRect.Position.X = OldScrollerRect.Position.X + ScrollDist;
+                NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
+
+                NewScrollerRect.Position.X = std::min(NewScrollerRect.Position.X,this->GetUpperScrollLimit() - OldScrollerRect.Size.X);
+                NewScrollerRect.Position.X = std::max(NewScrollerRect.Position.X,this->GetLowerScrollLimit());
+
+                this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
+
+                const Real NewScrollerValue = this->GetScrollerValue();
+                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+
+                return true;
+            }
+            return false;
         }
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -94,24 +94,24 @@ namespace Mezzanine
         Scrollbar::~Scrollbar()
             {  }
 
-        bool Scrollbar::HandleInputImpl(const Input::MetaCode& Code)
+        Boolean Scrollbar::HandleInputImpl(const Input::MetaCode& Code)
         {
             if( this->ChildLock != NULL )
             {
                 if( Code.IsDeviceButton() && Code.GetMetaValueAsButtonState() == Input::BUTTON_DOWN && !( this->ChildLock->IsOnStandby() ) ) {
                     if( this->ChildLock == this->ScrollBack ) {
-                        return this->ScrollBackScroll(ParentScreen->GetMouseHitPosition());
+                        return this->_ScrollBackScroll(ParentScreen->GetMouseHitPosition());
                     }else if( this->ChildLock == this->UpLeftButton ) {
-                        return this->ButtonScroll(this->UpLeftButton);
+                        return this->_ButtonScroll(this->UpLeftButton);
                     }else if( this->ChildLock == this->DownRightButton ) {
-                        return this->ButtonScroll(this->DownRightButton);
+                        return this->_ButtonScroll(this->DownRightButton);
                     }
                 }else if( Code.GetCode() == Input::MOUSEHORIZONTAL ) {
                     Vector2 Delta( static_cast<Real>(Code.GetMetaValue()),0 );
-                    return this->MouseScroll(Delta);
+                    return this->_MouseScroll(Delta);
                 }else if( Code.GetCode() == Input::MOUSEVERTICAL ) {
                     Vector2 Delta( 0,static_cast<Real>(Code.GetMetaValue()) );
-                    return this->MouseScroll(Delta);
+                    return this->_MouseScroll(Delta);
                 }
             }
             return this->HandleMouseWheelInput(Code);
@@ -259,7 +259,7 @@ namespace Mezzanine
                 {
                     // Obtain the lock
                     this->ChildLock = this->ScrollBack;
-                    this->ScrollBackScroll(ParentScreen->GetMouseHitPosition());
+                    this->_ScrollBackScroll(ParentScreen->GetMouseHitPosition());
                 }
                 else if( WidArgs.EventName == Button::EventDeactivated )
                 {
@@ -273,7 +273,7 @@ namespace Mezzanine
                 {
                     // Obtain the lock
                     this->ChildLock = this->UpLeftButton;
-                    this->ButtonScroll(this->UpLeftButton);
+                    this->_ButtonScroll(this->UpLeftButton);
                 }
                 else if( WidArgs.EventName == Button::EventDeactivated )
                 {
@@ -287,7 +287,7 @@ namespace Mezzanine
                 {
                     // Obtain the lock
                     this->ChildLock = this->DownRightButton;
-                    this->ButtonScroll(this->DownRightButton);
+                    this->_ButtonScroll(this->DownRightButton);
                 }
                 else if( WidArgs.EventName == Button::EventDeactivated )
                 {

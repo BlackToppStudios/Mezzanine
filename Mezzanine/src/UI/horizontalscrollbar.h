@@ -68,12 +68,6 @@ namespace Mezzanine
             virtual Real GetUpperScrollLimit() const;
             /// @copydoc Scrollbar::GetLowerScrollLimit() const
             virtual Real GetLowerScrollLimit() const;
-            /// @copydoc Scrollbar::MouseScroll(const Real)
-            virtual bool MouseScroll(const Vector2& MouseDelta);
-            /// @copydoc Scrollbar::ScrollBackScroll()
-            virtual bool ScrollBackScroll(const Vector2& HitPosition);
-            /// @copydoc Scrollbar::ButtonScroll(Button*)
-            virtual bool ButtonScroll(Button* TheButton);
         //public:
             /// @brief Blank constructor.
             /// @param Parent The parent screen that created this scrollbar.
@@ -152,6 +146,12 @@ namespace Mezzanine
 
             /// @copydoc PageProvider::_NotifyContainerUpdated()
             virtual void _NotifyContainerUpdated();
+            /// @copydoc Scrollbar::_MouseScroll(const Vector2&)
+            virtual Boolean _MouseScroll(const Vector2& MouseDelta);
+            /// @copydoc Scrollbar::_ScrollBackScroll(const Vector2&)
+            virtual Boolean _ScrollBackScroll(const Vector2& HitPosition);
+            /// @copydoc Scrollbar::_ButtonScroll(Button*)
+            virtual Boolean _ButtonScroll(Button* TheButton);
         };//HorizontalScrollbar
 
         ///////////////////////////////////////////////////////////////////////////////
