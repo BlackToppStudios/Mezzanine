@@ -43,11 +43,19 @@
 #include "UI/listbox.h"
 #include "UI/uimanager.h"
 #include "UI/screen.h"
-#include "UI/scrollbar.h"
+#include "UI/verticalscrollbar.h"
+#include "UI/verticalcontainer.h"
+#include "UI/singlelinetextlayer.h"
+#include "UI/multilinetextlayer.h"
+#include "UI/layoutstrategy.h"
+
 #include "Input/inputmanager.h"
 #include "Input/metacode.h"
 #include "Input/mouse.h"
+
 #include "entresol.h"
+#include "serialization.h"
+#include "exception.h"
 
 #include <cmath>
 
@@ -64,32 +72,81 @@ namespace Mezzanine
         // ListBox Methods
 
         ListBox::ListBox(Screen* Parent) :
-            Widget(Parent)
-        {
+            Widget(Parent),
+            ListItemFont(NULL),
+            Ordering(ListBox::LIO_BottomInsert)
+            { this->LayoutStrat = new LayoutStrategy(); }
 
-        }
+        ListBox::ListBox(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent) :
+            Widget(RendName,Parent),
+            ListItemFont(NULL),
+            Ordering(ListBox::LIO_BottomInsert)
+            { this->ConstructListBox(Style); }
 
-        ListBox::ListBox(const String& RendName, Screen* Parent) :
-            Widget(RendName,Parent)
-        {
-
-        }
-
-        ListBox::ListBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
-            Widget(RendName,RendRect,Parent)
-        {
-
-        }
+        ListBox::ListBox(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent) :
+            Widget(RendName,RendRect,Parent),
+            ListItemFont(NULL),
+            Ordering(ListBox::LIO_BottomInsert)
+            { this->ConstructListBox(Style); }
 
         ListBox::ListBox(const XML::Node& XMLNode, Screen* Parent) :
-            Widget(Parent)
-        {
-
-        }
+            Widget(Parent),
+            ListItemFont(NULL),
+            Ordering(ListBox::LIO_BottomInsert)
+            { this->ProtoDeSerialize(XMLNode); }
 
         ListBox::~ListBox()
         {
+            this->ListContainer->UnbindProvider( this->ListScroll );
+            this->ParentScreen->DestroyWidget( this->ListScroll );
+            this->ParentScreen->DestroyWidget( this->ListContainer );
+            delete this->LayoutStrat;
+        }
 
+        Boolean ListBox::HandleInputImpl(const Input::MetaCode& Code)
+        {
+            if( Code.GetCode() == Input::MOUSEWHEELVERTICAL && this->ActDims.IsInside( this->ParentScreen->GetMouseHitPosition() ) ) {
+                if( Code.GetMetaValue() == Input::DIRECTIONALMOTION_UPLEFT ) {
+                    return this->ListScroll->_ButtonScroll( this->ListScroll->GetUpLeftButton() );
+                }else if( Code.GetMetaValue() == Input::DIRECTIONALMOTION_DOWNRIGHT ) {
+                    return this->ListScroll->_ButtonScroll( this->ListScroll->GetDownRightButton() );
+                }
+            }
+            return false;
+        }
+
+        void ListBox::ConstructListBox(const UI::ScrollbarStyle& Style)
+        {
+            this->ListScroll = this->ParentScreen->CreateVerticalScrollbar(this->Name+".Scroll",Style);
+            this->ListScroll->SetAutoHide(true);
+            this->ListContainer = this->ParentScreen->CreateVerticalContainer(this->Name+".Container");
+            this->ListContainer->SetYProvider( this->ListScroll );
+            this->ListContainer->SetChildSizeEnforcement(LinearContainer::SE_None);
+
+            this->ListScroll->SetUnifiedPosition(UnifiedVec2(0.92,0.0,0.0,0.0));
+            this->ListScroll->SetUnifiedSize(UnifiedVec2(0.08,1.0,0.0,0.0));
+            this->ListContainer->SetUnifiedPosition(UnifiedVec2(0.0,0.0,0.0,0.0));
+            this->ListContainer->SetUnifiedSize(UnifiedVec2(0.92,1.0,0.0,0.0));
+        }
+
+        ListBox::ListItem* ListBox::CreateListItem(const String& ItemName)
+        {
+            UInt16 ListItemZOrder = 0;
+            if( this->GetNumListItems() > 0 ) {
+                if( this->Ordering == ListBox::LIO_BottomInsert ) {
+                    ListItemZOrder = ( this->ListContainer->GetHighestChildZOrder() + 1 );
+                }else if( this->Ordering == ListBox::LIO_TopInsert ) {
+                    ListItemZOrder = ( this->ListContainer->GetLowestChildZOrder() - 1 );
+                }else{
+                    ListItemZOrder = std::numeric_limits<UInt16>::max() / 2;
+                }
+            }else{
+                ListItemZOrder = std::numeric_limits<UInt16>::max() / 2;
+            }
+
+            ListItem* NewItem = this->ParentScreen->CreateWidget(ItemName);
+            this->ListContainer->AddChild(NewItem,ListItemZOrder);
+            return NewItem;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -98,8 +155,82 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // ListBox Properties
 
+        void ListBox::SetListItemFont(FontData* Font)
+            { this->ListItemFont = Font; }
+
+        void ListBox::SetListItemFont(const String& FontName)
+            { this->ListItemFont = this->ParentScreen->GetFont(FontName,this->ParentScreen->GetPrimaryAtlas()); }
+
+        FontData* ListBox::GetListItemFont() const
+            { return this->ListItemFont; }
+
+        void ListBox::SetListItemOrdering(ListBox::ListItemOrdering Order)
+            { this->Ordering = Order; }
+
+        ListBox::ListItemOrdering ListBox::GetListItemOrdering() const
+            { return this->Ordering; }
+
         ///////////////////////////////////////////////////////////////////////////////
         // ListBox Configuration
+
+        ListBox::ListItem* ListBox::CreateSingleLineListItem(const String& ItemName, const String& Text)
+        {
+            if( this->ListItemFont == NULL ) {
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Font is not set when creating ListItem \"" + ItemName + "\" in ListBox \"" + this->Name + "\".");
+            }
+            ListItem* NewItem = this->CreateListItem(ItemName);
+            SingleLineTextLayer* ItemLayer = NewItem->CreateSingleLineTextLayer();
+            ItemLayer->SetDefaultFont( this->ListItemFont );
+            ItemLayer->SetText( Text );
+            ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
+
+            // Set the size explicitly to what is needed for the text, plus a 1 pixel padding on either side.
+            NewItem->SetUnifiedSize(UnifiedVec2(1.0,0.0,0.0,ItemLayer->GetTotalHeight() + 2));
+
+            NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
+            NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
+            return NewItem;
+        }
+
+        ListBox::ListItem* ListBox::CreateMultiLineListItem(const String& ItemName, const String& Text)
+        {
+            if( this->ListItemFont == NULL ) {
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Font is not set when creating ListItem \"" + ItemName + "\" in ListBox \"" + this->Name + "\".");
+            }
+            ListItem* NewItem = this->CreateListItem(ItemName);
+            MultiLineTextLayer* ItemLayer = NewItem->CreateMultiLineTextLayer();
+            ItemLayer->SetDefaultFont( this->ListItemFont );
+            ItemLayer->SetText( Text );
+            ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
+
+            // Set the size explicitly to what is needed for the text, plus a 1 pixel padding on either side.
+            NewItem->SetUnifiedSize(UnifiedVec2(1.0,0.0,0.0,ItemLayer->GetTotalHeight() + 2));
+
+            NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
+            NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
+            return NewItem;
+        }
+
+        ListBox::ListItem* ListBox::GetListItem(const String& Name) const
+            { return this->ListContainer->GetChild(Name); }
+
+        Whole ListBox::GetNumListItems() const
+            { return this->ListContainer->GetNumChildren(); }
+
+        void ListBox::DestroyListItem(ListItem* ToBeDestroyed)
+            { this->ListContainer->DestroyChild(ToBeDestroyed); }
+
+        void ListBox::DestroyAllListItems()
+            { this->ListContainer->DestroyAllChildren(); }
+
+        VerticalScrollbar* ListBox::GetListScroll() const
+            { return this->ListScroll; }
+
+        VerticalContainer* ListBox::GetListContainer() const
+            { return this->ListContainer; }
+
+        ListBox::ListItem* ListBox::GetLastSelectedListItem() const
+            { return this->ListContainer->GetLastFocusedWidget(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
@@ -107,11 +238,63 @@ namespace Mezzanine
         void ListBox::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             this->Widget::ProtoSerializeProperties(SelfRoot);
+
+            XML::Node PropertiesNode = SelfRoot.AppendChild( ListBox::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("ListItemFont").SetValue( this->ListItemFont->GetName() ) &&
+                PropertiesNode.AppendAttribute("Ordering").SetValue( this->GetListItemOrdering() ) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",ListBox::GetSerializableName() + "Properties",true);
+            }
+        }
+
+        void ListBox::ProtoSerializeChildQuads(XML::Node& SelfRoot) const
+        {
+            this->QuadRenderable::ProtoSerializeChildQuads(SelfRoot);
         }
 
         void ListBox::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
             this->Widget::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( ListBox::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("ListItemFont");
+                    if( !CurrAttrib.Empty() )
+                        this->SetListItemFont( CurrAttrib.AsString() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("Ordering");
+                    if( !CurrAttrib.Empty() )
+                        this->SetListItemOrdering( static_cast<ListBox::ListItemOrdering>( CurrAttrib.AsWhole() ) );
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ListBox::GetSerializableName() + "Properties") + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,ListBox::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        void ListBox::ProtoDeSerializeChildQuads(const XML::Node& SelfRoot)
+        {
+            this->QuadRenderable::ProtoDeSerializeChildQuads(SelfRoot);
+
+            // Assign the ListScroll
+            this->ListScroll = static_cast<VerticalScrollbar*>( this->GetChild(this->Name+".Scroll") );
+            if( this->ListScroll == NULL ) {
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"List scrollbar not found after ListBox deserialization.");
+            }
+
+            // Assign the ListContainer
+            this->ListContainer = static_cast<VerticalContainer*>( this->GetChild(this->Name+".Container") );
+            if( this->ListContainer == NULL ) {
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"List container not found after ListBox deserialization.");
+            }
         }
 
         String ListBox::GetSerializableName()
@@ -125,254 +308,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-
-
-
-
-
-
-
-
-
-        /*ListBox::ListBox(ConstString& name, const Rect& RendRect, const UI::ScrollbarStyle& ScrollStyle, Screen* PScreen) :
-            Widget(name,PScreen),
-            Selected(NULL),
-            AutoHideScroll(true),
-            LastScrollValue(0),
-            MaxDisplay(3),
-            SelectionsAdded(1)
-        {
-            /// @todo Currently this class has little support for a border around the selections.
-            /// Ideally when the UI system is more complete we'll be able to seemlessly move
-            /// objects around different layers and thus have more control over z-order.  When
-            /// that happens we should add a rect to this class be be placed over the selections
-            /// for use with a border or other kind of decoration.
-            Type = Widget::W_ListBox;
-
-            // Set some sane template defaults
-            SelectionTemplate.BackgroundColour = ColourValue(1.0,1.0,1.0,1.0);
-            SelectionTemplate.TextColour = ColourValue(0.0,0.0,0.0,1.0);
-            SelectionTemplate.TextScale = 1.0;
-            SelectionTemplate.CursorOffset = 0.0;
-            SelectionTemplate.HorizontalAlign = UI::Txt_Middle;
-            SelectionTemplate.VerticalAlign = UI::Txt_Center;
-            SelectionTemplate.Priority = UI::RP_Medium;
-
-            Rect ScrollRect, BoxRect;
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            if(RendRect.Relative)
-            {
-                RelPosition = RendRect.Position;
-                RelSize = RendRect.Size;
-
-                SelectionTemplate.Size = RendRect.Size * WinDim;
-
-                ScrollRect.Position = Vector2((RelPosition.X + RelSize.X) - ((RendRect.Size.Y * WinDim.Y) / WinDim.X),RelPosition.Y);
-                ScrollRect.Size = Vector2((RendRect.Size.Y * WinDim.Y) / WinDim.X,RelSize.Y * MaxDisplay);
-                ScrollRect.Relative = RendRect.Relative;
-            }else{
-                RelPosition = RendRect.Position / WinDim;
-                RelSize = RendRect.Size / WinDim;
-
-                SelectionTemplate.Size = RendRect.Size;
-
-                ScrollRect.Position = Vector2((RendRect.Position.X + RendRect.Size.X) - RendRect.Size.Y,RendRect.Position.Y);
-                ScrollRect.Size = Vector2(RendRect.Size.Y,RendRect.Size.Y * MaxDisplay);
-                ScrollRect.Relative = RendRect.Relative;
-            }
-            BoxRect.Position = RendRect.Position;
-            BoxRect.Size.X = RendRect.Size.X;
-            BoxRect.Size.Y = RendRect.Size.Y * MaxDisplay;
-            BoxRect.Relative = RendRect.Relative;
-
-            BoxBack = ParentScreen->CreateRectangle(BoxRect);
-            VertScroll = ParentScreen->CreateScrollbar(Name+"Scr",ScrollRect,ScrollStyle);
-            VertScroll->Hide();
-
-            AddSubRenderable(0,BoxBack);
-            AddSubRenderable(1,VertScroll);
-        }
-
-        ListBox::~ListBox()
-        {
-            ParentScreen->DestroyBasicRenderable(BoxBack);
-            if(!Selections.empty())
-            {
-                for( std::vector<Caption*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
-                {
-                    ParentScreen->DestroyBasicRenderable( *it );
-                }
-                Selections.clear();
-            }
-            VisibleSelections.clear();
-        }
-
-        void ListBox::ScrollerSizeCheck()
-        {
-            Real ScrollerSize = (Real)MaxDisplay / (Real)Selections.size();
-            VertScroll->SetScrollerSize(ScrollerSize);
-        }
-
-        void ListBox::ScrollHideCheck()
-        {
-            if(!IsVisible())
-            {
-                VertScroll->Hide();
-                return;
-            }
-            if(!AutoHideScroll)
-            {
-                VertScroll->Show();
-                return;
-            }
-            if(Selections.size() > MaxDisplay)
-                VertScroll->Show();
-            else
-                VertScroll->Hide();
-        }
-
-        void ListBox::SelectionSizeCheck(UI::Caption* Selection)
-        {
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            Vector2 CurrSize = Selection->GetActualSize();
-            Vector2 TargetSize;
-            if(VertScroll->IsVisible())
-                TargetSize = Vector2(SelectionTemplate.Size.X - VertScroll->GetActualSize().X,SelectionTemplate.Size.Y);
-            else
-                TargetSize = SelectionTemplate.Size;
-            if(CurrSize != TargetSize)
-            {
-                Selection->SetActualSize(TargetSize);
-            }
-        }
-
-        ListBox& ListBox::SetTemplateSize(const Vector2& Size, bool Relative)
-        {
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            if(Relative)
-            {
-                this->SelectionTemplate.Size = Size * WinDim;
-                Vector2 NewSize = Vector2(Size.X,Size.Y * MaxDisplay);
-                SetArea(NewSize * WinDim);
-            }else{
-                this->SelectionTemplate.Size = Size;
-                Vector2 NewSize = Vector2(Size.X,Size.Y * MaxDisplay);
-                SetArea(NewSize);
-            }
-            return *this;
-        }
-
-        ListBox& ListBox::SetTemplateGlyphIndex(const Whole& Glyph)
-        {
-            this->SelectionTemplate.GlyphIndex = Glyph;
-            return *this;
-        }
-
-        ListBox& ListBox::SetTemplateTextColour(const ColourValue& TextColour)
-        {
-            this->SelectionTemplate.TextColour = TextColour;
-            return *this;
-        }
-
-        ListBox& ListBox::SetTemplateTextScale(const Real& Scale)
-        {
-            this->SelectionTemplate.TextScale = Scale;
-            return *this;
-        }
-
-        ListBox& ListBox::SetTemplateCursorOffset(const Whole& Offset)
-        {
-            this->SelectionTemplate.CursorOffset = Offset;
-            return *this;
-        }
-
-        ListBox& ListBox::SetTemplateBackgroundColour(const ColourValue& BackgroundColour)
-        {
-            this->SelectionTemplate.BackgroundColour = BackgroundColour;
-            return *this;
-        }
-
-        ListBox& ListBox::SetTemplateHorizontalAlign(const UI::TextHorizontalAlign& HorAlign)
-        {
-            this->SelectionTemplate.HorizontalAlign = HorAlign;
-            return *this;
-        }
-
-        ListBox& ListBox::SetTemplateVerticalAlign(const UI::TextVerticalAlign& VertAlign)
-        {
-            this->SelectionTemplate.VerticalAlign = VertAlign;
-            return *this;
-        }
-
-        ListBox& ListBox::SetTemplateRenderPriority(const UI::RenderPriority& Priority)
-        {
-            this->SelectionTemplate.Priority = Priority;
-            return *this;
-        }
-
-        const UI::TemplateParams& ListBox::GetTemplateInfo()
-        {
-            return this->SelectionTemplate;
-        }
-
-        Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
-        {
-            SelectionsAdded++;
-            Rect SelectionRect(RelPosition,SelectionTemplate.Size / ParentScreen->GetViewportDimensions(),true);
-            Caption* Select = ParentScreen->CreateCaption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text);
-            if(!BackgroundSprite.empty())
-                Select->SetBackgroundSprite(BackgroundSprite);
-            if(SelectionTemplate.BackgroundColour != ColourValue(1.0,1.0,1.0,1.0))
-                Select->SetBackgroundColour(SelectionTemplate.BackgroundColour);
-            if(SelectionTemplate.CursorOffset != 0)
-                Select->SetCursorOffset(SelectionTemplate.CursorOffset);
-            if(SelectionTemplate.TextScale != 1)
-                Select->SetTextScale(SelectionTemplate.TextScale);
-            Select->SetTextColour(SelectionTemplate.TextColour);
-            Select->HorizontallyAlign(SelectionTemplate.HorizontalAlign);
-            Select->VerticallyAlign(SelectionTemplate.VerticalAlign);
-            Select->SetRenderPriority(SelectionTemplate.Priority);
-            Select->Hide();
-            Selections.push_back(Select);
-            AddSubRenderable(SelectionsAdded,Select);
-            ScrollerSizeCheck();
-            DrawList();
-            return Select;
-        }
-
-        Caption* ListBox::GetSelection(ConstString &Name)
-        {
-            for ( std::vector<Caption*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
-            {
-                if ( Name == (*it)->GetName() )
-                {
-                    UI::Caption* button = (*it);
-                    return button;
-                }
-            }
-            return 0;
-        }
-
-        void ListBox::DestroySelection(Caption* ToBeDestroyed)
-        {
-            for ( std::vector<Caption*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
-            {
-                if ( ToBeDestroyed == (*it) )
-                {
-                    Selections.erase(it);
-                    break;
-                }
-            }
-            for ( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
-            {
-                if( (*it) == ToBeDestroyed )
-                {
-                    SubRenderables.erase(it);
-                    break;
-                }
-            }
-            ParentScreen->DestroyBasicRenderable(ToBeDestroyed);
-        }//*/
     }//UI
 }//Mezzanine
 
