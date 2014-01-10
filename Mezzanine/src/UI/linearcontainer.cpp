@@ -131,6 +131,11 @@ namespace Mezzanine
             this->QuadRenderable::AddChild(Child);
         }
 
+        void LinearContainer::AddChild(Widget* Child, const UInt16 ZOrder)
+        {
+            this->QuadRenderable::AddChild(Child,ZOrder);
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 

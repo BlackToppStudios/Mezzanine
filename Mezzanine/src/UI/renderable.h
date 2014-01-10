@@ -82,6 +82,7 @@ namespace Mezzanine
             /// @internal
             /// @brief The unique name of this Renderable.
             String Name;
+
             /// @internal
             /// @brief Implementation method for serializing additional sets of data.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
@@ -114,6 +115,13 @@ namespace Mezzanine
             /// @brief Gets the parent screen of this renderable.
             /// @return Returns a pointer to the screen this renderable belongs to.
             Screen* GetScreen() const;
+
+            /// @brief Gets whether or not this renderable is a Widget.
+            /// @return Returns true if this renderable is a Widget, false otherwise.
+            Boolean IsWidget() const;
+            /// @brief Gets whether or not this renderable is a Screen.
+            /// @return Returns true if this renderable is a Screen, false otherwise.
+            Boolean IsScreen() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility Methods

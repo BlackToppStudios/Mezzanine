@@ -220,7 +220,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods
 
-            /// @copydoc Renderable::SetVisible(Bool)
+            /// @copydoc Renderable::SetVisible(Boolean)
             virtual void SetVisible(Boolean CanSee);
             /// @copydoc Renderable::GetVisible() const
             virtual Boolean GetVisible() const;
@@ -300,7 +300,7 @@ namespace Mezzanine
             /// @note This input will be passed up if not consumed by this widget.
             /// @param Code The MetaCode to be processed.
             /// @return Returns true if this input was consumed/handled, false otherwise.
-            virtual bool _HandleInput(const Input::MetaCode& Code);
+            virtual Boolean _HandleInput(const Input::MetaCode& Code);
             /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
             virtual void _NotifyEvent(const EventArguments& Args);
         };//Widget

@@ -142,6 +142,8 @@ namespace Mezzanine
 
             /// @copydoc QuadRenderable::AddChild(Widget*)
             virtual void AddChild(Widget* Child);
+            /// @copydoc QuadRenderable::AddChild(Widget*,const UInt16)
+            virtual void AddChild(Widget* Child, const UInt16 ZOrder);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization

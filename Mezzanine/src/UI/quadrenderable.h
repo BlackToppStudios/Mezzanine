@@ -288,6 +288,19 @@ namespace Mezzanine
             /// In these cases it is recommended to check to see if this QuadRenderable has a parent.
             /// @return Returns a UInt16 representing this renderables ZOrder.
             virtual const UInt16& GetZOrder() const;
+            /// @brief Gets the highest ZOrder among the children of this QuadRenderable.
+            /// @note This method assumes the children are ordered.  If you alter the ZOrder of children often, ensure you call UpdateChildOrder after
+            /// the alterations so this method will work.
+            /// @return Returns a UInt16 representing the highest ZOrder of all the children in this QuadRenderable, or 0 if this quad has no children.
+            virtual UInt16 GetHighestChildZOrder() const;
+            /// @brief Gets the lowest ZOrder among the children of this QuadRenderable.
+            /// @note This method assumes the children are ordered.  If you alter the ZOrder of children often, ensure you call UpdateChildOrder after
+            /// the alterations so this method will work.
+            /// @return Returns a UInt16 representing the lowest ZOrder of all the children in this QuadRenderable, or 0 if this quad has no children.
+            virtual UInt16 GetLowestChildZOrder() const;
+            /// @brief Updates the order of children in this QuadRenderable based on the ZOrder set on each child.
+            virtual void UpdateChildOrder();
+
             /// @brief Checks to see if another Quad is overlapping with this one.
             /// @param Quad The other Quad to check for overlap.
             /// @return Returns true if this quad overlaps with the provided quad, false otherwise.
@@ -672,11 +685,18 @@ namespace Mezzanine
             /// @brief Gets the number of children in this QuadRenderable.
             /// @return Returns the number of children directly connected to this QuadRenderable.
             virtual Whole GetNumChildren() const;
-            /// @brief Removes a child Widget by pointer.
-            /// @param Child A point to the child to be removed.
-            virtual void RemoveChild(Widget* Child);
+            /// @brief Removes a child Widget from this quadrenderable.
+            /// @note The child is NOT destroyed.
+            /// @param ToBeRemoved A pointer to the child to be removed.
+            virtual void RemoveChild(Widget* ToBeRemoved);
             /// @brief Removes all child Widgets from this QuadRenderable.
+            /// @note The chilren are NOT destroyed.
             virtual void RemoveAllChildren();
+            /// @brief Destroys a child Widget currently inside this QuadRenderable.
+            /// @param ToBeDestroyed A pointer to the child to be destroyed.
+            virtual void DestroyChild(Widget* ToBeDestroyed);
+            /// @brief Destroys all child Widgets currently inside this QuadRenderable.
+            virtual void DestroyAllChildren();
 
             /// @brief Gets an iterator to the first child Widget.
             /// @return Returns an iterator to the first Widget being stored by this QuadRenderable.

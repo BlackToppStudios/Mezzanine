@@ -65,7 +65,8 @@ namespace Mezzanine
             UpLeftButton(NULL),
             DownRightButton(NULL),
             ChildLock(NULL),
-            IncrementDistance(0.01)
+            IncrementDistance(0.01),
+            AutoHideScroll(false)
             {  }
 
         Scrollbar::Scrollbar(const String& RendName, Screen* Parent) :
@@ -75,7 +76,8 @@ namespace Mezzanine
             UpLeftButton(NULL),
             DownRightButton(NULL),
             ChildLock(NULL),
-            IncrementDistance(0.01)
+            IncrementDistance(0.01),
+            AutoHideScroll(false)
             { this->AddEvent(Scrollbar::EventScrollValueChanged); }
 
         Scrollbar::Scrollbar(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
@@ -85,33 +87,34 @@ namespace Mezzanine
             UpLeftButton(NULL),
             DownRightButton(NULL),
             ChildLock(NULL),
-            IncrementDistance(0.01)
+            IncrementDistance(0.01),
+            AutoHideScroll(false)
             { this->AddEvent(Scrollbar::EventScrollValueChanged); }
 
         Scrollbar::~Scrollbar()
             {  }
 
-        bool Scrollbar::HandleInputImpl(const Input::MetaCode& Code)
+        Boolean Scrollbar::HandleInputImpl(const Input::MetaCode& Code)
         {
             if( this->ChildLock != NULL )
             {
                 if( Code.IsDeviceButton() && Code.GetMetaValueAsButtonState() == Input::BUTTON_DOWN && !( this->ChildLock->IsOnStandby() ) ) {
                     if( this->ChildLock == this->ScrollBack ) {
-                        return this->ScrollBackScroll(ParentScreen->GetMouseHitPosition());
+                        return this->_ScrollBackScroll(ParentScreen->GetMouseHitPosition());
                     }else if( this->ChildLock == this->UpLeftButton ) {
-                        return this->ButtonScroll(this->UpLeftButton);
+                        return this->_ButtonScroll(this->UpLeftButton);
                     }else if( this->ChildLock == this->DownRightButton ) {
-                        return this->ButtonScroll(this->DownRightButton);
+                        return this->_ButtonScroll(this->DownRightButton);
                     }
                 }else if( Code.GetCode() == Input::MOUSEHORIZONTAL ) {
                     Vector2 Delta( static_cast<Real>(Code.GetMetaValue()),0 );
-                    return this->MouseScroll(Delta);
+                    return this->_MouseScroll(Delta);
                 }else if( Code.GetCode() == Input::MOUSEVERTICAL ) {
                     Vector2 Delta( 0,static_cast<Real>(Code.GetMetaValue()) );
-                    return this->MouseScroll(Delta);
+                    return this->_MouseScroll(Delta);
                 }
             }
-            return false;
+            return this->HandleMouseWheelInput(Code);
         }
 
         void Scrollbar::SubscribeToChildEvents()
@@ -145,14 +148,16 @@ namespace Mezzanine
         // Utility Methods
 
         void Scrollbar::SetIncrementDistance(const Real& IncDist)
-        {
-            this->IncrementDistance = IncDist;
-        }
+            { this->IncrementDistance = IncDist; }
 
         Real Scrollbar::GetIncrementDistance() const
-        {
-            return this->IncrementDistance;
-        }
+            { return this->IncrementDistance; }
+
+        void Scrollbar::SetAutoHide(Boolean AutoHide)
+            { this->AutoHideScroll = AutoHide; }
+
+        Boolean Scrollbar::GetAutoHide() const
+            { return this->AutoHideScroll; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Fetch Methods
@@ -178,7 +183,8 @@ namespace Mezzanine
             XML::Node PropertiesNode = SelfRoot.AppendChild( Scrollbar::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-                PropertiesNode.AppendAttribute("IncrementDistance").SetValue( this->IncrementDistance ) )
+                PropertiesNode.AppendAttribute("IncrementDistance").SetValue( this->IncrementDistance ) &&
+                PropertiesNode.AppendAttribute("AutoHideScroll").SetValue( this->AutoHideScroll ) )
             {
                 return;
             }else{
@@ -197,7 +203,11 @@ namespace Mezzanine
                 if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
                     CurrAttrib = PropertiesNode.GetAttribute("IncrementDistance");
                     if( !CurrAttrib.Empty() )
-                        this->IncrementDistance = CurrAttrib.AsReal();
+                        this->SetIncrementDistance( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("AutoHideScroll");
+                    if( !CurrAttrib.Empty() )
+                        this->SetAutoHide( CurrAttrib.AsBool() );
                 }else{
                     MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Scrollbar::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
@@ -249,7 +259,7 @@ namespace Mezzanine
                 {
                     // Obtain the lock
                     this->ChildLock = this->ScrollBack;
-                    this->ScrollBackScroll(ParentScreen->GetMouseHitPosition());
+                    this->_ScrollBackScroll(ParentScreen->GetMouseHitPosition());
                 }
                 else if( WidArgs.EventName == Button::EventDeactivated )
                 {
@@ -263,7 +273,7 @@ namespace Mezzanine
                 {
                     // Obtain the lock
                     this->ChildLock = this->UpLeftButton;
-                    this->ButtonScroll(this->UpLeftButton);
+                    this->_ButtonScroll(this->UpLeftButton);
                 }
                 else if( WidArgs.EventName == Button::EventDeactivated )
                 {
@@ -277,7 +287,7 @@ namespace Mezzanine
                 {
                     // Obtain the lock
                     this->ChildLock = this->DownRightButton;
-                    this->ButtonScroll(this->DownRightButton);
+                    this->_ButtonScroll(this->DownRightButton);
                 }
                 else if( WidArgs.EventName == Button::EventDeactivated )
                 {

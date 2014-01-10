@@ -519,7 +519,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        bool Widget::_HandleInput(const Input::MetaCode& Code)
+        Boolean Widget::_HandleInput(const Input::MetaCode& Code)
         {
             if( this->HandleInputImpl(Code) ) {
                 return true;

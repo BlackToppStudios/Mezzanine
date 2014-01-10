@@ -281,6 +281,32 @@ namespace Mezzanine
         const UInt16& QuadRenderable::GetZOrder() const
             { return this->ZOrder; }
 
+        UInt16 QuadRenderable::GetHighestChildZOrder() const
+            { return ( this->ChildWidgets.empty() ? 0 : this->ChildWidgets.back()->GetZOrder() ); }
+
+        UInt16 QuadRenderable::GetLowestChildZOrder() const
+            { return ( this->ChildWidgets.empty() ? 0 : this->ChildWidgets.front()->GetZOrder() ); }
+
+        void QuadRenderable::UpdateChildOrder()
+        {
+            ChildContainer TempContainer;
+            this->ChildWidgets.swap(TempContainer);
+            for( ChildIterator TempIt = TempContainer.begin() ; TempIt != TempContainer.end() ; ++TempIt )
+            {
+                UInt16 Zorder = (*TempIt)->GetZOrder();
+                for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
+                {
+                    if( (*ChildIt)->GetZOrder() > Zorder ) {
+                        this->ChildWidgets.insert(ChildIt,(*TempIt));
+                        (*TempIt)->_MarkAllChildrenDirty();
+                        return;
+                    }
+                }
+                this->ChildWidgets.push_back(*TempIt);
+                (*TempIt)->_MarkAllChildrenDirty();
+            }
+        }
+
         Boolean QuadRenderable::CheckOverlap(const QuadRenderable* Quad) const
             { return this->GetRect().CheckOverlap(Quad->GetRect()); }
 
@@ -819,14 +845,12 @@ namespace Mezzanine
                     this->ChildWidgets.insert(It,Child);
                     Child->_NotifyParenthood(this);
                     Child->_MarkAllChildrenDirty();
-                    //this->_MarkDirty();
                     return;
                 }
             }
             this->ChildWidgets.push_back(Child);
             Child->_NotifyParenthood(this);
             Child->_MarkAllChildrenDirty();
-            //this->_MarkDirty();
         }
 
         void QuadRenderable::AddChild(Widget* Child, const UInt16 ZOrder)
@@ -865,19 +889,44 @@ namespace Mezzanine
             for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
             {
                 if( Child == (*It) ) {
-                    Child->ParentQuad = NULL;
+                    Child->_NotifyParenthood(NULL);
                     this->ChildWidgets.erase(It);
+                    this->_MarkDirty();
                     return;
                 }
             }
-            _MarkDirty();
         }
 
         void QuadRenderable::RemoveAllChildren()
         {
             for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
             {
-                (*It)->ParentQuad = NULL;
+                (*It)->_NotifyParenthood(NULL);
+            }
+            this->ChildWidgets.clear();
+            this->_MarkDirty();
+        }
+
+        void QuadRenderable::DestroyChild(Widget* ToBeDestroyed)
+        {
+            for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+            {
+                if( ToBeDestroyed == (*It) ) {
+                    ToBeDestroyed->_NotifyParenthood(NULL);
+                    this->ChildWidgets.erase(It);
+                    this->ParentScreen->DestroyWidget(ToBeDestroyed);
+                    this->_MarkDirty();
+                    return;
+                }
+            }
+        }
+
+        void QuadRenderable::DestroyAllChildren()
+        {
+            for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+            {
+                (*It)->_NotifyParenthood(NULL);
+                this->ParentScreen->DestroyWidget( (*It) );
             }
             this->ChildWidgets.clear();
             this->_MarkDirty();

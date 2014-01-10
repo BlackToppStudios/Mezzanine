@@ -95,11 +95,10 @@
   are commonly passed around by more sophisticated classes for a variety of reasons. Some of these are small enough to pass around value and some are not.
 
   There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled
-  and most commonly created, deleted and otherwised managed through managers. Many of these classes like the @ref Mezzanine::Light or @ref Mezzanine::ActorRigid are
+  and most commonly created, deleted and otherwised managed through managers. Many of these classes like the @ref Mezzanine::Graphics::Light or @ref Mezzanine::RigidDebris are
   present inside the game simulation as well as having a presence as in the simulation visible to the user.
 
-  Some classes are that really are just convient places to put functions, things like the @ref Mezzanine::ActorRigidDeSerializer and the @ref Mezzanine::StringTool are good
-  examples of these logical grouping of functions.
+  Some classes are that really are just convient places to put functions, things like the @ref Mezzanine::StringTools are good examples of these logical grouping of functions.
 
   @subsection managers Managers
 
@@ -138,19 +137,18 @@
 
    @subsubsection managerlist A list of Managers in the Mezzanine
     - @ref Mezzanine::ActorManager - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton
-    - @ref Mezzanine::AudioManager - Play, stop and otherwise work with sound and music.
-    - @ref Mezzanine::CameraManager - Add/remove Multiple camera's from the world
-    - @ref Mezzanine::CollisionShapeManager - Store/create/delete shapes that can be used for physics and collision detection
+    - @ref Mezzanine::Audio::AudioManager - Play, stop and otherwise work with sound and music.
+    - @ref Mezzanine::Graphics::CameraManager - Add/remove Multiple camera's from the world
+    - @ref Mezzanine::Physics::CollisionShapeManager - Store/create/delete shapes that can be used for physics and collision detection
     - @ref Mezzanine::EventManager - Get messages and events from the operating system (and user, but that will change)
-    - @ref Mezzanine::GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.
-    - @ref Mezzanine::MeshManager - Manage Meshes that can be rendered to the the screen.
-    - @ref Mezzanine::NetworkManager - Manages the transmission and retreival of network traffic.
-    - @ref Mezzanine::PhysicsManager - Control settings that have to do with the physics simulation.
+    - @ref Mezzanine::Graphics::GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.
+    - @ref Mezzanine::Graphics::MeshManager - Manage Meshes that can be rendered to the the screen.
+    - @ref Mezzanine::Network::NetworkManager - Manages the transmission and retreival of network traffic.
+    - @ref Mezzanine::Physics::PhysicsManager - Control settings that have to do with the physics simulation.
     - @ref Mezzanine::ResourceManager - Loads Files and locate them in an efficient way.
-    - @ref Mezzanine::SceneManager - Control Lighting, skyboxes, particle effects etc...
-    - @ref Mezzanine::TimerManager - Create and delete a variety of timers.
+    - @ref Mezzanine::Graphics::SceneManager - Control Lighting, skyboxes, particle effects etc...
     - @ref Mezzanine::TerrainManager - Work with terrain components like height maps.
-    - @ref Mezzanine::UIManager - Create and manage buttons, scrollbars and other widgets.
+    - @ref Mezzanine::UI::UIManager - Create and manage buttons, scrollbars and other widgets.
 
     @subsubsection The World, A manager of managers
         A thorough description needs to go here
@@ -169,7 +167,7 @@
 
    @ref Mezzanine::ColourValue
 
-   @ref Mezzanine::MetaCode "Mezzanine::MetaCode - A unit of user input"
+   @ref Mezzanine::Input::MetaCode "Mezzanine::MetaCode - A unit of user input"
 
    @ref Mezzanine::Plane
 
@@ -185,7 +183,7 @@
 
   @subsection SimpleDataTypes Simple Data Types
 
-   @ref Mezzanine::Character
+   @ref Mezzanine::Char8
 
    @ref Mezzanine::Integer
 
@@ -200,11 +198,11 @@
 
  @section Sophisticated Sophisticated Systems
 
-  @ref Mezzanine::ActorBase "Actors - Items in the world"
+  @ref Mezzanine::WorldObject "WorldObjects - Items in the world"
 
   @ref Mezzanine::EventBase
 
-  @ref Mezzanine::GraphicsManager
+  @ref Mezzanine::Graphics::GraphicsManager
 
   @ref XMLManual
 

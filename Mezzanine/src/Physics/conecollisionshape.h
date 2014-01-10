@@ -123,18 +123,19 @@ namespace Mezzanine
             virtual StandardAxis GetUpStandardAxis() const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
-            /// @copydoc CollisionShape::GetBulletShape
+            /// @brief Gets a pointer to the upcasted internal shape.
+            /// @return Returns a pointer to the internal Cone shape this class gets it's functionality from.
             virtual btConeShape* GetBulletConeShape() const;
 
-            // Serializable
-            /// @copydoc CollisionShape::GetBulletShape
+            /// @copydoc CollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
             virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
-            /// @copydoc CollisionShape::GetBulletShape
+            /// @copydoc CollisionShape::ProtoDeSerialize(const XML::Node& OneNode)
             virtual void ProtoDeSerialize(const XML::Node& OneNode);
+
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ConeCollisionShape"
             static String SerializableName();
-        };// ©oneCollisionShape
+        };//ConeCollisionShape
     }//Physics
 }//Mezzanine
 
