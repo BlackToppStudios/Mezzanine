@@ -46,6 +46,7 @@
 #include "datatypes.h"
 #include "exception.h"
 #include "cubicspline.h"
+#include "serialization.h"
 
 #ifndef SWIG // STD headers are bad for Swig
     #include <cmath>
@@ -334,12 +335,16 @@ namespace Mezzanine
 #ifndef SWIG
 
 /// @brief Used to Serialize an Mezzanine::LinearInterpolator to a human readable stream
-/// @details The current XML format is extremely simple because there no data: '<LinearInterpolator Version="1" />'.
+/// @details The current XML format is extremely simple because there no data: 'c'.
 /// @param Lint The Mezzanine::LinearInterpolator to be converted to characters.
 /// @param stream The place to send the characters, that define the Mezzanine::LinearInterpolator.
 /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 template<typename T>
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::LinearInterpolator<T>& Lint);
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::LinearInterpolator<T>& Lint)
+{
+    Serialize(stream,Lint);
+    return stream;
+}
 
 /// @brief Used to de-serialize an Mezzanine::LinearInterpolator from a stream
 /// @details This does nothing at the moment, but the instant state is required...
@@ -348,7 +353,8 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Linea
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 template<typename T>
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::LinearInterpolator<T>& Lint);
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::LinearInterpolator<T>& Lint)
+    { return DeSerialize(stream, Lint); }
 
 
 #endif

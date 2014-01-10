@@ -86,7 +86,19 @@ class interpolatortests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(li.Interpolate(Points.begin(),Points.end(),0.1),Vector3(0.1,0.1,0.1),"Vector3LinearInterpolationTenth");
                 TEST_EQUAL_EPSILON(li.Interpolate(Points.begin(),Points.end(),0.5),Vector3(0.5,0.5,0.5),"Vector3LinearInterpolationHalfway");
                 TEST_EQUAL_EPSILON(li.Interpolate(Points.begin(),Points.end(),1.0),b,"Vector3LinearInterpolationEnd");
-             }
+            }
+
+            {
+                LinearInterpolator<Vector3> li;
+                String Expected("<LinearInterpolator Version=\"1\" />");
+
+                TestOutput << endl << "Attempting to stream a linear interpolator, expecting \"" << Expected << "\" and got: " << li << endl << endl;
+                StringStream Lout;
+                Lout << li;
+                String Got(Lout.str());
+
+                TEST(Got==Expected,"LinearInterpolator::operator<<");
+            }
 
             {
                 LinearInterpolator<Integer> li;

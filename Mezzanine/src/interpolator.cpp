@@ -49,16 +49,5 @@ namespace Mezzanine
 {
 } // /namespace Mezzanine
 
-template<typename T>
-std::ostream& operator << (std::ostream& stream, const Mezzanine::LinearInterpolator<T>& Lint)
-{
-    Serialize(stream,Lint);
-    return stream;
-}
-
-template<typename T>
-std::istream& operator >> (std::istream& stream, Mezzanine::LinearInterpolator<T>& Lint)
-    { return DeSerialize(stream, Lint); }
-
 #endif // Include guard
 
