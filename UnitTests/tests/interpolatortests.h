@@ -101,6 +101,18 @@ class interpolatortests : public UnitTestGroup
             }
 
             {
+                BezierInterpolator<Vector3> Bi;
+                String Expected("<BezierInterpolator Version=\"1\" />");
+
+                TestOutput << endl << "Attempting to stream a BezierInterpolator interpolator, expecting \"" << Expected << "\" and got: " << Bi << endl << endl;
+                StringStream Bout;
+                Bout << Bi;
+                String Got(Bout.str());
+
+                TEST(Got==Expected,"BezierInterpolator::operator<<");
+            }
+
+            {
                 LinearInterpolator<Integer> li;
                 Integer a = 0;
                 Integer b = 10;
