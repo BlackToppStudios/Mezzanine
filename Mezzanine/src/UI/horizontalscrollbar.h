@@ -144,8 +144,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc PageProvider::_NotifyContainerUpdated()
-            virtual void _NotifyContainerUpdated();
+            /// @copydoc PageProvider::_NotifyContainerUpdated(const Vector2&, const Vector2&, const Vector2&, const Vector2&)
+            virtual void _NotifyContainerUpdated(const Vector2& OldViewSize, const Vector2& NewViewSize, const Vector2& OldWorkSize, const Vector2& NewWorkSize);
             /// @copydoc Scrollbar::_MouseScroll(const Vector2&)
             virtual Boolean _MouseScroll(const Vector2& MouseDelta);
             /// @copydoc Scrollbar::_ScrollBackScroll(const Vector2&)

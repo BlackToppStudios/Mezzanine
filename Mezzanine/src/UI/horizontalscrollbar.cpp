@@ -336,8 +336,11 @@ namespace Mezzanine
 
         Real HorizontalScrollbar::GetMaxXPages() const
         {
-            Real Ret = MathTools::Ceil( this->Container->GetActualWorkAreaSize().X / this->Container->GetActualSize().X );
-            return ( Ret > 0 ? Ret : 1 );
+            if( this->Container != NULL ) {
+                Real Ret = MathTools::Ceil( this->Container->GetActualWorkAreaSize().X / this->Container->GetActualSize().X );
+                return ( Ret > 0 ? Ret : 1 );
+            }
+            return 1;
         }
 
         Real HorizontalScrollbar::GetMaxYPages() const
@@ -397,21 +400,24 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void HorizontalScrollbar::_NotifyContainerUpdated()
+        void HorizontalScrollbar::_NotifyContainerUpdated(const Vector2& OldViewSize, const Vector2& NewViewSize, const Vector2& OldWorkSize, const Vector2& NewWorkSize)
         {
             if( this->Container != NULL ) {
-                // Update the scroller size
-                Real XView = this->Container->GetActualSize().X;
-                Real XWork = this->Container->GetActualWorkAreaSize().X;
-                if( XWork > 0 ) {
-                    this->SetScrollerSize( XView / XWork );
-                }else{
-                    this->SetScrollerSize( 1.0 );
+                Boolean ViewSizeChanged = ( OldViewSize != NewViewSize );
+                Boolean WorkSizeChanged = ( OldWorkSize != NewWorkSize );
+                // Scroller size is based on the relation of the view size to the work area,
+                // so if either is updated then we need to update the scrollers size.
+                if( ViewSizeChanged || WorkSizeChanged ) {
+                    if( NewWorkSize.X > 0 ) {
+                        this->SetScrollerSize( NewViewSize.X / NewWorkSize.X );
+                    }else{
+                        this->SetScrollerSize( 1.0 );
+                    }
                 }
 
                 // AutoHide check
                 if( this->AutoHideScroll ) {
-                    if( this->GetMaxYPages() <= 1.0 ) {
+                    if( this->GetMaxXPages() <= 1.0 ) {
                         this->Hide();
                     }else{
                         this->Show();

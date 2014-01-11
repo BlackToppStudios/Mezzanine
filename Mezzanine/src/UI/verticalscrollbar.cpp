@@ -339,8 +339,11 @@ namespace Mezzanine
 
         Real VerticalScrollbar::GetMaxYPages() const
         {
-            Real Ret = MathTools::Ceil( this->Container->GetActualWorkAreaSize().Y / this->Container->GetActualSize().Y );
-            return ( Ret > 0 ? Ret : 1 );
+            if( this->Container != NULL ) {
+                Real Ret = MathTools::Ceil( this->Container->GetActualWorkAreaSize().Y / this->Container->GetActualSize().Y );
+                return ( Ret > 0 ? Ret : 1 );
+            }
+            return 1;
         }
 
         Real VerticalScrollbar::GetCurrentXPage() const
@@ -397,16 +400,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void VerticalScrollbar::_NotifyContainerUpdated()
+        void VerticalScrollbar::_NotifyContainerUpdated(const Vector2& OldViewSize, const Vector2& NewViewSize, const Vector2& OldWorkSize, const Vector2& NewWorkSize)
         {
             if( this->Container != NULL ) {
-                // Update the scroller size
-                Real YView = this->Container->GetActualSize().Y;
-                Real YWork = this->Container->GetActualWorkAreaSize().Y;
-                if( YWork > 0 ) {
-                    this->SetScrollerSize( YView / YWork );
-                }else{
-                    this->SetScrollerSize( 1.0 );
+                Boolean ViewSizeChanged = ( OldViewSize != NewViewSize );
+                Boolean WorkSizeChanged = ( OldWorkSize != NewWorkSize );
+                // Scroller size is based on the relation of the view size to the work area,
+                // so if either is updated then we need to update the scrollers size.
+                if( ViewSizeChanged || WorkSizeChanged ) {
+                    if( NewWorkSize.Y > 0 ) {
+                        this->SetScrollerSize( NewViewSize.Y / NewWorkSize.Y );
+                    }else{
+                        this->SetScrollerSize( 1.0 );
+                    }
                 }
 
                 // AutoHide check
