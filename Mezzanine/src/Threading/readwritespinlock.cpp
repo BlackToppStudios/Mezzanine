@@ -61,38 +61,106 @@ namespace Mezzanine
 
 
         void ReadWriteSpinLock::LockForRead()
-        {}
-        //{ while(!TryLockForRead()){} }
+        /*{
+            ReadCountGaurd.Lock();
+            Locked++;
+            ReadCountGaurd.Unlock();
+        }*/
+        { while(!TryLockForRead()){} }
 
         bool ReadWriteSpinLock::TryLockForRead()
         {
-            Int32 Expected = Locked;
+            if(ReadCountGaurd.TryLock())
+            {
+                if(0<=Locked)
+                {
+                    Locked++;
+                    ReadCountGaurd.Unlock();
+                    return true;
+                }else{
+                    ReadCountGaurd.Unlock();
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+            /*Int32 Expected = Locked;
             if(0<=Expected) // Can spuriously fail but shouldn't spuriosly succeed
             {
                 return Expected==AtomicCompareAndSwap32(&Locked,Expected,Expected+1);
             }else{
                 return false;
-            }
+            }*/
         }
 
         void ReadWriteSpinLock::UnlockRead()
         {
-            Int32 Expected = Locked;
+            ReadCountGaurd.Lock();
+            if(0>Locked)
+            {
+                // fail because of writelock
+            }
+            if(0==Locked)
+            {
+                // fail because not locked
+            }
+            Locked--;
+            ReadCountGaurd.Unlock();
+
+            /*Int32 Expected = Locked;
             if(0>Expected)
                 { return; }
             while(Expected!=AtomicCompareAndSwap32(&Locked,Expected,Expected-1))
                 { Expected = Locked; }
+            */
         }
 
         void ReadWriteSpinLock::LockForWrite()
-        {}
-            //{ while(AtomicCompareAndSwap32(&Locked,0,1)) {} }
+            { while(!TryLockForWrite()){} }
+            //{ while(AtomicCompareAndSwap32(&Locked,0,std::numeric_limits<Int32>::min())) {} }
 
         bool ReadWriteSpinLock::TryLockForWrite()
-            { return 0==AtomicCompareAndSwap32(&Locked,0,std::numeric_limits<Int32>::min()); }
+        {
+            if(ReadCountGaurd.TryLock())
+            {
+                if(0==Locked)
+                {
+                    Locked=std::numeric_limits<Int32>::min();
+                    ReadCountGaurd.Unlock();
+                    return true;
+                }else{
+                    ReadCountGaurd.Unlock();
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }// */
+            //{ return 0==AtomicCompareAndSwap32(&Locked,0,std::numeric_limits<Int32>::min()); }
 
         void ReadWriteSpinLock::UnlockWrite()
-            { AtomicCompareAndSwap32(&Locked,std::numeric_limits<Int32>::min(),0); }
+        {
+            ReadCountGaurd.Lock();
+            if(0<Locked)
+            {
+                // fail because of Readlock
+            }
+            if(0==Locked)
+            {
+                // fail because not locked
+            }
+
+            if(std::numeric_limits<Int32>::min()==Locked)
+            {
+                Locked=0;
+            }else{
+                // fail because invalid value
+            }
+
+            ReadCountGaurd.Unlock();
+        }
+            //{ AtomicCompareAndSwap32(&Locked,std::numeric_limits<Int32>::min(),0); }
 
 
 

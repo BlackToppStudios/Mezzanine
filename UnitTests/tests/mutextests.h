@@ -297,47 +297,47 @@ class mutextests : public UnitTestGroup
                 cout << "Trying to UnlockWrite twice expecting to release the lock twice, no test for this." << endl;
                 TryReadWriteSpinlock.UnlockWrite();
 
-
-                Whole ThreadCount = 30000;
-                vector<Mezzanine::Threading::Thread*> Threads;
-                Threads.reserve(ThreadCount);
-                Int32 Value = 10;
-                //LogForMutexes.str("");
-                cout << endl << "Creating " << ThreadCount << " threads to read and write into a value proected by a ReadWriteSpinLock" << endl;
-                Boolean WriteTest = true;
-                MaxInt Start = GetTimeStamp();
-                for(Whole Counter=0; Counter<ThreadCount; Counter++)
                 {
-                    WriteTest = !WriteTest;
-                    if(WriteTest)
-                        { Threads.push_back(new Mezzanine::Threading::Thread(WriteInThreadRWSpin, &Value)); }
-                    else
-                        { Threads.push_back(new Mezzanine::Threading::Thread(ReadInThreadRWSpin, &Value)); }
+                    Whole ThreadCount = 4;
+                    vector<Mezzanine::Threading::Thread*> Threads;
+                    Threads.reserve(ThreadCount);
+                    Int32 Value = 10;
+                    //LogForMutexes.str("");
+                    cout << endl << "Creating " << ThreadCount << " threads to read and write into a value proected by a ReadWriteSpinLock" << endl;
+                    Boolean WriteTest = true;
+                    MaxInt Start = GetTimeStamp();
+                    for(Whole Counter=0; Counter<ThreadCount; Counter++)
+                    {
+                        WriteTest = !WriteTest;
+                        if(WriteTest)
+                            { Threads.push_back(new Mezzanine::Threading::Thread(WriteInThreadRWSpin, &Value)); }
+                        else
+                            { Threads.push_back(new Mezzanine::Threading::Thread(ReadInThreadRWSpin, &Value)); }
+                    }
+
+                    TestOutput << "Waiting briefly for most threaded work to complete." << endl;
+                    //Mezzanine::Threading::this_thread::sleep_for(5000*ThreadCount);
+                    //Mezzanine::Threading::this_thread::sleep_for(2*ThreadCount);
+
+                    TestOutput << "Joining and then cleaning up all threads." << endl;
+                    for(vector<Mezzanine::Threading::Thread*>::iterator Iter = Threads.begin();
+                        Iter!=Threads.end();
+                        Iter++)
+                    {
+                        (*Iter)->join();
+                        delete *Iter;
+                    }
+                    MaxInt End = GetTimeStamp();
+
+                    Int32 Expected = (ThreadCount+1)/2+10;
+                    TestOutput << "Expected result is " << Expected << " actually got " << Value << "." << endl;
+                    TEST(Expected==Value,"RWSpinLock::StressTest");
+                    //TestOutput << "ThreadLog" << endl << LogForMutexes.str() << endl << "/ThreadLog" << endl;
+                    TestOutput << "It took " << End-Start << " microseconds to create, run, join and then delete "
+                               << ThreadCount << " threads. Half of which change the a single piece of data. "
+                               << "This is " << PreciseReal(ThreadCount)/PreciseReal(End-Start) * PreciseReal(1000000)
+                               << " threads per second." << endl;
                 }
-
-                TestOutput << "Waiting briefly for most threaded work to complete." << endl;
-                //Mezzanine::Threading::this_thread::sleep_for(5000*ThreadCount);
-                //Mezzanine::Threading::this_thread::sleep_for(2*ThreadCount);
-
-                TestOutput << "Joining and then cleaning up all threads." << endl;
-                for(vector<Mezzanine::Threading::Thread*>::iterator Iter = Threads.begin();
-                    Iter!=Threads.end();
-                    Iter++)
-                {
-                    (*Iter)->join();
-                    delete *Iter;
-                }
-                MaxInt End = GetTimeStamp();
-
-                Int32 Expected = (ThreadCount+1)/2+10;
-                TestOutput << "Expected result is " << Expected << " actually got " << Value << "." << endl;
-                TEST(Expected==Value,"RWSpinLock::StressTest");
-                //TestOutput << "ThreadLog" << endl << LogForMutexes.str() << endl << "/ThreadLog" << endl;
-                TestOutput << "It took " << End-Start << " microseconds to create, run, join and then delete "
-                           << ThreadCount << " threads half of which change the a single piece of data. "
-                           << "This is " << PreciseReal(ThreadCount)/PreciseReal(End-Start) * PreciseReal(1000000)
-                           << " threads per second." << endl;
-
 
             } // ReadWriteSpinLock
 

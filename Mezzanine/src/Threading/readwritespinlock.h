@@ -43,6 +43,7 @@
 
 #include "datatypes.h"
 #include "lockguard.h"
+#include "spinlock.h"
 
 /// @file
 /// @brief Declares a Mutex, Mutex tools, and at least one MutexLike object.
@@ -61,6 +62,8 @@ namespace Mezzanine
         class MEZZ_LIB ReadWriteSpinLock
         {
             private:
+                SpinLock ReadCountGaurd;
+
                 /// @internal
                 /// @brief 0 if unlocked, A positive amount is amount of locking readers and a negative value is writed locked.
                 Int32 Locked;
