@@ -116,11 +116,7 @@ namespace Mezzanine
             virtual void _SetContainer(PagedContainer* ToUpdate);
             /// @internal
             /// @brief Notifies this provider that the container it is providing page data to has been updated.
-            /// @param OldViewSize The pre-update view size of the container this widget is providing for.
-            /// @param NewViewSize The post-update view size of the container this widget is providing for.
-            /// @param OldWorkSize The pre-update work area size of the container this widget is providing for.
-            /// @param NewWorkSize The post-update work area size of the container this widget is providing for.
-            virtual void _NotifyContainerUpdated(const Vector2& OldViewSize, const Vector2& NewViewSize, const Vector2& OldWorkSize, const Vector2& NewWorkSize) = 0;
+            virtual void _NotifyContainerUpdated() = 0;
         };//PageProvider
     }//UI
 }//Mezzanine

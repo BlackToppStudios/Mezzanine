@@ -337,7 +337,7 @@ namespace Mezzanine
         Real HorizontalScrollbar::GetMaxXPages() const
         {
             if( this->Container != NULL ) {
-                Real Ret = MathTools::Ceil( this->Container->GetActualWorkAreaSize().X / this->Container->GetActualSize().X );
+                Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().X / this->Container->GetActualSize().X );
                 return ( Ret > 0 ? Ret : 1 );
             }
             return 1;
@@ -400,19 +400,16 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void HorizontalScrollbar::_NotifyContainerUpdated(const Vector2& OldViewSize, const Vector2& NewViewSize, const Vector2& OldWorkSize, const Vector2& NewWorkSize)
+        void HorizontalScrollbar::_NotifyContainerUpdated()
         {
             if( this->Container != NULL ) {
-                Boolean ViewSizeChanged = ( OldViewSize != NewViewSize );
-                Boolean WorkSizeChanged = ( OldWorkSize != NewWorkSize );
-                // Scroller size is based on the relation of the view size to the work area,
-                // so if either is updated then we need to update the scrollers size.
-                if( ViewSizeChanged || WorkSizeChanged ) {
-                    if( NewWorkSize.X > 0 ) {
-                        this->SetScrollerSize( NewViewSize.X / NewWorkSize.X );
-                    }else{
-                        this->SetScrollerSize( 1.0 );
-                    }
+                // Update the scroller size
+                Real XView = this->Container->GetActualSize().X;
+                Real XWork = this->Container->GetWorkAreaSize().X;
+                if( XWork > 0 ) {
+                    this->SetScrollerSize( XView / XWork );
+                }else{
+                    this->SetScrollerSize( 1.0 );
                 }
 
                 // AutoHide check
