@@ -189,9 +189,10 @@ namespace Mezzanine
                 if(LinearInterpolaterNode)
                 {
                     Mezzanine::XML::Attribute VersionAttr = LinearInterpolaterNode.AppendAttribute("Version");
+                    Mezzanine::XML::Attribute TypeAttr = LinearInterpolaterNode.AppendAttribute("InterpolatableType");
                     if( VersionAttr  )
                     {
-                        if( VersionAttr.SetValue("1") )
+                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::SerializableName()) )
                         {
                             return;
                         }else{
@@ -211,7 +212,12 @@ namespace Mezzanine
                 {
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
-                        return; // Class currently stores no data.
+                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::SerializableName())
+                        {
+                            return; // Class currently stores no data.
+                        }else{
+                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + SerializableName() + ": Not " + InterpolatableType::SerializableName());
+                        }
                     }else{
                         MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
                     }
@@ -280,9 +286,10 @@ namespace Mezzanine
                 if(BezierInterpolaterNode)
                 {
                     Mezzanine::XML::Attribute VersionAttr = BezierInterpolaterNode.AppendAttribute("Version");
+                    Mezzanine::XML::Attribute TypeAttr = BezierInterpolaterNode.AppendAttribute("InterpolatableType");
                     if( VersionAttr  )
                     {
-                        if( VersionAttr.SetValue("1") )
+                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::SerializableName()) )
                         {
                             return;
                         }else{
@@ -302,7 +309,12 @@ namespace Mezzanine
                 {
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
-                        return; // Class currently stores no data.
+                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::SerializableName())
+                        {
+                            return; // Class currently stores no data.
+                        }else{
+                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + SerializableName() + ": Not " + InterpolatableType::SerializableName());
+                        }
                     }else{
                         MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
                     }

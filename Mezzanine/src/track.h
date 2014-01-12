@@ -40,6 +40,7 @@
 #ifndef _track_h
 #define _track_h
 
+#include "datatypes.h"
 #include "exception.h"
 #include "enumerations.h"
 #include "interpolator.h"
@@ -61,7 +62,7 @@ namespace Mezzanine
     /// @n @n
     /// This uses std::vector underneath for its performance characteristics.
     template <typename InterpolatorType>
-    class TrackBase
+    class Track
     {
         public:
             /// @brief The type this class and the interpolator it uses works with.
@@ -82,19 +83,25 @@ namespace Mezzanine
             typedef SmoothTrackIterator<InterpolatorType> SmoothIteratorType;
 
         protected:
-            /// @brief The underlying container of Discrete datapoints
+            /// @brief The underlying container of Discrete datapoints.
             DataContainerType DataPoints;
 
+            /// @brief Name of the track, primarily for serialization.
+            String RawName;
+
         public:
-            TrackBase(typename DataContainerType::iterator Begin,
+            Track(typename DataContainerType::iterator Begin,
                       typename DataContainerType::iterator End)
                 : DataPoints(Begin,End)
                 {}
 
-            TrackBase(const DataContainerType& DataSet) : DataPoints(DataSet)
+            Track(const DataContainerType& DataSet) : DataPoints(DataSet)
                 {}
 
-            TrackBase()
+            Track()
+                {}
+
+            virtual ~Track()
                 {}
 
             /// @brief Get the amount of stored DataPoints
@@ -163,46 +170,61 @@ namespace Mezzanine
             /// may or may not respect the nodes.
             /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
             /// @return An InterpolatableType
-            virtual InterpolatableType GetInterpolated(Real Percentage) const = 0;
-    };
-
-    template <typename InterpolatorType>
-    class Track : public TrackBase<InterpolatorType>
-    {
-        protected:
-            typedef TrackBase<InterpolatorType> ParentType;
-
-        public:
-            /// @brief The type this class and the interpolator it uses works with.
-            typedef typename InterpolatorType::InterpolatableType InterpolatableType;
-
-            /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
-            typedef std::vector<InterpolatableType> DataContainerType;
-
-            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
-            typedef typename ParentType::SmoothIteratorType SmoothIteratorType;
-
-
-            Track(typename DataContainerType::iterator Begin,
-                  typename DataContainerType::iterator End)
-                : ParentType(Begin,End)
-                {}
-
-            Track(const DataContainerType& DataSet)
-                : ParentType(DataSet)
-                {}
-
-            Track()
-                {}
-
             virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
                 return InterpolatorType::Interpolate(
-                           ParentType::DataPoints.begin(),
-                           ParentType::DataPoints.end(),
+                           DataPoints.begin(),
+                           DataPoints.end(),
                            Percentage
                        );
             }
+
+            void SetTrackName(String Name)
+                { RawName = Name; }
+
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const
+            {
+                Mezzanine::XML::Node TrackNode = CurrentRoot.AppendChild(SerializableName());
+
+                if(TrackNode)
+                {
+                    Mezzanine::XML::Attribute VersionAttr = TrackNode.AppendAttribute("Version");
+                    if( VersionAttr  )
+                    {
+                        if( VersionAttr.SetValue("1") )
+                        {
+                            // serialize track
+                            return;
+                        }else{
+                            SerializeError("Create XML Attribute Values", SerializableName(),true);
+                        }
+                    }else{
+                        SerializeError("Create XML Attributes", SerializableName(),true);
+                    }
+                }else{
+                    SerializeError("Create XML Serialization Node", SerializableName(),true);
+                }
+            }
+
+            virtual void ProtoDeSerialize(const XML::Node& OneNode)
+            {
+                if ( String(OneNode.Name())==String(SerializableName()) )
+                {
+                    if(OneNode.GetAttribute("Version").AsInt() == 1)
+                    {
+                        return; // Class currently stores no data.
+                    }else{
+                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                }
+
+            }
+
+            static String SerializableName()
+                { return String("LinearInterpolator"); }
+
 
     };
 
@@ -214,10 +236,8 @@ namespace Mezzanine
     class TrackLooped : public Track<InterpolatorType>
     {
         protected:
-            /// @brief The immediate parent type of this class.
-            typedef Track<InterpolatorType> ParentType;
             /// @brief The base most class of this type.
-            typedef TrackBase<InterpolatorType> BaseType;
+            typedef Track<InterpolatorType> BaseType;
 
         public:
             /// @brief The type this class and the interpolator it uses works with.
@@ -232,14 +252,17 @@ namespace Mezzanine
             /// @brief
             TrackLooped(typename DataContainerType::iterator Begin,
                         typename DataContainerType::iterator End)
-                : ParentType(Begin,End)
+                : BaseType(Begin,End)
                 {}
 
             TrackLooped(const DataContainerType& DataSet)
-                : ParentType(DataSet)
+                : BaseType(DataSet)
                 {}
 
             TrackLooped()
+                {}
+
+            ~TrackLooped()
                 {}
 
             virtual void push_back(const InterpolatableType& AddedValue)
