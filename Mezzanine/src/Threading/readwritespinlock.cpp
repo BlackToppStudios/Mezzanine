@@ -45,6 +45,7 @@
 #include "readwritespinlock.h"
 #include "crossplatformincludes.h"
 #include <limits>
+#include <cassert>
 
 /// @file
 /// @brief Contains the implementation for the @ref Mezzanine::Threading::Mutex Mutex synchronization object.
@@ -61,106 +62,66 @@ namespace Mezzanine
 
 
         void ReadWriteSpinLock::LockForRead()
-        /*{
-            ReadCountGaurd.Lock();
-            Locked++;
-            ReadCountGaurd.Unlock();
-        }*/
-        { while(!TryLockForRead()){} }
+            { while(!TryLockForRead()){} }
 
         bool ReadWriteSpinLock::TryLockForRead()
         {
-            if(ReadCountGaurd.TryLock())
+            if(CountGaurd.TryLock())
             {
                 if(0<=Locked)
                 {
+                    assert(0<=Locked); // fail because of timing bug in this lock
                     Locked++;
-                    ReadCountGaurd.Unlock();
+                    CountGaurd.Unlock();
                     return true;
                 }else{
-                    ReadCountGaurd.Unlock();
+                    CountGaurd.Unlock();
                     return false;
                 }
             }else{
                 return false;
             }
-
-            /*Int32 Expected = Locked;
-            if(0<=Expected) // Can spuriously fail but shouldn't spuriosly succeed
-            {
-                return Expected==AtomicCompareAndSwap32(&Locked,Expected,Expected+1);
-            }else{
-                return false;
-            }*/
         }
 
         void ReadWriteSpinLock::UnlockRead()
         {
-            ReadCountGaurd.Lock();
-            if(0>Locked)
-            {
-                // fail because of writelock
-            }
-            if(0==Locked)
-            {
-                // fail because not locked
-            }
+            CountGaurd.Lock();
+            assert(!(0>Locked));  // fail because of writelock
+            assert(!(0==Locked)); // fail because not locked
             Locked--;
-            ReadCountGaurd.Unlock();
-
-            /*Int32 Expected = Locked;
-            if(0>Expected)
-                { return; }
-            while(Expected!=AtomicCompareAndSwap32(&Locked,Expected,Expected-1))
-                { Expected = Locked; }
-            */
+            CountGaurd.Unlock();
         }
 
         void ReadWriteSpinLock::LockForWrite()
             { while(!TryLockForWrite()){} }
-            //{ while(AtomicCompareAndSwap32(&Locked,0,std::numeric_limits<Int32>::min())) {} }
 
         bool ReadWriteSpinLock::TryLockForWrite()
         {
-            if(ReadCountGaurd.TryLock())
+            if(CountGaurd.TryLock())
             {
                 if(0==Locked)
                 {
                     Locked=std::numeric_limits<Int32>::min();
-                    ReadCountGaurd.Unlock();
+                    CountGaurd.Unlock();
                     return true;
                 }else{
-                    ReadCountGaurd.Unlock();
+                    CountGaurd.Unlock();
                     return false;
                 }
             }else{
                 return false;
             }
-        }// */
-            //{ return 0==AtomicCompareAndSwap32(&Locked,0,std::numeric_limits<Int32>::min()); }
+        }
 
         void ReadWriteSpinLock::UnlockWrite()
         {
-            ReadCountGaurd.Lock();
-            if(0<Locked)
-            {
-                // fail because of Readlock
-            }
-            if(0==Locked)
-            {
-                // fail because not locked
-            }
-
-            if(std::numeric_limits<Int32>::min()==Locked)
-            {
-                Locked=0;
-            }else{
-                // fail because invalid value
-            }
-
-            ReadCountGaurd.Unlock();
+            CountGaurd.Lock();
+            assert(!(0<Locked));  // fail because of Readlock
+            assert(!(0==Locked)); // fail because not locked
+            assert(!(std::numeric_limits<Int32>::min()!=Locked)); // failed because cannot unlocked if already unlocked
+            Locked=0;
+            CountGaurd.Unlock();
         }
-            //{ AtomicCompareAndSwap32(&Locked,std::numeric_limits<Int32>::min(),0); }
 
 
 

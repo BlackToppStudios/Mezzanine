@@ -128,13 +128,13 @@ static Mezzanine::Threading::ReadWriteSpinLock TryReadWriteSpinlock;
 void WriteInThreadRWSpin(void* Value)
 {
     Int32* Out = (Int32*)Value;
-    //LogForMutexes << "Thread trying to lock for write mutex TryReadWriteSpinlock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    //std::cout << "Thread trying to lock for write mutex TryReadWriteSpinlock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
     TryReadWriteSpinlock.LockForWrite();
-    //LogForMutexes << "Thread " << Mezzanine::Threading::this_thread::get_id() << " locked mutex for read and value is " << (*Out) << endl;
+    //std::cout << "Thread " << Mezzanine::Threading::this_thread::get_id() << " locked mutex for read and value is " << (*Out) << endl;
     (*Out)++;
-    //LogForMutexes << "Thread " << Mezzanine::Threading::this_thread::get_id() << " adjusted value to " << (*Out) << endl;
+    //std::cout << "Thread " << Mezzanine::Threading::this_thread::get_id() << " adjusted value to " << (*Out) << endl;
     TryReadWriteSpinlock.UnlockWrite();
-    //LogForMutexes << "Thread " << Mezzanine::Threading::this_thread::get_id() << " mutex UnlockWrite called." << endl;
+    //std::cout << "Thread " << Mezzanine::Threading::this_thread::get_id() << " mutex UnlockWrite called." << endl;
 
 }
 
@@ -142,12 +142,12 @@ void WriteInThreadRWSpin(void* Value)
 /// @param Value This is the a value passed into the thread to confirm that it works
 void ReadInThreadRWSpin(void* Value)
 {
-    //LogForMutexes << "Thread trying to lock for read mutex TryReadWriteSpinlock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    //std::cout << "Thread trying to lock for read mutex TryReadWriteSpinlock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
     TryReadWriteSpinlock.LockForRead();
     //Mezzanine::Threading::this_thread::sleep_for(10000);
-    //LogForMutexes << "Thread " << Mezzanine::Threading::this_thread::get_id() << " locked mutex for read and value is " << (*(Int32*)Value) << endl;
+    //std::cout << "Thread " << Mezzanine::Threading::this_thread::get_id() << " locked mutex for read and value is " << (*(Int32*)Value) << endl;
     TryReadWriteSpinlock.UnlockRead();
-    //LogForMutexes << "Thread " << Mezzanine::Threading::this_thread::get_id() << " mutex UnlockRead called." << endl;
+    //std::cout << "Thread " << Mezzanine::Threading::this_thread::get_id() << " mutex UnlockRead called." << endl;
 }
 
 
@@ -298,7 +298,7 @@ class mutextests : public UnitTestGroup
                 TryReadWriteSpinlock.UnlockWrite();
 
                 {
-                    Whole ThreadCount = 4;
+                    Whole ThreadCount = 30000;
                     vector<Mezzanine::Threading::Thread*> Threads;
                     Threads.reserve(ThreadCount);
                     Int32 Value = 10;
@@ -315,7 +315,7 @@ class mutextests : public UnitTestGroup
                             { Threads.push_back(new Mezzanine::Threading::Thread(ReadInThreadRWSpin, &Value)); }
                     }
 
-                    TestOutput << "Waiting briefly for most threaded work to complete." << endl;
+                    //TestOutput << "Waiting briefly for most threaded work to complete." << endl;
                     //Mezzanine::Threading::this_thread::sleep_for(5000*ThreadCount);
                     //Mezzanine::Threading::this_thread::sleep_for(2*ThreadCount);
 

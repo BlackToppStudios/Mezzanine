@@ -62,7 +62,8 @@ namespace Mezzanine
         class MEZZ_LIB ReadWriteSpinLock
         {
             private:
-                SpinLock ReadCountGaurd;
+                /// @brief Used to synchronize access to Locked, to indicate either the current count of Read locks or the existence of write locks
+                SpinLock CountGaurd;
 
                 /// @internal
                 /// @brief 0 if unlocked, A positive amount is amount of locking readers and a negative value is writed locked.
