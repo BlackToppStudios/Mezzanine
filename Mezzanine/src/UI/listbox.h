@@ -238,7 +238,7 @@ namespace Mezzanine
         /// @brief This is the factory implementation for ListBox widgets.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB MenuEntryFactory : public WidgetFactory
+        class MEZZ_LIB ListBoxFactory : public WidgetFactory
         {
         public:
             /// @brief Class constructor.

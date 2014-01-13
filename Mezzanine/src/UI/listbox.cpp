@@ -339,7 +339,7 @@ namespace Mezzanine
             if( ParamIt != Params.end() )
                 Style = static_cast<UI::ScrollbarStyle>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
 
-            return this->CreateListBox(RendName,Parent);
+            return this->CreateListBox(RendName,Style,Parent);
         }
 
         Widget* ListBoxFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
@@ -351,7 +351,7 @@ namespace Mezzanine
             if( ParamIt != Params.end() )
                 Style = static_cast<UI::ScrollbarStyle>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
 
-            return this->CreateListBox(RendName,RendRect,Parent);
+            return this->CreateListBox(RendName,RendRect,Style,Parent);
         }
 
         Widget* ListBoxFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
