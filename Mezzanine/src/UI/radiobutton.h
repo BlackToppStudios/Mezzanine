@@ -94,6 +94,9 @@ namespace Mezzanine
             /// @note You can pass in NULL to deselect all buttons in this group.
             /// @param Exclude The Button that will be excluded from forced deselection.
             void DeselectOtherButtons(RadioButton* Exclude);
+            /// @brief Gets the button that is currently selected among this group of buttons.
+            /// @return Returns a pointer to the currently selected button in this group.
+            RadioButton* GetCurrentSelection() const;
 
             /// @brief Gets an iterator to the first RadioButton.
             /// @return Returns an iterator to the first RadioButton being stored by this renderable.
@@ -113,6 +116,7 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Notifies this group a button has been selected.
+            /// @param Selected The radio button that was selected.
             void _NotifyButtonSelected(RadioButton* Selected);
         };//RadioButtonGroup
 

@@ -106,6 +106,9 @@ namespace Mezzanine
             }
         }
 
+        RadioButton* RadioButtonGroup::GetCurrentSelection() const
+            { return this->CurrentSelection; }
+
         RadioButtonGroup::RadioButtonIterator RadioButtonGroup::RadioButtonBegin()
             { return this->GroupButtons.begin(); }
 
@@ -123,8 +126,8 @@ namespace Mezzanine
 
         void RadioButtonGroup::_NotifyButtonSelected(RadioButton* Selected)
         {
-            this->DeselectOtherButtons(Selected);
             this->CurrentSelection = Selected;
+            this->DeselectOtherButtons(Selected);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -316,8 +319,15 @@ namespace Mezzanine
 
         void RadioButton::_OnDeselected()
         {
-            // For now do nothing extra
-            this->CheckBox::_OnDeselected();
+            // The updated selection button is written to the group first, so we should be able to tell if we need to block deselection.
+            // Radio buttons shouldn't deselect themselves.  The initial state should be the only time a radio button group should be without a selection.
+            if( this->ButtonGroup )
+                if( this->ButtonGroup->GetCurrentSelection() != this ) {
+                    this->CheckBox::_OnDeselected();
+                }
+            }else{
+                this->CheckBox::_OnDeselected();
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
