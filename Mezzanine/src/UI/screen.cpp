@@ -942,9 +942,9 @@ namespace Mezzanine
                 }
                 this->PrepareRenderSystem();
                 String CurrAtlas = this->PrimaryAtlas;
-                for( int i = 0 ; i < this->TextureByVertex.size() ; i++ )
+                for( Whole TexIndex = 0 ; TexIndex < this->TextureByVertex.size() ; ++TexIndex )
                 {
-                    String& CurrVertAtlas = this->TextureByVertex[i].Atlas;
+                    String& CurrVertAtlas = this->TextureByVertex[TexIndex].Atlas;
                     if(CurrVertAtlas.empty()) {
                         CurrVertAtlas = this->PrimaryAtlas;
                     }
@@ -953,8 +953,8 @@ namespace Mezzanine
                         Ogre::TexturePtr TextureUse = this->UIMan->GetAtlas(CurrAtlas)->_GetTexture();
                         this->SID->RenderSys->_setTexture(0,true,TextureUse);
                     }
-                    this->SID->RenderOp.vertexData->vertexCount = this->TextureByVertex[i].RenderEnd - TextureByVertex[i].RenderStart;
-                    this->SID->RenderOp.vertexData->vertexStart = this->TextureByVertex[i].RenderStart;
+                    this->SID->RenderOp.vertexData->vertexCount = this->TextureByVertex[TexIndex].RenderEnd - TextureByVertex[TexIndex].RenderStart;
+                    this->SID->RenderOp.vertexData->vertexStart = this->TextureByVertex[TexIndex].RenderStart;
                     this->SID->RenderSys->_render(this->SID->RenderOp);
                 }
             }
