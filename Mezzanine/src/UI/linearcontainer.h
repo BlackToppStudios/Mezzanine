@@ -76,13 +76,6 @@ namespace Mezzanine
             /// @internal
             /// @brief The alignment to be given to the sequence of children visible in this container.
             UI::LinearAlignment VisibleChildAlign;
-
-            /// @internal
-            /// @brief Updates a child that hasn't been selected to be visible.
-            /// @param OldSelfRect The previous dimensions of this quad prior to it's dimensions being updated.
-            /// @param NewSelfRect The updated and current dimensions of this quad.
-            /// @param InvisibleChild The child to be updated.
-            virtual void UpdateInvisibleChild(const Rect& OldSelfRect, const Rect& NewSelfRect, QuadRenderable* InvisibleChild);
         public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.

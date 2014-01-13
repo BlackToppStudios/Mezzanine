@@ -76,98 +76,189 @@ namespace Mezzanine
 
         void HorizontalContainer::UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect)
         {
-            // Get the actual work area dimensions, which should already be updated
-            const Rect ParentRect = this->ParentQuad->GetRect();
-            const Vector2 ActWorkArea = this->WorkAreaSize.CalculateActualDimensions( ParentRect.Size );
-
-            // Update the provider data if needed
-            this->XProvider->_NotifyContainerUpdated();
-
-            // Pre-check setup
-            const Real ActPadding = this->LinearPadding.CalculateActualDimension( ParentRect.Size.X );
-            Real XTarget = ( this->XProvider->GetCurrentXPage() - 1 ) * ActWorkArea.X;
-            Real CurrXPos = ActPadding * 0.5;
+            // Clear our old data.
             this->VisibleChildren.clear();
+            this->WorkAreaSize.SetIdentity();
 
-            // Find the first one to get rendered going through by ZOrder
-            ChildIterator ChildUpdateIt = this->ChildWidgets.begin();
-            while( ChildUpdateIt != this->ChildWidgets.end() && CurrXPos < XTarget )
+            // Setup any additional data for the next series of loops.
+            const Rect ParentRect = this->ParentQuad->GetRect();
+            const Real ActPadding = this->LinearPadding.CalculateActualDimension( ParentRect.Size.X );
+            const Real HalfPadding = ActPadding * 0.5;
+            std::vector< std::pair<Real,Vector2> > ChildTransformCache( this->ChildWidgets.size() );
+
+            // To determine the visible children we need to know our view position in the work area as determined by the page provider.
+            // To determine our page position we need to know our work area size, which can change when children have their dimensions updated.
+            // So we first need to update the size on every child.  We can update our work area at the same time.  After that we can update our page provider and determine screen positions.
+            Whole CurrIndex = 0;
+            this->WorkAreaSize.X = HalfPadding;
+            for( ChildIterator SizeIt = this->ChildWidgets.begin() ; SizeIt != this->ChildWidgets.end() ; ++SizeIt )
             {
-                this->UpdateInvisibleChild( OldSelfRect, NewSelfRect, (*ChildUpdateIt) );
-                // Increment our 'cursor' position
-                CurrXPos += ( (*ChildUpdateIt)->GetActualSize().X + ActPadding );
+                // Enforce our sizing rules.
+                if( this->ForcedSizingRules & SE_OnUpdate ) {
+                    (*SizeIt)->SetSizingPolicy( this->ChildSizing );
+                }
+
+                // Calculate the sizing with our utility strat, and offset position which we will use later.
+                // Since the constantly updating work area size is tracking the same information as a cursor would, we'll use it as our position cursor.
+                Vector2 ChildSize = this->LayoutStrat->HandleChildSizing(OldSelfRect,NewSelfRect,(*SizeIt));
+                /*// Clamp the perpendicular axis, at least until we get proper expanding widgets.
+                if( ChildSize.X > NewSelfRect.Size.X ) {
+                    ChildSize.X = NewSelfRect.Size.X;
+                }//*/
+                ChildTransformCache.at(CurrIndex).first = this->WorkAreaSize.X;
+                ChildTransformCache.at(CurrIndex).second = ChildSize;
+
+                // Update the cursor position and work area size.
+                this->WorkAreaSize.X += ( ChildSize.X + ActPadding );
+                if( this->WorkAreaSize.Y < ChildSize.Y )
+                    this->WorkAreaSize.Y = ChildSize.Y;
+
+                // Increment the index before we proceed.
+                ++CurrIndex;
+            }
+            // Trim off half a padding at the end since we were blinding applying full padding for the space between two children.
+            this->WorkAreaSize.X -= HalfPadding;
+
+            // Now our work area is updated, so we can update our provider and get our target work area position.
+            this->XProvider->_NotifyContainerUpdated();
+            Real XTarget = ( this->XProvider->GetCurrentXPage() - 1 ) * this->WorkAreaSize.X;
+
+            // Set up our data for the loop (and the loop itself) that will go over all the children that will be "above" the visible children.
+            // Reset the index since we are starting from the beginning again.
+            CurrIndex = 0;
+            ChildIterator ChildUpdateIt = this->ChildWidgets.begin();
+            while( ChildUpdateIt != this->ChildWidgets.end() && ChildTransformCache.at(CurrIndex).first < XTarget )
+            {
+                const Rect OldChildRect = (*ChildUpdateIt)->GetRect();
+                Rect NewChildRect;
+
+                // Assign a dummy position since this will be invisible
+                NewChildRect.Position = NewSelfRect.Position;
+                NewChildRect.Size = ChildTransformCache.at(CurrIndex).second;
+
+                // Perform the update
+                (*ChildUpdateIt)->UpdateDimensions(OldChildRect,NewChildRect);
+
+                // Hide the child
+                (*ChildUpdateIt)->Hide();
+
+                // Increment the iterator and index before we proceed.
+                ++CurrIndex;
                 ++ChildUpdateIt;
             }
 
-            // If we've reached the end of the children, there is nothing to render
+            // If we've reached the end of the children, there is nothing to render.
             if( ChildUpdateIt != this->ChildWidgets.end() )
             {
-                // Setup any additional data for the next series of loops
-                std::vector<Vector2> ChildSizeCache;
-                Real TotalLinearSize = 0;
-
-                // Also reset our cursor and target so we can better utilize the viewable space
-                CurrXPos = ActPadding * 0.5;
+                // If we're here, then we have some visible children.
+                // Set our new target and create a variable that will track the total size of just the visible children.
                 XTarget = NewSelfRect.Size.X;
+                Real TotalLinearSize = HalfPadding;
 
-                while( ChildUpdateIt != this->ChildWidgets.end() /*&& CurrXPos < XTarget */ )
+                // Before we start a loop that will be altering the index, we need to mark the index of the first visible child in our cache.  This will be used in the final processing step.
+                // Once saved, start looping over what will be the visible children.  We can (and should) use the index from the previous loop unaltered.
+                const Whole VisibleStartIndex = CurrIndex;
+                while( ChildUpdateIt != this->ChildWidgets.end() )
                 {
-                    // Due to having to abide by certain positioning rules, we can't determine the position until we have all the visible children
-                    // So just find the size, see if we're passed the mark and if not then save it for later
-                    Vector2 ChildSize = this->LayoutStrat->HandleChildSizing( OldSelfRect, NewSelfRect, (*ChildUpdateIt) );
+                    Vector2 ChildSize = ChildTransformCache.at(CurrIndex).second;
                     // See if our child can fit
-                    if( CurrXPos + ChildSize.X < XTarget ) {
-                        // Clamp the perpendicular axis, at least until we get proper expanding widgets
-                        if( ChildSize.Y > NewSelfRect.Size.Y ) {
-                            ChildSize.Y = NewSelfRect.Size.Y;
-                        }
-                        ChildSizeCache.push_back( ChildSize );
+                    if( TotalLinearSize + ChildSize.X < XTarget ) {
                         this->VisibleChildren.push_back( (*ChildUpdateIt) );
-                        CurrXPos += ( ChildSize.X + ActPadding );
                         TotalLinearSize += ( ChildSize.X + ActPadding );
+                        // Increment the index before we proceed.
+                        ++CurrIndex;
                     }else{
+                        // Increment the index before we proceed.
+                        ++CurrIndex;
                         break;
                     }
                 }
 
-                // Set the remaining children (if any) in the corner with the rest
+                // Any remaining children will be invisible, so put them in the corner with the rest.
                 while( ChildUpdateIt != this->ChildWidgets.end() )
                 {
-                    this->UpdateInvisibleChild( OldSelfRect, NewSelfRect, (*ChildUpdateIt) );
+                    const Rect OldChildRect = (*ChildUpdateIt)->GetRect();
+                    Rect NewChildRect;
+
+                    // Assign a dummy position since this will be invisible
+                    NewChildRect.Position = NewSelfRect.Position;
+                    NewChildRect.Size = ChildTransformCache.at(CurrIndex).second;
+
+                    // Perform the update
+                    (*ChildUpdateIt)->UpdateDimensions(OldChildRect,NewChildRect);
+
+                    // Hide the child
+                    (*ChildUpdateIt)->Hide();
+
+                    // Increment the iterator and index before we proceed.
+                    ++CurrIndex;
                     ++ChildUpdateIt;
                 }
 
-                // By now all our children have been processed, just have to focus on the last couple steps for visible children
-                // Start by doing our alignment stuff, and trim off one increment of ActPadding since we were blindly applying it earlier
-                TotalLinearSize -= ActPadding;
+                // Create the cursor which will be used for visible child placement.
+                Real CurrXPos = 0;
+                // By now all our children have been processed, just have to focus on the last couple steps for visible children.  Start by doing our alignment stuff.
                 switch( this->VisibleChildAlign )
                 {
-                    case UI::LA_TopLeft:      CurrXPos = ActPadding * 0.5;
+                    case UI::LA_TopLeft:      CurrXPos = HalfPadding;
                     case UI::LA_Center:       CurrXPos = ( NewSelfRect.Position.X + ( NewSelfRect.Size.X * 0.5 ) ) - ( TotalLinearSize * 0.5 );
-                    case UI::LA_BottomRight:  CurrXPos = ( NewSelfRect.Position.X + NewSelfRect.Size.X ) - ( TotalLinearSize + ActPadding * 0.5);
+                    case UI::LA_BottomRight:  CurrXPos = ( NewSelfRect.Position.X + NewSelfRect.Size.X ) - ( TotalLinearSize + HalfPadding );
                 }
 
-                for( Whole X = 0 ; X < this->VisibleChildren.size() ; ++X )
+                // Finally, we're at the final processing stage.  We have our visible children and enough data to determine their positions, along with their saved sizes from earlier.
+                for( Whole VisIndex = 0 ; VisIndex < this->VisibleChildren.size() ; ++VisIndex )
                 {
+                    Widget* VisChild = this->VisibleChildren.at(VisIndex);
                     // Setup child transform data
-                    const Rect OldChildRect = this->VisibleChildren.at(X)->GetRect();
+                    const Rect OldChildRect = VisChild->GetRect();
                     Rect NewChildRect;
                     // Set the Size
-                    NewChildRect.Size = ChildSizeCache.at(X);
+                    NewChildRect.Size = ChildTransformCache.at(VisibleStartIndex + VisIndex).second;
                     // Set the Position
                     NewChildRect.Position.X = CurrXPos;
-                    NewChildRect.Position.Y = this->LayoutStrat->HandleChildVerticalPositioning( OldSelfRect, NewSelfRect, NewChildRect.Size, this->VisibleChildren.at(X) );
+                    NewChildRect.Position.Y = this->LayoutStrat->HandleChildHorizontalPositioning( OldSelfRect, NewSelfRect, NewChildRect.Size, VisChild );
                     // Perform the update
-                    this->VisibleChildren.at(X)->UpdateDimensions(OldChildRect,NewChildRect);
+                    VisChild->UpdateDimensions(OldChildRect,NewChildRect);
                     // Increment the cursor
                     CurrXPos += ( NewChildRect.Size.X + ActPadding );
                 }
-                ChildSizeCache.clear();
+                ChildTransformCache.clear();
             }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
+
+        void HorizontalContainer::UpdateWorkAreaSize()
+        {
+            this->WorkAreaSize.SetIdentity();
+            const Real ActPadding = this->LinearPadding.CalculateActualDimension( this->ParentQuad ? this->ParentQuad->GetActualSize().X : 0 );
+            const Real HalfPadding = ActPadding * 0.5;
+
+            for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
+            {
+                Vector2 ChildSize = (*ChildIt)->GetActualSize();
+                this->WorkAreaSize.X += ( ChildSize.X + HalfPadding );
+                if( this->WorkAreaSize.Y < ChildSize.Y )
+                    this->WorkAreaSize.Y = ChildSize.Y;
+            }
+            this->WorkAreaSize.X += HalfPadding;
+        }
+
+        void HorizontalContainer::QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boolean Adding)
+        {
+            const Vector2 ActChildSize = ChildSize.CalculateActualDimensions( this->ActDims.Size );
+            const Real ActPadding = this->LinearPadding.CalculateActualDimension( this->ParentQuad ? this->ParentQuad->GetActualSize().X : 0 );
+            const Real HalfPadding = ActPadding * 0.5;
+
+            if( Adding ) {
+                this->WorkAreaSize.X += ( ActChildSize.X + HalfPadding );
+                if( this->WorkAreaSize.Y < ActChildSize.Y )
+                    this->WorkAreaSize.Y = ActChildSize.Y;
+            }else{
+                this->WorkAreaSize.X -= ( ActChildSize.X + HalfPadding );
+            }
+        }
 
         const String& HorizontalContainer::GetTypeName() const
             { return HorizontalContainer::TypeName; }
