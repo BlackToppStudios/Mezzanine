@@ -508,6 +508,9 @@ namespace Mezzanine
             // MenuEntry
             FactIt = this->WidgetFactories.find( MenuEntry::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new MenuEntryFactory() );
+            // ListBox
+            FactIt = this->WidgetFactories.find( ListBox::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new ListBoxFactory() );
 
             // HorizontalContainer
             FactIt = this->WidgetFactories.find( HorizontalContainer::TypeName );
@@ -683,6 +686,20 @@ namespace Mezzanine
             MenuEntry* NewEntry = static_cast<MenuEntryFactory*>( this->GetWidgetFactoryExcept( MenuEntry::TypeName ) )->CreateMenuEntry( Name, RendRect, this );
             this->CheckAndInsertExcept( NewEntry );
             return NewEntry;
+        }
+
+        ListBox* Screen::CreateListBox(const String& Name, const UI::ScrollbarStyle Style)
+        {
+            ListBox* NewList = static_cast<ListBoxFactory*>( this->GetWidgetFactoryExcept( ListBox::TypeName ) )->CreateListBox( Name, Style, this );
+            this->CheckAndInsertExcept( NewList );
+            return NewList;
+        }
+
+        ListBox* Screen::CreateListBox(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
+        {
+            ListBox* NewList = static_cast<ListBoxFactory*>( this->GetWidgetFactoryExcept( ListBox::TypeName ) )->CreateListBox( Name, RendRect, Style, this );
+            this->CheckAndInsertExcept( NewList );
+            return NewList;
         }
 
         HorizontalContainer* Screen::CreateHorizontalContainer(const String& RendName)

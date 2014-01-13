@@ -427,6 +427,17 @@ namespace Mezzanine
             /// @param RendRect The rect describing this MenuEntry's transform relative to it's parent.
             /// @return Returns a pointer to the created MenuEntry.
             virtual MenuEntry* CreateMenuEntry(const String& Name, const UnifiedRect& RendRect);
+            /// @brief Creates a ListBox.
+            /// @param Name The name to be given to this ListBox.
+            /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
+            /// @return Returns a pointer to the created ListBox.
+            virtual ListBox* CreateListBox(const String& Name, const UI::ScrollbarStyle Style);
+            /// @brief Creates a ListBox.
+            /// @param Name The name to be given to this ListBox.
+            /// @param RendRect The rect describing this ListBox's transform relative to it's parent.
+            /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
+            /// @return Returns a pointer to the created ListBox.
+            virtual ListBox* CreateListBox(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style);
 
             /// @brief Creates a widget container aligned on the X axis.
             /// @param RendName The name to be given to this renderable.

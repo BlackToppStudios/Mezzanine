@@ -185,7 +185,8 @@ namespace Mezzanine
             ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
 
             // Set the size explicitly to what is needed for the text, plus a 1 pixel padding on either side.
-            NewItem->SetUnifiedSize(UnifiedVec2(1.0,0.0,0.0,ItemLayer->GetTotalHeight() + 2));
+            UnifiedVec2 NewItemSize(1.0,0.0,0.0,ItemLayer->GetTotalHeight() + 2);
+            NewItem->SetUnifiedSize(NewItemSize);
 
             NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
             NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
@@ -204,7 +205,8 @@ namespace Mezzanine
             ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
 
             // Set the size explicitly to what is needed for the text, plus a 1 pixel padding on either side.
-            NewItem->SetUnifiedSize(UnifiedVec2(1.0,0.0,0.0,ItemLayer->GetTotalHeight() + 2));
+            UnifiedVec2 NewItemSize(1.0,0.0,0.0,ItemLayer->GetTotalHeight() + 2);
+            NewItem->SetUnifiedSize(NewItemSize);
 
             NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
             NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
@@ -308,6 +310,55 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // MenuEntryFactory Methods
+
+        String ListBoxFactory::GetWidgetTypeName() const
+            { return ListBox::TypeName; }
+
+        ListBox* ListBoxFactory::CreateListBox(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent)
+            { return new ListBox(RendName,Style,Parent); }
+
+        ListBox* ListBoxFactory::CreateListBox(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent)
+            { return new ListBox(RendName,RendRect,Style,Parent); }
+
+        ListBox* ListBoxFactory::CreateListBox(const XML::Node& XMLNode, Screen* Parent)
+            { return new ListBox(XMLNode,Parent); }
+
+        Widget* ListBoxFactory::CreateWidget(Screen* Parent)
+            { return new ListBox(Parent); }
+
+        Widget* ListBoxFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+        {
+            UI::ScrollbarStyle Style = UI::SB_NoButtons;
+
+            NameValuePairMap::const_iterator ParamIt;
+            ParamIt = Params.find("ScrollbarStyle");
+            if( ParamIt != Params.end() )
+                Style = static_cast<UI::ScrollbarStyle>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
+
+            return this->CreateListBox(RendName,Parent);
+        }
+
+        Widget* ListBoxFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+        {
+            UI::ScrollbarStyle Style = UI::SB_NoButtons;
+
+            NameValuePairMap::const_iterator ParamIt;
+            ParamIt = Params.find("ScrollbarStyle");
+            if( ParamIt != Params.end() )
+                Style = static_cast<UI::ScrollbarStyle>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
+
+            return this->CreateListBox(RendName,RendRect,Parent);
+        }
+
+        Widget* ListBoxFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateListBox(XMLNode,Parent); }
+
+        void ListBoxFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<ListBox*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 
