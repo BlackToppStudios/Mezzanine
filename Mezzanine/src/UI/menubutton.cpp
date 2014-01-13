@@ -152,6 +152,24 @@ namespace Mezzanine
             { return MenuButton::TypeName; }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+        void MenuButton::_OnActivate()
+        {
+            this->Button::_OnActivate();
+            // Currently this needs nothing, may change
+        }
+
+        void MenuButton::_OnDeactivate()
+        {
+            this->Button::_OnDeactivate();
+
+            if( this->IsHovered() && this->BoundMenu ) {
+                this->BoundMenu->_NotifyButtonSelected(this);
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
         void MenuButton::_SetBoundMenu(MenuEntry* ToBeBound)

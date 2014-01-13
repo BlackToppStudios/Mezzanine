@@ -93,6 +93,14 @@ namespace Mezzanine
             static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Internal Event Methods
+
+            /// @copydoc Button::_OnActivate()
+            virtual void _OnActivate();
+            /// @copydoc Button::_OnDeactivate()
+            virtual void _OnDeactivate();
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
             /// @internal
