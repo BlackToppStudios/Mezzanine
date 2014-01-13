@@ -321,7 +321,7 @@ namespace Mezzanine
         {
             // The updated selection button is written to the group first, so we should be able to tell if we need to block deselection.
             // Radio buttons shouldn't deselect themselves.  The initial state should be the only time a radio button group should be without a selection.
-            if( this->ButtonGroup )
+            if( this->ButtonGroup ) {
                 if( this->ButtonGroup->GetCurrentSelection() != this ) {
                     this->CheckBox::_OnDeselected();
                 }
