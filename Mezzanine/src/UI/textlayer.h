@@ -146,8 +146,8 @@ namespace Mezzanine
             /// @brief Flag indicating the scaling for the layer has been altered.
             Boolean ScalingChanged;
 
-            /// @copydoc SimpleRenderer::RedrawImpl(bool Force)
-            virtual void RedrawImpl(bool Force);
+            /// @copydoc SimpleRenderer::RedrawImpl(Boolean Force)
+            virtual void RedrawImpl(Boolean Force);
             /// @internal
             /// @brief Recalculates the offset for every text line in this layer.
             virtual void RecalculateOffsets();
@@ -183,11 +183,11 @@ namespace Mezzanine
             /// @note Passing in NULL will be ignored.
             /// @param Parser A pointer to the MarkupParser to be used by this TextLayer.
             /// @return Returns true if the new MarkupParser was successfully set, false otherwise.
-            virtual bool SetMarkupParser(MarkupParser* Parser);
+            virtual Boolean SetMarkupParser(MarkupParser* Parser);
             /// @brief Sets the MarkupParser to be used by this TextLayer via it's registered name.
             /// @param ParserName The name of the registered parser to retrieve and set for this TextLayer.
             /// @return Returns true if the new MarkupParser was successfully set, false otherwise.
-            virtual bool SetMarkupParser(const String& ParserName);
+            virtual Boolean SetMarkupParser(const String& ParserName);
             /// @brief Gets the MarkupParser being used by this TextLayer.
             /// @return Returns a pointer to the MarkupParser currently being used by this TextLayer.
             virtual MarkupParser* GetMarkupParser() const;
@@ -209,13 +209,13 @@ namespace Mezzanine
 
             /// @brief Gets the index of the character at the specified offset position.
             /// @param Offset The offset position of the character to get the index of.
-            /// @return Returns a CharIndexPair where the first value is a bool which will be false if
+            /// @return Returns a CharIndexPair where the first value is a Boolean which will be false if
             /// the position is invalid for whatever reason.  The second value will be in the index.  If
             /// the second value is -1 then the position is to the right of the last character.
             virtual CharIndexPair GetIndexAtOffset(const Vector2& Offset);
             /// @brief Gets the offset position of the character at the provided index.
             /// @param Index The index of the character position to retrieve.
-            /// @return Returns a CharOffsetPair where the first value is a bool which will be false if the
+            /// @return Returns a CharOffsetPair where the first value is a Boolean which will be false if the
             /// index is invalid for any reason, and the second value is the offset position of the
             /// character at the specified index if the first value is true.
             virtual CharOffsetPair GetOffsetAtIndex(const Integer Index);
@@ -341,10 +341,10 @@ namespace Mezzanine
             /// @brief Enables (or disables) the cursor for use in this layer.
             /// @note The default state for the Text Cursor is disabled.
             /// @param Enable True to enable the cursor and make it available for manipulation/rendering, false to disable it.
-            virtual void SetCursorEnabled(bool Enable);
+            virtual void SetCursorEnabled(Boolean Enable);
             /// @brief Gets whether or not the Text Cursor is enabled.
             /// @return Returns true if the cursor is being rendered, false otherwise.
-            virtual bool GetCursorEnabled() const;
+            virtual Boolean GetCursorEnabled() const;
             /// @brief Gets the TextCursor in use by this layer.
             /// @return Returns a pointer to this layers TextCursor, or NULL if it is disabled.
             virtual TextCursor* GetCursor() const;
@@ -360,8 +360,8 @@ namespace Mezzanine
             /// @return Returns a pointer to the TextLine at the requested offset, or NULL if none exists.
             virtual TextLine* GetTextLineAtOffset(const Real& Offset);
             /// @brief Gets the number of TextLines this layer contains.
-            /// @return Returns a UInt32 representing the number of lines of text this layer has.
-            virtual UInt32 GetNumTextLines() const;
+            /// @return Returns a Whole representing the number of lines of text this layer has.
+            virtual Whole GetNumTextLines() const;
 
             /// @brief Populates text lines in this layer with parsed characters.
             virtual void PopulateTextLines();

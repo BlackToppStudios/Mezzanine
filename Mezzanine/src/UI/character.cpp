@@ -204,13 +204,11 @@ namespace Mezzanine
             }
         }
 
-        const String& Character::GetAtlasName() const
+        String Character::GetAtlasName() const
         {
-            if( this->IsGlyph() ) {
-                return this->CharGlyph->GetAtlasName();
-            }else if( this->IsSprite() ) {
-                return this->CharSprite->GetAtlasName();
-            }
+            if( this->IsGlyph() ) return this->CharGlyph->GetAtlasName();
+            else if( this->IsSprite() ) return this->CharSprite->GetAtlasName();
+            else return String();
         }
 
         Vector2 Character::GetAtlasWhitePixel() const

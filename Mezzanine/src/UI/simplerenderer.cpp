@@ -139,12 +139,12 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        bool SimpleRenderer::_IsDirty()
+        Boolean SimpleRenderer::_IsDirty()
         {
             return this->Dirty;
         }
 
-        void SimpleRenderer::_Redraw(bool Force)
+        void SimpleRenderer::_Redraw(Boolean Force)
         {
             if( this->Dirty || Force ) {
                 this->RenderVertices.clear();

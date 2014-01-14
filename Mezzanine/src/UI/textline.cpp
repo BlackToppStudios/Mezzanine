@@ -144,8 +144,7 @@ namespace Mezzanine
 
         Real TextLine::GetOffsetAtIndex(const Integer& Index) const
         {
-            if( Index < 0 || Index > this->Characters.size() )
-            {
+            if( Index < 0 || static_cast<Whole>(Index) > this->Characters.size() ) {
                 ConstCharacterIterator Last = --(this->Characters.end());
                 return (*Last)->GetLengthOffset() + (*Last)->GetCharacterSize().X;
             }else{
@@ -164,24 +163,26 @@ namespace Mezzanine
 
         Real TextLine::GetLeftMostCursorPosition() const
         {
-            Real MaxWidth = GetMaxWidth();
-            switch(this->Alignment)
+            Real MaxWidth = this->GetMaxWidth();
+            switch( this->Alignment )
             {
                 case UI::LA_TopLeft:      return 0;                                      break;
                 case UI::LA_BottomRight:  return MaxWidth - CurrLength;                  break;
                 case UI::LA_Center:       return (MaxWidth * 0.5) - (CurrLength * 0.5);  break;
             }
+            return 0;
         }
 
         Real TextLine::GetRightMostCursorPosition() const
         {
-            Real MaxWidth = GetMaxWidth();
-            switch(this->Alignment)
+            Real MaxWidth = this->GetMaxWidth();
+            switch( this->Alignment )
             {
                 case UI::LA_TopLeft:      return CurrLength;                             break;
                 case UI::LA_BottomRight:  return MaxWidth;                               break;
                 case UI::LA_Center:       return (MaxWidth * 0.5) + (CurrLength * 0.5);  break;
             }
+            return MaxWidth;
         }
 
         Real TextLine::GetClosestCursorPosition(const Real& Position)

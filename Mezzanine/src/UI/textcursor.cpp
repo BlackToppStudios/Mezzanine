@@ -88,7 +88,7 @@ namespace Mezzanine
         Rect TextCursor::GetCursorRect() const
         {
             Rect Ret;
-            if( this->IndexPosition < 0 || this->IndexPosition >= Layer->GetNumCharacters() ) {
+            if( this->IndexPosition < 0 || static_cast<Whole>( this->IndexPosition ) >= Layer->GetNumCharacters() ) {
                 TextLayer::TextLineIterator Last = --(Layer->EndTextLine());
 
                 Ret.Position.Y = (*Last)->GetPositionOffset();
@@ -99,7 +99,7 @@ namespace Mezzanine
                 Integer IndexCount = 0;
 
                 TextLayer::TextLineIterator LineIt = Layer->BeginTextLine();
-                while( LineIt != Layer->EndTextLine() && IndexCount + (*LineIt)->GetNumCharacters() < this->IndexPosition )
+                while( LineIt != Layer->EndTextLine() && IndexCount + static_cast<Integer>( (*LineIt)->GetNumCharacters() ) < this->IndexPosition )
                 {
                     IndexCount += (*LineIt)->GetNumCharacters();
                     ++LineIt;
@@ -149,7 +149,7 @@ namespace Mezzanine
         {
             UInt32 NumChars = this->Layer->GetNumCharacters();
             if( NumChars > 0 ) {
-                if( this->IndexPosition < 0 || this->IndexPosition > this->Layer->GetNumCharacters() ) {
+                if( this->IndexPosition < 0 || static_cast<Whole>( this->IndexPosition ) > this->Layer->GetNumCharacters() ) {
                     this->Layer->RemoveCharacterAtIndex( NumChars - 1 );
                 }else{
                     this->Layer->RemoveCharacterAtIndex(--(this->IndexPosition));
@@ -159,9 +159,9 @@ namespace Mezzanine
 
         void TextCursor::RemoveRightCharacter()
         {
-            UInt32 NumChars = this->Layer->GetNumCharacters();
+            Whole NumChars = this->Layer->GetNumCharacters();
             if( NumChars > 0 ) {
-                if( this->IndexPosition < 0 || this->IndexPosition > NumChars ) {
+                if( this->IndexPosition < 0 || static_cast<Whole>( this->IndexPosition ) > NumChars ) {
                     // Nothing to be done, may fill out other logic later.
                 }else{
                     this->Layer->RemoveCharacterAtIndex(this->IndexPosition);

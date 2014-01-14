@@ -168,7 +168,7 @@ namespace Mezzanine
             this->DestroyAllTextLines();
         }
 
-        void TextLayer::RedrawImpl(bool Force)
+        void TextLayer::RedrawImpl(Boolean Force)
         {
             // Update our text
             if(Force || this->ScalingChanged)
@@ -309,7 +309,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Parser Methods
 
-        bool TextLayer::SetMarkupParser(MarkupParser* Parser)
+        Boolean TextLayer::SetMarkupParser(MarkupParser* Parser)
         {
             if( Parser != NULL ) {
                 this->MUParser = Parser;
@@ -319,7 +319,7 @@ namespace Mezzanine
             }
         }
 
-        bool TextLayer::SetMarkupParser(const String& ParserName)
+        Boolean TextLayer::SetMarkupParser(const String& ParserName)
         {
             MarkupParser* Parser = Parent->GetScreen()->GetMarkupParser(ParserName);
             return this->SetMarkupParser(Parser);
@@ -523,7 +523,7 @@ namespace Mezzanine
         void TextLayer::Highlight(const Integer Index)
         {
             this->ClearHighlights();
-            if( Index < this->Characters.size() ) {
+            if( static_cast<Whole>(Index) < this->Characters.size() ) {
                 CharacterIterator ToHighlight = this->GetCharacterIteratorAtIndex(Index);
                 (*ToHighlight)->SetHighlighted(true);
 
@@ -536,7 +536,7 @@ namespace Mezzanine
         {
             this->ClearHighlights();
             CharacterIterator StartIterator = GetCharacterIteratorAtIndex(StartIndex);
-            CharacterIterator EndIterator = ( EndIndex + 1 >= this->Characters.size() ? this->Characters.end() : GetCharacterIteratorAtIndex(EndIndex + 1) );
+            CharacterIterator EndIterator = ( static_cast<Whole>(EndIndex + 1) >= this->Characters.size() ? this->Characters.end() : this->GetCharacterIteratorAtIndex(EndIndex + 1) );
 
             while( StartIterator != EndIterator )
             {
@@ -600,7 +600,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Cursor Methods
 
-        void TextLayer::SetCursorEnabled(bool Enable)
+        void TextLayer::SetCursorEnabled(Boolean Enable)
         {
             if( Enable == this->GetCursorEnabled() )
                 return;
@@ -616,7 +616,7 @@ namespace Mezzanine
             this->_MarkDirty();
         }
 
-        bool TextLayer::GetCursorEnabled() const
+        Boolean TextLayer::GetCursorEnabled() const
         {
             return ( this->Cursor != NULL );
         }
@@ -658,7 +658,7 @@ namespace Mezzanine
             return (*LineIt);
         }
 
-        UInt32 TextLayer::GetNumTextLines() const
+        Whole TextLayer::GetNumTextLines() const
         {
             return TextLines.size();
         }
@@ -763,7 +763,7 @@ namespace Mezzanine
 
         TextLayer::CharacterIterator TextLayer::GetCharacterIteratorAtIndex(const Integer Index)
         {
-            if( 0 > Index || Index >= this->Characters.size() ) {
+            if( 0 > Index || static_cast<Whole>(Index) >= this->Characters.size() ) {
                 return --(this->Characters.end());
             }else{
                 UInt32 Count = Index;
@@ -779,7 +779,7 @@ namespace Mezzanine
 
         TextLayer::ConstCharacterIterator TextLayer::GetCharacterIteratorAtIndex(const Integer Index) const
         {
-            if( 0 > Index || Index >= this->Characters.size() ) {
+            if( 0 > Index || static_cast<Whole>(Index) >= this->Characters.size() ) {
                 return --(this->Characters.end());
             }else{
                 UInt32 Count = Index;

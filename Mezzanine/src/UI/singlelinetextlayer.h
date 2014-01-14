@@ -57,7 +57,8 @@ namespace Mezzanine
         protected:
             /// @internal
             /// @brief The index at which this text layer will start rendering characters.
-            UInt32 StartIndex;
+            Integer StartIndex;
+
             /// @copydoc TextLayer::PopulateTextLinesImpl()
             virtual void PopulateTextLinesImpl();
             /// @copydoc TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)
@@ -103,10 +104,10 @@ namespace Mezzanine
 
             /// @brief Sets the index from the beginning at which characters will start to be rendered.
             /// @param Index The index of the character to start rendering at.
-            virtual void SetStartIndex(const UInt32& Index);
+            virtual void SetStartIndex(const Integer& Index);
             /// @brief Gets the set index for the character that's at the start of the characters being rendered.
-            /// @return Returns a UInt32 that is the index of the first character in the rendering sequence.
-            virtual UInt32 GetStartIndex() const;
+            /// @return Returns a Integer that is the index of the first character in the rendering sequence.
+            virtual Integer GetStartIndex() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization

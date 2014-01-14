@@ -225,7 +225,7 @@ namespace Mezzanine
         {
             CharOffsetPair Ret;
             Ret.first = true;
-            if( Index < 0 || Index >= this->Characters.size() ) {
+            if( Index < 0 || static_cast<Whole>( Index ) >= this->Characters.size() ) {
                 TextLineIterator Last = --this->TextLines.end();
                 Ret.second.Y = (*Last)->GetPositionOffset();
                 Ret.second.X = (*Last)->GetOffsetAtIndex(-1);
@@ -234,7 +234,7 @@ namespace Mezzanine
                 Integer IndexCount = 0;
 
                 TextLineIterator LineIt = this->TextLines.begin();
-                while( LineIt != this->TextLines.end() && IndexCount + (*LineIt)->GetNumCharacters() < Index )
+                while( LineIt != this->TextLines.end() && IndexCount + static_cast<Integer>( (*LineIt)->GetNumCharacters() ) < Index )
                 {
                     IndexCount += (*LineIt)->GetNumCharacters();
                     ++LineIt;

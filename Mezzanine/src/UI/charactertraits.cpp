@@ -71,15 +71,16 @@ namespace Mezzanine
         {
             this->CharFont = Other.CharFont;
             this->CharColour = Other.CharColour;
+            return *this;
         }
 
-        bool CharacterTraits::operator==(const CharacterTraits& Other) const
+        Boolean CharacterTraits::operator==(const CharacterTraits& Other) const
         {
             return ( this->CharFont == Other.CharFont &&
                      this->CharColour == Other.CharColour );
         }
 
-        bool CharacterTraits::operator!=(const CharacterTraits& Other) const
+        Boolean CharacterTraits::operator!=(const CharacterTraits& Other) const
         {
             return ( this->CharFont != Other.CharFont ||
                      this->CharColour != Other.CharColour );
