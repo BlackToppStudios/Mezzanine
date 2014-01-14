@@ -47,7 +47,6 @@
 
 namespace Mezzanine
 {
-
 } // /namespace Mezzanine
 
 #endif // Include guard

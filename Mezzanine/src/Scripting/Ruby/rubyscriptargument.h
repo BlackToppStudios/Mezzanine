@@ -115,7 +115,7 @@ namespace Mezzanine
 
                     /// @brief Get the Argument as a Bool
                     /// @return
-                    virtual Bool GetBool() const;
+                    virtual Boolean GetBool() const;
 
                     /// @brief Provide an overload point to change assignment that operators will use.
                     /// @param
@@ -194,7 +194,7 @@ namespace Mezzanine
             class MEZZ_LIB RubyBoolArgument : public RubyArgument
             {
                 public:
-                    RubyBoolArgument(Bool InitialValue = false);
+                    RubyBoolArgument(Boolean InitialValue = false);
 
                     /// @brief Virtual deconstructor
                     virtual ~RubyBoolArgument() {}

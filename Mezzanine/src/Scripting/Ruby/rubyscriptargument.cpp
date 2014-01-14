@@ -84,7 +84,7 @@ namespace Mezzanine
 
             }
 
-            Bool RubyArgument::GetBool() const
+            Boolean RubyArgument::GetBool() const
             {
 
             }
@@ -122,7 +122,7 @@ namespace Mezzanine
 
             }
 
-            RubyBoolArgument::RubyBoolArgument(Bool InitialValue)
+            RubyBoolArgument::RubyBoolArgument(Boolean InitialValue)
             {
 
             }

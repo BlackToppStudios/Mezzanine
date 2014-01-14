@@ -86,7 +86,31 @@ class interpolatortests : public UnitTestGroup
                 TEST_EQUAL_EPSILON(li.Interpolate(Points.begin(),Points.end(),0.1),Vector3(0.1,0.1,0.1),"Vector3LinearInterpolationTenth");
                 TEST_EQUAL_EPSILON(li.Interpolate(Points.begin(),Points.end(),0.5),Vector3(0.5,0.5,0.5),"Vector3LinearInterpolationHalfway");
                 TEST_EQUAL_EPSILON(li.Interpolate(Points.begin(),Points.end(),1.0),b,"Vector3LinearInterpolationEnd");
-             }
+            }
+
+            {
+                LinearInterpolator<Vector3> li;
+                String Expected("<LinearInterpolator Version=\"1\" InterpolatableType=\"Vector3\" />");
+
+                TestOutput << endl << "Attempting to stream a linear interpolator, expecting \"" << Expected << "\" and got: " << li << endl << endl;
+                StringStream Lout;
+                Lout << li;
+                String Got(Lout.str());
+
+                TEST(Got==Expected,"LinearInterpolator::operator<<");
+            }
+
+            {
+                BezierInterpolator<Vector3> Bi;
+                String Expected("<BezierInterpolator Version=\"1\" InterpolatableType=\"Vector3\" />");
+
+                TestOutput << endl << "Attempting to stream a BezierInterpolator interpolator, expecting \"" << Expected << "\" and got: " << Bi << endl << endl;
+                StringStream Bout;
+                Bout << Bi;
+                String Got(Bout.str());
+
+                TEST(Got==Expected,"BezierInterpolator::operator<<");
+            }
 
             {
                 LinearInterpolator<Integer> li;

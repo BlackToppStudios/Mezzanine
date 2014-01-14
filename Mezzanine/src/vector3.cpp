@@ -61,13 +61,6 @@
 
 namespace Mezzanine
 {
-
-    //remove this too
-    void PrintHello() // Function to call from Lua
-    {
-        std::cout << "Hello world! From PrintHello()" << std::endl;
-    }
-
     ///////////////////////////////////////////////////////////////////////////////
     // The Essentials
 
@@ -505,22 +498,26 @@ namespace Mezzanine
     void Vector3::ProtoSerialize(XML::Node& CurrentRoot) const
     {
         Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
-        VecNode.SetName(SerializableName());
 
-        Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
-        Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
-        Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
-        Mezzanine::XML::Attribute ZAttr = VecNode.AppendAttribute("Z");
-        if( VersionAttr && XAttr && YAttr && ZAttr )
+        if(VecNode)
         {
-            if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z))
+            Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+            Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
+            Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
+            Mezzanine::XML::Attribute ZAttr = VecNode.AppendAttribute("Z");
+            if( VersionAttr && XAttr && YAttr && ZAttr )
             {
-                return;
+                if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z))
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values", SerializableName(),true);
+                }
             }else{
-                SerializeError("Create XML Attribute Values", SerializableName(),true);
+                SerializeError("Create XML Attributes", SerializableName(),true);
             }
         }else{
-            SerializeError("Create XML Attributes", SerializableName(),true);
+            SerializeError("Create XML Serialization Node", SerializableName(),true);
         }
     }
 

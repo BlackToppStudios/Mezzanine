@@ -65,10 +65,6 @@ namespace Ogre
 
 namespace Mezzanine
 {
-
-    //remove this after testing
-    void PrintHello(); // Function to call from Lua
-
     class Quaternion;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Vector3
@@ -404,6 +400,7 @@ namespace Mezzanine
         bool IsZeroLength() const;
         /// @brief Gets the rotation needed to rotate this vector as an axis to another axis.
         /// @param Axis The target axis to rotate to.
+        /// @param FallBackAxis If the Dot produt of this and Axis are invalid FallBackAxis will be used instead otherwise, the rotation is calculated the hard way.
         /// @return Returns a Quaternion representing the needed rotation to the specified axis.
         Quaternion GetRotationToAxis(const Vector3& Axis, const Vector3& FallBackAxis = Vector3()) const;
 
@@ -452,6 +449,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
+        /// void DeSerializableClass::ProtoDeSerialize(const XML::Node&);
+        /// static String DeSerializableClass::SerializableName();
         /// @brief Convert this class to an XML::Node ready for serialization
         /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
         void ProtoSerialize(XML::Node& CurrentRoot) const;
