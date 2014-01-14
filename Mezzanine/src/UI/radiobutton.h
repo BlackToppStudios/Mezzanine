@@ -51,7 +51,7 @@ namespace Mezzanine
         /// @brief This is a class designed to facilitate operations across an entire group of RadioButtons.
         /// @details
         ///////////////////////////////////////
-        class RadioButtonGroup
+        class RadioButtonGroup : public EventPublisher
         {
         public:
             /// @brief Basic container type for RadioButton storage by this class.
@@ -60,6 +60,9 @@ namespace Mezzanine
             typedef RadioButtonContainer::iterator                  RadioButtonIterator;
             /// @brief Const Iterator type for RadioButton instances stored by this class.
             typedef RadioButtonContainer::const_iterator            ConstRadioButtonIterator;
+
+            /// @brief Event name for when the selection among radio buttons has changed.
+            static const String EventGroupButtonSelected;
         protected:
             /// @internal
             /// @brief A container storing all the RadioButtons belonging to this group.

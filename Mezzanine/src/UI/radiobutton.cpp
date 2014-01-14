@@ -54,11 +54,16 @@ namespace Mezzanine
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
+        // RadioButtonGroup Static Members
+
+        const String RadioButtonGroup::EventGroupButtonSelected = "GroupButtonSelected";
+
+        ///////////////////////////////////////////////////////////////////////////////
         // RadioButtonGroup Methods
 
         RadioButtonGroup::RadioButtonGroup() :
             CurrentSelection(NULL)
-            {  }
+            { this->AddEvent(RadioButtonGroup::EventGroupButtonSelected); }
 
         RadioButtonGroup::~RadioButtonGroup()
             {  }
@@ -126,8 +131,13 @@ namespace Mezzanine
 
         void RadioButtonGroup::_NotifyButtonSelected(RadioButton* Selected)
         {
-            this->CurrentSelection = Selected;
-            this->DeselectOtherButtons(Selected);
+            if( this->CurrentSelection != Selected ) {
+                this->CurrentSelection = Selected;
+                this->DeselectOtherButtons(Selected);
+
+                WidgetEventArguments Args(RadioButtonGroup::EventGroupButtonSelected,Selected->GetName());
+                this->FireEvent(Args);
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
