@@ -68,12 +68,12 @@ namespace Mezzanine
 
             HighlightStart(-1),
             HighlightEnd(-1),
+            MaxLineWidth(this->Parent->GetActualSize().X),
             AutoCharScaling(0.0),
 
             AutoCharScalingMode(TextLayer::SM_NoAutoScaling),
             HorizontalOrder(UI::TO_Left_To_Right), // Default to english
-            VerticalAlign(UI::LA_TopLeft),
-            ScalingChanged(false)
+            VerticalAlign(UI::LA_TopLeft)
         {
             // Set our colour defaults
             this->DefaultCharTraits.CharColour = ColourValue::White();
@@ -101,12 +101,12 @@ namespace Mezzanine
 
             HighlightStart(-1),
             HighlightEnd(-1),
+            MaxLineWidth(this->Parent->GetActualSize().X),
             AutoCharScaling(0.0),
 
             AutoCharScalingMode(TextLayer::SM_NoAutoScaling),
             HorizontalOrder(UI::TO_Left_To_Right), // Default to english
-            VerticalAlign(UI::LA_TopLeft),
-            ScalingChanged(false)
+            VerticalAlign(UI::LA_TopLeft)
         {
             // Set our colour defaults
             this->DefaultCharTraits.CharColour = ColourValue::White();
@@ -135,12 +135,12 @@ namespace Mezzanine
 
             HighlightStart(-1),
             HighlightEnd(-1),
+            MaxLineWidth(this->Parent->GetActualSize().X),
             AutoCharScaling(LineHeight),
 
             AutoCharScalingMode(TextLayer::SM_ScreenRelative),
             HorizontalOrder(UI::TO_Left_To_Right), // Default to english
-            VerticalAlign(UI::LA_TopLeft),
-            ScalingChanged(false)
+            VerticalAlign(UI::LA_TopLeft)
         {
             // Set our colour defaults
             this->DefaultCharTraits.CharColour = ColourValue::White();
@@ -171,12 +171,13 @@ namespace Mezzanine
         void TextLayer::RedrawImpl(Boolean Force)
         {
             // Update our text
-            if(Force || this->ScalingChanged)
+            Real MaxWidth = this->Parent->GetActualSize().X * this->Scale.X;
+            if( Force || MaxWidth != this->MaxLineWidth )
             {
                 // In general the only time this will be forced is on a resizing of the parent
                 // quad renderable.  So we must repopulate for the change of space.
-                this->PopulateTextLines();
-                this->ScalingChanged = false;
+                this->MaxLineWidth = MaxWidth;
+                this->PopulateTextLines( this->MaxLineWidth );
             }
 
             // Get the Texel Offsets
@@ -195,7 +196,7 @@ namespace Mezzanine
             TextLine* CurrLine = NULL;
 
             // Check if we need the active highlight colour
-            if( Renderable::RT_Widget == this->Parent->GetRenderableType() && (static_cast<Widget*>(this->Parent))->HasFocus() )
+            if( this->Parent->IsWidget() && (static_cast<Widget*>(this->Parent))->HasFocus() )
                 HighlightColour = ActiveHLColour;
 
             for( TextLineIterator LineIt = this->TextLines.begin() ; LineIt != this->TextLines.end() ; ++LineIt )
@@ -333,12 +334,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        void TextLayer::SetScale(const Vector2& Scaling)
-        {
-            this->RenderLayer::SetScale(Scaling);
-            this->ScalingChanged = true;
-        }
-
         Real TextLayer::GetTotalHeight() const
         {
             Real Ret = 0;
@@ -347,6 +342,11 @@ namespace Mezzanine
                 Ret += (*TextIt)->GetLineHeight();
             }
             return Ret;
+        }
+
+        Real TextLayer::GetMaxLineWidth() const
+        {
+            return this->MaxLineWidth;
         }
 
         Real TextLayer::GetDesiredLineHeight() const
@@ -400,7 +400,7 @@ namespace Mezzanine
 
             this->TextTokens = this->MUParser->Lex(Text);
             this->Characters = this->MUParser->ParseTextTokens(this->TextTokens,this->DefaultCharTraits,this);
-            this->PopulateTextLines();
+            this->PopulateTextLines( this->MaxLineWidth );
 
             this->_MarkDirty();
         }
@@ -425,9 +425,11 @@ namespace Mezzanine
 
         void TextLayer::SetManualTextScale(const Vector2& Scale)
         {
-            this->ManualCharScaling = Scale;
-            this->ScalingChanged = true;
-            this->_MarkDirty();
+            if( this->ManualCharScaling != Scale ) {
+                this->ManualCharScaling = Scale;
+                this->PopulateTextLines( this->MaxLineWidth );
+                this->_MarkDirty();
+            }
         }
 
         const Vector2& TextLayer::GetManualTextScale() const
@@ -440,7 +442,8 @@ namespace Mezzanine
             if( this->AutoCharScalingMode != Mode || this->AutoCharScaling != Scalar ) {
                 this->AutoCharScalingMode = Mode;
                 this->AutoCharScaling = Scalar;
-                this->ScalingChanged = true;
+                this->PopulateTextLines( this->MaxLineWidth );
+                this->_MarkDirty();
             }
         }
 
@@ -563,8 +566,8 @@ namespace Mezzanine
             if( this->HighlightStart == -1 || this->HighlightEnd == -1 )
                 return;
 
-            CharacterIterator StartIterator = GetCharacterIteratorAtIndex(this->HighlightStart);
-            CharacterIterator EndIterator = GetCharacterIteratorAtIndex(this->HighlightEnd + 1);
+            CharacterIterator StartIterator = this->GetCharacterIteratorAtIndex(this->HighlightStart);
+            CharacterIterator EndIterator = this->GetCharacterIteratorAtIndex(this->HighlightEnd + 1);
 
             while( StartIterator != EndIterator )
             {
@@ -586,7 +589,7 @@ namespace Mezzanine
 
             this->DestroyAllTextLines();
             this->CreateTextLine();
-            this->PopulateTextLines();
+            this->PopulateTextLines( this->MaxLineWidth );
 
             this->HorizontalOrder = Order;
             this->_MarkDirty();
@@ -660,13 +663,13 @@ namespace Mezzanine
 
         Whole TextLayer::GetNumTextLines() const
         {
-            return TextLines.size();
+            return this->TextLines.size();
         }
 
-        void TextLayer::PopulateTextLines()
+        void TextLayer::PopulateTextLines(const Real MaxWidth)
         {
             this->ClearAllTextLines();
-            this->PopulateTextLinesImpl();
+            this->PopulateTextLinesImpl(MaxWidth);
             this->RecalculateOffsets();
             this->_MarkDirty();
         }
@@ -686,7 +689,7 @@ namespace Mezzanine
             {
                 delete (*TLIt);
             }
-            TextLines.clear();
+            this->TextLines.clear();
             this->_MarkDirty();
         }
 
@@ -897,11 +900,11 @@ namespace Mezzanine
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
                 PropertiesNode.AppendAttribute("HighlightStart").SetValue(this->HighlightStart) &&
                 PropertiesNode.AppendAttribute("HighlightEnd").SetValue(this->HighlightEnd) &&
+                PropertiesNode.AppendAttribute("MaxLineWidth").SetValue(this->MaxLineWidth) &&
                 PropertiesNode.AppendAttribute("AutoCharScaling").SetValue(this->AutoCharScaling) &&
                 PropertiesNode.AppendAttribute("AutoCharScalingMode").SetValue(this->AutoCharScalingMode) &&
                 PropertiesNode.AppendAttribute("HorizontalOrder").SetValue(this->HorizontalOrder) &&
                 PropertiesNode.AppendAttribute("VerticalAlign").SetValue(this->VerticalAlign) &&
-                PropertiesNode.AppendAttribute("ScalingChanged").SetValue(this->ScalingChanged) &&
                 PropertiesNode.AppendAttribute("ParserName").SetValue( ( this->MUParser ? this->MUParser->GetName() : "" ) ) &&
                 PropertiesNode.AppendAttribute("RawText").SetValue(this->GetText()) )
             {
@@ -974,6 +977,10 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->HighlightEnd = CurrAttrib.AsInt();
 
+                    CurrAttrib = PropertiesNode.GetAttribute("MaxLineWidth");
+                    if( !CurrAttrib.Empty() )
+                        this->MaxLineWidth = CurrAttrib.AsReal();
+
                     CurrAttrib = PropertiesNode.GetAttribute("AutoCharScaling");
                     if( !CurrAttrib.Empty() )
                         this->AutoCharScaling = CurrAttrib.AsReal();
@@ -989,10 +996,6 @@ namespace Mezzanine
                     CurrAttrib = PropertiesNode.GetAttribute("VerticalAlign");
                     if( !CurrAttrib.Empty() )
                         this->VerticalAlign = static_cast<UI::LinearAlignment>( CurrAttrib.AsWhole() );
-
-                    CurrAttrib = PropertiesNode.GetAttribute("ScalingChanged");
-                    if( !CurrAttrib.Empty() )
-                        this->ScalingChanged = StringTools::ConvertToBool( CurrAttrib.AsString() );
 
                     XML::Node DefaultCharTraitsNode = PropertiesNode.GetChild("DefaultCharTraits").GetFirstChild();
                     if( !DefaultCharTraitsNode.Empty() )

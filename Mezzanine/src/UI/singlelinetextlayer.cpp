@@ -71,29 +71,29 @@ namespace Mezzanine
         SingleLineTextLayer::~SingleLineTextLayer()
             {  }
 
-        void SingleLineTextLayer::PopulateTextLinesImpl()
+        void SingleLineTextLayer::PopulateTextLinesImpl(const Real MaxWidth)
         {
             Integer Count = 0;
-            TextLine* Caption = GetLine();
+            TextLine* Caption = this->GetLine();
             if( HorizontalOrder == UI::TO_Left_To_Right )
             {
-                for( CharacterIterator CharIt = Characters.begin() ; CharIt != Characters.end() ; ++CharIt )
+                for( CharacterIterator CharIt = this->Characters.begin() ; CharIt != this->Characters.end() ; ++CharIt )
                 {
                     if( Count < StartIndex )
                         continue;
 
-                    if( !Caption->AppendCharacter( (*CharIt) ) )
+                    if( !Caption->AppendCharacter((*CharIt),MaxWidth) )
                         break;
                 }
             }
             else if( HorizontalOrder == UI::TO_Right_To_Left )
             {
-                for( ReverseCharacterIterator CharIt = Characters.rbegin() ; CharIt != Characters.rend() ; ++CharIt )
+                for( ReverseCharacterIterator CharIt = this->Characters.rbegin() ; CharIt != this->Characters.rend() ; ++CharIt )
                 {
                     if( Count < StartIndex )
                         continue;
 
-                    if( !Caption->AppendCharacter( (*CharIt) ) )
+                    if( !Caption->AppendCharacter((*CharIt),MaxWidth) )
                         break;
                 }
             }

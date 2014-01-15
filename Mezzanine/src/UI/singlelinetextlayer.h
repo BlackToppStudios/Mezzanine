@@ -59,8 +59,8 @@ namespace Mezzanine
             /// @brief The index at which this text layer will start rendering characters.
             Integer StartIndex;
 
-            /// @copydoc TextLayer::PopulateTextLinesImpl()
-            virtual void PopulateTextLinesImpl();
+            /// @copydoc TextLayer::PopulateTextLinesImpl(const Real)
+            virtual void PopulateTextLinesImpl(const Real MaxWidth);
             /// @copydoc TextLayer::GetCharacterIndexAtPositionImpl(const Vector2& Offset)
             virtual CharIndexPair GetIndexAtOffsetImpl(const Vector2& Offset);
             /// @copydoc TextLayer::GetOffsetAtIndex(const Integer Index)

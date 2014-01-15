@@ -94,10 +94,8 @@ namespace Mezzanine
             UI::LinearAlignment Alignment;
 
             /// @internal
-            /// @brief Gets the maximum width this text line can be.
-            Real GetMaxWidth() const;
-            /// @internal
             /// @brief Gets the character before the last character.
+            /// @return Returns a pointer to the requested character.
             virtual Character* GetSecondFromLastCharacter() const = 0;
             /// @internal
             /// @brief Recalculates the offset for every character in this line.
@@ -180,37 +178,44 @@ namespace Mezzanine
 
             /// @brief Adds a Character to the end of this TextLine.
             /// @param ToAdd The Character to be added.
+            /// @param MaxWidth The maximum line width to assume for all text lines that are to be populated.
             /// @return Returns true if the character was successfully added, false otherwise.
-            Boolean AppendCharacter(Character* ToAdd);
+            Boolean AppendCharacter(Character* ToAdd, const Real MaxWidth);
             /// @brief Adds a series of Characters to the end of this TextLine.
             /// @param ToAdd A container storing all Characters to attempt to add.
+            /// @param MaxWidth The maximum line width to assume for all text lines that are to be populated.
             /// @return Returns true if all characters were successfully added, false otherwise.
-            Boolean AppendCharacters(CharacterContainer& ToAdd);
+            Boolean AppendCharacters(CharacterContainer& ToAdd, const Real MaxWidth);
             /// @brief Adds a series of Characters to the end of this TextLine.
             /// @param Pair An std::pair containing iterators to both the first and last Characters in a sequence to attempt to append.
+            /// @param MaxWidth The maximum line width to assume for all text lines that are to be populated.
             /// @return Returns true if all characters were successfully added, false otherwise.
-            Boolean AppendCharacters(CharacterIteratorPair Pair);
+            Boolean AppendCharacters(CharacterIteratorPair Pair, const Real MaxWidth);
             /// @brief Adds a series of Characters to the end of this TextLine.
             /// @param First Iterator to the first Character in the series to be added.
             /// @param Last Iterator to one passed the last Character in the series to be added.
+            /// @param MaxWidth The maximum line width to assume for all text lines that are to be populated.
             /// @return Returns true if all characters were successfully added, false otherwise.
-            virtual Boolean AppendCharacters(CharacterIterator First, CharacterIterator Last) = 0;
+            virtual Boolean AppendCharacters(CharacterIterator First, CharacterIterator Last, const Real MaxWidth) = 0;
             /// @brief Adds as many Characters in a range as will fit to this TextLine.
             /// @param ToAdd A container storing all Characters to attempt to add.
+            /// @param MaxWidth The maximum line width to assume for all text lines that are to be populated.
             /// @return Returns a CharacterIterator to the first character that was not added in the range.  This can be the left-most non-added Character when added to
             /// Left-To-Right TextLines, or the right-most non-added Character in Right-To-Left TextLines.
-            CharacterIterator AppendFittingCharacters(CharacterContainer& ToAdd);
+            CharacterIterator AppendFittingCharacters(CharacterContainer& ToAdd, const Real MaxWidth);
             /// @brief Adds as many Characters in a range as will fit to this TextLine.
             /// @param Pair An std::pair containing iterators to both the first and last Characters in a sequence to attempt to append.
+            /// @param MaxWidth The maximum line width to assume for all text lines that are to be populated.
             /// @return Returns a CharacterIterator to the first character that was not added in the range.  This can be the left-most non-added Character when added to
             /// Left-To-Right TextLines, or the right-most non-added Character in Right-To-Left TextLines.
-            CharacterIterator AppendFittingCharacters(CharacterIteratorPair Pair);
+            CharacterIterator AppendFittingCharacters(CharacterIteratorPair Pair, const Real MaxWidth);
             /// @brief Adds as many Characters in a range as will fit to this TextLine.
             /// @param First Iterator to the first Character in the series to be added.
             /// @param Last Iterator to one passed the last Character in the series to be added.
+            /// @param MaxWidth The maximum line width to assume for all text lines that are to be populated.
             /// @return Returns a CharacterIterator to the first character that was not added in the range.  This can be the left-most non-added Character when added to
             /// Left-To-Right TextLines, or the right-most non-added Character in Right-To-Left TextLines.
-            virtual CharacterIterator AppendFittingCharacters(CharacterIterator First, CharacterIterator Last) = 0;
+            virtual CharacterIterator AppendFittingCharacters(CharacterIterator First, CharacterIterator Last, const Real MaxWidth) = 0;
 
             /// @brief Gets the character in this textline at the specified index.
             /// @param Index The index of the character to retrieve.
@@ -292,10 +297,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Character Management
 
-            /// @copydoc TextLine::AppendCharacters(CharacterIterator First, CharacterIterator Last)
-            Boolean AppendCharacters(CharacterIterator First, CharacterIterator Last);
-            /// @copydoc TextLine::AppendCharactersAppendFittingCharacters(CharacterIterator First, CharacterIterator Last)
-            CharacterIterator AppendFittingCharacters(CharacterIterator First, CharacterIterator Last);
+            /// @copydoc TextLine::AppendCharacters(CharacterIterator, CharacterIterator, const Real)
+            Boolean AppendCharacters(CharacterIterator First, CharacterIterator Last, const Real MaxWidth);
+            /// @copydoc TextLine::AppendCharactersAppendFittingCharacters(CharacterIterator, CharacterIterator, const Real)
+            CharacterIterator AppendFittingCharacters(CharacterIterator First, CharacterIterator Last, const Real MaxWidth);
 
             /// @copydoc TextLine::GetFirstCharacter()
             CharacterIterator GetFirstCharacter();
@@ -340,10 +345,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Character Management
 
-            /// @copydoc TextLine::AppendCharacters(CharacterIterator First, CharacterIterator Last)
-            Boolean AppendCharacters(CharacterIterator First, CharacterIterator Last);
-            /// @copydoc TextLine::AppendCharactersAppendFittingCharacters(CharacterIterator First, CharacterIterator Last)
-            CharacterIterator AppendFittingCharacters(CharacterIterator First, CharacterIterator Last);
+            /// @copydoc TextLine::AppendCharacters(CharacterIterator, CharacterIterator, const Real)
+            Boolean AppendCharacters(CharacterIterator First, CharacterIterator Last, const Real MaxWidth);
+            /// @copydoc TextLine::AppendCharactersAppendFittingCharacters(CharacterIterator, CharacterIterator, const Real)
+            CharacterIterator AppendFittingCharacters(CharacterIterator First, CharacterIterator Last, const Real MaxWidth);
 
             /// @copydoc TextLine::GetFirstCharacter()
             CharacterIterator GetFirstCharacter();
