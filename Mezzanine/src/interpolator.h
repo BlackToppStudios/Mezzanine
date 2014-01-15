@@ -182,6 +182,9 @@ namespace Mezzanine
                 return GetInterpolatedFromMultiple(Begin, End, Location);
             }
 
+            /// @brief Append a node for with enough information to deserialize to the passed node
+            /// @note Very little data is actually serialized, most of it is type information that is not easily deserialized.
+            /// @param CurrentRoot A node to act as the parent for the serialized version of this one
             void ProtoSerialize(XML::Node& CurrentRoot) const
             {
                 Mezzanine::XML::Node LinearInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
@@ -205,6 +208,8 @@ namespace Mezzanine
                 }
             }
 
+            /// @brief This does not create or change the object it deserializes, but it does verify type info.
+            /// @param The node to read serialized data from.
             void ProtoDeSerialize(const XML::Node& OneNode)
             {
                 if ( String(OneNode.Name())==String(SerializableName()) )
@@ -221,6 +226,8 @@ namespace Mezzanine
 
             }
 
+            /// @brief get the name of this class for serialization purposes
+            /// @return A String containing "BezierInterpolator"
             static String SerializableName()
                 { return String("LinearInterpolator"); }
     };
@@ -300,7 +307,7 @@ namespace Mezzanine
             }
 
             /// @brief This does not create or change the object it deserializes, but it does verify type info.
-            /// @oaram The node to read serialized data from.
+            /// @param The node to read serialized data from.
             void ProtoDeSerialize(const XML::Node& OneNode)
             {
                 if ( String(OneNode.Name())==String(SerializableName()) )
@@ -318,7 +325,7 @@ namespace Mezzanine
             }
 
             /// @brief get the name of this class for serialization purposes
-            /// @return A String containing"BezierInterpolator"
+            /// @return A String containing "BezierInterpolator"
             static String SerializableName()
                 { return String("BezierInterpolator"); }
     };
