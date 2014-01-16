@@ -322,7 +322,7 @@ namespace Mezzanine
             {
                 RenderLayer::RenderLayerType LayerType = (*LayerIt)->GetLayerType();
                 if( LayerType == RenderLayer::RLT_MultiLineText || LayerType == RenderLayer::RLT_SingleLineText ) {
-                    static_cast<TextLayer*>( *LayerIt )->PopulateTextLines(MaxWidth);
+                    static_cast<TextLayer*>( *LayerIt )->PopulateTextLines(MaxWidth * (*LayerIt)->GetScale().X);
                 }
             }
         }
