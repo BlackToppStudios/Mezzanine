@@ -312,6 +312,11 @@ namespace Mezzanine
             /// @brief Gets whether or not this QuadRenderable is a direct child of it's screen.
             /// @return Returns true if the screen is this QuadRenderable's parent, false otherwise.
             virtual Boolean IsChildOfScreen() const;
+
+            /// @brief Populates all text lines in all text layers owned by this quad.
+            /// @note Populating text lines can be a slow process, use with care.
+            /// @param MaxWidth The maximum line width to assume for all text lines that are to be populated.
+            virtual void PopulateTextLinesInLayers(const Real MaxWidth);
             /// @brief Gets the height needed for this quadrenderable to be able to completely display text in it's child text layers.
             /// @return Returns a Real representing the pixel height this quad needs to be to display it's largest batch of text among it's text layers.
             virtual Real GetIdealHeightForText() const;

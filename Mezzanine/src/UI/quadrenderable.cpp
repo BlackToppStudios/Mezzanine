@@ -316,6 +316,17 @@ namespace Mezzanine
         Boolean QuadRenderable::IsChildOfScreen() const
             { return (this->ParentScreen == this->ParentQuad); }
 
+        void QuadRenderable::PopulateTextLinesInLayers(const Real MaxWidth)
+        {
+            for( RenderLayerIterator LayerIt = this->RenderLayers.begin() ; LayerIt != this->RenderLayers.end() ; ++LayerIt )
+            {
+                RenderLayer::RenderLayerType LayerType = (*LayerIt)->GetLayerType();
+                if( LayerType == RenderLayer::RLT_MultiLineText || LayerType == RenderLayer::RLT_SingleLineText ) {
+                    static_cast<TextLayer*>( *LayerIt )->PopulateTextLines(MaxWidth);
+                }
+            }
+        }
+
         Real QuadRenderable::GetIdealHeightForText() const
         {
             Real Ret = 0;

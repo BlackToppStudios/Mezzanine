@@ -676,7 +676,7 @@ namespace Mezzanine
 
         void TextLayer::ClearAllTextLines()
         {
-            for( TextLineIterator TLIt = TextLines.begin() ; TLIt != TextLines.end() ; ++TLIt )
+            for( TextLineIterator TLIt = this->TextLines.begin() ; TLIt != this->TextLines.end() ; ++TLIt )
             {
                 (*TLIt)->RemoveAllCharacters();
             }
@@ -685,7 +685,7 @@ namespace Mezzanine
 
         void TextLayer::DestroyAllTextLines()
         {
-            for( TextLineIterator TLIt = TextLines.begin() ; TLIt != TextLines.end() ; ++TLIt )
+            for( TextLineIterator TLIt = this->TextLines.begin() ; TLIt != this->TextLines.end() ; ++TLIt )
             {
                 delete (*TLIt);
             }

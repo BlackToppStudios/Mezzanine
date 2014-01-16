@@ -158,9 +158,13 @@ namespace Mezzanine
             Vector2 OldSize = Child->GetActualSize();
             const SizingInfo& ChildSizing = Child->GetSizingPolicy();
 
-            // Quick check for a configuration that is just not doable
+            // Check for configurations that are just not doable
             if( ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis && ChildSizing.VerticalRules == UI::SR_Match_Other_Axis )
-                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Both axes of a SizingPolicy cannot attempt to match the other axis."); }
+                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Both axes of a SizingPolicy cannot attempt to match the other axis.  This creates a circular dependency."); }
+            if( ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis && ChildSizing.VerticalRules == UI::SR_Size_For_Text )
+                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot attempt to match vertical axis when it is sizing for text.  This creates a circular dependency."); }
+            if( ChildSizing.HorizontalRules == UI::SR_Size_For_Text )
+                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot size for text on the horizontal axis."); }
 
             // In general, process the vertical dimension first.  This is because vertical resizing is likely to be less extreme compared to horizontal
             // in the case of transitioning from widescreen to standard viewing formats.  In general, horizontal is more likely to be the dependent axis.
@@ -194,10 +198,13 @@ namespace Mezzanine
             // Horizontal second
             switch(ChildSizing.HorizontalRules)
             {
-                case UI::SR_Unified_Dims:        return ChildSizing.USize.X.CalculateActualDimension(NewSelfRect.Size.X);  break;
-                case UI::SR_Match_Other_Axis:    return PrevAxisResult;                                                    break;
+                case UI::SR_Unified_Dims:
+                { return ChildSizing.USize.X.CalculateActualDimension(NewSelfRect.Size.X);                         break; }
+                case UI::SR_Match_Other_Axis:
+                { return PrevAxisResult;                                                                           break; }
                 case UI::SR_Fixed_Size:
-                default:                         return OldSize.X;                                                         break;
+                default:
+                { return OldSize.X;                                                                                break; }
             }
         }
 
@@ -208,10 +215,15 @@ namespace Mezzanine
             // Vertical first
             switch(ChildSizing.VerticalRules)
             {
-                case UI::SR_Unified_Dims:        return ChildSizing.USize.Y.CalculateActualDimension(NewSelfRect.Size.Y);  break;
-                case UI::SR_Match_Other_Axis:    return PrevAxisResult;                                                    break;
+                case UI::SR_Unified_Dims:
+                { return ChildSizing.USize.Y.CalculateActualDimension(NewSelfRect.Size.Y);                         break; }
+                case UI::SR_Match_Other_Axis:
+                { return PrevAxisResult;                                                                           break; }
+                case UI::SR_Size_For_Text:
+                { Child->PopulateTextLinesInLayers(PrevAxisResult);  return Child->GetIdealHeightForText() + 2.0;  break; }
                 case UI::SR_Fixed_Size:
-                default:                         return OldSize.Y;                                                         break;
+                default:
+                { return OldSize.Y;                                                                                break; }
             }
         }
 

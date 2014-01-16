@@ -121,12 +121,14 @@ namespace Mezzanine
             this->ListScroll->SetAutoHide(true);
             this->ListContainer = this->ParentScreen->CreateVerticalContainer(this->Name+".Container");
             this->ListContainer->SetYProvider( this->ListScroll );
-            this->ListContainer->SetChildSizeEnforcement(LinearContainer::SE_None);
 
             this->ListScroll->SetUnifiedPosition(UnifiedVec2(0.92,0.0,0.0,0.0));
             this->ListScroll->SetUnifiedSize(UnifiedVec2(0.08,1.0,0.0,0.0));
             this->ListContainer->SetUnifiedPosition(UnifiedVec2(0.0,0.0,0.0,0.0));
             this->ListContainer->SetUnifiedSize(UnifiedVec2(0.92,1.0,0.0,0.0));
+
+            SizingInfo ListItemSizing(UI::SR_Unified_Dims,UI::SR_Size_For_Text,UnifiedVec2(1.0,0.0,0.0,0.0));
+            this->ListContainer->SetChildSizing(ListItemSizing,LinearContainer::SE_OnAdd);
         }
 
         ListBox::ListItem* ListBox::CreateListItem(const String& ItemName)
@@ -184,10 +186,6 @@ namespace Mezzanine
             ItemLayer->SetText( Text );
             ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
 
-            // Set the size explicitly to what is needed for the text, plus a 1 pixel padding on either side.
-            UnifiedVec2 NewItemSize(1.0,0.0,0.0,ItemLayer->GetTotalHeight() + 2);
-            NewItem->SetUnifiedSize(NewItemSize);
-
             NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
             NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
             return NewItem;
@@ -203,10 +201,6 @@ namespace Mezzanine
             ItemLayer->SetDefaultFont( this->ListItemFont );
             ItemLayer->SetText( Text );
             ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
-
-            // Set the size explicitly to what is needed for the text, plus a 1 pixel padding on either side.
-            UnifiedVec2 NewItemSize(1.0,0.0,0.0,ItemLayer->GetTotalHeight() + 2);
-            NewItem->SetUnifiedSize(NewItemSize);
 
             NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
             NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");

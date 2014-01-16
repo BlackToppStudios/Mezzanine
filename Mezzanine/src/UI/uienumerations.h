@@ -158,10 +158,11 @@ namespace Mezzanine
         /// @brief Used by UI container classes to determine their resize behavior on a given axis when the container is resized.
         enum SizingRules
         {
-            SR_Unified_Dims               = 0, ///< Resizing will use the provided unified dimensions with no further alterations.
+            SR_Unified_Dims               = 0, ///< Resizing will use the provided unified dimensions with no further alterations.  This is the default for most QuadRenderables.
             SR_Match_Other_Axis           = 1, ///< The calculated value for the perpendicular axis will be used as the final value for this axis.
             SR_Fill_Available             = 2, ///< Unified dimensions are ignored and will instead us all available space.
-            SR_Fixed_Size                 = 3  ///< No resizing of any kind will take place.
+            SR_Size_For_Text              = 3, ///< Sizes the container so all text in layers will be visible.  Only valid for Vertical sizing(exception will be thrown).
+            SR_Fixed_Size                 = 4  ///< No resizing of any kind will take place.
         };
 
         /// @enum SpinnerStyle
