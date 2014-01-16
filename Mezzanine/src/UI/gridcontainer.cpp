@@ -81,6 +81,7 @@ namespace Mezzanine
 
         UnifiedVec2 GridContainer::GetCellClientArea() const
         {
+            return UnifiedVec2();
             //return CellSize - ( CellPadding * 2 );
         }
 

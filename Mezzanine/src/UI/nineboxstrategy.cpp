@@ -143,6 +143,8 @@ namespace Mezzanine
                 case NBP_BottomLeft:    return Rect(Vector2(0,ThirdSize.Y * 2),ThirdSize);                break;
                 case NBP_BottomCenter:  return Rect(Vector2(ThirdSize.X * 1,ThirdSize.Y * 2),ThirdSize);  break;
                 case NBP_BottomRight:   return Rect(Vector2(ThirdSize.X * 2,ThirdSize.Y * 2),ThirdSize);  break;
+                default:
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid Partition ID used to calculate a Partition Rect.");  break; }
             }
         }
 
@@ -176,6 +178,7 @@ namespace Mezzanine
                     }
                 }
             }
+            return NULL;
         }
     }//UI
 }//Mezzanine

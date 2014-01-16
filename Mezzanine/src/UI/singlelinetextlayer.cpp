@@ -71,29 +71,29 @@ namespace Mezzanine
         SingleLineTextLayer::~SingleLineTextLayer()
             {  }
 
-        void SingleLineTextLayer::PopulateTextLinesImpl()
+        void SingleLineTextLayer::PopulateTextLinesImpl(const Real MaxWidth)
         {
-            UInt32 Count = 0;
-            TextLine* Caption = GetLine();
+            Integer Count = 0;
+            TextLine* Caption = this->GetLine();
             if( HorizontalOrder == UI::TO_Left_To_Right )
             {
-                for( CharacterIterator CharIt = Characters.begin() ; CharIt != Characters.end() ; ++CharIt )
+                for( CharacterIterator CharIt = this->Characters.begin() ; CharIt != this->Characters.end() ; ++CharIt )
                 {
                     if( Count < StartIndex )
                         continue;
 
-                    if( !Caption->AppendCharacter( (*CharIt) ) )
+                    if( !Caption->AppendCharacter((*CharIt),MaxWidth) )
                         break;
                 }
             }
             else if( HorizontalOrder == UI::TO_Right_To_Left )
             {
-                for( ReverseCharacterIterator CharIt = Characters.rbegin() ; CharIt != Characters.rend() ; ++CharIt )
+                for( ReverseCharacterIterator CharIt = this->Characters.rbegin() ; CharIt != this->Characters.rend() ; ++CharIt )
                 {
                     if( Count < StartIndex )
                         continue;
 
-                    if( !Caption->AppendCharacter( (*CharIt) ) )
+                    if( !Caption->AppendCharacter((*CharIt),MaxWidth) )
                         break;
                 }
             }
@@ -113,7 +113,7 @@ namespace Mezzanine
         {
             TextLine* Line = this->GetLine();
 
-            if( Index < this->StartIndex || Index > this->StartIndex + Line->GetNumCharacters() )
+            if( Index < this->StartIndex || static_cast<Whole>( Index ) > this->StartIndex + Line->GetNumCharacters() )
                 return CharOffsetPair(false,Vector2(0,0));
 
             return CharOffsetPair(true,Vector2(Line->GetOffsetAtIndex(Index - this->StartIndex),Line->GetPositionOffset()));
@@ -147,12 +147,12 @@ namespace Mezzanine
             // Previous line will mark dirty for us
         }
 
-        void SingleLineTextLayer::SetStartIndex(const UInt32& Index)
+        void SingleLineTextLayer::SetStartIndex(const Integer& Index)
         {
             this->StartIndex = Index;
         }
 
-        UInt32 SingleLineTextLayer::GetStartIndex() const
+        Integer SingleLineTextLayer::GetStartIndex() const
         {
             return this->StartIndex;
         }

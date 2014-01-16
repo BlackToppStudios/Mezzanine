@@ -90,7 +90,7 @@ class interpolatortests : public UnitTestGroup
 
             {
                 LinearInterpolator<Vector3> li;
-                String Expected("<LinearInterpolator Version=\"1\" />");
+                String Expected("<LinearInterpolator Version=\"1\" InterpolatableType=\"Vector3\" />");
 
                 TestOutput << endl << "Attempting to stream a linear interpolator, expecting \"" << Expected << "\" and got: " << li << endl << endl;
                 StringStream Lout;
@@ -102,7 +102,7 @@ class interpolatortests : public UnitTestGroup
 
             {
                 BezierInterpolator<Vector3> Bi;
-                String Expected("<BezierInterpolator Version=\"1\" />");
+                String Expected("<BezierInterpolator Version=\"1\" InterpolatableType=\"Vector3\" />");
 
                 TestOutput << endl << "Attempting to stream a BezierInterpolator interpolator, expecting \"" << Expected << "\" and got: " << Bi << endl << endl;
                 StringStream Bout;

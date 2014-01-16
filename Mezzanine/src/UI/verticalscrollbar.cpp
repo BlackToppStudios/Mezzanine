@@ -339,8 +339,11 @@ namespace Mezzanine
 
         Real VerticalScrollbar::GetMaxYPages() const
         {
-            Real Ret = MathTools::Ceil( this->Container->GetActualWorkAreaSize().Y / this->Container->GetActualSize().Y );
-            return ( Ret > 0 ? Ret : 1 );
+            if( this->Container != NULL ) {
+                Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().Y / this->Container->GetActualSize().Y );
+                return ( Ret > 0 ? Ret : 1 );
+            }
+            return 1;
         }
 
         Real VerticalScrollbar::GetCurrentXPage() const
@@ -402,7 +405,7 @@ namespace Mezzanine
             if( this->Container != NULL ) {
                 // Update the scroller size
                 Real YView = this->Container->GetActualSize().Y;
-                Real YWork = this->Container->GetActualWorkAreaSize().Y;
+                Real YWork = this->Container->GetWorkAreaSize().Y;
                 if( YWork > 0 ) {
                     this->SetScrollerSize( YView / YWork );
                 }else{

@@ -67,13 +67,12 @@ namespace Mezzanine
         MultiLineTextLayer::~MultiLineTextLayer()
             {  }
 
-        void MultiLineTextLayer::PopulateTextLinesImpl()
+        void MultiLineTextLayer::PopulateTextLinesImpl(const Real MaxWidth)
         {
-            UInt32 LineIndex = 0;
-            bool NewLineDetected = false;
+            Whole LineIndex = 0;
+            Boolean NewLineDetected = false;
             TextLine* CurrLine = this->GetOrCreateTextLine(LineIndex);
-            if( HorizontalOrder == UI::TO_Left_To_Right )
-            {
+            if( HorizontalOrder == UI::TO_Left_To_Right ) {
                 CharacterIterator Start = this->Characters.begin();
                 CharacterIterator End = this->Characters.begin();
                 const CharacterIterator CharEnd = this->Characters.end();
@@ -83,8 +82,7 @@ namespace Mezzanine
                         // Find the next non-whitespace character
                         while( End != CharEnd )
                         {
-                            if( (*End)->IsNewLine() )
-                            {
+                            if( (*End)->IsNewLine() ) {
                                 NewLineDetected = true;
                                 ++End;
                                 break;
@@ -96,9 +94,8 @@ namespace Mezzanine
                         }
 
                         // We got our range, append what we can
-                        CharacterIterator Result = CurrLine->AppendFittingCharacters(Start,End);
-                        if( Result != End || NewLineDetected )
-                        {
+                        CharacterIterator Result = CurrLine->AppendFittingCharacters(Start,End,MaxWidth);
+                        if( Result != End || NewLineDetected ) {
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
                         }
                     }else{
@@ -112,13 +109,12 @@ namespace Mezzanine
                         }
 
                         // We got our range, so lets try to insert it
-                        if( !CurrLine->AppendCharacters(Start,End) )
+                        if( !CurrLine->AppendCharacters(Start,End,MaxWidth) )
                         {
                             // If we failed to insert, get the next line and try again
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
-                            if( !CurrLine->AppendCharacters(Start,End) )
-                            {
-                                End = CurrLine->AppendFittingCharacters(Start,End);
+                            if( !CurrLine->AppendCharacters(Start,End,MaxWidth) ) {
+                                End = CurrLine->AppendFittingCharacters(Start,End,MaxWidth);
                             }
                         }
                     }
@@ -138,8 +134,7 @@ namespace Mezzanine
                         // Find the next non-whitespace character
                         while( Start != CharEnd )
                         {
-                            if( (*Start)->IsNewLine() )
-                            {
+                            if( (*Start)->IsNewLine() ) {
                                 NewLineDetected = true;
                                 ++Start;
                                 break;
@@ -156,9 +151,8 @@ namespace Mezzanine
                         ++AppendPair.second;
 
                         // We got our range, append what we can
-                        CharacterIterator Result = CurrLine->AppendFittingCharacters(AppendPair);
-                        if( Result != Start || NewLineDetected )
-                        {
+                        CharacterIterator Result = CurrLine->AppendFittingCharacters(AppendPair,MaxWidth);
+                        if( Result != Start || NewLineDetected ) {
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
                         }
                     }else{
@@ -177,13 +171,11 @@ namespace Mezzanine
                         ++AppendPair.second;
 
                         // We got our range, so lets try to insert it
-                        if( !CurrLine->AppendCharacters(AppendPair) )
-                        {
+                        if( !CurrLine->AppendCharacters(AppendPair,MaxWidth) ) {
                             // If we failed to insert, get the next line and try again
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
-                            if( !CurrLine->AppendCharacters(AppendPair) )
-                            {
-                                Start = CurrLine->AppendFittingCharacters(AppendPair);
+                            if( !CurrLine->AppendCharacters(AppendPair,MaxWidth) ) {
+                                Start = CurrLine->AppendFittingCharacters(AppendPair,MaxWidth);
                             }
                         }
                     }
@@ -192,8 +184,7 @@ namespace Mezzanine
             }
 
             // Clean up unused text lines
-            if( this->TextLines.size() > 1 && this->TextLines.size() >= LineIndex )
-            {
+            if( this->TextLines.size() > 1 && this->TextLines.size() >= LineIndex ) {
                 TextLines.erase(this->TextLines.begin() + LineIndex, this->TextLines.end());
             }
         }
@@ -225,7 +216,7 @@ namespace Mezzanine
         {
             CharOffsetPair Ret;
             Ret.first = true;
-            if( Index < 0 || Index >= this->Characters.size() ) {
+            if( Index < 0 || static_cast<Whole>( Index ) >= this->Characters.size() ) {
                 TextLineIterator Last = --this->TextLines.end();
                 Ret.second.Y = (*Last)->GetPositionOffset();
                 Ret.second.X = (*Last)->GetOffsetAtIndex(-1);
@@ -234,7 +225,7 @@ namespace Mezzanine
                 Integer IndexCount = 0;
 
                 TextLineIterator LineIt = this->TextLines.begin();
-                while( LineIt != this->TextLines.end() && IndexCount + (*LineIt)->GetNumCharacters() < Index )
+                while( LineIt != this->TextLines.end() && IndexCount + static_cast<Integer>( (*LineIt)->GetNumCharacters() ) < Index )
                 {
                     IndexCount += (*LineIt)->GetNumCharacters();
                     ++LineIt;

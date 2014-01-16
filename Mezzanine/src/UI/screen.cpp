@@ -508,6 +508,9 @@ namespace Mezzanine
             // MenuEntry
             FactIt = this->WidgetFactories.find( MenuEntry::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new MenuEntryFactory() );
+            // ListBox
+            FactIt = this->WidgetFactories.find( ListBox::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new ListBoxFactory() );
 
             // HorizontalContainer
             FactIt = this->WidgetFactories.find( HorizontalContainer::TypeName );
@@ -561,12 +564,13 @@ namespace Mezzanine
         {
             for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
             {
+                (*ChildIt)->_NotifyParenthood(NULL);
                 WidgetFactoryIterator FactIt = this->WidgetFactories.find( (*ChildIt)->GetTypeName() );
                 if( FactIt != this->WidgetFactories.end() ) {
                     (*FactIt).second->DestroyWidget( (*ChildIt) );
                 }
             }
-            this->RemoveAllChildren();
+            this->ChildWidgets.clear();
             this->Widgets.clear();
         }
 
@@ -683,6 +687,20 @@ namespace Mezzanine
             MenuEntry* NewEntry = static_cast<MenuEntryFactory*>( this->GetWidgetFactoryExcept( MenuEntry::TypeName ) )->CreateMenuEntry( Name, RendRect, this );
             this->CheckAndInsertExcept( NewEntry );
             return NewEntry;
+        }
+
+        ListBox* Screen::CreateListBox(const String& Name, const UI::ScrollbarStyle Style)
+        {
+            ListBox* NewList = static_cast<ListBoxFactory*>( this->GetWidgetFactoryExcept( ListBox::TypeName ) )->CreateListBox( Name, Style, this );
+            this->CheckAndInsertExcept( NewList );
+            return NewList;
+        }
+
+        ListBox* Screen::CreateListBox(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
+        {
+            ListBox* NewList = static_cast<ListBoxFactory*>( this->GetWidgetFactoryExcept( ListBox::TypeName ) )->CreateListBox( Name, RendRect, Style, this );
+            this->CheckAndInsertExcept( NewList );
+            return NewList;
         }
 
         HorizontalContainer* Screen::CreateHorizontalContainer(const String& RendName)
@@ -925,9 +943,9 @@ namespace Mezzanine
                 }
                 this->PrepareRenderSystem();
                 String CurrAtlas = this->PrimaryAtlas;
-                for( int i = 0 ; i < this->TextureByVertex.size() ; i++ )
+                for( Whole TexIndex = 0 ; TexIndex < this->TextureByVertex.size() ; ++TexIndex )
                 {
-                    String& CurrVertAtlas = this->TextureByVertex[i].Atlas;
+                    String& CurrVertAtlas = this->TextureByVertex[TexIndex].Atlas;
                     if(CurrVertAtlas.empty()) {
                         CurrVertAtlas = this->PrimaryAtlas;
                     }
@@ -936,8 +954,8 @@ namespace Mezzanine
                         Ogre::TexturePtr TextureUse = this->UIMan->GetAtlas(CurrAtlas)->_GetTexture();
                         this->SID->RenderSys->_setTexture(0,true,TextureUse);
                     }
-                    this->SID->RenderOp.vertexData->vertexCount = this->TextureByVertex[i].RenderEnd - TextureByVertex[i].RenderStart;
-                    this->SID->RenderOp.vertexData->vertexStart = this->TextureByVertex[i].RenderStart;
+                    this->SID->RenderOp.vertexData->vertexCount = this->TextureByVertex[TexIndex].RenderEnd - TextureByVertex[TexIndex].RenderStart;
+                    this->SID->RenderOp.vertexData->vertexStart = this->TextureByVertex[TexIndex].RenderStart;
                     this->SID->RenderSys->_render(this->SID->RenderOp);
                 }
             }

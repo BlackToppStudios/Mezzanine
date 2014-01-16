@@ -69,23 +69,6 @@ namespace Mezzanine
         LinearContainer::~LinearContainer()
             {  }
 
-        void LinearContainer::UpdateInvisibleChild(const Rect& OldSelfRect, const Rect& NewSelfRect, QuadRenderable* InvisibleChild)
-        {
-            // Setup our rects for update
-            const Rect OldChildRect = InvisibleChild->GetRect();
-            Rect NewChildRect;
-            // Assign a dummy position since these will be invisible
-            NewChildRect.Position = NewSelfRect.Position;
-            // Calculate the sizing with our utility strat
-            if( this->ForcedSizingRules & SE_OnUpdate ) {
-                InvisibleChild->SetSizingPolicy( this->ChildSizing );
-            }
-            NewChildRect.Size = this->LayoutStrat->HandleChildSizing(OldSelfRect,NewSelfRect,InvisibleChild);
-            // Perform the update
-            InvisibleChild->UpdateDimensions(OldChildRect,NewChildRect);
-            InvisibleChild->Hide();
-        }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 

@@ -121,12 +121,14 @@ namespace Mezzanine
             this->ListScroll->SetAutoHide(true);
             this->ListContainer = this->ParentScreen->CreateVerticalContainer(this->Name+".Container");
             this->ListContainer->SetYProvider( this->ListScroll );
-            this->ListContainer->SetChildSizeEnforcement(LinearContainer::SE_None);
 
             this->ListScroll->SetUnifiedPosition(UnifiedVec2(0.92,0.0,0.0,0.0));
             this->ListScroll->SetUnifiedSize(UnifiedVec2(0.08,1.0,0.0,0.0));
             this->ListContainer->SetUnifiedPosition(UnifiedVec2(0.0,0.0,0.0,0.0));
             this->ListContainer->SetUnifiedSize(UnifiedVec2(0.92,1.0,0.0,0.0));
+
+            SizingInfo ListItemSizing(UI::SR_Unified_Dims,UI::SR_Size_For_Text,UnifiedVec2(1.0,0.0,0.0,0.0));
+            this->ListContainer->SetChildSizing(ListItemSizing,LinearContainer::SE_OnAdd);
         }
 
         ListBox::ListItem* ListBox::CreateListItem(const String& ItemName)
@@ -184,9 +186,6 @@ namespace Mezzanine
             ItemLayer->SetText( Text );
             ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
 
-            // Set the size explicitly to what is needed for the text, plus a 1 pixel padding on either side.
-            NewItem->SetUnifiedSize(UnifiedVec2(1.0,0.0,0.0,ItemLayer->GetTotalHeight() + 2));
-
             NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
             NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
             return NewItem;
@@ -202,9 +201,6 @@ namespace Mezzanine
             ItemLayer->SetDefaultFont( this->ListItemFont );
             ItemLayer->SetText( Text );
             ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
-
-            // Set the size explicitly to what is needed for the text, plus a 1 pixel padding on either side.
-            NewItem->SetUnifiedSize(UnifiedVec2(1.0,0.0,0.0,ItemLayer->GetTotalHeight() + 2));
 
             NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
             NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
@@ -308,6 +304,55 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // MenuEntryFactory Methods
+
+        String ListBoxFactory::GetWidgetTypeName() const
+            { return ListBox::TypeName; }
+
+        ListBox* ListBoxFactory::CreateListBox(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent)
+            { return new ListBox(RendName,Style,Parent); }
+
+        ListBox* ListBoxFactory::CreateListBox(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent)
+            { return new ListBox(RendName,RendRect,Style,Parent); }
+
+        ListBox* ListBoxFactory::CreateListBox(const XML::Node& XMLNode, Screen* Parent)
+            { return new ListBox(XMLNode,Parent); }
+
+        Widget* ListBoxFactory::CreateWidget(Screen* Parent)
+            { return new ListBox(Parent); }
+
+        Widget* ListBoxFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+        {
+            UI::ScrollbarStyle Style = UI::SB_NoButtons;
+
+            NameValuePairMap::const_iterator ParamIt;
+            ParamIt = Params.find("ScrollbarStyle");
+            if( ParamIt != Params.end() )
+                Style = static_cast<UI::ScrollbarStyle>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
+
+            return this->CreateListBox(RendName,Style,Parent);
+        }
+
+        Widget* ListBoxFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+        {
+            UI::ScrollbarStyle Style = UI::SB_NoButtons;
+
+            NameValuePairMap::const_iterator ParamIt;
+            ParamIt = Params.find("ScrollbarStyle");
+            if( ParamIt != Params.end() )
+                Style = static_cast<UI::ScrollbarStyle>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
+
+            return this->CreateListBox(RendName,RendRect,Style,Parent);
+        }
+
+        Widget* ListBoxFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateListBox(XMLNode,Parent); }
+
+        void ListBoxFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<ListBox*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 

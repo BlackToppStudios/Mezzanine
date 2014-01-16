@@ -40,6 +40,7 @@
 #ifndef _track_h
 #define _track_h
 
+#include "datatypes.h"
 #include "exception.h"
 #include "enumerations.h"
 #include "interpolator.h"
@@ -61,7 +62,7 @@ namespace Mezzanine
     /// @n @n
     /// This uses std::vector underneath for its performance characteristics.
     template <typename InterpolatorType>
-    class TrackBase
+    class Track
     {
         public:
             /// @brief The type this class and the interpolator it uses works with.
@@ -82,20 +83,26 @@ namespace Mezzanine
             typedef SmoothTrackIterator<InterpolatorType> SmoothIteratorType;
 
         protected:
-            /// @brief The underlying container of Discrete datapoints
+            /// @brief The underlying container of Discrete datapoints.
             DataContainerType DataPoints;
 
+            /// @brief Name of the track, primarily for serialization.
+            String RawName;
+
         public:
-            /// @brief create a
-            TrackBase(typename DataContainerType::iterator Begin,
-                      typename DataContainerType::iterator End)
+            /// @brief Create a Track from a range of data points
+            Track(typename DataContainerType::iterator Begin,
+                  typename DataContainerType::iterator End)
                 : DataPoints(Begin,End)
                 {}
 
-            TrackBase(const DataContainerType& DataSet) : DataPoints(DataSet)
+            Track(const DataContainerType& DataSet) : DataPoints(DataSet)
                 {}
 
-            TrackBase()
+            Track()
+                {}
+
+            virtual ~Track()
                 {}
 
             /// @brief Get the amount of stored DataPoints
@@ -158,49 +165,93 @@ namespace Mezzanine
             virtual SmoothIteratorType End(Integer Steps=0) const
                 { return end(Steps); }
 
-            /// @brief Get a value between the beginning and the end
-            /// @details in derived classes this will perform some simple(hopefully fast) calculation to get
-            /// interpolated value between the beginning and the end fo the track. Depending on algorithm this
-            /// may or may not respect the nodes.
-            /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
-            /// @return An InterpolatableType
-            virtual InterpolatableType GetInterpolated(Real Percentage) const = 0;
-
-            /// @brief Append a node for with enough information to deserialize to the passed node
-            /// @note Very little data is actually serialized, most of it is type information that is not easily deserialized.
-            /// @param CurrentRoot A node to act as the parent for the serialized version of this one
-            void ProtoSerialize(XML::Node& CurrentRoot) const
+            virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
-                Mezzanine::XML::Node LinearInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
+                return InterpolatorType::Interpolate(
+                           DataPoints.begin(),
+                           DataPoints.end(),
+                           Percentage
+                       );
+            }
 
-                if(LinearInterpolaterNode)
+            /// @brief Set the name for serialization.
+            /// @param Name the Name for finding this track in serialized streams.
+            void SetTrackName(String Name)
+                { RawName = Name; }
+
+            /// @brief Get the given name or generate a default name
+            /// @return This will either return whatever was set with SetTrackName(String Name) or some value that likely unique.
+            /// @warning Do not set one tracks name to another and these will remain under all but the most extreme situations.
+            const String& GetTrackName() const
+            {
+                if(RawName.empty())
+                    { return ToString(this); }
+                return RawName;
+            }
+
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const
+            {
+                Mezzanine::XML::Node TrackNode = CurrentRoot.AppendChild(SerializableName());
+
+                if(TrackNode)
                 {
-                    Mezzanine::XML::Attribute VersionAttr = LinearInterpolaterNode.AppendAttribute("Version");
-                    if( VersionAttr  )
+                    Mezzanine::XML::Attribute VersionAttr = TrackNode.AppendAttribute("Version");
+                    if( VersionAttr )
                     {
-                        if( VersionAttr.SetValue("1") )
-                        {
-                            return;
-                        }else{
-                            SerializeError("Create XML Attribute Values", SerializableName(),true);
-                        }
+                        if( !VersionAttr.SetValue("1") )
+                            { SerializeError("Create XML Version Attribute Values", SerializableName()); }
                     }else{
-                        SerializeError("Create XML Attributes", SerializableName(),true);
+                        SerializeError("Create XML Version Attributes", SerializableName());
                     }
+
+
+                    Mezzanine::XML::Attribute NameAttr = TrackNode.AppendAttribute("Name");
+                    if( NameAttr )
+                    {
+                        if( !NameAttr.SetValue(GetTrackName()) )
+                            { SerializeError("Create XML Name Values", SerializableName()); }
+                    }else{
+                        SerializeError("Create XML Name Attributes", SerializableName());
+                    }
+
+                    Mezzanine::XML::Node InterpolatorNode = TrackNode.AppendChild("Interpolator");
+                    if(InterpolatorNode)
+                    {
+                        InterpolatorType::ProtoSerialize(InterpolatorNode);
+                    }else{
+                        SerializeError("Create XML Interpolator Node", SerializableName());
+                    }
+
+                    Mezzanine::XML::Node DataNode = TrackNode.AppendChild("DataPoints");
+                    if(DataNode)
+                    {
+                        for(typename DataContainerType::const_iterator Iter = DataPoints.begin();
+                            DataPoints.end()!=Iter;
+                            ++Iter)
+                            { Iter->ProtoSerialize(DataNode);}
+                    }else{
+                        SerializeError("Create XML DataPoints Node", SerializableName());
+                    }
+
                 }else{
-                    SerializeError("Create XML Serialization Node", SerializableName(),true);
+                    SerializeError("Create XML Serialization Node", SerializableName());
                 }
             }
 
-            /// @brief This does not create or change the object it deserializes, but it does verify type info.
-            /// @param The node to read serialized data from.
-            void ProtoDeSerialize(const XML::Node& OneNode)
+            virtual void ProtoDeSerialize(const XML::Node& OneNode)
             {
                 if ( String(OneNode.Name())==String(SerializableName()) )
                 {
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
-                        return; // Class currently stores no data.
+                        Mezzanine::XML::Node InterpolatorNode = OneNode.GetChild("Interpolator").GetFirstChild();
+                        if(InterpolatorNode.Name() == InterpolatorType::SerializableName())
+                        {
+                            InterpolatorType::ProtoDeSerialize(InterpolatorNode);
+                        }else{
+                            //DeSerializeError();
+                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible Interpolator Type Version for " + SerializableName() + ": Not " + InterpolatorType::SerializableName());
+                        }
                     }else{
                         MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
                     }
@@ -210,49 +261,9 @@ namespace Mezzanine
 
             }
 
-            /// @brief get the name of this class for serialization purposes
-            /// @return A String containing "BezierInterpolator"
             static String SerializableName()
-                { return String("LinearInterpolator"); }
-    };
+                { return String("Track"); }
 
-    template <typename InterpolatorType>
-    class Track : public TrackBase<InterpolatorType>
-    {
-        protected:
-            typedef TrackBase<InterpolatorType> ParentType;
-
-        public:
-            /// @brief The type this class and the interpolator it uses works with.
-            typedef typename InterpolatorType::InterpolatableType InterpolatableType;
-
-            /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
-            typedef std::vector<InterpolatableType> DataContainerType;
-
-            /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
-            typedef typename ParentType::SmoothIteratorType SmoothIteratorType;
-
-
-            Track(typename DataContainerType::iterator Begin,
-                  typename DataContainerType::iterator End)
-                : ParentType(Begin,End)
-                {}
-
-            Track(const DataContainerType& DataSet)
-                : ParentType(DataSet)
-                {}
-
-            Track()
-                {}
-
-            virtual InterpolatableType GetInterpolated(Real Percentage) const
-            {
-                return InterpolatorType::Interpolate(
-                           ParentType::DataPoints.begin(),
-                           ParentType::DataPoints.end(),
-                           Percentage
-                       );
-            }
 
     };
 
@@ -264,10 +275,8 @@ namespace Mezzanine
     class TrackLooped : public Track<InterpolatorType>
     {
         protected:
-            /// @brief The immediate parent type of this class.
-            typedef Track<InterpolatorType> ParentType;
             /// @brief The base most class of this type.
-            typedef TrackBase<InterpolatorType> BaseType;
+            typedef Track<InterpolatorType> BaseType;
 
         public:
             /// @brief The type this class and the interpolator it uses works with.
@@ -282,14 +291,17 @@ namespace Mezzanine
             /// @brief
             TrackLooped(typename DataContainerType::iterator Begin,
                         typename DataContainerType::iterator End)
-                : ParentType(Begin,End)
+                : BaseType(Begin,End)
                 {}
 
             TrackLooped(const DataContainerType& DataSet)
-                : ParentType(DataSet)
+                : BaseType(DataSet)
                 {}
 
             TrackLooped()
+                {}
+
+            ~TrackLooped()
                 {}
 
             virtual void push_back(const InterpolatableType& AddedValue)
@@ -309,6 +321,53 @@ namespace Mezzanine
 
 
 }//Mezzanine
+
+#ifndef SWIG
+
+/// @brief
+/// @details
+/// @param
+/// @param
+/// @return
+template<typename T>
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Track<T>& Lint)
+{
+    Serialize(stream,Lint);
+    return stream;
+}
+
+/// @brief
+/// @details
+/// @param
+/// @param
+/// @return
+template<typename T>
+std::istream& operator >> (std::istream& stream, Mezzanine::Track<T>& Lint)
+    { return DeSerialize(stream, Lint); }
+
+
+/// @brief
+/// @details
+/// @param
+/// @param
+/// @return
+template<typename T>
+std::ostream& operator << (std::ostream& stream, const Mezzanine::TrackLooped<T>& Lint)
+{
+    Serialize(stream,Lint);
+    return stream;
+}
+
+/// @brief
+/// @details
+/// @param
+/// @param
+/// @return
+template<typename T>
+std::istream& operator >> (std::istream& stream, Mezzanine::TrackLooped<T>& Lint)
+    { return DeSerialize(stream, Lint); }
+
+#endif
 
 #endif
 

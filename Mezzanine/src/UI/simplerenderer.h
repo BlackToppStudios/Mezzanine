@@ -59,7 +59,7 @@ namespace Mezzanine
         protected:
             /// @internal
             /// @brief This determines whether or not the verticies in this renderer need to be refreshed.
-            bool Dirty;
+            Boolean Dirty;
             /// @internal
             /// @brief This contains the name of the atlas that will be used as default when one isn't specified.
             String PriAtlas;
@@ -68,7 +68,7 @@ namespace Mezzanine
             std::vector<VertexData> RenderVertices;
             /// @internal
             /// @brief Provides the class specific implementation for regenerating vertices for this renderable.
-            virtual void RedrawImpl(bool Force) = 0;
+            virtual void RedrawImpl(Boolean Force) = 0;
             /// @internal
             /// @brief Collects all the relevant information for a single vertex and pushes it to a vector.
             virtual void PushVertex(const Real& X, const Real& Y, const Vector2& UV, const ColourValue& Colour, const String& Atlas);
@@ -125,11 +125,11 @@ namespace Mezzanine
             /// @internal
             /// @brief Gets whether or not this renderer is dirty.
             /// @return Returns true if this renderer is dirty, false otherwise.
-            bool _IsDirty();
+            Boolean _IsDirty();
             /// @internal
             /// @brief Regenerates the verticies in this renderable.
             /// @param Force If true this will force this object to redraw it's verticies regardless of whether it is dirty.
-            void _Redraw(bool Force);
+            void _Redraw(Boolean Force);
             /// @internal
             /// @brief Appends the vertices of this renderable to another vector.
             /// @param Vertices The vector of vertex's to append to.

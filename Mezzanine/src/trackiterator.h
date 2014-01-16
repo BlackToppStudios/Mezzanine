@@ -53,7 +53,7 @@
 namespace Mezzanine
 {
     // Forward declation
-    template <typename InterpolatableType> class TrackBase;
+    template <typename InterpolatableType> class Track;
 
     /// @brief An Iterator that can take an arbitrary amount of steps through a track.
     /// @details This stores a value between 0.0 and 1.0 as the current location on a
@@ -89,7 +89,7 @@ namespace Mezzanine
             /// @brief This almost supports random access iteration, it does not support any kind of writing to the container
             typedef std::random_access_iterator_tag iterator_category;
             /// @brief What kind of track with this iterate over
-            typedef TrackBase<InterpolatorType> TargetTrackType;
+            typedef Track<InterpolatorType> TargetTrackType;
             /// @brief The kind of this iterator.
             typedef SmoothTrackIterator<InterpolatorType> ThisType;
 
@@ -365,7 +365,7 @@ namespace Mezzanine
             /// @brief This almost supports random access iteration, it does not support any kind of writing to the container
             typedef std::input_iterator_tag iterator_category;
             /// @brief What kind of track with this iterate over
-            typedef TrackBase<InterpolatorType> TargetTrackType;
+            typedef Track<InterpolatorType> TargetTrackType;
             /// @brief The kind of this iterator.
             typedef TimedTrackIterator<InterpolatorType> ThisType;
 

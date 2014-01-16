@@ -133,7 +133,7 @@ namespace Mezzanine
 
         Boolean MenuEntry::IsRootEntry() const
         {
-            if( this->ParentQuad->GetRenderableType() == Renderable::RT_Widget ) {
+            if( this->ParentQuad != NULL && this->ParentQuad->IsWidget() ) {
                 return ( static_cast<Widget*>( this->ParentQuad )->GetTypeName() != MenuEntry::TypeName );
             }else{
                 return true;
@@ -224,14 +224,12 @@ namespace Mezzanine
         {
             if( this->PushButton != NULL ) {
                 this->PushButton->_SetBoundMenu(NULL);
-                this->PushButton->Unsubscribe(Button::EventDeactivated,this);
             }
 
             this->PushButton = Push;
 
             if( this->PushButton != NULL ) {
                 this->PushButton->_SetBoundMenu(this);
-                this->PushButton->Subscribe(Button::EventDeactivated,this);
             }
         }
 
@@ -244,14 +242,12 @@ namespace Mezzanine
         {
             if( this->PopButton != NULL ) {
                 this->PopButton->_SetBoundMenu(NULL);
-                this->PopButton->Unsubscribe(Button::EventDeactivated,this);
             }
 
             this->PopButton = Pop;
 
             if( this->PopButton != NULL ) {
                 this->PopButton->_SetBoundMenu(this);
-                this->PopButton->Subscribe(Button::EventDeactivated,this);
             }
         }
 
@@ -264,11 +260,9 @@ namespace Mezzanine
         {
             if( this->PushButton != NULL ) {
                 this->PushButton->_SetBoundMenu(NULL);
-                this->PushButton->Unsubscribe(Button::EventDeactivated,this);
             }
             if( this->PopButton != NULL ) {
                 this->PopButton->_SetBoundMenu(NULL);
-                this->PopButton->Unsubscribe(Button::EventDeactivated,this);
             }
 
             this->PushButton = Toggle;
@@ -276,7 +270,6 @@ namespace Mezzanine
 
             if( this->PushButton != NULL ) {
                 this->PushButton->_SetBoundMenu(this);
-                this->PushButton->Subscribe(Button::EventDeactivated,this);
             }
         }
 
@@ -382,25 +375,29 @@ namespace Mezzanine
             }
         }
 
-        void MenuEntry::_NotifyEvent(const EventArguments& Args)
+        void MenuEntry::_NotifyButtonSelected(MenuButton* Selected)
         {
-            const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
-            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);
-            //if( EventWidget == NULL )
-            if( EventWidget == NULL || WidArgs.EventName != Button::EventDeactivated )
-                return;
-
-            if( !(EventWidget->IsHovered()) )
-                return;
-
-            if( this->PushButton == EventWidget && this->PopButton == EventWidget ) {
-                // Since we are toggling, attempt to push first.  It'll automatically do the checks needed for pushing.
-                Boolean PushResult = this->PushOntoStack();
-                if( !PushResult ) {
-                    // If it failed to push, try popping.
-                    Boolean PopResult = this->PopFromStack();
-                    if( !PopResult ) {
-                        // If even that failed, then we almost certainly need to do a rollback
+            if( Selected != NULL && Selected->IsHovered() ) {
+                if( this->PushButton == Selected && this->PopButton == Selected ) {
+                    // Since we are toggling, attempt to push first.  It'll automatically do the checks needed for pushing.
+                    Boolean PushResult = this->PushOntoStack();
+                    if( !PushResult ) {
+                        // If it failed to push, try popping.
+                        Boolean PopResult = this->PopFromStack();
+                        if( !PopResult ) {
+                            // If even that failed, then we almost certainly need to do a rollback
+                            Boolean IsRoot = this->IsRootEntry();
+                            this->RollBackToEntry( IsRoot ? this : static_cast<MenuEntry*>( this->ParentQuad ) );
+                            if( !IsRoot ) {
+                                // Last attempt
+                                this->PushOntoStack();
+                            }
+                        }
+                    }
+                }else if( this->PushButton == Selected ) {
+                    Boolean PushResult = this->PushOntoStack();
+                    if( !PushResult ) {
+                        // Attempt a rollback
                         Boolean IsRoot = this->IsRootEntry();
                         this->RollBackToEntry( IsRoot ? this : static_cast<MenuEntry*>( this->ParentQuad ) );
                         if( !IsRoot ) {
@@ -408,24 +405,13 @@ namespace Mezzanine
                             this->PushOntoStack();
                         }
                     }
+                }else if( this->PopButton == Selected ) {
+                    this->PopFromStack();
+                    /*Bool PopResult = this->PopFromStack();
+                    if( !PopResult ) {
+                        // Is there anything to do here?
+                    }//*/
                 }
-            }else if( this->PushButton == EventWidget ) {
-                Boolean PushResult = this->PushOntoStack();
-                if( !PushResult ) {
-                    // Attempt a rollback
-                    Boolean IsRoot = this->IsRootEntry();
-                    this->RollBackToEntry( IsRoot ? this : static_cast<MenuEntry*>( this->ParentQuad ) );
-                    if( !IsRoot ) {
-                        // Last attempt
-                        this->PushOntoStack();
-                    }
-                }
-            }else if( this->PopButton == EventWidget ) {
-                this->PopFromStack();
-                /*Bool PopResult = this->PopFromStack();
-                if( !PopResult ) {
-                    // Is there anything to do here?
-                }//*/
             }
         }
 

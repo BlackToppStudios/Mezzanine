@@ -95,45 +95,21 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        void PagedContainer::SetWorkAreaSize(const UnifiedVec2& Area)
-        {
-            if( this->WorkAreaSize != Area ) {
-                this->WorkAreaSize = Area;
-            }
-        }
-
-        const UnifiedVec2& PagedContainer::GetWorkAreaSize() const
+        const Vector2& PagedContainer::GetWorkAreaSize() const
         {
             return this->WorkAreaSize;
         }
 
-        Vector2 PagedContainer::GetActualWorkAreaSize() const
-        {
-            if( this->ParentQuad != NULL ) {
-                return this->WorkAreaSize.CalculateActualDimensions(this->ParentQuad->GetActualSize());
-            }else{
-                return Vector2(0.0,0.0);
-            }
-        }
-
         void PagedContainer::UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect)
         {
-            /*if( this->XProvider != NULL ) {
-                this->XProvider->ConfigureProviderMetaData(this->ActDims.Size,this->GetActualWorkAreaSize());
-            }//*/
-            /*if( this->YProvider != NULL && this->YProvider != this->XProvider ) {
-                this->YProvider->ConfigureProviderMetaData(this->ActDims.Size,this->GetActualWorkAreaSize());
-            }//*/
-
             // Update the personal data first
             this->ActDims = NewSelfRect;
 
             // Perform the container specific update logic
             this->UpdateContainerDimensionsImpl(OldSelfRect,NewSelfRect);
 
-            /*// Update the children, if any
-            if( this->VisibleChildren.empty() == false )
-                this->LayoutStrat->Layout(OldSelfRect,NewSelfRect,this->VisibleChildren);//*/
+            // Now that this containers dimensions and child dimensions are set, update the work area
+            this->UpdateWorkAreaSize();
 
             // We done got icky
             this->_MarkAllLayersDirty();
@@ -170,6 +146,9 @@ namespace Mezzanine
             }
         }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // PagedContainer Configuration
+
         PageProvider* PagedContainer::GetXProvider() const
             { return this->XProvider; }
 
@@ -194,6 +173,7 @@ namespace Mezzanine
         void PagedContainer::AddChild(Widget* Child)
         {
             this->QuadRenderable::AddChild(Child);
+            this->QuickUpdateWorkAreaSize(Child->GetUnifiedSize(),true);
             Child->Subscribe(Widget::EventFocusGained,this);
         }
 
@@ -202,13 +182,14 @@ namespace Mezzanine
             this->QuadRenderable::AddChild(Child,ZOrder);
         }
 
-        void PagedContainer::RemoveChild(Widget* Child)
+        void PagedContainer::RemoveChild(Widget* ToBeRemoved)
         {
-            if( this->LastFocusedChild == Child ) {
+            if( this->LastFocusedChild == ToBeRemoved ) {
                 this->LastFocusedChild = NULL;
             }
-            Child->Unsubscribe(Widget::EventFocusGained,this);
-            this->QuadRenderable::RemoveChild(Child);
+            ToBeRemoved->Unsubscribe(Widget::EventFocusGained,this);
+            this->QuickUpdateWorkAreaSize(ToBeRemoved->GetUnifiedSize(),false);
+            this->QuadRenderable::RemoveChild(ToBeRemoved);
         }
 
         void PagedContainer::RemoveAllChildren()
@@ -220,6 +201,31 @@ namespace Mezzanine
                 (*It)->Unsubscribe(Widget::EventFocusGained,this);
             }
             this->ChildWidgets.clear();
+            this->UpdateWorkAreaSize();
+            this->_MarkDirty();
+        }
+
+        void PagedContainer::DestroyChild(Widget* ToBeDestroyed)
+        {
+            if( this->LastFocusedChild == ToBeDestroyed ) {
+                this->LastFocusedChild = NULL;
+            }
+            ToBeDestroyed->Unsubscribe(Widget::EventFocusGained,this);
+            this->QuickUpdateWorkAreaSize(ToBeDestroyed->GetUnifiedSize(),false);
+            this->QuadRenderable::DestroyChild(ToBeDestroyed);
+        }
+
+        void PagedContainer::DestroyAllChildren()
+        {
+            this->LastFocusedChild = NULL;
+            for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+            {
+                (*It)->_NotifyParenthood(NULL);
+                (*It)->Unsubscribe(Widget::EventFocusGained,this);
+                this->ParentScreen->DestroyWidget( (*It) );
+            }
+            this->ChildWidgets.clear();
+            this->UpdateWorkAreaSize();
             this->_MarkDirty();
         }
 

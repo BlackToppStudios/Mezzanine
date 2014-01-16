@@ -185,16 +185,17 @@ namespace Mezzanine
             /// @brief Append a node for with enough information to deserialize to the passed node
             /// @note Very little data is actually serialized, most of it is type information that is not easily deserialized.
             /// @param CurrentRoot A node to act as the parent for the serialized version of this one
-            void ProtoSerialize(XML::Node& CurrentRoot) const
+            static void ProtoSerialize(XML::Node& CurrentRoot)
             {
                 Mezzanine::XML::Node LinearInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
 
                 if(LinearInterpolaterNode)
                 {
                     Mezzanine::XML::Attribute VersionAttr = LinearInterpolaterNode.AppendAttribute("Version");
+                    Mezzanine::XML::Attribute TypeAttr = LinearInterpolaterNode.AppendAttribute("InterpolatableType");
                     if( VersionAttr  )
                     {
-                        if( VersionAttr.SetValue("1") )
+                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::SerializableName()) )
                         {
                             return;
                         }else{
@@ -210,13 +211,18 @@ namespace Mezzanine
 
             /// @brief This does not create or change the object it deserializes, but it does verify type info.
             /// @param The node to read serialized data from.
-            void ProtoDeSerialize(const XML::Node& OneNode)
+            static void ProtoDeSerialize(const XML::Node& OneNode)
             {
                 if ( String(OneNode.Name())==String(SerializableName()) )
                 {
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
-                        return; // Class currently stores no data.
+                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::SerializableName())
+                        {
+                            return; // Class currently stores no data.
+                        }else{
+                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + SerializableName() + ": Not " + InterpolatableType::SerializableName());
+                        }
                     }else{
                         MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
                     }
@@ -283,16 +289,17 @@ namespace Mezzanine
             /// @brief Append a node for with enough information to deserialize to the passed node
             /// @note Very little data is actually serialized, most of it is type information that is not easily deserialized.
             /// @param CurrentRoot A node to act as the parent for the serialized version of this one
-            void ProtoSerialize(XML::Node& CurrentRoot) const
+            static void ProtoSerialize(XML::Node& CurrentRoot)
             {
                 Mezzanine::XML::Node BezierInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
 
                 if(BezierInterpolaterNode)
                 {
                     Mezzanine::XML::Attribute VersionAttr = BezierInterpolaterNode.AppendAttribute("Version");
+                    Mezzanine::XML::Attribute TypeAttr = BezierInterpolaterNode.AppendAttribute("InterpolatableType");
                     if( VersionAttr  )
                     {
-                        if( VersionAttr.SetValue("1") )
+                        if( VersionAttr.SetValue("1") && TypeAttr.SetValue(InterpolatableType::SerializableName()) )
                         {
                             return;
                         }else{
@@ -308,13 +315,18 @@ namespace Mezzanine
 
             /// @brief This does not create or change the object it deserializes, but it does verify type info.
             /// @param The node to read serialized data from.
-            void ProtoDeSerialize(const XML::Node& OneNode)
+            static void ProtoDeSerialize(const XML::Node& OneNode)
             {
                 if ( String(OneNode.Name())==String(SerializableName()) )
                 {
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
-                        return; // Class currently stores no data.
+                        if(OneNode.GetAttribute("InterpolatableType").AsString() == InterpolatableType::SerializableName())
+                        {
+                            return; // Class currently stores no data.
+                        }else{
+                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible InterpolatableType Version for " + SerializableName() + ": Not " + InterpolatableType::SerializableName());
+                        }
                     }else{
                         MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
                     }
@@ -396,7 +408,7 @@ namespace Mezzanine
 /// @param stream The place to send the characters, that define the Mezzanine::LinearInterpolator.
 /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 template<typename T>
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::LinearInterpolator<T>& Lint)
+std::ostream& operator << (std::ostream& stream, const Mezzanine::LinearInterpolator<T>& Lint)
 {
     Serialize(stream,Lint);
     return stream;
@@ -409,7 +421,7 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Linea
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 template<typename T>
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::LinearInterpolator<T>& Lint)
+std::istream& operator >> (std::istream& stream, Mezzanine::LinearInterpolator<T>& Lint)
     { return DeSerialize(stream, Lint); }
 
 
@@ -419,7 +431,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::LinearInter
 /// @param stream The place to send the characters, that define the Mezzanine::BezierInterpolator.
 /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 template<typename T>
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::BezierInterpolator<T>& Lint)
+std::ostream& operator << (std::ostream& stream, const Mezzanine::BezierInterpolator<T>& Lint)
 {
     Serialize(stream,Lint);
     return stream;
@@ -432,9 +444,8 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Bezie
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 template<typename T>
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::BezierInterpolator<T>& Lint)
+std::istream& operator >> (std::istream& stream, Mezzanine::BezierInterpolator<T>& Lint)
     { return DeSerialize(stream, Lint); }
-
 
 #endif
 

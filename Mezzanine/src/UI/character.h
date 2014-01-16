@@ -133,8 +133,8 @@ namespace Mezzanine
             /// @return Returns a pointer to this characters atlas.
             TextureAtlas* GetAtlas() const;
             /// @brief Gets the name of the atlas this character is using for rendering.
-            /// @return Returns a const String reference containing the name of this characters atlas.
-            const String& GetAtlasName() const;
+            /// @return Returns a String containing the name of this characters atlas, or an empty string if this isn't properly initialized.
+            String GetAtlasName() const;
             /// @brief Gets the coordinates to the white pixel on the atlas this character belongs to.
             /// @return Returns a Vector2 containing the relative coordinates of the atlas whitepixel.
             Vector2 GetAtlasWhitePixel() const;

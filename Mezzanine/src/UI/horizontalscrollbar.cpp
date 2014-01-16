@@ -336,8 +336,11 @@ namespace Mezzanine
 
         Real HorizontalScrollbar::GetMaxXPages() const
         {
-            Real Ret = MathTools::Ceil( this->Container->GetActualWorkAreaSize().X / this->Container->GetActualSize().X );
-            return ( Ret > 0 ? Ret : 1 );
+            if( this->Container != NULL ) {
+                Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().X / this->Container->GetActualSize().X );
+                return ( Ret > 0 ? Ret : 1 );
+            }
+            return 1;
         }
 
         Real HorizontalScrollbar::GetMaxYPages() const
@@ -402,7 +405,7 @@ namespace Mezzanine
             if( this->Container != NULL ) {
                 // Update the scroller size
                 Real XView = this->Container->GetActualSize().X;
-                Real XWork = this->Container->GetActualWorkAreaSize().X;
+                Real XWork = this->Container->GetWorkAreaSize().X;
                 if( XWork > 0 ) {
                     this->SetScrollerSize( XView / XWork );
                 }else{
@@ -411,7 +414,7 @@ namespace Mezzanine
 
                 // AutoHide check
                 if( this->AutoHideScroll ) {
-                    if( this->GetMaxYPages() <= 1.0 ) {
+                    if( this->GetMaxXPages() <= 1.0 ) {
                         this->Hide();
                     }else{
                         this->Show();

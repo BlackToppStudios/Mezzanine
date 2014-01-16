@@ -215,8 +215,10 @@ namespace Mezzanine
             /// @brief Notifies this MenuEntry and all if it's Entry children a new MenuStack is being applied to the menu tree.
             /// @param NewStack the new stack to be applied.  Can be NULL to remove the stack from all children.
             virtual void _NotifyStack(MenuEntryContainer* NewStack);
-            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments&)
-            virtual void _NotifyEvent(const EventArguments& Args);
+            /// @internal
+            /// @brief Notifies this menu a button has been selected.
+            /// @param Selected The menu button that was selected.
+            virtual void _NotifyButtonSelected(MenuButton* Selected);
             /// @copydoc QuadRenderable::_NotifyParenthood(QuadRenderable*)
             virtual void _NotifyParenthood(QuadRenderable* NewParent);
             /// @copydoc QuadRenderable::_HasAvailableRenderData() const

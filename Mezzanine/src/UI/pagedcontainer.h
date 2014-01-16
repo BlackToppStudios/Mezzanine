@@ -79,11 +79,11 @@ namespace Mezzanine
         class MEZZ_LIB PagedContainer : public Widget
         {
         public:
-            /// @brief Basic container type for Visible @ref QuadRenderable storage by this class.
-            typedef std::vector<QuadRenderable*>           VisibleChildContainer;
-            /// @brief Iterator type for Visible @ref QuadRenderable instances stored by this class.
+            /// @brief Basic container type for Visible @ref Widget storage by this class.
+            typedef std::vector<Widget*>                   VisibleChildContainer;
+            /// @brief Iterator type for Visible @ref Widget instances stored by this class.
             typedef VisibleChildContainer::iterator        VisibleChildIterator;
-            /// @brief Const Iterator type for Visible @ref QuadRenderable instances stored by this class.
+            /// @brief Const Iterator type for Visible @ref Widget instances stored by this class.
             typedef VisibleChildContainer::const_iterator  ConstVisibleChildIterator;
 
             /// @enum ProviderMode
@@ -106,11 +106,11 @@ namespace Mezzanine
             static const String EventChildFocusGained;
         protected:
             /// @internal
-            /// @brief Unified rect storing the size alloted for children of this container.
-            UnifiedVec2 WorkAreaSize;
-            /// @internal
             /// @brief A container of children that meet the criteria for rendering in this container.
             VisibleChildContainer VisibleChildren;
+            /// @internal
+            /// @brief Vector2 storing the size for all pages of this container.
+            Vector2 WorkAreaSize;
             /// @internal
             /// @brief A pointer to the last child widget that was focused by this container.
             Widget* LastFocusedChild;
@@ -128,7 +128,7 @@ namespace Mezzanine
             /// @internal
             /// @brief The container specific logic for updating it's dimensions.
             virtual void UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect) = 0;
-        public:
+        //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             PagedContainer(Screen* Parent);
@@ -143,22 +143,23 @@ namespace Mezzanine
             PagedContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
             /// @brief Class destructor.
             virtual ~PagedContainer();
-
+        public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Sets the size of this containers work area.
-            /// @note The relative portion of the Unified dimensions passed in are relative to the containers parent, just like the
-            /// containers own dimensions.  This can be larger than the containers dimensions, and in fact should be larger to justify
-            /// using this class or more derived child classes.
-            /// @param Area The new size for this containers work area.
-            virtual void SetWorkAreaSize(const UnifiedVec2& Area);
+            /// @brief Checks the size of every child in this container and updates the work area to match the size needed.
+            /// @note The work area size is automatically updated when a child is added or removed from a container.  You should
+            /// only need to call this method manually if a childs size isn't determined yet when it is added to the container.
+            virtual void UpdateWorkAreaSize() = 0;
+            /// @brief Quickly updates the work area size based on a single childs' dimensions.
+            /// @note The work area size is automatically updated when a child is added or removed from a container.  You should
+            /// only need to call this method manually if a childs size isn't determined yet when it is added to the container.
+            /// @param ChildSize The Unified dimensions describing the childs size.
+            /// @param Adding Should be true if the child in question is being added to the container, false if it is being removed.
+            virtual void QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boolean Adding) = 0;
             /// @brief Gets the size of this containers work area.
-            /// @return Returns a const reference to this containers work area size.
-            virtual const UnifiedVec2& GetWorkAreaSize() const;
-            /// @brief Gets the size of this containers work area in pixels.
-            /// @return Returns a Vector2 containing the actual pixel size of this containers work area.
-            virtual Vector2 GetActualWorkAreaSize() const;
+            /// @return Returns a const reference to a Vector2 containing this containers work area size in pixels.
+            virtual const Vector2& GetWorkAreaSize() const;
 
             /// @copydoc QuadRenderable::UpdateDimensions(const Rect&, const Rect&)
             virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);
@@ -174,6 +175,9 @@ namespace Mezzanine
             /// @param Prov The PageProvider to check this container for.
             /// @return Returns a ProviderMode enum value representing how the specified PageProvider is providing for this container.
             virtual ProviderMode GetProviderConfig(const PageProvider* Prov) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // PagedContainer Configuration
 
             /// @brief Sets the page providers for both axes.
             /// @param XProv The PageProvider controlling the current horizontal page.
@@ -205,9 +209,13 @@ namespace Mezzanine
             /// @copydoc QuadRenderable::AddChild(Widget*,const UInt16)
             virtual void AddChild(Widget* Child, const UInt16 ZOrder);
             /// @copydoc QuadRenderable::RemoveChild(Widget*)
-            virtual void RemoveChild(Widget* Child);
+            virtual void RemoveChild(Widget* ToBeRemoved);
             /// @copydoc QuadRenderable::RemoveAllChildren()
             virtual void RemoveAllChildren();
+            /// @copydoc QuadRenderable::DestroyChild(Widget*)
+            virtual void DestroyChild(Widget* ToBeDestroyed);
+            /// @copydoc QuadRenderable::DestroyAllChildren()
+            virtual void DestroyAllChildren();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization

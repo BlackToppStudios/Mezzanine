@@ -54,11 +54,16 @@ namespace Mezzanine
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
+        // RadioButtonGroup Static Members
+
+        const String RadioButtonGroup::EventGroupButtonSelected = "GroupButtonSelected";
+
+        ///////////////////////////////////////////////////////////////////////////////
         // RadioButtonGroup Methods
 
         RadioButtonGroup::RadioButtonGroup() :
             CurrentSelection(NULL)
-            {  }
+            { this->AddEvent(RadioButtonGroup::EventGroupButtonSelected); }
 
         RadioButtonGroup::~RadioButtonGroup()
             {  }
@@ -106,6 +111,9 @@ namespace Mezzanine
             }
         }
 
+        RadioButton* RadioButtonGroup::GetCurrentSelection() const
+            { return this->CurrentSelection; }
+
         RadioButtonGroup::RadioButtonIterator RadioButtonGroup::RadioButtonBegin()
             { return this->GroupButtons.begin(); }
 
@@ -123,8 +131,13 @@ namespace Mezzanine
 
         void RadioButtonGroup::_NotifyButtonSelected(RadioButton* Selected)
         {
-            this->DeselectOtherButtons(Selected);
-            this->CurrentSelection = Selected;
+            if( this->CurrentSelection != Selected ) {
+                this->CurrentSelection = Selected;
+                this->DeselectOtherButtons(Selected);
+
+                WidgetEventArguments Args(RadioButtonGroup::EventGroupButtonSelected,Selected->GetName());
+                this->FireEvent(Args);
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -316,8 +329,15 @@ namespace Mezzanine
 
         void RadioButton::_OnDeselected()
         {
-            // For now do nothing extra
-            this->CheckBox::_OnDeselected();
+            // The updated selection button is written to the group first, so we should be able to tell if we need to block deselection.
+            // Radio buttons shouldn't deselect themselves.  The initial state should be the only time a radio button group should be without a selection.
+            if( this->ButtonGroup ) {
+                if( this->ButtonGroup->GetCurrentSelection() != this ) {
+                    this->CheckBox::_OnDeselected();
+                }
+            }else{
+                this->CheckBox::_OnDeselected();
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////

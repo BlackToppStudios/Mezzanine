@@ -106,15 +106,15 @@ namespace Mezzanine
 
             /// @brief Checks to see if this will expand horizontally.
             /// @return Returns true if this will expand on the X axis.
-            inline bool CanExpandHorizontally() const
+            inline Boolean CanExpandHorizontally() const
                 { return (this->HorizontalRules & UI::SR_Fill_Available); }
             /// @brief Checks to see if this will expand vertically.
             /// @return Returns true if this will expand on the Y axis.
-            inline bool CanExpandVertically() const
+            inline Boolean CanExpandVertically() const
                 { return (this->VerticalRules & UI::SR_Fill_Available); }
             /// @brief Cheacks to see if this will expand horizontally or vertically.
             /// @return Returns true if this will expand on either axis.
-            inline bool CanExpand() const
+            inline Boolean CanExpand() const
                 { return (this->CanExpandHorizontally() || this->CanExpandVertically()); }
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -123,7 +123,7 @@ namespace Mezzanine
             /// @brief Equality comparison operator.
             /// @param Other The other SizingInfo to compare to.
             /// @return Returns true if these SizingInfo's are equal, false otherwise.
-            inline bool operator==(const SizingInfo& Other) const
+            inline Boolean operator==(const SizingInfo& Other) const
             {
                 return ( this->USize == Other.USize &&
                          this->MaxSize == Other.MaxSize &&
@@ -135,7 +135,7 @@ namespace Mezzanine
             /// @brief Inequality comparison operator.
             /// @param Other The other SizingInfo to compare to.
             /// @return Returns true if these SizingInfo's are not equal, false otherwise.
-            inline bool operator!=(const SizingInfo& Other) const
+            inline Boolean operator!=(const SizingInfo& Other) const
             {
                 return ( this->USize != Other.USize ||
                          this->MaxSize != Other.MaxSize ||

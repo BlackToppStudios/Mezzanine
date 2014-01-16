@@ -98,6 +98,17 @@ class tracktests : public UnitTestGroup
 
             {
                 std::vector<Vector3> TestDataPoints;
+                TestDataPoints.push_back(Vector3(0,0,0));
+                TestDataPoints.push_back(Vector3(10,10,10));
+                Track<LinearInterpolator<Vector3> > TestDualPointTrack(TestDataPoints);
+
+                TestOutput << endl << "Testing interpolation of a track:" << endl;
+                TestOutput << TestDualPointTrack;
+                TestOutput << endl;
+            }
+
+            {
+                std::vector<Vector3> TestDataPoints;
                 //TestDataPoints.push_back(Vector3(0,0,0));
                 //TestDataPoints.push_back(Vector3(10,10,10));
 
