@@ -394,7 +394,7 @@ namespace Mezzanine
 /// @param stream The place to send the characters, that define the Mezzanine::LinearInterpolator.
 /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 template<typename T>
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::LinearInterpolator<T>& Lint)
+std::ostream& operator << (std::ostream& stream, const Mezzanine::LinearInterpolator<T>& Lint)
 {
     Serialize(stream,Lint);
     return stream;
@@ -407,7 +407,7 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Linea
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 template<typename T>
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::LinearInterpolator<T>& Lint)
+std::istream& operator >> (std::istream& stream, Mezzanine::LinearInterpolator<T>& Lint)
     { return DeSerialize(stream, Lint); }
 
 
@@ -417,7 +417,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::LinearInter
 /// @param stream The place to send the characters, that define the Mezzanine::BezierInterpolator.
 /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 template<typename T>
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::BezierInterpolator<T>& Lint)
+std::ostream& operator << (std::ostream& stream, const Mezzanine::BezierInterpolator<T>& Lint)
 {
     Serialize(stream,Lint);
     return stream;
@@ -430,7 +430,7 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Bezie
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 template<typename T>
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::BezierInterpolator<T>& Lint)
+std::istream& operator >> (std::istream& stream, Mezzanine::BezierInterpolator<T>& Lint)
     { return DeSerialize(stream, Lint); }
 
 
