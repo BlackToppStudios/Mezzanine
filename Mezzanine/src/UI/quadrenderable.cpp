@@ -1332,7 +1332,8 @@ namespace Mezzanine
                 return;
 
             this->Dirty = true;
-            this->ParentQuad->_MarkDirty();
+            if( this->ParentQuad )
+                this->ParentQuad->_MarkDirty();
         }
 
         void QuadRenderable::_MarkAllChildrenDirty()

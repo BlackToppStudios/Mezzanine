@@ -564,12 +564,13 @@ namespace Mezzanine
         {
             for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
             {
+                (*ChildIt)->_NotifyParenthood(NULL);
                 WidgetFactoryIterator FactIt = this->WidgetFactories.find( (*ChildIt)->GetTypeName() );
                 if( FactIt != this->WidgetFactories.end() ) {
                     (*FactIt).second->DestroyWidget( (*ChildIt) );
                 }
             }
-            this->RemoveAllChildren();
+            this->ChildWidgets.clear();
             this->Widgets.clear();
         }
 

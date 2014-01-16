@@ -133,7 +133,7 @@ namespace Mezzanine
 
         Boolean MenuEntry::IsRootEntry() const
         {
-            if( this->ParentQuad->GetRenderableType() == Renderable::RT_Widget ) {
+            if( this->ParentQuad != NULL && this->ParentQuad->IsWidget() ) {
                 return ( static_cast<Widget*>( this->ParentQuad )->GetTypeName() != MenuEntry::TypeName );
             }else{
                 return true;
