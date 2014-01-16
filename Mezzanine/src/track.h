@@ -86,6 +86,7 @@ namespace Mezzanine
             DataContainerType DataPoints;
 
         public:
+            /// @brief create a
             TrackBase(typename DataContainerType::iterator Begin,
                       typename DataContainerType::iterator End)
                 : DataPoints(Begin,End)
@@ -164,6 +165,55 @@ namespace Mezzanine
             /// @param Percentage A value from 0 to 1 indicating when between the beginning and end the point should be.
             /// @return An InterpolatableType
             virtual InterpolatableType GetInterpolated(Real Percentage) const = 0;
+
+            /// @brief Append a node for with enough information to deserialize to the passed node
+            /// @note Very little data is actually serialized, most of it is type information that is not easily deserialized.
+            /// @param CurrentRoot A node to act as the parent for the serialized version of this one
+            void ProtoSerialize(XML::Node& CurrentRoot) const
+            {
+                Mezzanine::XML::Node LinearInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
+
+                if(LinearInterpolaterNode)
+                {
+                    Mezzanine::XML::Attribute VersionAttr = LinearInterpolaterNode.AppendAttribute("Version");
+                    if( VersionAttr  )
+                    {
+                        if( VersionAttr.SetValue("1") )
+                        {
+                            return;
+                        }else{
+                            SerializeError("Create XML Attribute Values", SerializableName(),true);
+                        }
+                    }else{
+                        SerializeError("Create XML Attributes", SerializableName(),true);
+                    }
+                }else{
+                    SerializeError("Create XML Serialization Node", SerializableName(),true);
+                }
+            }
+
+            /// @brief This does not create or change the object it deserializes, but it does verify type info.
+            /// @param The node to read serialized data from.
+            void ProtoDeSerialize(const XML::Node& OneNode)
+            {
+                if ( String(OneNode.Name())==String(SerializableName()) )
+                {
+                    if(OneNode.GetAttribute("Version").AsInt() == 1)
+                    {
+                        return; // Class currently stores no data.
+                    }else{
+                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                }
+
+            }
+
+            /// @brief get the name of this class for serialization purposes
+            /// @return A String containing "BezierInterpolator"
+            static String SerializableName()
+                { return String("LinearInterpolator"); }
     };
 
     template <typename InterpolatorType>
