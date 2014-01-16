@@ -154,6 +154,27 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
+        void ListBox::SetListItemSizing(const SizingInfo& ForcedSize, const Whole Enforcement)
+            { this->ListContainer->SetChildSizing(ForcedSize,Enforcement); }
+
+        void ListBox::SetListItemSize(const SizingInfo& ForcedSize)
+            { this->ListContainer->SetChildSize(ForcedSize); }
+
+        const SizingInfo& ListBox::GetListItemSize() const
+            { return this->ListContainer->GetChildSize(); }
+
+        void ListBox::SetListItemSizeEnforcement(const Whole Enforcement)
+            { this->ListContainer->SetChildSizeEnforcement(Enforcement); }
+
+        Whole ListBox::GetListItemSizeEnforcement() const
+            { return this->ListContainer->GetChildSizeEnforcement(); }
+
+        void ListBox::SetScrollbarWidth(const UnifiedDim& ScrollWidth)
+            { this->ListScroll->SetUnifiedSize( UnifiedVec2(ScrollWidth,this->ListScroll->GetUnifiedSize().Y) ); }
+
+        const UnifiedDim& ListBox::GetScrollbarWidth() const
+            { return this->ListScroll->GetUnifiedSize().X; }
+
         ///////////////////////////////////////////////////////////////////////////////
         // ListBox Properties
 

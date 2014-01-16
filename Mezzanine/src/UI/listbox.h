@@ -144,6 +144,33 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
+            /// @brief Sets both the size and enforcement rules for forced list item sizing in this container.
+            /// @note The sizing provided here works just like any other normal list item sizing does, with the relative parts being based on the the parent container (this).
+            /// @param ForcedSize A SizingInfo describing how all children should size themselves on dimension updates.
+            /// @param Enforcement A bitmask containing when the list item sizing will be enforced by this container.  See SizeEnforcement enum for more details.
+            virtual void SetListItemSizing(const SizingInfo& ForcedSize, const Whole Enforcement);
+            /// @brief Sets the size to be given to children processed by this container if forced sizing is enabled.
+            /// @note The sizing provided here works just like any other normal list item sizing does, with the relative parts being based on the the parent container (this).
+            /// @param ForcedSize A SizingInfo describing how all children should size themselves on dimension updates.
+            virtual void SetListItemSize(const SizingInfo& ForcedSize);
+            /// @brief Gets the size to be given to children processed by this container if forced sizing is enabled.
+            /// @return Returns a const SizeInfo reference to the sizing given to children processed by this container if forced sizing is enabled.
+            virtual const SizingInfo& GetListItemSize() const;
+            /// @brief Sets when the set list item sizing will be applied to any given list item.
+            /// @param Enforcement A bitmask containing when the list item sizing will be enforced by this container.  See SizeEnforcement enum for more details.
+            virtual void SetListItemSizeEnforcement(const Whole Enforcement);
+            /// @brief Gets when the set list item sizing will be applied to any given list item.
+            /// @return Returns a bitmask describing when the list item sizing will be enforced by this container.  See SizeEnforcement enum for more details.
+            virtual Whole GetListItemSizeEnforcement() const;
+
+            /// @brief Sets the Unified width of the child scrollbar in this ListBox.
+            /// @note This defaults to UnifiedDim(0.08,0.0).
+            /// @param ScrollWidth The relative (to this) and absolute components of the width to be given the child scrollbar.
+            virtual void SetScrollbarWidth(const UnifiedDim& ScrollWidth);
+            /// @brief Gets the Unified width of the child scrollbar in this ListBox.
+            /// @return Returns a const reference to the Unified dimension containing the width of the child scrollbar.
+            virtual const UnifiedDim& GetScrollbarWidth() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // ListBox Properties
 
