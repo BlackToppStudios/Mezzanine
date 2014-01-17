@@ -101,10 +101,24 @@ class tracktests : public UnitTestGroup
                 TestDataPoints.push_back(Vector3(0,0,0));
                 TestDataPoints.push_back(Vector3(10,10,10));
                 Track<LinearInterpolator<Vector3> > TestDualPointTrack(TestDataPoints);
+                TestDualPointTrack.SetTrackName("Nürburgring");
+                String Expected("<Track Version=\"1\" Name=\"Nürburgring\"><Interpolator><LinearInterpolator Version=\"1\" InterpolatableType=\"Vector3\" /></Interpolator><DataPoints><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /><Vector3 Version=\"1\" X=\"10\" Y=\"10\" Z=\"10\" /></DataPoints></Track>");
 
-                TestOutput << endl << "Testing interpolation of a track:" << endl;
-                TestOutput << TestDualPointTrack;
-                TestOutput << endl;
+                TestOutput << endl << "Testing serialization of a track:" << endl;
+                TestOutput << TestDualPointTrack << endl;
+
+                StringStream TestStream;
+                TestStream << TestDualPointTrack;
+                TEST(TestStream.str()==Expected,"Track-Serialization");
+
+                TestOutput << endl << "Testing deserialization of a track:" << endl;
+                Track<LinearInterpolator<Vector3> > TestDualPointTrackD;
+                TestStream >> TestDualPointTrackD;
+                StringStream TestStream2;
+                TestOutput << TestDualPointTrackD << endl;
+                TestStream2 << TestDualPointTrackD;
+                TEST(TestStream2.str()==Expected,"Track-DeSerialization");
+
             }
 
             {
@@ -360,6 +374,7 @@ class tracktests : public UnitTestGroup
                 SomeTrack.push_back(Vector3(1,10,20));
                 MaxInt StartTime(crossplatform::GetTimeStamp());
                 MaxInt TestDuration(750000);
+                MaxInt PauseLength(10000);
                 TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,0.25,TestDuration);
 
                 TEST((*Iter == Vector3(0,0,0)) , "TimedTrackIterator-Start");
@@ -368,10 +383,15 @@ class tracktests : public UnitTestGroup
                 {
                     TestOutput << *Iter << endl;
                     Iter++;
-                    Threading::this_thread::sleep_for(10000);
+                    Threading::this_thread::sleep_for(PauseLength);
                 }
+                MaxInt EndTime(crossplatform::GetTimeStamp());
+
                 TestOutput << "End Location: " << *Iter << endl;
+
                 TEST((*Iter == Vector3(0.25,2.5,5)) , "TimedTrackIterator-End");
+                TestOutput << "Test Duration took " << EndTime-StartTime << "ms and we expected more than " << TestDuration << "ms and less than " << (TestDuration+(PauseLength*2))<<"ms." << endl << endl;
+                TEST( (EndTime-StartTime>TestDuration)&&(EndTime-StartTime<(TestDuration*2)) , "TimedTrackIterator-Timing");
             }
 
             {

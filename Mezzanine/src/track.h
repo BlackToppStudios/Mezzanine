@@ -182,10 +182,17 @@ namespace Mezzanine
             /// @brief Get the given name or generate a default name
             /// @return This will either return whatever was set with SetTrackName(String Name) or some value that likely unique.
             /// @warning Do not set one tracks name to another and these will remain under all but the most extreme situations.
-            const String& GetTrackName() const
+            String GetTrackName() const
             {
                 if(RawName.empty())
                     { return ToString(this); }
+                return RawName;
+            }
+
+            const String& GetTrackName()
+            {
+                if(RawName.empty())
+                    { RawName = ToString(this); }
                 return RawName;
             }
 
