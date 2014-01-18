@@ -179,26 +179,47 @@ namespace Mezzanine
             void SetTrackName(String Name)
                 { RawName = Name; }
 
-            /// @brief Get the given name or generate a default name
+            /// @brief Set the name to something that serialization definitely will not duplicate
+            /// @details Because serialization of racks must have a name unique numbers are assigned
+            /// when a nameisnot present. This function will set the name either to the pased value
+            /// if serialzation will never touch it, or to some value that serialization cannot clobber.
+            /// @param Name The name you would like if it is compatible.
+            /// @return Whatever was actually set for a name.
+            String SetTrackNameUnique(String Name="")
+            {
+                if(Name.size() && 0==ConvertTo<ConvertiblePointer>(Name))
+                {
+                    SetTrackName(Name);
+                }else{
+                    SetTrackName(ToString(ConvertiblePointer(this)));
+                }
+                return RawName;
+            }
+
+            /// @brief Get the given name or generate a default name.
             /// @return This will either return whatever was set with SetTrackName(String Name) or some value that likely unique.
             /// @warning Do not set one tracks name to another and these will remain under all but the most extreme situations.
+            /// @warning The current implementations serializes a pointer an implementatin and instance specific number to this if there is no other name. This will change on deserialization and is only identified by being a number. Don't use numbers as your name of the track.
             String GetTrackName() const
             {
                 if(RawName.empty())
-                    { return ToString(this); }
+                    { return ToString(ConvertiblePointer(this)); }
                 return RawName;
             }
 
+            /// @brief This is just like the const version of the function but it will set the name if unset and retrieve it.
+            /// @return A name of some kind in string.
             const String& GetTrackName()
             {
                 if(RawName.empty())
-                    { RawName = ToString(this); }
+                    { SetTrackNameUnique(); }
                 return RawName;
             }
 
+
             virtual void ProtoSerialize(XML::Node& CurrentRoot) const
             {
-                Mezzanine::XML::Node TrackNode = CurrentRoot.AppendChild(SerializableName());
+                Mezzanine::XML::Node TrackNode = CurrentRoot.AppendChild(DerivedSerializableName());
 
                 if(TrackNode)
                 {
@@ -206,9 +227,9 @@ namespace Mezzanine
                     if( VersionAttr )
                     {
                         if( !VersionAttr.SetValue("1") )
-                            { SerializeError("Create XML Version Attribute Values", SerializableName()); }
+                            { SerializeError("Create XML Version Attribute Values", DerivedSerializableName()); }
                     }else{
-                        SerializeError("Create XML Version Attributes", SerializableName());
+                        SerializeError("Create XML Version Attributes", DerivedSerializableName());
                     }
 
 
@@ -216,9 +237,9 @@ namespace Mezzanine
                     if( NameAttr )
                     {
                         if( !NameAttr.SetValue(GetTrackName()) )
-                            { SerializeError("Create XML Name Values", SerializableName()); }
+                            { SerializeError("Create XML Name Values", DerivedSerializableName()); }
                     }else{
-                        SerializeError("Create XML Name Attributes", SerializableName());
+                        SerializeError("Create XML Name Attributes", DerivedSerializableName());
                     }
 
                     Mezzanine::XML::Node InterpolatorNode = TrackNode.AppendChild("Interpolator");
@@ -226,7 +247,7 @@ namespace Mezzanine
                     {
                         InterpolatorType::ProtoSerialize(InterpolatorNode);
                     }else{
-                        SerializeError("Create XML Interpolator Node", SerializableName());
+                        SerializeError("Create XML Interpolator Node", DerivedSerializableName());
                     }
 
                     Mezzanine::XML::Node DataNode = TrackNode.AppendChild("DataPoints");
@@ -237,17 +258,17 @@ namespace Mezzanine
                             ++Iter)
                             { Iter->ProtoSerialize(DataNode);}
                     }else{
-                        SerializeError("Create XML DataPoints Node", SerializableName());
+                        SerializeError("Create XML DataPoints Node", DerivedSerializableName());
                     }
 
                 }else{
-                    SerializeError("Create XML Serialization Node", SerializableName());
+                    SerializeError("Create XML Serialization Node", DerivedSerializableName());
                 }
             }
 
             virtual void ProtoDeSerialize(const XML::Node& OneNode)
             {
-                if ( String(OneNode.Name())==String(SerializableName()) )
+                if ( String(OneNode.Name())==String(DerivedSerializableName()) )
                 {
                     if(OneNode.GetAttribute("Version").AsInt() == 1)
                     {
@@ -256,17 +277,37 @@ namespace Mezzanine
                         {
                             InterpolatorType::ProtoDeSerialize(InterpolatorNode);
                         }else{
-                            //DeSerializeError();
-                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible Interpolator Type Version for " + SerializableName() + ": Not " + InterpolatorType::SerializableName());
+                            //DeSerializeError(); // Maybe use this instead?
+                            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Incompatible Interpolator Type Version for " + DerivedSerializableName() + ": Not " + InterpolatorType::SerializableName());
                         }
+
+                        SetTrackNameUnique(OneNode.GetAttribute("Name").AsString());
+                        Mezzanine::XML::Node DataNode = OneNode.GetChild("DataPoints");
+                        if(DataNode)
+                        {
+                            XML::Node Iter=DataNode.GetFirstChild();
+                            while(Iter)
+                            {
+                                InterpolatableType Scratch;
+                                Scratch.ProtoDeSerialize(Iter);
+                                DataPoints.push_back(Scratch);
+                                Iter = Iter.GetNextSibling();
+                            }
+                        }// No else the track could be empty
+
+
+                        // deserialize name and
                     }else{
-                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + DerivedSerializableName() + ": Not Version 1.");
                     }
                 }else{
-                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                    MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + DerivedSerializableName() + ", found a " + String(OneNode.Name()) + ".");
                 }
 
             }
+
+            virtual String DerivedSerializableName() const
+                { return Track::SerializableName(); }
 
             static String SerializableName()
                 { return String("Track"); }
@@ -324,6 +365,12 @@ namespace Mezzanine
                     BaseType::DataPoints.push_back(AddedValue);
                 }
             }
+
+            virtual String DerivedSerializableName() const
+                { return TrackLooped::SerializableName(); }
+
+            static String SerializableName()
+                { return String("TrackLooped"); }
     };
 
 

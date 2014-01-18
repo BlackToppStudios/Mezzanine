@@ -119,6 +119,45 @@ class tracktests : public UnitTestGroup
                 TestStream2 << TestDualPointTrackD;
                 TEST(TestStream2.str()==Expected,"Track-DeSerialization");
 
+                {
+                    Track<LinearInterpolator<Vector3> >* Ptr = &TestDualPointTrackD;
+                    StringStream TestStream3;
+                    TestStream3 << ConvertiblePointer(Ptr);
+                    TestOutput << endl << "Testing serialization Pointers: " << ConvertiblePointer(Ptr) << endl;
+
+                    ConvertiblePointer PtrTemp;
+                    TestStream3 >> PtrTemp;
+                    Track<LinearInterpolator<Vector3> >* Ptr2 = reinterpret_cast<Track<LinearInterpolator<Vector3> >* > (ConvertTo<ConvertiblePointer>(PtrTemp));
+                    TestOutput << endl << "Testing deserialization Pointers: " << PtrTemp << " "<< ConvertiblePointer(Ptr2) << endl;
+
+                    TestOutput << endl << "Testing deserialization of giberish as pointer: " << PtrTemp << " "<< ConvertTo<ConvertiblePointer>(String("ABADF123asdf")) << endl;
+
+                }
+
+            }
+
+            {
+                std::vector<Vector3> TestDataPoints;
+                TestDataPoints.push_back(Vector3(0,0,0));
+                TestDataPoints.push_back(Vector3(10,10,10));
+                TrackLooped<LinearInterpolator<Vector3> > TestDualPointTrack(TestDataPoints);
+                TestDualPointTrack.SetTrackName("Nürburgring");
+                String Expected("<TrackLooped Version=\"1\" Name=\"Nürburgring\"><Interpolator><LinearInterpolator Version=\"1\" InterpolatableType=\"Vector3\" /></Interpolator><DataPoints><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /><Vector3 Version=\"1\" X=\"10\" Y=\"10\" Z=\"10\" /></DataPoints></TrackLooped>");
+
+                TestOutput << endl << "Testing serialization of a looped track:" << endl;
+                TestOutput << TestDualPointTrack << endl;
+
+                StringStream TestStream;
+                TestStream << TestDualPointTrack;
+                TEST(TestStream.str()==Expected,"TrackLooped-Serialization");
+
+                TestOutput << endl << "Testing deserialization of a looped track:" << endl;
+                TrackLooped<LinearInterpolator<Vector3> > TestDualPointTrackD;
+                TestStream >> TestDualPointTrackD;
+                StringStream TestStream2;
+                TestOutput << TestDualPointTrackD << endl;
+                TestStream2 << TestDualPointTrackD;
+                TEST(TestStream2.str()==Expected,"TrackLooped-DeSerialization");
             }
 
             {
