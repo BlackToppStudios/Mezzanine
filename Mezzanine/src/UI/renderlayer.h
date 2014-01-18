@@ -124,6 +124,19 @@ namespace Mezzanine
             /// @return Returns a Vector2 containing the X and Y scaling applied to this render layer.
             virtual Vector2 GetScale() const;
 
+            /// @brief Gets whether or not this is an ImageLayer.
+            /// @return Returns true if this is an ImageLayer, false otherwise.
+            virtual Boolean IsImageLayer() const;
+            /// @brief Gets whether or not this is an TextLayer.
+            /// @return Returns true if this is an TextLayer, false otherwise.
+            virtual Boolean IsTextLayer() const;
+            /// @brief Gets whether or not this is an SingleLineTextLayer.
+            /// @return Returns true if this is an SingleLineTextLayer, false otherwise.
+            virtual Boolean IsSingleLineTextLayer() const;
+            /// @brief Gets whether or not this is an MultiLineTextLayer.
+            /// @return Returns true if this is an MultiLineTextLayer, false otherwise.
+            virtual Boolean IsMultiLineTextLayer() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Rotation Methods
 
