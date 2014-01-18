@@ -415,7 +415,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::LinearInterpol
 }
 
 /// @brief Used to de-serialize an Mezzanine::LinearInterpolator from a stream
-/// @details This does nothing at the moment, but the instant state is required...
+/// @details This does primarily type checking most interpolators have no data
 /// @param Lint The Mezzanine::LinearInterpolator that will accept the values from the xml
 /// @param stream The place to get the characters from, that define the Mezzanine::LinearInterpolator.
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
@@ -438,7 +438,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::BezierInterpol
 }
 
 /// @brief Used to de-serialize an Mezzanine::BezierInterpolator from a stream
-/// @details This does nothing at the moment, but the instant state is required...
+/// @details This does primarily type checking most interpolators have no data
 /// @param Lint The Mezzanine::BezierInterpolator that will accept the values from the xml
 /// @param stream The place to get the characters from, that define the Mezzanine::BezierInterpolator.
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.

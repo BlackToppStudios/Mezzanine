@@ -91,17 +91,20 @@ namespace Mezzanine
 
         public:
             /// @brief Create a Track from a range of data points
+            /// @param Begin An iterator pointing to the beginning of a range to copy
+            /// @param End an iterator pointing to one past the rang to copy.
             Track(typename DataContainerType::iterator Begin,
                   typename DataContainerType::iterator End)
                 : DataPoints(Begin,End)
                 {}
-
+            /// @brief Create a track from a DataContainerType instance, likely a vector and copthe data from it.
+            /// @param DataSet A collection of data points to copy.
             Track(const DataContainerType& DataSet) : DataPoints(DataSet)
                 {}
-
+            /// @brief Create a default empty track.
             Track()
                 {}
-
+            /// @brief Virtual Deconstructor.
             virtual ~Track()
                 {}
 
@@ -150,7 +153,6 @@ namespace Mezzanine
             virtual SmoothIteratorType Begin(Integer Steps=100) const
                 { return begin(Steps); }
 
-
             /// @brief Get an Smooth iterator to the end (not one past) of the track.
             /// @details A Smooth iterator will take a fixed number of steps across
             /// a data set, interpolating values not actually present.
@@ -165,6 +167,10 @@ namespace Mezzanine
             virtual SmoothIteratorType End(Integer Steps=0) const
                 { return end(Steps); }
 
+            /// @brief Get a value from somewhere on the track with 0.0 being the beginning and 1.0 being the end.
+            /// @param Percentage A Value between 0and 1 that the interpolator will use to pick a point on or
+            /// between the datapoints.
+            /// @return InterpolatableType that is Percentage from through the track.
             virtual InterpolatableType GetInterpolated(Real Percentage) const
             {
                 return InterpolatorType::Interpolate(
@@ -216,7 +222,10 @@ namespace Mezzanine
                 return RawName;
             }
 
-
+            /// @brief Convert this to a node on an XML graph
+            /// @param CurrentRoot the node that will become the parent for the one this creates.
+            /// @details This function is also used to serialize Looped Tracks.
+            /// This serializes the interpoator in use and each data point.
             virtual void ProtoSerialize(XML::Node& CurrentRoot) const
             {
                 Mezzanine::XML::Node TrackNode = CurrentRoot.AppendChild(DerivedSerializableName());
@@ -266,6 +275,9 @@ namespace Mezzanine
                 }
             }
 
+            /// @brief Convert a node on an XML into a track.
+            /// @details This will convert and XML into Track or LoopedTrack templated
+            /// on the type that matches this instance of this class.
             virtual void ProtoDeSerialize(const XML::Node& OneNode)
             {
                 if ( String(OneNode.Name())==String(DerivedSerializableName()) )
@@ -294,9 +306,6 @@ namespace Mezzanine
                                 Iter = Iter.GetNextSibling();
                             }
                         }// No else the track could be empty
-
-
-                        // deserialize name and
                     }else{
                         MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + DerivedSerializableName() + ": Not Version 1.");
                     }
@@ -306,9 +315,13 @@ namespace Mezzanine
 
             }
 
+            /// @Polymorphicaly get the classnae at runtime
+            /// @return A String Containing a class name,likely"Track" or "TrackLooped"
             virtual String DerivedSerializableName() const
                 { return Track::SerializableName(); }
 
+            /// @brief Get the name of this class "Track"
+            /// @return A string containing "Track"
             static String SerializableName()
                 { return String("Track"); }
 
@@ -318,7 +331,7 @@ namespace Mezzanine
     /// @brief A track that keeps an extra data point in the track to make sure it loops.
     /// @details when Add or push_back is called and there are 2 or more points the track,
     /// this seamlessly adds a copy of the first data point to the end of the track. When
-    /// Iterating with a Smooth iterator this creates the impression of a loop.
+    /// Iterating with a Smooth iterator this creates the impression of a loop inside the simulation.
     template <typename InterpolatorType>
     class TrackLooped : public Track<InterpolatorType>
     {
@@ -329,29 +342,40 @@ namespace Mezzanine
         public:
             /// @brief The type this class and the interpolator it uses works with.
             typedef typename InterpolatorType::InterpolatableType InterpolatableType;
-
             /// @brief The type of the Container storing the interpolatable data. This is a single point to change all the tracks
             typedef std::vector<InterpolatableType> DataContainerType;
-
             /// @brief An iterator than can take an arbitrary amount of steps by interpolation.
             typedef SmoothTrackIterator<InterpolatableType> SmoothIteratorType;
 
-            /// @brief
+            /// @brief Create a Track from a range of data points, and enforce its being a loop.
+            /// @param Begin An iterator pointing to the beginning of a range to copy.
+            /// @param End an iterator pointing to one past the rang to copy.
             TrackLooped(typename DataContainerType::iterator Begin,
                         typename DataContainerType::iterator End)
                 : BaseType(Begin,End)
-                {}
-
+                { EnforceLoop(); }
+            /// @brief Create a track from a DataContainerType instance, likely a vector and copy the data from it, and enforce it being a loop
+            /// @param DataSet A collection of data points to copy.
+            /// @details if the last item does not match the first this fixes that.
             TrackLooped(const DataContainerType& DataSet)
                 : BaseType(DataSet)
-                {}
-
+                { EnforceLoop(); }
+            /// @brief Create a default empty looped track.
             TrackLooped()
                 {}
-
-            ~TrackLooped()
+            /// @brief Virtual Deconstructor.
+            virtual ~TrackLooped()
                 {}
 
+            /// @brief If this track has more than one datapoint, does the first match the last, if not fix it.
+            void EnforceLoop()
+            {
+                if(BaseType::DataPoints.size()>1 && *(BaseType::DataPoints.end()-1)!=*(BaseType::DataPoints.begin()))
+                    { BaseType::DataPoints.push_back(*(BaseType::DataPoints.begin())); }
+            }
+
+            /// @brief Add another data point, and preserve the track's loopwhile doing so.
+            /// @param AddedValue The data point to add.
             virtual void push_back(const InterpolatableType& AddedValue)
             {
                 if(BaseType::DataPoints.size()>1)
@@ -366,9 +390,13 @@ namespace Mezzanine
                 }
             }
 
+            /// @Polymorphicaly get the classnae at runtime
+            /// @return A String Containing a class name,likely"Track" or "TrackLooped"
             virtual String DerivedSerializableName() const
                 { return TrackLooped::SerializableName(); }
 
+            /// @brief Get the name of this class "TrackLooped"
+            /// @return A string containing "TrackLooped"
             static String SerializableName()
                 { return String("TrackLooped"); }
     };
@@ -378,11 +406,10 @@ namespace Mezzanine
 
 #ifndef SWIG
 
-/// @brief
-/// @details
-/// @param
-/// @param
-/// @return
+/// @brief Used to Serialize an Mezzanine::Track to a human readable stream.
+/// @param Lint The Mezzanine::Track to be converted to characters.
+/// @param stream The place to send the characters, that define the Mezzanine::Track.
+/// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 template<typename T>
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Track<T>& Lint)
 {
@@ -390,21 +417,19 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Track<T>& Lint
     return stream;
 }
 
-/// @brief
-/// @details
-/// @param
-/// @param
-/// @return
+/// @brief Used to de-serialize an Mezzanine::Track from a stream
+/// @param Lint The Mezzanine::Track that will accept the values from the xml.
+/// @param stream The place to get the characters from, that define the Mezzanine::Track.
+/// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
 template<typename T>
 std::istream& operator >> (std::istream& stream, Mezzanine::Track<T>& Lint)
     { return DeSerialize(stream, Lint); }
 
 
-/// @brief
-/// @details
-/// @param
-/// @param
-/// @return
+/// @brief Used to Serialize an Mezzanine::TrackLooped to a human readable stream.
+/// @param Lint The Mezzanine::TrackLooped to be converted to characters.
+/// @param stream The place to send the characters, that define the Mezzanine::TrackLooped.
+/// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 template<typename T>
 std::ostream& operator << (std::ostream& stream, const Mezzanine::TrackLooped<T>& Lint)
 {
@@ -412,11 +437,10 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::TrackLooped<T>
     return stream;
 }
 
-/// @brief
-/// @details
-/// @param
-/// @param
-/// @return
+/// @brief Used to de-serialize an Mezzanine::TrackLooped from a stream
+/// @param Lint The Mezzanine::TrackLooped that will accept the values from the xml.
+/// @param stream The place to get the characters from, that define the Mezzanine::TrackLooped.
+/// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
 template<typename T>
 std::istream& operator >> (std::istream& stream, Mezzanine::TrackLooped<T>& Lint)
     { return DeSerialize(stream, Lint); }
