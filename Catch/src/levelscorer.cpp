@@ -133,7 +133,8 @@ Whole LevelScorer::PresentFinalScore()
     Whole TimeScore = this->CalculateTimerScore();
 
     // Update the UI to reflect the calculated scores
-    UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+    /// @todo UI Update
+    /*UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
     UI::Window* ReportWin = static_cast<UI::Window*>(GameScreen->GetWidget("GS_LevelReport"));
 
     UI::Caption* TotalDisplay = static_cast<UI::Caption*>(ReportWin->GetAreaRenderable("GS_ScoreDisplay"));
@@ -171,15 +172,16 @@ Whole LevelScorer::PresentFinalScore()
         SpecialConditionCell->GetScore()->SetText("");
         BreakdownList->AddCell(SpecialConditionCell);
         // For-Loop for special conditions from LUA.
-    }//*/
+    }
 
     BreakdownList->GenerateGrid();
 
     Whole TotalScore = NormalScore+BonusScore+ShopScore+TimeScore+ObjectiveScore;
     TotalDisplay->SetText(StringTools::ConvertToString(TotalScore));
 
-    ReportWin->Show();
-    return TotalScore;
+    ReportWin->Show();//*/
+    /// @todo UI Update
+    return 0;
 }
 
 Whole LevelScorer::GetNumScoreAreas() const
@@ -256,14 +258,15 @@ void LevelScorer::SetLevelTargetTime(const Whole& TargetTime)
 
 void LevelScorer::ResetLevelData()
 {
-    UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+    /// @todo UI Update
+    /*UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
     UI::Window* ReportWin = static_cast<UI::Window*>(GameScreen->GetWidget("GS_LevelReport"));
     UI::ScrolledCellGrid* BreakdownList = static_cast<UI::ScrolledCellGrid*>(ReportWin->GetWidget("GS_ScoreBreakdown"));
 
     ScoreAreas.clear();
     LevelTargetTime = 0;
 
-    BreakdownList->DestroyAllCells();
+    BreakdownList->DestroyAllCells();//*/
 }
 
 void LevelScorer::ResetAllData()
@@ -271,6 +274,5 @@ void LevelScorer::ResetAllData()
     ResetLevelData();
     ItemScoreValues.clear();
 }
-
 
 #endif

@@ -186,7 +186,8 @@ CatchPostGraphicsWorkUnit::~CatchPostGraphicsWorkUnit()
 void CatchPostGraphicsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
     // Update the timer
-    UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+    /// @todo UI Update
+    /*UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
     UI::OpenRenderableContainerWidget* HUDCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_HUD"));
     UI::Caption* Timer = static_cast<UI::Caption*>(HUDCont->GetAreaRenderable("GS_Timer"));
     std::stringstream time;
@@ -227,7 +228,7 @@ void CatchPostGraphicsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::
         {
             this->CatchApplication->ChangeState(CatchApp::Catch_ScoreScreen);
         }
-    }
+    }//*/
 }
 
 #endif

@@ -127,7 +127,8 @@ ProfileManager::~ProfileManager()
 
 void ProfileManager::PopulateLevelList(GameProfile* Profile)
 {
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    /// @todo UI Update
+    /*ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
     UI::PagedCellGrid* Grid = GetLevelGrid();
 
@@ -156,7 +157,7 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
         CurrCell->GetLevelTitle()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
 
         /// @todo This need to be changed to a sprite with stars or something to show the progression instead of the number.
-        CurrCell->GetEarnedScore()->SetText( StringTools::ConvertToString(Profile->GetHighestScore(LevelName)) );// */
+        CurrCell->GetEarnedScore()->SetText( StringTools::ConvertToString(Profile->GetHighestScore(LevelName)) );
 
         CurrCell->GetEarnedScore()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
         if(Previews.count(LevelName+".mta"))
@@ -167,7 +168,7 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
         CurrCell->SetCellCallback(new LevelSelectCB());
         Grid->AddCell(CurrCell);
     }
-    Grid->GenerateGrid();
+    Grid->GenerateGrid();//*/
 }
 
 GameProfile* ProfileManager::CreateNewProfile(const String& Name)
@@ -261,11 +262,12 @@ GameProfile* ProfileManager::GetActiveProfile() const
     return ActiveProfile;
 }
 
-UI::PagedCellGrid* ProfileManager::GetLevelGrid() const
+/// @todo UI Update
+/*UI::PagedCellGrid* ProfileManager::GetLevelGrid() const
 {
     UI::Menu* MainMenu = static_cast<UI::Menu*>( UI::UIManager::GetSingletonPtr()->GetScreen("MainMenuScreen")->GetWidget("MS_Menu") );
     UI::PagedCellGrid* Grid = static_cast<UI::PagedCellGrid*>( MainMenu->GetRootWindow()->GetChildMenuWindow("MS_LevelSelectWin")->GetWidget("MS_LevelGrid") );
     return Grid;
-}
+}//*/
 
 #endif

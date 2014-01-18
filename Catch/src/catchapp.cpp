@@ -71,7 +71,7 @@ CatchApp::~CatchApp()
 
 void CatchApp::MakeGUI()
 {
-    UI::UIManager* GUI = UI::UIManager::GetSingletonPtr();
+    /*UI::UIManager* GUI = UI::UIManager::GetSingletonPtr();
     Graphics::Viewport* UIViewport = Graphics::GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
@@ -247,7 +247,7 @@ void CatchApp::MakeGUI()
     MMAppExitConf->AddActivatableListener(new AllAppExit());
     MMAppExitConf->GetClickable()->SetBackgroundSprite("MMAppExitButton");
     MMAppExitConf->GetClickable()->SetHoveredSprite("MMAppExitHoveredButton");
-    UI::Button* MMAppExitDeny = MMAppExitWin->CreateBackButton(/*"MS_AppExitDeny", */UI::RenderableRect(Vector2(0.52, 0.47), Vector2(0.18, 0.06), true), Real(0.04), "No");
+    UI::Button* MMAppExitDeny = MMAppExitWin->CreateBackButton("MS_AppExitDeny", UI::RenderableRect(Vector2(0.52, 0.47), Vector2(0.18, 0.06), true), Real(0.04), "No");
     MMAppExitDeny->GetClickable()->SetBackgroundSprite("MMAppExitButton");
     MMAppExitDeny->GetClickable()->SetHoveredSprite("MMAppExitHoveredButton");
 
@@ -499,7 +499,7 @@ void CatchApp::MakeGUI()
     LevelReport->Hide();
     //End of Report Layer
     //End of Game Screen
-    GameScreen->Hide();
+    GameScreen->Hide();//*/
 }
 
 void CatchApp::CreateLoadingScreen()
@@ -511,14 +511,15 @@ void CatchApp::CreateLoadingScreen()
     Graphics::Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
     UIViewport->SetCamera(this->TheEntresol->GetCameraManager()->CreateCamera("Main"));
 
-    UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
+    /// @todo UI Update
+    /*UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::OpenRenderableContainerWidget* LoadContainer = LoadScreen->CreateOpenRenderableContainerWidget("Load_Rect");
     UI::Rectangle* LoadBackground = LoadContainer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
     LoadBackground->SetBackgroundSprite("BTSBanner");
     LoadScreen->AddRootWidget(0,LoadContainer);
 
     GraphicsMan->RenderOneFrame();
-    LoadBackground->SetBackgroundSprite("LoadingBackground");
+    LoadBackground->SetBackgroundSprite("LoadingBackground");//*/
 }
 
 void CatchApp::InitMusic()
@@ -645,7 +646,8 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
             if(LevelScore > this->Profiles->GetActiveProfile()->GetHighestScore(this->Loader->GetCurrentLevel()))
             {
                 this->Profiles->GetActiveProfile()->SetNewHighScore(this->Loader->GetCurrentLevel(),LevelScore);
-                (static_cast<LevelSelectCell*>(this->Profiles->GetLevelGrid()->GetCell(Loader->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTools::ConvertToString(LevelScore));
+                /// @todo UI Update
+                //(static_cast<LevelSelectCell*>(this->Profiles->GetLevelGrid()->GetCell(Loader->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTools::ConvertToString(LevelScore));
             }
             break;
         }
