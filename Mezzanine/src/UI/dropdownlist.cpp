@@ -43,240 +43,249 @@
 #include "UI/uimanager.h"
 #include "UI/dropdownlist.h"
 #include "UI/listbox.h"
-#include "UI/button.h"
+#include "UI/checkbox.h"
 #include "UI/scrollbar.h"
 #include "UI/screen.h"
-#include "Input/inputmanager.h"
-#include "Input/mouse.h"
+#include "UI/verticalcontainer.h"
+#include "UI/singlelinetextlayer.h"
+#include "UI/horizontallayoutstrategy.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        /*DropDownList::DropDownList(const String& name, const Rect& RendRect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle, Screen* parent)
-            : Widget(name,parent),
-              ToggleActivated(false)
-        {
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            std::pair<Whole,Real> Result;
-            if(Rect.Relative) Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * WinDim.Y),ParentScreen->GetPrimaryAtlas());
-            else Result = Manager->SuggestGlyphIndex((Whole)LineHeight,ParentScreen->GetPrimaryAtlas());
+        ///////////////////////////////////////////////////////////////////////////////
+        // DropDownList Static Members
 
-            ConstructDropDownList(RendRect,Result.first,ScrollStyle);
+        const String DropDownList::TypeName = "DropDownList";
 
-            if(1.f != Result.second)
-            {
-                Selection->SetTextScale(Result.second);
-                SelectionList->SetTemplateTextScale(Result.second);
-            }
-        }
+        ///////////////////////////////////////////////////////////////////////////////
+        // DropDownList Methods
 
-        DropDownList::DropDownList(const String& name, const Rect& RendRect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle, Screen* parent)
-            : Widget(name,parent),
-              ToggleActivated(false)
-        {
-            ConstructDropDownList(RendRect,Glyph,ScrollStyle);
-        }
+        DropDownList::DropDownList(Screen* Parent) :
+            Widget(Parent)
+            { this->LayoutStrat = new HorizontalLayoutStrategy(); }
+
+        DropDownList::DropDownList(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent) :
+            Widget(RendName,Parent)
+            { this->ConstructDropDownList(Style); }
+
+        DropDownList::DropDownList(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent) :
+            Widget(RendName,RendRect,Parent)
+            { this->ConstructDropDownList(Style); }
+
+        DropDownList::DropDownList(const XML::Node& XMLNode, Screen* Parent) :
+            Widget(Parent)
+            { this->LayoutStrat = new HorizontalLayoutStrategy();  this->ProtoDeSerialize(XMLNode); }
 
         DropDownList::~DropDownList()
         {
-            ParentScreen->DestroyBasicRenderable(Selection);
-            ParentScreen->DestroyWidget(ListToggle);
-            ParentScreen->DestroyWidget(SelectionList);
+            this->ParentScreen->DestroyWidget( this->SelectionDisplay );
+            this->ParentScreen->DestroyWidget( this->ListToggle );
+            this->ParentScreen->DestroyWidget( this->SelectionList );
+            delete this->LayoutStrat;
         }
 
-        void DropDownList::ConstructDropDownList(const Rect& RendRect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle)
+        void DropDownList::ConstructDropDownList(const UI::ScrollbarStyle& Style)
         {
-            Type = Widget::W_DropDownList;
-            Rect SelectionRect, ListToggleRect, SelectionListRect;
-            Real ScrollbarWidth;
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            if(RendRect.Relative)
-            {
-                RelPosition = RendRect.Position;
-                RelSize = RendRect.Size;
+            this->SelectionDisplay = this->ParentScreen->CreateWidget(this->Name+".Display",UnifiedRect(0,0,1,1,0,0,0,0));
+            this->SelectionDisplay->SetHorizontalSizingRules(UI::SR_Fill_Available);
+            this->SelectionDisplay->SetVerticalSizingRules(UI::SR_Unified_Dims);
+            this->ListToggle = this->ParentScreen->CreateCheckBox(this->Name+".Toggle",UnifiedRect(0,0,1,1,0,0,0,0));
+            this->ListToggle->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+            this->ListToggle->SetVerticalSizingRules(UI::SR_Unified_Dims);
+            this->SelectionList = this->ParentScreen->CreateListBox(this->Name+".List",UnifiedRect(0,1,1,5,0,1,0,0),Style);
+            this->SelectionList->SetRenderPriorityCascading(UI::RP_High);
+            this->SelectionList->Hide();
 
-                SelectionRect.Position = RendRect.Position;
-                SelectionRect.Size.X = RendRect.Size.X - ((RendRect.Size.Y * WinDim.Y) / WinDim.X);
-                SelectionRect.Size.Y = RendRect.Size.Y;
-                SelectionRect.Relative = RendRect.Relative;
+            SingleLineTextLayer* DisplayText = this->SelectionDisplay->CreateSingleLineTextLayer();
+            this->SelectionDisplay->AddLayerToGroup(DisplayText,5,"Normal");
+            this->SelectionDisplay->AddLayerToGroup(DisplayText,5,"Hovered");
 
-                ListToggleRect.Position.X = RendRect.Position.X + SelectionRect.Size.X;
-                ListToggleRect.Position.Y = RendRect.Position.Y;
-                ListToggleRect.Size.X = (RendRect.Size.Y * WinDim.Y) / WinDim.X;
-                ListToggleRect.Size.Y = RendRect.Size.Y;
-                ListToggleRect.Relative = RendRect.Relative;
+            this->ListToggle->Subscribe(CheckBox::EventSelected,this);
+            this->ListToggle->Subscribe(CheckBox::EventDeselected,this);
+            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildFocusGained,this);
 
-                ScrollbarWidth = (RendRect.Size.Y * WinDim.Y) / WinDim.X;
+            this->LayoutStrat = new HorizontalLayoutStrategy();
+        }
+
+        void DropDownList::UpdateCurrentSelection(Widget* NewSelection)
+        {
+            RenderLayerGroup* NewSelectionActive = NewSelection->GetActiveGroup();
+            RenderLayerGroup* DisSelectionActive = this->SelectionDisplay->GetActiveGroup();
+            if( NewSelectionActive != NULL && DisSelectionActive != NULL ) {
+                /// @todo This currently assumes the default ZOrder assigned to text layers in list items.  If that should change or be more conveniently
+                /// configurable, this should be updated.
+                RenderLayer* UncastedNewText = NewSelectionActive->GetLayerByZOrder(5);
+                RenderLayer* UncastedDisText = DisSelectionActive->GetLayerByZOrder(5);
+                if( ( UncastedNewText != NULL && UncastedNewText->IsTextLayer() ) &&
+                    ( UncastedDisText != NULL && UncastedDisText->IsTextLayer() ) )
+                {
+                    TextLayer* CastedNewText = static_cast<TextLayer*>( UncastedNewText );
+                    TextLayer* CastedDisText = static_cast<TextLayer*>( UncastedDisText );
+                    CastedDisText->SetDefaultFont( CastedNewText->GetDefaultFont() );
+                    CastedDisText->SetText( CastedNewText->GetText() );
+                }
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        void DropDownList::UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect)
+        {
+            // Update the personal data first
+            this->ActDims = NewSelfRect;
+
+            /// @todo Fix the need to remove and re-add this child.
+            // Remove the list as a child because manual transform updates aren't properly checked in the linear stategies.
+            this->RemoveChild( this->SelectionList );
+
+            // Update the children
+            this->LayoutStrat->Layout(OldSelfRect,NewSelfRect,this->ChildWidgets);
+
+            // Updates for the other buttons are done, so now we can re-add the list
+            this->AddChild( this->SelectionList );
+
+            // Update our width to the appropriate size
+            this->SelectionList->SetScrollbarWidth( UnifiedDim(this->ListToggle->GetActualSize().X / NewSelfRect.Size.X,0.0) );
+            // Next prepare the new rect for the selection list
+            const Rect OldListRect = this->SelectionList->GetRect();
+            Rect NewListRect;
+            NewListRect.Size = this->LayoutStrat->HandleChildSizing(OldSelfRect,NewSelfRect,this->SelectionList);
+            NewListRect.Position = this->LayoutStrat->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewListRect.Size,this->SelectionList);
+
+            // Finally update the scroller
+            this->SelectionList->UpdateDimensions(OldListRect,NewListRect);
+
+            // We done got icky
+            this->_MarkAllLayersDirty();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Visibility and Priority Methods
+
+        void DropDownList::SetVisible(Boolean CanSee)
+        {
+            if( CanSee ) {
+                if( this->ListToggle->IsSelected() ) {
+                    this->Widget::SetVisible(CanSee);
+                }else{
+                    this->SelectionDisplay->SetVisible(CanSee);
+                    this->ListToggle->SetVisible(CanSee);
+                }
             }else{
-                RelPosition = RendRect.Position / WinDim;
-                RelSize = RendRect.Size / WinDim;
-
-                SelectionRect.Position = RendRect.Position;
-                SelectionRect.Size.X = RendRect.Size.X - Rect.Size.Y;
-                SelectionRect.Size.Y = RendRect.Size.Y;
-                SelectionRect.Relative = RendRect.Relative;
-
-                ListToggleRect.Position.X = RendRect.Position.X + SelectionRect.Size.X;
-                ListToggleRect.Position.Y = RendRect.Position.Y;
-                ListToggleRect.Size.X = RendRect.Size.Y;
-                ListToggleRect.Size.Y = RendRect.Size.Y;
-                ListToggleRect.Relative = RendRect.Relative;
-
-                ScrollbarWidth = RendRect.Size.Y;
+                this->Widget::SetVisible(CanSee);
             }
-            SelectionListRect.Position.X = RendRect.Position.X;
-            SelectionListRect.Position.Y = RendRect.Position.Y + SelectionRect.Size.Y;
-            SelectionListRect.Size = RendRect.Size;
-            SelectionListRect.Relative = RendRect.Relative;
-
-            Selection = ParentScreen->CreateCaption(Name+"Select",SelectionRect,Glyph,"");
-            ListToggle = ParentScreen->CreateButton(Name+"Toggle",ListToggleRect);
-            SelectionList = ParentScreen->CreateListBox(Name+"List",SelectionListRect,ScrollStyle);
-
-            AddSubRenderable(0,Selection);
-            AddSubRenderable(1,ListToggle);
-            AddSubRenderable(2,SelectionList);
-
-            SelectionList->SetTemplateGlyphIndex(Glyph);
-            SelectionList->SetTemplateRenderPriority(UI::RP_High);
-            SelectionList->Hide();
-            SelectionList->GetBoxBack()->SetRenderPriority(UI::RP_High);
-            SelectionList->GetVertScroll()->GetScrollBack()->SetRenderPriority(UI::RP_High);
-            SelectionList->GetVertScroll()->GetScroller()->SetRenderPriority(UI::RP_High);
-            SelectionList->GetVertScroll()->GetUpLeftButton()->SetRenderPriority(UI::RP_High);
-            SelectionList->GetVertScroll()->GetDownRightButton()->SetRenderPriority(UI::RP_High);
         }
 
-        void DropDownList::UpdateImpl(bool Force)
+        void DropDownList::Show()
         {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
-            if(HoveredSubWidget == ListToggle)
-            {
-                if(Input::BUTTON_PRESSING == State)
-                {
-                    if(!ToggleActivated)
-                    {
-                        SelectionList->Show();
-                        ToggleActivated = true;
-                    }else{
-                        SelectionList->Hide();
-                        ToggleActivated = false;
-                    }
+            if( this->ListToggle->IsSelected() ) {
+                this->Widget::Show();
+            }else{
+                this->SelectionDisplay->Show();
+                this->ListToggle->Show();
+            }
+        }
+
+        void DropDownList::Hide()
+        {
+            this->Widget::Hide();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // DropDownList Properties
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // DropDownList Configuration
+
+        Widget* DropDownList::GetSelectionDisplay() const
+            { return this->SelectionDisplay; }
+
+        CheckBox* DropDownList::GetListToggle() const
+            { return this->ListToggle; }
+
+        ListBox* DropDownList::GetSelectionList() const
+            { return this->SelectionList; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void DropDownList::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->Widget::ProtoSerializeProperties(SelfRoot);
+        }
+
+        void DropDownList::ProtoSerializeChildQuads(XML::Node& SelfRoot) const
+        {
+            this->QuadRenderable::ProtoSerializeChildQuads(SelfRoot);
+        }
+
+        void DropDownList::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->Widget::ProtoDeSerializeProperties(SelfRoot);
+        }
+
+        void DropDownList::ProtoDeSerializeChildQuads(const XML::Node& SelfRoot)
+        {
+            this->QuadRenderable::ProtoDeSerializeChildQuads(SelfRoot);
+
+            // Assign the SelectionDisplay
+            this->SelectionDisplay = static_cast<Widget*>( this->GetChild(this->Name+".Display") );
+            if( this->SelectionDisplay == NULL ) {
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Selection Display not found after DropDownList deserialization.");
+            }
+
+            // Assign the ListToggle
+            this->ListToggle = static_cast<CheckBox*>( this->GetChild(this->Name+".Toggle") );
+            if( this->ListToggle == NULL ) {
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"List Toggle not found after DropDownList deserialization.");
+            }
+
+            // Assign the SelectionList
+            this->SelectionList = static_cast<ListBox*>( this->GetChild(this->Name+".List") );
+            if( this->SelectionList == NULL ) {
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Selection List not found after DropDownList deserialization.");
+            }
+
+            this->ListToggle->Subscribe(CheckBox::EventSelected,this);
+            this->ListToggle->Subscribe(CheckBox::EventDeselected,this);
+            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildFocusGained,this);
+            this->SelectionList->Hide();
+        }
+
+        String DropDownList::GetSerializableName()
+        {
+            return DropDownList::TypeName;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        void DropDownList::_NotifyEvent(const EventArguments& Args)
+        {
+            const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
+            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);
+
+            if( EventWidget == this->ListToggle ) {
+                if( WidArgs.EventName == CheckBox::EventSelected ) {
+                    this->SelectionList->Show();
+                }else if( WidArgs.EventName == CheckBox::EventDeselected ) {
+                    this->SelectionList->Hide();
                 }
             }
-            else if(HoveredSubWidget == SelectionList)
-            {
-                if(Input::BUTTON_PRESSING == State && !SelectionList->GetHoveredSubWidget())
-                {
-                    Selection->SetText(SelectionList->GetSelected()->GetText());
-                    SelectionList->Hide();
-                    ToggleActivated = false;
+
+            if( EventWidget == this->SelectionList->GetListContainer() ) {
+                if( WidArgs.EventName == PagedContainer::EventChildFocusGained ) {
+                    this->UpdateCurrentSelection( this->SelectionList->GetListContainer()->GetLastFocusedWidget() );
+                    this->ListToggle->ManualSelect(false);
                 }
             }
         }
-
-        void DropDownList::SetVisibleImpl(bool visible)
-        {
-            Selection->SetVisible(visible);
-            ListToggle->SetVisible(visible);
-            if(ToggleActivated)
-                SelectionList->SetVisible(visible);
-        }
-
-        bool DropDownList::CheckMouseHoverImpl()
-        {
-            if(Selection->CheckMouseHover())
-            {
-                HoveredSubWidget = NULL;
-                return true;
-            }
-            else if(ListToggle->CheckMouseHover())
-            {
-                HoveredSubWidget = ListToggle;
-                return true;
-            }
-            else if(SelectionList->CheckMouseHover())
-            {
-                HoveredSubWidget = SelectionList;
-                return true;
-            }
-            return false;
-        }
-
-        void DropDownList::SetSelection(Caption* ToBeSelected)
-        {
-            Selection->SetText(ToBeSelected->GetText());
-            SelectionList->SetSelected(ToBeSelected);
-        }
-
-        void DropDownList::SetSelection(const String& ToBeSelected)
-        {
-            SetSelection(SelectionList->GetSelection(ToBeSelected));
-        }
-
-        void DropDownList::SetPosition(const Vector2& Position)
-        {
-            RelPosition = Position;
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            Selection->SetPosition(Position);
-            ListToggle->SetPosition(Position + Vector2(RelSize.X - ((RelSize.Y * WinDim.Y) / WinDim.X),0));
-            SelectionList->SetPosition(Position + Vector2(0,RelSize.Y));
-        }
-
-        void DropDownList::SetActualPosition(const Vector2& Position)
-        {
-            RelPosition = Position / ParentScreen->GetViewportDimensions();
-            Vector2 CurrSize = GetActualSize();
-            Selection->SetActualPosition(Position);
-            ListToggle->SetActualPosition(Position + Vector2(CurrSize.X - CurrSize.Y,0));
-            SelectionList->SetActualPosition(Position + Vector2(0,CurrSize.Y));
-        }
-
-        void DropDownList::SetSize(const Vector2& Size)
-        {
-            RelSize = Size;
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            Selection->SetSize(Vector2(Size.X - ((Size.Y * WinDim.Y) / WinDim.X),Size.Y));
-            ListToggle->SetSize(Vector2((Size.Y * WinDim.Y) / WinDim.X,Size.Y));
-            SelectionList->SetTemplateSize(Size);
-            SetPosition(RelPosition);
-        }
-
-        void DropDownList::SetActualSize(const Vector2& Size)
-        {
-            RelSize = Size / ParentScreen->GetViewportDimensions();
-            Selection->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
-            ListToggle->SetActualSize(Vector2(Size.Y,Size.Y));
-            SelectionList->SetTemplateSize(Size,false);
-            SetActualPosition(GetActualPosition());
-        }
-
-        void DropDownList::UpdateDimensions()
-        {
-            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
-            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
-            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
-            Selection->UpdateDimensions();
-            ListToggle->UpdateDimensions();
-            SelectionList->UpdateDimensions();
-            SetPosition(RelPosition);
-        }
-
-        Caption* DropDownList::GetSelection()
-        {
-            return Selection;
-        }
-
-        Button* DropDownList::GetListToggle()
-        {
-            return ListToggle;
-        }
-
-        UI::ListBox* DropDownList::GetSelectionList()
-        {
-            return SelectionList;
-        }//*/
     }//UI
 }//Mezzanine
 
