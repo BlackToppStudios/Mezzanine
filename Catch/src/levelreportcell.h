@@ -5,7 +5,7 @@
 
 using namespace Mezzanine;
 
-class LevelReportCell : public UI::Cell
+/*class LevelReportCell : public UI::Cell
 {
     protected:
         UI::Caption* Description;
@@ -25,6 +25,6 @@ class LevelReportCell : public UI::Cell
         virtual void UpdateDimensions();
         virtual UI::Caption* GetDescription();
         virtual UI::Caption* GetScore();
-};
+};//*/
 
 #endif
