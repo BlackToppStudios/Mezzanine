@@ -182,7 +182,10 @@ namespace Mezzanine
                 return GetInterpolatedFromMultiple(Begin, End, Location);
             }
 
-            void ProtoSerialize(XML::Node& CurrentRoot) const
+            /// @brief Append a node for with enough information to deserialize to the passed node
+            /// @note Very little data is actually serialized, most of it is type information that is not easily deserialized.
+            /// @param CurrentRoot A node to act as the parent for the serialized version of this one
+            static void ProtoSerialize(XML::Node& CurrentRoot)
             {
                 Mezzanine::XML::Node LinearInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
 
@@ -206,7 +209,9 @@ namespace Mezzanine
                 }
             }
 
-            void ProtoDeSerialize(const XML::Node& OneNode)
+            /// @brief This does not create or change the object it deserializes, but it does verify type info.
+            /// @param The node to read serialized data from.
+            static void ProtoDeSerialize(const XML::Node& OneNode)
             {
                 if ( String(OneNode.Name())==String(SerializableName()) )
                 {
@@ -227,6 +232,8 @@ namespace Mezzanine
 
             }
 
+            /// @brief get the name of this class for serialization purposes
+            /// @return A String containing "BezierInterpolator"
             static String SerializableName()
                 { return String("LinearInterpolator"); }
     };
@@ -279,7 +286,10 @@ namespace Mezzanine
                 return Interpolate(SubSection.begin(),SubSection.end(),Location);
             }
 
-            void ProtoSerialize(XML::Node& CurrentRoot) const
+            /// @brief Append a node for with enough information to deserialize to the passed node
+            /// @note Very little data is actually serialized, most of it is type information that is not easily deserialized.
+            /// @param CurrentRoot A node to act as the parent for the serialized version of this one
+            static void ProtoSerialize(XML::Node& CurrentRoot)
             {
                 Mezzanine::XML::Node BezierInterpolaterNode = CurrentRoot.AppendChild(SerializableName());
 
@@ -303,7 +313,9 @@ namespace Mezzanine
                 }
             }
 
-            void ProtoDeSerialize(const XML::Node& OneNode)
+            /// @brief This does not create or change the object it deserializes, but it does verify type info.
+            /// @param The node to read serialized data from.
+            static void ProtoDeSerialize(const XML::Node& OneNode)
             {
                 if ( String(OneNode.Name())==String(SerializableName()) )
                 {
@@ -324,6 +336,8 @@ namespace Mezzanine
 
             }
 
+            /// @brief get the name of this class for serialization purposes
+            /// @return A String containing "BezierInterpolator"
             static String SerializableName()
                 { return String("BezierInterpolator"); }
     };
@@ -401,7 +415,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::LinearInterpol
 }
 
 /// @brief Used to de-serialize an Mezzanine::LinearInterpolator from a stream
-/// @details This does nothing at the moment, but the instant state is required...
+/// @details This does primarily type checking most interpolators have no data
 /// @param Lint The Mezzanine::LinearInterpolator that will accept the values from the xml
 /// @param stream The place to get the characters from, that define the Mezzanine::LinearInterpolator.
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
@@ -424,7 +438,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::BezierInterpol
 }
 
 /// @brief Used to de-serialize an Mezzanine::BezierInterpolator from a stream
-/// @details This does nothing at the moment, but the instant state is required...
+/// @details This does primarily type checking most interpolators have no data
 /// @param Lint The Mezzanine::BezierInterpolator that will accept the values from the xml
 /// @param stream The place to get the characters from, that define the Mezzanine::BezierInterpolator.
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
@@ -432,7 +446,6 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::BezierInterpol
 template<typename T>
 std::istream& operator >> (std::istream& stream, Mezzanine::BezierInterpolator<T>& Lint)
     { return DeSerialize(stream, Lint); }
-
 
 #endif
 
