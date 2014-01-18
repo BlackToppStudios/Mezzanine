@@ -5,7 +5,7 @@
 
 using namespace Mezzanine;
 
-class OptsVolume : public UI::WidgetListener
+/*class OptsVolume : public UI::WidgetListener
 {
     protected:
         virtual void SetVolume(const Real& Volume) = 0;
@@ -105,6 +105,6 @@ class OptsVideoStats : public UI::WidgetListener
         virtual void DoPreUpdateItems();
         virtual void DoPostUpdateItems();
         virtual void DoVisibilityChangeItems();
-};
+};//*/
 
 #endif

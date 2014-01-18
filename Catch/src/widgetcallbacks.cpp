@@ -3,7 +3,7 @@
 
 #include "widgetcallbacks.h"
 
-OptsVolume::~OptsVolume()
+/*OptsVolume::~OptsVolume()
 {
 }
 
@@ -229,7 +229,8 @@ void OptsVideoFSAA::SetCaller(UI::Widget* Caller)
         else if(X==4) FSAA = 16;
         std::stringstream AAstream;
         AAstream << "x" << FSAA << " AA";
-        /*UI::Caption* CurrSelection = */FSAAList->GetSelectionList()->AddSelection(AAstream.str(),AAstream.str());
+        //UI::Caption* CurrSelection =
+        FSAAList->GetSelectionList()->AddSelection(AAstream.str(),AAstream.str());
     }
 }
 
@@ -293,5 +294,6 @@ void OptsVideoStats::DoVisibilityChangeItems()
     if(Stats != StatsCheck->IsChecked())
         StatsCheck->ManualCheck(Stats);
 }
+//*/
 
 #endif
