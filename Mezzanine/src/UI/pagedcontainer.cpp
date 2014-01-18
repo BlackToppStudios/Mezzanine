@@ -109,7 +109,7 @@ namespace Mezzanine
             this->UpdateContainerDimensionsImpl(OldSelfRect,NewSelfRect);
 
             // Now that this containers dimensions and child dimensions are set, update the work area
-            this->UpdateWorkAreaSize();
+            //this->UpdateWorkAreaSize();
 
             // We done got icky
             this->_MarkAllLayersDirty();

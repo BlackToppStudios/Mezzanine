@@ -93,7 +93,7 @@ namespace Mezzanine
             Widget(Parent),
             ListItemFont(NULL),
             Ordering(ListBox::LIO_BottomInsert)
-            { this->ProtoDeSerialize(XMLNode); }
+            { this->LayoutStrat = new LayoutStrategy();  this->ProtoDeSerialize(XMLNode); }
 
         ListBox::~ListBox()
         {
@@ -119,8 +119,10 @@ namespace Mezzanine
         {
             this->ListScroll = this->ParentScreen->CreateVerticalScrollbar(this->Name+".Scroll",Style);
             this->ListScroll->SetAutoHide(true);
+            this->AddChild(this->ListScroll,1);
             this->ListContainer = this->ParentScreen->CreateVerticalContainer(this->Name+".Container");
             this->ListContainer->SetYProvider( this->ListScroll );
+            this->AddChild(this->ListContainer,2);
 
             this->ListScroll->SetUnifiedPosition(UnifiedVec2(0.92,0.0,0.0,0.0));
             this->ListScroll->SetUnifiedSize(UnifiedVec2(0.08,1.0,0.0,0.0));
@@ -170,10 +172,22 @@ namespace Mezzanine
             { return this->ListContainer->GetChildSizeEnforcement(); }
 
         void ListBox::SetScrollbarWidth(const UnifiedDim& ScrollWidth)
-            { this->ListScroll->SetUnifiedSize( UnifiedVec2(ScrollWidth,this->ListScroll->GetUnifiedSize().Y) ); }
+        {
+            this->ListScroll->SetUnifiedSize( UnifiedVec2(ScrollWidth,this->ListScroll->GetUnifiedSize().Y) );
+            this->ListContainer->SetUnifiedSize( UnifiedVec2(UnifiedDim(1.0,0.0) - ScrollWidth,this->ListContainer->GetUnifiedSize().Y) );
+            /// @todo Update for Autohide.
+        }
 
         const UnifiedDim& ListBox::GetScrollbarWidth() const
-            { return this->ListScroll->GetUnifiedSize().X; }
+        {
+            return this->ListScroll->GetUnifiedSize().X;
+        }
+
+        void ListBox::UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect)
+        {
+            /// @todo Update for Autohide.
+            this->QuadRenderable::UpdateDimensions(OldSelfRect,NewSelfRect);
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // ListBox Properties

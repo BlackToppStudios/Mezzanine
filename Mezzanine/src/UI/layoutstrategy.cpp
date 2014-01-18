@@ -113,7 +113,7 @@ namespace Mezzanine
             // to the new rect, and allow simpler targetted checks fill in the exceptions
             Real Ret = NewSelfRect.Position.X + ChildPositioning.UPosition.X.CalculateActualDimension(NewSelfRect.Size.X);
             // Do our checks
-            if( ChildPositioning.PositionRules & UI::PF_HorizontalCenter ) { // Check if we're centered
+            if( ChildPositioning.PositionRules & UI::PF_Left && ChildPositioning.PositionRules & UI::PF_Right ) { // Check if we're centered
                 // Get the center point in the parent space on this axis, and align the childs center on the same axis to that point
                 Ret = ( NewSelfRect.Position.X + ( NewSelfRect.Size.X * 0.5 ) ) - ( NewChildSize.X * 0.5 );
             }else if( ChildPositioning.PositionRules & UI::PF_Left ) { // Check if we're anchored to the left
@@ -123,7 +123,7 @@ namespace Mezzanine
             }else if( ChildPositioning.PositionRules & UI::PF_Right ) { // Check if we're anchored to the right
                 // Get the right edge of the parent's old transform and get the distance from that point to the left edge of this quad.
                 // Then subtract apply that distance (via subtraction) to the updated transform.  This preserves absolute distance.
-                Ret = ( NewSelfRect.Position.X + NewSelfRect.Size.X ) - ( ( OldSelfRect.Position.X + OldSelfRect.Size.X ) - ( OldXPos + OldXSize ) );
+                Ret = NewSelfRect.GetRightEdge() - ( OldSelfRect.GetRightEdge() - ( OldXPos + OldXSize ) );
             }
             return Ret;
         }
@@ -137,7 +137,7 @@ namespace Mezzanine
             // to the new rect, and allow simpler targetted checks fill in the exceptions
             Real Ret = NewSelfRect.Position.Y + ChildPositioning.UPosition.Y.CalculateActualDimension(NewSelfRect.Size.Y);
             // Do our checks
-            if( ChildPositioning.PositionRules & UI::PF_VerticalCenter ) { // Check if we're centered
+            if( ChildPositioning.PositionRules & UI::PF_Top && ChildPositioning.PositionRules & UI::PF_Bottom ) { // Check if we're centered
                 // Get the center point in the parent space on this axis, and align the childs center on the same axis to that point
                 Ret = ( NewSelfRect.Position.Y + ( NewSelfRect.Size.Y * 0.5 ) ) - ( NewChildSize.Y * 0.5 );
             }else if( ChildPositioning.PositionRules & UI::PF_Top ) { // Check if we're anchored to the top
@@ -147,7 +147,7 @@ namespace Mezzanine
             }else if( ChildPositioning.PositionRules & UI::PF_Bottom ) { // Check if we're anchored to the bottom
                 // Get the bottom edge of the parent's old transform and get the distance from that point to the top edge of this quad.
                 // Then subtract apply that distance (via subtraction) to the updated transform.  This preserves absolute distance.
-                Ret = ( NewSelfRect.Position.Y + NewSelfRect.Size.Y ) - ( ( OldSelfRect.Position.Y + OldSelfRect.Size.Y ) - ( OldYPos + OldYSize ) );
+                Ret = NewSelfRect.GetBottomEdge() - ( OldSelfRect.GetBottomEdge() - ( OldYPos + OldYSize ) );
             }
             return Ret;
         }

@@ -171,6 +171,9 @@ namespace Mezzanine
             /// @return Returns a const reference to the Unified dimension containing the width of the child scrollbar.
             virtual const UnifiedDim& GetScrollbarWidth() const;
 
+            /// @copydoc QuadRenderable::UpdateDimensions(const Rect&, const Rect&)
+            virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);
+
             ///////////////////////////////////////////////////////////////////////////////
             // ListBox Properties
 
