@@ -184,7 +184,7 @@ namespace Mezzanine
             if( Code.IsMouseButton() ) {
                 if( Input::BUTTON_PRESSING == Code.GetMetaValue() ) {
                     // Update the focus
-                    //Bool Switched = SwitchFocus(HoveredWidget);
+                    //Boolean Switched = SwitchFocus(HoveredWidget);
                     this->SwitchFocus(HoveredWidget);
 
                     // If we got a valid focus, there is more work to be done

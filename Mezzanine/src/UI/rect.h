@@ -62,7 +62,7 @@ namespace Mezzanine
             /// @param Min The minimum value of the range.
             /// @param Max The maximum value of the range.
             /// @return Returns true if the provided value is within the provided range, false otherwise.
-            inline bool ValueInRange(const Real& Value, const Real& Min, const Real& Max) const
+            inline Boolean ValueInRange(const Real& Value, const Real& Min, const Real& Max) const
             {
                 return (Value >= Min) && (Value <= Max);
             }
@@ -71,8 +71,8 @@ namespace Mezzanine
             Vector2 Position;
             /// @brief Vector2 representing the width and height of the rect.
             Vector2 Size;
-            /// @brief Bool representing whether this rect is represented in relative units or absolute units(pixels).
-            bool Relative;
+            /// @brief Boolean representing whether this rect is represented in relative units or absolute units(pixels).
+            Boolean Relative;
 
             /// @brief Less Detailed Real Constructor.
             /// @param PosX The position of this rect on the X axis.
@@ -90,7 +90,7 @@ namespace Mezzanine
             /// @param PosY The position of this rect on the Y axis.
             /// @param SizeX The size of this rect on the X axis.
             /// @param SizeY The size of this rect on the Y axis.
-            Rect(const Real& PosX, const Real& PosY, const Real& SizeX, const Real& SizeY, bool Relative)
+            Rect(const Real& PosX, const Real& PosY, const Real& SizeX, const Real& SizeY, Boolean Relative)
             {
                 this->Position.SetValues(PosX,PosY);
                 this->Size.SetValues(SizeX,SizeY);
@@ -111,7 +111,7 @@ namespace Mezzanine
             /// @param Position The position of the Renderable's Rect.
             /// @param Size The size of the Renderable's Rect.
             /// @param Relative Whether or not this Rect is using relative(0-1) or absolute units(Pixels).
-            Rect(const Vector2& Position, const Vector2& Size, bool Relative)
+            Rect(const Vector2& Position, const Vector2& Size, Boolean Relative)
             {
                 this->Position = Position;
                 this->Size = Size;
@@ -144,29 +144,55 @@ namespace Mezzanine
                 this->Position.SetIdentity();
                 this->Size.SetIdentity();
             }
+
+            /// @brief Gets the value of the top edge of this rect.
+            /// @return Returns a Real that is the point on the vertical axis this rect's top edge is located.
+            inline Real GetTopEdge() const
+            {
+                return this->Position.Y;
+            }
+            /// @brief Gets the value of the bottom edge of this rect.
+            /// @return Returns a Real that is the point on the vertical axis this rect's bottom edge is located.
+            inline Real GetBottomEdge() const
+            {
+                return this->Position.Y + this->Size.Y;
+            }
+            /// @brief Gets the value of the left edge of this rect.
+            /// @return Returns a Real that is the point on the horizontal axis this rect's left edge is located.
+            inline Real GetLeftEdge() const
+            {
+                return this->Position.X;
+            }
+            /// @brief Gets the value of the right edge of this rect.
+            /// @return Returns a Real that is the point on the horizontal axis this rect's right edge is located.
+            inline Real GetRightEdge() const
+            {
+                return this->Position.X + this->Size.X;
+            }
             /// @brief Gets the coordinates to the center of this rect.
             /// @return Returns a vector2 containing the central point of this rect.
             inline Vector2 GetRectCenter() const
             {
                 return Vector2(Position.X + (Size.X * 0.5),Position.Y + (Size.Y * 0.5));
             }
+
             /// @brief Checks to see if another Rect is overlapping with this one.
             /// @param OtherRect The other rect to compare against.
             /// @return Returns true if these rects overlap with each other, false otherwise.
-            inline bool CheckOverlap(const Rect& OtherRect) const
+            inline Boolean CheckOverlap(const Rect& OtherRect) const
             {
-                bool XOverlap = ValueInRange(this->Position.X, OtherRect.Position.X, OtherRect.Position.X + OtherRect.Size.X) ||
-                                ValueInRange(OtherRect.Position.X, this->Position.X, this->Position.X + this->Size.X);
+                Boolean XOverlap = ValueInRange(this->Position.X, OtherRect.Position.X, OtherRect.Position.X + OtherRect.Size.X) ||
+                                   ValueInRange(OtherRect.Position.X, this->Position.X, this->Position.X + this->Size.X);
 
-                bool YOverlap = ValueInRange(this->Position.Y, OtherRect.Position.Y, OtherRect.Position.Y + OtherRect.Size.Y) ||
-                                ValueInRange(OtherRect.Position.Y, this->Position.Y, this->Position.Y + this->Size.Y);
+                Boolean YOverlap = ValueInRange(this->Position.Y, OtherRect.Position.Y, OtherRect.Position.Y + OtherRect.Size.Y) ||
+                                   ValueInRange(OtherRect.Position.Y, this->Position.Y, this->Position.Y + this->Size.Y);
 
                 return (XOverlap && YOverlap);
             }
             /// @brief Checks to see if a point in 2D space is inside this rect.
             /// @param Point The point in 2D space to check.
             /// @return Returns true if the provided point is within this rect, false otherwise.
-            inline bool IsInside(const Vector2& Point) const
+            inline Boolean IsInside(const Vector2& Point) const
             {
                 return ( ValueInRange(Point.X,this->Position.X,this->Position.X + this->Size.X) &&
                          ValueInRange(Point.Y,this->Position.Y,this->Position.Y + this->Size.Y) );
@@ -174,14 +200,14 @@ namespace Mezzanine
             /// @brief Gets whether or point on the X axis is within the limits of this rect or not.
             /// @param Position The point on the X axis.
             /// @return Returns true in the provided position is within this rect's limits, false otherwise.
-            inline bool IsWithinWidth(const Real& Position) const
+            inline Boolean IsWithinWidth(const Real& Position) const
             {
                 return ValueInRange(Position,this->Position.X,this->Position.X + this->Size.X);
             }
             /// @brief Gets whether or point on the Y axis is within the limits of this rect or not.
             /// @param Position The point on the Y axis.
             /// @return Returns true in the provided position is within this rect's limits, false otherwise.
-            inline bool IsWithinHeight(const Real& Position) const
+            inline Boolean IsWithinHeight(const Real& Position) const
             {
                 return ValueInRange(Position,this->Position.Y,this->Position.Y + this->Size.Y);
             }
@@ -220,14 +246,14 @@ namespace Mezzanine
             /// @brief Equality Comparison Operator.
             /// @details Checks to see if the two Rects are equal.
             /// @param Other The other Rect to compare against.
-            inline bool operator==(const Rect& Other)
+            inline Boolean operator==(const Rect& Other)
             {
                 return ( this->Position == Other.Position && this->Size == Other.Size && this->Relative == Other.Relative );
             }
             /// @brief Inequality Comparison Operator.
             /// @details Checks to see if the two rects are different.
             /// @param Other The other Rect to compare against.
-            inline bool operator!=(const Rect& Other)
+            inline Boolean operator!=(const Rect& Other)
             {
                 return ( this->Position != Other.Position || this->Size != Other.Size || this->Relative != Other.Relative );
             }

@@ -127,7 +127,7 @@ namespace Mezzanine
             // Visibility Methods
 
             /// @brief Sets the visibility of this renderable.
-            /// @param CanSee Bool determining whether or not this renderable should be visible.
+            /// @param CanSee Boolean determining whether or not this renderable should be visible.
             virtual void SetVisible(Boolean CanSee) = 0;
             /// @brief Gets the visibility setting of this renderable.
             /// @return Returns a bool that is the current visibility setting of this renderable.

@@ -251,7 +251,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility and Visibility Methods
 
-            /// @copydoc Renderable::SetVisible(Bool)
+            /// @copydoc Renderable::SetVisible(Boolean)
             virtual void SetVisible(Boolean CanSee);
             /// @copydoc Renderable::GetVisible() const
             virtual Boolean GetVisible() const;

@@ -407,7 +407,7 @@ namespace Mezzanine
                     }
                 }else if( this->PopButton == Selected ) {
                     this->PopFromStack();
-                    /*Bool PopResult = this->PopFromStack();
+                    /*Boolean PopResult = this->PopFromStack();
                     if( !PopResult ) {
                         // Is there anything to do here?
                     }//*/
