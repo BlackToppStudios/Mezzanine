@@ -114,6 +114,29 @@ namespace Mezzanine
             return;
         }
 
+        RenderLayer* RenderLayerGroup::GetLayer(const Whole Index) const
+        {
+            Whole Count = 0;
+            ConstRenderLayerIterator RendIt = this->RenderLayers.begin();
+            while( Count < Index && RendIt != this->RenderLayers.end() )
+            {
+                ++Count;
+                ++RendIt;
+            }
+
+            return ( RendIt != this->RenderLayers.end() ? (*RendIt).second : NULL );
+        }
+
+        RenderLayer* RenderLayerGroup::GetLayerByZOrder(const UInt16 ZOrder) const
+        {
+            for( ConstRenderLayerIterator RendIt = this->RenderLayers.begin() ; RendIt != this->RenderLayers.end() ; ++RendIt )
+            {
+                if( (*RendIt).first == ZOrder )
+                    return (*RendIt).second;
+            }
+            return NULL;
+        }
+
         UInt32 RenderLayerGroup::GetNumRenderLayers() const
         {
             return this->RenderLayers.size();

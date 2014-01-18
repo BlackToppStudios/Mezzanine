@@ -119,6 +119,14 @@ namespace Mezzanine
             /// @param RL The layer to add.
             /// @param ZOrder The ZOrder at which to add the layer.
             void AddLayer(RenderLayer* RL, const UInt16 ZOrder);
+            /// @brief Gets a RenderLayer in this group by it's index.
+            /// @param Index The index of the RenderLayer to retrieve.  Note: RenderLayers are sorted via ZOrder.
+            /// @return Returns a pointer to the RenderLayer at the specified index.
+            RenderLayer* GetLayer(const Whole Index) const;
+            /// @brief Gets a RenderLayer in this group by it's ZOrder.
+            /// @param ZOrder The ZOrder of the RenderLayer to retrieve.
+            /// @return Returns a pointer to the layer at the specified ZOrder, or NULL if no layers exist at that ZOrder.
+            RenderLayer* GetLayerByZOrder(const UInt16 ZOrder) const;
             /// @brief Gets the number of RenderLayers assigned to this group.
             /// @return Returns a UInt32 containing the number of RenderLayers in this group.
             UInt32 GetNumRenderLayers() const;
