@@ -198,7 +198,6 @@ namespace Mezzanine
             LayoutStrat(NULL),
             VertexCache(NULL),
             ZOrder(0),
-            Priority(UI::RP_Medium),
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
@@ -213,7 +212,6 @@ namespace Mezzanine
             LayoutStrat(NULL),
             VertexCache(NULL),
             ZOrder(0),
-            Priority(UI::RP_Medium),
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
@@ -228,7 +226,6 @@ namespace Mezzanine
             LayoutStrat(NULL),
             VertexCache(NULL),
             ZOrder(0),
-            Priority(UI::RP_Medium),
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
@@ -403,19 +400,6 @@ namespace Mezzanine
 
         Boolean QuadRenderable::GetManualTransformUpdates() const
             { return this->ManualTransformUpdates; }
-
-        void QuadRenderable::SetRenderPriority(const UI::RenderPriority RP)
-            { this->Priority = RP; }
-
-        void QuadRenderable::SetRenderPriorityCascading(const UI::RenderPriority RP)
-        {
-            this->SetRenderPriority(RP);
-            for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
-                (*ChildIt)->SetRenderPriorityCascading(RP);
-        }
-
-        UI::RenderPriority QuadRenderable::GetRenderPriority() const
-            { return this->Priority; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Policy Methods
@@ -1383,12 +1367,7 @@ namespace Mezzanine
         {
             if( this->GetVisible() ) {
                 this->CleanLayers();
-                switch(Priority)
-                {
-                    case UI::RP_Low:     this->AppendLayerVertices(RenderData.LowVertices);     break;
-                    case UI::RP_Medium:  this->AppendLayerVertices(RenderData.MediumVertices);  break;
-                    case UI::RP_High:    this->AppendLayerVertices(RenderData.HighVertices);    break;
-                }
+                this->AppendLayerVertices(RenderData.Vertices);
             }
         }
 

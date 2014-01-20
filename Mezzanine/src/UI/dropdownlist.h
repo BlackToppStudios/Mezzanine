@@ -52,6 +52,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a widget that displays one selection from a list that can have it's visibility toggled.
         /// @details
+        /// @remarks It is not uncommon to have a DropDownList in close proximity to other renderables that could overlap with
+        /// the ListBox child of a DropDownList.  When this happens be mindful of the ZOrders of sibling renderables.  If the
+        /// DropDownList has the highest ZOrder among it's surrounding renderables then the ListBox will behave as expected.
         ///////////////////////////////////////
         class MEZZ_LIB DropDownList : public Widget
         {

@@ -242,9 +242,6 @@ namespace Mezzanine
             /// @brief This is the ZOrder of this Quad in relation to all other Quads in it's parent.
             UInt16 ZOrder;
             /// @internal
-            /// @brief Determines the "higher ZOrder" of this Quad compared to all other renderables on screen.
-            UI::RenderPriority Priority;
-            /// @internal
             /// @brief Controls whether or not this Quad will be considered for mouse hover checks.
             Boolean MousePassthrough;
             /// @internal
@@ -352,7 +349,7 @@ namespace Mezzanine
             virtual void SetMousePassthrough(Boolean Enable);
             /// @brief Gets whether or not Mouse Passthrough is enabled.
             /// @return Returns true if Mouse Passthrough is enabled, false otherwise.
-            virtual bool GetMousePassthrough() const;
+            virtual Boolean GetMousePassthrough() const;
             /// @brief Sets whether or not this quad has specific behaviors for it's transform updates and they should not be done automatically.
             /// @note Setting this to true will prevent child quads from being updated.  This setting does not mean that a quad will never be
             /// updated, just that it has special logic for doing so located elsewhere from the normal logic.  Example: Transform updates to be
@@ -361,19 +358,7 @@ namespace Mezzanine
             virtual void SetManualTransformUpdates(Boolean Enable);
             /// @brief Gets whether or not this quad will be automatically updated when parent transforms are updated.
             /// @return Returns true if this quad needs manual updating, false if it recieves automatic updates.
-            virtual bool GetManualTransformUpdates() const;
-
-            /// @brief Sets the priority this QuadRenderable should be rendered with.
-            /// @note The default value for this is Medium.
-            /// @param RP The priority level to be used when rendering this QuadRenderable.
-            virtual void SetRenderPriority(const UI::RenderPriority RP);
-            /// @brief Sets the priority this QuadRenderable and all it's children should be rendered with.
-            /// @note The default value for this is Medium.
-            /// @param RP The priority level to be used when rendering this QuadRenderable and it's children.
-            virtual void SetRenderPriorityCascading(const UI::RenderPriority RP);
-            /// @brief Gets the priority this QuadRenderable should be rendered with.
-            /// @return Returns an enum value representing this renderables priority level.
-            virtual UI::RenderPriority GetRenderPriority() const;
+            virtual Boolean GetManualTransformUpdates() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Policy Methods

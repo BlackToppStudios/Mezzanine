@@ -83,34 +83,40 @@ namespace Mezzanine
         class UIManager;
         struct ScreenInternalData;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class AtlasAndPosition
-        /// @headerfile screen.h
         /// @brief This class stores how the calls to Render are to be done.
         /// @details
         ///////////////////////////////////////
         struct AtlasAndPosition
         {
+            /// @brief The name of the atlas to be rendered with.
             String Atlas;
+            /// @brief The number of vertices to be rendered.
             Whole RenderCount;
+            /// @brief The index of the first verticy to be rendered.
             Whole RenderStart;
+            /// @brief The index of the last verticy to be rendered.
             Whole RenderEnd;
 
-            AtlasAndPosition() : RenderCount(0), RenderStart(0), RenderEnd(0) {};
-            AtlasAndPosition(const String& AtlasName) : Atlas(AtlasName), RenderCount(0), RenderStart(0), RenderEnd(0) {};
+            /// @brief Blank constructor.
+            AtlasAndPosition() :
+                RenderCount(0), RenderStart(0), RenderEnd(0)
+                {  }
+            /// @brief Atlas constructor.
+            /// @param AtlasName The name of the atlas the specified vertices will use to render.
+            AtlasAndPosition(const String& AtlasName) :
+                Atlas(AtlasName), RenderCount(0), RenderStart(0), RenderEnd(0)
+                {  }
         };//AtlasAndPosition
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class ScreenRenderData
-        /// @headerfile screen.h
         /// @brief This class stores all vertices pertaining to a layer sorted by their priority for rendering.
         /// @details
         ///////////////////////////////////////
         class ScreenRenderData
         {
         public:
-            std::vector<VertexData> LowVertices;
-            std::vector<VertexData> MediumVertices;
-            std::vector<VertexData> HighVertices;
+            /// @brief Container storing all of the vertices to be rendered.
+            std::vector<VertexData> Vertices;
 
             /// @brief Clears all Vertex vectors.
             void Clear();

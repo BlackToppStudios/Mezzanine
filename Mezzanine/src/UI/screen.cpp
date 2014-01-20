@@ -105,7 +105,7 @@ namespace Mezzanine
                 VertexCollectFunctor(ScreenRenderData* pData) : Data(pData) {}
                 ~VertexCollectFunctor() {}
 
-                bool operator()(QuadRenderable* Quad)
+                Boolean operator()(QuadRenderable* Quad)
                 {
                     Quad->_AppendRenderData(*Data);
                     return false;
@@ -131,35 +131,16 @@ namespace Mezzanine
         // ScreenRenderData Methods
 
         void ScreenRenderData::Clear()
-        {
-            LowVertices.clear();
-            MediumVertices.clear();
-            HighVertices.clear();
-        }
+            { this->Vertices.clear(); }
 
         Whole ScreenRenderData::Size()
-        {
-            return LowVertices.size() + MediumVertices.size() + HighVertices.size();
-        }
+            { return this->Vertices.size(); }
 
         void ScreenRenderData::Append(ScreenRenderData& OtherData)
-        {
-            this->LowVertices.insert(this->LowVertices.end(),OtherData.LowVertices.begin(),OtherData.LowVertices.end());
-            this->MediumVertices.insert(this->MediumVertices.end(),OtherData.MediumVertices.begin(),OtherData.MediumVertices.end());
-            this->HighVertices.insert(this->HighVertices.end(),OtherData.HighVertices.begin(),OtherData.HighVertices.end());
-        }
+            { this->Vertices.insert(this->Vertices.end(),OtherData.Vertices.begin(),OtherData.Vertices.end()); }
 
         VertexData& ScreenRenderData::operator[](const Whole& Index)
-        {
-            if( Index < LowVertices.size() )
-                return LowVertices[Index];
-            else if( Index < LowVertices.size() + MediumVertices.size() )
-                return MediumVertices[Index - LowVertices.size()];
-            else if( Index < LowVertices.size() + MediumVertices.size() + HighVertices.size() )
-                return HighVertices[Index - (LowVertices.size() + MediumVertices.size())];
-            else
-                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Out of bounds index requested in ScreenRenderData"); }
-        }
+            { return this->Vertices.at(Index); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // ScreenInternalData Methods

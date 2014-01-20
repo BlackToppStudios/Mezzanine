@@ -95,7 +95,6 @@ namespace Mezzanine
             this->ListToggle->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
             this->ListToggle->SetVerticalSizingRules(UI::SR_Unified_Dims);
             this->SelectionList = this->ParentScreen->CreateListBox(this->Name+".List",UnifiedRect(0,1,1,5,0,1,0,0),Style);
-            this->SelectionList->SetRenderPriorityCascading(UI::RP_High);
             this->SelectionList->Hide();
 
             SingleLineTextLayer* DisplayText = this->SelectionDisplay->CreateSingleLineTextLayer();
