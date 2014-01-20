@@ -444,6 +444,17 @@ namespace Mezzanine
             /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
             /// @return Returns a pointer to the created ListBox.
             virtual ListBox* CreateListBox(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style);
+            /// @brief Creates a DropDownList.
+            /// @param Name The name to be given to this DropDownList.
+            /// @param Style An enum value representing how the scrollbar child of the ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.
+            /// @return Returns a pointer to the created DropDownList.
+            virtual DropDownList* CreateDropDownList(const String& Name, const UI::ScrollbarStyle Style);
+            /// @brief Creates a DropDownList.
+            /// @param Name The name to be given to this DropDownList.
+            /// @param RendRect The rect describing this DropDownList's transform relative to it's parent.
+            /// @param Style An enum value representing how the scrollbar child of the ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.
+            /// @return Returns a pointer to the created DropDownList.
+            virtual DropDownList* CreateDropDownList(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style);
 
             /// @brief Creates a widget container aligned on the X axis.
             /// @param RendName The name to be given to this renderable.

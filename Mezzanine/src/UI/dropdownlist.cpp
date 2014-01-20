@@ -50,6 +50,8 @@
 #include "UI/singlelinetextlayer.h"
 #include "UI/horizontallayoutstrategy.h"
 
+#include "stringtool.h"
+
 namespace Mezzanine
 {
     namespace UI
@@ -285,6 +287,54 @@ namespace Mezzanine
                 }
             }
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // DropDownListFactory Methods
+
+        String DropDownListFactory::GetWidgetTypeName() const
+            { return DropDownList::TypeName; }
+
+        DropDownList* DropDownListFactory::CreateDropDownList(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent)
+            { return new DropDownList(RendName,Style,Parent); }
+
+        DropDownList* DropDownListFactory::CreateDropDownList(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent)
+            { return new DropDownList(RendName,RendRect,Style,Parent); }
+
+        DropDownList* DropDownListFactory::CreateDropDownList(const XML::Node& XMLNode, Screen* Parent)
+            { return new DropDownList(XMLNode,Parent); }
+
+        Widget* DropDownListFactory::CreateWidget(Screen* Parent)
+            { return new DropDownList(Parent); }
+
+        Widget* DropDownListFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+        {
+            UI::ScrollbarStyle Style = UI::SB_NoButtons;
+
+            NameValuePairMap::const_iterator ParamIt;
+            ParamIt = Params.find("ScrollbarStyle");
+            if( ParamIt != Params.end() )
+                Style = static_cast<UI::ScrollbarStyle>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
+
+            return this->CreateDropDownList(RendName,Style,Parent);
+        }
+
+        Widget* DropDownListFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+        {
+            UI::ScrollbarStyle Style = UI::SB_NoButtons;
+
+            NameValuePairMap::const_iterator ParamIt;
+            ParamIt = Params.find("ScrollbarStyle");
+            if( ParamIt != Params.end() )
+                Style = static_cast<UI::ScrollbarStyle>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
+
+            return this->CreateDropDownList(RendName,RendRect,Style,Parent);
+        }
+
+        Widget* DropDownListFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateDropDownList(XMLNode,Parent); }
+
+        void DropDownListFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<DropDownList*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 

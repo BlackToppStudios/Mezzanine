@@ -342,7 +342,7 @@ namespace Mezzanine
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        // MenuEntryFactory Methods
+        // ListBoxFactory Methods
 
         String ListBoxFactory::GetWidgetTypeName() const
             { return ListBox::TypeName; }

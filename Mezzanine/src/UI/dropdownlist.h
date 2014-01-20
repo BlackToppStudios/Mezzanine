@@ -62,6 +62,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "DropDownList".
             static const String TypeName;
         protected:
+            friend class DropDownListFactory;
             /// @internal
             /// @brief A pointer to a copy of the ListItem that is the current selection.
             Widget* SelectionDisplay;
@@ -159,6 +160,52 @@ namespace Mezzanine
             /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments&)
             virtual void _NotifyEvent(const EventArguments& Args);
         };//DropDownList
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the factory implementation for DropDownList widgets.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB DropDownListFactory : public WidgetFactory
+        {
+        public:
+            /// @brief Class constructor.
+            DropDownListFactory() {  }
+            /// @brief Class destructor.
+            virtual ~DropDownListFactory() {  }
+
+            /// @copydoc WidgetFactory::GetWidgetTypeName() const
+            virtual String GetWidgetTypeName() const;
+
+            /// @brief Creates a new DropDownList.
+            /// @param RendName The name to be given to the created DropDownList.
+            /// @param Style An enum value representing how the scrollbar child of the ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.
+            /// @param Parent The screen the created DropDownList will belong to.
+            /// @return Returns a pointer to the created DropDownList.
+            virtual DropDownList* CreateDropDownList(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent);
+            /// @brief Creates a new DropDownList.
+            /// @param RendName The name to be given to the created DropDownList.
+            /// @param RendRect The dimensions that will be assigned to the created DropDownList.
+            /// @param Style An enum value representing how the scrollbar child of the ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.
+            /// @param Parent The screen the created DropDownList will belong to.
+            /// @return Returns a pointer to the created DropDownList.
+            virtual DropDownList* CreateDropDownList(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent);
+            /// @brief Creates a new DropDownList.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created DropDownList will belong to.
+            /// @return Returns a pointer to the created DropDownList.
+            virtual DropDownList* CreateDropDownList(const XML::Node& XMLNode, Screen* Parent);
+
+            /// @copydoc WidgetFactory::CreateWidget(Screen*)
+            virtual Widget* CreateWidget(Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const UnifiedRect&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const XML::Node&, Screen*)
+            virtual Widget* CreateWidget(const XML::Node& XMLNode, Screen* Parent);
+            /// @copydoc WidgetFactory::DestroyWidget(Widget*)
+            virtual void DestroyWidget(Widget* ToBeDestroyed);
+        };//DropDownListFactory
     }//UI
 }//Mezzanine
 

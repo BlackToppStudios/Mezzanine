@@ -492,6 +492,9 @@ namespace Mezzanine
             // ListBox
             FactIt = this->WidgetFactories.find( ListBox::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new ListBoxFactory() );
+            // DropDownList
+            FactIt = this->WidgetFactories.find( DropDownList::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new DropDownListFactory() );
 
             // HorizontalContainer
             FactIt = this->WidgetFactories.find( HorizontalContainer::TypeName );
@@ -680,6 +683,20 @@ namespace Mezzanine
         ListBox* Screen::CreateListBox(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
         {
             ListBox* NewList = static_cast<ListBoxFactory*>( this->GetWidgetFactoryExcept( ListBox::TypeName ) )->CreateListBox( Name, RendRect, Style, this );
+            this->CheckAndInsertExcept( NewList );
+            return NewList;
+        }
+
+        DropDownList* Screen::CreateDropDownList(const String& Name, const UI::ScrollbarStyle Style)
+        {
+            DropDownList* NewList = static_cast<DropDownListFactory*>( this->GetWidgetFactoryExcept( DropDownList::TypeName ) )->CreateDropDownList( Name, Style, this );
+            this->CheckAndInsertExcept( NewList );
+            return NewList;
+        }
+
+        DropDownList* Screen::CreateDropDownList(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
+        {
+            DropDownList* NewList = static_cast<DropDownListFactory*>( this->GetWidgetFactoryExcept( DropDownList::TypeName ) )->CreateDropDownList( Name, RendRect, Style, this );
             this->CheckAndInsertExcept( NewList );
             return NewList;
         }
