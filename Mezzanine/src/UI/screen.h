@@ -65,11 +65,11 @@ namespace Mezzanine
         class HorizontalScrollbar;
         class LineList;
         class ListBox;
-        class MenuButton;
         class MenuEntry;
         class RadioButton;
         class Scrollbar;
         class Spinner;
+        class StackButton;
         class TabSet;
         class VerticalContainer;
         class VerticalScrollbar;
@@ -156,7 +156,7 @@ namespace Mezzanine
             /// @brief Basic container type for the storage of render data on this screen.
             typedef std::vector<AtlasAndPosition>           TextureVertexContainer;
             /// @brief Callback type for child processing.
-            typedef bool (ChildCallback)(QuadRenderable* Quad);
+            typedef Boolean (ChildCallback)(QuadRenderable* Quad);
         protected:
             friend class Mezzanine::UI::UIManager;
 
@@ -374,15 +374,15 @@ namespace Mezzanine
             /// @param RendRect The rect describing this Button's transform relative to it's parent.
             /// @return Returns a pointer to the created Button.
             virtual Button* CreateButton(const String& Name, const UnifiedRect& RendRect);
+            /// @brief Creates a StackButton.
+            /// @param Name The name to be given to this StackButton.
+            /// @return Returns a pointer to the created StackButton.
+            virtual StackButton* CreateStackButton(const String& Name);
             /// @brief Creates a MenuButton.
-            /// @param Name The name to be given to this MenuButton.
-            /// @return Returns a pointer to the created MenuButton.
-            virtual MenuButton* CreateMenuButton(const String& Name);
-            /// @brief Creates a MenuButton.
-            /// @param Name The name to be given to this MenuButton.
-            /// @param RendRect The rect describing this MenuButton's transform relative to it's parent.
-            /// @return Returns a pointer to the created MenuButton.
-            virtual MenuButton* CreateMenuButton(const String& Name, const UnifiedRect& RendRect);
+            /// @param Name The name to be given to this StackButton.
+            /// @param RendRect The rect describing this StackButton's transform relative to it's parent.
+            /// @return Returns a pointer to the created StackButton.
+            virtual StackButton* CreateStackButton(const String& Name, const UnifiedRect& RendRect);
             /// @brief Creates a RadioButton.
             /// @param Name The name to be given to this RadioButton.
             /// @return Returns a pointer to the created RadioButton.

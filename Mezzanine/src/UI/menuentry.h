@@ -46,8 +46,8 @@ namespace Mezzanine
 {
     namespace UI
     {
-        class MenuButton;
-        class MenuEntryStack;
+        class StackButton;
+        /*class MenuEntryStack;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a class designed to help MenuEntrys keep track of the Menu tree they belong to.
         /// @details
@@ -60,7 +60,7 @@ namespace Mezzanine
             ~MenuStack();
 
 
-        };//MenuStack
+        };//MenuStack*/
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class is an entry for a single window/widget in a menu.
@@ -96,10 +96,10 @@ namespace Mezzanine
             MenuEntryContainer* MenuStack;
             /// @internal
             /// @brief A pointer to the button that will push this entry on the menu stack.
-            MenuButton* PushButton;
+            StackButton* PushButton;
             /// @internal
             /// @brief A pointer to the button that will pop this entry from the menu stack.
-            MenuButton* PopButton;
+            StackButton* PopButton;
             /// @internal
             /// @brief Stores whether or not this Entry will automatically be hidden when another entry is pushed onto the stack after it.
             Boolean AutoHideEntry;
@@ -130,7 +130,7 @@ namespace Mezzanine
             /// @param Parent The screen the created MenuEntry will belong to.
             MenuEntry(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
-        virtual ~MenuEntry();
+            virtual ~MenuEntry();
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
@@ -138,10 +138,6 @@ namespace Mezzanine
             /// @brief Gets whether or not this is the Root of the MenuEntry hierarchy.
             /// @return Returns true if this MenuEntry has no parent entry, false otherwise.
             virtual Boolean IsRootEntry() const;
-            /// @brief Gets the role of the specified MenuButton for this MenuEntry.
-            /// @param EntryButton The button to check this MenuEntry for.
-            /// @return Returns a ButtonConfig enum value representing how the specified MenuButton is being used by this MenuEntry.
-            virtual ButtonConfig GetButtonConfig(const MenuButton* EntryButton) const;
 
             /// @brief Finds a MenuEntry in the menu stack and hides all Entries above it in the menu stack.
             /// @note This can return zero if the provided entry isn't on the stack or if it is the last entry on the stack.
@@ -172,21 +168,28 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Menu Configuration
 
+            /// @copydoc StackedContainer::SetButtonCongig(const UInt16, StackButton*)
+            /// @note This method accepts values from the ButtonConfig enum.  Other values will throw an exception.
+            virtual void SetButtonConfig(const UInt16 Config, StackButton* ConfigButton);
+            /// @copydoc StackedContainer::GetButtonConfig(const StackButton*) const
+            /// @note This method will return a ButtonConfig enum value represented as a UInt16.
+            virtual UInt16 GetButtonConfig(const StackButton* ConfigButton) const;
+
             /// @brief Sets the button that will push(add) this entry on the menu stack, making it visible.
             /// @param Push A pointer to the button that will make this entry visible.
-            virtual void SetPushButton(MenuButton* Push);
+            virtual void SetPushButton(StackButton* Push);
             /// @brief Gets a pointer to the button that will add this entry to the menu stack.
             /// @return Returns a pointer to the button that will make this entry visible.
-            virtual MenuButton* GetPushButton() const;
+            virtual StackButton* GetPushButton() const;
             /// @brief Sets the button that will pop(remove) this entry from the menu stack, hiding it.
             /// @param Pop A pointer to the button that will make this entry hide.
-            virtual void SetPopButton(MenuButton* Pop);
+            virtual void SetPopButton(StackButton* Pop);
             /// @brief Gets a pointer to the button that will remove this entry from the menu stack.
             /// @return Returns a pointer to the button that will make this entry hide.
-            virtual MenuButton* GetPopButton() const;
+            virtual StackButton* GetPopButton() const;
             /// @brief Sets the button that will both push(add) and pop(remove) the entry from the menu stack, based on the current state of the entry.
             /// @param Toggle A pointer to the button that will toggle this MenuEntrys visibility.
-            virtual void SetToggleButton(MenuButton* Toggle);
+            virtual void SetToggleButton(StackButton* Toggle);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -215,10 +218,8 @@ namespace Mezzanine
             /// @brief Notifies this MenuEntry and all if it's Entry children a new MenuStack is being applied to the menu tree.
             /// @param NewStack the new stack to be applied.  Can be NULL to remove the stack from all children.
             virtual void _NotifyStack(MenuEntryContainer* NewStack);
-            /// @internal
-            /// @brief Notifies this menu a button has been selected.
-            /// @param Selected The menu button that was selected.
-            virtual void _NotifyButtonSelected(MenuButton* Selected);
+            /// @copydoc StackedContainer::_NotifyButtonSelected(StackedButton*)
+            virtual void _NotifyButtonSelected(StackButton* Selected);
             /// @copydoc QuadRenderable::_NotifyParenthood(QuadRenderable*)
             virtual void _NotifyParenthood(QuadRenderable* NewParent);
             /// @copydoc QuadRenderable::_HasAvailableRenderData() const

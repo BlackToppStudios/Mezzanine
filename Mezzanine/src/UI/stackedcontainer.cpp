@@ -46,7 +46,13 @@ namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // StackedContainer Static Members
+
         const String StackedContainer::TypeName = "StackedContainer";
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // StackedContainer Methods
 
         StackedContainer::StackedContainer(Screen* Parent) :
             Widget(Parent)

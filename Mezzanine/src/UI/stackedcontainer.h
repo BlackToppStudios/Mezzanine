@@ -47,6 +47,7 @@ namespace Mezzanine
 {
     namespace UI
     {
+        class StackButton;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base class for containers that stack their children one on top of the other.
         /// @details
@@ -57,7 +58,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "StackedContainer".
             static const String TypeName;
         protected:
-        public:
+        //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             StackedContainer(Screen* Parent);
@@ -72,6 +73,18 @@ namespace Mezzanine
             StackedContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
             /// @brief Class destructor.
             virtual ~StackedContainer();
+        public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // StackedContainer Configuration
+
+            /// @brief Binds a StackedButton to this container according to the provided config value.
+            /// @param Config A UInt16 that represents how the provided button will be added to the containers configuration.  Check implementation for more information.
+            /// @param ConfigButton The button to be added to this containers configuration.
+            virtual void SetButtonConfig(const UInt16 Config, StackButton* ConfigButton) = 0;
+            /// @brief Gets the role of the specified StackedButton for this StackedContainer.
+            /// @param ConfigButton The button to check this StackedContainer for.
+            /// @return Returns a UInt16 representing how the specified StackButton is being used by this StackedContainer.
+            virtual UInt16 GetButtonConfig(const StackButton* ConfigButton) const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -83,6 +96,14 @@ namespace Mezzanine
 
             /// @copydoc Renderable::GetSerializableName()
             static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @internal
+            /// @brief Notifies this StackedContainer a button has been selected.
+            /// @param Selected The StackedContainer button that was selected.
+            virtual void _NotifyButtonSelected(StackButton* Selected) = 0;
         };//StackedContainer
     }//UI
 }//Mezzanine

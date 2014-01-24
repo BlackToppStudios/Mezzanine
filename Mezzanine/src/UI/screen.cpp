@@ -56,11 +56,11 @@
 #include "UI/horizontalscrollbar.h"
 #include "UI/linelist.h"
 #include "UI/listbox.h"
-#include "UI/menubutton.h"
 #include "UI/menuentry.h"
 #include "UI/radiobutton.h"
 #include "UI/scrollbar.h"
 #include "UI/spinner.h"
+#include "UI/stackbutton.h"
 #include "UI/tabset.h"
 #include "UI/verticalcontainer.h"
 #include "UI/verticalscrollbar.h"
@@ -470,9 +470,9 @@ namespace Mezzanine
             // Button
             FactIt = this->WidgetFactories.find( Button::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new ButtonFactory() );
-            // MenuButton
-            FactIt = this->WidgetFactories.find( MenuButton::TypeName );
-            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new MenuButtonFactory() );
+            // StackButton
+            FactIt = this->WidgetFactories.find( StackButton::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new StackButtonFactory() );
             // RadioButton
             FactIt = this->WidgetFactories.find( RadioButton::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new RadioButtonFactory() );
@@ -589,16 +589,16 @@ namespace Mezzanine
             return NewButton;
         }
 
-        MenuButton* Screen::CreateMenuButton(const String& Name)
+        StackButton* Screen::CreateStackButton(const String& Name)
         {
-            MenuButton* NewButton = static_cast<MenuButtonFactory*>( this->GetWidgetFactoryExcept( MenuButton::TypeName ) )->CreateMenuButton( Name, this );
+            StackButton* NewButton = static_cast<StackButtonFactory*>( this->GetWidgetFactoryExcept( StackButton::TypeName ) )->CreateStackButton( Name, this );
             this->CheckAndInsertExcept( NewButton );
             return NewButton;
         }
 
-        MenuButton* Screen::CreateMenuButton(const String& Name, const UnifiedRect& RendRect)
+        StackButton* Screen::CreateStackButton(const String& Name, const UnifiedRect& RendRect)
         {
-            MenuButton* NewButton = static_cast<MenuButtonFactory*>( this->GetWidgetFactoryExcept( MenuButton::TypeName ) )->CreateMenuButton( Name, RendRect, this );
+            StackButton* NewButton = static_cast<StackButtonFactory*>( this->GetWidgetFactoryExcept( StackButton::TypeName ) )->CreateStackButton( Name, RendRect, this );
             this->CheckAndInsertExcept( NewButton );
             return NewButton;
         }
