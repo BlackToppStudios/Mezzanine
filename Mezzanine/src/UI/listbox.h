@@ -203,16 +203,18 @@ namespace Mezzanine
 
             /// @brief Convenience method that will create and add a ListItem with a single line text layer to this ListBox.
             /// @note The auto-created text layers ZOrder is 5.  TextLine(s) in the ListItem are set to a centered vertical
-            /// alignment.  ListItem sizes are automatically set to fill the full X axis of it's container, and X+2 pixels in
-            /// height, where the height is the space needed for all it's text lines.
+            /// alignment.  ListItems by default are sized to automatically fill the full X axis of it's container, and X+2 pixels in
+            /// height, where the height is the space needed for all it's text lines.  New ListItems are also automatically added as
+            /// a child of this ListBox, so you don't need to add them to the ListBox yourself.
             /// @param ItemName The name to be given to the new ListItem.
             /// @param Text The text that is to be created and assigned to the new list item.
             /// @return Returns a pointer to the newly created ListItem.
             virtual ListItem* CreateSingleLineListItem(const String& ItemName, const String& Text);
             /// @brief Convenience method that will create and add a ListItem with a multi-line text layer to this ListBox.
             /// @note The auto-created text layers ZOrder is 5.  TextLine(s) in the ListItem are set to a centered vertical
-            /// alignment.  ListItem sizes are automatically set to fill the full X axis of it's container, and X+2 pixels in
-            /// height, where the height is the space needed for all it's text lines.
+            /// alignment.  ListItems by default are sized to automatically fill the full X axis of it's container, and X+2 pixels in
+            /// height, where the height is the space needed for all it's text lines.  New ListItems are also automatically added as
+            /// a child of this ListBox, so you don't need to add them to the ListBox yourself.
             /// @param ItemName The name to be given to the new ListItem.
             /// @param Text The text that is to be created and assigned to the new list item.
             /// @return Returns a pointer to the newly created ListItem.
