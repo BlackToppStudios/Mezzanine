@@ -82,8 +82,11 @@ namespace Mezzanine
 
         DropDownList::~DropDownList()
         {
+            this->RemoveChild( this->SelectionDisplay );
             this->ParentScreen->DestroyWidget( this->SelectionDisplay );
+            this->RemoveChild( this->ListToggle );
             this->ParentScreen->DestroyWidget( this->ListToggle );
+            this->RemoveChild( this->SelectionList );
             this->ParentScreen->DestroyWidget( this->SelectionList );
             delete this->LayoutStrat;
         }

@@ -98,7 +98,9 @@ namespace Mezzanine
         ListBox::~ListBox()
         {
             this->ListContainer->UnbindProvider( this->ListScroll );
+            this->RemoveChild( this->ListScroll );
             this->ParentScreen->DestroyWidget( this->ListScroll );
+            this->RemoveChild( this->ListContainer );
             this->ParentScreen->DestroyWidget( this->ListContainer );
             delete this->LayoutStrat;
         }

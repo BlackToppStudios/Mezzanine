@@ -89,10 +89,14 @@ namespace Mezzanine
                 this->Container->UnbindProvider(this);
             }
 
-            this->ParentScreen->DestroyWidget(this->Scroller);
-            this->ParentScreen->DestroyWidget(this->ScrollBack);
-            this->ParentScreen->DestroyWidget(this->UpLeftButton);
-            this->ParentScreen->DestroyWidget(this->DownRightButton);
+            this->RemoveChild( this->Scroller );
+            this->ParentScreen->DestroyWidget( this->Scroller );
+            this->RemoveChild( this->ScrollBack );
+            this->ParentScreen->DestroyWidget( this->ScrollBack );
+            this->RemoveChild( this->UpLeftButton );
+            this->ParentScreen->DestroyWidget( this->UpLeftButton );
+            this->RemoveChild( this->DownRightButton );
+            this->ParentScreen->DestroyWidget( this->DownRightButton );
         }
 
         void HorizontalScrollbar::ConstructHorizontalScrollbar(const UI::ScrollbarStyle& ScrollStyle)
