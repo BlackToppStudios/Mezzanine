@@ -66,7 +66,7 @@ namespace Mezzanine
 
         DropDownList::DropDownList(Screen* Parent) :
             Widget(Parent)
-            { this->LayoutStrat = new HorizontalLayoutStrategy(); }
+            {  }
 
         DropDownList::DropDownList(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent) :
             Widget(RendName,Parent)
@@ -78,7 +78,7 @@ namespace Mezzanine
 
         DropDownList::DropDownList(const XML::Node& XMLNode, Screen* Parent) :
             Widget(Parent)
-            { this->LayoutStrat = new HorizontalLayoutStrategy();  this->ProtoDeSerialize(XMLNode); }
+            { this->ProtoDeSerialize(XMLNode); }
 
         DropDownList::~DropDownList()
         {
@@ -88,7 +88,11 @@ namespace Mezzanine
             this->ParentScreen->DestroyWidget( this->ListToggle );
             this->RemoveChild( this->SelectionList );
             this->ParentScreen->DestroyWidget( this->SelectionList );
-            delete this->LayoutStrat;
+        }
+
+        void DropDownList::CreateLayoutStrat()
+        {
+            this->LayoutStrat = new HorizontalLayoutStrategy();
         }
 
         void DropDownList::ConstructDropDownList(const UI::ScrollbarStyle& Style)
@@ -109,8 +113,6 @@ namespace Mezzanine
             this->ListToggle->Subscribe(CheckBox::EventSelected,this);
             this->ListToggle->Subscribe(CheckBox::EventDeselected,this);
             this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildFocusGained,this);
-
-            this->LayoutStrat = new HorizontalLayoutStrategy();
         }
 
         void DropDownList::UpdateCurrentSelection(Widget* NewSelection)

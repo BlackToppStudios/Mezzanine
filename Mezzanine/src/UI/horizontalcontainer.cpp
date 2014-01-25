@@ -57,22 +57,25 @@ namespace Mezzanine
 
         HorizontalContainer::HorizontalContainer(Screen* Parent) :
             LinearContainer(Parent)
-            { this->LayoutStrat = new LayoutStrategy(); }
+            {  }
 
         HorizontalContainer::HorizontalContainer(const String& RendName, Screen* Parent) :
             LinearContainer(RendName,Parent)
-            { this->LayoutStrat = new LayoutStrategy(); }
+            {  }
 
         HorizontalContainer::HorizontalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             LinearContainer(RendName,RendRect,Parent)
-            { this->LayoutStrat = new LayoutStrategy(); }
+            {  }
 
         HorizontalContainer::HorizontalContainer(const XML::Node& XMLNode, Screen* Parent) :
             LinearContainer(Parent)
             { this->ProtoDeSerialize(XMLNode); }
 
         HorizontalContainer::~HorizontalContainer()
-            { delete this->LayoutStrat; }
+            {  }
+
+        void HorizontalContainer::CreateLayoutStrat()
+            { this->LayoutStrat = new LayoutStrategy(); }
 
         void HorizontalContainer::UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect)
         {

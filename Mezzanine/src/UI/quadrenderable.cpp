@@ -203,6 +203,7 @@ namespace Mezzanine
             AllLayersDirty(false)
         {
             this->ActDims.SetIdentity();
+            this->CreateLayoutStrat();
         }
 
         QuadRenderable::QuadRenderable(const String& RendName, Screen* Parent) :
@@ -217,6 +218,7 @@ namespace Mezzanine
             AllLayersDirty(false)
         {
             this->ActDims.SetIdentity();
+            this->CreateLayoutStrat();
         }
 
         QuadRenderable::QuadRenderable(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
@@ -234,6 +236,8 @@ namespace Mezzanine
 
             this->PositioningPolicy.UPosition = RendRect.Position;
             this->SizingPolicy.USize = RendRect.Size;
+
+            this->CreateLayoutStrat();
         }
 
         QuadRenderable::~QuadRenderable()
@@ -244,6 +248,7 @@ namespace Mezzanine
             this->DestroyAllRenderLayerGroups();
             this->DestroyAllRenderLayers();
             this->SetLocalVertexCaching(false);
+            delete this->LayoutStrat;
         }
 
         void QuadRenderable::ProtoSerializeImpl(XML::Node& SelfRoot) const
@@ -259,6 +264,11 @@ namespace Mezzanine
             this->ProtoDeSerializeRenderLayers(SelfRoot);
             this->ProtoDeSerializeRenderLayerGroups(SelfRoot);
             this->ProtoDeSerializeProperties(SelfRoot);
+        }
+
+        void QuadRenderable::CreateLayoutStrat()
+        {
+            this->LayoutStrat = new LayoutStrategy();
         }
 
         void QuadRenderable::AppendLayerVertices(std::vector<VertexData>& Vertices)

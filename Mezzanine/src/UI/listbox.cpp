@@ -75,7 +75,7 @@ namespace Mezzanine
             Widget(Parent),
             ListItemFont(NULL),
             Ordering(ListBox::LIO_BottomInsert)
-            { this->LayoutStrat = new LayoutStrategy(); }
+            {  }
 
         ListBox::ListBox(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent) :
             Widget(RendName,Parent),
@@ -93,7 +93,7 @@ namespace Mezzanine
             Widget(Parent),
             ListItemFont(NULL),
             Ordering(ListBox::LIO_BottomInsert)
-            { this->LayoutStrat = new LayoutStrategy();  this->ProtoDeSerialize(XMLNode); }
+            { this->ProtoDeSerialize(XMLNode); }
 
         ListBox::~ListBox()
         {
@@ -102,7 +102,6 @@ namespace Mezzanine
             this->ParentScreen->DestroyWidget( this->ListScroll );
             this->RemoveChild( this->ListContainer );
             this->ParentScreen->DestroyWidget( this->ListContainer );
-            delete this->LayoutStrat;
         }
 
         Boolean ListBox::HandleInputImpl(const Input::MetaCode& Code)

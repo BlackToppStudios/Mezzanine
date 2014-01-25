@@ -256,6 +256,11 @@ namespace Mezzanine
             /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
             /// @internal
+            /// @brief Overridable method that creates and assigns a layout strategy for a quadrenderable.
+            /// @note Widgets by default will create the default LayoutStrategy implementation.  If a widget needs a different implementation (or none/NULL),
+            /// then this method needs to be overridden and provide the appropriate type.
+            virtual void CreateLayoutStrat();
+            /// @internal
             /// @brief Adds all the vertices belonging to all the layers of this renderable to the provided vector.
             /// @param Vertices The vector to store the generated vertices.
             void AppendLayerVertices(std::vector<VertexData>& Vertices);

@@ -58,6 +58,8 @@ namespace Mezzanine
         protected:
             friend class VerticalScrollbarFactory;
 
+            /// @copydoc QuadRenderable::CreateLayoutStrat()
+            virtual void CreateLayoutStrat();
             /// @internal
             /// @brief Constructor helper function for creating a vertically aligned scrollbar.
             /// @param ScrollStyle The button style to be applied to this scrollbar.

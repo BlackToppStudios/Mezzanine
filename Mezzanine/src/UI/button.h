@@ -109,6 +109,8 @@ namespace Mezzanine
             /// @brief Stores whether or not the current activation of this button was triggered by a mouse.
             Boolean MouseActivated;
 
+            /// @copydoc QuadRenderable::CreateLayoutStrat()
+            virtual void CreateLayoutStrat();
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode& Code)
             virtual Boolean HandleInputImpl(const Input::MetaCode& Code);
             /// @internal

@@ -66,7 +66,7 @@ namespace Mezzanine
 
         VerticalScrollbar::VerticalScrollbar(Screen* Parent) :
             Scrollbar(Parent)
-            { this->LayoutStrat = new VerticalLayoutStrategy(); }
+            {  }
 
         VerticalScrollbar::VerticalScrollbar(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent) :
             Scrollbar(RendName,Parent)
@@ -78,13 +78,10 @@ namespace Mezzanine
 
         VerticalScrollbar::VerticalScrollbar(const XML::Node& XMLNode, Screen* Parent) :
             Scrollbar(Parent)
-            { this->LayoutStrat = new VerticalLayoutStrategy();  this->ProtoDeSerialize(XMLNode); }
+            { this->ProtoDeSerialize(XMLNode); }
 
         VerticalScrollbar::~VerticalScrollbar()
         {
-            delete this->LayoutStrat;
-            this->LayoutStrat = NULL;
-
             if( this->Container != NULL ) {
                 this->Container->UnbindProvider(this);
             }
@@ -99,9 +96,13 @@ namespace Mezzanine
             this->ParentScreen->DestroyWidget( this->DownRightButton );
         }
 
-        void VerticalScrollbar::ConstructVerticalScrollbar(const UI::ScrollbarStyle& ScrollStyle)
+        void VerticalScrollbar::CreateLayoutStrat()
         {
             this->LayoutStrat = new VerticalLayoutStrategy();
+        }
+
+        void VerticalScrollbar::ConstructVerticalScrollbar(const UI::ScrollbarStyle& ScrollStyle)
+        {
             // Create the rects we'll use
             UnifiedRect ChildRect(0,0,1,1,0,0,0,0);
             if( UI::SB_NoButtons == ScrollStyle )
