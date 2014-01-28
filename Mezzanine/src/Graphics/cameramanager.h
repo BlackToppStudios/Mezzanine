@@ -168,7 +168,7 @@ namespace Mezzanine
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
             virtual String GetImplementationTypeName() const;
-        };// ©ameraManager
+        };// CameraManager
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultCameraManagerFactory

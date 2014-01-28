@@ -301,7 +301,7 @@ namespace Mezzanine
                 SDL_GetWindowDisplayMode(SDLWindow,&CurrentDisplay);
                 CurrentDisplay.w = Width;
                 CurrentDisplay.h = Height;
-                // ©urrentDisplay.refresh_rate = 60;
+                // CurrentDisplay.refresh_rate = 60;
                 if(SDL_SetWindowDisplayMode(SDLWindow,&CurrentDisplay) == 0)
                 {
                     this->OgreWindow->setFullscreen(true,Width,Height);

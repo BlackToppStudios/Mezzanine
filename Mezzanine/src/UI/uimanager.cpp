@@ -602,7 +602,7 @@ namespace Mezzanine
 
             // Inject input delta's from the input system
             const MetaCodeContainer& Inputs = Input::InputManager::GetSingletonPtr()->GetInputDeltas();
-            // InjectedInputs.insert(InjectedInputs.end(),Inputs.begin(),Inputs.end());  // ©ommented because we want to use "InjectInput()" so we can filter the codes.
+            // InjectedInputs.insert(InjectedInputs.end(),Inputs.begin(),Inputs.end());  // Commented because we want to use "InjectInput()" so we can filter the codes.
             for( ConstMetaCodeIterator MCIt = Inputs.begin() ; MCIt != Inputs.end() ; ++MCIt )
                 this->InjectInput( (*MCIt) );
 

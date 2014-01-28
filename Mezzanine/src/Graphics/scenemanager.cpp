@@ -180,7 +180,7 @@ namespace Mezzanine
             this->SMD = new SceneManagerData(this);
             this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(InternalManagerTypeName);
             //this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
-            // ©onst Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
+            // const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
             //OgreManager->setShadowCameraSetup(ShadowCam);
         }
 
@@ -689,7 +689,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
                                 << "\" >"
                                 << SMD->SkyThePlane
                                 << "</SkyPlane>";
-                            // ©onst Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, bool DrawFirst, Real Bow, int XSegments, int YSegments
+                            // const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, bool DrawFirst, Real Bow, int XSegments, int YSegments
                         }
                         break;
                     case Mezzanine::Graphics::SceneManager::SkyBox:{
@@ -702,7 +702,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
                                 << "\" >"
                                 << "<Orientation>" << SMD->SkyOrientation << "</Orientation>"
                                 << "</SkyBox>";
-                            // ©onst String& Material, const String& Group, Real Distance, bool DrawFirst=true, Quaternion Orientation=Quaternion()
+                            // const String& Material, const String& Group, Real Distance, bool DrawFirst=true, Quaternion Orientation=Quaternion()
                         }
                         break;
                     case Mezzanine::Graphics::SceneManager::SkyDome:{
@@ -720,7 +720,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
                                 << "\" >"
                                 << "<Orientation>" << SMD->SkyOrientation << "</Orientation>"
                                 << "</SkyDome>";
-                            // ©onst String& Material, const String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, bool DrawFirst=true, Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16
+                            // const String& Material, const String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, bool DrawFirst=true, Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16
                         }
                         break;
                 }

@@ -99,7 +99,7 @@ namespace Mezzanine
             /// @param Pair The other pair to compare against.
             /// @return Returns true if this pair is found to be greater then the passed in pair, false otherwise.
             virtual bool operator>(const CollidablePair& Pair) const;
-        };// ©ollidablePair
+        };// CollidablePair
     }//Physics
 }//Mezzanine
 

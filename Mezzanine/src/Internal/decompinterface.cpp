@@ -61,13 +61,13 @@ namespace Mezzanine
 
             btVector3 localScaling(1.f,1.f,1.f);
 
-            // ©alc centroid, to shift vertices around center of mass
+            // Calc centroid, to shift vertices around center of mass
             btVector3 centroid;
             centroid.setValue(0,0,0);
 
             btAlignedObjectArray<btVector3> vertices;
 
-            // ©onst unsigned int *src = result.mHullIndices;
+            // const unsigned int *src = result.mHullIndices;
             for (unsigned int i=0; i<result.mHullVcount; i++)
             {
                     btVector3 vertex(result.mHullVertices[i*3],result.mHullVertices[i*3+1],result.mHullVertices[i*3+2]);
@@ -77,7 +77,7 @@ namespace Mezzanine
 
             centroid *= 1.f/(float(result.mHullVcount) );
 
-            // ©onst unsigned int *src = result.mHullIndices;
+            // const unsigned int *src = result.mHullIndices;
             for (unsigned int i=0; i<result.mHullVcount; i++)
             {
                 btVector3 vertex(result.mHullVertices[i*3],result.mHullVertices[i*3+1],result.mHullVertices[i*3+2]);

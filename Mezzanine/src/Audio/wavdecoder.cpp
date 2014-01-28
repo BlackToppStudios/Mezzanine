@@ -75,23 +75,23 @@ namespace Mezzanine
             //Int8 Temp8 = 0;
             UInt32 StartOffset = 0;
 
-            //Read the first 4 bytes
+            // Read the first 4 bytes
             this->WavStream->SetStreamPosition(0);
             this->WavStream->Read(Ident,4);
-            // ©heck to see if it is a valid RIFF file
+            // Check to see if it is a valid RIFF file
             if( strncmp(Ident,RIFFTAG,4) == 0 )
             {
                 this->WavStream->Read(&Temp32,4);
-                // ©heck to see if the file is big enough to be valid (not completely accurate)
+                // Check to see if the file is big enough to be valid (not completely accurate)
                 if( Temp32 >= 44 )
                 {
                     this->WavStream->Read(Ident,4);
-                    // ©heck that it is a wave file
+                    // Check that it is a wave file
                     if( strncmp(Ident,WAVETAG,4) == 0 )
                     {
-                        //Save our position
+                        // Save our position
                         StartOffset = this->WavStream->GetStreamPosition();
-                        //Scan for the first fmt chuck (not necessarily right after)
+                        // Scan for the first fmt chuck (not necessarily right after)
                         do{
                             this->WavStream->Read(Ident,4);
                         } while( ( strncmp(Ident,FORMATTAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) );
@@ -102,10 +102,10 @@ namespace Mezzanine
                             this->WavStream->Read(&Temp32,4);
                             if( Temp32 >= 16 )
                             {
-                                // ©heck that it is in PCM format, we don't support compressed wavs
+                                // Check that it is in PCM format, we don't support compressed wavs
                                 this->WavStream->Read(&Temp16,2);
                                 this->Channels = Temp16;
-                                //We only support mono or stereo wavs
+                                // We only support mono or stereo wavs
                                 if( this->Channels == 1 || this->Channels == 2 )
                                 {
                                     this->WavStream->Read(&Temp32,4);
@@ -117,20 +117,20 @@ namespace Mezzanine
                                     this->WavStream->Read(&Temp16,2);
                                     this->BitsPerSample = Temp16;
 
-                                    //We only support 8 bit or 16 bit wavs
+                                    // We only support 8 bit or 16 bit wavs
                                     if( this->BitsPerSample == 8 || this->BitsPerSample == 16 )
                                     {
-                                        //Reset our pointer to start scanning for the data block
+                                        // Reset our pointer to start scanning for the data block
                                         this->WavStream->SetStreamPosition(StartOffset);
-                                        //Scan for the first data chuck (not necessarily right after)
+                                        // Scan for the first data chuck (not necessarily right after)
                                         do{
                                             this->WavStream->Read(Ident,4);
                                         } while( ( strncmp(Ident,DATATAG,4) != 0 ) && ( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() ) );
 
-                                        //Did we find it?
+                                        // Did we find it?
                                         if( this->WavStream->GetStreamPosition() < this->WavStream->GetSize() )
                                         {
-                                            //Get size of data block
+                                            // Get size of data block
                                             this->WavStream->Read(&Temp32,4);
                                             this->DataSize = Temp32;
                                             this->DataOffset = this->WavStream->GetStreamPosition();

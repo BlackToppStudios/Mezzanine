@@ -253,7 +253,7 @@ namespace Mezzanine
             } // \if entity
         } // \if qr_idx
 
-        // ©hange the closest point into a point relative to the Actor
+        // Change the closest point into a point relative to the Actor
         if (IntersectedObject)
         {
             Offset = IntersectedObject->GetOrientation() * ((closest_result - IntersectedObject->GetLocation()) * IntersectedObject->GetScale());
@@ -313,7 +313,7 @@ namespace Mezzanine
 
             Real SMALL_NUM = 0.00000001;
 
-            if( (D<0? -D : D) < SMALL_NUM)  // ©hecks if the Plane behind the RAy
+            if( (D<0? -D : D) < SMALL_NUM)  // Checks if the Plane behind the RAy
             {
                 if(N == 0)
                 {
@@ -328,7 +328,7 @@ namespace Mezzanine
 
             Real sI = N/D;
 
-            if(sI < 0 || sI > 1) // ©hecks if the ray is too long
+            if(sI < 0 || sI > 1) // Checks if the ray is too long
                 { return ClearReturns(); }
 
             Vector3 return_vector(QueryRay.Origin + (u * sI));

@@ -141,7 +141,7 @@ namespace Mezzanine
                 if(manifold == (*ColIt).second->InternalAlgo)
                 {
                     //ManifoldDestructionQueue.push_back(ColIt);
-                    // ©ollision* ToBeDestroyed = (*ColIt).second;
+                    // Collision* ToBeDestroyed = (*ColIt).second;
                     //ToBeDestroyed->GetActorA()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     //ToBeDestroyed->GetActorB()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     delete (*ColIt).second;
@@ -262,7 +262,7 @@ namespace Mezzanine
                 if(manifold == (*ColIt).second->InternalAlgo)
                 {
                     //ManifoldDestructionQueue.push_back(ColIt);
-                    // ©ollision* ToBeDestroyed = (*ColIt).second;
+                    // Collision* ToBeDestroyed = (*ColIt).second;
                     //ToBeDestroyed->GetActorA()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     //ToBeDestroyed->GetActorB()->_NotifyCollisionState(ToBeDestroyed,Collision::Col_End);
                     delete (*ColIt).second;

@@ -219,7 +219,7 @@ namespace Mezzanine
 
         //Dummy param list so we can use the auto-added manager types if needed
         NameValuePairList Params;
-        // ©reate and add any managers that have not been taken care of yet.
+        // Create and add any managers that have not been taken care of yet.
         if(this->GetActorManager()==0)
             { this->AddManager(new ActorManager()); }
         if(this->GetAreaEffectManager()==0)
@@ -463,7 +463,7 @@ namespace Mezzanine
 
     void Entresol::SanityChecks()
     {
-        // ©rossplatform::WaitMilliseconds(1500);
+        // Crossplatform::WaitMilliseconds(1500);
         //Perform a Test that only needs to be done once for the SDL/userinputevent system.`
         /*Log("Verifying size of userinput events:");
         Log(sizeof(Input::InputCode));

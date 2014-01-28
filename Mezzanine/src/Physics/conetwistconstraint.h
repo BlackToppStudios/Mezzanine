@@ -81,7 +81,7 @@ namespace Mezzanine
 
             /// @copydoc Constraint::GetConstraintBase() const
             virtual btTypedConstraint* GetConstraintBase() const;
-        };// ©oneTwistConstraint
+        };// ConeTwistConstraint
     }//Physics
 }//Mezzanine
 

@@ -92,7 +92,7 @@ namespace Mezzanine
             /*btPersistentManifold* getNewManifold(void* b0, void* b1);
             void releaseManifold(btPersistentManifold* manifold);
             void releaseManifoldManual(btPersistentManifold* manifold);// */
-        };// ©ollisionDispatcher
+        };// CollisionDispatcher
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
@@ -133,7 +133,7 @@ namespace Mezzanine
             /*btPersistentManifold* getNewManifold(void* b0, void* b1);
             void releaseManifold(btPersistentManifold* manifold);
             void releaseManifoldManual(btPersistentManifold* manifold);// */
-        };// ©ollisionDispatcher
+        };// CollisionDispatcher
     }//Physics
 }//Mezzanine
 

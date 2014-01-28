@@ -211,7 +211,7 @@ namespace Mezzanine
             /// @brief This will return the Name of the element that Contains multiple of the items to be DeSerialized
             /// @return A String containing "Shapes"
             virtual String ContainerName() const;
-        };// ©ollisionShapeDeSerializer
+        };// CollisionShapeDeSerializer
     }//Physics
 }//Mezzanine
 

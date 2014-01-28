@@ -281,7 +281,7 @@ namespace Mezzanine
             virtual ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
             virtual String GetImplementationTypeName() const;
-        };// ©ollisionShapeManager
+        };// CollisionShapeManager
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class DefaultCollisionShapeManagerFactory

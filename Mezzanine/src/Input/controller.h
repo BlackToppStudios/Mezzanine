@@ -142,7 +142,7 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
-        };// ©ontroller
+        };// Controller
     }//Input
 }//Mezzanine
 
