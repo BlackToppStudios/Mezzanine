@@ -63,42 +63,39 @@ namespace Mezzanine
         TabSet::TabSet(Screen* Parent) :
             StackedContainer(Parent),
             VisibleChild(NULL)
-        {
-
-        }
+            {  }
 
         TabSet::TabSet(const String& RendName, Screen* Parent) :
             StackedContainer(RendName,Parent),
             VisibleChild(NULL)
-        {
-
-        }
+            {  }
 
         TabSet::TabSet(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             StackedContainer(RendName,RendRect,Parent),
             VisibleChild(NULL)
-        {
-
-        }
+            {  }
 
         TabSet::TabSet(const XML::Node& XMLNode, Screen* Parent) :
             StackedContainer(Parent),
             VisibleChild(NULL)
-        {
-
-        }
+            { this->ProtoDeSerialize(XMLNode); }
 
         TabSet::~TabSet()
-            { this->VisibleChild = NULL; }
+        {
+            this->VisibleChild = NULL;
+            this->SubSetBindings.clear();
+        }
 
         void TabSet::ProtoSerializeImpl(XML::Node& SelfRoot) const
         {
             this->Widget::ProtoSerializeImpl(SelfRoot);
+            this->ProtoSerializeButtonBindings(SelfRoot);
         }
 
         void TabSet::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
         {
             this->Widget::ProtoDeSerializeImpl(SelfRoot);
+            this->ProtoDeSerializeButtonBindings(SelfRoot);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -271,6 +268,7 @@ namespace Mezzanine
                 TabbedSubSet* NewVisible = this->GetChild( (*SubIt).second );
                 if( NewVisible != NULL ) {
                     this->VisibleChild = NewVisible;
+                    this->VisibleChild->SetVisible( this->IsVisible() );
                     this->_MarkDirty();
                 }
             }
