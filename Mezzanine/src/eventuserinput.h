@@ -155,7 +155,7 @@ namespace Mezzanine
             /// @brief Default destructor.
             virtual ~EventUserInput();
 
-            // ©ode managment functions
+            // Code managment functions
             /// @brief Single Data Point constructor.
             /// @return Index The requested MetaCode to return.
             /// @details This function simply retrieves the requested MetaCode. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists
@@ -166,17 +166,6 @@ namespace Mezzanine
             /// @return The amount of codes stored in this EventUserInput.
             /// @details Retrieves a count of the stored Metacodes. Synonym for vector::size();
             size_t GetMetaCodeCount();
-
-            /// @internal
-            /// @brief Adds a MetaCode created from a RawEvent.
-            /// @param RawEvent_ The RawEvent which will be translated into exactly One MetaCode.
-            /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is
-            /// recommended to not use this in game code.
-            /// @warning Do not use this without reading and fully understanding the warnings on MetaCode::MetaCode(const RawEvent &RawEvent_) . This function has all the same
-            /// Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, there is probably something wrong, but if it must it should use
-            /// EventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.
-            /// @return This returns a const reference to the MetaCode that was Added. This reference is valid for the lifetime of this EventUserInput.
-            Input::MetaCode AddCode(const RawEvent& RawEvent_);
 
             /// @brief Adds a MetaCode.
             /// @param Code_ The User Input MetaCode tobe added.
@@ -203,17 +192,6 @@ namespace Mezzanine
             /// @param Codes A vector of MetaCodes to be added to this event.
             /// @details This adds several existing metacodes to this event.
             void AddCodes(const std::vector<Input::MetaCode>& Codes);
-
-            /// @brief Adds all possible MetaCodes that can be created from the given RawEvent.
-            /// @param RawEvent_ The RawEvent which will be translated into a group of metacodes and added to this.
-            /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is
-            /// recommended to not use this in game code.
-            /// @warning If game code is using RawEvents at all, the game logic should be scrutinized carefully, there is probably something wrong, but if it must them this is the correct
-            /// function to use. This will work same on a all platforms. However, the binary format of the Rawevent could chnage meaning you would have to recompile the game code to work
-            /// with new version of the engine.
-            /// \n This Function is currently incomplete, and does not yet process all events such as joysticks events and some mouse events.
-            /// @return this returns a complete set of all the MetaCodes added.
-            std::vector<Input::MetaCode> AddCodesFromRawEvent(const RawEvent& RawEvent_);
 
             /// @brief Removes a specific code from storage.
             /// @param Code_ This will search for all matching copies of this.
