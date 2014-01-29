@@ -49,6 +49,8 @@
 #include "exception.h"
 #include "Input/metacode.h"
 #include "stringtool.h"
+#include "serialization.h"
+#include "unicode.h"
 
 #include <assert.h>
 #include <limits>
@@ -57,7 +59,6 @@
 #include <memory>
 
 #include "SDL.h"
-#include "serialization.h"
 
 using namespace std;
 
@@ -68,89 +69,156 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion Methods
 
-        MetaCode::MetaCode() : MetaValue(0), DeviceIndex( numeric_limits<UInt16>::max() ), Code(Input::KEY_UNKNOWN)
-        {}
+        MetaCode::MetaCode() :
+            MetaValue(0),
+            DeviceIndex(std::numeric_limits<Int32>::max()),
+            Code(Input::KEY_UNKNOWN)
+            {  }
 
-        MetaCode::MetaCode(const MetaCode& Other) : MetaValue(Other.MetaValue), DeviceIndex(Other.DeviceIndex), Code(Other.Code)
-        {}
+        MetaCode::MetaCode(const MetaCode& Other) :
+            MetaValue(Other.MetaValue),
+            DeviceIndex(Other.DeviceIndex),
+            Code(Other.Code)
+            {  }
 
-        MetaCode::MetaCode(const Int32& Value, const Input::InputCode& NewCode) : DeviceIndex( numeric_limits<UInt16>::max() )
+        MetaCode::MetaCode(const Int32 Value, const Input::InputCode NewCode) :
+            MetaValue(Value),
+            DeviceIndex(std::numeric_limits<Int32>::max()),
+            Code(NewCode)
+            {  }
+
+        MetaCode::MetaCode(const Int32 Value, const Input::InputCode NewCode, const Int32 Index) :
+            MetaValue(Value),
+            DeviceIndex(Index),
+            Code(NewCode)
+            {  }
+
+        MetaCode::~MetaCode()
+            {  }
+
+        MetaCode::MetaCodeContainer MetaCode::CreateMetaCodes(const RawEvent& Raw)
         {
-            this->Construct(Value, NewCode);
-        }
-
-        MetaCode::MetaCode(const Int32& Value, const Input::InputCode& NewCode, const UInt16& Index)
-        {
-            this->Construct(Value, NewCode);
-            this->SetDeviceIndex(Index);
-        }
-
-        MetaCode::MetaCode(const RawEvent& RawEvent_)
-        {
-            this->Construct(RawEvent_);
-        }
-
-        void MetaCode::Construct(const RawEvent& RawEvent_)
-        {
-            switch(RawEvent_.type)
+            MetaCodeContainer Ret;
+            switch(Raw.type)
             {
                 case SDL_KEYDOWN:
-                    this->Construct(Input::BUTTON_PRESSING, GetInputCodeFromSDL_KEY(RawEvent_));
+                {
+                    Ret.push_back( MetaCode(Input::BUTTON_PRESSING,GetInputCodeFromSDL_KEY(Raw)) );
                     break;
+                }
                 case SDL_KEYUP:
-                    this->Construct(Input::BUTTON_LIFTING, GetInputCodeFromSDL_KEY(RawEvent_));
+                {
+                    Ret.push_back( MetaCode(Input::BUTTON_LIFTING,GetInputCodeFromSDL_KEY(Raw)) );
                     break;
+                }
                 case SDL_MOUSEBUTTONDOWN:
-                    this->Construct(Input::BUTTON_PRESSING, GetInputCodeFromSDL_MOUSE(RawEvent_));
+                {
+                    Ret.push_back( MetaCode(Input::BUTTON_PRESSING,GetInputCodeFromSDL_MOUSE(Raw)) );
                     break;
+                }
                 case SDL_MOUSEBUTTONUP:
-                    this->Construct(Input::BUTTON_LIFTING, GetInputCodeFromSDL_MOUSE(RawEvent_));
+                {
+                    Ret.push_back( MetaCode(Input::BUTTON_LIFTING,GetInputCodeFromSDL_MOUSE(Raw)) );
                     break;
+                }
                 case SDL_JOYBUTTONDOWN:
-                    this->Construct(Input::BUTTON_PRESSING, GetInputCodeFromSDL_JOYSTICK(RawEvent_));
+                {
+                    Ret.push_back( MetaCode(Input::BUTTON_PRESSING,GetInputCodeFromSDL_JOYSTICK(Raw),Raw.jbutton.which) );
                     break;
+                }
                 case SDL_JOYBUTTONUP:
-                    this->Construct(Input::BUTTON_LIFTING, GetInputCodeFromSDL_JOYSTICK(RawEvent_));
+                {
+                    Ret.push_back( MetaCode(Input::BUTTON_LIFTING,GetInputCodeFromSDL_JOYSTICK(Raw),Raw.jbutton.which) );
                     break;
+                }
+                case SDL_MOUSEMOTION:
+                {
+                    Ret.push_back( MetaCode(Raw.motion.x,Input::MOUSEABSOLUTEHORIZONTAL) );
+                    Ret.push_back( MetaCode(Raw.motion.y,Input::MOUSEABSOLUTEVERTICAL) );
 
-                // Fail when incorrectly constructed
-                case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
-                case SDL_JOYAXISMOTION:     case SDL_MOUSEMOTION:
-                    this->Construct(Input::BUTTON_UP, Input::KEY_FIRST);            // ©reate a safe but gibberish default
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"RawEvent which creates Multiple Metacodes inserted into Metacode");
+                    if( Raw.motion.xrel != 0 ) {
+                        Ret.push_back( MetaCode(Raw.motion.xrel,Input::MOUSEHORIZONTAL) );
+                    }
+                    if( Raw.motion.yrel != 0 ) {
+                        Ret.push_back( MetaCode(Raw.motion.yrel,Input::MOUSEVERTICAL) );
+                    }
                     break;
-
+                }
+                case SDL_JOYBALLMOTION:
+                {
+                    if( 0 == Raw.jball.ball ) {
+                        if( Raw.jball.yrel != 0 ) {
+                            Ret.push_back( MetaCode(Raw.jball.yrel,Input::CONTROLLERBALL_1_VERTICAL,Raw.jball.which) );
+                        }
+                        if( Raw.jball.xrel != 0 ) {
+                            Ret.push_back( MetaCode(Raw.jball.xrel,Input::CONTROLLERBALL_1_HORIZONTAL,Raw.jball.which) );
+                        }
+                    }else if( 1 == Raw.jball.ball ) {
+                        if( Raw.jball.yrel != 0 ) {
+                            Ret.push_back( MetaCode(Raw.jball.yrel,Input::CONTROLLERBALL_2_VERTICAL,Raw.jball.which) );
+                        }
+                        if( Raw.jball.xrel != 0 ) {
+                            Ret.push_back( MetaCode(Raw.jball.xrel,Input::CONTROLLERBALL_2_HORIZONTAL,Raw.jball.which) );
+                        }
+                    }else{
+                        MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"More then 2 trackballs is currently not supported.  Perhaps we should expand our enum.");
+                    }
+                    break;
+                }
+                case SDL_JOYHATMOTION:
+                {
+                    Ret.push_back( MetaCode(Raw.jhat.value,MetaCode::GetControllerHatCode(Raw.jhat.hat + 1),Raw.jhat.which) );
+                    break;
+                }
+                case SDL_JOYAXISMOTION:
+                {
+                    Ret.push_back( MetaCode(Raw.jaxis.value,MetaCode::GetControllerAxisCode(Raw.jaxis.axis + 1),Raw.jaxis.which) );
+                    break;
+                }
+                case SDL_TEXTINPUT:
+                {
+                    Integer Position = 0;
+                    Integer BytesAdvance = 0;
+                    while( Raw.text.text[Position] != '\0' )
+                    {
+                        Int32 GlyphID = Unicode::GetIntFromCharacter(BytesAdvance,&(Raw.text.text[Position]));
+                        if( GlyphID < 0 ) {
+                            MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Non-UTF8 encoded text generated from TextInput event.");
+                        }
+                        Ret.push_back( MetaCode(GlyphID,Input::OSTEXTINPUT) );
+                        Position += BytesAdvance;
+                    }
+                    break;
+                }
                 default:
-                    this->Construct(Input::BUTTON_UP, Input::KEY_FIRST);            // ©reate a safe but gibberish default
+                {
+                    // Create a safe but gibberish default
+                    Ret.push_back( MetaCode(Input::BUTTON_UP,Input::KEY_FIRST) );
                     MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unknown User Input Inserted into Metacode");
                     break;
+                }
             }
-        }
-
-        void MetaCode::Construct(const Int32& Value, const Input::InputCode& NewCode)
-        {
-            this->SetMetaValue(Value);
-            this->SetCode(NewCode);
+            return Ret;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Dirty Hacks
 
         //This function assumes the RawEvent is a valid SDL Keyevent
-        Input::InputCode MetaCode::GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_)
+        Input::InputCode MetaCode::GetInputCodeFromSDL_KEY(const RawEvent& Raw)
         {
             //This Whole thing will only work with SDL Keyboard events. If we switch out event subsystems this is one of those that must change it.
             Input::InputCode To;
 
-            assert( sizeof(To)==sizeof(RawEvent_.key.keysym.sym) );
-            memcpy( &To, &(RawEvent_.key.keysym.scancode), sizeof(RawEvent_.key.keysym.scancode));
+            assert( sizeof(To)==sizeof(Raw.key.keysym.sym) );
+            memcpy( &To, &(Raw.key.keysym.scancode), sizeof(Raw.key.keysym.scancode));
 
             return To;
         }
 
-        Input::InputCode MetaCode::GetInputCodeFromSDL_MOUSE(const RawEvent &RawEvent_)
+        Input::InputCode MetaCode::GetInputCodeFromSDL_MOUSE(const RawEvent& Raw)
         {
-            switch (RawEvent_.button.button )
+            switch (Raw.button.button )
             {
                 case SDL_BUTTON_LEFT: return Input::MOUSEBUTTON_1;
                 case SDL_BUTTON_RIGHT: return Input::MOUSEBUTTON_2;
@@ -158,48 +226,49 @@ namespace Mezzanine
                 case SDL_BUTTON_X1: return Input::MOUSEBUTTON_4;
                 case SDL_BUTTON_X2: return Input::MOUSEBUTTON_5;
             }
+            return Input::KEY_UNKNOWN;
         }
 
-        Input::InputCode MetaCode::GetInputCodeFromSDL_JOYSTICK(const RawEvent &RawEvent_)
-            { return GetControllerButtonCode(RawEvent_.jbutton.button); }
+        Input::InputCode MetaCode::GetInputCodeFromSDL_JOYSTICK(const RawEvent& Raw)
+            { return GetControllerButtonCode(Raw.jbutton.button); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Gets and Sets
 
-        void MetaCode::SetCode(const Input::InputCode& NewCode)
+        void MetaCode::SetCode(const Input::InputCode NewCode)
             { this->Code = NewCode; }
 
-        void MetaCode::SetCode(const Int32& NewCode)
+        void MetaCode::SetCode(const Int32 NewCode)
             { this->Code = (Input::InputCode)NewCode; }
 
         Input::InputCode MetaCode::GetCode() const
             { return this->Code; }
 
-        void MetaCode::SetMetaValue(const Int32& Value)
+        void MetaCode::SetMetaValue(const Int32 Value)
             { this->MetaValue = Value; }
 
         Int32 MetaCode::GetMetaValue() const
             { return this->MetaValue; }
 
-        void MetaCode::SetDeviceIndex(const UInt16& Index)
+        void MetaCode::SetDeviceIndex(const Int32 Index)
             { this->DeviceIndex = Index; }
 
-        UInt16 MetaCode::GetDeviceIndex() const
+        Int32 MetaCode::GetDeviceIndex() const
             { return DeviceIndex; }
 
         void MetaCode::SetNullValues()
         {
             this->Code = Input::KEY_UNKNOWN;
             this->MetaValue = 0;
-            this->DeviceIndex = numeric_limits<UInt32>::max();
+            this->DeviceIndex = numeric_limits<Int32>::max();
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Conversion and Casting Functions
+
         Input::ButtonState MetaCode::GetMetaValueAsButtonState() const
         {
-            if( Input::BUTTON_LIFTING <= this->MetaValue && Input::BUTTON_DOWN >= this->MetaValue)
-            {
+            if( Input::BUTTON_LIFTING <= this->MetaValue && Input::BUTTON_DOWN >= this->MetaValue) {
                 return (Input::ButtonState) this->MetaValue;
             }else{
                 MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid ButtonState in MetaValue");
@@ -208,8 +277,7 @@ namespace Mezzanine
 
         Input::DirectionalMotionState MetaCode::GetMetaValueAsDirectionalMotionState() const
         {
-            if( Input::DIRECTIONALMOTION_DOWNRIGHT <= this->MetaValue && Input::DIRECTIONALMOTION_UPLEFT >= this->MetaValue)
-            {
+            if( Input::DIRECTIONALMOTION_DOWNRIGHT <= this->MetaValue && Input::DIRECTIONALMOTION_UPLEFT >= this->MetaValue) {
                 return (Input::DirectionalMotionState) this->MetaValue;
             }else{
                 MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid DirectionalMotionState in MetaValue");
@@ -236,73 +304,81 @@ namespace Mezzanine
         {
             Input::InputCode Answer = (Input::InputCode)(AxisNumber + (UInt16)Input::CONTROLLERAXIS);
             if ( Input::CONTROLLERAXIS_FIRST > Answer && Input::CONTROLLERAXIS_LAST < Answer)
-                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Controller AXIS."); }
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Controller Axis."); }
+            return Answer;
+        }
+
+        Input::InputCode MetaCode::GetControllerHatCode(const UInt16 HatNumber)
+        {
+            Input::InputCode Answer = (Input::InputCode)(HatNumber + (UInt16)Input::CONTROLLERHAT);
+            if ( Input::CONTROLLERHAT_FIRST > Answer && Input::CONTROLLERHAT_LAST < Answer)
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unsupported Controller Hat."); }
             return Answer;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Checks
 
-        bool MetaCode::IsKeyboardButton() const
+        Boolean MetaCode::IsKeyboardButton() const
             { return (Input::KEY_FIRST <= this->Code && Input::KEY_LAST >= this->Code); }
 
-        bool MetaCode::IsMouseButton() const
+        Boolean MetaCode::IsMouseButton() const
             { return (Input::MOUSEBUTTON_FIRST <= this->Code && Input::MOUSEBUTTON_LAST >= this->Code); }
 
-        bool MetaCode::IsControllerButton() const
+        Boolean MetaCode::IsControllerButton() const
             { return (Input::CONTROLLERBUTTON_FIRST <= this->Code && Input::CONTROLLERBUTTON_LAST >= this->Code); }
 
-        bool MetaCode::IsDeviceButton() const
+        Boolean MetaCode::IsDeviceButton() const
             { return (this->IsKeyboardButton() || this->IsMouseButton() || this->IsControllerButton()); }
 
-        bool MetaCode::IsKeyboardEvent() const
-            { return IsKeyboardButton(); }
+        Boolean MetaCode::IsKeyboardEvent() const
+            { return this->IsKeyboardButton(); }
 
-        bool MetaCode::IsMouseEvent() const
-            { return (Input::MOUSE_FIRST <= this->Code && Input::MOUSE_LAST >= this->Code) || IsMouseMultiClickEvent(); }
+        Boolean MetaCode::IsMouseEvent() const
+            { return (Input::MOUSE_FIRST <= this->Code && Input::MOUSE_LAST >= this->Code) || this->IsMouseMultiClickEvent(); }
 
-        bool MetaCode::IsMouseMotionEvent() const
+        Boolean MetaCode::IsMouseMotionEvent() const
             { return (Input::MOUSEMOTION_FIRST <= this->Code && Input::MOUSEMOTION_LAST && this->Code); }
 
-        bool MetaCode::IsMouseMultiClickEvent() const
+        Boolean MetaCode::IsMouseMultiClickEvent() const
             { return (Input::COMPOUNDINPUT_MOUSEMULTICLICKFIRST <= this->Code && Input::COMPOUNDINPUT_MOUSEMULTICLICKLAST >= this->Code); }
 
-        bool MetaCode::IsMultitouchEvent() const
+        Boolean MetaCode::IsMultitouchEvent() const
             { return (Input::MULTITOUCH_FIRST <= this->Code && Input::MULTITOUCH_LAST >= this->Code); }
 
-        bool MetaCode::IsControllerEvent() const
+        Boolean MetaCode::IsControllerEvent() const
             { return (Input::CONTROLLER_FIRST <= this->Code && Input::CONTROLLER_LAST >= this->Code); }
 
-        bool MetaCode::IsControllerAxisEvent() const
+        Boolean MetaCode::IsControllerAxisEvent() const
             { return (Input::CONTROLLERAXIS_FIRST <= this->Code && Input::CONTROLLERAXIS_LAST >= this->Code); }
 
-        bool MetaCode::IsControllerHatEvent() const
+        Boolean MetaCode::IsControllerHatEvent() const
             { return (Input::CONTROLLERHAT_FIRST <= this->Code && Input::CONTROLLERHAT_LAST >= this->Code); }
 
-        bool MetaCode::IsInputEvent() const
+        Boolean MetaCode::IsInputEvent() const
             { return (Input::INPUTEVENT_FIRST <= this->Code && Input::INPUTEVENT_LAST >= this->Code); }
 
-        bool MetaCode::IsAltKey() const
+        Boolean MetaCode::IsAltKey() const
             { return (Input::KEY_LALT == this->Code || Input::KEY_RALT == this->Code); }
 
-        bool MetaCode::IsCtrlKey() const
+        Boolean MetaCode::IsCtrlKey() const
             { return (Input::KEY_LCTRL == this->Code || Input::KEY_RCTRL == this->Code); }
 
-        bool MetaCode::IsShiftKey() const
+        Boolean MetaCode::IsShiftKey() const
             { return (Input::KEY_LSHIFT == this->Code || Input::KEY_RSHIFT == this->Code); }
 
-        bool MetaCode::IsSuperKey() const
+        Boolean MetaCode::IsSuperKey() const
             { return (Input::KEY_LSUPER == this->Code || Input::KEY_RSUPER == this->Code); }
 
-        bool MetaCode::IsPollable() const
-            { return ( IsDeviceButton() ); }
+        Boolean MetaCode::IsPollable() const
+            { return ( this->IsDeviceButton() ); }
 
         Input::InputDevice MetaCode::GetDeviceType() const
         {
-            if(IsKeyboardEvent()) return Input::DEVICE_KEYBOARD;
-            else if(IsMouseEvent()) return Input::DEVICE_MOUSE;
-            else if(IsMultitouchEvent()) return Input::DEVICE_MULTITOUCH;
-            else if(IsControllerEvent()) return Input::DEVICE_CONTROLLER;
+            if( this->IsKeyboardEvent() ) return Input::DEVICE_KEYBOARD;
+            else if( this->IsMouseEvent() ) return Input::DEVICE_MOUSE;
+            else if( this->IsMultitouchEvent() ) return Input::DEVICE_MULTITOUCH;
+            else if( this->IsControllerEvent() ) return Input::DEVICE_CONTROLLER;
             else return Input::DEVICE_UNKNOWN;
         }
 
@@ -317,72 +393,68 @@ namespace Mezzanine
             return *this;
         }
 
-        bool MetaCode::operator==(const MetaCode& Other) const
+        Boolean MetaCode::operator==(const MetaCode& Other) const
         {
             return (this->Code == Other.Code &&
                     this->MetaValue == Other.MetaValue &&
                     this->DeviceIndex == Other.DeviceIndex);
         }
 
-        bool MetaCode::operator!=(const MetaCode& Other) const
+        Boolean MetaCode::operator!=(const MetaCode& Other) const
         {
             return (this->Code != Other.Code ||
                     this->MetaValue != Other.MetaValue ||
                     this->DeviceIndex != Other.DeviceIndex);
         }
 
-        bool MetaCode::operator<(const MetaCode& Other) const
-        {
-            return (this->Code < Other.Code);
-        }
+        Boolean MetaCode::operator<(const MetaCode& Other) const
+            { return (this->Code < Other.Code); }
 
-        bool MetaCode::operator>(const MetaCode& Other) const
-        {
-            return (this->Code > Other.Code);
-        }
+        Boolean MetaCode::operator>(const MetaCode& Other) const
+            { return (this->Code > Other.Code); }
 
-        // Mike's portion of adding serializable to the metacode starts here
         void MetaCode::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            Mezzanine::XML::Node MetaNode = CurrentRoot.AppendChild(SerializableName());
-            MetaNode.SetName(SerializableName());
+            XML::Node SelfNode = CurrentRoot.AppendChild( MetaCode::SerializableName() );
 
-            Mezzanine::XML::Attribute VersionAttr = MetaNode.AppendAttribute("Version");
-            Mezzanine::XML::Attribute MetaValue_ = MetaNode.AppendAttribute("MetaValue");
-            Mezzanine::XML::Attribute Code_ = MetaNode.AppendAttribute("Code");
-
-            if( VersionAttr && MetaValue_ && Code_ )
+            if( SelfNode.AppendAttribute("Version").SetValue("1") &&
+                SelfNode.AppendAttribute("MetaValue").SetValue( this->MetaValue ) &&
+                SelfNode.AppendAttribute("DeviceIndex").SetValue( this->DeviceIndex ) &&
+                SelfNode.AppendAttribute("Code").SetValue( this->Code ) )
             {
-                if( VersionAttr.SetValue("1") && Code_.SetValue(Code) && MetaValue_.SetValue(MetaValue) )
-                {
-                    return;
-                }else{
-                    SerializeError("Create XML Attribute Values", SerializableName(),true);
-                }
+                return;
             }else{
-                SerializeError("Create XML Attributes", SerializableName(),true);
+                SerializeError("Create XML Attribute Values",MetaCode::SerializableName(),true);
             }
         }
 
         void MetaCode::ProtoDeSerialize(const XML::Node& OneNode)
         {
-            if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
-            {
-                if(OneNode.GetAttribute("Version").AsInt() == 1)
-                {
-                    SetCode(OneNode.GetAttribute("Code").AsInt());
-                    MetaValue=OneNode.GetAttribute("MetaValue").AsInt();
+            XML::Attribute CurrAttrib;
+
+            if( String(OneNode.Name()) == MetaCode::SerializableName() ) {
+                if(OneNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = OneNode.GetAttribute("MetaValue");
+                    if( !CurrAttrib.Empty() )
+                        this->MetaValue = CurrAttrib.AsInt();
+
+                    CurrAttrib = OneNode.GetAttribute("DeviceIndex");
+                    if( !CurrAttrib.Empty() )
+                        this->DeviceIndex = CurrAttrib.AsInt();
+
+                    CurrAttrib = OneNode.GetAttribute("Code");
+                    if( !CurrAttrib.Empty() )
+                        this->Code = static_cast<Input::InputCode>( CurrAttrib.AsUint() );
                 }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + MetaCode::SerializableName() + ": Not Version 1.");
                 }
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,MetaCode::SerializableName() + " was not found in the provided XML node, which was expected.");
             }
         }
 
         String MetaCode::SerializableName() const
-            { return String("MetaCode"); }
-        // end of mike's serializable
+            { return "MetaCode"; }
     }//Input
 }//Mezzanine
 
