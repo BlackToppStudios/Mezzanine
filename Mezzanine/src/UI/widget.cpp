@@ -175,7 +175,7 @@ namespace Mezzanine
             else return NULL;
         }
 
-        bool Widget::SetGroupFromState(const UInt32 BindState)
+        Boolean Widget::SetGroupFromState(const UInt32 BindState)
         {
             StateLayerGroupIterator It = this->StateGroupBindings.find(BindState);
             if( It != this->StateGroupBindings.end() )

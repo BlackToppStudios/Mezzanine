@@ -66,7 +66,7 @@ namespace Mezzanine
         /// @param Source The original string to be trimmed.
         /// @param Left Whether or not to trim the left side of the string.
         /// @param Right Whether or not to trim the right side of the string.
-        void MEZZ_LIB Trim(String& Source, bool Left = true, bool Right = true);
+        void MEZZ_LIB Trim(String& Source, Boolean Left = true, Boolean Right = true);
         /// @brief Splits a string into multiple substrings based on the specified delimiters.
         /// @param Source The string to be split.
         /// @param Delims The characters to look for and use as split points in the source string.
@@ -84,13 +84,13 @@ namespace Mezzanine
         /// @param Pattern The sequence to check for at the start of the string.
         /// @param CaseSensitive If false this function will check lower-case copies for the pattern, otherwise the strings will be checked as is.
         /// @return Returns true if the string starts with the provided pattern, false otherwise.
-        bool MEZZ_LIB StartsWith(const String& Str, const String& Pattern, const bool CaseSensitive);
+        Boolean MEZZ_LIB StartsWith(const String& Str, const String& Pattern, const Boolean CaseSensitive);
         /// @brief Checks a string to see if it ends with a specific pattern.
         /// @param Str The string to check.
         /// @param Pattern The sequence to check for at the end of the string.
         /// @param CaseSensitive If false this function will check lower-case copies for the pattern, otherwise the strings will be checked as is.
         /// @return Returns true if the string ends with the provided pattern, false otherwise.
-        bool MEZZ_LIB EndsWith(const String& Str, const String& Pattern, const bool CaseSensitive);
+        Boolean MEZZ_LIB EndsWith(const String& Str, const String& Pattern, const Boolean CaseSensitive);
         /// @brief Replaces all instances of multiple consecutive whitespaces with only a single whitespace.
         /// @param Source The string to be altered.
         void MEZZ_LIB RemoveDuplicateWhitespaces(String& Source);
@@ -147,10 +147,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Convert-To-Data functions
 
-        /// @brief Converts a string into a bool.
-        /// @param ToConvert The string to be converted to a bool.
-        /// @return Returns a bool with the converted value.
-        bool MEZZ_LIB ConvertToBool(const String& ToConvert, const bool Default = false);
+        /// @brief Converts a string into a Boolean.
+        /// @param ToConvert The string to be converted to a Boolean.
+        /// @return Returns a Boolean with the converted value.
+        Boolean MEZZ_LIB ConvertToBool(const String& ToConvert, const Boolean Default = false);
         /// @brief Converts a string into a Real.
         /// @param ToConvert The string to be converted to a Real.
         /// @return Returns a Real with the converted value.
@@ -212,7 +212,7 @@ namespace Mezzanine
         /// @param Code The input code to be converted.
         /// @param ShiftPressed Whether or not the shift modifier key has been pressed.
         /// @return Returns a string(usually with only one character) containing the converted input code.
-        String ConvertToString(const Input::InputCode& Code, bool ShiftPressed);
+        String ConvertToString(const Input::InputCode& Code, Boolean ShiftPressed);
 
         /// @brief Converts a Input::InputCode into a string, assuming shift was not pressed.
         /// @details this is good for figuring out what key was pressed
