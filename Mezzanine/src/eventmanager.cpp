@@ -456,23 +456,11 @@ namespace Mezzanine
             switch(FromSDLRaw.type)
             {
         //Events and User input sorted by estimate frequency
-                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:/*{
-                    Input::MetaCode ResultCode(FromSDLRaw);
-                    _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), Internal::EventManagerInternalData::Keypress);
-                    break;}//*/
-
-                case SDL_KEYDOWN: /*{
-                    Input::MetaCode ResultCode(FromSDLRaw);
-                    if ( !(_Data->ManualCheck[ResultCode.GetCode()]) )              //This checks for operating system level key repititions and skips adding them
-                        { _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), Internal::EventManagerInternalData::Keypress); }
-                    break; }//*/
-
-                case SDL_MOUSEBUTTONDOWN:   case SDL_JOYBUTTONDOWN:
-                    /*_Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(FromSDLRaw), Internal::EventManagerInternalData::Keypress);
-                    break;//*/
-
-                case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYHATMOTION:      case SDL_JOYBALLMOTION:
-                    FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
+                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
+                case SDL_KEYDOWN:           case SDL_MOUSEBUTTONDOWN:   case SDL_JOYBUTTONDOWN:
+                case SDL_JOYAXISMOTION:     case SDL_JOYHATMOTION:      case SDL_JOYBALLMOTION:
+                case SDL_MOUSEMOTION:       case SDL_TEXTINPUT:
+                    FromSDLEvent->AddCodes( Input::MetaCode::CreateMetaCodes(FromSDLRaw) );
                     break;
 
                 case SDL_WINDOWEVENT: {
@@ -487,7 +475,7 @@ namespace Mezzanine
                     break;
 
         // Error conditions
-                case SDL_FIRSTEVENT:  // ©apture and ignore or throw error
+                case SDL_FIRSTEVENT:  // Capture and ignore or throw error
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted.");  break; }
 
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
@@ -514,7 +502,7 @@ namespace Mezzanine
         Entresol::GetSingletonPtr()->DoMainLoopLogging();//*/
         #endif
 
-        // ©heck to see if we should add a User input event or not. We wouldn't want to pass an empty event
+        // Check to see if we should add a User input event or not. We wouldn't want to pass an empty event
         if(FromSDLEvent->GetMetaCodeCount()==0)
         {
             delete FromSDLEvent;

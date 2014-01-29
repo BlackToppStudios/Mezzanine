@@ -394,7 +394,7 @@ namespace Mezzanine
             KEY_KBDILLUMUP = 280,
             KEY_EJECT = 281,
             KEY_SLEEP = 282,
-                // ©opying from SDL ends here
+                // Copying from SDL ends here
 
             KEY_LAST            = 379,      ///< The last Keyboard InputCode, all Keys values will be less than this, and all Events will be larger than that
 
@@ -521,6 +521,12 @@ namespace Mezzanine
             COMPOUNDINPUT_MOUSEMULTICLICKLAST  = 790,
             COMPOUNDINPUT_CUSTOMSEQUENCE       = 799,
             COMPOUNDINPUT_LAST                 = 800,
+
+            OSTEXTINPUT             = 900,   /**  This represents text as detected by the OS as it is supposed to be presented when printed.
+                                              *   OS text events are useful for non-english languages where a keystroke can represent multiple characters,
+                                              *   or multiple keystrokes can represent a single character.  A MetaCode with this type of input code will
+                                              *   always represent only one character, but the event that creates it may make multiple MetaCodes.
+                                              */
 
             INPUTEVENT_LAST         = 1024   ///< The last Input Code, all event codes will be less than this.
         };//InputCode
