@@ -100,6 +100,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
+            /// @copydoc Widget::GetTypeName() const
+            virtual const String& GetTypeName() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods
 

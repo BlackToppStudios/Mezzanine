@@ -82,6 +82,12 @@ namespace Mezzanine
             virtual ~StackButton();
         public:
             ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            /// @copydoc Widget::GetTypeName() const
+            virtual const String& GetTypeName() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
             /// @copydoc Renderable::ProtoSerializeProperties(XML::Node&) const

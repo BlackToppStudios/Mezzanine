@@ -101,6 +101,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
+        const String& TabSet::GetTypeName() const
+        {
+            return TabSet::TypeName;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 

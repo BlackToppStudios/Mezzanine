@@ -75,6 +75,9 @@ namespace Mezzanine
             virtual ~StackedContainer();
         public:
             ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
+            ///////////////////////////////////////////////////////////////////////////////
             // StackedContainer Configuration
 
             /// @brief Binds a StackedButton to this container according to the provided config value.

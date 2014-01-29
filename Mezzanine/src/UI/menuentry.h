@@ -145,6 +145,9 @@ namespace Mezzanine
             /// @return Returns the number of MenuEntrys that were hidden by this method.
             virtual Whole RollBackToEntry(MenuEntry* RollBackTo);
 
+            /// @copydoc Widget::GetTypeName() const
+            virtual const String& GetTypeName() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods
 

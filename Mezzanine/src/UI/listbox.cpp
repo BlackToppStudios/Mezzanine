@@ -190,6 +190,11 @@ namespace Mezzanine
             this->QuadRenderable::UpdateDimensions(OldSelfRect,NewSelfRect);
         }
 
+        const String& ListBox::GetTypeName() const
+        {
+            return ListBox::TypeName;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // ListBox Properties
 

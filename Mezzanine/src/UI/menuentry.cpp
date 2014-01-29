@@ -173,6 +173,11 @@ namespace Mezzanine
             return 0;
         }
 
+        const String& MenuEntry::GetTypeName() const
+        {
+            return MenuEntry::TypeName;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
@@ -384,7 +389,7 @@ namespace Mezzanine
             this->MenuStack = NewStack;
             for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
             {
-                if( (*ChildIt)->GetTypeName() != MenuEntry::TypeName ) {
+                if( (*ChildIt)->GetTypeName() == MenuEntry::TypeName ) {
                     static_cast<MenuEntry*>( (*ChildIt) )->_NotifyStack(NewStack);
                 }
             }

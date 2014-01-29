@@ -84,6 +84,12 @@ namespace Mezzanine
             {  }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        const String& StackButton::GetTypeName() const
+            { return StackButton::TypeName; }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
         void StackButton::ProtoSerializeProperties(XML::Node& SelfRoot) const

@@ -168,6 +168,11 @@ namespace Mezzanine
             this->_MarkAllLayersDirty();
         }
 
+        const String& DropDownList::GetTypeName() const
+        {
+            return DropDownList::TypeName;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 

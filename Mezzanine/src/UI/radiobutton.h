@@ -165,6 +165,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
+            /// @copydoc Widget::GetTypeName() const
+            virtual const String& GetTypeName() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // RadioButton Properties
 
