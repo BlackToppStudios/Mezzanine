@@ -57,7 +57,7 @@ void ScoreArea::DestroyScoreArea()
 void ScoreArea::ApplyEffect()
     {  }
 
-Bool ScoreArea::AllObjectsAtRest()
+Boolean ScoreArea::AllObjectsAtRest()
 {
     if( this->OverlappingObjects.empty() )
         return false;

@@ -609,7 +609,7 @@ void MakeGUI()
     ColourValue MenuColour(0.4,0.8,0.3,1.0);
 
     //Build the HUD
-    UI::MenuButton* MenuAccess = DScreen->CreateMenuButton("D_MenuAccess",UI::UnifiedRect(0.008,0.932,0.14,0.06,0,0,0,0));
+    UI::StackButton* MenuAccess = DScreen->CreateStackButton("D_MenuAccess",UI::UnifiedRect(0.008,0.932,0.14,0.06,0,0,0,0));
     UI::ImageLayer* AccessBackground = MenuAccess->CreateImageLayer(0,"Normal");
     AccessBackground->SetColour(ButtonColour);
     UI::ImageLayer* AccessHoveredBackground = MenuAccess->CreateImageLayer(0,"Hovered");

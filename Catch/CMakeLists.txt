@@ -168,6 +168,8 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}startarea.h"
     "${${PROJECT_NAME}_SRC_DIR}throwablegenerator.cpp"
     "${${PROJECT_NAME}_SRC_DIR}throwablegenerator.h"
+    "${${PROJECT_NAME}_SRC_DIR}uicallbacks.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}uicallbacks.h"
     "${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.cpp"
     "${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.h"
     "${${PROJECT_NAME}_SRC_DIR}workunits.cpp"

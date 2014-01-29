@@ -4,7 +4,7 @@
 #include "buttoncallbacks.h"
 #include "catchapp.h"
 
-GSStore::GSStore()
+/*GSStore::GSStore()
 {
 }
 
@@ -335,5 +335,6 @@ void OptsVideoApply::DoPostUpdateItems()
 void OptsVideoApply::DoVisibilityChangeItems()
 {
 }
+//*/
 
 #endif

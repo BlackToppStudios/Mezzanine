@@ -131,6 +131,18 @@ namespace Mezzanine
             return this->Scale;
         }
 
+        Boolean RenderLayer::IsImageLayer() const
+            { return ( this->GetLayerType() == RenderLayer::RLT_Image ); }
+
+        Boolean RenderLayer::IsTextLayer() const
+            { return ( this->IsSingleLineTextLayer() || this->IsMultiLineTextLayer() ); }
+
+        Boolean RenderLayer::IsSingleLineTextLayer() const
+            { return ( this->GetLayerType() == RenderLayer::RLT_SingleLineText ); }
+
+        Boolean RenderLayer::IsMultiLineTextLayer() const
+            { return ( this->GetLayerType() == RenderLayer::RLT_MultiLineText ); }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Rotation Methods
 

@@ -46,48 +46,40 @@ namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // StackedContainer Static Members
+
         const String StackedContainer::TypeName = "StackedContainer";
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // StackedContainer Methods
 
         StackedContainer::StackedContainer(Screen* Parent) :
             Widget(Parent)
-        {
-
-        }
+            {  }
 
         StackedContainer::StackedContainer(const String& RendName, Screen* Parent) :
             Widget(RendName,Parent)
-        {
-
-        }
+            {  }
 
         StackedContainer::StackedContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Widget(RendName,RendRect,Parent)
-        {
-
-        }
+            {  }
 
         StackedContainer::~StackedContainer()
-        {
-
-        }
+            {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
         void StackedContainer::ProtoSerializeProperties(XML::Node& SelfRoot) const
-        {
-            this->Widget::ProtoSerializeProperties(SelfRoot);
-        }
+            { this->Widget::ProtoSerializeProperties(SelfRoot); }
 
         void StackedContainer::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
-        {
-            this->Widget::ProtoDeSerializeProperties(SelfRoot);
-        }
+            { this->Widget::ProtoDeSerializeProperties(SelfRoot); }
 
         String StackedContainer::GetSerializableName()
-        {
-            return StackedContainer::TypeName;
-        }
+            { return StackedContainer::TypeName; }
     }//UI
 }//Mezzanine
 

@@ -221,14 +221,14 @@ namespace Mezzanine
             /// @brief Equality comparison operator.
             /// @param Other The other UnifiedDim to compare to.
             /// @return Returns true if these UnifiedDim's are equal, false otherwise.
-            inline bool operator==(const UnifiedDim& Other) const
+            inline Boolean operator==(const UnifiedDim& Other) const
             {
                 return this->Rel == Other.Rel && this->Abs == Other.Abs;
             }
             /// @brief Inequality comparison operator.
             /// @param Other The other UnifiedDim to compare to.
             /// @return Returns true if these UnifiedDim's are not equal, false otherwise.
-            inline bool operator!=(const UnifiedDim& Other) const
+            inline Boolean operator!=(const UnifiedDim& Other) const
             {
                 return this->Rel != Other.Rel || this->Abs != Other.Abs;
             }
@@ -561,14 +561,14 @@ namespace Mezzanine
             /// @brief Equality comparison operator.
             /// @param Other The other UnifiedVec2 to compare to.
             /// @return Returns true if these UnifiedVec2's are equal, false otherwise.
-            inline bool operator==(const UnifiedVec2& Other) const
+            inline Boolean operator==(const UnifiedVec2& Other) const
             {
                 return this->X == Other.X && this->Y == Other.Y;
             }
             /// @brief Inequality comparison operator.
             /// @param Other The other UnifiedVec2 to compare to.
             /// @return Returns true if these UnifiedVec2's are not equal, false otherwise.
-            inline bool operator!=(const UnifiedVec2& Other) const
+            inline Boolean operator!=(const UnifiedVec2& Other) const
             {
                 return this->X != Other.X || this->Y != Other.Y;
             }
@@ -748,7 +748,7 @@ namespace Mezzanine
             /// @brief Calculates the actual values when a Rect with actual dimensions has this unified rect applied to it.
             /// @param Actual A Rect containing the actual(pixel) position and size to use as a base for the calculation.
             /// @return Returns a Rect containing the result position and size in actual (pixel) units.
-            inline Rect CalculateActualDimensions(const Rect& Actual, bool AsChild = true) const
+            inline Rect CalculateActualDimensions(const Rect& Actual, Boolean AsChild = true) const
             {
                 Vector2 Pos = this->Position.CalculateActualDimensions(Actual.Size);
                 Vector2 Size = this->Size.CalculateActualDimensions(Actual.Size);
@@ -761,14 +761,14 @@ namespace Mezzanine
             /// @brief Equality comparison operator.
             /// @param Other The other UnifiedRect to compare to.
             /// @return Returns true if these UnifiedRect's are equal, false otherwise.
-            inline bool operator==(const UnifiedRect& Other) const
+            inline Boolean operator==(const UnifiedRect& Other) const
             {
                 return this->Position == Other.Position && this->Size == Other.Size;
             }
             /// @brief Inequality comparison operator.
             /// @param Other The other UnifiedRect to compare to.
             /// @return Returns true if these UnifiedRect's are not equal, false otherwise.
-            inline bool operator!=(const UnifiedRect& Other) const
+            inline Boolean operator!=(const UnifiedRect& Other) const
             {
                 return this->Position != Other.Position || this->Size != Other.Size;
             }

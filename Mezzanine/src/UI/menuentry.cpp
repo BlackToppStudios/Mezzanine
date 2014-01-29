@@ -41,7 +41,7 @@
 #define _uimenuentry_cpp
 
 #include "UI/menuentry.h"
-#include "UI/menubutton.h"
+#include "UI/stackbutton.h"
 #include "UI/uimanager.h"
 #include "UI/screen.h"
 #include "UI/layoutstrategy.h"
@@ -54,6 +54,9 @@ namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // MenuEntry Static Members
+
         const String MenuEntry::TypeName                    = "MenuEntry";
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -140,19 +143,6 @@ namespace Mezzanine
             }
         }
 
-        MenuEntry::ButtonConfig MenuEntry::GetButtonConfig(const MenuButton* EntryButton) const
-        {
-            if( this->PushButton == EntryButton && this->PopButton == EntryButton ) {
-                return MenuEntry::BC_ToggleButton;
-            }else if( this->PushButton == EntryButton ) {
-                return MenuEntry::BC_PushButton;
-            }else if( this->PopButton == EntryButton ) {
-                return MenuEntry::BC_PopButton;
-            }else{
-                return MenuEntry::BC_Error;
-            }
-        }
-
         Whole MenuEntry::RollBackToEntry(MenuEntry* RollBackTo)
         {
             if( this->MenuStack ) {
@@ -220,56 +210,81 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Menu Configuration
 
-        void MenuEntry::SetPushButton(MenuButton* Push)
+        void MenuEntry::SetButtonConfig(const UInt16 Config, StackButton* ConfigButton)
+        {
+            switch( Config )
+            {
+                case MenuEntry::BC_ToggleButton:  this->SetToggleButton(ConfigButton);  break;
+                case MenuEntry::BC_PushButton:    this->SetPushButton(ConfigButton);    break;
+                case MenuEntry::BC_PopButton:     this->SetPopButton(ConfigButton);     break;
+                default:
+                { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid config passed in while attempting to set a stack button configuration."); }  break;
+            }
+        }
+
+        UInt16 MenuEntry::GetButtonConfig(const StackButton* ConfigButton) const
+        {
+            if( this->PushButton == ConfigButton && this->PopButton == ConfigButton ) {
+                return MenuEntry::BC_ToggleButton;
+            }else if( this->PushButton == ConfigButton ) {
+                return MenuEntry::BC_PushButton;
+            }else if( this->PopButton == ConfigButton ) {
+                return MenuEntry::BC_PopButton;
+            }else{
+                return MenuEntry::BC_Error;
+            }
+        }
+
+        void MenuEntry::SetPushButton(StackButton* Push)
         {
             if( this->PushButton != NULL ) {
-                this->PushButton->_SetBoundMenu(NULL);
+                this->PushButton->_SetBoundContainer(NULL);
             }
 
             this->PushButton = Push;
 
             if( this->PushButton != NULL ) {
-                this->PushButton->_SetBoundMenu(this);
+                this->PushButton->_SetBoundContainer(this);
             }
         }
 
-        MenuButton* MenuEntry::GetPushButton() const
+        StackButton* MenuEntry::GetPushButton() const
         {
             return this->PushButton;
         }
 
-        void MenuEntry::SetPopButton(MenuButton* Pop)
+        void MenuEntry::SetPopButton(StackButton* Pop)
         {
             if( this->PopButton != NULL ) {
-                this->PopButton->_SetBoundMenu(NULL);
+                this->PopButton->_SetBoundContainer(NULL);
             }
 
             this->PopButton = Pop;
 
             if( this->PopButton != NULL ) {
-                this->PopButton->_SetBoundMenu(this);
+                this->PopButton->_SetBoundContainer(this);
             }
         }
 
-        MenuButton* MenuEntry::GetPopButton() const
+        StackButton* MenuEntry::GetPopButton() const
         {
             return this->PopButton;
         }
 
-        void MenuEntry::SetToggleButton(MenuButton* Toggle)
+        void MenuEntry::SetToggleButton(StackButton* Toggle)
         {
             if( this->PushButton != NULL ) {
-                this->PushButton->_SetBoundMenu(NULL);
+                this->PushButton->_SetBoundContainer(NULL);
             }
             if( this->PopButton != NULL ) {
-                this->PopButton->_SetBoundMenu(NULL);
+                this->PopButton->_SetBoundContainer(NULL);
             }
 
             this->PushButton = Toggle;
             this->PopButton = Toggle;
 
             if( this->PushButton != NULL ) {
-                this->PushButton->_SetBoundMenu(this);
+                this->PushButton->_SetBoundContainer(this);
             }
         }
 
@@ -322,8 +337,8 @@ namespace Mezzanine
                     CurrAttrib = PropertiesNode.GetAttribute("PushButtonName");
                     if( !CurrAttrib.Empty() ) {
                         Widget* UncastedButton = this->ParentScreen->GetWidget( CurrAttrib.AsString() );
-                        if( UncastedButton->GetTypeName() == MenuButton::TypeName ) {
-                            this->SetPushButton( static_cast<MenuButton*>( UncastedButton ) );
+                        if( UncastedButton->GetTypeName() == StackButton::TypeName ) {
+                            this->SetPushButton( static_cast<StackButton*>( UncastedButton ) );
                         }else{
                             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Expected name of MenuButton when deserializing.  Named widget is not MenuButton.");
                         }
@@ -332,8 +347,8 @@ namespace Mezzanine
                     CurrAttrib = PropertiesNode.GetAttribute("PopButtonName");
                     if( !CurrAttrib.Empty() ) {
                         Widget* UncastedButton = this->ParentScreen->GetWidget( CurrAttrib.AsString() );
-                        if( UncastedButton->GetTypeName() == MenuButton::TypeName ) {
-                            this->SetPopButton( static_cast<MenuButton*>( UncastedButton ) );
+                        if( UncastedButton->GetTypeName() == StackButton::TypeName ) {
+                            this->SetPopButton( static_cast<StackButton*>( UncastedButton ) );
                         }else{
                             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Expected name of MenuButton when deserializing.  Named widget is not MenuButton.");
                         }
@@ -375,7 +390,7 @@ namespace Mezzanine
             }
         }
 
-        void MenuEntry::_NotifyButtonSelected(MenuButton* Selected)
+        void MenuEntry::_NotifyButtonSelected(StackButton* Selected)
         {
             if( Selected != NULL && Selected->IsHovered() ) {
                 if( this->PushButton == Selected && this->PopButton == Selected ) {
@@ -407,7 +422,7 @@ namespace Mezzanine
                     }
                 }else if( this->PopButton == Selected ) {
                     this->PopFromStack();
-                    /*Bool PopResult = this->PopFromStack();
+                    /*Boolean PopResult = this->PopFromStack();
                     if( !PopResult ) {
                         // Is there anything to do here?
                     }//*/

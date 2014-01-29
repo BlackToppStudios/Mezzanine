@@ -3,7 +3,7 @@
 
 #include "levelselectcell.h"
 
-LevelSelectCell::LevelSelectCell(const String& name, const UI::RenderableRect& Rect, UI::Screen* parent)
+/*LevelSelectCell::LevelSelectCell(const String& name, const UI::RenderableRect& Rect, UI::Screen* parent)
     : UI::Cell(name,parent)
       //PreviewImageOffset(Vector2(-0.005,-0.005)),
       //PreviewBorderOffset(Vector2(-0.01,-0.01)),
@@ -210,5 +210,6 @@ void LevelSelectCB::DoUnselectedItems()
 {
     LevelCell->GetCellBack()->SetBackgroundSprite("MMLevelCellBack");
 }
+//*/
 
 #endif

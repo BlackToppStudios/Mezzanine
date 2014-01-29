@@ -58,6 +58,8 @@ namespace Mezzanine
         protected:
             friend class HorizontalScrollbarFactory;
 
+            /// @copydoc QuadRenderable::CreateLayoutStrat()
+            virtual void CreateLayoutStrat();
             /// @internal
             /// @brief Constructor helper function for creating a horizontally aligned scrollbar.
             /// @param ScrollStyle The button style to be applied to this scrollbar.
@@ -110,7 +112,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods
 
-            /// @copydoc Renderable::SetVisible(Bool)
+            /// @copydoc Renderable::SetVisible(Boolean)
             virtual void SetVisible(Boolean CanSee);
             /// @copydoc Renderable::Show()
             virtual void Show();

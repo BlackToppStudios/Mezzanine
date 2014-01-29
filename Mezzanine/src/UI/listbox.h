@@ -144,6 +144,36 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
+            /// @brief Sets both the size and enforcement rules for forced list item sizing in this container.
+            /// @note The sizing provided here works just like any other normal list item sizing does, with the relative parts being based on the the parent container (this).
+            /// @param ForcedSize A SizingInfo describing how all children should size themselves on dimension updates.
+            /// @param Enforcement A bitmask containing when the list item sizing will be enforced by this container.  See SizeEnforcement enum for more details.
+            virtual void SetListItemSizing(const SizingInfo& ForcedSize, const Whole Enforcement);
+            /// @brief Sets the size to be given to children processed by this container if forced sizing is enabled.
+            /// @note The sizing provided here works just like any other normal list item sizing does, with the relative parts being based on the the parent container (this).
+            /// @param ForcedSize A SizingInfo describing how all children should size themselves on dimension updates.
+            virtual void SetListItemSize(const SizingInfo& ForcedSize);
+            /// @brief Gets the size to be given to children processed by this container if forced sizing is enabled.
+            /// @return Returns a const SizeInfo reference to the sizing given to children processed by this container if forced sizing is enabled.
+            virtual const SizingInfo& GetListItemSize() const;
+            /// @brief Sets when the set list item sizing will be applied to any given list item.
+            /// @param Enforcement A bitmask containing when the list item sizing will be enforced by this container.  See SizeEnforcement enum for more details.
+            virtual void SetListItemSizeEnforcement(const Whole Enforcement);
+            /// @brief Gets when the set list item sizing will be applied to any given list item.
+            /// @return Returns a bitmask describing when the list item sizing will be enforced by this container.  See SizeEnforcement enum for more details.
+            virtual Whole GetListItemSizeEnforcement() const;
+
+            /// @brief Sets the Unified width of the child scrollbar in this ListBox.
+            /// @note This defaults to UnifiedDim(0.08,0.0).
+            /// @param ScrollWidth The relative (to this) and absolute components of the width to be given the child scrollbar.
+            virtual void SetScrollbarWidth(const UnifiedDim& ScrollWidth);
+            /// @brief Gets the Unified width of the child scrollbar in this ListBox.
+            /// @return Returns a const reference to the Unified dimension containing the width of the child scrollbar.
+            virtual const UnifiedDim& GetScrollbarWidth() const;
+
+            /// @copydoc QuadRenderable::UpdateDimensions(const Rect&, const Rect&)
+            virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);
+
             ///////////////////////////////////////////////////////////////////////////////
             // ListBox Properties
 
@@ -173,16 +203,18 @@ namespace Mezzanine
 
             /// @brief Convenience method that will create and add a ListItem with a single line text layer to this ListBox.
             /// @note The auto-created text layers ZOrder is 5.  TextLine(s) in the ListItem are set to a centered vertical
-            /// alignment.  ListItem sizes are automatically set to fill the full X axis of it's container, and X+2 pixels in
-            /// height, where the height is the space needed for all it's text lines.
+            /// alignment.  ListItems by default are sized to automatically fill the full X axis of it's container, and X+2 pixels in
+            /// height, where the height is the space needed for all it's text lines.  New ListItems are also automatically added as
+            /// a child of this ListBox, so you don't need to add them to the ListBox yourself.
             /// @param ItemName The name to be given to the new ListItem.
             /// @param Text The text that is to be created and assigned to the new list item.
             /// @return Returns a pointer to the newly created ListItem.
             virtual ListItem* CreateSingleLineListItem(const String& ItemName, const String& Text);
             /// @brief Convenience method that will create and add a ListItem with a multi-line text layer to this ListBox.
             /// @note The auto-created text layers ZOrder is 5.  TextLine(s) in the ListItem are set to a centered vertical
-            /// alignment.  ListItem sizes are automatically set to fill the full X axis of it's container, and X+2 pixels in
-            /// height, where the height is the space needed for all it's text lines.
+            /// alignment.  ListItems by default are sized to automatically fill the full X axis of it's container, and X+2 pixels in
+            /// height, where the height is the space needed for all it's text lines.  New ListItems are also automatically added as
+            /// a child of this ListBox, so you don't need to add them to the ListBox yourself.
             /// @param ItemName The name to be given to the new ListItem.
             /// @param Text The text that is to be created and assigned to the new list item.
             /// @return Returns a pointer to the newly created ListItem.

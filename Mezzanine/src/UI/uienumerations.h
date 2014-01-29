@@ -132,17 +132,6 @@ namespace Mezzanine
             QC_BottomLeft  = 3
         };
 
-        /// @enum RenderPriority
-        /// @brief Used by UI elements created by layers to determine z-ordering within a layer.
-        /// @details This essentially means we're adding layers to our layers without the messy
-        /// and un-intuitive re-coding necessary to actually accomplish that.
-        enum RenderPriority
-        {
-            RP_Low,
-            RP_Medium,
-            RP_High
-        };
-
         /// @enum ScrollbarStyle
         /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.
         /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.

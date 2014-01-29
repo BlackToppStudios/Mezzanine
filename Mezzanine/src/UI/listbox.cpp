@@ -75,7 +75,7 @@ namespace Mezzanine
             Widget(Parent),
             ListItemFont(NULL),
             Ordering(ListBox::LIO_BottomInsert)
-            { this->LayoutStrat = new LayoutStrategy(); }
+            {  }
 
         ListBox::ListBox(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent) :
             Widget(RendName,Parent),
@@ -98,9 +98,10 @@ namespace Mezzanine
         ListBox::~ListBox()
         {
             this->ListContainer->UnbindProvider( this->ListScroll );
+            this->RemoveChild( this->ListScroll );
             this->ParentScreen->DestroyWidget( this->ListScroll );
+            this->RemoveChild( this->ListContainer );
             this->ParentScreen->DestroyWidget( this->ListContainer );
-            delete this->LayoutStrat;
         }
 
         Boolean ListBox::HandleInputImpl(const Input::MetaCode& Code)
@@ -119,8 +120,10 @@ namespace Mezzanine
         {
             this->ListScroll = this->ParentScreen->CreateVerticalScrollbar(this->Name+".Scroll",Style);
             this->ListScroll->SetAutoHide(true);
+            this->AddChild(this->ListScroll,1);
             this->ListContainer = this->ParentScreen->CreateVerticalContainer(this->Name+".Container");
             this->ListContainer->SetYProvider( this->ListScroll );
+            this->AddChild(this->ListContainer,2);
 
             this->ListScroll->SetUnifiedPosition(UnifiedVec2(0.92,0.0,0.0,0.0));
             this->ListScroll->SetUnifiedSize(UnifiedVec2(0.08,1.0,0.0,0.0));
@@ -153,6 +156,39 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
+
+        void ListBox::SetListItemSizing(const SizingInfo& ForcedSize, const Whole Enforcement)
+            { this->ListContainer->SetChildSizing(ForcedSize,Enforcement); }
+
+        void ListBox::SetListItemSize(const SizingInfo& ForcedSize)
+            { this->ListContainer->SetChildSize(ForcedSize); }
+
+        const SizingInfo& ListBox::GetListItemSize() const
+            { return this->ListContainer->GetChildSize(); }
+
+        void ListBox::SetListItemSizeEnforcement(const Whole Enforcement)
+            { this->ListContainer->SetChildSizeEnforcement(Enforcement); }
+
+        Whole ListBox::GetListItemSizeEnforcement() const
+            { return this->ListContainer->GetChildSizeEnforcement(); }
+
+        void ListBox::SetScrollbarWidth(const UnifiedDim& ScrollWidth)
+        {
+            this->ListScroll->SetUnifiedSize( UnifiedVec2(ScrollWidth,this->ListScroll->GetUnifiedSize().Y) );
+            this->ListContainer->SetUnifiedSize( UnifiedVec2(UnifiedDim(1.0,0.0) - ScrollWidth,this->ListContainer->GetUnifiedSize().Y) );
+            /// @todo Update for Autohide.
+        }
+
+        const UnifiedDim& ListBox::GetScrollbarWidth() const
+        {
+            return this->ListScroll->GetUnifiedSize().X;
+        }
+
+        void ListBox::UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect)
+        {
+            /// @todo Update for Autohide.
+            this->QuadRenderable::UpdateDimensions(OldSelfRect,NewSelfRect);
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // ListBox Properties
@@ -307,7 +343,7 @@ namespace Mezzanine
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        // MenuEntryFactory Methods
+        // ListBoxFactory Methods
 
         String ListBoxFactory::GetWidgetTypeName() const
             { return ListBox::TypeName; }

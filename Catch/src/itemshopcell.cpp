@@ -3,7 +3,7 @@
 
 #include "itemshopcell.h"
 
-ItemShopCell::ItemShopCell(const String& name, const UI::RenderableRect& Rect, const String& ItemName, UI::Screen* parent)
+/*ItemShopCell::ItemShopCell(const String& name, const UI::RenderableRect& Rect, const String& ItemName, UI::Screen* parent)
     : UI::Cell(name,parent)
 {
     Real LineHeight = Rect.Relative ? Rect.Size.Y * 0.25 : (Rect.Size.Y / ParentScreen->GetViewportDimensions().Y) * 0.25;
@@ -94,5 +94,6 @@ void ItemShopCB::DoUnselectedItems()
 {
 
 }
+//*/
 
 #endif

@@ -5,7 +5,7 @@
 
 using namespace Mezzanine;
 
-class GSStore : public UI::ActivatableListener
+/*class GSStore : public UI::ActivatableListener
 {
     public:
         GSStore();
@@ -117,6 +117,6 @@ class OptsVideoApply : public UI::ActivatableListener
         virtual void DoPreUpdateItems();
         virtual void DoPostUpdateItems();
         virtual void DoVisibilityChangeItems();
-};
+};//*/
 
 #endif

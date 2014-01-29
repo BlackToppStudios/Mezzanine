@@ -55,81 +55,84 @@ namespace Mezzanine
 
         class MEZZ_LIB LineListRenderer : public SimpleRenderer
         {
-            protected:
-                LineList* Parent;
-                /// @copydoc SimpleRenderer::RedrawImpl(bool)
-                virtual void RedrawImpl(bool Force)
+        protected:
+            LineList* Parent;
+            /// @copydoc SimpleRenderer::RedrawImpl(Boolean)
+            virtual void RedrawImpl(Boolean Force)
+            {
+                if(!this->Parent->IsVisible())
                 {
-                    if(!this->Parent->IsVisible())
-                    {
-                        this->Dirty = false;
-                        return;
-                    }
-
-                    const LineList::PointVector& Positions = this->Parent->GetPoints();
-                    const ColourValue& Colour = this->Parent->GetLineColour();
-                    const Real& Thickness = this->Parent->GetLineThickness();
-                    bool IsClosed = this->Parent->IsClosed();
-
-                    if(Positions.size() < 2)
-                        return;
-
-                    VertexData Temp;
-                    Real HalfThickness = Thickness * 0.5;
-                    Vector2 PerpNorm, LastLeft, LastRight, ThisLeft, ThisRight, UV = this->Parent->GetScreen()->GetWhitePixel(PriAtlas);
-                    size_t Index = 1;
-                    for(  ; Index < Positions.size() ; Index++ )
-                    {
-                        PerpNorm  = (Positions[Index] - Positions[Index - 1]).Perpendicular().Normalize();
-                        LastLeft  = Positions[Index -1 ] - PerpNorm * HalfThickness;
-                        LastRight = Positions[Index -1 ] + PerpNorm * HalfThickness;
-                        ThisLeft  = Positions[Index] - PerpNorm * HalfThickness;
-                        ThisRight = Positions[Index] + PerpNorm * HalfThickness;
-
-                        // Triangle A
-                        this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
-                        this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
-                        this->PushVertex(LastLeft.X,LastLeft.Y,UV,Colour,PriAtlas);        // Left/Top
-                        // Triangle B
-                        this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
-                        this->PushVertex(ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);      // Right/Bottom
-                        this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
-                    }
-
-                    if(IsClosed)
-                    {
-                        Index = Positions.size() - 1;
-                        PerpNorm  = (Positions[0] - Positions[Index]).Perpendicular().Normalize();
-                        LastLeft  = Positions[Index] - PerpNorm * HalfThickness;
-                        LastRight = Positions[Index] + PerpNorm * HalfThickness;
-                        ThisLeft  = Positions[0] - PerpNorm * HalfThickness;
-                        ThisRight = Positions[0] + PerpNorm * HalfThickness;
-
-                        // Triangle A
-                        this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);       // Left/Bottom
-                        this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);         // Right/Top
-                        this->PushVertex(LastLeft.X,LastLeft.Y,UV,Colour,PriAtlas);         // Left/Top
-                        // Triangle B
-                        this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);       // Left/Bottom
-                        this->PushVertex(ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);       // Right/Bottom
-                        this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);         // Right/Top
-                    }
+                    this->Dirty = false;
+                    return;
                 }
-            public:
-                /// @brief Class constructor.
-                /// @param LL The parent LineList this renderer is rendering.
-                LineListRenderer(LineList* LL) : Parent(LL) {}
-                /// @brief Class destructor.
-                ~LineListRenderer() {}
 
-                /// @copydoc UI::SimpleRenderer::_MarkDirty()
-                virtual void _MarkDirty()
+                const LineList::PointVector& Positions = this->Parent->GetPoints();
+                const ColourValue& Colour = this->Parent->GetLineColour();
+                const Real& Thickness = this->Parent->GetLineThickness();
+                Boolean IsClosed = this->Parent->IsClosed();
+
+                if(Positions.size() < 2)
+                    return;
+
+                VertexData Temp;
+                Real HalfThickness = Thickness * 0.5;
+                Vector2 PerpNorm, LastLeft, LastRight, ThisLeft, ThisRight, UV = this->Parent->GetScreen()->GetWhitePixel(PriAtlas);
+                size_t Index = 1;
+                for(  ; Index < Positions.size() ; Index++ )
                 {
-                    if(this->Dirty)
-                        return;
-                    this->Parent->_MarkDirty();
-                    this->Dirty = true;
+                    PerpNorm  = (Positions[Index] - Positions[Index - 1]).Perpendicular().Normalize();
+                    LastLeft  = Positions[Index -1 ] - PerpNorm * HalfThickness;
+                    LastRight = Positions[Index -1 ] + PerpNorm * HalfThickness;
+                    ThisLeft  = Positions[Index] - PerpNorm * HalfThickness;
+                    ThisRight = Positions[Index] + PerpNorm * HalfThickness;
+
+                    // Triangle A
+                    this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
+                    this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
+                    this->PushVertex(LastLeft.X,LastLeft.Y,UV,Colour,PriAtlas);        // Left/Top
+                    // Triangle B
+                    this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
+                    this->PushVertex(ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);      // Right/Bottom
+                    this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
                 }
+
+                if(IsClosed)
+                {
+                    Index = Positions.size() - 1;
+                    PerpNorm  = (Positions[0] - Positions[Index]).Perpendicular().Normalize();
+                    LastLeft  = Positions[Index] - PerpNorm * HalfThickness;
+                    LastRight = Positions[Index] + PerpNorm * HalfThickness;
+                    ThisLeft  = Positions[0] - PerpNorm * HalfThickness;
+                    ThisRight = Positions[0] + PerpNorm * HalfThickness;
+
+                    // Triangle A
+                    this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);       // Left/Bottom
+                    this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);         // Right/Top
+                    this->PushVertex(LastLeft.X,LastLeft.Y,UV,Colour,PriAtlas);         // Left/Top
+                    // Triangle B
+                    this->PushVertex(LastRight.X,LastRight.Y,UV,Colour,PriAtlas);       // Left/Bottom
+                    this->PushVertex(ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);       // Right/Bottom
+                    this->PushVertex(ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);         // Right/Top
+                }
+            }
+        public:
+            /// @brief Class constructor.
+            /// @param LL The parent LineList this renderer is rendering.
+            LineListRenderer(LineList* LL) :
+                Parent(LL)
+                {  }
+            /// @brief Class destructor.
+            virtual ~LineListRenderer()
+                {  }
+
+            /// @copydoc UI::SimpleRenderer::_MarkDirty()
+            virtual void _MarkDirty()
+            {
+                if(this->Dirty)
+                    return;
+                this->Parent->_MarkDirty();
+                this->Dirty = true;
+            }
         };//LineListRenderer
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -139,8 +142,7 @@ namespace Mezzanine
             Renderable(RendName,PScreen),
             Renderer(NULL),
             Thickness(1.0),
-            Closed(false),
-            Priority(UI::RP_Medium)
+            Closed(false)
         {
             this->Colour = ColourValue::Black();
             this->Renderer = new LineListRenderer(this);
@@ -184,7 +186,7 @@ namespace Mezzanine
             return *this;
         }
 
-        void LineList::End(bool Closed)
+        void LineList::End(Boolean Closed)
         {
             this->Closed = Closed;
             //_MarkDirty();
@@ -203,7 +205,7 @@ namespace Mezzanine
             return this->Positions;
         }
 
-        bool LineList::IsClosed() const
+        Boolean LineList::IsClosed() const
         {
             return this->Closed;
         }
@@ -221,20 +223,20 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility Methods
 
-        void LineList::SetVisible(bool visible)
+        void LineList::SetVisible(Boolean CanSee)
         {
-            if( this->Visible == visible )
+            if( this->Visible == CanSee )
                 return;
-            this->Visible = visible;
+            this->Visible = CanSee;
             //_MarkDirty();
         }
 
-        bool LineList::GetVisible() const
+        Boolean LineList::GetVisible() const
         {
             return this->Visible;
         }
 
-        bool LineList::IsVisible() const
+        Boolean LineList::IsVisible() const
         {
             return (this->Visible && ParentScreen->IsVisible());
         }
@@ -276,24 +278,7 @@ namespace Mezzanine
         {
             if( this->Renderer->_IsDirty() )
                 this->Renderer->_Redraw(false);
-            switch(Priority)
-            {
-                case UI::RP_Low:
-                {
-                    this->Renderer->_AppendVertices(RenderData.LowVertices);
-                    break;
-                }
-                case UI::RP_Medium:
-                {
-                    this->Renderer->_AppendVertices(RenderData.MediumVertices);
-                    break;
-                }
-                case UI::RP_High:
-                {
-                    this->Renderer->_AppendVertices(RenderData.HighVertices);
-                    break;
-                }
-            }
+            this->Renderer->_AppendVertices(RenderData.Vertices);
         }
     }//UI
 }//Mezzanine

@@ -119,6 +119,14 @@ namespace Mezzanine
             /// @param RL The layer to add.
             /// @param ZOrder The ZOrder at which to add the layer.
             void AddLayer(RenderLayer* RL, const UInt16 ZOrder);
+            /// @brief Gets a RenderLayer in this group by it's index.
+            /// @param Index The index of the RenderLayer to retrieve.  Note: RenderLayers are sorted via ZOrder.
+            /// @return Returns a pointer to the RenderLayer at the specified index.
+            RenderLayer* GetLayer(const Whole Index) const;
+            /// @brief Gets a RenderLayer in this group by it's ZOrder.
+            /// @param ZOrder The ZOrder of the RenderLayer to retrieve.
+            /// @return Returns a pointer to the layer at the specified ZOrder, or NULL if no layers exist at that ZOrder.
+            RenderLayer* GetLayerByZOrder(const UInt16 ZOrder) const;
             /// @brief Gets the number of RenderLayers assigned to this group.
             /// @return Returns a UInt32 containing the number of RenderLayers in this group.
             UInt32 GetNumRenderLayers() const;
@@ -234,9 +242,6 @@ namespace Mezzanine
             /// @brief This is the ZOrder of this Quad in relation to all other Quads in it's parent.
             UInt16 ZOrder;
             /// @internal
-            /// @brief Determines the "higher ZOrder" of this Quad compared to all other renderables on screen.
-            UI::RenderPriority Priority;
-            /// @internal
             /// @brief Controls whether or not this Quad will be considered for mouse hover checks.
             Boolean MousePassthrough;
             /// @internal
@@ -250,6 +255,11 @@ namespace Mezzanine
             virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
             /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
+            /// @internal
+            /// @brief Overridable method that creates and assigns a layout strategy for a quadrenderable.
+            /// @note Widgets by default will create the default LayoutStrategy implementation.  If a widget needs a different implementation (or none/NULL),
+            /// then this method needs to be overridden and provide the appropriate type.
+            virtual void CreateLayoutStrat();
             /// @internal
             /// @brief Adds all the vertices belonging to all the layers of this renderable to the provided vector.
             /// @param Vertices The vector to store the generated vertices.
@@ -344,7 +354,7 @@ namespace Mezzanine
             virtual void SetMousePassthrough(Boolean Enable);
             /// @brief Gets whether or not Mouse Passthrough is enabled.
             /// @return Returns true if Mouse Passthrough is enabled, false otherwise.
-            virtual bool GetMousePassthrough() const;
+            virtual Boolean GetMousePassthrough() const;
             /// @brief Sets whether or not this quad has specific behaviors for it's transform updates and they should not be done automatically.
             /// @note Setting this to true will prevent child quads from being updated.  This setting does not mean that a quad will never be
             /// updated, just that it has special logic for doing so located elsewhere from the normal logic.  Example: Transform updates to be
@@ -353,19 +363,7 @@ namespace Mezzanine
             virtual void SetManualTransformUpdates(Boolean Enable);
             /// @brief Gets whether or not this quad will be automatically updated when parent transforms are updated.
             /// @return Returns true if this quad needs manual updating, false if it recieves automatic updates.
-            virtual bool GetManualTransformUpdates() const;
-
-            /// @brief Sets the priority this QuadRenderable should be rendered with.
-            /// @note The default value for this is Medium.
-            /// @param RP The priority level to be used when rendering this QuadRenderable.
-            virtual void SetRenderPriority(const UI::RenderPriority RP);
-            /// @brief Sets the priority this QuadRenderable and all it's children should be rendered with.
-            /// @note The default value for this is Medium.
-            /// @param RP The priority level to be used when rendering this QuadRenderable and it's children.
-            virtual void SetRenderPriorityCascading(const UI::RenderPriority RP);
-            /// @brief Gets the priority this QuadRenderable should be rendered with.
-            /// @return Returns an enum value representing this renderables priority level.
-            virtual UI::RenderPriority GetRenderPriority() const;
+            virtual Boolean GetManualTransformUpdates() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Policy Methods

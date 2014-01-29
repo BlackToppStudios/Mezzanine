@@ -74,32 +74,35 @@ void CatchApp::MakeGUI()
     UI::UIManager* GUI = UI::UIManager::GetSingletonPtr();
     Graphics::Viewport* UIViewport = Graphics::GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0);
 
-    ColourValue Transparent(0.0,0.0,0.0,0.0);
-    ColourValue Black(0.0,0.0,0.0,1.0);
-    ColourValue TransBlack(0.0,0.0,0.0,0.85);
-    ColourValue Gray(0.2,0.2,0.2,1.0);
+    const ColourValue Transparent(0.0,0.0,0.0,0.0);
+    const ColourValue Black(0.0,0.0,0.0,1.0);
+    const ColourValue TransBlack(0.0,0.0,0.0,0.85);
+    const ColourValue Gray(0.2,0.2,0.2,1.0);
 
     GUI->EnableButtonAutoRegister(true);
-    GUI->AddAutoRegisterCode(Input::MOUSEBUTTON_1);
+    GUI->AddAutoRegisterCode( Input::MetaCode( Input::BUTTON_LIFTING, Input::MOUSEBUTTON_1 ) );
 
     //Make the Main Menu screen and associated layers.
-    GUI->LoadMTA("Catch_Menu");
-    UI::Screen* MainMenuScreen = GUI->CreateScreen("MainMenuScreen", "Catch_Menu", UIViewport);
+    GUI->LoadMTA("Catch_Menu.mta","Common");
+    UI::Screen* MainMenuScreen = GUI->CreateScreen("MainMenuScreen","Catch_Menu",UIViewport);
 
     //Build the Main Menu Screen
-    UI::OpenRenderableContainerWidget* MMBack = MainMenuScreen->CreateOpenRenderableContainerWidget("MM_Back");
-    UI::Rectangle* Background = MMBack->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
-    Background->SetBackgroundSprite("MainMenuBackground");
-    MainMenuScreen->AddRootWidget(0,MMBack);
+    UI::ImageLayer* MMBackground = MainMenuScreen->CreateImageLayer();
+    MMBackground->SetSprite("MainMenuBackground");
+    MainMenuScreen->AddLayerToGroup(MMBackground,0,"Normal");
+    MainMenuScreen->AddLayerToGroup(MMBackground,0,"Hovered");
 
-    UI::Menu* MainMenuMenu = MainMenuScreen->CreateMenu( "MS_Menu", UI::RenderableRect(Vector2(0.0,0.915), Vector2(1.0,0.086), true));
-    MainMenuMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MMBrickBackground");
-    MainMenuMenu->GetRootWindow()->SetAutoHide(false);
+    UI::MenuEntry* MainMenuRoot = MainMenuScreen->CreateMenuEntry("MS_MenuRoot",UI::UnifiedRect(0.0,0.915,1.0,0.086,0.0,0.0,0.0,0.0));
+    UI::ImageLayer* MMRootBrick = MainMenuRoot->CreateImageLayer();
+    MainMenuRoot->AddLayerToGroup(MMRootBrick,0,"Normal");
+    MainMenuRoot->AddLayerToGroup(MMRootBrick,0,"Hovered");
+    MainMenuRoot->SetAutoHide(false);
+    MainMenuScreen->AddChild(MainMenuRoot,0);
 
-    Real MMStartLineHeight = 0.05;
-    Real MMTextLineHeight = 0.04;
+    //Real MMStartLineHeight = 0.05;
+    //Real MMTextLineHeight = 0.04;
     //Real MMSmallTextLineHeight = 0.03;
-    UI::Button* MMLevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", UI::RenderableRect(Vector2(0.05, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Level Select" );
+    /*UI::Button* MMLevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", UI::RenderableRect(Vector2(0.05, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Level Select" );
     MMLevelSelectAccess->GetClickable()->SetBackgroundSprite("MMButton");
     MMLevelSelectAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
     UI::MenuWindow* MMLevelSelectWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_LevelSelectWin", UI::RenderableRect(Vector2(0.05,0.02), Vector2(0.90,0.84), true), MMLevelSelectAccess);
@@ -247,7 +250,7 @@ void CatchApp::MakeGUI()
     MMAppExitConf->AddActivatableListener(new AllAppExit());
     MMAppExitConf->GetClickable()->SetBackgroundSprite("MMAppExitButton");
     MMAppExitConf->GetClickable()->SetHoveredSprite("MMAppExitHoveredButton");
-    UI::Button* MMAppExitDeny = MMAppExitWin->CreateBackButton(/*"MS_AppExitDeny", */UI::RenderableRect(Vector2(0.52, 0.47), Vector2(0.18, 0.06), true), Real(0.04), "No");
+    UI::Button* MMAppExitDeny = MMAppExitWin->CreateBackButton("MS_AppExitDeny", UI::RenderableRect(Vector2(0.52, 0.47), Vector2(0.18, 0.06), true), Real(0.04), "No");
     MMAppExitDeny->GetClickable()->SetBackgroundSprite("MMAppExitButton");
     MMAppExitDeny->GetClickable()->SetHoveredSprite("MMAppExitHoveredButton");
 
@@ -499,7 +502,7 @@ void CatchApp::MakeGUI()
     LevelReport->Hide();
     //End of Report Layer
     //End of Game Screen
-    GameScreen->Hide();
+    GameScreen->Hide();//*/
 }
 
 void CatchApp::CreateLoadingScreen()
@@ -507,18 +510,18 @@ void CatchApp::CreateLoadingScreen()
     UI::UIManager* GUI = UI::UIManager::GetSingletonPtr();
     Graphics::GraphicsManager* GraphicsMan = Graphics::GraphicsManager::GetSingletonPtr();
 
-    GUI->LoadMTA("Catch_Loading");
+    GUI->LoadMTA("Catch_Loading.mta","Common");
     Graphics::Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
     UIViewport->SetCamera(this->TheEntresol->GetCameraManager()->CreateCamera("Main"));
 
-    UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
-    UI::OpenRenderableContainerWidget* LoadContainer = LoadScreen->CreateOpenRenderableContainerWidget("Load_Rect");
-    UI::Rectangle* LoadBackground = LoadContainer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
-    LoadBackground->SetBackgroundSprite("BTSBanner");
-    LoadScreen->AddRootWidget(0,LoadContainer);
+    UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen","Catch_Loading",UIViewport);
+    UI::ImageLayer* LoadBackground = LoadScreen->CreateImageLayer();
+    LoadBackground->SetSprite("BTSBanner");
+    LoadScreen->AddLayerToGroup(LoadBackground,0,"Normal");
+    LoadScreen->AddLayerToGroup(LoadBackground,0,"Hovered");
 
     GraphicsMan->RenderOneFrame();
-    LoadBackground->SetBackgroundSprite("LoadingBackground");
+    LoadBackground->SetSprite("LoadingBackground");
 }
 
 void CatchApp::InitMusic()
@@ -645,7 +648,8 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
             if(LevelScore > this->Profiles->GetActiveProfile()->GetHighestScore(this->Loader->GetCurrentLevel()))
             {
                 this->Profiles->GetActiveProfile()->SetNewHighScore(this->Loader->GetCurrentLevel(),LevelScore);
-                (static_cast<LevelSelectCell*>(this->Profiles->GetLevelGrid()->GetCell(Loader->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTools::ConvertToString(LevelScore));
+                /// @todo UI Update
+                //(static_cast<LevelSelectCell*>(this->Profiles->GetLevelGrid()->GetCell(Loader->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTools::ConvertToString(LevelScore));
             }
             break;
         }

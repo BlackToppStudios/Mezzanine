@@ -81,10 +81,7 @@ namespace Mezzanine
                 Real Thickness;
                 /// @internal
                 /// @brief A bool indicating whether or not an additional segment should be generated between the first and last points.
-                bool Closed;
-                /// @internal
-                /// @brief Determines the "higher ZOrder" of this Quad compared to all other renderables on screen.
-                UI::RenderPriority Priority;
+                Boolean Closed;
             //public:
                 /// @brief Class constructor.
                 /// @param RendName The name to give to this Linelist.
@@ -121,7 +118,7 @@ namespace Mezzanine
                 /// @brief Finalizes the list and prepares it for rendering.
                 /// @param Closed Whether or not the line list connects back to it's starting position.  If
                 /// true this will create one last line connecting the last provided position with the first.
-                void End(bool Closed = false);
+                void End(Boolean Closed = false);
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility Methods
@@ -133,7 +130,7 @@ namespace Mezzanine
                 const PointVector& GetPoints() const;
                 /// @brief Gets whether or not this linelist is enclosed.
                 /// @return Returns true if this linelist has an extra line connecting the first and last entries.
-                bool IsClosed() const;
+                Boolean IsClosed() const;
                 /// @brief Gets the colour of this linelist.
                 /// @return Returns a const reference to the colourvalue for this linelist.
                 const ColourValue& GetLineColour() const;
@@ -144,12 +141,12 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Visibility Methods
 
-                /// @copydoc Renderable::SetVisible(bool visible)
-                virtual void SetVisible(bool visible);
+                /// @copydoc Renderable::SetVisible(Boolean)
+                virtual void SetVisible(Boolean CanSee);
                 /// @copydoc Renderable::GetVisible()
-                virtual bool GetVisible() const;
+                virtual Boolean GetVisible() const;
                 /// @copydoc Renderable::IsVisible()
-                virtual bool IsVisible() const;
+                virtual Boolean IsVisible() const;
                 /// @copydoc Renderable::Show()
                 virtual void Show();
                 /// @copydoc Renderable::Hide()
@@ -169,7 +166,7 @@ namespace Mezzanine
                 virtual void _MarkDirty();
                 /// @copydoc UI::Renderable::_AppendRenderData()
                 virtual void _AppendRenderData(ScreenRenderData& RenderData);
-        };//listlist
+        };//LineList
     }//UI
 }//Mezzanine
 

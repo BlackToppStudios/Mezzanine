@@ -41,6 +41,7 @@
 #define _uitabset_cpp
 
 #include "UI/tabset.h"
+#include "UI/stackbutton.h"
 #include "UI/screen.h"
 #include "UI/uimanager.h"
 #include "UI/button.h"
@@ -51,35 +52,53 @@ namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // TabSet Static Members
+
         const String TabSet::TypeName = "TabSet";
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // TabSet Methods
+
         TabSet::TabSet(Screen* Parent) :
-            StackedContainer(Parent)
+            StackedContainer(Parent),
+            VisibleChild(NULL)
         {
 
         }
 
         TabSet::TabSet(const String& RendName, Screen* Parent) :
-            StackedContainer(RendName,Parent)
+            StackedContainer(RendName,Parent),
+            VisibleChild(NULL)
         {
 
         }
 
         TabSet::TabSet(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
-            StackedContainer(RendName,RendRect,Parent)
+            StackedContainer(RendName,RendRect,Parent),
+            VisibleChild(NULL)
         {
 
         }
 
         TabSet::TabSet(const XML::Node& XMLNode, Screen* Parent) :
-            StackedContainer(Parent)
+            StackedContainer(Parent),
+            VisibleChild(NULL)
         {
 
         }
 
         TabSet::~TabSet()
-        {
+            { this->VisibleChild = NULL; }
 
+        void TabSet::ProtoSerializeImpl(XML::Node& SelfRoot) const
+        {
+            this->Widget::ProtoSerializeImpl(SelfRoot);
+        }
+
+        void TabSet::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+        {
+            this->Widget::ProtoDeSerializeImpl(SelfRoot);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -88,14 +107,156 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
+        void TabSet::SetVisible(Boolean CanSee)
+        {
+            if( this->Visible == CanSee )
+                return;
+            this->Visible = CanSee;
+            if(CanSee) {
+                this->_OnVisibilityShown();
+                this->VisibleChild->SetVisible(CanSee);
+            }else{
+                this->_OnVisibilityHidden();
+                for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+                {
+                    (*It)->SetVisible(CanSee);
+                }
+            }
+        }
+
+        void TabSet::Show()
+        {
+            if( this->Visible == true )
+                return;
+            this->Visible = true;
+            this->_OnVisibilityShown();
+            this->VisibleChild->Show();
+        }
+
+        void TabSet::Hide()
+        {
+            if( this->Visible == false )
+                return;
+            this->Visible = false;
+            this->_OnVisibilityHidden();
+            for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+            {
+                (*It)->Hide();
+            }
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // TabSet Properties
 
         ///////////////////////////////////////////////////////////////////////////////
         // TabSet Configuration
 
+        void TabSet::SetButtonConfig(const UInt16 Config, StackButton* ConfigButton)
+        {
+            this->SubSetBindings.insert( std::pair<StackButton*,UInt16>(ConfigButton,Config) );
+        }
+
+        UInt16 TabSet::GetButtonConfig(const StackButton* ConfigButton) const
+        {
+            ConstTabbedSubSetIterator SubIt = this->SubSetBindings.find( const_cast<StackButton*>(ConfigButton) );
+            if( SubIt != this->SubSetBindings.end() ) {
+                return (*SubIt).second;
+            }else{
+                return 0;
+            }
+        }
+
+        TabSet::TabbedSubSet* TabSet::CreateTabbedSubSet(const String& Name, const UInt16 ChildZOrder)
+        {
+            TabbedSubSet* NewSet = this->ParentScreen->CreateWidget(Name,UnifiedRect(0,0,1,1,0,0,0,0));
+            this->AddChild(NewSet,ChildZOrder);
+            NewSet->Hide();
+            return NewSet;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
+
+        void TabSet::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->StackedContainer::ProtoSerializeProperties(SelfRoot);
+        }
+
+        void TabSet::ProtoSerializeButtonBindings(XML::Node& SelfRoot) const
+        {
+            XML::Node BindingsNode = SelfRoot.AppendChild( "SubSetBindings" );
+
+            if( BindingsNode.AppendAttribute("Version").SetValue("1") ) {
+                for( ConstTabbedSubSetIterator BindingIt = this->SubSetBindings.begin() ; BindingIt != this->SubSetBindings.end() ; ++BindingIt )
+                {
+                    XML::Node BindingNode = BindingsNode.AppendChild( "SubSetBinding" );
+
+                    if( BindingNode.AppendAttribute("Version").SetValue("1") &&
+                        BindingNode.AppendAttribute("ConfigID").SetValue( (*BindingIt).second ) &&
+                        BindingNode.AppendAttribute("ButtonName").SetValue( (*BindingIt).first->GetName() ) )
+                    {
+                        continue;
+                    }else{
+                        SerializeError("Create XML Version Attribute","SubSetBinding",true);
+                    }
+                }
+            }else{
+                SerializeError("Create XML Version Attribute","SubSetBindings",true);
+            }
+        }
+
+        void TabSet::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->StackedContainer::ProtoDeSerializeProperties(SelfRoot);
+        }
+
+        void TabSet::ProtoDeSerializeButtonBindings(const XML::Node& SelfRoot)
+        {
+            this->SubSetBindings.clear();
+
+            XML::Attribute CurrAttrib;
+            XML::Node BindingsNode = SelfRoot.GetChild( "SubSetBindings" );
+
+            if( !BindingsNode.Empty() ) {
+                if( BindingsNode.GetAttribute("Version").AsInt() == 1 ) {
+                    for( XML::NodeIterator BindingNodeIt = BindingsNode.begin() ; BindingNodeIt != BindingsNode.end() ; ++BindingNodeIt )
+                    {
+                        if( (*BindingNodeIt).GetAttribute("Version").AsInt() == 1 ) {
+                            UInt16 ConfigID = 0;
+                            String ButtonName;
+
+                            CurrAttrib = (*BindingNodeIt).GetAttribute("ConfigID");
+                            if( !CurrAttrib.Empty() )
+                                ConfigID = static_cast<UInt16>( CurrAttrib.AsUint() );
+
+                            CurrAttrib = (*BindingNodeIt).GetAttribute("ButtonName");
+                            if( !CurrAttrib.Empty() )
+                                ButtonName = CurrAttrib.AsString();
+
+                            if( !ButtonName.empty() ) {
+                                Widget* NamedButton = this->ParentScreen->GetWidget(ButtonName);
+                                if( NamedButton != NULL && NamedButton->GetTypeName() == StackButton::TypeName ) {
+                                    this->SetButtonConfig(ConfigID,static_cast<StackButton*>(NamedButton));
+                                }else{
+                                    StringStream ExceptionStream;
+                                    ExceptionStream << "Named StackButton \"" << ButtonName << "\" not found when deserializing Widget named \"" << this->GetName() << "\".";
+                                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
+                                }
+                            }
+                        }else{
+                            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("SubSetBindings") + ": Not Version 1.");
+                        }
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("SubSetBindings") + ": Not Version 1.");
+                }
+            }
+        }
+
+        String TabSet::GetSerializableName()
+        {
+            return TabSet::TypeName;
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Event Methods
@@ -103,34 +264,68 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-
-        /*TabSet::TabSet(const String& name, const Rect& SetRect, Screen* parent) :
-            Widget(name,parent),
-            SetsAdded(0),
-            VisibleSet(NULL)
+        void TabSet::_NotifyButtonSelected(StackButton* Selected)
         {
-            Type = Widget::W_TabSet;
-            TemplateSetRect.Relative = false;
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            if(SetRect.Relative)
-            {
-                RelPosition = SetRect.Position;
-                RelSize = SetRect.Size;
-                TemplateSetRect.Position = SetRect.Position * WinDim;
-                TemplateSetRect.Size = SetRect.Size * WinDim;
-            }else{
-                RelPosition = SetRect.Position / WinDim;
-                RelSize = SetRect.Size / WinDim;
-                TemplateSetRect = SetRect;
+            TabbedSubSetIterator SubIt = this->SubSetBindings.find(Selected);
+            if( SubIt != this->SubSetBindings.end() ) {
+                TabbedSubSet* NewVisible = this->GetChild( (*SubIt).second );
+                if( NewVisible != NULL ) {
+                    this->VisibleChild = NewVisible;
+                    this->_MarkDirty();
+                }
             }
         }
 
-        TabSet::~TabSet()
+        void TabSet::_AppendRenderDataCascading(ScreenRenderData& RenderData)
         {
-            DestroyAllRenderableSets();
+            if( this->VertexCache ) {
+                if( this->Dirty || this->AllLayersDirty ) {
+                    this->VertexCache->Clear();
+                    this->_AppendRenderData(*VertexCache);
+                    if( this->VisibleChild->_HasAvailableRenderData() ) {
+                        this->VisibleChild->_AppendRenderDataCascading(*VertexCache);
+                    }
+                }
+                RenderData.Append(*VertexCache);
+            }else{
+                this->_AppendRenderData(RenderData);
+                if( this->VisibleChild->_HasAvailableRenderData() ) {
+                    this->VisibleChild->_AppendRenderDataCascading(RenderData);
+                }
+            }
         }
 
-        void TabSet::UpdateImpl(bool Force)
+        ///////////////////////////////////////////////////////////////////////////////
+        // TabSetFactory Methods
+
+        String TabSetFactory::GetWidgetTypeName() const
+            { return TabSet::TypeName; }
+
+        TabSet* TabSetFactory::CreateTabSet(const String& RendName, Screen* Parent)
+            { return new TabSet(RendName,Parent); }
+
+        TabSet* TabSetFactory::CreateTabSet(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
+            { return new TabSet(RendName,RendRect,Parent); }
+
+        TabSet* TabSetFactory::CreateTabSet(const XML::Node& XMLNode, Screen* Parent)
+            { return new TabSet(XMLNode,Parent); }
+
+        Widget* TabSetFactory::CreateWidget(Screen* Parent)
+            { return new TabSet(Parent); }
+
+        Widget* TabSetFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateTabSet(RendName,Parent); }
+
+        Widget* TabSetFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateTabSet(RendName,RendRect,Parent); }
+
+        Widget* TabSetFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateTabSet(XMLNode,Parent); }
+
+        void TabSetFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<TabSet*>( ToBeDestroyed ); }
+
+        /*void TabSet::UpdateImpl(bool Force)
         {
             Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )

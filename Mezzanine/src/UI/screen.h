@@ -65,11 +65,11 @@ namespace Mezzanine
         class HorizontalScrollbar;
         class LineList;
         class ListBox;
-        class MenuButton;
         class MenuEntry;
         class RadioButton;
         class Scrollbar;
         class Spinner;
+        class StackButton;
         class TabSet;
         class VerticalContainer;
         class VerticalScrollbar;
@@ -83,34 +83,40 @@ namespace Mezzanine
         class UIManager;
         struct ScreenInternalData;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class AtlasAndPosition
-        /// @headerfile screen.h
         /// @brief This class stores how the calls to Render are to be done.
         /// @details
         ///////////////////////////////////////
         struct AtlasAndPosition
         {
+            /// @brief The name of the atlas to be rendered with.
             String Atlas;
+            /// @brief The number of vertices to be rendered.
             Whole RenderCount;
+            /// @brief The index of the first verticy to be rendered.
             Whole RenderStart;
+            /// @brief The index of the last verticy to be rendered.
             Whole RenderEnd;
 
-            AtlasAndPosition() : RenderCount(0), RenderStart(0), RenderEnd(0) {};
-            AtlasAndPosition(const String& AtlasName) : Atlas(AtlasName), RenderCount(0), RenderStart(0), RenderEnd(0) {};
+            /// @brief Blank constructor.
+            AtlasAndPosition() :
+                RenderCount(0), RenderStart(0), RenderEnd(0)
+                {  }
+            /// @brief Atlas constructor.
+            /// @param AtlasName The name of the atlas the specified vertices will use to render.
+            AtlasAndPosition(const String& AtlasName) :
+                Atlas(AtlasName), RenderCount(0), RenderStart(0), RenderEnd(0)
+                {  }
         };//AtlasAndPosition
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class ScreenRenderData
-        /// @headerfile screen.h
         /// @brief This class stores all vertices pertaining to a layer sorted by their priority for rendering.
         /// @details
         ///////////////////////////////////////
         class ScreenRenderData
         {
         public:
-            std::vector<VertexData> LowVertices;
-            std::vector<VertexData> MediumVertices;
-            std::vector<VertexData> HighVertices;
+            /// @brief Container storing all of the vertices to be rendered.
+            std::vector<VertexData> Vertices;
 
             /// @brief Clears all Vertex vectors.
             void Clear();
@@ -150,7 +156,7 @@ namespace Mezzanine
             /// @brief Basic container type for the storage of render data on this screen.
             typedef std::vector<AtlasAndPosition>           TextureVertexContainer;
             /// @brief Callback type for child processing.
-            typedef bool (ChildCallback)(QuadRenderable* Quad);
+            typedef Boolean (ChildCallback)(QuadRenderable* Quad);
         protected:
             friend class Mezzanine::UI::UIManager;
 
@@ -251,7 +257,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility and Visibility Methods
 
-            /// @copydoc Renderable::SetVisible(Bool)
+            /// @copydoc Renderable::SetVisible(Boolean)
             virtual void SetVisible(Boolean CanSee);
             /// @copydoc Renderable::GetVisible() const
             virtual Boolean GetVisible() const;
@@ -368,15 +374,15 @@ namespace Mezzanine
             /// @param RendRect The rect describing this Button's transform relative to it's parent.
             /// @return Returns a pointer to the created Button.
             virtual Button* CreateButton(const String& Name, const UnifiedRect& RendRect);
+            /// @brief Creates a StackButton.
+            /// @param Name The name to be given to this StackButton.
+            /// @return Returns a pointer to the created StackButton.
+            virtual StackButton* CreateStackButton(const String& Name);
             /// @brief Creates a MenuButton.
-            /// @param Name The name to be given to this MenuButton.
-            /// @return Returns a pointer to the created MenuButton.
-            virtual MenuButton* CreateMenuButton(const String& Name);
-            /// @brief Creates a MenuButton.
-            /// @param Name The name to be given to this MenuButton.
-            /// @param RendRect The rect describing this MenuButton's transform relative to it's parent.
-            /// @return Returns a pointer to the created MenuButton.
-            virtual MenuButton* CreateMenuButton(const String& Name, const UnifiedRect& RendRect);
+            /// @param Name The name to be given to this StackButton.
+            /// @param RendRect The rect describing this StackButton's transform relative to it's parent.
+            /// @return Returns a pointer to the created StackButton.
+            virtual StackButton* CreateStackButton(const String& Name, const UnifiedRect& RendRect);
             /// @brief Creates a RadioButton.
             /// @param Name The name to be given to this RadioButton.
             /// @return Returns a pointer to the created RadioButton.
@@ -438,6 +444,17 @@ namespace Mezzanine
             /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
             /// @return Returns a pointer to the created ListBox.
             virtual ListBox* CreateListBox(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style);
+            /// @brief Creates a DropDownList.
+            /// @param Name The name to be given to this DropDownList.
+            /// @param Style An enum value representing how the scrollbar child of the ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.
+            /// @return Returns a pointer to the created DropDownList.
+            virtual DropDownList* CreateDropDownList(const String& Name, const UI::ScrollbarStyle Style);
+            /// @brief Creates a DropDownList.
+            /// @param Name The name to be given to this DropDownList.
+            /// @param RendRect The rect describing this DropDownList's transform relative to it's parent.
+            /// @param Style An enum value representing how the scrollbar child of the ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.
+            /// @return Returns a pointer to the created DropDownList.
+            virtual DropDownList* CreateDropDownList(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style);
 
             /// @brief Creates a widget container aligned on the X axis.
             /// @param RendName The name to be given to this renderable.

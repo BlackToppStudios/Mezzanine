@@ -114,6 +114,29 @@ namespace Mezzanine
             return;
         }
 
+        RenderLayer* RenderLayerGroup::GetLayer(const Whole Index) const
+        {
+            Whole Count = 0;
+            ConstRenderLayerIterator RendIt = this->RenderLayers.begin();
+            while( Count < Index && RendIt != this->RenderLayers.end() )
+            {
+                ++Count;
+                ++RendIt;
+            }
+
+            return ( RendIt != this->RenderLayers.end() ? (*RendIt).second : NULL );
+        }
+
+        RenderLayer* RenderLayerGroup::GetLayerByZOrder(const UInt16 ZOrder) const
+        {
+            for( ConstRenderLayerIterator RendIt = this->RenderLayers.begin() ; RendIt != this->RenderLayers.end() ; ++RendIt )
+            {
+                if( (*RendIt).first == ZOrder )
+                    return (*RendIt).second;
+            }
+            return NULL;
+        }
+
         UInt32 RenderLayerGroup::GetNumRenderLayers() const
         {
             return this->RenderLayers.size();
@@ -175,12 +198,12 @@ namespace Mezzanine
             LayoutStrat(NULL),
             VertexCache(NULL),
             ZOrder(0),
-            Priority(UI::RP_Medium),
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
         {
             this->ActDims.SetIdentity();
+            this->CreateLayoutStrat();
         }
 
         QuadRenderable::QuadRenderable(const String& RendName, Screen* Parent) :
@@ -190,12 +213,12 @@ namespace Mezzanine
             LayoutStrat(NULL),
             VertexCache(NULL),
             ZOrder(0),
-            Priority(UI::RP_Medium),
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
         {
             this->ActDims.SetIdentity();
+            this->CreateLayoutStrat();
         }
 
         QuadRenderable::QuadRenderable(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
@@ -205,7 +228,6 @@ namespace Mezzanine
             LayoutStrat(NULL),
             VertexCache(NULL),
             ZOrder(0),
-            Priority(UI::RP_Medium),
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
@@ -214,6 +236,8 @@ namespace Mezzanine
 
             this->PositioningPolicy.UPosition = RendRect.Position;
             this->SizingPolicy.USize = RendRect.Size;
+
+            this->CreateLayoutStrat();
         }
 
         QuadRenderable::~QuadRenderable()
@@ -224,6 +248,7 @@ namespace Mezzanine
             this->DestroyAllRenderLayerGroups();
             this->DestroyAllRenderLayers();
             this->SetLocalVertexCaching(false);
+            delete this->LayoutStrat;
         }
 
         void QuadRenderable::ProtoSerializeImpl(XML::Node& SelfRoot) const
@@ -239,6 +264,11 @@ namespace Mezzanine
             this->ProtoDeSerializeRenderLayers(SelfRoot);
             this->ProtoDeSerializeRenderLayerGroups(SelfRoot);
             this->ProtoDeSerializeProperties(SelfRoot);
+        }
+
+        void QuadRenderable::CreateLayoutStrat()
+        {
+            this->LayoutStrat = new LayoutStrategy();
         }
 
         void QuadRenderable::AppendLayerVertices(std::vector<VertexData>& Vertices)
@@ -322,7 +352,7 @@ namespace Mezzanine
             {
                 RenderLayer::RenderLayerType LayerType = (*LayerIt)->GetLayerType();
                 if( LayerType == RenderLayer::RLT_MultiLineText || LayerType == RenderLayer::RLT_SingleLineText ) {
-                    static_cast<TextLayer*>( *LayerIt )->PopulateTextLines(MaxWidth);
+                    static_cast<TextLayer*>( *LayerIt )->PopulateTextLines(MaxWidth * (*LayerIt)->GetScale().X);
                 }
             }
         }
@@ -380,19 +410,6 @@ namespace Mezzanine
 
         Boolean QuadRenderable::GetManualTransformUpdates() const
             { return this->ManualTransformUpdates; }
-
-        void QuadRenderable::SetRenderPriority(const UI::RenderPriority RP)
-            { this->Priority = RP; }
-
-        void QuadRenderable::SetRenderPriorityCascading(const UI::RenderPriority RP)
-        {
-            this->SetRenderPriority(RP);
-            for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
-                (*ChildIt)->SetRenderPriorityCascading(RP);
-        }
-
-        UI::RenderPriority QuadRenderable::GetRenderPriority() const
-            { return this->Priority; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Policy Methods
@@ -1360,12 +1377,7 @@ namespace Mezzanine
         {
             if( this->GetVisible() ) {
                 this->CleanLayers();
-                switch(Priority)
-                {
-                    case UI::RP_Low:     this->AppendLayerVertices(RenderData.LowVertices);     break;
-                    case UI::RP_Medium:  this->AppendLayerVertices(RenderData.MediumVertices);  break;
-                    case UI::RP_High:    this->AppendLayerVertices(RenderData.HighVertices);    break;
-                }
+                this->AppendLayerVertices(RenderData.Vertices);
             }
         }
 

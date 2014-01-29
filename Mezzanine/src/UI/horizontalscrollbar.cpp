@@ -66,7 +66,7 @@ namespace Mezzanine
 
         HorizontalScrollbar::HorizontalScrollbar(Screen* Parent) :
             Scrollbar(Parent)
-            { this->LayoutStrat = new HorizontalLayoutStrategy(); }
+            {  }
 
         HorizontalScrollbar::HorizontalScrollbar(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent) :
             Scrollbar(RendName,Parent)
@@ -78,26 +78,31 @@ namespace Mezzanine
 
         HorizontalScrollbar::HorizontalScrollbar(const XML::Node& XMLNode, Screen* Parent) :
             Scrollbar(Parent)
-            { this->LayoutStrat = new HorizontalLayoutStrategy();  this->ProtoDeSerialize(XMLNode); }
+            { this->ProtoDeSerialize(XMLNode); }
 
         HorizontalScrollbar::~HorizontalScrollbar()
         {
-            delete this->LayoutStrat;
-            this->LayoutStrat = NULL;
-
             if( this->Container != NULL ) {
                 this->Container->UnbindProvider(this);
             }
 
-            this->ParentScreen->DestroyWidget(this->Scroller);
-            this->ParentScreen->DestroyWidget(this->ScrollBack);
-            this->ParentScreen->DestroyWidget(this->UpLeftButton);
-            this->ParentScreen->DestroyWidget(this->DownRightButton);
+            this->RemoveChild( this->Scroller );
+            this->ParentScreen->DestroyWidget( this->Scroller );
+            this->RemoveChild( this->ScrollBack );
+            this->ParentScreen->DestroyWidget( this->ScrollBack );
+            this->RemoveChild( this->UpLeftButton );
+            this->ParentScreen->DestroyWidget( this->UpLeftButton );
+            this->RemoveChild( this->DownRightButton );
+            this->ParentScreen->DestroyWidget( this->DownRightButton );
+        }
+
+        void HorizontalScrollbar::CreateLayoutStrat()
+        {
+            this->LayoutStrat = new HorizontalLayoutStrategy();
         }
 
         void HorizontalScrollbar::ConstructHorizontalScrollbar(const UI::ScrollbarStyle& ScrollStyle)
         {
-            this->LayoutStrat = new HorizontalLayoutStrategy();
             // Create the rects we'll use
             UnifiedRect ChildRect(0,0,1,1,0,0,0,0);
             if( UI::SB_NoButtons == ScrollStyle )
@@ -279,12 +284,19 @@ namespace Mezzanine
             this->ActDims = NewSelfRect;
 
             // Get the data regarding the scroller we'll need after everything else is updated
-            Real ScrollValue = this->GetScrollerValue();
-            Real ScrollSize = this->GetScrollerSize();
+            const Real ScrollValue = this->GetScrollerValue();
+            const Real ScrollSize = this->GetScrollerSize();
             const Rect OldScrollerRect = this->Scroller->GetRect();
+
+            /// @todo Fix the need to remove and re-add this child.
+            // Remove the scroller as a child because manual transform updates aren't properly checked in the linear stategies.
+            this->RemoveChild( this->Scroller );
 
             // Update the children
             this->LayoutStrat->Layout(OldSelfRect,NewSelfRect,this->ChildWidgets);
+
+            // Updates for the other buttons are done, so now we can re-add the scroller
+            this->AddChild( this->Scroller );
 
             // Next prepare the new rect for the scroller
             const Rect ScrollBackRect = this->ScrollBack->GetRect();
@@ -413,13 +425,13 @@ namespace Mezzanine
                 }
 
                 // AutoHide check
-                if( this->AutoHideScroll ) {
+                /*if( this->AutoHideScroll ) {
                     if( this->GetMaxXPages() <= 1.0 ) {
                         this->Hide();
                     }else{
                         this->Show();
                     }
-                }
+                }//*/
             }
         }
 

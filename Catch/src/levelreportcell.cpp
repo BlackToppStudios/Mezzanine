@@ -3,7 +3,7 @@
 
 #include "levelreportcell.h"
 
-LevelReportCell::LevelReportCell(const String& name, const UI::RenderableRect& Rect, UI::Screen* parent)
+/*LevelReportCell::LevelReportCell(const String& name, const UI::RenderableRect& Rect, UI::Screen* parent)
     : UI::Cell(name,parent)
 {
     const Vector2& WinDim = ParentScreen->GetViewportDimensions();
@@ -136,5 +136,6 @@ UI::Caption* LevelReportCell::GetScore()
 {
     return Score;
 }
+//*/
 
 #endif

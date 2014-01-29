@@ -5,7 +5,7 @@
 
 using namespace Mezzanine;
 
-class ItemShopCell : public UI::Cell
+/*class ItemShopCell : public UI::Cell
 {
     protected:
         UI::Caption* ItemCaption;
@@ -32,6 +32,6 @@ class ItemShopCB : public UI::CellCallback
         virtual void SetCaller(UI::Cell* Caller);
         virtual void DoSelectedItems();
         virtual void DoUnselectedItems();
-};
+};//*/
 
 #endif

@@ -5,7 +5,7 @@
 
 using namespace Mezzanine;
 
-class LevelSelectCell : public UI::Cell
+/*class LevelSelectCell : public UI::Cell
 {
     protected:
         UI::Rectangle* CellBack;
@@ -47,6 +47,6 @@ class LevelSelectCB : public UI::CellCallback
         virtual void SetCaller(UI::Cell* Caller);
         virtual void DoSelectedItems();
         virtual void DoUnselectedItems();
-};
+};//*/
 
 #endif
