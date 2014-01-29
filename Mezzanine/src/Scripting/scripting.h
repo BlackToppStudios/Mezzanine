@@ -94,19 +94,19 @@ namespace Mezzanine
 /// ninja SWIG_Mezzanine
 /// @endcode
 
-#include "Scripting/script.h"
-#include "Scripting/scriptargument.h"
-#include "Scripting/scriptingmanager.h"
-#include "Scripting/scriptworkunit.h"
+#include "script.h"
+#include "scriptargument.h"
+#include "scriptingmanager.h"
+#include "scriptworkunit.h"
 
 
 // Each one of these sections should have a complete implementation of a scripting and
 // appropriate bindings for the mezzanine engine.
 #ifdef MEZZLUA51
-    #include "Scripting/Lua51/lua51script.h"
-    #include "Scripting/Lua51/lua51scriptargument.h"
-    #include "Scripting/Lua51/lua51scriptingengine.h"
-    #include "Scripting/Lua51/lua51workunit.h"
+    #include "Lua51/lua51script.h"
+    #include "Lua51/lua51scriptargument.h"
+    #include "Lua51/lua51scriptingengine.h"
+    #include "Lua51/lua51workunit.h"
 #endif
 
 
