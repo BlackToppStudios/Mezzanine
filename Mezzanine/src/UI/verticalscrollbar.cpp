@@ -460,6 +460,50 @@ namespace Mezzanine
             return false;
         }
 
+        Boolean VerticalScrollbar::_MouseWheelScroll(const Integer Direction)
+        {
+            if( Direction == Input::DIRECTIONALMOTION_UPLEFT ) {
+                const Real OldScrollerValue = this->GetScrollerValue();
+                const Rect OldScrollerRect = this->Scroller->GetRect();
+                Rect NewScrollerRect;
+                NewScrollerRect.Size = OldScrollerRect.Size;
+
+                Real ScrollDist = -(this->ScrollBack->GetActualSize().Y * this->IncrementDistance);
+                NewScrollerRect.Position.X = OldScrollerRect.Position.X;
+                NewScrollerRect.Position.Y = OldScrollerRect.Position.Y + ScrollDist;
+
+                NewScrollerRect.Position.Y = std::min(NewScrollerRect.Position.Y,this->GetUpperScrollLimit() - OldScrollerRect.Size.Y);
+                NewScrollerRect.Position.Y = std::max(NewScrollerRect.Position.Y,this->GetLowerScrollLimit());
+
+                this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
+
+                const Real NewScrollerValue = this->GetScrollerValue();
+                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+
+                return true;
+            }else if( Direction == Input::DIRECTIONALMOTION_DOWNRIGHT ) {
+                const Real OldScrollerValue = this->GetScrollerValue();
+                const Rect OldScrollerRect = this->Scroller->GetRect();
+                Rect NewScrollerRect;
+                NewScrollerRect.Size = OldScrollerRect.Size;
+
+                Real ScrollDist = this->ScrollBack->GetActualSize().Y * this->IncrementDistance;
+                NewScrollerRect.Position.X = OldScrollerRect.Position.X;
+                NewScrollerRect.Position.Y = OldScrollerRect.Position.Y + ScrollDist;
+
+                NewScrollerRect.Position.Y = std::min(NewScrollerRect.Position.Y,this->GetUpperScrollLimit() - OldScrollerRect.Size.Y);
+                NewScrollerRect.Position.Y = std::max(NewScrollerRect.Position.Y,this->GetLowerScrollLimit());
+
+                this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
+
+                const Real NewScrollerValue = this->GetScrollerValue();
+                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+
+                return true;
+            }
+            return false;
+        }
+
         Boolean VerticalScrollbar::_ScrollBackScroll(const Vector2& HitPosition)
         {
             if( this->ChildLock == this->ScrollBack )

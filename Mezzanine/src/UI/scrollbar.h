@@ -232,6 +232,11 @@ namespace Mezzanine
             /// @return Returns true if the scroller was successfully moved, false otherwise.
             virtual Boolean _MouseScroll(const Vector2& MouseDelta) = 0;
             /// @internal
+            /// @brief Performs the operations for when the scroller is manipulated by the mouse wheel.
+            /// @param Direction The direction of the mouse wheel spin.  Usually this will be a casted Input::DirectionalMotionState value.
+            /// @return Returns true if the scroller was successfully moved, false otherwise.
+            virtual Boolean _MouseWheelScroll(const Integer Direction) = 0;
+            /// @internal
             /// @brief Performs the operations for when the scrollback is clicked on to manipulate the scroller.
             /// @param HitPosition The location on the scroll back where the mouse was clicked (in screen coordinates).
             /// @return Returns true if the scroller was successfully moved, false otherwise.

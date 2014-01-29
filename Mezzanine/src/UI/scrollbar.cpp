@@ -112,6 +112,8 @@ namespace Mezzanine
                 }else if( Code.GetCode() == Input::MOUSEVERTICAL ) {
                     Vector2 Delta( 0,static_cast<Real>(Code.GetMetaValue()) );
                     return this->_MouseScroll(Delta);
+                }else if( Code.GetCode() == Input::MOUSEWHEELVERTICAL || Code.GetCode() == Input::MOUSEWHEELHORIZONTAL ) {
+                    return this->_MouseWheelScroll(Code.GetMetaValue());
                 }
             }
             return this->HandleMouseWheelInput(Code);

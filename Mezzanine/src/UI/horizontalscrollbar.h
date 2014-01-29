@@ -150,6 +150,8 @@ namespace Mezzanine
             virtual void _NotifyContainerUpdated();
             /// @copydoc Scrollbar::_MouseScroll(const Vector2&)
             virtual Boolean _MouseScroll(const Vector2& MouseDelta);
+            /// @copydoc Scrollbar::_MouseWheelScroll(const Integer)
+            virtual Boolean _MouseWheelScroll(const Integer Direction);
             /// @copydoc Scrollbar::_ScrollBackScroll(const Vector2&)
             virtual Boolean _ScrollBackScroll(const Vector2& HitPosition);
             /// @copydoc Scrollbar::_ButtonScroll(Button*)
