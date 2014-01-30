@@ -41,7 +41,7 @@
 #define _scriptingbasetests_h
 
 #include "mezztest.h"
-#include "scripting.h"
+#include "Scripting/scripting.h"
 
 #include <stdexcept> //only used to throw for TEST_THROW
 

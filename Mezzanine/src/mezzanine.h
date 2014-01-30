@@ -60,6 +60,7 @@
     #include "Graphics/graphics.h"
     #include "Input/input.h"
     #include "Physics/physics.h"
+    #include "Scripting/scripting.h"
     #include "XML/xml.h"
     #include "UI/ui.h"
 #endif
@@ -118,7 +119,6 @@
 #include "resource.h"
 #include "resourcemanager.h"
 #include "rigiddebris.h"
-#include "scripting.h"
 #include "serialization.h"              // nothing to do
 #include "singleton.h"                  // nothing to do
 #include "softdebris.h"

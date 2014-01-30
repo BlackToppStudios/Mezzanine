@@ -42,7 +42,7 @@
 
 #include "mezztest.h"
 
-#include "scripting.h"
+#include "Scripting/scripting.h"
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;

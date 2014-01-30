@@ -82,8 +82,8 @@ namespace Mezzanine
 /// do so. Most allow passing arguments into scripts and accepting return values.
 /// Some allow the script to be compiled to a byte and others do not. A scripting manager is
 /// @n @n
-/// Whether or
-/// not this is updated can be controlled by the Mezz_SWIG CMake Flag. When this flag
+/// Whether or not this is updated each build
+/// can be controlled by the Mezz_SWIG CMake Flag. When this flag
 /// is enabled a SWIG_Mezzanine build target is added to the project. To satisfy
 /// build systems this target/project compiles src/blank.cpp as the only files.
 /// During the build steps in that target it attempt to Swig from the command line.
