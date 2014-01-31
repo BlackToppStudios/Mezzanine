@@ -96,8 +96,7 @@ namespace Mezzanine
 
         Boolean Scrollbar::HandleInputImpl(const Input::MetaCode& Code)
         {
-            if( this->ChildLock != NULL )
-            {
+            if( this->ChildLock != NULL ) {
                 if( Code.IsDeviceButton() && Code.GetMetaValueAsButtonState() == Input::BUTTON_DOWN && !( this->ChildLock->IsOnStandby() ) ) {
                     if( this->ChildLock == this->ScrollBack ) {
                         return this->_ScrollBackScroll(ParentScreen->GetMouseHitPosition());
@@ -112,11 +111,11 @@ namespace Mezzanine
                 }else if( Code.GetCode() == Input::MOUSEVERTICAL ) {
                     Vector2 Delta( 0,static_cast<Real>(Code.GetMetaValue()) );
                     return this->_MouseScroll(Delta);
-                }else if( Code.GetCode() == Input::MOUSEWHEELVERTICAL || Code.GetCode() == Input::MOUSEWHEELHORIZONTAL ) {
-                    return this->_MouseWheelScroll(Code.GetMetaValue());
                 }
+            }else if( Code.GetCode() == Input::MOUSEWHEELVERTICAL || Code.GetCode() == Input::MOUSEWHEELHORIZONTAL ) {
+                return this->_MouseWheelScroll(Code.GetMetaValue());
             }
-            return this->HandleMouseWheelInput(Code);
+            return false;
         }
 
         void Scrollbar::SubscribeToChildEvents()

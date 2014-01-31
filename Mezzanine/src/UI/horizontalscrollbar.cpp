@@ -201,18 +201,6 @@ namespace Mezzanine
             this->SubscribeToChildEvents();
         }
 
-        Boolean HorizontalScrollbar::HandleMouseWheelInput(const Input::MetaCode& Code)
-        {
-            if( Code.GetCode() == Input::MOUSEWHEELHORIZONTAL && this->IsHovered() ) {
-                if( Code.GetMetaValue() == Input::DIRECTIONALMOTION_UPLEFT ) {
-                    return this->_ButtonScroll( this->UpLeftButton );
-                }else if( Code.GetMetaValue() == Input::DIRECTIONALMOTION_DOWNRIGHT ) {
-                    return this->_ButtonScroll( this->DownRightButton );
-                }
-            }
-            return false;
-        }
-
         Real HorizontalScrollbar::GetUpperScrollLimit() const
         {
             return this->ScrollBack->GetActualPosition().X + this->ScrollBack->GetActualSize().X;
