@@ -179,6 +179,7 @@ Mezzanine::Transform& MEZZ_LIB operator<< (Mezzanine::Transform& lhs, const btTr
 
 namespace std
 {
+    #ifndef SWIG
     /// @brief Get Numeric details on Transform
     template<>
     class numeric_limits<Mezzanine::Transform>
@@ -300,8 +301,9 @@ namespace std
                                             std::numeric_limits<Mezzanine::Quaternion>::denorm_min()
                                          );
             }
-
     }; //Numeric Limits
+    #endif // \SWIG
+
 
 } // std
 

@@ -54,7 +54,7 @@
 /// nitty gritty of making the minor platforms inconsistencies work.
 /// \n\n
 /// For most games there will be no need to directly call these functions, however if you decide
-/// you game is an exception, there is one key thing to remember about all of these functions.
+/// your game is an exception, there is one key thing to remember about all of these functions.
 /// All of these may perform/behave slightly differently.
 ///////////////////////////////////////////////////////////////////////////////
 

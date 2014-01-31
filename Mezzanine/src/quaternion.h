@@ -486,6 +486,7 @@ void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Quat
 
 namespace std
 {
+    #ifndef SWIG
     /// @brief Get Numeric details on Quaternion
     template<>
     class numeric_limits<Mezzanine::Quaternion>
@@ -623,8 +624,8 @@ namespace std
                                              std::numeric_limits<Mezzanine::Real>::denorm_min()
                                             );
             }
-
     }; //Numeric Limits
+    #endif // \SWIG
 
 } // std
 

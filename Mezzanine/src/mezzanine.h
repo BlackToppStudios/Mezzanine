@@ -76,11 +76,11 @@
 #include "colourvalue.h"                // done
 #include "countedptr.h"
 #include "crossplatform.h"              // nothing to do
-
-#ifndef SWIG
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
 #include "debris.h"
+
+#ifndef SWIG
 #include "debrismanager.h"
 #include "entresol.h"
 #include "enumerations.h"               // nothing to do

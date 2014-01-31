@@ -96,9 +96,9 @@ namespace Mezzanine
     {
     public:
         /// @brief Class constructor.
-        DebrisFactory() {  };
+        DebrisFactory() {  }
         /// @brief Class destructor.
-        virtual ~DebrisFactory() {  };
+        virtual ~DebrisFactory() {  }
 
         /// @brief Gets the name of the Debris that is created by this factory.
         /// @return Returns the typename of the Debris created by this factory.
