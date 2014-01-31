@@ -77,7 +77,7 @@
         #define NONWINDOWS
     #endif
 
-    // ©heck for windows, but not in a way that overides what is passed on the command prompt
+    // Check for windows, but not in a way that overides what is passed on the command prompt
     #ifndef NONWINDOWS
         #ifndef WINDOWS
             #ifdef __WIN32__

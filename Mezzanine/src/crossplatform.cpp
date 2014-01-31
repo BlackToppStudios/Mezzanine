@@ -111,7 +111,7 @@ namespace Mezzanine
         Whole GetCPUCount()
             { return Mezzanine::GetCPUCount(); }
 
-    }// ©rossplatform
+    }// Crossplatform
 }//Mezzanine
 
 #endif

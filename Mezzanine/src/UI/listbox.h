@@ -174,6 +174,9 @@ namespace Mezzanine
             /// @copydoc QuadRenderable::UpdateDimensions(const Rect&, const Rect&)
             virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);
 
+            /// @copydoc Widget::GetTypeName() const
+            virtual const String& GetTypeName() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // ListBox Properties
 

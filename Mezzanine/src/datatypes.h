@@ -260,7 +260,7 @@ namespace Mezzanine
     template<class T> String ToString( const T& Datum )
     {
         //std::stringstream Converter;
-        // ©onverter << Datum;
+        // Converter << Datum;
         //return Converter.str();
         return ConvertTo<String>(Datum);
     }

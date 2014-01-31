@@ -73,7 +73,7 @@ namespace Mezzanine
                     RM_Bottom,
                 };
                 Rectangle* WindowBack;
-                // ©aption* WindowTitle;
+                // Caption* WindowTitle;
                 Whole BorderWidth;
                 ResizeMode CurrentRM;
                 /// @brief Checks to see if a point is within the border of this window.

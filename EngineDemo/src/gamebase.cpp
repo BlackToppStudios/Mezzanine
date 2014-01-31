@@ -671,7 +671,7 @@ void MakeGUI()
     DemoMenu->AddLayerToGroup(DemoMenuBackground,0,"Hovered");
     DScreen->AddChild(DemoMenu,6);
 
-    UI::MenuButton* ReturnButton = DScreen->CreateMenuButton("D_Return",UI::UnifiedRect(0.10,0.56,0.80,0.16,0,0,0,0));
+    UI::StackButton* ReturnButton = DScreen->CreateStackButton("D_Return",UI::UnifiedRect(0.10,0.56,0.80,0.16,0,0,0,0));
     UI::ImageLayer* ReturnBackground = ReturnButton->CreateImageLayer(0,"Normal");
     ReturnBackground->SetColour(ButtonColour);
     UI::ImageLayer* ReturnHoveredBackground = ReturnButton->CreateImageLayer(0,"Hovered");

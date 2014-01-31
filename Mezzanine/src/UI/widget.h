@@ -205,7 +205,7 @@ namespace Mezzanine
             /// @brief Sets the group bound to the specified WidgetState as active.
             /// @param BindState The WidgetState bound to the RenderLayerGroup being set.
             /// @return Returns true if the active RenderLayerGroup has changed, false otherwise.
-            virtual bool SetGroupFromState(const UInt32 BindState);
+            virtual Boolean SetGroupFromState(const UInt32 BindState);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Fetch Methods

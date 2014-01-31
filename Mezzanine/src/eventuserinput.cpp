@@ -91,12 +91,6 @@ namespace Mezzanine
         return Code_;
     }
 
-    Input::MetaCode EventUserInput::AddCode(const RawEvent& RawEvent_)
-    {
-        Input::MetaCode CurrentMetaCode( RawEvent_ );
-        return this->AddCode(CurrentMetaCode);
-    }
-
     Input::MetaCode EventUserInput::AddCode(const int& MetaValue_, const Input::InputCode& Code_)
     {
         Input::MetaCode CurrentMetaCode( MetaValue_, Code_ );
@@ -133,45 +127,6 @@ namespace Mezzanine
 
     EventBase::EventType EventUserInput::GetType() const
         { return UserInput; }
-
-    vector<Input::MetaCode> EventUserInput::AddCodesFromRawEvent(const RawEvent& RawEvent_)
-    {
-        vector<Input::MetaCode> Results;
-        switch(RawEvent_.type)
-        {
-            case SDL_KEYUP:         case SDL_KEYDOWN:
-            case SDL_MOUSEBUTTONUP: case SDL_MOUSEBUTTONDOWN:
-            case SDL_JOYBUTTONDOWN: case SDL_JOYBUTTONUP:
-                Results.push_back(this->AddCode(RawEvent_));
-                break;
-
-            case SDL_MOUSEMOTION:{       // ©an contain Multiple Metacodes
-                std::vector<Input::MetaCode> Transport(this->AddCodesFromSDLMouseMotion(RawEvent_));
-                Results.insert(Results.end(), Transport.begin(),Transport.end());
-                break;}
-
-            case SDL_JOYAXISMOTION: {       // ©an contain Multiple Metacodes
-                std::vector<Input::MetaCode> Transport(this->AddCodesFromSDLJoyStickMotion(RawEvent_));
-                Results.insert(Results.end(), Transport.begin(),Transport.end());
-                break;}
-
-            case SDL_JOYBALLMOTION:{
-                std::vector<Input::MetaCode> Transport(this->AddCodeFromSDLJoyStickBall(RawEvent_));
-                Results.insert(Results.end(), Transport.begin(),Transport.end());
-                break;}
-
-            case SDL_JOYHATMOTION:{
-                std::vector<Input::MetaCode> Transport(this->AddCodeFromSDLJoyStickHat(RawEvent_));
-                Results.insert(Results.end(), Transport.begin(),Transport.end());
-                break;}
-
-            default:
-                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Unknown SDL Event Inserted");
-                break;
-        }
-
-        return Results;
-    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // EventUserInput Private Methods

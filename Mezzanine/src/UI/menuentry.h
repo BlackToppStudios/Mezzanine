@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -144,6 +144,9 @@ namespace Mezzanine
             /// @param RollBackTo A pointer to the MenuEntry to roll the menu stack back to.
             /// @return Returns the number of MenuEntrys that were hidden by this method.
             virtual Whole RollBackToEntry(MenuEntry* RollBackTo);
+
+            /// @copydoc Widget::GetTypeName() const
+            virtual const String& GetTypeName() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods

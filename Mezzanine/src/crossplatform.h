@@ -117,7 +117,7 @@ namespace Mezzanine
         /// @return A Whole containing the amount of processors.
         Whole MEZZ_LIB GetCPUCount();
         #endif //SWIG
-    }// ©rossplatform
+    }// Crossplatform
 }//Mezzanine
 
 #endif

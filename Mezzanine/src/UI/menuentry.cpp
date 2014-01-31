@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2013 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -171,6 +171,11 @@ namespace Mezzanine
                 }
             }
             return 0;
+        }
+
+        const String& MenuEntry::GetTypeName() const
+        {
+            return MenuEntry::TypeName;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -384,7 +389,7 @@ namespace Mezzanine
             this->MenuStack = NewStack;
             for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
             {
-                if( (*ChildIt)->GetTypeName() != MenuEntry::TypeName ) {
+                if( (*ChildIt)->GetTypeName() == MenuEntry::TypeName ) {
                     static_cast<MenuEntry*>( (*ChildIt) )->_NotifyStack(NewStack);
                 }
             }

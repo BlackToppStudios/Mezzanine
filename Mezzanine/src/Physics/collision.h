@@ -196,7 +196,7 @@ namespace Mezzanine
             /// to set this when the pointer is already set, it will log the event but otherwise silently fail.
             /// @param B The second Object in this event.
             virtual void _SetProxyB(CollidableProxy* B);
-        };// ©ollision
+        };// Collision
     }//Physics
 }//Mezzanine
 

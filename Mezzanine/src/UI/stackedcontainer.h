@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2012 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -74,6 +74,9 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~StackedContainer();
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
+
             ///////////////////////////////////////////////////////////////////////////////
             // StackedContainer Configuration
 

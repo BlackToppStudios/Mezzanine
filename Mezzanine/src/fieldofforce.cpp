@@ -131,7 +131,7 @@ namespace Mezzanine
                     }
                 }
 
-                // ©ollect necessary data
+                // Collect necessary data
                 //InvMass = (*ObjIt)->GetBulletObject()->getInvMass();
                 //if(0 != InvMass)
                 //    AppliedStrength *= (1 / (*ObjIt)->GetBulletObject()->getInvMass());

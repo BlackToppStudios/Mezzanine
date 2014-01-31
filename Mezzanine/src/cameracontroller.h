@@ -176,7 +176,7 @@ namespace Mezzanine
         /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
         /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
         void Rotate6DOF(Real Yaw, Real Pitch, Real Roll);
-    };// ©ameracontroller
+    };// Cameracontroller
 }//Mezzanine
 
 #endif
