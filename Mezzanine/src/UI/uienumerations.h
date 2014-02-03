@@ -132,6 +132,15 @@ namespace Mezzanine
             QC_BottomLeft  = 3
         };
 
+        /// @enum RenderLayerType
+        /// @brief This enum describes the type of RenderLayer this is for use in casting.
+        enum RenderLayerType
+        {
+            RLT_Image           = 1,  ///< Value representing an ImageLayer.
+            RLT_MultiLineText   = 2,  ///< Value representing a MultiLineTextLayer.
+            RLT_SingleLineText  = 3   ///< Value representing a SingleLineTextLayer.
+        };
+
         /// @enum ScrollbarStyle
         /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.
         /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.

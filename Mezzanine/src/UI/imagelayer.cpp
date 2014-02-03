@@ -165,9 +165,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        RenderLayer::RenderLayerType ImageLayer::GetLayerType() const
+        UI::RenderLayerType ImageLayer::GetLayerType() const
         {
-            return RenderLayer::RLT_Image;
+            return UI::RLT_Image;
         }
 
         ///////////////////////////////////////////////////////////////////////////////

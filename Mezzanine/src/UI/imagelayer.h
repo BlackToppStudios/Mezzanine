@@ -57,16 +57,26 @@ namespace Mezzanine
         class MEZZ_LIB ImageLayer : public RenderLayer
         {
         protected:
-            Sprite* LayerSprite;
-            Real BorderWidth;
+            /// @internal
+            /// @brief An array of colours to be used for each corner section of this layer.
             ColourValue FillColours[4];
+            /// @internal
+            /// @brief An array of colours to be used for each corner section of the border being rendered with this layer.
             ColourValue BorderColours[4];
+            /// @internal
+            /// @brief A pointer to the sprite that will be rendered by this layer.
+            Sprite* LayerSprite;
+            /// @internal
+            /// @brief The width of the border to render around this layer in pixels.
+            Real BorderWidth;
 
             /// @copydoc SimpleRenderer::RedrawImpl(bool Force)
             virtual void RedrawImpl(bool Force);
+            /// @internal
             /// @brief Draws the border, if any is set.
             void DrawBorder(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight,
                             const Vector2& OuterTopLeft, const Vector2& OuterTopRight, const Vector2& OuterBottomLeft, const Vector2& OuterBottomRight);
+            /// @internal
             /// @brief Draws the main rectangle.
             void DrawFill(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight);
         public:
@@ -80,7 +90,7 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc RenderLayer::GetLayerType() const
-            virtual RenderLayer::RenderLayerType GetLayerType() const;
+            virtual UI::RenderLayerType GetLayerType() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Fill Methods

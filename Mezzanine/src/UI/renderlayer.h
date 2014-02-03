@@ -43,6 +43,7 @@
 
 #include "UI/quadrenderer.h"
 #include "UI/rect.h"
+#include "UI/uienumerations.h"
 
 namespace Mezzanine
 {
@@ -59,14 +60,6 @@ namespace Mezzanine
         class MEZZ_LIB RenderLayer : public QuadRenderer
         {
         public:
-            /// @enum RenderLayerType
-            /// @brief This enum describes the type of RenderLayer this is for use in casting.
-            enum RenderLayerType
-            {
-                RLT_Image,
-                RLT_MultiLineText,
-                RLT_SingleLineText
-            };
         protected:
             /// @internal
             /// @brief The scaling applied to this RenderLayer.
@@ -100,7 +93,7 @@ namespace Mezzanine
 
             /// @brief Gets the type of render layer this is.
             /// @return Returns a RenderLayerType describing the type of layer this is.
-            virtual RenderLayerType GetLayerType() const = 0;
+            virtual UI::RenderLayerType GetLayerType() const = 0;
             /// @brief Gets the index position of this RenderLayer in it's parent.
             /// @return Returns a Whole representing the index position of this RenderLayer in the parent QuadRenderable.
             virtual Whole GetIndex() const;
