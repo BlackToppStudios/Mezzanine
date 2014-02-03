@@ -79,9 +79,9 @@
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
 #include "debris.h"
+#include "debrismanager.h"
 
 #ifndef SWIG
-#include "debrismanager.h"
 #include "entresol.h"
 #include "enumerations.h"               // nothing to do
 #include "event.h"                      // new localized system
@@ -102,7 +102,12 @@
 #include "linegroup.h"
 #include "macros.h"
 #include "managedptr.h"
+#endif
+
 #include "managerbase.h"
+#include "managerfactory.h"
+
+#ifndef SWIG
 #include "mathtool.h"
 #include "meshterrain.h"
 #include "network.h"
