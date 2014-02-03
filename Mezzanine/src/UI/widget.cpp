@@ -118,7 +118,6 @@ namespace Mezzanine
             this->AddEvent(Widget::EventMouseEnter);
             this->AddEvent(Widget::EventMouseExit);
             this->AddEvent(Widget::EventMouseDragStart);
-            this->AddEvent(Widget::EventMouseDragging);
             this->AddEvent(Widget::EventMouseDragEnd);
             this->AddEvent(Widget::EventFocusGained);
             this->AddEvent(Widget::EventFocusLost);
@@ -446,7 +445,7 @@ namespace Mezzanine
 
         void Widget::_OnMouseDragStart()
         {
-            if( !this->IsBeingDragged() ) {
+            if( !this->IsDragged() ) {
                 this->State |= WS_Dragged;
                 this->SetGroupFromState(this->State);
 
@@ -457,7 +456,7 @@ namespace Mezzanine
 
         void Widget::_OnMouseDragEnd()
         {
-            if( this->IsBeingDragged() ) {
+            if( this->IsDragged() ) {
                 this->State &= ~WS_Dragged;
                 this->SetGroupFromState(this->State);
 
