@@ -183,34 +183,28 @@ namespace Mezzanine
         {
             if( Code.IsMouseButton() ) {
                 if( Input::BUTTON_PRESSING == Code.GetMetaValue() ) {
-                    // Update the focus
-                    //Boolean Switched = SwitchFocus(HoveredWidget);
                     this->SwitchFocus(HoveredWidget);
 
-                    // If we got a valid focus, there is more work to be done
+                    // If we got a valid focus, there is more work to be done.
                     if( this->WidgetFocus ) {
-                        // Regardless of it has changed, lock the focus
-                        if( !FocusIsLocked() ) {
+                        // Regardless of it has changed, lock the focus.
+                        if( !this->FocusIsLocked() ) {
                             this->WidgetFocus->_OnFocusLocked();
                             this->FocusLockCode = Code;
+                            // When we lock the focus, also check for mouse movement.  If it has moved, then we're dragging as well.
+                            if( this->MouseMoved ) {
+                                this->WidgetFocus->_OnMouseDragStart();
+                            }
                         }
-
-                        // If we have a new focus, inform it of the input
-                        // Only do this if we switched because if it's an old focus it already had a chance
-                        // at the input code, and we don't want to double dip.
-                        //if( Switched )
-                        //    this->WidgetFocus->_HandleInput(Code);
                     }
                 }else if( Input::BUTTON_LIFTING == Code.GetMetaValue() ) {
                     if( this->WidgetFocus ) {
-                        // Check the code to see if we're releasing the focus lock
-                        if( this->FocusLockCode.GetCode() == Code.GetCode() ) {
+                        // Check the code to see if we're releasing the focus lock.
+                        if( this->FocusLockCode.GetCode() == Code.GetCode() && this->FocusLockCode.GetDeviceIndex() == Code.GetDeviceIndex() ) {
                             this->WidgetFocus->_OnFocusUnlocked();
+                            this->WidgetFocus->_OnMouseDragEnd();
                             this->FocusLockCode.SetNullValues();
                         }
-
-                        // Pass on the input
-                        //this->WidgetFocus->_HandleInput(Code);
                     }
                 }
             }
