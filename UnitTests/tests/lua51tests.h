@@ -594,6 +594,13 @@ class lua51tests : public UnitTestGroup
                               "AreaEffect", "TestAE", 2, 2,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestStringTool(x)\n"
+                              "   thing=MezzanineSafe.ConvertToVector3(\"3 4 6\")"
+                              "   return thing.X\n"
+                              "end",
+                              "StringTool", "TestStringTool", 3, 3,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
                 //AreaEffectUpdateWorkUnit
             }
 

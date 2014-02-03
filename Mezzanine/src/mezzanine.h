@@ -128,7 +128,11 @@
 #include "singleton.h"                  // nothing to do
 #include "softdebris.h"
 #include "sphere.h"
+#endif
+
 #include "stringtool.h"
+
+#ifndef SWIG
 #include "track.h"
 #include "trackiterator.h"
 #include "terrainbase.h"
@@ -139,10 +143,6 @@
 #include "transform.h"                  // done
 #include "vector2.h"                    // done
 #include "vector3.h"                    // done
-
-#ifndef SWIG
-#include "entresol.h"
-#endif
 
 #include "worldobject.h"
 
