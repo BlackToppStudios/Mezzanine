@@ -93,6 +93,39 @@ namespace Mezzanine
 /// $make SWIG_Mezzanine
 /// ninja SWIG_Mezzanine
 /// @endcode
+/// @section CppApiToLua How the C++ API converts to Lua
+/// The Documentation for the C++ API is also the canonical documentation for the
+/// Lua scripting system. The are some differences those that are not and these
+/// detailed on the functions that are different are generalized here.
+/// @subsection CApiLuaNamepacesBecomeModules Lua Modules are Related to Namespaces
+/// Major namespaces become modules in Lua. You can check on the Lua51ScriptingEngine
+/// if there is a function for loading a specific namespace. For example if you want
+/// a script to use classes and functions in the Mezzanine::Threading namespace
+/// then you will need to load either the safe or the unlimited threading libraries
+/// in Lua. This can be done either by passing the right flags to the constructor of
+/// the Lua51ScriptingEngine or by calling Lua51ScriptingEngine::OpenMezzanineThreadingLibrary()
+/// or Lua51ScriptingEngine::OpenMezzanineThreadingSafeLibrary() . Each Module
+/// in Lua stores all of its members in a table of the module's name, and a
+/// reference to the table is stored in the Mezzanine table. This is preferred way
+/// to call Lua functionality from modules, and calling the table directly may be
+/// removed in the future. Here is an example of using a class in the Threading
+/// and another in the root namespace:
+/// @code
+/// bar = MezzanineSafe.Threading.Barrier(4)
+/// vec = MezzanineSafe.Vector3(1,1,1)
+/// @endcode
+/// @subsection CApiLuaNamespacesFlattened Other Namespaces Are Flattened
+/// Namespaces are flattened into the Lua module they are included n:
+/// C++ code:
+/// @code
+/// Mezzanine::Vector3 Vec = Mezzanine::StringTools::ConvertToVector3("3 4 6")
+/// @endcode
+/// @n @n
+/// Lua Code:
+/// @code
+/// Vec=MezzanineSafe.ConvertToVector3("3 4 6")
+/// @endcode
+///
 
 #include "script.h"
 #include "scriptargument.h"

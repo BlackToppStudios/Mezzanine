@@ -595,10 +595,21 @@ class lua51tests : public UnitTestGroup
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestStringTool(x)\n"
-                              "   thing=MezzanineSafe.ConvertToVector3(\"3 4 6\")"
-                              "   return thing.X\n"
+                              "   vec=MezzanineSafe.ConvertToVector3(\"3 4 6\")"
+                              "   return vec.X\n"
                               "end",
                               "StringTool", "TestStringTool", 3, 3,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestSphere(x)\n"
+                              "   bounds=MezzanineSafe.Sphere(MezzanineSafe.Vector3(0,0,0),x)\n"
+                              "   if bounds:IsInside(MezzanineSafe.Vector3(1,1,1)) then\n"
+                              "     return 5\n"
+                              "   else\n"
+                              "     return 4\n"
+                              "   end\n"
+                              "end",
+                              "Sphere", "TestSphere", 5, 3,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 //AreaEffectUpdateWorkUnit

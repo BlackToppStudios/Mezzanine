@@ -127,9 +127,9 @@
 #include "serialization.h"              // nothing to do
 #include "singleton.h"                  // nothing to do
 #include "softdebris.h"
-#include "sphere.h"
 #endif
 
+#include "sphere.h"
 #include "stringtool.h"
 
 #ifndef SWIG
