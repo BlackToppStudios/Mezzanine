@@ -106,9 +106,9 @@
 
 #include "managerbase.h"
 #include "managerfactory.h"
+#include "mathtool.h"
 
 #ifndef SWIG
-#include "mathtool.h"
 #include "meshterrain.h"
 #include "network.h"
 #include "networkmanager.h"

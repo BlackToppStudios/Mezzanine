@@ -41028,6 +41028,1169 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_get_pi(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetPi();
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_get_two_pi(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetTwoPi();
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_get_half_pi(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetHalfPi();
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_get_quarter_pi(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetQuarterPi();
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_get_rad_to_deg_multiplier(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetRadToDegMultiplier();
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_get_deg_to_rad_multiplier(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  result = (Mezzanine::Real)Mezzanine::MathTools::GetDegToRadMultiplier();
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_ceil(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Ceil", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::Ceil((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_floor(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Floor", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::Floor((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_pow(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real *arg2 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Pow", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  ecode2 = SWIG_AsVal_float(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Pow", 2, argv[1] ));
+  } 
+  temp2 = static_cast< Mezzanine::Real >(val2);
+  arg2 = &temp2;
+  result = (Mezzanine::Real)Mezzanine::MathTools::Pow((float const &)*arg1,(float const &)*arg2);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_sqrt(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Sqrt", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::Sqrt((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_fabs(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Fabs", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::Fabs((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_fmod(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real *arg2 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Fmod", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  ecode2 = SWIG_AsVal_float(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Fmod", 2, argv[1] ));
+  } 
+  temp2 = static_cast< Mezzanine::Real >(val2);
+  arg2 = &temp2;
+  result = (Mezzanine::Real)Mezzanine::MathTools::Fmod((float const &)*arg1,(float const &)*arg2);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_within_tolerance(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real *arg2 = 0 ;
+  Mezzanine::Real *arg3 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real temp2 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  Mezzanine::Real temp3 ;
+  float val3 ;
+  int ecode3 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::WithinTolerance", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  ecode2 = SWIG_AsVal_float(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::WithinTolerance", 2, argv[1] ));
+  } 
+  temp2 = static_cast< Mezzanine::Real >(val2);
+  arg2 = &temp2;
+  ecode3 = SWIG_AsVal_float(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::WithinTolerance", 3, argv[2] ));
+  } 
+  temp3 = static_cast< Mezzanine::Real >(val3);
+  arg3 = &temp3;
+  result = (bool)Mezzanine::MathTools::WithinTolerance((float const &)*arg1,(float const &)*arg2,(float const &)*arg3);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_cos(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Cos", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::Cos((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_sin(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Sin", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::Sin((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_tan(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::Tan", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::Tan((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_acos(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::ACos", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::ACos((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_asin(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::ASin", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::ASin((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_atan(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::ATan", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::ATan((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_degrees_to_radians(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::DegreesToRadians", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::DegreesToRadians((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_radians_to_degrees(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Real *arg1 = 0 ;
+  Mezzanine::Real temp1 ;
+  float val1 ;
+  int ecode1 = 0 ;
+  Mezzanine::Real result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  ecode1 = SWIG_AsVal_float(argv[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "Mezzanine::Real","Mezzanine::MathTools::RadiansToDegrees", 1, argv[0] ));
+  } 
+  temp1 = static_cast< Mezzanine::Real >(val1);
+  arg1 = &temp1;
+  result = (Mezzanine::Real)Mezzanine::MathTools::RadiansToDegrees((float const &)*arg1);
+  vresult = SWIG_From_float(static_cast< float >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_is_inside__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::AxisAlignedBox *arg1 = 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Boolean result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__AxisAlignedBox,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::IsInside", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::IsInside", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Vector3,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const &","Mezzanine::MathTools::IsInside", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","Mezzanine::MathTools::IsInside", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
+  result = (Mezzanine::Boolean)Mezzanine::MathTools::IsInside((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::Vector3 const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_is_inside__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Sphere *arg1 = 0 ;
+  Mezzanine::Vector3 *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Boolean result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__Sphere,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Sphere const &","Mezzanine::MathTools::IsInside", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","Mezzanine::MathTools::IsInside", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Sphere * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Vector3,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Vector3 const &","Mezzanine::MathTools::IsInside", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","Mezzanine::MathTools::IsInside", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
+  result = (Mezzanine::Boolean)Mezzanine::MathTools::IsInside((Mezzanine::Sphere const &)*arg1,(Mezzanine::Vector3 const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_is_inside(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[2];
+  int ii;
+  
+  argc = nargs;
+  if (argc > 2) SWIG_fail;
+  for (ii = 0; (ii < argc); ++ii) {
+    argv[ii] = args[ii];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__AxisAlignedBox, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_is_inside__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Sphere, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Vector3, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_is_inside__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 2, "is_inside", 
+    "    Mezzanine::Boolean is_inside(Mezzanine::AxisAlignedBox const &Box, Mezzanine::Vector3 const &Point)\n"
+    "    Mezzanine::Boolean is_inside(Mezzanine::Sphere const &Ball, Mezzanine::Vector3 const &Point)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_overlap__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::AxisAlignedBox *arg1 = 0 ;
+  Mezzanine::Sphere *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Boolean result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__AxisAlignedBox,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Overlap", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Overlap", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Sphere,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
+  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::Sphere const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_overlap__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::AxisAlignedBox *arg1 = 0 ;
+  Mezzanine::Plane *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Boolean result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__AxisAlignedBox,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Overlap", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Overlap", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Plane,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Plane const &","Mezzanine::MathTools::Overlap", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Plane * >(argp2);
+  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::Plane const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_overlap__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Plane *arg1 = 0 ;
+  Mezzanine::Sphere *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Boolean result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__Plane,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Plane const &","Mezzanine::MathTools::Overlap", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","Mezzanine::MathTools::Overlap", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Plane * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Sphere,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
+  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::Plane const &)*arg1,(Mezzanine::Sphere const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_overlap__SWIG_3(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::AxisAlignedBox *arg1 = 0 ;
+  Mezzanine::AxisAlignedBox *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Boolean result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__AxisAlignedBox,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Overlap", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Overlap", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__AxisAlignedBox,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Overlap", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp2);
+  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::AxisAlignedBox const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_overlap__SWIG_4(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Sphere *arg1 = 0 ;
+  Mezzanine::Sphere *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Boolean result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__Sphere,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Sphere * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Sphere,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
+  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::Sphere const &)*arg1,(Mezzanine::Sphere const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_overlap__SWIG_5(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Plane *arg1 = 0 ;
+  Mezzanine::Plane *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  Mezzanine::Boolean result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__Plane,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Plane const &","Mezzanine::MathTools::Overlap", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","Mezzanine::MathTools::Overlap", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Plane * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Plane,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Plane const &","Mezzanine::MathTools::Overlap", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Plane * >(argp2);
+  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::Plane const &)*arg1,(Mezzanine::Plane const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_overlap(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[2];
+  int ii;
+  
+  argc = nargs;
+  if (argc > 2) SWIG_fail;
+  for (ii = 0; (ii < argc); ++ii) {
+    argv[ii] = args[ii];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__AxisAlignedBox, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Sphere, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_overlap__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__AxisAlignedBox, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Plane, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_overlap__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Plane, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Sphere, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_overlap__SWIG_2(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__AxisAlignedBox, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__AxisAlignedBox, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_overlap__SWIG_3(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Sphere, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Sphere, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_overlap__SWIG_4(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Plane, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Plane, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_overlap__SWIG_5(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 2, "overlap", 
+    "    Mezzanine::Boolean overlap(Mezzanine::AxisAlignedBox const &Box, Mezzanine::Sphere const &Ball)\n"
+    "    Mezzanine::Boolean overlap(Mezzanine::AxisAlignedBox const &Box, Mezzanine::Plane const &Surface)\n"
+    "    Mezzanine::Boolean overlap(Mezzanine::Plane const &Surface, Mezzanine::Sphere const &Ball)\n"
+    "    Mezzanine::Boolean overlap(Mezzanine::AxisAlignedBox const &Box1, Mezzanine::AxisAlignedBox const &Box2)\n"
+    "    Mezzanine::Boolean overlap(Mezzanine::Sphere const &Ball1, Mezzanine::Sphere const &Ball2)\n"
+    "    Mezzanine::Boolean overlap(Mezzanine::Plane const &Surface1, Mezzanine::Plane const &Surface2)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_intersects__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Plane *arg1 = 0 ;
+  Mezzanine::Ray *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  SwigValueWrapper< std::pair< bool,Mezzanine::Vector3 > > result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__Plane,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Plane const &","Mezzanine::MathTools::Intersects", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","Mezzanine::MathTools::Intersects", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Plane * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Ray,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Ray const &","Mezzanine::MathTools::Intersects", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Ray const &","Mezzanine::MathTools::Intersects", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Ray * >(argp2);
+  result = Mezzanine::MathTools::Intersects((Mezzanine::Plane const &)*arg1,(Mezzanine::Ray const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::MathTools::PlaneRayTestResult(static_cast< const Mezzanine::MathTools::PlaneRayTestResult& >(result))), SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_intersects__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::AxisAlignedBox *arg1 = 0 ;
+  Mezzanine::Ray *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  SwigValueWrapper< std::pair< bool,Mezzanine::Ray > > result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__AxisAlignedBox,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Intersects", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Intersects", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Ray,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Ray const &","Mezzanine::MathTools::Intersects", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Ray const &","Mezzanine::MathTools::Intersects", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Ray * >(argp2);
+  result = Mezzanine::MathTools::Intersects((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::Ray const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::MathTools::GeometryRayTestResult(static_cast< const Mezzanine::MathTools::GeometryRayTestResult& >(result))), SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_intersects__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  Mezzanine::Sphere *arg1 = 0 ;
+  Mezzanine::Ray *arg2 = 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  SwigValueWrapper< std::pair< bool,Mezzanine::Ray > > result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(argv[0], &argp1, SWIGTYPE_p_Mezzanine__Sphere,  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Sphere const &","Mezzanine::MathTools::Intersects", 1, argv[0] )); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","Mezzanine::MathTools::Intersects", 1, argv[0])); 
+  }
+  arg1 = reinterpret_cast< Mezzanine::Sphere * >(argp1);
+  res2 = SWIG_ConvertPtr(argv[1], &argp2, SWIGTYPE_p_Mezzanine__Ray,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::Ray const &","Mezzanine::MathTools::Intersects", 2, argv[1] )); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Ray const &","Mezzanine::MathTools::Intersects", 2, argv[1])); 
+  }
+  arg2 = reinterpret_cast< Mezzanine::Ray * >(argp2);
+  result = Mezzanine::MathTools::Intersects((Mezzanine::Sphere const &)*arg1,(Mezzanine::Ray const &)*arg2);
+  vresult = SWIG_NewPointerObj((new Mezzanine::MathTools::GeometryRayTestResult(static_cast< const Mezzanine::MathTools::GeometryRayTestResult& >(result))), SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t, SWIG_POINTER_OWN |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_intersects(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[2];
+  int ii;
+  
+  argc = nargs;
+  if (argc > 2) SWIG_fail;
+  for (ii = 0; (ii < argc); ++ii) {
+    argv[ii] = args[ii];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Plane, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Ray, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_intersects__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__AxisAlignedBox, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Ray, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_intersects__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Mezzanine__Sphere, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Mezzanine__Ray, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_intersects__SWIG_2(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 2, "intersects", 
+    "    Mezzanine::MathTools::GeometryRayTestResult intersects(Mezzanine::Plane const &Surface, Mezzanine::Ray const &Cast)\n"
+    "    Mezzanine::MathTools::GeometryRayTestResult intersects(Mezzanine::AxisAlignedBox const &Box, Mezzanine::Ray const &Cast)\n"
+    "    Mezzanine::MathTools::GeometryRayTestResult intersects(Mezzanine::Sphere const &Ball, Mezzanine::Ray const &Cast)\n");
+  
+  return Qnil;
+}
+
+
 static swig_class SwigClassPlane;
 
 SWIGINTERN VALUE
@@ -47660,8 +48823,8 @@ static swig_type_info _swigt__p_signed_char = {"_p_signed_char", "signed char *|
 static swig_type_info _swigt__p_std__exception = {"_p_std__exception", "std::exception *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__listT_std__pairT_std__string_std__string_t_t = {"_p_std__listT_std__pairT_std__string_std__string_t_t", "Mezzanine::NameValuePairList *|std::list< std::pair< std::string,std::string > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t = {"_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t", "Mezzanine::NameValuePairMap *|std::map< std::string,std::string,std::less< std::string >,std::allocator< std::pair< std::string const,std::string > > > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__pairT_bool_Mezzanine__Ray_t = {"_p_std__pairT_bool_Mezzanine__Ray_t", "std::pair< bool,Mezzanine::Ray > *|Mezzanine::AxisAlignedBox::RayTestResult *|Mezzanine::Ray::GeometryRayTestResult *|Mezzanine::Sphere::RayTestResult *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__pairT_bool_Mezzanine__Vector3_t = {"_p_std__pairT_bool_Mezzanine__Vector3_t", "Mezzanine::Plane::RayTestResult *|Mezzanine::Ray::PlaneRayTestResult *|std::pair< bool,Mezzanine::Vector3 > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__pairT_bool_Mezzanine__Ray_t = {"_p_std__pairT_bool_Mezzanine__Ray_t", "std::pair< bool,Mezzanine::Ray > *|Mezzanine::AxisAlignedBox::RayTestResult *|Mezzanine::MathTools::GeometryRayTestResult *|Mezzanine::Ray::GeometryRayTestResult *|Mezzanine::Sphere::RayTestResult *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__pairT_bool_Mezzanine__Vector3_t = {"_p_std__pairT_bool_Mezzanine__Vector3_t", "Mezzanine::MathTools::PlaneRayTestResult *|Mezzanine::Plane::RayTestResult *|Mezzanine::Ray::PlaneRayTestResult *|std::pair< bool,Mezzanine::Vector3 > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__pairT_std__string_std__string_t = {"_p_std__pairT_std__string_std__string_t", "Mezzanine::NameValuePair *|std::pair< std::string,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__setT_std__string_t = {"_p_std__setT_std__string_t", "std::set< std::string > *|Mezzanine::StringSet *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *|Mezzanine::String *|Mezzanine::ConstString *", 0, 0, (void*)0, 0};
@@ -49978,6 +51141,30 @@ SWIGEXPORT void Init_Mezzanine(void) {
   SwigClassDefaultDebrisManagerFactory.mark = 0;
   SwigClassDefaultDebrisManagerFactory.destroy = (void (*)(void *)) free_Mezzanine_DefaultDebrisManagerFactory;
   SwigClassDefaultDebrisManagerFactory.trackObjects = 0;
+  rb_define_module_function(mMezzanine, "get_pi", VALUEFUNC(_wrap_get_pi), -1);
+  rb_define_module_function(mMezzanine, "get_two_pi", VALUEFUNC(_wrap_get_two_pi), -1);
+  rb_define_module_function(mMezzanine, "get_half_pi", VALUEFUNC(_wrap_get_half_pi), -1);
+  rb_define_module_function(mMezzanine, "get_quarter_pi", VALUEFUNC(_wrap_get_quarter_pi), -1);
+  rb_define_module_function(mMezzanine, "get_rad_to_deg_multiplier", VALUEFUNC(_wrap_get_rad_to_deg_multiplier), -1);
+  rb_define_module_function(mMezzanine, "get_deg_to_rad_multiplier", VALUEFUNC(_wrap_get_deg_to_rad_multiplier), -1);
+  rb_define_module_function(mMezzanine, "ceil", VALUEFUNC(_wrap_ceil), -1);
+  rb_define_module_function(mMezzanine, "floor", VALUEFUNC(_wrap_floor), -1);
+  rb_define_module_function(mMezzanine, "pow", VALUEFUNC(_wrap_pow), -1);
+  rb_define_module_function(mMezzanine, "sqrt", VALUEFUNC(_wrap_sqrt), -1);
+  rb_define_module_function(mMezzanine, "fabs", VALUEFUNC(_wrap_fabs), -1);
+  rb_define_module_function(mMezzanine, "fmod", VALUEFUNC(_wrap_fmod), -1);
+  rb_define_module_function(mMezzanine, "within_tolerance", VALUEFUNC(_wrap_within_tolerance), -1);
+  rb_define_module_function(mMezzanine, "cos", VALUEFUNC(_wrap_cos), -1);
+  rb_define_module_function(mMezzanine, "sin", VALUEFUNC(_wrap_sin), -1);
+  rb_define_module_function(mMezzanine, "tan", VALUEFUNC(_wrap_tan), -1);
+  rb_define_module_function(mMezzanine, "acos", VALUEFUNC(_wrap_acos), -1);
+  rb_define_module_function(mMezzanine, "asin", VALUEFUNC(_wrap_asin), -1);
+  rb_define_module_function(mMezzanine, "atan", VALUEFUNC(_wrap_atan), -1);
+  rb_define_module_function(mMezzanine, "degrees_to_radians", VALUEFUNC(_wrap_degrees_to_radians), -1);
+  rb_define_module_function(mMezzanine, "radians_to_degrees", VALUEFUNC(_wrap_radians_to_degrees), -1);
+  rb_define_module_function(mMezzanine, "is_inside", VALUEFUNC(_wrap_is_inside), -1);
+  rb_define_module_function(mMezzanine, "overlap", VALUEFUNC(_wrap_overlap), -1);
+  rb_define_module_function(mMezzanine, "intersects", VALUEFUNC(_wrap_intersects), -1);
   
   SwigClassPlane.klass = rb_define_class_under(mMezzanine, "Plane", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__Plane, (void *) &SwigClassPlane);

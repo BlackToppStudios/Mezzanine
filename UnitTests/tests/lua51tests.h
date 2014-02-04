@@ -612,6 +612,12 @@ class lua51tests : public UnitTestGroup
                               "Sphere", "TestSphere", 5, 3,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestMathTool(x)\n"
+                              "   return MezzanineSafe.Ceil(x)"
+                              "end",
+                              "MathTool", "TestMathTool", 4, 3.5,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
                 //AreaEffectUpdateWorkUnit
             }
 
