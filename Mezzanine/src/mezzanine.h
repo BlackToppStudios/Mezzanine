@@ -83,7 +83,11 @@
 
 #ifndef SWIG
 #include "entresol.h"
+#endif
+
 #include "enumerations.h"               // nothing to do
+
+#ifndef SWIG
 #include "event.h"                      // new localized system
 #include "eventarguments.h"             // new localized system
 #include "eventbase.h"                  // done/serializes
