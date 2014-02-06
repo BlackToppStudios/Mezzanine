@@ -136,6 +136,7 @@ namespace Mezzanine
                     }
                     // Finally perform our insert.
                     EditLayer->GetCursor()->InsertCharacterAtCursor( Code.GetMetaValue() );
+                    this->_OnTextUpdated();
                     return true;
                 }else if( this->IsDragged() && Code.GetCode() == Input::MOUSEABSOLUTEHORIZONTAL ) {
                     // Assign the horizontal value to the target, then check if we have a complete target.
