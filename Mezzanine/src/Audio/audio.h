@@ -70,7 +70,6 @@ namespace Mezzanine
 #include "Audio/sound.h"
 #include "Audio/soundproxy.h"
 #include "Audio/soundscapemanager.h"
-#include "Audio/soundset.h"
 #include "Audio/vorbisdecoder.h"
 #include "Audio/vorbisdecoderfactory.h"
 #include "Audio/wavdecoder.h"

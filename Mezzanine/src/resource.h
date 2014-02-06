@@ -62,6 +62,5 @@ namespace Mezzanine
 #include "Resource/filestream.h"
 #include "Resource/inputstream.h"
 #include "Resource/memorystream.h"
-#include "Resource/textsettingsfile.h"
 
 #endif
