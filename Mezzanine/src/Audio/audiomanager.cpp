@@ -58,8 +58,9 @@
 
 namespace Mezzanine
 {
+    /// @brief A statically accessible pointer to the one and only AudioManager.
     template<> Audio::AudioManager* Singleton<Audio::AudioManager>::SingletonPtr = 0;
-    
+
     namespace Audio
     {
         //template<> AudioManager* Singleton<AudioManager>::SingletonPtr = 0;

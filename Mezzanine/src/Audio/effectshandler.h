@@ -77,6 +77,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created Effect, or NULL if there was an error.
             virtual iEffect* CreateEffect() = 0;
             /// @brief Gets an Audio::iEffect instance by index.
+            /// @param Index The index of the Audio::iEffect instance to retrieve.
             /// @return Returns a pointer to the Audio::iEffect at the specified index.
             virtual iEffect* GetEffect(const UInt32 Index) const = 0;
             /// @brief Gets the number of Audio::iEffect instances being stored by this handler.
@@ -98,8 +99,9 @@ namespace Mezzanine
             /// @brief Creates an Audio Filter for use with @ref iSound instances.
             /// @return Returns a pointer to the created Filter, or NULL if there was an error.
             virtual iFilter* CreateFilter() = 0;
-            /// @brief Gets an @ref iFilter instance by index.
-            /// @return Returns a pointer to the @ref iFilter at the specified index.
+            /// @brief Gets an @ref Audio::iFilter instance by index.
+            /// @param Index The index of the Audio::iFilter instance to retrieve.
+            /// @return Returns a pointer to the @ref Audio::iFilter at the specified index.
             virtual iFilter* GetFilter(const UInt32 Index) const = 0;
             /// @brief Gets the number of @ref iFilter instances being stored by this handler.
             /// @return Returns a UInt32 representing the number of @ref iFilter instances contained in this handler.

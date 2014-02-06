@@ -257,7 +257,7 @@ namespace Mezzanine
             virtual SoundProxy* CreateAmbientSoundProxy(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
             /// @brief Creates a new Dialog @ref SoundProxy from a memory buffer that is encoded.
             /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param SoundName The name of the @ref SoundProxy instance.
+            /// @param StreamName The name of the @ref SoundProxy instance.
             /// @param Buffer A pointer to the buffer where the audio data is located.
             /// @param Length The length of the buffer provided to this method(in bytes).
             /// @param Encode The encoding to be expected when decoding audio for this @ref SoundProxy.
