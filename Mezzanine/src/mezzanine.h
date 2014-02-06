@@ -60,6 +60,7 @@
     #include "Graphics/graphics.h"
     #include "Input/input.h"
     #include "Physics/physics.h"
+    #include "Scripting/scripting.h"
     #include "XML/xml.h"
     #include "UI/ui.h"
 #endif
@@ -75,12 +76,12 @@
 #include "colourvalue.h"                // done
 #include "countedptr.h"
 #include "crossplatform.h"              // nothing to do
-
-#ifndef SWIG
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
 #include "debris.h"
 #include "debrismanager.h"
+
+#ifndef SWIG
 #include "entresol.h"
 #include "enumerations.h"               // nothing to do
 #include "event.h"                      // new localized system
@@ -101,8 +102,13 @@
 #include "linegroup.h"
 #include "macros.h"
 #include "managedptr.h"
+#endif
+
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "mathtool.h"
+
+#ifndef SWIG
 #include "meshterrain.h"
 #include "network.h"
 #include "networkmanager.h"
@@ -118,12 +124,15 @@
 #include "resource.h"
 #include "resourcemanager.h"
 #include "rigiddebris.h"
-#include "scripting.h"
 #include "serialization.h"              // nothing to do
 #include "singleton.h"                  // nothing to do
 #include "softdebris.h"
+#endif
+
 #include "sphere.h"
 #include "stringtool.h"
+
+#ifndef SWIG
 #include "track.h"
 #include "trackiterator.h"
 #include "terrainbase.h"
@@ -134,10 +143,6 @@
 #include "transform.h"                  // done
 #include "vector2.h"                    // done
 #include "vector3.h"                    // done
-
-#ifndef SWIG
-#include "entresol.h"
-#endif
 
 #include "worldobject.h"
 

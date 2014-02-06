@@ -465,6 +465,7 @@ namespace Mezzanine
 
 namespace std
 {
+    #ifndef SWIG
     /// @brief Get Numeric details on Vector3
     template<>
     class numeric_limits<Mezzanine::Vector3>
@@ -596,6 +597,7 @@ namespace std
             }
 
     }; //Numeric Limits
+    #endif // \SWIG
 
 } // std
 

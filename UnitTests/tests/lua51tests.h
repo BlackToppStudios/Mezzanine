@@ -42,7 +42,7 @@
 
 #include "mezztest.h"
 
-#include "scripting.h"
+#include "Scripting/scripting.h"
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
@@ -592,6 +592,30 @@ class lua51tests : public UnitTestGroup
                               "   return x\n"
                               "end",
                               "AreaEffect", "TestAE", 2, 2,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestStringTool(x)\n"
+                              "   vec=MezzanineSafe.ConvertToVector3(\"3 4 6\")"
+                              "   return vec.X\n"
+                              "end",
+                              "StringTool", "TestStringTool", 3, 3,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestSphere(x)\n"
+                              "   bounds=MezzanineSafe.Sphere(MezzanineSafe.Vector3(0,0,0),x)\n"
+                              "   if bounds:IsInside(MezzanineSafe.Vector3(1,1,1)) then\n"
+                              "     return 5\n"
+                              "   else\n"
+                              "     return 4\n"
+                              "   end\n"
+                              "end",
+                              "Sphere", "TestSphere", 5, 3,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestMathTool(x)\n"
+                              "   return MezzanineSafe.Ceil(x)"
+                              "end",
+                              "MathTool", "TestMathTool", 4, 3.5,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 //AreaEffectUpdateWorkUnit

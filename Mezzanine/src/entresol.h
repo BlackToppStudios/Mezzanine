@@ -282,7 +282,9 @@
 #include "managerbase.h"
 #include "singleton.h"
 
-#include "Threading/dagframescheduler.h"
+#ifndef SWIG
+    #include "Threading/dagframescheduler.h"
+#endif
 
 namespace Mezzanine
 {

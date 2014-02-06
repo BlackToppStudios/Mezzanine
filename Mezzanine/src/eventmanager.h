@@ -53,8 +53,8 @@
 
 #ifndef SWIG
     #include "XML/xml.h"
+    #include "Threading/workunit.h"
 #endif
-#include "Threading/workunit.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment

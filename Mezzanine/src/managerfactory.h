@@ -59,9 +59,9 @@ namespace Mezzanine
     {
         public:
             /// @brief Class constructor.
-            ManagerFactory() {  };
+            ManagerFactory() {  }
             /// @brief Class destructor.
-            virtual ~ManagerFactory() {  };
+            virtual ~ManagerFactory() {  }
 
             /// @brief Gets the name of the Manager that is created by this factory.
             /// @return Returns the typename of the manager created by this factory.

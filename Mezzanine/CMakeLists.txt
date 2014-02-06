@@ -247,7 +247,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Resource/textsettingsfile.h"
         "${${PROJECT_NAME}_SRC_DIR}rigiddebris.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/script.h"
-        "${${PROJECT_NAME}_SRC_DIR}scripting.h"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/scripting.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptargument.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptingmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptworkunit.h"

@@ -45,7 +45,9 @@
 
 #include "worldmanager.h"
 #include "managerfactory.h"
-#include "Threading/workunit.h"
+#ifndef SWIG
+    #include "Threading/workunit.h"
+#endif
 
 namespace Mezzanine
 {

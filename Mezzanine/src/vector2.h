@@ -251,6 +251,7 @@ void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vect
 
 namespace std
 {
+    #ifndef SWIG
     /// @brief Get Numeric details on Vector2
     template<>
     class numeric_limits<Mezzanine::Vector2>
@@ -372,8 +373,8 @@ namespace std
                                           std::numeric_limits<Mezzanine::Real>::denorm_min()
                                          );
             }
-
     }; //Numeric Limits
+    #endif //SWIG
 
 } // std
 

@@ -40,7 +40,9 @@
 #ifndef _stringtool_h
 #define _stringtool_h
 
-#include "Input/metacode.h"
+#ifndef SWIG
+    #include "Input/metacode.h"
+#endif
 #include "vector2.h"
 #include "vector3.h"
 #include "quaternion.h"
