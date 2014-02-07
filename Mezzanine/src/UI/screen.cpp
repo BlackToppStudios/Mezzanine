@@ -479,6 +479,10 @@ namespace Mezzanine
             // CheckBox
             FactIt = this->WidgetFactories.find( CheckBox::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new CheckBoxFactory() );
+            // EditBox
+            FactIt = this->WidgetFactories.find( EditBox::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new EditBoxFactory() );
+
             // HorizontalScrollbar
             FactIt = this->WidgetFactories.find( HorizontalScrollbar::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new HorizontalScrollbarFactory() );
@@ -489,6 +493,9 @@ namespace Mezzanine
             // MenuEntry
             FactIt = this->WidgetFactories.find( MenuEntry::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new MenuEntryFactory() );
+            // TabSet
+            FactIt = this->WidgetFactories.find( TabSet::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new TabSetFactory() );
             // ListBox
             FactIt = this->WidgetFactories.find( ListBox::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new ListBoxFactory() );
@@ -631,6 +638,34 @@ namespace Mezzanine
             return NewCheckBox;
         }
 
+        EditBox* Screen::CreateEditBox(const String& Name, const RenderLayerType EditLayerType, FontData* EditFont)
+        {
+            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( Name, EditLayerType, EditFont, this );
+            this->CheckAndInsertExcept( NewEdit );
+            return NewEdit;
+        }
+
+        EditBox* Screen::CreateEditBox(const String& Name, const RenderLayerType EditLayerType, const String& EditFontName)
+        {
+            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( Name, EditLayerType, EditFontName, this );
+            this->CheckAndInsertExcept( NewEdit );
+            return NewEdit;
+        }
+
+        EditBox* Screen::CreateEditBox(const String& Name, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, FontData* EditFont)
+        {
+            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( Name, RendRect, EditLayerType, EditFont, this );
+            this->CheckAndInsertExcept( NewEdit );
+            return NewEdit;
+        }
+
+        EditBox* Screen::CreateEditBox(const String& Name, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, const String& EditFontName)
+        {
+            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( Name, RendRect, EditLayerType, EditFontName, this );
+            this->CheckAndInsertExcept( NewEdit );
+            return NewEdit;
+        }
+
         HorizontalScrollbar* Screen::CreateHorizontalScrollbar(const String& Name, const UI::ScrollbarStyle Style)
         {
             HorizontalScrollbar* NewHScroll = static_cast<HorizontalScrollbarFactory*>( this->GetWidgetFactoryExcept( HorizontalScrollbar::TypeName ) )->CreateHorizontalScrollbar( Name, Style, this );
@@ -671,6 +706,20 @@ namespace Mezzanine
             MenuEntry* NewEntry = static_cast<MenuEntryFactory*>( this->GetWidgetFactoryExcept( MenuEntry::TypeName ) )->CreateMenuEntry( Name, RendRect, this );
             this->CheckAndInsertExcept( NewEntry );
             return NewEntry;
+        }
+
+        TabSet* Screen::CreateTabSet(const String& Name)
+        {
+            TabSet* NewTab = static_cast<TabSetFactory*>( this->GetWidgetFactoryExcept( TabSet::TypeName ) )->CreateTabSet( Name, this );
+            this->CheckAndInsertExcept( NewTab );
+            return NewTab;
+        }
+
+        TabSet* Screen::CreateTabSet(const String& Name, const UnifiedRect& RendRect)
+        {
+            TabSet* NewTab = static_cast<TabSetFactory*>( this->GetWidgetFactoryExcept( TabSet::TypeName ) )->CreateTabSet( Name, RendRect, this );
+            this->CheckAndInsertExcept( NewTab );
+            return NewTab;
         }
 
         ListBox* Screen::CreateListBox(const String& Name, const UI::ScrollbarStyle Style)
@@ -730,12 +779,7 @@ namespace Mezzanine
         }
 
 
-        /*ListBox* Screen::CreateListBox(ConstString& Name, const Rect& RendRect, const UI::ScrollbarStyle& ScrollStyle)
-        {
-            return static_cast<ListBox*>( this->CheckAndInsert( RenderableFactory::CreateListBox(Name,RendRect,ScrollStyle) ) );
-        }
-
-        Spinner* Screen::CreateSpinner(ConstString& Name, const Rect& RendRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        /*Spinner* Screen::CreateSpinner(ConstString& Name, const Rect& RendRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
             return static_cast<Spinner*>( this->CheckAndInsert( RenderableFactory::CreateSpinner(Name,RendRect,SStyle,GlyphHeight) ) );
         }
@@ -748,16 +792,6 @@ namespace Mezzanine
         PagedCellGrid* Screen::CreatePagedCellGrid(ConstString& Name, const Rect& RendRect, const Rect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
             return static_cast<PagedCellGrid*>( this->CheckAndInsert( RenderableFactory::CreatePagedCellGrid(Name,RendRect,SpnRect,SStyle,GlyphHeight) ) );
-        }
-
-        DropDownList* Screen::CreateDropDownList(ConstString& Name, const Rect& RendRect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle)
-        {
-            return static_cast<DropDownList*>( this->CheckAndInsert( RenderableFactory::CreateDropDownList(Name,RendRect,LineHeight,ScrollStyle) ) );
-        }
-
-        TabSet* Screen::CreateTabSet(ConstString& Name, const Rect& SetRect)
-        {
-            return static_cast<TabSet*>( this->CheckAndInsert( RenderableFactory::CreateTabSet(Name,SetRect) ) );
         }
 
         Window* Screen::CreateWidgetWindow(ConstString& Name, const Rect& RendRect)

@@ -57,14 +57,34 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB MusicPlayer
         {
+        public:
+            /// @brief Convenience type for track iterators from playlists.
+            typedef std::list<Audio::iSound*>::iterator TrackIterator;
         protected:
+            /// @internal
+            /// @brief A pointer to the active playlist used by this player.
             Audio::Playlist* MusicPlaylist;
-            Audio::iSound* CurrSong;
-            bool ManualStop;
-            bool Playing;
-            bool EOPRepeat;
-            bool EOPShuffle;
-            std::list<Audio::iSound*>::iterator GetIteratorToSong(iSound* Song);
+            /// @internal
+            /// @brief A pointer to the currently selected track.
+            Audio::iSound* CurrTrack;
+            /// @internal
+            /// @brief Stores whether or not the current track has been manually stopped.
+            Boolean ManualStop;
+            /// @internal
+            /// @brief Stores whether or not this player is currently playing.
+            Boolean Playing;
+            /// @internal
+            /// @brief Stores whether or not the player will loop back to the start when it finishes playing all tracks in the playlist.
+            Boolean EOPRepeat;
+            /// @internal
+            /// @brief Stores whether or not the player will shuffle the playlist when it finishes playing all the tracks in the playlist.
+            Boolean EOPShuffle;
+
+            /// @internal
+            /// @brief Gets an iterator to the iSound instance in the current playlist.
+            /// @param Track The iSound instance to get an iterator to.
+            /// @return Returns a TrackIterator to the specified iSound in the currenlt playlist.
+            TrackIterator GetIteratorToTrack(iSound* Track);
         public:
             /// @brief Class constructor.
             MusicPlayer();
@@ -86,42 +106,43 @@ namespace Mezzanine
             /// @brief Moves back to the previous selection on the playlist.
             void Previous();
 
-            /// @brief Sets the specified song as the current song.
-            /// @throw If the provided song isn't in the playlist, this will throw an @ref InstanceIdentityNotFoundException . Use the ContainsSong() function to verify before using this.
-            /// @param Song The song to set.
-            void SwitchToSong(iSound* Song);
+            /// @brief Sets the specified track as the current track.
+            /// @throw If the provided track isn't in the playlist, this will throw an @ref InstanceIdentityNotFoundException . Use the ContainsSong() function to verify before using this.
+            /// @param Track The track to set.
+            void SwitchToTrack(iSound* Track);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Checks
 
             /// @brief Gets whether or not the current selection is playing.
-            /// @return Returns true if the current song is playing, false otherwise.
-            bool IsPlaying() const;
+            /// @return Returns true if the current track is playing, false otherwise.
+            Boolean IsPlaying() const;
             /// @brief Gets whether or not the current selection is stopped.
-            /// @return Returns true if the current song is stopped, false otherwise.
-            bool IsStopped() const;
+            /// @return Returns true if the current track is stopped, false otherwise.
+            Boolean IsStopped() const;
             /// @brief Gets whether or not the current selection is paused.
-            /// @return Returns true if the current song is paused, false otherwise.
-            bool IsPaused() const;
-            /// @brief Checks the set playlist to see if it contains a song.
-            /// @param Song The song to check for.
-            bool ContainsSong(iSound* Song) const;
+            /// @return Returns true if the current track is paused, false otherwise.
+            Boolean IsPaused() const;
+            /// @brief Checks the set playlist to see if it contains a track.
+            /// @param Track The track to check for.
+            /// @return Returns true if the current playlist contains the specified song, false otherwise.
+            Boolean ContainsSong(iSound* Track) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
             /// @brief Sets whether the playlist should return to the start after it reaches the end of the list.
             /// @param Repeat Enables/Disables repeating the playlist when it reaches the end.
-            void SetPlaylistRepeat(bool Repeat);
+            void SetPlaylistRepeat(Boolean Repeat);
             /// @brief Gets wether playlist repeat is enabled.
             /// @return Returns true if the playlist is set to repeat when it finishes, false otherwise.
-            bool GetPlaylistRepeat() const;
+            Boolean GetPlaylistRepeat() const;
             /// @brief Sets whether the playlist should shuffle it's contents after it reaches the end of the list.
             /// @param Shuffle Enables/Disables shuffling the playlist when it reaches the end.
-            void SetPlaylistShuffle(bool Shuffle);
+            void SetPlaylistShuffle(Boolean Shuffle);
             /// @brief Gets wether playlist shuffle is enabled.
             /// @return Returns true if the playlist is set to shuffle when it finishes, false otherwise.
-            bool GetPlaylistShuffle() const;
+            Boolean GetPlaylistShuffle() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility

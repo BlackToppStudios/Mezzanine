@@ -50,85 +50,81 @@ namespace Mezzanine
 {
     namespace Audio
     {
-        MusicPlayer::MusicPlayer()
-            : MusicPlaylist(NULL),
-              CurrSong(NULL),
-              ManualStop(false),
-              Playing(false),
-              EOPRepeat(false),
-              EOPShuffle(false)
-        {
-            MusicPlaylist = new Playlist();
-        }
+        MusicPlayer::MusicPlayer() :
+            MusicPlaylist(NULL),
+            CurrTrack(NULL),
+            ManualStop(false),
+            Playing(false),
+            EOPRepeat(false),
+            EOPShuffle(false)
+            { this->MusicPlaylist = new Playlist(); }
 
         MusicPlayer::~MusicPlayer()
-        {
-            delete MusicPlaylist;
-        }
+            { delete this->MusicPlaylist; }
 
-        std::list<Audio::iSound*>::iterator MusicPlayer::GetIteratorToSong(iSound* Song)
+        MusicPlayer::TrackIterator MusicPlayer::GetIteratorToTrack(iSound* Track)
         {
-            for( std::list< Audio::iSound* >::iterator it = MusicPlaylist->begin() ; it != MusicPlaylist->end() ; ++it )
+            for( TrackIterator TrackIt = this->MusicPlaylist->begin() ; TrackIt != this->MusicPlaylist->end() ; ++TrackIt )
             {
-                if(Song == (*it))
-                {
-                    CurrSong = (*it);
-                    return it;
+                if(Track == (*TrackIt)) {
+                    this->CurrTrack = (*TrackIt);
+                    return TrackIt;
                 }
             }
-            return MusicPlaylist->end();
+            return this->MusicPlaylist->end();
         }
 
         void MusicPlayer::Play()
         {
-            ManualStop = false;
-            Playing = true;
-            if(!CurrSong)
-            {
-                if(MusicPlaylist->empty()) { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to play a song in MusicPlayer with an empty playlist"); }
-                else CurrSong = *(MusicPlaylist->begin());
+            this->ManualStop = false;
+            this->Playing = true;
+            if( !this->CurrTrack ) {
+                if( this->MusicPlaylist->empty() ) {
+                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to play a song in MusicPlayer with an empty playlist");
+                }else{
+                    this->CurrTrack = *(this->MusicPlaylist->begin());
+                }
             }
-            CurrSong->Play();
+            this->CurrTrack->Play();
         }
 
         void MusicPlayer::Stop()
         {
-            ManualStop = true;
-            Playing = false;
-            CurrSong->Stop();
+            this->ManualStop = true;
+            this->Playing = false;
+            this->CurrTrack->Stop();
         }
 
         void MusicPlayer::Pause()
         {
-            CurrSong->Pause();
+            this->CurrTrack->Pause();
         }
 
         void MusicPlayer::Next()
         {
-            std::list<iSound*>::iterator SongIt = this->GetIteratorToSong(CurrSong);
-            SongIt++;
-            CurrSong = (*SongIt);
-            if(Playing && !ManualStop)
+            TrackIterator TrackIt = this->GetIteratorToTrack(this->CurrTrack);
+            TrackIt++;
+            this->CurrTrack = (*TrackIt);
+            if( this->Playing && !this->ManualStop )
                 this->Play();
         }
 
         void MusicPlayer::Previous()
         {
-            std::list<iSound*>::iterator SongIt = GetIteratorToSong(CurrSong);
-            SongIt--;
-            CurrSong = (*SongIt);
-            if(Playing && !ManualStop)
+            TrackIterator TrackIt = this->GetIteratorToTrack(this->CurrTrack);
+            TrackIt--;
+            this->CurrTrack = (*TrackIt);
+            if( this->Playing && !this->ManualStop )
                 this->Play();
         }
 
-        void MusicPlayer::SwitchToSong(iSound* Song)
+        void MusicPlayer::SwitchToTrack(iSound* Track)
         {
-            for( std::list< Audio::iSound* >::iterator it = MusicPlaylist->begin() ; it != MusicPlaylist->end() ; ++it )
+            for( TrackIterator it = this->MusicPlaylist->begin() ; it != this->MusicPlaylist->end() ; ++it )
             {
-                if(Song == (*it))
-                {
-                    CurrSong = (*it);
-                    if(Playing && !ManualStop)
+                if(Track == (*it)) {
+                    this->CurrTrack = (*it);
+                    if( this->Playing && !this->ManualStop )
                         this->Play();
                     return;
                 }
@@ -136,72 +132,52 @@ namespace Mezzanine
             MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to switch to song not contained within the current Playlist.");
         }
 
-        bool MusicPlayer::IsPlaying() const
-        {
-            return CurrSong->IsPlaying();
-        }
+        Boolean MusicPlayer::IsPlaying() const
+            { return this->CurrTrack->IsPlaying(); }
 
-        bool MusicPlayer::IsStopped() const
-        {
-            return CurrSong->IsStopped();
-        }
+        Boolean MusicPlayer::IsStopped() const
+            { return this->CurrTrack->IsStopped(); }
 
-        bool MusicPlayer::IsPaused() const
-        {
-            return CurrSong->IsPaused();
-        }
+        Boolean MusicPlayer::IsPaused() const
+            { return this->CurrTrack->IsPaused(); }
 
-        bool MusicPlayer::ContainsSong(iSound* Song) const
-        {
-            return MusicPlaylist->ContainsSound(Song);
-        }
+        Boolean MusicPlayer::ContainsSong(iSound* Track) const
+            { return this->MusicPlaylist->ContainsSound(Track); }
 
-        void MusicPlayer::SetPlaylistRepeat(bool Repeat)
-        {
-            EOPRepeat = Repeat;
-        }
+        void MusicPlayer::SetPlaylistRepeat(Boolean Repeat)
+            { this->EOPRepeat = Repeat; }
 
-        bool MusicPlayer::GetPlaylistRepeat() const
-        {
-            return EOPRepeat;
-        }
+        Boolean MusicPlayer::GetPlaylistRepeat() const
+            { return this->EOPRepeat; }
 
-        void MusicPlayer::SetPlaylistShuffle(bool Shuffle)
-        {
-            EOPShuffle = Shuffle;
-        }
+        void MusicPlayer::SetPlaylistShuffle(Boolean Shuffle)
+            { this->EOPShuffle = Shuffle; }
 
-        bool MusicPlayer::GetPlaylistShuffle() const
-        {
-            return EOPShuffle;
-        }
+        Boolean MusicPlayer::GetPlaylistShuffle() const
+            { return this->EOPShuffle; }
 
         Playlist* MusicPlayer::GetPlaylist() const
-        {
-            return MusicPlaylist;
-        }
+            { return this->MusicPlaylist; }
 
         void MusicPlayer::Update()
         {
-            if(0!=CurrSong)
-            {
-                std::list<Audio::iSound*>::iterator SongIt = this->GetIteratorToSong(CurrSong);
-                std::list<Audio::iSound*>::iterator NextSong = SongIt;
-                NextSong++;
-                if(CurrSong->IsStopped() && Playing)
-                {
-                    if(NextSong == MusicPlaylist->end())
-                    {
-                        if(EOPRepeat)
-                        {
-                            if(EOPShuffle) MusicPlaylist->Shuffle();
-                            CurrSong = *(MusicPlaylist->begin());
-                            Play();
+            if( 0 != this->CurrTrack ) {
+                TrackIterator TrackIt = this->GetIteratorToTrack(this->CurrTrack);
+                TrackIterator NextTrack = TrackIt;
+                NextTrack++;
+                if( this->CurrTrack->IsStopped() && this->Playing) {
+                    if(NextTrack == this->MusicPlaylist->end()) {
+                        if( this->EOPRepeat ) {
+                            if( this->EOPShuffle ) {
+                                this->MusicPlaylist->Shuffle();
+                            }
+                            this->CurrTrack = *(this->MusicPlaylist->begin());
+                            this->Play();
                         }else{
-                            Stop();
+                            this->Stop();
                         }
                     }else{
-                        Next();
+                        this->Next();
                     }
                 }
             }

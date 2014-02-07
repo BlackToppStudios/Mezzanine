@@ -64,8 +64,6 @@ namespace Mezzanine
             /// @brief Constructor helper function for creating a vertically aligned scrollbar.
             /// @param ScrollStyle The button style to be applied to this scrollbar.
             virtual void ConstructVerticalScrollbar(const UI::ScrollbarStyle& ScrollStyle);
-            /// @copydoc Scrollbar::HandleMouseWheelInput(const Input::MetaCode&)
-            virtual Boolean HandleMouseWheelInput(const Input::MetaCode& Code);
             /// @copydoc Scrollbar::GetUpperScollLimit() const
             virtual Real GetUpperScrollLimit() const;
             /// @copydoc Scrollbar::GetLowerScrollLimit() const
@@ -150,6 +148,8 @@ namespace Mezzanine
             virtual void _NotifyContainerUpdated();
             /// @copydoc Scrollbar::_MouseScroll(const Vector2&)
             virtual Boolean _MouseScroll(const Vector2& MouseDelta);
+            /// @copydoc Scrollbar::_MouseWheelScroll(const Integer)
+            virtual Boolean _MouseWheelScroll(const Integer Direction);
             /// @copydoc Scrollbar::_ScrollBackScroll(const Vector2&)
             virtual Boolean _ScrollBackScroll(const Vector2& HitPosition);
             /// @copydoc Scrollbar::_ButtonScroll(Button*)

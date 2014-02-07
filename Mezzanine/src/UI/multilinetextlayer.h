@@ -85,7 +85,7 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc RenderLayer::GetLayerType() const
-            virtual RenderLayer::RenderLayerType GetLayerType() const;
+            virtual UI::RenderLayerType GetLayerType() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Text Methods

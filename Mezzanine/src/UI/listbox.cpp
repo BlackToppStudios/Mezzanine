@@ -107,11 +107,7 @@ namespace Mezzanine
         Boolean ListBox::HandleInputImpl(const Input::MetaCode& Code)
         {
             if( Code.GetCode() == Input::MOUSEWHEELVERTICAL && this->ActDims.IsInside( this->ParentScreen->GetMouseHitPosition() ) ) {
-                if( Code.GetMetaValue() == Input::DIRECTIONALMOTION_UPLEFT ) {
-                    return this->ListScroll->_ButtonScroll( this->ListScroll->GetUpLeftButton() );
-                }else if( Code.GetMetaValue() == Input::DIRECTIONALMOTION_DOWNRIGHT ) {
-                    return this->ListScroll->_ButtonScroll( this->ListScroll->GetDownRightButton() );
-                }
+                return this->ListScroll->_MouseWheelScroll( Code.GetMetaValue() );
             }
             return false;
         }

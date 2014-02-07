@@ -184,32 +184,32 @@ namespace Mezzanine
             /// the value of Decay HF Ratio. This limit, when on, maintains a natural sounding reverberation decay by allowing you to increase the value of
             /// Decay Time without the risk of getting an unnaturally long decay time at high frequencies. If this flag is set to false, high-frequency decay
             /// time isn't automatically limited.
-            bool DecayHFLimit;
+            Boolean DecayHFLimit;
 
             /// @brief Struct constructor.
-            /// @param density @copybrief EAXReverbParameters::Density
-            /// @param diffusion @copybrief EAXReverbParameters::Diffusion
-            /// @param gain @copybrief EAXReverbParameters::Gain
-            /// @param gainHF @copybrief EAXReverbParameters::GainHF
-            /// @param gainLF @copybrief EAXReverbParameters::GainLF
-            /// @param decayTime @copybrief EAXReverbParameters::DecayTime
-            /// @param decayHFRatio @copybrief EAXReverbParameters::DecayHFRatio
-            /// @param decayLFRatio @copybrief EAXReverbParameters::DecayLFRatio
-            /// @param reflectionsGain @copybrief EAXReverbParameters::ReflectionsGain
-            /// @param reflectionsDelay @copybrief EAXReverbParameters::ReflectionsDelay
-            /// @param reflectionsPan @copybrief EAXReverbParameters::ReflectionsPan
-            /// @param lateReverbGain @copybrief EAXReverbParameters::LateReverbGain
-            /// @param lateReverbDelay @copybrief EAXReverbParameters::LateReverbDelay
-            /// @param lateReverbPan @copybrief EAXReverbParameters::LateReverbPan
-            /// @param echoTime @copybrief EAXReverbParameters::EchoTime
-            /// @param echoDepth @copybrief EAXReverbParameters::EchoDepth
-            /// @param modulationTime @copybrief EAXReverbParameters::ModulationTime
-            /// @param modulationDepth @copybrief EAXReverbParameters::ModulationDepth
-            /// @param airAbsorptionGainHF @copybrief EAXReverbParameters::AirAbsorptionGainHF
-            /// @param hFReference @copybrief EAXReverbParameters::HFReference
-            /// @param lFReference @copybrief EAXReverbParameters::LFReference
-            /// @param roomRolloffFactor @copybrief EAXReverbParameters::RoomRolloffFactor
-            /// @param decayHFLimit @copybrief EAXReverbParameters::DecayHFLimit
+            /// @param density The Reverb Modal Density controls the coloration of the late reverb.
+            /// @param diffusion The Reverb Diffusion property controls the echo density in the reverberation decay.
+            /// @param gain The master volume control for the reflected sound.
+            /// @param gainHF The Reverb Gain High Frequency property.
+            /// @param gainLF The Reverb Gain Low Frequency property.
+            /// @param decayTime The Decay Time property sets the reverberation decay time.
+            /// @param decayHFRatio The Decay HF Ratio property adjusts the spectral quality of the Decay Time parameter.
+            /// @param decayLFRatio The Decay LF Ratio property adjusts the spectral quality of the Decay Time parameter.
+            /// @param reflectionsGain The Reflections Gain property controls the overall amount of initial reflections relative to the Gain property.
+            /// @param reflectionsDelay The Reflections Delay property is the amount of delay between the arrival time of the direct path from the source to the first reflection from the source.
+            /// @param reflectionsPan The Reflections Pan property is a 3D vector that controls the spatial distribution of the cluster of early reflections.
+            /// @param lateReverbGain The Late Reverb Gain property controls the overall amount of later reverberation relative to the Gain property.
+            /// @param lateReverbDelay The Late Reverb Delay property defines the begin time of the late reverberation relative to the time of the initial reflection.
+            /// @param lateReverbPan The Late Reverb Pan property is a 3D vector that controls the spatial distribution of the late reverb.
+            /// @param echoTime Modulation Time controls the amount of time to take when applying the set Modulation Depth.
+            /// @param echoDepth Echo Depth introduces a cyclic echo in the reverberation decay, which will be noticeable with transient or percussive sounds.
+            /// @param modulationTime Modulation Time controls the amount of time to take when applying the set Modulation Depth.
+            /// @param modulationDepth Modulation Depth controls the amount of pitch change.
+            /// @param airAbsorptionGainHF The Air Absorption Gain HF property controls the distance-dependent attenuation at high frequencies caused by the propagation medium.
+            /// @param hFReference Determines the frequency at which high-frequency effects created by other properties are measured, such as @ref EAXReverbParameters::DecayHFRatio.
+            /// @param lFReference Determines the frequency at which low-frequency effects created by other properties are measured, such as @ref EAXReverbParameters::DecayLFRatio.
+            /// @param roomRolloffFactor The Room Rolloff Factor property is one of two methods available to attenuate the reflected sound according to source-listener distance.
+            /// @param decayHFLimit Whether or not to limit high-frequency decay.
             EAXReverbParameters(
                 Real density = 1.0f,
                 Real diffusion = 1.0f,
@@ -233,7 +233,7 @@ namespace Mezzanine
                 Real hFReference = 5000.0f,
                 Real lFReference = 250.0f,
                 Real roomRolloffFactor = 0.0f,
-                bool decayHFLimit = true) :
+                Boolean decayHFLimit = true) :
                 Density(density), Diffusion(diffusion), Gain(gain), GainHF(gainHF), GainLF(gainLF),
                 DecayTime(decayTime), DecayHFRatio(decayHFRatio), DecayLFRatio(decayLFRatio),
                 ReflectionsGain(reflectionsGain), ReflectionsDelay(reflectionsDelay),
@@ -242,7 +242,7 @@ namespace Mezzanine
                 EchoTime(echoTime), EchoDepth(echoDepth),ModulationTime(modulationTime),
                 ModulationDepth(modulationDepth), AirAbsorptionGainHF(airAbsorptionGainHF),
                 HFReference(hFReference), LFReference(lFReference),
-                RoomRolloffFactor(roomRolloffFactor), DecayHFLimit(decayHFLimit) { }
+                RoomRolloffFactor(roomRolloffFactor), DecayHFLimit(decayHFLimit) {  }
         };//EAXReverbParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -317,22 +317,22 @@ namespace Mezzanine
             /// Air Absorption Gain HF. This limit applies regardless of the setting of the property Decay HF Ratio, and the limit doesn't affect the value of Decay HF
             /// Ratio. This limit, when on, maintains a natural sounding reverberation decay by allowing you to increase the value of Decay Time without the risk of
             /// getting an unnaturally long decay time at high frequencies. If this flag is set to false, high-frequency decay time isn't automatically limited.
-            bool DecayHFLimit;
+            Boolean DecayHFLimit;
 
             /// @brief Struct constructor.
-            /// @param density @copybrief ReverbParameters::Density
-            /// @param diffusion @copybrief ReverbParameters::Diffusion
-            /// @param gain @copybrief ReverbParameters::Gain
-            /// @param gainHF @copybrief ReverbParameters::GainHF
-            /// @param decayTime @copybrief ReverbParameters::DecayTime
-            /// @param decayHFRatio @copybrief ReverbParameters::DecayHFRatio
-            /// @param reflectionsGain @copybrief ReverbParameters::ReflectionsGain
-            /// @param reflectionsDelay @copybrief ReverbParameters::ReflectionsDelay
-            /// @param lateReverbGain @copybrief ReverbParameters::LateReverbGain
-            /// @param lateReverbDelay @copybrief ReverbParameters::LateReverbDelay
-            /// @param airAbsorptionGainHF @copybrief ReverbParameters::AirAbsorptionGainHF
-            /// @param roomRolloffFactor @copybrief ReverbParameters::RoomRolloffFactor
-            /// @param decayHFLimit @copybrief ReverbParameters::DecayHFLimit
+            /// @param density Reverb Modal Density controls the coloration of the late reverb.
+            /// @param diffusion The Reverb Diffusion property controls the echo density in the reverberation decay.
+            /// @param gain The Reverb Gain property is the master volume control for the reflected sound that the reverb effect adds to all sound sources.
+            /// @param gainHF The Reverb Gain HF property further tweaks reflected sound by attenuating it at high frequencies.
+            /// @param decayTime The Decay Time property sets the reverberation decay time.
+            /// @param decayHFRatio The Decay HF Ratio property sets the spectral quality of the Decay Time parameter.
+            /// @param reflectionsGain The Reflections Gain property controls the overall amount of initial reflections relative to the Gain property.
+            /// @param reflectionsDelay The Reflections Delay property is the amount of delay between the arrival time of the direct path from the source to the first reflection from the source.
+            /// @param lateReverbGain The Late Reverb Gain property controls the overall amount of later reverberation relative to the Gain property.
+            /// @param lateReverbDelay The Late Reverb Delay property defines the begin time of the late reverberation relative to the time of the initial reflection.
+            /// @param airAbsorptionGainHF The Air Absorption Gain HF property controls the distance-dependent attenuation at high frequencies caused by the propagation medium.
+            /// @param roomRolloffFactor The Room Rolloff Factor property is one of two methods available to attenuate the reflected sound according to source-listener distance.
+            /// @param decayHFLimit Whether or not to limit high-frequency decay.
             ReverbParameters(
                 Real density = 1.0f,
                 Real diffusion = 1.0f,
@@ -346,13 +346,13 @@ namespace Mezzanine
                 Real lateReverbDelay = 0.011f,
                 Real airAbsorptionGainHF = 0.994f,
                 Real roomRolloffFactor = 0.0f,
-                bool decayHFLimit = true) :
+                Boolean decayHFLimit = true) :
                 Density(density), Diffusion(diffusion), Gain(gain), GainHF(gainHF),
                 DecayTime(decayTime), DecayHFRatio(decayHFRatio),
                 ReflectionsGain(reflectionsGain), ReflectionsDelay(reflectionsDelay),
                 LateReverbGain(lateReverbGain), LateReverbDelay(lateReverbDelay),
                 AirAbsorptionGainHF(airAbsorptionGainHF), RoomRolloffFactor(roomRolloffFactor),
-                DecayHFLimit(decayHFLimit) { }
+                DecayHFLimit(decayHFLimit) {  }
         };//ReverbParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -391,12 +391,12 @@ namespace Mezzanine
             Real Delay;
 
             /// @brief Struct constructor.
-            /// @param waveform @copybrief ChorusParameters::Waveform
-            /// @param phase @copybrief ChorusParameters::Phase
-            /// @param rate @copybrief ChorusParameters::Rate
-            /// @param depth @copybrief ChorusParameters::Depth
-            /// @param feedback @copybrief ChorusParameters::Feedback
-            /// @param delay @copybrief ChorusParameters::Delay
+            /// @param waveform This property sets the waveform shape of the Low Frequency Oscillation that controls the delay time of the delayed signals.
+            /// @param phase This property controls the phase difference between the left and rightLow Frequency Oscillation's.
+            /// @param rate This property sets the modulation rate of the Low Frequency Oscillation that controls the delay time of the delayed signals.
+            /// @param depth This property controls the amount by which the delay time is modulated by the Low Frequency Oscillation.
+            /// @param feedback This property controls the amount of processed signal that is fed back to the input of the chorus effect.
+            /// @param delay This property controls the average amount of time the sample is delayed before it is played back.
             ChorusParameters(
                 ChorusWaveform waveform = ECW_Triangle,
                 Integer phase = 90,
@@ -405,7 +405,7 @@ namespace Mezzanine
                 Real feedback = 0.25f,
                 Real delay = 0.016f) :
                 Waveform(waveform), Phase(phase), Rate(rate), Depth(depth), Feedback(feedback),
-                Delay(delay) { }
+                Delay(delay) {  }
         };// ChorusParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -431,11 +431,11 @@ namespace Mezzanine
             Real EqBandwidth;
 
             /// @brief Struct constructor.
-            /// @param edge @copybrief DistortionParameters::Edge
-            /// @param gain @copybrief DistortionParameters::Gain
-            /// @param lowpassCutoff @copybrief DistortionParameters::LowpassCutoff
-            /// @param eqCenter @copybrief DistortionParameters::EqCenter
-            /// @param eqBandwidth @copybrief DistortionParameters::EqBandwidth
+            /// @param edge This property controls the shape of the distortion.
+            /// @param gain This property allows you to attenuate the distorted sound.
+            /// @param lowpassCutoff Input signal can have a low pass filter applied, to limit the amount of high frequency signal feeding into the distortion effect.
+            /// @param eqCenter This property controls the frequency at which the post-distortion attenuation (Gain) is active.
+            /// @param eqBandwidth This property controls the bandwidth of the post-distortion attenuation.
             DistortionParameters(
                 Real edge = 0.2f,
                 Real gain = 0.05f,
@@ -443,7 +443,7 @@ namespace Mezzanine
                 Real eqCenter = 3600.0f,
                 Real eqBandwidth = 3600.0f) :
                 Edge(edge), Gain(gain), LowpassCutoff(lowpassCutoff), EqCenter(eqCenter),
-                EqBandwidth(eqBandwidth) { }
+                EqBandwidth(eqBandwidth) {  }
         };//DistortionParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -472,11 +472,11 @@ namespace Mezzanine
             Real Spread;
 
             /// @brief Struct constructor.
-            /// @param delay @copybrief EchoParameters::Delay
-            /// @param lRDelay @copybrief EchoParameters::LRDelay
-            /// @param damping @copybrief EchoParameters::Damping
-            /// @param feedback @copybrief EchoParameters::Feedback
-            /// @param spread @copybrief EchoParameters::Spread
+            /// @param delay This property controls the delay between the original sound and the first "tap", or echo instance.
+            /// @param lRDelay This property controls the delay between the first "tap" and the second "tap".
+            /// @param damping This property controls the amount of high frequency damping applied to each echo.
+            /// @param feedback This property controls the amount of feedback the output signal fed back into the input.
+            /// @param spread This property controls how hard panned the individual echoes are.
             EchoParameters(
                 Real delay = 0.1f,
                 Real lRDelay = 0.1f,
@@ -484,7 +484,7 @@ namespace Mezzanine
                 Real feedback = 0.5f,
                 Real spread = -1.0f) :
                 Delay(delay), LRDelay(lRDelay), Damping(damping), Feedback(feedback),
-                Spread(spread) { }
+                Spread(spread) {  }
         };//EchoParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -521,12 +521,12 @@ namespace Mezzanine
             Real Delay;
 
             /// @brief Struct constructor.
-            /// @param waveform @copybrief FlangerParameters::Waveform
-            /// @param phase @copybrief FlangerParameters::Phase
-            /// @param rate @copybrief FlangerParameters::Rate
-            /// @param depth @copybrief FlangerParameters::Depth
-            /// @param feedback @copybrief FlangerParameters::Feedback
-            /// @param delay @copybrief FlangerParameters::Delay
+            /// @param waveform Selects the shape of the LFO waveform that controls the amount of the delay of the sampled signal.
+            /// @param phase This changes the phase difference between the left and right LFO's.
+            /// @param rate The number of times per second the LFO controlling the amount of delay repeats.
+            /// @param depth The ratio by which the delay time is modulated by the LFO.
+            /// @param feedback This is the amount of the output signal level fed back into the effect's input.
+            /// @param delay The average amount of time the sample is delayed before it is played back; with feedback, the amount of time between iterations of the sample.
             FlangerParameters(
                 FlangerWaveform waveform = EFW_Triangle,
                 Integer phase = 0,
@@ -535,7 +535,7 @@ namespace Mezzanine
                 Real feedback = -0.5f,
                 Real delay = 0.002f) :
                 Waveform(waveform), Phase(phase), Rate(rate), Depth(depth), Feedback(feedback),
-                Delay(delay) { }
+                Delay(delay) {  }
         };//FlangerParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -566,14 +566,14 @@ namespace Mezzanine
             ShiftDirection Right;
 
             /// @brief Struct constructor.
-            /// @param frequency @copybrief FrequencyShiftParameters::Frequency
-            /// @param left @copybrief FrequencyShiftParameters::Left
-            /// @param right @copybrief FrequencyShiftParameters::Right
+            /// @param frequency This is the carrier frequency.
+            /// @param left These select which internal signals are added together to produce the output.
+            /// @param right These select which internal signals are added together to produce the output.
             FrequencyShiftParameters(
                 Real frequency = 0.0f,
                 ShiftDirection left = ESD_Down,
                 ShiftDirection right = ESD_Down) :
-                Frequency(frequency), Left(left), Right(right) { }
+                Frequency(frequency), Left(left), Right(right) {  }
         };//FrequencyShiftParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -648,12 +648,12 @@ namespace Mezzanine
             Real Rate;
 
             /// @brief Struct constructor.
-            /// @param phonemeA @copybrief VocalMorpherParamters::PhonemeA
-            /// @param phonemeB @copybrief VocalMorpherParamters::PhonemeB
-            /// @param phonemeACoarseTune @copybrief VocalMorpherParamters::PhonemeACoarseTune
-            /// @param phonemeBCoarseTune @copybrief VocalMorpherParamters::PhonemeBCoarseTune
-            /// @param waveform @copybrief VocalMorpherParamters::Waveform
-            /// @param rate @copybrief VocalMorpherParamters::Rate
+            /// @param phonemeA The source phoneme.
+            /// @param phonemeB The destination phoneme.
+            /// @param phonemeACoarseTune This is used to adjust the pitch of phoneme filter A in 1-semitone increments.
+            /// @param phonemeBCoarseTune This is used to adjust the pitch of phoneme filter B in 1-semitone increments.
+            /// @param waveform This controls the shape of the low-frequency oscillator used to morph between the two phoneme filters.
+            /// @param rate This controls the frequency of the low-frequency oscillator used to morph between the two phoneme filters.
             VocalMorpherParameters(
                 MorpherPhoneme phonemeA = EMP_A,
                 MorpherPhoneme phonemeB = EMP_ER,
@@ -662,7 +662,7 @@ namespace Mezzanine
                 MorpherWaveform waveform = EMW_Sinusoid,
                 Real rate = 1.41f) :
                 PhonemeA(phonemeA), PhonemeB(phonemeB), PhonemeACoarseTune(phonemeACoarseTune),
-                PhonemeBCoarseTune(phonemeBCoarseTune), Waveform(waveform), Rate(rate) { }
+                PhonemeBCoarseTune(phonemeBCoarseTune), Waveform(waveform), Rate(rate) {  }
         };//VocalMorpherParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -679,12 +679,12 @@ namespace Mezzanine
             Integer FineTune;
 
             /// @brief Struct constructor.
-            /// @param coarseTune @copybrief PitchShifterParameters::CoarseTune
-            /// @param fineTune @copybrief PitchShifterParameters::FineTune
+            /// @param coarseTune This sets the number of semitones by which the pitch is shifted.
+            /// @param fineTune This sets the number of cents between Semitones a pitch is shifted.
             PitchShifterParameters(
                 Integer coarseTune = 12,
                 Integer fineTune = 0) :
-                CoarseTune(coarseTune), FineTune(fineTune) { }
+                CoarseTune(coarseTune), FineTune(fineTune) {  }
         };//PitchShifterParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -716,14 +716,14 @@ namespace Mezzanine
             ModulatorWaveform Waveform;
 
             /// @brief Struct constructor.
-            /// @param frequency @copybrief RingModulatorParameters::Frequency
-            /// @param highPassCutoff @copybrief RingModulatorParameters::HighPassCutoff
-            /// @param waveform @copybrief RingModulatorParameters::Waveform
+            /// @param frequency This is the frequency of the carrier signal.
+            /// @param highPassCutoff This controls the cutoff frequency at which the input signal is high-pass filtered before being ring modulated.
+            /// @param waveform This controls which waveform is used as the carrier signal.
             RingModulatorParameters(
                 Real frequency = 440.0f,
                 Real highPassCutoff = 800.0f,
                 ModulatorWaveform waveform = EMW_Sinusoid) :
-                Frequency(frequency), HighPassCutoff(highPassCutoff), Waveform(waveform) { }
+                Frequency(frequency), HighPassCutoff(highPassCutoff), Waveform(waveform) {  }
         };//RingModulatorParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -747,17 +747,17 @@ namespace Mezzanine
             Real PeakGain;
 
             /// @brief Struct constructor.
-            /// @param attackTime @copybrief AutowahParameters::AttackTime
-            /// @param releaseTime @copybrief AutowahParameters::ReleaseTime
-            /// @param resonance @copybrief AutowahParameters::Resonance
-            /// @param peakGain @copybrief AutowahParameters::PeakGain
+            /// @param attackTime This property controls the time the filtering effect takes to sweep from minimum to maximum center frequency when it is triggered by input signal.
+            /// @param releaseTime This property controls the time the filtering effect takes to sweep from maximum back to base center frequency, when the input signal ends.
+            /// @param resonance This property controls the resonant peak, sometimes known as emphasis or Q, of the auto-wah band-pass filter.
+            /// @param peakGain This property controls the input signal level at which the band-pass filter will be fully opened.
             AutowahParameters(
                 Real attackTime = 0.06f,
                 Real releaseTime = 0.06f,
                 Real resonance = 1000.0f,
                 Real peakGain = 11.22f) :
                 AttackTime(attackTime), ReleaseTime(releaseTime), Resonance(resonance),
-                PeakGain(peakGain) { }
+                PeakGain(peakGain) {  }
         };//AutowahParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -766,14 +766,14 @@ namespace Mezzanine
         ///////////////////////////////////////
         struct CompressorParameters
         {
-            /// @brief The Compressor can only be switched on and off  it cannot be adjusted.
-            bool Active;
+            /// @brief The Compressor can only be switched on and off, it cannot be adjusted.
+            Boolean Active;
 
             /// @brief Struct constructor.
-            /// @param active @copybrief CompressorParameters::Active
+            /// @param active The Compressor can only be switched on and off, it cannot be adjusted.
             CompressorParameters(
-                bool active = true) :
-                Active(active) { }
+                Boolean active = true) :
+                Active(active) {  }
         };// CompressorParameters
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -814,16 +814,16 @@ namespace Mezzanine
             Real HighCutoff;
 
             /// @brief Struct constructor.
-            /// @param lowGain @copybrief EqualizerParameters::LowGain
-            /// @param lowCutoff @copybrief EqualizerParameters::LowCutoff
-            /// @param mid1Gain @copybrief EqualizerParameters::Mid1Gain
-            /// @param mid1Center @copybrief EqualizerParameters::Mid1Center
-            /// @param mid1Width @copybrief EqualizerParameters::Mid1Width
-            /// @param mid2Gain @copybrief EqualizerParameters::Mid2Gain
-            /// @param mid2Center @copybrief EqualizerParameters::Mid2Center
-            /// @param mid2Width @copybrief EqualizerParameters::Mid2Width
-            /// @param highGain @copybrief EqualizerParameters::HighGain
-            /// @param highCutoff @copybrief EqualizerParameters::HighCutoff
+            /// @param lowGain This property controls amount of cut or boost on the low frequency range.
+            /// @param lowCutoff This property controls the low frequency below which signal will be cut off.
+            /// @param mid1Gain This property allows you to cut / boost signal on the "mid1" range.
+            /// @param mid1Center This property sets the center frequency for the "mid1" range.
+            /// @param mid1Width This property controls the width of the "mid1" range.
+            /// @param mid2Gain This property allows you to cut / boost signal on the "mid2" range.
+            /// @param mid2Center This property sets the center frequency for the "mid2" range.
+            /// @param mid2Width This property controls the width of the "mid2" range.
+            /// @param highGain This property allows you to cut / boost the signal at high frequencies.
+            /// @param highCutoff This property controls the high frequency above which signal will be cut off.
             EqualizerParameters(
                 Real lowGain = 1.0f,
                 Real lowCutoff = 200.0f,
@@ -838,7 +838,7 @@ namespace Mezzanine
                 LowGain(lowGain), LowCutoff(lowCutoff), Mid1Gain(mid1Gain),
                 Mid1Center(mid1Center), Mid1Width(mid1Width), Mid2Gain(mid2Gain),
                 Mid2Center(mid2Center), Mid2Width(mid2Width), HighGain(highGain),
-                HighCutoff(highCutoff) { }
+                HighCutoff(highCutoff) {  }
         };//EqualizerParameters
     }//Audio
 }//Mezzanine

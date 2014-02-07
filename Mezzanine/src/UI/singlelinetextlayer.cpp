@@ -127,9 +127,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        RenderLayer::RenderLayerType SingleLineTextLayer::GetLayerType() const
+        UI::RenderLayerType SingleLineTextLayer::GetLayerType() const
         {
-            return RenderLayer::RLT_SingleLineText;
+            return UI::RLT_SingleLineText;
         }
 
         ///////////////////////////////////////////////////////////////////////////////

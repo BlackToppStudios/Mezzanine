@@ -350,8 +350,8 @@ namespace Mezzanine
         {
             for( RenderLayerIterator LayerIt = this->RenderLayers.begin() ; LayerIt != this->RenderLayers.end() ; ++LayerIt )
             {
-                RenderLayer::RenderLayerType LayerType = (*LayerIt)->GetLayerType();
-                if( LayerType == RenderLayer::RLT_MultiLineText || LayerType == RenderLayer::RLT_SingleLineText ) {
+                UI::RenderLayerType LayerType = (*LayerIt)->GetLayerType();
+                if( LayerType == UI::RLT_MultiLineText || LayerType == UI::RLT_SingleLineText ) {
                     static_cast<TextLayer*>( *LayerIt )->PopulateTextLines(MaxWidth * (*LayerIt)->GetScale().X);
                 }
             }
@@ -362,8 +362,8 @@ namespace Mezzanine
             Real Ret = 0;
             for( ConstRenderLayerIterator LayerIt = this->RenderLayers.begin() ; LayerIt != this->RenderLayers.end() ; ++LayerIt )
             {
-                RenderLayer::RenderLayerType LayerType = (*LayerIt)->GetLayerType();
-                if( LayerType == RenderLayer::RLT_MultiLineText || LayerType == RenderLayer::RLT_SingleLineText ) {
+                UI::RenderLayerType LayerType = (*LayerIt)->GetLayerType();
+                if( LayerType == UI::RLT_MultiLineText || LayerType == UI::RLT_SingleLineText ) {
                     Real LayerHeight = static_cast<TextLayer*>( *LayerIt )->GetTotalHeight();
                     if( LayerHeight > Ret )
                         Ret = LayerHeight;

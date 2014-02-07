@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2012 BlackTopp Studios Inc.
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -41,6 +41,18 @@
 #define _uieditbox_cpp
 
 #include "UI/editbox.h"
+#include "UI/textlayer.h"
+#include "UI/singlelinetextlayer.h"
+#include "UI/multilinetextlayer.h"
+#include "UI/textcursor.h"
+#include "UI/font.h"
+#include "UI/screen.h"
+
+#include "serialization.h"
+#include "exception.h"
+#include "stringtool.h"
+
+#include <algorithm>
 
 namespace Mezzanine
 {
@@ -50,56 +62,363 @@ namespace Mezzanine
         // EditBox Static Members
 
         const String EditBox::TypeName = "EditBox";
+        const String EditBox::EventTextUpdated = "TextUpdated";
 
         ///////////////////////////////////////////////////////////////////////////////
         // EditBox Methods
 
         EditBox::EditBox(Screen* Parent) :
-            Widget(Parent)
-        {
+            Widget(Parent),
+            EditHighlightTarget(-1,-1),
+            EditHighlightOrigin(-1),
+            EditingEnabled(true)
+            {  }
 
-        }
+        EditBox::EditBox(const String& RendName, const RenderLayerType EditLayerType, FontData* EditFont, Screen* Parent) :
+            Widget(RendName,Parent),
+            EditHighlightTarget(-1,-1),
+            EditHighlightOrigin(-1),
+            EditingEnabled(true)
+            { this->ConstructEditBox(EditLayerType,EditFont); }
 
-        EditBox::EditBox(const String& RendName, Screen* Parent) :
-            Widget(RendName,Parent)
-        {
+        EditBox::EditBox(const String& RendName, const RenderLayerType EditLayerType, const String& EditFontName, Screen* Parent) :
+            Widget(RendName,Parent),
+            EditHighlightTarget(-1,-1),
+            EditHighlightOrigin(-1),
+            EditingEnabled(true)
+            { this->ConstructEditBox(EditLayerType,this->ParentScreen->GetFont(EditFontName,this->ParentScreen->GetPrimaryAtlas())); }
 
-        }
+        EditBox::EditBox(const String& RendName, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, FontData* EditFont, Screen* Parent) :
+            Widget(RendName,RendRect,Parent),
+            EditHighlightTarget(-1,-1),
+            EditHighlightOrigin(-1),
+            EditingEnabled(true)
+            { this->ConstructEditBox(EditLayerType,EditFont); }
 
-        EditBox::EditBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
-            Widget(RendName,RendRect,Parent)
-        {
-
-        }
+        EditBox::EditBox(const String& RendName, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, const String& EditFontName, Screen* Parent) :
+            Widget(RendName,RendRect,Parent),
+            EditHighlightTarget(-1,-1),
+            EditHighlightOrigin(-1),
+            EditingEnabled(true)
+            { this->ConstructEditBox(EditLayerType,this->ParentScreen->GetFont(EditFontName,this->ParentScreen->GetPrimaryAtlas())); }
 
         EditBox::EditBox(const XML::Node& XMLNode, Screen* Parent) :
-            Widget(Parent)
-        {
-
-        }
+            Widget(Parent),
+            EditHighlightTarget(-1,-1),
+            EditHighlightOrigin(-1),
+            EditingEnabled(true)
+            { this->ProtoDeSerialize(XMLNode); }
 
         EditBox::~EditBox()
-        {
+            {  }
 
+        void EditBox::CreateLayoutStrat()
+            { this->LayoutStrat = NULL; }
+
+        Boolean EditBox::HandleInputImpl(const Input::MetaCode& Code)
+        {
+            // Verify we can consume inputs.
+            if( this->IsCurrentlyEditing() ) {
+                // Get the layer and get the cursor.
+                TextLayer* EditLayer = this->GetEditLayer();
+                TextCursor* EditCursor = EditLayer->GetCursor();
+                // Get our highlight indexes.
+                const Integer HighlightStart = EditLayer->GetHighlightStart();
+                const Integer HighlightEnd = EditLayer->GetHighlightEnd();
+
+                // Start our actual checks.
+                if( Code.GetCode() == Input::OSTEXTINPUT ) {
+                    // If there is a selection range we need to clear it before inserting.
+                    if( HighlightStart != -1 && HighlightEnd != -1 ) {
+                        // Set our post erase position.
+                        EditCursor->SetCursorIndex(HighlightStart);
+                        EditLayer->RemoveCharacterRange(HighlightStart,HighlightEnd);
+                    }
+                    // Finally perform our insert.
+                    EditLayer->GetCursor()->InsertCharacterAtCursor( Code.GetMetaValue() );
+                    this->_OnTextUpdated();
+                    return true;
+                }else if( this->IsDragged() && Code.GetCode() == Input::MOUSEABSOLUTEHORIZONTAL ) {
+                    // Assign the horizontal value to the target, then check if we have a complete target.
+                    this->EditHighlightTarget.X = Code.GetMetaValue();
+                    if( this->EditHighlightTarget.X != -1 && this->EditHighlightTarget.Y != -1 ) {
+                        // When the mouse is updated, the absolute position for both axes is send out regardless of change.
+                        // So we'd only get to this point if we've processed both events.  Convert our target to a usable index.
+                        TextLayer::CharIndexPair Result = EditLayer->GetIndexAtOffset( this->EditHighlightTarget - this->ActDims.Position );
+                        if( !Result.first )
+                            return false;
+                        // The mouse can move to earlier characters in the squence, so sort out which index is the actual start in this set.
+                        Integer IndexMin = std::min(this->EditHighlightOrigin,Result.second);
+                        Integer IndexMax = std::max(this->EditHighlightOrigin,Result.second);
+                        // If there was a change, update it.
+                        if( IndexMin != HighlightStart || IndexMax != HighlightEnd ) {
+                            EditLayer->Highlight(IndexMin,IndexMax);
+                        }
+                        // Reset our target, so next frame doesn't use old values.
+                        this->EditHighlightTarget.SetValues(-1,-1);
+                    }
+                    return true;
+                }else if( this->IsDragged() && Code.GetCode() == Input::MOUSEABSOLUTEVERTICAL ) {
+                    // Assign the horizontal value to the target, then check if we have a complete target.
+                    this->EditHighlightTarget.Y = Code.GetMetaValue();
+                    if( this->EditHighlightTarget.X != -1 && this->EditHighlightTarget.Y != -1 ) {
+                        // When the mouse is updated, the absolute position for both axes is send out regardless of change.
+                        // So we'd only get to this point if we've processed both events.  Convert our target to a usable index.
+                        TextLayer::CharIndexPair Result = EditLayer->GetIndexAtOffset( this->EditHighlightTarget - this->ActDims.Position );
+                        if( !Result.first )
+                            return false;
+                        // The mouse can move to earlier characters in the squence, so sort out which index is the actual start in this set.
+                        Integer IndexMin = std::min(this->EditHighlightOrigin,Result.second);
+                        Integer IndexMax = std::max(this->EditHighlightOrigin,Result.second);
+                        // If there was a change, update it.
+                        if( IndexMin != HighlightStart || IndexMax != HighlightEnd ) {
+                            EditLayer->Highlight(IndexMin,IndexMax);
+                        }
+                        // Reset our target, so next frame doesn't use old values.
+                        this->EditHighlightTarget.SetValues(-1,-1);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        void EditBox::ConstructEditBox(const RenderLayerType EditLayerType, FontData* EditFont)
+        {
+            // Create our events.
+            this->AddEvent(EditBox::EventTextUpdated);
+
+            // Create our edit layer.
+            TextLayer* EditLayer = NULL;
+            if( EditLayerType == UI::RLT_SingleLineText ) {
+                EditLayer = this->CreateSingleLineTextLayer();
+            }else if( EditLayerType == UI::RLT_MultiLineText ) {
+                EditLayer = this->CreateMultiLineTextLayer();
+            }else{
+                MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid RenderLayer type passed in to EditBox constructor.");
+            }
+
+            // Set the font separately since setting the font on construction can only be done via string. todo?
+            EditLayer->SetDefaultFont(EditFont);
+
+            // Add the edit layer to the default groups.
+            this->AddLayerToGroup(EditLayer,5,"Normal");
+            this->AddLayerToGroup(EditLayer,5,"Hovered");
+        }
+
+        void EditBox::UpdateEditMode()
+        {
+            TextLayer* EditLayer = this->GetEditLayer();
+            if( EditLayer != NULL ) {
+                if( this->EditingEnabled && this->HasFocus() ) {
+                    EditLayer->SetCursorEnabled(true);
+                }else{
+                    EditLayer->ClearHighlights();
+                    EditLayer->SetCursorEnabled(false);
+                }
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
+        const String& EditBox::GetTypeName() const
+            { return EditBox::TypeName; }
+
+        Boolean EditBox::IsCurrentlyEditing() const
+        {
+            TextLayer* EditLayer = this->GetEditLayer();
+            if( EditLayer != NULL ) {
+                TextCursor* EditCursor = EditLayer->GetCursor();
+                return ( ( EditCursor != NULL ) && this->HasFocus() && this->EditingEnabled );
+            }
+            return false;
+        }
+
+        String EditBox::GetText() const
+        {
+            TextLayer* EditLayer = this->GetEditLayer();
+            if( EditLayer != NULL ) {
+                return EditLayer->GetText();
+            }
+            return "";
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // EditBox Properties
+
+        void EditBox::SetEditingEnabled(Boolean Enable)
+        {
+            if( this->EditingEnabled != Enable ) {
+                this->EditingEnabled = Enable;
+                this->UpdateEditMode();
+            }
+        }
+
+        Boolean EditBox::GetEditingEnabled() const
+            { return this->EditingEnabled; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // EditBox Configuration
 
+        TextLayer* EditBox::GetEditLayer() const
+        {
+            RenderLayer* UncastedLayer = this->ActiveGroup->GetLayerByZOrder(5);
+            if( UncastedLayer != NULL && UncastedLayer->IsTextLayer() ) {
+                return static_cast<TextLayer*>(UncastedLayer);
+            }
+            return NULL;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
+
+        void EditBox::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->Widget::ProtoSerializeProperties(SelfRoot);
+
+            XML::Node PropertiesNode = SelfRoot.AppendChild( EditBox::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("EditingEnabled").SetValue( this->EditingEnabled ) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",EditBox::GetSerializableName() + "Properties",true);
+            }
+        }
+
+        void EditBox::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->Widget::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( EditBox::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("EditingEnabled");
+                    if( !CurrAttrib.Empty() )
+                        this->SetEditingEnabled( CurrAttrib.AsBool() );
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (EditBox::GetSerializableName() + "Properties") + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,EditBox::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String EditBox::GetSerializableName()
+        {
+            return EditBox::TypeName;
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Event Methods
 
+        void EditBox::_OnTextUpdated()
+        {
+            WidgetEventArguments Args(EditBox::EventTextUpdated,this->Name);
+            this->FireEvent(Args);
+        }
+
+        void EditBox::_OnMouseDragStart()
+        {
+            TextLayer* EditLayer = this->GetEditLayer();
+            if( EditLayer != NULL ) {
+                TextLayer::CharIndexPair Result = EditLayer->GetIndexAtOffset( this->EditHighlightTarget - this->ActDims.Position );
+                if( Result.first ) {
+                    this->EditHighlightOrigin = Result.second;
+                }
+            }
+            this->Widget::_OnMouseDragStart();
+        }
+
+        void EditBox::_OnMouseDragEnd()
+        {
+            this->EditHighlightTarget.SetValues(-1,-1);
+            this->EditHighlightOrigin = -1;
+            this->Widget::_OnMouseDragEnd();
+        }
+
+        void EditBox::_OnFocusGained()
+        {
+            this->Widget::_OnFocusGained();
+            this->UpdateEditMode();
+        }
+
+        void EditBox::_OnFocusLost()
+        {
+            this->Widget::_OnFocusLost();
+            this->UpdateEditMode();
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // EditBoxFactory Methods
+
+        String EditBoxFactory::GetWidgetTypeName() const
+            { return EditBox::TypeName; }
+
+        EditBox* EditBoxFactory::CreateEditBox(const String& RendName, const RenderLayerType EditLayerType, FontData* EditFont, Screen* Parent)
+            { return new EditBox(RendName,EditLayerType,EditFont,Parent); }
+
+        EditBox* EditBoxFactory::CreateEditBox(const String& RendName, const RenderLayerType EditLayerType, const String& EditFontName, Screen* Parent)
+            { return new EditBox(RendName,EditLayerType,EditFontName,Parent); }
+
+        EditBox* EditBoxFactory::CreateEditBox(const String& RendName, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, FontData* EditFont, Screen* Parent)
+            { return new EditBox(RendName,RendRect,EditLayerType,EditFont,Parent); }
+
+        EditBox* EditBoxFactory::CreateEditBox(const String& RendName, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, const String& EditFontName, Screen* Parent)
+            { return new EditBox(RendName,RendRect,EditLayerType,EditFontName,Parent); }
+
+        EditBox* EditBoxFactory::CreateEditBox(const XML::Node& XMLNode, Screen* Parent)
+            { return new EditBox(XMLNode,Parent); }
+
+        Widget* EditBoxFactory::CreateWidget(Screen* Parent)
+            { return new EditBox(Parent); }
+
+        Widget* EditBoxFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+        {
+            String EditFontName;
+            UI::RenderLayerType EditLayerType = UI::RLT_MultiLineText;
+
+            NameValuePairMap::const_iterator ParamIt;
+            ParamIt = Params.find("EditFontName");
+            if( ParamIt != Params.end() )
+                EditFontName = (*ParamIt).second;
+
+            ParamIt = Params.find("EditLayerType");
+            if( ParamIt != Params.end() )
+                EditLayerType = static_cast<UI::RenderLayerType>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
+
+            return this->CreateEditBox(RendName,EditLayerType,EditFontName,Parent);
+        }
+
+        Widget* EditBoxFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+        {
+            String EditFontName;
+            UI::RenderLayerType EditLayerType = UI::RLT_MultiLineText;
+
+            NameValuePairMap::const_iterator ParamIt;
+            ParamIt = Params.find("EditFontName");
+            if( ParamIt != Params.end() )
+                EditFontName = (*ParamIt).second;
+
+            ParamIt = Params.find("EditLayerType");
+            if( ParamIt != Params.end() )
+                EditLayerType = static_cast<UI::RenderLayerType>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
+
+            return this->CreateEditBox(RendName,RendRect,EditLayerType,EditFontName,Parent);
+        }
+
+        Widget* EditBoxFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateEditBox(XMLNode,Parent); }
+
+        void EditBoxFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<EditBox*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 

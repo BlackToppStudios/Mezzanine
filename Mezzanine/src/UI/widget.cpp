@@ -57,7 +57,6 @@ namespace Mezzanine
         const String Widget::EventMouseEnter       = "MouseEnter";
         const String Widget::EventMouseExit        = "MouseExit";
         const String Widget::EventMouseDragStart   = "MouseDragStart";
-        const String Widget::EventMouseDragging    = "MouseDragging";
         const String Widget::EventMouseDragEnd     = "MouseDragEnd";
         const String Widget::EventFocusGained      = "FocusGained";
         const String Widget::EventFocusLost        = "FocusLost";
@@ -119,7 +118,6 @@ namespace Mezzanine
             this->AddEvent(Widget::EventMouseEnter);
             this->AddEvent(Widget::EventMouseExit);
             this->AddEvent(Widget::EventMouseDragStart);
-            this->AddEvent(Widget::EventMouseDragging);
             this->AddEvent(Widget::EventMouseDragEnd);
             this->AddEvent(Widget::EventFocusGained);
             this->AddEvent(Widget::EventFocusLost);
@@ -157,7 +155,7 @@ namespace Mezzanine
         Boolean Widget::HasFocus() const
             { return (this->State & WS_Focused); }
 
-        Boolean Widget::IsBeingDragged() const
+        Boolean Widget::IsDragged() const
             { return (this->State & WS_Dragged); }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -425,71 +423,68 @@ namespace Mezzanine
 
         void Widget::_OnMouseEnter()
         {
-            this->State |= WS_Hovered;
-            this->SetGroupFromState(this->State);
+            if( !this->IsHovered() ) {
+                this->State |= WS_Hovered;
+                this->SetGroupFromState(this->State);
 
-            WidgetEventArguments Args(Widget::EventMouseEnter,this->Name);
-            this->FireEvent(Args);
+                WidgetEventArguments Args(Widget::EventMouseEnter,this->Name);
+                this->FireEvent(Args);
+            }
         }
 
         void Widget::_OnMouseExit()
         {
-            if( this->State & WS_Hovered )
-            {
+            if( this->IsHovered() ) {
                 this->State &= ~WS_Hovered;
                 this->SetGroupFromState(this->State);
-            }
 
-            WidgetEventArguments Args(Widget::EventMouseExit,this->Name);
-            this->FireEvent(Args);
+                WidgetEventArguments Args(Widget::EventMouseExit,this->Name);
+                this->FireEvent(Args);
+            }
         }
 
         void Widget::_OnMouseDragStart()
         {
-            this->State |= WS_Dragged;
-            this->SetGroupFromState(this->State);
+            if( !this->IsDragged() ) {
+                this->State |= WS_Dragged;
+                this->SetGroupFromState(this->State);
 
-            WidgetEventArguments Args(Widget::EventMouseDragStart,this->Name);
-            this->FireEvent(Args);
-        }
-
-        void Widget::_OnMouseDragging()
-        {
-            WidgetEventArguments Args(Widget::EventMouseDragging,this->Name);
-            this->FireEvent(Args);
+                WidgetEventArguments Args(Widget::EventMouseDragStart,this->Name);
+                this->FireEvent(Args);
+            }
         }
 
         void Widget::_OnMouseDragEnd()
         {
-            if( this->State & WS_Dragged )
-            {
+            if( this->IsDragged() ) {
                 this->State &= ~WS_Dragged;
                 this->SetGroupFromState(this->State);
-            }
 
-            WidgetEventArguments Args(Widget::EventMouseDragEnd,this->Name);
-            this->FireEvent(Args);
+                WidgetEventArguments Args(Widget::EventMouseDragEnd,this->Name);
+                this->FireEvent(Args);
+            }
         }
 
         void Widget::_OnFocusGained()
         {
-            this->State |= WS_Focused;
-            this->SetGroupFromState(this->State);
+            if( !this->HasFocus() ) {
+                this->State |= WS_Focused;
+                this->SetGroupFromState(this->State);
 
-            WidgetEventArguments Args(Widget::EventFocusGained,this->Name);
-            this->FireEvent(Args);
+                WidgetEventArguments Args(Widget::EventFocusGained,this->Name);
+                this->FireEvent(Args);
+            }
         }
 
         void Widget::_OnFocusLost()
         {
-            if( this->State & WS_Focused )
-            {
+            if( this->HasFocus() ) {
                 this->State &= ~WS_Focused;
                 this->SetGroupFromState(this->State);
-            }
 
-            WidgetEventArguments Args(Widget::EventFocusLost,this->Name);
-            this->FireEvent(Args);
+                WidgetEventArguments Args(Widget::EventFocusLost,this->Name);
+                this->FireEvent(Args);
+            }
         }
 
         void Widget::_OnFocusLocked()

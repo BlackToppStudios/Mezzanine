@@ -113,8 +113,6 @@ namespace Mezzanine
             static const String EventMouseExit;
             /// @brief Event name for when the mouse starts dragging this widget.
             static const String EventMouseDragStart;
-            /// @brief Event name for when a mouse activation button is pressed, and held while moving.
-            static const String EventMouseDragging;
             /// @brief Event name for when the mouse stops dragging this widget.
             static const String EventMouseDragEnd;
             /// @brief Event name for when this widget gains focus.
@@ -187,9 +185,9 @@ namespace Mezzanine
             /// @brief Gets whether or not this widget currently has focus.
             /// @return True if this widget has focus, false otherwise.
             virtual Boolean HasFocus() const;
-            /// @brief Gets whether or not this widget is being dragged.
-            /// @return Returns true if this widget is being dragged, false otherwise.
-            virtual Boolean IsBeingDragged() const;
+            /// @brief Gets whether or not the system mouse is being dragged over this widget.
+            /// @return Returns true if the mouse is dragging over this widget, false otherwise.
+            virtual Boolean IsDragged() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // State-LayerGroup Binding Methods
@@ -269,9 +267,6 @@ namespace Mezzanine
             /// @brief Self logic to be executed when the mouse cursor starts dragging across the bounds of this widget.
             /// @details This method should be exclusively called by the UIManager.
             virtual void _OnMouseDragStart();
-            /// @brief Self logic to be executed when the mouse cursor is dragging across the bounds of this widget.
-            /// @details This method should be exclusively called by the UIManager.
-            virtual void _OnMouseDragging();
             /// @brief Self logic to be executed when the mouse cursor stops dragging across the bounds of this widget.
             /// @details This method should be exclusively called by the UIManager.
             virtual void _OnMouseDragEnd();

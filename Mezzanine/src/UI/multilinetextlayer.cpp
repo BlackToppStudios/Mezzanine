@@ -245,9 +245,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        RenderLayer::RenderLayerType MultiLineTextLayer::GetLayerType() const
+        UI::RenderLayerType MultiLineTextLayer::GetLayerType() const
         {
-            return RenderLayer::RLT_MultiLineText;
+            return UI::RLT_MultiLineText;
         }
 
         ///////////////////////////////////////////////////////////////////////////////

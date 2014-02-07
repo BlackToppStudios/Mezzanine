@@ -73,7 +73,7 @@ namespace Mezzanine
         };
 
 		/// @enum EffectType
-		/// @brief Used by the @ref iEffect class to describe what type of effect it is.
+		/// @brief Used by the iEffect class to describe what type of effect it is.
         enum EffectType
         {
             ET_Null,              ///< Null type with no values.
@@ -83,17 +83,17 @@ namespace Mezzanine
             ET_Distortion,        ///< See @ref DistortionParameters.
             ET_Echo,              ///< See @ref EchoParameters.
             ET_Flanger,           ///< See @ref FlangerParameters.
-            ET_Frequency_Shifter, ///< See @ref FrequencyShifterParameters.
+            ET_Frequency_Shifter, ///< See @ref FrequencyShiftParameters.
             ET_Vocal_Morpher,     ///< See @ref VocalMorpherParameters.
             ET_Pitch_Shifter,     ///< See @ref PitchShifterParameters.
             ET_Ring_Modulator,    ///< See @ref RingModulatorParameters.
             ET_Autowah,           ///< See @ref AutowahParameters.
             ET_Compressor,        ///< See @ref CompressorParameters.
-            ET_Equalizer          ///< See @ref RqualizerParameters.
+            ET_Equalizer          ///< See @ref EqualizerParameters.
         };
 
 		/// @enum FilterType
-		/// @brief Used by the @ref iFilter class to describe what type of filter it is.
+		/// @brief Used by the iFilter class to describe what type of filter it is.
         enum FilterType
         {
             FT_Null,        ///< Null type with no values.
@@ -103,7 +103,7 @@ namespace Mezzanine
         };
 
         /// @enum SoundType
-        /// @brief Used by the @ref iSound class to describe what type of sound it is.
+        /// @brief Used by the iSound class to describe what type of sound it is.
         enum SoundType
         {
             ST_Ambient = 1,  ///< Environmental sounds.  Bird's chirping, water washing against rocks, etc.

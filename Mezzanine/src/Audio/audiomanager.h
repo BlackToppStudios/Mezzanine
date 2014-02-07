@@ -285,7 +285,7 @@ namespace Mezzanine
             virtual iSound* CreateAmbientSound(const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode);
             /// @brief Creates a new Dialog @ref iSound from a memory buffer that is encoded.
             /// @note The buffer is copied and put into a memory stream. Thus safe for disposal afterward.
-            /// @param SoundName The name of the @ref iSound instance.
+            /// @param StreamName The name of the @ref iSound instance.
             /// @param Buffer A pointer to the buffer where the audio data is located.
             /// @param Length The length of the buffer provided to this method(in bytes).
             /// @param Encode The encoding to be expected when decoding audio for this @ref iSound.
@@ -374,7 +374,7 @@ namespace Mezzanine
             virtual bool IsTypeMuted(const UInt16 Type) const = 0;
 
             /// @brief Sets the volume for all stored Sound instances.
-            /// @param Music The volume to apply to all sounds.
+            /// @param Master The volume to apply to all sounds.
             virtual void SetMasterVolume(const Real& Master) = 0;
             /// @brief Gets the currently set Master volume.
             /// @return Returns a Real representing the current Master volume.

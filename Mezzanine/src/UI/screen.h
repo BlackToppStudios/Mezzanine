@@ -401,6 +401,33 @@ namespace Mezzanine
             /// @param RendRect The Rect representing the position and size of the CheckBox.
             /// @return Returns a pointer to the created CheckBox.
             virtual CheckBox* CreateCheckBox(const String& Name, const UnifiedRect& RendRect);
+            /// @brief Creates a EditBox.
+            /// @param Name The name of the EditBox.
+            /// @param EditLayerType The type of text layer to be auto-created for editing.
+            /// @param EditFont A pointer to the font to be used by the edit layer.
+            /// @return Returns a pointer to the created EditBox.
+            virtual EditBox* CreateEditBox(const String& Name, const RenderLayerType EditLayerType, FontData* EditFont);
+            /// @brief Creates a EditBox.
+            /// @param Name The name of the EditBox.
+            /// @param EditLayerType The type of text layer to be auto-created for editing.
+            /// @param EditFontName The name of the font to be used by the edit layer.
+            /// @return Returns a pointer to the created EditBox.
+            virtual EditBox* CreateEditBox(const String& Name, const RenderLayerType EditLayerType, const String& EditFontName);
+            /// @brief Creates a EditBox.
+            /// @param Name The name of the EditBox.
+            /// @param RendRect The Rect representing the position and size of the EditBox.
+            /// @param EditLayerType The type of text layer to be auto-created for editing.
+            /// @param EditFont A pointer to the font to be used by the edit layer.
+            /// @return Returns a pointer to the created EditBox.
+            virtual EditBox* CreateEditBox(const String& Name, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, FontData* EditFont);
+            /// @brief Creates a EditBox.
+            /// @param Name The name of the EditBox.
+            /// @param RendRect The Rect representing the position and size of the EditBox.
+            /// @param EditLayerType The type of text layer to be auto-created for editing.
+            /// @param EditFontName The name of the font to be used by the edit layer.
+            /// @return Returns a pointer to the created EditBox.
+            virtual EditBox* CreateEditBox(const String& Name, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, const String& EditFontName);
+
             /// @brief Creates a Scrollbar aligned on the X axis.
             /// @param Name The name of the HorizontalScrollbar.
             /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
@@ -433,6 +460,15 @@ namespace Mezzanine
             /// @param RendRect The rect describing this MenuEntry's transform relative to it's parent.
             /// @return Returns a pointer to the created MenuEntry.
             virtual MenuEntry* CreateMenuEntry(const String& Name, const UnifiedRect& RendRect);
+            /// @brief Creates a TabSet.
+            /// @param Name The name to be given to this TabSet.
+            /// @return Returns a pointer to the created TabSet.
+            virtual TabSet* CreateTabSet(const String& Name);
+            /// @brief Creates a TabSet.
+            /// @param Name The name to be given to this TabSet.
+            /// @param RendRect The rect describing this TabSet's transform relative to it's parent.
+            /// @return Returns a pointer to the created TabSet.
+            virtual TabSet* CreateTabSet(const String& Name, const UnifiedRect& RendRect);
             /// @brief Creates a ListBox.
             /// @param Name The name to be given to this ListBox.
             /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
@@ -475,13 +511,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created VerticalContainer.
             virtual VerticalContainer* CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect);
 
-            /*/// @brief Creates a List Box.
-            /// @return Returns a pointer to the created List Box.
-            /// @param Name The name of the List Box.
-            /// @param RendRect The Rect representing the position and size of the List Box.
-            /// @param ScrollStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-            virtual ListBox* CreateListBox(ConstString& Name, const Rect& RendRect, const UI::ScrollbarStyle& ScrollStyle);
-            /// @brief Creates a Spinner.
+            /*/// @brief Creates a Spinner.
             /// @return Returns a pointer to the created Spinner.
             /// @param Name The Name for the Widget.
             /// @param RendRect The Rect representing the position and size of the Spinner.
@@ -504,18 +534,6 @@ namespace Mezzanine
             /// @param SStyle The style of spinner to create.
             /// @param GlyphHeight The desired lineheight of the glyphs to be used with the spinner.
             virtual PagedCellGrid* CreatePagedCellGrid(ConstString& Name, const Rect& RendRect, const Rect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
-            /// @brief Creates a drop down list.
-            /// @return Returns a pointer to the created DropDownList.
-            /// @param Name The Name for the Widget.
-            /// @param RendRect The renderable rect representing the position and size of this widget.
-            /// @param LineHeight The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well.
-            /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar class for more information.
-            virtual DropDownList* CreateDropDownList(ConstString& Name, const Rect& RendRect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle);
-            /// @brief Creates a tabset.
-            /// @return Returns a pointer to the created tabset.
-            /// @param Name The Name for the Widget.
-            /// @param SetRect The Rect representing the position and size of all the Renderable Sets generated by the tabset.
-            virtual TabSet* CreateTabSet(ConstString& Name, const Rect& SetRect);
 
             /// @brief Creates a Window.
             /// @return Returns a pointer to the created Window.

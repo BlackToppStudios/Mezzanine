@@ -65,14 +65,14 @@ namespace Mezzanine
             public:
                 /// @brief Checks to see if recorder functionality is available with the current backend and hardware.
                 /// @return Returns true if audio recording is available, false otherwise.
-                static bool IsSupported();
+                static Boolean IsSupported();
             protected:
                 /// @internal
                 /// @brief A pointer to the internal device doing the recording.
                 ALCdevice* RecorderDevice;
                 /// @internal
                 /// @brief Stores whether audio is currently being recorded.
-                bool Recording;
+                Boolean Recording;
                 /// @internal
                 /// @brief The configuation to use when generating the recorded audio.
                 BitConfig BitConfiguration;
@@ -87,7 +87,7 @@ namespace Mezzanine
                 String CurrentDeviceName;
                 /// @internal
                 /// @brief Initializes the recording device based on all the parameters set in this recorder instance.
-                bool InitializeDevice();
+                Boolean InitializeDevice();
                 /// @internal
                 /// @brief Shuts down the recording device and free's its buffers.
                 void ShutdownDevice();
@@ -104,7 +104,7 @@ namespace Mezzanine
                 // Initialization and Shutdown
 
                 /// @copydoc iRecorder::Initialize(const String&,  const UInt32, const BitConfig, const UInt32)
-                virtual bool Initialize(const String& DeviceName = "",  const UInt32 Freq = 22050, const BitConfig Config = BC_16Bit_Mono, const UInt32 IntBufSize = 8192);
+                virtual Boolean Initialize(const String& DeviceName = "",  const UInt32 Freq = 22050, const BitConfig Config = BC_16Bit_Mono, const UInt32 IntBufSize = 8192);
                 /// @copydoc iRecorder::Shutdown()
                 virtual void Shutdown();
 
@@ -112,10 +112,10 @@ namespace Mezzanine
                 // Utility
 
                 /// @copydoc iRecorder::IsReady() const
-                virtual bool IsReady() const;
+                virtual Boolean IsReady() const;
 
                 /// @copydoc iRecorder::BeginRecording()
-                virtual bool BeginRecording();
+                virtual Boolean BeginRecording();
                 /// @copydoc iRecorder::StopRecording()
                 virtual void StopRecording();
                 /// @copydoc iRecorder::GetRecordedAudio(void*, UInt32)
@@ -127,19 +127,19 @@ namespace Mezzanine
                 // Recording Configuration
 
                 /// @copydoc iRecorder::SetDeviceName(const String&)
-                virtual bool SetDeviceName(const String& DeviceName);
+                virtual Boolean SetDeviceName(const String& DeviceName);
                 /// @copydoc iRecorder::GetDeviceName() const
                 virtual String GetDeviceName() const;
                 /// @copydoc iRecorder::SetFrequency(const UInt32)
-                virtual bool SetFrequency(const UInt32 Freq);
+                virtual Boolean SetFrequency(const UInt32 Freq);
                 /// @copydoc iRecorder::GetFrequency() const
                 virtual UInt32 GetFrequency() const;
                 /// @copydoc iRecorder::SetBitConfiguration(const BitConfig)
-                virtual bool SetBitConfiguration(const BitConfig Config);
+                virtual Boolean SetBitConfiguration(const BitConfig Config);
                 /// @copydoc iRecorder::GetBitConfiguration() const
                 virtual BitConfig GetBitConfiguration() const;
                 /// @copydoc iRecorder::SetInternalBufferSize(const UInt32)
-                virtual bool SetInternalBufferSize(const UInt32 Size);
+                virtual Boolean SetInternalBufferSize(const UInt32 Size);
                 /// @copydoc iRecorder::GetInternalBufferSize() const
                 virtual UInt32 GetInternalBufferSize() const;
                 /// @copydoc iRecorder::GetSampleSize() const
