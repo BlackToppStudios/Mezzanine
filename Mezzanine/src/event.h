@@ -92,7 +92,7 @@ namespace Mezzanine
         /// @param Funct The functor to call when the event is fired.
         /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(FunctorSubscriberSlot::FunctorDefinition* Funct, Boolean CleanUpAfter);
+        EventSubscriberSlot* Subscribe(EventSlotFunctorDefinition* Funct, Boolean CleanUpAfter);
         /// @brief Subscribes a C-style function to this event.
         /// @param CFunct The C-style function to call when the event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
@@ -110,7 +110,7 @@ namespace Mezzanine
         void Unsubscribe(EventSubscriber* Subscriber);
         /// @brief Unsubscribes a single subscriber from this event.
         /// @param Funct The functor to be removed.
-        void Unsubscribe(FunctorSubscriberSlot::FunctorDefinition* Funct);
+        void Unsubscribe(EventSlotFunctorDefinition* Funct);
         /// @brief Unsubscribes a single subscriber from this event.
         /// @param CFunct The function to be removed.
         void Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction* CFunct);
@@ -133,12 +133,14 @@ namespace Mezzanine
         /// @brief Gets an iterator to one passed the last subscriber slot in this event.
         /// @return Returns an iterator to one passed the last subscriber slot.
         SlotIterator SubscriberSlotEnd();
+#ifndef SWIG // Since these functions differ only by constness, they make no sense to most(all?) scripting languages
         /// @brief Gets an iterator to the first subscriber slot in this event.
         /// @return Returns a const iterator to the first subscriber slot.
         ConstSlotIterator SubscriberSlotBegin() const;
         /// @brief Gets an iterator to one passed the last subscriber slot in this event.
         /// @return Returns a const iterator to one passed the last subscriber slot.
         ConstSlotIterator SubscriberSlotEnd() const;
+#endif
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods

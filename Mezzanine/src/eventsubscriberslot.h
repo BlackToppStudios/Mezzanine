@@ -130,27 +130,27 @@ namespace Mezzanine
         virtual void _NotifyEvent(const EventArguments& Args);
     };// CustomSubscriberSlot
 
+    /// @brief Basic class definition for functors used by this subscriber slot.
+    class EventSlotFunctorDefinition
+    {
+    public:
+        /// @brief Class destructor.
+        virtual ~EventSlotFunctorDefinition() {  }
+        /// @brief Executes subscriber specific functionality when the event is fired.
+        /// @param Args The arguments that describe the fired event.
+        virtual void operator()(const EventArguments& Args) = 0;
+    };//FunctorDefinition
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a subscriber slot class that makes the appropriate call on a functor.
     /// @details
     ///////////////////////////////////////
     class MEZZ_LIB FunctorSubscriberSlot : public EventSubscriberSlot
     {
-    public:
-        /// @brief Basic class definition for functors used by this subscriber slot.
-        class FunctorDefinition
-        {
-        public:
-            /// @brief Class destructor.
-            virtual ~FunctorDefinition() {  };
-            /// @brief Executes subscriber specific functionality when the event is fired.
-            /// @param Args The arguments that describe the fired event.
-            virtual void operator()(const EventArguments& Args) = 0;
-        };//FunctorDefinition
     protected:
         /// @internal
         /// @brief A pointer to the functor to be called when the event is fired.
-        FunctorDefinition* Functor;
+        EventSlotFunctorDefinition* Functor;
         /// @internal
         /// @brief Stores whether or not the functor is to be deleted when this subscriber is destructed.
         Boolean CleanUp;
@@ -159,7 +159,7 @@ namespace Mezzanine
         /// @param Ev The event this subscriber slot belongs to.
         /// @param Funct The Functor object to be called when the event is fired.
         /// @param CleanUpAfter Whether or not to delete the functor when this object is deleted.
-        FunctorSubscriberSlot(Event* Ev, FunctorDefinition* Funct, bool CleanUpAfter);
+        FunctorSubscriberSlot(Event* Ev, EventSlotFunctorDefinition* Funct, bool CleanUpAfter);
         /// @brief Class destructor.
         virtual ~FunctorSubscriberSlot();
 
@@ -168,7 +168,7 @@ namespace Mezzanine
 
         /// @brief Gets a pointer to the functor used by this subscriber slot.
         /// @return Returns a pointer to the functor subscriber being used in this subscriber slot.
-        FunctorDefinition* GetFunctor() const;
+        EventSlotFunctorDefinition* GetFunctor() const;
         /// @copydoc EventSubscriberSlot::GetType() const
         virtual SlotType GetType() const;
 
@@ -179,6 +179,7 @@ namespace Mezzanine
         virtual void _NotifyEvent(const EventArguments& Args);
     };//FunctorSubscriberSlot
 
+#ifndef SWIG // This is non-sensical in a scripting language
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a subscriber slot class that triggers a Free/C-style function.
     /// @details
@@ -215,6 +216,7 @@ namespace Mezzanine
         /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
         virtual void _NotifyEvent(const EventArguments& Args);
     };// CFunctionSubscriberSlot
+#endif // \SWIG
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a subscriber slot class that triggers a provided script.

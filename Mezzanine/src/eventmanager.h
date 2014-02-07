@@ -46,12 +46,12 @@
 
 #include "managerbase.h"
 #include "managerfactory.h"
-#include "Input/metacode.h"
 #include "eventbase.h"
 #include "singleton.h"
 #include "vector2.h"
 
 #ifndef SWIG
+    #include "Input/metacode.h"
     #include "XML/xml.h"
     #include "Threading/workunit.h"
 #endif

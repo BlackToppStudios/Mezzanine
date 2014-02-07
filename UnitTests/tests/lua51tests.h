@@ -624,6 +624,20 @@ class lua51tests : public UnitTestGroup
                               "RootEnumerations", "TestRootEnumerations", 8, 1, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestEventCompilation(x)\n"
+                              "   MezzanineSafe.Event(\"Test\")\n"
+                              "   return 1\n"
+                              "end",
+                              "Event", "TestEventCompilation", 8, 1, 0.0,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestEventArgCompilation(x)\n"
+                              "   b=MezzanineSafe.EventArguments(\"Test\")\n"
+                              "   return 1\n"
+                              "end",
+                              "EventArguments", "TestEventArgCompilation", 8, 1, 0.0,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
 
 
                 //AreaEffectUpdateWorkUnit
