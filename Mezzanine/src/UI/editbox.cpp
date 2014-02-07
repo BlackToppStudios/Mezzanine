@@ -70,6 +70,7 @@ namespace Mezzanine
         EditBox::EditBox(Screen* Parent) :
             Widget(Parent),
             EditHighlightTarget(-1,-1),
+            InputFilter(NULL),
             EditHighlightOrigin(-1),
             EditingEnabled(true)
             {  }
@@ -77,6 +78,7 @@ namespace Mezzanine
         EditBox::EditBox(const String& RendName, const RenderLayerType EditLayerType, FontData* EditFont, Screen* Parent) :
             Widget(RendName,Parent),
             EditHighlightTarget(-1,-1),
+            InputFilter(NULL),
             EditHighlightOrigin(-1),
             EditingEnabled(true)
             { this->ConstructEditBox(EditLayerType,EditFont); }
@@ -84,6 +86,7 @@ namespace Mezzanine
         EditBox::EditBox(const String& RendName, const RenderLayerType EditLayerType, const String& EditFontName, Screen* Parent) :
             Widget(RendName,Parent),
             EditHighlightTarget(-1,-1),
+            InputFilter(NULL),
             EditHighlightOrigin(-1),
             EditingEnabled(true)
             { this->ConstructEditBox(EditLayerType,this->ParentScreen->GetFont(EditFontName,this->ParentScreen->GetPrimaryAtlas())); }
@@ -91,6 +94,7 @@ namespace Mezzanine
         EditBox::EditBox(const String& RendName, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, FontData* EditFont, Screen* Parent) :
             Widget(RendName,RendRect,Parent),
             EditHighlightTarget(-1,-1),
+            InputFilter(NULL),
             EditHighlightOrigin(-1),
             EditingEnabled(true)
             { this->ConstructEditBox(EditLayerType,EditFont); }
@@ -98,6 +102,7 @@ namespace Mezzanine
         EditBox::EditBox(const String& RendName, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, const String& EditFontName, Screen* Parent) :
             Widget(RendName,RendRect,Parent),
             EditHighlightTarget(-1,-1),
+            InputFilter(NULL),
             EditHighlightOrigin(-1),
             EditingEnabled(true)
             { this->ConstructEditBox(EditLayerType,this->ParentScreen->GetFont(EditFontName,this->ParentScreen->GetPrimaryAtlas())); }
@@ -105,6 +110,7 @@ namespace Mezzanine
         EditBox::EditBox(const XML::Node& XMLNode, Screen* Parent) :
             Widget(Parent),
             EditHighlightTarget(-1,-1),
+            InputFilter(NULL),
             EditHighlightOrigin(-1),
             EditingEnabled(true)
             { this->ProtoDeSerialize(XMLNode); }
@@ -127,7 +133,9 @@ namespace Mezzanine
                 const Integer HighlightEnd = EditLayer->GetHighlightEnd();
 
                 // Start our actual checks.
-                if( Code.GetCode() == Input::OSTEXTINPUT ) {
+                if( Code.GetCode() == Input::OSTEXTINPUT &&
+                    ( this->InputFilter != NULL ? this->InputFilter( Code.GetMetaValue() ) : true ) )
+                {
                     // If there is a selection range we need to clear it before inserting.
                     if( HighlightStart != -1 && HighlightEnd != -1 ) {
                         // Set our post erase position.
@@ -260,6 +268,12 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // EditBox Configuration
+
+        void EditBox::SetInputFilter(FilterCallback* Callback)
+            { this->InputFilter = Callback; }
+
+        FilterCallback* EditBox::GetIntputFilter() const
+            { return this->InputFilter; }
 
         TextLayer* EditBox::GetEditLayer() const
         {
