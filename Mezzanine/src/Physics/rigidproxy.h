@@ -168,7 +168,7 @@ namespace Mezzanine
             // Rigid Physics Properties
 
             /// @brief Change the mass of the proxy.
-            /// @param NewMass The amount of mass this should have.
+            /// @param Mass The amount of mass this should have.
             virtual void SetMass(const Real Mass);
             /// @brief Get the total Mass of the proxy
             /// @return A Real with the Mass of the proxy

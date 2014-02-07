@@ -58,7 +58,7 @@ namespace Mezzanine
             {  }
 
         /// @brief Sets the location of this object in parent space.
-        /// @param Location A Vector3 representing the location this object is to be set to.
+        /// @param Loc A Vector3 representing the location this object is to be set to.
         virtual void SetLocation(const Vector3& Loc) = 0;
         /// @brief Sets the location of this object in parent space via Reals.
         /// @param X The position on the X axis where this object is to be set.
@@ -69,7 +69,7 @@ namespace Mezzanine
         /// @return Returns Vector3 representing the current rotation of this object in parent space.
         virtual Vector3 GetLocation() const = 0;
         /// @brief Sets the orientation of this object in parent space.
-        /// @param Orientation A Quaternion representing the rotation this object is to be set to.
+        /// @param Ori A Quaternion representing the rotation this object is to be set to.
         virtual void SetOrientation(const Quaternion& Ori) = 0;
         /// @brief Sets the orientation of this object in parent space via Reals.
         /// @param X The X component of the Axis.
@@ -81,7 +81,7 @@ namespace Mezzanine
         /// @return Returns a Quaternion representing the current orientation of this object in parent space.
         virtual Quaternion GetOrientation() const = 0;
         /// @brief Sets the scaling to be applied to this object.
-        /// @param Scale A Vector3 representing the amount of scaling to apply to this object.
+        /// @param Sc A Vector3 representing the amount of scaling to apply to this object.
         virtual void SetScale(const Vector3& Sc) = 0;
         /// @brief Sets the scaling to be applied to this object via Reals.
         /// @param X The scaling factor to apply on the X axis.
@@ -171,7 +171,7 @@ namespace Mezzanine
             {  }
 
         /// @brief Sets the location of this object in parent space.
-        /// @param Location A Vector3 representing the location this object is to be set to.
+        /// @param Loc A Vector3 representing the location this object is to be set to.
         virtual void SetLocation(const Vector3& Loc) = 0;
         /// @brief Sets the location of this object in parent space via Reals.
         /// @param X The position on the X axis where this object is to be set.
@@ -182,7 +182,7 @@ namespace Mezzanine
         /// @return Returns Vector3 representing the current rotation of this object in parent space.
         virtual Vector3 GetLocation() const = 0;
         /// @brief Sets the orientation of this object in parent space.
-        /// @param Orientation A Quaternion representing the rotation this object is to be set to.
+        /// @param Ori A Quaternion representing the rotation this object is to be set to.
         virtual void SetOrientation(const Quaternion& Ori) = 0;
         /// @brief Sets the orientation of this object in parent space via Reals.
         /// @param X The X component of the Axis.
@@ -194,7 +194,7 @@ namespace Mezzanine
         /// @return Returns a Quaternion representing the current orientation of this object in parent space.
         virtual Quaternion GetOrientation() const = 0;
         /// @brief Sets the scaling to be applied to this object.
-        /// @param Scale A Vector3 representing the amount of scaling to apply to this object.
+        /// @param Sc A Vector3 representing the amount of scaling to apply to this object.
         virtual void SetScale(const Vector3& Sc) = 0;
         /// @brief Sets the scaling to be applied to this object via Reals.
         /// @param X The scaling factor to apply on the X axis.
