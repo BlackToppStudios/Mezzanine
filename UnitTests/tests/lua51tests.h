@@ -639,6 +639,16 @@ class lua51tests : public UnitTestGroup
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
 
+                TestLuaScript("function TestException(x)\n"
+                              "   MezzanineSafe.Exception(\"LuaException\",\"SampleException\",\"TestException\",\"NA\",2)\n"
+                              "   return 32509696\n"
+                              "end",
+                              "Exception", "TestException", 8, 32509696, 0.0,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+
+                TestOutput << std::dec << 0x01F00F00 << endl;
+
 
                 //AreaEffectUpdateWorkUnit
             }

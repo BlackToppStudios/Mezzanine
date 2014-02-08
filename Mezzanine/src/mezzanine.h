@@ -102,7 +102,11 @@
 
 #ifndef SWIG
 #include "eventuserinput.h"
+#endif
+
 #include "exception.h"
+
+#ifndef SWIG
 #include "fieldofforce.h"
 #include "gravityfield.h"
 #include "gravitywell.h"

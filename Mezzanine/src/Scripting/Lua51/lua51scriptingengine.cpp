@@ -145,24 +145,34 @@ namespace Mezzanine
             // Publically visible internals
             void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
             {
+                if(0==LuaReturn)
+                    { return; }
+
+                String ErrorMessage;
+                size_t Length;
+                const char* ErrorCString = lua_tolstring(this->State, -1, &Length);
+                ErrorMessage.reserve(Length+2);
+                ErrorMessage = String(ErrorCString);
+                if(ErrorMessage.length()!=Length)
+                    { MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua is putting odd things in error messages:\n"+ErrorMessage); }
+                ErrorMessage += "\n";
+
                 switch(LuaReturn)
                 {
-                    case 0:
-                        break;
                     case LUA_YIELD:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_YIELD, "Lua returned a LUA_YIELD instead of completing.")
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_YIELD, "Lua returned a LUA_YIELD instead of completing:\n"+ErrorMessage);
                     case LUA_ERRRUN:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_RUNTIME, "There was a runtime Error handling the Lua script.")
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_RUNTIME, "There was a runtime Error handling the Lua script:\n"+ErrorMessage);
                     case LUA_ERRSYNTAX:
-                        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_LUA, "There was an error with the syntax of the Lua script.")
+                        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_LUA, "There was an error with the syntax of the Lua script:\n"+ErrorMessage);
                     case LUA_ERRERR:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_ERRERR, "There was an error when Lua attempted to handle an error.")
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_ERRERR, "There was an error when Lua attempted to handle an error:\n"+ErrorMessage);
                     case LUA_ERRMEM:
-                        MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Lua could not allocate memory.")
+                        MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Lua could not allocate memory:\n"+ErrorMessage);
                     case LUA_ERRFILE:
-                        MEZZ_EXCEPTION(Exception::IO_FILE_EXCEPTION, "Lua had an error with file IO.")
+                        MEZZ_EXCEPTION(Exception::IO_FILE_EXCEPTION, "Lua had an error with file IO:\n"+ErrorMessage);
                     default:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua had an error and we are not sure what it was.")
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua had an error and we are not sure what it was:\n"+ErrorMessage);
                 }
             }
 
