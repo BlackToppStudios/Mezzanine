@@ -243,6 +243,14 @@ namespace Mezzanine
             return false;
         }
 
+        void EditBox::SetText(const String& Text)
+        {
+            TextLayer* EditLayer = this->GetEditLayer();
+            if( EditLayer != NULL ) {
+                EditLayer->SetText(Text);
+            }
+        }
+
         String EditBox::GetText() const
         {
             TextLayer* EditLayer = this->GetEditLayer();
@@ -269,10 +277,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // EditBox Configuration
 
-        void EditBox::SetInputFilter(FilterCallback* Callback)
+        void EditBox::SetInputFilter(EditBox::FilterCallback* Callback)
             { this->InputFilter = Callback; }
 
-        FilterCallback* EditBox::GetIntputFilter() const
+        EditBox::FilterCallback* EditBox::GetIntputFilter() const
             { return this->InputFilter; }
 
         TextLayer* EditBox::GetEditLayer() const

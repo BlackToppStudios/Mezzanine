@@ -141,6 +141,10 @@ namespace Mezzanine
             /// the appropriate inputs to display text.
             /// @return Returns true if this EditBox is currently editing and ready for inputs, false otherwise.
             virtual Boolean IsCurrentlyEditing() const;
+
+            /// @brief Sets the text in the edit layer of this EditBox.
+            /// @param Text A string containing the text the edit layer of this EditBox is to display.
+            virtual void SetText(const String& Text);
             /// @brief Gets the text in the edit layer of this EditBox.
             /// @return Returns a string containing the text in the text layer being edited by this EditBox.
             virtual String GetText() const;
