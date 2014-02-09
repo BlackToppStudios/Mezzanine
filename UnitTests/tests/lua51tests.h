@@ -413,7 +413,7 @@ class lua51tests : public UnitTestGroup
                               "   )\n"
                               "   return Flat1.Distance\n"
                               "end",
-                              "Plane", "MakePlane", -3, 9,
+                              "Plane", "MakePlane", -3, 9, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function VecXMultiply(x)\n"
@@ -422,14 +422,14 @@ class lua51tests : public UnitTestGroup
                               "   Vec3=Vec2*Vec1\n"
                               "   return Vec3.X\n"
                               "end",
-                              "Vector2", "VecXMultiply", 9.5, 19,
+                              "Vector2", "VecXMultiply", 9.5, 19, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function VecXMultiply(x)\n"
                               "   Quat1=MezzanineSafe.Quaternion(x,0,0,0)\n"
                               "   return Quat1:Length()\n"
                               "end",
-                              "Quaternion", "VecXMultiply", 10, 10,
+                              "Quaternion", "VecXMultiply", 10, 10, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function VecXMultiply(x)\n"
@@ -439,7 +439,7 @@ class lua51tests : public UnitTestGroup
                               "   )\n"
                               "   return Tranny.Location:Length()\n"
                               "end",
-                              "Transform", "VecXMultiply", 10, 10,
+                              "Transform", "VecXMultiply", 10, 10, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function VecXMultiply(x)\n"
@@ -449,7 +449,7 @@ class lua51tests : public UnitTestGroup
                               "   )\n"
                               "   return Charles:Length()\n"
                               "end",
-                              "Ray", "VecXMultiply", 10, 10,
+                              "Ray", "VecXMultiply", 10, 10, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function VecXMultiply(x)\n"
@@ -457,7 +457,7 @@ class lua51tests : public UnitTestGroup
                               "   GymCoach:SetGoalTime(x)\n"
                               "   return GymCoach:GetGoalTime()\n"
                               "end",
-                              "Timer", "VecXMultiply", 100, 100,
+                              "Timer", "VecXMultiply", 100, 100, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 // cannot be include until after engine startup can be include
@@ -476,7 +476,7 @@ class lua51tests : public UnitTestGroup
                               "   mut:Unlock()\n"
                               "   return x\n"
                               "end",
-                              "Threading::Mutex", "TestFuncMutex", 100, 100,
+                              "Threading::Mutex", "TestFuncMutex", 100, 100, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestFuncBarrier(x)\n"
@@ -484,14 +484,14 @@ class lua51tests : public UnitTestGroup
                               "   --No Bar around here!!\n"
                               "   return x\n"
                               "end",
-                              "Threading::Barrier", "TestFuncBarrier", 100, 100,
+                              "Threading::Barrier", "TestFuncBarrier", 100, 100, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestFuncThread(x)\n"
                               "   MezzanineSafe.Threading.sleep_for(x)\n"
                               "   return x\n"
                               "end",
-                              "Threading::Thread", "TestFuncThread", 100, 100,
+                              "Threading::Thread", "TestFuncThread", 100, 100, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestFuncAvg(x)\n"
@@ -501,20 +501,20 @@ class lua51tests : public UnitTestGroup
                               "   Avg:Insert(11+x)\n"
                               "   return Avg:GetAverage()\n"
                               "end",
-                              "Threading::BufferedRollingAverageWhole", "TestFuncAvg", 100, 110,
+                              "Threading::BufferedRollingAverageWhole", "TestFuncAvg", 100, 110, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestFuncSyscall(x)\n"
                               "   return MezzanineSafe.Threading.GetCPUCount()\n"
                               "end",
-                              "Threading::SystemCalls", "TestFuncSyscall", GetCPUCount(), GetCPUCount(),
+                              "Threading::SystemCalls", "TestFuncSyscall", GetCPUCount(), GetCPUCount(), 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestFuncWorkUnitKey(x)\n"
                               "   key=MezzanineSafe.Threading.WorkUnitKey()\n"
                               "   return x\n"
                               "end",
-                              "Threading::WorkUnitKey", "TestFuncWorkUnitKey", 100, 100,
+                              "Threading::WorkUnitKey", "TestFuncWorkUnitKey", 100, 100, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestFuncFrameScheduler(x)\n"
@@ -522,7 +522,7 @@ class lua51tests : public UnitTestGroup
                               "   FS:SetFrameRate(60)\n"
                               "   return FS:GetFrameLength()\n"
                               "end",
-                              "Threading::FrameScheduler", "TestFuncFrameScheduler", 100, 16666,
+                              "Threading::FrameScheduler", "TestFuncFrameScheduler", 100, 16666, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
 /* // I would like to figure this one out, by I suspect it is impossible.
@@ -537,14 +537,14 @@ class lua51tests : public UnitTestGroup
                               "   key=MezzanineSafe.Threading.AsynchronousFileLoadWorkUnit()\n"
                               "   return x\n"
                               "end",
-                              "Threading::WorkUnitAsync", "TestFuncWorkUnitAsync", 100, 100,
+                              "Threading::WorkUnitAsync", "TestFuncWorkUnitAsync", 100, 100, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestFuncWorkUnitLogAgg(x)\n"
                               "   key=MezzanineSafe.Threading.LogAggregator()\n"
                               "   return x\n"
                               "end",
-                              "Threading::WorkUnitLogAggregator", "TestFuncWorkUnitLogAgg", 100, 100,
+                              "Threading::WorkUnitLogAggregator", "TestFuncWorkUnitLogAgg", 100, 100, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 //Kinda useless in garbage collected languages, Maybe useful for determining when collection happens
@@ -552,7 +552,7 @@ class lua51tests : public UnitTestGroup
                               "   STimer=MezzanineSafe.Threading.ScopedTimer()"
                               "   return x\n"
                               "end",
-                              "Threading::ScopedTimer", "TestFuncScop", 100, 100,
+                              "Threading::ScopedTimer", "TestFuncScop", 100, 100, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestAABB(x)\n"
@@ -562,21 +562,21 @@ class lua51tests : public UnitTestGroup
                               "     )\n"
                               "   return aabb:GetVolume()\n"
                               "end",
-                              "AABB", "TestAABB", 2, 8,
+                              "AABB", "TestAABB", 2, 8, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestBinaryBuffer(x)\n"
                               "   bb=MezzanineSafe.BinaryBuffer(x)\n"
                               "   return bb:GetSize()\n"
                               "end",
-                              "BinaryBuffer", "TestBinaryBuffer", 2, 2,
+                              "BinaryBuffer", "TestBinaryBuffer", 2, 2, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestActorManager(x)\n"
                               "   bb=MezzanineSafe.ActorManager()\n"
                               "   return x\n"
                               "end",
-                              "ActorManager", "TestActorManager", 2, 2,
+                              "ActorManager", "TestActorManager", 2, 2, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestColourValue(x)\n"
@@ -584,21 +584,21 @@ class lua51tests : public UnitTestGroup
                               "   alicedressbeforegunfight=MezzanineSafe.ColourValue_AliceBlue()\n"
                               "   return alicedressbeforegunfight:GetRedChannel()*255\n"
                               "end",
-                              "ColourValue", "TestColourValue", 2, 240,
+                              "ColourValue", "TestColourValue", 2, 240, 1.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestAE(x)\n"
                               "   thing=MezzanineSafe.AreaEffectUpdateWorkUnit\n"
                               "   return x\n"
                               "end",
-                              "AreaEffect", "TestAE", 2, 2,
+                              "AreaEffect", "TestAE", 2, 2, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestStringTool(x)\n"
                               "   vec=MezzanineSafe.ConvertToVector3(\"3 4 6\")"
                               "   return vec.X\n"
                               "end",
-                              "StringTool", "TestStringTool", 3, 3,
+                              "StringTool", "TestStringTool", 3, 3, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestSphere(x)\n"
@@ -609,14 +609,36 @@ class lua51tests : public UnitTestGroup
                               "     return 4\n"
                               "   end\n"
                               "end",
-                              "Sphere", "TestSphere", 5, 3,
+                              "Sphere", "TestSphere", 3, 5, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestMathTool(x)\n"
-                              "   return MezzanineSafe.Ceil(x)"
+                              "   return MezzanineSafe.Ceil(x)\n"
                               "end",
-                              "MathTool", "TestMathTool", 4, 3.5,
+                              "MathTool", "TestMathTool", 3.5, 4.0, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestRootEnumerations(x)\n"
+                              "   return MezzanineSafe.AT_Zip\n"
+                              "end",
+                              "RootEnumerations", "TestRootEnumerations", 8, 1, 0.0,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestEventCompilation(x)\n"
+                              "   MezzanineSafe.Event(\"Test\")\n"
+                              "   return 1\n"
+                              "end",
+                              "Event", "TestEventCompilation", 8, 1, 0.0,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+                TestLuaScript("function TestEventArgCompilation(x)\n"
+                              "   b=MezzanineSafe.EventArguments(\"Test\")\n"
+                              "   return 1\n"
+                              "end",
+                              "EventArguments", "TestEventArgCompilation", 8, 1, 0.0,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+
+
 
                 //AreaEffectUpdateWorkUnit
             }

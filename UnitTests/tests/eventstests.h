@@ -47,7 +47,7 @@
 #include <stdexcept> //only used to throw for TEST_THROW
 #include <ostream>
 
-class TestFunctor : public FunctorSubscriberSlot::FunctorDefinition
+class TestFunctor : public EventSlotFunctorDefinition
 {
     public:
         ostream& Output;

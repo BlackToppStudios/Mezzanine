@@ -331,5 +331,10 @@ int main (int argc, char** argv)
     }
     Runner.DisplayResults(cout, cerr, SummaryDisplay, FullDisplay);
 
+    for(AllUnitTestGroups::iterator Iter = Runner.begin(); Iter!=Runner.end(); Iter++)
+    {
+        if(Iter->Results>Skipped)
+            { return ExitFailure; }
+    }
     return ExitSuccess;
  }

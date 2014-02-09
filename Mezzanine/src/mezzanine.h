@@ -64,36 +64,44 @@
     #include "XML/xml.h"
     #include "UI/ui.h"
 #endif
-                                        // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
-#include "actor.h"                      // serializes
+
+#include "actor.h"
 #include "actormanager.h"
 #include "areaeffect.h"
 #include "areaeffectmanager.h"
-#include "attachable.h"                 // Target for output only
+#include "attachable.h"
 #include "axisalignedbox.h"
 #include "binarybuffer.h"
 #include "cameracontroller.h"
-#include "colourvalue.h"                // done
+#include "colourvalue.h"
 #include "countedptr.h"
-#include "crossplatform.h"              // nothing to do
-#include "crossplatformexport.h"        // nothing to do
-#include "datatypes.h"                  // nothing to do
+#include "crossplatform.h"
+#include "crossplatformexport.h"
+#include "datatypes.h"
 #include "debris.h"
 #include "debrismanager.h"
 
 #ifndef SWIG
 #include "entresol.h"
-#include "enumerations.h"               // nothing to do
-#include "event.h"                      // new localized system
-#include "eventarguments.h"             // new localized system
-#include "eventbase.h"                  // done/serializes
-#include "eventgamewindow.h"            // done
-#include "eventmanager.h"               // done
-#include "eventpublisher.h"             // new localized system
-#include "eventquit.h"                  // done
-#include "eventsubscriber.h"            // new localized system
-#include "eventsubscriberslot.h"        // new localized system
-#include "eventuserinput.h"             // done
+#endif
+
+#include "enumerations.h"
+#include "event.h"
+#include "eventarguments.h"
+
+#ifndef SWIG
+#include "eventbase.h"
+#include "eventgamewindow.h"
+#include "eventmanager.h"
+#include "eventpublisher.h"
+#include "eventquit.h"
+#endif
+
+#include "eventsubscriber.h"
+#include "eventsubscriberslot.h"
+
+#ifndef SWIG
+#include "eventuserinput.h"
 #include "exception.h"
 #include "fieldofforce.h"
 #include "gravityfield.h"
@@ -115,17 +123,17 @@
 #include "objectsettings.h"
 #endif
 
-#include "plane.h"                      // done
-#include "quaternion.h"                 // done
+#include "plane.h"
+#include "quaternion.h"
 #include "ray.h"
-#include "rayquerytool.h"               // done
+#include "rayquerytool.h"
 
 #ifndef SWIG
 #include "resource.h"
 #include "resourcemanager.h"
 #include "rigiddebris.h"
-#include "serialization.h"              // nothing to do
-#include "singleton.h"                  // nothing to do
+#include "serialization.h"
+#include "singleton.h"
 #include "softdebris.h"
 #endif
 
@@ -140,9 +148,9 @@
 #endif // \no SWIG
 
 #include "timer.h"
-#include "transform.h"                  // done
-#include "vector2.h"                    // done
-#include "vector3.h"                    // done
+#include "transform.h"
+#include "vector2.h"
+#include "vector3.h"
 
 #include "worldobject.h"
 
