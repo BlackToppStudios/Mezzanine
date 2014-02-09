@@ -86,9 +86,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classMezzanine_1_1UI_1_1StackedContainer-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Mezzanine::UI::StackedContainer Class Reference</div>  </div>
+<div class="title">Mezzanine::UI::StackedContainer Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -113,29 +114,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3d5dc90ef9cc3d09a47d7391da649e2c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a3d5dc90ef9cc3d09a47d7391da649e2c">StackedContainer</a> (<a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
-<tr class="memdesc:a3d5dc90ef9cc3d09a47d7391da649e2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blank constructor.  <a href="#a3d5dc90ef9cc3d09a47d7391da649e2c">More...</a><br/></td></tr>
-<tr class="separator:a3d5dc90ef9cc3d09a47d7391da649e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7500a6a23acc83f6f0c2ba74062233f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#aa7500a6a23acc83f6f0c2ba74062233f">StackedContainer</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;RendName, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
-<tr class="memdesc:aa7500a6a23acc83f6f0c2ba74062233f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#aa7500a6a23acc83f6f0c2ba74062233f">More...</a><br/></td></tr>
-<tr class="separator:aa7500a6a23acc83f6f0c2ba74062233f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ca81affc949b4e2fb8c0922bc0b38c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a1ca81affc949b4e2fb8c0922bc0b38c1">StackedContainer</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;RendName, const <a class="el" href="classMezzanine_1_1UI_1_1UnifiedRect.html">UnifiedRect</a> &amp;RendRect, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
-<tr class="memdesc:a1ca81affc949b4e2fb8c0922bc0b38c1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMezzanine_1_1UI_1_1Rect.html" title="This class represents a box shaped area on the screen. ">Rect</a> constructor.  <a href="#a1ca81affc949b4e2fb8c0922bc0b38c1">More...</a><br/></td></tr>
-<tr class="separator:a1ca81affc949b4e2fb8c0922bc0b38c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98f3a4109da85fb8b41e6287abd8351e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98f3a4109da85fb8b41e6287abd8351e"></a>
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a98f3a4109da85fb8b41e6287abd8351e">~StackedContainer</a> ()</td></tr>
-<tr class="memdesc:a98f3a4109da85fb8b41e6287abd8351e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
-<tr class="separator:a98f3a4109da85fb8b41e6287abd8351e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9a3e5ed108ebcce9ebcb45b14c43bf2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#ae9a3e5ed108ebcce9ebcb45b14c43bf2">_NotifyButtonSelected</a> (<a class="el" href="classMezzanine_1_1UI_1_1StackButton.html">StackButton</a> *Selected)=0</td></tr>
+<tr class="memdesc:ae9a3e5ed108ebcce9ebcb45b14c43bf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies this <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html" title="This is the base class for containers that stack their children one on top of the other...">StackedContainer</a> a button has been selected.  <a href="#ae9a3e5ed108ebcce9ebcb45b14c43bf2">More...</a><br/></td></tr>
+<tr class="separator:ae9a3e5ed108ebcce9ebcb45b14c43bf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a199a471e7ecafc773593d8050d1f3fec"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a199a471e7ecafc773593d8050d1f3fec">GetButtonConfig</a> (const <a class="el" href="classMezzanine_1_1UI_1_1StackButton.html">StackButton</a> *ConfigButton) const =0</td></tr>
+<tr class="memdesc:a199a471e7ecafc773593d8050d1f3fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the role of the specified StackedButton for this <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html" title="This is the base class for containers that stack their children one on top of the other...">StackedContainer</a>.  <a href="#a199a471e7ecafc773593d8050d1f3fec">More...</a><br/></td></tr>
+<tr class="separator:a199a471e7ecafc773593d8050d1f3fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bb5ff02a41e40d1756461d514582544"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a9bb5ff02a41e40d1756461d514582544">ProtoDeSerializeProperties</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
 <tr class="memdesc:a9bb5ff02a41e40d1756461d514582544"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> <a class="el" href="classMezzanine_1_1Node.html">Node</a> and overwrite the properties of this object with it.  <a href="#a9bb5ff02a41e40d1756461d514582544">More...</a><br/></td></tr>
 <tr class="separator:a9bb5ff02a41e40d1756461d514582544"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fd4de65833ee2000477308d37c39fe5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a0fd4de65833ee2000477308d37c39fe5">ProtoSerializeProperties</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot) const </td></tr>
 <tr class="memdesc:a0fd4de65833ee2000477308d37c39fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the properties of this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a> ready for serialization.  <a href="#a0fd4de65833ee2000477308d37c39fe5">More...</a><br/></td></tr>
 <tr class="separator:a0fd4de65833ee2000477308d37c39fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77ce7fca0ce21b1e71bab1f3eb288702"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a77ce7fca0ce21b1e71bab1f3eb288702">SetButtonConfig</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> Config, <a class="el" href="classMezzanine_1_1UI_1_1StackButton.html">StackButton</a> *ConfigButton)=0</td></tr>
+<tr class="memdesc:a77ce7fca0ce21b1e71bab1f3eb288702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds a StackedButton to this container according to the provided config value.  <a href="#a77ce7fca0ce21b1e71bab1f3eb288702">More...</a><br/></td></tr>
+<tr class="separator:a77ce7fca0ce21b1e71bab1f3eb288702"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1UI_1_1Widget"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1UI_1_1Widget')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Mezzanine::UI::Widget</a></td></tr>
-<tr class="memitem:a1eb9176e616b1df4e0c473f622ce1bd6 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a1eb9176e616b1df4e0c473f622ce1bd6">_HandleInput</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">Input::MetaCode</a> &amp;Code)</td></tr>
-<tr class="memdesc:a1eb9176e616b1df4e0c473f622ce1bd6 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles input passed to this widget.  <a href="#a1eb9176e616b1df4e0c473f622ce1bd6">More...</a><br/></td></tr>
-<tr class="separator:a1eb9176e616b1df4e0c473f622ce1bd6 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaf322ce6edacd96a7574d54949e782c inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#aaaf322ce6edacd96a7574d54949e782c">_HandleInput</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">Input::MetaCode</a> &amp;Code)</td></tr>
+<tr class="memdesc:aaaf322ce6edacd96a7574d54949e782c inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles input passed to this widget.  <a href="#aaaf322ce6edacd96a7574d54949e782c">More...</a><br/></td></tr>
+<tr class="separator:aaaf322ce6edacd96a7574d54949e782c inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07344316b7bc18a7bc1f28415daf72a3 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a07344316b7bc18a7bc1f28415daf72a3">_NotifyEvent</a> (const <a class="el" href="classMezzanine_1_1EventArguments.html">EventArguments</a> &amp;Args)</td></tr>
 <tr class="memdesc:a07344316b7bc18a7bc1f28415daf72a3 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies this subscriber of an event being fired.  <a href="#a07344316b7bc18a7bc1f28415daf72a3">More...</a><br/></td></tr>
 <tr class="separator:a07344316b7bc18a7bc1f28415daf72a3 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,9 +151,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:ac7585804bf6d3b4924333f7e5c3030c4 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ac7585804bf6d3b4924333f7e5c3030c4">_OnMouseDragEnd</a> ()</td></tr>
 <tr class="memdesc:ac7585804bf6d3b4924333f7e5c3030c4 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Self logic to be executed when the mouse cursor stops dragging across the bounds of this widget.  <a href="#ac7585804bf6d3b4924333f7e5c3030c4">More...</a><br/></td></tr>
 <tr class="separator:ac7585804bf6d3b4924333f7e5c3030c4 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1248f1b7187c2c58d68cb256dc7aa81a inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a1248f1b7187c2c58d68cb256dc7aa81a">_OnMouseDragging</a> ()</td></tr>
-<tr class="memdesc:a1248f1b7187c2c58d68cb256dc7aa81a inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Self logic to be executed when the mouse cursor is dragging across the bounds of this widget.  <a href="#a1248f1b7187c2c58d68cb256dc7aa81a">More...</a><br/></td></tr>
-<tr class="separator:a1248f1b7187c2c58d68cb256dc7aa81a inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef64490d5e605a3e96c7c96f882b2f2f inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#aef64490d5e605a3e96c7c96f882b2f2f">_OnMouseDragStart</a> ()</td></tr>
 <tr class="memdesc:aef64490d5e605a3e96c7c96f882b2f2f inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Self logic to be executed when the mouse cursor starts dragging across the bounds of this widget.  <a href="#aef64490d5e605a3e96c7c96f882b2f2f">More...</a><br/></td></tr>
 <tr class="separator:aef64490d5e605a3e96c7c96f882b2f2f inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,9 +198,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:ad6575e6720477274153924b316e5b1d4 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ad6575e6720477274153924b316e5b1d4">Hide</a> ()</td></tr>
 <tr class="memdesc:ad6575e6720477274153924b316e5b1d4 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this renderable to hide.  <a href="#ad6575e6720477274153924b316e5b1d4">More...</a><br/></td></tr>
 <tr class="separator:ad6575e6720477274153924b316e5b1d4 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a173586f5b72358415faea3001a4929fa inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a173586f5b72358415faea3001a4929fa">IsBeingDragged</a> () const </td></tr>
-<tr class="memdesc:a173586f5b72358415faea3001a4929fa inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this widget is being dragged.  <a href="#a173586f5b72358415faea3001a4929fa">More...</a><br/></td></tr>
-<tr class="separator:a173586f5b72358415faea3001a4929fa inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4112dc00ae167bfba717c3758860aed6 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a4112dc00ae167bfba717c3758860aed6">IsDragged</a> () const </td></tr>
+<tr class="memdesc:a4112dc00ae167bfba717c3758860aed6 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not the system mouse is being dragged over this widget.  <a href="#a4112dc00ae167bfba717c3758860aed6">More...</a><br/></td></tr>
+<tr class="separator:a4112dc00ae167bfba717c3758860aed6 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae11405dab47d0662738bb95170cc2341 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ae11405dab47d0662738bb95170cc2341">IsHovered</a> () const </td></tr>
 <tr class="memdesc:ae11405dab47d0662738bb95170cc2341 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the result of the last mouse hover check.  <a href="#ae11405dab47d0662738bb95170cc2341">More...</a><br/></td></tr>
 <tr class="separator:ae11405dab47d0662738bb95170cc2341 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,10 +219,11 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a0d068e4c1edfa77bddaf4c5d7b20d681 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a0d068e4c1edfa77bddaf4c5d7b20d681">ProtoSerializeStateGroupBindings</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot) const </td></tr>
 <tr class="memdesc:a0d068e4c1edfa77bddaf4c5d7b20d681 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the state-group bindings of this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a> ready for serialization.  <a href="#a0d068e4c1edfa77bddaf4c5d7b20d681">More...</a><br/></td></tr>
 <tr class="separator:a0d068e4c1edfa77bddaf4c5d7b20d681 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a529361cec82b41ad7d066e38a69b3f94 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a529361cec82b41ad7d066e38a69b3f94">SetGroupFromState</a> (const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> BindState)</td></tr>
-<tr class="memdesc:a529361cec82b41ad7d066e38a69b3f94 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the group bound to the specified WidgetState as active.  <a href="#a529361cec82b41ad7d066e38a69b3f94">More...</a><br/></td></tr>
-<tr class="separator:a529361cec82b41ad7d066e38a69b3f94 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53e0a155716c737c38015d6ff260d0ec inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a53e0a155716c737c38015d6ff260d0ec">SetGroupFromState</a> (const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> BindState)</td></tr>
+<tr class="memdesc:a53e0a155716c737c38015d6ff260d0ec inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the group bound to the specified WidgetState as active.  <a href="#a53e0a155716c737c38015d6ff260d0ec">More...</a><br/></td></tr>
+<tr class="separator:a53e0a155716c737c38015d6ff260d0ec inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a292248a312427b1bb2058b7639246a2b inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a292248a312427b1bb2058b7639246a2b">SetVisible</a> (Boolean CanSee)</td></tr>
+<tr class="memdesc:a292248a312427b1bb2058b7639246a2b inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this renderable.  <a href="#a292248a312427b1bb2058b7639246a2b">More...</a><br/></td></tr>
 <tr class="separator:a292248a312427b1bb2058b7639246a2b inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a863195baafaee7ab8a0887c660525bf6 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a863195baafaee7ab8a0887c660525bf6">Show</a> ()</td></tr>
 <tr class="memdesc:a863195baafaee7ab8a0887c660525bf6 inherit pub_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this renderable to be shown.  <a href="#a863195baafaee7ab8a0887c660525bf6">More...</a><br/></td></tr>
@@ -361,6 +356,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:acec22281dc6e8327cdb914ed5df48785 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1SingleLineTextLayer.html">SingleLineTextLayer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#acec22281dc6e8327cdb914ed5df48785">CreateSingleLineTextLayer</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;LineHeight, const <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a5417da5234e45e68ce2b1af78f1e3aa1">GroupOrderEntryVector</a> &amp;Entrys)</td></tr>
 <tr class="memdesc:acec22281dc6e8327cdb914ed5df48785 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classMezzanine_1_1UI_1_1SingleLineTextLayer.html" title="This is a render layer specializing in single-line text. ">SingleLineTextLayer</a> for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.  <a href="#acec22281dc6e8327cdb914ed5df48785">More...</a><br/></td></tr>
 <tr class="separator:acec22281dc6e8327cdb914ed5df48785 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bc5d426beb2c0b7f22a7ab14f916855 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3bc5d426beb2c0b7f22a7ab14f916855"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a3bc5d426beb2c0b7f22a7ab14f916855">DestroyAllChildren</a> ()</td></tr>
+<tr class="memdesc:a3bc5d426beb2c0b7f22a7ab14f916855 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all child Widgets currently inside this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a>. <br/></td></tr>
+<tr class="separator:a3bc5d426beb2c0b7f22a7ab14f916855 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35c3ad4f96b2a4a6e27ee8a712c5ba4d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35c3ad4f96b2a4a6e27ee8a712c5ba4d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a35c3ad4f96b2a4a6e27ee8a712c5ba4d">DestroyAllRenderLayerGroups</a> ()</td></tr>
 <tr class="memdesc:a35c3ad4f96b2a4a6e27ee8a712c5ba4d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy's all RenderLayerGroups being stored/managed by this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a>. <br/></td></tr>
@@ -369,6 +368,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a7dd1be2559864c2ae6cf7d4e36627622">DestroyAllRenderLayers</a> ()</td></tr>
 <tr class="memdesc:a7dd1be2559864c2ae6cf7d4e36627622 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all RenderLayers being stored by this renderable. <br/></td></tr>
 <tr class="separator:a7dd1be2559864c2ae6cf7d4e36627622 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1713b416c6cbaa4d672481ee1447268d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a1713b416c6cbaa4d672481ee1447268d">DestroyChild</a> (<a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a> *ToBeDestroyed)</td></tr>
+<tr class="memdesc:a1713b416c6cbaa4d672481ee1447268d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a child <a class="el" href="classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. ">Widget</a> currently inside this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a>.  <a href="#a1713b416c6cbaa4d672481ee1447268d">More...</a><br/></td></tr>
+<tr class="separator:a1713b416c6cbaa4d672481ee1447268d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43fb6275e9c43af9980ff0a98b24b1e1 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a43fb6275e9c43af9980ff0a98b24b1e1">DestroyRenderLayer</a> (<a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html">RenderLayer</a> *ToBeDestroyed)</td></tr>
 <tr class="memdesc:a43fb6275e9c43af9980ff0a98b24b1e1 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> being stored by this renderable.  <a href="#a43fb6275e9c43af9980ff0a98b24b1e1">More...</a><br/></td></tr>
 <tr class="separator:a43fb6275e9c43af9980ff0a98b24b1e1 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -393,13 +395,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a50d25a51afcfa86a0e12f1df79fbad1d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a50d25a51afcfa86a0e12f1df79fbad1d">GetChild</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;RendName) const </td></tr>
 <tr class="memdesc:a50d25a51afcfa86a0e12f1df79fbad1d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a child by it's name.  <a href="#a50d25a51afcfa86a0e12f1df79fbad1d">More...</a><br/></td></tr>
 <tr class="separator:a50d25a51afcfa86a0e12f1df79fbad1d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9239c6948fb3a6ba614082bdefb43804 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a9239c6948fb3a6ba614082bdefb43804">GetHighestChildZOrder</a> () const </td></tr>
+<tr class="memdesc:a9239c6948fb3a6ba614082bdefb43804 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the highest ZOrder among the children of this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a>.  <a href="#a9239c6948fb3a6ba614082bdefb43804">More...</a><br/></td></tr>
+<tr class="separator:a9239c6948fb3a6ba614082bdefb43804 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af87015a09aa5bdbab0127585b16dec47 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1UI.html#af126c73bf3db9e5ae1409a386376c73f">UI::SizingRules</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#af87015a09aa5bdbab0127585b16dec47">GetHorizontalSizingRules</a> () const </td></tr>
 <tr class="memdesc:af87015a09aa5bdbab0127585b16dec47 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current behavior this quad will follow for the X axis when it is resized.  <a href="#af87015a09aa5bdbab0127585b16dec47">More...</a><br/></td></tr>
 <tr class="separator:af87015a09aa5bdbab0127585b16dec47 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2023b92ee69cf4a5c184254e1db31eff inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a2023b92ee69cf4a5c184254e1db31eff">GetIdealHeightForText</a> () const </td></tr>
 <tr class="memdesc:a2023b92ee69cf4a5c184254e1db31eff inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the height needed for this quadrenderable to be able to completely display text in it's child text layers.  <a href="#a2023b92ee69cf4a5c184254e1db31eff">More...</a><br/></td></tr>
 <tr class="separator:a2023b92ee69cf4a5c184254e1db31eff inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a790fc76320e18d93a0e974ed6c719e8a inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a790fc76320e18d93a0e974ed6c719e8a">GetManualTransformUpdates</a> () const </td></tr>
+<tr class="memitem:a46e11f0f4dcfbf211b963334bf9ab1f3 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a46e11f0f4dcfbf211b963334bf9ab1f3">GetLowestChildZOrder</a> () const </td></tr>
+<tr class="memdesc:a46e11f0f4dcfbf211b963334bf9ab1f3 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the lowest ZOrder among the children of this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a>.  <a href="#a46e11f0f4dcfbf211b963334bf9ab1f3">More...</a><br/></td></tr>
+<tr class="separator:a46e11f0f4dcfbf211b963334bf9ab1f3 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a790fc76320e18d93a0e974ed6c719e8a inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a790fc76320e18d93a0e974ed6c719e8a">GetManualTransformUpdates</a> () const </td></tr>
 <tr class="memdesc:a790fc76320e18d93a0e974ed6c719e8a inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this quad will be automatically updated when parent transforms are updated.  <a href="#a790fc76320e18d93a0e974ed6c719e8a">More...</a><br/></td></tr>
 <tr class="separator:a790fc76320e18d93a0e974ed6c719e8a inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12e9705b08f5994095629c5e60046bca inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1UnifiedVec2.html">UnifiedVec2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a12e9705b08f5994095629c5e60046bca">GetMaxSize</a> () const </td></tr>
@@ -408,7 +416,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a801a2cf6486ca8222c960b00e86a4b41 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1UnifiedVec2.html">UnifiedVec2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a801a2cf6486ca8222c960b00e86a4b41">GetMinSize</a> () const </td></tr>
 <tr class="memdesc:a801a2cf6486ca8222c960b00e86a4b41 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set minimum size for this quad.  <a href="#a801a2cf6486ca8222c960b00e86a4b41">More...</a><br/></td></tr>
 <tr class="separator:a801a2cf6486ca8222c960b00e86a4b41 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af30596034cb98402ea4efe739586d030 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#af30596034cb98402ea4efe739586d030">GetMousePassthrough</a> () const </td></tr>
+<tr class="memitem:af30596034cb98402ea4efe739586d030 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#af30596034cb98402ea4efe739586d030">GetMousePassthrough</a> () const </td></tr>
 <tr class="memdesc:af30596034cb98402ea4efe739586d030 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not Mouse Passthrough is enabled.  <a href="#af30596034cb98402ea4efe739586d030">More...</a><br/></td></tr>
 <tr class="separator:af30596034cb98402ea4efe739586d030 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad404c97fd22c6370fd48a3d98997a753 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html">QuadRenderable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#ad404c97fd22c6370fd48a3d98997a753">GetNextSibling</a> (Boolean Wrap=true)</td></tr>
@@ -447,9 +455,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a0494804b10e9dcf48287590b77bd9d6e inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html">RenderLayerGroup</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a0494804b10e9dcf48287590b77bd9d6e">GetRenderLayerGroup</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;<a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a82c8384b0aab812fe3e499ff97e36e38">Name</a>) const </td></tr>
 <tr class="memdesc:a0494804b10e9dcf48287590b77bd9d6e inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html" title="This class stores a group of render layers that can be set to be rendered. ">RenderLayerGroup</a> by name.  <a href="#a0494804b10e9dcf48287590b77bd9d6e">More...</a><br/></td></tr>
 <tr class="separator:a0494804b10e9dcf48287590b77bd9d6e inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a987934a65892873c52ee71fdf4412f33 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a987934a65892873c52ee71fdf4412f33">GetRenderPriority</a> () const </td></tr>
-<tr class="memdesc:a987934a65892873c52ee71fdf4412f33 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the priority this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a> should be rendered with.  <a href="#a987934a65892873c52ee71fdf4412f33">More...</a><br/></td></tr>
-<tr class="separator:a987934a65892873c52ee71fdf4412f33 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6af297218ed4c18d7cc80a4ddc4e243b inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="classMezzanine_1_1UI_1_1SizingInfo.html">SizingInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a6af297218ed4c18d7cc80a4ddc4e243b">GetSizingPolicy</a> () const </td></tr>
 <tr class="memdesc:a6af297218ed4c18d7cc80a4ddc4e243b inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current behavior this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a> will use when it is sized.  <a href="#a6af297218ed4c18d7cc80a4ddc4e243b">More...</a><br/></td></tr>
 <tr class="separator:a6af297218ed4c18d7cc80a4ddc4e243b inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -480,6 +485,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:af56e5779ea1d3d7bf80e76f2a9b694bf inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#af56e5779ea1d3d7bf80e76f2a9b694bf">IsVertexCachingEnabled</a> () const </td></tr>
 <tr class="memdesc:af56e5779ea1d3d7bf80e76f2a9b694bf inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not vertex caching is enabled for this Quad.  <a href="#af56e5779ea1d3d7bf80e76f2a9b694bf">More...</a><br/></td></tr>
 <tr class="separator:af56e5779ea1d3d7bf80e76f2a9b694bf inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02bda73fb6b167a355f9538de64f475b inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a02bda73fb6b167a355f9538de64f475b">PopulateTextLinesInLayers</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> MaxWidth)</td></tr>
+<tr class="memdesc:a02bda73fb6b167a355f9538de64f475b inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populates all text lines in all text layers owned by this quad.  <a href="#a02bda73fb6b167a355f9538de64f475b">More...</a><br/></td></tr>
+<tr class="separator:a02bda73fb6b167a355f9538de64f475b inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9575572419001047dd69ee19b41bc54e inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a9575572419001047dd69ee19b41bc54e">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
 <tr class="memdesc:a9575572419001047dd69ee19b41bc54e inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> <a class="el" href="classMezzanine_1_1Node.html">Node</a> and overwrite this object with it.  <a href="#a9575572419001047dd69ee19b41bc54e">More...</a><br/></td></tr>
 <tr class="separator:a9575572419001047dd69ee19b41bc54e inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -516,13 +524,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a286d1a0fa3af0b2be023c986ac6ef05c inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#abf450e558a4362a3796b7584dfb9495b">ConstReverseChildIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a286d1a0fa3af0b2be023c986ac6ef05c">RChildrenEnd</a> () const </td></tr>
 <tr class="memdesc:a286d1a0fa3af0b2be023c986ac6ef05c inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a const iterator to one before the first child <a class="el" href="classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. ">Widget</a>.  <a href="#a286d1a0fa3af0b2be023c986ac6ef05c">More...</a><br/></td></tr>
 <tr class="separator:a286d1a0fa3af0b2be023c986ac6ef05c inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c2eb836739eb2bafaac38422c457e6f inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c2eb836739eb2bafaac38422c457e6f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a9c2eb836739eb2bafaac38422c457e6f">RemoveAllChildren</a> ()</td></tr>
-<tr class="memdesc:a9c2eb836739eb2bafaac38422c457e6f inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all child Widgets from this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a>. <br/></td></tr>
+<tr class="memitem:a9c2eb836739eb2bafaac38422c457e6f inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a9c2eb836739eb2bafaac38422c457e6f">RemoveAllChildren</a> ()</td></tr>
+<tr class="memdesc:a9c2eb836739eb2bafaac38422c457e6f inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all child Widgets from this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a>.  <a href="#a9c2eb836739eb2bafaac38422c457e6f">More...</a><br/></td></tr>
 <tr class="separator:a9c2eb836739eb2bafaac38422c457e6f inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36e663dade49b37b759f5634a7b79200 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a36e663dade49b37b759f5634a7b79200">RemoveChild</a> (<a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a> *Child)</td></tr>
-<tr class="memdesc:a36e663dade49b37b759f5634a7b79200 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a child <a class="el" href="classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. ">Widget</a> by pointer.  <a href="#a36e663dade49b37b759f5634a7b79200">More...</a><br/></td></tr>
-<tr class="separator:a36e663dade49b37b759f5634a7b79200 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71660397bba33b1e9f6a898da4128e78 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a71660397bba33b1e9f6a898da4128e78">RemoveChild</a> (<a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a> *ToBeRemoved)</td></tr>
+<tr class="memdesc:a71660397bba33b1e9f6a898da4128e78 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a child <a class="el" href="classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. ">Widget</a> from this quadrenderable.  <a href="#a71660397bba33b1e9f6a898da4128e78">More...</a><br/></td></tr>
+<tr class="separator:a71660397bba33b1e9f6a898da4128e78 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd10d3750df9044d3151cba6f40c6287 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#acd10d3750df9044d3151cba6f40c6287">RemoveLayerFromAllGroups</a> (<a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html">RenderLayer</a> *Layer)</td></tr>
 <tr class="memdesc:acd10d3750df9044d3151cba6f40c6287 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a single <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> from all RenderLayerGroups owned by this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a>.  <a href="#acd10d3750df9044d3151cba6f40c6287">More...</a><br/></td></tr>
 <tr class="separator:acd10d3750df9044d3151cba6f40c6287 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -586,12 +593,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a9317d81f9bfa5aab9228bd76c8149cd9 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a9317d81f9bfa5aab9228bd76c8149cd9">SetPositioningRules</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#a284c10d86b679ec8cc3ca478ae91460b">UI::PositioningFlags</a> Rules)</td></tr>
 <tr class="memdesc:a9317d81f9bfa5aab9228bd76c8149cd9 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the behavior this quad will have when it is positioned automatically.  <a href="#a9317d81f9bfa5aab9228bd76c8149cd9">More...</a><br/></td></tr>
 <tr class="separator:a9317d81f9bfa5aab9228bd76c8149cd9 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ce61d46406d365189aaede68a20062d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a6ce61d46406d365189aaede68a20062d">SetRenderPriority</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> RP)</td></tr>
-<tr class="memdesc:a6ce61d46406d365189aaede68a20062d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the priority this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a> should be rendered with.  <a href="#a6ce61d46406d365189aaede68a20062d">More...</a><br/></td></tr>
-<tr class="separator:a6ce61d46406d365189aaede68a20062d inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add61698ced40655458cab7083972bfcb inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#add61698ced40655458cab7083972bfcb">SetRenderPriorityCascading</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> RP)</td></tr>
-<tr class="memdesc:add61698ced40655458cab7083972bfcb inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the priority this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a> and all it's children should be rendered with.  <a href="#add61698ced40655458cab7083972bfcb">More...</a><br/></td></tr>
-<tr class="separator:add61698ced40655458cab7083972bfcb inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40e894ca355727b36122e4afc68be6d0 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a40e894ca355727b36122e4afc68be6d0">SetSizingPolicy</a> (const <a class="el" href="classMezzanine_1_1UI_1_1SizingInfo.html">SizingInfo</a> &amp;Policy)</td></tr>
 <tr class="memdesc:a40e894ca355727b36122e4afc68be6d0 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the behavior to be used when this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a> is sized.  <a href="#a40e894ca355727b36122e4afc68be6d0">More...</a><br/></td></tr>
 <tr class="separator:a40e894ca355727b36122e4afc68be6d0 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -607,6 +608,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a00535145b03fdf51f672f423dd0221d8 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a00535145b03fdf51f672f423dd0221d8">UpdateChildDimensions</a> ()</td></tr>
 <tr class="memdesc:a00535145b03fdf51f672f423dd0221d8 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of the children in this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a>.  <a href="#a00535145b03fdf51f672f423dd0221d8">More...</a><br/></td></tr>
 <tr class="separator:a00535145b03fdf51f672f423dd0221d8 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a174ba5e81dcc9493907c93ed2d6722eb inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a174ba5e81dcc9493907c93ed2d6722eb"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a174ba5e81dcc9493907c93ed2d6722eb">UpdateChildOrder</a> ()</td></tr>
+<tr class="memdesc:a174ba5e81dcc9493907c93ed2d6722eb inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the order of children in this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a> based on the ZOrder set on each child. <br/></td></tr>
+<tr class="separator:a174ba5e81dcc9493907c93ed2d6722eb inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab206d4ad63baea1ef0175f0b49c4e013 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#ab206d4ad63baea1ef0175f0b49c4e013">UpdateDimensions</a> ()</td></tr>
 <tr class="memdesc:ab206d4ad63baea1ef0175f0b49c4e013 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a> based on the transform of it's parent.  <a href="#ab206d4ad63baea1ef0175f0b49c4e013">More...</a><br/></td></tr>
 <tr class="separator:ab206d4ad63baea1ef0175f0b49c4e013 inherit pub_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -623,6 +628,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a49b409afd4e5afa7e336f47bfa5d4ad4 inherit pub_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a49b409afd4e5afa7e336f47bfa5d4ad4">GetScreen</a> () const </td></tr>
 <tr class="memdesc:a49b409afd4e5afa7e336f47bfa5d4ad4 inherit pub_methods_classMezzanine_1_1UI_1_1Renderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the parent screen of this renderable.  <a href="#a49b409afd4e5afa7e336f47bfa5d4ad4">More...</a><br/></td></tr>
 <tr class="separator:a49b409afd4e5afa7e336f47bfa5d4ad4 inherit pub_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25dd8bf03c81d90e122a65202d5b35fa inherit pub_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a25dd8bf03c81d90e122a65202d5b35fa">IsScreen</a> () const </td></tr>
+<tr class="memdesc:a25dd8bf03c81d90e122a65202d5b35fa inherit pub_methods_classMezzanine_1_1UI_1_1Renderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a>.  <a href="#a25dd8bf03c81d90e122a65202d5b35fa">More...</a><br/></td></tr>
+<tr class="separator:a25dd8bf03c81d90e122a65202d5b35fa inherit pub_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1343f82ce980f27069850e245c3a866 inherit pub_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#af1343f82ce980f27069850e245c3a866">IsWidget</a> () const </td></tr>
+<tr class="memdesc:af1343f82ce980f27069850e245c3a866 inherit pub_methods_classMezzanine_1_1UI_1_1Renderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. ">Widget</a>.  <a href="#af1343f82ce980f27069850e245c3a866">More...</a><br/></td></tr>
+<tr class="separator:af1343f82ce980f27069850e245c3a866 inherit pub_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1EventPublisher"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1EventPublisher')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1EventPublisher.html">Mezzanine::EventPublisher</a></td></tr>
 <tr class="memitem:adca6c36b07b21b58a1e56bc55553823d inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adca6c36b07b21b58a1e56bc55553823d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#adca6c36b07b21b58a1e56bc55553823d">EventPublisher</a> ()</td></tr>
@@ -648,9 +659,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a27d4fc1b76bbf49a8f966d8d90a8aa70 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1EventSubscriberSlot.html">EventSubscriberSlot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a27d4fc1b76bbf49a8f966d8d90a8aa70">Subscribe</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EventName, <a class="el" href="classMezzanine_1_1EventSubscriber.html">EventSubscriber</a> *Sub)</td></tr>
 <tr class="memdesc:a27d4fc1b76bbf49a8f966d8d90a8aa70 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a subscriber to this event.  <a href="#a27d4fc1b76bbf49a8f966d8d90a8aa70">More...</a><br/></td></tr>
 <tr class="separator:a27d4fc1b76bbf49a8f966d8d90a8aa70 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3671f366ee7cc7b998fab619dfa19478 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1EventSubscriberSlot.html">EventSubscriberSlot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a3671f366ee7cc7b998fab619dfa19478">Subscribe</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EventName, <a class="el" href="classMezzanine_1_1FunctorSubscriberSlot_1_1FunctorDefinition.html">FunctorSubscriberSlot::FunctorDefinition</a> *Funct, Boolean CleanUpAfter)</td></tr>
-<tr class="memdesc:a3671f366ee7cc7b998fab619dfa19478 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes a functor object to this event.  <a href="#a3671f366ee7cc7b998fab619dfa19478">More...</a><br/></td></tr>
-<tr class="separator:a3671f366ee7cc7b998fab619dfa19478 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a3af5951775c6f6c35608668f8a2e61 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1EventSubscriberSlot.html">EventSubscriberSlot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a4a3af5951775c6f6c35608668f8a2e61">Subscribe</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EventName, <a class="el" href="classMezzanine_1_1EventSlotFunctorDefinition.html">EventSlotFunctorDefinition</a> *Funct, Boolean CleanUpAfter)</td></tr>
+<tr class="memdesc:a4a3af5951775c6f6c35608668f8a2e61 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes a functor object to this event.  <a href="#a4a3af5951775c6f6c35608668f8a2e61">More...</a><br/></td></tr>
+<tr class="separator:a4a3af5951775c6f6c35608668f8a2e61 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1a9fedb2b5b1ac00045fbc53ea69d11 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1EventSubscriberSlot.html">EventSubscriberSlot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#ac1a9fedb2b5b1ac00045fbc53ea69d11">Subscribe</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EventName, <a class="el" href="classMezzanine_1_1CFunctionSubscriberSlot.html#a696e36b1e3ed902e54efa79f7b34df84">CFunctionSubscriberSlot::SubscriberFunction</a> *CFunct)</td></tr>
 <tr class="memdesc:ac1a9fedb2b5b1ac00045fbc53ea69d11 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes a C-style function to this event.  <a href="#ac1a9fedb2b5b1ac00045fbc53ea69d11">More...</a><br/></td></tr>
 <tr class="separator:ac1a9fedb2b5b1ac00045fbc53ea69d11 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -660,9 +671,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a18c15e05432a0af8b01c346048f3a5d7 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a18c15e05432a0af8b01c346048f3a5d7">Unsubscribe</a> (<a class="el" href="classMezzanine_1_1EventSubscriber.html">EventSubscriber</a> *Subscriber)</td></tr>
 <tr class="memdesc:a18c15e05432a0af8b01c346048f3a5d7 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribes a single subscriber all events in this publisher.  <a href="#a18c15e05432a0af8b01c346048f3a5d7">More...</a><br/></td></tr>
 <tr class="separator:a18c15e05432a0af8b01c346048f3a5d7 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a197e01228a43ddd4b12a63229c4a2255 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a197e01228a43ddd4b12a63229c4a2255">Unsubscribe</a> (<a class="el" href="classMezzanine_1_1FunctorSubscriberSlot_1_1FunctorDefinition.html">FunctorSubscriberSlot::FunctorDefinition</a> *Funct)</td></tr>
-<tr class="memdesc:a197e01228a43ddd4b12a63229c4a2255 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribes a single subscriber all events in this publisher.  <a href="#a197e01228a43ddd4b12a63229c4a2255">More...</a><br/></td></tr>
-<tr class="separator:a197e01228a43ddd4b12a63229c4a2255 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3efc58c75d1dd3755e809260806acf6f inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a3efc58c75d1dd3755e809260806acf6f">Unsubscribe</a> (<a class="el" href="classMezzanine_1_1EventSlotFunctorDefinition.html">EventSlotFunctorDefinition</a> *Funct)</td></tr>
+<tr class="memdesc:a3efc58c75d1dd3755e809260806acf6f inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribes a single subscriber all events in this publisher.  <a href="#a3efc58c75d1dd3755e809260806acf6f">More...</a><br/></td></tr>
+<tr class="separator:a3efc58c75d1dd3755e809260806acf6f inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0325498a34b6ad2c9957d969eb4316f4 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a0325498a34b6ad2c9957d969eb4316f4">Unsubscribe</a> (<a class="el" href="classMezzanine_1_1CFunctionSubscriberSlot.html#a696e36b1e3ed902e54efa79f7b34df84">CFunctionSubscriberSlot::SubscriberFunction</a> *CFunct)</td></tr>
 <tr class="memdesc:a0325498a34b6ad2c9957d969eb4316f4 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribes a single subscriber from all events in this publisher.  <a href="#a0325498a34b6ad2c9957d969eb4316f4">More...</a><br/></td></tr>
 <tr class="separator:a0325498a34b6ad2c9957d969eb4316f4 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -675,9 +686,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a510ed9c56ef530ccd9d7c31f926a2ef8 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a510ed9c56ef530ccd9d7c31f926a2ef8">Unsubscribe</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EventName, <a class="el" href="classMezzanine_1_1EventSubscriber.html">EventSubscriber</a> *Subscriber)</td></tr>
 <tr class="memdesc:a510ed9c56ef530ccd9d7c31f926a2ef8 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribes a single subscriber from the named event.  <a href="#a510ed9c56ef530ccd9d7c31f926a2ef8">More...</a><br/></td></tr>
 <tr class="separator:a510ed9c56ef530ccd9d7c31f926a2ef8 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd716e6d9e0345a106ebaa0ac5f3effb inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#afd716e6d9e0345a106ebaa0ac5f3effb">Unsubscribe</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EventName, <a class="el" href="classMezzanine_1_1FunctorSubscriberSlot_1_1FunctorDefinition.html">FunctorSubscriberSlot::FunctorDefinition</a> *Funct)</td></tr>
-<tr class="memdesc:afd716e6d9e0345a106ebaa0ac5f3effb inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribes a single subscriber from the named event.  <a href="#afd716e6d9e0345a106ebaa0ac5f3effb">More...</a><br/></td></tr>
-<tr class="separator:afd716e6d9e0345a106ebaa0ac5f3effb inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74594f4189d2f465ceb9df9c5320c2aa inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a74594f4189d2f465ceb9df9c5320c2aa">Unsubscribe</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EventName, <a class="el" href="classMezzanine_1_1EventSlotFunctorDefinition.html">EventSlotFunctorDefinition</a> *Funct)</td></tr>
+<tr class="memdesc:a74594f4189d2f465ceb9df9c5320c2aa inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribes a single subscriber from the named event.  <a href="#a74594f4189d2f465ceb9df9c5320c2aa">More...</a><br/></td></tr>
+<tr class="separator:a74594f4189d2f465ceb9df9c5320c2aa inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b0a1164eeda5a2c3be36426a3c8f746 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a8b0a1164eeda5a2c3be36426a3c8f746">Unsubscribe</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EventName, <a class="el" href="classMezzanine_1_1CFunctionSubscriberSlot.html#a696e36b1e3ed902e54efa79f7b34df84">CFunctionSubscriberSlot::SubscriberFunction</a> *CFunct)</td></tr>
 <tr class="memdesc:a8b0a1164eeda5a2c3be36426a3c8f746 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsubscribes a single subscriber from the named event.  <a href="#a8b0a1164eeda5a2c3be36426a3c8f746">More...</a><br/></td></tr>
 <tr class="separator:a8b0a1164eeda5a2c3be36426a3c8f746 inherit pub_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -739,10 +750,6 @@ static const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d849
 static const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a6e79d01165bc57417f11e07fd1379ca7">EventMouseDragEnd</a> = &quot;MouseDragEnd&quot;</td></tr>
 <tr class="memdesc:a6e79d01165bc57417f11e07fd1379ca7 inherit pub_static_attribs_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a> name for when the mouse stops dragging this widget. <br/></td></tr>
 <tr class="separator:a6e79d01165bc57417f11e07fd1379ca7 inherit pub_static_attribs_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2150f85f1760de5af586fc323dc4df4a inherit pub_static_attribs_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2150f85f1760de5af586fc323dc4df4a"></a>
-static const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a2150f85f1760de5af586fc323dc4df4a">EventMouseDragging</a> = &quot;MouseDragging&quot;</td></tr>
-<tr class="memdesc:a2150f85f1760de5af586fc323dc4df4a inherit pub_static_attribs_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a> name for when a mouse activation button is pressed, and held while moving. <br/></td></tr>
-<tr class="separator:a2150f85f1760de5af586fc323dc4df4a inherit pub_static_attribs_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a319dcbe1b0bce0c8ed11463456226409 inherit pub_static_attribs_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a319dcbe1b0bce0c8ed11463456226409"></a>
 static const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a319dcbe1b0bce0c8ed11463456226409">EventMouseDragStart</a> = &quot;MouseDragStart&quot;</td></tr>
 <tr class="memdesc:a319dcbe1b0bce0c8ed11463456226409 inherit pub_static_attribs_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a> name for when the mouse starts dragging this widget. <br/></td></tr>
@@ -768,31 +775,21 @@ static const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d849
 <tr class="memdesc:a5d0b085143930c2f5ca0b2d17cbb1949 inherit pub_static_attribs_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">String containing the type name for this class: "GenericWidget". <br/></td></tr>
 <tr class="separator:a5d0b085143930c2f5ca0b2d17cbb1949 inherit pub_static_attribs_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_types_classMezzanine_1_1UI_1_1Widget"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1UI_1_1Widget')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Mezzanine::UI::Widget</a></td></tr>
-<tr class="memitem:a787825de4399cb9ea966a09545c8cc30 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a787825de4399cb9ea966a09545c8cc30"></a>
-typedef <br class="typebreak"/>
-StateLayerGroupMap::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a787825de4399cb9ea966a09545c8cc30">ConstStateLayerGroupIterator</a></td></tr>
-<tr class="memdesc:a787825de4399cb9ea966a09545c8cc30 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html">RenderLayerGroup</a> instances stored in relation to widget states. <br/></td></tr>
-<tr class="separator:a787825de4399cb9ea966a09545c8cc30 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a875d14c8207ac3a405049e4a47f95fc1 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a875d14c8207ac3a405049e4a47f95fc1"></a>
-typedef <br class="typebreak"/>
-StateLayerGroupMap::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a875d14c8207ac3a405049e4a47f95fc1">StateLayerGroupIterator</a></td></tr>
-<tr class="memdesc:a875d14c8207ac3a405049e4a47f95fc1 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html">RenderLayerGroup</a> instances stored in relation to widget states. <br/></td></tr>
-<tr class="separator:a875d14c8207ac3a405049e4a47f95fc1 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a908918e4ae18a575ddb96a5147fee819 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a908918e4ae18a575ddb96a5147fee819"></a>
-typedef std::map&lt; <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>, <br class="typebreak"/>
-<a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html">RenderLayerGroup</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a908918e4ae18a575ddb96a5147fee819">StateLayerGroupMap</a></td></tr>
-<tr class="memdesc:a908918e4ae18a575ddb96a5147fee819 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container class for storing <a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html">RenderLayerGroup</a> instances in relation to widget states. <br/></td></tr>
-<tr class="separator:a908918e4ae18a575ddb96a5147fee819 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab00340aa24912818ba78ebde061ae897 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ab00340aa24912818ba78ebde061ae897">WidgetState</a> { <b>WS_Untouched</b> = 0, 
-<b>WS_Hovered</b> = 1, 
-<b>WS_Focused</b> = 2, 
-<b>WS_Dragged</b> = 4
- }</td></tr>
-<tr class="memdesc:ab00340aa24912818ba78ebde061ae897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum describing the current state of the widget. <br/></td></tr>
-<tr class="separator:ab00340aa24912818ba78ebde061ae897 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a3d5dc90ef9cc3d09a47d7391da649e2c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a3d5dc90ef9cc3d09a47d7391da649e2c">StackedContainer</a> (<a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
+<tr class="memdesc:a3d5dc90ef9cc3d09a47d7391da649e2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blank constructor.  <a href="#a3d5dc90ef9cc3d09a47d7391da649e2c">More...</a><br/></td></tr>
+<tr class="separator:a3d5dc90ef9cc3d09a47d7391da649e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7500a6a23acc83f6f0c2ba74062233f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#aa7500a6a23acc83f6f0c2ba74062233f">StackedContainer</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;RendName, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
+<tr class="memdesc:aa7500a6a23acc83f6f0c2ba74062233f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#aa7500a6a23acc83f6f0c2ba74062233f">More...</a><br/></td></tr>
+<tr class="separator:aa7500a6a23acc83f6f0c2ba74062233f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ca81affc949b4e2fb8c0922bc0b38c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a1ca81affc949b4e2fb8c0922bc0b38c1">StackedContainer</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;RendName, const <a class="el" href="classMezzanine_1_1UI_1_1UnifiedRect.html">UnifiedRect</a> &amp;RendRect, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
+<tr class="memdesc:a1ca81affc949b4e2fb8c0922bc0b38c1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classMezzanine_1_1UI_1_1Rect.html" title="This class represents a box shaped area on the screen. ">Rect</a> constructor.  <a href="#a1ca81affc949b4e2fb8c0922bc0b38c1">More...</a><br/></td></tr>
+<tr class="separator:a1ca81affc949b4e2fb8c0922bc0b38c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98f3a4109da85fb8b41e6287abd8351e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98f3a4109da85fb8b41e6287abd8351e"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a98f3a4109da85fb8b41e6287abd8351e">~StackedContainer</a> ()</td></tr>
+<tr class="memdesc:a98f3a4109da85fb8b41e6287abd8351e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr class="separator:a98f3a4109da85fb8b41e6287abd8351e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classMezzanine_1_1UI_1_1Widget"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMezzanine_1_1UI_1_1Widget')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Mezzanine::UI::Widget</a></td></tr>
 <tr class="memitem:a7d43c38b75ec286be341b974d7b0bc5c inherit pro_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a7d43c38b75ec286be341b974d7b0bc5c">Widget</a> (<a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
 <tr class="memdesc:a7d43c38b75ec286be341b974d7b0bc5c inherit pro_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blank constructor.  <a href="#a7d43c38b75ec286be341b974d7b0bc5c">More...</a><br/></td></tr>
@@ -822,6 +819,90 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a6b9380b1c2090865fd3a5d5594db2de5 inherit pro_methods_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a6b9380b1c2090865fd3a5d5594db2de5">ProtoSerializeImpl</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot) const </td></tr>
 <tr class="memdesc:a6b9380b1c2090865fd3a5d5594db2de5 inherit pro_methods_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation method for serializing additional sets of data.  <a href="#a6b9380b1c2090865fd3a5d5594db2de5">More...</a><br/></td></tr>
 <tr class="separator:a6b9380b1c2090865fd3a5d5594db2de5 inherit pro_methods_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMezzanine_1_1UI_1_1QuadRenderable')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html">Mezzanine::UI::QuadRenderable</a></td></tr>
+<tr class="memitem:af3a32d4abf51d24e53b3799a87f296a1 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#af3a32d4abf51d24e53b3799a87f296a1">QuadRenderable</a> (<a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
+<tr class="memdesc:af3a32d4abf51d24e53b3799a87f296a1 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blank constructor.  <a href="#af3a32d4abf51d24e53b3799a87f296a1">More...</a><br/></td></tr>
+<tr class="separator:af3a32d4abf51d24e53b3799a87f296a1 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2294b5eb3344596159250521d44c2968 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a2294b5eb3344596159250521d44c2968">QuadRenderable</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;RendName, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
+<tr class="memdesc:a2294b5eb3344596159250521d44c2968 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a2294b5eb3344596159250521d44c2968">More...</a><br/></td></tr>
+<tr class="separator:a2294b5eb3344596159250521d44c2968 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c2555d705fb4145d9025f521f04a7c5 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a6c2555d705fb4145d9025f521f04a7c5">QuadRenderable</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;RendName, const <a class="el" href="classMezzanine_1_1UI_1_1UnifiedRect.html">UnifiedRect</a> &amp;RendRect, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
+<tr class="memdesc:a6c2555d705fb4145d9025f521f04a7c5 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parent-less constructor.  <a href="#a6c2555d705fb4145d9025f521f04a7c5">More...</a><br/></td></tr>
+<tr class="separator:a6c2555d705fb4145d9025f521f04a7c5 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaad2870a6ff9d0afe23ce6054d872ae0 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#aaad2870a6ff9d0afe23ce6054d872ae0">~QuadRenderable</a> ()</td></tr>
+<tr class="memdesc:aaad2870a6ff9d0afe23ce6054d872ae0 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#aaad2870a6ff9d0afe23ce6054d872ae0">More...</a><br/></td></tr>
+<tr class="separator:aaad2870a6ff9d0afe23ce6054d872ae0 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa46af681e2509b07f588b58d5bb428ad inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#aa46af681e2509b07f588b58d5bb428ad">AppendLayerVertices</a> (std::vector&lt; <a class="el" href="structMezzanine_1_1UI_1_1VertexData.html">VertexData</a> &gt; &amp;Vertices)</td></tr>
+<tr class="memdesc:aa46af681e2509b07f588b58d5bb428ad inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds all the vertices belonging to all the layers of this renderable to the provided vector.  <a href="#aa46af681e2509b07f588b58d5bb428ad">More...</a><br/></td></tr>
+<tr class="separator:aa46af681e2509b07f588b58d5bb428ad inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa999b88aa5eeae6c969666eb49b999ca inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#aa999b88aa5eeae6c969666eb49b999ca">CleanLayers</a> ()</td></tr>
+<tr class="memdesc:aa999b88aa5eeae6c969666eb49b999ca inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redraws all dirty layers.  <a href="#aa999b88aa5eeae6c969666eb49b999ca">More...</a><br/></td></tr>
+<tr class="separator:aa999b88aa5eeae6c969666eb49b999ca inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b8d13c10485ec50a7ba324a259ce264 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a8b8d13c10485ec50a7ba324a259ce264">CreateLayoutStrat</a> ()</td></tr>
+<tr class="memdesc:a8b8d13c10485ec50a7ba324a259ce264 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overridable method that creates and assigns a layout strategy for a quadrenderable.  <a href="#a8b8d13c10485ec50a7ba324a259ce264">More...</a><br/></td></tr>
+<tr class="separator:a8b8d13c10485ec50a7ba324a259ce264 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9472fd187b874925fef9e15ae01351b4 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a9472fd187b874925fef9e15ae01351b4">ResizeLayers</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> NewSize)</td></tr>
+<tr class="memdesc:a9472fd187b874925fef9e15ae01351b4 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the container for RenderLayers in this <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. ">QuadRenderable</a>.  <a href="#a9472fd187b874925fef9e15ae01351b4">More...</a><br/></td></tr>
+<tr class="separator:a9472fd187b874925fef9e15ae01351b4 inherit pro_methods_classMezzanine_1_1UI_1_1QuadRenderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classMezzanine_1_1UI_1_1Renderable"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMezzanine_1_1UI_1_1Renderable')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html">Mezzanine::UI::Renderable</a></td></tr>
+<tr class="memitem:a1b66d506ebe0b6336a258ef8458e0367 inherit pro_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a1b66d506ebe0b6336a258ef8458e0367">Renderable</a> (<a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
+<tr class="memdesc:a1b66d506ebe0b6336a258ef8458e0367 inherit pro_methods_classMezzanine_1_1UI_1_1Renderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blank constructor.  <a href="#a1b66d506ebe0b6336a258ef8458e0367">More...</a><br/></td></tr>
+<tr class="separator:a1b66d506ebe0b6336a258ef8458e0367 inherit pro_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5840889d2da8cd09901d049075160cdc inherit pro_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a5840889d2da8cd09901d049075160cdc">Renderable</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;RendName, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *Parent)</td></tr>
+<tr class="memdesc:a5840889d2da8cd09901d049075160cdc inherit pro_methods_classMezzanine_1_1UI_1_1Renderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a5840889d2da8cd09901d049075160cdc">More...</a><br/></td></tr>
+<tr class="separator:a5840889d2da8cd09901d049075160cdc inherit pro_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47fef65cfeb5f4330081f36924315873 inherit pro_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47fef65cfeb5f4330081f36924315873"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a47fef65cfeb5f4330081f36924315873">~Renderable</a> ()</td></tr>
+<tr class="memdesc:a47fef65cfeb5f4330081f36924315873 inherit pro_methods_classMezzanine_1_1UI_1_1Renderable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr class="separator:a47fef65cfeb5f4330081f36924315873 inherit pro_methods_classMezzanine_1_1UI_1_1Renderable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classMezzanine_1_1EventPublisher"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMezzanine_1_1EventPublisher')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMezzanine_1_1EventPublisher.html">Mezzanine::EventPublisher</a></td></tr>
+<tr class="memitem:a715d5c74f031c5339d3c215f70d1c961 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Event.html">Event</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a715d5c74f031c5339d3c215f70d1c961">AddEvent</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EventName)</td></tr>
+<tr class="memdesc:a715d5c74f031c5339d3c215f70d1c961 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new event this Publisher can fire.  <a href="#a715d5c74f031c5339d3c215f70d1c961">More...</a><br/></td></tr>
+<tr class="separator:a715d5c74f031c5339d3c215f70d1c961 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ace8197911683224f87edde455f30a7 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a3ace8197911683224f87edde455f30a7">FireEvent</a> (const <a class="el" href="classMezzanine_1_1EventArguments.html">EventArguments</a> &amp;Args)</td></tr>
+<tr class="memdesc:a3ace8197911683224f87edde455f30a7 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fires an event.  <a href="#a3ace8197911683224f87edde455f30a7">More...</a><br/></td></tr>
+<tr class="separator:a3ace8197911683224f87edde455f30a7 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57babd78c15dd46f40cc8edbe211a8b7 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#a57babd78c15dd46f40cc8edbe211a8b7">RemoveAllEvents</a> ()</td></tr>
+<tr class="memdesc:a57babd78c15dd46f40cc8edbe211a8b7 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all events in this Publisher.  <a href="#a57babd78c15dd46f40cc8edbe211a8b7">More...</a><br/></td></tr>
+<tr class="separator:a57babd78c15dd46f40cc8edbe211a8b7 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a0256684c029a9001606c9a1ac08c4 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventPublisher.html#ae7a0256684c029a9001606c9a1ac08c4">RemoveEvent</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EventName)</td></tr>
+<tr class="memdesc:ae7a0256684c029a9001606c9a1ac08c4 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an existing event in this Publisher.  <a href="#ae7a0256684c029a9001606c9a1ac08c4">More...</a><br/></td></tr>
+<tr class="separator:ae7a0256684c029a9001606c9a1ac08c4 inherit pro_methods_classMezzanine_1_1EventPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classMezzanine_1_1EventSubscriber"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMezzanine_1_1EventSubscriber')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMezzanine_1_1EventSubscriber.html">Mezzanine::EventSubscriber</a></td></tr>
+<tr class="memitem:a4c8ac24aa0ff70958e88bee25af18549 inherit pro_methods_classMezzanine_1_1EventSubscriber"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c8ac24aa0ff70958e88bee25af18549"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventSubscriber.html#a4c8ac24aa0ff70958e88bee25af18549">EventSubscriber</a> ()</td></tr>
+<tr class="memdesc:a4c8ac24aa0ff70958e88bee25af18549 inherit pro_methods_classMezzanine_1_1EventSubscriber"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor. <br/></td></tr>
+<tr class="separator:a4c8ac24aa0ff70958e88bee25af18549 inherit pro_methods_classMezzanine_1_1EventSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a55dd4f5f1ac720a89978ae4b2ade0f inherit pro_methods_classMezzanine_1_1EventSubscriber"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a55dd4f5f1ac720a89978ae4b2ade0f"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventSubscriber.html#a1a55dd4f5f1ac720a89978ae4b2ade0f">~EventSubscriber</a> ()</td></tr>
+<tr class="memdesc:a1a55dd4f5f1ac720a89978ae4b2ade0f inherit pro_methods_classMezzanine_1_1EventSubscriber"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr class="separator:a1a55dd4f5f1ac720a89978ae4b2ade0f inherit pro_methods_classMezzanine_1_1EventSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classMezzanine_1_1UI_1_1Widget"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1UI_1_1Widget')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Mezzanine::UI::Widget</a></td></tr>
+<tr class="memitem:a787825de4399cb9ea966a09545c8cc30 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a787825de4399cb9ea966a09545c8cc30"></a>
+typedef <br class="typebreak"/>
+StateLayerGroupMap::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a787825de4399cb9ea966a09545c8cc30">ConstStateLayerGroupIterator</a></td></tr>
+<tr class="memdesc:a787825de4399cb9ea966a09545c8cc30 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html">RenderLayerGroup</a> instances stored in relation to widget states. <br/></td></tr>
+<tr class="separator:a787825de4399cb9ea966a09545c8cc30 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a875d14c8207ac3a405049e4a47f95fc1 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a875d14c8207ac3a405049e4a47f95fc1"></a>
+typedef <br class="typebreak"/>
+StateLayerGroupMap::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a875d14c8207ac3a405049e4a47f95fc1">StateLayerGroupIterator</a></td></tr>
+<tr class="memdesc:a875d14c8207ac3a405049e4a47f95fc1 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for <a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html">RenderLayerGroup</a> instances stored in relation to widget states. <br/></td></tr>
+<tr class="separator:a875d14c8207ac3a405049e4a47f95fc1 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a908918e4ae18a575ddb96a5147fee819 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a908918e4ae18a575ddb96a5147fee819"></a>
+typedef std::map&lt; <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>, <br class="typebreak"/>
+<a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html">RenderLayerGroup</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a908918e4ae18a575ddb96a5147fee819">StateLayerGroupMap</a></td></tr>
+<tr class="memdesc:a908918e4ae18a575ddb96a5147fee819 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container class for storing <a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html">RenderLayerGroup</a> instances in relation to widget states. <br/></td></tr>
+<tr class="separator:a908918e4ae18a575ddb96a5147fee819 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab00340aa24912818ba78ebde061ae897 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ab00340aa24912818ba78ebde061ae897">WidgetState</a> { <b>WS_Untouched</b> = 0, 
+<b>WS_Hovered</b> = 1, 
+<b>WS_Focused</b> = 2, 
+<b>WS_Dragged</b> = 4
+ }</td></tr>
+<tr class="memdesc:ab00340aa24912818ba78ebde061ae897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum describing the current state of the widget. <br/></td></tr>
+<tr class="separator:ab00340aa24912818ba78ebde061ae897 inherit pub_types_classMezzanine_1_1UI_1_1Widget"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMezzanine_1_1UI_1_1Widget"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1UI_1_1Widget')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Mezzanine::UI::Widget</a></td></tr>
 <tr class="memitem:a66480b17725124bb7194bfe06ad02234 inherit pro_attribs_classMezzanine_1_1UI_1_1Widget"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a66480b17725124bb7194bfe06ad02234">HoveredSubWidget</a></td></tr>
 <tr class="memdesc:a66480b17725124bb7194bfe06ad02234 inherit pro_attribs_classMezzanine_1_1UI_1_1Widget"><td class="mdescLeft">&#160;</td><td class="mdescRight">The child widget of this widget the mouse is over, if any.  <a href="#a66480b17725124bb7194bfe06ad02234">More...</a><br/></td></tr>
@@ -836,11 +917,14 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the base class for containers that stack their children one on top of the other. </p>
 
-<p>Definition at line <a class="el" href="stackedcontainer_8h_source.html#l00054">54</a> of file <a class="el" href="stackedcontainer_8h_source.html">stackedcontainer.h</a>.</p>
+<p>Definition at line <a class="el" href="stackedcontainer_8h_source.html#l00055">55</a> of file <a class="el" href="stackedcontainer_8h_source.html">stackedcontainer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3d5dc90ef9cc3d09a47d7391da649e2c"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Mezzanine::UI::StackedContainer::StackedContainer </td>
@@ -850,6 +934,11 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Blank constructor. </p>
@@ -860,13 +949,16 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00051">51</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00057">57</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="aa7500a6a23acc83f6f0c2ba74062233f"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Mezzanine::UI::StackedContainer::StackedContainer </td>
@@ -886,6 +978,11 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Standard initialization constructor. </p>
@@ -897,13 +994,16 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00057">57</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00061">61</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a1ca81affc949b4e2fb8c0922bc0b38c1"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Mezzanine::UI::StackedContainer::StackedContainer </td>
@@ -929,6 +1029,11 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p><a class="el" href="classMezzanine_1_1UI_1_1Rect.html" title="This class represents a box shaped area on the screen. ">Rect</a> constructor. </p>
@@ -941,11 +1046,80 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00063">63</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00065">65</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ae9a3e5ed108ebcce9ebcb45b14c43bf2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::UI::StackedContainer::_NotifyButtonSelected </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1StackButton.html">StackButton</a> *&#160;</td>
+          <td class="paramname"><em>Selected</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Notifies this <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html" title="This is the base class for containers that stack their children one on top of the other...">StackedContainer</a> a button has been selected. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Selected</td><td>The <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html" title="This is the base class for containers that stack their children one on top of the other...">StackedContainer</a> button that was selected. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#afa6eac789a4dd96bb23127b8f415b044">Mezzanine::UI::MenuEntry</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#aa8774675ac3c38afbac480d6ad716709">Mezzanine::UI::TabSet</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a199a471e7ecafc773593d8050d1f3fec"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> Mezzanine::UI::StackedContainer::GetButtonConfig </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1UI_1_1StackButton.html">StackButton</a> *&#160;</td>
+          <td class="paramname"><em>ConfigButton</em>)</td><td></td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the role of the specified StackedButton for this <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html" title="This is the base class for containers that stack their children one on top of the other...">StackedContainer</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ConfigButton</td><td>The button to check this <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html" title="This is the base class for containers that stack their children one on top of the other...">StackedContainer</a> for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a UInt16 representing how the specified <a class="el" href="classMezzanine_1_1UI_1_1StackButton.html" title="This is a button with additional data used to track the binding to a StackedContainer which can be se...">StackButton</a> is being used by this <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html" title="This is the base class for containers that stack their children one on top of the other...">StackedContainer</a>. </dd></dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#a3e8072480d5774b91ac8ce2434a7e2c6">Mezzanine::UI::MenuEntry</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a83422ba91ae99b4e0e59c6231d75cd08">Mezzanine::UI::TabSet</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ab2566c3f077f746cd055e16ec1d9b819"></a>
 <div class="memitem">
 <div class="memproto">
@@ -970,7 +1144,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> tag the <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy. ">Renderable</a> class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing the name of this class. </dd></dl>
 
-<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00087">87</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00084">84</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1006,9 +1180,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ad5034dac942649e6707b1f3773ce74d9">Mezzanine::UI::Widget</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#adf82e393154c01d8bfd6baf360be0800">Mezzanine::UI::MenuEntry</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#adf82e393154c01d8bfd6baf360be0800">Mezzanine::UI::MenuEntry</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#ab913f7c9009dc7a994116a9bbe711031">Mezzanine::UI::TabSet</a>.</p>
 
-<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00082">82</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00081">81</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1044,9 +1218,54 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#adb35852881cdcf4c7721fdd6f5e93d54">Mezzanine::UI::Widget</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#aff730645125ba5b71a1338cacd383390">Mezzanine::UI::MenuEntry</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#aff730645125ba5b71a1338cacd383390">Mezzanine::UI::MenuEntry</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a0deaddc581a7b75df381c211ceb7d968">Mezzanine::UI::TabSet</a>.</p>
 
-<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00077">77</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="stackedcontainer_8cpp_source.html#l00078">78</a> of file <a class="el" href="stackedcontainer_8cpp_source.html">stackedcontainer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a77ce7fca0ce21b1e71bab1f3eb288702"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::UI::StackedContainer::SetButtonConfig </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td>
+          <td class="paramname"><em>Config</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1StackButton.html">StackButton</a> *&#160;</td>
+          <td class="paramname"><em>ConfigButton</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Binds a StackedButton to this container according to the provided config value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Config</td><td>A UInt16 that represents how the provided button will be added to the containers configuration. Check implementation for more information. </td></tr>
+    <tr><td class="paramname">ConfigButton</td><td>The button to be added to this containers configuration. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#ad27ed5f35157685e30d0e341c9ff9b84">Mezzanine::UI::MenuEntry</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#af9a53f7ee29e69c644fa77c342f688e2">Mezzanine::UI::TabSet</a>.</p>
 
 </div>
 </div>
@@ -1056,6 +1275,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:31 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

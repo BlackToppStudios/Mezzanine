@@ -1,0 +1,4 @@
+<map id="Mezzanine::UI::SpinnerValueChangedArguments" name="Mezzanine::UI::SpinnerValueChangedArguments">
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1WidgetEventArguments.html" title="This is the base class for widget specific event arguments. " alt="" coords="8,83,187,127"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1EventArguments.html" title="This is a common class to represent all possible arguments for a given event that is fired..." alt="" coords="7,6,188,34"/>
+</map>

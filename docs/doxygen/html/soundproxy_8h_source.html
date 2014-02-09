@@ -159,13 +159,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">            /// @return Returns true if this sound proxy is emitting in a specific direction, false if it&#39;s emitting in all directions.</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsDirectingSound() <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">            /// @copydoc Audio::SoundProxy::AddToWorld()</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">            /// @copydoc Audio::WorldProxy::AddToWorld()</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">            /// @remarks Some implementations such as the OALS sound system will pause playback when a SoundProxy is removed from the</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">            /// world and resume it&#39;s playback when added back in.  You also cannot start playback while outside of the world.  If you</span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">            /// want to prevent the resuming of playback when added back into the world be sure to manually call &quot;Stop()&quot; before adding</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">            /// the proxy back into the world.</span></div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddToWorld() = 0;<span class="comment"></span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">            /// @copydoc Audio::SoundProxy::RemoveFromWorld()</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">            /// @copydoc Audio::WorldProxy::RemoveFromWorld()</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">            /// @remarks Some implementations such as the OALS sound system will pause playback when a SoundProxy is removed from the</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">            /// world and resume it&#39;s playback when added back in.  You also cannot start playback while outside of the world.  If you</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">            /// want to prevent the resuming of playback when added back into the world be sure to manually call &quot;Stop()&quot; before adding</span></div>
@@ -265,6 +265,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:24 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

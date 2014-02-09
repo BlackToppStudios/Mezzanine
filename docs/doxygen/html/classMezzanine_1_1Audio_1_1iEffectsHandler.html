@@ -192,7 +192,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memdesc:a4f64e78df6b76f1360da10fb666a6f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a previously registered preset for the Equalizer Effect.  <a href="#a4f64e78df6b76f1360da10fb666a6f7d">More...</a><br/></td></tr>
 <tr class="separator:a4f64e78df6b76f1360da10fb666a6f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fe8b831dc55bec67073d970a9d1c797"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Audio_1_1iFilter.html">iFilter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a5fe8b831dc55bec67073d970a9d1c797">GetFilter</a> (const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Index) const =0</td></tr>
-<tr class="memdesc:a5fe8b831dc55bec67073d970a9d1c797"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an <a class="el" href="classMezzanine_1_1Audio_1_1iFilter.html">iFilter</a> instance by index.  <a href="#a5fe8b831dc55bec67073d970a9d1c797">More...</a><br/></td></tr>
+<tr class="memdesc:a5fe8b831dc55bec67073d970a9d1c797"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an <a class="el" href="classMezzanine_1_1Audio_1_1iFilter.html">Audio::iFilter</a> instance by index.  <a href="#a5fe8b831dc55bec67073d970a9d1c797">More...</a><br/></td></tr>
 <tr class="separator:a5fe8b831dc55bec67073d970a9d1c797"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07cb96a83d17b5b0a09ad20e757f72ad"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structMezzanine_1_1Audio_1_1FlangerParameters.html">FlangerParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a07cb96a83d17b5b0a09ad20e757f72ad">GetFlangerEffectPreset</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name) const =0</td></tr>
 <tr class="memdesc:a07cb96a83d17b5b0a09ad20e757f72ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a previously registered preset for the Flanger Effect.  <a href="#a07cb96a83d17b5b0a09ad20e757f72ad">More...</a><br/></td></tr>
@@ -1176,6 +1176,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div><div class="memdoc">
 
 <p>Gets an <a class="el" href="classMezzanine_1_1Audio_1_1iEffect.html" title="This is an interface class for an effect that can be applied to a sound. ">Audio::iEffect</a> instance by index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Index</td><td>The index of the <a class="el" href="classMezzanine_1_1Audio_1_1iEffect.html" title="This is an interface class for an effect that can be applied to a sound. ">Audio::iEffect</a> instance to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Audio_1_1iEffect.html" title="This is an interface class for an effect that can be applied to a sound. ">Audio::iEffect</a> at the specified index. </dd></dl>
 
 </div>
@@ -1235,8 +1241,14 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </table>
 </div><div class="memdoc">
 
-<p>Gets an <a class="el" href="classMezzanine_1_1Audio_1_1iFilter.html">iFilter</a> instance by index. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Audio_1_1iFilter.html">iFilter</a> at the specified index. </dd></dl>
+<p>Gets an <a class="el" href="classMezzanine_1_1Audio_1_1iFilter.html">Audio::iFilter</a> instance by index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Index</td><td>The index of the <a class="el" href="classMezzanine_1_1Audio_1_1iFilter.html" title="This is an interface class for the application of filters to audio playback. ">Audio::iFilter</a> instance to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1Audio_1_1iFilter.html">Audio::iFilter</a> at the specified index. </dd></dl>
 
 </div>
 </div>
@@ -1636,6 +1648,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:28 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

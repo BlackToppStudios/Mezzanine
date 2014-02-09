@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">multilinetextlayer.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//© Copyright 2010 - 2012 BlackTopp Studios Inc.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// © Copyright 2010 - 2014 BlackTopp Studios Inc.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* This file is part of The Mezzanine Engine.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span></div>
@@ -142,8 +142,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="classMezzanine_1_1UI_1_1MultiLineTextLayer.html">   56</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1UI_1_1MultiLineTextLayer.html" title="This is a render layer specializing in multi-line text. ">MultiLineTextLayer</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1UI_1_1TextLayer.html" title="This is a base class for render layers that render text. ">TextLayer</a></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">            /// @copydoc TextLayer::PopulateTextLinesImpl()</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> PopulateTextLinesImpl();<span class="comment"></span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">            /// @copydoc TextLayer::PopulateTextLinesImpl(const Real)</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> PopulateTextLinesImpl(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number. ">Real</a> MaxWidth);<span class="comment"></span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">            /// @copydoc TextLayer::GetCharacterIndexAtPositionImpl(const Vector2&amp; Offset)</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1TextLayer.html#a7e746c7067bd088680ac7a5e35dbc868" title="An std::pair type used as a return for index-offset conversions. ">CharIndexPair</a> GetIndexAtOffsetImpl(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. ">Vector2</a>&amp; Offset);<span class="comment"></span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">            /// @copydoc TextLayer::GetOffsetAtIndex(const Integer Index)</span></div>
@@ -171,7 +171,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"></span>            <span class="comment">// Utility</span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">            /// @copydoc RenderLayer::GetLayerType() const</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1RenderLayer.html#af61bfa199eaffa0c42d35cb944933259" title="This enum describes the type of RenderLayer this is for use in casting. ">RenderLayer::RenderLayerType</a> GetLayerType() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a8506374bf0b6f51434c318d6c245a771" title="This enum describes the type of RenderLayer this is for use in casting. ">UI::RenderLayerType</a> GetLayerType() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment"></span>            <span class="comment">// Text Methods</span></div>
@@ -195,6 +195,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:25 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

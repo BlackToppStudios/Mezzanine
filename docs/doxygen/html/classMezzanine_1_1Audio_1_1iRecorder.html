@@ -105,9 +105,9 @@ Public Member Functions</h2></td></tr>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#aca5fa9a823c28d7ad5bda860d2d0f32d">~iRecorder</a> ()</td></tr>
 <tr class="memdesc:aca5fa9a823c28d7ad5bda860d2d0f32d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr class="separator:aca5fa9a823c28d7ad5bda860d2d0f32d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bc1007f0c80d1d6152b6c2135431d1a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#a1bc1007f0c80d1d6152b6c2135431d1a">BeginRecording</a> ()=0</td></tr>
-<tr class="memdesc:a1bc1007f0c80d1d6152b6c2135431d1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts recording audio from the initialized device.  <a href="#a1bc1007f0c80d1d6152b6c2135431d1a">More...</a><br/></td></tr>
-<tr class="separator:a1bc1007f0c80d1d6152b6c2135431d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45deffbb65fd66f343827c920f4ed88f"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#a45deffbb65fd66f343827c920f4ed88f">BeginRecording</a> ()=0</td></tr>
+<tr class="memdesc:a45deffbb65fd66f343827c920f4ed88f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts recording audio from the initialized device.  <a href="#a45deffbb65fd66f343827c920f4ed88f">More...</a><br/></td></tr>
+<tr class="separator:a45deffbb65fd66f343827c920f4ed88f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe205c380f3cafa4fc3c4c0850a9b980"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">BitConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#abe205c380f3cafa4fc3c4c0850a9b980">GetBitConfiguration</a> () const =0</td></tr>
 <tr class="memdesc:abe205c380f3cafa4fc3c4c0850a9b980"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the bit configuration for the audio captured by this recorder.  <a href="#abe205c380f3cafa4fc3c4c0850a9b980">More...</a><br/></td></tr>
 <tr class="separator:abe205c380f3cafa4fc3c4c0850a9b980"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,24 +129,24 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a4cd826e1c7084958be006b67ffa5329e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#a4cd826e1c7084958be006b67ffa5329e">GetSampleSize</a> () const =0</td></tr>
 <tr class="memdesc:a4cd826e1c7084958be006b67ffa5329e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of a single sample of recorded audio data.  <a href="#a4cd826e1c7084958be006b67ffa5329e">More...</a><br/></td></tr>
 <tr class="separator:a4cd826e1c7084958be006b67ffa5329e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5931eb6a325f17c9126c592ba22e132f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#a5931eb6a325f17c9126c592ba22e132f">Initialize</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;DeviceName=&quot;&quot;, const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Freq=22050, const <a class="el" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">BitConfig</a> Config=BC_16Bit_Mono, const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> IntBufSize=8192)=0</td></tr>
-<tr class="memdesc:a5931eb6a325f17c9126c592ba22e132f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the recording device with the current configuration.  <a href="#a5931eb6a325f17c9126c592ba22e132f">More...</a><br/></td></tr>
-<tr class="separator:a5931eb6a325f17c9126c592ba22e132f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bfe63118d31a97d1fdef56977228bca"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#a7bfe63118d31a97d1fdef56977228bca">IsReady</a> () const =0</td></tr>
-<tr class="memdesc:a7bfe63118d31a97d1fdef56977228bca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not the current Recorder configuration is ready to start recording audio.  <a href="#a7bfe63118d31a97d1fdef56977228bca">More...</a><br/></td></tr>
-<tr class="separator:a7bfe63118d31a97d1fdef56977228bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82a8218e15382ff4d6cad9f0a4797647"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#a82a8218e15382ff4d6cad9f0a4797647">SetBitConfiguration</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">BitConfig</a> Config)=0</td></tr>
-<tr class="memdesc:a82a8218e15382ff4d6cad9f0a4797647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the bit configuration to use when recording data to the internal buffer.  <a href="#a82a8218e15382ff4d6cad9f0a4797647">More...</a><br/></td></tr>
-<tr class="separator:a82a8218e15382ff4d6cad9f0a4797647"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a439077c3ae3834871123feba328b905f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#a439077c3ae3834871123feba328b905f">SetDeviceName</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;DeviceName)=0</td></tr>
-<tr class="memdesc:a439077c3ae3834871123feba328b905f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the device to be used for recording by name.  <a href="#a439077c3ae3834871123feba328b905f">More...</a><br/></td></tr>
-<tr class="separator:a439077c3ae3834871123feba328b905f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11050cb6b59fc3405b5844dff3d035eb"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#a11050cb6b59fc3405b5844dff3d035eb">SetFrequency</a> (const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Freq)=0</td></tr>
-<tr class="memdesc:a11050cb6b59fc3405b5844dff3d035eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency then the recorded audio will have.  <a href="#a11050cb6b59fc3405b5844dff3d035eb">More...</a><br/></td></tr>
-<tr class="separator:a11050cb6b59fc3405b5844dff3d035eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e07f433f1673ce403b8c31bd9a4f702"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#a3e07f433f1673ce403b8c31bd9a4f702">SetInternalBufferSize</a> (const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Size)=0</td></tr>
-<tr class="memdesc:a3e07f433f1673ce403b8c31bd9a4f702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the size of the internal buffer where the recorded audio may be placed.  <a href="#a3e07f433f1673ce403b8c31bd9a4f702">More...</a><br/></td></tr>
-<tr class="separator:a3e07f433f1673ce403b8c31bd9a4f702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c94df4d73a16de5f9966de3f8528c7e"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#a8c94df4d73a16de5f9966de3f8528c7e">Initialize</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;DeviceName=&quot;&quot;, const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Freq=22050, const <a class="el" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">BitConfig</a> Config=BC_16Bit_Mono, const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> IntBufSize=8192)=0</td></tr>
+<tr class="memdesc:a8c94df4d73a16de5f9966de3f8528c7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the recording device with the current configuration.  <a href="#a8c94df4d73a16de5f9966de3f8528c7e">More...</a><br/></td></tr>
+<tr class="separator:a8c94df4d73a16de5f9966de3f8528c7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab678dfd61f36970d4355a8165dbebbe7"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#ab678dfd61f36970d4355a8165dbebbe7">IsReady</a> () const =0</td></tr>
+<tr class="memdesc:ab678dfd61f36970d4355a8165dbebbe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not the current Recorder configuration is ready to start recording audio.  <a href="#ab678dfd61f36970d4355a8165dbebbe7">More...</a><br/></td></tr>
+<tr class="separator:ab678dfd61f36970d4355a8165dbebbe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2b83d55c23b91535f92afb4df282e6a"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#ae2b83d55c23b91535f92afb4df282e6a">SetBitConfiguration</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">BitConfig</a> Config)=0</td></tr>
+<tr class="memdesc:ae2b83d55c23b91535f92afb4df282e6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the bit configuration to use when recording data to the internal buffer.  <a href="#ae2b83d55c23b91535f92afb4df282e6a">More...</a><br/></td></tr>
+<tr class="separator:ae2b83d55c23b91535f92afb4df282e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5b830da16708f0fed639e54001a6818"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#ab5b830da16708f0fed639e54001a6818">SetDeviceName</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;DeviceName)=0</td></tr>
+<tr class="memdesc:ab5b830da16708f0fed639e54001a6818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the device to be used for recording by name.  <a href="#ab5b830da16708f0fed639e54001a6818">More...</a><br/></td></tr>
+<tr class="separator:ab5b830da16708f0fed639e54001a6818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8a76784099c4b3c03e89bf765e336da"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#ab8a76784099c4b3c03e89bf765e336da">SetFrequency</a> (const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Freq)=0</td></tr>
+<tr class="memdesc:ab8a76784099c4b3c03e89bf765e336da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency then the recorded audio will have.  <a href="#ab8a76784099c4b3c03e89bf765e336da">More...</a><br/></td></tr>
+<tr class="separator:ab8a76784099c4b3c03e89bf765e336da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa33a76e14b7b3eeb42e577bb7a452593"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#aa33a76e14b7b3eeb42e577bb7a452593">SetInternalBufferSize</a> (const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Size)=0</td></tr>
+<tr class="memdesc:aa33a76e14b7b3eeb42e577bb7a452593"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the size of the internal buffer where the recorded audio may be placed.  <a href="#aa33a76e14b7b3eeb42e577bb7a452593">More...</a><br/></td></tr>
+<tr class="separator:aa33a76e14b7b3eeb42e577bb7a452593"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4dfe24f00b65f768115c966c4bf37cf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iRecorder.html#ad4dfe24f00b65f768115c966c4bf37cf">Shutdown</a> ()=0</td></tr>
 <tr class="memdesc:ad4dfe24f00b65f768115c966c4bf37cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down and releases the recording device.  <a href="#ad4dfe24f00b65f768115c966c4bf37cf">More...</a><br/></td></tr>
 <tr class="separator:ad4dfe24f00b65f768115c966c4bf37cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,7 +160,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Definition at line <a class="el" href="recorder_8h_source.html#l00057">57</a> of file <a class="el" href="recorder_8h_source.html">recorder.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1bc1007f0c80d1d6152b6c2135431d1a"></a>
+<a class="anchor" id="a45deffbb65fd66f343827c920f4ed88f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -168,7 +168,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::iRecorder::BeginRecording </td>
+          <td class="memname">virtual Boolean Mezzanine::Audio::iRecorder::BeginRecording </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td></td>
@@ -388,7 +388,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a5931eb6a325f17c9126c592ba22e132f"></a>
+<a class="anchor" id="a8c94df4d73a16de5f9966de3f8528c7e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -396,7 +396,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::iRecorder::Initialize </td>
+          <td class="memname">virtual Boolean Mezzanine::Audio::iRecorder::Initialize </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
           <td class="paramname"><em>DeviceName</em> = <code>&quot;&quot;</code>, </td>
@@ -446,7 +446,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a7bfe63118d31a97d1fdef56977228bca"></a>
+<a class="anchor" id="ab678dfd61f36970d4355a8165dbebbe7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -454,7 +454,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::iRecorder::IsReady </td>
+          <td class="memname">virtual Boolean Mezzanine::Audio::iRecorder::IsReady </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -472,7 +472,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a82a8218e15382ff4d6cad9f0a4797647"></a>
+<a class="anchor" id="ae2b83d55c23b91535f92afb4df282e6a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -480,7 +480,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::iRecorder::SetBitConfiguration </td>
+          <td class="memname">virtual Boolean Mezzanine::Audio::iRecorder::SetBitConfiguration </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Audio.html#a9978d2013313ec7bf6978c622e80d782">BitConfig</a>&#160;</td>
           <td class="paramname"><em>Config</em>)</td><td></td>
@@ -506,7 +506,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a439077c3ae3834871123feba328b905f"></a>
+<a class="anchor" id="ab5b830da16708f0fed639e54001a6818"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -514,7 +514,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::iRecorder::SetDeviceName </td>
+          <td class="memname">virtual Boolean Mezzanine::Audio::iRecorder::SetDeviceName </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
           <td class="paramname"><em>DeviceName</em>)</td><td></td>
@@ -540,7 +540,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a11050cb6b59fc3405b5844dff3d035eb"></a>
+<a class="anchor" id="ab8a76784099c4b3c03e89bf765e336da"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -548,7 +548,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::iRecorder::SetFrequency </td>
+          <td class="memname">virtual Boolean Mezzanine::Audio::iRecorder::SetFrequency </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>&#160;</td>
           <td class="paramname"><em>Freq</em>)</td><td></td>
@@ -574,7 +574,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a3e07f433f1673ce403b8c31bd9a4f702"></a>
+<a class="anchor" id="aa33a76e14b7b3eeb42e577bb7a452593"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -582,7 +582,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::iRecorder::SetInternalBufferSize </td>
+          <td class="memname">virtual Boolean Mezzanine::Audio::iRecorder::SetInternalBufferSize </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a>&#160;</td>
           <td class="paramname"><em>Size</em>)</td><td></td>
@@ -603,6 +603,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the internal buffer size was successfully updated, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -637,6 +638,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:28 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

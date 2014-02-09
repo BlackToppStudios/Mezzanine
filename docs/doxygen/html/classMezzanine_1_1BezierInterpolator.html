@@ -113,6 +113,15 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3edf28a3fcdfe9a26efde31d94c6a6e2"><td class="memTemplItemLeft" align="right" valign="top">static T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1BezierInterpolator.html#a3edf28a3fcdfe9a26efde31d94c6a6e2">Interpolate</a> (TIterator Begin, TIterator End, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Location)</td></tr>
 <tr class="memdesc:a3edf28a3fcdfe9a26efde31d94c6a6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a value at a given location between two others.  <a href="#a3edf28a3fcdfe9a26efde31d94c6a6e2">More...</a><br/></td></tr>
 <tr class="separator:a3edf28a3fcdfe9a26efde31d94c6a6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12b86c861dde2e852ce028efd8be119e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1BezierInterpolator.html#a12b86c861dde2e852ce028efd8be119e">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
+<tr class="memdesc:a12b86c861dde2e852ce028efd8be119e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This does not create or change the object it deserializes, but it does verify type info.  <a href="#a12b86c861dde2e852ce028efd8be119e">More...</a><br/></td></tr>
+<tr class="separator:a12b86c861dde2e852ce028efd8be119e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ab0a8e6e01a7b16ce665663d1ee8962"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1BezierInterpolator.html#a1ab0a8e6e01a7b16ce665663d1ee8962">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot)</td></tr>
+<tr class="memdesc:a1ab0a8e6e01a7b16ce665663d1ee8962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a node for with enough information to deserialize to the passed node.  <a href="#a1ab0a8e6e01a7b16ce665663d1ee8962">More...</a><br/></td></tr>
+<tr class="separator:a1ab0a8e6e01a7b16ce665663d1ee8962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab064959f816cb02271806865ede0c138"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1BezierInterpolator.html#ab064959f816cb02271806865ede0c138">SerializableName</a> ()</td></tr>
+<tr class="memdesc:ab064959f816cb02271806865ede0c138"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the name of this class for serialization purposes  <a href="#ab064959f816cb02271806865ede0c138">More...</a><br/></td></tr>
+<tr class="separator:ab064959f816cb02271806865ede0c138"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br/>
@@ -128,13 +137,13 @@ class Mezzanine::BezierInterpolator&lt; T &gt;</h3>
 <li>Will be able to provide interpolated values for a small set of data points. There might be corners when connecting 2 different bezier curves if not careful, any bezier implementation taking a finite amount of points cannot help this. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00194">194</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00252">252</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="abd10a4c8ba03aac9474c4e6012ea0146"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef T <a class="el" href="classMezzanine_1_1BezierInterpolator.html">Mezzanine::BezierInterpolator</a>&lt; T &gt;::<a class="el" href="classMezzanine_1_1BezierInterpolator.html#abd10a4c8ba03aac9474c4e6012ea0146">InterpolatableType</a></td>
@@ -145,7 +154,7 @@ template&lt;typename T &gt; </div>
 <p>The type this will interpolate. </p>
 <dl class="section note"><dt>Note</dt><dd>All Interpolators need to declare an InterpolatableType </dd></dl>
 
-<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00199">199</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00257">257</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
 
 </div>
 </div>
@@ -154,7 +163,7 @@ template&lt;typename T &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T&gt; </div>
 <div class="memtemplate">
 template&lt;typename TIterator &gt; </div>
 <table class="mlabels">
@@ -205,7 +214,110 @@ template&lt;typename TIterator &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>A Value equal or near to Begin if 0.0 is passed, equal to or near to End if 1.0 is passed equal to a point exactly in the middle if 0.5 is passed. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>This is implemented as a recursive function with the only termination condition being the Edn iterator. </dd></dl>
 
-<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00217">217</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00275">275</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a12b86c861dde2e852ce028efd8be119e"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="classMezzanine_1_1BezierInterpolator.html">Mezzanine::BezierInterpolator</a>&lt; T &gt;::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This does not create or change the object it deserializes, but it does verify type info. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td>node to read serialized data from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00318">318</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1ab0a8e6e01a7b16ce665663d1ee8962"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="classMezzanine_1_1BezierInterpolator.html">Mezzanine::BezierInterpolator</a>&lt; T &gt;::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Append a node for with enough information to deserialize to the passed node. </p>
+<dl class="section note"><dt>Note</dt><dd>Very little data is actually serialized, most of it is type information that is not easily deserialized. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>A node to act as the parent for the serialized version of this one </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00292">292</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab064959f816cb02271806865ede0c138"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> <a class="el" href="classMezzanine_1_1BezierInterpolator.html">Mezzanine::BezierInterpolator</a>&lt; T &gt;::SerializableName </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get the name of this class for serialization purposes </p>
+<dl class="section return"><dt>Returns</dt><dd>A String containing "BezierInterpolator" </dd></dl>
+
+<p>Definition at line <a class="el" href="interpolator_8h_source.html#l00341">341</a> of file <a class="el" href="interpolator_8h_source.html">interpolator.h</a>.</p>
 
 </div>
 </div>
@@ -214,6 +326,6 @@ template&lt;typename TIterator &gt; </div>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:27 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

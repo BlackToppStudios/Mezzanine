@@ -83,9 +83,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classMezzanine_1_1Input_1_1MetaCode-members.html">List of all members</a>  </div>
@@ -99,6 +99,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><code>#include &lt;<a class="el" href="metacode_8h_source.html">metacode.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a68c030273e41db74b3523b67648d4331"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68c030273e41db74b3523b67648d4331"></a>
+typedef <br class="typebreak"/>
+MetaCodeContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a68c030273e41db74b3523b67648d4331">ConstMetaCodeIterator</a></td></tr>
+<tr class="memdesc:a68c030273e41db74b3523b67648d4331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for convenient <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> storage. <br/></td></tr>
+<tr class="separator:a68c030273e41db74b3523b67648d4331"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac18d71f067561fe722226e499340ee15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac18d71f067561fe722226e499340ee15"></a>
+typedef std::vector<br class="typebreak"/>
+&lt; <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">Input::MetaCode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ac18d71f067561fe722226e499340ee15">MetaCodeContainer</a></td></tr>
+<tr class="memdesc:ac18d71f067561fe722226e499340ee15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience datatype for storage of MetaCodes. <br/></td></tr>
+<tr class="separator:ac18d71f067561fe722226e499340ee15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40cda142c9839e6aa6ee5927e68da22b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40cda142c9839e6aa6ee5927e68da22b"></a>
+typedef MetaCodeContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a40cda142c9839e6aa6ee5927e68da22b">MetaCodeIterator</a></td></tr>
+<tr class="memdesc:a40cda142c9839e6aa6ee5927e68da22b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for convenient <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> storage. <br/></td></tr>
+<tr class="separator:a40cda142c9839e6aa6ee5927e68da22b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a15f7cad46dd4a4085ac986fd0c233cfb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a15f7cad46dd4a4085ac986fd0c233cfb">MetaCode</a> ()</td></tr>
@@ -107,21 +124,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad8b2e7a56adda96c4a694c717e54f53f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ad8b2e7a56adda96c4a694c717e54f53f">MetaCode</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;Other)</td></tr>
 <tr class="memdesc:ad8b2e7a56adda96c4a694c717e54f53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#ad8b2e7a56adda96c4a694c717e54f53f">More...</a><br/></td></tr>
 <tr class="separator:ad8b2e7a56adda96c4a694c717e54f53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa241ab848fe7a909be45db132f7e1c1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#aa241ab848fe7a909be45db132f7e1c1f">MetaCode</a> (const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> &amp;Value, const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> &amp;NewCode)</td></tr>
-<tr class="memdesc:aa241ab848fe7a909be45db132f7e1c1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive Constructor.  <a href="#aa241ab848fe7a909be45db132f7e1c1f">More...</a><br/></td></tr>
-<tr class="separator:aa241ab848fe7a909be45db132f7e1c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a540d3a20be5c2fea8a6b556790fe89fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a540d3a20be5c2fea8a6b556790fe89fc">MetaCode</a> (const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> &amp;Value, const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> &amp;NewCode, const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> &amp;Index)</td></tr>
-<tr class="memdesc:a540d3a20be5c2fea8a6b556790fe89fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive Constructor.  <a href="#a540d3a20be5c2fea8a6b556790fe89fc">More...</a><br/></td></tr>
-<tr class="separator:a540d3a20be5c2fea8a6b556790fe89fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a572a34e35c1ac44d5e955910094a7aef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a572a34e35c1ac44d5e955910094a7aef">MetaCode</a> (const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;RawEvent_)</td></tr>
-<tr class="memdesc:a572a34e35c1ac44d5e955910094a7aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Heavy Lifting Constructor.  <a href="#a572a34e35c1ac44d5e955910094a7aef">More...</a><br/></td></tr>
-<tr class="separator:a572a34e35c1ac44d5e955910094a7aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53f952451b10a844a12c29fce07402be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a53f952451b10a844a12c29fce07402be">MetaCode</a> (const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Value, const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> NewCode)</td></tr>
+<tr class="memdesc:a53f952451b10a844a12c29fce07402be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive Constructor.  <a href="#a53f952451b10a844a12c29fce07402be">More...</a><br/></td></tr>
+<tr class="separator:a53f952451b10a844a12c29fce07402be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a150cf77b0ac10361ffbf7c7069b3f63c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a150cf77b0ac10361ffbf7c7069b3f63c">MetaCode</a> (const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Value, const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> NewCode, const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Index)</td></tr>
+<tr class="memdesc:a150cf77b0ac10361ffbf7c7069b3f63c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive Constructor.  <a href="#a150cf77b0ac10361ffbf7c7069b3f63c">More...</a><br/></td></tr>
+<tr class="separator:a150cf77b0ac10361ffbf7c7069b3f63c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68e57f7b3e33751a1f09ccc11d155811"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a68e57f7b3e33751a1f09ccc11d155811">MetaCode</a> (const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;Raw)</td></tr>
+<tr class="memdesc:a68e57f7b3e33751a1f09ccc11d155811"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Heavy Lifting Constructor.  <a href="#a68e57f7b3e33751a1f09ccc11d155811">More...</a><br/></td></tr>
+<tr class="separator:a68e57f7b3e33751a1f09ccc11d155811"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55c2dfebae8ff03d25a813d92c6c09ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55c2dfebae8ff03d25a813d92c6c09ac"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a55c2dfebae8ff03d25a813d92c6c09ac">~MetaCode</a> ()</td></tr>
+<tr class="memdesc:a55c2dfebae8ff03d25a813d92c6c09ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr class="separator:a55c2dfebae8ff03d25a813d92c6c09ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5869892a662a652b6deb3a87a1c8bb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ad5869892a662a652b6deb3a87a1c8bb1">GetCode</a> () const </td></tr>
 <tr class="memdesc:ad5869892a662a652b6deb3a87a1c8bb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Returns the Inputcode.  <a href="#ad5869892a662a652b6deb3a87a1c8bb1">More...</a><br/></td></tr>
 <tr class="separator:ad5869892a662a652b6deb3a87a1c8bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91b75370c42fe0c7b071e4979f0be60f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a91b75370c42fe0c7b071e4979f0be60f">GetDeviceIndex</a> () const </td></tr>
-<tr class="memdesc:a91b75370c42fe0c7b071e4979f0be60f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set device index.  <a href="#a91b75370c42fe0c7b071e4979f0be60f">More...</a><br/></td></tr>
-<tr class="separator:a91b75370c42fe0c7b071e4979f0be60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cdc56f9ae9f975fa34150923ee64b94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a2cdc56f9ae9f975fa34150923ee64b94">GetDeviceIndex</a> () const </td></tr>
+<tr class="memdesc:a2cdc56f9ae9f975fa34150923ee64b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set device index.  <a href="#a2cdc56f9ae9f975fa34150923ee64b94">More...</a><br/></td></tr>
+<tr class="separator:a2cdc56f9ae9f975fa34150923ee64b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab68be2885dcb1d8548ea7d67e717703"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1Input.html#a479cb3962a87f9d7d00e3fe85cae5f36">Input::InputDevice</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#aab68be2885dcb1d8548ea7d67e717703">GetDeviceType</a> () const </td></tr>
 <tr class="memdesc:aab68be2885dcb1d8548ea7d67e717703"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the device-type this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> is representing.  <a href="#aab68be2885dcb1d8548ea7d67e717703">More...</a><br/></td></tr>
 <tr class="separator:aab68be2885dcb1d8548ea7d67e717703"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,75 +155,75 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a041100b0621fee135b6b8cd55c679a82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1Input.html#a85056e46299252c81ef5278cbb7d5c8f">Input::DirectionalMotionState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a041100b0621fee135b6b8cd55c679a82">GetMetaValueAsDirectionalMotionState</a> () const </td></tr>
 <tr class="memdesc:a041100b0621fee135b6b8cd55c679a82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the MetaValue as a <a class="el" href="namespaceMezzanine_1_1Input.html#a85056e46299252c81ef5278cbb7d5c8f" title="An Optional listing of values that can be used in a metacode Indicate spin, digital or binary travel ...">Input::DirectionalMotionState</a>.  <a href="#a041100b0621fee135b6b8cd55c679a82">More...</a><br/></td></tr>
 <tr class="separator:a041100b0621fee135b6b8cd55c679a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef731ef25e19eec8cda7f83f09b436a5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#aef731ef25e19eec8cda7f83f09b436a5">IsAltKey</a> () const </td></tr>
-<tr class="memdesc:aef731ef25e19eec8cda7f83f09b436a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this a left or right Alt key.  <a href="#aef731ef25e19eec8cda7f83f09b436a5">More...</a><br/></td></tr>
-<tr class="separator:aef731ef25e19eec8cda7f83f09b436a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3bcb1f8a0463fce24ae99a7741291c4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#af3bcb1f8a0463fce24ae99a7741291c4">IsControllerAxisEvent</a> () const </td></tr>
-<tr class="memdesc:af3bcb1f8a0463fce24ae99a7741291c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent an axis position on a controller.  <a href="#af3bcb1f8a0463fce24ae99a7741291c4">More...</a><br/></td></tr>
-<tr class="separator:af3bcb1f8a0463fce24ae99a7741291c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2cc9648f2ea7704d9e8122cb06b8528"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#af2cc9648f2ea7704d9e8122cb06b8528">IsControllerButton</a> () const </td></tr>
-<tr class="memdesc:af2cc9648f2ea7704d9e8122cb06b8528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> button.  <a href="#af2cc9648f2ea7704d9e8122cb06b8528">More...</a><br/></td></tr>
-<tr class="separator:af2cc9648f2ea7704d9e8122cb06b8528"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15e06ec2f795da22bbad4d8ee7dd7af5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a15e06ec2f795da22bbad4d8ee7dd7af5">IsControllerEvent</a> () const </td></tr>
-<tr class="memdesc:a15e06ec2f795da22bbad4d8ee7dd7af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a>.  <a href="#a15e06ec2f795da22bbad4d8ee7dd7af5">More...</a><br/></td></tr>
-<tr class="separator:a15e06ec2f795da22bbad4d8ee7dd7af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4bf60df005381fcb58702dcd3ba5b39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ab4bf60df005381fcb58702dcd3ba5b39">IsControllerHatEvent</a> () const </td></tr>
-<tr class="memdesc:ab4bf60df005381fcb58702dcd3ba5b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a hat position on a controller.  <a href="#ab4bf60df005381fcb58702dcd3ba5b39">More...</a><br/></td></tr>
-<tr class="separator:ab4bf60df005381fcb58702dcd3ba5b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87d9c6425f8c99dde194d4ffb36427e4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a87d9c6425f8c99dde194d4ffb36427e4">IsCtrlKey</a> () const </td></tr>
-<tr class="memdesc:a87d9c6425f8c99dde194d4ffb36427e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this a left or right Ctrl key.  <a href="#a87d9c6425f8c99dde194d4ffb36427e4">More...</a><br/></td></tr>
-<tr class="separator:a87d9c6425f8c99dde194d4ffb36427e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a328b04835ec075ce82aa61abca52c7ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a328b04835ec075ce82aa61abca52c7ea">IsDeviceButton</a> () const </td></tr>
-<tr class="memdesc:a328b04835ec075ce82aa61abca52c7ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of any button on an input device.  <a href="#a328b04835ec075ce82aa61abca52c7ea">More...</a><br/></td></tr>
-<tr class="separator:a328b04835ec075ce82aa61abca52c7ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69a73df3899542926216cc9bcbbd7d7b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a69a73df3899542926216cc9bcbbd7d7b">IsInputEvent</a> () const </td></tr>
-<tr class="memdesc:a69a73df3899542926216cc9bcbbd7d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent some other (non-keyboard and non-mouse button).  <a href="#a69a73df3899542926216cc9bcbbd7d7b">More...</a><br/></td></tr>
-<tr class="separator:a69a73df3899542926216cc9bcbbd7d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8886bfc440ba13b947254a3269a28ed3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a8886bfc440ba13b947254a3269a28ed3">IsKeyboardButton</a> () const </td></tr>
-<tr class="memdesc:a8886bfc440ba13b947254a3269a28ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a keyboard key.  <a href="#a8886bfc440ba13b947254a3269a28ed3">More...</a><br/></td></tr>
-<tr class="separator:a8886bfc440ba13b947254a3269a28ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1caa5727878fb457731070f3028c509d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a1caa5727878fb457731070f3028c509d">IsKeyboardEvent</a> () const </td></tr>
-<tr class="memdesc:a1caa5727878fb457731070f3028c509d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a keyboard <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a>.  <a href="#a1caa5727878fb457731070f3028c509d">More...</a><br/></td></tr>
-<tr class="separator:a1caa5727878fb457731070f3028c509d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9fa5e03daa30d678fbda4cbdea134ab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#aa9fa5e03daa30d678fbda4cbdea134ab">IsMouseButton</a> () const </td></tr>
-<tr class="memdesc:aa9fa5e03daa30d678fbda4cbdea134ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a <a class="el" href="classMezzanine_1_1Input_1_1Mouse.html" title="This class represents the mouse input device. ">Mouse</a> button.  <a href="#aa9fa5e03daa30d678fbda4cbdea134ab">More...</a><br/></td></tr>
-<tr class="separator:aa9fa5e03daa30d678fbda4cbdea134ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbaaf0d5638eb991e5190df737c3af96"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#acbaaf0d5638eb991e5190df737c3af96">IsMouseEvent</a> () const </td></tr>
-<tr class="memdesc:acbaaf0d5638eb991e5190df737c3af96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a mouse <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a>.  <a href="#acbaaf0d5638eb991e5190df737c3af96">More...</a><br/></td></tr>
-<tr class="separator:acbaaf0d5638eb991e5190df737c3af96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa2b8b0db8a4d380c49919d483bcce8c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#afa2b8b0db8a4d380c49919d483bcce8c">IsMouseMotionEvent</a> () const </td></tr>
-<tr class="memdesc:afa2b8b0db8a4d380c49919d483bcce8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent movement of the mouse or mouse wheel.  <a href="#afa2b8b0db8a4d380c49919d483bcce8c">More...</a><br/></td></tr>
-<tr class="separator:afa2b8b0db8a4d380c49919d483bcce8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab18f6196b2dc0bf0cbf8b169973b5a64"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ab18f6196b2dc0bf0cbf8b169973b5a64">IsMouseMultiClickEvent</a> () const </td></tr>
-<tr class="memdesc:ab18f6196b2dc0bf0cbf8b169973b5a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent multiple clicks of a mouse button.  <a href="#ab18f6196b2dc0bf0cbf8b169973b5a64">More...</a><br/></td></tr>
-<tr class="separator:ab18f6196b2dc0bf0cbf8b169973b5a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64d69f96659459ecf4ff40a7517ecfc0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a64d69f96659459ecf4ff40a7517ecfc0">IsMultitouchEvent</a> () const </td></tr>
-<tr class="memdesc:a64d69f96659459ecf4ff40a7517ecfc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a multitouch device.  <a href="#a64d69f96659459ecf4ff40a7517ecfc0">More...</a><br/></td></tr>
-<tr class="separator:a64d69f96659459ecf4ff40a7517ecfc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64390191ea465a3aa45ce2ce16d43af5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a64390191ea465a3aa45ce2ce16d43af5">IsPollable</a> () const </td></tr>
-<tr class="memdesc:a64390191ea465a3aa45ce2ce16d43af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this metacode a pollable event.  <a href="#a64390191ea465a3aa45ce2ce16d43af5">More...</a><br/></td></tr>
-<tr class="separator:a64390191ea465a3aa45ce2ce16d43af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29fa766c52b94cc129db472640f8a7a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a29fa766c52b94cc129db472640f8a7a2">IsShiftKey</a> () const </td></tr>
-<tr class="memdesc:a29fa766c52b94cc129db472640f8a7a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this a left or right Shift key.  <a href="#a29fa766c52b94cc129db472640f8a7a2">More...</a><br/></td></tr>
-<tr class="separator:a29fa766c52b94cc129db472640f8a7a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75d02a873c1b4e36a3bff9511e2cf30e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a75d02a873c1b4e36a3bff9511e2cf30e">IsSuperKey</a> () const </td></tr>
-<tr class="memdesc:a75d02a873c1b4e36a3bff9511e2cf30e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this a left or right Super key (Windows logo key, Apple logo key, etc...).  <a href="#a75d02a873c1b4e36a3bff9511e2cf30e">More...</a><br/></td></tr>
-<tr class="separator:a75d02a873c1b4e36a3bff9511e2cf30e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33a3838c6728523692eb7fb157c949fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a33a3838c6728523692eb7fb157c949fb">operator!=</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;Other) const </td></tr>
-<tr class="memdesc:a33a3838c6728523692eb7fb157c949fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>'s for inequality.  <a href="#a33a3838c6728523692eb7fb157c949fb">More...</a><br/></td></tr>
-<tr class="separator:a33a3838c6728523692eb7fb157c949fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7db41b8c7854224991fc38d95143840e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a7db41b8c7854224991fc38d95143840e">operator&lt;</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;Other) const </td></tr>
-<tr class="memdesc:a7db41b8c7854224991fc38d95143840e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>'s to see if this is less.  <a href="#a7db41b8c7854224991fc38d95143840e">More...</a><br/></td></tr>
-<tr class="separator:a7db41b8c7854224991fc38d95143840e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac941b203ecb90c5feee404dc7f48c75e"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ac941b203ecb90c5feee404dc7f48c75e">IsAltKey</a> () const </td></tr>
+<tr class="memdesc:ac941b203ecb90c5feee404dc7f48c75e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this a left or right Alt key.  <a href="#ac941b203ecb90c5feee404dc7f48c75e">More...</a><br/></td></tr>
+<tr class="separator:ac941b203ecb90c5feee404dc7f48c75e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9bf2f7ae9d5eabf35c541de2391c038"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ab9bf2f7ae9d5eabf35c541de2391c038">IsControllerAxisEvent</a> () const </td></tr>
+<tr class="memdesc:ab9bf2f7ae9d5eabf35c541de2391c038"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent an axis position on a controller.  <a href="#ab9bf2f7ae9d5eabf35c541de2391c038">More...</a><br/></td></tr>
+<tr class="separator:ab9bf2f7ae9d5eabf35c541de2391c038"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b22639f7dcdffad512b0af918b9ae19"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a6b22639f7dcdffad512b0af918b9ae19">IsControllerButton</a> () const </td></tr>
+<tr class="memdesc:a6b22639f7dcdffad512b0af918b9ae19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> button.  <a href="#a6b22639f7dcdffad512b0af918b9ae19">More...</a><br/></td></tr>
+<tr class="separator:a6b22639f7dcdffad512b0af918b9ae19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac75643d765b330f2d93d7434861f55cd"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ac75643d765b330f2d93d7434861f55cd">IsControllerEvent</a> () const </td></tr>
+<tr class="memdesc:ac75643d765b330f2d93d7434861f55cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a>.  <a href="#ac75643d765b330f2d93d7434861f55cd">More...</a><br/></td></tr>
+<tr class="separator:ac75643d765b330f2d93d7434861f55cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed38e40dbeb1d30589016d413cf36ff8"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#aed38e40dbeb1d30589016d413cf36ff8">IsControllerHatEvent</a> () const </td></tr>
+<tr class="memdesc:aed38e40dbeb1d30589016d413cf36ff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a hat position on a controller.  <a href="#aed38e40dbeb1d30589016d413cf36ff8">More...</a><br/></td></tr>
+<tr class="separator:aed38e40dbeb1d30589016d413cf36ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35397d4f3553a77dc7094fa22fa9870c"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a35397d4f3553a77dc7094fa22fa9870c">IsCtrlKey</a> () const </td></tr>
+<tr class="memdesc:a35397d4f3553a77dc7094fa22fa9870c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this a left or right Ctrl key.  <a href="#a35397d4f3553a77dc7094fa22fa9870c">More...</a><br/></td></tr>
+<tr class="separator:a35397d4f3553a77dc7094fa22fa9870c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21f7fbf38f46d9a6585dba5e7ca0998a"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a21f7fbf38f46d9a6585dba5e7ca0998a">IsDeviceButton</a> () const </td></tr>
+<tr class="memdesc:a21f7fbf38f46d9a6585dba5e7ca0998a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of any button on an input device.  <a href="#a21f7fbf38f46d9a6585dba5e7ca0998a">More...</a><br/></td></tr>
+<tr class="separator:a21f7fbf38f46d9a6585dba5e7ca0998a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f34243a1d412a96e6667bba05d77b05"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a0f34243a1d412a96e6667bba05d77b05">IsInputEvent</a> () const </td></tr>
+<tr class="memdesc:a0f34243a1d412a96e6667bba05d77b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent some other (non-keyboard and non-mouse button).  <a href="#a0f34243a1d412a96e6667bba05d77b05">More...</a><br/></td></tr>
+<tr class="separator:a0f34243a1d412a96e6667bba05d77b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a436261fd2516b6c0ca9b00ec04359465"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a436261fd2516b6c0ca9b00ec04359465">IsKeyboardButton</a> () const </td></tr>
+<tr class="memdesc:a436261fd2516b6c0ca9b00ec04359465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a keyboard key.  <a href="#a436261fd2516b6c0ca9b00ec04359465">More...</a><br/></td></tr>
+<tr class="separator:a436261fd2516b6c0ca9b00ec04359465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc1a85d7c098cf1a6e1645dc40043d7"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a1dc1a85d7c098cf1a6e1645dc40043d7">IsKeyboardEvent</a> () const </td></tr>
+<tr class="memdesc:a1dc1a85d7c098cf1a6e1645dc40043d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a keyboard <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a>.  <a href="#a1dc1a85d7c098cf1a6e1645dc40043d7">More...</a><br/></td></tr>
+<tr class="separator:a1dc1a85d7c098cf1a6e1645dc40043d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab364b4022017f121a0157f9c1b9cd145"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ab364b4022017f121a0157f9c1b9cd145">IsMouseButton</a> () const </td></tr>
+<tr class="memdesc:ab364b4022017f121a0157f9c1b9cd145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a <a class="el" href="classMezzanine_1_1Input_1_1Mouse.html" title="This class represents the mouse input device. ">Mouse</a> button.  <a href="#ab364b4022017f121a0157f9c1b9cd145">More...</a><br/></td></tr>
+<tr class="separator:ab364b4022017f121a0157f9c1b9cd145"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b0d0fad9ae7871b3abdfd27fbdf95f4"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a6b0d0fad9ae7871b3abdfd27fbdf95f4">IsMouseEvent</a> () const </td></tr>
+<tr class="memdesc:a6b0d0fad9ae7871b3abdfd27fbdf95f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a mouse <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a>.  <a href="#a6b0d0fad9ae7871b3abdfd27fbdf95f4">More...</a><br/></td></tr>
+<tr class="separator:a6b0d0fad9ae7871b3abdfd27fbdf95f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a728901861ba054d29c4cdba97f0019"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a6a728901861ba054d29c4cdba97f0019">IsMouseMotionEvent</a> () const </td></tr>
+<tr class="memdesc:a6a728901861ba054d29c4cdba97f0019"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent movement of the mouse or mouse wheel.  <a href="#a6a728901861ba054d29c4cdba97f0019">More...</a><br/></td></tr>
+<tr class="separator:a6a728901861ba054d29c4cdba97f0019"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e13242b11cd24e6d4b2dbcd565dfa3d"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a2e13242b11cd24e6d4b2dbcd565dfa3d">IsMouseMultiClickEvent</a> () const </td></tr>
+<tr class="memdesc:a2e13242b11cd24e6d4b2dbcd565dfa3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent multiple clicks of a mouse button.  <a href="#a2e13242b11cd24e6d4b2dbcd565dfa3d">More...</a><br/></td></tr>
+<tr class="separator:a2e13242b11cd24e6d4b2dbcd565dfa3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3c45be516ef94d3a6603ce68810a3a3"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ae3c45be516ef94d3a6603ce68810a3a3">IsMultitouchEvent</a> () const </td></tr>
+<tr class="memdesc:ae3c45be516ef94d3a6603ce68810a3a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a multitouch device.  <a href="#ae3c45be516ef94d3a6603ce68810a3a3">More...</a><br/></td></tr>
+<tr class="separator:ae3c45be516ef94d3a6603ce68810a3a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab7cede9643a30c44009ad3c2feaad47"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#aab7cede9643a30c44009ad3c2feaad47">IsPollable</a> () const </td></tr>
+<tr class="memdesc:aab7cede9643a30c44009ad3c2feaad47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this metacode a pollable event.  <a href="#aab7cede9643a30c44009ad3c2feaad47">More...</a><br/></td></tr>
+<tr class="separator:aab7cede9643a30c44009ad3c2feaad47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a482c8ebe0a063fab1562ffd3c9b1920f"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a482c8ebe0a063fab1562ffd3c9b1920f">IsShiftKey</a> () const </td></tr>
+<tr class="memdesc:a482c8ebe0a063fab1562ffd3c9b1920f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this a left or right Shift key.  <a href="#a482c8ebe0a063fab1562ffd3c9b1920f">More...</a><br/></td></tr>
+<tr class="separator:a482c8ebe0a063fab1562ffd3c9b1920f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9589e13bce41de8e2f3d76601aca25b"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ac9589e13bce41de8e2f3d76601aca25b">IsSuperKey</a> () const </td></tr>
+<tr class="memdesc:ac9589e13bce41de8e2f3d76601aca25b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this a left or right Super key (Windows logo key, Apple logo key, etc...).  <a href="#ac9589e13bce41de8e2f3d76601aca25b">More...</a><br/></td></tr>
+<tr class="separator:ac9589e13bce41de8e2f3d76601aca25b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade982371bff6d3314241bd3662e7b863"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ade982371bff6d3314241bd3662e7b863">operator!=</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;Other) const </td></tr>
+<tr class="memdesc:ade982371bff6d3314241bd3662e7b863"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>'s for inequality.  <a href="#ade982371bff6d3314241bd3662e7b863">More...</a><br/></td></tr>
+<tr class="separator:ade982371bff6d3314241bd3662e7b863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ac170214636583b9d10cab46f7d3b9b"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a1ac170214636583b9d10cab46f7d3b9b">operator&lt;</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;Other) const </td></tr>
+<tr class="memdesc:a1ac170214636583b9d10cab46f7d3b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>'s to see if this is less.  <a href="#a1ac170214636583b9d10cab46f7d3b9b">More...</a><br/></td></tr>
+<tr class="separator:a1ac170214636583b9d10cab46f7d3b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9056895a944996f61a6c1c0c370d19f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a9056895a944996f61a6c1c0c370d19f0">operator=</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;Other)</td></tr>
 <tr class="memdesc:a9056895a944996f61a6c1c0c370d19f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator.  <a href="#a9056895a944996f61a6c1c0c370d19f0">More...</a><br/></td></tr>
 <tr class="separator:a9056895a944996f61a6c1c0c370d19f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a101f40ff4c93e59bc109e8a3e75088fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a101f40ff4c93e59bc109e8a3e75088fa">operator==</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;Other) const </td></tr>
-<tr class="memdesc:a101f40ff4c93e59bc109e8a3e75088fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>'s for equality.  <a href="#a101f40ff4c93e59bc109e8a3e75088fa">More...</a><br/></td></tr>
-<tr class="separator:a101f40ff4c93e59bc109e8a3e75088fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fb3afe0ca94bad286343d19b37062ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a4fb3afe0ca94bad286343d19b37062ef">operator&gt;</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;Other) const </td></tr>
-<tr class="memdesc:a4fb3afe0ca94bad286343d19b37062ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>'s to see if this is greater.  <a href="#a4fb3afe0ca94bad286343d19b37062ef">More...</a><br/></td></tr>
-<tr class="separator:a4fb3afe0ca94bad286343d19b37062ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d2db91526a2499ad03dbcb30816b0cc"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a8d2db91526a2499ad03dbcb30816b0cc">operator==</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;Other) const </td></tr>
+<tr class="memdesc:a8d2db91526a2499ad03dbcb30816b0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>'s for equality.  <a href="#a8d2db91526a2499ad03dbcb30816b0cc">More...</a><br/></td></tr>
+<tr class="separator:a8d2db91526a2499ad03dbcb30816b0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6324853a734d40c54f07338fe147ea43"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a6324853a734d40c54f07338fe147ea43">operator&gt;</a> (const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;Other) const </td></tr>
+<tr class="memdesc:a6324853a734d40c54f07338fe147ea43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>'s to see if this is greater.  <a href="#a6324853a734d40c54f07338fe147ea43">More...</a><br/></td></tr>
+<tr class="separator:a6324853a734d40c54f07338fe147ea43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60ab235049370e4acedb750ec66acd4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a60ab235049370e4acedb750ec66acd4e">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
 <tr class="memdesc:a60ab235049370e4acedb750ec66acd4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> and overwrite this instance of this object with it.  <a href="#a60ab235049370e4acedb750ec66acd4e">More...</a><br/></td></tr>
 <tr class="separator:a60ab235049370e4acedb750ec66acd4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,18 +233,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2cd7e8300d22f60b465cecf856f09a75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a2cd7e8300d22f60b465cecf856f09a75">SerializableName</a> () const </td></tr>
 <tr class="memdesc:a2cd7e8300d22f60b465cecf856f09a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> tag this class will leave behind as its instances are serialized.  <a href="#a2cd7e8300d22f60b465cecf856f09a75">More...</a><br/></td></tr>
 <tr class="separator:a2cd7e8300d22f60b465cecf856f09a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13e395251b44663ae8a37dfda28578ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a13e395251b44663ae8a37dfda28578ec">SetCode</a> (const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> &amp;NewCode)</td></tr>
-<tr class="memdesc:a13e395251b44663ae8a37dfda28578ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Sets The InputCode.  <a href="#a13e395251b44663ae8a37dfda28578ec">More...</a><br/></td></tr>
-<tr class="separator:a13e395251b44663ae8a37dfda28578ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a990719e1ad76e05db96a13fad501fe4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a990719e1ad76e05db96a13fad501fe4d">SetCode</a> (const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> &amp;NewCode)</td></tr>
-<tr class="memdesc:a990719e1ad76e05db96a13fad501fe4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Sets The InputCode using an Int32.  <a href="#a990719e1ad76e05db96a13fad501fe4d">More...</a><br/></td></tr>
-<tr class="separator:a990719e1ad76e05db96a13fad501fe4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31714045e785b3fc8f4c8557c3744d1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a31714045e785b3fc8f4c8557c3744d1a">SetDeviceIndex</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> &amp;Index)</td></tr>
-<tr class="memdesc:a31714045e785b3fc8f4c8557c3744d1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the device index if applicable.  <a href="#a31714045e785b3fc8f4c8557c3744d1a">More...</a><br/></td></tr>
-<tr class="separator:a31714045e785b3fc8f4c8557c3744d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7c7d93398f744c0c9fe9310623ba9ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ae7c7d93398f744c0c9fe9310623ba9ed">SetMetaValue</a> (const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> &amp;Value)</td></tr>
-<tr class="memdesc:ae7c7d93398f744c0c9fe9310623ba9ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Sets The MetaValue.  <a href="#ae7c7d93398f744c0c9fe9310623ba9ed">More...</a><br/></td></tr>
-<tr class="separator:ae7c7d93398f744c0c9fe9310623ba9ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d2d38aded6155b7322bc0416796c62f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a5d2d38aded6155b7322bc0416796c62f">SetCode</a> (const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> NewCode)</td></tr>
+<tr class="memdesc:a5d2d38aded6155b7322bc0416796c62f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Sets The InputCode.  <a href="#a5d2d38aded6155b7322bc0416796c62f">More...</a><br/></td></tr>
+<tr class="separator:a5d2d38aded6155b7322bc0416796c62f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17dc8b8583bc97f9a7dd78370f5968a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a17dc8b8583bc97f9a7dd78370f5968a2">SetCode</a> (const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> NewCode)</td></tr>
+<tr class="memdesc:a17dc8b8583bc97f9a7dd78370f5968a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Sets The InputCode using an Int32.  <a href="#a17dc8b8583bc97f9a7dd78370f5968a2">More...</a><br/></td></tr>
+<tr class="separator:a17dc8b8583bc97f9a7dd78370f5968a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d09be4bd1f496cbb8270f007b8cef6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a2d09be4bd1f496cbb8270f007b8cef6f">SetDeviceIndex</a> (const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Index)</td></tr>
+<tr class="memdesc:a2d09be4bd1f496cbb8270f007b8cef6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the device index if applicable.  <a href="#a2d09be4bd1f496cbb8270f007b8cef6f">More...</a><br/></td></tr>
+<tr class="separator:a2d09be4bd1f496cbb8270f007b8cef6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa1bb0823622e7d3aed054c617fcd850"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#aaa1bb0823622e7d3aed054c617fcd850">SetMetaValue</a> (const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Value)</td></tr>
+<tr class="memdesc:aaa1bb0823622e7d3aed054c617fcd850"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Sets The MetaValue.  <a href="#aaa1bb0823622e7d3aed054c617fcd850">More...</a><br/></td></tr>
+<tr class="separator:aaa1bb0823622e7d3aed054c617fcd850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d139d6660eb0f33571be717ace107c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d139d6660eb0f33571be717ace107c9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a1d139d6660eb0f33571be717ace107c9">SetNullValues</a> ()</td></tr>
 <tr class="memdesc:a1d139d6660eb0f33571be717ace107c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets all the values of this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> to Null values. <br/></td></tr>
@@ -231,47 +252,44 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a774243c33f422cd481775111a04cf17c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ac18d71f067561fe722226e499340ee15">MetaCodeContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a774243c33f422cd481775111a04cf17c">CreateMetaCodes</a> (const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;Raw)</td></tr>
+<tr class="memdesc:a774243c33f422cd481775111a04cf17c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal creation method.  <a href="#a774243c33f422cd481775111a04cf17c">More...</a><br/></td></tr>
+<tr class="separator:a774243c33f422cd481775111a04cf17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26c6b85f5f47bd2b6b2601d067afa7df"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a26c6b85f5f47bd2b6b2601d067afa7df">GetControllerAxisCode</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> AxisNumber)</td></tr>
 <tr class="memdesc:a26c6b85f5f47bd2b6b2601d067afa7df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accepts a int and returns the InputCode for the Corresponding <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> Axis.  <a href="#a26c6b85f5f47bd2b6b2601d067afa7df">More...</a><br/></td></tr>
 <tr class="separator:a26c6b85f5f47bd2b6b2601d067afa7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d8b658b616ac2b01bb69caf9cf26a74"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a4d8b658b616ac2b01bb69caf9cf26a74">GetControllerButtonCode</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> ButtonNumber)</td></tr>
 <tr class="memdesc:a4d8b658b616ac2b01bb69caf9cf26a74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accepts a int and returns the InputCode for the Corresponding <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> button.  <a href="#a4d8b658b616ac2b01bb69caf9cf26a74">More...</a><br/></td></tr>
 <tr class="separator:a4d8b658b616ac2b01bb69caf9cf26a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad63c00818cf231e5859c4ba7d27abbb2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ad63c00818cf231e5859c4ba7d27abbb2">GetControllerHatCode</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> HatNumber)</td></tr>
+<tr class="memdesc:ad63c00818cf231e5859c4ba7d27abbb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accepts a int and returns the InputCode for the Corresponding <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> Hat.  <a href="#ad63c00818cf231e5859c4ba7d27abbb2">More...</a><br/></td></tr>
+<tr class="separator:ad63c00818cf231e5859c4ba7d27abbb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56c1d887b2ffb1cdd428ecb0a65784ea"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a56c1d887b2ffb1cdd428ecb0a65784ea">GetMouseButtonCode</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> ButtonNumber)</td></tr>
 <tr class="memdesc:a56c1d887b2ffb1cdd428ecb0a65784ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accepts a int and returns the InputCode for the Corresponding <a class="el" href="classMezzanine_1_1Input_1_1Mouse.html" title="This class represents the mouse input device. ">Mouse</a> button.  <a href="#a56c1d887b2ffb1cdd428ecb0a65784ea">More...</a><br/></td></tr>
 <tr class="separator:a56c1d887b2ffb1cdd428ecb0a65784ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a9e61856b5b75a134acb60122c68720b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e61856b5b75a134acb60122c68720b4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Construct</b> (const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;RawEvent_)</td></tr>
-<tr class="separator:a9e61856b5b75a134acb60122c68720b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbacacb82c426306454ca611cc0059ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbacacb82c426306454ca611cc0059ff"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Construct</b> (const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> &amp;Value, const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> &amp;NewCode)</td></tr>
-<tr class="separator:abbacacb82c426306454ca611cc0059ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
 Static Protected Member Functions</h2></td></tr>
-<tr class="memitem:a3511c731b2b9b65147b17c061223d349"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3511c731b2b9b65147b17c061223d349"></a>
-static <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetInputCodeFromSDL_JOYSTICK</b> (const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;RawEvent_)</td></tr>
-<tr class="separator:a3511c731b2b9b65147b17c061223d349"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a767ad258a48b5fe95d41c2ea4cc95a31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a767ad258a48b5fe95d41c2ea4cc95a31"></a>
-static <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetInputCodeFromSDL_KEY</b> (const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;RawEvent_)</td></tr>
-<tr class="separator:a767ad258a48b5fe95d41c2ea4cc95a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bd73f6ca8e74ef243f91a29a273da07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3bd73f6ca8e74ef243f91a29a273da07"></a>
-static <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetInputCodeFromSDL_MOUSE</b> (const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;RawEvent_)</td></tr>
-<tr class="separator:a3bd73f6ca8e74ef243f91a29a273da07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4ce4f005de3dd8623a59afa9325a82c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ab4ce4f005de3dd8623a59afa9325a82c">GetInputCodeFromSDL_JOYSTICK</a> (const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;Raw)</td></tr>
+<tr class="memdesc:ab4ce4f005de3dd8623a59afa9325a82c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an internal controller input event into a <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> controller InputCode.  <a href="#ab4ce4f005de3dd8623a59afa9325a82c">More...</a><br/></td></tr>
+<tr class="separator:ab4ce4f005de3dd8623a59afa9325a82c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10f0fa16d8768d6cc0c4c5d9aaa96a89"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a10f0fa16d8768d6cc0c4c5d9aaa96a89">GetInputCodeFromSDL_KEY</a> (const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;Raw)</td></tr>
+<tr class="memdesc:a10f0fa16d8768d6cc0c4c5d9aaa96a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an internal keyboard input event into a <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> keyboard InputCode.  <a href="#a10f0fa16d8768d6cc0c4c5d9aaa96a89">More...</a><br/></td></tr>
+<tr class="separator:a10f0fa16d8768d6cc0c4c5d9aaa96a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd71af40d421a3bd69bd84f9e9b31f96"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#afd71af40d421a3bd69bd84f9e9b31f96">GetInputCodeFromSDL_MOUSE</a> (const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;Raw)</td></tr>
+<tr class="memdesc:afd71af40d421a3bd69bd84f9e9b31f96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an internal mouse input event into a <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> mouse InputCode.  <a href="#afd71af40d421a3bd69bd84f9e9b31f96">More...</a><br/></td></tr>
+<tr class="separator:afd71af40d421a3bd69bd84f9e9b31f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ac6c0ee1799c20990706729efb56b7ad1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6c0ee1799c20990706729efb56b7ad1"></a>
-<a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Code</b></td></tr>
+<tr class="memitem:ac6c0ee1799c20990706729efb56b7ad1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ac6c0ee1799c20990706729efb56b7ad1">Code</a></td></tr>
+<tr class="memdesc:ac6c0ee1799c20990706729efb56b7ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The code indicating what type of input this is.  <a href="#ac6c0ee1799c20990706729efb56b7ad1">More...</a><br/></td></tr>
 <tr class="separator:ac6c0ee1799c20990706729efb56b7ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61909781ec245511d344a0b69de7df03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61909781ec245511d344a0b69de7df03"></a>
-<a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td><td class="memItemRight" valign="bottom"><b>DeviceIndex</b></td></tr>
-<tr class="separator:a61909781ec245511d344a0b69de7df03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b4590567324109d78220fe1bc52babe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b4590567324109d78220fe1bc52babe"></a>
-<a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MetaValue</b></td></tr>
+<tr class="memitem:a11928c87aa4fe8fdf0aa94ab5ad97267"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a11928c87aa4fe8fdf0aa94ab5ad97267">DeviceIndex</a></td></tr>
+<tr class="memdesc:a11928c87aa4fe8fdf0aa94ab5ad97267"><td class="mdescLeft">&#160;</td><td class="mdescRight">The device index if this is input from a controller. For keyboards and mice this is the max value if a Int32.  <a href="#a11928c87aa4fe8fdf0aa94ab5ad97267">More...</a><br/></td></tr>
+<tr class="separator:a11928c87aa4fe8fdf0aa94ab5ad97267"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b4590567324109d78220fe1bc52babe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a2b4590567324109d78220fe1bc52babe">MetaValue</a></td></tr>
+<tr class="memdesc:a2b4590567324109d78220fe1bc52babe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The relevant value for the type of input this is, if applicable.  <a href="#a2b4590567324109d78220fe1bc52babe">More...</a><br/></td></tr>
 <tr class="separator:a2b4590567324109d78220fe1bc52babe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -294,9 +312,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Default constructor. </p>
-<p>This sets nothing on the <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> and leaves it completely unassigned. Accessing a data member could cause problems. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This sets nothing on the <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> and leaves it completely unassigned. Accessing a data member could cause problems. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00071">71</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00072">72</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -315,7 +333,6 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Copy constructor. </p>
-<p>This sets all values in the <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>, leaving it in completely ready state. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Other</td><td>The other <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> to copy from. </td></tr>
@@ -323,24 +340,24 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00074">74</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00078">78</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa241ab848fe7a909be45db132f7e1c1f"></a>
+<a class="anchor" id="a53f952451b10a844a12c29fce07402be"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Mezzanine::Input::MetaCode::MetaCode </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td>
           <td class="paramname"><em>Value</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td>
           <td class="paramname"><em>NewCode</em>&#160;</td>
         </tr>
         <tr>
@@ -352,39 +369,38 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Descriptive Constructor. </p>
-<p>This sets all values in the <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>, leaving it in completely ready state. This is the ideal constructor for simulating user input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Value</td><td>How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed. </td></tr>
-    <tr><td class="paramname">NewCode</td><td>Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support. </td></tr>
+    <tr><td class="paramname">Value</td><td>How much is something moving, tilting, rotating or whatever. </td></tr>
+    <tr><td class="paramname">NewCode</td><td>Which key or which type of input was pressed. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00077">77</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00084">84</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a540d3a20be5c2fea8a6b556790fe89fc"></a>
+<a class="anchor" id="a150cf77b0ac10361ffbf7c7069b3f63c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Mezzanine::Input::MetaCode::MetaCode </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td>
           <td class="paramname"><em>Value</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td>
           <td class="paramname"><em>NewCode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td>
           <td class="paramname"><em>Index</em>&#160;</td>
         </tr>
         <tr>
@@ -396,21 +412,20 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Descriptive Constructor. </p>
-<p>This sets all values in the <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>, leaving it in completely ready state. This is the ideal constructor for simulating user input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Value</td><td>How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed. </td></tr>
-    <tr><td class="paramname">NewCode</td><td>Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support. </td></tr>
+    <tr><td class="paramname">Value</td><td>How much is something moving, tilting, rotating or whatever. </td></tr>
+    <tr><td class="paramname">NewCode</td><td>Which key or which type of input was pressed. </td></tr>
     <tr><td class="paramname">Index</td><td>The index of the device this metacode is describing. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00082">82</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00090">90</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a572a34e35c1ac44d5e955910094a7aef"></a>
+<a class="anchor" id="a68e57f7b3e33751a1f09ccc11d155811"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -418,7 +433,7 @@ Protected Attributes</h2></td></tr>
           <td class="memname">Mezzanine::Input::MetaCode::MetaCode </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;&#160;</td>
-          <td class="paramname"><em>RawEvent_</em>)</td><td></td>
+          <td class="paramname"><em>Raw</em>)</td><td></td>
           <td></td>
         </tr>
       </table>
@@ -436,11 +451,54 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In that event you would have to recompile your application to get it working with a new version of <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a>. Using this function in Game code removes any gaurantees of Game Code Portability. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00088">88</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a774243c33f422cd481775111a04cf17c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ac18d71f067561fe722226e499340ee15">MetaCode::MetaCodeContainer</a> Mezzanine::Input::MetaCode::CreateMetaCodes </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;&#160;</td>
+          <td class="paramname"><em>Raw</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Internal creation method. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This method accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. <br/>
+ This constructor expects to receive a type of RawEvent that can be converted into one or more kinds of Metacode. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In that event you would have to recompile your application to get it working with a new version of <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a>. Using this function in Game code removes any gaurantees of Game Code Portability. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">RawEvent which creates Multiple Metacodes inserted into Metacode</td><td>- Thrown when passed a certain (system dependant) incorrect type of RawEvent. </td></tr>
+    <tr><td class="paramname">Unknown User Input Inserted into Metacode</td><td>- Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Raw</td><td>The internal event to be converted into one or more MetaCodes. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a container of the created MetaCodes. </dd></dl>
+
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00099">99</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ad5869892a662a652b6deb3a87a1c8bb1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -455,10 +513,10 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This Returns the Inputcode. </p>
-<p>This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a13e395251b44663ae8a37dfda28578ec">SetCode</a> . </p>
+<p>This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#a5d2d38aded6155b7322bc0416796c62f">SetCode</a> . </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns the input code for this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00175">175</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00244">244</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -487,13 +545,13 @@ Protected Attributes</h2></td></tr>
 <p>Accepts a int and returns the InputCode for the Corresponding <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> Axis. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">AxisNumber</td><td>The number of the button you want the code for. </td></tr>
+    <tr><td class="paramname">AxisNumber</td><td>The number of the axis you want the code for. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>When passed 0 this returns Input::JOYSTICKAXIS, otherwise this returns Input::CONTROLLERAXIS_X where X is the number that was passed in. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>When passed 0 this returns <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721aa56b87177c90a5f1760d7c2ea9b683b0a" title="This is the generic Controller axis code. You can add the number of the Controller axis to this and y...">Input::CONTROLLERAXIS</a>, otherwise this returns Input::CONTROLLERAXIS_X where X is the number that was passed in. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00235">235</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00303">303</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -526,18 +584,53 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>When passed 0 this returns Input::JOYSTICKBUTTON, otherwise this returns Input::CONTROLLERBUTTON_X where X is the number that was passed in. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>When passed 0 this returns <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721aa6f5f6200757ebd66c4eb2c74a63c3d88" title="This is the generic Some stickbutton button code. You can add the number of the jpystick button to th...">Input::CONTROLLERBUTTON</a>, otherwise this returns Input::CONTROLLERBUTTON_X where X is the number that was passed in. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00227">227</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00295">295</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a91b75370c42fe0c7b071e4979f0be60f"></a>
+<a class="anchor" id="ad63c00818cf231e5859c4ba7d27abbb2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> Mezzanine::Input::MetaCode::GetControllerHatCode </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td>
+          <td class="paramname"><em>HatNumber</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Accepts a int and returns the InputCode for the Corresponding <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> Hat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HatNumber</td><td>The index of the hat you want the code for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>When passed 0 this returns Input::CONTROLLERHAT, otherwise this returns Input::CONTROLLERHAT_X where X is the number that was passed in. </dd></dl>
+
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00311">311</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2cdc56f9ae9f975fa34150923ee64b94"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> Mezzanine::Input::MetaCode::GetDeviceIndex </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Mezzanine::Input::MetaCode::GetDeviceIndex </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -546,10 +639,10 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the currently set device index. </p>
-<dl class="section remark"><dt>Remarks</dt><dd>If no device is set or applicable, this will return the max value for a UInt16 (-1). </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a UInt16 that is the for the device this metacode applies to. </dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>If no device is set or applicable, this will return the max value for a Int32 (-1). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a Int32 that is the for the device this metacode applies to. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00187">187</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00256">256</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -569,7 +662,112 @@ Protected Attributes</h2></td></tr>
 <p>Gets the device-type this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> is representing. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns an <a class="el" href="namespaceMezzanine_1_1Input.html#a479cb3962a87f9d7d00e3fe85cae5f36" title="An enum listing containing the different kind of input devices, useful for some query functions...">Input::InputDevice</a> value for the device this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> is representing. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00300">300</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00376">376</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab4ce4f005de3dd8623a59afa9325a82c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> Mezzanine::Input::MetaCode::GetInputCodeFromSDL_JOYSTICK </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;&#160;</td>
+          <td class="paramname"><em>Raw</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an internal controller input event into a <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> controller InputCode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Raw</td><td>The internal event to be converted into a controller InputCode. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the converted <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> InputCode. </dd></dl>
+
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00232">232</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a10f0fa16d8768d6cc0c4c5d9aaa96a89"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> Mezzanine::Input::MetaCode::GetInputCodeFromSDL_KEY </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;&#160;</td>
+          <td class="paramname"><em>Raw</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an internal keyboard input event into a <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> keyboard InputCode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Raw</td><td>The internal event to be converted into a keyboard InputCode. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the converted <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> InputCode. </dd></dl>
+
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00208">208</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afd71af40d421a3bd69bd84f9e9b31f96"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> Mezzanine::Input::MetaCode::GetInputCodeFromSDL_MOUSE </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#ae8d4c0ab783af89a250b0225b75753e5">RawEvent</a> &amp;&#160;</td>
+          <td class="paramname"><em>Raw</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts an internal mouse input event into a <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> mouse InputCode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Raw</td><td>The internal event to be converted into a mouse InputCode. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the converted <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> InputCode. </dd></dl>
+
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00219">219</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -587,10 +785,10 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This Returns the MetaValue. </p>
-<p>The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value. This value can be set with <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#ae7c7d93398f744c0c9fe9310623ba9ed">SetMetaValue</a> . </p>
+<p>The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value. This value can be set with <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html#aaa1bb0823622e7d3aed054c617fcd850">SetMetaValue</a> . </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns the input code for this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>. This could return any number inside a range (depending on hardware and configuration) to represent how tilted a joystick or how much a mouse moved. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00181">181</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00250">250</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -616,7 +814,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00199">199</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00269">269</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -642,7 +840,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00209">209</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00278">278</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -677,16 +875,16 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>When passed 0 this returns <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721aa51c8e36634404817d5dd7fe166ef7e49" title="This is the generic Some mouse button code. You can add the number of the mouse button to this and yo...">Input::MOUSEBUTTON</a>, otherwise this returns Input::MOUSEBUTTON_X where X is the number that was passed in. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00219">219</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00287">287</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aef731ef25e19eec8cda7f83f09b436a5"></a>
+<a class="anchor" id="ac941b203ecb90c5feee404dc7f48c75e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsAltKey </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsAltKey </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -695,18 +893,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Is this a left or right Alt key. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is a left or right Alt key. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is a left or right Alt key. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00285">285</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00361">361</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af3bcb1f8a0463fce24ae99a7741291c4"></a>
+<a class="anchor" id="ab9bf2f7ae9d5eabf35c541de2391c038"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsControllerAxisEvent </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsControllerAxisEvent </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -715,18 +913,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent an axis position on a controller. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is between CONTROLLERAXIS_FIRST and CONTROLLERAXIS_LAST. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is between CONTROLLERAXIS_FIRST and CONTROLLERAXIS_LAST. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00276">276</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00352">352</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af2cc9648f2ea7704d9e8122cb06b8528"></a>
+<a class="anchor" id="a6b22639f7dcdffad512b0af918b9ae19"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsControllerButton </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsControllerButton </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -735,18 +933,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> button. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is a CONTROLLERBUTTON_X event. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is a CONTROLLERBUTTON_X event. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00252">252</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00328">328</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a15e06ec2f795da22bbad4d8ee7dd7af5"></a>
+<a class="anchor" id="ac75643d765b330f2d93d7434861f55cd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsControllerEvent </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsControllerEvent </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -755,18 +953,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a <a class="el" href="classMezzanine_1_1Input_1_1Controller.html" title="This class represents a controller input device, such as a gamepad or joystick. ">Controller</a> <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is between CONTROLLER_FIRST and CONTROLLER_LAST. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is between CONTROLLER_FIRST and CONTROLLER_LAST. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00273">273</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00349">349</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab4bf60df005381fcb58702dcd3ba5b39"></a>
+<a class="anchor" id="aed38e40dbeb1d30589016d413cf36ff8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsControllerHatEvent </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsControllerHatEvent </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -775,18 +973,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a hat position on a controller. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is between CONTROLLERHAT_FIRST and CONTROLLERHAT_LAST. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is between CONTROLLERHAT_FIRST and CONTROLLERHAT_LAST. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00279">279</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00355">355</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a87d9c6425f8c99dde194d4ffb36427e4"></a>
+<a class="anchor" id="a35397d4f3553a77dc7094fa22fa9870c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsCtrlKey </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsCtrlKey </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -795,18 +993,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Is this a left or right Ctrl key. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is a left or right Ctrl key. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is a left or right Ctrl key. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00288">288</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00364">364</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a328b04835ec075ce82aa61abca52c7ea"></a>
+<a class="anchor" id="a21f7fbf38f46d9a6585dba5e7ca0998a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsDeviceButton </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsDeviceButton </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -815,18 +1013,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of any button on an input device. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is event pertains to any button on any input device. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is event pertains to any button on any input device. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00255">255</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00331">331</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a69a73df3899542926216cc9bcbbd7d7b"></a>
+<a class="anchor" id="a0f34243a1d412a96e6667bba05d77b05"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsInputEvent </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsInputEvent </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -835,18 +1033,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent some other (non-keyboard and non-mouse button). </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is between INPUTEVENT_FIRST and INPUTEVENT_LAST. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is between INPUTEVENT_FIRST and INPUTEVENT_LAST. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00282">282</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00358">358</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8886bfc440ba13b947254a3269a28ed3"></a>
+<a class="anchor" id="a436261fd2516b6c0ca9b00ec04359465"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsKeyboardButton </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsKeyboardButton </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -855,18 +1053,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a keyboard key. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is a keyboard event. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is a keyboard event. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00246">246</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00322">322</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1caa5727878fb457731070f3028c509d"></a>
+<a class="anchor" id="a1dc1a85d7c098cf1a6e1645dc40043d7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsKeyboardEvent </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsKeyboardEvent </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -875,18 +1073,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a keyboard <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is between KEY_FIRST and KEY_LAST. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is between KEY_FIRST and KEY_LAST. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00258">258</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00334">334</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa9fa5e03daa30d678fbda4cbdea134ab"></a>
+<a class="anchor" id="ab364b4022017f121a0157f9c1b9cd145"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsMouseButton </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsMouseButton </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -895,18 +1093,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a <a class="el" href="classMezzanine_1_1Input_1_1Mouse.html" title="This class represents the mouse input device. ">Mouse</a> button. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is a MOUSEBUTTON_X event. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is a MOUSEBUTTON_X event. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00249">249</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00325">325</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acbaaf0d5638eb991e5190df737c3af96"></a>
+<a class="anchor" id="a6b0d0fad9ae7871b3abdfd27fbdf95f4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsMouseEvent </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsMouseEvent </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -915,18 +1113,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a mouse <a class="el" href="classMezzanine_1_1Event.html" title="This class represents a given event that can be subscribed to and/or fired. ">Event</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is between MOUSE_FIRST and MOUSE_LAST. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is between MOUSE_FIRST and MOUSE_LAST. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00261">261</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00337">337</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="afa2b8b0db8a4d380c49919d483bcce8c"></a>
+<a class="anchor" id="a6a728901861ba054d29c4cdba97f0019"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsMouseMotionEvent </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsMouseMotionEvent </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -935,18 +1133,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent movement of the mouse or mouse wheel. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is between MOUSEMOTION_FIRST and MOUSEMOTION_LAST. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is between MOUSEMOTION_FIRST and MOUSEMOTION_LAST. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00264">264</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00340">340</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab18f6196b2dc0bf0cbf8b169973b5a64"></a>
+<a class="anchor" id="a2e13242b11cd24e6d4b2dbcd565dfa3d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsMouseMultiClickEvent </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsMouseMultiClickEvent </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -955,18 +1153,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent multiple clicks of a mouse button. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is between the first mouse multiclick input code and the last mouse multiclick input code. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is between the first mouse multiclick input code and the last mouse multiclick input code. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00267">267</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00343">343</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a64d69f96659459ecf4ff40a7517ecfc0"></a>
+<a class="anchor" id="ae3c45be516ef94d3a6603ce68810a3a3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsMultitouchEvent </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsMultitouchEvent </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -975,18 +1173,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Does this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> Represent a state of a multitouch device. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is between the MULTITOUCH_FIRST and MULTITOUCH_LAST. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is between the MULTITOUCH_FIRST and MULTITOUCH_LAST. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00270">270</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00346">346</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a64390191ea465a3aa45ce2ce16d43af5"></a>
+<a class="anchor" id="aab7cede9643a30c44009ad3c2feaad47"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsPollable </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsPollable </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -997,16 +1195,16 @@ Protected Attributes</h2></td></tr>
 <p>Is this metacode a pollable event. </p>
 <dl class="section return"><dt>Returns</dt><dd>if this metacode stores a device button then this is a pollable event. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00297">297</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00373">373</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a29fa766c52b94cc129db472640f8a7a2"></a>
+<a class="anchor" id="a482c8ebe0a063fab1562ffd3c9b1920f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsShiftKey </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsShiftKey </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -1015,18 +1213,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Is this a left or right Shift key. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is a left or right Shift key. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is a left or right Shift key. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00291">291</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00367">367</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a75d02a873c1b4e36a3bff9511e2cf30e"></a>
+<a class="anchor" id="ac9589e13bce41de8e2f3d76601aca25b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::IsSuperKey </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::IsSuperKey </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -1035,18 +1233,18 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Is this a left or right Super key (Windows logo key, Apple logo key, etc...). </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns a bool which will be true if this is a left or right Super key. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns a Boolean which will be true if this is a left or right Super key. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00294">294</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00370">370</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a33a3838c6728523692eb7fb157c949fb"></a>
+<a class="anchor" id="ade982371bff6d3314241bd3662e7b863"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::operator!= </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::operator!= </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;&#160;</td>
           <td class="paramname"><em>Other</em>)</td><td></td>
@@ -1064,16 +1262,16 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the two <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>'s are not equal, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00327">327</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00403">403</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7db41b8c7854224991fc38d95143840e"></a>
+<a class="anchor" id="a1ac170214636583b9d10cab46f7d3b9b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::operator&lt; </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::operator&lt; </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;&#160;</td>
           <td class="paramname"><em>Other</em>)</td><td></td>
@@ -1092,7 +1290,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> is less then the <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> being compared, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00334">334</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00410">410</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -1119,16 +1317,16 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a reference to this. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00312">312</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00388">388</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a101f40ff4c93e59bc109e8a3e75088fa"></a>
+<a class="anchor" id="a8d2db91526a2499ad03dbcb30816b0cc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::operator== </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::operator== </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;&#160;</td>
           <td class="paramname"><em>Other</em>)</td><td></td>
@@ -1146,16 +1344,16 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if the two <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a>'s are equal, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00320">320</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00396">396</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4fb3afe0ca94bad286343d19b37062ef"></a>
+<a class="anchor" id="a6324853a734d40c54f07338fe147ea43"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Input::MetaCode::operator&gt; </td>
+          <td class="memname">Boolean Mezzanine::Input::MetaCode::operator&gt; </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html">MetaCode</a> &amp;&#160;</td>
           <td class="paramname"><em>Other</em>)</td><td></td>
@@ -1174,7 +1372,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> is greater then the <a class="el" href="classMezzanine_1_1Input_1_1MetaCode.html" title="This Determines the kind of user input. ">MetaCode</a> being compared, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00339">339</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00413">413</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -1200,7 +1398,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00367">367</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00431">431</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -1226,7 +1424,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00345">345</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00416">416</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -1246,18 +1444,18 @@ Protected Attributes</h2></td></tr>
 <p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> tag this class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing "Vector3". </dd></dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00383">383</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00456">456</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a13e395251b44663ae8a37dfda28578ec"></a>
+<a class="anchor" id="a5d2d38aded6155b7322bc0416796c62f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Input::MetaCode::SetCode </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a>&#160;</td>
           <td class="paramname"><em>NewCode</em>)</td><td></td>
           <td></td>
         </tr>
@@ -1273,18 +1471,18 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00169">169</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00238">238</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a990719e1ad76e05db96a13fad501fe4d"></a>
+<a class="anchor" id="a17dc8b8583bc97f9a7dd78370f5968a2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Input::MetaCode::SetCode </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td>
           <td class="paramname"><em>NewCode</em>)</td><td></td>
           <td></td>
         </tr>
@@ -1300,18 +1498,18 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00172">172</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00241">241</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a31714045e785b3fc8f4c8557c3744d1a"></a>
+<a class="anchor" id="a2d09be4bd1f496cbb8270f007b8cef6f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Input::MetaCode::SetDeviceIndex </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td>
           <td class="paramname"><em>Index</em>)</td><td></td>
           <td></td>
         </tr>
@@ -1326,18 +1524,18 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00184">184</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00253">253</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae7c7d93398f744c0c9fe9310623ba9ed"></a>
+<a class="anchor" id="aaa1bb0823622e7d3aed054c617fcd850"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Input::MetaCode::SetMetaValue </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td>
           <td class="paramname"><em>Value</em>)</td><td></td>
           <td></td>
         </tr>
@@ -1353,7 +1551,80 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00178">178</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="metacode_8cpp_source.html#l00247">247</a> of file <a class="el" href="metacode_8cpp_source.html">metacode.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ac6c0ee1799c20990706729efb56b7ad1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1Input.html#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> Mezzanine::Input::MetaCode::Code</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The code indicating what type of input this is. </p>
+
+<p>Definition at line <a class="el" href="metacode_8h_source.html#l00111">111</a> of file <a class="el" href="metacode_8h_source.html">metacode.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a11928c87aa4fe8fdf0aa94ab5ad97267"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Mezzanine::Input::MetaCode::DeviceIndex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The device index if this is input from a controller. For keyboards and mice this is the max value if a Int32. </p>
+
+<p>Definition at line <a class="el" href="metacode_8h_source.html#l00108">108</a> of file <a class="el" href="metacode_8h_source.html">metacode.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2b4590567324109d78220fe1bc52babe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Mezzanine::Input::MetaCode::MetaValue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The relevant value for the type of input this is, if applicable. </p>
+
+<p>Definition at line <a class="el" href="metacode_8h_source.html#l00105">105</a> of file <a class="el" href="metacode_8h_source.html">metacode.h</a>.</p>
 
 </div>
 </div>
@@ -1363,6 +1634,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:29 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

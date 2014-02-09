@@ -191,6 +191,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:abac4bfe7a1374c13ccb1a61c772bb870"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unhooks this proxy from it's respective world.  <a href="#abac4bfe7a1374c13ccb1a61c772bb870">More...</a><br/></td></tr>
 <tr class="separator:abac4bfe7a1374c13ccb1a61c772bb870"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4e9cd97ec893d689bb883e163624239"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1EntityProxy.html#aa4e9cd97ec893d689bb883e163624239">SetCastShadows</a> (const Boolean CastShadows)</td></tr>
+<tr class="memdesc:aa4e9cd97ec893d689bb883e163624239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not this proxy can cast a shadow.  <a href="#aa4e9cd97ec893d689bb883e163624239">More...</a><br/></td></tr>
 <tr class="separator:aa4e9cd97ec893d689bb883e163624239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd8df0cb9f3f1e66c4204dd1e78906d7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1EntityProxy.html#abd8df0cb9f3f1e66c4204dd1e78906d7">SetLightMask</a> (const <a class="el" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d">UInt32</a> Mask)</td></tr>
 <tr class="memdesc:abd8df0cb9f3f1e66c4204dd1e78906d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets which types of lights will affect this proxy.  <a href="#abd8df0cb9f3f1e66c4204dd1e78906d7">More...</a><br/></td></tr>
@@ -211,6 +212,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a4b4fded7e53be0162676ede8ed9bf009"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the bitmask that will be used to determine if this object should be visible when rendering.  <a href="#a4b4fded7e53be0162676ede8ed9bf009">More...</a><br/></td></tr>
 <tr class="separator:a4b4fded7e53be0162676ede8ed9bf009"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98c06abc029b8b744200a4994ee33495"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1EntityProxy.html#a98c06abc029b8b744200a4994ee33495">SetVisible</a> (const Boolean Visible)</td></tr>
+<tr class="memdesc:a98c06abc029b8b744200a4994ee33495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not this proxy is visible.  <a href="#a98c06abc029b8b744200a4994ee33495">More...</a><br/></td></tr>
 <tr class="separator:a98c06abc029b8b744200a4994ee33495"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1Graphics_1_1RenderableProxy"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1Graphics_1_1RenderableProxy')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Graphics_1_1RenderableProxy.html">Mezzanine::Graphics::RenderableProxy</a></td></tr>
 <tr class="memitem:a86942526c2339bcb70e2e767cdf29036 inherit pub_methods_classMezzanine_1_1Graphics_1_1RenderableProxy"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Graphics_1_1RenderableProxy.html#a86942526c2339bcb70e2e767cdf29036">RenderableProxy</a> (<a class="el" href="classMezzanine_1_1Graphics_1_1SceneManager.html">SceneManager</a> *Creator)</td></tr>
@@ -1323,7 +1325,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p></p>
+<p>Sets whether or not this proxy can cast a shadow. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CastShadows</td><td>True to allow this proxy to cast a shadow, false to prevent it from casting a shadow. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Graphics_1_1RenderableProxy.html#adb61352e14c1f82da0ce35fc8f6965d8">Mezzanine::Graphics::RenderableProxy</a>.</p>
 
@@ -1579,7 +1587,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p></p>
+<p>Sets whether or not this proxy is visible. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Visible</td><td>True to allow this proxy to render, false otherwise. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Graphics_1_1RenderableProxy.html#afedd3cd8fa6992d0bb06ec65c9af825a">Mezzanine::Graphics::RenderableProxy</a>.</p>
 
@@ -1738,6 +1752,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:28 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>
