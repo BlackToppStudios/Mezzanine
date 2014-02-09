@@ -64,11 +64,16 @@ namespace Mezzanine
             static const String TypeName;
             /// @brief Event name for when the text in this widget has been updated.
             static const String EventTextUpdated;
+            /// @brief Callback type for input filtering.
+            typedef Boolean (FilterCallback)(const Int32 Glyph);
         protected:
             friend class EditBoxFactory;
             /// @internal
             /// @brief Stores the screen position where the mouse is located during editing.  Used to find the end index for highlighting.
             Vector2 EditHighlightTarget;
+            /// @internal
+            /// @brief A pointer to the method that will filter any input before adding it as text to this EditBox.
+            FilterCallback* InputFilter;
             /// @internal
             /// @brief Stores the index of the character initially highlighted while editing.
             Integer EditHighlightOrigin;
@@ -136,6 +141,10 @@ namespace Mezzanine
             /// the appropriate inputs to display text.
             /// @return Returns true if this EditBox is currently editing and ready for inputs, false otherwise.
             virtual Boolean IsCurrentlyEditing() const;
+
+            /// @brief Sets the text in the edit layer of this EditBox.
+            /// @param Text A string containing the text the edit layer of this EditBox is to display.
+            virtual void SetText(const String& Text);
             /// @brief Gets the text in the edit layer of this EditBox.
             /// @return Returns a string containing the text in the text layer being edited by this EditBox.
             virtual String GetText() const;
@@ -152,6 +161,13 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // EditBox Configuration
+
+            /// @brief Sets the filter that will be used by this EditBox to determine if an input will be consumed.
+            /// @param Callback A pointer to the c-style method that will filter this EditBoxs inputs.
+            virtual void SetInputFilter(FilterCallback* Callback);
+            /// @brief Gets the filter that is being used by this EditBox to determine if an input will be consumed.
+            /// @return Returns a pointer to the currently set FilterCallback.
+            virtual FilterCallback* GetIntputFilter() const;
 
             /// @brief Gets the layer that consumed inputs will be inserted into.
             /// @return Returns a pointer to the TextLayer that will be edited when this EditBox consumes inputs.

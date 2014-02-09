@@ -149,11 +149,11 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // RenderableProxy Properties
 
-            /// @copydoc RenderableProxy::SetVisible(const Bool)
+            /// @copydoc RenderableProxy::SetVisible(const Boolean)
             virtual void SetVisible(const Boolean Visible);
             /// @copydoc RenderableProxy::GetVisible() const
             virtual Boolean GetVisible() const;
-            /// @copydoc RenderableProxy::SetCastShadows(const Bool)
+            /// @copydoc RenderableProxy::SetCastShadows(const Boolean)
             virtual void SetCastShadows(const Boolean CastShadows);
             /// @copydoc RenderableProxy::GetCastShadows() const
             virtual Boolean GetCastShadows() const;

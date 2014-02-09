@@ -341,7 +341,7 @@ namespace Mezzanine
         {
             if( this->Container != NULL ) {
                 Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().Y / this->Container->GetActualSize().Y );
-                return ( Ret > 0 ? Ret : 1 );
+                return ( Ret > 1 ? Ret : 1 );
             }
             return 1;
         }

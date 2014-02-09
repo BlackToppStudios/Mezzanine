@@ -211,7 +211,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Event Methods
 
-            /// @brief Self logic to be executed when this scrollbar changes it's scrollvalue is.
+            /// @brief Self logic to be executed when this scrollbar changes it's scrollvalue.
             /// @param OldValue The previous value of this scrollbar.
             /// @param NewValue The updated value of this scrollbar.
             virtual void _OnScrollValueChanged(const Real OldValue, const Real NewValue);
