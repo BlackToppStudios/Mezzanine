@@ -168,7 +168,8 @@ namespace Mezzanine
         /// @details In the case of the buttons being together, the increment button will be above the decrement button.
         enum SpinnerStyle
         {
-            Spn_Separate,
+            Spn_Separate_Horizontal,
+            Spn_Separate_Vertical,
             Spn_Together_Left,
             Spn_Together_Right
         };
