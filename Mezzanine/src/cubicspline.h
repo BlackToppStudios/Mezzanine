@@ -106,7 +106,7 @@ namespace Mezzanine
     /// @details Templated on type of X, Y. X and Y must have operator +, -, *, /. Y must have defined
     /// a constructor that takes a scalar.
     template <typename TimeSeriesType, typename DataSeriesType>
-    class MEZZ_LIB CubicSpline
+    class CubicSpline
     {
         public:
             /// @brief The meta data type stored by this container.
