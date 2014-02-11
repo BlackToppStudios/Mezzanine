@@ -89,13 +89,13 @@
 #include "event.h"
 #include "eventarguments.h"
 
-#ifndef SWIG
+
 #include "eventbase.h"
 #include "eventgamewindow.h"
 #include "eventmanager.h"
 #include "eventpublisher.h"
 #include "eventquit.h"
-#endif
+
 
 #include "eventsubscriber.h"
 #include "eventsubscriberslot.h"

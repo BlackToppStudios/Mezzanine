@@ -43,6 +43,7 @@
 #include "mezztest.h"
 
 #include "Scripting/scripting.h"
+#include "eventbase.h"
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
@@ -704,6 +705,11 @@ class lua51tests : public UnitTestGroup
                               "Exception", "TestException", 8, Mezzanine::Exception::IO_EXCEPTION, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestOldEventSystem(x)\n"
+                              "  return MezzanineSafe.EventBase_GameWindow\n"
+                              "end",
+                              "OldEvent", "TestOldEventSystem", 8, Mezzanine::EventBase::GameWindow, 0.0,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 //AreaEffectUpdateWorkUnit
             }

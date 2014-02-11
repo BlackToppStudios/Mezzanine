@@ -1735,6 +1735,7 @@ typedef struct{} LANGUAGE_OBJ;
         #include "mezzanine.h"
         #include "btBulletDynamicsCommon.h"
         #include "Ogre.h"
+        #include "SDL.h"
 
         #ifdef GetCurrentTime
         #undef GetCurrentTime

@@ -93,11 +93,13 @@ namespace Mezzanine
     };
 }
 
-/// @brief Serializes the passed Mezzanine::Event to XML
-/// @param stream The ostream to send the xml to.
-/// @param Ev the Mezzanine::Event to be serialized
-/// @return this returns the ostream, now with the serialized data
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::EventBase& Ev);
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
+    /// @brief Serializes the passed Mezzanine::Event to XML
+    /// @param stream The ostream to send the xml to.
+    /// @param Ev the Mezzanine::Event to be serialized
+    /// @return this returns the ostream, now with the serialized data
+    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::EventBase& Ev);
+#endif // \!SWIG && LUA
 
 
 #endif
