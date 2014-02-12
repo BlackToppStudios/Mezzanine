@@ -104,7 +104,9 @@ namespace Mezzanine
         void HorizontalScrollbar::ConstructHorizontalScrollbar(const UI::ScrollbarStyle& ScrollStyle)
         {
             // Create the rects we'll use
-            UnifiedRect ChildRect(0,0,1,1,0,0,0,0);
+            UnifiedVec2 ChildPosition(0,0,0,0);
+            UnifiedVec2 ChildSize(1,1,0,0);
+            UnifiedRect ChildRect(ChildPosition,ChildSize);
             if( UI::SB_NoButtons == ScrollStyle )
             {
                 // Create our objects
@@ -122,7 +124,7 @@ namespace Mezzanine
                 {
                     // Create our objects
                     this->UpLeftButton = ParentScreen->CreateButton(this->Name+".LeftButton",ChildRect);
-                    this->UpLeftButton->SetPositioningRules(UI::PF_Left);
+                    this->UpLeftButton->SetPositioningRules(UI::PF_Anchor_Left);
                     this->UpLeftButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->UpLeftButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->UpLeftButton,0);
@@ -133,7 +135,7 @@ namespace Mezzanine
                     this->AddChild(this->ScrollBack,1);
 
                     this->DownRightButton = ParentScreen->CreateButton(this->Name+".RightButton",ChildRect);
-                    this->DownRightButton->SetPositioningRules(UI::PF_Right);
+                    this->DownRightButton->SetPositioningRules(UI::PF_Anchor_Right);
                     this->DownRightButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->DownRightButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->DownRightButton,2);
@@ -150,14 +152,14 @@ namespace Mezzanine
                     this->ScrollBack->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->ScrollBack,0);
 
-                    this->UpLeftButton = ParentScreen->CreateButton(this->Name+".LeftButton",ChildRect);
-                    this->UpLeftButton->SetPositioningRules(UI::PF_Right);
+                    this->UpLeftButton = ParentScreen->CreateButton(this->Name+".LeftButton",UnifiedRect(UnifiedVec2(-1,-1,0,0),ChildSize));
+                    this->UpLeftButton->SetPositioningRules(UI::PF_Anchor_Right | UI::PF_Anchor_Size);
                     this->UpLeftButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->UpLeftButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->UpLeftButton,1);
 
                     this->DownRightButton = ParentScreen->CreateButton(this->Name+".RightButton",ChildRect);
-                    this->DownRightButton->SetPositioningRules(UI::PF_Right);
+                    this->DownRightButton->SetPositioningRules(UI::PF_Anchor_Right);
                     this->DownRightButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->DownRightButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->DownRightButton,2);
@@ -170,13 +172,13 @@ namespace Mezzanine
                 {
                     // Create our objects
                     this->UpLeftButton = ParentScreen->CreateButton(this->Name+".LeftButton",ChildRect);
-                    this->UpLeftButton->SetPositioningRules(UI::PF_Left);
+                    this->UpLeftButton->SetPositioningRules(UI::PF_Anchor_Left);
                     this->UpLeftButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->UpLeftButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->UpLeftButton,0);
 
-                    this->DownRightButton = ParentScreen->CreateButton(this->Name+".RightButton",ChildRect);
-                    this->DownRightButton->SetPositioningRules(UI::PF_Left);
+                    this->DownRightButton = ParentScreen->CreateButton(this->Name+".RightButton",UnifiedRect(UnifiedVec2(1,1,0,0),ChildSize));
+                    this->DownRightButton->SetPositioningRules(UI::PF_Anchor_Left | UI::PF_Anchor_Size);
                     this->DownRightButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->DownRightButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->DownRightButton,1);

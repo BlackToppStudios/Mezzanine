@@ -65,39 +65,39 @@ namespace Mezzanine
             UnifiedVec2 MaxSize;
             /// @brief The minumum permitted size.
             UnifiedVec2 MinSize;
+            /// @brief Rules for resizing on the Y axis.
+            Whole VerticalRules;
+            /// @brief Rules for resizing on the X axis.
+            Whole HorizontalRules;
             /// @brief Rule for determining aspect ratio lock.
             UI::AspectRatioLock RatioLock;
-            /// @brief Rules for resizing on the Y axis.
-            UI::SizingRules VerticalRules;
-            /// @brief Rules for resizing on the X axis.
-            UI::SizingRules HorizontalRules;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Construction and Destruction
 
             /// @brief Class constructor.
             SizingInfo() :
-                RatioLock(UI::ARL_Ratio_Unlocked), VerticalRules(UI::SR_Unified_Dims), HorizontalRules(UI::SR_Unified_Dims) {  }
+                VerticalRules(UI::SR_Unified_Dims), HorizontalRules(UI::SR_Unified_Dims), RatioLock(UI::ARL_Ratio_Unlocked) {  }
             /// @brief Size constructor.
             /// @param Size A UnifiedVector2 to be used if the rules provided permit it on sizing.
             SizingInfo(const UnifiedVec2& Size) :
-                USize(Size), RatioLock(UI::ARL_Ratio_Unlocked), VerticalRules(UI::SR_Unified_Dims), HorizontalRules(UI::SR_Unified_Dims) {  }
+                USize(Size), VerticalRules(UI::SR_Unified_Dims), HorizontalRules(UI::SR_Unified_Dims), RatioLock(UI::ARL_Ratio_Unlocked) {  }
             /// @brief Rules constructor.
             /// @param HRules The rules to be used for resizing on the X axis.
             /// @param VRules The rules to be used for resizing on the Y axis.
             SizingInfo(const UI::SizingRules HRules, const UI::SizingRules VRules) :
-                RatioLock(UI::ARL_Ratio_Unlocked), VerticalRules(VRules), HorizontalRules(HRules) {  }
+                VerticalRules(VRules), HorizontalRules(HRules), RatioLock(UI::ARL_Ratio_Unlocked) {  }
             /// @brief Descriptive constructor.
             /// @param HRules The rules to be used for resizing on the X axis.
             /// @param VRules The rules to be used for resizing on the Y axis.
             /// @param Size A UnifiedVector2 to be used if the rules provided permit it on sizing.
             SizingInfo(const UI::SizingRules HRules, const UI::SizingRules VRules, const UnifiedVec2& Size) :
-                USize(Size), RatioLock(UI::ARL_Ratio_Unlocked), VerticalRules(VRules), HorizontalRules(HRules) {  }
+                USize(Size), VerticalRules(VRules), HorizontalRules(HRules), RatioLock(UI::ARL_Ratio_Unlocked) {  }
             /// @brief Copy constructor.
             /// @param Other The other SizingInfo to copy from.
             SizingInfo(const SizingInfo& Other) :
-                USize(Other.USize), MaxSize(Other.MaxSize), MinSize(Other.MinSize), RatioLock(Other.RatioLock),
-                VerticalRules(Other.VerticalRules), HorizontalRules(Other.HorizontalRules) {  }
+                USize(Other.USize), MaxSize(Other.MaxSize), MinSize(Other.MinSize),
+                VerticalRules(Other.VerticalRules), HorizontalRules(Other.HorizontalRules), RatioLock(Other.RatioLock) {  }
             /// @brief Class destructor.
             ~SizingInfo() {  }
 
@@ -155,8 +155,8 @@ namespace Mezzanine
                 XML::Node SizingNode = ParentNode.AppendChild( SizingInfo::GetSerializableName() );
 
                 if( SizingNode.AppendAttribute("Version").SetValue("1") &&
-                    SizingNode.AppendAttribute("HorizontalRules").SetValue(static_cast<UInt32>(this->HorizontalRules)) &&
-                    SizingNode.AppendAttribute("VerticalRules").SetValue(static_cast<UInt32>(this->VerticalRules)) &&
+                    SizingNode.AppendAttribute("HorizontalRules").SetValue(this->HorizontalRules) &&
+                    SizingNode.AppendAttribute("VerticalRules").SetValue(this->VerticalRules) &&
                     SizingNode.AppendAttribute("RatioLock").SetValue(static_cast<UInt32>(this->RatioLock)) )
                 {
                     XML::Node MinSizeNode = SizingNode.AppendChild("MinSize");
@@ -182,11 +182,11 @@ namespace Mezzanine
                     if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
                         CurrAttrib = SelfRoot.GetAttribute("HorizontalRules");
                         if( !CurrAttrib.Empty() )
-                            this->HorizontalRules = static_cast<UI::SizingRules>(CurrAttrib.AsUint());
+                            this->HorizontalRules = CurrAttrib.AsUint();
 
                         CurrAttrib = SelfRoot.GetAttribute("VerticalRules");
                         if( !CurrAttrib.Empty() )
-                            this->VerticalRules = static_cast<UI::SizingRules>(CurrAttrib.AsUint());
+                            this->VerticalRules = CurrAttrib.AsUint();
 
                         CurrAttrib = SelfRoot.GetAttribute("RatioLock");
                         if( !CurrAttrib.Empty() )

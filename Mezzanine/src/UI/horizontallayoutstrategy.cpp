@@ -99,7 +99,10 @@ namespace Mezzanine
                     ChildIt = NextNonExpandingChild;
                     continue;
                 }else{
-                    // We got a range now so lets to the "fixed" child first if it is valid
+                    // Create a variable to cache the bottom position
+                    Real FixedRightPos = 0;
+
+                    // We got a range now so lets process the "fixed" child first if it is valid
                     if( NextNonExpandingChild != ChildQuads.end() ) {
                         QuadRenderable* NoExChild = (*NextNonExpandingChild);
                         const Rect OldChildRect = NoExChild->GetRect();
@@ -114,6 +117,7 @@ namespace Mezzanine
 
                         NoExChild->UpdateDimensions(OldChildRect,NewChildRect);
                         NextLeftPos = NewChildRect.Position.X;
+                        FixedRightPos = NewChildRect.Position.X + NewChildRect.Size.X;
                     }else{
                         // Just use the right edge of the parent if the child isn't valid
                         NextLeftPos = NewSelfRect.Position.X + NewSelfRect.Size.X;
@@ -140,6 +144,7 @@ namespace Mezzanine
 
                         ExChild->UpdateDimensions(OldChildRect,NewChildRect);
                     }
+                    PrevRightPos = FixedRightPos;
                 }
                 // We handled the object at the end of the range, so increment passed it and move on unless it is the end node
                 if( NextNonExpandingChild != ChildQuads.end() )
