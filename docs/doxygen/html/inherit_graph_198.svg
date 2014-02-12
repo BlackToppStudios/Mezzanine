@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 115,-36 115,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Threading_1_1ScopedTimer.html" target="_top" xlink:title="Used to time from this objects creation to its destruction. ">
+<a xlink:href="classMezzanine_1_1Threading_1_1SpinLock.html" target="_top" xlink:title="A mutex like construct that never makes a system call and uses CPU instructions instead. ">
 <polygon fill="white" stroke="black" points="0,-0 0,-32 110,-32 110,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Threading</text>
-<text text-anchor="middle" x="55" y="-7" font-family="FreeSans" font-size="10.00">::ScopedTimer</text>
+<text text-anchor="middle" x="55" y="-7" font-family="FreeSans" font-size="10.00">::SpinLock</text>
 </a>
 </g>
 </g>

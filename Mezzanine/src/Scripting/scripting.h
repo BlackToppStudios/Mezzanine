@@ -114,6 +114,7 @@ namespace Mezzanine
 /// bar = MezzanineSafe.Threading.Barrier(4)
 /// vec = MezzanineSafe.Vector3(1,1,1)
 /// @endcode
+/// @n @n
 /// @subsection CApiLuaNamespacesFlattened Other Namespaces Are Flattened
 /// Namespaces are flattened into the Lua module they are included n:
 /// C++ code:
@@ -125,6 +126,30 @@ namespace Mezzanine
 /// @code
 /// Vec=MezzanineSafe.ConvertToVector3("3 4 6")
 /// @endcode
+/// @n @n
+/// @subsection CApiLuaEnumsFlattened Enums Are Flattened
+/// In C++ enumerations might hold values useful in the scope of class. For example
+/// the Mezzanine::Exception holds ExceptionCodes that are useful categorizing types
+/// of errors. Because each C++ class is represented in Lua as a function that
+/// returns a class instance, the syntax "MezzanineSafe.Exception.IO_EXCEPTION" could
+/// not work. Enums that are part of a class are instead defined in the same table
+/// as the class function and have the class name concatenated to theirs.
+/// @n
+/// This is different than enums
+/// A few example can explain better:
+/// C++ code:
+/// @code
+/// int x = Mezzanine::Exception::IO_EXCEPTION // An enum value on a class
+/// int y = Mezzanine::Threading::NotStarted // An enum value in the Threading namespace
+/// @endcode
+/// @n @n
+/// Lua Code:
+/// @code
+/// x = MezzanineSafe.Exception_IO_EXCEPTION -- flattened to the MezzanineSafe Table/Module
+/// y = MezzanineSafe.Threading.NotStarted -- In the Threading table/Module
+/// @endcode
+/// @n @n
+///
 ///
 
 #include "script.h"

@@ -1,6 +1,7 @@
 <map id="Mezzanine::EventArguments" name="Mezzanine::EventArguments">
 <area shape="rect" id="node3" href="$classMezzanine_1_1UI_1_1ActionEventArguments.html" title="This is the base class for action specific event arguments. " alt="" coords="240,5,416,49"/>
 <area shape="rect" id="node5" href="$classMezzanine_1_1UI_1_1WidgetEventArguments.html" title="This is the base class for widget specific event arguments. " alt="" coords="239,71,417,115"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1ChildFocusEventArguments.html" title="Mezzanine::UI::ChildFocus\lEventArguments" alt="" coords="468,38,639,82"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1ScrollbarValueChangedArguments.html" title="This is the EventArguments class for when the scrollvalue of a scrollbar is updated. " alt="" coords="471,105,636,149"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1ChildFocusEventArguments.html" title="Mezzanine::UI::ChildFocus\lEventArguments" alt="" coords="473,5,644,49"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1ScrollbarValueChangedArguments.html" title="This is the EventArguments class for when the scrollvalue of a scrollbar is updated. " alt="" coords="476,71,641,115"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1SpinnerValueChangedArguments.html" title="This is the EventArguments class for when the spinvalue of a Spinner is updated. " alt="" coords="467,138,651,182"/>
 </map>

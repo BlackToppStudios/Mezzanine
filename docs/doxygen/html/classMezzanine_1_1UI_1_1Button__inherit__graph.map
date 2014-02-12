@@ -1,6 +1,6 @@
 <map id="Mezzanine::UI::Button" name="Mezzanine::UI::Button">
 <area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value. " alt="" coords="139,315,304,343"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1MenuButton.html" title="This is a button with additional data used to track the binding to a MenuEntry which can be serialize..." alt="" coords="328,315,507,343"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1UI_1_1StackButton.html" title="This is a button with additional data used to track the binding to a StackedContainer which can be se..." alt="" coords="328,315,507,343"/>
 <area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. " alt="" coords="245,161,392,189"/>
 <area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1QuadRenderable.html" title="This represents a nestable quad for an object in a GUI layout. " alt="" coords="5,83,208,111"/>
 <area shape="rect" id="node6" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy. " alt="" coords="20,6,193,34"/>

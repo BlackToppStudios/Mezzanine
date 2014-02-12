@@ -138,6 +138,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a436525dd1c3f84151a53557564ced87b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html#a436525dd1c3f84151a53557564ced87b">AddLayer</a> (<a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html">RenderLayer</a> *RL, const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> ZOrder)</td></tr>
 <tr class="memdesc:a436525dd1c3f84151a53557564ced87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a layer to this group by it's ZOrder.  <a href="#a436525dd1c3f84151a53557564ced87b">More...</a><br/></td></tr>
 <tr class="separator:a436525dd1c3f84151a53557564ced87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72224452795ba30b9c9aa0dc18408457"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html">RenderLayer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html#a72224452795ba30b9c9aa0dc18408457">GetLayer</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Index) const </td></tr>
+<tr class="memdesc:a72224452795ba30b9c9aa0dc18408457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> in this group by it's index.  <a href="#a72224452795ba30b9c9aa0dc18408457">More...</a><br/></td></tr>
+<tr class="separator:a72224452795ba30b9c9aa0dc18408457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa4d13c71a1839d669682098752ce3ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html">RenderLayer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html#aaa4d13c71a1839d669682098752ce3ae">GetLayerByZOrder</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> ZOrder) const </td></tr>
+<tr class="memdesc:aaa4d13c71a1839d669682098752ce3ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> in this group by it's ZOrder.  <a href="#aaa4d13c71a1839d669682098752ce3ae">More...</a><br/></td></tr>
+<tr class="separator:aaa4d13c71a1839d669682098752ce3ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57431bb1a310ddefea11b8c39b49f66c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html#a57431bb1a310ddefea11b8c39b49f66c">GetName</a> () const </td></tr>
 <tr class="memdesc:a57431bb1a310ddefea11b8c39b49f66c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of this <a class="el" href="structMezzanine_1_1UI_1_1RenderLayerGroup.html" title="This class stores a group of render layers that can be set to be rendered. ">RenderLayerGroup</a>.  <a href="#a57431bb1a310ddefea11b8c39b49f66c">More...</a><br/></td></tr>
 <tr class="separator:a57431bb1a310ddefea11b8c39b49f66c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -272,6 +278,60 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a72224452795ba30b9c9aa0dc18408457"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html">RenderLayer</a> * Mezzanine::UI::RenderLayerGroup::GetLayer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td>
+          <td class="paramname"><em>Index</em>)</td><td></td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> in this group by it's index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Index</td><td>The index of the <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> to retrieve. Note: RenderLayers are sorted via ZOrder. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> at the specified index. </dd></dl>
+
+<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00117">117</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaa4d13c71a1839d669682098752ce3ae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html">RenderLayer</a> * Mezzanine::UI::RenderLayerGroup::GetLayerByZOrder </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td>
+          <td class="paramname"><em>ZOrder</em>)</td><td></td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> in this group by it's ZOrder. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ZOrder</td><td>The ZOrder of the <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the layer at the specified ZOrder, or NULL if no layers exist at that ZOrder. </dd></dl>
+
+<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00130">130</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a57431bb1a310ddefea11b8c39b49f66c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -308,7 +368,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the number of RenderLayers assigned to this group. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a UInt32 containing the number of RenderLayers in this group. </dd></dl>
 
-<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00117">117</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00140">140</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -336,7 +396,7 @@ Protected Attributes</h2></td></tr>
 <p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> tag the <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy. ">Renderable</a> class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing the name of this class. </dd></dl>
 
-<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00165">165</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00188">188</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -402,7 +462,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00130">130</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00153">153</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -422,7 +482,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets an iterator to the first <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns an iterator to the first <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> being stored by this group. </dd></dl>
 
-<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00150">150</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00173">173</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -442,7 +502,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets a const iterator to the first <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a const iterator to the first <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> being stored by this group. </dd></dl>
 
-<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00156">156</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00179">179</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -462,7 +522,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets an iterator to one passed the last <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns an iterator to one passed the last <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> being stored by this group. </dd></dl>
 
-<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00153">153</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00176">176</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -482,7 +542,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets an iterator to one passed the last <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns an iterator to one passed the last <a class="el" href="classMezzanine_1_1UI_1_1RenderLayer.html" title="This is the base class for the types of layers that can be added to a renderable. ...">RenderLayer</a> being stored by this group. </dd></dl>
 
-<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00159">159</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00182">182</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -508,7 +568,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00122">122</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="quadrenderable_8cpp_source.html#l00145">145</a> of file <a class="el" href="quadrenderable_8cpp_source.html">quadrenderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -591,6 +651,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:31 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

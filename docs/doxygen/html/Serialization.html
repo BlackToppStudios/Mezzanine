@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="SerializationMain"></a>
 SerializationMain</h1>
-<p>Serialization is the process of converting a class instance into a serial sequence of bits. DeSerialization is taking those bits and reconstructing th e original object without losing anything of value (in practice the only things not saved are cached values or values calulated as they are needed). These bits could be just about anything, because of its ubiquity we chose to serialize to xml (or something so similar as to be indistinguishable from standard xml). This allows a wide variety of tools to be used when working with and verifying these serialized classes. Additionally, transmitting and storing xml is easy to do, and can be done with a variety of other factors in mind. The xml text can be sent down any stream, put in any file, compressed, queried. You should see <a class="el" href="XMLManual.html">Mezzanine::xml Manual</a> for information about the xml system itself. <br/>
+<p>Serialization is the process of converting a class instance into a serial sequence of bits. DeSerialization is taking those bits and reconstructing the original object without losing anything of value (in theory the only things not saved are cached values or values calulated as they are needed). These bits could be just about anything, because of its ubiquity we chose to serialize to xml (or something so similar as to be indistinguishable from standard xml). This allows a wide variety of tools to be used when working with and verifying these serialized classes. Additionally, transmitting and storing xml is easy to do, and can be done with a variety of other factors in mind. The xml text can be sent down any stream, put in any file, compressed, queried. You should see <a class="el" href="XMLManual.html">Mezzanine::xml Manual</a> for information about the xml system itself. <br/>
  <br/>
  Topics:</p>
 <ul>
@@ -88,7 +88,7 @@ SerializationMain</h1>
 </ul>
 <h2><a class="anchor" id="serializationxml"></a>
 Serialization and XML</h2>
-<p>The process of serializing doesn't just convert from class instance to text. Since our end goal is to convert live objects to <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> it only make sense to closely integrate with the Mezzanine::xml portion of the engine. If you plan on writing serialization and deserialization code you should read the following parts of the <a class="el" href="XMLManual.html">Mezzanine::xml Manual</a> at a minimum:</p>
+<p>The process of serializing doesn't just convert from class instance to text. Since our end goal is to convert live objects to <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> it makes sense to closely integrate the Mezzanine::xml portion of the engine. If you plan on writing serialization and deserialization code you should read the following parts of the <a class="el" href="XMLManual.html">Mezzanine::xml Manual</a> at a minimum:</p>
 <ul>
 <li><a class="el" href="XMLManual.html#XMLDOM">Document Object Model</a></li>
 <li><a class="el" href="XMLManual.html#XMLAccessingBasics">Basic traversal functions</a></li>
@@ -97,13 +97,13 @@ Serialization and XML</h2>
 </ul>
 <p>The central object that will carry information during this process is the <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">Mezzanine::XML::Node</a>. The <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">Mezzanine::XML::Node</a> is an excellent tool for converting and storing data in a single unified heirarchy. <br/>
  <br/>
- C++ and most object oriented languages heavily imply that class inheritance should be structured as hierarchies. Additionally Hierarchies are implied when complex class have other complex class or datatypes as members. Both of these structures map cleanly onto the kind of hierarchies that a well formed xml documents provide. <br/>
+ C++ and most other object oriented languages heavily imply that class inheritance should be structured as hierarchies. Additionally Hierarchies are implied when complex class has other complex classes or datatypes as members. Both of these structures map cleanly onto the kind of hierarchies that a well formed xml documents provide. <br/>
  <br/>
- There are some relationships in video game objects that cross normal hierarchical boundaries. For example, A constraint references two actors, and defines a relationship between them. When serialized the constraint simply stores the name of the actor and looks it up in the actor manager during deserialization. This implies that the actors exist already, or that there is some mechanism to create the constraint and fill in the actor later. Several mechanisms were discussed to accomplish this, some include: two passes of processing were constraintw would be done in the second pass, a work queue that would store objects that couldn't be deserialized yet, a prefetcher that would dig through the xml to find the required object. <br/>
+ There are some relationships in video game objects that cross normal hierarchical boundaries. For example, A constraint references two actors, and defines a relationship between them. When serialized the constraint simply stores the name of the actor and looks it up in the actor manager during deserialization. This implies that the actors exist already, or that there is some mechanism to create the constraint and fill in the actor later. Several mechanisms were discussed to accomplish this, some include: two passes of processing where constraint would be done in the second pass, a work queue that would store objects that couldn't be deserialized yet, a prefetcher that would dig through the xml to find the required object. <br/>
  <br/>
  Those methods all likely could have been made to work. However, they are not optimal for a variety of reasons. All of them have a set of preconditions and require more computing resources and could potentially delay loading or transmission times. Some of them heavily imply that all of the items to deserialize must be stored in the same xml source. Some demand access to xml that may not have been transmitted yet. <br/>
  <br/>
- The simplest, most performant way to work around the issues that cross-hierarchical relationships presented was to ignore them. More specifically, throw an exception if an object reference during deserialization is not present. Then we ask that programmers who write could that must store, transmit and reconstruct class instances be aware of the following preconditions So can produce their own solutions:</p>
+ The simplest, most performant way to work around the issues that cross-hierarchical relationships presented was to ignore them. More specifically, throw an exception if an object reference during deserialization is not present. Then we ask that programmers who write code that must store, transmit and reconstruct class instances be aware of the following preconditions So can produce their own solutions:</p>
 <ul>
 <li>CollisionShapes must come before Actors and AreaEffects</li>
 <li>WorldNodes must come before Actors, Light and ParticleEffects. (this is still work in progress).<ul>
@@ -181,16 +181,16 @@ Integrating with External XML Providers</h3>
 Serialization Operators</h2>
 <p>The stream insertion (&lt;&lt;) and stream extraction (&gt;&gt;) operators can be used for serializing and deserializing most items in the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> engine.</p>
 <p>Unfortunately due to conflict with the stream insertion operators provided with the iostreams library these couldn't be made into a template. That doesn't mean that they are difficult to implement. Here is a typical implemenation of stream insertion operators for <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> serialization: </p>
-<div class="fragment"><div class="line">std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> Mezzanine::ActorRigid&amp; ActorToSerialize)</div>
+<div class="fragment"><div class="line">std::ostream&amp; <a class="code" href="interpolator_8h.html#ad3e123a725f29fba920d3ec54b1c6383" title="Used to Serialize an Mezzanine::LinearInterpolator to a human readable stream. ">operator &lt;&lt; </a>(std::ostream&amp; stream, <span class="keyword">const</span> Mezzanine::ActorRigid&amp; ActorToSerialize)</div>
 <div class="line">{</div>
 <div class="line">    <a class="code" href="namespaceMezzanine.html#a9015c5e668e14b857a27888c56934148" title="Convert any class that supports serialization or has a serializer to a string of chars in a stream...">Serialize</a>(stream, ActorToSerialize);</div>
 <div class="line">    <span class="keywordflow">return</span> stream;</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line">std::istream&amp; operator &gt;&gt; (std::istream&amp; stream, Mezzanine::ActorRigid&amp; x)</div>
+<div class="line">std::istream&amp; <a class="code" href="interpolator_8h.html#ab67dacdcabf00eae90e25f8357d50ec3" title="Used to de-serialize an Mezzanine::LinearInterpolator from a stream. ">operator &gt;&gt; </a>(std::istream&amp; stream, Mezzanine::ActorRigid&amp; x)</div>
 <div class="line">    { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.html#ad8989ea81ccd1ad6d59a11921f0239a4" title="Deserialize the next xml tag in the stream into a specific in memory class instance. ">DeSerialize</a>(stream, x); }</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">Mezzanine::XML::Node</a>&amp; OneNode, Mezzanine::ActorRigid&amp; x)</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code" href="interpolator_8h.html#ab67dacdcabf00eae90e25f8357d50ec3" title="Used to de-serialize an Mezzanine::LinearInterpolator from a stream. ">operator &gt;&gt; </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">Mezzanine::XML::Node</a>&amp; OneNode, Mezzanine::ActorRigid&amp; x)</div>
 <div class="line">    { x.ProtoDeSerialize(OneNode); }</div>
 </div><!-- fragment --><p> You will want to implement these functions with the appropriate type. The type Mezzanine::ActorRigid is used purely as example Though this is actual working code and was in the engine at one point, the current code is more sophiscticated <br/>
  <br/>
@@ -205,6 +205,6 @@ Other little Things</h2>
 </div><!-- fragment --><p> Both of these functions throw a <a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">Mezzanine::Exception</a> with the descriptive text of "Could not {FailedTo} during {ClassName} [De]Serialization." If SOrD (Serialize Or Deserialize) is true the "De" is not printed. </p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:27 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>
