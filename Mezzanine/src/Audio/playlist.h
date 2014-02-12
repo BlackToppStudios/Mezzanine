@@ -75,7 +75,8 @@ namespace Mezzanine
 
             /// @brief Checks the playlist to see if it contains a sound.
             /// @param TheSound The sound to check for.
-            bool ContainsSound(iSound* TheSound);
+            /// @return Returns true if this playlist contains the provided sound, false otherwise.
+            Boolean ContainsSound(iSound* TheSound);
         };//Playlist
     }//Audio
 }//Mezzanine
