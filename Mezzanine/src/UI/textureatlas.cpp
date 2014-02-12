@@ -405,7 +405,7 @@ namespace Mezzanine
                 Bottom *= InverseTextureSize.Y;
 
                 // If we got this far, we have enough data for a valid sprite, create and insert it
-                Sprite* NewSprite = new Sprite(SpriteName,Top,Left,Bottom,Right);
+                Sprite* NewSprite = new Sprite(SpriteName,Top,Left,Bottom,Right,this);
                 SpriteIterator SpIt = this->Sprites.find(SpriteName);
                 if( SpIt == this->Sprites.end() ) {
                     this->Sprites.insert(std::pair<String,Sprite*>(SpriteName,NewSprite));

@@ -61,8 +61,9 @@ namespace Mezzanine
             /// @param UVLeft The left position of this sprite on the Atlas.
             /// @param UVBottom The bottom position of this sprite on the Atlas.
             /// @param UVRight The right position of this sprite on the Atlas.
-            Sprite(const String& SpriteName, const Real UVTop, const Real UVLeft, const Real UVBottom, const Real UVRight) :
-                Atlas(NULL),
+            /// @param ParentAtlas The TextureAtlas this sprite belongs to.
+            Sprite(const String& SpriteName, const Real UVTop, const Real UVLeft, const Real UVBottom, const Real UVRight, TextureAtlas* ParentAtlas) :
+                Atlas(ParentAtlas),
                 Name(SpriteName),
                 Top(UVTop),
                 Left(UVLeft),
@@ -94,7 +95,7 @@ namespace Mezzanine
 
             /// @brief Gets the name of the atlas this sprite belongs to.
             inline const String& GetAtlasName() const
-                { return Atlas->GetName(); }
+                { return this->Atlas->GetName(); }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Position and Size Methods
@@ -102,23 +103,23 @@ namespace Mezzanine
             /// @brief Gets the Top coordinate on the Atlas texture.
             /// @return Returns a Real representing the top position of this sprite on the Atlas texture in pixels.
             inline Real GetUVTop() const
-                { return this->Top * Atlas->GetTextureSize().Y; }
+                { return this->Top * this->Atlas->GetTextureSize().Y; }
             /// @brief Gets the Bottom coordinate on the Atlas texture.
             /// @return Returns a Real representing the bottom position of this sprite on the Atlas texture in pixels.
             inline Real GetUVBottom() const
-                { return this->Bottom * Atlas->GetTextureSize().Y; }
+                { return this->Bottom * this->Atlas->GetTextureSize().Y; }
             /// @brief Gets the Left coordinate on the Atlas texture.
             /// @return Returns a Real representing the left position of this sprite on the Atlas texture in pixels.
             inline Real GetUVLeft() const
-                { return this->Left * Atlas->GetTextureSize().X; }
+                { return this->Left * this->Atlas->GetTextureSize().X; }
             /// @brief Gets the Right coordinate on the Atlas texture.
             /// @return Returns a Real representing the right position of this sprite on the Atlas texture in pixels.
             inline Real GetUVRight() const
-                { return this->Right * Atlas->GetTextureSize().X; }
+                { return this->Right * this->Atlas->GetTextureSize().X; }
             /// @brief Gets the position of the sprite on the Atlas texture.
             /// @return Returns a Vector2 containing the top-left position of this sprite on the Atlas texture in pixels.
             inline Vector2 GetPosition() const
-                { return Vector2(this->Left,this->Top) * Atlas->GetTextureSize(); }
+                { return Vector2(this->Left,this->Top) * this->Atlas->GetTextureSize(); }
             /// @brief Gets the size of the sprite on the Atlas texture.
             /// @return Returns a Vector2 containing the size of this sprite on the Atlas Texture in pixels.
             inline Vector2 GetSize() const
@@ -126,11 +127,11 @@ namespace Mezzanine
             /// @brief Gets the sprite's height on the Atlas texture.
             /// @return Returns a Real representing the height of this sprite on the Atlas Texture in pixels.
             inline Real GetHeight() const
-                { return GetUVBottom() - GetUVTop(); }
+                { return this->GetUVBottom() - this->GetUVTop(); }
             /// @brief Gets the sprite's width on the Atlas texture.
             /// @return Returns a Real representing the width of this sprite on the Atlas Texture in pixels.
             inline Real GetWidth() const
-                { return GetUVRight() - GetUVLeft(); }
+                { return this->GetUVRight() - this->GetUVLeft(); }
             /// @brief Gets the pixel position on the Atlas of a corner belonging to this Sprite.
             /// @param Corner The corner to retrieve the coordinates for.
             /// @return Returns a Vector2 containing the Atlas pixel position of the specific corner.
@@ -138,10 +139,10 @@ namespace Mezzanine
             {
                 switch(Corner)
                 {
-                    case UI::QC_TopLeft:      return Vector2(Left,Top) * Atlas->GetTextureSize();      break;
-                    case UI::QC_TopRight:     return Vector2(Right,Top) * Atlas->GetTextureSize();     break;
-                    case UI::QC_BottomLeft:   return Vector2(Left,Bottom) * Atlas->GetTextureSize();   break;
-                    case UI::QC_BottomRight:  return Vector2(Right,Bottom) * Atlas->GetTextureSize();  break;
+                    case UI::QC_TopLeft:      return Vector2(this->Left,this->Top) * this->Atlas->GetTextureSize();      break;
+                    case UI::QC_TopRight:     return Vector2(this->Right,this->Top) * this->Atlas->GetTextureSize();     break;
+                    case UI::QC_BottomLeft:   return Vector2(this->Left,this->Bottom) * this->Atlas->GetTextureSize();   break;
+                    case UI::QC_BottomRight:  return Vector2(this->Right,this->Bottom) * this->Atlas->GetTextureSize();  break;
                     default:
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid QuadCorner value used to query Atlas Coordinates.");  break; }
                 }
@@ -153,10 +154,10 @@ namespace Mezzanine
             {
                 switch(Corner)
                 {
-                    case UI::QC_TopLeft:      return Vector2(Left,Top);      break;
-                    case UI::QC_TopRight:     return Vector2(Right,Top);     break;
-                    case UI::QC_BottomLeft:   return Vector2(Left,Bottom);   break;
-                    case UI::QC_BottomRight:  return Vector2(Right,Bottom);  break;
+                    case UI::QC_TopLeft:      return Vector2(this->Left,this->Top);      break;
+                    case UI::QC_TopRight:     return Vector2(this->Right,this->Top);     break;
+                    case UI::QC_BottomLeft:   return Vector2(this->Left,this->Bottom);   break;
+                    case UI::QC_BottomRight:  return Vector2(this->Right,this->Bottom);  break;
                     default:
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Invalid QuadCorner value used to query Atlas Coordinates.");  break; }
                 }

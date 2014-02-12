@@ -52,23 +52,20 @@ namespace Mezzanine
     namespace UI
     {
         TextureAtlasHandler::TextureAtlasHandler()
-        {
-        }
+            {  }
 
         TextureAtlasHandler::~TextureAtlasHandler()
-        {
-        }
+            {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Texture Atlas Management
 
         void TextureAtlasHandler::LoadAtlasFromFile(const String& Name, const String& Group)
         {
-            // Kinda hackish until we get the resource system running the way we want.
-            /// @todo Fix this when we have a working resource system of our own.
-            Resource::FileStream AtlasStream( Name, ResourceManager::GetSingletonPtr()->GetAssetPath(Name,Group) );
+            /// @todo Update after we have refactored the resource system if needed.
+            Resource::DataStreamPtr AtlasStream = ResourceManager::GetSingletonPtr()->OpenAssetStream(Name,Group);
             XML::Document AtlasDoc;
-            AtlasDoc.Load(AtlasStream);
+            AtlasDoc.Load( *AtlasStream.Get() );
 
             XML::Node RootNode = AtlasDoc.GetChild("Atlases");
             if( !RootNode.Empty() )
