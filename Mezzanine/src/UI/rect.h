@@ -169,11 +169,24 @@ namespace Mezzanine
             {
                 return this->Position.X + this->Size.X;
             }
+
+            /// @brief Gets the value of the horizontal center of this rect.
+            /// @return Returns a Real that is the point on the horizontal axis that is this rect's center.
+            inline Real GetHorizontalCenter() const
+            {
+                return this->Position.X + (this->Size.X * 0.5);
+            }
+            /// @brief Gets the value of the vertical center of this rect.
+            /// @return Returns a Real that is the point on the vertical axis that is this rect's center.
+            inline Real GetVerticalCenter() const
+            {
+                return this->Position.Y + (this->Size.Y * 0.5);
+            }
             /// @brief Gets the coordinates to the center of this rect.
             /// @return Returns a vector2 containing the central point of this rect.
             inline Vector2 GetRectCenter() const
             {
-                return Vector2(Position.X + (Size.X * 0.5),Position.Y + (Size.Y * 0.5));
+                return Vector2(this->GetHorizontalCenter(),this->GetVerticalCenter());
             }
 
             /// @brief Checks to see if another Rect is overlapping with this one.
