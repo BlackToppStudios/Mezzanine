@@ -1,4 +1,4 @@
-# @ Copyright 2010 - 2011 BlackTopp Studios Inc.
+# @ Copyright 2010 - 2014 BlackTopp Studios Inc.
 # This file is part of The Mezzanine Engine.
 #
 #    The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -323,6 +323,18 @@ else(${Mezz_SWIG})
 endif(${Mezz_SWIG})
 
 ###############################################################################
+# Build Tools
+option(Mezz_Tools_EntreLua "Build a Lua shell with access to the Mezzanine." ON)
+if(${Mezz_Tools_EntreLua})
+    message ( STATUS "${PROJECT_NAME} - Enabling EntreLua build.")
+else(${Mezz_Tools_EntreLua})
+    message ( STATUS "${PROJECT_NAME} - Disabling EntreLua build.")
+endif(${Mezz_Tools_EntreLua})
+
+
+
+
+###############################################################################
 # DAGFrameScheduler
 
 #How long should the default length on rolling averages and other multiframe periods be.
@@ -573,6 +585,10 @@ add_subdirectory (Mezzanine)
 add_subdirectory (EngineDemo)
 add_subdirectory (Catch)
 add_subdirectory (UnitTests)
+
+if(${Mezz_Tools_EntreLua})
+    add_subdirectory (Tools/EntreLua)
+endif(${Mezz_Tools_EntreLua})
 Message(STATUS "Finishing Subproject Configuration.")
 
 ###############################################################################
@@ -670,7 +686,7 @@ mark_as_advanced( FORCE
     BUILD_UNIT_TESTS
 
     # Ogre indirect
-    Boost_DIR Boost_LIB_DIAGNOSTIC_DEFINITIONS OGRE_SET_USE_BOOST
+    Boost_DIR Boost_LIB_DIAGNOSTIC_DEFINITIONS OGRE_SET_USE_BOOST BOOST_THREAD_LIBRARY
     DirectX_DINPUT8_LIBRARY
     Cg_LIBRARY_REL Cg_LIBRARY_DBG Cg_INCLUDE_DIR
 
