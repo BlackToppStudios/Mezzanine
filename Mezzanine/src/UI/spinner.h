@@ -92,6 +92,7 @@ namespace Mezzanine
             /// @brief Event name for when the value in this Spinner is updated.
             static const String EventSpinValueChanged;
         protected:
+            friend class SpinnerFactory;
             /// @internal
             /// @brief A pointer to the button that will increment the spin value.
             Button* IncrementSpin;
@@ -104,6 +105,9 @@ namespace Mezzanine
             /// @internal
             /// @brief The current spin value of this Spinner.
             Real SpinValue;
+            /// @internal
+            /// @brief The amount to increase or decrease by when the spin value is altered via buttons.
+            Real IncrementValue;
             /// @internal
             /// @brief The minimum value allowed to be expressed by this Spinner.
             Real MinValue;
@@ -174,6 +178,12 @@ namespace Mezzanine
             /// @brief Gets the value of this Spinner.
             /// @return Returns a Real containing the current value of this spinner.
             virtual Real GetSpinValue() const;
+            /// @brief Sets the amount to increase or decrease by when the spinner value is altered by child buttons.
+            /// @param Value A Real containing the amount to increase the spin value when incrememnted, or decrease the spin value when decremented.
+            virtual void SetIncrementValue(const Real Value);
+            /// @brief Gets the amount to increase or decrease by when the spinner value is altered by child buttons.
+            /// @return Returns a Real containing the amount the spin value will go up or down when the child buttons are clicked.
+            virtual Real GetIncrementValue() const;
 
             /// @brief Sets the minimum and maximum limits for the value this Spinner can have.
             /// @note Both of these values default to 0.0 after construction.
@@ -195,6 +205,10 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Spinner Configuration
+
+            /// @brief Sets the sizing and positioning policies of the children in this spinner to match the provided layout.
+            /// @param Style A SpinnerStyle value representing how the children of this spinner should be layed out.
+            virtual void SetButtonLayout(const SpinnerStyle Style);
 
             /// @brief Gets the increment Button of this Spinner.
             /// @return Returns a pointer to the increment Button.
@@ -245,29 +259,70 @@ namespace Mezzanine
             virtual void _NotifyEvent(const EventArguments& Args);
             /// @copydoc PageProvider::_NotifyContainerUpdated()
             virtual void _NotifyContainerUpdated();
+        };//Spinner
 
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the factory implementation for Spinner widgets.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB SpinnerFactory : public WidgetFactory
+        {
+        public:
+            /// @brief Class constructor.
+            SpinnerFactory() {  }
+            /// @brief Class destructor.
+            virtual ~SpinnerFactory() {  }
 
-            /*protected:
-                bool IncrementLock;
-                bool DecrementLock;
-                UI::SpinnerStyle SpinLayout;
-                /// @brief Constructor helper function for creating a horizontally aligned spinner.
-                virtual void CreateHorizontalSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight);
-                /// @brief Constructor helper function for creating a vertically aligned spinner.
-                virtual void CreateVerticalSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight);
-                /// @brief Constructor helper function for creating a box shaped spinner with buttons together.
-                virtual void CreateBoxSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight);
-                /// @brief Checks to ensure the value is within it's limits.
-                virtual void CheckValueLimits();
-                /// @brief Gets the current value of this spinner as text, for use with updating the caption.
-                virtual String GetValueAsText();
-                /// @brief Child specific update method.
-                virtual void UpdateImpl(bool Force = false);
-                /// @brief Child specific visibility method.
-                virtual void SetVisibleImpl(bool visible);
-                /// @brief Child specific mouse hover method.
-                virtual bool CheckMouseHoverImpl();//*/
-        };//spinner
+            /// @copydoc WidgetFactory::GetWidgetTypeName() const
+            virtual String GetWidgetTypeName() const;
+
+            /// @brief Creates a new Spinner.
+            /// @param RendName The name to be given to the created Spinner.
+            /// @param SpinStyle The layout of buttons this Spinner will have.
+            /// @param EditFont A pointer to the font to be used by the edit layer.
+            /// @param Parent The screen the created Spinner will belong to.
+            /// @return Returns a pointer to the created Spinner.
+            virtual Spinner* CreateSpinner(const String& RendName, const SpinnerStyle SpinStyle, FontData* EditFont, Screen* Parent);
+            /// @brief Creates a new Spinner.
+            /// @param RendName The name to be given to the created Spinner.
+            /// @param SpinStyle The layout of buttons this Spinner will have.
+            /// @param EditFontName The name of the font to be used by the edit layer.
+            /// @param Parent The screen the created Spinner will belong to.
+            /// @return Returns a pointer to the created Spinner.
+            virtual Spinner* CreateSpinner(const String& RendName, const SpinnerStyle SpinStyle, const String& EditFontName, Screen* Parent);
+            /// @brief Creates a new Spinner.
+            /// @param RendName The name to be given to the created Spinner.
+            /// @param RendRect The dimensions that will be assigned to the created Spinner.
+            /// @param SpinStyle The layout of buttons this Spinner will have.
+            /// @param EditFont A pointer to the font to be used by the edit layer.
+            /// @param Parent The screen the created Spinner will belong to.
+            /// @return Returns a pointer to the created Spinner.
+            virtual Spinner* CreateSpinner(const String& RendName, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, FontData* EditFont, Screen* Parent);
+            /// @brief Creates a new Spinner.
+            /// @param RendName The name to be given to the created Spinner.
+            /// @param RendRect The dimensions that will be assigned to the created Spinner.
+            /// @param SpinStyle The layout of buttons this Spinner will have.
+            /// @param EditFontName The name of the font to be used by the edit layer.
+            /// @param Parent The screen the created Spinner will belong to.
+            /// @return Returns a pointer to the created Spinner.
+            virtual Spinner* CreateSpinner(const String& RendName, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, const String& EditFontName, Screen* Parent);
+            /// @brief Creates a new Spinner.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created Spinner will belong to.
+            /// @return Returns a pointer to the created Spinner.
+            virtual Spinner* CreateSpinner(const XML::Node& XMLNode, Screen* Parent);
+
+            /// @copydoc WidgetFactory::CreateWidget(Screen*)
+            virtual Widget* CreateWidget(Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const UnifiedRect&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const XML::Node&, Screen*)
+            virtual Widget* CreateWidget(const XML::Node& XMLNode, Screen* Parent);
+            /// @copydoc WidgetFactory::DestroyWidget(Widget*)
+            virtual void DestroyWidget(Widget* ToBeDestroyed);
+        };//SpinnerFactory
     }//UI
 }//Mezzanine
 

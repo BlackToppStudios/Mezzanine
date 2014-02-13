@@ -386,24 +386,24 @@ namespace Mezzanine
             /// @brief Sets the behavior this quad will have when it is positioned automatically.
             /// @note This method is not retroactive.  Setting this to a different value will not cause it to reposition.
             /// @param Rules The action to take when this is positioned.  See @ref PositioningFlags enum for more info.
-            virtual void SetPositioningRules(const UI::PositioningFlags Rules);
+            virtual void SetPositioningRules(const Whole Rules);
             /// @brief Gets the current behavior this quad will follow when it is positioned automatically.
-            /// @return Returns a @ref PositioningFlags value reprensenting the action this quad will take when it is positioned.
-            virtual UI::PositioningFlags GetPositioningRules() const;
+            /// @return Returns a bitfield of @ref PositioningFlags reprensenting the action this quad will take when it is positioned.
+            virtual Whole GetPositioningRules() const;
             /// @brief Sets the behavior this quad will have on the X axis when it is resized.
             /// @note This method is not retroactive.  Setting this to a different value will not cause it to resize.
             /// @param Rules The action to take when this is resized.  See @ref SizingRules enum for more info.
-            virtual void SetHorizontalSizingRules(const UI::SizingRules Rules);
+            virtual void SetHorizontalSizingRules(const Whole Rules);
             /// @brief Gets the current behavior this quad will follow for the X axis when it is resized.
-            /// @return Returns a @ref SizingRules value reprensenting the action this quad will take when it is resized.
-            virtual UI::SizingRules GetHorizontalSizingRules() const;
+            /// @return Returns a whole reprensenting the action this quad will take when it is resized.  See @ref SizingRules enum for more info.
+            virtual Whole GetHorizontalSizingRules() const;
             /// @brief Sets the behavior this quad will have on the Y axis when it is resized.
             /// @note This method is not retroactive.  Setting this to a different value will not cause it to resize.
             /// @param Rules The action to take when this is resized.  See @ref SizingRules enum for more info.
-            virtual void SetVerticalSizingRules(const UI::SizingRules Rules);
+            virtual void SetVerticalSizingRules(const Whole Rules);
             /// @brief Gets the current behavior this quad will follow for the Y axis when it is resized.
-            /// @return Returns a @ref SizingRules value reprensenting the action this quad will take when it is resized.
-            virtual UI::SizingRules GetVerticalSizingRules() const;
+            /// @return Returns a whole reprensenting the action this quad will take when it is resized.  See @ref SizingRules enum for more info.
+            virtual Whole GetVerticalSizingRules() const;
 
             /// @brief Sets the minimum size this quad is allowed to have.
             /// @note This function expects the provided UnifiedVec2 to be in pixels.

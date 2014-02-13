@@ -489,6 +489,9 @@ namespace Mezzanine
             // VerticalScrollbar
             FactIt = this->WidgetFactories.find( VerticalScrollbar::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new VerticalScrollbarFactory() );
+            // Spinner
+            FactIt = this->WidgetFactories.find( Spinner::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new SpinnerFactory() );
 
             // MenuEntry
             FactIt = this->WidgetFactories.find( MenuEntry::TypeName );
@@ -692,6 +695,34 @@ namespace Mezzanine
             VerticalScrollbar* NewVScroll = static_cast<VerticalScrollbarFactory*>( this->GetWidgetFactoryExcept( VerticalScrollbar::TypeName ) )->CreateVerticalScrollbar( Name, RendRect, Style, this );
             this->CheckAndInsertExcept( NewVScroll );
             return NewVScroll;
+        }
+
+        Spinner* Screen::CreateSpinner(const String& Name, const SpinnerStyle SpinStyle, FontData* EditFont)
+        {
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, SpinStyle, EditFont, this );
+            this->CheckAndInsertExcept( NewSpin );
+            return NewSpin;
+        }
+
+        Spinner* Screen::CreateSpinner(const String& Name, const SpinnerStyle SpinStyle, const String& EditFontName)
+        {
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, SpinStyle, EditFontName, this );
+            this->CheckAndInsertExcept( NewSpin );
+            return NewSpin;
+        }
+
+        Spinner* Screen::CreateSpinner(const String& Name, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, FontData* EditFont)
+        {
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, RendRect, SpinStyle, EditFont, this );
+            this->CheckAndInsertExcept( NewSpin );
+            return NewSpin;
+        }
+
+        Spinner* Screen::CreateSpinner(const String& Name, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, const String& EditFontName)
+        {
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, RendRect, SpinStyle, EditFontName, this );
+            this->CheckAndInsertExcept( NewSpin );
+            return NewSpin;
         }
 
         MenuEntry* Screen::CreateMenuEntry(const String& Name)

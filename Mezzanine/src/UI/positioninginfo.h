@@ -61,8 +61,8 @@ namespace Mezzanine
 
             /// @brief Unified dimensions to be used if the resize rules permits it.
             UnifiedVec2 UPosition;
-            /// @brief Rules for resizing on the X axis.
-            UI::PositioningFlags PositionRules;
+            /// @brief Rules for determining the position of a quad.
+            Whole PositionRules;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Construction and Destruction
@@ -72,7 +72,7 @@ namespace Mezzanine
                 PositionRules(UI::PF_Unified_Pos) {  }
             /// @brief PositionFlags constructor.
             /// @param Rules The rules for determining the position of the object on a transform update.
-            PositioningInfo(const UI::PositioningFlags Rules) :
+            PositioningInfo(const Whole Rules) :
                 PositionRules(Rules) {  }
             /// @brief Position constructor.
             /// @param Position The unified position to use if the rules permit it.
@@ -81,7 +81,7 @@ namespace Mezzanine
             /// @brief Descriptive constructor.
             /// @param Rules The rules for determining the position of the object on a transform update.
             /// @param Position The unified position to use if the rules permit it.
-            PositioningInfo(const UI::PositioningFlags Rules, const UnifiedVec2& Position) :
+            PositioningInfo(const Whole Rules, const UnifiedVec2& Position) :
                 UPosition(Position), PositionRules(Rules) {  }
             /// @brief Copy constructor.
             /// @param Other The other PositioningInfo to copy from.
@@ -99,17 +99,13 @@ namespace Mezzanine
             /// @brief Equality comparison operator.
             /// @param Other The other PositioningInfo to compare to.
             /// @return Returns true if these PositioningInfo's are equal, false otherwise.
-            inline bool operator==(const PositioningInfo& Other) const
-            {
-                return this->UPosition == Other.UPosition && this->PositionRules == Other.PositionRules;
-            }
+            inline Boolean operator==(const PositioningInfo& Other) const
+                { return this->UPosition == Other.UPosition && this->PositionRules == Other.PositionRules; }
             /// @brief Inequality comparison operator.
             /// @param Other The other PositioningInfo to compare to.
             /// @return Returns true if these PositioningInfo's are not equal, false otherwise.
-            inline bool operator!=(const PositioningInfo& Other) const
-            {
-                return this->UPosition != Other.UPosition || this->PositionRules != Other.PositionRules;
-            }
+            inline Boolean operator!=(const PositioningInfo& Other) const
+                { return this->UPosition != Other.UPosition || this->PositionRules != Other.PositionRules; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -121,7 +117,7 @@ namespace Mezzanine
                 XML::Node PositioningNode = ParentNode.AppendChild( PositioningInfo::GetSerializableName() );
 
                 if( PositioningNode.AppendAttribute("Version").SetValue("1") &&
-                    PositioningNode.AppendAttribute("PositionRules").SetValue(static_cast<UInt32>(this->PositionRules)) )
+                    PositioningNode.AppendAttribute("PositionRules").SetValue( this->PositionRules ) )
                 {
                     XML::Node UPositionNode = PositioningNode.AppendChild("UPosition");
                     this->UPosition.ProtoSerialize( UPositionNode );
@@ -140,7 +136,7 @@ namespace Mezzanine
                     if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
                         CurrAttrib = SelfRoot.GetAttribute("PositionRules");
                         if( !CurrAttrib.Empty() )
-                            this->PositionRules = static_cast<UI::PositioningFlags>(CurrAttrib.AsUint());
+                            this->PositionRules = CurrAttrib.AsUint();
 
                         XML::Node PositionNode = SelfRoot.GetChild("UPosition").GetFirstChild();
                         if( !PositionNode.Empty() )
@@ -155,9 +151,7 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.
             static String GetSerializableName()
-            {
-                return "PositioningInfo";
-            }
+                { return "PositioningInfo"; }
         };//PositioningInfo
     }//UI
 }//Mezzanine
