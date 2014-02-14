@@ -240,19 +240,19 @@ namespace Mezzanine
         /// The valid variables are as follows: LocalAppData, ShareableAppData, CurrentUserData, and CommonUserData.  These are not case sensative.
         /// @param PathVar String containing the name of the path variable.
         /// @return Returns the actual path of the variable provided.
-        String ResolveDataPathFromString(const String& PathVar);
+        static String ResolveDataPathFromString(const String& PathVar);
         /// @brief Gets the path to the directory intended for game and engine config data that is not meant to be shared.
         /// @return Returns a string containing the path to the Local Application Data Directory.
-        String GetLocalAppDataDir() const;
+        static String GetLocalAppDataDir();
         /// @brief Gets the path to the directory intended for game and engine config data that is allowed to be shared.
         /// @return Returns a string containing the path to the Shareable Application Data Directory.
-        String GetShareableAppDataDir() const;
+        static String GetShareableAppDataDir();
         /// @brief Gets the path to the directory intended for game saves and user profile data for the current user.
         /// @return Returns a string containing the path to the Current User Data Directory.
-        String GetCurrentUserDataDir() const;
+        static String GetCurrentUserDataDir();
         /// @brief Gets the path to the directory intended for game saves and user profile data for all users.
         /// @return Returns a string containing the path to the Common User Data Directory.
-        String GetCommonUserDataDir() const;
+        static String GetCommonUserDataDir();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Management

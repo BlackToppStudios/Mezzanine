@@ -55,17 +55,18 @@ using namespace std;
 
 /// @brief This is the entry point for a Lua shell with
 /// Here are the Command line options Lua implements:
-///      - [ ] -e stat: executes string stat;
-///      - [ ] -l mod: "requires" mod;
-///      - [ ] -i: enters interactive mode after running script;
-///      - [ ] -v: prints version information;
-///      - [ ] --: stops handling options;
+///      - [x] -e stat: executes string stat;
+///      - [x] -l mod: "requires" mod;
+///      - [x] -i: enters interactive mode after running script;
+///      - [x] -v: prints version information;
+///      - [x] --: stops handling options;
 ///      - [ ] -: executes stdin as a file and stops handling options.
 ///
 /// We will try to emulate these with this shell, but we will also add:
 ///      - [ ] --execute, --load, --interactive, --version, and --stdin: Long version of previous commands
 ///      - [ ] -n --no-mezzanine: Prevent loading of MezzanineSafe by default.
 ///      - [ ] -u --unsafe: Load the unlimited (unsafe) version of the Mezzanine instead of MezzanineSafe
+///      - [ ] -o --open: Open a lua or Mezzanine library as soon as the shell starts.
 ///
 /// @return This will return EXIT_SUCCESS, it will do more later.
 /// @param argc Is interpretted as the amount of passed arguments
@@ -74,33 +75,46 @@ int main (int argc, char** argv)
 {
     vector<String> LoadList;
     String StatementToExecute;
+    bool Interactive;
+    bool ReadFromStdIn;
     try
     {
         TCLAP::CmdLine cmd("EntreLua - Mezzanine Lua Shell", ' ', "0.01 with Lua5.1");
 
-        TCLAP::MultiArg<String> LoadArg("l", "load", "Requires/Loads a Module", false, "string" );
+        TCLAP::MultiArg<String> LoadArg("l", "load", "Requires/Loads a Module.", false, "string" );
         cmd.add( LoadArg );
 
-        TCLAP::ValueArg<std::string> StatementArg("e", "execute", "Execute a Lua script entered at the command line", false, "", "string");
+        TCLAP::ValueArg<std::string> StatementArg("e", "execute", "Execute a Lua script entered at the command line.", false, "", "string");
         cmd.add( StatementArg );
+
+        TCLAP::SwitchArg InteractiveSwitch("i","interactive","Enter interactive shell after other items are executed.", false);
+        cmd.add(InteractiveSwitch);
+
+        TCLAP::SwitchArg StdinSwitch(":","stdin","Read from the Standard Input and execute whatever is found there.", false);
+        cmd.add(StdinSwitch);
 
         cmd.parse( argc, argv );
 
         LoadList = LoadArg.getValue();
         StatementToExecute = StatementArg.getValue();
+        Interactive = InteractiveSwitch.getValue();
+        ReadFromStdIn = StdinSwitch.getValue();
     } catch (TCLAP::ArgException &e) {
         cerr << "error: " << e.error() << " for arg " << e.argId() << endl;
     }
 
-
-    //constrain this list
+    ///////////////
+    // Argument test
     cout << "Load libraries: " << endl;
     for(vector<String>::iterator Iter = LoadList.begin(); Iter!=LoadList.end(); Iter++)
     {
         cout << "  -" << *Iter << endl;
     }
-
     cout << "Execute this statement: " << StatementToExecute << endl;
+    cout << "Requested to manually enter interactive shell: " << Interactive << endl;
+    cout << "Requested to read from stdin: " << ReadFromStdIn << endl;
+
+
 
     return ExitSuccess;
 }
