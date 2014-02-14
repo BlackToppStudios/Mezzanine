@@ -684,6 +684,16 @@ namespace Mezzanine
                 this->Position.SetValues(PositionX,PositionY);
                 this->Size.SetValues(SizeX,SizeY);
             }
+            /// @brief Relative Real constructor.
+            /// @param PositionXrel The relative position portion of the X dimension.
+            /// @param PositionYrel The relative position portion of the Y dimension.
+            /// @param SizeXrel The relative size portion of the X dimension.
+            /// @param SizeYrel The relative size portion of the Y dimension.
+            UnifiedRect(const Real& PositionXrel, const Real& PositionYrel, const Real& SizeXrel, const Real& SizeYrel)
+            {
+                this->Position.SetValues(PositionXrel,PositionYrel,0.0,0.0);
+                this->Size.SetValues(SizeXrel,SizeYrel,0.0,0.0);
+            }
             /// @brief Real constructor.
             /// @param PositionXrel The relative position portion of the X dimension.
             /// @param PositionYrel The relative position portion of the Y dimension.

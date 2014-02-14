@@ -116,7 +116,7 @@ namespace Mezzanine
             this->InactiveHLColour.AlphaChannel = 0.5;
 
             // Set our font
-            this->DefaultCharTraits.CharFont = Parent->GetScreen()->GetFont(FontName,PriAtlas);
+            this->DefaultCharTraits.CharFont = this->Parent->GetScreen()->GetFont(FontName,this->PriAtlas);
 
             // Create our one free line for text
             this->CreateTextLine();

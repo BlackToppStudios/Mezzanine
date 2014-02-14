@@ -265,9 +265,6 @@ namespace Mezzanine
             /// @param Vertices The vector to store the generated vertices.
             void AppendLayerVertices(std::vector<VertexData>& Vertices);
             /// @internal
-            /// @brief Redraws all dirty layers.
-            void CleanLayers();
-            /// @internal
             /// @brief Resizes the container for RenderLayers in this QuadRenderable.
             /// @param NewSize The new capacity for RenderLayer storage.
             void ResizeLayers(const Whole NewSize);
@@ -404,6 +401,12 @@ namespace Mezzanine
             /// @brief Gets the current behavior this quad will follow for the Y axis when it is resized.
             /// @return Returns a whole reprensenting the action this quad will take when it is resized.  See @ref SizingRules enum for more info.
             virtual Whole GetVerticalSizingRules() const;
+            /// @brief Sets how (and if) the aspect ratio of this quad is locked.
+            /// @param Lock An AspectRatioLock enum value expressing the action this quad will take when it's aspect ratio would change.
+            virtual void SetAspectRatioLock(const UI::AspectRatioLock Lock);
+            /// @brief Gets how (and if) the aspect ratio of this quad is locked.
+            /// @return Returns an AspectRatioLock enum value representing how this quad reacts when it's aspect ratio would change.
+            virtual UI::AspectRatioLock GetAspectRationLock() const;
 
             /// @brief Sets the minimum size this quad is allowed to have.
             /// @note This function expects the provided UnifiedVec2 to be in pixels.
@@ -438,6 +441,24 @@ namespace Mezzanine
             /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
             /// @return Returns a pointer to the created ImageLayer.
             ImageLayer* CreateImageLayer(const GroupOrderEntryVector& Entrys);
+            /// @brief Creates an ImageLayer for this renderable.
+            /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
+            /// @param SpriteName The name of the sprite to be set to the created layer.
+            /// @return Returns a pointer to the created ImageLayer.
+            ImageLayer* CreateImageLayer(const String& SpriteName);
+            /// @brief Creates an ImageLayer for this renderable and adds it to a RenderLayerGroup.
+            /// @note If the requested group does not exist it will be created.
+            /// @param SpriteName The name of the sprite to be set to the created layer.
+            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
+            /// @param GroupName The name of the group the created ImageLayer should be added to.
+            /// @return Returns a pointer to the created ImageLayer.
+            ImageLayer* CreateImageLayer(const String& SpriteName, const UInt16 ZOrder, const String& GroupName);
+            /// @brief Creates an ImageLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
+            /// @note If the requested groups do not exist they will be created.
+            /// @param SpriteName The name of the sprite to be set to the created layer.
+            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
+            /// @return Returns a pointer to the created ImageLayer.
+            ImageLayer* CreateImageLayer(const String& SpriteName, const GroupOrderEntryVector& Entrys);
 
             /// @brief Creats a SingleLineTextLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
@@ -844,6 +865,8 @@ namespace Mezzanine
             /// @param NewParent A pointer to the QuadRenderable this is becoming the child of.
             virtual void _NotifyParenthood(QuadRenderable* NewParent);
 
+            /// @copydoc Renderable::_Clean()
+            virtual void _Clean();
             /// @copydoc Renderable::_MarkDirty()
             virtual void _MarkDirty();
             /// @internal
@@ -860,10 +883,6 @@ namespace Mezzanine
             /// @brief Appends the vertices of this renderable to another vector, and then does the same for this renderable's children.
             /// @param RenderData The vector of vertex's to append to.
             virtual void _AppendRenderDataCascading(ScreenRenderData& RenderData);
-            /// @internal
-            /// @brief Checks if there are available render data from this QuadRenderable (or it's subrenderables).
-            /// @return Returns true if this QuadRenderable has render data that can be appended, false otherwise.
-            virtual Boolean _HasAvailableRenderData() const;
         };//QuadRenderable
     }//UI
 }//Mezzanine

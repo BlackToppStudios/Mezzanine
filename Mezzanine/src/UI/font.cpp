@@ -54,7 +54,7 @@ namespace Mezzanine
             LineHeight(0),
             BaseLine(0),
             LetterSpacing(0)
-            { this->GenerateWhitespaceGlyphs(); }
+            {  }
 
         FontData::~FontData()
         {
@@ -72,37 +72,6 @@ namespace Mezzanine
             Whitespace->AtlasCoords[UI::QC_BottomLeft] = Atlas->GetWhitePixel();
             Whitespace->AtlasCoords[UI::QC_BottomRight] = Atlas->GetWhitePixel();
         }
-
-        void FontData::GenerateWhitespaceGlyphs()
-        {
-            Glyph* WhiteSpace = NULL;
-            // Create a glyph for a space
-            WhiteSpace = new Glyph(this,this->Atlas,Glyph::Space,this->SpaceLength,0);
-            this->SetWhitespaceAtlasCoords(WhiteSpace);
-            this->_AddGlyph(WhiteSpace);
-            // Create a glyph for a tab
-            WhiteSpace = new Glyph(this,this->Atlas,Glyph::HT,this->SpaceLength * 4,0);
-            this->SetWhitespaceAtlasCoords(WhiteSpace);
-            this->_AddGlyph(WhiteSpace);
-            // Create a glyph for a vertical tab
-            WhiteSpace = new Glyph(this,this->Atlas,Glyph::VT,this->SpaceLength * 4,0);
-            this->SetWhitespaceAtlasCoords(WhiteSpace);
-            this->_AddGlyph(WhiteSpace);
-            // Create a glyph for a line feed
-            WhiteSpace = new Glyph(this,this->Atlas,Glyph::LF,0,0);
-            this->SetWhitespaceAtlasCoords(WhiteSpace);
-            this->_AddGlyph(WhiteSpace);
-            // Create a glyph for carriage return
-            WhiteSpace = new Glyph(this,this->Atlas,Glyph::CR,0,0);
-            this->SetWhitespaceAtlasCoords(WhiteSpace);
-            this->_AddGlyph(WhiteSpace);
-            // Create a glyph for next line
-            WhiteSpace = new Glyph(this,this->Atlas,Glyph::NEL,0,0);
-            this->SetWhitespaceAtlasCoords(WhiteSpace);
-            this->_AddGlyph(WhiteSpace);
-        }
-
-
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
@@ -163,6 +132,35 @@ namespace Mezzanine
                 ExceptionStream << "Glyph of ID: " << NewGlyph->GlyphID << " already exists in Font: \"" << this->FontName << "\".";
                 MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,ExceptionStream.str());
             }
+        }
+
+        void FontData::_GenerateWhitespaceGlyphs()
+        {
+            Glyph* WhiteSpace = NULL;
+            // Create a glyph for a space
+            WhiteSpace = new Glyph(this,this->Atlas,Glyph::Space,this->SpaceLength,0);
+            this->SetWhitespaceAtlasCoords(WhiteSpace);
+            this->_AddGlyph(WhiteSpace);
+            // Create a glyph for a tab
+            WhiteSpace = new Glyph(this,this->Atlas,Glyph::HT,this->SpaceLength * 4,0);
+            this->SetWhitespaceAtlasCoords(WhiteSpace);
+            this->_AddGlyph(WhiteSpace);
+            // Create a glyph for a vertical tab
+            WhiteSpace = new Glyph(this,this->Atlas,Glyph::VT,this->SpaceLength * 4,0);
+            this->SetWhitespaceAtlasCoords(WhiteSpace);
+            this->_AddGlyph(WhiteSpace);
+            // Create a glyph for a line feed
+            WhiteSpace = new Glyph(this,this->Atlas,Glyph::LF,0,0);
+            this->SetWhitespaceAtlasCoords(WhiteSpace);
+            this->_AddGlyph(WhiteSpace);
+            // Create a glyph for carriage return
+            WhiteSpace = new Glyph(this,this->Atlas,Glyph::CR,0,0);
+            this->SetWhitespaceAtlasCoords(WhiteSpace);
+            this->_AddGlyph(WhiteSpace);
+            // Create a glyph for next line
+            WhiteSpace = new Glyph(this,this->Atlas,Glyph::NEL,0,0);
+            this->SetWhitespaceAtlasCoords(WhiteSpace);
+            this->_AddGlyph(WhiteSpace);
         }
     }//UI
 }//Mezzanine

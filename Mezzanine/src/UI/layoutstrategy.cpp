@@ -42,6 +42,7 @@
 
 #include "UI/layoutstrategy.h"
 #include "UI/widget.h"
+
 #include "mathtool.h"
 #include "exception.h"
 
@@ -103,8 +104,8 @@ namespace Mezzanine
                 { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot use both the previous offset and quad size for the updated offset of a child quad.  They are mutually exclusive."); }
 
             // Resolve our position
-            NewPosition.X = this->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child);
-            NewPosition.Y = this->HandleChildVerticalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child);
+            NewPosition.X = MathTools::Floor( this->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child) );
+            NewPosition.Y = MathTools::Floor( this->HandleChildVerticalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child) );
 
             return NewPosition;
         }
@@ -154,7 +155,7 @@ namespace Mezzanine
                     Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewChildSize.X );
                 }
                 // Then add that distance to the updated transform.
-                Ret = NewSelfRect.GetRightEdge() + Offset;
+                Ret = ( NewSelfRect.GetRightEdge() + Offset ) - NewChildSize.X;
             }
             return Ret;
         }
@@ -180,7 +181,7 @@ namespace Mezzanine
                     Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
                 }
                 // Then add that distance to the updated transform and then subtract the new half size.
-                Ret = ( NewSelfRect.GetVerticalCenter() + Offset ) - ( NewChildSize.X * 0.5 );
+                Ret = ( NewSelfRect.GetVerticalCenter() + Offset ) - ( NewChildSize.Y * 0.5 );
             }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Top ) { // Check if we're anchored to the top
                 // Update the offset if we're configured to.
                 if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
@@ -204,7 +205,7 @@ namespace Mezzanine
                     Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
                 }
                 // Then add that distance to the updated transform.
-                Ret = NewSelfRect.GetBottomEdge() + Offset;
+                Ret = ( NewSelfRect.GetBottomEdge() + Offset ) - NewChildSize.Y;
             }
             return Ret;
         }
@@ -229,14 +230,14 @@ namespace Mezzanine
             // That is of course unless Vertical is explicitly declared otherwise.  So check for that.
             if( ChildSizing.VerticalRules != UI::SR_Match_Other_Axis ) {
                 // Vertical first
-                NewSize.Y = this->HandleChildVerticalSizing(OldSelfRect,NewSelfRect,0,Child);
+                NewSize.Y = MathTools::Ceil( this->HandleChildVerticalSizing(OldSelfRect,NewSelfRect,0,Child) );
                 // Horizontal second
-                NewSize.X = this->HandleChildHorizontalSizing(OldSelfRect,NewSelfRect,NewSize.Y,Child);
+                NewSize.X = MathTools::Ceil( this->HandleChildHorizontalSizing(OldSelfRect,NewSelfRect,NewSize.Y,Child) );
             }else{
                 // Horizontal first
-                NewSize.X = this->HandleChildHorizontalSizing(OldSelfRect,NewSelfRect,0,Child);
+                NewSize.X = MathTools::Ceil( this->HandleChildHorizontalSizing(OldSelfRect,NewSelfRect,0,Child) );
                 // Vertical second
-                NewSize.Y = this->HandleChildVerticalSizing(OldSelfRect,NewSelfRect,NewSize.X,Child);
+                NewSize.Y = MathTools::Ceil( this->HandleChildVerticalSizing(OldSelfRect,NewSelfRect,NewSize.X,Child) );
             }
 
             // Preserve the aspect ratio if we need to
@@ -293,22 +294,29 @@ namespace Mezzanine
         {
             const SizingInfo& ChildSizing = Child->GetSizingPolicy();
             // Do we care about aspect ratio?
+            // Did we used to have a size?
             // And did the aspect ratio change?
-            if( ChildSizing.RatioLock != UI::ARL_Ratio_Unlocked && !MathTools::WithinTolerance( NewChildSize.X / NewChildSize.Y, OldChildSize.X / OldChildSize.Y, 0.01 ) )
+            if( ChildSizing.RatioLock != UI::ARL_Ratio_Unlocked &&
+                ( OldChildSize.X > 0.0 && OldChildSize.Y > 0.0) &&
+                !MathTools::WithinTolerance( NewChildSize.X / NewChildSize.Y, OldChildSize.X / OldChildSize.Y, 0.01 ) )
             {
                 Real XChange = NewChildSize.X / OldChildSize.X;
                 Real YChange = NewChildSize.Y / OldChildSize.Y;
 
-                if( XChange > YChange ) {
-                    if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Expanding )
-                        NewChildSize.Y = OldChildSize.Y * XChange;
-                    else if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Shrinking )
-                        NewChildSize.X = OldChildSize.X * YChange;
-                }else if( YChange > XChange ) {
-                    if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Expanding )
-                        NewChildSize.X = OldChildSize.X * YChange;
-                    else if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Shrinking )
-                        NewChildSize.Y = OldChildSize.Y * XChange;
+                if( ChildSizing.RatioLock != UI::ARL_Ratio_Y_Axis ) {
+                    if( XChange > YChange ) {
+                        if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Expanding )
+                            NewChildSize.Y = OldChildSize.Y * XChange;
+                        else if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Shrinking )
+                            NewChildSize.X = OldChildSize.X * YChange;
+                    }else if( YChange > XChange ) {
+                        if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Expanding )
+                            NewChildSize.X = OldChildSize.X * YChange;
+                        else if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Shrinking )
+                            NewChildSize.Y = OldChildSize.Y * XChange;
+                    }
+                }else{
+                    NewChildSize.X = OldChildSize.X * YChange;
                 }
             }
         }
