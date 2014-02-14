@@ -114,6 +114,18 @@ void CatchApp::MakeGUI()
 
     // Here goes the Credits button and it's menu contents
     UI::StackButton* MMCreditsAccess = MainMenuScreen->CreateStackButton("MS_Credits",UI::UnifiedRect(0.51,0.18,0.22,0.7));
+    UI::ImageLayer* MMCreditsAccessNormal = MMCreditsAccess->CreateImageLayer("MMButton");
+    UI::ImageLayer* MMCreditsAccessHovered = MMCreditsAccess->CreateImageLayer("MMHoveredButton");
+    UI::SingleLineTextLayer* MMCreditsAccessText = MMCreditsAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    MMCreditsAccessText->SetText("Credits");
+    MMCreditsAccessText->HorizontallyAlign(UI::LA_Center);
+    MMCreditsAccessText->VerticallyAlign(UI::LA_Center);
+    MMCreditsAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,0.65);
+    MMCreditsAccess->AddLayerToGroup(MMCreditsAccessNormal,0,"Normal");
+    MMCreditsAccess->AddLayerToGroup(MMCreditsAccessText,1,"Normal");
+    MMCreditsAccess->AddLayerToGroup(MMCreditsAccessHovered,0,"Hovered");
+    MMCreditsAccess->AddLayerToGroup(MMCreditsAccessText,1,"Hovered");
+    MMRootEntry->AddChild(MMCreditsAccess,3);
 
     // Here goes the Exit Game button and it's menu contents
     // Start with the accessor button
