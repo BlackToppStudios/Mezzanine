@@ -1,4 +1,4 @@
-# © Copyright 2010 - 2011 BlackTopp Studios Inc.
+# © Copyright 2010 - 2014 BlackTopp Studios Inc.
 # This file is part of The Mezzanine Engine.
 #
 #    The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -152,7 +152,19 @@ CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioThem
 CopyFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
 CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/common/sounds/welcomefun-1.ogg )
 
+CopyLicenseFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt BulletZLibLicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/gpl-2.0.txt gpl-2.0.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/gpl-3.0.txt gpl-3.0.txt)
+CopyLicenseFromMezzanineDuringBuild( data/common/lgpl-3.0.txt lgpl-3.0.tx)
+CopyLicenseFromMezzanineDuringBuild( data/common/Licenses.txt Licenses.txt)
+CopyLicenseFromMezzanineDuringBuild( data/common/Lua-MIT.txt Lua-MIT.txt)
+CopyLicenseFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt Ogre-MITLicense.txt )
 CopyLicenseFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt PugiXML-MITLicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/ReneNyffenegger-MIT.txt ReneNyffenegger-MIT.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/SDL-MITLicense.txt SDL-MITLicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt XiphCopyrightNotice.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/zlib-libpngLicense.txt zlib-libpngLicense.txt )
+CopyLicenseFromMezzanineDuringBuild( data/common/zlib-zliblicense.txt zlib-zliblicense.txt )
 
 CopyLibraryFromMezzanineDuringBuild( "Mezzanine" )
 
