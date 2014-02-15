@@ -96,11 +96,6 @@ namespace Mezzanine
             this->ParentScreen->DestroyWidget( this->DownRightButton );
         }
 
-        void HorizontalScrollbar::CreateLayoutStrat()
-        {
-            this->LayoutStrat = new HorizontalLayoutStrategy();
-        }
-
         void HorizontalScrollbar::ConstructHorizontalScrollbar(const UI::ScrollbarStyle& ScrollStyle)
         {
             // Create the rects we'll use
@@ -310,7 +305,7 @@ namespace Mezzanine
         {
             if( this->AutoHideScroll && CanSee ) {
                 if( this->GetMaxXPages() > 1.0 ) {
-                    this->SetVisible(CanSee);
+                    this->Widget::SetVisible(CanSee);
                 }
             }else{
                 this->Widget::SetVisible(CanSee);
@@ -321,7 +316,7 @@ namespace Mezzanine
         {
             if( this->AutoHideScroll ) {
                 if( this->GetMaxXPages() > 1.0 ) {
-                    this->Show();
+                    this->Widget::Show();
                 }
             }else{
                 this->Widget::Show();
@@ -339,8 +334,11 @@ namespace Mezzanine
         Real HorizontalScrollbar::GetMaxXPages() const
         {
             if( this->Container != NULL ) {
-                Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().X / this->Container->GetActualSize().X );
-                return ( Ret > 1 ? Ret : 1 );
+                const Real ContainerXSize = this->Container->GetActualSize().X;
+                if( ContainerXSize > 0 ) {
+                    Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().X / ContainerXSize );
+                    return ( Ret > 1 ? Ret : 1 );
+                }
             }
             return 1;
         }
@@ -578,16 +576,32 @@ namespace Mezzanine
             { return HorizontalScrollbar::TypeName; }
 
         HorizontalScrollbar* HorizontalScrollbarFactory::CreateHorizontalScrollbar(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new HorizontalScrollbar(RendName,Style,Parent); }
+        {
+            HorizontalScrollbar* Ret = new HorizontalScrollbar(RendName,Style,Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         HorizontalScrollbar* HorizontalScrollbarFactory::CreateHorizontalScrollbar(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new HorizontalScrollbar(RendName,RendRect,Style,Parent); }
+        {
+            HorizontalScrollbar* Ret = new HorizontalScrollbar(RendName,RendRect,Style,Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         HorizontalScrollbar* HorizontalScrollbarFactory::CreateHorizontalScrollbar(const XML::Node& XMLNode, Screen* Parent)
-            { return new HorizontalScrollbar(XMLNode,Parent); }
+        {
+            HorizontalScrollbar* Ret = new HorizontalScrollbar(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         Widget* HorizontalScrollbarFactory::CreateWidget(Screen* Parent)
-            { return new HorizontalScrollbar(Parent); }
+        {
+            HorizontalScrollbar* Ret = new HorizontalScrollbar(Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         Widget* HorizontalScrollbarFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
         {

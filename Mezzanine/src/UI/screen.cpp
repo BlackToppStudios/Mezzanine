@@ -202,6 +202,7 @@ namespace Mezzanine
 
             this->SetMousePassthrough(true);
             this->SetMouseHoverStrategy(new BruteStrategy());
+            this->_SetLayoutStrat(new LayoutStrategy());
         }
 
         Screen::Screen(const XML::Node& XMLNode, UIManager* Manager) :
@@ -225,6 +226,7 @@ namespace Mezzanine
 
             this->CreateVertexBuffer(32 * 6);
             this->SetMouseHoverStrategy(new BruteStrategy());
+            this->_SetLayoutStrat(new LayoutStrategy());
 
             this->ProtoDeSerialize(XMLNode);
         }

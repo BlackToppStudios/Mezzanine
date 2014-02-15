@@ -68,7 +68,7 @@ namespace Mezzanine
             PushButton(NULL),
             PopButton(NULL),
             AutoHideEntry(true)
-            { this->LayoutStrat = new LayoutStrategy(); }
+            {  }
 
         MenuEntry::MenuEntry(const String& RendName, Screen* Parent) :
             StackedContainer(RendName,Parent),
@@ -76,7 +76,7 @@ namespace Mezzanine
             PushButton(NULL),
             PopButton(NULL),
             AutoHideEntry(true)
-            { this->LayoutStrat = new LayoutStrategy(); }
+            {  }
 
         MenuEntry::MenuEntry(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             StackedContainer(RendName,RendRect,Parent),
@@ -84,7 +84,7 @@ namespace Mezzanine
             PushButton(NULL),
             PopButton(NULL),
             AutoHideEntry(true)
-            { this->LayoutStrat = new LayoutStrategy(); }
+            {  }
 
         MenuEntry::MenuEntry(const XML::Node& XMLNode, Screen* Parent) :
             StackedContainer(Parent),
@@ -92,7 +92,7 @@ namespace Mezzanine
             PushButton(NULL),
             PopButton(NULL),
             AutoHideEntry(true)
-            { this->LayoutStrat = new LayoutStrategy(); }
+            {  }
 
         MenuEntry::~MenuEntry()
             {  }
@@ -486,16 +486,32 @@ namespace Mezzanine
             { return MenuEntry::TypeName; }
 
         MenuEntry* MenuEntryFactory::CreateMenuEntry(const String& RendName, Screen* Parent)
-            { return new MenuEntry(RendName,Parent); }
+        {
+            MenuEntry* Ret = new MenuEntry(RendName,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         MenuEntry* MenuEntryFactory::CreateMenuEntry(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
-            { return new MenuEntry(RendName,RendRect,Parent); }
+        {
+            MenuEntry* Ret = new MenuEntry(RendName,RendRect,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         MenuEntry* MenuEntryFactory::CreateMenuEntry(const XML::Node& XMLNode, Screen* Parent)
-            { return new MenuEntry(XMLNode,Parent); }
+        {
+            MenuEntry* Ret = new MenuEntry(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* MenuEntryFactory::CreateWidget(Screen* Parent)
-            { return new MenuEntry(Parent); }
+        {
+            MenuEntry* Ret = new MenuEntry(Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* MenuEntryFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
             { return this->CreateMenuEntry(RendName,Parent); }

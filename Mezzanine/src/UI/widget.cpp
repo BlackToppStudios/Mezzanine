@@ -41,13 +41,8 @@
 #define _uiwidget_cpp
 
 #include "UI/widget.h"
-#include "UI/button.h"
 #include "UI/screen.h"
-
-#include "UI/uimanager.h"
-#include "entresol.h"
-#include "Input/inputmanager.h"
-#include "Input/mouse.h"
+#include "UI/layoutstrategy.h"
 
 namespace Mezzanine
 {
@@ -543,22 +538,38 @@ namespace Mezzanine
             { return Widget::TypeName; }
 
         Widget* GenericWidgetFactory::CreateWidget(const String& RendName, Screen* Parent)
-            { return new Widget(RendName,Parent); }
+        {
+            Widget* Ret = new Widget(RendName,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* GenericWidgetFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
-            { return new Widget(RendName,RendRect,Parent); }
+        {
+            Widget* Ret = new Widget(RendName,RendRect,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* GenericWidgetFactory::CreateWidget(Screen* Parent)
-            { return new Widget(Parent); }
+        {
+            Widget* Ret = new Widget(Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* GenericWidgetFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
-            { return new Widget(RendName,Parent); }
+            { return this->CreateWidget(RendName,Parent); }
 
         Widget* GenericWidgetFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
-            { return new Widget(RendName,RendRect,Parent); }
+            { return this->CreateWidget(RendName,RendRect,Parent); }
 
         Widget* GenericWidgetFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
-            { return new Widget(XMLNode,Parent); }
+        {
+            Widget* Ret = new Widget(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         void GenericWidgetFactory::DestroyWidget(Widget* ToBeDestroyed)
             { delete ToBeDestroyed; }

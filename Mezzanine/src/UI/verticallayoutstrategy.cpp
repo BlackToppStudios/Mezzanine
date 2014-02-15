@@ -67,7 +67,7 @@ namespace Mezzanine
             //bool QuadSizeUpdated = (OldSelfRect.Size != NewSelfRect.Size);
 
             // Setup our persistent loop data
-            Real PrevBottomPos = 0;
+            Real PrevBottomPos = NewSelfRect.Position.Y;
             Real NextTopPos = 0;
             ConstChildIterator ChildIt = ChildQuads.begin();
             while( ChildIt != ChildQuads.end() )
@@ -75,7 +75,7 @@ namespace Mezzanine
                 // Scan ahead for the next non-expander
                 UInt32 ExpandingChildCount = 0;
                 ConstChildIterator NextNonExpandingChild = ChildIt;
-                while( NextNonExpandingChild != ChildQuads.end() && !( (*NextNonExpandingChild)->GetSizingPolicy().CanExpandVertically() ) )
+                while( NextNonExpandingChild != ChildQuads.end() && (*NextNonExpandingChild)->GetSizingPolicy().CanExpandVertically() )
                 {
                     ++NextNonExpandingChild;
                     ++ExpandingChildCount;
@@ -124,7 +124,7 @@ namespace Mezzanine
                     }
 
                     // Set up the data for the range of expanding children
-                    Real YPos = PrevBottomPos + 1; // Is the +1 necessary?
+                    Real YPos = ( PrevBottomPos != 0 ? PrevBottomPos + 1 : PrevBottomPos );
                     Real YSpacePerChild = (NextTopPos - PrevBottomPos) / ExpandingChildCount;
                     // Update the expanding children in the range
                     while( ChildIt != NextNonExpandingChild )
@@ -143,6 +143,7 @@ namespace Mezzanine
                         this->ClampChildToMaxSize(NewSelfRect,NewChildRect.Size,ExChild);
 
                         ExChild->UpdateDimensions(OldChildRect,NewChildRect);
+                        ++ChildIt;
                     }
                     PrevBottomPos = FixedBottomPos;
                 }

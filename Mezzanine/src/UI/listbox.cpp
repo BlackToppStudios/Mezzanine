@@ -350,16 +350,32 @@ namespace Mezzanine
             { return ListBox::TypeName; }
 
         ListBox* ListBoxFactory::CreateListBox(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new ListBox(RendName,Style,Parent); }
+        {
+            ListBox* Ret = new ListBox(RendName,Style,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         ListBox* ListBoxFactory::CreateListBox(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new ListBox(RendName,RendRect,Style,Parent); }
+        {
+            ListBox* Ret = new ListBox(RendName,RendRect,Style,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         ListBox* ListBoxFactory::CreateListBox(const XML::Node& XMLNode, Screen* Parent)
-            { return new ListBox(XMLNode,Parent); }
+        {
+            ListBox* Ret = new ListBox(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* ListBoxFactory::CreateWidget(Screen* Parent)
-            { return new ListBox(Parent); }
+        {
+            ListBox* Ret = new ListBox(Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* ListBoxFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
         {

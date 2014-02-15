@@ -90,20 +90,19 @@ namespace Mezzanine
             this->ParentScreen->DestroyWidget( this->SelectionList );
         }
 
-        void DropDownList::CreateLayoutStrat()
-        {
-            this->LayoutStrat = new HorizontalLayoutStrategy();
-        }
-
         void DropDownList::ConstructDropDownList(const UI::ScrollbarStyle& Style)
         {
             this->SelectionDisplay = this->ParentScreen->CreateWidget(this->Name+".Display",UnifiedRect(0,0,1,1,0,0,0,0));
             this->SelectionDisplay->SetHorizontalSizingRules(UI::SR_Fill_Available);
             this->SelectionDisplay->SetVerticalSizingRules(UI::SR_Unified_Dims);
+            this->AddChild(this->SelectionDisplay,1);
             this->ListToggle = this->ParentScreen->CreateCheckBox(this->Name+".Toggle",UnifiedRect(0,0,1,1,0,0,0,0));
+            this->ListToggle->SetPositioningRules(UI::PF_Anchor_Right);
             this->ListToggle->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
             this->ListToggle->SetVerticalSizingRules(UI::SR_Unified_Dims);
+            this->AddChild(this->ListToggle,2);
             this->SelectionList = this->ParentScreen->CreateListBox(this->Name+".List",UnifiedRect(0,1,1,5,0,1,0,0),Style);
+            this->AddChild(this->SelectionList,3);
             this->SelectionList->Hide();
 
             SingleLineTextLayer* DisplayText = this->SelectionDisplay->CreateSingleLineTextLayer();
@@ -182,6 +181,7 @@ namespace Mezzanine
                 if( this->ListToggle->IsSelected() ) {
                     this->Widget::SetVisible(CanSee);
                 }else{
+                    this->_OnVisibilityShown();
                     this->SelectionDisplay->SetVisible(CanSee);
                     this->ListToggle->SetVisible(CanSee);
                 }
@@ -195,6 +195,7 @@ namespace Mezzanine
             if( this->ListToggle->IsSelected() ) {
                 this->Widget::Show();
             }else{
+                this->_OnVisibilityShown();
                 this->SelectionDisplay->Show();
                 this->ListToggle->Show();
             }
@@ -305,16 +306,32 @@ namespace Mezzanine
             { return DropDownList::TypeName; }
 
         DropDownList* DropDownListFactory::CreateDropDownList(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new DropDownList(RendName,Style,Parent); }
+        {
+            DropDownList* Ret = new DropDownList(RendName,Style,Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         DropDownList* DropDownListFactory::CreateDropDownList(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new DropDownList(RendName,RendRect,Style,Parent); }
+        {
+            DropDownList* Ret = new DropDownList(RendName,RendRect,Style,Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         DropDownList* DropDownListFactory::CreateDropDownList(const XML::Node& XMLNode, Screen* Parent)
-            { return new DropDownList(XMLNode,Parent); }
+        {
+            DropDownList* Ret = new DropDownList(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         Widget* DropDownListFactory::CreateWidget(Screen* Parent)
-            { return new DropDownList(Parent); }
+        {
+            DropDownList* Ret = new DropDownList(Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         Widget* DropDownListFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
         {

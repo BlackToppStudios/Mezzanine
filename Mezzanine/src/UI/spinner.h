@@ -115,8 +115,6 @@ namespace Mezzanine
             /// @brief The maximum value allowed to be expressed by this Spinner.
             Real MaxValue;
 
-            /// @copydoc QuadRenderable::CreateLayoutStrat()
-            virtual void CreateLayoutStrat();
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             /// @param SpinStyle The layout of buttons this Spinner will have.

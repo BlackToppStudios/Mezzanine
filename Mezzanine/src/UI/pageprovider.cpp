@@ -50,15 +50,18 @@ namespace Mezzanine
     namespace UI
     {
         PageProvider::PageProvider(Screen* Parent) :
-            Widget(Parent)
+            Widget(Parent),
+            Container(NULL)
             {  }
 
         PageProvider::PageProvider(const String& RendName, Screen* Parent) :
-            Widget(RendName,Parent)
+            Widget(RendName,Parent),
+            Container(NULL)
             {  }
 
         PageProvider::PageProvider(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
-            Widget(RendName,RendRect,Parent)
+            Widget(RendName,RendRect,Parent),
+            Container(NULL)
             {  }
 
         PageProvider::~PageProvider()

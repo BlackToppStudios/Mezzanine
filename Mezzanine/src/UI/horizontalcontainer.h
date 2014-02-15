@@ -59,8 +59,6 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "HorizontalContainer".
             static const String TypeName;
         protected:
-            /// @copydoc QuadRenderable::CreateLayoutStrat()
-            virtual void CreateLayoutStrat();
             /// @copydoc LayoutContainer::UpdateContainerDimensionsImpl(const Rect&, const Rect&)
             virtual void UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect);
         public:

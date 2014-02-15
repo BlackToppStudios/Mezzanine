@@ -154,9 +154,6 @@ namespace Mezzanine
             this->ParentScreen->DestroyWidget( this->ValueDisplay );
         }
 
-        void Spinner::CreateLayoutStrat()
-            { this->LayoutStrat = NULL; }
-
         void Spinner::ConstructSpinner(const SpinnerStyle SpinStyle, FontData* EditFont)
         {
             this->AddEvent(Spinner::EventSpinValueChanged);
