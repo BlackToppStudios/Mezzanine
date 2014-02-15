@@ -537,14 +537,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created VerticalContainer.
             virtual VerticalContainer* CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect);
 
-            /*/// @brief Creates a Spinner.
-            /// @return Returns a pointer to the created Spinner.
-            /// @param Name The Name for the Widget.
-            /// @param RendRect The Rect representing the position and size of the Spinner.
-            /// @param SStyle The layout of buttons this widget will have.  See SpinnerStyle enum or class description for more details.
-            /// @param GlyphHeight The desired relative height of the text you want.
-            virtual Spinner* CreateSpinner(ConstString& Name, const Rect& RendRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
-            /// @brief Creates a scrolled cell grid.
+            /*/// @brief Creates a scrolled cell grid.
             /// @return Returns a pointer to the created ScrolledCellGrid.
             /// @param Name The name of the widget.
             /// @param RendRect The Rect representing the position and size of the ScrolledCellGrid.

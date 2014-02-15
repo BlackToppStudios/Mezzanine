@@ -279,25 +279,6 @@ namespace Mezzanine
             }
         }
 
-        void TabSet::_AppendRenderDataCascading(ScreenRenderData& RenderData)
-        {
-            if( this->VertexCache ) {
-                if( this->Dirty || this->AllLayersDirty ) {
-                    this->VertexCache->Clear();
-                    this->_AppendRenderData(*VertexCache);
-                    if( this->VisibleChild->_HasAvailableRenderData() ) {
-                        this->VisibleChild->_AppendRenderDataCascading(*VertexCache);
-                    }
-                }
-                RenderData.Append(*VertexCache);
-            }else{
-                this->_AppendRenderData(RenderData);
-                if( this->VisibleChild->_HasAvailableRenderData() ) {
-                    this->VisibleChild->_AppendRenderDataCascading(RenderData);
-                }
-            }
-        }
-
         ///////////////////////////////////////////////////////////////////////////////
         // TabSetFactory Methods
 

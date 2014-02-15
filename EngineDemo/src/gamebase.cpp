@@ -701,8 +701,6 @@ void MakeGUI()
 
     DemoMenu->SetPushButton(MenuAccess);
     DemoMenu->SetPopButton(ReturnButton);
-    //DScreen->AddChild(DemoMenu,6);
-    DemoMenu->Hide();
     //End of Menu
 }
 

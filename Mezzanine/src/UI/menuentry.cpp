@@ -95,12 +95,7 @@ namespace Mezzanine
             { this->LayoutStrat = new LayoutStrategy(); }
 
         MenuEntry::~MenuEntry()
-        {
-            if( this->IsRootEntry() && this->MenuStack ) {
-                this->_NotifyStack(NULL);
-                delete this->MenuStack;
-            }
-        }
+            {  }
 
         Boolean MenuEntry::PushOntoStack()
         {
@@ -122,7 +117,7 @@ namespace Mezzanine
         Boolean MenuEntry::PopFromStack()
         {
             if( this->MenuStack ) {
-                if( !(this->MenuStack->empty()) && this->MenuStack->back() == this ) {
+                if( this->IsTopOfStack() ) {
                     this->MenuStack->pop_back();
                     this->Hide();
                     return true;
@@ -141,6 +136,14 @@ namespace Mezzanine
             }else{
                 return true;
             }
+        }
+
+        Boolean MenuEntry::IsTopOfStack() const
+        {
+            if( this->MenuStack && !(this->MenuStack->empty()) ) {
+                return ( this->MenuStack->back() == this );
+            }
+            return false;
         }
 
         Whole MenuEntry::RollBackToEntry(MenuEntry* RollBackTo)
@@ -173,6 +176,15 @@ namespace Mezzanine
             return 0;
         }
 
+        void MenuEntry::ForceRootEntryVisible()
+        {
+            if( this->IsRootEntry() ) {
+                this->PushOntoStack();
+            }else{
+                static_cast<MenuEntry*>( this->ParentQuad )->ForceRootEntryVisible();
+            }
+        }
+
         const String& MenuEntry::GetTypeName() const
         {
             return MenuEntry::TypeName;
@@ -184,7 +196,7 @@ namespace Mezzanine
         void MenuEntry::SetVisible(Boolean CanSee)
         {
             if( CanSee ) {
-                if( !this->AutoHideEntry || ( this->MenuStack ? this->MenuStack->back() == this : false ) ) {
+                if( !this->AutoHideEntry || this->IsTopOfStack() ) {
                     this->Widget::SetVisible(CanSee);
                 }
             }else{
@@ -194,7 +206,7 @@ namespace Mezzanine
 
         void MenuEntry::Show()
         {
-            if( !this->AutoHideEntry || ( this->MenuStack ? this->MenuStack->back() == this : false ) )
+            if( !this->AutoHideEntry || this->IsTopOfStack() )
                 this->Widget::Show();
         }
 
@@ -386,11 +398,15 @@ namespace Mezzanine
 
         void MenuEntry::_NotifyStack(MenuEntryContainer* NewStack)
         {
-            this->MenuStack = NewStack;
-            for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
-            {
-                if( (*ChildIt)->GetTypeName() == MenuEntry::TypeName ) {
-                    static_cast<MenuEntry*>( (*ChildIt) )->_NotifyStack(NewStack);
+            if( this->MenuStack != NewStack ) {
+                this->MenuStack = NewStack;
+                this->Hide();
+
+                for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
+                {
+                    if( (*ChildIt)->GetTypeName() == MenuEntry::TypeName ) {
+                        static_cast<MenuEntry*>( (*ChildIt) )->_NotifyStack(NewStack);
+                    }
                 }
             }
         }
@@ -438,34 +454,29 @@ namespace Mezzanine
         void MenuEntry::_NotifyParenthood(QuadRenderable* NewParent)
         {
             if( this->ParentQuad != NewParent ) {
-                if( this->MenuStack != NULL ) {
-                    MenuEntryContainer* OldStack = this->MenuStack;
-                    Boolean DestroyOldStack = this->IsRootEntry();
+                this->QuadRenderable::_NotifyParenthood(NewParent);
 
-                    this->QuadRenderable::_NotifyParenthood(NewParent);
-
-                    MenuEntryContainer* NewStack = ( this->IsRootEntry() ? new MenuEntryContainer() : static_cast<MenuEntry*>( this->ParentQuad )->_GetMenuStack() );
-                    this->_NotifyStack(NewStack);
-
-                    if( DestroyOldStack ) {
+                if( this->ParentQuad != NULL ) {
+                    // Do the necessary checks to see if we have an updated stack.
+                    MenuEntryContainer* UpdatedStack = ( this->IsRootEntry() ? new MenuEntryContainer() : static_cast<MenuEntry*>( this->ParentQuad )->_GetMenuStack() );
+                    if( this->MenuStack != UpdatedStack ) {
+                        // Preserve the Old stack for later.
+                        MenuEntryContainer* OldStack = this->MenuStack;
+                        // Notify all the children of the new stack.
+                        this->_NotifyStack(UpdatedStack);
+                        // Finally we can destroy the old one.
                         delete OldStack;
-                        OldStack = NULL;
                     }
                 }else{
-                    this->QuadRenderable::_NotifyParenthood(NewParent);
-                    MenuEntryContainer* NewStack = ( this->IsRootEntry() ? new MenuEntryContainer() : static_cast<MenuEntry*>( this->ParentQuad )->_GetMenuStack() );
-                    this->_NotifyStack(NewStack);
+                    // If we're here, we're likely being destroyed.  Even if not then a menu outside of the widget heirarchy has no use for a stack.
+                    // So destroy what we have, and set the lower entries accordingly.  They shouldn't need to do the same when they get their turn running this logic.
+                    if( this->MenuStack != NULL ) {
+                        delete this->MenuStack;
+                        this->MenuStack = NULL;
+                    }
+                    this->_NotifyStack(this->MenuStack);
                 }
             }
-        }
-
-        Boolean MenuEntry::_HasAvailableRenderData() const
-        {
-            if( this->MenuStack ) {
-                ConstMenuEntryIterator MenuIt = std::find(this->MenuStack->begin(),this->MenuStack->end(),this);
-                return ( MenuIt != this->MenuStack->end() );
-            }
-            return false;
         }
 
         ///////////////////////////////////////////////////////////////////////////////

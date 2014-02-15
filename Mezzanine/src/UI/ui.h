@@ -221,4 +221,8 @@ namespace Mezzanine
 /// @subsection UIStacked Stacked Containers and Buttons
 /// Stacked Containers and Buttons text.
 
+/// Button Auto Register?
+/// Hotkeys?
+/// Actions?
+
 #endif

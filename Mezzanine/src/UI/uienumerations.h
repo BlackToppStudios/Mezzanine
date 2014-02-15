@@ -52,8 +52,9 @@ namespace Mezzanine
         enum AspectRatioLock
         {
             ARL_Ratio_Unlocked = 0,          ///< The aspect ratio is not locked and both dimensions can resize freely.
-            ARL_Ratio_Locked_Expanding = 1,  ///< The aspect ratio is locked.  When multiple axes are resized the axis with more growth is used to determine the size of the other axis.
-            ARL_Ratio_Locked_Shrinking = 2   ///< The aspect ratio is locked.  When multiple axes are resized the axis with less growth is used to determine the size of the other axis.
+            ARL_Ratio_Y_Axis = 1,            ///< The X axis is limited by the change to the Y axis.  The Y axis can resize freely.
+            ARL_Ratio_Locked_Expanding = 2,  ///< The aspect ratio is locked.  When multiple axes are resized the axis with more growth is used to determine the size of the other axis.
+            ARL_Ratio_Locked_Shrinking = 3   ///< The aspect ratio is locked.  When multiple axes are resized the axis with less growth is used to determine the size of the other axis.
         };
 
         /// @enum Border
@@ -107,23 +108,23 @@ namespace Mezzanine
         /// of 0 will be used on the specified edge.
         enum PositioningFlags
         {
-            PF_Unified_Pos        = 0,                                           ///< Does not anchor to any side, using only the provided unified dimensions.
-            PF_Anchor_Prev_Offset = 1,                                           ///< Uses the offset of the old transform to determine the offset for the new transform, preserving absolute distance between updates.
-            PF_Anchor_Size        = 2,                                           ///< Uses the updated size of the quad as the offset for the new transform, and applies the Unified Dim of the appropriate axis to it.
-            PF_Anchor_Top         = 4,                                           ///< Anchors to the top side of the quad.
-            PF_Anchor_Bottom      = 8,                                           ///< Anchors to the bottom side of the quad.
-            PF_Anchor_Left        = 16,                                          ///< Anchors to the left side of the quad.
-            PF_Anchor_Right       = 32,                                          ///< Anchors to the right side of the quad.
+            PF_Unified_Pos             = 0,                                           ///< Does not anchor to any side, using only the provided unified dimensions.
+            PF_Anchor_Prev_Offset      = 1,                                           ///< Uses the offset of the old transform to determine the offset for the new transform, preserving absolute distance between updates.
+            PF_Anchor_Size             = 2,                                           ///< Uses the updated size of the quad as the offset for the new transform, and applies the Unified Dim of the appropriate axis to it.
+            PF_Anchor_Top              = 4,                                           ///< Anchors to the top side of the quad.
+            PF_Anchor_Bottom           = 8,                                           ///< Anchors to the bottom side of the quad.
+            PF_Anchor_Left             = 16,                                          ///< Anchors to the left side of the quad.
+            PF_Anchor_Right            = 32,                                          ///< Anchors to the right side of the quad.
 
-            PF_Anchor_TopLeft     = (PF_Anchor_Top | PF_Anchor_Left),            ///< Anchors to the top and left sides of the quad.
-            PF_Anchor_TopRight    = (PF_Anchor_Top | PF_Anchor_Right),           ///< Anchors to the top and right sides of the quad.
-            PF_Anchor_BottomLeft  = (PF_Anchor_Bottom | PF_Anchor_Left),         ///< Anchors to the bottom and left sides of the quad.
-            PF_Anchor_BottomRight = (PF_Anchor_Bottom | PF_Anchor_Right),        ///< Anchors to the bottom and right sides of the quad.
+            PF_Anchor_TopLeft          = (PF_Anchor_Top | PF_Anchor_Left),            ///< Anchors to the top and left sides of the quad.
+            PF_Anchor_TopRight         = (PF_Anchor_Top | PF_Anchor_Right),           ///< Anchors to the top and right sides of the quad.
+            PF_Anchor_BottomLeft       = (PF_Anchor_Bottom | PF_Anchor_Left),         ///< Anchors to the bottom and left sides of the quad.
+            PF_Anchor_BottomRight      = (PF_Anchor_Bottom | PF_Anchor_Right),        ///< Anchors to the bottom and right sides of the quad.
 
-            PF_VerticalCenter     = (PF_Anchor_Top | PF_Anchor_Bottom),          ///< Centers along the Y axis of the quad.
-            PF_HorizontalCenter   = (PF_Anchor_Left | PF_Anchor_Right),          ///< Centers along the X axis of the quad.
+            PF_Anchor_VerticalCenter   = (PF_Anchor_Top | PF_Anchor_Bottom),          ///< Centers along the Y axis of the quad.
+            PF_Anchor_HorizontalCenter = (PF_Anchor_Left | PF_Anchor_Right),          ///< Centers along the X axis of the quad.
 
-            PF_Center             = (PF_Anchor_TopLeft | PF_Anchor_BottomRight)  ///< Centers within the quad.
+            PF_Anchor_Center           = (PF_Anchor_TopLeft | PF_Anchor_BottomRight)  ///< Centers within the quad.
         };//*/
 
         /// @enum QuadCorner

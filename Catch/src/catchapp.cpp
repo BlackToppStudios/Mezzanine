@@ -2,10 +2,10 @@
 #define _catchapp_cpp
 
 #include "catchapp.h"
-#include "buttoncallbacks.h"
 #include "levelselectcell.h"
 #include "throwablegenerator.h"
-#include "widgetcallbacks.h"
+#include "uicallbacks.h"
+
 #include <cassert>
 #include <set>
 
@@ -75,29 +75,118 @@ void CatchApp::MakeGUI()
     Graphics::Viewport* UIViewport = Graphics::GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0);
 
     const ColourValue Transparent(0.0,0.0,0.0,0.0);
-    const ColourValue Black(0.0,0.0,0.0,1.0);
     const ColourValue TransBlack(0.0,0.0,0.0,0.85);
+    const ColourValue Black(0.0,0.0,0.0,1.0);
     const ColourValue Gray(0.2,0.2,0.2,1.0);
 
     GUI->EnableButtonAutoRegister(true);
     GUI->AddAutoRegisterCode( Input::MetaCode( Input::BUTTON_LIFTING, Input::MOUSEBUTTON_1 ) );
 
-    //Make the Main Menu screen and associated layers.
+    // Make the Main Menu screen and associated layers.
     GUI->LoadMTA("Catch_Menu.mta","Common");
     UI::Screen* MainMenuScreen = GUI->CreateScreen("MainMenuScreen","Catch_Menu",UIViewport);
 
-    //Build the Main Menu Screen
-    UI::ImageLayer* MMBackground = MainMenuScreen->CreateImageLayer();
-    MMBackground->SetSprite("MainMenuBackground");
-    MainMenuScreen->AddLayerToGroup(MMBackground,0,"Normal");
-    MainMenuScreen->AddLayerToGroup(MMBackground,0,"Hovered");
+    // Build the Main Menu Screen
+    UI::Widget* MMBackground = MainMenuScreen->CreateWidget("MS_Background",UI::UnifiedRect(0,0,1.7777,1));
+    MMBackground->SetPositioningRules(UI::PF_Anchor_Center);
+    MMBackground->SetVerticalSizingRules(UI::SR_Unified_Dims);
+    MMBackground->SetHorizontalSizingRules(UI::SR_Match_Other_Axis_Unified);
+    UI::ImageLayer* MMBackgroundLayer = MMBackground->CreateImageLayer("MainMenuBackground");
+    MMBackground->AddLayerToGroup(MMBackgroundLayer,0,"Normal");
+    MMBackground->AddLayerToGroup(MMBackgroundLayer,0,"Hovered");
+    MainMenuScreen->AddChild(MMBackground,0);
 
-    UI::MenuEntry* MainMenuRoot = MainMenuScreen->CreateMenuEntry("MS_MenuRoot",UI::UnifiedRect(0.0,0.915,1.0,0.086,0.0,0.0,0.0,0.0));
-    UI::ImageLayer* MMRootBrick = MainMenuRoot->CreateImageLayer();
-    MainMenuRoot->AddLayerToGroup(MMRootBrick,0,"Normal");
-    MainMenuRoot->AddLayerToGroup(MMRootBrick,0,"Hovered");
-    MainMenuRoot->SetAutoHide(false);
-    MainMenuScreen->AddChild(MainMenuRoot,0);
+    UI::MenuEntry* MMRootEntry = MainMenuScreen->CreateMenuEntry("MS_MenuRoot",UI::UnifiedRect(0.0,0.914,1.0,0.086));
+    MMRootEntry->SetPositioningRules(UI::PF_Anchor_HorizontalCenter | UI::PF_Anchor_Bottom);
+    MMRootEntry->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
+    UI::ImageLayer* MMRootEntryLayer = MMRootEntry->CreateImageLayer("MMBrickBackground");
+    MMRootEntry->AddLayerToGroup(MMRootEntryLayer,0,"Normal");
+    MMRootEntry->AddLayerToGroup(MMRootEntryLayer,0,"Hovered");
+    MMRootEntry->SetAutoHide(false);
+    MainMenuScreen->AddChild(MMRootEntry,1);
+    MMRootEntry->ForceRootEntryVisible();
+
+    // Here goes the LevelSelect button and it's menu contents
+    UI::StackButton* MMLevelSelectAccess = MainMenuScreen->CreateStackButton("MS_LevelSelect",UI::UnifiedRect(0.05,0.18,0.22,0.7));
+
+    // Here goes the Options button and it's menu contents
+    UI::StackButton* MMOptionsAccess = MainMenuScreen->CreateStackButton("MS_Options",UI::UnifiedRect(0.28,0.18,0.22,0.7));
+
+    // Here goes the Credits button and it's menu contents
+    UI::StackButton* MMCreditsAccess = MainMenuScreen->CreateStackButton("MS_Credits",UI::UnifiedRect(0.51,0.18,0.22,0.7));
+
+    // Here goes the Exit Game button and it's menu contents
+    // Start with the accessor button
+    UI::StackButton* MMAppExitAccess = MainMenuScreen->CreateStackButton("MS_AppExit",UI::UnifiedRect(0.74,0.18,0.22,0.7));
+    UI::ImageLayer* MMAppExitAccessNormal = MMAppExitAccess->CreateImageLayer("MMButton");
+    UI::ImageLayer* MMAppExitAccessHovered = MMAppExitAccess->CreateImageLayer("MMHoveredButton");
+    UI::SingleLineTextLayer* MMAppExitAccessText = MMAppExitAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    MMAppExitAccessText->SetText("Exit Game");
+    MMAppExitAccessText->HorizontallyAlign(UI::LA_Center);
+    MMAppExitAccessText->VerticallyAlign(UI::LA_Center);
+    MMAppExitAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,0.65);
+    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessNormal,0,"Normal");
+    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessText,1,"Normal");
+    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessHovered,0,"Hovered");
+    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessText,1,"Hovered");
+    MMRootEntry->AddChild(MMAppExitAccess,4);
+
+    // Create and configure the "window" that houses the exit confirmation
+    UI::MenuEntry* MMAppExitWin = MainMenuScreen->CreateMenuEntry("MS_AppExitWin",UI::UnifiedRect(0.25,-8.14,0.5,3.5));
+    UI::ImageLayer* MMAppExitWinLayer = MMAppExitWin->CreateImageLayer("MMAppExitBackground");
+    MMAppExitWin->AddLayerToGroup(MMAppExitWinLayer,0,"Normal");
+    MMAppExitWin->AddLayerToGroup(MMAppExitWinLayer,0,"Hovered");
+    MMAppExitWin->SetPushButton(MMAppExitAccess);
+    MMRootEntry->AddChild(MMAppExitWin,8);
+
+    // Create and configure the display for the confirmation question
+    UI::Widget* MMAppExitWarn = MainMenuScreen->CreateWidget("MS_AppExitWarn",UI::UnifiedRect(0.14,0.18,0.72,0.22));
+    UI::ImageLayer* MMAppExitWarnLayer = MMAppExitWarn->CreateImageLayer("MMAppExitText");
+    UI::SingleLineTextLayer* MMAppExitWarnText = MMAppExitWarn->CreateSingleLineTextLayer("Ubuntu-14");
+    MMAppExitWarnText->SetText("Are you sure you want to exit?");
+    MMAppExitWarnText->HorizontallyAlign(UI::LA_Center);
+    MMAppExitWarnText->VerticallyAlign(UI::LA_Center);
+    MMAppExitWarnText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,0.65);
+    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnLayer,0,"Normal");
+    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnText,1,"Normal");
+    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnLayer,0,"Hovered");
+    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnText,1,"Hovered");
+    MMAppExitWin->AddChild(MMAppExitWarn,1);
+
+    // Create and configure the confirm button
+    UI::Button* MMAppExitConf = MainMenuScreen->CreateButton("MS_AppExitConf",UI::UnifiedRect(0.10,0.58,0.35,0.22));
+    UI::ImageLayer* MMAppExitConfNormal = MMAppExitConf->CreateImageLayer("MMAppExitButton");
+    UI::ImageLayer* MMAppExitConfHovered = MMAppExitConf->CreateImageLayer("MMAppExitHoveredButton");
+    UI::SingleLineTextLayer* MMAppExitConfText = MMAppExitConf->CreateSingleLineTextLayer("Ubuntu-14");
+    MMAppExitConfText->SetText("Yes");
+    MMAppExitConfText->HorizontallyAlign(UI::LA_Center);
+    MMAppExitConfText->VerticallyAlign(UI::LA_Center);
+    MMAppExitConfText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,0.65);
+    MMAppExitConf->AddLayerToGroup(MMAppExitConfNormal,0,"Normal");
+    MMAppExitConf->AddLayerToGroup(MMAppExitConfText,1,"Normal");
+    MMAppExitConf->AddLayerToGroup(MMAppExitConfHovered,0,"Hovered");
+    MMAppExitConf->AddLayerToGroup(MMAppExitConfText,1,"Hovered");
+    MMAppExitConf->Subscribe(UI::Button::EventDeactivated,&AllAppExit);
+    MMAppExitWin->AddChild(MMAppExitConf,2);
+
+    // Create and configure the deny button
+    UI::StackButton* MMAppExitDeny = MainMenuScreen->CreateStackButton("MS_AppExitDeny",UI::UnifiedRect(0.55,0.58,0.35,0.22));
+    UI::ImageLayer* MMAppExitDenyNormal = MMAppExitDeny->CreateImageLayer("MMAppExitButton");
+    UI::ImageLayer* MMAppExitDenyHovered = MMAppExitDeny->CreateImageLayer("MMAppExitHoveredButton");
+    UI::SingleLineTextLayer* MMAppExitDenyText = MMAppExitDeny->CreateSingleLineTextLayer("Ubuntu-14");
+    MMAppExitDenyText->SetText("No");
+    MMAppExitDenyText->HorizontallyAlign(UI::LA_Center);
+    MMAppExitDenyText->VerticallyAlign(UI::LA_Center);
+    MMAppExitDenyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,0.65);
+    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyNormal,0,"Normal");
+    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyText,1,"Normal");
+    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyHovered,0,"Hovered");
+    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyText,1,"Hovered");
+    MMAppExitWin->SetPopButton(MMAppExitDeny);
+    MMAppExitWin->AddChild(MMAppExitDeny,3);
+
+
+
 
     //Real MMStartLineHeight = 0.05;
     //Real MMTextLineHeight = 0.04;
@@ -238,23 +327,6 @@ void CatchApp::MakeGUI()
     MMCreditsAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
     //UI::MenuWindow* MMCreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_CreditsWin", UI::RenderableRect(Vector2(0.01,0.01), Vector2(0.01,0.01), true), MMCreditsAccess);
     MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_CreditsWin", UI::RenderableRect(Vector2(0.01,0.01), Vector2(0.01,0.01), true), MMCreditsAccess);
-
-    UI::Button* MMAppExitAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_AppExit", UI::RenderableRect(Vector2(0.74, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Exit Game" );
-    MMAppExitAccess->GetClickable()->SetBackgroundSprite("MMButton");
-    MMAppExitAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* MMAppExitWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_AppExitWin", UI::RenderableRect(Vector2(0.25, 0.3), Vector2(0.5, 0.3), true), MMAppExitAccess);
-    MMAppExitWin->GetWindowBack()->SetBackgroundSprite("MMAppExitBackground");
-    UI::Caption* MMAppExitWarn = MMAppExitWin->CreateCaption("MS_AppExitWarn", UI::RenderableRect(Vector2(0.32, 0.35), Vector2(0.36, 0.07), true), Real(0.04), "Are you sure you want to exit?");
-    MMAppExitWarn->SetBackgroundSprite("MMAppExitText");
-    UI::Button* MMAppExitConf = MMAppExitWin->CreateButton("MS_AppExitConf", UI::RenderableRect(Vector2(0.30, 0.47), Vector2(0.18, 0.06), true), Real(0.04), "Yes");
-    MMAppExitConf->AddActivatableListener(new AllAppExit());
-    MMAppExitConf->GetClickable()->SetBackgroundSprite("MMAppExitButton");
-    MMAppExitConf->GetClickable()->SetHoveredSprite("MMAppExitHoveredButton");
-    UI::Button* MMAppExitDeny = MMAppExitWin->CreateBackButton("MS_AppExitDeny", UI::RenderableRect(Vector2(0.52, 0.47), Vector2(0.18, 0.06), true), Real(0.04), "No");
-    MMAppExitDeny->GetClickable()->SetBackgroundSprite("MMAppExitButton");
-    MMAppExitDeny->GetClickable()->SetHoveredSprite("MMAppExitHoveredButton");
-
-    MainMenuScreen->AddRootWidget(1,MainMenuMenu);
     //End of Main Menu Screen
 
     //Make the Game screen and associated layers.
@@ -515,10 +587,15 @@ void CatchApp::CreateLoadingScreen()
     UIViewport->SetCamera(this->TheEntresol->GetCameraManager()->CreateCamera("Main"));
 
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen","Catch_Loading",UIViewport);
-    UI::ImageLayer* LoadBackground = LoadScreen->CreateImageLayer();
+    UI::Widget* BackgroundWidget = LoadScreen->CreateWidget("LoadBackground",UI::UnifiedRect(0,0,1.7777,1,0,0,0,0));
+    BackgroundWidget->SetPositioningRules(UI::PF_Anchor_Center);
+    BackgroundWidget->SetVerticalSizingRules(UI::SR_Unified_Dims);
+    BackgroundWidget->SetHorizontalSizingRules(UI::SR_Match_Other_Axis_Unified);
+    UI::ImageLayer* LoadBackground = BackgroundWidget->CreateImageLayer();
     LoadBackground->SetSprite("BTSBanner");
-    LoadScreen->AddLayerToGroup(LoadBackground,0,"Normal");
-    LoadScreen->AddLayerToGroup(LoadBackground,0,"Hovered");
+    BackgroundWidget->AddLayerToGroup(LoadBackground,0,"Normal");
+    BackgroundWidget->AddLayerToGroup(LoadBackground,0,"Hovered");
+    LoadScreen->AddChild(BackgroundWidget,0);
 
     GraphicsMan->RenderOneFrame();
     LoadBackground->SetSprite("LoadingBackground");

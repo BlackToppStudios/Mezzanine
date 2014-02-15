@@ -202,8 +202,6 @@ namespace Mezzanine
 
             this->SetMousePassthrough(true);
             this->SetMouseHoverStrategy(new BruteStrategy());
-
-            this->LayoutStrat = new LayoutStrategy();
         }
 
         Screen::Screen(const XML::Node& XMLNode, UIManager* Manager) :
@@ -227,8 +225,6 @@ namespace Mezzanine
 
             this->CreateVertexBuffer(32 * 6);
             this->SetMouseHoverStrategy(new BruteStrategy());
-
-            this->LayoutStrat = new LayoutStrategy();
 
             this->ProtoDeSerialize(XMLNode);
         }
@@ -810,12 +806,7 @@ namespace Mezzanine
         }
 
 
-        /*Spinner* Screen::CreateSpinner(ConstString& Name, const Rect& RendRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
-        {
-            return static_cast<Spinner*>( this->CheckAndInsert( RenderableFactory::CreateSpinner(Name,RendRect,SStyle,GlyphHeight) ) );
-        }
-
-        ScrolledCellGrid* Screen::CreateScrolledCellGrid(ConstString& Name, const Rect& RendRect, const Real& Thickness, const UI::ScrollbarStyle& Style)
+        /*ScrolledCellGrid* Screen::CreateScrolledCellGrid(ConstString& Name, const Rect& RendRect, const Real& Thickness, const UI::ScrollbarStyle& Style)
         {
             return static_cast<ScrolledCellGrid*>( this->CheckAndInsert( RenderableFactory::CreateScrolledCellGrid(Name,RendRect,Thickness,Style) ) );
         }

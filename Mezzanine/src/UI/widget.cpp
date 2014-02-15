@@ -203,14 +203,16 @@ namespace Mezzanine
 
         void Widget::SetVisible(Boolean CanSee)
         {
-            if( this->Visible == CanSee )
-                return;
-            Visible = CanSee;
-            if(CanSee) this->_OnVisibilityShown();
-            else this->_OnVisibilityHidden();
-            for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-            {
-                (*It)->SetVisible(CanSee);
+            if( this->Visible != CanSee ) {
+                if(CanSee)
+                    this->_OnVisibilityShown();
+                else
+                    this->_OnVisibilityHidden();
+
+                for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+                {
+                    (*It)->SetVisible(CanSee);
+                }
             }
         }
 
@@ -230,25 +232,23 @@ namespace Mezzanine
 
         void Widget::Show()
         {
-            if( this->Visible == true )
-                return;
-            this->Visible = true;
-            this->_OnVisibilityShown();
-            for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-            {
-                (*It)->Show();
+            if( this->Visible == false ) {
+                this->_OnVisibilityShown();
+                for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+                {
+                    (*It)->Show();
+                }
             }
         }
 
         void Widget::Hide()
         {
-            if( this->Visible == false )
-                return;
-            this->Visible = false;
-            this->_OnVisibilityHidden();
-            for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-            {
-                (*It)->Hide();
+            if( this->Visible == true ) {
+                this->_OnVisibilityHidden();
+                for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
+                {
+                    (*It)->Hide();
+                }
             }
         }
 
@@ -501,12 +501,18 @@ namespace Mezzanine
 
         void Widget::_OnVisibilityShown()
         {
+            this->Visible = true;
+            this->_MarkDirty();
+
             WidgetEventArguments Args(Widget::EventVisibilityShown,this->Name);
             this->FireEvent(Args);
         }
 
         void Widget::_OnVisibilityHidden()
         {
+            this->Visible = false;
+            this->_MarkDirty();
+
             WidgetEventArguments Args(Widget::EventVisibilityHidden,this->Name);
             this->FireEvent(Args);
         }

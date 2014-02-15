@@ -84,8 +84,6 @@ namespace Mezzanine
 
             /// @brief Sets the dummy coordinates for a generated whitespace glyph.
             void SetWhitespaceAtlasCoords(Glyph* Whitespace);
-            /// @brief Generates Whitespace Glyphs from this font's data for this font.
-            void GenerateWhitespaceGlyphs();
         public:
             /// @brief Class constructor.
             /// @param ParentAtlas The TextureAtlas this font data belongs to.
@@ -150,6 +148,8 @@ namespace Mezzanine
             /// @exception An exception will be thrown if a glyph with the same ID is already taken.
             /// @param
             void _AddGlyph(Glyph* NewGlyph);
+            /// @brief Generates Whitespace Glyphs from this font's data for this font.
+            void _GenerateWhitespaceGlyphs();
         };//FontData
     }//UI
 }//Mezzanine

@@ -160,8 +160,6 @@ namespace Mezzanine
 
             /// @copydoc StackedContainer::_NotifyButtonSelected(StackedButton*)
             virtual void _NotifyButtonSelected(StackButton* Selected);
-            /// @copydoc QuadRenderable::_AppendRenderDataCascading(ScreenRenderData&)
-            virtual void _AppendRenderDataCascading(ScreenRenderData& RenderData);
         };//TabSet
 
         ///////////////////////////////////////////////////////////////////////////////

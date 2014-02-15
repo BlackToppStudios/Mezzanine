@@ -146,8 +146,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        bool Renderable::_IsDirty() const
-            { return Dirty; }
+        Boolean Renderable::_IsDirty() const
+            { return this->Dirty; }
     }//UI
 }//Mezzanine
 
