@@ -434,7 +434,7 @@ namespace Mezzanine
         }
     }
 
-    String ResourceManager::GetLocalAppDataDir() const
+    String ResourceManager::GetLocalAppDataDir()
     {
         #ifdef WINDOWS
         TCHAR path_local_appdata[MAX_PATH];
@@ -461,7 +461,7 @@ namespace Mezzanine
         return "";
     }
 
-    String ResourceManager::GetShareableAppDataDir() const
+    String ResourceManager::GetShareableAppDataDir()
     {
         #ifdef WINDOWS
         TCHAR path_appdata[MAX_PATH];
@@ -479,7 +479,7 @@ namespace Mezzanine
         return "";
     }
 
-    String ResourceManager::GetCurrentUserDataDir() const
+    String ResourceManager::GetCurrentUserDataDir()
     {
         #ifdef WINDOWS
         TCHAR path_personal[MAX_PATH];
@@ -497,7 +497,7 @@ namespace Mezzanine
         return "";
     }
 
-    String ResourceManager::GetCommonUserDataDir() const
+    String ResourceManager::GetCommonUserDataDir()
     {
         #ifdef WINDOWS
         TCHAR path_common_personal[MAX_PATH];

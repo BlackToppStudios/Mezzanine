@@ -41,22 +41,25 @@ cmake_minimum_required(VERSION 2.8)
 project (${TclapProject})
 message ("${TclapProject} - Begin")
 
-# Check for new builds at: http://tclap.sourceforge.net/
-# This version of Tclap is slightly modified to accept -v in addition to --version
-include(ExternalProject)
 set(TclapDir "tclap-1.2.1")
-ExternalProject_Add(${TclapProject}
-  PREFIX ${TclapDir}
-  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/${TclapDir}
-  CONFIGURE_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${TclapDir}/configure --prefix=<INSTALL_DIR>
-  BUILD_COMMAND ${MAKE})
+
+## Check for new builds at: http://tclap.sourceforge.net/
+## This version of Tclap is slightly modified to accept -v in addition to --version
+#include(ExternalProject)
+#ExternalProject_Add(${TclapProject}
+#  PREFIX ${TclapDir}
+#  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/${TclapDir}
+#  CONFIGURE_COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${TclapDir}/configure --prefix=<INSTALL_DIR>
+#  BUILD_COMMAND ${MAKE})
+
+#set(TclapIncludeDirectory
+#    #"${CMAKE_CURRENT_SOURCE_DIR}/${TclapDir}/include"
+#    "${EntreLua_BINARY_DIR}../libs/${TclapDir}/include"
+#    PARENT_SCOPE)
+
 
 set(TclapIncludeDirectory
-    #"Tools/EntreLua/libs/${TclapDir}/include/tclap";
-    #"${CMAKE_CURRENT_SOURCE_DIR}/${TclapDir}/include"
-    "${EntreLua_BINARY_DIR}../libs/${TclapDir}/include"
+    "${CMAKE_CURRENT_SOURCE_DIR}/${TclapDir}/include"
     PARENT_SCOPE)
-#set(TclapLinkName "tclap")
-
 message ("${TclapProject} - End")
 
