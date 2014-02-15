@@ -46,8 +46,24 @@ using namespace Mezzanine;
 using namespace std;
 
 
-
 REPL::REPL(String StartingPrompt) : Prompt(StartingPrompt)
 {
 
 }
+
+Boolean REPL::Launch()
+{
+    return false;
+}
+
+
+Mezzanine::String REPL::GetPrompt() const
+{
+    return Prompt;
+}
+
+void REPL::SetPrompt(const Mezzanine::String& value)
+{
+    Prompt = value;
+}
+

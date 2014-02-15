@@ -43,6 +43,14 @@
 #include <datatypes.h>
 #include "linenoise.h"
 
+/// @file
+/// @brief The definition of the user interface for this shell.
+
+class REPL;
+
+/// @brief A Functor definition that return true if the REPL should continue and false otherwise
+typedef bool(REPLContinueCallback)(REPL*);
+
 /// @brief A class that will Read input, Execute, Print, and Loop back to do it again.
 class REPL
 {
@@ -51,6 +59,11 @@ class REPL
         Mezzanine::String Prompt;
     public:
         REPL(Mezzanine::String StartingPrompt=">");
+
+        Mezzanine::Boolean Launch();
+
+        Mezzanine::String GetPrompt() const;
+        void SetPrompt(const Mezzanine::String& value);
 };
 
 #endif
