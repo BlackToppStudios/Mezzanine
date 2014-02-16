@@ -41,29 +41,21 @@
 #include <iostream>
 #include <mezzanine.h>
 #include "repl.h"
+#include "linenoise/linenoise.h"
 
 using namespace Mezzanine;
 using namespace std;
 
 
-REPL::REPL(String StartingPrompt) : Prompt(StartingPrompt)
+REPL::REPL(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::String StartingPrompt)
+    : ScriptInterpretter(TargetEngine), Prompt(StartingPrompt)
 {
 
 }
-
-Boolean REPL::Launch()
-{
-    return false;
-}
-
 
 Mezzanine::String REPL::GetPrompt() const
-{
-    return Prompt;
-}
+    { return Prompt; }
 
-void REPL::SetPrompt(const Mezzanine::String& value)
-{
-    Prompt = value;
-}
+void REPL::SetPrompt(const Mezzanine::String& Value)
+    { Prompt = Value; }
 
