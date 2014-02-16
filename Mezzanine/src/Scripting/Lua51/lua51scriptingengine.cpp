@@ -50,6 +50,8 @@
 #include "exception.h"
 
 #include <cstring>
+#include <algorithm>
+
 /// @file
 /// @brief This file has the implementation for the Lua based Scripting system.
 
@@ -173,6 +175,64 @@ namespace Mezzanine
                         MEZZ_EXCEPTION(Exception::IO_FILE_EXCEPTION, "Lua had an error with file IO:\n"+ErrorMessage);
                     default:
                         MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua had an error and we are not sure what it was:\n"+ErrorMessage);
+                }
+            }
+
+            String Lua51ScriptingEngine::GetLibName(Lua51ScriptingEngine::Lua51Libraries Lib)
+            {
+                switch(Lib)
+                {
+                    case NoLib:                 return "none";
+                    case BaseLib:               return "base";
+                    case PackageLib:            return "package";
+                    case StringLib:             return "string";
+                    case TableLib:              return "table";
+                    case MathLib:               return "math";
+                    case IOLib:                 return "io";
+                    case OSLib:                 return "os";
+                    case DebugLib:              return "debug";
+                    case MezzLib:               return "mezzanine";
+                    case MezzSafeLib:           return "mezzaninesafe";
+                    case MezzXMLLib:            return "mezzaninexml";
+                    case MezzXMLSafeLib:        return "mezzaninexmlsafe";
+                    case MezzThreadingLib:      return "mezzaninethreading";
+                    case MezzThreadingSafeLib:  return "mezzaninethreadingsafe";
+                    case DefaultLibs:           return "default";
+                    case AllLibs:               return "all";
+                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to library string"+ToString(Lib));
+                }
+            }
+
+            Lua51ScriptingEngine::Lua51Libraries Lua51ScriptingEngine::GetLibFromName(String Name)
+            {
+                if(!Name.size())
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert zero length name to valid libray name"); }
+                std::transform(Name.begin(), Name.end(), Name.begin(), ::tolower);
+
+                switch(Name[0])
+                {
+                    case 'n': if(Name=="none") { return NoLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with n: " + Name); }
+                    case 'b': if(Name=="base") { return BaseLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with b: " + Name); }
+                    case 'p': if(Name=="package") { return PackageLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with p: " + Name); }
+                    case 's': if(Name=="string") { return StringLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with s: " + Name); }
+                    case 't': if(Name=="table") { return TableLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with t: " + Name); }
+                    case 'm':
+                        if(Name=="math") { return MathLib; }
+                        else if(Name=="mezzanine") { return MezzLib; }
+                        else if(Name=="mezzaninesafe") { return MezzSafeLib; }
+                        else if(Name=="mezzaninexml") { return MezzXMLLib; }
+                        else if(Name=="mezzaninexmlsafe") { return MezzXMLSafeLib; }
+                        else if(Name=="mezzaninethreading") { return MezzThreadingLib; }
+                        else if(Name=="mezzaninethreadingsafe") { return MezzThreadingSafeLib; }
+                        else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with m: " + Name); }
+                    case 'i': if(Name=="io") { return IOLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with i: " + Name); }
+                    case 'o': if(Name=="os") { return OSLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with o: " + Name); }
+                    case 'd':
+                        if (Name=="debug") { return DebugLib; }
+                        else if(Name=="default") { return DefaultLibs; }
+                        else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with d: " + Name); }
+                    case 'a': if(Name=="all") { return AllLibs; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with a: " + Name); }
+                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert: " + Name);
                 }
             }
 

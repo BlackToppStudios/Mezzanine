@@ -53,4 +53,13 @@ REPLCppStream::REPLCppStream(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& Ta
 }
 
 void REPLCppStream::Launch()
-{}
+{
+    Mezzanine::Boolean KeepLooping = true;
+    const int MaxCommandSize = 4096;
+
+    while(KeepLooping)
+    {
+
+    }
+
+}
