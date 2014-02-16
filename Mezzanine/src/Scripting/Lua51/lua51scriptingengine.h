@@ -119,6 +119,12 @@ namespace Mezzanine
                         DefaultLibs = BaseLib | StringLib | TableLib | MathLib | MezzSafeLib | MezzXMLSafeLib | MezzThreadingSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
                         AllLibs     = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib | MezzXMLLib | MezzThreadingLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
                     };
+
+
+                    static String GetLibName(Lua51Libraries Lib);
+                    static Lua51Libraries GetLibFromName(String Name);
+
+
                 ///////////////////////////////////////////////////////////////////////////////////////
                 // Construction/Deconstruction
                     /// @brief Constructs a Scripting engine with a set of libraries preloaded.

@@ -52,23 +52,20 @@ namespace Mezzanine
     namespace UI
     {
         TextureAtlasHandler::TextureAtlasHandler()
-        {
-        }
+            {  }
 
         TextureAtlasHandler::~TextureAtlasHandler()
-        {
-        }
+            {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Texture Atlas Management
 
         void TextureAtlasHandler::LoadAtlasFromFile(const String& Name, const String& Group)
         {
-            // Kinda hackish until we get the resource system running the way we want.
-            /// @todo Fix this when we have a working resource system of our own.
-            Resource::FileStream AtlasStream( Name, ResourceManager::GetSingletonPtr()->GetAssetPath(Name,Group) );
+            /// @todo Update after we have refactored the resource system if needed.
+            Resource::DataStreamPtr AtlasStream = ResourceManager::GetSingletonPtr()->OpenAssetStream(Name,Group);
             XML::Document AtlasDoc;
-            AtlasDoc.Load(AtlasStream);
+            AtlasDoc.Load( *AtlasStream.Get() );
 
             XML::Node RootNode = AtlasDoc.GetChild("Atlases");
             if( !RootNode.Empty() )
@@ -78,13 +75,13 @@ namespace Mezzanine
                     // Parse the Atlas
                     TextureAtlas* NewAtlas = new TextureAtlas( (*AtlasIt) );
                     // Verify we don't already have one of the same name
-                    AtlasIterator AtIt = Atlases.find( NewAtlas->GetName() );
+                    AtlasIterator AtIt = this->Atlases.find( NewAtlas->GetName() );
                     if( AtIt != Atlases.end() )
                     {
                         MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Texture Atlas with the name \"" + NewAtlas->GetName() + "\" already exists.");
                     }
                     // Add the unique Atlas
-                    Atlases[NewAtlas->GetName()] = NewAtlas;
+                    this->Atlases[NewAtlas->GetName()] = NewAtlas;
                 }
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Mezzanine Texture Atlas file \"" + Name + "\"does not contain expected \"Atlases\" root node.  File is not valid and cannot be parsed.");
@@ -93,8 +90,8 @@ namespace Mezzanine
 
         UI::TextureAtlas* TextureAtlasHandler::GetAtlas(const String& AtlasName)
         {
-            AtlasIterator It = Atlases.find(AtlasName);
-            if(It != Atlases.end()) return (*It).second;
+            AtlasIterator It = this->Atlases.find(AtlasName);
+            if(It != this->Atlases.end()) return (*It).second;
             else { MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Unabled to find Texture Atlas named \"" + AtlasName + "\".") };
         }
     }//UI

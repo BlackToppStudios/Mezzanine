@@ -43,6 +43,7 @@
 #include "mezztest.h"
 
 #include "Scripting/scripting.h"
+#include "eventbase.h"
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
@@ -392,7 +393,67 @@ class lua51tests : public UnitTestGroup
                 TestOutput << "End XML::Document Test" << endl << endl;
             }
 
+            {
+                //void TestLuaScript(const String& Source, const String& FeatureName, const String& FunctionToCall,
+                //                   Real Input = 10, Real ExpectedOutput = 10, Real Epsilon = 0.04,
+                //                   Scripting::Lua::Lua51ScriptingEngine::Lua51Libraries Libset = Scripting::Lua::Lua51ScriptingEngine::DefaultLibs )
 
+                try
+                {
+                    //Scripting::Lua::Lua51ScriptingEngine LuaRuntimeSafe;
+                    TestOutput << "Dumping Contents of Selected SWIG Generated tables from Lua: " << endl;
+
+                    // A Recursive Lua function that iterates of each entry in a Lua table and its subtables and its subtables...
+                    String Source("function list_table(tabel, indent)\n"
+                                  "    local results = \"\"\n"
+                                  "    local indentStr = \"\"\n"
+                                  "\n"
+                                  "    if(indent == nil) then\n"
+                                  "        return list_table(tabel, 0)\n"
+                                  "    end\n"
+                                  "\n"
+                                  "    for i = 0, indent do\n"
+                                  "        indentStr = indentStr..\". \"\n"
+                                  "    end\n"
+                                  "\n"
+                                  "    for index,value in pairs(tabel) do\n"
+                                  "        if type(value) == \"table\" then\n"
+                                  "            results = results..indentStr..index..\": table\\n\"..list_table(value, (indent + 1))\n"
+                                  "        elseif type(value) == \"function\" then\n"
+                                  "            results = results..indentStr..index..\": function\\n\"\n"
+                                  "        else\n"
+                                  "            results = results..indentStr..index..\": \"..value..\"\\n\"\n"
+                                  "        end\n"
+                                  "    end\n"
+                                  "    return results\n"
+                                  "end\n"
+                                  "\n"
+                                  "function MezzanineDump(x)\n"
+                                  "   results = \"Getting Table Contents of MezzanineSafe:\\n\"\n"
+                                  "   results = results..list_table(MezzanineSafe)\n"
+                                  "   --print \"Dumping Table Contents of Mezzanine\"\n"
+                                  "   --print_table(Mezzanine)\n"
+                                  "   return results\n"
+                                  "end");
+
+                    Scripting::Lua::Lua51Script DumpScript(Source, LuaRuntimeSafe);
+                    LuaRuntimeSafe.Execute(DumpScript);
+                    Scripting::Lua::Lua51Script DumpFunctionCall("MezzanineDump",LuaRuntimeSafe,true);
+
+                    CountedPtr<Scripting::Lua::Lua51StringArgument> StringReturn(new Scripting::Lua::Lua51StringArgument);
+                    DumpFunctionCall.AddReturn(StringReturn);
+                    LuaRuntimeSafe.Execute(DumpFunctionCall);
+
+                    TestOutput << StringReturn->GetString() << endl;
+
+                    TEST_RESULT(Testing::Success, "SWIG_Dump");
+                } catch (ScriptLuaException& ) {
+                    TEST_RESULT(Testing::Failed, "SWIG_Dump");
+                }
+
+            }
+
+            // Wrapped Test Selection
             {
                 // files/Classes not tested
                 // worldnode.h
@@ -638,7 +699,17 @@ class lua51tests : public UnitTestGroup
                               "EventArguments", "TestEventArgCompilation", 8, 1, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestException(x)\n"
+                              "  return MezzanineSafe.Exception_IO_EXCEPTION\n"
+                              "end",
+                              "Exception", "TestException", 8, Mezzanine::Exception::IO_EXCEPTION, 0.0,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
+                TestLuaScript("function TestOldEventSystem(x)\n"
+                              "  return MezzanineSafe.EventBase_GameWindow\n"
+                              "end",
+                              "OldEvent", "TestOldEventSystem", 8, Mezzanine::EventBase::GameWindow, 0.0,
+                               Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 //AreaEffectUpdateWorkUnit
             }

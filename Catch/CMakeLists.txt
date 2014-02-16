@@ -61,7 +61,7 @@ set (${PROJECT_NAME}_MEZZANINE_DIR "${ProjectRootDir}/Mezzanine/")
 message ( STATUS "Base for Mezzanine: ${${PROJECT_NAME}_MEZZANINE_DIR}")
 
 set (${PROJECT_NAME}_MEZZANINE_BIN_DIR "${Mezzanine_BINARY_DIR}/bin/")
-message ( STATUS "Mezzanine ASDFASDFBinaries: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}")
+message ( STATUS "Mezzanine Binaries: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}")
 
 set (${PROJECT_NAME}_MEZZANINE_BIN_SRC "${${PROJECT_NAME}_MEZZANINE_DIR}src/")
 message ( STATUS "Mezzanine source and headers: ${${PROJECT_NAME}_MEZZANINE_BIN_SRC}")
@@ -192,7 +192,7 @@ function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
     )
 endfunction(CopyFilesDuringBuild)
 
-#Description: This function copies items from the output directory in Mezzanine into the location of the Catch executable. 
+#Description: This function copies items from the output directory in Mezzanine into the location of the Catch executable.
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyLibraryFromMezzanineDuringBuild TargetName)
     add_custom_command(
@@ -204,7 +204,7 @@ function(CopyLibraryFromMezzanineDuringBuild TargetName)
     )
 endfunction(CopyLibraryFromMezzanineDuringBuild)
 
-#Description: This function copies license files in Mezzanine into the Catch License folder. 
+#Description: This function copies license files in Mezzanine into the Catch License folder.
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyLicenseFromMezzanineDuringBuild TargetPath DestName)
     add_custom_command(

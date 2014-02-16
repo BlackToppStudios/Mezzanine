@@ -74,9 +74,6 @@ namespace Mezzanine
         HorizontalContainer::~HorizontalContainer()
             {  }
 
-        void HorizontalContainer::CreateLayoutStrat()
-            { this->LayoutStrat = new LayoutStrategy(); }
-
         void HorizontalContainer::UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect)
         {
             // Clear our old data.
@@ -319,16 +316,32 @@ namespace Mezzanine
             { return HorizontalContainer::TypeName; }
 
         HorizontalContainer* HorizontalContainerFactory::CreateHorizontalContainer(const String& RendName, Screen* Parent)
-            { return new HorizontalContainer(RendName,Parent); }
+        {
+            HorizontalContainer* Ret = new HorizontalContainer(RendName,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         HorizontalContainer* HorizontalContainerFactory::CreateHorizontalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
-            { return new HorizontalContainer(RendName,RendRect,Parent); }
+        {
+            HorizontalContainer* Ret = new HorizontalContainer(RendName,RendRect,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         HorizontalContainer* HorizontalContainerFactory::CreateHorizontalContainer(const XML::Node& XMLNode, Screen* Parent)
-            { return new HorizontalContainer(XMLNode,Parent); }
+        {
+            HorizontalContainer* Ret = new HorizontalContainer(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* HorizontalContainerFactory::CreateWidget(Screen* Parent)
-            { return new HorizontalContainer(Parent); }
+        {
+            HorizontalContainer* Ret = new HorizontalContainer(Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* HorizontalContainerFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
             { return this->CreateHorizontalContainer(RendName,Parent); }

@@ -138,7 +138,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
  <br/>
  Provided readers and writers call the correct functions this will only allow access to a single writer or a group of readers at one time </p>
 
-<p>Definition at line <a class="el" href="readwritespinlock_8h_source.html#l00061">61</a> of file <a class="el" href="readwritespinlock_8h_source.html">readwritespinlock.h</a>.</p>
+<p>Definition at line <a class="el" href="readwritespinlock_8h_source.html#l00062">62</a> of file <a class="el" href="readwritespinlock_8h_source.html">readwritespinlock.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a2ca0328f0947ac27a030fb6cb9a2f0e8"></a>
 <div class="memitem">
@@ -158,7 +158,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
  <br/>
  Multiple read locks can be obtained. If this is locked multiple this will keep count until <code><a class="el" href="classMezzanine_1_1Threading_1_1ReadWriteSpinLock.html#a78a76418a8ff039860d208520e8696d1" title="Unlock this . ">UnlockRead()</a></code> decrements that count. </p>
 
-<p>Definition at line <a class="el" href="readwritespinlock_8cpp_source.html#l00063">63</a> of file <a class="el" href="readwritespinlock_8cpp_source.html">readwritespinlock.cpp</a>.</p>
+<p>Definition at line <a class="el" href="readwritespinlock_8cpp_source.html#l00064">64</a> of file <a class="el" href="readwritespinlock_8cpp_source.html">readwritespinlock.cpp</a>.</p>
 
 </div>
 </div>
@@ -180,7 +180,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
  <br/>
  Only a single write lock can exist and it can co-exist with no read locks. </p>
 
-<p>Definition at line <a class="el" href="readwritespinlock_8cpp_source.html#l00087">87</a> of file <a class="el" href="readwritespinlock_8cpp_source.html">readwritespinlock.cpp</a>.</p>
+<p>Definition at line <a class="el" href="readwritespinlock_8cpp_source.html#l00095">95</a> of file <a class="el" href="readwritespinlock_8cpp_source.html">readwritespinlock.cpp</a>.</p>
 
 </div>
 </div>
@@ -222,7 +222,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>The method will try to lock the <a class="el" href="classMezzanine_1_1Threading_1_1ReadWriteSpinLock.html" title="A mutex like construct that supports multiple readsingle writer semantics and never makes a system ca...">ReadWriteSpinLock</a> for writing. If it fails, the function will return immediately (non-blocking). </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if the lock was acquired, or <code>false</code> if the lock could not be acquired. </dd></dl>
 
-<p>Definition at line <a class="el" href="readwritespinlock_8cpp_source.html#l00091">91</a> of file <a class="el" href="readwritespinlock_8cpp_source.html">readwritespinlock.cpp</a>.</p>
+<p>Definition at line <a class="el" href="readwritespinlock_8cpp_source.html#l00098">98</a> of file <a class="el" href="readwritespinlock_8cpp_source.html">readwritespinlock.cpp</a>.</p>
 
 </div>
 </div>
@@ -242,7 +242,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Unlock this . </p>
 <p>Decrement the reader count and If zero any threads that are waiting for the LockWrite method on this mutex, one of them will be unblocked. If locked for write, this does nothing. </p>
 
-<p>Definition at line <a class="el" href="readwritespinlock_8cpp_source.html#l00078">78</a> of file <a class="el" href="readwritespinlock_8cpp_source.html">readwritespinlock.cpp</a>.</p>
+<p>Definition at line <a class="el" href="readwritespinlock_8cpp_source.html#l00086">86</a> of file <a class="el" href="readwritespinlock_8cpp_source.html">readwritespinlock.cpp</a>.</p>
 
 </div>
 </div>
@@ -262,7 +262,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Unlock this for writing. </p>
 <p>If any threads are waiting for the read or write lock on this, one of them willbe unblocked. If locked for read this doe nothing. </p>
 
-<p>Definition at line <a class="el" href="readwritespinlock_8cpp_source.html#l00094">94</a> of file <a class="el" href="readwritespinlock_8cpp_source.html">readwritespinlock.cpp</a>.</p>
+<p>Definition at line <a class="el" href="readwritespinlock_8cpp_source.html#l00116">116</a> of file <a class="el" href="readwritespinlock_8cpp_source.html">readwritespinlock.cpp</a>.</p>
 
 </div>
 </div>
@@ -272,6 +272,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:30 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

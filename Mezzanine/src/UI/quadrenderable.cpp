@@ -201,10 +201,7 @@ namespace Mezzanine
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
-        {
-            this->ActDims.SetIdentity();
-            this->CreateLayoutStrat();
-        }
+            { this->ActDims.SetIdentity(); }
 
         QuadRenderable::QuadRenderable(const String& RendName, Screen* Parent) :
             Renderable(RendName,Parent),
@@ -216,10 +213,7 @@ namespace Mezzanine
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
-        {
-            this->ActDims.SetIdentity();
-            this->CreateLayoutStrat();
-        }
+            { this->ActDims.SetIdentity(); }
 
         QuadRenderable::QuadRenderable(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Renderable(RendName,Parent),
@@ -236,8 +230,6 @@ namespace Mezzanine
 
             this->PositioningPolicy.UPosition = RendRect.Position;
             this->SizingPolicy.USize = RendRect.Size;
-
-            this->CreateLayoutStrat();
         }
 
         QuadRenderable::~QuadRenderable()
@@ -248,7 +240,10 @@ namespace Mezzanine
             this->DestroyAllRenderLayerGroups();
             this->DestroyAllRenderLayers();
             this->SetLocalVertexCaching(false);
-            delete this->LayoutStrat;
+            if( this->LayoutStrat != NULL ) {
+                delete this->LayoutStrat;
+                this->LayoutStrat = NULL;
+            }
         }
 
         void QuadRenderable::ProtoSerializeImpl(XML::Node& SelfRoot) const
@@ -266,11 +261,6 @@ namespace Mezzanine
             this->ProtoDeSerializeProperties(SelfRoot);
         }
 
-        void QuadRenderable::CreateLayoutStrat()
-        {
-            this->LayoutStrat = new LayoutStrategy();
-        }
-
         void QuadRenderable::AppendLayerVertices(std::vector<VertexData>& Vertices)
         {
             if( this->ActiveGroup == NULL )
@@ -281,22 +271,9 @@ namespace Mezzanine
             }
         }
 
-        void QuadRenderable::CleanLayers()
-        {
-            if( this->Dirty || this->AllLayersDirty )
-            {
-                for( RenderLayerIterator It = this->RenderLayers.begin() ; It != this->RenderLayers.end() ; ++It )
-                {
-                    (*It)->_Redraw(AllLayersDirty);
-                }
-                this->Dirty = this->AllLayersDirty = false;
-            }
-        }
-
         void QuadRenderable::ResizeLayers(const Whole NewSize)
         {
-            if( NewSize > this->RenderLayers.size() )
-            {
+            if( NewSize > this->RenderLayers.size() ) {
                 Whole Pow2 = 1;
                 while( Pow2 < NewSize )
                     Pow2 <<= 1;
@@ -438,40 +415,52 @@ namespace Mezzanine
             return this->SizingPolicy;
         }
 
-        void QuadRenderable::SetPositioningRules(const UI::PositioningFlags Rules)
+        void QuadRenderable::SetPositioningRules(const Whole Rules)
         {
             if( this->PositioningPolicy.PositionRules != Rules ) {
                 this->PositioningPolicy.PositionRules = Rules;
             }
         }
 
-        UI::PositioningFlags QuadRenderable::GetPositioningRules() const
+        Whole QuadRenderable::GetPositioningRules() const
         {
             return this->PositioningPolicy.PositionRules;
         }
 
-        void QuadRenderable::SetHorizontalSizingRules(const UI::SizingRules Rules)
+        void QuadRenderable::SetHorizontalSizingRules(const Whole Rules)
         {
             if( this->SizingPolicy.HorizontalRules != Rules ) {
                 this->SizingPolicy.HorizontalRules = Rules;
             }
         }
 
-        UI::SizingRules QuadRenderable::GetHorizontalSizingRules() const
+        Whole QuadRenderable::GetHorizontalSizingRules() const
         {
             return this->SizingPolicy.HorizontalRules;
         }
 
-        void QuadRenderable::SetVerticalSizingRules(const UI::SizingRules Rules)
+        void QuadRenderable::SetVerticalSizingRules(const Whole Rules)
         {
             if( this->SizingPolicy.VerticalRules != Rules ) {
                 this->SizingPolicy.VerticalRules = Rules;
             }
         }
 
-        UI::SizingRules QuadRenderable::GetVerticalSizingRules() const
+        Whole QuadRenderable::GetVerticalSizingRules() const
         {
             return this->SizingPolicy.VerticalRules;
+        }
+
+        void QuadRenderable::SetAspectRatioLock(const UI::AspectRatioLock Lock)
+        {
+            if( this->SizingPolicy.RatioLock != Lock ) {
+                this->SizingPolicy.RatioLock = Lock;
+            }
+        }
+
+        UI::AspectRatioLock QuadRenderable::GetAspectRationLock() const
+        {
+            return this->SizingPolicy.RatioLock;
         }
 
         void QuadRenderable::SetMinSize(const UnifiedVec2& Min)
@@ -521,6 +510,27 @@ namespace Mezzanine
         {
             ImageLayer* NewLayer = this->CreateImageLayer();
             this->AddLayerToGroups(NewLayer,Entrys);
+            return NewLayer;
+        }
+
+        ImageLayer* QuadRenderable::CreateImageLayer(const String& SpriteName)
+        {
+            ImageLayer* NewLayer = this->CreateImageLayer();
+            NewLayer->SetSprite(SpriteName);
+            return NewLayer;
+        }
+
+        ImageLayer* QuadRenderable::CreateImageLayer(const String& SpriteName, const UInt16 ZOrder, const String& GroupName)
+        {
+            ImageLayer* NewLayer = this->CreateImageLayer(ZOrder,GroupName);
+            NewLayer->SetSprite(SpriteName);
+            return NewLayer;
+        }
+
+        ImageLayer* QuadRenderable::CreateImageLayer(const String& SpriteName, const GroupOrderEntryVector& Entrys)
+        {
+            ImageLayer* NewLayer = this->CreateImageLayer(Entrys);
+            NewLayer->SetSprite(SpriteName);
             return NewLayer;
         }
 
@@ -664,6 +674,21 @@ namespace Mezzanine
 
         RenderLayer* QuadRenderable::GetRenderLayer(const UInt32& Index) const
             { return this->RenderLayers.at(Index); }
+
+        RenderLayer* QuadRenderable::GetRenderLayer(const Whole Which, const UI::RenderLayerType Type)
+        {
+            Whole Num = 0;
+            for( RenderLayerIterator RendIt = this->RenderLayers.begin() ; RendIt != this->RenderLayers.end() ; ++RendIt )
+            {
+                if( (*RendIt)->GetLayerType() == Type ) {
+                    if( Num == Which ) {
+                        return (*RendIt);
+                    }
+                    ++Num;
+                }
+            }
+            return NULL;
+        }
 
         UInt32 QuadRenderable::GetNumRenderLayers() const
             { return this->RenderLayers.size(); }
@@ -871,12 +896,14 @@ namespace Mezzanine
             {
                 if( (*It)->GetZOrder() > Zorder ) {
                     this->ChildWidgets.insert(It,Child);
+                    Child->SetVisible( this->GetVisible() );
                     Child->_NotifyParenthood(this);
                     Child->_MarkAllChildrenDirty();
                     return;
                 }
             }
             this->ChildWidgets.push_back(Child);
+            Child->SetVisible( this->GetVisible() );
             Child->_NotifyParenthood(this);
             Child->_MarkAllChildrenDirty();
         }
@@ -1321,26 +1348,36 @@ namespace Mezzanine
         }
 
         String QuadRenderable::GetDerivedSerializableName() const
-        {
-            return QuadRenderable::GetSerializableName();
-        }
+            { return QuadRenderable::GetSerializableName(); }
 
         String QuadRenderable::GetSerializableName()
-        {
-            return "QuadRenderable";
-        }
+            { return "QuadRenderable"; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
         void QuadRenderable::_SetZOrder(const UInt16& Zorder)
-        {
-            this->ZOrder = Zorder;
-        }
+            { this->ZOrder = Zorder; }
 
         void QuadRenderable::_NotifyParenthood(QuadRenderable* NewParent)
+            { this->ParentQuad = NewParent; }
+
+        void QuadRenderable::_SetLayoutStrat(LayoutStrategy* ToSet)
         {
-            this->ParentQuad = NewParent;
+            if( this->LayoutStrat != NULL ) {
+                delete this->LayoutStrat;
+            }
+            this->LayoutStrat = ToSet;
+        }
+
+        void QuadRenderable::_Clean()
+        {
+            if( this->Dirty || this->AllLayersDirty ) {
+                for( RenderLayerIterator LayerIt = this->RenderLayers.begin() ; LayerIt != this->RenderLayers.end() ; ++LayerIt )
+                    { (*LayerIt)->_Redraw(this->AllLayersDirty); }
+
+                this->Dirty = this->AllLayersDirty = false;
+            }
         }
 
         void QuadRenderable::_MarkDirty()
@@ -1357,10 +1394,7 @@ namespace Mezzanine
         {
             this->_MarkDirty();
             for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-            {
-                (*It)->_MarkDirty();
-                (*It)->_MarkAllChildrenDirty();
-            }
+                { (*It)->_MarkAllChildrenDirty(); }
         }
 
         void QuadRenderable::_MarkAllLayersDirty()
@@ -1375,8 +1409,8 @@ namespace Mezzanine
 
         void QuadRenderable::_AppendRenderData(ScreenRenderData& RenderData)
         {
+            this->_Clean();
             if( this->GetVisible() ) {
-                this->CleanLayers();
                 this->AppendLayerVertices(RenderData.Vertices);
             }
         }
@@ -1388,27 +1422,14 @@ namespace Mezzanine
                     this->VertexCache->Clear();
                     this->_AppendRenderData(*VertexCache);
                     for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
-                    {
-                        if( (*ChildIt)->_HasAvailableRenderData() ) {
-                            (*ChildIt)->_AppendRenderDataCascading(*VertexCache);
-                        }
-                    }
+                        { (*ChildIt)->_AppendRenderDataCascading(*VertexCache); }
                 }
                 RenderData.Append(*VertexCache);
             }else{
                 this->_AppendRenderData(RenderData);
-                for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-                {
-                    if( (*It)->_HasAvailableRenderData() ) {
-                        (*It)->_AppendRenderDataCascading(RenderData);
-                    }
-                }
+                for( ChildIterator ChildIt = this->ChildWidgets.begin() ; ChildIt != this->ChildWidgets.end() ; ++ChildIt )
+                    { (*ChildIt)->_AppendRenderDataCascading(RenderData); }
             }
-        }
-
-        Boolean QuadRenderable::_HasAvailableRenderData() const
-        {
-            return this->Visible;
         }
     }//UI
 }//Mezzanine

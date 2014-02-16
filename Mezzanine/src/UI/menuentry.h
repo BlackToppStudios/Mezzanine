@@ -138,12 +138,17 @@ namespace Mezzanine
             /// @brief Gets whether or not this is the Root of the MenuEntry hierarchy.
             /// @return Returns true if this MenuEntry has no parent entry, false otherwise.
             virtual Boolean IsRootEntry() const;
+            /// @brief Gets whether or not this MenuEntry is at the top of the menu stack.
+            /// @return Returns true if this MenuEntry is the most recently pushed Entry of the entries related to it, false otherwise.
+            virtual Boolean IsTopOfStack() const;
 
             /// @brief Finds a MenuEntry in the menu stack and hides all Entries above it in the menu stack.
             /// @note This can return zero if the provided entry isn't on the stack or if it is the last entry on the stack.
             /// @param RollBackTo A pointer to the MenuEntry to roll the menu stack back to.
             /// @return Returns the number of MenuEntrys that were hidden by this method.
             virtual Whole RollBackToEntry(MenuEntry* RollBackTo);
+            /// @brief Forces the root entry to push itself onto the stack.  Useful for always visible root entries.
+            virtual void ForceRootEntryVisible();
 
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
@@ -225,8 +230,6 @@ namespace Mezzanine
             virtual void _NotifyButtonSelected(StackButton* Selected);
             /// @copydoc QuadRenderable::_NotifyParenthood(QuadRenderable*)
             virtual void _NotifyParenthood(QuadRenderable* NewParent);
-            /// @copydoc QuadRenderable::_HasAvailableRenderData() const
-            virtual Boolean _HasAvailableRenderData() const;
         };//MenuEntry
 
         ///////////////////////////////////////////////////////////////////////////////

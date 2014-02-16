@@ -151,9 +151,15 @@ Public Member Functions</h2></td></tr>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a34c7eb5791a3e84473491f56cf139e7b">Hide</a> ()=0</td></tr>
 <tr class="memdesc:a34c7eb5791a3e84473491f56cf139e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this renderable to hide. <br/></td></tr>
 <tr class="separator:a34c7eb5791a3e84473491f56cf139e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25dd8bf03c81d90e122a65202d5b35fa"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a25dd8bf03c81d90e122a65202d5b35fa">IsScreen</a> () const </td></tr>
+<tr class="memdesc:a25dd8bf03c81d90e122a65202d5b35fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a>.  <a href="#a25dd8bf03c81d90e122a65202d5b35fa">More...</a><br/></td></tr>
+<tr class="separator:a25dd8bf03c81d90e122a65202d5b35fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af480d7a1c5384a0470941f63f878b555"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#af480d7a1c5384a0470941f63f878b555">IsVisible</a> () const =0</td></tr>
 <tr class="memdesc:af480d7a1c5384a0470941f63f878b555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is being drawn.  <a href="#af480d7a1c5384a0470941f63f878b555">More...</a><br/></td></tr>
 <tr class="separator:af480d7a1c5384a0470941f63f878b555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1343f82ce980f27069850e245c3a866"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#af1343f82ce980f27069850e245c3a866">IsWidget</a> () const </td></tr>
+<tr class="memdesc:af1343f82ce980f27069850e245c3a866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. ">Widget</a>.  <a href="#af1343f82ce980f27069850e245c3a866">More...</a><br/></td></tr>
+<tr class="separator:af1343f82ce980f27069850e245c3a866"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9411ee4f32045b6ac95b63f94a0552a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#ad9411ee4f32045b6ac95b63f94a0552a">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
 <tr class="memdesc:ad9411ee4f32045b6ac95b63f94a0552a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> <a class="el" href="classMezzanine_1_1Node.html">Node</a> and overwrite this object with it.  <a href="#ad9411ee4f32045b6ac95b63f94a0552a">More...</a><br/></td></tr>
 <tr class="separator:ad9411ee4f32045b6ac95b63f94a0552a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -356,7 +362,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 <p>Gets whether or not this renderable is dirty. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this renderable is dirty, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00143">143</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00149">149</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -414,7 +420,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a415210bc7eee148f590321f314e56171">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a9d7933e465886909cfc7a449c80080b4">Mezzanine::UI::Screen</a>, and <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a2da051242044eacc436e98923c961938">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00134">134</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00140">140</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -510,7 +516,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 <p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> tag the <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy. ">Renderable</a> class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing the name of this class. </dd></dl>
 
-<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00137">137</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00143">143</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -538,7 +544,27 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 <p>Gets the visibility setting of this renderable. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a bool that is the current visibility setting of this renderable. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a1a1be80325ec10c3ea997b0380aabe24">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#afaac487bfd3de4776d151d83be921e86">Mezzanine::UI::Widget</a>, and <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#ab7c3aaa4612e0a0bf9a705eaedb66b68">Mezzanine::UI::LineList</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a1a1be80325ec10c3ea997b0380aabe24">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#afaac487bfd3de4776d151d83be921e86">Mezzanine::UI::Widget</a>, and <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a66c336bfe264aec1258b0868c75b0406">Mezzanine::UI::LineList</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a25dd8bf03c81d90e122a65202d5b35fa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Boolean Mezzanine::UI::Renderable::IsScreen </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets whether or not this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a>, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00086">86</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -567,7 +593,27 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 <p>This function will check the visibility of all parent objects to see if it is being drawn. This will not tell you whether or not this renderable has it's own visibility setting enabled. For that see: <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a2c3d2796f0cdedd4dee0b742d7ca5418" title="Gets the visibility setting of this renderable. ">GetVisible()</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a bool representing the visibility of this renderable. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#ab0b98cc3b2799a54429b5a85c3b67c9f">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ac1dd8ee7c3403a740e5d86ff8152a56f">Mezzanine::UI::Widget</a>, and <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a18707c6526018975fc32829a56253570">Mezzanine::UI::LineList</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#ab0b98cc3b2799a54429b5a85c3b67c9f">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ac1dd8ee7c3403a740e5d86ff8152a56f">Mezzanine::UI::Widget</a>, and <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#aff31754583d869da2dcd4feefdeba8c5">Mezzanine::UI::LineList</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af1343f82ce980f27069850e245c3a866"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Boolean Mezzanine::UI::Renderable::IsWidget </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets whether or not this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. ">Widget</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. ">Widget</a>, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00083">83</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -603,7 +649,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a9575572419001047dd69ee19b41bc54e">Mezzanine::UI::QuadRenderable</a>.</p>
 
-<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00107">107</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00113">113</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -637,7 +683,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a23b0e87cdbf1fff29ba663ffbcb9f430">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a44366c907886f1ec5f10bcd88a20c0a9">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a6f51117f8a3e43fea891a960419c38da">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a1f1541aa21f8eb786dc43a2f3de411d2">Mezzanine::UI::PagedContainer</a>, and <a class="el" href="classMezzanine_1_1UI_1_1PageProvider.html#aa225a9ca5b925d7c54b2f5d9b54d47fe">Mezzanine::UI::PageProvider</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a23b0e87cdbf1fff29ba663ffbcb9f430">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a44366c907886f1ec5f10bcd88a20c0a9">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a6f51117f8a3e43fea891a960419c38da">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a1f1541aa21f8eb786dc43a2f3de411d2">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#addc865661782bfd9f205ddecbdcc5d2b">Mezzanine::UI::TabSet</a>, and <a class="el" href="classMezzanine_1_1UI_1_1PageProvider.html#aa225a9ca5b925d7c54b2f5d9b54d47fe">Mezzanine::UI::PageProvider</a>.</p>
 
 <p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00071">71</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
@@ -673,9 +719,9 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a3bc5531a5b48f72adc68a67bb678d607">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a218ff11907f2d9e48b29db8669cc5149">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ad5034dac942649e6707b1f3773ce74d9">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a223fca97b2c251e202ffcca335427556">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a30f0ed3ff0204e54f5c7dd9e909daa7a">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Scrollbar.html#a590b0988fc3b1fa26b0c5343e8283747">Mezzanine::UI::Scrollbar</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#adf82e393154c01d8bfd6baf360be0800">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#ab66b2f6ff985c867c0449231b33bc6a9">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1LinearContainer.html#a8a0caf2be2b8e89acf551ea31f1cc7bc">Mezzanine::UI::LinearContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1CheckBox.html#a73cf39ac71bbfdae44c6177954565404">Mezzanine::UI::CheckBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a57a9b1c3db30867221c35f9caef6e4a7">Mezzanine::UI::ListBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalContainer.html#ac51182ca0b3a1937c2cd1f8640f7cf98">Mezzanine::UI::HorizontalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1VerticalContainer.html#aeca887942a075f050eb0267c7253ad6a">Mezzanine::UI::VerticalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1LayoutContainer.html#a375fb5ffade5ba359a94528265ed0a68">Mezzanine::UI::LayoutContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuButton.html#a23fab6fdbd02555cb9b690daa7751ed6">Mezzanine::UI::MenuButton</a>, and <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a9bb5ff02a41e40d1756461d514582544">Mezzanine::UI::StackedContainer</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a3bc5531a5b48f72adc68a67bb678d607">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a218ff11907f2d9e48b29db8669cc5149">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a57a9b1c3db30867221c35f9caef6e4a7">Mezzanine::UI::ListBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ad5034dac942649e6707b1f3773ce74d9">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a223fca97b2c251e202ffcca335427556">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1Spinner.html#a3cb6637dbbc4c80038a3bae251109cb0">Mezzanine::UI::Spinner</a>, <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a30f0ed3ff0204e54f5c7dd9e909daa7a">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Scrollbar.html#a590b0988fc3b1fa26b0c5343e8283747">Mezzanine::UI::Scrollbar</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#adf82e393154c01d8bfd6baf360be0800">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#ab66b2f6ff985c867c0449231b33bc6a9">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1EditBox.html#a99ea8de8d205c12c37628daf66455016">Mezzanine::UI::EditBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1DropDownList.html#aa0f12a47421e1380e5c46edf021e6f22">Mezzanine::UI::DropDownList</a>, <a class="el" href="classMezzanine_1_1UI_1_1LinearContainer.html#a8a0caf2be2b8e89acf551ea31f1cc7bc">Mezzanine::UI::LinearContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#ab913f7c9009dc7a994116a9bbe711031">Mezzanine::UI::TabSet</a>, <a class="el" href="classMezzanine_1_1UI_1_1CheckBox.html#a73cf39ac71bbfdae44c6177954565404">Mezzanine::UI::CheckBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalContainer.html#ac51182ca0b3a1937c2cd1f8640f7cf98">Mezzanine::UI::HorizontalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1VerticalContainer.html#aeca887942a075f050eb0267c7253ad6a">Mezzanine::UI::VerticalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1LayoutContainer.html#a375fb5ffade5ba359a94528265ed0a68">Mezzanine::UI::LayoutContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a9bb5ff02a41e40d1756461d514582544">Mezzanine::UI::StackedContainer</a>, and <a class="el" href="classMezzanine_1_1UI_1_1StackButton.html#aeb1c397e954932b20c11fe8800ae7948">Mezzanine::UI::StackButton</a>.</p>
 
-<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00112">112</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00118">118</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -711,7 +757,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a5c439974b17a3cabc9fb92fcc5f0c6ab">Mezzanine::UI::QuadRenderable</a>.</p>
 
-<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00086">86</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00092">92</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -745,7 +791,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a8c712c0841d87ac1877138aea882389e">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a6b9380b1c2090865fd3a5d5594db2de5">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a3980086ff183d72e3cd4d167a09e2541">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ae7953f187e73262870356b75cb8c8eee">Mezzanine::UI::PagedContainer</a>, and <a class="el" href="classMezzanine_1_1UI_1_1PageProvider.html#a4cb25ab0e632d4de8da93cc4c23c11b9">Mezzanine::UI::PageProvider</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a8c712c0841d87ac1877138aea882389e">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a6b9380b1c2090865fd3a5d5594db2de5">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a3980086ff183d72e3cd4d167a09e2541">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ae7953f187e73262870356b75cb8c8eee">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a4afe84426556c5c022820c0441941674">Mezzanine::UI::TabSet</a>, and <a class="el" href="classMezzanine_1_1UI_1_1PageProvider.html#a4cb25ab0e632d4de8da93cc4c23c11b9">Mezzanine::UI::PageProvider</a>.</p>
 
 <p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00068">68</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
@@ -781,9 +827,9 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#ae4f401cfb744ce06ba13e0b11aae2d84">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a31fed01ddf5da7b13bad59c24c7a650c">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#adb35852881cdcf4c7721fdd6f5e93d54">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ac002c0fe9a2e567c36bc1c94278d36f1">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1Button.html#ac3e8ac5096ce45b9d398f3ab3ffc9697">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Scrollbar.html#ab8009458db83e50a6079b5516016e72a">Mezzanine::UI::Scrollbar</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#aff730645125ba5b71a1338cacd383390">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a9b3f52a54dbc3cc31c77fc7219448d41">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1LinearContainer.html#afed672bea8b4ac6e6870de4d2191617f">Mezzanine::UI::LinearContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1CheckBox.html#af6cb134b27c8fbea93bccab8d4d07990">Mezzanine::UI::CheckBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a47bba138ac182a5036c0d63dcb4b4f73">Mezzanine::UI::ListBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalContainer.html#aa7d54d3afcc4c49de48782ec067c1aad">Mezzanine::UI::HorizontalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1VerticalContainer.html#a06c359773d7011b3652d981930708e67">Mezzanine::UI::VerticalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1LayoutContainer.html#a1948c25a7d57f27320d7e91471278330">Mezzanine::UI::LayoutContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuButton.html#acb8efc5fb1a06991dbc4783cb150dcfe">Mezzanine::UI::MenuButton</a>, and <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a0fd4de65833ee2000477308d37c39fe5">Mezzanine::UI::StackedContainer</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#ae4f401cfb744ce06ba13e0b11aae2d84">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a31fed01ddf5da7b13bad59c24c7a650c">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a47bba138ac182a5036c0d63dcb4b4f73">Mezzanine::UI::ListBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#adb35852881cdcf4c7721fdd6f5e93d54">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ac002c0fe9a2e567c36bc1c94278d36f1">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1Spinner.html#a24570671c8de9799750940ffa674d13d">Mezzanine::UI::Spinner</a>, <a class="el" href="classMezzanine_1_1UI_1_1Button.html#ac3e8ac5096ce45b9d398f3ab3ffc9697">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Scrollbar.html#ab8009458db83e50a6079b5516016e72a">Mezzanine::UI::Scrollbar</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#aff730645125ba5b71a1338cacd383390">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a9b3f52a54dbc3cc31c77fc7219448d41">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1EditBox.html#ae1fd651a3478fa3a15f582cdc985c4dc">Mezzanine::UI::EditBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1DropDownList.html#ad7f82ca04a79fa2e0f5bfac1fa55b309">Mezzanine::UI::DropDownList</a>, <a class="el" href="classMezzanine_1_1UI_1_1LinearContainer.html#afed672bea8b4ac6e6870de4d2191617f">Mezzanine::UI::LinearContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a0deaddc581a7b75df381c211ceb7d968">Mezzanine::UI::TabSet</a>, <a class="el" href="classMezzanine_1_1UI_1_1CheckBox.html#af6cb134b27c8fbea93bccab8d4d07990">Mezzanine::UI::CheckBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalContainer.html#aa7d54d3afcc4c49de48782ec067c1aad">Mezzanine::UI::HorizontalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1VerticalContainer.html#a06c359773d7011b3652d981930708e67">Mezzanine::UI::VerticalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1LayoutContainer.html#a1948c25a7d57f27320d7e91471278330">Mezzanine::UI::LayoutContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a0fd4de65833ee2000477308d37c39fe5">Mezzanine::UI::StackedContainer</a>, and <a class="el" href="classMezzanine_1_1UI_1_1StackButton.html#a103effccdeb69265cf4c0f3091c0a6fc">Mezzanine::UI::StackButton</a>.</p>
 
-<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00093">93</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00099">99</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -812,12 +858,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 <p>Sets the visibility of this renderable. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CanSee</td><td>Bool determining whether or not this renderable should be visible. </td></tr>
+    <tr><td class="paramname">CanSee</td><td>Boolean determining whether or not this renderable should be visible. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a3f1baded39d9aca136003934701d1796">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a292248a312427b1bb2058b7639246a2b">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#ab96f1ad5ba4865c7af400bea59da482b">Mezzanine::UI::MenuEntry</a>, and <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#aae704b45e04e982d66f124466686d10d">Mezzanine::UI::LineList</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a3f1baded39d9aca136003934701d1796">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a292248a312427b1bb2058b7639246a2b">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#ab96f1ad5ba4865c7af400bea59da482b">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a5891e4d34d86851b006a434ca1e775bd">Mezzanine::UI::LineList</a>, <a class="el" href="classMezzanine_1_1UI_1_1DropDownList.html#a7ff9e8c141a59a1b69dfeb34d947916e">Mezzanine::UI::DropDownList</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalScrollbar.html#a148fbe12cb5cb4fc8dfb82da9833d86f">Mezzanine::UI::HorizontalScrollbar</a>, <a class="el" href="classMezzanine_1_1UI_1_1VerticalScrollbar.html#a14276038d1fd774768c8b8b5bc2a6289">Mezzanine::UI::VerticalScrollbar</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a14fc010495b8cdb14a80646048045999">Mezzanine::UI::TabSet</a>.</p>
 
 </div>
 </div>
@@ -924,6 +970,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:31 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

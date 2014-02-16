@@ -63,23 +63,25 @@ namespace Mezzanine
     class EventManager; //forward declaration so we can use this in our << and >> operators
 }
 
-/// @brief Serializes the passed Mezzanine::EventManager to XML
-/// @param stream The ostream to send the xml to.
-/// @param Mgr the Mezzanine::EventManager to be serialized
-/// @return this returns the ostream, now with the serialized data
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::EventManager& Mgr);
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
+    /// @brief Serializes the passed Mezzanine::EventManager to XML
+    /// @param stream The ostream to send the xml to.
+    /// @param Mgr the Mezzanine::EventManager to be serialized
+    /// @return this returns the ostream, now with the serialized data
+    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::EventManager& Mgr);
 
-/// @brief Deserialize a Mezzanine::EventManager
-/// @param stream The istream to get the xml from to (re)make the Mezzanine::EventManager.
-/// @param Mgr the Mezzanine::EventManager to be deserialized.
-/// @return this returns the ostream, advanced past the Mezzanine::EventManager that was recreated onto Ev.
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventManager& Mgr);
+    /// @brief Deserialize a Mezzanine::EventManager
+    /// @param stream The istream to get the xml from to (re)make the Mezzanine::EventManager.
+    /// @param Mgr the Mezzanine::EventManager to be deserialized.
+    /// @return this returns the ostream, advanced past the Mezzanine::EventManager that was recreated onto Ev.
+    std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventManager& Mgr);
 
-/// @brief Set all values of a Mezzanine::EventManager from parsed xml.
-/// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventManager.
-/// @param Mgr the Mezzanine::EventManager to be reset.
-/// @return This returns theXML::Node that was passed in.
-void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
+    /// @brief Set all values of a Mezzanine::EventManager from parsed xml.
+    /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventManager.
+    /// @param Mgr the Mezzanine::EventManager to be reset.
+    /// @return This returns theXML::Node that was passed in.
+    void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
+#endif // \!SWIG && LUA
 
 namespace Mezzanine
 {

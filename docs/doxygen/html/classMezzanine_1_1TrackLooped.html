@@ -85,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="classMezzanine_1_1TrackLooped-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -101,21 +102,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1TrackLooped__inherit__graph.svg" width="208" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1TrackLooped__inherit__graph.svg" width="208" height="150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Mezzanine::TrackLooped&lt; InterpolatorType &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1TrackLooped__coll__graph.svg" width="208" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1TrackLooped__coll__graph.svg" width="208" height="342"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a565995c13210020530cd7ba58eb36d5a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a565995c13210020530cd7ba58eb36d5a"></a>
 typedef std::vector<br class="typebreak"/>
-&lt; <a class="el" href="classMezzanine_1_1TrackBase.html#afd68cd25ffc9d841615dde0e30126b5c">InterpolatableType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a565995c13210020530cd7ba58eb36d5a">DataContainerType</a></td></tr>
+&lt; <a class="el" href="classMezzanine_1_1Track.html#aaad7f5e9eca481e596065a05de37547c">InterpolatableType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a565995c13210020530cd7ba58eb36d5a">DataContainerType</a></td></tr>
 <tr class="memdesc:a565995c13210020530cd7ba58eb36d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the Container storing the interpolatable data. This is a single point to change all the tracks. <br/></td></tr>
 <tr class="separator:a565995c13210020530cd7ba58eb36d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7538fe280688cb28264786f754125309"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7538fe280688cb28264786f754125309"></a>
@@ -125,136 +126,273 @@ InterpolatorType::InterpolatableType&#160;</td><td class="memItemRight" valign="
 <tr class="separator:a7538fe280688cb28264786f754125309"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4911496c841a9929c8cdb686cb9e1163"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4911496c841a9929c8cdb686cb9e1163"></a>
 typedef <a class="el" href="classMezzanine_1_1SmoothTrackIterator.html">SmoothTrackIterator</a><br class="typebreak"/>
-&lt; <a class="el" href="classMezzanine_1_1TrackBase.html#afd68cd25ffc9d841615dde0e30126b5c">InterpolatableType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a4911496c841a9929c8cdb686cb9e1163">SmoothIteratorType</a></td></tr>
+&lt; <a class="el" href="classMezzanine_1_1Track.html#aaad7f5e9eca481e596065a05de37547c">InterpolatableType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a4911496c841a9929c8cdb686cb9e1163">SmoothIteratorType</a></td></tr>
 <tr class="memdesc:a4911496c841a9929c8cdb686cb9e1163"><td class="mdescLeft">&#160;</td><td class="mdescRight">An iterator than can take an arbitrary amount of steps by interpolation. <br/></td></tr>
 <tr class="separator:a4911496c841a9929c8cdb686cb9e1163"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classMezzanine_1_1Track"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1Track')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1Track.html">Mezzanine::Track&lt; InterpolatorType &gt;</a></td></tr>
-<tr class="memitem:a5d5418e4a0b9ccc3960b150221801642 inherit pub_types_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d5418e4a0b9ccc3960b150221801642"></a>
-typedef std::vector<br class="typebreak"/>
-&lt; <a class="el" href="classMezzanine_1_1TrackBase.html#afd68cd25ffc9d841615dde0e30126b5c">InterpolatableType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a5d5418e4a0b9ccc3960b150221801642">DataContainerType</a></td></tr>
-<tr class="memdesc:a5d5418e4a0b9ccc3960b150221801642 inherit pub_types_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the Container storing the interpolatable data. This is a single point to change all the tracks. <br/></td></tr>
-<tr class="separator:a5d5418e4a0b9ccc3960b150221801642 inherit pub_types_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d7f595c43debe6db8270f4b321766ca inherit pub_types_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">typedef InterpolatorType::Storage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a6d7f595c43debe6db8270f4b321766ca">DataContainerType</a></td></tr>
+<tr class="memdesc:a6d7f595c43debe6db8270f4b321766ca inherit pub_types_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the internal container storing the interpolatable data. This is a single point to change all the tracks.  <a href="#a6d7f595c43debe6db8270f4b321766ca">More...</a><br/></td></tr>
+<tr class="separator:a6d7f595c43debe6db8270f4b321766ca inherit pub_types_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaad7f5e9eca481e596065a05de37547c inherit pub_types_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaad7f5e9eca481e596065a05de37547c"></a>
 typedef <br class="typebreak"/>
 InterpolatorType::InterpolatableType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#aaad7f5e9eca481e596065a05de37547c">InterpolatableType</a></td></tr>
 <tr class="memdesc:aaad7f5e9eca481e596065a05de37547c inherit pub_types_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type this class and the interpolator it uses works with. <br/></td></tr>
 <tr class="separator:aaad7f5e9eca481e596065a05de37547c inherit pub_types_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23d41c02a98ed75f06df9e5ba6d68677 inherit pub_types_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23d41c02a98ed75f06df9e5ba6d68677"></a>
-typedef <br class="typebreak"/>
-<a class="el" href="classMezzanine_1_1TrackBase.html#ae1b091fdba93e0d65ead7954b81b5b65">ParentType::SmoothIteratorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a23d41c02a98ed75f06df9e5ba6d68677">SmoothIteratorType</a></td></tr>
-<tr class="memdesc:a23d41c02a98ed75f06df9e5ba6d68677 inherit pub_types_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">An iterator than can take an arbitrary amount of steps by interpolation. <br/></td></tr>
-<tr class="separator:a23d41c02a98ed75f06df9e5ba6d68677 inherit pub_types_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_types_classMezzanine_1_1TrackBase"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classMezzanine_1_1TrackBase')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classMezzanine_1_1TrackBase.html">Mezzanine::TrackBase&lt; InterpolatorType &gt;</a></td></tr>
-<tr class="memitem:ab0e434c0e6236c50d13cadbee42a5906 inherit pub_types_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top">typedef InterpolatorType::Storage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#ab0e434c0e6236c50d13cadbee42a5906">DataContainerType</a></td></tr>
-<tr class="memdesc:ab0e434c0e6236c50d13cadbee42a5906 inherit pub_types_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the internal container storing the interpolatable data. This is a single point to change all the tracks.  <a href="#ab0e434c0e6236c50d13cadbee42a5906">More...</a><br/></td></tr>
-<tr class="separator:ab0e434c0e6236c50d13cadbee42a5906 inherit pub_types_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd68cd25ffc9d841615dde0e30126b5c inherit pub_types_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd68cd25ffc9d841615dde0e30126b5c"></a>
-typedef <br class="typebreak"/>
-InterpolatorType::InterpolatableType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#afd68cd25ffc9d841615dde0e30126b5c">InterpolatableType</a></td></tr>
-<tr class="memdesc:afd68cd25ffc9d841615dde0e30126b5c inherit pub_types_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type this class and the interpolator it uses works with. <br/></td></tr>
-<tr class="separator:afd68cd25ffc9d841615dde0e30126b5c inherit pub_types_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1b091fdba93e0d65ead7954b81b5b65 inherit pub_types_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1b091fdba93e0d65ead7954b81b5b65"></a>
+<tr class="memitem:a7c661268e0244cd460e3b663e6a15b72 inherit pub_types_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c661268e0244cd460e3b663e6a15b72"></a>
 typedef <a class="el" href="classMezzanine_1_1SmoothTrackIterator.html">SmoothTrackIterator</a><br class="typebreak"/>
-&lt; InterpolatorType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#ae1b091fdba93e0d65ead7954b81b5b65">SmoothIteratorType</a></td></tr>
-<tr class="memdesc:ae1b091fdba93e0d65ead7954b81b5b65 inherit pub_types_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">An iterator than can take an arbitrary amount of steps by interpolation. <br/></td></tr>
-<tr class="separator:ae1b091fdba93e0d65ead7954b81b5b65 inherit pub_types_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+&lt; InterpolatorType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a7c661268e0244cd460e3b663e6a15b72">SmoothIteratorType</a></td></tr>
+<tr class="memdesc:a7c661268e0244cd460e3b663e6a15b72 inherit pub_types_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">An iterator than can take an arbitrary amount of steps by interpolation. <br/></td></tr>
+<tr class="separator:a7c661268e0244cd460e3b663e6a15b72 inherit pub_types_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9eae34fec8b5719fd76530ab5247e190"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9eae34fec8b5719fd76530ab5247e190"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TrackLooped</b> (typename DataContainerType::iterator <a class="el" href="classMezzanine_1_1TrackBase.html#a0872e3894ea785cf062ff1f1c6e96dd5">Begin</a>, typename DataContainerType::iterator <a class="el" href="classMezzanine_1_1TrackBase.html#adbf6a3ca8d181251b31ed88757a0a8d7">End</a>)</td></tr>
+<tr class="memitem:a9eae34fec8b5719fd76530ab5247e190"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a9eae34fec8b5719fd76530ab5247e190">TrackLooped</a> (typename DataContainerType::iterator <a class="el" href="classMezzanine_1_1Track.html#aa1b7bf43fe32490edd8d6d66326b851f">Begin</a>, typename DataContainerType::iterator <a class="el" href="classMezzanine_1_1Track.html#a2840881ead2d6b21c5b5de6966023fbf">End</a>)</td></tr>
+<tr class="memdesc:a9eae34fec8b5719fd76530ab5247e190"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="classMezzanine_1_1Track.html" title="A base type that provides container features for different tracks. ">Track</a> from a range of data points, and enforce its being a loop.  <a href="#a9eae34fec8b5719fd76530ab5247e190">More...</a><br/></td></tr>
 <tr class="separator:a9eae34fec8b5719fd76530ab5247e190"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f3026713e3642125dbe4dfe67ff9000"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f3026713e3642125dbe4dfe67ff9000"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TrackLooped</b> (const <a class="el" href="classMezzanine_1_1TrackBase.html#ab0e434c0e6236c50d13cadbee42a5906">DataContainerType</a> &amp;DataSet)</td></tr>
+<tr class="memitem:a3f3026713e3642125dbe4dfe67ff9000"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a3f3026713e3642125dbe4dfe67ff9000">TrackLooped</a> (const <a class="el" href="classMezzanine_1_1Track.html#a6d7f595c43debe6db8270f4b321766ca">DataContainerType</a> &amp;DataSet)</td></tr>
+<tr class="memdesc:a3f3026713e3642125dbe4dfe67ff9000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a track from a DataContainerType instance, likely a vector and copy the data from it, and enforce it being a loop.  <a href="#a3f3026713e3642125dbe4dfe67ff9000">More...</a><br/></td></tr>
 <tr class="separator:a3f3026713e3642125dbe4dfe67ff9000"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8012f26e53921a0e7b1ad62212fd53fb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a8012f26e53921a0e7b1ad62212fd53fb">push_back</a> (const <a class="el" href="classMezzanine_1_1TrackBase.html#afd68cd25ffc9d841615dde0e30126b5c">InterpolatableType</a> &amp;AddedValue)</td></tr>
-<tr class="memdesc:a8012f26e53921a0e7b1ad62212fd53fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add another data point to the end of the track.  <a href="#a8012f26e53921a0e7b1ad62212fd53fb">More...</a><br/></td></tr>
+<tr class="memitem:af6b1fa1d25c46a80e22c52d2dc5a6910"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6b1fa1d25c46a80e22c52d2dc5a6910"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#af6b1fa1d25c46a80e22c52d2dc5a6910">TrackLooped</a> ()</td></tr>
+<tr class="memdesc:af6b1fa1d25c46a80e22c52d2dc5a6910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a default empty looped track. <br/></td></tr>
+<tr class="separator:af6b1fa1d25c46a80e22c52d2dc5a6910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a605d1b2d5136989479ff21e81e5fda80"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a605d1b2d5136989479ff21e81e5fda80"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a605d1b2d5136989479ff21e81e5fda80">~TrackLooped</a> ()</td></tr>
+<tr class="memdesc:a605d1b2d5136989479ff21e81e5fda80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual Deconstructor. <br/></td></tr>
+<tr class="separator:a605d1b2d5136989479ff21e81e5fda80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c85cd60df6bff9176c9bcfaf8c9294b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a3c85cd60df6bff9176c9bcfaf8c9294b">DerivedSerializableName</a> () const </td></tr>
+<tr class="separator:a3c85cd60df6bff9176c9bcfaf8c9294b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a780e74afe84e4f258590a9f908464553"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a780e74afe84e4f258590a9f908464553"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a780e74afe84e4f258590a9f908464553">EnforceLoop</a> ()</td></tr>
+<tr class="memdesc:a780e74afe84e4f258590a9f908464553"><td class="mdescLeft">&#160;</td><td class="mdescRight">If this track has more than one datapoint, does the first match the last, if not fix it. <br/></td></tr>
+<tr class="separator:a780e74afe84e4f258590a9f908464553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8012f26e53921a0e7b1ad62212fd53fb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a8012f26e53921a0e7b1ad62212fd53fb">push_back</a> (const <a class="el" href="classMezzanine_1_1Track.html#aaad7f5e9eca481e596065a05de37547c">InterpolatableType</a> &amp;AddedValue)</td></tr>
+<tr class="memdesc:a8012f26e53921a0e7b1ad62212fd53fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add another data point, and preserve the track's loopwhile doing so.  <a href="#a8012f26e53921a0e7b1ad62212fd53fb">More...</a><br/></td></tr>
 <tr class="separator:a8012f26e53921a0e7b1ad62212fd53fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1Track"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1Track')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Track.html">Mezzanine::Track&lt; InterpolatorType &gt;</a></td></tr>
-<tr class="memitem:aa9beb1a4559c45ba9bcbcab40dbcd68b inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9beb1a4559c45ba9bcbcab40dbcd68b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Track</b> (typename DataContainerType::iterator <a class="el" href="classMezzanine_1_1TrackBase.html#a0872e3894ea785cf062ff1f1c6e96dd5">Begin</a>, typename DataContainerType::iterator <a class="el" href="classMezzanine_1_1TrackBase.html#adbf6a3ca8d181251b31ed88757a0a8d7">End</a>)</td></tr>
+<tr class="memitem:aa9beb1a4559c45ba9bcbcab40dbcd68b inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#aa9beb1a4559c45ba9bcbcab40dbcd68b">Track</a> (typename DataContainerType::iterator <a class="el" href="classMezzanine_1_1Track.html#aa1b7bf43fe32490edd8d6d66326b851f">Begin</a>, typename DataContainerType::iterator <a class="el" href="classMezzanine_1_1Track.html#a2840881ead2d6b21c5b5de6966023fbf">End</a>)</td></tr>
+<tr class="memdesc:aa9beb1a4559c45ba9bcbcab40dbcd68b inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="classMezzanine_1_1Track.html" title="A base type that provides container features for different tracks. ">Track</a> from a range of data points.  <a href="#aa9beb1a4559c45ba9bcbcab40dbcd68b">More...</a><br/></td></tr>
 <tr class="separator:aa9beb1a4559c45ba9bcbcab40dbcd68b inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab397467f33227f88b3d5656cbe7d3f0d inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab397467f33227f88b3d5656cbe7d3f0d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Track</b> (const <a class="el" href="classMezzanine_1_1TrackBase.html#ab0e434c0e6236c50d13cadbee42a5906">DataContainerType</a> &amp;DataSet)</td></tr>
+<tr class="memitem:ab397467f33227f88b3d5656cbe7d3f0d inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#ab397467f33227f88b3d5656cbe7d3f0d">Track</a> (const <a class="el" href="classMezzanine_1_1Track.html#a6d7f595c43debe6db8270f4b321766ca">DataContainerType</a> &amp;DataSet)</td></tr>
+<tr class="memdesc:ab397467f33227f88b3d5656cbe7d3f0d inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a track from a DataContainerType instance, likely a vector and copthe data from it.  <a href="#ab397467f33227f88b3d5656cbe7d3f0d">More...</a><br/></td></tr>
 <tr class="separator:ab397467f33227f88b3d5656cbe7d3f0d inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab199f7d89932482f9552823a7bbdbf3f inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TrackBase.html#afd68cd25ffc9d841615dde0e30126b5c">InterpolatableType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#ab199f7d89932482f9552823a7bbdbf3f">GetInterpolated</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Percentage) const </td></tr>
-<tr class="memdesc:ab199f7d89932482f9552823a7bbdbf3f inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a value between the beginning and the end.  <a href="#ab199f7d89932482f9552823a7bbdbf3f">More...</a><br/></td></tr>
+<tr class="memitem:a42bd1dcae38a512f117e8e72cb175396 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42bd1dcae38a512f117e8e72cb175396"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a42bd1dcae38a512f117e8e72cb175396">Track</a> ()</td></tr>
+<tr class="memdesc:a42bd1dcae38a512f117e8e72cb175396 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a default empty track. <br/></td></tr>
+<tr class="separator:a42bd1dcae38a512f117e8e72cb175396 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00ecb029735e5b40f65357c80f7768c6 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00ecb029735e5b40f65357c80f7768c6"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a00ecb029735e5b40f65357c80f7768c6">~Track</a> ()</td></tr>
+<tr class="memdesc:a00ecb029735e5b40f65357c80f7768c6 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual Deconstructor. <br/></td></tr>
+<tr class="separator:a00ecb029735e5b40f65357c80f7768c6 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaebe224c1b67fbc20b122c31457876f6 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#aaebe224c1b67fbc20b122c31457876f6">Add</a> (const <a class="el" href="classMezzanine_1_1Track.html#aaad7f5e9eca481e596065a05de37547c">InterpolatableType</a> &amp;AddedValue)</td></tr>
+<tr class="memdesc:aaebe224c1b67fbc20b122c31457876f6 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add another data point to the end of the track.  <a href="#aaebe224c1b67fbc20b122c31457876f6">More...</a><br/></td></tr>
+<tr class="separator:aaebe224c1b67fbc20b122c31457876f6 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a488829770ba34f3e0699e18350481a1d inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Track.html#a7c661268e0244cd460e3b663e6a15b72">SmoothIteratorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a488829770ba34f3e0699e18350481a1d">begin</a> (<a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Steps=100) const </td></tr>
+<tr class="memdesc:a488829770ba34f3e0699e18350481a1d inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an Smooth iterator to the beginning of the track.  <a href="#a488829770ba34f3e0699e18350481a1d">More...</a><br/></td></tr>
+<tr class="separator:a488829770ba34f3e0699e18350481a1d inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b7bf43fe32490edd8d6d66326b851f inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Track.html#a7c661268e0244cd460e3b663e6a15b72">SmoothIteratorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#aa1b7bf43fe32490edd8d6d66326b851f">Begin</a> (<a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Steps=100) const </td></tr>
+<tr class="memdesc:aa1b7bf43fe32490edd8d6d66326b851f inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an Smooth iterator to the beginning of the track.  <a href="#aa1b7bf43fe32490edd8d6d66326b851f">More...</a><br/></td></tr>
+<tr class="separator:aa1b7bf43fe32490edd8d6d66326b851f inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c2af1a641fbb4c564e24496053d8c44 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c2af1a641fbb4c564e24496053d8c44"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a9c2af1a641fbb4c564e24496053d8c44">clear</a> ()</td></tr>
+<tr class="memdesc:a9c2af1a641fbb4c564e24496053d8c44 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all the points from the track. <br/></td></tr>
+<tr class="separator:a9c2af1a641fbb4c564e24496053d8c44 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6645b0c5d16101d48d31446976ccd9f inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#ad6645b0c5d16101d48d31446976ccd9f">Clear</a> ()</td></tr>
+<tr class="memdesc:ad6645b0c5d16101d48d31446976ccd9f inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all the points from the track.  <a href="#ad6645b0c5d16101d48d31446976ccd9f">More...</a><br/></td></tr>
+<tr class="separator:ad6645b0c5d16101d48d31446976ccd9f inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc6b73f7077358201e378627770f80ba inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Track.html#a7c661268e0244cd460e3b663e6a15b72">SmoothIteratorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#adc6b73f7077358201e378627770f80ba">end</a> (<a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Steps=0) const </td></tr>
+<tr class="memdesc:adc6b73f7077358201e378627770f80ba inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an Smooth iterator to the end (not one past) of the track.  <a href="#adc6b73f7077358201e378627770f80ba">More...</a><br/></td></tr>
+<tr class="separator:adc6b73f7077358201e378627770f80ba inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2840881ead2d6b21c5b5de6966023fbf inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Track.html#a7c661268e0244cd460e3b663e6a15b72">SmoothIteratorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a2840881ead2d6b21c5b5de6966023fbf">End</a> (<a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Steps=0) const </td></tr>
+<tr class="memdesc:a2840881ead2d6b21c5b5de6966023fbf inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an Smooth iterator to the end (not one past) of the track.  <a href="#a2840881ead2d6b21c5b5de6966023fbf">More...</a><br/></td></tr>
+<tr class="separator:a2840881ead2d6b21c5b5de6966023fbf inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab199f7d89932482f9552823a7bbdbf3f inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Track.html#aaad7f5e9eca481e596065a05de37547c">InterpolatableType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#ab199f7d89932482f9552823a7bbdbf3f">GetInterpolated</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Percentage) const </td></tr>
+<tr class="memdesc:ab199f7d89932482f9552823a7bbdbf3f inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a value from somewhere on the track with 0.0 being the beginning and 1.0 being the end.  <a href="#ab199f7d89932482f9552823a7bbdbf3f">More...</a><br/></td></tr>
 <tr class="separator:ab199f7d89932482f9552823a7bbdbf3f inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classMezzanine_1_1TrackBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1TrackBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1TrackBase.html">Mezzanine::TrackBase&lt; InterpolatorType &gt;</a></td></tr>
-<tr class="memitem:a3718a5aa0cc787b6e6883d0cf310cca7 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3718a5aa0cc787b6e6883d0cf310cca7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TrackBase</b> (typename DataContainerType::iterator <a class="el" href="classMezzanine_1_1TrackBase.html#a0872e3894ea785cf062ff1f1c6e96dd5">Begin</a>, typename DataContainerType::iterator <a class="el" href="classMezzanine_1_1TrackBase.html#adbf6a3ca8d181251b31ed88757a0a8d7">End</a>)</td></tr>
-<tr class="separator:a3718a5aa0cc787b6e6883d0cf310cca7 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a482fb798882b630a9ad89279afb6eb4a inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a482fb798882b630a9ad89279afb6eb4a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TrackBase</b> (const <a class="el" href="classMezzanine_1_1TrackBase.html#ab0e434c0e6236c50d13cadbee42a5906">DataContainerType</a> &amp;DataSet)</td></tr>
-<tr class="separator:a482fb798882b630a9ad89279afb6eb4a inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2904784c5feb94b11da48c92e62b6123 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#a2904784c5feb94b11da48c92e62b6123">Add</a> (const <a class="el" href="classMezzanine_1_1TrackBase.html#afd68cd25ffc9d841615dde0e30126b5c">InterpolatableType</a> &amp;AddedValue)</td></tr>
-<tr class="memdesc:a2904784c5feb94b11da48c92e62b6123 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add another data point to the end of the track.  <a href="#a2904784c5feb94b11da48c92e62b6123">More...</a><br/></td></tr>
-<tr class="separator:a2904784c5feb94b11da48c92e62b6123 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a597a36aa685e9178b0a58e9a3104b7f1 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TrackBase.html#ae1b091fdba93e0d65ead7954b81b5b65">SmoothIteratorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#a597a36aa685e9178b0a58e9a3104b7f1">begin</a> (<a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Steps=100) const </td></tr>
-<tr class="memdesc:a597a36aa685e9178b0a58e9a3104b7f1 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an Smooth iterator to the beginning of the track.  <a href="#a597a36aa685e9178b0a58e9a3104b7f1">More...</a><br/></td></tr>
-<tr class="separator:a597a36aa685e9178b0a58e9a3104b7f1 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0872e3894ea785cf062ff1f1c6e96dd5 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TrackBase.html#ae1b091fdba93e0d65ead7954b81b5b65">SmoothIteratorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#a0872e3894ea785cf062ff1f1c6e96dd5">Begin</a> (<a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Steps=100) const </td></tr>
-<tr class="memdesc:a0872e3894ea785cf062ff1f1c6e96dd5 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an Smooth iterator to the beginning of the track.  <a href="#a0872e3894ea785cf062ff1f1c6e96dd5">More...</a><br/></td></tr>
-<tr class="separator:a0872e3894ea785cf062ff1f1c6e96dd5 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53d478f2656b3b41b64a09a0cf9aff5c inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53d478f2656b3b41b64a09a0cf9aff5c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#a53d478f2656b3b41b64a09a0cf9aff5c">clear</a> ()</td></tr>
-<tr class="memdesc:a53d478f2656b3b41b64a09a0cf9aff5c inherit pub_methods_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all the points from the track. <br/></td></tr>
-<tr class="separator:a53d478f2656b3b41b64a09a0cf9aff5c inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1f8707005d2432b3f4ea97ff492558d inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#aa1f8707005d2432b3f4ea97ff492558d">Clear</a> ()</td></tr>
-<tr class="memdesc:aa1f8707005d2432b3f4ea97ff492558d inherit pub_methods_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all the points from the track.  <a href="#aa1f8707005d2432b3f4ea97ff492558d">More...</a><br/></td></tr>
-<tr class="separator:aa1f8707005d2432b3f4ea97ff492558d inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2c6904a3c9ad70be4408008b7953e6a inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TrackBase.html#ae1b091fdba93e0d65ead7954b81b5b65">SmoothIteratorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#af2c6904a3c9ad70be4408008b7953e6a">end</a> (<a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Steps=0) const </td></tr>
-<tr class="memdesc:af2c6904a3c9ad70be4408008b7953e6a inherit pub_methods_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an Smooth iterator to the end (not one past) of the track.  <a href="#af2c6904a3c9ad70be4408008b7953e6a">More...</a><br/></td></tr>
-<tr class="separator:af2c6904a3c9ad70be4408008b7953e6a inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbf6a3ca8d181251b31ed88757a0a8d7 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TrackBase.html#ae1b091fdba93e0d65ead7954b81b5b65">SmoothIteratorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#adbf6a3ca8d181251b31ed88757a0a8d7">End</a> (<a class="el" href="namespaceMezzanine.html#ac3576e52af3c62d13dde94829e0c5465">Integer</a> Steps=0) const </td></tr>
-<tr class="memdesc:adbf6a3ca8d181251b31ed88757a0a8d7 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an Smooth iterator to the end (not one past) of the track.  <a href="#adbf6a3ca8d181251b31ed88757a0a8d7">More...</a><br/></td></tr>
-<tr class="separator:adbf6a3ca8d181251b31ed88757a0a8d7 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58ba43338617177b409d9e4daf354bb9 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#a58ba43338617177b409d9e4daf354bb9">size</a> () const </td></tr>
-<tr class="memdesc:a58ba43338617177b409d9e4daf354bb9 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of stored DataPoints.  <a href="#a58ba43338617177b409d9e4daf354bb9">More...</a><br/></td></tr>
-<tr class="separator:a58ba43338617177b409d9e4daf354bb9 inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b83434a2d6bb180b8afc9756721100a inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#a6b83434a2d6bb180b8afc9756721100a">Size</a> () const </td></tr>
-<tr class="memdesc:a6b83434a2d6bb180b8afc9756721100a inherit pub_methods_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of stored DataPoints.  <a href="#a6b83434a2d6bb180b8afc9756721100a">More...</a><br/></td></tr>
-<tr class="separator:a6b83434a2d6bb180b8afc9756721100a inherit pub_methods_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b0e33eb97f4f52deed6e410ba769794 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a6b0e33eb97f4f52deed6e410ba769794">GetTrackName</a> () const </td></tr>
+<tr class="memdesc:a6b0e33eb97f4f52deed6e410ba769794 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the given name or generate a default name.  <a href="#a6b0e33eb97f4f52deed6e410ba769794">More...</a><br/></td></tr>
+<tr class="separator:a6b0e33eb97f4f52deed6e410ba769794 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c94bdbf5a692d669faf4c78c3019cb0 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a6c94bdbf5a692d669faf4c78c3019cb0">GetTrackName</a> ()</td></tr>
+<tr class="memdesc:a6c94bdbf5a692d669faf4c78c3019cb0 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is just like the const version of the function but it will set the name if unset and retrieve it.  <a href="#a6c94bdbf5a692d669faf4c78c3019cb0">More...</a><br/></td></tr>
+<tr class="separator:a6c94bdbf5a692d669faf4c78c3019cb0 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92bdc92845a56bd3b13c8116801c299a inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a92bdc92845a56bd3b13c8116801c299a">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
+<tr class="memdesc:a92bdc92845a56bd3b13c8116801c299a inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a node on an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> into a track.  <a href="#a92bdc92845a56bd3b13c8116801c299a">More...</a><br/></td></tr>
+<tr class="separator:a92bdc92845a56bd3b13c8116801c299a inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fe928ff022f66ebf6156af2334deca4 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a5fe928ff022f66ebf6156af2334deca4">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr class="memdesc:a5fe928ff022f66ebf6156af2334deca4 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this to a node on an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> graph.  <a href="#a5fe928ff022f66ebf6156af2334deca4">More...</a><br/></td></tr>
+<tr class="separator:a5fe928ff022f66ebf6156af2334deca4 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4528756ddaa1f75bd3e713ec1f0b6fb1 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a4528756ddaa1f75bd3e713ec1f0b6fb1">SetTrackName</a> (<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Name)</td></tr>
+<tr class="memdesc:a4528756ddaa1f75bd3e713ec1f0b6fb1 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the name for serialization.  <a href="#a4528756ddaa1f75bd3e713ec1f0b6fb1">More...</a><br/></td></tr>
+<tr class="separator:a4528756ddaa1f75bd3e713ec1f0b6fb1 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a913f0e6bb7e2c783c5d5e271334b6571 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a913f0e6bb7e2c783c5d5e271334b6571">SetTrackNameUnique</a> (<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Name=&quot;&quot;)</td></tr>
+<tr class="memdesc:a913f0e6bb7e2c783c5d5e271334b6571 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the name to something that serialization definitely will not duplicate.  <a href="#a913f0e6bb7e2c783c5d5e271334b6571">More...</a><br/></td></tr>
+<tr class="separator:a913f0e6bb7e2c783c5d5e271334b6571 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8903a583e776fc474a603d2163ed0615 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a8903a583e776fc474a603d2163ed0615">size</a> () const </td></tr>
+<tr class="memdesc:a8903a583e776fc474a603d2163ed0615 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of stored DataPoints.  <a href="#a8903a583e776fc474a603d2163ed0615">More...</a><br/></td></tr>
+<tr class="separator:a8903a583e776fc474a603d2163ed0615 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a906fa8e95be06fdf5255f6301c1530d2 inherit pub_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a906fa8e95be06fdf5255f6301c1530d2">Size</a> () const </td></tr>
+<tr class="memdesc:a906fa8e95be06fdf5255f6301c1530d2 inherit pub_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of stored DataPoints.  <a href="#a906fa8e95be06fdf5255f6301c1530d2">More...</a><br/></td></tr>
+<tr class="separator:a906fa8e95be06fdf5255f6301c1530d2 inherit pub_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab67b8c5edaa2b9f6b232839ce20051ec"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#ab67b8c5edaa2b9f6b232839ce20051ec">SerializableName</a> ()</td></tr>
+<tr class="memdesc:ab67b8c5edaa2b9f6b232839ce20051ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of this class "TrackLooped".  <a href="#ab67b8c5edaa2b9f6b232839ce20051ec">More...</a><br/></td></tr>
+<tr class="separator:ab67b8c5edaa2b9f6b232839ce20051ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classMezzanine_1_1Track"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMezzanine_1_1Track')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classMezzanine_1_1Track.html">Mezzanine::Track&lt; InterpolatorType &gt;</a></td></tr>
+<tr class="memitem:a115ca388afe6c8489ed984fc8dbd93d3 inherit pub_static_methods_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a115ca388afe6c8489ed984fc8dbd93d3">SerializableName</a> ()</td></tr>
+<tr class="memdesc:a115ca388afe6c8489ed984fc8dbd93d3 inherit pub_static_methods_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of this class "Track".  <a href="#a115ca388afe6c8489ed984fc8dbd93d3">More...</a><br/></td></tr>
+<tr class="separator:a115ca388afe6c8489ed984fc8dbd93d3 inherit pub_static_methods_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:a66e46c97b176090c3676640fc1531e3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66e46c97b176090c3676640fc1531e3d"></a>
-typedef <a class="el" href="classMezzanine_1_1TrackBase.html">TrackBase</a><br class="typebreak"/>
-&lt; InterpolatorType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a66e46c97b176090c3676640fc1531e3d">BaseType</a></td></tr>
-<tr class="memdesc:a66e46c97b176090c3676640fc1531e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The base most class of this type. <br/></td></tr>
-<tr class="separator:a66e46c97b176090c3676640fc1531e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5875aaae2bd78859e4886bb998cc3414"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5875aaae2bd78859e4886bb998cc3414"></a>
-typedef <a class="el" href="classMezzanine_1_1Track.html">Track</a>&lt; InterpolatorType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a5875aaae2bd78859e4886bb998cc3414">ParentType</a></td></tr>
-<tr class="memdesc:a5875aaae2bd78859e4886bb998cc3414"><td class="mdescLeft">&#160;</td><td class="mdescRight">The immediate parent type of this class. <br/></td></tr>
-<tr class="separator:a5875aaae2bd78859e4886bb998cc3414"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_types_classMezzanine_1_1Track"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classMezzanine_1_1Track')"><img src="closed.png" alt="-"/>&#160;Protected Types inherited from <a class="el" href="classMezzanine_1_1Track.html">Mezzanine::Track&lt; InterpolatorType &gt;</a></td></tr>
-<tr class="memitem:afc70332ed23b423b23177a1b20348f30 inherit pro_types_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc70332ed23b423b23177a1b20348f30"></a>
-typedef <a class="el" href="classMezzanine_1_1TrackBase.html">TrackBase</a><br class="typebreak"/>
-&lt; InterpolatorType &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ParentType</b></td></tr>
-<tr class="separator:afc70332ed23b423b23177a1b20348f30 inherit pro_types_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2784ded89f806d46095d674f9fa0c70e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2784ded89f806d46095d674f9fa0c70e"></a>
+typedef <a class="el" href="classMezzanine_1_1Track.html">Track</a>&lt; InterpolatorType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackLooped.html#a2784ded89f806d46095d674f9fa0c70e">BaseType</a></td></tr>
+<tr class="memdesc:a2784ded89f806d46095d674f9fa0c70e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The base most class of this type. <br/></td></tr>
+<tr class="separator:a2784ded89f806d46095d674f9fa0c70e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_attribs_classMezzanine_1_1TrackBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1TrackBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1TrackBase.html">Mezzanine::TrackBase&lt; InterpolatorType &gt;</a></td></tr>
-<tr class="memitem:a33b775b5e1f5a8dfc9e023b0fb8d85f4 inherit pro_attribs_classMezzanine_1_1TrackBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33b775b5e1f5a8dfc9e023b0fb8d85f4"></a>
-<a class="el" href="classMezzanine_1_1TrackBase.html#ab0e434c0e6236c50d13cadbee42a5906">DataContainerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TrackBase.html#a33b775b5e1f5a8dfc9e023b0fb8d85f4">DataPoints</a></td></tr>
-<tr class="memdesc:a33b775b5e1f5a8dfc9e023b0fb8d85f4 inherit pro_attribs_classMezzanine_1_1TrackBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The underlying container of Discrete datapoints. <br/></td></tr>
-<tr class="separator:a33b775b5e1f5a8dfc9e023b0fb8d85f4 inherit pro_attribs_classMezzanine_1_1TrackBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classMezzanine_1_1Track"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMezzanine_1_1Track')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMezzanine_1_1Track.html">Mezzanine::Track&lt; InterpolatorType &gt;</a></td></tr>
+<tr class="memitem:a104034ecb2bb5b448604452b92fd5e7c inherit pro_attribs_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a104034ecb2bb5b448604452b92fd5e7c"></a>
+<a class="el" href="classMezzanine_1_1Track.html#a6d7f595c43debe6db8270f4b321766ca">DataContainerType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a104034ecb2bb5b448604452b92fd5e7c">DataPoints</a></td></tr>
+<tr class="memdesc:a104034ecb2bb5b448604452b92fd5e7c inherit pro_attribs_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">The underlying container of Discrete datapoints. <br/></td></tr>
+<tr class="separator:a104034ecb2bb5b448604452b92fd5e7c inherit pro_attribs_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63d20bb2a108c24f7792b1e33312c38e inherit pro_attribs_classMezzanine_1_1Track"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63d20bb2a108c24f7792b1e33312c38e"></a>
+<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Track.html#a63d20bb2a108c24f7792b1e33312c38e">RawName</a></td></tr>
+<tr class="memdesc:a63d20bb2a108c24f7792b1e33312c38e inherit pro_attribs_classMezzanine_1_1Track"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the track, primarily for serialization. <br/></td></tr>
+<tr class="separator:a63d20bb2a108c24f7792b1e33312c38e inherit pro_attribs_classMezzanine_1_1Track"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename InterpolatorType&gt;<br/>
 class Mezzanine::TrackLooped&lt; InterpolatorType &gt;</h3>
 
 <p>A track that keeps an extra data point in the track to make sure it loops. </p>
-<p>when Add or push_back is called and there are 2 or more points the track, this seamlessly adds a copy of the first data point to the end of the track. When Iterating with a Smooth iterator this creates the impression of a loop. </p>
+<p>when Add or push_back is called and there are 2 or more points the track, this seamlessly adds a copy of the first data point to the end of the track. When Iterating with a Smooth iterator this creates the impression of a loop inside the simulation. </p>
 
-<p>Definition at line <a class="el" href="track_8h_source.html#l00214">214</a> of file <a class="el" href="track_8h_source.html">track.h</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<p>Definition at line <a class="el" href="track_8h_source.html#l00336">336</a> of file <a class="el" href="track_8h_source.html">track.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a9eae34fec8b5719fd76530ab5247e190"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InterpolatorType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1TrackLooped.html">Mezzanine::TrackLooped</a>&lt; InterpolatorType &gt;::<a class="el" href="classMezzanine_1_1TrackLooped.html">TrackLooped</a> </td>
+          <td>(</td>
+          <td class="paramtype">typename DataContainerType::iterator&#160;</td>
+          <td class="paramname"><em>Begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename DataContainerType::iterator&#160;</td>
+          <td class="paramname"><em>End</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a <a class="el" href="classMezzanine_1_1Track.html" title="A base type that provides container features for different tracks. ">Track</a> from a range of data points, and enforce its being a loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Begin</td><td>An iterator pointing to the beginning of a range to copy. </td></tr>
+    <tr><td class="paramname">End</td><td>an iterator pointing to one past the rang to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="track_8h_source.html#l00353">353</a> of file <a class="el" href="track_8h_source.html">track.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3f3026713e3642125dbe4dfe67ff9000"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InterpolatorType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1TrackLooped.html">Mezzanine::TrackLooped</a>&lt; InterpolatorType &gt;::<a class="el" href="classMezzanine_1_1TrackLooped.html">TrackLooped</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Track.html#a6d7f595c43debe6db8270f4b321766ca">DataContainerType</a> &amp;&#160;</td>
+          <td class="paramname"><em>DataSet</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a track from a DataContainerType instance, likely a vector and copy the data from it, and enforce it being a loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">DataSet</td><td>A collection of data points to copy.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>if the last item does not match the first this fixes that. </p>
+
+<p>Definition at line <a class="el" href="track_8h_source.html#l00360">360</a> of file <a class="el" href="track_8h_source.html">track.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3c85cd60df6bff9176c9bcfaf8c9294b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InterpolatorType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> <a class="el" href="classMezzanine_1_1TrackLooped.html">Mezzanine::TrackLooped</a>&lt; InterpolatorType &gt;::DerivedSerializableName </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>get the classnae at runtime </p>
+<dl class="section return"><dt>Returns</dt><dd>A String Containing a class name,likely"Track" or "TrackLooped" </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1Track.html#a215516c3275919d5ed0651608a5dd4a6">Mezzanine::Track&lt; InterpolatorType &gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="track_8h_source.html#l00395">395</a> of file <a class="el" href="track_8h_source.html">track.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a8012f26e53921a0e7b1ad62212fd53fb"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InterpolatorType &gt; </div>
+template&lt;typename InterpolatorType&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -262,7 +400,7 @@ template&lt;typename InterpolatorType &gt; </div>
         <tr>
           <td class="memname">virtual void <a class="el" href="classMezzanine_1_1TrackLooped.html">Mezzanine::TrackLooped</a>&lt; InterpolatorType &gt;::push_back </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1TrackBase.html#afd68cd25ffc9d841615dde0e30126b5c">InterpolatableType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Track.html#aaad7f5e9eca481e596065a05de37547c">InterpolatableType</a> &amp;&#160;</td>
           <td class="paramname"><em>AddedValue</em>)</td><td></td>
           <td></td>
         </tr>
@@ -274,18 +412,47 @@ template&lt;typename InterpolatorType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Add another data point to the end of the track. </p>
+<p>Add another data point, and preserve the track's loopwhile doing so. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">AddedValue</td><td>The data point to add to theend of the track. </td></tr>
+    <tr><td class="paramname">AddedValue</td><td>The data point to add. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Name for compatibility with std templates. </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classMezzanine_1_1TrackBase.html#a0fb1f55e492ba2381e68541fceb31fb2">Mezzanine::TrackBase&lt; InterpolatorType &gt;</a>.</p>
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1Track.html#a3348bcfc53ac20f7c08802c42f498212">Mezzanine::Track&lt; InterpolatorType &gt;</a>.</p>
 
-<p>Definition at line <a class="el" href="track_8h_source.html#l00245">245</a> of file <a class="el" href="track_8h_source.html">track.h</a>.</p>
+<p>Definition at line <a class="el" href="track_8h_source.html#l00379">379</a> of file <a class="el" href="track_8h_source.html">track.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab67b8c5edaa2b9f6b232839ce20051ec"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InterpolatorType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> <a class="el" href="classMezzanine_1_1TrackLooped.html">Mezzanine::TrackLooped</a>&lt; InterpolatorType &gt;::SerializableName </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the name of this class "TrackLooped". </p>
+<dl class="section return"><dt>Returns</dt><dd>A string containing "TrackLooped" </dd></dl>
+
+<p>Definition at line <a class="el" href="track_8h_source.html#l00400">400</a> of file <a class="el" href="track_8h_source.html">track.h</a>.</p>
 
 </div>
 </div>
@@ -294,6 +461,6 @@ template&lt;typename InterpolatorType &gt; </div>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:28 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

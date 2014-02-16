@@ -42,501 +42,490 @@
 
 #include "UI/spinner.h"
 #include "UI/button.h"
+#include "UI/editbox.h"
+#include "UI/pagedcontainer.h"
 #include "UI/screen.h"
+#include "UI/font.h"
+#include "UI/horizontallayoutstrategy.h"
+#include "UI/verticallayoutstrategy.h"
 #include "UI/uimanager.h"
 
-#include "Input/inputmanager.h"
-#include "Input/mouse.h"
 #include "stringtool.h"
-#include "entresol.h"
+#include "mathtool.h"
+
+#include <algorithm>
 #include <sstream>
+
+namespace
+{
+    Mezzanine::Boolean SpinnerFilter(const Mezzanine::Int32 Glyph)
+    {
+        // If the glyph is a period or a number, then it gets through.
+        return ( Glyph == Mezzanine::Int32(46) || ( Glyph >= Mezzanine::Int32(48) && Glyph <= Mezzanine::Int32(57) ) );
+    }
+}
 
 namespace Mezzanine
 {
     namespace UI
     {
-        /*Spinner::Spinner(const String& name, const Rect& RendRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent)
-            : Widget(name,parent),
-              IncrementOffset(Vector2(0,0)),
-              DecrementOffset(Vector2(0,0)),
-              Value(0),
-              MinValue(0),
-              MaxValue(0),
-              DecimalPlaces(0),
-              DecimalDisplay(false),
-              Editable(false),
-              IncrementLock(true),
-              DecrementLock(true),
-              Increment(NULL),
-              Decrement(NULL),
-              ValueDisplay(NULL)
-        {
-            Type = Widget::W_Spinner;
-            SpinLayout = SStyle;
-            if(RendRect.Relative)
-            {
-                RelPosition = RendRect.Position;
-                RelSize = RendRect.Size;
-            }else{
-                RelPosition = RendRect.Position / ParentScreen->GetViewportDimensions();
-                RelSize = RendRect.Size / ParentScreen->GetViewportDimensions();
-            }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Spinner Static Members
 
-            if(UI::Spn_Separate == SpinLayout)
-            {
-                if(RendRect.Size.X > RendRect.Size.Y * 2)
-                {
-                    if(RendRect.Relative)
-                    {
-                        const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-                        Vector2 APos = RendRect.Position * WinDim;
-                        Vector2 ASize = RendRect.Size * WinDim;
-                        CalculateOffsets(ASize);
-                        CreateHorizontalSpinner(APos,ASize,GlyphHeight);
-                    }else{
-                        CalculateOffsets(RendRect.Size);
-                        CreateHorizontalSpinner(RendRect.Position,RendRect.Size,GlyphHeight);
-                    }
-                }
-                else if(RendRect.Size.Y > RendRect.Size.X * 2)
-                {
-                    if(RendRect.Relative)
-                    {
-                        const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-                        Vector2 APos = RendRect.Position * WinDim;
-                        Vector2 ASize = RendRect.Size * WinDim;
-                        CalculateOffsets(ASize);
-                        CreateVerticalSpinner(APos,ASize,GlyphHeight);
-                    }else{
-                        CalculateOffsets(RendRect.Size);
-                        CreateVerticalSpinner(RendRect.Position,RendRect.Size,GlyphHeight);
-                    }
-                }
-                else
-                {
-                    MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Spinner dimensions incompatible with this widget.");
-                }
-            }
-            else if(UI::Spn_Together_Left == SpinLayout || UI::Spn_Together_Right == SpinLayout)
-            {
-                if(RendRect.Relative)
-                {
-                    const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-                    Vector2 APos = RendRect.Position * WinDim;
-                    Vector2 ASize = RendRect.Size * WinDim;
-                    CalculateOffsets(ASize);
-                    CreateBoxSpinner(APos,ASize,GlyphHeight);
-                }else{
-                    CalculateOffsets(RendRect.Size);
-                    CreateBoxSpinner(RendRect.Position,RendRect.Size,GlyphHeight);
-                }
-            }
-            CaptureData = new InputCaptureData();
-            CaptureData->AddInputRange(Input::KEY_1,Input::KEY_0);
-            CaptureData->AddInputRange(Input::KEY_KP_1,Input::KEY_KP_PERIOD);
-            CaptureData->AddInput(Input::KEY_PERIOD);
-            CaptureData->AddInput(Input::KEY_RETURN);
-            CaptureData->AddInput(Input::KEY_KP_ENTER);
-        }
+        const String Spinner::TypeName = "Spinner";
+        const String Spinner::EventSpinValueChanged = "SpinValueChanged";
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Spinner Methods
+
+        Spinner::Spinner(Screen* Parent) :
+            PageProvider(Parent),
+            IncrementSpin(NULL),
+            DecrementSpin(NULL),
+            ValueDisplay(NULL),
+            SpinValue(0.0),
+            IncrementValue(1.0),
+            MinValue(0.0),
+            MaxValue(0.0)
+            {  }
+
+        Spinner::Spinner(const String& RendName, const SpinnerStyle SpinStyle, FontData* EditFont, Screen* Parent) :
+            PageProvider(RendName,Parent),
+            IncrementSpin(NULL),
+            DecrementSpin(NULL),
+            ValueDisplay(NULL),
+            SpinValue(0.0),
+            IncrementValue(1.0),
+            MinValue(0.0),
+            MaxValue(0.0)
+            { this->ConstructSpinner(SpinStyle,EditFont); }
+
+        Spinner::Spinner(const String& RendName, const SpinnerStyle SpinStyle, const String& EditFontName, Screen* Parent) :
+            PageProvider(RendName,Parent),
+            IncrementSpin(NULL),
+            DecrementSpin(NULL),
+            ValueDisplay(NULL),
+            SpinValue(0.0),
+            IncrementValue(1.0),
+            MinValue(0.0),
+            MaxValue(0.0)
+            { this->ConstructSpinner(SpinStyle,this->ParentScreen->GetFont(EditFontName,this->ParentScreen->GetPrimaryAtlas())); }
+
+        Spinner::Spinner(const String& RendName, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, FontData* EditFont, Screen* Parent) :
+            PageProvider(RendName,RendRect,Parent),
+            IncrementSpin(NULL),
+            DecrementSpin(NULL),
+            ValueDisplay(NULL),
+            SpinValue(0.0),
+            IncrementValue(1.0),
+            MinValue(0.0),
+            MaxValue(0.0)
+            { this->ConstructSpinner(SpinStyle,EditFont); }
+
+        Spinner::Spinner(const String& RendName, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, const String& EditFontName, Screen* Parent) :
+            PageProvider(RendName,RendRect,Parent),
+            IncrementSpin(NULL),
+            DecrementSpin(NULL),
+            ValueDisplay(NULL),
+            SpinValue(0.0),
+            IncrementValue(1.0),
+            MinValue(0.0),
+            MaxValue(0.0)
+            { this->ConstructSpinner(SpinStyle,this->ParentScreen->GetFont(EditFontName,this->ParentScreen->GetPrimaryAtlas())); }
+
+        Spinner::Spinner(const XML::Node& XMLNode, Screen* Parent) :
+            PageProvider(Parent),
+            IncrementSpin(NULL),
+            DecrementSpin(NULL),
+            ValueDisplay(NULL),
+            SpinValue(0.0),
+            IncrementValue(1.0),
+            MinValue(0.0),
+            MaxValue(0.0)
+            { this->ProtoDeSerialize(XMLNode); }
 
         Spinner::~Spinner()
         {
-            ParentScreen->DestroyWidget(Increment);
-            ParentScreen->DestroyWidget(Decrement);
-            ParentScreen->DestroyBasicRenderable(ValueDisplay);
-            delete CaptureData;
+            this->RemoveChild( this->IncrementSpin );
+            this->ParentScreen->DestroyWidget( this->IncrementSpin );
+            this->RemoveChild( this->DecrementSpin );
+            this->ParentScreen->DestroyWidget( this->DecrementSpin );
+            this->RemoveChild( this->ValueDisplay );
+            this->ParentScreen->DestroyWidget( this->ValueDisplay );
         }
 
-        void Spinner::CreateHorizontalSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
+        void Spinner::ConstructSpinner(const SpinnerStyle SpinStyle, FontData* EditFont)
         {
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
-            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentScreen->GetPrimaryAtlas());
-            Vector2 IncPos = Position + IncrementOffset;
-            Vector2 DecPos = Position + DecrementOffset;
-            Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = ParentScreen->CreateButton(Name+"Inc",Rect(IncPos,Vector2(Size.Y,Size.Y),false));
-            Decrement = ParentScreen->CreateButton(Name+"Dec",Rect(DecPos,Vector2(Size.Y,Size.Y),false));
-            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",Rect(ValPos,Vector2(Size.X - (Size.Y * 2),Size.Y),false),GlyphInfo.first,GetValueAsText());
-            AddSubRenderable(0,Increment);
-            AddSubRenderable(1,Decrement);
-            AddSubRenderable(2,ValueDisplay);
-            if(1 != GlyphInfo.second)
-                ValueDisplay->SetTextScale(GlyphInfo.second);
+            this->AddEvent(Spinner::EventSpinValueChanged);
+
+            // Create the child widgets.
+            this->ValueDisplay = this->ParentScreen->CreateEditBox(this->Name+".Display",UI::RLT_SingleLineText,EditFont);
+            this->IncrementSpin = this->ParentScreen->CreateButton(this->Name+".Increment");
+            this->DecrementSpin = this->ParentScreen->CreateButton(this->Name+".Decrement");
+
+            this->SetButtonLayout(SpinStyle);
+
+            this->ValueDisplay->SetInputFilter( &SpinnerFilter );
+
+            this->ValueDisplay->Subscribe(EditBox::EventTextUpdated,this);
+            this->IncrementSpin->Subscribe(Button::EventDeactivated,this);
+            this->DecrementSpin->Subscribe(Button::EventDeactivated,this);
         }
 
-        void Spinner::CreateVerticalSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
+        void Spinner::ClampToLimits(Real& Value)
         {
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
-            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentScreen->GetPrimaryAtlas());
-            Vector2 IncPos = Position + IncrementOffset;
-            Vector2 DecPos = Position + DecrementOffset;
-            Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = ParentScreen->CreateButton(Name+"Inc",Rect(IncPos,Vector2(Size.X,Size.X),false));
-            Decrement = ParentScreen->CreateButton(Name+"Dec",Rect(DecPos,Vector2(Size.X,Size.X),false));
-            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",Rect(ValPos,Vector2(Size.X,Size.Y - (Size.X * 2)),false),GlyphInfo.first,GetValueAsText());
-            AddSubRenderable(0,Increment);
-            AddSubRenderable(1,Decrement);
-            AddSubRenderable(2,ValueDisplay);
-            if(1 != GlyphInfo.second)
-                ValueDisplay->SetTextScale(GlyphInfo.second);
+            Value = std::max(Value,this->MinValue);
+            Value = std::min(Value,this->MaxValue);
         }
 
-        void Spinner::CreateBoxSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        const String& Spinner::GetTypeName() const
+            { return Spinner::TypeName; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Spinner Properties
+
+        void Spinner::SetSpinValue(const Real Value)
         {
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-            Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
-            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentScreen->GetPrimaryAtlas());
-            Vector2 IncPos = Position + IncrementOffset;
-            Vector2 DecPos = Position + DecrementOffset;
-            Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = ParentScreen->CreateButton(Name+"Inc",Rect(IncPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false));
-            Decrement = ParentScreen->CreateButton(Name+"Dec",Rect(DecPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false));
-            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",Rect(ValPos,Vector2(Size.X - (Size.Y * 0.5),Size.Y),false),GlyphInfo.first,GetValueAsText());
-            AddSubRenderable(0,Increment);
-            AddSubRenderable(1,Decrement);
-            AddSubRenderable(2,ValueDisplay);
-            if(1 != GlyphInfo.second)
-                ValueDisplay->SetTextScale(GlyphInfo.second);
+            Real Temp = Value;
+            this->ClampToLimits(Temp);
+            if( this->SpinValue != Temp ) {
+                this->_OnSpinValueChanged(this->SpinValue,Temp);
+                this->ValueDisplay->SetText( StringTools::ConvertToString( Temp ) );
+                this->SpinValue = Temp;
+            }
         }
 
-        void Spinner::CalculateOffsets(const Vector2& Size)
+        Real Spinner::GetSpinValue() const
+            { return this->SpinValue; }
+
+        void Spinner::SetIncrementValue(const Real Value)
+            { this->IncrementValue = Value; }
+
+        Real Spinner::GetIncrementValue() const
+            { return this->IncrementValue; }
+
+        void Spinner::SetSpinValueLimits(const Real Min, const Real Max)
+            { this->SetMinSpinValue(Min);  this->SetMaxSpinValue(Max); }
+
+        void Spinner::SetMinSpinValue(const Real Value)
+            { this->MinValue = Value; }
+
+        Real Spinner::GetMinSpinValue() const
+            { return this->MinValue; }
+
+        void Spinner::SetMaxSpinValue(const Real Value)
+            { this->MaxValue = Value; }
+
+        Real Spinner::GetMaxSpinValue() const
+            { return this->MaxValue; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Spinner Configuration
+
+        void Spinner::SetButtonLayout(const SpinnerStyle Style)
         {
-            switch (SpinLayout)
-            {
-                case UI::Spn_Separate:
-                {
-                    if(Size.X > Size.Y * 2)
-                    {
-                        IncrementOffset = Vector2(Size.X - Size.Y,0);
-                        DecrementOffset = Vector2(0,0);
-                        ValueDisplayOffset = Vector2(Size.Y,0);
+            this->RemoveChild( this->IncrementSpin );
+            this->RemoveChild( this->DecrementSpin );
+            this->RemoveChild( this->ValueDisplay );
+
+            if( Style == UI::Spn_Separate_Horizontal || Style == Spn_Separate_Vertical ) {
+                this->IncrementSpin->SetUnifiedSize( UnifiedVec2(1,1,0,0) );
+                this->ValueDisplay->SetUnifiedSize( UnifiedVec2(1,1,0,0) );
+                this->DecrementSpin->SetUnifiedSize( UnifiedVec2(1,1,0,0) );
+
+                if( Style == UI::Spn_Separate_Horizontal ) {
+                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_Top);
+                    this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+                    this->IncrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    this->ValueDisplay->SetPositioningRules(UI::PF_Anchor_Top);
+                    this->ValueDisplay->SetHorizontalSizingRules(UI::SR_Fill_Available);
+                    this->ValueDisplay->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_Top);
+                    this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+                    this->DecrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    if( this->LayoutStrat != NULL ) {
+                        delete this->LayoutStrat;
                     }
-                    else if(Size.Y > Size.X * 2)
-                    {
-                        IncrementOffset = Vector2(0,0);
-                        DecrementOffset = Vector2(0,Size.Y - Size.X);
-                        ValueDisplayOffset = Vector2(0,Size.X);
+                    this->LayoutStrat = new HorizontalLayoutStrategy();
+                }else if( Style == Spn_Separate_Vertical ) {
+                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_Left);
+                    this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Unified_Dims);
+                    this->IncrementSpin->SetVerticalSizingRules(UI::SR_Match_Other_Axis);
+
+                    this->ValueDisplay->SetPositioningRules(UI::PF_Anchor_Left);
+                    this->ValueDisplay->SetHorizontalSizingRules(UI::SR_Unified_Dims);
+                    this->ValueDisplay->SetVerticalSizingRules(UI::SR_Fill_Available);
+
+                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_Left);
+                    this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Unified_Dims);
+                    this->DecrementSpin->SetVerticalSizingRules(UI::SR_Match_Other_Axis);
+
+                    if( this->LayoutStrat != NULL ) {
+                        delete this->LayoutStrat;
                     }
-                    break;
+                    this->LayoutStrat = new VerticalLayoutStrategy();
                 }
-                case UI::Spn_Together_Left:
-                {
-                    IncrementOffset = Vector2(0,0);
-                    DecrementOffset = Vector2(0,Size.Y * 0.5);
-                    ValueDisplayOffset = Vector2(Size.Y * 0.5,0);
-                    break;
+
+                this->AddChild(this->IncrementSpin,1);
+                this->AddChild(this->ValueDisplay,2);
+                this->AddChild(this->DecrementSpin,3);
+            }else if( Style == Spn_Together_Left || Style == Spn_Together_Right ) {
+                this->IncrementSpin->SetUnifiedSize( UnifiedVec2(1,0.5,0,0) );
+                this->IncrementSpin->SetUnifiedPosition( UnifiedVec2(0,0,0,0) );
+
+                this->ValueDisplay->SetUnifiedSize( UnifiedVec2(1,1,0,0) );
+                this->ValueDisplay->SetUnifiedPosition( UnifiedVec2(0,0,0,0) );
+
+                this->DecrementSpin->SetUnifiedSize( UnifiedVec2(1,0.5,0,0) );
+                this->DecrementSpin->SetUnifiedPosition( UnifiedVec2(0,0,0,0) );
+
+                if( Style == Spn_Together_Left ) {
+                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_TopLeft);
+                    this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+                    this->IncrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_BottomLeft);
+                    this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+                    this->DecrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    this->ValueDisplay->SetPositioningRules(UI::PF_Anchor_Top);
+                    this->ValueDisplay->SetHorizontalSizingRules(UI::SR_Fill_Available);
+                    this->ValueDisplay->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    this->AddChild(this->IncrementSpin,1);
+                    this->AddChild(this->DecrementSpin,2);
+                    this->AddChild(this->ValueDisplay,3);
+                }else if( Style == Spn_Together_Right ) {
+                    this->ValueDisplay->SetPositioningRules(UI::PF_Anchor_Top);
+                    this->ValueDisplay->SetHorizontalSizingRules(UI::SR_Fill_Available);
+                    this->ValueDisplay->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_TopRight);
+                    this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+                    this->IncrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_BottomRight);
+                    this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+                    this->DecrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    this->AddChild(this->ValueDisplay,1);
+                    this->AddChild(this->IncrementSpin,2);
+                    this->AddChild(this->DecrementSpin,3);
                 }
-                case UI::Spn_Together_Right:
-                {
-                    IncrementOffset = Vector2(Size.X - (Size.Y * 0.5),0);
-                    DecrementOffset = Vector2(Size.X - (Size.Y * 0.5),Size.Y * 0.5);
-                    ValueDisplayOffset = Vector2(0,0);
-                    break;
+
+                if( this->LayoutStrat != NULL ) {
+                    delete this->LayoutStrat;
                 }
+                this->LayoutStrat = new HorizontalLayoutStrategy();
             }
         }
 
-        void Spinner::SetLocation(const Vector2& Position)
-        {
-            Increment->SetActualPosition(Position + IncrementOffset);
-            Decrement->SetActualPosition(Position + DecrementOffset);
-            ValueDisplay->SetActualPosition(Position + ValueDisplayOffset);
-        }
+        Button* Spinner::GetIncrement() const
+            { return this->IncrementSpin; }
 
-        void Spinner::SetArea(const Vector2& Size)
-        {
-            switch (SpinLayout)
-            {
-                case UI::Spn_Separate:
-                {
-                    if(Size.X > Size.Y * 2)
-                    {
-                        Increment->SetActualSize(Vector2(Size.Y,Size.Y));
-                        Decrement->SetActualSize(Vector2(Size.Y,Size.Y));
-                        ValueDisplay->SetActualSize(Vector2(Size.X - (Size.Y * 2),Size.Y));
-                    }
-                    else if(Size.Y > Size.X * 2)
-                    {
-                        Increment->SetActualSize(Vector2(Size.X,Size.X));
-                        Decrement->SetActualSize(Vector2(Size.X,Size.X));
-                        ValueDisplay->SetActualSize(Vector2(Size.X,Size.Y - (Size.X * 2)));
-                    }
-                    break;
-                }
-                case UI::Spn_Together_Left:
-                case UI::Spn_Together_Right:
-                {
-                    Increment->SetActualSize(Vector2(Size.Y * 0.5,Size.Y * 0.5));
-                    Decrement->SetActualSize(Vector2(Size.Y * 0.5,Size.Y * 0.5));
-                    ValueDisplay->SetActualSize(Vector2(Size.X - (Size.Y * 0.5),Size.Y));
-                    break;
-                }
-            }
-        }
+        Button* Spinner::GetDecrement() const
+            { return this->DecrementSpin; }
 
-        void Spinner::CheckValueLimits()
-        {
-            if(MinValue != 0 || MaxValue != 0)
-            {
-                if(Value < MinValue) Value = MinValue;
-                if(Value > MaxValue) Value = MaxValue;
-            }
-        }
-
-        String Spinner::GetValueAsText()
-        {
-            std::stringstream converter;
-            String AsText;
-            converter << Value;
-            converter >> AsText;
-            if(DecimalDisplay)
-            {
-                String Deci(".");
-                if(DecimalPlaces + 1 > AsText.size()) AsText.insert(0,(DecimalPlaces+1) - AsText.size(),'0');
-                AsText.insert(AsText.size() - DecimalPlaces,Deci);
-            }
-            return AsText;
-        }
-
-        void Spinner::UpdateImpl(bool Force)
-        {
-            ProcessCapturedInputs();
-            if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
-            {
-                Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
-                if(Input::BUTTON_PRESSING == State)
-                {
-                    if(HoveredSubWidget==Increment)
-                        IncrementLock = false;
-                    else if(HoveredSubWidget==Decrement)
-                        DecrementLock = false;
-                }
-                else if(Input::BUTTON_LIFTING && (!IncrementLock || !DecrementLock))
-                {
-                    if(HoveredSubWidget==Increment && !IncrementLock)
-                    {
-                        Value++;
-                        CheckValueLimits();
-                        ValueDisplay->SetText(GetValueAsText());
-                        IncrementLock = true;
-                    }
-                    else if(HoveredSubWidget==Decrement && !DecrementLock)
-                    {
-                        Value--;
-                        CheckValueLimits();
-                        ValueDisplay->SetText(GetValueAsText());
-                        DecrementLock = true;
-                    }
-                }
-            }
-        }
-
-        void Spinner::SetVisibleImpl(bool visible)
-        {
-            Increment->SetVisible(visible);
-            Decrement->SetVisible(visible);
-            ValueDisplay->SetVisible(visible);
-        }
-
-        bool Spinner::CheckMouseHoverImpl()
-        {
-            if(Increment->CheckMouseHover())
-            {
-                HoveredSubWidget = Increment;
-                return true;
-            }
-            if(Decrement->CheckMouseHover())
-            {
-                HoveredSubWidget = Decrement;
-                return true;
-            }
-            if(ValueDisplay->CheckMouseHover())
-            {
-                HoveredSubWidget = NULL;
-                return true;
-            }
-            return false;
-        }
-
-        void Spinner::ProcessCapturedInputs()
-        {
-            if(!Editable)
-                return;
-            if(0 == CaptureData->GetNumCapturedInputs())
-                return;
-            std::vector<Input::InputCode>* CCodes = CaptureData->GetCapturedInputs();
-            bool EnterPressed = false;
-            for( Whole X = 0 ; X < CCodes->size() ; X++ )
-            {
-                Input::InputCode Current = CCodes->at(X);
-                if(Input::KEY_RETURN == Current || Input::KEY_KP_ENTER == Current)
-                {
-                    EnterPressed = true;
-                    continue;
-                }else{
-                    EditCache+=StringTools::ConvertToString(Current,false);
-                }
-            }
-            if(EnterPressed)
-            {
-                std::stringstream TempStream;
-                if(DecimalDisplay)
-                    EditCache.erase(EditCache.find("."),1);
-                TempStream << EditCache;
-                TempStream >> Value;
-                CheckValueLimits();
-                ValueDisplay->SetText(GetValueAsText());
-                EditCache.clear();
-            }
-        }
-
-        void Spinner::SetSpinnerValue(const int& ValueToSet)
-        {
-            Value = ValueToSet;
-            CheckValueLimits();
-            ValueDisplay->SetText(GetValueAsText());
-        }
-
-        int Spinner::GetSpinnerValue()
-        {
-            return Value;
-        }
-
-        void Spinner::SetValueLimits(const int& Lower, const int& Upper)
-        {
-            MinValue = Lower;
-            MaxValue = Upper;
-        }
-
-        void Spinner::SetEditable(bool Edit)
-        {
-            Editable = Edit;
-        }
-
-        bool Spinner::GetEditable()
-        {
-            return Editable;
-        }
-
-        void Spinner::EnableDecimalDisplay(bool Enable, const Whole& Places)
-        {
-            DecimalDisplay = Enable;
-            DecimalPlaces = Places;
-        }
-
-        void Spinner::SetPosition(const Vector2& Position)
-        {
-            RelPosition = Position;
-            Vector2 Adjusted = Position * ParentScreen->GetViewportDimensions();
-            SetLocation(Adjusted);
-        }
-
-        void Spinner::SetActualPosition(const Vector2& Position)
-        {
-            RelPosition = Position / ParentScreen->GetViewportDimensions();
-            SetLocation(Position);
-        }
-
-        void Spinner::SetSize(const Vector2& Size)
-        {
-            RelSize = Size;
-            Vector2 Adjusted = Size * ParentScreen->GetViewportDimensions();
-            CalculateOffsets(Adjusted);
-            SetArea(Adjusted);
-            SetLocation(GetActualPosition());
-        }
-
-        void Spinner::SetActualSize(const Vector2& Size)
-        {
-            RelSize = Size / ParentScreen->GetViewportDimensions();
-            CalculateOffsets(Size);
-            SetArea(Size);
-            SetLocation(GetActualPosition());
-        }
-
-        void Spinner::UpdateDimensions()
-        {
-            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
-            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
-            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
-            Increment->UpdateDimensions();
-            Decrement->UpdateDimensions();
-            ValueDisplay->UpdateDimensions();
-            CalculateOffsets(Result.second);
-            SetPosition(RelPosition);
-        }
-
-        Button* Spinner::GetIncrement()
-        {
-            return Increment;
-        }
-
-        Button* Spinner::GetDecrement()
-        {
-            return Decrement;
-        }
-
-        Caption* Spinner::GetValueDisplay()
-        {
-            return ValueDisplay;
-        }
+        EditBox* Spinner::GetValueDisplay() const
+            { return this->ValueDisplay; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // PageProvider Methods
 
         Real Spinner::GetMaxXPages() const
-            { return this->MaxXPages; }
+            { return this->MaxValue; }
 
         Real Spinner::GetMaxYPages() const
-            { return this->MaxYPages; }
+            { return this->MaxValue; }
 
         Real Spinner::GetCurrentXPage() const
-        {
-            Real PageValue = static_cast<Real>( this->Target->GetSpinnerValue() );
-            if( this->PageOrder == UI::OP_Horizontal_Vertical ) {
-                return MathTool::Ceil( PageValue / this->MaxXPages );
-            }else if( this->PageOrder == UI::OP_Vertical_Horizontal ) {
-                return MathTool::Fmod( PageValue, this->MaxYPages );
-            }
-            return 1;
-        }
+            { return this->SpinValue; }
 
         Real Spinner::GetCurrentYPage() const
-        {
-            Real PageValue = static_cast<Real>( this->Target->GetSpinnerValue() );
-            if( this->PageOrder == UI::OP_Horizontal_Vertical ) {
-                return MathTool::Ceil( PageValue / this->MaxXPages );
-            }else if( this->PageOrder == UI::OP_Vertical_Horizontal ) {
-                return MathTool::Fmod( PageValue, this->MaxYPages );
-            }
-            return 1;
-        }
-
-        void Spinner::SetOrdering(const UI::OrderingPriority Order)
-            { this->PageOrder = Order; }
-
-        UI::OrderingPriority Spinner::GetOrdering() const
-            { return this->PageOrder; }
+            { return this->SpinValue; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void Spinner::ProtoSerializePageData(XML::Node& SelfRoot) const
-            {  }
+        void Spinner::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        {
+            this->Widget::ProtoSerializeProperties(SelfRoot);
 
-        void Spinner::ProtoDeSerializePageData(const XML::Node& SelfRoot)
-            {  }
+            XML::Node PropertiesNode = SelfRoot.AppendChild( Spinner::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("SpinValue").SetValue( this->GetSpinValue() ) &&
+                PropertiesNode.AppendAttribute("IncrementValue").SetValue( this->GetIncrementValue() ) &&
+                PropertiesNode.AppendAttribute("MinValue").SetValue( this->GetMinSpinValue() ) &&
+                PropertiesNode.AppendAttribute("MaxValue").SetValue( this->GetMaxSpinValue() ) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",Spinner::GetSerializableName() + "Properties",true);
+            }
+        }
+
+        void Spinner::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+        {
+            this->Widget::ProtoDeSerializeProperties(SelfRoot);
+
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( Spinner::GetSerializableName() + "Properties" );
+
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("SpinValue");
+                    if( !CurrAttrib.Empty() )
+                        this->SetSpinValue( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("IncrementValue");
+                    if( !CurrAttrib.Empty() )
+                        this->SetIncrementValue( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("MinValue");
+                    if( !CurrAttrib.Empty() )
+                        this->SetMinSpinValue( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("MaxValue");
+                    if( !CurrAttrib.Empty() )
+                        this->SetMaxSpinValue( CurrAttrib.AsReal() );
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (Spinner::GetSerializableName() + "Properties") + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Spinner::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String Spinner::GetSerializableName()
+            { return Spinner::TypeName; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Event Methods
+
+        void Spinner::_OnSpinValueChanged(const Real OldValue, const Real NewValue)
+        {
+            SpinnerValueChangedArguments Args(Spinner::EventSpinValueChanged,this->Name,OldValue,NewValue);
+            this->FireEvent(Args);
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void Spinner::_SetContainer(PagedContainer* ToUpdate)
-            { this->Container = ToUpdate; }
+        void Spinner::_NotifyEvent(const EventArguments& Args)
+        {
+            const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
+            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);
+            if( EventWidget == NULL )
+                return;
+
+            if( EventWidget == this->ValueDisplay ) {
+                String ValueText = this->ValueDisplay->GetText();
+                Real NewValue = StringTools::ConvertToReal(ValueText);
+                this->ClampToLimits(NewValue);
+                if( this->SpinValue != NewValue ) {
+                    this->_OnSpinValueChanged(this->SpinValue,NewValue);
+                    this->SpinValue = NewValue;
+                }
+            }else if( EventWidget == this->IncrementSpin ) {
+                Real Temp = this->SpinValue + this->IncrementValue;
+                this->SetSpinValue(Temp);
+            }else if( EventWidget == this->DecrementSpin ) {
+                Real Temp = this->SpinValue - this->IncrementValue;
+                this->SetSpinValue(Temp);
+            }
+        }
 
         void Spinner::_NotifyContainerUpdated()
-            { this->Target->SetValueLimits(1,this->MaxXPages * this->MaxYPages); }//*/
+        {
+            if( this->Container != NULL ) {
+                const Vector2 View = this->Container->GetActualSize();
+                const Vector2 Work = this->Container->GetWorkAreaSize();
+
+                PagedContainer::ProviderMode Config = this->Container->GetProviderConfig(this);
+                if( Config == PagedContainer::PM_Single_X ) {
+                    Real MaxPages = MathTools::Ceil( Work.X / View.X );
+                    this->SetSpinValueLimits(1,MaxPages);
+                }else if( Config == PagedContainer::PM_Single_Y ) {
+                    Real MaxPages = MathTools::Ceil( Work.Y / View.Y );
+                    this->SetSpinValueLimits(1,MaxPages);
+                }else if( Config == PagedContainer::PM_Single_XY ) {
+                    Real MaxXPages = MathTools::Ceil( Work.X / View.X );
+                    Real MaxYPages = MathTools::Ceil( Work.Y / View.Y );
+                    this->SetSpinValueLimits(1,MaxXPages * MaxYPages);
+                }
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // SpinnerFactory Methods
+
+        String SpinnerFactory::GetWidgetTypeName() const
+            { return Spinner::TypeName; }
+
+        Spinner* SpinnerFactory::CreateSpinner(const String& RendName, const SpinnerStyle SpinStyle, FontData* EditFont, Screen* Parent)
+            { return new Spinner(RendName,SpinStyle,EditFont,Parent); }
+
+        Spinner* SpinnerFactory::CreateSpinner(const String& RendName, const SpinnerStyle SpinStyle, const String& EditFontName, Screen* Parent)
+            { return new Spinner(RendName,SpinStyle,EditFontName,Parent); }
+
+        Spinner* SpinnerFactory::CreateSpinner(const String& RendName, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, FontData* EditFont, Screen* Parent)
+            { return new Spinner(RendName,RendRect,SpinStyle,EditFont,Parent); }
+
+        Spinner* SpinnerFactory::CreateSpinner(const String& RendName, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, const String& EditFontName, Screen* Parent)
+            { return new Spinner(RendName,RendRect,SpinStyle,EditFontName,Parent); }
+
+        Spinner* SpinnerFactory::CreateSpinner(const XML::Node& XMLNode, Screen* Parent)
+            { return new Spinner(XMLNode,Parent); }
+
+        Widget* SpinnerFactory::CreateWidget(Screen* Parent)
+            { return new Spinner(Parent); }
+
+        Widget* SpinnerFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+        {
+            String EditFontName;
+            UI::SpinnerStyle SpinStyle = UI::Spn_Together_Right;
+
+            NameValuePairMap::const_iterator ParamIt;
+            ParamIt = Params.find("EditFontName");
+            if( ParamIt != Params.end() )
+                EditFontName = (*ParamIt).second;
+
+            ParamIt = Params.find("SpinStyle");
+            if( ParamIt != Params.end() )
+                SpinStyle = static_cast<UI::SpinnerStyle>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
+
+            return this->CreateSpinner(RendName,SpinStyle,EditFontName,Parent);
+        }
+
+        Widget* SpinnerFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+        {
+            String EditFontName;
+            UI::SpinnerStyle SpinStyle = UI::Spn_Together_Right;
+
+            NameValuePairMap::const_iterator ParamIt;
+            ParamIt = Params.find("EditFontName");
+            if( ParamIt != Params.end() )
+                EditFontName = (*ParamIt).second;
+
+            ParamIt = Params.find("SpinStyle");
+            if( ParamIt != Params.end() )
+                SpinStyle = static_cast<UI::SpinnerStyle>( StringTools::ConvertToUInt32( (*ParamIt).second ) );
+
+            return this->CreateSpinner(RendName,RendRect,SpinStyle,EditFontName,Parent);
+        }
+
+        Widget* SpinnerFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateSpinner(XMLNode,Parent); }
+
+        void SpinnerFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<Spinner*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 

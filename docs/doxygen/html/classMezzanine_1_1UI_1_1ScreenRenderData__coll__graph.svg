@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 962;
+var viewWidth = 930;
 var viewHeight = 154;
 var sectionId = 'dynsection-0';
 </script>
@@ -54,11 +54,11 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::UI::ScreenRenderData</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-150 959,-150 959,5 -4,5"/>
+<polygon fill="white" stroke="white" points="-4,5 -4,-150 927,-150 927,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="790.5,-45 790.5,-65 953.5,-65 953.5,-45 790.5,-45"/>
-<text text-anchor="middle" x="872" y="-52" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScreenRenderData</text>
+<polygon fill="#bfbfbf" stroke="black" points="758.5,-45 758.5,-65 921.5,-65 921.5,-45 758.5,-45"/>
+<text text-anchor="middle" x="840" y="-52" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScreenRenderData</text>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
@@ -68,11 +68,9 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge2" class="edge"><title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M694.367,-55C723.984,-55 759.035,-55 790.142,-55"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="694.132,-51.5001 684.132,-55 694.132,-58.5001 694.132,-51.5001"/>
-<text text-anchor="middle" x="737" y="-82" font-family="FreeSans" font-size="10.00"> LowVertices</text>
-<text text-anchor="middle" x="737" y="-70" font-family="FreeSans" font-size="10.00">MediumVertices</text>
-<text text-anchor="middle" x="737" y="-58" font-family="FreeSans" font-size="10.00">HighVertices</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M694.191,-55C714.55,-55 737.138,-55 758.336,-55"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="694.08,-51.5001 684.08,-55 694.08,-58.5001 694.08,-51.5001"/>
+<text text-anchor="middle" x="721" y="-58" font-family="FreeSans" font-size="10.00"> Vertices</text>
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>

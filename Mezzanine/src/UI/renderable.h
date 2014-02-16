@@ -174,7 +174,10 @@ namespace Mezzanine
             /// @internal
             /// @brief Gets whether or not this renderable is dirty.
             /// @return Returns true if this renderable is dirty, false otherwise.
-            bool _IsDirty() const;
+            Boolean _IsDirty() const;
+            /// @internal
+            /// @brief Refreshes the render data of this renderable.
+            virtual void _Clean() = 0;
             /// @internal
             /// @brief Marks this renderable as dirty, and informs other renderables if needed.
             virtual void _MarkDirty() = 0;

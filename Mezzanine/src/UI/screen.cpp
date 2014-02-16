@@ -202,8 +202,7 @@ namespace Mezzanine
 
             this->SetMousePassthrough(true);
             this->SetMouseHoverStrategy(new BruteStrategy());
-
-            this->LayoutStrat = new LayoutStrategy();
+            this->_SetLayoutStrat(new LayoutStrategy());
         }
 
         Screen::Screen(const XML::Node& XMLNode, UIManager* Manager) :
@@ -227,8 +226,7 @@ namespace Mezzanine
 
             this->CreateVertexBuffer(32 * 6);
             this->SetMouseHoverStrategy(new BruteStrategy());
-
-            this->LayoutStrat = new LayoutStrategy();
+            this->_SetLayoutStrat(new LayoutStrategy());
 
             this->ProtoDeSerialize(XMLNode);
         }
@@ -489,6 +487,9 @@ namespace Mezzanine
             // VerticalScrollbar
             FactIt = this->WidgetFactories.find( VerticalScrollbar::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new VerticalScrollbarFactory() );
+            // Spinner
+            FactIt = this->WidgetFactories.find( Spinner::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new SpinnerFactory() );
 
             // MenuEntry
             FactIt = this->WidgetFactories.find( MenuEntry::TypeName );
@@ -694,6 +695,34 @@ namespace Mezzanine
             return NewVScroll;
         }
 
+        Spinner* Screen::CreateSpinner(const String& Name, const SpinnerStyle SpinStyle, FontData* EditFont)
+        {
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, SpinStyle, EditFont, this );
+            this->CheckAndInsertExcept( NewSpin );
+            return NewSpin;
+        }
+
+        Spinner* Screen::CreateSpinner(const String& Name, const SpinnerStyle SpinStyle, const String& EditFontName)
+        {
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, SpinStyle, EditFontName, this );
+            this->CheckAndInsertExcept( NewSpin );
+            return NewSpin;
+        }
+
+        Spinner* Screen::CreateSpinner(const String& Name, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, FontData* EditFont)
+        {
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, RendRect, SpinStyle, EditFont, this );
+            this->CheckAndInsertExcept( NewSpin );
+            return NewSpin;
+        }
+
+        Spinner* Screen::CreateSpinner(const String& Name, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, const String& EditFontName)
+        {
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, RendRect, SpinStyle, EditFontName, this );
+            this->CheckAndInsertExcept( NewSpin );
+            return NewSpin;
+        }
+
         MenuEntry* Screen::CreateMenuEntry(const String& Name)
         {
             MenuEntry* NewEntry = static_cast<MenuEntryFactory*>( this->GetWidgetFactoryExcept( MenuEntry::TypeName ) )->CreateMenuEntry( Name, this );
@@ -779,12 +808,7 @@ namespace Mezzanine
         }
 
 
-        /*Spinner* Screen::CreateSpinner(ConstString& Name, const Rect& RendRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
-        {
-            return static_cast<Spinner*>( this->CheckAndInsert( RenderableFactory::CreateSpinner(Name,RendRect,SStyle,GlyphHeight) ) );
-        }
-
-        ScrolledCellGrid* Screen::CreateScrolledCellGrid(ConstString& Name, const Rect& RendRect, const Real& Thickness, const UI::ScrollbarStyle& Style)
+        /*ScrolledCellGrid* Screen::CreateScrolledCellGrid(ConstString& Name, const Rect& RendRect, const Real& Thickness, const UI::ScrollbarStyle& Style)
         {
             return static_cast<ScrolledCellGrid*>( this->CheckAndInsert( RenderableFactory::CreateScrolledCellGrid(Name,RendRect,Thickness,Style) ) );
         }

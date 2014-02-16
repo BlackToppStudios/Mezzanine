@@ -76,24 +76,25 @@ namespace Mezzanine
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
-/// @brief Serializes the passed Mezzanine::EventQuit to XML
-/// @param stream The ostream to send the xml to.
-/// @param Ev the Mezzanine::EventQuit to be serialized
-/// @return this retruns the ostream, now with the serialized data
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::EventQuit& Ev);
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
+    /// @brief Serializes the passed Mezzanine::EventQuit to XML
+    /// @param stream The ostream to send the xml to.
+    /// @param Ev the Mezzanine::EventQuit to be serialized
+    /// @return this retruns the ostream, now with the serialized data
+    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::EventQuit& Ev);
 
-/// @brief Deserialize a Mezzanine::EventQuit
-/// @param stream The istream to get the xml from to (re)make the Mezzanine::EventQuit.
-/// @param Ev the Mezzanine::EventQuit to be deserialized.
-/// @return this returns the ostream, advanced past the Mezzanine::EventQuit that was recreated onto Ev.
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventQuit& Ev);
+    /// @brief Deserialize a Mezzanine::EventQuit
+    /// @param stream The istream to get the xml from to (re)make the Mezzanine::EventQuit.
+    /// @param Ev the Mezzanine::EventQuit to be deserialized.
+    /// @return this returns the ostream, advanced past the Mezzanine::EventQuit that was recreated onto Ev.
+    std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventQuit& Ev);
 
-/// @brief Set all values of a Mezzanine::EventQuit from parsed xml.
-/// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventQuit.
-/// @param Ev the Mezzanine::EventQuit to be reset.
-/// @return This returns theXML::Node that was passed in.
-const Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventQuit& Ev);
-
+    /// @brief Set all values of a Mezzanine::EventQuit from parsed xml.
+    /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventQuit.
+    /// @param Ev the Mezzanine::EventQuit to be reset.
+    /// @return This returns theXML::Node that was passed in.
+    const Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventQuit& Ev);
+#endif // \!SWIG && LUA
 
 #endif
 

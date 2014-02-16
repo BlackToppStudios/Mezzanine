@@ -27,8 +27,8 @@ Entresol* TheEntresol = NULL;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
-Audio::SoundSet* Announcer = NULL;
-Audio::SoundSet* Soundtrack = NULL;
+std::vector<Audio::iSound*>* Announcer = NULL;
+std::vector<Audio::iSound*>* Soundtrack = NULL;
 
 RigidDebris* Robot7 = NULL;
 RigidDebris* Robot8 = NULL;
@@ -575,8 +575,8 @@ void LoadContent()
 
     //Final Steps
     Audio::iSound *sound1 = NULL, *music1 = NULL, *music2 = NULL;
-    Announcer = new Audio::SoundSet();
-    Soundtrack = new Audio::SoundSet();
+    Announcer = new std::vector<Audio::iSound*>();
+    Soundtrack = new std::vector<Audio::iSound*>();
     Audio::AudioManager* AudioMan = TheEntresol->GetAudioManager();
     sound1 = AudioMan->CreateDialogSound("welcomefun-1.ogg", groupname);
     Announcer->push_back(sound1);
@@ -701,8 +701,6 @@ void MakeGUI()
 
     DemoMenu->SetPushButton(MenuAccess);
     DemoMenu->SetPopButton(ReturnButton);
-    //DScreen->AddChild(DemoMenu,6);
-    DemoMenu->Hide();
     //End of Menu
 }
 

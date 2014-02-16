@@ -1,23 +1,22 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/document.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/document.h">
-<area shape="rect" id="node3" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="597,486,683,514"/>
-<area shape="rect" id="node39" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="104,409,264,437"/>
-<area shape="rect" id="node42" href="$parseresult_8h.html" title="XML/parseresult.h" alt="" coords="121,331,247,359"/>
-<area shape="rect" id="node46" href="$node_8h.html" title="This defines the Mezzanine::XML::Node one of the central XML classes. " alt="" coords="411,331,501,359"/>
-<area shape="rect" id="node56" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy. " alt="" coords="651,99,744,127"/>
-<area shape="rect" id="node71" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="1195,331,1349,359"/>
+<area shape="rect" id="node3" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="669,486,755,514"/>
+<area shape="rect" id="node39" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="228,409,388,437"/>
+<area shape="rect" id="node42" href="$parseresult_8h.html" title="XML/parseresult.h" alt="" coords="245,331,371,359"/>
+<area shape="rect" id="node46" href="$node_8h.html" title="This defines the Mezzanine::XML::Node one of the central XML classes. " alt="" coords="472,331,563,359"/>
+<area shape="rect" id="node56" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy. " alt="" coords="768,99,861,127"/>
+<area shape="rect" id="node71" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="905,331,1060,359"/>
 <area shape="rect" id="node5" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1331,563,1475,591"/>
 <area shape="rect" id="node37" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1165,563,1221,591"/>
-<area shape="rect" id="node50" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class. " alt="" coords="493,409,603,437"/>
-<area shape="rect" id="node53" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template. " alt="" coords="288,409,419,437"/>
-<area shape="rect" id="node59" href="$resource_8h_source.html" title="resource.h" alt="" coords="1232,177,1312,205"/>
-<area shape="rect" id="node61" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="1675,254,1891,282"/>
-<area shape="rect" id="node63" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="1915,254,2045,282"/>
-<area shape="rect" id="node65" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="701,254,821,282"/>
-<area shape="rect" id="node67" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="845,254,997,282"/>
-<area shape="rect" id="node69" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="1021,254,1184,282"/>
-<area shape="rect" id="node79" href="$filestream_8h.html" title="Declaration of FileStream. " alt="" coords="1309,254,1453,282"/>
-<area shape="rect" id="node82" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="1327,409,1484,437"/>
-<area shape="rect" id="node86" href="$memorystream_8h.html" title="Declaration of MemoryStream. " alt="" coords="1477,254,1651,282"/>
-<area shape="rect" id="node89" href="$textsettingsfile_8h_source.html" title="Resource/textsettingsfile.h" alt="" coords="743,331,913,359"/>
-<area shape="rect" id="node74" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="1084,409,1177,437"/>
+<area shape="rect" id="node50" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class. " alt="" coords="463,409,572,437"/>
+<area shape="rect" id="node53" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template. " alt="" coords="596,409,727,437"/>
+<area shape="rect" id="node59" href="$resource_8h_source.html" title="resource.h" alt="" coords="1472,177,1552,205"/>
+<area shape="rect" id="node61" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="1765,254,1981,282"/>
+<area shape="rect" id="node63" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="2005,254,2136,282"/>
+<area shape="rect" id="node65" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="2160,254,2280,282"/>
+<area shape="rect" id="node67" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="987,254,1139,282"/>
+<area shape="rect" id="node69" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="1163,254,1325,282"/>
+<area shape="rect" id="node79" href="$filestream_8h.html" title="Declaration of FileStream. " alt="" coords="1349,254,1493,282"/>
+<area shape="rect" id="node82" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="1324,409,1481,437"/>
+<area shape="rect" id="node86" href="$memorystream_8h.html" title="Declaration of MemoryStream. " alt="" coords="1517,254,1691,282"/>
+<area shape="rect" id="node74" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="852,409,945,437"/>
 </map>

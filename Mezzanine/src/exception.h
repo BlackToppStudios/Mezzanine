@@ -43,13 +43,8 @@
 
 #include "datatypes.h"
 
-
-
 namespace Mezzanine
 {
-    #ifdef SWIG
-    %nodefaultctor Foo;
-    #endif
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Exception
     /// @headerfile exception.h

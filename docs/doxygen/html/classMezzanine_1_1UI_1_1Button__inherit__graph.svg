@@ -28,9 +28,9 @@
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1UI_1_1MenuButton.html" target="_top" xlink:title="This is a button with additional data used to track the binding to a MenuEntry which can be serialize...">
-<polygon fill="white" stroke="black" points="242,-59 242,-79 376,-79 376,-59 242,-59"/>
-<text text-anchor="middle" x="309" y="-66" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MenuButton</text>
+<a xlink:href="classMezzanine_1_1UI_1_1StackButton.html" target="_top" xlink:title="This is a button with additional data used to track the binding to a StackedContainer which can be se...">
+<polygon fill="white" stroke="black" points="241.5,-59 241.5,-79 376.5,-79 376.5,-59 241.5,-59"/>
+<text text-anchor="middle" x="309" y="-66" font-family="FreeSans" font-size="10.00">Mezzanine::UI::StackButton</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node9 -->

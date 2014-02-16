@@ -126,9 +126,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a23f0bdd6dc579e747e6c1accc160be0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Character.html#a23f0bdd6dc579e747e6c1accc160be0a">GetAtlasCoords</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#a61a42a62e4838bc93b194886a363fe36">UI::QuadCorner</a> Corner) const </td></tr>
 <tr class="memdesc:a23f0bdd6dc579e747e6c1accc160be0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the atlas coordinates of a quad corner.  <a href="#a23f0bdd6dc579e747e6c1accc160be0a">More...</a><br/></td></tr>
 <tr class="separator:a23f0bdd6dc579e747e6c1accc160be0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ec1efde5e7a8beb6dc6b35a88eb2a91"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Character.html#a2ec1efde5e7a8beb6dc6b35a88eb2a91">GetAtlasName</a> () const </td></tr>
-<tr class="memdesc:a2ec1efde5e7a8beb6dc6b35a88eb2a91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the atlas this character is using for rendering.  <a href="#a2ec1efde5e7a8beb6dc6b35a88eb2a91">More...</a><br/></td></tr>
-<tr class="separator:a2ec1efde5e7a8beb6dc6b35a88eb2a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdb5b789af81c495d7cdea52ea5a102b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Character.html#afdb5b789af81c495d7cdea52ea5a102b">GetAtlasName</a> () const </td></tr>
+<tr class="memdesc:afdb5b789af81c495d7cdea52ea5a102b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the atlas this character is using for rendering.  <a href="#afdb5b789af81c495d7cdea52ea5a102b">More...</a><br/></td></tr>
+<tr class="separator:afdb5b789af81c495d7cdea52ea5a102b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6172019b39c7ed52615434a13db95175"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Character.html#a6172019b39c7ed52615434a13db95175">GetAtlasWhitePixel</a> () const </td></tr>
 <tr class="memdesc:a6172019b39c7ed52615434a13db95175"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the coordinates to the white pixel on the atlas this character belongs to.  <a href="#a6172019b39c7ed52615434a13db95175">More...</a><br/></td></tr>
 <tr class="separator:a6172019b39c7ed52615434a13db95175"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -493,16 +493,16 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. ">Vector2</a> containing the Atlas pixel position of the requested corner. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00221">221</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00219">219</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2ec1efde5e7a8beb6dc6b35a88eb2a91"></a>
+<a class="anchor" id="afdb5b789af81c495d7cdea52ea5a102b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp; Mezzanine::UI::Character::GetAtlasName </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::UI::Character::GetAtlasName </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -511,7 +511,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the name of the atlas this character is using for rendering. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a const String reference containing the name of this characters atlas. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a String containing the name of this characters atlas, or an empty string if this isn't properly initialized. </dd></dl>
 
 <p>Definition at line <a class="el" href="character_8cpp_source.html#l00207">207</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
@@ -533,7 +533,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the coordinates to the white pixel on the atlas this character belongs to. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. ">Vector2</a> containing the relative coordinates of the atlas whitepixel. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00216">216</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00214">214</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -580,7 +580,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the fill colour of this character. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a const colourvalue reference containing the fill colour of this character. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00245">245</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00243">243</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -600,7 +600,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the rendered size of this character. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. ">Vector2</a> containing the size this character is to be rendered at after scaling. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00334">334</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00332">332</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -620,7 +620,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the glyph being rendered by this character. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the glyph this character is representing, or NULL if this character is a <a class="el" href="classMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad. ">Sprite</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00368">368</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00366">366</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -640,7 +640,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the sprite being rendered by this character. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the sprite this character is representing, or NULL if this character is a <a class="el" href="classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations. ...">Glyph</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00371">371</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00369">369</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -660,7 +660,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets if this character is being highlighted. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this character is being highlighted, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00255">255</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00253">253</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -680,7 +680,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the length offset of this <a class="el" href="classMezzanine_1_1UI_1_1Character.html" title="This class creates and encapsultes a character that can be used in text renders. ">Character</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a real representing the number of pixels to offset this from it's parent. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00315">315</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00313">313</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -727,7 +727,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. ">Vector2</a> containing the Atlas relative(0 to 1) position of the requested corner. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00228">228</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00226">226</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -747,7 +747,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets this Characters sharable traits. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a const reference to the sharable traits belonging to this <a class="el" href="classMezzanine_1_1UI_1_1Character.html" title="This class creates and encapsultes a character that can be used in text renders. ">Character</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00268">268</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00266">266</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -794,7 +794,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the rendered size of this character without any scaling applied. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. ">Vector2</a> containing the size this character is to be rendered at before scaling. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00352">352</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00350">350</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -833,7 +833,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Gets the vertical adjustment for this character without scaling applied. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a Real representing the position adjustment on the Y axis in pixels before scaling. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000112">Todo:</a></b></dt><dd>If we want to change how normal text is aligned on the Y axis, we need to update this. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000111">Todo:</a></b></dt><dd>If we want to change how normal text is aligned on the Y axis, we need to update this. </dd></dl>
 
 <p>Definition at line <a class="el" href="character_8cpp_source.html#l00185">185</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
@@ -875,7 +875,7 @@ Protected Attributes</h2></td></tr>
 <p>Whether or not the custom size has been set. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if a custom size has been provided for this character, false if it is using it's default size. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00328">328</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00326">326</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -895,7 +895,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets whether or not this character is a glyph. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this character is a glyph, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00273">273</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00271">271</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -915,7 +915,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets if this character can be highlighted. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this character can be highlighted, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00289">289</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00287">287</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -935,7 +935,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets if this character is a line break character. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this character indicates a new line, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00301">301</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00299">299</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -955,7 +955,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets if this character contains valid data for rendering. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this character can be rendered, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00283">283</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00281">281</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -975,7 +975,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets whether or not this character is a sprite. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this character is a sprite, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00278">278</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00276">276</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -995,7 +995,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets if this character is a whitespace glyph. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this character is a whitespace, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00295">295</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00293">293</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -1022,7 +1022,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00235">235</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00233">233</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -1051,7 +1051,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00320">320</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00318">318</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -1077,7 +1077,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00250">250</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00248">248</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -1104,7 +1104,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00310">310</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00308">308</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -1130,7 +1130,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="character_8cpp_source.html#l00260">260</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
+<p>Definition at line <a class="el" href="character_8cpp_source.html#l00258">258</a> of file <a class="el" href="character_8cpp_source.html">character.cpp</a>.</p>
 
 </div>
 </div>
@@ -1309,6 +1309,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:30 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

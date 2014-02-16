@@ -96,15 +96,12 @@ namespace Mezzanine
             this->ParentScreen->DestroyWidget( this->DownRightButton );
         }
 
-        void HorizontalScrollbar::CreateLayoutStrat()
-        {
-            this->LayoutStrat = new HorizontalLayoutStrategy();
-        }
-
         void HorizontalScrollbar::ConstructHorizontalScrollbar(const UI::ScrollbarStyle& ScrollStyle)
         {
             // Create the rects we'll use
-            UnifiedRect ChildRect(0,0,1,1,0,0,0,0);
+            UnifiedVec2 ChildPosition(0,0,0,0);
+            UnifiedVec2 ChildSize(1,1,0,0);
+            UnifiedRect ChildRect(ChildPosition,ChildSize);
             if( UI::SB_NoButtons == ScrollStyle )
             {
                 // Create our objects
@@ -122,7 +119,7 @@ namespace Mezzanine
                 {
                     // Create our objects
                     this->UpLeftButton = ParentScreen->CreateButton(this->Name+".LeftButton",ChildRect);
-                    this->UpLeftButton->SetPositioningRules(UI::PF_Left);
+                    this->UpLeftButton->SetPositioningRules(UI::PF_Anchor_Left);
                     this->UpLeftButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->UpLeftButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->UpLeftButton,0);
@@ -133,7 +130,7 @@ namespace Mezzanine
                     this->AddChild(this->ScrollBack,1);
 
                     this->DownRightButton = ParentScreen->CreateButton(this->Name+".RightButton",ChildRect);
-                    this->DownRightButton->SetPositioningRules(UI::PF_Right);
+                    this->DownRightButton->SetPositioningRules(UI::PF_Anchor_Right);
                     this->DownRightButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->DownRightButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->DownRightButton,2);
@@ -150,14 +147,14 @@ namespace Mezzanine
                     this->ScrollBack->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->ScrollBack,0);
 
-                    this->UpLeftButton = ParentScreen->CreateButton(this->Name+".LeftButton",ChildRect);
-                    this->UpLeftButton->SetPositioningRules(UI::PF_Right);
+                    this->UpLeftButton = ParentScreen->CreateButton(this->Name+".LeftButton",UnifiedRect(UnifiedVec2(-1,-1,0,0),ChildSize));
+                    this->UpLeftButton->SetPositioningRules(UI::PF_Anchor_Right | UI::PF_Anchor_Size);
                     this->UpLeftButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->UpLeftButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->UpLeftButton,1);
 
                     this->DownRightButton = ParentScreen->CreateButton(this->Name+".RightButton",ChildRect);
-                    this->DownRightButton->SetPositioningRules(UI::PF_Right);
+                    this->DownRightButton->SetPositioningRules(UI::PF_Anchor_Right);
                     this->DownRightButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->DownRightButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->DownRightButton,2);
@@ -170,13 +167,13 @@ namespace Mezzanine
                 {
                     // Create our objects
                     this->UpLeftButton = ParentScreen->CreateButton(this->Name+".LeftButton",ChildRect);
-                    this->UpLeftButton->SetPositioningRules(UI::PF_Left);
+                    this->UpLeftButton->SetPositioningRules(UI::PF_Anchor_Left);
                     this->UpLeftButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->UpLeftButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->UpLeftButton,0);
 
-                    this->DownRightButton = ParentScreen->CreateButton(this->Name+".RightButton",ChildRect);
-                    this->DownRightButton->SetPositioningRules(UI::PF_Left);
+                    this->DownRightButton = ParentScreen->CreateButton(this->Name+".RightButton",UnifiedRect(UnifiedVec2(1,1,0,0),ChildSize));
+                    this->DownRightButton->SetPositioningRules(UI::PF_Anchor_Left | UI::PF_Anchor_Size);
                     this->DownRightButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->DownRightButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->DownRightButton,1);
@@ -308,7 +305,7 @@ namespace Mezzanine
         {
             if( this->AutoHideScroll && CanSee ) {
                 if( this->GetMaxXPages() > 1.0 ) {
-                    this->SetVisible(CanSee);
+                    this->Widget::SetVisible(CanSee);
                 }
             }else{
                 this->Widget::SetVisible(CanSee);
@@ -319,7 +316,7 @@ namespace Mezzanine
         {
             if( this->AutoHideScroll ) {
                 if( this->GetMaxXPages() > 1.0 ) {
-                    this->Show();
+                    this->Widget::Show();
                 }
             }else{
                 this->Widget::Show();
@@ -337,8 +334,11 @@ namespace Mezzanine
         Real HorizontalScrollbar::GetMaxXPages() const
         {
             if( this->Container != NULL ) {
-                Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().X / this->Container->GetActualSize().X );
-                return ( Ret > 0 ? Ret : 1 );
+                const Real ContainerXSize = this->Container->GetActualSize().X;
+                if( ContainerXSize > 0 ) {
+                    Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().X / ContainerXSize );
+                    return ( Ret > 1 ? Ret : 1 );
+                }
             }
             return 1;
         }
@@ -576,16 +576,32 @@ namespace Mezzanine
             { return HorizontalScrollbar::TypeName; }
 
         HorizontalScrollbar* HorizontalScrollbarFactory::CreateHorizontalScrollbar(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new HorizontalScrollbar(RendName,Style,Parent); }
+        {
+            HorizontalScrollbar* Ret = new HorizontalScrollbar(RendName,Style,Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         HorizontalScrollbar* HorizontalScrollbarFactory::CreateHorizontalScrollbar(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new HorizontalScrollbar(RendName,RendRect,Style,Parent); }
+        {
+            HorizontalScrollbar* Ret = new HorizontalScrollbar(RendName,RendRect,Style,Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         HorizontalScrollbar* HorizontalScrollbarFactory::CreateHorizontalScrollbar(const XML::Node& XMLNode, Screen* Parent)
-            { return new HorizontalScrollbar(XMLNode,Parent); }
+        {
+            HorizontalScrollbar* Ret = new HorizontalScrollbar(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         Widget* HorizontalScrollbarFactory::CreateWidget(Screen* Parent)
-            { return new HorizontalScrollbar(Parent); }
+        {
+            HorizontalScrollbar* Ret = new HorizontalScrollbar(Parent);
+            Ret->_SetLayoutStrat( new HorizontalLayoutStrategy() );
+            return Ret;
+        }
 
         Widget* HorizontalScrollbarFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
         {

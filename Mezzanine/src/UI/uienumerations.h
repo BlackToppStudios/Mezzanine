@@ -52,8 +52,9 @@ namespace Mezzanine
         enum AspectRatioLock
         {
             ARL_Ratio_Unlocked = 0,          ///< The aspect ratio is not locked and both dimensions can resize freely.
-            ARL_Ratio_Locked_Expanding = 1,  ///< The aspect ratio is locked.  When multiple axes are resized the axis with more growth is used to determine the size of the other axis.
-            ARL_Ratio_Locked_Shrinking = 2   ///< The aspect ratio is locked.  When multiple axes are resized the axis with less growth is used to determine the size of the other axis.
+            ARL_Ratio_Y_Axis = 1,            ///< The X axis is limited by the change to the Y axis.  The Y axis can resize freely.
+            ARL_Ratio_Locked_Expanding = 2,  ///< The aspect ratio is locked.  When multiple axes are resized the axis with more growth is used to determine the size of the other axis.
+            ARL_Ratio_Locked_Shrinking = 3   ///< The aspect ratio is locked.  When multiple axes are resized the axis with less growth is used to determine the size of the other axis.
         };
 
         /// @enum Border
@@ -102,23 +103,28 @@ namespace Mezzanine
         /// @brief Used by UI container classes to determine their movement behavior when the container is resized.
         /// @details These flags are not used if the container object is simply repositioned.  Only when a new position
         /// is needed after the container is resized.  If rules for one axis isn't covered, the Unified position is used.
+        /// @n @n
+        /// If PF_Anchor_Prev_Offset or PF_Anchor_Size are not specified in the positioning bitfield for a quad, an offset
+        /// of 0 will be used on the specified edge.
         enum PositioningFlags
         {
-            PF_Unified_Pos       = 0,                             ///< Does not anchor to any side, using only the provided unified dimensions.
-            PF_Top               = 1,                             ///< Anchors to the top side of the quad.
-            PF_Bottom            = 2,                             ///< Anchors to the bottom side of the quad.
-            PF_Left              = 4,                             ///< Anchors to the left side of the quad.
-            PF_Right             = 8,                             ///< Anchors to the right side of the quad.
+            PF_Unified_Pos             = 0,                                           ///< Does not anchor to any side, using only the provided unified dimensions.
+            PF_Anchor_Prev_Offset      = 1,                                           ///< Uses the offset of the old transform to determine the offset for the new transform, preserving absolute distance between updates.
+            PF_Anchor_Size             = 2,                                           ///< Uses the updated size of the quad as the offset for the new transform, and applies the Unified Dim of the appropriate axis to it.
+            PF_Anchor_Top              = 4,                                           ///< Anchors to the top side of the quad.
+            PF_Anchor_Bottom           = 8,                                           ///< Anchors to the bottom side of the quad.
+            PF_Anchor_Left             = 16,                                          ///< Anchors to the left side of the quad.
+            PF_Anchor_Right            = 32,                                          ///< Anchors to the right side of the quad.
 
-            PF_TopLeft           = (PF_Top | PF_Left),            ///< Anchors to the top and left sides of the quad.
-            PF_TopRight          = (PF_Top | PF_Right),           ///< Anchors to the top and right sides of the quad.
-            PF_BottomLeft        = (PF_Bottom | PF_Left),         ///< Anchors to the bottom and left sides of the quad.
-            PF_BottomRight       = (PF_Bottom | PF_Right),        ///< Anchors to the bottom and right sides of the quad.
+            PF_Anchor_TopLeft          = (PF_Anchor_Top | PF_Anchor_Left),            ///< Anchors to the top and left sides of the quad.
+            PF_Anchor_TopRight         = (PF_Anchor_Top | PF_Anchor_Right),           ///< Anchors to the top and right sides of the quad.
+            PF_Anchor_BottomLeft       = (PF_Anchor_Bottom | PF_Anchor_Left),         ///< Anchors to the bottom and left sides of the quad.
+            PF_Anchor_BottomRight      = (PF_Anchor_Bottom | PF_Anchor_Right),        ///< Anchors to the bottom and right sides of the quad.
 
-            PF_VerticalCenter    = (PF_Top | PF_Bottom),          ///< Centers along the Y axis of the quad.
-            PF_HorizontalCenter  = (PF_Left | PF_Right),          ///< Centers along the X axis of the quad.
+            PF_Anchor_VerticalCenter   = (PF_Anchor_Top | PF_Anchor_Bottom),          ///< Centers along the Y axis of the quad.
+            PF_Anchor_HorizontalCenter = (PF_Anchor_Left | PF_Anchor_Right),          ///< Centers along the X axis of the quad.
 
-            PF_Center            = (PF_TopLeft | PF_BottomRight)  ///< Centers within the quad.
+            PF_Anchor_Center           = (PF_Anchor_TopLeft | PF_Anchor_BottomRight)  ///< Centers within the quad.
         };//*/
 
         /// @enum QuadCorner
@@ -156,11 +162,12 @@ namespace Mezzanine
         /// @brief Used by UI container classes to determine their resize behavior on a given axis when the container is resized.
         enum SizingRules
         {
-            SR_Unified_Dims               = 0, ///< Resizing will use the provided unified dimensions with no further alterations.  This is the default for most QuadRenderables.
-            SR_Match_Other_Axis           = 1, ///< The calculated value for the perpendicular axis will be used as the final value for this axis.
-            SR_Fill_Available             = 2, ///< Unified dimensions are ignored and will instead us all available space.
-            SR_Size_For_Text              = 3, ///< Sizes the container so all text in layers will be visible.  Only valid for Vertical sizing(exception will be thrown).
-            SR_Fixed_Size                 = 4  ///< No resizing of any kind will take place.
+            SR_Unified_Dims               = 0,  ///< Resizing will use the provided unified dimensions with no further alterations.  This is the default for most QuadRenderables.
+            SR_Match_Other_Axis           = 1,  ///< The calculated value for the perpendicular axis will be used as the final value for this axis.
+            SR_Match_Other_Axis_Unified   = 2,  ///< Blended Mode.  This will do the same as "SR_Match_Other_Axis" and will also apply Unified Dim of the calculating axis to the result.
+            SR_Fill_Available             = 4,  ///< Unified dimensions are ignored and will instead us all available space.
+            SR_Size_For_Text              = 8,  ///< Sizes the container so all text in layers will be visible.  Only valid for Vertical sizing(exception will be thrown).
+            SR_Fixed_Size                 = 16  ///< No resizing of any kind will take place.
         };
 
         /// @enum SpinnerStyle
@@ -168,7 +175,8 @@ namespace Mezzanine
         /// @details In the case of the buttons being together, the increment button will be above the decrement button.
         enum SpinnerStyle
         {
-            Spn_Separate,
+            Spn_Separate_Horizontal,
+            Spn_Separate_Vertical,
             Spn_Together_Left,
             Spn_Together_Right
         };

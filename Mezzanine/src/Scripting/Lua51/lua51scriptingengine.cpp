@@ -50,6 +50,8 @@
 #include "exception.h"
 
 #include <cstring>
+#include <algorithm>
+
 /// @file
 /// @brief This file has the implementation for the Lua based Scripting system.
 
@@ -145,24 +147,92 @@ namespace Mezzanine
             // Publically visible internals
             void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
             {
+                if(0==LuaReturn)
+                    { return; }
+
+                String ErrorMessage;
+                size_t Length;
+                const char* ErrorCString = lua_tolstring(this->State, -1, &Length);
+                ErrorMessage.reserve(Length+2);
+                ErrorMessage = String(ErrorCString);
+                if(ErrorMessage.length()!=Length)
+                    { MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua is putting odd things in error messages:\n"+ErrorMessage); }
+                ErrorMessage += "\n";
+
                 switch(LuaReturn)
                 {
-                    case 0:
-                        break;
                     case LUA_YIELD:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_YIELD, "Lua returned a LUA_YIELD instead of completing.")
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_YIELD, "Lua returned a LUA_YIELD instead of completing:\n"+ErrorMessage);
                     case LUA_ERRRUN:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_RUNTIME, "There was a runtime Error handling the Lua script.")
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_RUNTIME, "There was a runtime Error handling the Lua script:\n"+ErrorMessage);
                     case LUA_ERRSYNTAX:
-                        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_LUA, "There was an error with the syntax of the Lua script.")
+                        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_LUA, "There was an error with the syntax of the Lua script:\n"+ErrorMessage);
                     case LUA_ERRERR:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_ERRERR, "There was an error when Lua attempted to handle an error.")
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_ERRERR, "There was an error when Lua attempted to handle an error:\n"+ErrorMessage);
                     case LUA_ERRMEM:
-                        MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Lua could not allocate memory.")
+                        MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Lua could not allocate memory:\n"+ErrorMessage);
                     case LUA_ERRFILE:
-                        MEZZ_EXCEPTION(Exception::IO_FILE_EXCEPTION, "Lua had an error with file IO.")
+                        MEZZ_EXCEPTION(Exception::IO_FILE_EXCEPTION, "Lua had an error with file IO:\n"+ErrorMessage);
                     default:
-                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua had an error and we are not sure what it was.")
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua had an error and we are not sure what it was:\n"+ErrorMessage);
+                }
+            }
+
+            String Lua51ScriptingEngine::GetLibName(Lua51ScriptingEngine::Lua51Libraries Lib)
+            {
+                switch(Lib)
+                {
+                    case NoLib:                 return "none";
+                    case BaseLib:               return "base";
+                    case PackageLib:            return "package";
+                    case StringLib:             return "string";
+                    case TableLib:              return "table";
+                    case MathLib:               return "math";
+                    case IOLib:                 return "io";
+                    case OSLib:                 return "os";
+                    case DebugLib:              return "debug";
+                    case MezzLib:               return "mezzanine";
+                    case MezzSafeLib:           return "mezzaninesafe";
+                    case MezzXMLLib:            return "mezzaninexml";
+                    case MezzXMLSafeLib:        return "mezzaninexmlsafe";
+                    case MezzThreadingLib:      return "mezzaninethreading";
+                    case MezzThreadingSafeLib:  return "mezzaninethreadingsafe";
+                    case DefaultLibs:           return "default";
+                    case AllLibs:               return "all";
+                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to library string"+ToString(Lib));
+                }
+            }
+
+            Lua51ScriptingEngine::Lua51Libraries Lua51ScriptingEngine::GetLibFromName(String Name)
+            {
+                if(!Name.size())
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert zero length name to valid libray name"); }
+                std::transform(Name.begin(), Name.end(), Name.begin(), ::tolower);
+
+                switch(Name[0])
+                {
+                    case 'n': if(Name=="none") { return NoLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with n: " + Name); }
+                    case 'b': if(Name=="base") { return BaseLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with b: " + Name); }
+                    case 'p': if(Name=="package") { return PackageLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with p: " + Name); }
+                    case 's': if(Name=="string") { return StringLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with s: " + Name); }
+                    case 't': if(Name=="table") { return TableLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with t: " + Name); }
+                    case 'm':
+                        if(Name=="math") { return MathLib; }
+                        else if(Name=="mezzanine") { return MezzLib; }
+                        else if(Name=="mezzaninesafe") { return MezzSafeLib; }
+                        else if(Name=="mezzaninexml") { return MezzXMLLib; }
+                        else if(Name=="mezzaninexmlsafe") { return MezzXMLSafeLib; }
+                        else if(Name=="mezzaninethreading") { return MezzThreadingLib; }
+                        else if(Name=="mezzaninethreadingsafe") { return MezzThreadingSafeLib; }
+                        else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with m: " + Name); }
+                    case 'i': if(Name=="io") { return IOLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with i: " + Name); }
+                    case 'o': if(Name=="os") { return OSLib; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with o: " + Name); }
+                    case 'd':
+                        if (Name=="debug") { return DebugLib; }
+                        else if(Name=="default") { return DefaultLibs; }
+                        else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with d: " + Name); }
+                    case 'a': if(Name=="all") { return AllLibs; } else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with a: " + Name); }
+                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert: " + Name);
                 }
             }
 

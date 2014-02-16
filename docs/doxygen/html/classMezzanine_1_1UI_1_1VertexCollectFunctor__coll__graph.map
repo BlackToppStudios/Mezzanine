@@ -1,5 +1,5 @@
 <map id="Mezzanine::UI::VertexCollectFunctor" name="Mezzanine::UI::VertexCollectFunctor">
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1ScreenRenderData.html" title="This class stores all vertices pertaining to a layer sorted by their priority for rendering..." alt="" coords="1060,113,1276,141"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1ScreenRenderData.html" title="This class stores all vertices pertaining to a layer sorted by their priority for rendering..." alt="" coords="1017,113,1233,141"/>
 <area shape="rect" id="node6" href="$structMezzanine_1_1UI_1_1VertexData.html" title="Basic class describing a vertex in the UI to be rendered. " alt="" coords="491,113,661,141"/>
 <area shape="rect" id="node8" href="$structMezzanine_1_1UI_1_1Vertex.html" title="Basic class describing a vertex in the UI to be rendered. " alt="" coords="264,81,408,109"/>
 <area shape="rect" id="node10" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen. " alt="" coords="19,5,152,33"/>

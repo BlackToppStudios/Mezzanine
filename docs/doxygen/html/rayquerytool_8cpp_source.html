@@ -339,7 +339,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            } <span class="comment">// \if entity</span></div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        } <span class="comment">// \if qr_idx</span></div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <span class="comment">// ©hange the closest point into a point relative to the Actor</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <span class="comment">// Change the closest point into a point relative to the Actor</span></div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="keywordflow">if</span> (IntersectedObject)</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        {</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            Offset = IntersectedObject-&gt;<a class="code" href="classMezzanine_1_1TransformableObject.html#afd0ba2a6c736ee8d0671dc3a5d51f8f1" title="Gets this objects current orientation. ">GetOrientation</a>() * ((closest_result - IntersectedObject-&gt;<a class="code" href="classMezzanine_1_1TransformableObject.html#a19db95dd2c1d51cae4eff5bc455654f3" title="Gets this objects current location. ">GetLocation</a>()) * IntersectedObject-&gt;<a class="code" href="classMezzanine_1_1TransformableObject.html#a71a88f0e6234ddbeceefec8bbedf8d80" title="Gets the scaling currently being applied to this object. ">GetScale</a>());</div>
@@ -399,7 +399,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number. ">Real</a> SMALL_NUM = 0.00000001;</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            <span class="keywordflow">if</span>( (D&lt;0? -D : D) &lt; SMALL_NUM)  <span class="comment">// ©hecks if the Plane behind the RAy</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            <span class="keywordflow">if</span>( (D&lt;0? -D : D) &lt; SMALL_NUM)  <span class="comment">// Checks if the Plane behind the RAy</span></div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            {</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                <span class="keywordflow">if</span>(N == 0)</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                {</div>
@@ -414,7 +414,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;</div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number. ">Real</a> sI = N/D;</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            <span class="keywordflow">if</span>(sI &lt; 0 || sI &gt; 1) <span class="comment">// ©hecks if the ray is too long</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            <span class="keywordflow">if</span>(sI &lt; 0 || sI &gt; 1) <span class="comment">// Checks if the ray is too long</span></div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                { <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1RayQueryTool.html#a5964afa56e72ed8220c60c756ed6cba9" title="Clears an previously stored return values. ">ClearReturns</a>(); }</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. ">Vector3</a> return_vector(QueryRay.<a class="code" href="classMezzanine_1_1Ray.html#aa2e73f84b1137ec1db312fbdfdefac05" title="The origin point of the Vector. ">Origin</a> + (u * sI));</div>
@@ -530,6 +530,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:25 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

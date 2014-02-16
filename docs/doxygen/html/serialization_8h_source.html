@@ -140,7 +140,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">    /// @page Serialization</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">    /// @section SerializationMain</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">    /// Serialization is the process of converting a class instance into a serial sequence of bits. DeSerialization is taking those</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">    /// bits and reconstructing th e original object without losing anything of value (in practice the only things not saved are cached</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">    /// bits and reconstructing the original object without losing anything of value (in theory the only things not saved are cached</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">    /// values or values calulated as they are needed). These bits could be just about anything, because of its ubiquity we chose</span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">    /// to serialize to xml (or something so similar as to be indistinguishable from standard xml). This allows a wide variety of tools</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">    /// to be used when working with and verifying these serialized classes. Additionally, transmitting and storing xml is easy to do,</span></div>
@@ -157,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">    ///     - @ref serializationmisc</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">    /// @subsection serializationxml Serialization and XML</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">    /// The process of serializing doesn&#39;t just convert from class instance to text. Since our end goal is to convert live objects to</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">    /// XML it only make sense to closely integrate with the Mezzanine::xml portion of the engine. If you plan on writing serialization</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">    /// XML it makes sense to closely integrate the Mezzanine::xml portion of the engine. If you plan on writing serialization</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">    /// and deserialization code you should read the following parts of the @ref XMLManual at a minimum:</span></div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">    ///     - @ref XMLDOM</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">    ///     - @ref XMLAccessingBasics</span></div>
@@ -167,15 +167,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">    /// The central object that will carry information during this process is the Mezzanine::XML::Node. The Mezzanine::XML::Node is an excellent</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">    /// tool for converting and storing data in a single unified heirarchy.</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">    /// \n \n</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">    /// C++ and most object oriented languages heavily imply that class inheritance should be structured as hierarchies. Additionally</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">    /// Hierarchies are implied when complex class have other complex class or datatypes as members. Both of these structures map</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">    /// C++ and most other object oriented languages heavily imply that class inheritance should be structured as hierarchies. Additionally</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">    /// Hierarchies are implied when complex class has other complex classes or datatypes as members. Both of these structures map</span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">    /// cleanly onto the kind of hierarchies that a well formed xml documents provide.</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">    /// \n \n</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">    /// There are some relationships in video game objects that cross normal hierarchical boundaries. For example, A constraint</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">    /// references two actors, and defines a relationship between them. When serialized the constraint simply stores the name of</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">    /// the actor and looks it up in the actor manager during deserialization. This implies that the actors exist already, or that</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">    /// there is some mechanism to create the constraint and fill in the actor later. Several mechanisms were discussed to</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">    /// accomplish this, some include: two passes of processing were constraintw would be done in the second pass, a work queue that</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">    /// accomplish this, some include: two passes of processing where constraint would be done in the second pass, a work queue that</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">    /// would store objects that couldn&#39;t be deserialized yet, a prefetcher that would dig through the xml to find the required</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">    /// object.</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">    /// \n \n</span></div>
@@ -186,7 +186,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">    /// \n \n</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">    /// The simplest, most performant way to work around the issues that cross-hierarchical relationships presented was to ignore</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">    /// them. More specifically, throw an exception if an object reference during deserialization is not present. Then we ask that</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">    /// programmers who write could that must store, transmit and reconstruct class instances be aware of the following preconditions</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">    /// programmers who write code that must store, transmit and reconstruct class instances be aware of the following preconditions</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">    /// So can produce their own solutions:</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">    ///     - CollisionShapes must come before Actors and AreaEffects</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">    ///     - WorldNodes must come before Actors, Light and ParticleEffects. (this is still work in progress).</span></div>
@@ -197,7 +197,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">    ///     - Sounds must be done before SoundSet (Still in progress)</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">    ///</span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">    /// The easyiest way to meet these conditions and not consume an inordinate amount of computing resources, is to pay attention</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">    /// to the order that items are serialized in. If a program serializes the worldnodes, then the actors, then everything  else</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">    /// to the order that items are serialized in. If a program serializes the worldnodes, then the actors, then everything else</span></div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">    /// it will have relatively little trouble making it work.</span></div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">    /// @subsection serializationintegration Integrate Serialization into Your Code</span></div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">    /// There several ways to interact with the current serialization system. One might have to create a class that can be</span></div>
@@ -571,6 +571,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:25 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

@@ -79,13 +79,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 <p>Many scripting languages suitable for being embedded in games have a number of similar traits. All have some kind of runtime that mustbe initialized, this runtime accepts strings of script source and performs the steps the source desribe. Some keep internal track of the source other expect the the caller to do so. Most allow passing arguments into scripts and accepting return values. Some allow the script to be compiled to a byte and others do not. A scripting manager is <br/>
  <br/>
- Whether or not this is updated can be controlled by the Mezz_SWIG CMake Flag. When this flag is enabled a SWIG_Mezzanine build target is added to the project. To satisfy build systems this target/project compiles <a class="el" href="blank_8cpp_source.html">src/blank.cpp</a> as the only files. During the build steps in that target it attempt to Swig from the command line. <br/>
+ Whether or not this is updated each build can be controlled by the Mezz_SWIG CMake Flag. When this flag is enabled a SWIG_Mezzanine build target is added to the project. To satisfy build systems this target/project compiles <a class="el" href="blank_8cpp_source.html">src/blank.cpp</a> as the only files. During the build steps in that target it attempt to Swig from the command line. <br/>
  <br/>
  This can be run manually by invoking that target specifically. For example: </p>
 <div class="fragment"><div class="line">$make SWIG_Mezzanine</div>
 <div class="line">ninja SWIG_Mezzanine</div>
+</div><!-- fragment --> <h1><a class="anchor" id="CppApiToLua"></a>
+How the C++ API converts to Lua</h1>
+<p>The Documentation for the C++ API is also the canonical documentation for the Lua scripting system. The are some differences those that are not and these detailed on the functions that are different are generalized here. </p>
+<h2><a class="anchor" id="CApiLuaNamepacesBecomeModules"></a>
+Lua Modules are Related to Namespaces</h2>
+<p>Major namespaces become modules in Lua. You can check on the Lua51ScriptingEngine if there is a function for loading a specific namespace. For example if you want a script to use classes and functions in the <a class="el" href="namespaceMezzanine_1_1Threading.html" title="This is where game specific threading algorithms and a minimalistic subset of the std threading libra...">Mezzanine::Threading</a> namespace then you will need to load either the safe or the unlimited threading libraries in Lua. This can be done either by passing the right flags to the constructor of the Lua51ScriptingEngine or by calling Lua51ScriptingEngine::OpenMezzanineThreadingLibrary() or Lua51ScriptingEngine::OpenMezzanineThreadingSafeLibrary() . Each Module in Lua stores all of its members in a table of the module's name, and a reference to the table is stored in the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> table. This is preferred way to call Lua functionality from modules, and calling the table directly may be removed in the future. Here is an example of using a class in the Threading and another in the root namespace: </p>
+<div class="fragment"><div class="line">bar = MezzanineSafe.Threading.Barrier(4)</div>
+<div class="line">vec = MezzanineSafe.Vector3(1,1,1)</div>
+</div><!-- fragment --> <h2><a class="anchor" id="CApiLuaNamespacesFlattened"></a>
+Other Namespaces Are Flattened</h2>
+<p>Namespaces are flattened into the Lua module they are included n: C++ code: </p>
+<div class="fragment"><div class="line"><a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. ">Mezzanine::Vector3</a> Vec = <a class="code" href="namespaceMezzanine_1_1StringTools.html#a406345c88068aeae0bf081d9718a2ffe" title="Convert three numbers in a string into a Vector3. ">Mezzanine::StringTools::ConvertToVector3</a>(<span class="stringliteral">&quot;3 4 6&quot;</span>)</div>
+</div><!-- fragment --><p> <br/>
+ <br/>
+ Lua Code: </p>
+<div class="fragment"><div class="line">Vec=MezzanineSafe.ConvertToVector3(<span class="stringliteral">&quot;3 4 6&quot;</span>)</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:27 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

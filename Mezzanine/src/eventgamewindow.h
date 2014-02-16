@@ -174,25 +174,27 @@ namespace Mezzanine
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
-/// @brief Serializes the passed Mezzanine::EventGameWindow to XML
-/// @param stream The ostream to send the xml to.
-/// @param Ev the Mezzanine::EventGameWindow to be serialized
-/// @return this returns the ostream, now with the serialized data
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::EventGameWindow& Ev);
+#if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
+    /// @brief Serializes the passed Mezzanine::EventGameWindow to XML
+    /// @param stream The ostream to send the xml to.
+    /// @param Ev the Mezzanine::EventGameWindow to be serialized
+    /// @return this returns the ostream, now with the serialized data
+    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::EventGameWindow& Ev);
 
-/// @brief Deserialize a Mezzanine::EventGameWindow
-/// @param stream The istream to get the xml from to (re)make the Mezzanine::EventGameWindow.
-/// @param Ev the Mezzanine::EventGameWindow to be deserialized.
-/// @return this returns the ostream, advanced past the Mezzanine::EventGameWindow that was recreated onto Ev.
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventGameWindow& Ev);
+    /// @brief Deserialize a Mezzanine::EventGameWindow
+    /// @param stream The istream to get the xml from to (re)make the Mezzanine::EventGameWindow.
+    /// @param Ev the Mezzanine::EventGameWindow to be deserialized.
+    /// @return this returns the ostream, advanced past the Mezzanine::EventGameWindow that was recreated onto Ev.
+    std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventGameWindow& Ev);
 
-/// @brief Set all values of a Mezzanine::EventGameWindow from parsed xml.
-/// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventGameWindow.
-/// @param Ev the Mezzanine::EventGameWindow to be reset.
-/// @return This returns theXML::Node that was passed in.
-const Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev);
+    /// @brief Set all values of a Mezzanine::EventGameWindow from parsed xml.
+    /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventGameWindow.
+    /// @param Ev the Mezzanine::EventGameWindow to be reset.
+    /// @return This returns theXML::Node that was passed in.
+    const Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev);
 
-Mezzanine::XML::Node& MEZZ_LIB operator >> (Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev);
+    Mezzanine::XML::Node& MEZZ_LIB operator >> (Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev);
+#endif // \!SWIG && LUA
 
 #endif
 

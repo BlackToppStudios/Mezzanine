@@ -256,17 +256,9 @@ namespace Mezzanine
             /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
             /// @internal
-            /// @brief Overridable method that creates and assigns a layout strategy for a quadrenderable.
-            /// @note Widgets by default will create the default LayoutStrategy implementation.  If a widget needs a different implementation (or none/NULL),
-            /// then this method needs to be overridden and provide the appropriate type.
-            virtual void CreateLayoutStrat();
-            /// @internal
             /// @brief Adds all the vertices belonging to all the layers of this renderable to the provided vector.
             /// @param Vertices The vector to store the generated vertices.
             void AppendLayerVertices(std::vector<VertexData>& Vertices);
-            /// @internal
-            /// @brief Redraws all dirty layers.
-            void CleanLayers();
             /// @internal
             /// @brief Resizes the container for RenderLayers in this QuadRenderable.
             /// @param NewSize The new capacity for RenderLayer storage.
@@ -386,24 +378,30 @@ namespace Mezzanine
             /// @brief Sets the behavior this quad will have when it is positioned automatically.
             /// @note This method is not retroactive.  Setting this to a different value will not cause it to reposition.
             /// @param Rules The action to take when this is positioned.  See @ref PositioningFlags enum for more info.
-            virtual void SetPositioningRules(const UI::PositioningFlags Rules);
+            virtual void SetPositioningRules(const Whole Rules);
             /// @brief Gets the current behavior this quad will follow when it is positioned automatically.
-            /// @return Returns a @ref PositioningFlags value reprensenting the action this quad will take when it is positioned.
-            virtual UI::PositioningFlags GetPositioningRules() const;
+            /// @return Returns a bitfield of @ref PositioningFlags reprensenting the action this quad will take when it is positioned.
+            virtual Whole GetPositioningRules() const;
             /// @brief Sets the behavior this quad will have on the X axis when it is resized.
             /// @note This method is not retroactive.  Setting this to a different value will not cause it to resize.
             /// @param Rules The action to take when this is resized.  See @ref SizingRules enum for more info.
-            virtual void SetHorizontalSizingRules(const UI::SizingRules Rules);
+            virtual void SetHorizontalSizingRules(const Whole Rules);
             /// @brief Gets the current behavior this quad will follow for the X axis when it is resized.
-            /// @return Returns a @ref SizingRules value reprensenting the action this quad will take when it is resized.
-            virtual UI::SizingRules GetHorizontalSizingRules() const;
+            /// @return Returns a whole reprensenting the action this quad will take when it is resized.  See @ref SizingRules enum for more info.
+            virtual Whole GetHorizontalSizingRules() const;
             /// @brief Sets the behavior this quad will have on the Y axis when it is resized.
             /// @note This method is not retroactive.  Setting this to a different value will not cause it to resize.
             /// @param Rules The action to take when this is resized.  See @ref SizingRules enum for more info.
-            virtual void SetVerticalSizingRules(const UI::SizingRules Rules);
+            virtual void SetVerticalSizingRules(const Whole Rules);
             /// @brief Gets the current behavior this quad will follow for the Y axis when it is resized.
-            /// @return Returns a @ref SizingRules value reprensenting the action this quad will take when it is resized.
-            virtual UI::SizingRules GetVerticalSizingRules() const;
+            /// @return Returns a whole reprensenting the action this quad will take when it is resized.  See @ref SizingRules enum for more info.
+            virtual Whole GetVerticalSizingRules() const;
+            /// @brief Sets how (and if) the aspect ratio of this quad is locked.
+            /// @param Lock An AspectRatioLock enum value expressing the action this quad will take when it's aspect ratio would change.
+            virtual void SetAspectRatioLock(const UI::AspectRatioLock Lock);
+            /// @brief Gets how (and if) the aspect ratio of this quad is locked.
+            /// @return Returns an AspectRatioLock enum value representing how this quad reacts when it's aspect ratio would change.
+            virtual UI::AspectRatioLock GetAspectRationLock() const;
 
             /// @brief Sets the minimum size this quad is allowed to have.
             /// @note This function expects the provided UnifiedVec2 to be in pixels.
@@ -438,6 +436,24 @@ namespace Mezzanine
             /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
             /// @return Returns a pointer to the created ImageLayer.
             ImageLayer* CreateImageLayer(const GroupOrderEntryVector& Entrys);
+            /// @brief Creates an ImageLayer for this renderable.
+            /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
+            /// @param SpriteName The name of the sprite to be set to the created layer.
+            /// @return Returns a pointer to the created ImageLayer.
+            ImageLayer* CreateImageLayer(const String& SpriteName);
+            /// @brief Creates an ImageLayer for this renderable and adds it to a RenderLayerGroup.
+            /// @note If the requested group does not exist it will be created.
+            /// @param SpriteName The name of the sprite to be set to the created layer.
+            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
+            /// @param GroupName The name of the group the created ImageLayer should be added to.
+            /// @return Returns a pointer to the created ImageLayer.
+            ImageLayer* CreateImageLayer(const String& SpriteName, const UInt16 ZOrder, const String& GroupName);
+            /// @brief Creates an ImageLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
+            /// @note If the requested groups do not exist they will be created.
+            /// @param SpriteName The name of the sprite to be set to the created layer.
+            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
+            /// @return Returns a pointer to the created ImageLayer.
+            ImageLayer* CreateImageLayer(const String& SpriteName, const GroupOrderEntryVector& Entrys);
 
             /// @brief Creats a SingleLineTextLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
@@ -553,6 +569,11 @@ namespace Mezzanine
             /// @param Index The index of the RenderLayer to retrieve.
             /// @return Returns a pointer to the RenderLayer at the specified index.
             RenderLayer* GetRenderLayer(const UInt32& Index) const;
+            /// @brief Gets a RenderLayer belonging to this QuadRenderable by it's type.
+            /// @param Which The Nth RenderLayer of the specified type to retrieve.
+            /// @param Type The type of RenderLayer to be considered for retrieval.
+            /// @return Returns a pointer to the Nth RenderLayer of the specified type, or NULL if one does not exist.
+            RenderLayer* GetRenderLayer(const Whole Which, const UI::RenderLayerType Type);
             /// @brief Gets the number of RenderLayers created for this renderable.
             /// @return Returns a UInt32 containing the number of RenderLayers in this renderable.
             UInt32 GetNumRenderLayers() const;
@@ -843,7 +864,13 @@ namespace Mezzanine
             /// @brief Notifies this QuadRenderable that it has been added to another QuadRenderable.
             /// @param NewParent A pointer to the QuadRenderable this is becoming the child of.
             virtual void _NotifyParenthood(QuadRenderable* NewParent);
+            /// @internal
+            /// @brief Sets a new LayoutStrategy for this quad to use.
+            /// @param ToSet A pointer to the new LayoutStrategy for this quad to use.
+            virtual void _SetLayoutStrat(LayoutStrategy* ToSet);
 
+            /// @copydoc Renderable::_Clean()
+            virtual void _Clean();
             /// @copydoc Renderable::_MarkDirty()
             virtual void _MarkDirty();
             /// @internal
@@ -860,10 +887,6 @@ namespace Mezzanine
             /// @brief Appends the vertices of this renderable to another vector, and then does the same for this renderable's children.
             /// @param RenderData The vector of vertex's to append to.
             virtual void _AppendRenderDataCascading(ScreenRenderData& RenderData);
-            /// @internal
-            /// @brief Checks if there are available render data from this QuadRenderable (or it's subrenderables).
-            /// @return Returns true if this QuadRenderable has render data that can be appended, false otherwise.
-            virtual Boolean _HasAvailableRenderData() const;
         };//QuadRenderable
     }//UI
 }//Mezzanine

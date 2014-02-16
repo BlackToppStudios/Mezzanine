@@ -73,8 +73,6 @@ namespace Mezzanine
             /// @brief A pointer to the ListBox holding all possible selections.
             ListBox* SelectionList;
 
-            /// @copydoc QuadRenderable::CreateLayoutStrat()
-            virtual void CreateLayoutStrat();
             /// @internal
             /// @brief Convenience method for the construction of a DropDownList.
             /// @param Style An enum value representing how the scrollbar child of thie ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.

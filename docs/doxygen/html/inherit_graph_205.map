@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1TimedTrackIterator.html" title="This will take the same amount of clock time to iterate over a range. " alt="" coords="7,5,204,49"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers. " alt="" coords="5,30,128,58"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time. " alt="" coords="177,5,351,33"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1GoalTimer.html" title="This is the base class for timers intended to run only until they reach a specific goal..." alt="" coords="189,55,339,83"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1AlarmTimer.html" title="This is a timer class that increments normally to a specified time. " alt="" coords="416,30,571,58"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1StopWatchTimer.html" title="This is a timer class for counting down to a specified time. " alt="" coords="400,81,587,109"/>
 </map>

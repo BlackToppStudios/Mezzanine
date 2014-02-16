@@ -13,6 +13,5 @@ var searchData=
   ['fontdata',['FontData',['../classMezzanine_1_1UI_1_1FontData.html',1,'Mezzanine::UI']]],
   ['framescheduler',['FrameScheduler',['../classMezzanine_1_1Threading_1_1FrameScheduler.html',1,'Mezzanine::Threading']]],
   ['frequencyshiftparameters',['FrequencyShiftParameters',['../structMezzanine_1_1Audio_1_1FrequencyShiftParameters.html',1,'Mezzanine::Audio']]],
-  ['functordefinition',['FunctorDefinition',['../classMezzanine_1_1FunctorSubscriberSlot_1_1FunctorDefinition.html',1,'Mezzanine::FunctorSubscriberSlot']]],
   ['functorsubscriberslot',['FunctorSubscriberSlot',['../classMezzanine_1_1FunctorSubscriberSlot.html',1,'Mezzanine']]]
 ];

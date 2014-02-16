@@ -236,6 +236,8 @@ namespace Mezzanine
                 if( !CurrAttrib.Empty() )
                     Data->_SetRangeEnd( CurrAttrib.AsReal() );//*/
 
+                // Generate the whitespaces
+                Data->_GenerateWhitespaceGlyphs();
                 // Get the glyphs and parse them
                 XML::Node GlyphsNode = (*FontNode).GetChild("Glyphs");
                 this->ParseGlyphs( GlyphsNode, Offset, Data );
@@ -405,7 +407,7 @@ namespace Mezzanine
                 Bottom *= InverseTextureSize.Y;
 
                 // If we got this far, we have enough data for a valid sprite, create and insert it
-                Sprite* NewSprite = new Sprite(SpriteName,Top,Left,Bottom,Right);
+                Sprite* NewSprite = new Sprite(SpriteName,Top,Left,Bottom,Right,this);
                 SpriteIterator SpIt = this->Sprites.find(SpriteName);
                 if( SpIt == this->Sprites.end() ) {
                     this->Sprites.insert(std::pair<String,Sprite*>(SpriteName,NewSprite));
@@ -530,36 +532,36 @@ namespace Mezzanine
 
         FontData* TextureAtlas::GetFont(const String& FontName) const
         {
-            ConstFontDataIterator it = Fonts.find(FontName);
-            if (it == Fonts.end())
-                return 0;
+            ConstFontDataIterator it = this->Fonts.find(FontName);
+            if( it == this->Fonts.end() )
+                return NULL;
             return (*it).second;
         }
 
         TextureAtlas::FontDataContainer& TextureAtlas::GetFonts()
         {
-            return Fonts;
+            return this->Fonts;
         }
 
         Sprite* TextureAtlas::GetSprite(const String& Name) const
         {
-            ConstSpriteIterator it = Sprites.find(Name);
-            if (it == Sprites.end())
+            ConstSpriteIterator it = this->Sprites.find(Name);
+            if( it == this->Sprites.end() )
                 return NULL;
             return (*it).second;
         }
 
         TextureAtlas::SpriteContainer& TextureAtlas::GetSprites()
-            { return Sprites; }
+            { return this->Sprites; }
 
         Vector2 TextureAtlas::GetWhitePixel() const
-            { return WhitePixel; }
+            { return this->WhitePixel; }
 
         Real TextureAtlas::GetWhitePixelX() const
-            { return WhitePixel.X; }
+            { return this->WhitePixel.X; }
 
         Real TextureAtlas::GetWhitePixelY() const
-            { return WhitePixel.Y; }
+            { return this->WhitePixel.Y; }
 
         Vector2 TextureAtlas::GetTextureSize() const
             { return Vector2( Real( this->TAID->TATexture->getWidth() ), Real( this->TAID->TATexture->getHeight() ) ); }

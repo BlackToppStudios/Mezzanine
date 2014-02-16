@@ -450,6 +450,32 @@ namespace Mezzanine
             /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
             /// @return Returns a pointer to the created VerticalScrollbar.
             virtual VerticalScrollbar* CreateVerticalScrollbar(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style);
+            /// @brief Creates a Spinner.
+            /// @param Name The name of the Spinner.
+            /// @param SpinStyle The layout of buttons this Spinner will have.
+            /// @param EditFont A pointer to the font to be used by the edit layer.
+            /// @return Returns a pointer to the created Spinner.
+            virtual Spinner* CreateSpinner(const String& Name, const SpinnerStyle SpinStyle, FontData* EditFont);
+            /// @brief Creates a Spinner.
+            /// @param Name The name of the Spinner.
+            /// @param SpinStyle The layout of buttons this Spinner will have.
+            /// @param EditFontName The name of the font to be used by the edit layer.
+            /// @return Returns a pointer to the created Spinner.
+            virtual Spinner* CreateSpinner(const String& Name, const SpinnerStyle SpinStyle, const String& EditFontName);
+            /// @brief Creates a Spinner.
+            /// @param Name The name of the Spinner.
+            /// @param RendRect The Rect representing the position and size of the Spinner.
+            /// @param SpinStyle The layout of buttons this Spinner will have.
+            /// @param EditFont A pointer to the font to be used by the edit layer.
+            /// @return Returns a pointer to the created Spinner.
+            virtual Spinner* CreateSpinner(const String& Name, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, FontData* EditFont);
+            /// @brief Creates a Spinner.
+            /// @param Name The name of the Spinner.
+            /// @param RendRect The Rect representing the position and size of the Spinner.
+            /// @param SpinStyle The layout of buttons this Spinner will have.
+            /// @param EditFontName The name of the font to be used by the edit layer.
+            /// @return Returns a pointer to the created Spinner.
+            virtual Spinner* CreateSpinner(const String& Name, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, const String& EditFontName);
 
             /// @brief Creates a MenuEntry.
             /// @param Name The name to be given to this MenuEntry.
@@ -511,14 +537,7 @@ namespace Mezzanine
             /// @return Returns a pointer to the created VerticalContainer.
             virtual VerticalContainer* CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect);
 
-            /*/// @brief Creates a Spinner.
-            /// @return Returns a pointer to the created Spinner.
-            /// @param Name The Name for the Widget.
-            /// @param RendRect The Rect representing the position and size of the Spinner.
-            /// @param SStyle The layout of buttons this widget will have.  See SpinnerStyle enum or class description for more details.
-            /// @param GlyphHeight The desired relative height of the text you want.
-            virtual Spinner* CreateSpinner(ConstString& Name, const Rect& RendRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
-            /// @brief Creates a scrolled cell grid.
+            /*/// @brief Creates a scrolled cell grid.
             /// @return Returns a pointer to the created ScrolledCellGrid.
             /// @param Name The name of the widget.
             /// @param RendRect The Rect representing the position and size of the ScrolledCellGrid.

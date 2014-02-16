@@ -201,8 +201,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <span class="keywordflow">while</span>(Progress&lt;EncodedString.end())</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                {</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                    <span class="comment">// ©out &lt;&lt; *(Progress+0) &lt;&lt; *(Progress+1) &lt;&lt; *(Progress+2) &lt;&lt; *(Progress+3) &lt;&lt; endl;</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                    <span class="comment">// ©out &lt;&lt; !IsBase64(*Progress) &lt;&lt; !IsBase64(*(Progress+1)) &lt;&lt; !IsBase64(*(Progress+2)) &lt;&lt; !IsBase64(*(Progress+3)) &lt;&lt;endl;</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                    <span class="comment">// cout &lt;&lt; *(Progress+0) &lt;&lt; *(Progress+1) &lt;&lt; *(Progress+2) &lt;&lt; *(Progress+3) &lt;&lt; endl;</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                    <span class="comment">// cout &lt;&lt; !IsBase64(*Progress) &lt;&lt; !IsBase64(*(Progress+1)) &lt;&lt; !IsBase64(*(Progress+2)) &lt;&lt; !IsBase64(*(Progress+3)) &lt;&lt;endl;</span></div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                    <span class="keywordflow">if</span>(!<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35" title="Is a character a valid Base64 character. ">IsBase64</a>(*Progress) || !<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35" title="Is a character a valid Base64 character. ">IsBase64</a>(*(Progress+1)) || !<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35" title="Is a character a valid Base64 character. ">IsBase64</a>(*(Progress+2)) || !<a class="code" href="namespaceMezzanine_1_1BinaryTools.html#a1bb380db90effda0797a1d303328cf35" title="Is a character a valid Base64 character. ">IsBase64</a>(*(Progress+3)))</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                        { MEZZ_EXCEPTION(<a class="code" href="classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420a7a0bd380eb3a0e6d02ff8f51ceeda54c" title="When used a instance of ParametersException is thrown. Thrown when parameters are checked at runtime ...">Exception::PARAMETERS_EXCEPTION</a>, <span class="stringliteral">&quot;Base64 contains an invalid character and cannot be decoded.&quot;</span>); }</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
@@ -448,6 +448,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 7 2014 21:14:24 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sun Feb 9 2014 16:21:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

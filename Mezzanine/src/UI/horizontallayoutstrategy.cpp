@@ -67,7 +67,7 @@ namespace Mezzanine
             //bool QuadSizeUpdated = (OldSelfRect.Size != NewSelfRect.Size);
 
             // Setup our persistent loop data
-            Real PrevRightPos = 0;
+            Real PrevRightPos = NewSelfRect.Position.X;
             Real NextLeftPos = 0;
             ConstChildIterator ChildIt = ChildQuads.begin();
             while( ChildIt != ChildQuads.end() )
@@ -75,7 +75,7 @@ namespace Mezzanine
                 // Scan ahead for the next non-expander
                 UInt32 ExpandingChildCount = 0;
                 ConstChildIterator NextNonExpandingChild = ChildIt;
-                while( NextNonExpandingChild != ChildQuads.end() && !( (*NextNonExpandingChild)->GetSizingPolicy().CanExpandHorizontally() ) )
+                while( NextNonExpandingChild != ChildQuads.end() && (*NextNonExpandingChild)->GetSizingPolicy().CanExpandHorizontally() )
                 {
                     ++NextNonExpandingChild;
                     ++ExpandingChildCount;
@@ -99,7 +99,10 @@ namespace Mezzanine
                     ChildIt = NextNonExpandingChild;
                     continue;
                 }else{
-                    // We got a range now so lets to the "fixed" child first if it is valid
+                    // Create a variable to cache the bottom position
+                    Real FixedRightPos = 0;
+
+                    // We got a range now so lets process the "fixed" child first if it is valid
                     if( NextNonExpandingChild != ChildQuads.end() ) {
                         QuadRenderable* NoExChild = (*NextNonExpandingChild);
                         const Rect OldChildRect = NoExChild->GetRect();
@@ -114,13 +117,14 @@ namespace Mezzanine
 
                         NoExChild->UpdateDimensions(OldChildRect,NewChildRect);
                         NextLeftPos = NewChildRect.Position.X;
+                        FixedRightPos = NewChildRect.Position.X + NewChildRect.Size.X;
                     }else{
                         // Just use the right edge of the parent if the child isn't valid
                         NextLeftPos = NewSelfRect.Position.X + NewSelfRect.Size.X;
                     }
 
                     // Set up the data for the range of expanding children
-                    Real XPos = PrevRightPos + 1; // Is the +1 necessary?
+                    Real XPos = ( PrevRightPos != 0 ? PrevRightPos + 1 : PrevRightPos );
                     Real XSpacePerChild = (NextLeftPos - PrevRightPos) / ExpandingChildCount;
                     // Update the expanding children in the range
                     while( ChildIt != NextNonExpandingChild )
@@ -139,7 +143,9 @@ namespace Mezzanine
                         this->ClampChildToMaxSize(NewSelfRect,NewChildRect.Size,ExChild);
 
                         ExChild->UpdateDimensions(OldChildRect,NewChildRect);
+                        ++ChildIt;
                     }
+                    PrevRightPos = FixedRightPos;
                 }
                 // We handled the object at the end of the range, so increment passed it and move on unless it is the end node
                 if( NextNonExpandingChild != ChildQuads.end() )

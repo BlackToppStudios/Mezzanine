@@ -18,15 +18,16 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="scripting_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/scripting.h">
-<polygon fill="white" stroke="black" points="-0.5,-147 -0.5,-179 150.5,-179 150.5,-147 -0.5,-147"/>
-<text text-anchor="start" x="7.5" y="-166" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="middle" x="75" y="-154" font-family="FreeSans" font-size="10.00">/Mezzanine/src/scripting.h</text>
+<a xlink:href="scripting_8h_source.html" target="_top" xlink:title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Scripting\l/scripting.h">
+<polygon fill="white" stroke="black" points="-0.5,-141 -0.5,-185 150.5,-185 150.5,-141 -0.5,-141"/>
+<text text-anchor="start" x="7.5" y="-172" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="start" x="7.5" y="-160" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Scripting</text>
+<text text-anchor="middle" x="75" y="-148" font-family="FreeSans" font-size="10.00">/scripting.h</text>
 </a>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M128.858,-215.576C116.282,-203.299 102.16,-189.513 91.533,-179.139"/>
+<path fill="none" stroke="midnightblue" d="M128.785,-215.505C118.511,-205.475 107.213,-194.446 97.6348,-185.096"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="126.446,-218.112 136.047,-222.593 131.336,-213.103 126.446,-218.112"/>
 </g>
 <!-- Node5 -->
@@ -53,8 +54,8 @@
 </g>
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge4" class="edge"><title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M75,-136.759C75,-125.566 75,-112.864 75,-103.094"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="71.5001,-136.882 75,-146.882 78.5001,-136.882 71.5001,-136.882"/>
+<path fill="none" stroke="midnightblue" d="M75,-130.406C75,-121.095 75,-111.341 75,-103.444"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="71.5001,-130.609 75,-140.609 78.5001,-130.609 71.5001,-130.609"/>
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>

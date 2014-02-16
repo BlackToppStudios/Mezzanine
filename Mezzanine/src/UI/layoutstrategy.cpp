@@ -42,6 +42,7 @@
 
 #include "UI/layoutstrategy.h"
 #include "UI/widget.h"
+
 #include "mathtool.h"
 #include "exception.h"
 
@@ -96,10 +97,15 @@ namespace Mezzanine
         Vector2 LayoutStrategy::HandleChildPositioning(const Rect& OldSelfRect, const Rect& NewSelfRect, const Vector2& NewChildSize, QuadRenderable* Child)
         {
             Vector2 NewPosition;
+            const PositioningInfo& ChildPositioning = Child->GetPositioningPolicy();
+
+            // Check for configurations that are just not doable
+            if( ChildPositioning.PositionRules == UI::PF_Anchor_Prev_Offset && ChildPositioning.PositionRules == UI::PF_Anchor_Size )
+                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot use both the previous offset and quad size for the updated offset of a child quad.  They are mutually exclusive."); }
 
             // Resolve our position
-            NewPosition.X = this->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child);
-            NewPosition.Y = this->HandleChildVerticalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child);
+            NewPosition.X = MathTools::Floor( this->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child) );
+            NewPosition.Y = MathTools::Floor( this->HandleChildVerticalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child) );
 
             return NewPosition;
         }
@@ -112,18 +118,44 @@ namespace Mezzanine
             // Rather than have a bunch of complicated checks to see what needs to be filled in, blindly assign Unified position
             // to the new rect, and allow simpler targetted checks fill in the exceptions
             Real Ret = NewSelfRect.Position.X + ChildPositioning.UPosition.X.CalculateActualDimension(NewSelfRect.Size.X);
+            // Create a variable to store the old axis offset (the number of pixels to the left, or right if negative) on the X axis.
+            Real Offset = 0;
             // Do our checks
-            if( ChildPositioning.PositionRules & UI::PF_Left && ChildPositioning.PositionRules & UI::PF_Right ) { // Check if we're centered
-                // Get the center point in the parent space on this axis, and align the childs center on the same axis to that point
-                Ret = ( NewSelfRect.Position.X + ( NewSelfRect.Size.X * 0.5 ) ) - ( NewChildSize.X * 0.5 );
-            }else if( ChildPositioning.PositionRules & UI::PF_Left ) { // Check if we're anchored to the left
-                // Get the difference there used to be prior to this update between the left edge of this quad and it's parent.
-                // Then add it to the parents updated rect to get our new position.  This preserves absolute distance.
-                Ret = NewSelfRect.Position.X + ( OldSelfRect.Position.X - OldXPos );
-            }else if( ChildPositioning.PositionRules & UI::PF_Right ) { // Check if we're anchored to the right
-                // Get the right edge of the parent's old transform and get the distance from that point to the left edge of this quad.
-                // Then subtract apply that distance (via subtraction) to the updated transform.  This preserves absolute distance.
-                Ret = NewSelfRect.GetRightEdge() - ( OldSelfRect.GetRightEdge() - ( OldXPos + OldXSize ) );
+            if( ChildPositioning.PositionRules & UI::PF_Anchor_Left && ChildPositioning.PositionRules & UI::PF_Anchor_Right ) { // Check if we're centered
+                // Update the offset if we're configured to.
+                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                    // Get the old offset between the center of this quad and it's parent.
+                    Offset = ( OldXPos + ( OldXSize * 0.5 ) ) - OldSelfRect.GetHorizontalCenter();
+                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                    // Use the new child size on the horizontal sxis.  Apply the Unified Dim on the X axis.
+                    Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewChildSize.X );
+                }
+                // Then add that distance to the updated transform and then subtract the new half size.
+                Ret = ( NewSelfRect.GetHorizontalCenter() + Offset ) - ( NewChildSize.X * 0.5 );
+            }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Left ) { // Check if we're anchored to the left
+                // Update the offset if we're configured to.
+                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                    // Get the old offset between the left edge of this quad and it's parent.
+                    // Note: If the child is within the bounds of it's parent, this Offset should always be >= 0.
+                    Offset = ( OldXPos - OldSelfRect.GetLeftEdge() );
+                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                    // Use the new child size on the horizontal sxis.  Apply the Unified Dim on the X axis.
+                    Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewChildSize.X );
+                }
+                // Then add that distance to the updated transform.
+                Ret = NewSelfRect.GetLeftEdge() + Offset;
+            }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Right ) { // Check if we're anchored to the right
+                // Update the offset if we're configured to.
+                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                    // Get the old offset between the right edge of this quad and it's parent.
+                    // Note: If the child is within the bounds of it's parent, this Offset should always be <= 0.
+                    Offset = ( ( OldXPos + OldXSize ) - OldSelfRect.GetRightEdge() );
+                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                    // Use the new child size on the horizontal sxis.  Apply the Unified Dim on the X axis.
+                    Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewChildSize.X );
+                }
+                // Then add that distance to the updated transform.
+                Ret = ( NewSelfRect.GetRightEdge() + Offset ) - NewChildSize.X;
             }
             return Ret;
         }
@@ -136,18 +168,44 @@ namespace Mezzanine
             // Rather than have a bunch of complicated checks to see what needs to be filled in, blindly assign Unified position
             // to the new rect, and allow simpler targetted checks fill in the exceptions
             Real Ret = NewSelfRect.Position.Y + ChildPositioning.UPosition.Y.CalculateActualDimension(NewSelfRect.Size.Y);
+            // Create a variable to store the old axis offset (the number of pixels up, or down if negative) on the Y axis.
+            Real Offset = 0;
             // Do our checks
-            if( ChildPositioning.PositionRules & UI::PF_Top && ChildPositioning.PositionRules & UI::PF_Bottom ) { // Check if we're centered
-                // Get the center point in the parent space on this axis, and align the childs center on the same axis to that point
-                Ret = ( NewSelfRect.Position.Y + ( NewSelfRect.Size.Y * 0.5 ) ) - ( NewChildSize.Y * 0.5 );
-            }else if( ChildPositioning.PositionRules & UI::PF_Top ) { // Check if we're anchored to the top
-                // Get the difference there used to be prior to this update between the top edge of this quad and it's parent.
-                // Then add it to the parents updated rect to get our new position.  This preserves absolute distance.
-                Ret = NewSelfRect.Position.Y + ( OldSelfRect.Position.Y - NewSelfRect.Position.Y );
-            }else if( ChildPositioning.PositionRules & UI::PF_Bottom ) { // Check if we're anchored to the bottom
-                // Get the bottom edge of the parent's old transform and get the distance from that point to the top edge of this quad.
-                // Then subtract apply that distance (via subtraction) to the updated transform.  This preserves absolute distance.
-                Ret = NewSelfRect.GetBottomEdge() - ( OldSelfRect.GetBottomEdge() - ( OldYPos + OldYSize ) );
+            if( ChildPositioning.PositionRules & UI::PF_Anchor_Top && ChildPositioning.PositionRules & UI::PF_Anchor_Bottom ) { // Check if we're centered
+                // Update the offset if we're configured to.
+                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                    // Get the old offset between the center of this quad and it's parent.
+                    Offset = ( OldYPos + ( OldYSize * 0.5 ) ) - OldSelfRect.GetVerticalCenter();
+                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                    // Use the new child size on the vertical sxis.  Apply the Unified Dim on the Y axis.
+                    Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
+                }
+                // Then add that distance to the updated transform and then subtract the new half size.
+                Ret = ( NewSelfRect.GetVerticalCenter() + Offset ) - ( NewChildSize.Y * 0.5 );
+            }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Top ) { // Check if we're anchored to the top
+                // Update the offset if we're configured to.
+                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                    // Get the old offset between the top edge of this quad and it's parent.
+                    // Note: If the child is within the bounds of it's parent, this Offset should always be >= 0.
+                    Offset = ( OldYPos - OldSelfRect.GetTopEdge() );
+                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                    // Use the new child size on the vertical sxis.  Apply the Unified Dim on the X axis.
+                    Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
+                }
+                // Then add that distance to the updated transform.
+                Ret = NewSelfRect.GetTopEdge() + Offset;
+            }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Bottom ) { // Check if we're anchored to the bottom
+                // Update the offset if we're configured to.
+                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                    // Get the old offset between the bottom edge of this quad and it's parent.
+                    // Note: If the child is within the bounds of it's parent, this Offset should always be <= 0.
+                    Offset = ( ( OldYPos + OldYSize ) - OldSelfRect.GetBottomEdge() );
+                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                    // Use the new child size on the vertical sxis.  Apply the Unified Dim on the Y axis.
+                    Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
+                }
+                // Then add that distance to the updated transform.
+                Ret = ( NewSelfRect.GetBottomEdge() + Offset ) - NewChildSize.Y;
             }
             return Ret;
         }
@@ -159,7 +217,8 @@ namespace Mezzanine
             const SizingInfo& ChildSizing = Child->GetSizingPolicy();
 
             // Check for configurations that are just not doable
-            if( ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis && ChildSizing.VerticalRules == UI::SR_Match_Other_Axis )
+            if( ( ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis || ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis_Unified) &&
+                ( ChildSizing.VerticalRules == UI::SR_Match_Other_Axis || ChildSizing.VerticalRules == UI::SR_Match_Other_Axis_Unified ) )
                 { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Both axes of a SizingPolicy cannot attempt to match the other axis.  This creates a circular dependency."); }
             if( ChildSizing.HorizontalRules == UI::SR_Match_Other_Axis && ChildSizing.VerticalRules == UI::SR_Size_For_Text )
                 { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot attempt to match vertical axis when it is sizing for text.  This creates a circular dependency."); }
@@ -171,14 +230,14 @@ namespace Mezzanine
             // That is of course unless Vertical is explicitly declared otherwise.  So check for that.
             if( ChildSizing.VerticalRules != UI::SR_Match_Other_Axis ) {
                 // Vertical first
-                NewSize.Y = this->HandleChildVerticalSizing(OldSelfRect,NewSelfRect,0,Child);
+                NewSize.Y = MathTools::Ceil( this->HandleChildVerticalSizing(OldSelfRect,NewSelfRect,0,Child) );
                 // Horizontal second
-                NewSize.X = this->HandleChildHorizontalSizing(OldSelfRect,NewSelfRect,NewSize.Y,Child);
+                NewSize.X = MathTools::Ceil( this->HandleChildHorizontalSizing(OldSelfRect,NewSelfRect,NewSize.Y,Child) );
             }else{
                 // Horizontal first
-                NewSize.X = this->HandleChildHorizontalSizing(OldSelfRect,NewSelfRect,0,Child);
+                NewSize.X = MathTools::Ceil( this->HandleChildHorizontalSizing(OldSelfRect,NewSelfRect,0,Child) );
                 // Vertical second
-                NewSize.Y = this->HandleChildVerticalSizing(OldSelfRect,NewSelfRect,NewSize.X,Child);
+                NewSize.Y = MathTools::Ceil( this->HandleChildVerticalSizing(OldSelfRect,NewSelfRect,NewSize.X,Child) );
             }
 
             // Preserve the aspect ratio if we need to
@@ -199,12 +258,14 @@ namespace Mezzanine
             switch(ChildSizing.HorizontalRules)
             {
                 case UI::SR_Unified_Dims:
-                { return ChildSizing.USize.X.CalculateActualDimension(NewSelfRect.Size.X);                         break; }
+                    { return ChildSizing.USize.X.CalculateActualDimension(NewSelfRect.Size.X);  break; }
                 case UI::SR_Match_Other_Axis:
-                { return PrevAxisResult;                                                                           break; }
+                    { return PrevAxisResult;                                                    break; }
+                case UI::SR_Match_Other_Axis_Unified:
+                    { return ChildSizing.USize.X.CalculateActualDimension(PrevAxisResult);      break; }
                 case UI::SR_Fixed_Size:
                 default:
-                { return OldSize.X;                                                                                break; }
+                    { return OldSize.X;                                                         break; }
             }
         }
 
@@ -216,14 +277,16 @@ namespace Mezzanine
             switch(ChildSizing.VerticalRules)
             {
                 case UI::SR_Unified_Dims:
-                { return ChildSizing.USize.Y.CalculateActualDimension(NewSelfRect.Size.Y);                         break; }
+                    { return ChildSizing.USize.Y.CalculateActualDimension(NewSelfRect.Size.Y);                         break; }
                 case UI::SR_Match_Other_Axis:
-                { return PrevAxisResult;                                                                           break; }
+                    { return PrevAxisResult;                                                                           break; }
+                case UI::SR_Match_Other_Axis_Unified:
+                    { return ChildSizing.USize.Y.CalculateActualDimension(PrevAxisResult);                             break; }
                 case UI::SR_Size_For_Text:
-                { Child->PopulateTextLinesInLayers(PrevAxisResult);  return Child->GetIdealHeightForText() + 2.0;  break; }
+                    { Child->PopulateTextLinesInLayers(PrevAxisResult);  return Child->GetIdealHeightForText() + 2.0;  break; }
                 case UI::SR_Fixed_Size:
                 default:
-                { return OldSize.Y;                                                                                break; }
+                    { return OldSize.Y;                                                                                break; }
             }
         }
 
@@ -231,22 +294,29 @@ namespace Mezzanine
         {
             const SizingInfo& ChildSizing = Child->GetSizingPolicy();
             // Do we care about aspect ratio?
+            // Did we used to have a size?
             // And did the aspect ratio change?
-            if( ChildSizing.RatioLock != UI::ARL_Ratio_Unlocked && !MathTools::WithinTolerance( NewChildSize.X / NewChildSize.Y, OldChildSize.X / OldChildSize.Y, 0.01 ) )
+            if( ChildSizing.RatioLock != UI::ARL_Ratio_Unlocked &&
+                ( OldChildSize.X > 0.0 && OldChildSize.Y > 0.0) &&
+                !MathTools::WithinTolerance( NewChildSize.X / NewChildSize.Y, OldChildSize.X / OldChildSize.Y, 0.01 ) )
             {
                 Real XChange = NewChildSize.X / OldChildSize.X;
                 Real YChange = NewChildSize.Y / OldChildSize.Y;
 
-                if( XChange > YChange ) {
-                    if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Expanding )
-                        NewChildSize.Y = OldChildSize.Y * XChange;
-                    else if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Shrinking )
-                        NewChildSize.X = OldChildSize.X * YChange;
-                }else if( YChange > XChange ) {
-                    if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Expanding )
-                        NewChildSize.X = OldChildSize.X * YChange;
-                    else if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Shrinking )
-                        NewChildSize.Y = OldChildSize.Y * XChange;
+                if( ChildSizing.RatioLock != UI::ARL_Ratio_Y_Axis ) {
+                    if( XChange > YChange ) {
+                        if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Expanding )
+                            NewChildSize.Y = OldChildSize.Y * XChange;
+                        else if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Shrinking )
+                            NewChildSize.X = OldChildSize.X * YChange;
+                    }else if( YChange > XChange ) {
+                        if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Expanding )
+                            NewChildSize.X = OldChildSize.X * YChange;
+                        else if( ChildSizing.RatioLock == UI::ARL_Ratio_Locked_Shrinking )
+                            NewChildSize.Y = OldChildSize.Y * XChange;
+                    }
+                }else{
+                    NewChildSize.X = OldChildSize.X * YChange;
                 }
             }
         }
