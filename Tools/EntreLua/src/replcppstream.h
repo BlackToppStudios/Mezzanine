@@ -37,45 +37,26 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef REPL_H
-#define REPL_H
+#ifndef REPL_CPPSTREAM_H
+#define REPL_CPPSTREAM_H
 
-#include <datatypes.h>
-#include <Scripting/Lua51/lua51scriptingengine.h>
+#include "repl.h"
 
 /// @file
-/// @brief The definition of the user interface for this shell.
+/// @brief An implementation of the REPL written with C++ iostreams
 
-class REPL;
 
-/// @brief A Functor definition that return true if the REPL should continue and false otherwise
-typedef bool(REPLContinueCallback)(REPL*);
-
-/// @brief What a class that will Read input, Evaluate, Print, and Loop back to do it again requires.
-class REPL
+/// @brief A class that will take user input from a
+class REPLCppStream : public REPL
 {
-    private:
-        /// @brief What will be display
-        Mezzanine::String Prompt;
-
-        /// @brief The actual Lua intrepretter
-        Mezzanine::Scripting::Lua::Lua51ScriptingEngine& ScriptInterpretter;
-
     public:
         /// @brief Initializing constructor
         /// @param TargetEngine A Lua sripting engine that the commands will be executed against.
         /// @param StartingPrompt The text to start the line
-        REPL(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::String StartingPrompt=">");
+        REPLCppStream(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::String StartingPrompt=">");
 
         /// @brief This is the actual the loop that will do the REPLing
-        virtual void Launch()=0;
-
-        /// @brief What text is shown with the prompt.
-        /// @return A string containing the prompt text.
-        Mezzanine::String GetPrompt() const;
-        /// @brief
-        /// @param
-        void SetPrompt(const Mezzanine::String& Value);
+        virtual void Launch();
 };
 
 #endif

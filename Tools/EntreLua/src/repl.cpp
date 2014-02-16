@@ -48,18 +48,14 @@ using namespace std;
 
 
 REPL::REPL(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::String StartingPrompt)
-    : ScriptInterpretter(TargetEngine)
+    : ScriptInterpretter(TargetEngine), Prompt(StartingPrompt)
 {
 
 }
 
 Mezzanine::String REPL::GetPrompt() const
-{
-    return Prompt;
-}
+    { return Prompt; }
 
-void REPL::SetPrompt(const Mezzanine::String& value)
-{
-    Prompt = value;
-}
+void REPL::SetPrompt(const Mezzanine::String& Value)
+    { Prompt = Value; }
 
