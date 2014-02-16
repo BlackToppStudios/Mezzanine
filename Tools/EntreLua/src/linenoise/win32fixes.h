@@ -17,7 +17,7 @@
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
 #define NOGDI
-#define __USE_W32_SOCKETS
+//#define __USE_W32_SOCKETS
 
 #include "fmacros.h"
 #include <stdlib.h>
@@ -28,13 +28,13 @@
 #ifndef FD_SETSIZE
 #define FD_SETSIZE 16000
 #endif
-#include <winsock2.h>  /* setsocketopt */
-#include <ws2tcpip.h>
+//#include <winsock2.h>  /* setsocketopt */
+//#include <ws2tcpip.h>
 #include <windows.h>
 #include <float.h>
 #include <fcntl.h>    /* _O_BINARY */
 #include <limits.h>  /* INT_MAX */
-#include <process.h>
+//#include <process.h>
 #include <sys/types.h>
 
 #define fseeko fseeko64
@@ -79,7 +79,7 @@ RtlGenRandomFunc RtlGenRandom;
 int replace_random();
 
 #if !defined(ssize_t)
-typedef int ssize_t;
+//typedef int ssize_t;
 #endif
 
 #if !defined(mode_t)
@@ -128,10 +128,10 @@ typedef unsigned __int32 u_int32_t;
 
 #ifndef _RUSAGE_T_
 #define _RUSAGE_T_
-struct rusage {
-    struct timeval ru_utime;    /* user time used */
-    struct timeval ru_stime;    /* system time used */
-};
+//struct rusage {
+//    struct timeval ru_utime;    /* user time used */
+//    struct timeval ru_stime;    /* system time used */
+//};
 #endif
 
 int getrusage(int who, struct rusage * rusage);
@@ -187,7 +187,7 @@ int getrusage(int who, struct rusage * rusage);
 #define SIG_UNBLOCK (2)
 #endif /*SIG_SETMASK*/
 
-typedef	void (*__p_sig_fn_t)(int);
+/*typedef	void (*__p_sig_fn_t)(int);
 typedef int pid_t;
 
 #ifndef _SIGSET_T_
@@ -198,7 +198,7 @@ typedef unsigned long long _sigset_t;
 typedef unsigned long _sigset_t;
 #endif
 # define sigset_t _sigset_t
-#endif /* _SIGSET_T_ */
+#endif // _SIGSET_T_
 
 struct sigaction {
     int          sa_flags;
@@ -207,7 +207,7 @@ struct sigaction {
     __p_sig_fn_t sa_sigaction;
 };
 
-int sigaction(int sig, struct sigaction *in, struct sigaction *out);
+int sigaction(int sig, struct sigaction *in, struct sigaction *out);//*/
 
 /* Sockets */
 
@@ -223,17 +223,17 @@ int sigaction(int sig, struct sigaction *in, struct sigaction *out);
 #define ETIMEDOUT WSAETIMEDOUT
 #endif
 
-#define setsockopt(a,b,c,d,e) replace_setsockopt(a,b,c,d,e)
+//#define setsockopt(a,b,c,d,e) replace_setsockopt(a,b,c,d,e)
 
-int replace_setsockopt(int socket, int level, int optname,
-                     const void *optval, socklen_t optlen);
+//int replace_setsockopt(int socket, int level, int optname,
+//                     const void *optval, socklen_t optlen);
 
 #define rename(a,b) replace_rename(a,b)
 int replace_rename(const char *src, const char *dest);
 
 //threads avoiding pthread.h
 
-#define pthread_mutex_t CRITICAL_SECTION
+/*#define pthread_mutex_t CRITICAL_SECTION
 #define pthread_attr_t ssize_t
 
 #define pthread_mutex_init(a,b) (InitializeCriticalSectionAndSpinCount((a), 0x80000400),0)
@@ -269,32 +269,31 @@ int pthread_cond_signal(pthread_cond_t *cond);
 
 int pthread_detach (pthread_t thread);
 
-/* Misc Unix -> Win32 */
+// Misc Unix -> Win32
 int kill(pid_t pid, int sig);
 int fsync (int fd);
 pid_t wait3(int *stat_loc, int options, void *rusage);
 
 int w32initWinSock(void);
-/* int inet_aton(const char *cp_arg, struct in_addr *addr) */
+// int inet_aton(const char *cp_arg, struct in_addr *addr)
 
-/* redis-check-dump  */
+// redis-check-dump
 void *mmap(void *start, size_t length, int prot, int flags, int fd, off offset);
 int munmap(void *start, size_t length);
 
 int fork(void);
 int gettimeofday(struct timeval *tv, struct timezone *tz);
 
-/* strtod does not handle Inf and Nan
-We need to do the check before calling strtod */
+// strtod does not handle Inf and Nan We need to do the check before calling strtod
 #undef strtod
 #define strtod(nptr, eptr) wstrtod((nptr), (eptr))
 
 double wstrtod(const char *nptr, char **eptr);
 
 
-/* structs and functions for using IOCP with windows sockets */
+// structs and functions for using IOCP with windows sockets
 
-/* need callback on write complete. aeWinSendReq is used to pass parameters */
+// need callback on write complete. aeWinSendReq is used to pass parameters
 typedef struct aeWinSendReq {
     void *client;
     void *data;
@@ -312,7 +311,7 @@ int aeWinListen(SOCKET sock, int backlog);
 int aeWinAccept(int fd, struct sockaddr *sa, socklen_t *len);
 
 int strerror_r(int err, char* buf, size_t buflen);
-char *wsa_strerror(int err);
+char *wsa_strerror(int err);//*/
 
 #endif /* WIN32 */
 #endif /* WIN32FIXES_H */
