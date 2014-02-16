@@ -47,8 +47,8 @@ using namespace Mezzanine;
 using namespace std;
 
 
-REPL::REPL(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::String StartingPrompt)
-    : ScriptInterpretter(TargetEngine), Prompt(StartingPrompt)
+REPL::REPL(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
+    : Doer(TargetExecutor), Prompt(StartingPrompt)
 {
 
 }

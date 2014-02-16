@@ -70,8 +70,8 @@ message ("Base Directory for Executable binaries and data output: ${${PROJECT_NA
 #A complete list of our source files and headers
 set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SOURCE_DIR}entreluamain.cpp"
-    #"${${PROJECT_NAME}_SOURCE_DIR}linenoise.cpp"
-    #"${${PROJECT_NAME}_SOURCE_DIR}linenoise.h"
+    "${${PROJECT_NAME}_SOURCE_DIR}executor.cpp"
+    "${${PROJECT_NAME}_SOURCE_DIR}executor.h"
     "${${PROJECT_NAME}_SOURCE_DIR}repl.cpp"
     "${${PROJECT_NAME}_SOURCE_DIR}repl.h"
     "${${PROJECT_NAME}_SOURCE_DIR}replcppstream.cpp"
@@ -99,7 +99,7 @@ function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
     )
 endfunction(CopyFilesDuringBuild)
 
-#Description: This function copies items from the output directory in Mezzanine into the location of the EntreLua executable. 
+#Description: This function copies items from the output directory in Mezzanine into the location of the EntreLua executable.
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyLibraryFromMezzanineDuringBuild TargetName)
     add_custom_command(
@@ -111,7 +111,7 @@ function(CopyLibraryFromMezzanineDuringBuild TargetName)
     )
 endfunction(CopyLibraryFromMezzanineDuringBuild)
 
-#Description: This function copies license files in Mezzanine into the EntreLua License folder. 
+#Description: This function copies license files in Mezzanine into the EntreLua License folder.
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyLicenseFromMezzanineDuringBuild TargetPath DestName)
     add_custom_command(

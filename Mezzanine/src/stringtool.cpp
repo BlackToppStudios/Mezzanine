@@ -140,9 +140,19 @@ namespace Mezzanine
         std::transform(Source.begin(),Source.end(),Source.begin(),::toupper);
     }
 
-    void StringTools::ToLowerCase(String& Source)
+    String StringTools::UpperCaseCopy(String Source)
     {
-        std::transform(Source.begin(),Source.end(),Source.begin(),::tolower);
+        ToUpperCase(Source);
+        return Source;
+    }
+
+    void StringTools::ToLowerCase(String& Source)
+        { std::transform(Source.begin(),Source.end(),Source.begin(),::tolower); }
+
+    String StringTools::LowerCaseCopy(String Source)
+    {
+        ToLowerCase(Source);
+        return Source;
     }
 
     Boolean StringTools::StartsWith(const String& Str, const String& Pattern, const Boolean CaseSensitive)

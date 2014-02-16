@@ -43,6 +43,8 @@
 #include <datatypes.h>
 #include <Scripting/Lua51/lua51scriptingengine.h>
 
+#include "executor.h"
+
 /// @file
 /// @brief The definition of the user interface for this shell.
 
@@ -59,13 +61,13 @@ class REPL
         Mezzanine::String Prompt;
 
         /// @brief The actual Lua intrepretter
-        Mezzanine::Scripting::Lua::Lua51ScriptingEngine& ScriptInterpretter;
+        Executor& Doer;
 
     public:
         /// @brief Initializing constructor
-        /// @param TargetEngine A Lua sripting engine that the commands will be executed against.
+        /// @param TargetExecutor A Lua sript command interpretter that the commands will be executed against.
         /// @param StartingPrompt The text to start the line
-        REPL(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::String StartingPrompt=">");
+        REPL(Executor& TargetExecutor, Mezzanine::String StartingPrompt=">");
 
         /// @brief This is the actual the loop that will do the REPLing
         virtual void Launch()=0;

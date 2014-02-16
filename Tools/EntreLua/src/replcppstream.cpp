@@ -46,8 +46,8 @@ using namespace Mezzanine;
 using namespace std;
 
 
-REPLCppStream::REPLCppStream(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::String StartingPrompt)
-    : REPL(TargetEngine, StartingPrompt)
+REPLCppStream::REPLCppStream(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
+    : REPL(TargetExecutor, StartingPrompt)
 {
 
 }
