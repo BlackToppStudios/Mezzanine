@@ -74,9 +74,6 @@ namespace Mezzanine
         VerticalContainer::~VerticalContainer()
             {  }
 
-        void VerticalContainer::CreateLayoutStrat()
-            { this->LayoutStrat = new LayoutStrategy(); }
-
         void VerticalContainer::UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect)
         {
             // Clear our old data.
@@ -319,16 +316,32 @@ namespace Mezzanine
             { return VerticalContainer::TypeName; }
 
         VerticalContainer* VerticalContainerFactory::CreateVerticalContainer(const String& RendName, Screen* Parent)
-            { return new VerticalContainer(RendName,Parent); }
+        {
+            VerticalContainer* Ret = new VerticalContainer(RendName,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         VerticalContainer* VerticalContainerFactory::CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
-            { return new VerticalContainer(RendName,RendRect,Parent); }
+        {
+            VerticalContainer* Ret = new VerticalContainer(RendName,RendRect,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         VerticalContainer* VerticalContainerFactory::CreateVerticalContainer(const XML::Node& XMLNode, Screen* Parent)
-            { return new VerticalContainer(XMLNode,Parent); }
+        {
+            VerticalContainer* Ret = new VerticalContainer(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* VerticalContainerFactory::CreateWidget(Screen* Parent)
-            { return new VerticalContainer(Parent); }
+        {
+            VerticalContainer* Ret = new VerticalContainer(Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* VerticalContainerFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
             { return this->CreateVerticalContainer(RendName,Parent); }

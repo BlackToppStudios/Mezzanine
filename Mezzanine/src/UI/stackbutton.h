@@ -84,6 +84,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
+            /// @brief Gets the container that is currently bound to this button.
+            /// @return Returns a pointer to the StackedContainer currently bound to this button.
+            virtual StackedContainer* GetBoundContainer() const;
+
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
 

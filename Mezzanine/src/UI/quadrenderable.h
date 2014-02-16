@@ -256,11 +256,6 @@ namespace Mezzanine
             /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
             /// @internal
-            /// @brief Overridable method that creates and assigns a layout strategy for a quadrenderable.
-            /// @note Widgets by default will create the default LayoutStrategy implementation.  If a widget needs a different implementation (or none/NULL),
-            /// then this method needs to be overridden and provide the appropriate type.
-            virtual void CreateLayoutStrat();
-            /// @internal
             /// @brief Adds all the vertices belonging to all the layers of this renderable to the provided vector.
             /// @param Vertices The vector to store the generated vertices.
             void AppendLayerVertices(std::vector<VertexData>& Vertices);
@@ -574,6 +569,11 @@ namespace Mezzanine
             /// @param Index The index of the RenderLayer to retrieve.
             /// @return Returns a pointer to the RenderLayer at the specified index.
             RenderLayer* GetRenderLayer(const UInt32& Index) const;
+            /// @brief Gets a RenderLayer belonging to this QuadRenderable by it's type.
+            /// @param Which The Nth RenderLayer of the specified type to retrieve.
+            /// @param Type The type of RenderLayer to be considered for retrieval.
+            /// @return Returns a pointer to the Nth RenderLayer of the specified type, or NULL if one does not exist.
+            RenderLayer* GetRenderLayer(const Whole Which, const UI::RenderLayerType Type);
             /// @brief Gets the number of RenderLayers created for this renderable.
             /// @return Returns a UInt32 containing the number of RenderLayers in this renderable.
             UInt32 GetNumRenderLayers() const;
@@ -864,6 +864,10 @@ namespace Mezzanine
             /// @brief Notifies this QuadRenderable that it has been added to another QuadRenderable.
             /// @param NewParent A pointer to the QuadRenderable this is becoming the child of.
             virtual void _NotifyParenthood(QuadRenderable* NewParent);
+            /// @internal
+            /// @brief Sets a new LayoutStrategy for this quad to use.
+            /// @param ToSet A pointer to the new LayoutStrategy for this quad to use.
+            virtual void _SetLayoutStrat(LayoutStrategy* ToSet);
 
             /// @copydoc Renderable::_Clean()
             virtual void _Clean();

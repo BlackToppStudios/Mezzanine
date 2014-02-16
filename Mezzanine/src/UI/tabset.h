@@ -100,6 +100,17 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
+            /// @brief Makes a child TabbedSubSet in this TabSet visible.
+            /// @warning This method makes no attempt to verify the provided TabbedSubSet is a part of this TabSet.
+            /// @param MakeVisible A pointer to the TabbedSubSet to be made visible.
+            virtual void SetVisibleSubSet(TabbedSubSet* MakeVisible);
+            /// @brief Makes a child TabbedSubSet in this TabSet visible.
+            /// @param Binding A UInt16 that is the ZOrder of the TabbedSubSet to be made visible, or makes all subsets hidden of the ZOrder does not exist.
+            virtual void SetVisibleSubSet(const UInt16 Binding);
+            /// @brief Gets a pointer to the TabbedSubSet that is currently visible within this TabSet.
+            /// @return Returns a pointer to the child subset that is currently visible.
+            virtual TabbedSubSet* GetVisibleSubSet() const;
+
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
 
@@ -125,6 +136,10 @@ namespace Mezzanine
             /// @copydoc StackedContainer::GetButtonConfig(const StackButton*) const
             /// @note This method will return the ZOrder of the TabbedSubSet it will make visible.  This will return 0 if the button is invalid.
             virtual UInt16 GetButtonConfig(const StackButton* ConfigButton) const;
+
+            /// @brief Removes a button from the configuration of this TabSet.
+            /// @param ConfigButton A pointer to the button to be removed from this TabSets configuration.
+            virtual void RemoveButtonConfig(StackButton* ConfigButton);
 
             /// @brief Creates a new TabbedSubSet for this TabSet.
             /// @note The ZOrder given to the created TabbedSubSet will be used as an ID for setting the visible child of this TabSet.

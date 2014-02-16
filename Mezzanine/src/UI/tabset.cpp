@@ -43,8 +43,8 @@
 #include "UI/tabset.h"
 #include "UI/stackbutton.h"
 #include "UI/screen.h"
-#include "UI/uimanager.h"
-#include "UI/button.h"
+#include "UI/layoutstrategy.h"
+
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"
 
@@ -101,6 +101,26 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
+        void TabSet::SetVisibleSubSet(TabSet::TabbedSubSet* MakeVisible)
+        {
+            this->SetVisibleSubSet( MakeVisible->GetZOrder() );
+        }
+
+        void TabSet::SetVisibleSubSet(const UInt16 Binding)
+        {
+            TabbedSubSet* NewVisible = this->GetChild( Binding );
+            this->VisibleChild = NewVisible;
+            if( this->VisibleChild != NULL ) {
+                this->VisibleChild->SetVisible( this->IsVisible() );
+            }
+            this->_MarkDirty();
+        }
+
+        TabSet::TabbedSubSet* TabSet::GetVisibleSubSet() const
+        {
+            return this->VisibleChild;
+        }
+
         const String& TabSet::GetTypeName() const
         {
             return TabSet::TypeName;
@@ -113,10 +133,11 @@ namespace Mezzanine
         {
             if( this->Visible == CanSee )
                 return;
-            this->Visible = CanSee;
             if(CanSee) {
                 this->_OnVisibilityShown();
-                this->VisibleChild->SetVisible(CanSee);
+                if( this->VisibleChild != NULL ) {
+                    this->VisibleChild->SetVisible(CanSee);
+                }
             }else{
                 this->_OnVisibilityHidden();
                 for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
@@ -130,16 +151,16 @@ namespace Mezzanine
         {
             if( this->Visible == true )
                 return;
-            this->Visible = true;
             this->_OnVisibilityShown();
-            this->VisibleChild->Show();
+            if( this->VisibleChild != NULL ) {
+                this->VisibleChild->Show();
+            }
         }
 
         void TabSet::Hide()
         {
             if( this->Visible == false )
                 return;
-            this->Visible = false;
             this->_OnVisibilityHidden();
             for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
             {
@@ -156,6 +177,9 @@ namespace Mezzanine
         void TabSet::SetButtonConfig(const UInt16 Config, StackButton* ConfigButton)
         {
             this->SubSetBindings.insert( std::pair<StackButton*,UInt16>(ConfigButton,Config) );
+            //if( ConfigButton->GetBoundContainer() != this ) {
+            //}
+            ConfigButton->_SetBoundContainer(this);
         }
 
         UInt16 TabSet::GetButtonConfig(const StackButton* ConfigButton) const
@@ -165,6 +189,15 @@ namespace Mezzanine
                 return (*SubIt).second;
             }else{
                 return 0;
+            }
+        }
+
+        void TabSet::RemoveButtonConfig(StackButton* ConfigButton)
+        {
+            TabbedSubSetIterator BindIt = this->SubSetBindings.find(ConfigButton);
+            if( BindIt != this->SubSetBindings.end() ) {
+                this->SubSetBindings.erase( BindIt );
+                ConfigButton->_SetBoundContainer(NULL);
             }
         }
 
@@ -270,12 +303,7 @@ namespace Mezzanine
         {
             TabbedSubSetIterator SubIt = this->SubSetBindings.find(Selected);
             if( SubIt != this->SubSetBindings.end() ) {
-                TabbedSubSet* NewVisible = this->GetChild( (*SubIt).second );
-                if( NewVisible != NULL ) {
-                    this->VisibleChild = NewVisible;
-                    this->VisibleChild->SetVisible( this->IsVisible() );
-                    this->_MarkDirty();
-                }
+                this->SetVisibleSubSet( (*SubIt).second );
             }
         }
 
@@ -286,16 +314,32 @@ namespace Mezzanine
             { return TabSet::TypeName; }
 
         TabSet* TabSetFactory::CreateTabSet(const String& RendName, Screen* Parent)
-            { return new TabSet(RendName,Parent); }
+        {
+            TabSet* Ret = new TabSet(RendName,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         TabSet* TabSetFactory::CreateTabSet(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
-            { return new TabSet(RendName,RendRect,Parent); }
+        {
+            TabSet* Ret = new TabSet(RendName,RendRect,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         TabSet* TabSetFactory::CreateTabSet(const XML::Node& XMLNode, Screen* Parent)
-            { return new TabSet(XMLNode,Parent); }
+        {
+            TabSet* Ret = new TabSet(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* TabSetFactory::CreateWidget(Screen* Parent)
-            { return new TabSet(Parent); }
+        {
+            TabSet* Ret = new TabSet(Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* TabSetFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
             { return this->CreateTabSet(RendName,Parent); }
@@ -308,180 +352,6 @@ namespace Mezzanine
 
         void TabSetFactory::DestroyWidget(Widget* ToBeDestroyed)
             { delete static_cast<TabSet*>( ToBeDestroyed ); }
-
-        /*void TabSet::UpdateImpl(bool Force)
-        {
-            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
-            if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
-            {
-                if(Input::BUTTON_PRESSING == State)
-                {
-                    RenderableSetData* ClickedSet = NULL;
-                    for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-                    {
-                        if(HoveredSubWidget == (*it)->Accessor)
-                            ClickedSet = (*it);
-                    }
-                    if(!ClickedSet)
-                        return;
-                    if(VisibleSet)
-                        VisibleSet->Collection->Hide();
-                    VisibleSet = ClickedSet;
-                    VisibleSet->Collection->Show();
-                }
-            }
-        }
-
-        void TabSet::SetVisibleImpl(bool visible)
-        {
-            for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-                (*it)->Accessor->SetVisible(visible);
-            if(VisibleSet)
-                VisibleSet->Collection->SetVisible(visible);
-        }
-
-        bool TabSet::CheckMouseHoverImpl()
-        {
-            for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-            {
-                if((*it)->Accessor->CheckMouseHover())
-                {
-                    HoveredSubWidget = (*it)->Accessor;
-                    return true;
-                }
-            }
-            if(VisibleSet->Collection->CheckMouseHover())
-            {
-                HoveredSubWidget = VisibleSet->Collection;
-                return true;
-            }
-            return false;
-        }
-
-        RenderableSetData* TabSet::CreateRenderableSet(const String& Name, const Rect& AccessorRect, const Real& GlyphHeight, const String& Text)
-        {
-            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
-
-            Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
-            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentScreen->GetPrimaryAtlas());
-            Button* NewAccessor = ParentScreen->CreateButton(Name+"Access",AccessorRect,GlyphInfo.first,Text);
-            if(1 != GlyphInfo.second)
-                NewAccessor->GetClickable()->SetTextScale(GlyphInfo.second);
-            NewAccessor->SetVisible(Visible);
-            RenderableCollection* NewCollection = ParentScreen->CreateEnclosedRenderableContainerWidget(Name+"Set",TemplateSetRect);
-            NewCollection->SetVisible(Visible);
-
-            RenderableSetData* NewSetData = new RenderableSetData(Name,NewAccessor,NewCollection);
-            if(0 == Sets.size()) VisibleSet = NewSetData;
-            else NewSetData->Collection->Hide();
-            Sets.push_back(NewSetData);
-            AddSubRenderable(SetsAdded,NewSetData->Collection);
-            AddSubRenderable(SetsAdded+1,NewSetData->Accessor);
-            SetsAdded+=2;
-            return NewSetData;
-        }
-
-        RenderableSetData* TabSet::GetRenderableSetData(const Whole& Index)
-        {
-            return Sets.at(Index);
-        }
-
-        RenderableSetData* TabSet::GetRenderableSetData(const String& SetDataName)
-        {
-            for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-            {
-                if(SetDataName == (*it)->Name)
-                    return (*it);
-            }
-            return NULL;
-        }
-
-        RenderableCollection* TabSet::GetRenderableCollection(const Whole& Index)
-        {
-            return Sets.at(Index)->Collection;
-        }
-
-        RenderableCollection* TabSet::GetRenderableCollection(const String& SetDataName)
-        {
-            RenderableSetData* SetData = GetRenderableSetData(SetDataName);
-            if(SetData) return SetData->Collection;
-            else return NULL;
-        }
-
-        RenderableCollection* TabSet::GetRenderableCollection(Button* Accessor)
-        {
-            for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-            {
-                if(Accessor == (*it)->Accessor)
-                    return (*it)->Collection;
-            }
-            return NULL;
-        }
-
-        Button* TabSet::GetAccessor(const Whole& Index)
-        {
-            return Sets.at(Index)->Accessor;
-        }
-
-        Button* TabSet::GetAccessor(const String& SetDataName)
-        {
-            RenderableSetData* SetData = GetRenderableSetData(SetDataName);
-            if(SetData) return SetData->Accessor;
-            else return NULL;
-        }
-
-        Button* TabSet::GetAccessor(RenderableCollection* Collection)
-        {
-            for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-            {
-                if(Collection == (*it)->Collection)
-                    return (*it)->Accessor;
-            }
-            return NULL;
-        }
-
-        Whole TabSet::GetNumRenderableSets()
-        {
-            return Sets.size();
-        }
-
-        void TabSet::DestroyRenderableSet(RenderableSetData* ToBeDestroyed)
-        {
-            for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-            {
-                if(ToBeDestroyed == (*it))
-                {
-                    if(ToBeDestroyed == VisibleSet)
-                        VisibleSet = NULL;
-                    Sets.erase(it);
-                    break;
-                }
-            }
-            for( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
-            {
-                if(ToBeDestroyed->Collection == (*it))
-                {
-                    SubRenderables.erase(it);
-                    break;
-                }
-            }
-            delete ToBeDestroyed;
-        }
-
-        void TabSet::DestroyAllRenderableSets()
-        {
-            for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
-            {
-                RenderableSetData* CurrSet = (*it);
-                ParentScreen->DestroyWidget(CurrSet->Accessor);
-                ParentScreen->DestroyWidget(CurrSet->Collection);
-                delete CurrSet;
-            }
-            Sets.clear();
-            HoveredSubWidget = NULL;
-            VisibleSet = NULL;
-            SubRenderables.clear();
-        }//*/
     }//UI
 }//Mezzanine
 

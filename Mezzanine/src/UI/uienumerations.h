@@ -162,12 +162,12 @@ namespace Mezzanine
         /// @brief Used by UI container classes to determine their resize behavior on a given axis when the container is resized.
         enum SizingRules
         {
-            SR_Unified_Dims               = 0, ///< Resizing will use the provided unified dimensions with no further alterations.  This is the default for most QuadRenderables.
-            SR_Match_Other_Axis           = 1, ///< The calculated value for the perpendicular axis will be used as the final value for this axis.
-            SR_Match_Other_Axis_Unified   = 2, ///< Blended Mode.  This will do the same as "SR_Match_Other_Axis" and will also apply Unified Dim of the calculating axis to the result.
-            SR_Fill_Available             = 3, ///< Unified dimensions are ignored and will instead us all available space.
-            SR_Size_For_Text              = 4, ///< Sizes the container so all text in layers will be visible.  Only valid for Vertical sizing(exception will be thrown).
-            SR_Fixed_Size                 = 5  ///< No resizing of any kind will take place.
+            SR_Unified_Dims               = 0,  ///< Resizing will use the provided unified dimensions with no further alterations.  This is the default for most QuadRenderables.
+            SR_Match_Other_Axis           = 1,  ///< The calculated value for the perpendicular axis will be used as the final value for this axis.
+            SR_Match_Other_Axis_Unified   = 2,  ///< Blended Mode.  This will do the same as "SR_Match_Other_Axis" and will also apply Unified Dim of the calculating axis to the result.
+            SR_Fill_Available             = 4,  ///< Unified dimensions are ignored and will instead us all available space.
+            SR_Size_For_Text              = 8,  ///< Sizes the container so all text in layers will be visible.  Only valid for Vertical sizing(exception will be thrown).
+            SR_Fixed_Size                 = 16  ///< No resizing of any kind will take place.
         };
 
         /// @enum SpinnerStyle

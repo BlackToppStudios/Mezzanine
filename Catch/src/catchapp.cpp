@@ -86,7 +86,12 @@ void CatchApp::MakeGUI()
     GUI->LoadMTA("Catch_Menu.mta","Common");
     UI::Screen* MainMenuScreen = GUI->CreateScreen("MainMenuScreen","Catch_Menu",UIViewport);
 
-    // Build the Main Menu Screen
+    const Real RoomyText = 0.65;
+    const Real TightText = 0.8;
+    const Real ScreenScaleText = 0.04;
+    ////////////////////////////////////////////////////////////////
+    ////------------------  Main Menu Screen  ------------------////
+    ////////////////////////////////////////////////////////////////
     UI::Widget* MMBackground = MainMenuScreen->CreateWidget("MS_Background",UI::UnifiedRect(0,0,1.7777,1));
     MMBackground->SetPositioningRules(UI::PF_Anchor_Center);
     MMBackground->SetVerticalSizingRules(UI::SR_Unified_Dims);
@@ -106,125 +111,171 @@ void CatchApp::MakeGUI()
     MainMenuScreen->AddChild(MMRootEntry,1);
     MMRootEntry->ForceRootEntryVisible();
 
-    // Here goes the LevelSelect button and it's menu contents
-    UI::StackButton* MMLevelSelectAccess = MainMenuScreen->CreateStackButton("MS_LevelSelect",UI::UnifiedRect(0.05,0.18,0.22,0.7));
-
-    // Here goes the Options button and it's menu contents
-    UI::StackButton* MMOptionsAccess = MainMenuScreen->CreateStackButton("MS_Options",UI::UnifiedRect(0.28,0.18,0.22,0.7));
-
-    // Here goes the Credits button and it's menu contents
-    UI::StackButton* MMCreditsAccess = MainMenuScreen->CreateStackButton("MS_Credits",UI::UnifiedRect(0.51,0.18,0.22,0.7));
-
-    // Here goes the Exit Game button and it's menu contents
+    ////------------------  Level Select  ------------------////
     // Start with the accessor button
-    UI::StackButton* MMAppExitAccess = MainMenuScreen->CreateStackButton("MS_AppExit",UI::UnifiedRect(0.74,0.18,0.22,0.7));
-    UI::ImageLayer* MMAppExitAccessNormal = MMAppExitAccess->CreateImageLayer("MMButton");
-    UI::ImageLayer* MMAppExitAccessHovered = MMAppExitAccess->CreateImageLayer("MMHoveredButton");
-    UI::SingleLineTextLayer* MMAppExitAccessText = MMAppExitAccess->CreateSingleLineTextLayer("Ubuntu-14");
-    MMAppExitAccessText->SetText("Exit Game");
-    MMAppExitAccessText->HorizontallyAlign(UI::LA_Center);
-    MMAppExitAccessText->VerticallyAlign(UI::LA_Center);
-    MMAppExitAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,0.65);
-    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessNormal,0,"Normal");
-    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessText,1,"Normal");
-    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessHovered,0,"Hovered");
-    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessText,1,"Hovered");
-    MMRootEntry->AddChild(MMAppExitAccess,4);
+    UI::StackButton* MMLevelSelectAccess = MainMenuScreen->CreateStackButton("MS_LevelSelect",UI::UnifiedRect(0.05,0.18,0.22,0.7));
+    UI::ImageLayer* MMLevelSelectAccessNormal = MMLevelSelectAccess->CreateImageLayer("MMButton");
+    UI::ImageLayer* MMLevelSelectAccessHovered = MMLevelSelectAccess->CreateImageLayer("MMHoveredButton");
+    UI::SingleLineTextLayer* MMLevelSelectAccessText = MMLevelSelectAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    MMLevelSelectAccessText->SetText("Level Select");
+    MMLevelSelectAccessText->HorizontallyAlign(UI::LA_Center);
+    MMLevelSelectAccessText->VerticallyAlign(UI::LA_Center);
+    MMLevelSelectAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,RoomyText);
+    MMLevelSelectAccess->AddLayerToGroup(MMLevelSelectAccessNormal,0,"Normal");
+    MMLevelSelectAccess->AddLayerToGroup(MMLevelSelectAccessText,1,"Normal");
+    MMLevelSelectAccess->AddLayerToGroup(MMLevelSelectAccessHovered,0,"Hovered");
+    MMLevelSelectAccess->AddLayerToGroup(MMLevelSelectAccessText,1,"Hovered");
+    MMRootEntry->AddChild(MMLevelSelectAccess,1);
 
-    // Create and configure the "window" that houses the exit confirmation
-    UI::MenuEntry* MMAppExitWin = MainMenuScreen->CreateMenuEntry("MS_AppExitWin",UI::UnifiedRect(0.25,-8.14,0.5,3.5));
-    UI::ImageLayer* MMAppExitWinLayer = MMAppExitWin->CreateImageLayer("MMAppExitBackground");
-    MMAppExitWin->AddLayerToGroup(MMAppExitWinLayer,0,"Normal");
-    MMAppExitWin->AddLayerToGroup(MMAppExitWinLayer,0,"Hovered");
-    MMAppExitWin->SetPushButton(MMAppExitAccess);
-    MMRootEntry->AddChild(MMAppExitWin,8);
+    // Create and configure the "window" that houses the level selections
+    UI::MenuEntry* MMLevelSelectWin = MainMenuScreen->CreateMenuEntry("MS_LevelSelectWin",UI::UnifiedRect(0.05,-10.3,0.90,9.68));
+    UI::ImageLayer* MMLevelSelectWinLayer = MMLevelSelectWin->CreateImageLayer("MMLSBackground");
+    MMLevelSelectWin->AddLayerToGroup(MMLevelSelectWinLayer,0,"Normal");
+    MMLevelSelectWin->AddLayerToGroup(MMLevelSelectWinLayer,0,"Hovered");
+    MMLevelSelectWin->SetPushButton(MMLevelSelectAccess);
+    MMRootEntry->AddChild(MMLevelSelectWin,5);
 
-    // Create and configure the display for the confirmation question
-    UI::Widget* MMAppExitWarn = MainMenuScreen->CreateWidget("MS_AppExitWarn",UI::UnifiedRect(0.14,0.18,0.72,0.22));
-    UI::ImageLayer* MMAppExitWarnLayer = MMAppExitWarn->CreateImageLayer("MMAppExitText");
-    UI::SingleLineTextLayer* MMAppExitWarnText = MMAppExitWarn->CreateSingleLineTextLayer("Ubuntu-14");
-    MMAppExitWarnText->SetText("Are you sure you want to exit?");
-    MMAppExitWarnText->HorizontallyAlign(UI::LA_Center);
-    MMAppExitWarnText->VerticallyAlign(UI::LA_Center);
-    MMAppExitWarnText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,0.65);
-    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnLayer,0,"Normal");
-    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnText,1,"Normal");
-    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnLayer,0,"Hovered");
-    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnText,1,"Hovered");
-    MMAppExitWin->AddChild(MMAppExitWarn,1);
+    ////------------------  Options  ------------------////
+    // Start with the accessor button
+    UI::StackButton* MMOptionsAccess = MainMenuScreen->CreateStackButton("MS_Options",UI::UnifiedRect(0.28,0.18,0.22,0.7));
+    UI::ImageLayer* MMOptionsAccessNormal = MMOptionsAccess->CreateImageLayer("MMButton");
+    UI::ImageLayer* MMOptionsAccessHovered = MMOptionsAccess->CreateImageLayer("MMHoveredButton");
+    UI::SingleLineTextLayer* MMOptionsAccessText = MMOptionsAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    MMOptionsAccessText->SetText("Options");
+    MMOptionsAccessText->HorizontallyAlign(UI::LA_Center);
+    MMOptionsAccessText->VerticallyAlign(UI::LA_Center);
+    MMOptionsAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,RoomyText);
+    MMOptionsAccess->AddLayerToGroup(MMOptionsAccessNormal,0,"Normal");
+    MMOptionsAccess->AddLayerToGroup(MMOptionsAccessText,1,"Normal");
+    MMOptionsAccess->AddLayerToGroup(MMOptionsAccessHovered,0,"Hovered");
+    MMOptionsAccess->AddLayerToGroup(MMOptionsAccessText,1,"Hovered");
+    MMRootEntry->AddChild(MMOptionsAccess,2);
 
-    // Create and configure the confirm button
-    UI::Button* MMAppExitConf = MainMenuScreen->CreateButton("MS_AppExitConf",UI::UnifiedRect(0.10,0.58,0.35,0.22));
-    UI::ImageLayer* MMAppExitConfNormal = MMAppExitConf->CreateImageLayer("MMAppExitButton");
-    UI::ImageLayer* MMAppExitConfHovered = MMAppExitConf->CreateImageLayer("MMAppExitHoveredButton");
-    UI::SingleLineTextLayer* MMAppExitConfText = MMAppExitConf->CreateSingleLineTextLayer("Ubuntu-14");
-    MMAppExitConfText->SetText("Yes");
-    MMAppExitConfText->HorizontallyAlign(UI::LA_Center);
-    MMAppExitConfText->VerticallyAlign(UI::LA_Center);
-    MMAppExitConfText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,0.65);
-    MMAppExitConf->AddLayerToGroup(MMAppExitConfNormal,0,"Normal");
-    MMAppExitConf->AddLayerToGroup(MMAppExitConfText,1,"Normal");
-    MMAppExitConf->AddLayerToGroup(MMAppExitConfHovered,0,"Hovered");
-    MMAppExitConf->AddLayerToGroup(MMAppExitConfText,1,"Hovered");
-    MMAppExitConf->Subscribe(UI::Button::EventDeactivated,&AllAppExit);
-    MMAppExitWin->AddChild(MMAppExitConf,2);
+    // Create and configure the "window" that houses the options display
+    UI::MenuEntry* MMOptionsWin = MainMenuScreen->CreateMenuEntry("MS_OptionsWin",UI::UnifiedRect(0.18,-8.08,0.64,6.4));
+    UI::ImageLayer* MMOptionsWinLayer = MMOptionsWin->CreateImageLayer("MMOptionsBackground");
+    MMOptionsWin->AddLayerToGroup(MMOptionsWinLayer,0,"Normal");
+    MMOptionsWin->AddLayerToGroup(MMOptionsWinLayer,0,"Hovered");
+    MMOptionsWin->SetPushButton(MMOptionsAccess);
+    MMRootEntry->AddChild(MMOptionsWin,6);
 
-    // Create and configure the deny button
-    UI::StackButton* MMAppExitDeny = MainMenuScreen->CreateStackButton("MS_AppExitDeny",UI::UnifiedRect(0.55,0.58,0.35,0.22));
-    UI::ImageLayer* MMAppExitDenyNormal = MMAppExitDeny->CreateImageLayer("MMAppExitButton");
-    UI::ImageLayer* MMAppExitDenyHovered = MMAppExitDeny->CreateImageLayer("MMAppExitHoveredButton");
-    UI::SingleLineTextLayer* MMAppExitDenyText = MMAppExitDeny->CreateSingleLineTextLayer("Ubuntu-14");
-    MMAppExitDenyText->SetText("No");
-    MMAppExitDenyText->HorizontallyAlign(UI::LA_Center);
-    MMAppExitDenyText->VerticallyAlign(UI::LA_Center);
-    MMAppExitDenyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,0.65);
-    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyNormal,0,"Normal");
-    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyText,1,"Normal");
-    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyHovered,0,"Hovered");
-    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyText,1,"Hovered");
-    MMAppExitWin->SetPopButton(MMAppExitDeny);
-    MMAppExitWin->AddChild(MMAppExitDeny,3);
+    // Create the first of the two buttons that will display the two sets of options (video options)
+    UI::StackButton* MMVideoSetAccess = MainMenuScreen->CreateStackButton("MS_VideoSetAccess",UI::UnifiedRect(0.11,0.0365,0.34,0.11));
+    UI::ImageLayer* MMVideoSetAccessNormal = MMVideoSetAccess->CreateImageLayer("MMButton");
+    UI::ImageLayer* MMVideoSetAccessHovered = MMVideoSetAccess->CreateImageLayer("MMHoveredButton");
+    UI::SingleLineTextLayer* MMVideoSetAccessText = MMVideoSetAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    MMVideoSetAccessText->SetText("Video Options");
+    MMVideoSetAccessText->HorizontallyAlign(UI::LA_Center);
+    MMVideoSetAccessText->VerticallyAlign(UI::LA_Center);
+    MMVideoSetAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,RoomyText);
+    MMVideoSetAccess->AddLayerToGroup(MMVideoSetAccessNormal,0,"Normal");
+    MMVideoSetAccess->AddLayerToGroup(MMVideoSetAccessText,1,"Normal");
+    MMVideoSetAccess->AddLayerToGroup(MMVideoSetAccessHovered,0,"Hovered");
+    MMVideoSetAccess->AddLayerToGroup(MMVideoSetAccessText,1,"Hovered");
+    MMOptionsWin->AddChild(MMVideoSetAccess,1);
+
+    // Create the second of the two buttons that will display the two sets of options (audio options)
+    UI::StackButton* MMAudioSetAccess = MainMenuScreen->CreateStackButton("MS_AudioSetAccess",UI::UnifiedRect(0.55,0.0365,0.34,0.11));
+    UI::ImageLayer* MMAudioSetAccessNormal = MMAudioSetAccess->CreateImageLayer("MMButton");
+    UI::ImageLayer* MMAudioSetAccessHovered = MMAudioSetAccess->CreateImageLayer("MMHoveredButton");
+    UI::SingleLineTextLayer* MMAudioSetAccessText = MMAudioSetAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    MMAudioSetAccessText->SetText("Audio Options");
+    MMAudioSetAccessText->HorizontallyAlign(UI::LA_Center);
+    MMAudioSetAccessText->VerticallyAlign(UI::LA_Center);
+    MMAudioSetAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,RoomyText);
+    MMAudioSetAccess->AddLayerToGroup(MMAudioSetAccessNormal,0,"Normal");
+    MMAudioSetAccess->AddLayerToGroup(MMAudioSetAccessText,1,"Normal");
+    MMAudioSetAccess->AddLayerToGroup(MMAudioSetAccessHovered,0,"Hovered");
+    MMAudioSetAccess->AddLayerToGroup(MMAudioSetAccessText,1,"Hovered");
+    MMOptionsWin->AddChild(MMAudioSetAccess,2);
+
+    // Create the TabSet that will hold all of our options widgets
+    UI::TabSet* MMOptionsTabSet = MainMenuScreen->CreateTabSet("MS_OptionsTS",UI::UnifiedRect(0.05,0.16,0.90,0.70));
+    MMOptionsTabSet->SetButtonConfig(1,MMVideoSetAccess);
+    MMOptionsTabSet->SetButtonConfig(2,MMAudioSetAccess);
+    MMOptionsWin->AddChild(MMOptionsTabSet,3);
+
+    // Create the TabbedSubSet that will house all our video options
+    UI::TabSet::TabbedSubSet* MMVideoSet = MMOptionsTabSet->CreateTabbedSubSet("MS_VideoSet",1);
+
+    // Create the label for the window resolution list
+    UI::Widget* MMResolutionLabel = MainMenuScreen->CreateWidget("MS_ResolutionLabel",UI::UnifiedRect(0.12,0.01,0.415,0.13));
+    UI::ImageLayer* MMResolutionLabelLayer = MMResolutionLabel->CreateImageLayer("MMButton");
+    UI::SingleLineTextLayer* MMResolutionLabelText = MMResolutionLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    MMResolutionLabelText->SetText("Video Resolutions");
+    MMResolutionLabelText->HorizontallyAlign(UI::LA_Center);
+    MMResolutionLabelText->VerticallyAlign(UI::LA_Center);
+    MMResolutionLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMResolutionLabel->AddLayerToGroup(MMResolutionLabelLayer,0,"Normal");
+    MMResolutionLabel->AddLayerToGroup(MMResolutionLabelText,1,"Normal");
+    MMResolutionLabel->AddLayerToGroup(MMResolutionLabelLayer,0,"Hovered");
+    MMResolutionLabel->AddLayerToGroup(MMResolutionLabelText,1,"Hovered");
+    MMVideoSet->AddChild(MMResolutionLabel,1);
+
+    // Create the listing of detected supported resolutions
+    UI::DropDownList* MMResolutionList = MainMenuScreen->CreateDropDownList("MS_ResolutionList",UI::UnifiedRect(0.065,0.145,0.515,0.12),UI::SB_Separate);
+    // Configure the selection display
+    UI::Widget* MMResolutionDisplay = MMResolutionList->GetSelectionDisplay();
+    UI::ImageLayer* MMResolutionDisplayLayer = MMResolutionDisplay->CreateImageLayer("MMListSelection");
+    UI::SingleLineTextLayer* MMResolutionDisplayText = static_cast<UI::SingleLineTextLayer*>( MMResolutionDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
+    MMResolutionDisplayText->SetDefaultFont("Ubuntu-14");
+    MMResolutionDisplayText->HorizontallyAlign(UI::LA_Center);
+    MMResolutionDisplayText->VerticallyAlign(UI::LA_Center);
+    MMResolutionDisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMResolutionDisplay->AddLayerToGroup(MMResolutionDisplayLayer,0,"Normal");
+    MMResolutionDisplay->AddLayerToGroup(MMResolutionDisplayLayer,0,"Hovered");
+    // Configure the list toggle
+    UI::CheckBox* MMResolutionToggle = MMResolutionList->GetListToggle();
+    UI::ImageLayer* MMResolutionToggleNormal = MMResolutionToggle->CreateImageLayer("MMListScrollDown");
+    UI::ImageLayer* MMResolutionToggleHovered = MMResolutionToggle->CreateImageLayer("MMHoveredListScrollDown");
+    MMResolutionToggle->AddLayerToGroup(MMResolutionToggleNormal,0,"Normal");
+    MMResolutionToggle->AddLayerToGroup(MMResolutionToggleHovered,0,"Hovered");
+    MMResolutionToggle->AddLayerToGroup(MMResolutionToggleNormal,0,"SelectedNormal");
+    MMResolutionToggle->AddLayerToGroup(MMResolutionToggleHovered,0,"SelectedHovered");
+    // Configure the option list
+    UI::ListBox* MMResolutionOptions = MMResolutionList->GetSelectionList();
+    // Configure the background for the listbox container
+    UI::VerticalContainer* MMResolutionOptionsList = MMResolutionOptions->GetListContainer();
+    UI::ImageLayer* MMResolutionOptionsListLayer = MMResolutionOptionsList->CreateImageLayer("MMListBackground");
+    MMResolutionOptionsList->AddLayerToGroup(MMResolutionOptionsListLayer,0,"Normal");
+    MMResolutionOptionsList->AddLayerToGroup(MMResolutionOptionsListLayer,0,"Hovered");
+    // Configure the scrollbar for the option list
+    UI::VerticalScrollbar* MMResolutionOptionsScroll = MMResolutionOptions->GetListScroll();
+    MMResolutionOptionsScroll->SetIncrementDistance(0.05);
+    // Configure the scroller
+    UI::Button* MMResolutionOptionsScroller = MMResolutionOptionsScroll->GetScroller();
+    UI::ImageLayer* MMResolutionOptionsScrollerNormal = MMResolutionOptionsScroller->CreateImageLayer("MMListScroller");
+    UI::ImageLayer* MMResolutionOptionsScrollerHovered = MMResolutionOptionsScroller->CreateImageLayer("MMHoveredListScroller");
+    MMResolutionOptionsScroller->AddLayerToGroup(MMResolutionOptionsScrollerNormal,0,"Normal");
+    MMResolutionOptionsScroller->AddLayerToGroup(MMResolutionOptionsScrollerHovered,0,"Hovered");
+    // Configure the up button
+    UI::Button* MMResolutionOptionsScrollUp = MMResolutionOptionsScroll->GetUpLeftButton();
+    UI::ImageLayer* MMResolutionOptionsScrollUpNormal = MMResolutionOptionsScrollUp->CreateImageLayer("MMListScrollUp");
+    UI::ImageLayer* MMResolutionOptionsScrollUpHovered = MMResolutionOptionsScrollUp->CreateImageLayer("MMHoveredListScrollUp");
+    MMResolutionOptionsScrollUp->AddLayerToGroup(MMResolutionOptionsScrollUpNormal,0,"Normal");
+    MMResolutionOptionsScrollUp->AddLayerToGroup(MMResolutionOptionsScrollUpHovered,0,"Hovered");
+    // Configure the down button
+    UI::Button* MMResolutionOptionsScrollDown = MMResolutionOptionsScroll->GetDownRightButton();
+    UI::ImageLayer* MMResolutionOptionsScrollDownNormal = MMResolutionOptionsScrollDown->CreateImageLayer("MMListScrollDown");
+    UI::ImageLayer* MMResolutionOptionsScrollDownHovered = MMResolutionOptionsScrollDown->CreateImageLayer("MMHoveredListScrollDown");
+    MMResolutionOptionsScrollDown->AddLayerToGroup(MMResolutionOptionsScrollDownNormal,0,"Normal");
+    MMResolutionOptionsScrollDown->AddLayerToGroup(MMResolutionOptionsScrollDownHovered,0,"Hovered");
+    // Configure the scroll back
+    UI::Button* MMResolutionOptionsScrollBack = MMResolutionOptionsScroll->GetScrollBack();
+    UI::ImageLayer* MMResolutionOptionsScrollBackLayer = MMResolutionOptionsScrollBack->CreateImageLayer("MMListBackground");
+    MMResolutionOptionsScrollBack->AddLayerToGroup(MMResolutionOptionsScrollBackLayer,0,"Normal");
+    MMResolutionOptionsScrollBack->AddLayerToGroup(MMResolutionOptionsScrollBackLayer,0,"Hovered");
+    // Wrap up listing configuration
+    MMVideoSet->AddChild(MMResolutionList,2);
 
 
 
 
-    //Real MMStartLineHeight = 0.05;
-    //Real MMTextLineHeight = 0.04;
-    //Real MMSmallTextLineHeight = 0.03;
-    /*UI::Button* MMLevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", UI::RenderableRect(Vector2(0.05, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Level Select" );
-    MMLevelSelectAccess->GetClickable()->SetBackgroundSprite("MMButton");
-    MMLevelSelectAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* MMLevelSelectWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_LevelSelectWin", UI::RenderableRect(Vector2(0.05,0.02), Vector2(0.90,0.84), true), MMLevelSelectAccess);
-    MMLevelSelectWin->GetWindowBack()->SetBackgroundSprite("MMLSBackground");
-    UI::PagedCellGrid* MMLevelSelectGrid = MMLevelSelectWin->CreatePagedCellGrid("MS_LevelGrid", UI::RenderableRect(Vector2(0.14,0.14), Vector2(0.72,0.66), true), UI::RenderableRect(Vector2(0.60,0.85), Vector2(0.24,0.06), true), UI::Spn_Separate, 0.05);
-    MMLevelSelectGrid->GetGridBack()->SetBackgroundColour(Transparent);
-    MMLevelSelectGrid->GetPageSpinner()->GetIncrement()->GetClickable()->SetBackgroundSprite("MMIncrementPage");
-    MMLevelSelectGrid->GetPageSpinner()->GetDecrement()->GetClickable()->SetBackgroundSprite("MMDecrementPage");
-    MMLevelSelectGrid->GetPageSpinner()->GetValueDisplay()->SetBackgroundSprite("MMPageBox");
-    UI::Button* MMLevelStart = MMLevelSelectWin->CreateButton("MS_LevelStart", UI::RenderableRect(Vector2(0.42,0.85), Vector2(0.16,0.07), true),MMStartLineHeight,"Start");
-    MMLevelStart->AddActivatableListener(new MSStart(MMLevelSelectGrid));
-    MMLevelStart->GetClickable()->SetBackgroundSprite("MMLevelStart");
-    MMLevelStart->GetClickable()->SetHoveredSprite("MMLevelStartHovered");
 
-    UI::Button* MMOptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", UI::RenderableRect(Vector2(0.28, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Options" );
-    MMOptionsAccess->GetClickable()->SetBackgroundSprite("MMButton");
-    MMOptionsAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* MMOptionsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_OptionsWin", UI::RenderableRect(Vector2(0.18, 0.22), Vector2(0.64, 0.55), true), MMOptionsAccess);
-    MMOptionsWin->GetWindowBack()->SetBackgroundSprite("MMOptionsBackground");
-    UI::TabSet* MMOptionsTabSet = MMOptionsWin->CreateTabSet("MS_OptionsTS", UI::RenderableRect(Vector2(0.20, 0.31), Vector2(0.60, 0.39), true));
-    //video options
-    UI::RenderableSetData* MMVideoSet = MMOptionsTabSet->CreateRenderableSet("MS_VideoSet",UI::RenderableRect(Vector2(0.25, 0.24),Vector2(0.22, 0.06),true),MMTextLineHeight,"Video Options");
-    MMVideoSet->Collection->GetWidgetBack()->SetBackgroundColour(ColourValue::Transparent());
-    MMVideoSet->Accessor->GetClickable()->SetBackgroundSprite("MMButton");
-    MMVideoSet->Accessor->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    UI::Caption* MMResolutionLabel = MMVideoSet->Collection->CreateCaption("MS_ResolutionLabel",UI::RenderableRect(Vector2(0.28, 0.31),Vector2(0.24, 0.05),true),MMTextLineHeight,"Video Resolution");
-    MMResolutionLabel->SetBackgroundSprite("MMButton");
-    UI::DropDownList* MMResolutionList = MMVideoSet->Collection->CreateDropDownList("MS_ResolutionList",UI::RenderableRect(Vector2(0.25, 0.36),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
-    MMResolutionList->GetSelection()->SetBackgroundSprite("MMListSelection");
-    MMResolutionList->GetListToggle()->GetClickable()->SetBackgroundSprite("MMListScrollDown");
-    MMResolutionList->GetSelectionList()->GetBoxBack()->SetBackgroundSprite("MMListBackground");
-    MMResolutionList->GetSelectionList()->GetVertScroll()->GetScrollBack()->SetBackgroundSprite("MMListScrollBackground");
-    MMResolutionList->GetSelectionList()->GetVertScroll()->GetScroller()->GetClickable()->SetBackgroundSprite("MMListScroller");
+
+
+
+    /*MMResolutionList->GetSelectionList()->GetVertScroll()->GetScroller()->GetClickable()->SetBackgroundSprite("MMListScroller");
     MMResolutionList->GetSelectionList()->GetVertScroll()->GetScroller()->GetClickable()->SetHoveredSprite("MMHoveredListScroller");
     MMResolutionList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->GetClickable()->SetBackgroundSprite("MMListScrollDown");
     MMResolutionList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->GetClickable()->SetHoveredSprite("MMHoveredListScrollDown");
@@ -266,7 +317,141 @@ void CatchApp::MakeGUI()
     UI::Button* MMVideoOptsApply = MMVideoSet->Collection->CreateButton("MS_VideoOptsApply",UI::RenderableRect(Vector2(0.68, 0.64), Vector2(0.10, 0.05), true), MMTextLineHeight, "Apply");
     MMVideoOptsApply->GetClickable()->SetBackgroundSprite("MMOptionsApplyButton");
     MMVideoOptsApply->GetClickable()->SetHoveredSprite("MMOptionsApplyHoveredButton");
-    MMVideoOptsApply->AddActivatableListener(new OptsVideoApply(MMResolutionList,MMFullscreenBox,MMStatsBox));
+    MMVideoOptsApply->AddActivatableListener(new OptsVideoApply(MMResolutionList,MMFullscreenBox,MMStatsBox));//*/
+
+
+    // Create the TabbedSubSet that will house all our audio options
+    UI::TabSet::TabbedSubSet* MMAudioSet = MMOptionsTabSet->CreateTabbedSubSet("MS_AudioSet",2);
+
+    // Create the back button for the options window
+    UI::StackButton* MMOptsBack = MainMenuScreen->CreateStackButton("MS_OptsBack",UI::UnifiedRect(0.780,0.870,0.156,0.094));
+    UI::ImageLayer* MMOptsBackNormal = MMOptsBack->CreateImageLayer("MMOptionsApplyButton");
+    UI::ImageLayer* MMOptsBackHovered = MMOptsBack->CreateImageLayer("MMOptionsApplyHoveredButton");
+    UI::SingleLineTextLayer* MMOptsBackText = MMOptsBack->CreateSingleLineTextLayer("Ubuntu-14");
+    MMOptsBackText->SetText("Back");
+    MMOptsBackText->HorizontallyAlign(UI::LA_Center);
+    MMOptsBackText->VerticallyAlign(UI::LA_Center);
+    MMOptsBackText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMOptsBack->AddLayerToGroup(MMOptsBackNormal,0,"Normal");
+    MMOptsBack->AddLayerToGroup(MMOptsBackText,1,"Normal");
+    MMOptsBack->AddLayerToGroup(MMOptsBackHovered,0,"Hovered");
+    MMOptsBack->AddLayerToGroup(MMOptsBackText,1,"Hovered");
+    MMOptionsWin->SetPopButton(MMOptsBack);
+    MMOptionsWin->AddChild(MMOptsBack,5);
+
+    ////------------------  Credits  ------------------////
+    // Start with the accessor button
+    UI::StackButton* MMCreditsAccess = MainMenuScreen->CreateStackButton("MS_Credits",UI::UnifiedRect(0.51,0.18,0.22,0.7));
+    UI::ImageLayer* MMCreditsAccessNormal = MMCreditsAccess->CreateImageLayer("MMButton");
+    UI::ImageLayer* MMCreditsAccessHovered = MMCreditsAccess->CreateImageLayer("MMHoveredButton");
+    UI::SingleLineTextLayer* MMCreditsAccessText = MMCreditsAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    MMCreditsAccessText->SetText("Credits");
+    MMCreditsAccessText->HorizontallyAlign(UI::LA_Center);
+    MMCreditsAccessText->VerticallyAlign(UI::LA_Center);
+    MMCreditsAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,RoomyText);
+    MMCreditsAccess->AddLayerToGroup(MMCreditsAccessNormal,0,"Normal");
+    MMCreditsAccess->AddLayerToGroup(MMCreditsAccessText,1,"Normal");
+    MMCreditsAccess->AddLayerToGroup(MMCreditsAccessHovered,0,"Hovered");
+    MMCreditsAccess->AddLayerToGroup(MMCreditsAccessText,1,"Hovered");
+    MMRootEntry->AddChild(MMCreditsAccess,3);
+
+    // Create and configure the "window" that houses the options display
+    UI::MenuEntry* MMCreditsWin = MainMenuScreen->CreateMenuEntry("MS_CreditsWin",UI::UnifiedRect(0.18,-9.04,0.64,6.4));
+    UI::ImageLayer* MMCreditsWinLayer = MMCreditsWin->CreateImageLayer("MMOptionsBackground");
+    MMCreditsWin->AddLayerToGroup(MMCreditsWinLayer,0,"Normal");
+    MMCreditsWin->AddLayerToGroup(MMCreditsWinLayer,0,"Hovered");
+    MMCreditsWin->SetPushButton(MMCreditsAccess);
+    MMRootEntry->AddChild(MMCreditsWin,7);
+
+    ////------------------  Exit Game  ------------------////
+    // Start with the accessor button
+    UI::StackButton* MMAppExitAccess = MainMenuScreen->CreateStackButton("MS_AppExit",UI::UnifiedRect(0.74,0.18,0.22,0.7));
+    UI::ImageLayer* MMAppExitAccessNormal = MMAppExitAccess->CreateImageLayer("MMButton");
+    UI::ImageLayer* MMAppExitAccessHovered = MMAppExitAccess->CreateImageLayer("MMHoveredButton");
+    UI::SingleLineTextLayer* MMAppExitAccessText = MMAppExitAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    MMAppExitAccessText->SetText("Exit Game");
+    MMAppExitAccessText->HorizontallyAlign(UI::LA_Center);
+    MMAppExitAccessText->VerticallyAlign(UI::LA_Center);
+    MMAppExitAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,RoomyText);
+    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessNormal,0,"Normal");
+    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessText,1,"Normal");
+    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessHovered,0,"Hovered");
+    MMAppExitAccess->AddLayerToGroup(MMAppExitAccessText,1,"Hovered");
+    MMRootEntry->AddChild(MMAppExitAccess,4);
+
+    // Create and configure the "window" that houses the exit confirmation
+    UI::MenuEntry* MMAppExitWin = MainMenuScreen->CreateMenuEntry("MS_AppExitWin",UI::UnifiedRect(0.25,-8.14,0.5,3.5));
+    UI::ImageLayer* MMAppExitWinLayer = MMAppExitWin->CreateImageLayer("MMAppExitBackground");
+    MMAppExitWin->AddLayerToGroup(MMAppExitWinLayer,0,"Normal");
+    MMAppExitWin->AddLayerToGroup(MMAppExitWinLayer,0,"Hovered");
+    MMAppExitWin->SetPushButton(MMAppExitAccess);
+    MMRootEntry->AddChild(MMAppExitWin,8);
+
+    // Create and configure the display for the confirmation question
+    UI::Widget* MMAppExitWarn = MainMenuScreen->CreateWidget("MS_AppExitWarn",UI::UnifiedRect(0.14,0.18,0.72,0.22));
+    UI::ImageLayer* MMAppExitWarnLayer = MMAppExitWarn->CreateImageLayer("MMAppExitText");
+    UI::SingleLineTextLayer* MMAppExitWarnText = MMAppExitWarn->CreateSingleLineTextLayer("Ubuntu-14");
+    MMAppExitWarnText->SetText("Are you sure you want to exit?");
+    MMAppExitWarnText->HorizontallyAlign(UI::LA_Center);
+    MMAppExitWarnText->VerticallyAlign(UI::LA_Center);
+    MMAppExitWarnText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,RoomyText);
+    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnLayer,0,"Normal");
+    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnText,1,"Normal");
+    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnLayer,0,"Hovered");
+    MMAppExitWarn->AddLayerToGroup(MMAppExitWarnText,1,"Hovered");
+    MMAppExitWin->AddChild(MMAppExitWarn,1);
+
+    // Create and configure the confirm button
+    UI::Button* MMAppExitConf = MainMenuScreen->CreateButton("MS_AppExitConf",UI::UnifiedRect(0.10,0.58,0.35,0.22));
+    UI::ImageLayer* MMAppExitConfNormal = MMAppExitConf->CreateImageLayer("MMAppExitButton");
+    UI::ImageLayer* MMAppExitConfHovered = MMAppExitConf->CreateImageLayer("MMAppExitHoveredButton");
+    UI::SingleLineTextLayer* MMAppExitConfText = MMAppExitConf->CreateSingleLineTextLayer("Ubuntu-14");
+    MMAppExitConfText->SetText("Yes");
+    MMAppExitConfText->HorizontallyAlign(UI::LA_Center);
+    MMAppExitConfText->VerticallyAlign(UI::LA_Center);
+    MMAppExitConfText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,RoomyText);
+    MMAppExitConf->AddLayerToGroup(MMAppExitConfNormal,0,"Normal");
+    MMAppExitConf->AddLayerToGroup(MMAppExitConfText,1,"Normal");
+    MMAppExitConf->AddLayerToGroup(MMAppExitConfHovered,0,"Hovered");
+    MMAppExitConf->AddLayerToGroup(MMAppExitConfText,1,"Hovered");
+    MMAppExitConf->Subscribe(UI::Button::EventDeactivated,&AllAppExit);
+    MMAppExitWin->AddChild(MMAppExitConf,2);
+
+    // Create and configure the deny button
+    UI::StackButton* MMAppExitDeny = MainMenuScreen->CreateStackButton("MS_AppExitDeny",UI::UnifiedRect(0.55,0.58,0.35,0.22));
+    UI::ImageLayer* MMAppExitDenyNormal = MMAppExitDeny->CreateImageLayer("MMAppExitButton");
+    UI::ImageLayer* MMAppExitDenyHovered = MMAppExitDeny->CreateImageLayer("MMAppExitHoveredButton");
+    UI::SingleLineTextLayer* MMAppExitDenyText = MMAppExitDeny->CreateSingleLineTextLayer("Ubuntu-14");
+    MMAppExitDenyText->SetText("No");
+    MMAppExitDenyText->HorizontallyAlign(UI::LA_Center);
+    MMAppExitDenyText->VerticallyAlign(UI::LA_Center);
+    MMAppExitDenyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,RoomyText);
+    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyNormal,0,"Normal");
+    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyText,1,"Normal");
+    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyHovered,0,"Hovered");
+    MMAppExitDeny->AddLayerToGroup(MMAppExitDenyText,1,"Hovered");
+    MMAppExitWin->SetPopButton(MMAppExitDeny);
+    MMAppExitWin->AddChild(MMAppExitDeny,3);
+
+    ////////////////////////////////////////////////////////////////
+    ////--------------------  Game  Screen  --------------------////
+    ////////////////////////////////////////////////////////////////
+
+
+    //Real MMStartLineHeight = 0.05;
+    //Real MMTextLineHeight = 0.04;
+    //Real MMSmallTextLineHeight = 0.03;
+    /*UI::PagedCellGrid* MMLevelSelectGrid = MMLevelSelectWin->CreatePagedCellGrid("MS_LevelGrid", UI::RenderableRect(Vector2(0.14,0.14), Vector2(0.72,0.66), true), UI::RenderableRect(Vector2(0.60,0.85), Vector2(0.24,0.06), true), UI::Spn_Separate, 0.05);
+    MMLevelSelectGrid->GetGridBack()->SetBackgroundColour(Transparent);
+    MMLevelSelectGrid->GetPageSpinner()->GetIncrement()->GetClickable()->SetBackgroundSprite("MMIncrementPage");
+    MMLevelSelectGrid->GetPageSpinner()->GetDecrement()->GetClickable()->SetBackgroundSprite("MMDecrementPage");
+    MMLevelSelectGrid->GetPageSpinner()->GetValueDisplay()->SetBackgroundSprite("MMPageBox");
+    UI::Button* MMLevelStart = MMLevelSelectWin->CreateButton("MS_LevelStart", UI::RenderableRect(Vector2(0.42,0.85), Vector2(0.16,0.07), true),MMStartLineHeight,"Start");
+    MMLevelStart->AddActivatableListener(new MSStart(MMLevelSelectGrid));
+    MMLevelStart->GetClickable()->SetBackgroundSprite("MMLevelStart");
+    MMLevelStart->GetClickable()->SetHoveredSprite("MMLevelStartHovered");
+
+    //video options
     //sound options
     Real MMScrollerSize = 0.09;
     UI::RenderableSetData* MMAudioSet = MMOptionsTabSet->CreateRenderableSet("MS_AudioSet",UI::RenderableRect(Vector2(0.53, 0.24),Vector2(0.22, 0.06),true),MMTextLineHeight,"Sound Options");
@@ -317,16 +502,6 @@ void CatchApp::MakeGUI()
     MMMuteBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
     MMMuteBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
     MMMuteBox->AddWidgetListener(new OptsAudioMute());
-
-    UI::Button* MMOptsBack = MMOptionsWin->CreateBackButton(UI::RenderableRect(Vector2(0.68, 0.70), Vector2(0.10, 0.05), true), MMTextLineHeight, "Back");
-    MMOptsBack->GetClickable()->SetBackgroundSprite("MMOptionsApplyButton");
-    MMOptsBack->GetClickable()->SetHoveredSprite("MMOptionsApplyHoveredButton");
-
-    UI::Button* MMCreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", UI::RenderableRect(Vector2(0.51, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Credits" );
-    MMCreditsAccess->GetClickable()->SetBackgroundSprite("MMButton");
-    MMCreditsAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    //UI::MenuWindow* MMCreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_CreditsWin", UI::RenderableRect(Vector2(0.01,0.01), Vector2(0.01,0.01), true), MMCreditsAccess);
-    MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_CreditsWin", UI::RenderableRect(Vector2(0.01,0.01), Vector2(0.01,0.01), true), MMCreditsAccess);
     //End of Main Menu Screen
 
     //Make the Game screen and associated layers.

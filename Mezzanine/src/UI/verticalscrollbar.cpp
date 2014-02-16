@@ -96,11 +96,6 @@ namespace Mezzanine
             this->ParentScreen->DestroyWidget( this->DownRightButton );
         }
 
-        void VerticalScrollbar::CreateLayoutStrat()
-        {
-            this->LayoutStrat = new VerticalLayoutStrategy();
-        }
-
         void VerticalScrollbar::ConstructVerticalScrollbar(const UI::ScrollbarStyle& ScrollStyle)
         {
             // Create the rects we'll use
@@ -310,7 +305,7 @@ namespace Mezzanine
         {
             if( this->AutoHideScroll && CanSee ) {
                 if( this->GetMaxYPages() > 1.0 ) {
-                    this->SetVisible(CanSee);
+                    this->Widget::SetVisible(CanSee);
                 }
             }else{
                 this->Widget::SetVisible(CanSee);
@@ -321,7 +316,7 @@ namespace Mezzanine
         {
             if( this->AutoHideScroll ) {
                 if( this->GetMaxYPages() > 1.0 ) {
-                    this->Show();
+                    this->Widget::Show();
                 }
             }else{
                 this->Widget::Show();
@@ -342,8 +337,11 @@ namespace Mezzanine
         Real VerticalScrollbar::GetMaxYPages() const
         {
             if( this->Container != NULL ) {
-                Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().Y / this->Container->GetActualSize().Y );
-                return ( Ret > 1 ? Ret : 1 );
+                const Real ContainerYSize = this->Container->GetActualSize().Y;
+                if( ContainerYSize > 0 ) {
+                    Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().Y / ContainerYSize );
+                    return ( Ret > 1 ? Ret : 1 );
+                }
             }
             return 1;
         }
@@ -578,16 +576,32 @@ namespace Mezzanine
             { return VerticalScrollbar::TypeName; }
 
         VerticalScrollbar* VerticalScrollbarFactory::CreateVerticalScrollbar(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new VerticalScrollbar(RendName,Style,Parent); }
+        {
+            VerticalScrollbar* Ret = new VerticalScrollbar(RendName,Style,Parent);
+            Ret->_SetLayoutStrat( new VerticalLayoutStrategy() );
+            return Ret;
+        }
 
         VerticalScrollbar* VerticalScrollbarFactory::CreateVerticalScrollbar(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new VerticalScrollbar(RendName,RendRect,Style,Parent); }
+        {
+            VerticalScrollbar* Ret = new VerticalScrollbar(RendName,RendRect,Style,Parent);
+            Ret->_SetLayoutStrat( new VerticalLayoutStrategy() );
+            return Ret;
+        }
 
         VerticalScrollbar* VerticalScrollbarFactory::CreateVerticalScrollbar(const XML::Node& XMLNode, Screen* Parent)
-            { return new VerticalScrollbar(XMLNode,Parent); }
+        {
+            VerticalScrollbar* Ret = new VerticalScrollbar(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new VerticalLayoutStrategy() );
+            return Ret;
+        }
 
         Widget* VerticalScrollbarFactory::CreateWidget(Screen* Parent)
-            { return new VerticalScrollbar(Parent); }
+        {
+            VerticalScrollbar* Ret = new VerticalScrollbar(Parent);
+            Ret->_SetLayoutStrat( new VerticalLayoutStrategy() );
+            return Ret;
+        }
 
         Widget* VerticalScrollbarFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
         {

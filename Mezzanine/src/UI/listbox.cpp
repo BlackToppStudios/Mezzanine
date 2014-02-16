@@ -121,9 +121,9 @@ namespace Mezzanine
             this->ListContainer->SetYProvider( this->ListScroll );
             this->AddChild(this->ListContainer,2);
 
-            this->ListScroll->SetUnifiedPosition(UnifiedVec2(0.92,0.0,0.0,0.0));
+            this->ListScroll->SetPositioningRules(UI::PF_Anchor_Right);
+            this->ListContainer->SetPositioningRules(UI::PF_Anchor_Left);
             this->ListScroll->SetUnifiedSize(UnifiedVec2(0.08,1.0,0.0,0.0));
-            this->ListContainer->SetUnifiedPosition(UnifiedVec2(0.0,0.0,0.0,0.0));
             this->ListContainer->SetUnifiedSize(UnifiedVec2(0.92,1.0,0.0,0.0));
 
             SizingInfo ListItemSizing(UI::SR_Unified_Dims,UI::SR_Size_For_Text,UnifiedVec2(1.0,0.0,0.0,0.0));
@@ -350,16 +350,32 @@ namespace Mezzanine
             { return ListBox::TypeName; }
 
         ListBox* ListBoxFactory::CreateListBox(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new ListBox(RendName,Style,Parent); }
+        {
+            ListBox* Ret = new ListBox(RendName,Style,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         ListBox* ListBoxFactory::CreateListBox(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent)
-            { return new ListBox(RendName,RendRect,Style,Parent); }
+        {
+            ListBox* Ret = new ListBox(RendName,RendRect,Style,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         ListBox* ListBoxFactory::CreateListBox(const XML::Node& XMLNode, Screen* Parent)
-            { return new ListBox(XMLNode,Parent); }
+        {
+            ListBox* Ret = new ListBox(XMLNode,Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* ListBoxFactory::CreateWidget(Screen* Parent)
-            { return new ListBox(Parent); }
+        {
+            ListBox* Ret = new ListBox(Parent);
+            Ret->_SetLayoutStrat( new LayoutStrategy() );
+            return Ret;
+        }
 
         Widget* ListBoxFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
         {

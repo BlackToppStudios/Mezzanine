@@ -56,21 +56,21 @@ namespace Mezzanine
             LastFocusedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            {  }
+            { this->AddEvent(PagedContainer::EventChildFocusGained); }
 
         PagedContainer::PagedContainer(const String& RendName, Screen* Parent) :
             Widget(RendName,Parent),
             LastFocusedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            {  }
+            { this->AddEvent(PagedContainer::EventChildFocusGained); }
 
         PagedContainer::PagedContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Widget(RendName,RendRect,Parent),
             LastFocusedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            {  }
+            { this->AddEvent(PagedContainer::EventChildFocusGained); }
 
         PagedContainer::~PagedContainer()
         {

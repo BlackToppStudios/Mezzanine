@@ -201,10 +201,7 @@ namespace Mezzanine
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
-        {
-            this->ActDims.SetIdentity();
-            this->CreateLayoutStrat();
-        }
+            { this->ActDims.SetIdentity(); }
 
         QuadRenderable::QuadRenderable(const String& RendName, Screen* Parent) :
             Renderable(RendName,Parent),
@@ -216,10 +213,7 @@ namespace Mezzanine
             MousePassthrough(false),
             ManualTransformUpdates(false),
             AllLayersDirty(false)
-        {
-            this->ActDims.SetIdentity();
-            this->CreateLayoutStrat();
-        }
+            { this->ActDims.SetIdentity(); }
 
         QuadRenderable::QuadRenderable(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Renderable(RendName,Parent),
@@ -236,8 +230,6 @@ namespace Mezzanine
 
             this->PositioningPolicy.UPosition = RendRect.Position;
             this->SizingPolicy.USize = RendRect.Size;
-
-            this->CreateLayoutStrat();
         }
 
         QuadRenderable::~QuadRenderable()
@@ -248,7 +240,10 @@ namespace Mezzanine
             this->DestroyAllRenderLayerGroups();
             this->DestroyAllRenderLayers();
             this->SetLocalVertexCaching(false);
-            delete this->LayoutStrat;
+            if( this->LayoutStrat != NULL ) {
+                delete this->LayoutStrat;
+                this->LayoutStrat = NULL;
+            }
         }
 
         void QuadRenderable::ProtoSerializeImpl(XML::Node& SelfRoot) const
@@ -264,11 +259,6 @@ namespace Mezzanine
             this->ProtoDeSerializeRenderLayers(SelfRoot);
             this->ProtoDeSerializeRenderLayerGroups(SelfRoot);
             this->ProtoDeSerializeProperties(SelfRoot);
-        }
-
-        void QuadRenderable::CreateLayoutStrat()
-        {
-            this->LayoutStrat = new LayoutStrategy();
         }
 
         void QuadRenderable::AppendLayerVertices(std::vector<VertexData>& Vertices)
@@ -684,6 +674,21 @@ namespace Mezzanine
 
         RenderLayer* QuadRenderable::GetRenderLayer(const UInt32& Index) const
             { return this->RenderLayers.at(Index); }
+
+        RenderLayer* QuadRenderable::GetRenderLayer(const Whole Which, const UI::RenderLayerType Type)
+        {
+            Whole Num = 0;
+            for( RenderLayerIterator RendIt = this->RenderLayers.begin() ; RendIt != this->RenderLayers.end() ; ++RendIt )
+            {
+                if( (*RendIt)->GetLayerType() == Type ) {
+                    if( Num == Which ) {
+                        return (*RendIt);
+                    }
+                    ++Num;
+                }
+            }
+            return NULL;
+        }
 
         UInt32 QuadRenderable::GetNumRenderLayers() const
             { return this->RenderLayers.size(); }
@@ -1356,6 +1361,14 @@ namespace Mezzanine
 
         void QuadRenderable::_NotifyParenthood(QuadRenderable* NewParent)
             { this->ParentQuad = NewParent; }
+
+        void QuadRenderable::_SetLayoutStrat(LayoutStrategy* ToSet)
+        {
+            if( this->LayoutStrat != NULL ) {
+                delete this->LayoutStrat;
+            }
+            this->LayoutStrat = ToSet;
+        }
 
         void QuadRenderable::_Clean()
         {

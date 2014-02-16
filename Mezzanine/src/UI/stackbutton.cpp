@@ -86,6 +86,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
+        StackedContainer* StackButton::GetBoundContainer() const
+            { return this->BoundContainer; }
+
         const String& StackButton::GetTypeName() const
             { return StackButton::TypeName; }
 
