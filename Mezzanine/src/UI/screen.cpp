@@ -267,7 +267,7 @@ namespace Mezzanine
             String WidgetName = ToInsert->GetName();
             std::pair<WidgetIterator,Boolean> InsertReturn = this->Widgets.insert( std::pair<String,Widget*>(WidgetName,ToInsert) );
             if( !InsertReturn.second )
-                { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists."); }
+                { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + WidgetName + "\" already exists."); }
             return ToInsert;
         }
 
@@ -569,240 +569,240 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Convenience Widget Creation Methods
 
-        Widget* Screen::CreateWidget(const String& Name)
+        Widget* Screen::CreateWidget(const String& RendName)
         {
-            Widget* NewWidget = static_cast<GenericWidgetFactory*>( this->GetWidgetFactoryExcept( Widget::TypeName ) )->CreateWidget( Name, this );
+            Widget* NewWidget = static_cast<GenericWidgetFactory*>( this->GetWidgetFactoryExcept( Widget::TypeName ) )->CreateWidget( RendName, this );
             this->CheckAndInsertExcept( NewWidget );
             return NewWidget;
         }
 
-        Widget* Screen::CreateWidget(const String& Name, const UnifiedRect& RendRect)
+        Widget* Screen::CreateWidget(const String& RendName, const UnifiedRect& RendRect)
         {
-            Widget* NewWidget = static_cast<GenericWidgetFactory*>( this->GetWidgetFactoryExcept( Widget::TypeName ) )->CreateWidget( Name, RendRect, this );
+            Widget* NewWidget = static_cast<GenericWidgetFactory*>( this->GetWidgetFactoryExcept( Widget::TypeName ) )->CreateWidget( RendName, RendRect, this );
             this->CheckAndInsertExcept( NewWidget );
             return NewWidget;
         }
 
-        Button* Screen::CreateButton(const String& Name)
+        Button* Screen::CreateButton(const String& RendName)
         {
-            Button* NewButton = static_cast<ButtonFactory*>( this->GetWidgetFactoryExcept( Button::TypeName ) )->CreateButton( Name, this );
+            Button* NewButton = static_cast<ButtonFactory*>( this->GetWidgetFactoryExcept( Button::TypeName ) )->CreateButton( RendName, this );
             this->CheckAndInsertExcept( NewButton );
             return NewButton;
         }
 
-        Button* Screen::CreateButton(const String& Name, const UnifiedRect& RendRect)
+        Button* Screen::CreateButton(const String& RendName, const UnifiedRect& RendRect)
         {
-            Button* NewButton = static_cast<ButtonFactory*>( this->GetWidgetFactoryExcept( Button::TypeName ) )->CreateButton( Name, RendRect, this );
+            Button* NewButton = static_cast<ButtonFactory*>( this->GetWidgetFactoryExcept( Button::TypeName ) )->CreateButton( RendName, RendRect, this );
             this->CheckAndInsertExcept( NewButton );
             return NewButton;
         }
 
-        StackButton* Screen::CreateStackButton(const String& Name)
+        StackButton* Screen::CreateStackButton(const String& RendName)
         {
-            StackButton* NewButton = static_cast<StackButtonFactory*>( this->GetWidgetFactoryExcept( StackButton::TypeName ) )->CreateStackButton( Name, this );
+            StackButton* NewButton = static_cast<StackButtonFactory*>( this->GetWidgetFactoryExcept( StackButton::TypeName ) )->CreateStackButton( RendName, this );
             this->CheckAndInsertExcept( NewButton );
             return NewButton;
         }
 
-        StackButton* Screen::CreateStackButton(const String& Name, const UnifiedRect& RendRect)
+        StackButton* Screen::CreateStackButton(const String& RendName, const UnifiedRect& RendRect)
         {
-            StackButton* NewButton = static_cast<StackButtonFactory*>( this->GetWidgetFactoryExcept( StackButton::TypeName ) )->CreateStackButton( Name, RendRect, this );
+            StackButton* NewButton = static_cast<StackButtonFactory*>( this->GetWidgetFactoryExcept( StackButton::TypeName ) )->CreateStackButton( RendName, RendRect, this );
             this->CheckAndInsertExcept( NewButton );
             return NewButton;
         }
 
-        RadioButton* Screen::CreateRadioButton(const String& Name)
+        RadioButton* Screen::CreateRadioButton(const String& RendName)
         {
-            RadioButton* NewButton = static_cast<RadioButtonFactory*>( this->GetWidgetFactoryExcept( RadioButton::TypeName ) )->CreateRadioButton( Name, this );
+            RadioButton* NewButton = static_cast<RadioButtonFactory*>( this->GetWidgetFactoryExcept( RadioButton::TypeName ) )->CreateRadioButton( RendName, this );
             this->CheckAndInsertExcept( NewButton );
             return NewButton;
         }
 
-        RadioButton* Screen::CreateRadioButton(const String& Name, const UnifiedRect& RendRect)
+        RadioButton* Screen::CreateRadioButton(const String& RendName, const UnifiedRect& RendRect)
         {
-            RadioButton* NewButton = static_cast<RadioButtonFactory*>( this->GetWidgetFactoryExcept( RadioButton::TypeName ) )->CreateRadioButton( Name, RendRect, this );
+            RadioButton* NewButton = static_cast<RadioButtonFactory*>( this->GetWidgetFactoryExcept( RadioButton::TypeName ) )->CreateRadioButton( RendName, RendRect, this );
             this->CheckAndInsertExcept( NewButton );
             return NewButton;
         }
 
-        CheckBox* Screen::CreateCheckBox(const String& Name)
+        CheckBox* Screen::CreateCheckBox(const String& RendName)
         {
-            CheckBox* NewCheckBox = static_cast<CheckBoxFactory*>( this->GetWidgetFactoryExcept( CheckBox::TypeName ) )->CreateCheckBox( Name, this );
+            CheckBox* NewCheckBox = static_cast<CheckBoxFactory*>( this->GetWidgetFactoryExcept( CheckBox::TypeName ) )->CreateCheckBox( RendName, this );
             this->CheckAndInsertExcept( NewCheckBox );
             return NewCheckBox;
         }
 
-        CheckBox* Screen::CreateCheckBox(const String& Name, const UnifiedRect& RendRect)
+        CheckBox* Screen::CreateCheckBox(const String& RendName, const UnifiedRect& RendRect)
         {
-            CheckBox* NewCheckBox = static_cast<CheckBoxFactory*>( this->GetWidgetFactoryExcept( CheckBox::TypeName ) )->CreateCheckBox( Name, RendRect, this );
+            CheckBox* NewCheckBox = static_cast<CheckBoxFactory*>( this->GetWidgetFactoryExcept( CheckBox::TypeName ) )->CreateCheckBox( RendName, RendRect, this );
             this->CheckAndInsertExcept( NewCheckBox );
             return NewCheckBox;
         }
 
-        EditBox* Screen::CreateEditBox(const String& Name, const RenderLayerType EditLayerType, FontData* EditFont)
+        EditBox* Screen::CreateEditBox(const String& RendName, const RenderLayerType EditLayerType, FontData* EditFont)
         {
-            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( Name, EditLayerType, EditFont, this );
+            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( RendName, EditLayerType, EditFont, this );
             this->CheckAndInsertExcept( NewEdit );
             return NewEdit;
         }
 
-        EditBox* Screen::CreateEditBox(const String& Name, const RenderLayerType EditLayerType, const String& EditFontName)
+        EditBox* Screen::CreateEditBox(const String& RendName, const RenderLayerType EditLayerType, const String& EditFontName)
         {
-            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( Name, EditLayerType, EditFontName, this );
+            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( RendName, EditLayerType, EditFontName, this );
             this->CheckAndInsertExcept( NewEdit );
             return NewEdit;
         }
 
-        EditBox* Screen::CreateEditBox(const String& Name, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, FontData* EditFont)
+        EditBox* Screen::CreateEditBox(const String& RendName, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, FontData* EditFont)
         {
-            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( Name, RendRect, EditLayerType, EditFont, this );
+            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( RendName, RendRect, EditLayerType, EditFont, this );
             this->CheckAndInsertExcept( NewEdit );
             return NewEdit;
         }
 
-        EditBox* Screen::CreateEditBox(const String& Name, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, const String& EditFontName)
+        EditBox* Screen::CreateEditBox(const String& RendName, const UnifiedRect& RendRect, const RenderLayerType EditLayerType, const String& EditFontName)
         {
-            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( Name, RendRect, EditLayerType, EditFontName, this );
+            EditBox* NewEdit = static_cast<EditBoxFactory*>( this->GetWidgetFactoryExcept( EditBox::TypeName ) )->CreateEditBox( RendName, RendRect, EditLayerType, EditFontName, this );
             this->CheckAndInsertExcept( NewEdit );
             return NewEdit;
         }
 
-        HorizontalScrollbar* Screen::CreateHorizontalScrollbar(const String& Name, const UI::ScrollbarStyle Style)
+        HorizontalScrollbar* Screen::CreateHorizontalScrollbar(const String& RendName, const UI::ScrollbarStyle Style)
         {
-            HorizontalScrollbar* NewHScroll = static_cast<HorizontalScrollbarFactory*>( this->GetWidgetFactoryExcept( HorizontalScrollbar::TypeName ) )->CreateHorizontalScrollbar( Name, Style, this );
+            HorizontalScrollbar* NewHScroll = static_cast<HorizontalScrollbarFactory*>( this->GetWidgetFactoryExcept( HorizontalScrollbar::TypeName ) )->CreateHorizontalScrollbar( RendName, Style, this );
             this->CheckAndInsertExcept( NewHScroll );
             return NewHScroll;
         }
 
-        HorizontalScrollbar* Screen::CreateHorizontalScrollbar(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
+        HorizontalScrollbar* Screen::CreateHorizontalScrollbar(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
         {
-            HorizontalScrollbar* NewHScroll = static_cast<HorizontalScrollbarFactory*>( this->GetWidgetFactoryExcept( HorizontalScrollbar::TypeName ) )->CreateHorizontalScrollbar( Name, RendRect, Style, this );
+            HorizontalScrollbar* NewHScroll = static_cast<HorizontalScrollbarFactory*>( this->GetWidgetFactoryExcept( HorizontalScrollbar::TypeName ) )->CreateHorizontalScrollbar( RendName, RendRect, Style, this );
             this->CheckAndInsertExcept( NewHScroll );
             return NewHScroll;
         }
 
-        VerticalScrollbar* Screen::CreateVerticalScrollbar(const String& Name, const UI::ScrollbarStyle Style)
+        VerticalScrollbar* Screen::CreateVerticalScrollbar(const String& RendName, const UI::ScrollbarStyle Style)
         {
-            VerticalScrollbar* NewVScroll = static_cast<VerticalScrollbarFactory*>( this->GetWidgetFactoryExcept( VerticalScrollbar::TypeName ) )->CreateVerticalScrollbar( Name, Style, this );
+            VerticalScrollbar* NewVScroll = static_cast<VerticalScrollbarFactory*>( this->GetWidgetFactoryExcept( VerticalScrollbar::TypeName ) )->CreateVerticalScrollbar( RendName, Style, this );
             this->CheckAndInsertExcept( NewVScroll );
             return NewVScroll;
         }
 
-        VerticalScrollbar* Screen::CreateVerticalScrollbar(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
+        VerticalScrollbar* Screen::CreateVerticalScrollbar(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
         {
-            VerticalScrollbar* NewVScroll = static_cast<VerticalScrollbarFactory*>( this->GetWidgetFactoryExcept( VerticalScrollbar::TypeName ) )->CreateVerticalScrollbar( Name, RendRect, Style, this );
+            VerticalScrollbar* NewVScroll = static_cast<VerticalScrollbarFactory*>( this->GetWidgetFactoryExcept( VerticalScrollbar::TypeName ) )->CreateVerticalScrollbar( RendName, RendRect, Style, this );
             this->CheckAndInsertExcept( NewVScroll );
             return NewVScroll;
         }
 
-        Spinner* Screen::CreateSpinner(const String& Name, const SpinnerStyle SpinStyle, FontData* EditFont)
+        Spinner* Screen::CreateSpinner(const String& RendName, const SpinnerStyle SpinStyle, FontData* EditFont)
         {
-            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, SpinStyle, EditFont, this );
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( RendName, SpinStyle, EditFont, this );
             this->CheckAndInsertExcept( NewSpin );
             return NewSpin;
         }
 
-        Spinner* Screen::CreateSpinner(const String& Name, const SpinnerStyle SpinStyle, const String& EditFontName)
+        Spinner* Screen::CreateSpinner(const String& RendName, const SpinnerStyle SpinStyle, const String& EditFontName)
         {
-            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, SpinStyle, EditFontName, this );
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( RendName, SpinStyle, EditFontName, this );
             this->CheckAndInsertExcept( NewSpin );
             return NewSpin;
         }
 
-        Spinner* Screen::CreateSpinner(const String& Name, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, FontData* EditFont)
+        Spinner* Screen::CreateSpinner(const String& RendName, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, FontData* EditFont)
         {
-            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, RendRect, SpinStyle, EditFont, this );
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( RendName, RendRect, SpinStyle, EditFont, this );
             this->CheckAndInsertExcept( NewSpin );
             return NewSpin;
         }
 
-        Spinner* Screen::CreateSpinner(const String& Name, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, const String& EditFontName)
+        Spinner* Screen::CreateSpinner(const String& RendName, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, const String& EditFontName)
         {
-            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( Name, RendRect, SpinStyle, EditFontName, this );
+            Spinner* NewSpin = static_cast<SpinnerFactory*>( this->GetWidgetFactoryExcept( Spinner::TypeName ) )->CreateSpinner( RendName, RendRect, SpinStyle, EditFontName, this );
             this->CheckAndInsertExcept( NewSpin );
             return NewSpin;
         }
 
-        MenuEntry* Screen::CreateMenuEntry(const String& Name)
+        MenuEntry* Screen::CreateMenuEntry(const String& RendName)
         {
-            MenuEntry* NewEntry = static_cast<MenuEntryFactory*>( this->GetWidgetFactoryExcept( MenuEntry::TypeName ) )->CreateMenuEntry( Name, this );
+            MenuEntry* NewEntry = static_cast<MenuEntryFactory*>( this->GetWidgetFactoryExcept( MenuEntry::TypeName ) )->CreateMenuEntry( RendName, this );
             this->CheckAndInsertExcept( NewEntry );
             return NewEntry;
         }
 
-        MenuEntry* Screen::CreateMenuEntry(const String& Name, const UnifiedRect& RendRect)
+        MenuEntry* Screen::CreateMenuEntry(const String& RendName, const UnifiedRect& RendRect)
         {
-            MenuEntry* NewEntry = static_cast<MenuEntryFactory*>( this->GetWidgetFactoryExcept( MenuEntry::TypeName ) )->CreateMenuEntry( Name, RendRect, this );
+            MenuEntry* NewEntry = static_cast<MenuEntryFactory*>( this->GetWidgetFactoryExcept( MenuEntry::TypeName ) )->CreateMenuEntry( RendName, RendRect, this );
             this->CheckAndInsertExcept( NewEntry );
             return NewEntry;
         }
 
-        TabSet* Screen::CreateTabSet(const String& Name)
+        TabSet* Screen::CreateTabSet(const String& RendName)
         {
-            TabSet* NewTab = static_cast<TabSetFactory*>( this->GetWidgetFactoryExcept( TabSet::TypeName ) )->CreateTabSet( Name, this );
+            TabSet* NewTab = static_cast<TabSetFactory*>( this->GetWidgetFactoryExcept( TabSet::TypeName ) )->CreateTabSet( RendName, this );
             this->CheckAndInsertExcept( NewTab );
             return NewTab;
         }
 
-        TabSet* Screen::CreateTabSet(const String& Name, const UnifiedRect& RendRect)
+        TabSet* Screen::CreateTabSet(const String& RendName, const UnifiedRect& RendRect)
         {
-            TabSet* NewTab = static_cast<TabSetFactory*>( this->GetWidgetFactoryExcept( TabSet::TypeName ) )->CreateTabSet( Name, RendRect, this );
+            TabSet* NewTab = static_cast<TabSetFactory*>( this->GetWidgetFactoryExcept( TabSet::TypeName ) )->CreateTabSet( RendName, RendRect, this );
             this->CheckAndInsertExcept( NewTab );
             return NewTab;
         }
 
-        ListBox* Screen::CreateListBox(const String& Name, const UI::ScrollbarStyle Style)
+        ListBox* Screen::CreateListBox(const String& RendName, const UI::ScrollbarStyle Style)
         {
-            ListBox* NewList = static_cast<ListBoxFactory*>( this->GetWidgetFactoryExcept( ListBox::TypeName ) )->CreateListBox( Name, Style, this );
+            ListBox* NewList = static_cast<ListBoxFactory*>( this->GetWidgetFactoryExcept( ListBox::TypeName ) )->CreateListBox( RendName, Style, this );
             this->CheckAndInsertExcept( NewList );
             return NewList;
         }
 
-        ListBox* Screen::CreateListBox(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
+        ListBox* Screen::CreateListBox(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
         {
-            ListBox* NewList = static_cast<ListBoxFactory*>( this->GetWidgetFactoryExcept( ListBox::TypeName ) )->CreateListBox( Name, RendRect, Style, this );
+            ListBox* NewList = static_cast<ListBoxFactory*>( this->GetWidgetFactoryExcept( ListBox::TypeName ) )->CreateListBox( RendName, RendRect, Style, this );
             this->CheckAndInsertExcept( NewList );
             return NewList;
         }
 
-        DropDownList* Screen::CreateDropDownList(const String& Name, const UI::ScrollbarStyle Style)
+        DropDownList* Screen::CreateDropDownList(const String& RendName, const UI::ScrollbarStyle Style)
         {
-            DropDownList* NewList = static_cast<DropDownListFactory*>( this->GetWidgetFactoryExcept( DropDownList::TypeName ) )->CreateDropDownList( Name, Style, this );
+            DropDownList* NewList = static_cast<DropDownListFactory*>( this->GetWidgetFactoryExcept( DropDownList::TypeName ) )->CreateDropDownList( RendName, Style, this );
             this->CheckAndInsertExcept( NewList );
             return NewList;
         }
 
-        DropDownList* Screen::CreateDropDownList(const String& Name, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
+        DropDownList* Screen::CreateDropDownList(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle Style)
         {
-            DropDownList* NewList = static_cast<DropDownListFactory*>( this->GetWidgetFactoryExcept( DropDownList::TypeName ) )->CreateDropDownList( Name, RendRect, Style, this );
+            DropDownList* NewList = static_cast<DropDownListFactory*>( this->GetWidgetFactoryExcept( DropDownList::TypeName ) )->CreateDropDownList( RendName, RendRect, Style, this );
             this->CheckAndInsertExcept( NewList );
             return NewList;
         }
 
         HorizontalContainer* Screen::CreateHorizontalContainer(const String& RendName)
         {
-            HorizontalContainer* NewHContain = static_cast<HorizontalContainerFactory*>( this->GetWidgetFactoryExcept( HorizontalContainer::TypeName ) )->CreateHorizontalContainer( Name, this );
+            HorizontalContainer* NewHContain = static_cast<HorizontalContainerFactory*>( this->GetWidgetFactoryExcept( HorizontalContainer::TypeName ) )->CreateHorizontalContainer( RendName, this );
             this->CheckAndInsertExcept( NewHContain );
             return NewHContain;
         }
 
         HorizontalContainer* Screen::CreateHorizontalContainer(const String& RendName, const UnifiedRect& RendRect)
         {
-            HorizontalContainer* NewHContain = static_cast<HorizontalContainerFactory*>( this->GetWidgetFactoryExcept( HorizontalContainer::TypeName ) )->CreateHorizontalContainer( Name, RendRect, this );
+            HorizontalContainer* NewHContain = static_cast<HorizontalContainerFactory*>( this->GetWidgetFactoryExcept( HorizontalContainer::TypeName ) )->CreateHorizontalContainer( RendName, RendRect, this );
             this->CheckAndInsertExcept( NewHContain );
             return NewHContain;
         }
 
         VerticalContainer* Screen::CreateVerticalContainer(const String& RendName)
         {
-            VerticalContainer* NewVContain = static_cast<VerticalContainerFactory*>( this->GetWidgetFactoryExcept( VerticalContainer::TypeName ) )->CreateVerticalContainer( Name, this );
+            VerticalContainer* NewVContain = static_cast<VerticalContainerFactory*>( this->GetWidgetFactoryExcept( VerticalContainer::TypeName ) )->CreateVerticalContainer( RendName, this );
             this->CheckAndInsertExcept( NewVContain );
             return NewVContain;
         }
 
         VerticalContainer* Screen::CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect)
         {
-            VerticalContainer* NewVContain = static_cast<VerticalContainerFactory*>( this->GetWidgetFactoryExcept( VerticalContainer::TypeName ) )->CreateVerticalContainer( Name, RendRect, this );
+            VerticalContainer* NewVContain = static_cast<VerticalContainerFactory*>( this->GetWidgetFactoryExcept( VerticalContainer::TypeName ) )->CreateVerticalContainer( RendName, RendRect, this );
             this->CheckAndInsertExcept( NewVContain );
             return NewVContain;
         }

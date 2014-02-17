@@ -115,7 +115,7 @@ namespace Mezzanine
         void ListBox::ConstructListBox(const UI::ScrollbarStyle& Style)
         {
             this->ListScroll = this->ParentScreen->CreateVerticalScrollbar(this->Name+".Scroll",Style);
-            this->ListScroll->SetAutoHide(true);
+            this->ListScroll->SetAutoHide(false);
             this->AddChild(this->ListScroll,1);
             this->ListContainer = this->ParentScreen->CreateVerticalContainer(this->Name+".Container");
             this->ListContainer->SetYProvider( this->ListScroll );

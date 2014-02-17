@@ -74,7 +74,7 @@ namespace Mezzanine
         Vector2();
         /// @brief Single Real value Constructor.
         /// @param xy Value to set both x and y to.
-        Vector2(const Real& xy);
+        explicit Vector2(const Real& xy);
         /// @brief Real value Constructor.
         /// @param x Coordinate on the X vector.
         /// @param y Coordinate on the Y vector.

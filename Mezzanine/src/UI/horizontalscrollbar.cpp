@@ -237,7 +237,7 @@ namespace Mezzanine
         {
             Real RelPos = this->Scroller->GetActualPosition().X - this->GetLowerScrollLimit();
             Real RelLimit = this->GetScrollRange() - this->Scroller->GetActualSize().X;
-            return (RelPos / RelLimit);
+            return ( RelLimit > 0 ? RelPos / RelLimit : 0 );
         }
 
         void HorizontalScrollbar::SetScrollerSize(const Real& Size)
@@ -245,6 +245,7 @@ namespace Mezzanine
             if(Size > 1 || Size < 0)
                 return;
 
+            this->ScrollerSize = Size;
             const Rect ScrollBackRect = this->ScrollBack->GetRect();
             const Rect OldScrollerRect = this->Scroller->GetRect();
             Rect NewScrollerRect;
@@ -260,7 +261,9 @@ namespace Mezzanine
 
         Real HorizontalScrollbar::GetScrollerSize() const
         {
-            return ( this->Scroller->GetActualSize().X / this->ScrollBack->GetActualSize().X );
+            //const Real ScrollBackX = this->ScrollBack->GetActualSize().X;
+            //return ( ScrollBackX > 0 ? this->Scroller->GetActualSize().X / ScrollBackX : 0 );
+            return ScrollerSize;
         }
 
         void HorizontalScrollbar::UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect)

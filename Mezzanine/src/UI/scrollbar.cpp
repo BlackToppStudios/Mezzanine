@@ -66,6 +66,7 @@ namespace Mezzanine
             DownRightButton(NULL),
             ChildLock(NULL),
             IncrementDistance(0.01),
+            ScrollerSize(1.0),
             AutoHideScroll(false)
             {  }
 
@@ -77,6 +78,7 @@ namespace Mezzanine
             DownRightButton(NULL),
             ChildLock(NULL),
             IncrementDistance(0.01),
+            ScrollerSize(1.0),
             AutoHideScroll(false)
             { this->AddEvent(Scrollbar::EventScrollValueChanged); }
 
@@ -88,6 +90,7 @@ namespace Mezzanine
             DownRightButton(NULL),
             ChildLock(NULL),
             IncrementDistance(0.01),
+            ScrollerSize(1.0),
             AutoHideScroll(false)
             { this->AddEvent(Scrollbar::EventScrollValueChanged); }
 
@@ -184,7 +187,8 @@ namespace Mezzanine
             XML::Node PropertiesNode = SelfRoot.AppendChild( Scrollbar::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-                PropertiesNode.AppendAttribute("IncrementDistance").SetValue( this->IncrementDistance ) &&
+                PropertiesNode.AppendAttribute("IncrementDistance").SetValue( this->GetIncrementDistance() ) &&
+                PropertiesNode.AppendAttribute("ScrollerSize").SetValue( this->GetScrollerSize() ) &&
                 PropertiesNode.AppendAttribute("AutoHideScroll").SetValue( this->AutoHideScroll ) )
             {
                 return;
@@ -205,6 +209,10 @@ namespace Mezzanine
                     CurrAttrib = PropertiesNode.GetAttribute("IncrementDistance");
                     if( !CurrAttrib.Empty() )
                         this->SetIncrementDistance( CurrAttrib.AsReal() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("ScrollerSize");
+                    if( !CurrAttrib.Empty() )
+                        this->SetScrollerSize( CurrAttrib.AsReal() );
 
                     CurrAttrib = PropertiesNode.GetAttribute("AutoHideScroll");
                     if( !CurrAttrib.Empty() )
