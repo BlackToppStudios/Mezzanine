@@ -41,6 +41,7 @@
 #define REPL_CPPSTREAM_H
 
 #include "repl.h"
+#include "executor.h"
 
 /// @file
 /// @brief An implementation of the REPL written with C++ iostreams
@@ -53,7 +54,7 @@ class REPLCppStream : public REPL
         /// @brief Initializing constructor
         /// @param TargetExecutor A Lua sripting engine that the commands will be executed against.
         /// @param StartingPrompt The text to start the line
-        REPLCppStream(Executor& TargetExecutor, Mezzanine::String StartingPrompt=">");
+        REPLCppStream(Executor& TargetExecutor, Mezzanine::String StartingPrompt="> ");
 
         /// @brief This is the actual the loop that will do the REPLing
         virtual void Launch();

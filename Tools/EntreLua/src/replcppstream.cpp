@@ -48,18 +48,29 @@ using namespace std;
 
 REPLCppStream::REPLCppStream(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
     : REPL(TargetExecutor, StartingPrompt)
-{
-
-}
+{}
 
 void REPLCppStream::Launch()
 {
-    Mezzanine::Boolean KeepLooping = true;
-    const int MaxCommandSize = 4096;
+    String CurrentInput;
+    ExecutionResults CurrentResults = Doer.Do("copyright");
 
-    while(KeepLooping)
+    while(!CurrentResults.Quit)
     {
-
+        cout << CurrentResults.Output << endl << Prompt;
+        getline(cin,CurrentInput);
+        if(cin.eof()) // Ctrl+D
+        {
+            CurrentResults.Quit = true;
+            cout << endl;
+        }
+        else if(!cin.good()) //??
+        {
+            CurrentResults.Quit = true;
+            cout << "Quitting because of unexpected input condition," << endl;
+        }
+        else // All Good!
+            { CurrentResults = Doer.Do(CurrentInput); }
     }
 
 }

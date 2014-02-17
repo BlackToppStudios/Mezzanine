@@ -48,7 +48,7 @@ using namespace std;
 
 
 REPL::REPL(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
-    : Doer(TargetExecutor), Prompt(StartingPrompt)
+    : Prompt(StartingPrompt), Doer(TargetExecutor)
 {
 
 }

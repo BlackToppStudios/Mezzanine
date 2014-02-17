@@ -56,7 +56,7 @@ typedef bool(REPLContinueCallback)(REPL*);
 /// @brief What a class that will Read input, Evaluate, Print, and Loop back to do it again requires.
 class REPL
 {
-    private:
+    protected:
         /// @brief What will be display
         Mezzanine::String Prompt;
 

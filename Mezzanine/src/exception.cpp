@@ -63,36 +63,27 @@ namespace Mezzanine
             Entresol::GetSingletonPtr()->Log(GetCompleteMessage());
         }else{
             #ifdef MEZZDEBUG
-            std::cout << GetCompleteMessage();
+            std::cerr << GetCompleteMessage();
             #endif
         }
     }
 
     Exception::~Exception() throw()
-    {
-    }
+        { }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Error Information
     ConstString& Exception::GetExceptionTypeName() const throw()
-    {
-        return ExceptionTypeName;
-    }
+        { return ExceptionTypeName; }
 
     ConstString& Exception::GetFunction() const throw()
-    {
-        return Function;
-    }
+        { return Function; }
 
     ConstString& Exception::GetFile() const throw()
-    {
-        return File;
-    }
+        { return File; }
 
     const Whole& Exception::GetLine() const throw()
-    {
-        return Line;
-    }
+        { return Line; }
 
     String Exception::GetCompleteMessage() const throw()
     {
@@ -107,9 +98,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Error Checking
     String Exception::what() throw()
-    {
-        return GetCompleteMessage();
-    }
+        { return GetCompleteMessage(); }
 }//Mezzanine
 
 #endif // \exception_cpp

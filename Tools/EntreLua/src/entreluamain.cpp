@@ -50,7 +50,12 @@ enum ExitCodes
 #include <iostream>
 #include <mezzanine.h>
 
+#include "repl.h"
+#include "replcppstream.h"
+#include "executor.h"
+
 using namespace Mezzanine;
+using namespace Mezzanine::Scripting::Lua;
 using namespace std;
 
 /// @brief This is the entry point for a Lua shell with
@@ -134,23 +139,28 @@ int main (int argc, char** argv)
 
     ///////////////
     // Argument test
+    //*
     cout << "Load libraries: " << endl;
     for(vector<String>::iterator Iter = LoadList.begin(); Iter!=LoadList.end(); Iter++)
-    {
-        cout << "  -" << *Iter << endl;
-    }
-
+        { cout << "  -" << *Iter << endl; }
     cout << "Do not Load libraries: " << endl;
     for(vector<String>::iterator Iter = CloseList.begin(); Iter!=CloseList.end(); Iter++)
-    {
-        cout << "  -" << *Iter << endl;
-    }
+        { cout << "  -" << *Iter << endl; }
     cout << "Execute this statement: " << StatementToExecute << endl;
     cout << "Requested to manually enter interactive shell: " << Interactive << endl;
     cout << "Requested to read from stdin: " << ReadFromStdIn << endl;
     cout << "Use Simple Shell: " << SimpleShell << endl;
     cout << "Don't load the Mezzanine: " << NoMezzanine  << endl;
     cout << "Use Unsafe: " << LoadUnsafeMezzanine << endl;
+    // */
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    // Figure what to do with the options presented
+
+    Lua51ScriptingEngine TheLua(Lua51ScriptingEngine::DefaultLibs);
+    Executor Hooded(TheLua);
+    REPLCppStream Shell(Hooded);
+    Shell.Launch();
 
 
 
