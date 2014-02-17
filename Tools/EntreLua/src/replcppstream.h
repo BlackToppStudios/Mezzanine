@@ -51,9 +51,9 @@ class REPLCppStream : public REPL
 {
     public:
         /// @brief Initializing constructor
-        /// @param TargetEngine A Lua sripting engine that the commands will be executed against.
+        /// @param TargetExecutor A Lua sripting engine that the commands will be executed against.
         /// @param StartingPrompt The text to start the line
-        REPLCppStream(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::String StartingPrompt=">");
+        REPLCppStream(Executor& TargetExecutor, Mezzanine::String StartingPrompt=">");
 
         /// @brief This is the actual the loop that will do the REPLing
         virtual void Launch();

@@ -63,10 +63,11 @@ using namespace std;
 ///      - -: executes stdin as a file. Lua stops handling other options after this, keep handling.
 ///
 /// With these this can be a drop in replacement for Lua in some situations. We will also add:
-///      - [x] --execute, --load, --interactive, --version, and --stdin: Long version of previous commands
-///      - [x] -n --no-mezzanine: Prevent loading of MezzanineSafe by default.
-///      - [x] -u --unsafe: Load the unlimited (unsafe) version of the Mezzanine instead of MezzanineSafe
-///      - [ ] -o --open: Open a lua or Mezzanine library before the shell starts.
+///      - --execute, --load, --interactive, --version, and --stdin: Long version of previous commands
+///      - -n --no-mezzanine: Prevent loading of MezzanineSafe by default.
+///      - -u --unsafe: Load the unlimited (unsafe) version of the Mezzanine instead of MezzanineSafe
+///      - -o --open: Open a lua or Mezzanine library before the shell starts.
+///      - -s --simple: Use a shell based on cin, cout instead of linenoise (Which I suspect will have issues on windows)
 ///
 /// @return This will return EXIT_SUCCESS, it will do more later.
 /// @param argc Is interpretted as the amount of passed arguments
@@ -80,23 +81,30 @@ int main (int argc, char** argv)
     String StatementToExecute;
     bool Interactive;
     bool ReadFromStdIn;
+    bool SimpleShell;
     bool NoMezzanine;
     bool LoadUnsafeMezzanine;
     try
     {
         TCLAP::CmdLine cmd("EntreLua - Mezzanine Lua Shell", ' ', "0.01 with Lua5.1");
 
-        LibaryList.push_back("Base");
-        LibaryList.push_back("Package");
-        LibaryList.push_back("String");
-        LibaryList.push_back("Table");
-        LibaryList.push_back("Math");
-        LibaryList.push_back("IO");
-        LibaryList.push_back("OS");
-        LibaryList.push_back("Debug");
-        LibaryList.push_back("Mezzanine");          LibaryList.push_back("MezzanineSafe");
-        LibaryList.push_back("MezzanineXML");       LibaryList.push_back("MezzanineXMLSafe");
-        LibaryList.push_back("MezzanineThreading"); LibaryList.push_back("MezzanineThreadingSafe");
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::NoLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::BaseLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::PackageLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::StringLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::TableLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MathLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::IOLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::OSLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DebugLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzSafeLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzXMLSafeLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingSafeLibName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DefaultLibsName);
+        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::AllLibsName);
+
         TCLAP::ValuesConstraint<Mezzanine::String> LibaryVals( LibaryList );
         TCLAP::MultiArg<string> OpenlibArg("o", "openlib", "Library to open before shell starts", false, &LibaryVals, cmd);
         TCLAP::MultiArg<string> CloselibArg("c", "closelib", "Do not open a Library that might be opened before shell starts", false, &LibaryVals, cmd);
@@ -105,6 +113,7 @@ int main (int argc, char** argv)
         TCLAP::ValueArg<std::string> StatementArg("e", "execute", "Execute a Lua script entered at the command line.", false, "", "Lua String", cmd);
         TCLAP::SwitchArg InteractiveSwitch("i","interactive","Enter interactive shell after other items are executed.", cmd, false);
         TCLAP::SwitchArg StdinSwitch(":","stdin","Read from the Standard Input and execute whatever is found there.", cmd, false);
+        TCLAP::SwitchArg SimpleSwitch("s","simple","Use a simpler shell input method with fewer features but that works in more places.", cmd, false);
         TCLAP::SwitchArg NoMezzanineSwitch("n", "no-mezzanine", "Do not load/open the Mezzanine by default.", cmd, false);
         TCLAP::SwitchArg UnsafeSwitch("u", "unsafe", "Load the unrestricted Mezzanine library instead of MezzanineSafe.", cmd, false);
 
@@ -116,6 +125,7 @@ int main (int argc, char** argv)
         StatementToExecute = StatementArg.getValue();
         Interactive = InteractiveSwitch.getValue();
         ReadFromStdIn = StdinSwitch.getValue();
+        SimpleShell = SimpleSwitch.getValue();
         NoMezzanine = NoMezzanineSwitch.getValue();
         LoadUnsafeMezzanine = UnsafeSwitch.getValue();
     } catch (TCLAP::ArgException &e) {
@@ -129,9 +139,18 @@ int main (int argc, char** argv)
     {
         cout << "  -" << *Iter << endl;
     }
+
+    cout << "Do not Load libraries: " << endl;
+    for(vector<String>::iterator Iter = CloseList.begin(); Iter!=CloseList.end(); Iter++)
+    {
+        cout << "  -" << *Iter << endl;
+    }
     cout << "Execute this statement: " << StatementToExecute << endl;
     cout << "Requested to manually enter interactive shell: " << Interactive << endl;
     cout << "Requested to read from stdin: " << ReadFromStdIn << endl;
+    cout << "Use Simple Shell: " << SimpleShell << endl;
+    cout << "Don't load the Mezzanine: " << NoMezzanine  << endl;
+    cout << "Use Unsafe: " << LoadUnsafeMezzanine << endl;
 
 
 
