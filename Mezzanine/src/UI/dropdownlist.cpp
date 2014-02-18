@@ -158,7 +158,7 @@ namespace Mezzanine
             const Rect OldListRect = this->SelectionList->GetRect();
             Rect NewListRect;
             NewListRect.Size = this->LayoutStrat->HandleChildSizing(OldSelfRect,NewSelfRect,this->SelectionList);
-            NewListRect.Position = this->LayoutStrat->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewListRect.Size,this->SelectionList);
+            NewListRect.Position = this->LayoutStrat->HandleChildPositioning(OldSelfRect,NewSelfRect,NewListRect.Size,this->SelectionList);
 
             // Finally update the scroller
             this->SelectionList->UpdateDimensions(OldListRect,NewListRect);

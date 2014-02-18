@@ -64,22 +64,22 @@ namespace Mezzanine
 
         CheckBox::CheckBox(Screen* Parent) :
             Button(Parent),
-            SelectLock(true)
+            SelectLock(false)
             {  }
 
         CheckBox::CheckBox(const String& RendName, Screen* Parent) :
             Button(RendName,Parent),
-            SelectLock(true)
+            SelectLock(false)
             { this->ConstructCheckbox(); }
 
         CheckBox::CheckBox(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Button(RendName,RendRect,Parent),
-            SelectLock(true)
+            SelectLock(false)
             { this->ConstructCheckbox(); }
 
         CheckBox::CheckBox(const XML::Node& XMLNode, Screen* Parent) :
             Button(Parent),
-            SelectLock(true)
+            SelectLock(false)
             { this->ProtoDeSerialize(XMLNode); }
 
         CheckBox::~CheckBox()

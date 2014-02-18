@@ -109,7 +109,12 @@ namespace Mezzanine
         void TabSet::SetVisibleSubSet(const UInt16 Binding)
         {
             TabbedSubSet* NewVisible = this->GetChild( Binding );
+            if( this->VisibleChild != NULL ) {
+                this->VisibleChild->Hide();
+            }
+
             this->VisibleChild = NewVisible;
+
             if( this->VisibleChild != NULL ) {
                 this->VisibleChild->SetVisible( this->IsVisible() );
             }

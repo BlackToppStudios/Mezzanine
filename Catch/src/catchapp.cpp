@@ -197,6 +197,8 @@ void CatchApp::MakeGUI()
 
     // Create the TabbedSubSet that will house all our video options
     UI::TabSet::TabbedSubSet* MMVideoSet = MMOptionsTabSet->CreateTabbedSubSet("MS_VideoSet",1);
+    // Go ahead and make the video options the one visible by default
+    MMOptionsTabSet->SetVisibleSubSet(MMVideoSet);
 
     // Create the label for the window resolution list
     UI::Widget* MMResolutionLabel = MainMenuScreen->CreateWidget("MS_ResolutionLabel",UI::UnifiedRect(0.12,0.01,0.415,0.13));
@@ -266,62 +268,337 @@ void CatchApp::MakeGUI()
     MMResolutionOptionsScrollBack->AddLayerToGroup(MMResolutionOptionsScrollBackLayer,0,"Normal");
     MMResolutionOptionsScrollBack->AddLayerToGroup(MMResolutionOptionsScrollBackLayer,0,"Hovered");
     // Wrap up listing configuration
-    MMVideoSet->AddChild(MMResolutionList,2);
+    MMVideoSet->AddChild(MMResolutionList,11);
 
+    // Create the checkbox for enabling or disabling fullscreen
+    UI::CheckBox* MMFullscreenBox = MainMenuScreen->CreateCheckBox("MS_FullscreenBox",UI::UnifiedRect(0.655,0.145,0,0.12));
+    MMFullscreenBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+    UI::ImageLayer* MMFullscreenBoxUnchecked = MMFullscreenBox->CreateImageLayer("MMCheckboxUnchecked");
+    UI::ImageLayer* MMFullscreenBoxHoverUnchecked = MMFullscreenBox->CreateImageLayer("MMHoveredCheckboxUnchecked");
+    UI::ImageLayer* MMFullscreenBoxChecked = MMFullscreenBox->CreateImageLayer("MMCheckboxChecked");
+    UI::ImageLayer* MMFullscreenBoxHoverChecked = MMFullscreenBox->CreateImageLayer("MMHoveredCheckboxChecked");
+    MMFullscreenBox->AddLayerToGroup(MMFullscreenBoxUnchecked,0,"Normal");
+    MMFullscreenBox->AddLayerToGroup(MMFullscreenBoxHoverUnchecked,0,"Hovered");
+    MMFullscreenBox->AddLayerToGroup(MMFullscreenBoxChecked,0,"SelectedNormal");
+    MMFullscreenBox->AddLayerToGroup(MMFullscreenBoxHoverChecked,0,"SelectedHovered");
+    MMVideoSet->AddChild(MMFullscreenBox,3);
 
+    // Create the label for the fullscreen checkbox
+    UI::Widget* MMFullscreenLabel = MainMenuScreen->CreateWidget("MS_FullscreenLabel",UI::UnifiedRect(0.72,0.145,0.22,0.12));
+    UI::ImageLayer* MMFullscreenLabelLayer = MMFullscreenLabel->CreateImageLayer("MMButton");
+    UI::SingleLineTextLayer* MMFullscreenLabelText = MMFullscreenLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    MMFullscreenLabelText->SetText("Fullscreen");
+    MMFullscreenLabelText->HorizontallyAlign(UI::LA_Center);
+    MMFullscreenLabelText->VerticallyAlign(UI::LA_Center);
+    MMFullscreenLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMFullscreenLabel->AddLayerToGroup(MMFullscreenLabelLayer,0,"Normal");
+    MMFullscreenLabel->AddLayerToGroup(MMFullscreenLabelText,1,"Normal");
+    MMFullscreenLabel->AddLayerToGroup(MMFullscreenLabelLayer,0,"Hovered");
+    MMFullscreenLabel->AddLayerToGroup(MMFullscreenLabelText,1,"Hovered");
+    MMVideoSet->AddChild(MMFullscreenLabel,4);
 
+    // Create the label for the FSAA options
+    UI::Widget* MMFSAALabel = MainMenuScreen->CreateWidget("MS_FSAALabel",UI::UnifiedRect(0.12,0.365,0.415,0.13));
+    UI::ImageLayer* MMFSAALabelLayer = MMFSAALabel->CreateImageLayer("MMButton");
+    UI::SingleLineTextLayer* MMFSAALabelText = MMFSAALabel->CreateSingleLineTextLayer("Ubuntu-14");
+    MMFSAALabelText->SetText("Anti-Aliasing");
+    MMFSAALabelText->HorizontallyAlign(UI::LA_Center);
+    MMFSAALabelText->VerticallyAlign(UI::LA_Center);
+    MMFSAALabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMFSAALabel->AddLayerToGroup(MMFSAALabelLayer,0,"Normal");
+    MMFSAALabel->AddLayerToGroup(MMFSAALabelText,1,"Normal");
+    MMFSAALabel->AddLayerToGroup(MMFSAALabelLayer,0,"Hovered");
+    MMFSAALabel->AddLayerToGroup(MMFSAALabelText,1,"Hovered");
+    MMVideoSet->AddChild(MMFSAALabel,5);
 
+    // Create the listing of detected anti-aliasing options
+    UI::DropDownList* MMFSAAList = MainMenuScreen->CreateDropDownList("MM_FSAAList",UI::UnifiedRect(0.065,0.50,0.515,0.12),UI::SB_Separate);
+    // Configure the selection display
+    UI::Widget* MMFSAADisplay = MMFSAAList->GetSelectionDisplay();
+    UI::ImageLayer* MMFSAADisplayLayer = MMFSAADisplay->CreateImageLayer("MMListSelection");
+    UI::SingleLineTextLayer* MMFSAADisplayText = static_cast<UI::SingleLineTextLayer*>( MMFSAADisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
+    MMFSAADisplayText->SetDefaultFont("Ubuntu-14");
+    MMFSAADisplayText->HorizontallyAlign(UI::LA_Center);
+    MMFSAADisplayText->VerticallyAlign(UI::LA_Center);
+    MMFSAADisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMFSAADisplay->AddLayerToGroup(MMFSAADisplayLayer,0,"Normal");
+    MMFSAADisplay->AddLayerToGroup(MMFSAADisplayLayer,0,"Hovered");
+    // Configure the list toggle
+    UI::CheckBox* MMFSAAToggle = MMFSAAList->GetListToggle();
+    UI::ImageLayer* MMFSAAToggleNormal = MMFSAAToggle->CreateImageLayer("MMListScrollDown");
+    UI::ImageLayer* MMFSAAToggleHovered = MMFSAAToggle->CreateImageLayer("MMHoveredListScrollDown");
+    MMFSAAToggle->AddLayerToGroup(MMFSAAToggleNormal,0,"Normal");
+    MMFSAAToggle->AddLayerToGroup(MMFSAAToggleHovered,0,"Hovered");
+    MMFSAAToggle->AddLayerToGroup(MMFSAAToggleNormal,0,"SelectedNormal");
+    MMFSAAToggle->AddLayerToGroup(MMFSAAToggleHovered,0,"SelectedHovered");
+    // Configure the option list
+    UI::ListBox* MMFSAAOptions = MMFSAAList->GetSelectionList();
+    // Configure the background for the listbox container
+    UI::VerticalContainer* MMFSAAOptionsList = MMFSAAOptions->GetListContainer();
+    UI::ImageLayer* MMFSAAOptionsListLayer = MMFSAAOptionsList->CreateImageLayer("MMListBackground");
+    MMFSAAOptionsList->AddLayerToGroup(MMFSAAOptionsListLayer,0,"Normal");
+    MMFSAAOptionsList->AddLayerToGroup(MMFSAAOptionsListLayer,0,"Hovered");
+    // Configure the scrollbar for the option list
+    UI::VerticalScrollbar* MMFSAAOptionsScroll = MMFSAAOptions->GetListScroll();
+    MMFSAAOptionsScroll->SetIncrementDistance(0.05);
+    // Configure the scroller
+    UI::Button* MMFSAAOptionsScroller = MMFSAAOptionsScroll->GetScroller();
+    UI::ImageLayer* MMFSAAOptionsScrollerNormal = MMFSAAOptionsScroller->CreateImageLayer("MMListScroller");
+    UI::ImageLayer* MMFSAAOptionsScrollerHovered = MMFSAAOptionsScroller->CreateImageLayer("MMHoveredListScroller");
+    MMFSAAOptionsScroller->AddLayerToGroup(MMFSAAOptionsScrollerNormal,0,"Normal");
+    MMFSAAOptionsScroller->AddLayerToGroup(MMFSAAOptionsScrollerHovered,0,"Hovered");
+    // Configure the up button
+    UI::Button* MMFSAAOptionsScrollUp = MMFSAAOptionsScroll->GetUpLeftButton();
+    UI::ImageLayer* MMFSAAOptionsScrollUpNormal = MMFSAAOptionsScrollUp->CreateImageLayer("MMListScrollUp");
+    UI::ImageLayer* MMFSAAOptionsScrollUpHovered = MMFSAAOptionsScrollUp->CreateImageLayer("MMHoveredListScrollUp");
+    MMFSAAOptionsScrollUp->AddLayerToGroup(MMFSAAOptionsScrollUpNormal,0,"Normal");
+    MMFSAAOptionsScrollUp->AddLayerToGroup(MMFSAAOptionsScrollUpHovered,0,"Hovered");
+    // Configure the down button
+    UI::Button* MMFSAAOptionsScrollDown = MMFSAAOptionsScroll->GetDownRightButton();
+    UI::ImageLayer* MMFSAAOptionsScrollDownNormal = MMFSAAOptionsScrollDown->CreateImageLayer("MMListScrollDown");
+    UI::ImageLayer* MMFSAAOptionsScrollDownHovered = MMFSAAOptionsScrollDown->CreateImageLayer("MMHoveredListScrollDown");
+    MMFSAAOptionsScrollDown->AddLayerToGroup(MMFSAAOptionsScrollDownNormal,0,"Normal");
+    MMFSAAOptionsScrollDown->AddLayerToGroup(MMFSAAOptionsScrollDownHovered,0,"Hovered");
+    // Configure the scroll back
+    UI::Button* MMFSAAOptionsScrollBack = MMFSAAOptionsScroll->GetScrollBack();
+    UI::ImageLayer* MMFSAAOptionsScrollBackLayer = MMFSAAOptionsScrollBack->CreateImageLayer("MMListBackground");
+    MMFSAAOptionsScrollBack->AddLayerToGroup(MMFSAAOptionsScrollBackLayer,0,"Normal");
+    MMFSAAOptionsScrollBack->AddLayerToGroup(MMFSAAOptionsScrollBackLayer,0,"Hovered");
+    // Wrap up listing configuration
+    MMVideoSet->AddChild(MMFSAAList,10);
 
+    // Create the checkbox for enabling or disabling FPS stats display
+    UI::CheckBox* MMStatsBox = MainMenuScreen->CreateCheckBox("MS_StatsBox",UI::UnifiedRect(0.655,0.50,0,0.12));
+    MMStatsBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+    UI::ImageLayer* MMStatsBoxUnchecked = MMStatsBox->CreateImageLayer("MMCheckboxUnchecked");
+    UI::ImageLayer* MMStatsBoxHoverUnchecked = MMStatsBox->CreateImageLayer("MMHoveredCheckboxUnchecked");
+    UI::ImageLayer* MMStatsBoxChecked = MMStatsBox->CreateImageLayer("MMCheckboxChecked");
+    UI::ImageLayer* MMStatsBoxHoverChecked = MMStatsBox->CreateImageLayer("MMHoveredCheckboxChecked");
+    MMStatsBox->AddLayerToGroup(MMStatsBoxUnchecked,0,"Normal");
+    MMStatsBox->AddLayerToGroup(MMStatsBoxHoverUnchecked,0,"Hovered");
+    MMStatsBox->AddLayerToGroup(MMStatsBoxChecked,0,"SelectedNormal");
+    MMStatsBox->AddLayerToGroup(MMStatsBoxHoverChecked,0,"SelectedHovered");
+    MMVideoSet->AddChild(MMStatsBox,7);
 
+    // Create the label for the FPS stats display checkbox
+    UI::Widget* MMStatsLabel = MainMenuScreen->CreateWidget("MS_StatsLabel",UI::UnifiedRect(0.72,0.50,0.22,0.12));
+    UI::ImageLayer* MMStatsLabelLayer = MMStatsLabel->CreateImageLayer("MMButton");
+    UI::SingleLineTextLayer* MMStatsLabelText = MMStatsLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    MMStatsLabelText->SetText("Show FPS");
+    MMStatsLabelText->HorizontallyAlign(UI::LA_Center);
+    MMStatsLabelText->VerticallyAlign(UI::LA_Center);
+    MMStatsLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMStatsLabel->AddLayerToGroup(MMStatsLabelLayer,0,"Normal");
+    MMStatsLabel->AddLayerToGroup(MMStatsLabelText,1,"Normal");
+    MMStatsLabel->AddLayerToGroup(MMStatsLabelLayer,0,"Hovered");
+    MMStatsLabel->AddLayerToGroup(MMStatsLabelText,1,"Hovered");
+    MMVideoSet->AddChild(MMStatsLabel,8);
 
+    // Create the button that will apply all of the currently displayed video settings
+    UI::Button* MMVideoOptsApply = MainMenuScreen->CreateButton("MS_VideoOptsApply",UI::UnifiedRect(0.815,0.84,0.17,0.14));
+    UI::ImageLayer* MMVideoOptsApplyNormal = MMVideoOptsApply->CreateImageLayer("MMOptionsApplyButton");
+    UI::ImageLayer* MMVideoOptsApplyHovered = MMVideoOptsApply->CreateImageLayer("MMOptionsApplyHoveredButton");
+    UI::SingleLineTextLayer* MMVideoOptsApplyText = MMVideoOptsApply->CreateSingleLineTextLayer("Ubuntu-14");
+    MMVideoOptsApplyText->SetText("Apply");
+    MMVideoOptsApplyText->HorizontallyAlign(UI::LA_Center);
+    MMVideoOptsApplyText->VerticallyAlign(UI::LA_Center);
+    MMVideoOptsApplyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMVideoOptsApply->AddLayerToGroup(MMVideoOptsApplyNormal,0,"Normal");
+    MMVideoOptsApply->AddLayerToGroup(MMVideoOptsApplyText,1,"Normal");
+    MMVideoOptsApply->AddLayerToGroup(MMVideoOptsApplyHovered,0,"Hovered");
+    MMVideoOptsApply->AddLayerToGroup(MMVideoOptsApplyText,1,"Hovered");
+    MMVideoSet->AddChild(MMVideoOptsApply,12);
 
-    /*MMResolutionList->GetSelectionList()->GetVertScroll()->GetScroller()->GetClickable()->SetBackgroundSprite("MMListScroller");
-    MMResolutionList->GetSelectionList()->GetVertScroll()->GetScroller()->GetClickable()->SetHoveredSprite("MMHoveredListScroller");
-    MMResolutionList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->GetClickable()->SetBackgroundSprite("MMListScrollDown");
-    MMResolutionList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->GetClickable()->SetHoveredSprite("MMHoveredListScrollDown");
-    MMResolutionList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->GetClickable()->SetBackgroundSprite("MMListScrollUp");
-    MMResolutionList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->GetClickable()->SetHoveredSprite("MMHoveredListScrollUp");
-    MMResolutionList->GetSelectionList()->GetVertScroll()->SetIncrementDistance(0.05);
-    MMResolutionList->GetSelectionList()->SetTemplateBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
-    MMResolutionList->GetSelectionList()->SetTemplateTextColour(ColourValue::White());
-    MMResolutionList->GetSelectionList()->SetMaxDisplayedSelections(4);
-    MMResolutionList->AddWidgetListener(new OptsVideoRes());
-    UI::CheckBox* MMFullscreenBox = MMVideoSet->Collection->CreateCheckBox("MS_FullscreenBox",UI::RenderableRect(Vector2(0.59, 0.36),Vector2(0.16, 0.05),true),MMTextLineHeight,"Fullscreen");
-    MMFullscreenBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
-    MMFullscreenBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
-    MMFullscreenBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
-    MMFullscreenBox->AddWidgetListener(new OptsVideoFullscreen());
-    UI::Caption* MMFSAALabel = MMVideoSet->Collection->CreateCaption("MS_FSAALabel",UI::RenderableRect(Vector2(0.28, 0.46),Vector2(0.24, 0.05),true),MMTextLineHeight,"Anti-Aliasing");
-    MMFSAALabel->SetBackgroundSprite("MMButton");
-    UI::DropDownList* MMFSAAList = MMVideoSet->Collection->CreateDropDownList("MS_FSAAList",UI::RenderableRect(Vector2(0.25, 0.51),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
-    MMFSAAList->GetSelection()->SetBackgroundSprite("MMListSelection");
-    MMFSAAList->GetListToggle()->GetClickable()->SetBackgroundSprite("MMListScrollDown");
-    MMFSAAList->GetSelectionList()->GetBoxBack()->SetBackgroundSprite("MMListBackground");
-    MMFSAAList->GetSelectionList()->GetVertScroll()->GetScrollBack()->SetBackgroundSprite("MMListScrollBackground");
-    MMFSAAList->GetSelectionList()->GetVertScroll()->GetScroller()->GetClickable()->SetBackgroundSprite("MMListScroller");
-    MMFSAAList->GetSelectionList()->GetVertScroll()->GetScroller()->GetClickable()->SetHoveredSprite("MMHoveredListScroller");
-    MMFSAAList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->GetClickable()->SetBackgroundSprite("MMListScrollDown");
-    MMFSAAList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->GetClickable()->SetHoveredSprite("MMHoveredListScrollDown");
-    MMFSAAList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->GetClickable()->SetBackgroundSprite("MMListScrollUp");
-    MMFSAAList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->GetClickable()->SetHoveredSprite("MMHoveredListScrollUp");
-    MMFSAAList->GetSelectionList()->GetVertScroll()->SetIncrementDistance(0.05);
-    MMFSAAList->GetSelectionList()->SetTemplateBackgroundColour(ColourValue(1.0,1.0,1.0,0.2));
-    MMFSAAList->GetSelectionList()->SetTemplateTextColour(ColourValue::White());
-    MMFSAAList->GetSelectionList()->SetMaxDisplayedSelections(4);
-    MMFSAAList->AddWidgetListener(new OptsVideoFSAA());
-    UI::CheckBox* MMStatsBox = MMVideoSet->Collection->CreateCheckBox("MS_StatsBox",UI::RenderableRect(Vector2(0.59, 0.51),Vector2(0.16, 0.05),true),MMTextLineHeight,"Show FPS");
-    MMStatsBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
-    MMStatsBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
-    MMStatsBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
-    MMStatsBox->AddWidgetListener(new OptsVideoStats());
-    UI::Button* MMVideoOptsApply = MMVideoSet->Collection->CreateButton("MS_VideoOptsApply",UI::RenderableRect(Vector2(0.68, 0.64), Vector2(0.10, 0.05), true), MMTextLineHeight, "Apply");
-    MMVideoOptsApply->GetClickable()->SetBackgroundSprite("MMOptionsApplyButton");
-    MMVideoOptsApply->GetClickable()->SetHoveredSprite("MMOptionsApplyHoveredButton");
-    MMVideoOptsApply->AddActivatableListener(new OptsVideoApply(MMResolutionList,MMFullscreenBox,MMStatsBox));//*/
-
-
+    const Real MMScrollerSize = 0.09;
     // Create the TabbedSubSet that will house all our audio options
     UI::TabSet::TabbedSubSet* MMAudioSet = MMOptionsTabSet->CreateTabbedSubSet("MS_AudioSet",2);
+
+    // Create the label for the Music volume
+    UI::Widget* MMMusicVolLabel = MainMenuScreen->CreateWidget("MS_MusicVolLabel",UI::UnifiedRect(0.0,0.01,0.40,0.13));
+    MMMusicVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    UI::ImageLayer* MMMusicVolLabelLayer = MMMusicVolLabel->CreateImageLayer("MMButton");
+    UI::SingleLineTextLayer* MMMusicVolLabelText = MMMusicVolLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    MMMusicVolLabelText->SetText("Music Volume");
+    MMMusicVolLabelText->HorizontallyAlign(UI::LA_Center);
+    MMMusicVolLabelText->VerticallyAlign(UI::LA_Center);
+    MMMusicVolLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMMusicVolLabel->AddLayerToGroup(MMMusicVolLabelLayer,0,"Normal");
+    MMMusicVolLabel->AddLayerToGroup(MMMusicVolLabelText,1,"Normal");
+    MMMusicVolLabel->AddLayerToGroup(MMMusicVolLabelLayer,0,"Hovered");
+    MMMusicVolLabel->AddLayerToGroup(MMMusicVolLabelText,1,"Hovered");
+    MMAudioSet->AddChild(MMMusicVolLabel,1);
+
+    // Create the Music volume slider
+    UI::HorizontalScrollbar* MMMusicVol = MainMenuScreen->CreateHorizontalScrollbar("MS_MusicVolume",UI::UnifiedRect(0.0,0.145,0.7,0.09),UI::SB_Separate);
+    MMMusicVol->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMMusicVol->SetIncrementDistance(MMScrollerSize * 0.5);
+    MMMusicVol->SetScrollerSize(MMScrollerSize);
+    // Configure the scroller
+    UI::Button* MMMusicVolScroller = MMMusicVol->GetScroller();
+    UI::ImageLayer* MMMusicVolScrollerNormal = MMMusicVolScroller->CreateImageLayer("MMScroller");
+    UI::ImageLayer* MMMusicVolScrollerHovered = MMMusicVolScroller->CreateImageLayer("MMHoveredScroller");
+    MMMusicVolScroller->AddLayerToGroup(MMMusicVolScrollerNormal,0,"Normal");
+    MMMusicVolScroller->AddLayerToGroup(MMMusicVolScrollerHovered,0,"Hovered");
+    // Configure the up button
+    UI::Button* MMMusicVolUp = MMMusicVol->GetUpLeftButton();
+    UI::ImageLayer* MMMusicVolUpNormal = MMMusicVolUp->CreateImageLayer("MMScrollLeft");
+    UI::ImageLayer* MMMusicVolUpHovered = MMMusicVolUp->CreateImageLayer("MMHoveredScrollLeft");
+    MMMusicVolUp->AddLayerToGroup(MMMusicVolUpNormal,0,"Normal");
+    MMMusicVolUp->AddLayerToGroup(MMMusicVolUpHovered,0,"Hovered");
+    // Configure the down button
+    UI::Button* MMMusicVolDown = MMMusicVol->GetDownRightButton();
+    UI::ImageLayer* MMMusicVolDownNormal = MMMusicVolDown->CreateImageLayer("MMScrollRight");
+    UI::ImageLayer* MMMusicVolDownHovered = MMMusicVolDown->CreateImageLayer("MMHoveredScrollRight");
+    MMMusicVolDown->AddLayerToGroup(MMMusicVolDownNormal,0,"Normal");
+    MMMusicVolDown->AddLayerToGroup(MMMusicVolDownHovered,0,"Hovered");
+    // Configure the scroll back
+    UI::Button* MMMusicVolBack = MMMusicVol->GetScrollBack();
+    UI::ImageLayer* MMMusicVolBackLayer = MMMusicVolBack->CreateImageLayer("MMScrollBackground");
+    MMMusicVolBack->AddLayerToGroup(MMMusicVolBackLayer,0,"Normal");
+    MMMusicVolBack->AddLayerToGroup(MMMusicVolBackLayer,0,"Hovered");
+    MMAudioSet->AddChild(MMMusicVol,2);
+
+    // Create the label for the Effects volume
+    UI::Widget* MMEffectsVolLabel = MainMenuScreen->CreateWidget("MS_EffectsVolLabel",UI::UnifiedRect(0.0,0.275,0.40,0.13));
+    MMEffectsVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    UI::ImageLayer* MMEffectsVolLabelLayer = MMEffectsVolLabel->CreateImageLayer("MMButton");
+    UI::SingleLineTextLayer* MMEffectsVolLabelText = MMEffectsVolLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    MMEffectsVolLabelText->SetText("Effects Volume");
+    MMEffectsVolLabelText->HorizontallyAlign(UI::LA_Center);
+    MMEffectsVolLabelText->VerticallyAlign(UI::LA_Center);
+    MMEffectsVolLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMEffectsVolLabel->AddLayerToGroup(MMEffectsVolLabelLayer,0,"Normal");
+    MMEffectsVolLabel->AddLayerToGroup(MMEffectsVolLabelText,1,"Normal");
+    MMEffectsVolLabel->AddLayerToGroup(MMEffectsVolLabelLayer,0,"Hovered");
+    MMEffectsVolLabel->AddLayerToGroup(MMEffectsVolLabelText,1,"Hovered");
+    MMAudioSet->AddChild(MMEffectsVolLabel,3);
+
+    // Create the Effects volume slider
+    UI::HorizontalScrollbar* MMEffectsVol = MainMenuScreen->CreateHorizontalScrollbar("MS_EffectsVolume",UI::UnifiedRect(0.0,0.41,0.7,0.09),UI::SB_Separate);
+    MMEffectsVol->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMEffectsVol->SetIncrementDistance(MMScrollerSize * 0.5);
+    MMEffectsVol->SetScrollerSize(MMScrollerSize);
+    // Configure the scroller
+    UI::Button* MMEffectsVolScroller = MMEffectsVol->GetScroller();
+    UI::ImageLayer* MMEffectsVolScrollerNormal = MMEffectsVolScroller->CreateImageLayer("MMScroller");
+    UI::ImageLayer* MMEffectsVolScrollerHovered = MMEffectsVolScroller->CreateImageLayer("MMHoveredScroller");
+    MMEffectsVolScroller->AddLayerToGroup(MMEffectsVolScrollerNormal,0,"Normal");
+    MMEffectsVolScroller->AddLayerToGroup(MMEffectsVolScrollerHovered,0,"Hovered");
+    // Configure the up button
+    UI::Button* MMEffectsVolUp = MMEffectsVol->GetUpLeftButton();
+    UI::ImageLayer* MMEffectsVolUpNormal = MMEffectsVolUp->CreateImageLayer("MMScrollLeft");
+    UI::ImageLayer* MMEffectsVolUpHovered = MMEffectsVolUp->CreateImageLayer("MMHoveredScrollLeft");
+    MMEffectsVolUp->AddLayerToGroup(MMEffectsVolUpNormal,0,"Normal");
+    MMEffectsVolUp->AddLayerToGroup(MMEffectsVolUpHovered,0,"Hovered");
+    // Configure the down button
+    UI::Button* MMEffectsVolDown = MMEffectsVol->GetDownRightButton();
+    UI::ImageLayer* MMEffectsVolDownNormal = MMEffectsVolDown->CreateImageLayer("MMScrollRight");
+    UI::ImageLayer* MMEffectsVolDownHovered = MMEffectsVolDown->CreateImageLayer("MMHoveredScrollRight");
+    MMEffectsVolDown->AddLayerToGroup(MMEffectsVolDownNormal,0,"Normal");
+    MMEffectsVolDown->AddLayerToGroup(MMEffectsVolDownHovered,0,"Hovered");
+    // Configure the scroll back
+    UI::Button* MMEffectsVolBack = MMEffectsVol->GetScrollBack();
+    UI::ImageLayer* MMEffectsVolBackLayer = MMEffectsVolBack->CreateImageLayer("MMScrollBackground");
+    MMEffectsVolBack->AddLayerToGroup(MMEffectsVolBackLayer,0,"Normal");
+    MMEffectsVolBack->AddLayerToGroup(MMEffectsVolBackLayer,0,"Hovered");
+    MMAudioSet->AddChild(MMEffectsVol,2);
+
+    // Create the label for the Audio Device options
+    UI::Widget* MMAudioDeviceLabel = MainMenuScreen->CreateWidget("MS_AudioDeviceLabel",UI::UnifiedRect(0.12,0.56,0.415,0.13));
+    UI::ImageLayer* MMAudioDeviceLabelLayer = MMAudioDeviceLabel->CreateImageLayer("MMButton");
+    UI::SingleLineTextLayer* MMAudioDeviceLabelText = MMAudioDeviceLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    MMAudioDeviceLabelText->SetText("Audio Device");
+    MMAudioDeviceLabelText->HorizontallyAlign(UI::LA_Center);
+    MMAudioDeviceLabelText->VerticallyAlign(UI::LA_Center);
+    MMAudioDeviceLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMAudioDeviceLabel->AddLayerToGroup(MMAudioDeviceLabelLayer,0,"Normal");
+    MMAudioDeviceLabel->AddLayerToGroup(MMAudioDeviceLabelText,1,"Normal");
+    MMAudioDeviceLabel->AddLayerToGroup(MMAudioDeviceLabelLayer,0,"Hovered");
+    MMAudioDeviceLabel->AddLayerToGroup(MMAudioDeviceLabelText,1,"Hovered");
+    MMAudioSet->AddChild(MMAudioDeviceLabel,3);
+
+    // Create the listing of detected anti-aliasing options
+    UI::DropDownList* MMAudioDeviceList = MainMenuScreen->CreateDropDownList("MM_AudioDeviceList",UI::UnifiedRect(0.065,0.695,0.515,0.12),UI::SB_Separate);
+    // Configure the selection display
+    UI::Widget* MMAudioDeviceDisplay = MMAudioDeviceList->GetSelectionDisplay();
+    UI::ImageLayer* MMAudioDeviceDisplayLayer = MMAudioDeviceDisplay->CreateImageLayer("MMListSelection");
+    UI::SingleLineTextLayer* MMAudioDeviceDisplayText = static_cast<UI::SingleLineTextLayer*>( MMAudioDeviceDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
+    MMAudioDeviceDisplayText->SetDefaultFont("Ubuntu-14");
+    MMAudioDeviceDisplayText->HorizontallyAlign(UI::LA_Center);
+    MMAudioDeviceDisplayText->VerticallyAlign(UI::LA_Center);
+    MMAudioDeviceDisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMAudioDeviceDisplay->AddLayerToGroup(MMAudioDeviceDisplayLayer,0,"Normal");
+    MMAudioDeviceDisplay->AddLayerToGroup(MMAudioDeviceDisplayLayer,0,"Hovered");
+    // Configure the list toggle
+    UI::CheckBox* MMAudioDeviceToggle = MMAudioDeviceList->GetListToggle();
+    UI::ImageLayer* MMAudioDeviceToggleNormal = MMAudioDeviceToggle->CreateImageLayer("MMListScrollDown");
+    UI::ImageLayer* MMAudioDeviceToggleHovered = MMAudioDeviceToggle->CreateImageLayer("MMHoveredListScrollDown");
+    MMAudioDeviceToggle->AddLayerToGroup(MMAudioDeviceToggleNormal,0,"Normal");
+    MMAudioDeviceToggle->AddLayerToGroup(MMAudioDeviceToggleHovered,0,"Hovered");
+    MMAudioDeviceToggle->AddLayerToGroup(MMAudioDeviceToggleNormal,0,"SelectedNormal");
+    MMAudioDeviceToggle->AddLayerToGroup(MMAudioDeviceToggleHovered,0,"SelectedHovered");
+    // Configure the option list
+    UI::ListBox* MMAudioDeviceOptions = MMAudioDeviceList->GetSelectionList();
+    // Configure the background for the listbox container
+    UI::VerticalContainer* MMAudioDeviceOptionsList = MMAudioDeviceOptions->GetListContainer();
+    UI::ImageLayer* MMAudioDeviceOptionsListLayer = MMAudioDeviceOptionsList->CreateImageLayer("MMListBackground");
+    MMAudioDeviceOptionsList->AddLayerToGroup(MMAudioDeviceOptionsListLayer,0,"Normal");
+    MMAudioDeviceOptionsList->AddLayerToGroup(MMAudioDeviceOptionsListLayer,0,"Hovered");
+    // Configure the scrollbar for the option list
+    UI::VerticalScrollbar* MMAudioDeviceOptionsScroll = MMAudioDeviceOptions->GetListScroll();
+    MMAudioDeviceOptionsScroll->SetIncrementDistance(0.05);
+    // Configure the scroller
+    UI::Button* MMAudioDeviceOptionsScroller = MMAudioDeviceOptionsScroll->GetScroller();
+    UI::ImageLayer* MMAudioDeviceOptionsScrollerNormal = MMAudioDeviceOptionsScroller->CreateImageLayer("MMListScroller");
+    UI::ImageLayer* MMAudioDeviceOptionsScrollerHovered = MMAudioDeviceOptionsScroller->CreateImageLayer("MMHoveredListScroller");
+    MMAudioDeviceOptionsScroller->AddLayerToGroup(MMAudioDeviceOptionsScrollerNormal,0,"Normal");
+    MMAudioDeviceOptionsScroller->AddLayerToGroup(MMAudioDeviceOptionsScrollerHovered,0,"Hovered");
+    // Configure the up button
+    UI::Button* MMAudioDeviceOptionsScrollUp = MMAudioDeviceOptionsScroll->GetUpLeftButton();
+    UI::ImageLayer* MMAudioDeviceOptionsScrollUpNormal = MMAudioDeviceOptionsScrollUp->CreateImageLayer("MMListScrollUp");
+    UI::ImageLayer* MMAudioDeviceOptionsScrollUpHovered = MMAudioDeviceOptionsScrollUp->CreateImageLayer("MMHoveredListScrollUp");
+    MMAudioDeviceOptionsScrollUp->AddLayerToGroup(MMAudioDeviceOptionsScrollUpNormal,0,"Normal");
+    MMAudioDeviceOptionsScrollUp->AddLayerToGroup(MMAudioDeviceOptionsScrollUpHovered,0,"Hovered");
+    // Configure the down button
+    UI::Button* MMAudioDeviceOptionsScrollDown = MMAudioDeviceOptionsScroll->GetDownRightButton();
+    UI::ImageLayer* MMAudioDeviceOptionsScrollDownNormal = MMAudioDeviceOptionsScrollDown->CreateImageLayer("MMListScrollDown");
+    UI::ImageLayer* MMAudioDeviceOptionsScrollDownHovered = MMAudioDeviceOptionsScrollDown->CreateImageLayer("MMHoveredListScrollDown");
+    MMAudioDeviceOptionsScrollDown->AddLayerToGroup(MMAudioDeviceOptionsScrollDownNormal,0,"Normal");
+    MMAudioDeviceOptionsScrollDown->AddLayerToGroup(MMAudioDeviceOptionsScrollDownHovered,0,"Hovered");
+    // Configure the scroll back
+    UI::Button* MMAudioDeviceOptionsScrollBack = MMAudioDeviceOptionsScroll->GetScrollBack();
+    UI::ImageLayer* MMAudioDeviceOptionsScrollBackLayer = MMAudioDeviceOptionsScrollBack->CreateImageLayer("MMListBackground");
+    MMAudioDeviceOptionsScrollBack->AddLayerToGroup(MMAudioDeviceOptionsScrollBackLayer,0,"Normal");
+    MMAudioDeviceOptionsScrollBack->AddLayerToGroup(MMAudioDeviceOptionsScrollBackLayer,0,"Hovered");
+    // Wrap up listing configuration
+    MMAudioSet->AddChild(MMAudioDeviceList,10);
+
+    // Create the checkbox for enabling or disabling FPS stats display
+    UI::CheckBox* MMMuteBox = MainMenuScreen->CreateCheckBox("MS_MuteBox",UI::UnifiedRect(0.655,0.695,0,0.12));
+    MMMuteBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+    UI::ImageLayer* MMMuteBoxUnchecked = MMMuteBox->CreateImageLayer("MMCheckboxUnchecked");
+    UI::ImageLayer* MMMuteBoxHoverUnchecked = MMMuteBox->CreateImageLayer("MMHoveredCheckboxUnchecked");
+    UI::ImageLayer* MMMuteBoxChecked = MMMuteBox->CreateImageLayer("MMCheckboxChecked");
+    UI::ImageLayer* MMMuteBoxHoverChecked = MMMuteBox->CreateImageLayer("MMHoveredCheckboxChecked");
+    MMMuteBox->AddLayerToGroup(MMMuteBoxUnchecked,0,"Normal");
+    MMMuteBox->AddLayerToGroup(MMMuteBoxHoverUnchecked,0,"Hovered");
+    MMMuteBox->AddLayerToGroup(MMMuteBoxChecked,0,"SelectedNormal");
+    MMMuteBox->AddLayerToGroup(MMMuteBoxHoverChecked,0,"SelectedHovered");
+    MMAudioSet->AddChild(MMMuteBox,5);
+
+    // Create the label for the FPS stats display checkbox
+    UI::Widget* MMMuteLabel = MainMenuScreen->CreateWidget("MS_MuteLabel",UI::UnifiedRect(0.72,0.695,0.22,0.12));
+    UI::ImageLayer* MMMuteLabelLayer = MMMuteLabel->CreateImageLayer("MMButton");
+    UI::SingleLineTextLayer* MMMuteLabelText = MMMuteLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    MMMuteLabelText->SetText("Mute");
+    MMMuteLabelText->HorizontallyAlign(UI::LA_Center);
+    MMMuteLabelText->VerticallyAlign(UI::LA_Center);
+    MMMuteLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,TightText);
+    MMMuteLabel->AddLayerToGroup(MMMuteLabelLayer,0,"Normal");
+    MMMuteLabel->AddLayerToGroup(MMMuteLabelText,1,"Normal");
+    MMMuteLabel->AddLayerToGroup(MMMuteLabelLayer,0,"Hovered");
+    MMMuteLabel->AddLayerToGroup(MMMuteLabelText,1,"Hovered");
+    MMAudioSet->AddChild(MMMuteLabel,6);
 
     // Create the back button for the options window
     UI::StackButton* MMOptsBack = MainMenuScreen->CreateStackButton("MS_OptsBack",UI::UnifiedRect(0.780,0.870,0.156,0.094));
@@ -438,9 +715,6 @@ void CatchApp::MakeGUI()
     ////////////////////////////////////////////////////////////////
 
 
-    //Real MMStartLineHeight = 0.05;
-    //Real MMTextLineHeight = 0.04;
-    //Real MMSmallTextLineHeight = 0.03;
     /*UI::PagedCellGrid* MMLevelSelectGrid = MMLevelSelectWin->CreatePagedCellGrid("MS_LevelGrid", UI::RenderableRect(Vector2(0.14,0.14), Vector2(0.72,0.66), true), UI::RenderableRect(Vector2(0.60,0.85), Vector2(0.24,0.06), true), UI::Spn_Separate, 0.05);
     MMLevelSelectGrid->GetGridBack()->SetBackgroundColour(Transparent);
     MMLevelSelectGrid->GetPageSpinner()->GetIncrement()->GetClickable()->SetBackgroundSprite("MMIncrementPage");
@@ -450,58 +724,6 @@ void CatchApp::MakeGUI()
     MMLevelStart->AddActivatableListener(new MSStart(MMLevelSelectGrid));
     MMLevelStart->GetClickable()->SetBackgroundSprite("MMLevelStart");
     MMLevelStart->GetClickable()->SetHoveredSprite("MMLevelStartHovered");
-
-    //video options
-    //sound options
-    Real MMScrollerSize = 0.09;
-    UI::RenderableSetData* MMAudioSet = MMOptionsTabSet->CreateRenderableSet("MS_AudioSet",UI::RenderableRect(Vector2(0.53, 0.24),Vector2(0.22, 0.06),true),MMTextLineHeight,"Sound Options");
-    MMAudioSet->Collection->GetWidgetBack()->SetBackgroundColour(ColourValue::Transparent());
-    MMAudioSet->Accessor->GetClickable()->SetBackgroundSprite("MMButton");
-    MMAudioSet->Accessor->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    UI::Caption* MMMusicVolLabel = MMAudioSet->Collection->CreateCaption("MS_MusicVolLabel",UI::RenderableRect(Vector2(0.38, 0.31),Vector2(0.24, 0.05),true),MMTextLineHeight,"Music Volume");
-    MMMusicVolLabel->SetBackgroundSprite("MMButton");
-    UI::Scrollbar* MMMusicVol = MMAudioSet->Collection->CreateScrollbar("MS_MusicVolume",UI::RenderableRect(Vector2(0.30, 0.36),Vector2(0.40, 0.04),true),UI::SB_Separate);
-    MMMusicVol->SetScrollerSize(MMScrollerSize);
-    MMMusicVol->SetIncrementDistance(MMScrollerSize * 0.5);
-    MMMusicVol->GetScrollBack()->SetBackgroundSprite("MMScrollBackground");
-    MMMusicVol->GetScroller()->GetClickable()->SetBackgroundSprite("MMScroller");
-    MMMusicVol->GetScroller()->GetClickable()->SetHoveredSprite("MMHoveredScroller");
-    MMMusicVol->GetDownRightButton()->GetClickable()->SetBackgroundSprite("MMScrollRight");
-    MMMusicVol->GetDownRightButton()->GetClickable()->SetHoveredSprite("MMHoveredScrollRight");
-    MMMusicVol->GetUpLeftButton()->GetClickable()->SetBackgroundSprite("MMScrollLeft");
-    MMMusicVol->GetUpLeftButton()->GetClickable()->SetHoveredSprite("MMHoveredScrollLeft");
-    MMMusicVol->AddWidgetListener(new OptsMusicVol());
-    UI::Caption* MMEffectsVolLabel = MMAudioSet->Collection->CreateCaption("MS_EffectsVolLabel",UI::RenderableRect(Vector2(0.38, 0.42),Vector2(0.24, 0.05),true),MMTextLineHeight,"Effects Volume");
-    MMEffectsVolLabel->SetBackgroundSprite("MMButton");
-    UI::Scrollbar* MMEffectsVol = MMAudioSet->Collection->CreateScrollbar("MS_EffectsVolume",UI::RenderableRect(Vector2(0.30, 0.47),Vector2(0.40, 0.04),true),UI::SB_Separate);
-    MMEffectsVol->SetScrollerSize(MMScrollerSize);
-    MMEffectsVol->SetIncrementDistance(MMScrollerSize * 0.5);
-    MMEffectsVol->GetScrollBack()->SetBackgroundSprite("MMScrollBackground");
-    MMEffectsVol->GetScroller()->GetClickable()->SetBackgroundSprite("MMScroller");
-    MMEffectsVol->GetScroller()->GetClickable()->SetHoveredSprite("MMHoveredScroller");
-    MMEffectsVol->GetDownRightButton()->GetClickable()->SetBackgroundSprite("MMScrollRight");
-    MMEffectsVol->GetDownRightButton()->GetClickable()->SetHoveredSprite("MMHoveredScrollRight");
-    MMEffectsVol->GetUpLeftButton()->GetClickable()->SetBackgroundSprite("MMScrollLeft");
-    MMEffectsVol->GetUpLeftButton()->GetClickable()->SetHoveredSprite("MMHoveredScrollLeft");
-    MMEffectsVol->AddWidgetListener(new OptsEffectVol());
-    UI::Caption* MMDeviceLabel = MMAudioSet->Collection->CreateCaption("MS_DeviceLabel",UI::RenderableRect(Vector2(0.30, 0.55),Vector2(0.24, 0.05),true),MMTextLineHeight,"Audio Device");
-    MMDeviceLabel->SetBackgroundSprite("MMButton");
-    UI::DropDownList* MMDeviceList = MMAudioSet->Collection->CreateDropDownList("MS_AudioDeviceList",UI::RenderableRect(Vector2(0.27, 0.60),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
-    MMDeviceList->GetSelection()->SetBackgroundSprite("MMListSelection");
-    MMDeviceList->GetListToggle()->GetClickable()->SetBackgroundSprite("MMListScrollDown");
-    MMDeviceList->GetSelectionList()->GetBoxBack()->SetBackgroundSprite("MMListBackground");
-    MMDeviceList->GetSelectionList()->GetVertScroll()->GetScrollBack()->SetBackgroundSprite("MMListScrollBackground");
-    MMDeviceList->GetSelectionList()->GetVertScroll()->GetScroller()->GetClickable()->SetBackgroundSprite("MMListScroller");
-    MMDeviceList->GetSelectionList()->GetVertScroll()->GetScroller()->GetClickable()->SetHoveredSprite("MMHoveredListScroller");
-    MMDeviceList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->GetClickable()->SetBackgroundSprite("MMListScrollDown");
-    MMDeviceList->GetSelectionList()->GetVertScroll()->GetDownRightButton()->GetClickable()->SetHoveredSprite("MMHoveredListScrollDown");
-    MMDeviceList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->GetClickable()->SetBackgroundSprite("MMListScrollUp");
-    MMDeviceList->GetSelectionList()->GetVertScroll()->GetUpLeftButton()->GetClickable()->SetHoveredSprite("MMHoveredListScrollUp");
-    UI::CheckBox* MMMuteBox = MMAudioSet->Collection->CreateCheckBox("MS_MuteBox",UI::RenderableRect(Vector2(0.62, 0.60),Vector2(0.11, 0.05),true),MMTextLineHeight,"Mute");
-    MMMuteBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
-    MMMuteBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
-    MMMuteBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
-    MMMuteBox->AddWidgetListener(new OptsAudioMute());
     //End of Main Menu Screen
 
     //Make the Game screen and associated layers.
@@ -1106,59 +1328,41 @@ bool CatchApp::IsAThrowable(WorldObject* Throwable) const
 
 bool CatchApp::IsInsideAnyStartZone(Debris* Throwable) const
 {
-    if(StartAreas.empty())
+    if( this->StartAreas.empty() )
         return false;
     for( Whole X = 0 ; X < StartAreas.size() ; X++ )
     {
-        if(StartAreas[X]->IsInside(Throwable))
+        if( StartAreas[X]->IsInside(Throwable) )
             return true;
     }
     return false;
 }
 
 void CatchApp::RegisterStartArea(StartArea* Start)
-{
-    StartAreas.push_back(Start);
-}
+    { this->StartAreas.push_back(Start); }
 
 void CatchApp::AddThrowable(Debris* Throwable)
-{
-    ThrownItems.push_back(Throwable);
-}
+    { this->ThrownItems.push_back(Throwable); }
 
 CatchApp::ThrowableContainer& CatchApp::GetThrowables()
-{
-    return ThrownItems;
-}
+    { return this->ThrownItems; }
 
 LevelLoader* CatchApp::GetLevelLoader() const
-{
-    return Loader;
-}
+    { return this->Loader; }
 
 LevelScorer* CatchApp::GetLevelScorer() const
-{
-    return Scorer;
-}
+    { return this->Scorer; }
 
 ProfileManager* CatchApp::GetProfiles() const
-{
-    return Profiles;
-}
+    { return this->Profiles; }
 
 ItemShop* CatchApp::GetItemShop() const
-{
-    return Shop;
-}
+    { return this->Shop; }
 
 Timer* CatchApp::GetLevelTimer() const
-{
-    return LevelTimer;
-}
+    { return this->LevelTimer; }
 
 StopWatchTimer* CatchApp::GetEndTimer() const
-{
-    return EndTimer;
-}
+    { return this->EndTimer; }
 
 #endif

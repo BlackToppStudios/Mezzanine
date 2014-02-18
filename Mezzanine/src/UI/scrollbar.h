@@ -111,6 +111,9 @@ namespace Mezzanine
             /// @brief The distance the scroller is to be moved when the up, left, down, or right buttons are clicked.
             Real IncrementDistance;
             /// @internal
+            /// @brief The size of the scroller on the appropriate axis relative to the ScrollBack.
+            Real ScrollerSize;
+            /// @internal
             /// @brief Stores whether or not this scrollbar should hide when there is 1 page or less of list items.  Only used when this is set as a PageProvider.
             Boolean AutoHideScroll;
 
