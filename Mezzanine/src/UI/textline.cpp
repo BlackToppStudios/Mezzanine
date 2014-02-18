@@ -69,8 +69,10 @@ namespace Mezzanine
 
         void TextLine::SetAlignment(const UI::LinearAlignment Align)
         {
-            this->Alignment = Align;
-            this->RecalculateOffsets();
+            if( this->Alignment != Align ) {
+                this->Alignment = Align;
+                this->RecalculateOffsets();
+            }
         }
 
         UI::LinearAlignment TextLine::GetAlignment() const

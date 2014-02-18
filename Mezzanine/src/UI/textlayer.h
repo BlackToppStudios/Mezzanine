@@ -356,6 +356,9 @@ namespace Mezzanine
             // TextLine Methods
 
             /// @brief Creates a new TextLine.
+            /// @note One textline will be auto-created when a text layer is constructed.  It's default horizontal alignment
+            /// will be to the left.  Additional text lines will be given the alignment of the last text line in the layers
+            /// text line container.
             /// @return Returns a pointer to the created TextLine.
             virtual TextLine* CreateTextLine();
             /// @brief Gets the TextLine at the specified offset position.
@@ -374,6 +377,9 @@ namespace Mezzanine
             /// @brief Destroys all TextLines in this layer.
             virtual void DestroyAllTextLines();
 
+            /// @brief Sets the horizontal alignment of every textline in this layer.
+            /// @param Align A LinearAlignment enum value indicating how each text line in this layer should align it's text.
+            virtual void SetTextLineHorizontalAlignment(const UI::LinearAlignment Align);
             /// @brief Sets the alignment used to determine the start position of the textlines in this layer.
             /// @note TextLines can easily run out of room in a given layer.  If the combined vertical height of the TextLines
             /// in this layer exceed the size given for rendering then this setting is ignored, and text will render from the top.
