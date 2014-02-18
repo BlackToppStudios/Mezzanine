@@ -163,7 +163,7 @@ Whole LevelScorer::PresentFinalScore()
     BreakdownList->AddCell(TimeBonusCell);
 
     Whole ObjectiveScore = 0;
-    /*for(  ;  ;  )
+    for(  ;  ;  )
     {
         std::stringstream namestream;
         namestream << "Condition" << ;
