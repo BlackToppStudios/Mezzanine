@@ -359,7 +359,7 @@ class lua51tests : public UnitTestGroup
 
 
 
-                /// @TODO still need to test OS, Debug, Mezz and MezzSafe
+                /// @TODO still need to test OS, Debug
                 /*
                 virtual void OpenOSLibrary();
 

@@ -199,8 +199,9 @@ int main (int argc, char** argv)
     //need to load external scripts here
     for(vector<String>::iterator Iter = LoadList.begin(); Iter!=LoadList.end(); Iter++)
     {
+        //if
         // look in current dir, PATH
-
+        //StringTools::EndsWith(*Iter,".lua",false);
     }
 
     if(ReadFromStdIn)
