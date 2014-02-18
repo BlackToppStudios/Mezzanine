@@ -37,41 +37,46 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef EXECUTOR_H
+#define EXECUTOR_H
 
-#include <iostream>
-#include <mezzanine.h>
-#include "replcppstream.h"
+#include <datatypes.h>
+#include <Scripting/Lua51/lua51scriptingengine.h>
 
-using namespace Mezzanine;
-using namespace std;
+/// @file
+/// @brief A class to comtain the complexity of executing the lua commands.
 
-REPLCppStream::REPLCppStream(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
-    : REPL(TargetExecutor, StartingPrompt)
-{}
-
-void REPLCppStream::Launch()
+/// @brief The information required for the REPL to act on the results of command excution.
+struct ExecutionResults
 {
-    String CurrentInput;
-    ExecutionResults CurrentResults = Doer.Do("copyright");
+    /// @brief The Results the REPL should display.
+    Mezzanine::String Output;
+    /// @brief Should the REPL quit.
+    Mezzanine::Boolean Quit;
 
-    while(!CurrentResults.Quit)
-    {
-        if(CurrentResults.Output.size())
-            { cout << CurrentResults.Output << endl; }
-        cout << Prompt;
-        getline(cin,CurrentInput);
-        if(cin.eof()) // Ctrl+D
-        {
-            CurrentResults.Quit = true;
-            cout << endl;
-        }
-        else if(!cin.good()) //??
-        {
-            CurrentResults.Quit = true;
-            cout << "Quitting because of unexpected input condition," << endl;
-        }
-        else // All Good!
-            { CurrentResults = Doer.Do(CurrentInput); }
-    }
+    /// @brief An initializing constructor
+    /// @param DesiredOutput What does the language think the REPL should print
+    /// @param Exit Does the executor think the REPL shold Quit.
+    ExecutionResults(const Mezzanine::String& DesiredOutput="", Mezzanine::Boolean Exit = false)
+        : Output(DesiredOutput), Quit(Exit)
+    {}
+};
 
-}
+/// @brief What a class that will Read input, Evaluate, Print, and Loop back to do it again requires.
+class Executor
+{
+    private:
+        /// @brief The actual Lua intrepretter
+        Mezzanine::Scripting::Lua::Lua51ScriptingEngine& LuaEngine;
+
+    public:
+        /// @brief Initializing constructor
+        /// @param TargetExecutor A Lua sript command interpretter that the commands will be executed against.
+        Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine);
+
+        /// @brief Actually Do one command line worth of stuff.
+        /// @param CommandLine A string of lua or commands to execute.
+        ExecutionResults Do(Mezzanine::String CommandLine);
+};
+
+#endif

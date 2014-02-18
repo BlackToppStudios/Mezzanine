@@ -40,38 +40,33 @@
 
 #include <iostream>
 #include <mezzanine.h>
-#include "replcppstream.h"
+
+#include "executor.h"
 
 using namespace Mezzanine;
 using namespace std;
 
-REPLCppStream::REPLCppStream(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
-    : REPL(TargetExecutor, StartingPrompt)
+Executor::Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine)
+    : LuaEngine(TargetEngine)
 {}
 
-void REPLCppStream::Launch()
+ExecutionResults Executor::Do(Mezzanine::String CommandLine)
 {
-    String CurrentInput;
-    ExecutionResults CurrentResults = Doer.Do("copyright");
+    if(CommandLine=="exit"||CommandLine=="quit")
+        { return ExecutionResults("Exiting",true); }
+    if(CommandLine=="copyright")
+        { return ExecutionResults("Mezzanine Entrelua © Copyright 2010-2014 BlackTopp Studios Inc.\nLua 5.1 Copyright (C) 1994-2013 Lua.org, PUC-Rio"); }
 
-    while(!CurrentResults.Quit)
+    ExecutionResults Results;
+    // Execute Lua here
+    try
     {
-        if(CurrentResults.Output.size())
-            { cout << CurrentResults.Output << endl; }
-        cout << Prompt;
-        getline(cin,CurrentInput);
-        if(cin.eof()) // Ctrl+D
-        {
-            CurrentResults.Quit = true;
-            cout << endl;
-        }
-        else if(!cin.good()) //??
-        {
-            CurrentResults.Quit = true;
-            cout << "Quitting because of unexpected input condition," << endl;
-        }
-        else // All Good!
-            { CurrentResults = Doer.Do(CurrentInput); }
+
+        LuaEngine.Execute(CommandLine);
+    } catch (Exception& e) {
+        Results.Output = e.what();
     }
 
+    return Results;
 }
+

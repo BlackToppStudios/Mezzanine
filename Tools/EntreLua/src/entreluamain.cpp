@@ -49,6 +49,7 @@ enum ExitCodes
 #include <tclap/CmdLine.h>
 #include <iostream>
 #include <mezzanine.h>
+#include <string>
 
 #include "repl.h"
 #include "replcppstream.h"
@@ -114,7 +115,7 @@ int main (int argc, char** argv)
         TCLAP::MultiArg<string> OpenlibArg("o", "openlib", "Library to open before shell starts", false, &LibaryVals, cmd);
         TCLAP::MultiArg<string> CloselibArg("c", "closelib", "Do not open a Library that might be opened before shell starts", false, &LibaryVals, cmd);
 
-        TCLAP::MultiArg<String> LoadArg("l", "load", "Requires/Loads a Module.", false, "filename", cmd);
+         TCLAP::MultiArg<String> LoadArg("l", "load", "Requires/Loads a Module.", false, "filename", cmd);
         TCLAP::ValueArg<std::string> StatementArg("e", "execute", "Execute a Lua script entered at the command line.", false, "", "Lua String", cmd);
         TCLAP::SwitchArg InteractiveSwitch("i","interactive","Enter interactive shell after other items are executed.", cmd, false);
         TCLAP::SwitchArg StdinSwitch(":","stdin","Read from the Standard Input and execute whatever is found there.", cmd, false);
@@ -139,13 +140,13 @@ int main (int argc, char** argv)
 
     ///////////////
     // Argument test
-    //*
+    /*
     cout << "Load libraries: " << endl;
-    for(vector<String>::iterator Iter = LoadList.begin(); Iter!=LoadList.end(); Iter++)
-        { cout << "  -" << *Iter << endl; }
+    for(vector<String>::iterator Iter = OpenList.begin(); Iter!=OpenList.end(); Iter++)
+        { cout << "  -" << Lua51ScriptingEngine::GetLibFromName(*Iter) << " - " << *Iter << endl; }
     cout << "Do not Load libraries: " << endl;
     for(vector<String>::iterator Iter = CloseList.begin(); Iter!=CloseList.end(); Iter++)
-        { cout << "  -" << *Iter << endl; }
+        { cout << "  -" << Lua51ScriptingEngine::GetLibFromName(*Iter) << " - " << *Iter << endl; }
     cout << "Execute this statement: " << StatementToExecute << endl;
     cout << "Requested to manually enter interactive shell: " << Interactive << endl;
     cout << "Requested to read from stdin: " << ReadFromStdIn << endl;
@@ -155,12 +156,75 @@ int main (int argc, char** argv)
     // */
 
     //////////////////////////////////////////////////////////////////////////////////////////
-    // Figure what to do with the options presented
+    // Determine the Libraries to load
 
-    Lua51ScriptingEngine TheLua(Lua51ScriptingEngine::DefaultLibs);
+    Integer LibsToLoad = Lua51ScriptingEngine::DefaultLibs;
+    for(vector<String>::iterator Iter = OpenList.begin(); Iter!=OpenList.end(); Iter++)
+        { LibsToLoad = LibsToLoad | Lua51ScriptingEngine::GetLibFromName(*Iter); }
+    for(vector<String>::iterator Iter = CloseList.begin(); Iter!=CloseList.end(); Iter++)
+        { LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::GetLibFromName(*Iter); }
+
+    if(LoadUnsafeMezzanine)
+    {
+        LibsToLoad = LibsToLoad | Lua51ScriptingEngine::MezzLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzSafeLib;
+        LibsToLoad = LibsToLoad | Lua51ScriptingEngine::MezzXMLLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzXMLSafeLib;
+        LibsToLoad = LibsToLoad | Lua51ScriptingEngine::MezzThreadingLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzThreadingSafeLib;
+    }
+
+    if(NoMezzanine)
+    {
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzSafeLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzXMLLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzXMLSafeLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzThreadingLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzThreadingSafeLib;
+    }
+
+    Lua51ScriptingEngine TheLua( (Lua51ScriptingEngine::Lua51Libraries)LibsToLoad );
     Executor Hooded(TheLua);
-    REPLCppStream Shell(Hooded);
-    Shell.Launch();
+    // need to set arg table here
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    // Choose and launch shell if required
+
+    // check LUA_INIT here
+
+    if(StatementToExecute.size())
+        { Hooded.Do(StatementToExecute); }
+
+    //need to load external scripts here
+    for(vector<String>::iterator Iter = LoadList.begin(); Iter!=LoadList.end(); Iter++)
+    {
+        // look in current dir, PATH
+
+    }
+
+    if(ReadFromStdIn)
+    {
+        String Total;
+        String Current;
+        while(!cin.eof() && cin.good())
+        {
+            getline(cin,Current);
+            Total += Current;
+        }
+        Hooded.Do(Total);
+    }
+
+    Boolean OtherCommands = (StatementToExecute.size()||ReadFromStdIn);
+    if( !OtherCommands || (OtherCommands && Interactive) )
+    {
+        if(SimpleShell)
+        {
+            REPLCppStream Shell(Hooded);
+            Shell.Launch();
+        }else
+            { cout << "Full Featured Shell Not implemented Use -s, --simple for now" << endl; }
+    }
 
 
 
