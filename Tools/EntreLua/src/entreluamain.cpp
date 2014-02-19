@@ -70,11 +70,12 @@ enum ExitCodes
 /// @brief This is the entry point for a Lua shell with
 /// Here are the Command line options Lua implements and our differences from them
 ///      - -e stat: executes string stat.
-///      - -l mod: "requires" mod. We check the system path.
+///      - -l mod: "requires" mod. Forces the Package Library to be loaded
 ///      - -i: enters interactive mode after running other scripts.
 ///      - -v: prints version information;
 ///      - --: stops handling options;
 ///      - -: executes stdin as a file. Lua stops handling other options after this, keep handling.
+///      - Lua script names and args
 ///
 /// With these this can be a drop in replacement for Lua in some situations. We will also add:
 ///      - --execute, --load, --interactive, --version, and --stdin: Long version of previous commands
@@ -92,6 +93,7 @@ int main (int argc, char** argv)
     vector<String> OpenList;
     vector<String> CloseList;
     vector<String> LoadList;
+    vector<String> ScriptFile;
     String StatementToExecute;
     bool Interactive;
     bool ReadFromStdIn;
@@ -123,13 +125,14 @@ int main (int argc, char** argv)
         TCLAP::MultiArg<string> OpenlibArg("o", "openlib", "Library to open before shell starts", false, &LibaryVals, cmd);
         TCLAP::MultiArg<string> CloselibArg("c", "closelib", "Do not open a Library that might be opened before shell starts", false, &LibaryVals, cmd);
 
-         TCLAP::MultiArg<String> LoadArg("l", "load", "Requires/Loads a Module.", false, "filename", cmd);
+        TCLAP::MultiArg<String> LoadArg("l", "load", "Requires/Loads a Module. Force opening of Package lib.", false, "filename", cmd);
         TCLAP::ValueArg<std::string> StatementArg("e", "execute", "Execute a Lua script entered at the command line.", false, "", "Lua String", cmd);
         TCLAP::SwitchArg InteractiveSwitch("i","interactive","Enter interactive shell after other items are executed.", cmd, false);
         TCLAP::SwitchArg StdinSwitch(":","stdin","Read from the Standard Input and execute whatever is found there.", cmd, false);
         TCLAP::SwitchArg SimpleSwitch("s","simple","Use a simpler shell input method with fewer features but that works in more places.", cmd, false);
         TCLAP::SwitchArg NoMezzanineSwitch("n", "no-mezzanine", "Do not load/open the Mezzanine by default.", cmd, false);
         TCLAP::SwitchArg UnsafeSwitch("u", "unsafe", "Load the unrestricted Mezzanine library instead of MezzanineSafe.", cmd, false);
+        TCLAP::UnlabeledMultiArg<String> ScriptAndArgs( "script", "A script to execute instead of an interactive shell", false, "script [args]", cmd);
 
         cmd.parse( argc, argv );
 
@@ -142,6 +145,7 @@ int main (int argc, char** argv)
         SimpleShell = SimpleSwitch.getValue();
         NoMezzanine = NoMezzanineSwitch.getValue();
         LoadUnsafeMezzanine = UnsafeSwitch.getValue();
+        ScriptFile=ScriptAndArgs.getValue();
     } catch (TCLAP::ArgException &e) {
         cerr << "error: " << e.error() << " for arg " << e.argId() << endl;
     }
@@ -192,23 +196,26 @@ int main (int argc, char** argv)
         LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzThreadingSafeLib;
     }
 
+    if(LoadList.size()) // The require statement is... required... for requiring things
+        { LibsToLoad = LibsToLoad | Lua51ScriptingEngine::PackageLib; }
+
     Lua51ScriptingEngine TheLua( (Lua51ScriptingEngine::Lua51Libraries)LibsToLoad );
     Executor Hooded(TheLua);
 
     //////////////////////////////////////////////////////////////////////////////////////////
     // Choose and launch shell if required
 
+    for(vector<String>::iterator Iter = LoadList.begin(); Iter!=LoadList.end(); Iter++)
+        { Hooded.Do(String("require(\"") + *Iter + String("\")\n")); }
+
     if(StatementToExecute.size())
         { Hooded.Do(StatementToExecute); }
 
-    //need to load external scripts here
-    for(vector<String>::iterator Iter = LoadList.begin(); Iter!=LoadList.end(); Iter++)
-    {
-        //
-        //if
-        // look in current dir, PATH
-        //StringTools::EndsWith(*Iter,".lua",false);
-    }
+    // This needs to be implmented still
+    cout << "Should Execute: ";
+    for(vector<String>::iterator Iter = ScriptFile.begin(); Iter!=ScriptFile.end(); Iter++)
+        { cout << *Iter << " "; }
+    cout << endl;
 
     if(ReadFromStdIn)
     {
