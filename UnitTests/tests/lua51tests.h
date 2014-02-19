@@ -316,6 +316,10 @@ class lua51tests : public UnitTestGroup
                                         "BaseLib", "Asserts, printing and coroutine,running",
                                         Scripting::Lua::Lua51ScriptingEngine::BaseLib);
 
+                TestLuaLibraryExclusion("x = package.cpath",
+                                        "PackageLib", "package.cpath",
+                                        Scripting::Lua::Lua51ScriptingEngine::PackageLib);
+
                 TestLuaLibraryExclusion("x = string.lower(\"A\")",
                                         "String", "string.lower",
                                         Scripting::Lua::Lua51ScriptingEngine::StringLib);
@@ -328,6 +332,18 @@ class lua51tests : public UnitTestGroup
                 TestLuaLibraryExclusion("x = math.abs(-10)",
                                         "Math", "math.abs",
                                         Scripting::Lua::Lua51ScriptingEngine::MathLib);
+
+                TestLuaLibraryExclusion("io.type(\"foo.txt\")",
+                                        "io", "io.type",
+                                        Scripting::Lua::Lua51ScriptingEngine::IOLib);
+
+                TestLuaLibraryExclusion("os.getenv(\"PATH\")",
+                                        "os", "os.getenv",
+                                        Scripting::Lua::Lua51ScriptingEngine::OSLib);
+
+                TestLuaLibraryExclusion("debug.getfenv(1)",
+                                        "debug", "debug.getfenv",
+                                        Scripting::Lua::Lua51ScriptingEngine::DebugLib);
 
                 TestLuaLibraryExclusion("x = 3\n"
                                         "Vec=MezzanineSafe.Vector3(3,2,1)\n"
@@ -357,15 +373,13 @@ class lua51tests : public UnitTestGroup
                                         "MezzanineXML", "XML.Document",
                                         Scripting::Lua::Lua51ScriptingEngine::MezzLib|Scripting::Lua::Lua51ScriptingEngine::MezzXMLLib);
 
+                TestLuaLibraryExclusion("mut=MezzanineSafe.Threading.Mutex()\n",
+                                        "MezzanineThreadingSafe", "MezzanineSafe.Threading.Mutex",
+                                        Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib|Scripting::Lua::Lua51ScriptingEngine::MezzThreadingSafeLib);
 
-
-                /// @TODO still need to test OS, Debug, Mezz and MezzSafe
-                /*
-                virtual void OpenOSLibrary();
-
-                /// Lua manual at http://www.lua.org/manual/5.1/manual.html#5.9 .
-                virtual void OpenDebugLibrary();
-                */
+                TestLuaLibraryExclusion("mut=Mezzanine.Threading.Mutex()\n",
+                                        "MezzanineThreading", "MezzanineSafe.Threading.Mutex",
+                                        Scripting::Lua::Lua51ScriptingEngine::MezzLib|Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLib);
             }
 
             {

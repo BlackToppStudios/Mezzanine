@@ -260,7 +260,11 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////////////
             // Construction/Deconstruction
             Lua51ScriptingEngine::Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen) : State(luaL_newstate())
-                { OpenLibraries(LibrariesToOpen); }
+            {
+                if(NULL==State)
+                    { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
+                OpenLibraries(LibrariesToOpen);
+            }
 
             Lua51ScriptingEngine::~Lua51ScriptingEngine()
                 { lua_close(State); }
@@ -437,21 +441,53 @@ namespace Mezzanine
                 { OpenLibraries(AllLibs); }
 
             void Lua51ScriptingEngine::OpenBaseLibrary()
-                { luaopen_base(State); }
+            {
+                lua_pushcfunction(State, luaopen_base);
+                lua_pushliteral(State, LUA_COLIBNAME);
+                lua_call(State, 1, 0);
+            }
             void Lua51ScriptingEngine::OpenPackageLibrary()
-                { luaopen_package(State); }
+            {
+                lua_pushcfunction(State, luaopen_package);
+                lua_pushliteral(State, LUA_LOADLIBNAME);
+                lua_call(State, 1, 0);
+            }
             void Lua51ScriptingEngine::OpenStringLibrary()
-                { luaopen_string(State); }
+            {
+                lua_pushcfunction(State, luaopen_string);
+                lua_pushliteral(State, LUA_STRLIBNAME);
+                lua_call(State, 1, 0);
+            }
             void Lua51ScriptingEngine::OpenTableLibrary()
-                { luaopen_table(State); }
+            {
+                lua_pushcfunction(State, luaopen_table);
+                lua_pushliteral(State, LUA_TABLIBNAME);
+                lua_call(State, 1, 0);
+            }
             void Lua51ScriptingEngine::OpenMathLibrary()
-                { luaopen_math(State); }
+            {
+                lua_pushcfunction(State, luaopen_math);
+                lua_pushliteral(State, LUA_MATHLIBNAME);
+                lua_call(State, 1, 0);
+            }
             void Lua51ScriptingEngine::OpenIOLibrary()
-                { luaopen_io(State); }
+            {
+                lua_pushcfunction(State, luaopen_io);
+                lua_pushliteral(State, LUA_IOLIBNAME);
+                lua_call(State, 1, 0);
+            }
             void Lua51ScriptingEngine::OpenOSLibrary()
-                { luaopen_os(State); }
+            {
+                lua_pushcfunction(State, luaopen_os);
+                lua_pushliteral(State, LUA_OSLIBNAME);
+                lua_call(State, 1, 0);
+            }
             void Lua51ScriptingEngine::OpenDebugLibrary()
-                { luaopen_os(State); }
+            {
+                lua_pushcfunction(State, luaopen_debug);
+                lua_pushliteral(State, LUA_DBLIBNAME);
+                lua_call(State, 1, 0);
+            }
 
             void Lua51ScriptingEngine::OpenMezzanineLibrary()
             {
