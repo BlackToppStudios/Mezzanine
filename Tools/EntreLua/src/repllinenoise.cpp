@@ -38,23 +38,45 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-/// @file
-/// @brief The implementation of the REPL interface
+/// @file The implementation for a full featured line noise based REPL
 
-#include "repl.h"
+#include <mezzanine.h>
+#include "linenoise/linenoise.h"
+#include "repllinenoise.h"
 
 using namespace Mezzanine;
 using namespace std;
 
-REPL::REPL(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
-    : Prompt(StartingPrompt), Doer(TargetExecutor)
-{
+REPLLineNoise::REPLLineNoise(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
+    : REPL(TargetExecutor, StartingPrompt)
+{}
 
+/// @brief Tab completion callback
+/// @param CurrentInput The Current Input on the command line
+/// @param lc Line completionforthis current iteration of thetab press
+void TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
+{
+   if (CurrentInput[0] == 'h') {
+       linenoiseAddCompletion(lc,String("hello").c_str());
+   }
 }
 
-Mezzanine::String REPL::GetPrompt() const
-    { return Prompt; }
+#include <iostream>
+void REPLLineNoise::Launch()
+{
+    String CurrentInput;
+    ExecutionResults CurrentResults = Doer.Do("copyright");
+    String HistoryDir(ResourceManager::GetCurrentUserDataDir() + ResourceManager::GetDirectorySeparator() + ".EntreLua" + ResourceManager::GetDirectorySeparator());
+    String HistoryFile("history.txt");
+    String HistoryFullName(HistoryDir+HistoryFile);
 
-void REPL::SetPrompt(const Mezzanine::String& Value)
-    { Prompt = Value; }
+    ResourceManager::CreateDirectoryPath(HistoryDir);
+
+
+    //ResourceManager::CreateDirectoryPath()
+    int Error = linenoiseHistoryLoad("history.txt");
+
+
+
+}
 

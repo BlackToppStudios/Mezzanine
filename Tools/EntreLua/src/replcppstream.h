@@ -44,7 +44,7 @@
 #include "executor.h"
 
 /// @file
-/// @brief An implementation of the REPL written with C++ iostreams
+/// @brief The Definition of an implementation of the REPL written with C++ iostreams
 
 
 /// @brief A class that will take user input from a

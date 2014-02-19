@@ -40,11 +40,11 @@
 #ifndef EXECUTOR_H
 #define EXECUTOR_H
 
-#include <datatypes.h>
-#include <Scripting/Lua51/lua51scriptingengine.h>
-
 /// @file
 /// @brief A class to comtain the complexity of executing the lua commands.
+
+#include <datatypes.h>
+#include <Scripting/Lua51/lua51scriptingengine.h>
 
 /// @brief The information required for the REPL to act on the results of command excution.
 struct ExecutionResults
@@ -53,12 +53,18 @@ struct ExecutionResults
     Mezzanine::String Output;
     /// @brief Should the REPL quit.
     Mezzanine::Boolean Quit;
+    /// @brief Should this be part of a multiline continuation?
+    Mezzanine::Boolean Multiline;
 
     /// @brief An initializing constructor
     /// @param DesiredOutput What does the language think the REPL should print
     /// @param Exit Does the executor think the REPL shold Quit.
-    ExecutionResults(const Mezzanine::String& DesiredOutput="", Mezzanine::Boolean Exit = false)
-        : Output(DesiredOutput), Quit(Exit)
+    ExecutionResults(const Mezzanine::String& DesiredOutput="",
+                     Mezzanine::Boolean Exit = false,
+                     Mezzanine::Boolean MultilineContinuation = false)
+        : Output(DesiredOutput),
+          Quit(Exit),
+          Multiline(MultilineContinuation)
     {}
 };
 

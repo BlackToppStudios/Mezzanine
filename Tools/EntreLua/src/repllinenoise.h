@@ -37,24 +37,26 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-
-/// @file
-/// @brief The implementation of the REPL interface
+#ifndef REPL_LINENOISE_H
+#define REPL_LINENOISE_H
 
 #include "repl.h"
+#include "executor.h"
 
-using namespace Mezzanine;
-using namespace std;
+/// @file
+/// @brief The definition of an implementation of a feature rich REPL written with linenoise
 
-REPL::REPL(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
-    : Prompt(StartingPrompt), Doer(TargetExecutor)
+/// @brief A class that will take user input from a
+class REPLLineNoise : public REPL
 {
+    public:
+        /// @brief Initializing constructor
+        /// @param TargetExecutor A Lua sripting engine that the commands will be executed against.
+        /// @param StartingPrompt The text to start the line
+        REPLLineNoise(Executor& TargetExecutor, Mezzanine::String StartingPrompt="> ");
 
-}
+        /// @brief This is the actual the loop that will do the REPLing
+        virtual void Launch();
+};
 
-Mezzanine::String REPL::GetPrompt() const
-    { return Prompt; }
-
-void REPL::SetPrompt(const Mezzanine::String& Value)
-    { Prompt = Value; }
-
+#endif

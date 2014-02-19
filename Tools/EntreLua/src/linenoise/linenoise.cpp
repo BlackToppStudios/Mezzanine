@@ -761,7 +761,7 @@ void linenoiseSetCompletionCallback(linenoiseCompletionCallback *fn) {
     completionCallback = fn;
 }
 
-void linenoiseAddCompletion(linenoiseCompletions *lc, char *str) {
+void linenoiseAddCompletion(linenoiseCompletions *lc, const char *str) {
     size_t len = strlen(str);
     char *copy = (char*)malloc(len+1);
     memcpy(copy,str,len+1);

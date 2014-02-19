@@ -38,6 +38,27 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
+/// @file
+/// @brief This is the entry point of the EntreLua shell.
+/// @details It is a bit messy in this file, but it really just parses
+/// the command line options, includes the rest of the EntreLua and
+/// dispatches commands to the other components. It doesn't even really
+/// parse the command line options, that is done by a library, verbosely
+
+
+#include <tclap/CmdLine.h>
+#include <iostream>
+#include <mezzanine.h>
+#include <string>
+
+#include "replcppstream.h"
+#include "repllinenoise.h"
+#include "executor.h"
+
+using namespace Mezzanine;
+using namespace Mezzanine::Scripting::Lua;
+using namespace std;
+
 /// @brief Possible ways to exit the EntreLua Shell
 enum ExitCodes
 {
@@ -45,19 +66,6 @@ enum ExitCodes
     ExitInvalidArguments    = 1,    ///< At least some invalid args were passed on the command line
     ExitFailure             = 2     ///< Something failed after command line arguments
 };
-
-#include <tclap/CmdLine.h>
-#include <iostream>
-#include <mezzanine.h>
-#include <string>
-
-#include "repl.h"
-#include "replcppstream.h"
-#include "executor.h"
-
-using namespace Mezzanine;
-using namespace Mezzanine::Scripting::Lua;
-using namespace std;
 
 /// @brief This is the entry point for a Lua shell with
 /// Here are the Command line options Lua implements and our differences from them
@@ -80,7 +88,7 @@ using namespace std;
 /// @param argv Is interpretted as the arguments passed in from the launching shell.
 int main (int argc, char** argv)
 {
-    vector<Mezzanine::String> LibaryList;
+    vector<Mezzanine::String> LibraryList;
     vector<String> OpenList;
     vector<String> CloseList;
     vector<String> LoadList;
@@ -94,24 +102,24 @@ int main (int argc, char** argv)
     {
         TCLAP::CmdLine cmd("EntreLua - Mezzanine Lua Shell", ' ', "0.01 with Lua5.1");
 
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::NoLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::BaseLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::PackageLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::StringLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::TableLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MathLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::IOLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::OSLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DebugLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzSafeLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzXMLSafeLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingSafeLibName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DefaultLibsName);
-        LibaryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::AllLibsName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::NoLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::BaseLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::PackageLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::StringLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::TableLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MathLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::IOLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::OSLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DebugLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzSafeLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzXMLSafeLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingSafeLibName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DefaultLibsName);
+        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::AllLibsName);
 
-        TCLAP::ValuesConstraint<Mezzanine::String> LibaryVals( LibaryList );
+        TCLAP::ValuesConstraint<Mezzanine::String> LibaryVals( LibraryList );
         TCLAP::MultiArg<string> OpenlibArg("o", "openlib", "Library to open before shell starts", false, &LibaryVals, cmd);
         TCLAP::MultiArg<string> CloselibArg("c", "closelib", "Do not open a Library that might be opened before shell starts", false, &LibaryVals, cmd);
 
@@ -186,12 +194,9 @@ int main (int argc, char** argv)
 
     Lua51ScriptingEngine TheLua( (Lua51ScriptingEngine::Lua51Libraries)LibsToLoad );
     Executor Hooded(TheLua);
-    // need to set arg table here
 
     //////////////////////////////////////////////////////////////////////////////////////////
     // Choose and launch shell if required
-
-    // check LUA_INIT here
 
     if(StatementToExecute.size())
         { Hooded.Do(StatementToExecute); }
@@ -199,6 +204,7 @@ int main (int argc, char** argv)
     //need to load external scripts here
     for(vector<String>::iterator Iter = LoadList.begin(); Iter!=LoadList.end(); Iter++)
     {
+        //
         //if
         // look in current dir, PATH
         //StringTools::EndsWith(*Iter,".lua",false);
@@ -210,11 +216,13 @@ int main (int argc, char** argv)
         String Current;
         while(!cin.eof() && cin.good())
         {
-            getline(cin,Current);
+            getline(cin, Current);
             Total += Current;
         }
         Hooded.Do(Total);
     }
+
+    printf("Does output from printf Display on The machine in question?\n");
 
     Boolean OtherCommands = (StatementToExecute.size()||ReadFromStdIn);
     if( !OtherCommands || (OtherCommands && Interactive) )
@@ -223,8 +231,10 @@ int main (int argc, char** argv)
         {
             REPLCppStream Shell(Hooded);
             Shell.Launch();
-        }else
-            { cout << "Full Featured Shell Not implemented Use -s, --simple for now" << endl; }
+        }else{
+            REPLLineNoise Shell(Hooded);
+            Shell.Launch();
+        }
     }
 
 
