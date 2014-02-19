@@ -218,7 +218,7 @@ namespace Mezzanine
         /// @brief Creates all directories that do not exist in the provided path.
         /// @param DirectoryPath The path for the newly created directory or directories.
         /// @return Returns true if all directories were created, false in the case of a non-critical error.
-        bool CreateDirectoryPath(const String& DirectoryPath);
+        static bool CreateDirectoryPath(const String& DirectoryPath);
 
         /// @brief Get a Listing of the files and subdirectories in a directory.
         /// @details This follows normal command line conventions, "." is the current directory,

@@ -76,6 +76,8 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SOURCE_DIR}repl.h"
     "${${PROJECT_NAME}_SOURCE_DIR}replcppstream.cpp"
     "${${PROJECT_NAME}_SOURCE_DIR}replcppstream.h"
+    "${${PROJECT_NAME}_SOURCE_DIR}repllinenoise.cpp"
+    "${${PROJECT_NAME}_SOURCE_DIR}repllinenoise.h"
 
     "${${PROJECT_NAME}_SOURCE_DIR}linenoise/fmacros.h"
     "${${PROJECT_NAME}_SOURCE_DIR}linenoise/linenoise.cpp"

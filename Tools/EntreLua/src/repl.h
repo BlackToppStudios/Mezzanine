@@ -40,18 +40,13 @@
 #ifndef REPL_H
 #define REPL_H
 
+/// @file
+/// @brief The definition of the user interface for this shell.
+
 #include <datatypes.h>
 #include <Scripting/Lua51/lua51scriptingengine.h>
 
 #include "executor.h"
-
-/// @file
-/// @brief The definition of the user interface for this shell.
-
-class REPL;
-
-/// @brief A Functor definition that return true if the REPL should continue and false otherwise
-typedef bool(REPLContinueCallback)(REPL*);
 
 /// @brief What a class that will Read input, Evaluate, Print, and Loop back to do it again requires.
 class REPL
@@ -75,8 +70,8 @@ class REPL
         /// @brief What text is shown with the prompt.
         /// @return A string containing the prompt text.
         Mezzanine::String GetPrompt() const;
-        /// @brief
-        /// @param
+        /// @brief Set the prompt to something new
+        /// @param Value the new value for the shell prompt
         void SetPrompt(const Mezzanine::String& Value);
 };
 

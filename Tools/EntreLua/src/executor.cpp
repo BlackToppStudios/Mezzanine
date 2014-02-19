@@ -38,6 +38,9 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
+/// @file
+///  @brief The imlementation of the command interpretter
+
 #include <iostream>
 #include <mezzanine.h>
 
@@ -58,10 +61,8 @@ ExecutionResults Executor::Do(Mezzanine::String CommandLine)
         { return ExecutionResults("Mezzanine Entrelua © Copyright 2010-2014 BlackTopp Studios Inc.\nLua 5.1 Copyright (C) 1994-2013 Lua.org, PUC-Rio"); }
 
     ExecutionResults Results;
-    // Execute Lua here
     try
     {
-
         LuaEngine.Execute(CommandLine);
     } catch (Exception& e) {
         Results.Output = e.what();

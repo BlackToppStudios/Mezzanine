@@ -38,6 +38,8 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
+/// @file The implementation for a simple iostream based REPL
+
 #include <iostream>
 #include <mezzanine.h>
 #include "replcppstream.h"

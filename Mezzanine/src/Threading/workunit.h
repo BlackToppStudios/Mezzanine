@@ -162,11 +162,11 @@ namespace Mezzanine
                 /////////////////////////////////////////////////////////////////////////////////////////////
                 // Data Members
             protected:
-                /// @brief A collection of of workunits that must be complete before this one can start.
-                std::vector<iWorkUnit*> Dependencies;
-
                 /// @brief A rolling average of execution times.
                 DefaultRollingAverage<Whole>::Type PerformanceLog;
+
+                /// @brief A collection of of workunits that must be complete before this one can start.
+                std::vector<iWorkUnit*> Dependencies;
 
                 /// @brief This controls do work with this after it has.
                 Int32 CurrentRunningState;
