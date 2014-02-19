@@ -378,7 +378,7 @@ namespace Mezzanine
         {
             PathAttempt.append( FolderVec->at(VecIndex) );
             PathAttempt.append( 1, SysSlash );
-            Result = this->CreateDirectory( PathAttempt );
+            Result = CreateDirectory( PathAttempt );
         }
         return Result;
     }
