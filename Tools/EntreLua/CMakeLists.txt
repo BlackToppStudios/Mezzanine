@@ -172,7 +172,7 @@ CopyLibraryFromMezzanineDuringBuild( "Mezzanine" )
 if(${WIN32})
     message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
     message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
+    #set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
 endif(${WIN32})
 
 # Linux File Copy Specific Items
