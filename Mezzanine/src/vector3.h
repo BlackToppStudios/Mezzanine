@@ -449,8 +449,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        /// void DeSerializableClass::ProtoDeSerialize(const XML::Node&);
-        /// static String DeSerializableClass::SerializableName();
+        // void DeSerializableClass::ProtoDeSerialize(const XML::Node&);
+        // static String DeSerializableClass::SerializableName();
         /// @brief Convert this class to an XML::Node ready for serialization
         /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
         void ProtoSerialize(XML::Node& CurrentRoot) const;
