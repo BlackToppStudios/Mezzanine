@@ -381,8 +381,9 @@ namespace Mezzanine
             // Collect the data we need from the provided characters
             for( CharacterIterator CharIt = First ; CharIt != Last ; ++CharIt )
             {
-                SequenceLength += (*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph());
+                SequenceLength += (*CharIt)->GetCharacterAdvance( Previous != NULL ? Previous->GetCharGlyph() : NULL );
                 Tallest = std::max(Tallest,(*CharIt)->GetLineHeight());
+                Previous = (*CharIt);
             }
 
             Real AddedLength = SequenceLength + this->CurrLength;
@@ -412,7 +413,7 @@ namespace Mezzanine
             // Loop through our range
             for(  ; CharIt != Last ; ++CharIt )
             {
-                Real CharAdvance = (*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph());
+                Real CharAdvance = (*CharIt)->GetCharacterAdvance( Previous != NULL ? Previous->GetCharGlyph() : NULL );
                 Real AddedLength = CurrLength + CharAdvance;
                 if( AddedLength <= MaxWidth ) {
                     this->CurrLength = AddedLength;
@@ -420,6 +421,7 @@ namespace Mezzanine
                 }else{
                     break;
                 }
+                Previous = (*CharIt);
             }
 
             // Append, adjust offsets, and return
@@ -530,8 +532,9 @@ namespace Mezzanine
             // Collect the data we need from the provided characters
             for( CharacterIterator CharIt = LastCopy ; CharIt != FirstCopy ; --CharIt )
             {
-                SequenceLength += (*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph());
+                SequenceLength += (*CharIt)->GetCharacterAdvance( Previous != NULL ? Previous->GetCharGlyph() : NULL );
                 Tallest = std::max(Tallest,(*CharIt)->GetLineHeight());
+                Previous = (*CharIt);
             }
 
             Real AddedLength = SequenceLength + this->CurrLength;
@@ -567,7 +570,7 @@ namespace Mezzanine
             // Loop through our range
             for(  ; CharIt != FirstCopy ; --CharIt )
             {
-                Real CharAdvance = (*CharIt)->GetCharacterAdvance(Previous->GetCharGlyph());
+                Real CharAdvance = (*CharIt)->GetCharacterAdvance( Previous != NULL ? Previous->GetCharGlyph() : NULL );
                 Real AddedLength = CurrLength + CharAdvance;
                 if( AddedLength <= MaxWidth ) {
                     this->CurrLength = AddedLength;
@@ -575,6 +578,7 @@ namespace Mezzanine
                 }else{
                     break;
                 }
+                Previous = (*CharIt);
             }
 
             // Append, adjust offsets, and return

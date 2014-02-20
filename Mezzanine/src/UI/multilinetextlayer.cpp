@@ -69,6 +69,9 @@ namespace Mezzanine
 
         void MultiLineTextLayer::PopulateTextLinesImpl(const Real MaxWidth)
         {
+            //if( MaxWidth <= 0 )
+            //    return;
+
             Whole LineIndex = 0;
             Boolean NewLineDetected = false;
             TextLine* CurrLine = this->GetOrCreateTextLine(LineIndex);
@@ -97,6 +100,11 @@ namespace Mezzanine
                         CharacterIterator Result = CurrLine->AppendFittingCharacters(Start,End,MaxWidth);
                         if( Result != End || NewLineDetected ) {
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
+                            End = CurrLine->AppendFittingCharacters(Result,End,MaxWidth);
+                            if( Start == End ) {
+                                // If these are the same, then we lack the space to append anything.
+                                break;
+                            }
                         }
                     }else{
                         // Find the next whitespace character
@@ -115,6 +123,10 @@ namespace Mezzanine
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
                             if( !CurrLine->AppendCharacters(Start,End,MaxWidth) ) {
                                 End = CurrLine->AppendFittingCharacters(Start,End,MaxWidth);
+                                if( Start == End ) {
+                                    // If these are the same, then we lack the space to append anything.
+                                    break;
+                                }
                             }
                         }
                     }
@@ -154,6 +166,11 @@ namespace Mezzanine
                         CharacterIterator Result = CurrLine->AppendFittingCharacters(AppendPair,MaxWidth);
                         if( Result != Start || NewLineDetected ) {
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
+                            Start = CurrLine->AppendFittingCharacters(Result,End,MaxWidth);
+                            if( End == Start ) {
+                                // If these are the same, then we lack the space to append anything.
+                                break;
+                            }
                         }
                     }else{
                         // Find the next whitespace character
@@ -176,6 +193,10 @@ namespace Mezzanine
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
                             if( !CurrLine->AppendCharacters(AppendPair,MaxWidth) ) {
                                 Start = CurrLine->AppendFittingCharacters(AppendPair,MaxWidth);
+                                if( End == Start ) {
+                                    // If these are the same, then we lack the space to append anything.
+                                    break;
+                                }
                             }
                         }
                     }

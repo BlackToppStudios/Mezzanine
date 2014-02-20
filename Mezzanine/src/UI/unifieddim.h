@@ -69,6 +69,10 @@ namespace Mezzanine
 
             /// @brief Class constructor.
             UnifiedDim() : Rel(0), Abs(0) {}
+            /// @brief Relative constructor.
+            /// @param Relative The relative portion of this dimension.
+            UnifiedDim(const Real& Relative)
+                : Rel(Relative), Abs(0) {}
             /// @brief Descriptive constructor.
             /// @param Relative The relative portion of this dimension.
             /// @param Absolute The absolute portion of this dimension.
@@ -319,6 +323,11 @@ namespace Mezzanine
                 this->X.SetIdentity();
                 this->Y.SetIdentity();
             }
+            /// @brief Real constructor.
+            /// @param x The dimension on the X plane.
+            /// @param y The dimension on the Y plane.
+            UnifiedVec2(const Real& x, const Real& y)
+                : X(x), Y(y) {}
             /// @brief UnifiedDim constructor.
             /// @param x The dimension on the X plane.
             /// @param y The dimension on the Y plane.

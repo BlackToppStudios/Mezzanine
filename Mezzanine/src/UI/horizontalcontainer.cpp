@@ -120,8 +120,11 @@ namespace Mezzanine
             this->WorkAreaSize.X -= HalfPadding;
 
             // Now our work area is updated, so we can update our provider and get our target work area position.
-            this->XProvider->_NotifyContainerUpdated();
-            Real XTarget = ( this->XProvider->GetCurrentXPage() - 1 ) * this->WorkAreaSize.X;
+            Real XTarget = 0;
+            if( this->XProvider != NULL ) {
+                this->XProvider->_NotifyContainerUpdated();
+                XTarget = ( this->XProvider->GetCurrentXPage() - 1 ) * this->WorkAreaSize.X;
+            }
 
             // Set up our data for the loop (and the loop itself) that will go over all the children that will be "above" the visible children.
             // Reset the index since we are starting from the beginning again.

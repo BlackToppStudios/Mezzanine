@@ -108,9 +108,6 @@ namespace Mezzanine
             // Perform the container specific update logic
             this->UpdateContainerDimensionsImpl(OldSelfRect,NewSelfRect);
 
-            // Now that this containers dimensions and child dimensions are set, update the work area
-            //this->UpdateWorkAreaSize();
-
             // We done got icky
             this->_MarkAllLayersDirty();
         }
@@ -158,11 +155,15 @@ namespace Mezzanine
         void PagedContainer::UnbindProvider(PageProvider* Prov)
         {
             if( this->XProvider == Prov ) {
-                this->XProvider->_SetContainer(NULL);
+                if( this->YProvider != Prov ) {
+                    this->XProvider->_SetContainer(NULL);
+                }
                 this->XProvider = NULL;
             }
             if( this->YProvider == Prov ) {
-                this->YProvider->_SetContainer(NULL);
+                if( this->XProvider != Prov ) {
+                    this->YProvider->_SetContainer(NULL);
+                }
                 this->YProvider = NULL;
             }
         }
@@ -366,9 +367,7 @@ namespace Mezzanine
             if( !PropertiesNode.Empty() ) {
                 if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
                     XML::Node WorkAreaSizeNode = PropertiesNode.GetChild("WorkAreaSize");
-                    if( !WorkAreaSizeNode.Empty() ) {
-                        this->WorkAreaSize.ProtoDeSerialize(WorkAreaSizeNode);
-                    }
+                    this->WorkAreaSize.ProtoDeSerialize(WorkAreaSizeNode);
                 }else{
                     MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (PagedContainer::GetSerializableName() + "Properties") + ": Not Version 1.");
                 }
