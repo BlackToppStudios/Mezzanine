@@ -1802,8 +1802,8 @@ void CatchApp::UnloadLevel()
 
     UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
     GameScreen->GetWidget("GS_LevelReport")->Hide();
-    GameScreen->GetWidget("GS_GameMenu")->Hide();
-    GameScreen->GetWidget("GS_ItemShop")->Hide();
+    GameScreen->GetWidget("GS_MenuRoot")->Hide();
+    GameScreen->GetWidget("GS_ItemShopRoot")->Hide();
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()
