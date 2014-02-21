@@ -212,10 +212,12 @@ int main (int argc, char** argv)
         { Hooded.Do(StatementToExecute); }
 
     // This needs to be implmented still
-    cout << "Should Execute: ";
+    /*cout << "Should Execute: ";
     for(vector<String>::iterator Iter = ScriptFile.begin(); Iter!=ScriptFile.end(); Iter++)
         { cout << *Iter << " "; }
-    cout << endl;
+    cout << endl;*/
+    if(ScriptFile.size())
+        { cerr << "File execution not implemented yet" << endl; }
 
     if(ReadFromStdIn)
     {
@@ -228,8 +230,6 @@ int main (int argc, char** argv)
         }
         Hooded.Do(Total);
     }
-
-    printf("Does output from printf Display on The machine in question?\n");
 
     Boolean OtherCommands = (StatementToExecute.size()||ReadFromStdIn);
     if( !OtherCommands || (OtherCommands && Interactive) )

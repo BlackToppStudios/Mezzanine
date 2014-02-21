@@ -198,6 +198,21 @@ namespace Mezzanine
             const String Lua51ScriptingEngine::DefaultLibsName             = "Default";
             const String Lua51ScriptingEngine::AllLibsName                 = "All";
 
+            const String Lua51ScriptingEngine::BaseTableName               = "coroutine";
+            const String Lua51ScriptingEngine::PackageTableName            = "package";
+            const String Lua51ScriptingEngine::StringTableName             = "string";
+            const String Lua51ScriptingEngine::TableTableName              = "table";
+            const String Lua51ScriptingEngine::MathTableName               = "math";
+            const String Lua51ScriptingEngine::IOTableName                 = "io";
+            const String Lua51ScriptingEngine::OSTableName                 = "os";
+            const String Lua51ScriptingEngine::DebugTableName              = "debug";
+            const String Lua51ScriptingEngine::MezzTableName               = "Mezzanine";
+            const String Lua51ScriptingEngine::MezzSafeTableName           = "MezzanineSafe";
+            const String Lua51ScriptingEngine::MezzXMLTableName            = "MezzanineXML";
+            const String Lua51ScriptingEngine::MezzXMLSafeTableName        = "MezzanineXMLSafe";
+            const String Lua51ScriptingEngine::MezzThreadingTableName      = "MezzanineThreading";
+            const String Lua51ScriptingEngine::MezzThreadingSafeTableName  = "MezzanineThreadingSafe";
+
             const String& Lua51ScriptingEngine::GetLibName(Lua51ScriptingEngine::Lua51Libraries Lib)
             {
                 switch(Lib)
@@ -219,7 +234,29 @@ namespace Mezzanine
                     case MezzThreadingSafeLib:  return MezzThreadingSafeLibName;
                     case DefaultLibs:           return DefaultLibsName;
                     case AllLibs:               return AllLibsName;
-                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to library string"+ToString(Lib));
+                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to library string: "+ToString(Lib));
+                }
+            }
+
+            const String& Lua51ScriptingEngine::GetTableName(Lua51ScriptingEngine::Lua51Libraries Lib)
+            {
+                switch(Lib)
+                {
+                    case BaseLib:               return BaseTableName;
+                    case PackageLib:            return PackageTableName;
+                    case StringLib:             return StringTableName;
+                    case TableLib:              return TableTableName;
+                    case MathLib:               return MathTableName;
+                    case IOLib:                 return IOTableName;
+                    case OSLib:                 return OSTableName;
+                    case DebugLib:              return DebugTableName;
+                    case MezzLib:               return MezzTableName;
+                    case MezzSafeLib:           return MezzSafeTableName;
+                    case MezzXMLLib:            return MezzXMLTableName;
+                    case MezzXMLSafeLib:        return MezzXMLSafeTableName;
+                    case MezzThreadingLib:      return MezzThreadingTableName;
+                    case MezzThreadingSafeLib:  return MezzThreadingSafeTableName;
+                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to table string: "+ToString(Lib));
                 }
             }
 
@@ -294,9 +331,10 @@ namespace Mezzanine
 
             void Lua51ScriptingEngine::Execute(Lua51Script& ScriptToRun)
                 { Execute(&ScriptToRun); }
-
+#include <iostream>
             void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
             {
+                std::cout << "executing: " << ScriptToRun->SourceCode.c_str() << std::endl;
                 if(ScriptToRun->FunctionCall)
                 {
                     lua_getglobal(this->State,ScriptToRun->SourceCode.c_str());
@@ -424,6 +462,18 @@ namespace Mezzanine
                     { OpenMezzanineThreadingSafeLibrary(); }
             }
 
+            Boolean Lua51ScriptingEngine::IsLibraryOpen(Lua51Libraries LibToCheck)
+            {
+                lua_getglobal(State, GetTableName(LibToCheck).c_str());
+                if (lua_istable(State, -1))
+                {
+                    lua_pop(State,1);
+                    return true;
+                }
+                lua_pop(State,1);
+                return false;
+            }
+
             void Lua51ScriptingEngine::AliasLibrary(const String& Base, const String& Sub, const String& Alias)
             {
                 lua_getglobal(State, Base.c_str());
@@ -531,6 +581,101 @@ namespace Mezzanine
                 { AliasLibrary("Mezzanine", "MezzanineThreading", "Threading"); }
             void Lua51ScriptingEngine::SetThreadingSafe()
                 { AliasLibrary("MezzanineSafe", "MezzanineThreadingSafe", "Threading"); }
+
+            //lua_State* Lua51ScriptingEngine::GetRawLuaState()
+            //    { return State; }
+
+            int Lua51ScriptingEngine::test()
+            {
+                return lua_gettop(State);
+            }
+
+            String Lua51ScriptingEngine::tests(String Returns)
+            {
+                int Top = lua_gettop(State);
+                if(0==Top)
+                    { return Returns;}
+
+                Returns += ToString(lua_type(State,-1)) + " - ";
+
+                if(LUA_TNIL==lua_type(State,Top))
+                {
+                    Returns += " nil";
+                    lua_pop(State,1);
+                    return tests(Returns);
+                }
+
+                if(LUA_TBOOLEAN==lua_type(State,Top))
+                {
+                    Returns += " Boolean:";
+                    Returns += ToString(lua_toboolean(State,Top));
+                    lua_pop(State,1);
+                    return tests(Returns);
+                }
+
+                if(LUA_TLIGHTUSERDATA==lua_type(State,Top))
+                {
+                    Returns += " light_data";
+                    lua_pop(State,1);
+                    return tests(Returns);
+                }
+
+                if(LUA_TNUMBER==lua_type(State,Top))
+                {
+                    Returns += " Number:";
+                    Returns += ToString(lua_tonumber(State,Top));
+                    lua_pop(State,1);
+                    return tests(Returns);
+                }
+
+                if(LUA_TSTRING==lua_type(State,Top))
+                {
+                    Returns += " String:";
+                    Returns += ToString(lua_tostring(State,Top));
+                    lua_pop(State,1);
+                    return tests(Returns);
+                }
+
+                if(LUA_TTABLE==lua_type(State,Top))
+                {
+                    Returns += " table";
+                    lua_pop(State,1);
+                    return tests(Returns);
+                }
+
+                if(LUA_TFUNCTION==lua_type(State,Top))
+                {
+                    Returns += " Function";
+                    lua_pop(State,1);
+                    return tests(Returns);
+                }
+
+                if(LUA_TUSERDATA==lua_type(State,Top))
+                {
+                    Returns += " user_data";
+                    lua_pop(State,1);
+                    return tests(Returns);
+                }
+
+                if(LUA_TTHREAD==lua_type(State,Top))
+                {
+                    Returns += " thread";
+                    lua_pop(State,1);
+                    return tests(Returns);
+                }
+                /*
+                    #define LUA_TNIL		0
+                    #define LUA_TBOOLEAN		1
+                    #define LUA_TLIGHTUSERDATA	2
+                    #define LUA_TNUMBER		3
+                    #define LUA_TSTRING		4
+                    #define LUA_TTABLE		5
+                    #define LUA_TFUNCTION		6
+                    #define LUA_TUSERDATA		7
+                    #define LUA_TTHREAD		8
+                */
+                return Returns;
+            }
 
         } // Lua
     } // Scripting

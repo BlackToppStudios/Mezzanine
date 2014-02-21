@@ -47,6 +47,7 @@
 #include "executor.h"
 
 using namespace Mezzanine;
+using namespace Mezzanine::Scripting;
 using namespace std;
 
 Executor::Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine)
@@ -55,18 +56,38 @@ Executor::Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine
 
 ExecutionResults Executor::Do(Mezzanine::String CommandLine)
 {
-    if(CommandLine=="exit"||CommandLine=="quit")
+    if(CommandLine=="exit"||CommandLine=="quit")    // Any shell that does not do this is shit.
         { return ExecutionResults("Exiting",true); }
-    if(CommandLine=="copyright")
-        { return ExecutionResults("Mezzanine Entrelua © Copyright 2010-2014 BlackTopp Studios Inc.\nLua 5.1 Copyright (C) 1994-2013 Lua.org, PUC-Rio"); }
+    if(CommandLine=="banner")
+    {
+        String Banner("Mezzanine Entrelua © Copyright 2010-2014 BlackTopp Studios Inc.\nLua 5.1 Copyright (C) 1994-2013 Lua.org, PUC-Rio\nLoaded libs:");
+        for(int lib = Lua::Lua51ScriptingEngine::FirstLib;
+            lib <= Lua::Lua51ScriptingEngine::LastLib;
+            lib*=2)
+        {
+            if(LuaEngine.IsLibraryOpen( (Lua::Lua51ScriptingEngine::Lua51Libraries)lib ))
+                { Banner += " " + LuaEngine.GetLibName((Lua::Lua51ScriptingEngine::Lua51Libraries)lib); }
+        }
+        return ExecutionResults(Banner,false);
+    }
 
+    //cout << CommandLine << endl;
     ExecutionResults Results;
     try
     {
-        LuaEngine.Execute(CommandLine);
+        CountedPtr<iScript> CompletedScript=LuaEngine.Execute(CommandLine);
+        ArgumentGroup Returned = CompletedScript->GetAsiScriptMultipleReturn()->GetAllReturns();
+        for(ArgumentGroup::iterator Iter = Returned.begin(); Iter!=Returned.end(); Iter++)
+        {
+            Results.Returns.push_back( (*Iter)->GetString() );
+            cout << (*Iter)->GetString() << endl;
+        }
+        cout << LuaEngine.test() << " " << LuaEngine.tests() << endl;
     } catch (Exception& e) {
         Results.Output = e.what();
     }
+
+
 
     return Results;
 }
