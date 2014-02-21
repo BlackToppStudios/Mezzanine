@@ -120,42 +120,28 @@ namespace Mezzanine
         }
 
         TextLine* SingleLineTextLayer::GetLine() const
-        {
-            return this->TextLines.at(0);
-        }
+            { return this->TextLines.at(0); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
         UI::RenderLayerType SingleLineTextLayer::GetLayerType() const
-        {
-            return UI::RLT_SingleLineText;
-        }
+            { return UI::RLT_SingleLineText; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Text Methods
 
         void SingleLineTextLayer::HorizontallyAlign(const UI::LinearAlignment Align)
-        {
-            this->GetLine()->SetAlignment(Align);
-            this->_MarkDirty();
-        }
+            { this->SetTextLineHorizontalAlignment(Align); }
 
         void SingleLineTextLayer::VerticallyAlign(const UI::LinearAlignment Align)
-        {
-            this->SetTextlineVerticalAlignment(Align);
-            // Previous line will mark dirty for us
-        }
+            { this->SetTextlineVerticalAlignment(Align); }
 
         void SingleLineTextLayer::SetStartIndex(const Integer& Index)
-        {
-            this->StartIndex = Index;
-        }
+            { this->StartIndex = Index; }
 
         Integer SingleLineTextLayer::GetStartIndex() const
-        {
-            return this->StartIndex;
-        }
+            { return this->StartIndex; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
@@ -194,14 +180,10 @@ namespace Mezzanine
         }
 
         String SingleLineTextLayer::GetDerivedSerializableName() const
-        {
-            return this->SingleLineTextLayer::GetSerializableName();
-        }
+            { return this->SingleLineTextLayer::GetSerializableName(); }
 
         String SingleLineTextLayer::GetSerializableName()
-        {
-            return "SingleLineTextLayer";
-        }
+            { return "SingleLineTextLayer"; }
     }//UI
 }//Mezzanine
 

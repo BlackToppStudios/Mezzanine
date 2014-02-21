@@ -635,9 +635,14 @@ namespace Mezzanine
         TextLine* TextLayer::CreateTextLine()
         {
             TextLine* NewLine = NULL;
-            if( this->HorizontalOrder == UI::TO_Left_To_Right ) NewLine = new LeftToRightTextLine(this);
-            else NewLine = new RightToLeftTextLine(this);
+            UI::LinearAlignment Align = ( this->TextLines.empty() ? UI::LA_TopLeft : this->TextLines.back()->GetAlignment() );
+            if( this->HorizontalOrder == UI::TO_Left_To_Right ) {
+                NewLine = new LeftToRightTextLine(this);
+            }else{
+                NewLine = new RightToLeftTextLine(this);
+            }
 
+            NewLine->SetAlignment(Align);
             this->TextLines.push_back(NewLine);
             return NewLine;
         }
@@ -677,20 +682,24 @@ namespace Mezzanine
         void TextLayer::ClearAllTextLines()
         {
             for( TextLineIterator TLIt = this->TextLines.begin() ; TLIt != this->TextLines.end() ; ++TLIt )
-            {
-                (*TLIt)->RemoveAllCharacters();
-            }
+                { (*TLIt)->RemoveAllCharacters(); }
+
             this->_MarkDirty();
         }
 
         void TextLayer::DestroyAllTextLines()
         {
             for( TextLineIterator TLIt = this->TextLines.begin() ; TLIt != this->TextLines.end() ; ++TLIt )
-            {
-                delete (*TLIt);
-            }
+                { delete (*TLIt); }
+
             this->TextLines.clear();
             this->_MarkDirty();
+        }
+
+        void TextLayer::SetTextLineHorizontalAlignment(const UI::LinearAlignment Align)
+        {
+            for( TextLineIterator TLIt = this->TextLines.begin() ; TLIt != this->TextLines.end() ; ++TLIt )
+                { (*TLIt)->SetAlignment(Align); }
         }
 
         void TextLayer::SetTextlineVerticalAlignment(const UI::LinearAlignment Align)
