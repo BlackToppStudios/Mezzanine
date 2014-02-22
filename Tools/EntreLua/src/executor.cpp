@@ -82,7 +82,7 @@ ExecutionResults Executor::Do(Mezzanine::String CommandLine)
             Results.Returns.push_back( (*Iter)->GetString() );
             cout << (*Iter)->GetString() << endl;
         }
-        cout << LuaEngine.test() << " " << LuaEngine.tests() << endl;
+        //cout << LuaEngine.test() << " " << LuaEngine.tests() << endl;
     } catch (Exception& e) {
         Results.Output = e.what();
     }

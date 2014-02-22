@@ -145,8 +145,16 @@ class lua51tests : public UnitTestGroup
             // Static Data Tests
             {
                 TEST(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName(), "Engine::ImplementationName");
+                TestOutput << "Checking lib enum values:" << endl;
+                TestOutput << "Default Expected: " << (541+2048+8192) << "\tActual:" << Scripting::Lua::Lua51ScriptingEngine::DefaultLibs << endl;
                 TEST(541+2048+8192==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
-                TEST(511+1024+4096==Scripting::Lua::Lua51ScriptingEngine::AllLibs, "Engine::LuaLibEnumUnsafe");
+                int TargetLib=0;
+                for(int lib = Scripting::Lua::Lua51ScriptingEngine::FirstLib;
+                    lib <= Scripting::Lua::Lua51ScriptingEngine::LastLib;
+                    lib*=2)
+                { TargetLib+=lib; }
+                TestOutput << "All Expected: " << TargetLib << "\tActual:" << Scripting::Lua::Lua51ScriptingEngine::AllLibs << endl;
+                TEST((int)Scripting::Lua::Lua51ScriptingEngine::AllLibs==TargetLib, "Engine::LuaLibEnumAll");
             }
 
             //////////////////////////////////////////////////////////////////////////////////////////

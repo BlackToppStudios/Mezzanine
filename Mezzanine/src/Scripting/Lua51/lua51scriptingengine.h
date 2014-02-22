@@ -1,4 +1,4 @@
-// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+﻿// © Copyright 2010 - 2014 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -342,8 +342,8 @@ namespace Mezzanine
                     // @return The lua_State this uses
                     //virtual lua_State* GetRawLuaState();
 
-                    int test();
-                    String tests(String Returns="");
+                    //int test();
+                    //String tests(String Returns="");
             };
 
             //simplistic error checking function, to be replace with proper exception driven code later.
