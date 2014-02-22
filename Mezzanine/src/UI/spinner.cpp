@@ -86,7 +86,8 @@ namespace Mezzanine
             SpinValue(0.0),
             IncrementValue(1.0),
             MinValue(0.0),
-            MaxValue(0.0)
+            MaxValue(0.0),
+            OrderPriority(UI::OP_Horizontal_Vertical)
             {  }
 
         Spinner::Spinner(const String& RendName, const SpinnerStyle SpinStyle, FontData* EditFont, Screen* Parent) :
@@ -97,7 +98,8 @@ namespace Mezzanine
             SpinValue(0.0),
             IncrementValue(1.0),
             MinValue(0.0),
-            MaxValue(0.0)
+            MaxValue(0.0),
+            OrderPriority(UI::OP_Horizontal_Vertical)
             { this->ConstructSpinner(SpinStyle,EditFont); }
 
         Spinner::Spinner(const String& RendName, const SpinnerStyle SpinStyle, const String& EditFontName, Screen* Parent) :
@@ -108,7 +110,8 @@ namespace Mezzanine
             SpinValue(0.0),
             IncrementValue(1.0),
             MinValue(0.0),
-            MaxValue(0.0)
+            MaxValue(0.0),
+            OrderPriority(UI::OP_Horizontal_Vertical)
             { this->ConstructSpinner(SpinStyle,this->ParentScreen->GetFont(EditFontName,this->ParentScreen->GetPrimaryAtlas())); }
 
         Spinner::Spinner(const String& RendName, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, FontData* EditFont, Screen* Parent) :
@@ -119,7 +122,8 @@ namespace Mezzanine
             SpinValue(0.0),
             IncrementValue(1.0),
             MinValue(0.0),
-            MaxValue(0.0)
+            MaxValue(0.0),
+            OrderPriority(UI::OP_Horizontal_Vertical)
             { this->ConstructSpinner(SpinStyle,EditFont); }
 
         Spinner::Spinner(const String& RendName, const UnifiedRect& RendRect, const SpinnerStyle SpinStyle, const String& EditFontName, Screen* Parent) :
@@ -130,7 +134,8 @@ namespace Mezzanine
             SpinValue(0.0),
             IncrementValue(1.0),
             MinValue(0.0),
-            MaxValue(0.0)
+            MaxValue(0.0),
+            OrderPriority(UI::OP_Horizontal_Vertical)
             { this->ConstructSpinner(SpinStyle,this->ParentScreen->GetFont(EditFontName,this->ParentScreen->GetPrimaryAtlas())); }
 
         Spinner::Spinner(const XML::Node& XMLNode, Screen* Parent) :
@@ -141,7 +146,8 @@ namespace Mezzanine
             SpinValue(0.0),
             IncrementValue(1.0),
             MinValue(0.0),
-            MaxValue(0.0)
+            MaxValue(0.0),
+            OrderPriority(UI::OP_Horizontal_Vertical)
             { this->ProtoDeSerialize(XMLNode); }
 
         Spinner::~Spinner()
@@ -221,6 +227,12 @@ namespace Mezzanine
 
         Real Spinner::GetMaxSpinValue() const
             { return this->MaxValue; }
+
+        void Spinner::SetOrderingPriority(const UI::OrderingPriority Order)
+            { this->OrderPriority = Order; }
+
+        UI::OrderingPriority Spinner::GetOrderingPriority() const
+            { return this->OrderPriority; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Spinner Configuration
@@ -339,16 +351,48 @@ namespace Mezzanine
         // PageProvider Methods
 
         Real Spinner::GetMaxXPages() const
-            { return this->MaxValue; }
+        {
+            if( this->Container != NULL ) {
+                const Real ContainerXSize = this->Container->GetActualSize().X;
+                if( ContainerXSize > 0 ) {
+                    Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().X / ContainerXSize );
+                    return ( Ret > 1 ? Ret : 1 );
+                }
+            }
+            return 1;
+        }
 
         Real Spinner::GetMaxYPages() const
-            { return this->MaxValue; }
+        {
+            if( this->Container != NULL ) {
+                const Real ContainerYSize = this->Container->GetActualSize().Y;
+                if( ContainerYSize > 0 ) {
+                    Real Ret = MathTools::Ceil( this->Container->GetWorkAreaSize().Y / ContainerYSize );
+                    return ( Ret > 1 ? Ret : 1 );
+                }
+            }
+            return 1;
+        }
 
         Real Spinner::GetCurrentXPage() const
-            { return this->SpinValue; }
+        {
+            if( this->OrderPriority == UI::OP_Horizontal_Vertical ) {
+                return MathTools::Ceil( MathTools::Fmod( this->SpinValue , this->GetMaxXPages() ) );
+            }else if( this->OrderPriority == OP_Vertical_Horizontal ) {
+                return MathTools::Ceil( this->SpinValue / this->GetMaxYPages() );
+            }
+            return 1;
+        }
 
         Real Spinner::GetCurrentYPage() const
-            { return this->SpinValue; }
+        {
+            if( this->OrderPriority == UI::OP_Horizontal_Vertical ) {
+                return MathTools::Ceil( this->SpinValue / this->GetMaxXPages() );
+            }else if( this->OrderPriority == OP_Vertical_Horizontal ) {
+                return MathTools::Ceil( MathTools::Fmod( this->SpinValue , this->GetMaxYPages() ) );
+            }
+            return 1;
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization

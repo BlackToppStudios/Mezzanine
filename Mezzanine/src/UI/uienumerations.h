@@ -145,6 +145,10 @@ namespace Mezzanine
             RLT_Image           = 1,  ///< Value representing an ImageLayer.
             RLT_MultiLineText   = 2,  ///< Value representing a MultiLineTextLayer.
             RLT_SingleLineText  = 3   ///< Value representing a SingleLineTextLayer.
+            //RLT_MultiImage
+            //RLT_Video
+            //RLT_Line
+            //RLT_RenderTarget
         };
 
         /// @enum ScrollbarStyle

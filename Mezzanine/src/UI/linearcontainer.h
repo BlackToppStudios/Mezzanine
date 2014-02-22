@@ -115,8 +115,7 @@ namespace Mezzanine
             virtual Whole GetChildSizeEnforcement() const;
 
             /// @brief Sets the spacing to be split between both sides of each child quad on the relevant axis.
-            /// @note The unified dimension passed in is relative to the parent of this container, just like this containers
-            /// dimensions and the work area dimensions.
+            /// @note The unified dimension passed in is relative to the parent container(this)
             /// @param Padding The amount of space to apply on both sides of each child.
             virtual void SetPadding(const UnifiedDim& Padding);
             /// @brief Gets the spacing being split between both sides of each child quad on the relevant axis.

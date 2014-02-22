@@ -114,6 +114,9 @@ namespace Mezzanine
             /// @internal
             /// @brief The maximum value allowed to be expressed by this Spinner.
             Real MaxValue;
+            /// @internal
+            /// @brief Which axis is primary when determining the current X or Y page.
+            UI::OrderingPriority OrderPriority;
 
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
@@ -200,6 +203,14 @@ namespace Mezzanine
             /// @brief Gets the maximum limit for the value this spinner can have.
             /// @return Returns a Real containing the maximum allowed value of this Spinner.
             virtual Real GetMaxSpinValue() const;
+
+            /// @brief Sets which axis will be considered first when converting the current value to an X or Y page.
+            /// @note This value is only used when this spinner is configured as both the X and Y provider of a paged container.
+            /// @param Order An OrderingPriority enum value representing which axis is to be considered primary when determining the current page on a given axis.
+            virtual void SetOrderingPriority(const UI::OrderingPriority Order);
+            /// @brief Gets which axis will be considered first when converting the current value to an X or Y page.
+            /// @return Returns an OrderingPriority enum value representing which axis is considered primary when determining the current page on a given axis.
+            virtual UI::OrderingPriority GetOrderingPriority() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Spinner Configuration
