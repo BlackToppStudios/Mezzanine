@@ -60,6 +60,28 @@ namespace Mezzanine
             Whole X;
             /// @brief The Cell(s) on the Y axis.
             Whole Y;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
+
+            /// @brief Blank constructor.
+            GridVector2();
+            /// @brief Descriptive constructor.
+            /// @param x The Cell(s) on the X axis.
+            /// @param y The Cell(s) on the Y axis.
+            GridVector2(const Whole x, const Whole y);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Equality comparison operator.
+            /// @param Other The other GridVector2 to compare with.
+            /// @return Returns true if both GridVector2s contain the same values, false otherwise.
+            Boolean operator==(const GridVector2& Other);
+            /// @brief Inequality comparison operator.
+            /// @param Other The other GridVector2 to compare with.
+            /// @return Returns true if this GridVector2 contains different values as the other GridVector2, false otherwise.
+            Boolean operator!=(const GridVector2& Other);
         };//GridVector2
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -73,33 +95,64 @@ namespace Mezzanine
             /// @brief The Cell size of this rect.
             GridVector2 Size;
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
+
+            /// @brief Blank constructor.
+            GridRect();
+            /// @brief Descriptive constructor.
+            /// @param XPos The Cell position on the X axis.
+            /// @param YPos The Cell position on the Y axis.
+            /// @param XSize The number of cells this rect occupies on the X axis.
+            /// @param YSize The number of cells this rect occupies on the Y axis.
+            GridRect(const Whole XPos, const Whole YPos, const Whole XSize, const Whole YSize);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
             /// @brief Gets the Left cell of this Rect.
             /// @return Returns the cell position of the Left of this Rect.
-            inline Whole GetLeftCell() const
-                { return this->Position.X; }
+            Whole GetLeftCell() const;
             /// @brief Gets the Right cell of this Rect.
             /// @return Returns the cell position of the Right of this Rect.
-            inline Whole GetRightCell() const
-                { return this->Position.X + this->Size.X; }
+            Whole GetRightCell() const;
             /// @brief Gets the Top cell of this Rect.
             /// @return Returns the cell position of the Top of this Rect.
-            inline Whole GetTopCell() const
-                { return this->Position.Y; }
+            Whole GetTopCell() const;
             /// @brief Gets the Bottom cell of this Rect.
             /// @return Returns the cell position of the Bottom of this Rect.
-            inline Whole GetBottomCell() const
-                { return this->Position.Y + this->Size.Y; }
+            Whole GetBottomCell() const;
 
             /// @brief Gets whether or not this GridRect completely envelopes another GridRect.
             /// @param Other The other GridRect to compare to.
             /// @return Returns true if the provided GridRect is completely overlapped by this GridRect, false otherwise.
-            inline Boolean Envelopes(const GridRect& Other)
-            {
-                return ( this->GetLeftCell() <= Other.GetLeftCell() &&
-                         this->GetRightCell() >= Other.GetRightCell() &&
-                         this->GetTopCell() <= Other.GetTopCell() &&
-                         this->GetBottomCell() >= Other.GetBottomCell() );
-            }
+            Boolean Envelopes(const GridRect& Other);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this rect should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot);
+
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Equality comparison operator.
+            /// @param Other The other GridRect to compare with.
+            /// @return Returns true if both GridRects represent the same transform, false otherwise.
+            Boolean operator==(const GridRect& Other);
+            /// @brief Inequality comparison operator.
+            /// @param Other The other GridRect to compare with.
+            /// @return Returns true if this GridRect does not represent the same transform as the other GridRect, false otherwise.
+            Boolean operator!=(const GridRect& Other);
         };//GridRect
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -122,6 +175,7 @@ namespace Mezzanine
             static const String TypeName;
         protected:
             friend class GridContainerFactory;
+            using PagedContainer::AddChild;
             /// @internal
             /// @brief Container storing pairs of Grid rects and the children they apply to.
             ChildRectContainer ChildRects;
@@ -151,6 +205,10 @@ namespace Mezzanine
             /// @param RendRect The rect describing this widget's transform relative to it's parent.
             /// @param Parent The parent screen that created this renderable.
             GridContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created GridContainer will belong to.
+            GridContainer(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~GridContainer();
         public:
@@ -179,13 +237,14 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // GridContainer Properties
 
-            /// @brief Convenience method that will set the cell size of this grid via the desired number of cells on each axis.
+            /// @brief Convenience method that will set the cell size of this grid via the desired number of cells within the viewing area on each axis.
             /// @param X The number of desired cells in the view area on the X axis.
             /// @param Y The number of desired cells in the view area on the Y axis.
             virtual void SetCellSize(const Whole X, const Whole Y);
             /// @brief Sets the Unified size of a single cell in this container.
             /// @note Padding still has to be taken into effect after this value is calculated.  So depending on the amount of
-            /// padding to be applied, likely this won't be the full size available to a child occupying a cell.
+            /// padding to be applied, likely this won't be the full size available to a child occupying a cell. @n @n
+            /// Relative portion of the cell size is relative to this containers view size.
             /// @param Size A @ref UnifiedVec2 containing the size a single cell is to be given.
             virtual void SetCellSize(const UnifiedVec2& Size);
             /// @brief Gets the Unified size of a single cell in this container.
@@ -202,8 +261,42 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // GridContainer Configuration
 
+            /// @brief Gets the total used size of the Grid based on the current children.
+            /// @return Returns a GridVector2 containing the number of cells in this grid on each axis.
+            virtual GridVector2 GetGridSize() const;
+
+            /// @brief Sets the grid transform of a child in this container.
+            /// @param Child A pointer to the child that is having it's grid transform updated.
+            /// @param ChildTrans The grid transform to be given to the child.
+            /// @return Returns true if a previous entry was updated, false if a new grid rect entry was inserted.
+            virtual Boolean SetChildGridRect(Widget* Child, const GridRect& ChildTrans);
+            /// @brief Gets the grid transform of a child in this container.
+            /// @param Child A pointer to the child to retrieve the grid transform of.
+            /// @return Returns a grid rect representing the specified childs transform on this grid, or an empty rect if the child has no rect for this container.
+            virtual GridRect GetChildGridRect(Widget* Child) const;
+            /// @brief Removes the grid transform of a child from this container.
+            /// @warning Use this method with extreme caution.  Removing a childs grid rect from this container can cause it to become invisible.
+            /// @param Child A pointer to the child that is having it's grid transform removed.
+            /// @return Returns true if the grid transform was successfully removed, false if the child had no grid rect in this container.
+            virtual Boolean RemoveChildGridRect(Widget* Child);
+
             ///////////////////////////////////////////////////////////////////////////////
             // Child Management
+
+            /// @copydoc QuadRenderable::AddChild(Widget*)
+            /// @param GridTransform The position and size on the grid this child is to be given.
+            virtual void AddChild(Widget* Child, const GridRect& GridTransform);
+            /// @copydoc QuadRenderable::AddChild(Widget*,const UInt16)
+            /// @param GridTransform The position and size on the grid this child is to be given.
+            virtual void AddChild(Widget* Child, const UInt16 ZOrder, const GridRect& GridTransform);
+            /// @copydoc QuadRenderable::RemoveChild(Widget*)
+            virtual void RemoveChild(Widget* ToBeRemoved);
+            /// @copydoc QuadRenderable::RemoveAllChildren()
+            virtual void RemoveAllChildren();
+            /// @copydoc QuadRenderable::DestroyChild(Widget*)
+            virtual void DestroyChild(Widget* ToBeDestroyed);
+            /// @copydoc QuadRenderable::DestroyAllChildren()
+            virtual void DestroyAllChildren();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -226,6 +319,50 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
         };//GridContainer
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is the factory implementation for GridContainer widgets.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB GridContainerFactory : public WidgetFactory
+        {
+        public:
+            /// @brief Class constructor.
+            GridContainerFactory() {  }
+            /// @brief Class destructor.
+            virtual ~GridContainerFactory() {  }
+
+            /// @copydoc WidgetFactory::GetWidgetTypeName() const
+            virtual String GetWidgetTypeName() const;
+
+            /// @brief Creates a new GridContainer.
+            /// @param RendName The name to be given to the created GridContainer.
+            /// @param Parent The screen the created GridContainer will belong to.
+            /// @return Returns a pointer to the created GridContainer.
+            virtual GridContainer* CreateGridContainer(const String& RendName, Screen* Parent);
+            /// @brief Creates a new GridContainer.
+            /// @param RendName The name to be given to the created GridContainer.
+            /// @param RendRect The dimensions that will be assigned to the created GridContainer.
+            /// @param Parent The screen the created GridContainer will belong to.
+            /// @return Returns a pointer to the created GridContainer.
+            virtual GridContainer* CreateGridContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
+            /// @brief Creates a new GridContainer.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param Parent The screen the created GridContainer will belong to.
+            /// @return Returns a pointer to the created GridContainer.
+            virtual GridContainer* CreateGridContainer(const XML::Node& XMLNode, Screen* Parent);
+
+            /// @copydoc WidgetFactory::CreateWidget(Screen*)
+            virtual Widget* CreateWidget(Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const String&, const UnifiedRect&, const NameValuePairMap&, Screen*)
+            virtual Widget* CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent);
+            /// @copydoc WidgetFactory::CreateWidget(const XML::Node&, Screen*)
+            virtual Widget* CreateWidget(const XML::Node& XMLNode, Screen* Parent);
+            /// @copydoc WidgetFactory::DestroyWidget(Widget*)
+            virtual void DestroyWidget(Widget* ToBeDestroyed);
+        };//GridContainerFactory
     }//UI
 }//Mezzanine
 

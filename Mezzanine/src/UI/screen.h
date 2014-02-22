@@ -536,25 +536,17 @@ namespace Mezzanine
             /// @param RendRect The rect describing this widget's transform relative to it's parent.
             /// @return Returns a pointer to the created VerticalContainer.
             virtual VerticalContainer* CreateVerticalContainer(const String& RendName, const UnifiedRect& RendRect);
+            /// @brief Creates a widget container for the placement of widgets on a 2D grid.
+            /// @param RendName The name to be given to this renderable.
+            /// @return Returns a pointer to the created GridContainer.
+            virtual GridContainer* CreateGridContainer(const String& RendName);
+            /// @brief Creates a widget container for the placement of widgets on a 2D grid.
+            /// @param RendName The name to be given to this renderable.
+            /// @param RendRect The rect describing this widget's transform relative to it's parent.
+            /// @return Returns a pointer to the created GridContainer.
+            virtual GridContainer* CreateGridContainer(const String& RendName, const UnifiedRect& RendRect);
 
-            /*/// @brief Creates a scrolled cell grid.
-            /// @return Returns a pointer to the created ScrolledCellGrid.
-            /// @param Name The name of the widget.
-            /// @param RendRect The Rect representing the position and size of the ScrolledCellGrid.
-            /// @param Thickness The width of the vertical scrollbar in relative units.  The same amount of actual pixels is used
-            /// to determine the height of the horizontal scrollbar.
-            /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
-            virtual ScrolledCellGrid* CreateScrolledCellGrid(ConstString& Name, const Rect& RendRect, const Real& Thickness, const UI::ScrollbarStyle& Style);
-            /// @brief Creates a paged cell grid.
-            /// @return Returns a pointer to the created PagedCellGrid.
-            /// @param Name The name of the widget.
-            /// @param RendRect The Rect representing the position and size of the PagedCellGrid.
-            /// @param SpnRect The Rect representing the position and size of the Spinner.
-            /// @param SStyle The style of spinner to create.
-            /// @param GlyphHeight The desired lineheight of the glyphs to be used with the spinner.
-            virtual PagedCellGrid* CreatePagedCellGrid(ConstString& Name, const Rect& RendRect, const Rect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
-
-            /// @brief Creates a Window.
+            /*/// @brief Creates a Window.
             /// @return Returns a pointer to the created Window.
             /// @param Name The name of the Window.
             /// @param RendRect The Rect representing the position and size of the Window.

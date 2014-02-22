@@ -510,6 +510,9 @@ namespace Mezzanine
             // VerticalContainer
             FactIt = this->WidgetFactories.find( VerticalContainer::TypeName );
             if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new VerticalContainerFactory() );
+            // GridContainer
+            FactIt = this->WidgetFactories.find( GridContainer::TypeName );
+            if( FactIt == this->WidgetFactories.end() ) this->AddWidgetFactory( new GridContainerFactory() );
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -807,18 +810,22 @@ namespace Mezzanine
             return NewVContain;
         }
 
-
-        /*ScrolledCellGrid* Screen::CreateScrolledCellGrid(ConstString& Name, const Rect& RendRect, const Real& Thickness, const UI::ScrollbarStyle& Style)
+        GridContainer* Screen::CreateGridContainer(const String& RendName)
         {
-            return static_cast<ScrolledCellGrid*>( this->CheckAndInsert( RenderableFactory::CreateScrolledCellGrid(Name,RendRect,Thickness,Style) ) );
+            GridContainer* NewGridContain = static_cast<GridContainerFactory*>( this->GetWidgetFactoryExcept( GridContainer::TypeName ) )->CreateGridContainer( RendName, this );
+            this->CheckAndInsertExcept( NewGridContain );
+            return NewGridContain;
         }
 
-        PagedCellGrid* Screen::CreatePagedCellGrid(ConstString& Name, const Rect& RendRect, const Rect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        GridContainer* Screen::CreateGridContainer(const String& RendName, const UnifiedRect& RendRect)
         {
-            return static_cast<PagedCellGrid*>( this->CheckAndInsert( RenderableFactory::CreatePagedCellGrid(Name,RendRect,SpnRect,SStyle,GlyphHeight) ) );
+            GridContainer* NewGridContain = static_cast<GridContainerFactory*>( this->GetWidgetFactoryExcept( GridContainer::TypeName ) )->CreateGridContainer( RendName, RendRect, this );
+            this->CheckAndInsertExcept( NewGridContain );
+            return NewGridContain;
         }
 
-        Window* Screen::CreateWidgetWindow(ConstString& Name, const Rect& RendRect)
+
+        /*Window* Screen::CreateWidgetWindow(ConstString& Name, const Rect& RendRect)
         {
             return static_cast<Window*>( this->CheckAndInsert( ExtendedRenderableFactory::CreateWidgetWindow(Name,RendRect) ) );
         }//*/

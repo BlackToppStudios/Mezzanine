@@ -43,10 +43,133 @@
 #include "UI/gridcontainer.h"
 #include "UI/pageprovider.h"
 
+#include "exception.h"
+#include "serialization.h"
+
 namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // GridVector2 Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
+
+        GridVector2::GridVector2() :
+            X(0), Y(0)
+            {  }
+
+        GridVector2::GridVector2(const Whole x, const Whole y) :
+            X(x), Y(y)
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        Boolean GridVector2::operator==(const GridVector2& Other)
+            { return ( this->X == Other.X && this->Y == Other.Y ); }
+
+        Boolean GridVector2::operator!=(const GridVector2& Other)
+            { return ( this->X != Other.X || this->Y != Other.Y ); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // GridRect Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
+
+        GridRect::GridRect()
+            {  }
+
+        GridRect::GridRect(const Whole XPos, const Whole YPos, const Whole XSize, const Whole YSize) :
+            Position(XPos,YPos),
+            Size(XSize,YSize)
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        Whole GridRect::GetLeftCell() const
+            { return this->Position.X; }
+
+        Whole GridRect::GetRightCell() const
+            { return this->Position.X + ( this->Size.X - 1); }
+
+        Whole GridRect::GetTopCell() const
+            { return this->Position.Y; }
+
+        Whole GridRect::GetBottomCell() const
+            { return this->Position.Y + ( this->Size.Y - 1); }
+
+        Boolean GridRect::Envelopes(const GridRect& Other)
+        {
+            return ( this->GetLeftCell() <= Other.GetLeftCell() &&
+                     this->GetRightCell() >= Other.GetRightCell() &&
+                     this->GetTopCell() <= Other.GetTopCell() &&
+                     this->GetBottomCell() >= Other.GetBottomCell() );
+        }
+
+        void GridRect::ProtoSerialize(XML::Node& ParentNode) const
+        {
+            XML::Node SelfNode = ParentNode.AppendChild( GridRect::GetSerializableName() );
+
+            if( SelfNode.AppendAttribute("Version").SetValue("1") &&
+                SelfNode.AppendAttribute("XPos").SetValue( this->Position.X ) &&
+                SelfNode.AppendAttribute("YPos").SetValue( this->Position.Y ) &&
+                SelfNode.AppendAttribute("XSize").SetValue( this->Size.X ) &&
+                SelfNode.AppendAttribute("YSize").SetValue( this->Size.Y ) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",GridRect::GetSerializableName(),true);
+            }
+        }
+
+        void GridRect::ProtoDeSerialize(const XML::Node& SelfRoot)
+        {
+            XML::Attribute CurrAttrib;
+
+            if( String(SelfRoot.Name()) == GridRect::GetSerializableName() ) {
+                if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = SelfRoot.GetAttribute("XPos");
+                    if( !CurrAttrib.Empty() )
+                        this->Position.X = CurrAttrib.AsWhole();
+
+                    CurrAttrib = SelfRoot.GetAttribute("YPos");
+                    if( !CurrAttrib.Empty() )
+                        this->Position.Y = CurrAttrib.AsWhole();
+
+                    CurrAttrib = SelfRoot.GetAttribute("XSize");
+                    if( !CurrAttrib.Empty() )
+                        this->Size.X = CurrAttrib.AsWhole();
+
+                    CurrAttrib = SelfRoot.GetAttribute("YSize");
+                    if( !CurrAttrib.Empty() )
+                        this->Size.Y = CurrAttrib.AsWhole();
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + GridRect::GetSerializableName() + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,GridRect::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String GridRect::GetSerializableName()
+            { return "GridRect"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Operators
+
+        Boolean GridRect::operator==(const GridRect& Other)
+            { return ( this->Position == Other.Position && this->Size == Other.Size ); }
+
+        Boolean GridRect::operator!=(const GridRect& Other)
+            { return ( this->Position != Other.Position || this->Size != Other.Size ); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // GridContainer Static Members
+
         const String GridContainer::TypeName              = "GridContainer";
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -54,26 +177,22 @@ namespace Mezzanine
 
         GridContainer::GridContainer(Screen* Parent) :
             PagedContainer(Parent)
-        {
-
-        }
+            {  }
 
         GridContainer::GridContainer(const String& RendName, Screen* Parent) :
             PagedContainer(RendName,Parent)
-        {
-
-        }
+            {  }
 
         GridContainer::GridContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             PagedContainer(RendName,RendRect,Parent)
-        {
+            {  }
 
-        }
+        GridContainer::GridContainer(const XML::Node& XMLNode, Screen* Parent) :
+            PagedContainer(Parent)
+            { this->ProtoDeSerialize(XMLNode); }
 
         GridContainer::~GridContainer()
-        {
-
-        }
+            {  }
 
         void GridContainer::ProtoSerializeImpl(XML::Node& SelfRoot) const
         {
@@ -89,7 +208,79 @@ namespace Mezzanine
 
         void GridContainer::UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect)
         {
+            // Clear our old data.
+            this->VisibleChildren.clear();
+            this->WorkAreaSize.SetIdentity();
 
+            // Get some of the data we're gonna use.
+            const GridVector2 GridSize = this->GetGridSize();
+            const Vector2 ActCellPadding = this->CellPadding.CalculateActualDimensions( this->ActDims.Size );
+            const Vector2 ActCellSize = this->CellSize.CalculateActualDimensions( this->ActDims.Size );
+
+            // Since we're here, may as well update the work area size.
+            this->WorkAreaSize.X = ActCellSize.X * static_cast<Real>( GridSize.X );
+            this->WorkAreaSize.Y = ActCellSize.Y * static_cast<Real>( GridSize.Y );
+
+            // Figure out how many cells we can fit onto a page.
+            const Real XCellsPerPage = this->ActDims.Size.X / ActCellSize.X;
+            const Real YCellsPerPage = this->ActDims.Size.Y / ActCellSize.Y;
+            const Real CurrXPage = ( this->XProvider != NULL ? this->XProvider->GetCurrentXPage() : 1 );
+            const Real CurrYPage = ( this->YProvider != NULL ? this->YProvider->GetCurrentYPage() : 1 );
+
+            // Only continue if we know there are cells that can fit into the view area.
+            if( XCellsPerPage >= 1 && YCellsPerPage >= 1 ) {
+                // We need to get the view position within the work area.
+                Vector2 ViewPosition;
+                ViewPosition.X = ( CurrXPage - 1 ) * this->ActDims.Size.X;
+                ViewPosition.Y = ( CurrYPage - 1 ) * this->ActDims.Size.Y;
+
+                // Next we need to convert the "view rect" into grid coordinates
+                GridRect ViewRect;
+                ViewRect.Position.X = static_cast<Whole>( CurrXPage * XCellsPerPage );
+                ViewRect.Position.Y = static_cast<Whole>( CurrYPage * YCellsPerPage );
+                ViewRect.Size.X = static_cast<Whole>( XCellsPerPage );
+                ViewRect.Size.Y = static_cast<Whole>( YCellsPerPage );
+
+                // We already know the ChildRects container is sorted by ZOrder.
+                // So now we just need to iterate over them to see if the view rect envelopes any given child.
+                for( ChildRectIterator RectIt = this->ChildRects.begin() ; RectIt != this->ChildRects.end() ; ++RectIt )
+                {
+                    // Check if our child is completely within the view area of the grid.
+                    GridRect ChildGridRect = (*RectIt).second;
+                    if( ViewRect.Envelopes( ChildGridRect ) ) {
+                        // If so, perform our transform update.
+                        const Rect OldChildRect = (*RectIt).first->GetRect();
+                        Rect NewChildRect;
+
+                        // Set the Size
+                        NewChildRect.Size.X = ( ActCellSize.X * static_cast<Real>( ChildGridRect.Size.X ) ) - ActCellPadding.X;
+                        NewChildRect.Size.Y = ( ActCellSize.Y * static_cast<Real>( ChildGridRect.Size.Y ) ) - ActCellPadding.Y;
+                        // Set the Position
+                        // First get the column/row we're working with.  Use base 0 for easier math later.
+                        const Whole ChildColumn = ( ChildGridRect.Position.X - ViewRect.Position.X );
+                        const Whole ChildRow = ( ChildGridRect.Position.Y - ViewRect.Position.Y );
+                        // Now we can try to calculate the actual position.
+                        // Multiply the size of a cell by the column/row we are in, which should get us the base offset for that child.
+                        // Then add half the padding, since the padding is supposed to be the total on both sides of that axis.
+                        // Lastly apply that to the container position to convert it into a screen position.
+                        NewChildRect.Position.X = NewSelfRect.Size.X + ( ( ActCellSize.X * static_cast<Real>( ChildColumn ) ) + ( ActCellPadding.X * 0.5 ) );
+                        NewChildRect.Position.Y = NewSelfRect.Size.Y + ( ( ActCellSize.Y * static_cast<Real>( ChildRow ) ) + ( ActCellPadding.Y * 0.5 ) );
+                        // Perform the update.
+                        (*RectIt).first->UpdateDimensions(OldChildRect,NewChildRect);
+
+                        // Finally add it to the container of visible children.
+                        (*RectIt).first->Show();
+                        this->VisibleChildren.push_back( (*RectIt).first );
+                    }else{
+                        const Rect OldChildRect = (*RectIt).first->GetRect();
+                        Rect NewChildRect;
+                        NewChildRect.Size = OldChildRect.Size;
+                        NewChildRect.Position = NewSelfRect.Position;
+                        (*RectIt).first->UpdateDimensions(OldChildRect,NewChildRect);
+                        (*RectIt).first->Hide();
+                    }
+                }
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -97,7 +288,11 @@ namespace Mezzanine
 
         void GridContainer::UpdateWorkAreaSize()
         {
+            GridVector2 GridSize = this->GetGridSize();
+            Vector2 ActCellSize = this->CellSize.CalculateActualDimensions( this->ActDims.Size );
 
+            this->WorkAreaSize.X = ActCellSize.X * static_cast<Real>( GridSize.X );
+            this->WorkAreaSize.Y = ActCellSize.Y * static_cast<Real>( GridSize.Y );
         }
 
         void GridContainer::QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boolean Adding)
@@ -195,8 +390,100 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // GridContainer Configuration
 
+        GridVector2 GridContainer::GetGridSize() const
+        {
+            GridVector2 Ret;
+            for( ConstChildRectIterator RectIt = this->ChildRects.begin() ; RectIt != this->ChildRects.end() ; ++RectIt )
+            {
+                if( Ret.X < (*RectIt).second.GetRightCell() ) {
+                    Ret.X = (*RectIt).second.GetRightCell();
+                }
+                if( Ret.Y < (*RectIt).second.GetBottomCell() ) {
+                    Ret.Y = (*RectIt).second.GetBottomCell();
+                }
+            }
+            return Ret;
+        }
+
+        Boolean GridContainer::SetChildGridRect(Widget* Child, const GridRect& ChildTrans)
+        {
+            UInt16 Zorder = Child->GetZOrder();
+            ChildRectIterator RectEnd = this->ChildRects.end();
+            ChildRectIterator InsIt = RectEnd;
+            for( ChildRectIterator RectIt = this->ChildRects.begin() ; RectIt != RectEnd ; ++RectIt )
+            {
+                if( (*RectIt).first == Child ) {
+                    (*RectIt).second = ChildTrans;
+                    return false;
+                }else if( (*RectIt).first->GetZOrder() > Zorder && InsIt != RectEnd ) {
+                    InsIt = RectIt;
+                }
+            }
+            this->ChildRects.insert(InsIt,ChildRectPair(Child,ChildTrans));
+            return ( InsIt != RectEnd );
+        }
+
+        GridRect GridContainer::GetChildGridRect(Widget* Child) const
+        {
+            for( ConstChildRectIterator RectIt = this->ChildRects.begin() ; RectIt != this->ChildRects.end() ; ++RectIt )
+            {
+                if( (*RectIt).first == Child ) {
+                    return (*RectIt).second;
+                }
+            }
+            return GridRect();
+        }
+
+        Boolean GridContainer::RemoveChildGridRect(Widget* Child)
+        {
+            for( ChildRectIterator RectIt = this->ChildRects.begin() ; RectIt != this->ChildRects.end() ; ++RectIt )
+            {
+                if( (*RectIt).first == Child ) {
+                    this->ChildRects.erase(RectIt);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Child Management
+
+        void GridContainer::AddChild(Widget* Child, const GridRect& GridTransform)
+        {
+            this->SetChildGridRect(Child,GridTransform);
+            this->AddChild(Child);
+        }
+
+        void GridContainer::AddChild(Widget* Child, const UInt16 ZOrder, const GridRect& GridTransform)
+        {
+            this->SetChildGridRect(Child,GridTransform);
+            this->AddChild(Child,ZOrder);
+        }
+
+        void GridContainer::RemoveChild(Widget* ToBeRemoved)
+        {
+            this->RemoveChildGridRect(ToBeRemoved);
+            this->PagedContainer::RemoveChild(ToBeRemoved);
+        }
+
+        void GridContainer::RemoveAllChildren()
+        {
+            this->ChildRects.clear();
+            this->PagedContainer::RemoveAllChildren();
+        }
+
+        void GridContainer::DestroyChild(Widget* ToBeDestroyed)
+        {
+            this->RemoveChildGridRect(ToBeDestroyed);
+            this->PagedContainer::DestroyChild(ToBeDestroyed);
+        }
+
+        void GridContainer::DestroyAllChildren()
+        {
+            this->ChildRects.clear();
+            this->PagedContainer::DestroyAllChildren();
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
@@ -214,7 +501,7 @@ namespace Mezzanine
                         ChildNode.AppendAttribute("ChildName").SetValue( (*ChildRectIt).first->GetName() ) )
                     {
                         XML::Node CellRectNode = ChildNode.AppendChild("CellRect");
-                        //(*ChildRectIt).second.ProtoSerialize(CellRectNode);
+                        (*ChildRectIt).second.ProtoSerialize(CellRectNode);
 
                         continue;
                     }else{
@@ -248,7 +535,42 @@ namespace Mezzanine
 
         void GridContainer::ProtoDeSerializeGridRects(const XML::Node& SelfRoot)
         {
+            this->ChildRects.clear();
 
+            XML::Attribute CurrAttrib;
+            XML::Node ChildRectsNode = SelfRoot.GetChild( "ChildRects" );
+
+            if( !ChildRectsNode.Empty() ) {
+                if( ChildRectsNode.GetAttribute("Version").AsInt() == 1 ) {
+                    const GridRect EmptyRect;
+                    for( XML::NodeIterator ChildRectNodeIt = ChildRectsNode.begin() ; ChildRectNodeIt != ChildRectsNode.end() ; ++ChildRectNodeIt )
+                    {
+                        if( (*ChildRectNodeIt).GetAttribute("Version").AsInt() == 1 ) {
+                            GridRect CellRect;
+                            String ChildName;
+
+                            CurrAttrib = (*ChildRectNodeIt).GetAttribute("ChildName");
+                            if( !CurrAttrib.Empty() )
+                                ChildName = CurrAttrib.AsString();
+
+                            XML::Node CellRectNode = SelfRoot.GetChild("CellRect").GetFirstChild();
+                            if( !CellRectNode.Empty() )
+                                CellRect.ProtoDeSerialize(CellRectNode);
+
+                            if( !ChildName.empty() && CellRect != EmptyRect ) {
+                                Widget* GridChild = this->GetChild(ChildName);
+                                if( GridChild != NULL ) {
+                                    this->ChildRects.push_back( ChildRectPair(GridChild,CellRect) );
+                                }
+                            }
+                        }else{
+                            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("ChildRects") + ": Not Version 1.");
+                        }
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + String("ChildRects") + ": Not Version 1.");
+                }
+            }
         }
 
         void GridContainer::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
@@ -280,6 +602,36 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // GridContainerFactory Methods
+
+        String GridContainerFactory::GetWidgetTypeName() const
+            { return GridContainer::TypeName; }
+
+        GridContainer* GridContainerFactory::CreateGridContainer(const String& RendName, Screen* Parent)
+            { return new GridContainer(RendName,Parent); }
+
+        GridContainer* GridContainerFactory::CreateGridContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent)
+            { return new GridContainer(RendName,RendRect,Parent); }
+
+        GridContainer* GridContainerFactory::CreateGridContainer(const XML::Node& XMLNode, Screen* Parent)
+            { return new GridContainer(XMLNode,Parent); }
+
+        Widget* GridContainerFactory::CreateWidget(Screen* Parent)
+            { return new GridContainer(Parent); }
+
+        Widget* GridContainerFactory::CreateWidget(const String& RendName, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateGridContainer(RendName,Parent); }
+
+        Widget* GridContainerFactory::CreateWidget(const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params, Screen* Parent)
+            { return this->CreateGridContainer(RendName,RendRect,Parent); }
+
+        Widget* GridContainerFactory::CreateWidget(const XML::Node& XMLNode, Screen* Parent)
+            { return this->CreateGridContainer(XMLNode,Parent); }
+
+        void GridContainerFactory::DestroyWidget(Widget* ToBeDestroyed)
+            { delete static_cast<GridContainer*>( ToBeDestroyed ); }
     }//UI
 }//Mezzanine
 
