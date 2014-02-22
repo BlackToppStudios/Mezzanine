@@ -732,6 +732,8 @@ void CatchApp::MakeGUI()
     const Real GSLargeText = 0.85;
     const Real GSMultiLineText = 0.20;
 
+    const String GameScreenText = "Ubuntu-14";
+
     GUI->LoadMTA("Catch_Game.mta","Common");
     UI::Screen* GameScreen = GUI->CreateScreen("GameScreen","Catch_Game",UIViewport);
 
@@ -750,7 +752,7 @@ void CatchApp::MakeGUI()
     UI::Widget* GSScoreValue = GameScreen->CreateWidget("GS_ScoreValue",UI::UnifiedRect(0.0,0.0,0.55,1.0));
     GSScoreValue->SetPositioningRules(UI::PF_Anchor_TopRight);
     UI::ImageLayer* GSScoreValueLayer = GSScoreValue->CreateImageLayer("GSScoreValueArea");
-    UI::SingleLineTextLayer* GSScoreValueText = GSScoreValue->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSScoreValueText = GSScoreValue->CreateSingleLineTextLayer(GameScreenText);
     GSScoreValueText->SetText("0:00");
     GSScoreValueText->HorizontallyAlign(UI::LA_Center);
     GSScoreValueText->VerticallyAlign(UI::LA_Center);
@@ -777,7 +779,7 @@ void CatchApp::MakeGUI()
     UI::Widget* GSTimerValue = GameScreen->CreateWidget("GS_TimerValue",UI::UnifiedRect(0.0,0.0,0.34,1.0));
     GSTimerValue->SetPositioningRules(UI::PF_Anchor_TopRight);
     UI::ImageLayer* GSTimerValueLayer = GSTimerValue->CreateImageLayer("GSTimerArea");
-    UI::SingleLineTextLayer* GSTimerValueText = GSTimerValue->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSTimerValueText = GSTimerValue->CreateSingleLineTextLayer(GameScreenText);
     GSTimerValueText->SetText("0");
     GSTimerValueText->HorizontallyAlign(UI::LA_Center);
     GSTimerValueText->VerticallyAlign(UI::LA_Center);
@@ -795,7 +797,7 @@ void CatchApp::MakeGUI()
     GSMenuAccess->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     UI::ImageLayer* GSMenuAccessNormal = GSMenuAccess->CreateImageLayer("GSMenuStoreButton");
     UI::ImageLayer* GSMenuAccessHovered = GSMenuAccess->CreateImageLayer("GSMenuStoreHoveredButton");
-    UI::SingleLineTextLayer* GSMenuAccessText = GSMenuAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSMenuAccessText = GSMenuAccess->CreateSingleLineTextLayer(GameScreenText);
     GSMenuAccessText->SetText("Menu");
     GSMenuAccessText->HorizontallyAlign(UI::LA_Center);
     GSMenuAccessText->VerticallyAlign(UI::LA_Center);
@@ -811,7 +813,7 @@ void CatchApp::MakeGUI()
     GSItemShopAccess->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     UI::ImageLayer* GSItemShopAccessNormal = GSItemShopAccess->CreateImageLayer("GSMenuStoreButton");
     UI::ImageLayer* GSItemShopAccessHovered = GSItemShopAccess->CreateImageLayer("GSMenuStoreHoveredButton");
-    UI::SingleLineTextLayer* GSItemShopAccessText = GSItemShopAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSItemShopAccessText = GSItemShopAccess->CreateSingleLineTextLayer(GameScreenText);
     GSItemShopAccessText->SetText("Store");
     GSItemShopAccessText->HorizontallyAlign(UI::LA_Center);
     GSItemShopAccessText->VerticallyAlign(UI::LA_Center);
@@ -836,7 +838,7 @@ void CatchApp::MakeGUI()
     UI::StackButton* GSOptionsAccess = GameScreen->CreateStackButton("GS_Options",UI::UnifiedRect(0.15,0.075,0.70,0.11));
     UI::ImageLayer* GSOptionsAccessNormal = GSOptionsAccess->CreateImageLayer("GSOptionsButton");
     UI::ImageLayer* GSOptionsAccessHovered = GSOptionsAccess->CreateImageLayer("GSOptionsHoveredButton");
-    UI::SingleLineTextLayer* GSOptionsAccessText = GSOptionsAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSOptionsAccessText = GSOptionsAccess->CreateSingleLineTextLayer(GameScreenText);
     GSOptionsAccessText->SetText("Options");
     GSOptionsAccessText->HorizontallyAlign(UI::LA_Center);
     GSOptionsAccessText->VerticallyAlign(UI::LA_Center);
@@ -859,7 +861,7 @@ void CatchApp::MakeGUI()
     UI::StackButton* GSVideoSetAccess = GameScreen->CreateStackButton("GS_VideoSetAccess",UI::UnifiedRect(0.11,0.0365,0.34,0.11));
     UI::ImageLayer* GSVideoSetAccessNormal = GSVideoSetAccess->CreateImageLayer("GSButton");
     UI::ImageLayer* GSVideoSetAccessHovered = GSVideoSetAccess->CreateImageLayer("GSHoveredButton");
-    UI::SingleLineTextLayer* GSVideoSetAccessText = GSVideoSetAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSVideoSetAccessText = GSVideoSetAccess->CreateSingleLineTextLayer(GameScreenText);
     GSVideoSetAccessText->SetText("Video Options");
     GSVideoSetAccessText->HorizontallyAlign(UI::LA_Center);
     GSVideoSetAccessText->VerticallyAlign(UI::LA_Center);
@@ -874,7 +876,7 @@ void CatchApp::MakeGUI()
     UI::StackButton* GSAudioSetAccess = GameScreen->CreateStackButton("GS_AudioSetAccess",UI::UnifiedRect(0.55,0.0365,0.34,0.11));
     UI::ImageLayer* GSAudioSetAccessNormal = GSAudioSetAccess->CreateImageLayer("GSButton");
     UI::ImageLayer* GSAudioSetAccessHovered = GSAudioSetAccess->CreateImageLayer("GSHoveredButton");
-    UI::SingleLineTextLayer* GSAudioSetAccessText = GSAudioSetAccess->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSAudioSetAccessText = GSAudioSetAccess->CreateSingleLineTextLayer(GameScreenText);
     GSAudioSetAccessText->SetText("Audio Options");
     GSAudioSetAccessText->HorizontallyAlign(UI::LA_Center);
     GSAudioSetAccessText->VerticallyAlign(UI::LA_Center);
@@ -899,7 +901,7 @@ void CatchApp::MakeGUI()
     // Create the label for the window resolution list
     UI::Widget* GSResolutionLabel = GameScreen->CreateWidget("GS_ResolutionLabel",UI::UnifiedRect(0.12,0.01,0.415,0.13));
     UI::ImageLayer* GSResolutionLabelLayer = GSResolutionLabel->CreateImageLayer("GSButton");
-    UI::SingleLineTextLayer* GSResolutionLabelText = GSResolutionLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSResolutionLabelText = GSResolutionLabel->CreateSingleLineTextLayer(GameScreenText);
     GSResolutionLabelText->SetText("Video Resolutions");
     GSResolutionLabelText->HorizontallyAlign(UI::LA_Center);
     GSResolutionLabelText->VerticallyAlign(UI::LA_Center);
@@ -916,7 +918,7 @@ void CatchApp::MakeGUI()
     UI::Widget* GSResolutionDisplay = GSResolutionList->GetSelectionDisplay();
     UI::ImageLayer* GSResolutionDisplayLayer = GSResolutionDisplay->CreateImageLayer("GSListSelection");
     UI::SingleLineTextLayer* GSResolutionDisplayText = static_cast<UI::SingleLineTextLayer*>( GSResolutionDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
-    GSResolutionDisplayText->SetDefaultFont("Ubuntu-14");
+    GSResolutionDisplayText->SetDefaultFont(GameScreenText);
     GSResolutionDisplayText->HorizontallyAlign(UI::LA_Center);
     GSResolutionDisplayText->VerticallyAlign(UI::LA_Center);
     GSResolutionDisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
@@ -982,7 +984,7 @@ void CatchApp::MakeGUI()
     // Create the label for the fullscreen checkbox
     UI::Widget* GSFullscreenLabel = GameScreen->CreateWidget("GS_FullscreenLabel",UI::UnifiedRect(0.72,0.145,0.22,0.12));
     UI::ImageLayer* GSFullscreenLabelLayer = GSFullscreenLabel->CreateImageLayer("GSButton");
-    UI::SingleLineTextLayer* GSFullscreenLabelText = GSFullscreenLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSFullscreenLabelText = GSFullscreenLabel->CreateSingleLineTextLayer(GameScreenText);
     GSFullscreenLabelText->SetText("Fullscreen");
     GSFullscreenLabelText->HorizontallyAlign(UI::LA_Center);
     GSFullscreenLabelText->VerticallyAlign(UI::LA_Center);
@@ -996,7 +998,7 @@ void CatchApp::MakeGUI()
     // Create the label for the FSAA options
     UI::Widget* GSFSAALabel = GameScreen->CreateWidget("GS_FSAALabel",UI::UnifiedRect(0.12,0.365,0.415,0.13));
     UI::ImageLayer* GSFSAALabelLayer = GSFSAALabel->CreateImageLayer("GSButton");
-    UI::SingleLineTextLayer* GSFSAALabelText = GSFSAALabel->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSFSAALabelText = GSFSAALabel->CreateSingleLineTextLayer(GameScreenText);
     GSFSAALabelText->SetText("Anti-Aliasing");
     GSFSAALabelText->HorizontallyAlign(UI::LA_Center);
     GSFSAALabelText->VerticallyAlign(UI::LA_Center);
@@ -1013,7 +1015,7 @@ void CatchApp::MakeGUI()
     UI::Widget* GSFSAADisplay = GSFSAAList->GetSelectionDisplay();
     UI::ImageLayer* GSFSAADisplayLayer = GSFSAADisplay->CreateImageLayer("GSListSelection");
     UI::SingleLineTextLayer* GSFSAADisplayText = static_cast<UI::SingleLineTextLayer*>( GSFSAADisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
-    GSFSAADisplayText->SetDefaultFont("Ubuntu-14");
+    GSFSAADisplayText->SetDefaultFont(GameScreenText);
     GSFSAADisplayText->HorizontallyAlign(UI::LA_Center);
     GSFSAADisplayText->VerticallyAlign(UI::LA_Center);
     GSFSAADisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
@@ -1079,7 +1081,7 @@ void CatchApp::MakeGUI()
     // Create the label for the FPS stats display checkbox
     UI::Widget* GSStatsLabel = GameScreen->CreateWidget("GS_StatsLabel",UI::UnifiedRect(0.72,0.50,0.22,0.12));
     UI::ImageLayer* GSStatsLabelLayer = GSStatsLabel->CreateImageLayer("GSButton");
-    UI::SingleLineTextLayer* GSStatsLabelText = GSStatsLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSStatsLabelText = GSStatsLabel->CreateSingleLineTextLayer(GameScreenText);
     GSStatsLabelText->SetText("Show FPS");
     GSStatsLabelText->HorizontallyAlign(UI::LA_Center);
     GSStatsLabelText->VerticallyAlign(UI::LA_Center);
@@ -1094,7 +1096,7 @@ void CatchApp::MakeGUI()
     UI::Button* GSVideoOptsApply = GameScreen->CreateButton("GS_VideoOptsApply",UI::UnifiedRect(0.815,0.84,0.17,0.14));
     UI::ImageLayer* GSVideoOptsApplyNormal = GSVideoOptsApply->CreateImageLayer("GSOptionsApplyButton");
     UI::ImageLayer* GSVideoOptsApplyHovered = GSVideoOptsApply->CreateImageLayer("GSOptionsApplyHoveredButton");
-    UI::SingleLineTextLayer* GSVideoOptsApplyText = GSVideoOptsApply->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSVideoOptsApplyText = GSVideoOptsApply->CreateSingleLineTextLayer(GameScreenText);
     GSVideoOptsApplyText->SetText("Apply");
     GSVideoOptsApplyText->HorizontallyAlign(UI::LA_Center);
     GSVideoOptsApplyText->VerticallyAlign(UI::LA_Center);
@@ -1113,7 +1115,7 @@ void CatchApp::MakeGUI()
     UI::Widget* GSMusicVolLabel = GameScreen->CreateWidget("GS_MusicVolLabel",UI::UnifiedRect(0.0,0.01,0.40,0.13));
     GSMusicVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
     UI::ImageLayer* GSMusicVolLabelLayer = GSMusicVolLabel->CreateImageLayer("GSButton");
-    UI::SingleLineTextLayer* GSMusicVolLabelText = GSMusicVolLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSMusicVolLabelText = GSMusicVolLabel->CreateSingleLineTextLayer(GameScreenText);
     GSMusicVolLabelText->SetText("Music Volume");
     GSMusicVolLabelText->HorizontallyAlign(UI::LA_Center);
     GSMusicVolLabelText->VerticallyAlign(UI::LA_Center);
@@ -1158,7 +1160,7 @@ void CatchApp::MakeGUI()
     UI::Widget* GSEffectsVolLabel = GameScreen->CreateWidget("GS_EffectsVolLabel",UI::UnifiedRect(0.0,0.275,0.40,0.13));
     GSEffectsVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
     UI::ImageLayer* GSEffectsVolLabelLayer = GSEffectsVolLabel->CreateImageLayer("GSButton");
-    UI::SingleLineTextLayer* GSEffectsVolLabelText = GSEffectsVolLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSEffectsVolLabelText = GSEffectsVolLabel->CreateSingleLineTextLayer(GameScreenText);
     GSEffectsVolLabelText->SetText("Effects Volume");
     GSEffectsVolLabelText->HorizontallyAlign(UI::LA_Center);
     GSEffectsVolLabelText->VerticallyAlign(UI::LA_Center);
@@ -1202,7 +1204,7 @@ void CatchApp::MakeGUI()
     // Create the label for the Audio Device options
     UI::Widget* GSAudioDeviceLabel = GameScreen->CreateWidget("GS_AudioDeviceLabel",UI::UnifiedRect(0.12,0.56,0.415,0.13));
     UI::ImageLayer* GSAudioDeviceLabelLayer = GSAudioDeviceLabel->CreateImageLayer("GSButton");
-    UI::SingleLineTextLayer* GSAudioDeviceLabelText = GSAudioDeviceLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSAudioDeviceLabelText = GSAudioDeviceLabel->CreateSingleLineTextLayer(GameScreenText);
     GSAudioDeviceLabelText->SetText("Audio Device");
     GSAudioDeviceLabelText->HorizontallyAlign(UI::LA_Center);
     GSAudioDeviceLabelText->VerticallyAlign(UI::LA_Center);
@@ -1219,7 +1221,7 @@ void CatchApp::MakeGUI()
     UI::Widget* GSAudioDeviceDisplay = GSAudioDeviceList->GetSelectionDisplay();
     UI::ImageLayer* GSAudioDeviceDisplayLayer = GSAudioDeviceDisplay->CreateImageLayer("GSListSelection");
     UI::SingleLineTextLayer* GSAudioDeviceDisplayText = static_cast<UI::SingleLineTextLayer*>( GSAudioDeviceDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
-    GSAudioDeviceDisplayText->SetDefaultFont("Ubuntu-14");
+    GSAudioDeviceDisplayText->SetDefaultFont(GameScreenText);
     GSAudioDeviceDisplayText->HorizontallyAlign(UI::LA_Center);
     GSAudioDeviceDisplayText->VerticallyAlign(UI::LA_Center);
     GSAudioDeviceDisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
@@ -1285,7 +1287,7 @@ void CatchApp::MakeGUI()
     // Create the label for the FPS stats display checkbox
     UI::Widget* GSMuteLabel = GameScreen->CreateWidget("GS_MuteLabel",UI::UnifiedRect(0.72,0.695,0.22,0.12));
     UI::ImageLayer* GSMuteLabelLayer = GSMuteLabel->CreateImageLayer("GSButton");
-    UI::SingleLineTextLayer* GSMuteLabelText = GSMuteLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSMuteLabelText = GSMuteLabel->CreateSingleLineTextLayer(GameScreenText);
     GSMuteLabelText->SetText("Mute");
     GSMuteLabelText->HorizontallyAlign(UI::LA_Center);
     GSMuteLabelText->VerticallyAlign(UI::LA_Center);
@@ -1300,7 +1302,7 @@ void CatchApp::MakeGUI()
     UI::StackButton* GSOptsBack = GameScreen->CreateStackButton("GS_OptsBack",UI::UnifiedRect(0.780,0.870,0.156,0.094));
     UI::ImageLayer* GSOptsBackNormal = GSOptsBack->CreateImageLayer("GSOptionsApplyButton");
     UI::ImageLayer* GSOptsBackHovered = GSOptsBack->CreateImageLayer("GSOptionsApplyHoveredButton");
-    UI::SingleLineTextLayer* GSOptsBackText = GSOptsBack->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSOptsBackText = GSOptsBack->CreateSingleLineTextLayer(GameScreenText);
     GSOptsBackText->SetText("Back");
     GSOptsBackText->HorizontallyAlign(UI::LA_Center);
     GSOptsBackText->VerticallyAlign(UI::LA_Center);
@@ -1318,7 +1320,7 @@ void CatchApp::MakeGUI()
     UI::Button* GSMenuRestart = GameScreen->CreateButton("GS_MenuRestart",UI::UnifiedRect(0.15,0.445,0.70,0.11));
     UI::ImageLayer* GSMenuRestartNormal = GSMenuRestart->CreateImageLayer("GSOptionsButton");
     UI::ImageLayer* GSMenuRestartHovered = GSMenuRestart->CreateImageLayer("GSOptionsHoveredButton");
-    UI::SingleLineTextLayer* GSMenuRestartText = GSMenuRestart->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSMenuRestartText = GSMenuRestart->CreateSingleLineTextLayer(GameScreenText);
     GSMenuRestartText->SetText("Restart Level");
     GSMenuRestartText->HorizontallyAlign(UI::LA_Center);
     GSMenuRestartText->VerticallyAlign(UI::LA_Center);
@@ -1333,7 +1335,7 @@ void CatchApp::MakeGUI()
     UI::StackButton* GSMenuReturn = GameScreen->CreateStackButton("GS_MenuReturn",UI::UnifiedRect(0.15,0.63,0.70,0.11));
     UI::ImageLayer* GSMenuReturnNormal = GSMenuReturn->CreateImageLayer("GSOptionsButton");
     UI::ImageLayer* GSMenuReturnHovered = GSMenuReturn->CreateImageLayer("GSOptionsHoveredButton");
-    UI::SingleLineTextLayer* GSMenuReturnText = GSMenuReturn->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSMenuReturnText = GSMenuReturn->CreateSingleLineTextLayer(GameScreenText);
     GSMenuReturnText->SetText("Return to Game");
     GSMenuReturnText->HorizontallyAlign(UI::LA_Center);
     GSMenuReturnText->VerticallyAlign(UI::LA_Center);
@@ -1349,7 +1351,7 @@ void CatchApp::MakeGUI()
     UI::Button* GSMenuExit = GameScreen->CreateButton("GS_MenuExit",UI::UnifiedRect(0.15,0.815,0.70,0.11));
     UI::ImageLayer* GSMenuExitNormal = GSMenuExit->CreateImageLayer("GSOptionsButton");
     UI::ImageLayer* GSMenuExitHovered = GSMenuExit->CreateImageLayer("GSOptionsHoveredButton");
-    UI::SingleLineTextLayer* GSMenuExitText = GSMenuExit->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSMenuExitText = GSMenuExit->CreateSingleLineTextLayer(GameScreenText);
     GSMenuExitText->SetText("Exit to Main Menu");
     GSMenuExitText->HorizontallyAlign(UI::LA_Center);
     GSMenuExitText->VerticallyAlign(UI::LA_Center);
@@ -1364,86 +1366,72 @@ void CatchApp::MakeGUI()
     // Create the root entry for the item shop
     UI::MenuEntry* GSItemShopRoot = GameScreen->CreateMenuEntry("GS_ItemShopRoot",UI::UnifiedRect(0.25,0.11,0.5,0.78125));
     GSItemShopRoot->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
-    UI::ImageLayer* GSItemShopRootLayer = GSItemShopRoot->CreateImageLayer("GSStoreBackground");
-    GSItemShopRoot->AddLayerToGroup(GSItemShopRootLayer,0,"Normal");
-    GSItemShopRoot->AddLayerToGroup(GSItemShopRootLayer,0,"Hovered");
+    GSItemShopRoot->CreateImageLayer("GSStoreBackground",0,0);
     GSItemShopRoot->SetPushButton(GSItemShopAccess);
     GameScreen->AddChild(GSItemShopRoot,8);
 
     // Create the "titlebar" for the item shop window
     UI::Widget* GSItemShopTitle = GameScreen->CreateWidget("GS_ItemShopTitle",UI::UnifiedRect(0.0,0.0,1.0,0.077));
     GSItemShopTitle->SetPositioningRules(UI::PF_Anchor_HorizontalCenter | UI::PF_Anchor_Top);
-    UI::SingleLineTextLayer* GSItemShopTitleText = GSItemShopTitle->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSItemShopTitleText = GSItemShopTitle->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopTitleText->SetText("Item Shop");
     GSItemShopTitleText->HorizontallyAlign(UI::LA_Center);
     GSItemShopTitleText->VerticallyAlign(UI::LA_Center);
     GSItemShopTitleText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
-    GSItemShopTitle->AddLayerToGroup(GSItemShopTitleText,1,"Normal");
-    GSItemShopTitle->AddLayerToGroup(GSItemShopTitleText,1,"Hovered");
     GSItemShopRoot->AddChild(GSItemShopTitle,1);
 
+    // Create the grid that will store all of our purchasable items
+    UI::GridContainer* GSItemShopGrid = GameScreen->CreateGridContainer("GS_ItemShopGrid",UI::UnifiedRect(0.15,0.08,0.7,0.33));
+    GSItemShopGrid->SetCellSize(4,3);
+    GSItemShopRoot->AddChild(GSItemShopGrid,2);
 
-
-    /*UI::PagedCellGrid* ItemShopGrid = ItemShopWin->CreatePagedCellGrid("GS_ItemShopGrid", UI::RenderableRect(Vector2(0.31,0.205), Vector2(0.38,0.26), true), UI::RenderableRect(Vector2(0.40,0.47), Vector2(0.20,0.05), true), UI::Spn_Separate, 0.05);
-    ItemShopGrid->GetGridBack()->SetBackgroundColour(ColourValue::Transparent());
-    ItemShopGrid->GetPageSpinner()->GetIncrement()->GetClickable()->SetBackgroundSprite("GSIncrementPage");
-    ItemShopGrid->GetPageSpinner()->GetDecrement()->GetClickable()->SetBackgroundSprite("GSDecrementPage");
-    ItemShopGrid->GetPageSpinner()->GetValueDisplay()->SetBackgroundSprite("GSPageBox");//*/
+    // Create the spinner that will determine which items will be displayed
+    UI::Spinner* GSItemShopSpinner = GameScreen->CreateSpinner("GS_ItemShopSpinner",UI::UnifiedRect(0.0,0.43,0.25,0.05),UI::Spn_Separate_Horizontal,GameScreenText);
+    GSItemShopSpinner->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    GSItemShopSpinner->GetIncrement()->CreateImageLayer("GSIncrementPage",0,0);
+    GSItemShopSpinner->GetDecrement()->CreateImageLayer("GSDecrementPage",0,0);
+    GSItemShopSpinner->GetValueDisplay()->CreateImageLayer("GSPageBox",0,0);
+    GSItemShopGrid->SetProviders(GSItemShopSpinner,GSItemShopSpinner);
+    GSItemShopRoot->AddChild(GSItemShopSpinner,3);
 
     UI::Widget* GSItemShopDescription = GameScreen->CreateWidget("GS_ItemShopDescription",UI::UnifiedRect(0.15,0.5,0.7,0.33));
-    UI::ImageLayer* GSItemShopDescriptionLayer = GSItemShopDescription->CreateImageLayer("GSBreakdownBackground");
-    UI::MultiLineTextLayer* GSItemShopDescriptionText = GSItemShopDescription->CreateMultiLineTextLayer("Ubuntu-14");
+    GSItemShopDescription->CreateImageLayer("GSBreakdownBackground",0,0);
+    UI::MultiLineTextLayer* GSItemShopDescriptionText = GSItemShopDescription->CreateMultiLineTextLayer(GameScreenText,1,1);
     GSItemShopDescriptionText->SetText("This is a more exhaustive\ntest of the multi-line\ntext layer.");
     GSItemShopDescriptionText->SetTextLineHorizontalAlignment(UI::LA_Center);
     GSItemShopDescriptionText->SetTextlineVerticalAlignment(UI::LA_Center);
     GSItemShopDescriptionText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSMultiLineText);
-    GSItemShopDescription->AddLayerToGroup(GSItemShopDescriptionLayer,0,"Normal");
-    GSItemShopDescription->AddLayerToGroup(GSItemShopDescriptionText,1,"Normal");
-    GSItemShopDescription->AddLayerToGroup(GSItemShopDescriptionLayer,0,"Hovered");
-    GSItemShopDescription->AddLayerToGroup(GSItemShopDescriptionText,1,"Hovered");
-    GSItemShopRoot->AddChild(GSItemShopDescription,3);
+    GSItemShopRoot->AddChild(GSItemShopDescription,4);
 
     UI::Widget* GSItemShopMoney = GameScreen->CreateWidget("GS_ItemShopMoney",UI::UnifiedRect(0.15,0.87,0.20,0.09));
-    UI::ImageLayer* GSItemShopMoneyLayer = GSItemShopMoney->CreateImageLayer("GSStoreButton");
-    UI::SingleLineTextLayer* GSItemShopMoneyText = GSItemShopMoney->CreateSingleLineTextLayer("Ubuntu-14");
+    GSItemShopMoney->CreateImageLayer("GSStoreButton",0,0);
+    UI::SingleLineTextLayer* GSItemShopMoneyText = GSItemShopMoney->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopMoneyText->SetText("$0");
     GSItemShopMoneyText->HorizontallyAlign(UI::LA_Center);
     GSItemShopMoneyText->VerticallyAlign(UI::LA_Center);
     GSItemShopMoneyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
-    GSItemShopMoney->AddLayerToGroup(GSItemShopMoneyLayer,0,"Normal");
-    GSItemShopMoney->AddLayerToGroup(GSItemShopMoneyText,1,"Normal");
-    GSItemShopMoney->AddLayerToGroup(GSItemShopMoneyLayer,0,"Hovered");
-    GSItemShopMoney->AddLayerToGroup(GSItemShopMoneyText,1,"Hovered");
-    GSItemShopRoot->AddChild(GSItemShopMoney,4);
+    GSItemShopRoot->AddChild(GSItemShopMoney,5);
 
     UI::Button* GSItemShopBuy = GameScreen->CreateButton("GS_ItemShopBuy",UI::UnifiedRect(0.40,0.87,0.20,0.09));
-    UI::ImageLayer* GSItemShopBuyNormal = GSItemShopBuy->CreateImageLayer("GSStoreButton");
-    UI::ImageLayer* GSItemShopBuyHovered = GSItemShopBuy->CreateImageLayer("GSStoreHoveredButton");
-    UI::SingleLineTextLayer* GSItemShopBuyText = GSItemShopBuy->CreateSingleLineTextLayer("Ubuntu-14");
+    GSItemShopBuy->CreateImageLayer("GSStoreButton",0,"Normal");
+    GSItemShopBuy->CreateImageLayer("GSStoreHoveredButton",0,"Hovered");
+    UI::SingleLineTextLayer* GSItemShopBuyText = GSItemShopBuy->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopBuyText->SetText("Buy");
     GSItemShopBuyText->HorizontallyAlign(UI::LA_Center);
     GSItemShopBuyText->VerticallyAlign(UI::LA_Center);
     GSItemShopBuyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
-    GSItemShopBuy->AddLayerToGroup(GSItemShopBuyNormal,0,"Normal");
-    GSItemShopBuy->AddLayerToGroup(GSItemShopBuyText,1,"Normal");
-    GSItemShopBuy->AddLayerToGroup(GSItemShopBuyHovered,0,"Hovered");
-    GSItemShopBuy->AddLayerToGroup(GSItemShopBuyText,1,"Hovered");
-    GSItemShopRoot->AddChild(GSItemShopBuy,5);
+    GSItemShopRoot->AddChild(GSItemShopBuy,6);
 
     UI::StackButton* GSItemShopBack = GameScreen->CreateStackButton("GS_ItemShopBack",UI::UnifiedRect(0.65,0.87,0.20,0.09));
-    UI::ImageLayer* GSItemShopBackNormal = GSItemShopBack->CreateImageLayer("GSStoreButton");
-    UI::ImageLayer* GSItemShopBackHovered = GSItemShopBack->CreateImageLayer("GSStoreHoveredButton");
-    UI::SingleLineTextLayer* GSItemShopBackText = GSItemShopBack->CreateSingleLineTextLayer("Ubuntu-14");
+    GSItemShopBack->CreateImageLayer("GSStoreButton",0,"Normal");
+    GSItemShopBack->CreateImageLayer("GSStoreHoveredButton",0,"Hovered");
+    UI::SingleLineTextLayer* GSItemShopBackText = GSItemShopBack->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopBackText->SetText("Back");
     GSItemShopBackText->HorizontallyAlign(UI::LA_Center);
     GSItemShopBackText->VerticallyAlign(UI::LA_Center);
     GSItemShopBackText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
-    GSItemShopBack->AddLayerToGroup(GSItemShopBackNormal,0,"Normal");
-    GSItemShopBack->AddLayerToGroup(GSItemShopBackText,1,"Normal");
-    GSItemShopBack->AddLayerToGroup(GSItemShopBackHovered,0,"Hovered");
-    GSItemShopBack->AddLayerToGroup(GSItemShopBackText,1,"Hovered");
     GSItemShopRoot->SetPopButton(GSItemShopBack);
-    GSItemShopRoot->AddChild(GSItemShopBack,6);
+    GSItemShopRoot->AddChild(GSItemShopBack,7);
 
     ////-------------------  FPS  Stats  -------------------////
     // Create the widget container for the current FPS display
@@ -1452,7 +1440,7 @@ void CatchApp::MakeGUI()
     // Create the widget for displaying the current FPS explanation text
     UI::Widget* GSCurrentFPSLabel = GameScreen->CreateWidget("GS_CurrentFPSLabel",UI::UnifiedRect(0.0,0.0,0.55,1.0));
     GSCurrentFPSLabel->SetPositioningRules(UI::PF_Anchor_TopLeft);
-    UI::SingleLineTextLayer* GSCurrentFPSLabelLayer = GSCurrentFPSLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSCurrentFPSLabelLayer = GSCurrentFPSLabel->CreateSingleLineTextLayer(GameScreenText);
     GSCurrentFPSLabelLayer->SetText("Current FPS: ");
     GSCurrentFPSLabelLayer->HorizontallyAlign(UI::LA_BottomRight);
     GSCurrentFPSLabelLayer->VerticallyAlign(UI::LA_Center);
@@ -1463,7 +1451,7 @@ void CatchApp::MakeGUI()
     // Create the widget for displaying the current FPS value
     UI::Widget* GSCurrentFPSValue = GameScreen->CreateWidget("GS_CurrentFPSValue",UI::UnifiedRect(0.0,0.0,0.45,1.0));
     GSCurrentFPSValue->SetPositioningRules(UI::PF_Anchor_TopRight);
-    UI::SingleLineTextLayer* GSCurrentFPSValueLayer = GSCurrentFPSValue->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSCurrentFPSValueLayer = GSCurrentFPSValue->CreateSingleLineTextLayer(GameScreenText);
     GSCurrentFPSValueLayer->SetText("0");
     GSCurrentFPSValueLayer->HorizontallyAlign(UI::LA_TopLeft);
     GSCurrentFPSValueLayer->VerticallyAlign(UI::LA_Center);
@@ -1480,7 +1468,7 @@ void CatchApp::MakeGUI()
     // Create the widget for displaying the average FPS explanation text
     UI::Widget* GSAverageFPSLabel = GameScreen->CreateWidget("GS_AverageFPSLabel",UI::UnifiedRect(0.0,0.0,0.55,1.0));
     GSAverageFPSLabel->SetPositioningRules(UI::PF_Anchor_TopLeft);
-    UI::SingleLineTextLayer* GSAverageFPSLabelLayer = GSAverageFPSLabel->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSAverageFPSLabelLayer = GSAverageFPSLabel->CreateSingleLineTextLayer(GameScreenText);
     GSAverageFPSLabelLayer->SetText("Average FPS: ");
     GSAverageFPSLabelLayer->HorizontallyAlign(UI::LA_BottomRight);
     GSAverageFPSLabelLayer->VerticallyAlign(UI::LA_Center);
@@ -1491,7 +1479,7 @@ void CatchApp::MakeGUI()
     // Create the widget for displaying the average FPS value
     UI::Widget* GSAverageFPSValue = GameScreen->CreateWidget("GS_AverageFPSValue",UI::UnifiedRect(0.0,0.0,0.45,1.0));
     GSAverageFPSValue->SetPositioningRules(UI::PF_Anchor_TopRight);
-    UI::SingleLineTextLayer* GSAverageFPSValueLayer = GSAverageFPSValue->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSAverageFPSValueLayer = GSAverageFPSValue->CreateSingleLineTextLayer(GameScreenText);
     GSAverageFPSValueLayer->SetText("0");
     GSAverageFPSValueLayer->HorizontallyAlign(UI::LA_TopLeft);
     GSAverageFPSValueLayer->VerticallyAlign(UI::LA_Center);
@@ -1516,7 +1504,7 @@ void CatchApp::MakeGUI()
     UI::Widget* GSLevelReportScore = GameScreen->CreateWidget("GS_LevelReportScore",UI::UnifiedRect(0.0,0.08,0.34,0.125));
     GSLevelReportScore->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
     UI::ImageLayer* GSLevelReportScoreLayer = GSLevelReportScore->CreateImageLayer("GSAppExitButton");
-    UI::SingleLineTextLayer* GSLevelReportScoreText = GSLevelReportScore->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSLevelReportScoreText = GSLevelReportScore->CreateSingleLineTextLayer(GameScreenText);
     GSLevelReportScoreText->SetText("0000");
     GSLevelReportScoreText->HorizontallyAlign(UI::LA_Center);
     GSLevelReportScoreText->VerticallyAlign(UI::LA_Center);
@@ -1537,7 +1525,7 @@ void CatchApp::MakeGUI()
     UI::Button* GSLevelReportFinish = GameScreen->CreateButton("GS_LevelReportFinish",UI::UnifiedRect(0.21,0.815,0.25,0.125));
     UI::ImageLayer* GSLevelReportFinishNormal = GSLevelReportFinish->CreateImageLayer("GSStoreButton");
     UI::ImageLayer* GSLevelReportFinishHovered = GSLevelReportFinish->CreateImageLayer("GSStoreHoveredButton");
-    UI::SingleLineTextLayer* GSLevelReportFinishText = GSLevelReportFinish->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSLevelReportFinishText = GSLevelReportFinish->CreateSingleLineTextLayer(GameScreenText);
     GSLevelReportFinishText->SetText("Finish");
     GSLevelReportFinishText->HorizontallyAlign(UI::LA_Center);
     GSLevelReportFinishText->VerticallyAlign(UI::LA_Center);
@@ -1551,7 +1539,7 @@ void CatchApp::MakeGUI()
     UI::Button* GSLevelReportRetry = GameScreen->CreateButton("GS_LevelReportRetry",UI::UnifiedRect(0.54,0.815,0.25,0.125));
     UI::ImageLayer* GSLevelReportRetryNormal = GSLevelReportRetry->CreateImageLayer("GSStoreButton");
     UI::ImageLayer* GSLevelReportRetryHovered = GSLevelReportRetry->CreateImageLayer("GSStoreHoveredButton");
-    UI::SingleLineTextLayer* GSLevelReportRetryText = GSLevelReportRetry->CreateSingleLineTextLayer("Ubuntu-14");
+    UI::SingleLineTextLayer* GSLevelReportRetryText = GSLevelReportRetry->CreateSingleLineTextLayer(GameScreenText);
     GSLevelReportRetryText->SetText("Retry");
     GSLevelReportRetryText->HorizontallyAlign(UI::LA_Center);
     GSLevelReportRetryText->VerticallyAlign(UI::LA_Center);
