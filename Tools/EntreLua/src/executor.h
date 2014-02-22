@@ -55,6 +55,8 @@ struct ExecutionResults
     Mezzanine::Boolean Quit;
     /// @brief Should this be part of a multiline continuation?
     Mezzanine::Boolean Multiline;
+    /// @brief What did the executed script return?
+    std::vector<Mezzanine::String> Returns;
 
     /// @brief An initializing constructor
     /// @param DesiredOutput What does the language think the REPL should print

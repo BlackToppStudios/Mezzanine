@@ -100,53 +100,78 @@ namespace Mezzanine
                     /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries open a little easier.
                     enum Lua51Libraries
                     {
-                        NoLib                  = 0,        ///< No libraries
-                        BaseLib                = 1,        ///< Correlates to @ref Lua51ScriptingEngine::OpenBaseLibrary
-                        PackageLib             = 2,        ///< Correlates to @ref Lua51ScriptingEngine::OpenPackageLibrary
-                        StringLib              = 4,        ///< Correlates to @ref Lua51ScriptingEngine::OpenStringLibrary
-                        TableLib               = 8,        ///< Correlates to @ref Lua51ScriptingEngine::OpenTableLibrary
-                        MathLib                = 16,       ///< Correlates to @ref Lua51ScriptingEngine::OpenMathLibrary
-                        IOLib                  = 32,       ///< Correlates to @ref Lua51ScriptingEngine::OpenIOLibrary
-                        OSLib                  = 64,       ///< Correlates to @ref Lua51ScriptingEngine::OpenOSLibrary
-                        DebugLib               = 128,      ///< Correlates to @ref Lua51ScriptingEngine::OpenDebugLibrary
-                        MezzLib                = 256,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
-                        MezzSafeLib            = 512,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
-                        MezzXMLLib             = 1024,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
-                        MezzXMLSafeLib         = 2048,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
-                        MezzThreadingLib       = 4096,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
-                        MezzThreadingSafeLib   = 8192,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        NoLib                  = 0,         ///< No libraries
+                        BaseLib                = 1,         ///< Correlates to @ref Lua51ScriptingEngine::OpenBaseLibrary
+                        PackageLib             = 2,         ///< Correlates to @ref Lua51ScriptingEngine::OpenPackageLibrary
+                        StringLib              = 4,         ///< Correlates to @ref Lua51ScriptingEngine::OpenStringLibrary
+                        TableLib               = 8,         ///< Correlates to @ref Lua51ScriptingEngine::OpenTableLibrary
+                        MathLib                = 16,        ///< Correlates to @ref Lua51ScriptingEngine::OpenMathLibrary
+                        IOLib                  = 32,        ///< Correlates to @ref Lua51ScriptingEngine::OpenIOLibrary
+                        OSLib                  = 64,        ///< Correlates to @ref Lua51ScriptingEngine::OpenOSLibrary
+                        DebugLib               = 128,       ///< Correlates to @ref Lua51ScriptingEngine::OpenDebugLibrary
+                        MezzLib                = 256,       ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
+                        MezzSafeLib            = 512,       ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        MezzXMLLib             = 1024,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
+                        MezzXMLSafeLib         = 2048,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        MezzThreadingLib       = 4096,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
+                        MezzThreadingSafeLib   = 8192,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
 
-                        DefaultLibs = BaseLib | StringLib | TableLib | MathLib | MezzSafeLib | MezzXMLSafeLib | MezzThreadingSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
-                        AllLibs     = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib | MezzXMLLib | MezzThreadingLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
+                        FirstLib    = BaseLib,              ///< Useful for math based ways to work with libraries, This is equal to the numerically lowest lib
+                        LastLib     = MezzThreadingSafeLib, ///< Useful for math based ways to work with libraries, This is equal to the numerically highest lib
+
+                        DefaultLibs = BaseLib | StringLib | TableLib | MathLib |
+                                      MezzSafeLib | MezzXMLSafeLib | MezzThreadingSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        AllLibs     = BaseLib | PackageLib | StringLib | TableLib |
+                                      MathLib | IOLib | OSLib | DebugLib | MezzLib |
+                                      MezzSafeLib | MezzXMLLib | MezzXMLSafeLib |
+                                      MezzThreadingLib | MezzThreadingSafeLib              ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
                     };
 
-                    static const String NoLibName;                  ///< @brief The name used to identify No libraries, "None"
-                    static const String BaseLibName;                ///< @brief The name used to identify the Base library, "Base"
-                    static const String PackageLibName;             ///< @brief The name used to identify the Package library, "Package"
-                    static const String StringLibName;              ///< @brief The name used to identify the String library, "String"
-                    static const String TableLibName;               ///< @brief The name used to identify the Table library, "Table"
-                    static const String MathLibName;                ///< @brief The name used to identify the Math library, "Math"
-                    static const String IOLibName;                  ///< @brief The name used to identify the IO library, "IO"
-                    static const String OSLibName;                  ///< @brief The name used to identify the OS library, "OS"
-                    static const String DebugLibName;               ///< @brief The name used to identify the Debug library, "Debug"
-                    static const String MezzLibName;                ///< @brief The name used to identify the Mezzanine library, "Mezzanine"
-                    static const String MezzSafeLibName;            ///< @brief The name used to identify the MezzanineSafe library, "MezzanineSafe"
-                    static const String MezzXMLLibName;             ///< @brief The name used to identify the MezzanineXML library, "MezzanineXML"
-                    static const String MezzXMLSafeLibName;         ///< @brief The name used to identify the MezzanineXMLSafe library, "MezzanineXMLSafe"
-                    static const String MezzThreadingLibName;       ///< @brief The name used to identify the MezzanineThreading library, "MezzanineThreading"
-                    static const String MezzThreadingSafeLibName;   ///< @brief The name used to identify the MezzanineThreadingSafe library, "MezzanineThreadingSafe"
-                    static const String DefaultLibsName;            ///< @brief The name used to identify the Default set of libraries, "Default"
-                    static const String AllLibsName;                ///< @brief The name used to identify the set of all libraries, "All"
+                    static const String NoLibName;                    ///< @brief The name used to identify No libraries, "None"
+                    static const String BaseLibName;                  ///< @brief The name used to identify the Base library, "Base"
+                    static const String PackageLibName;               ///< @brief The name used to identify the Package library, "Package"
+                    static const String StringLibName;                ///< @brief The name used to identify the String library, "String"
+                    static const String TableLibName;                 ///< @brief The name used to identify the Table library, "Table"
+                    static const String MathLibName;                  ///< @brief The name used to identify the Math library, "Math"
+                    static const String IOLibName;                    ///< @brief The name used to identify the IO library, "IO"
+                    static const String OSLibName;                    ///< @brief The name used to identify the OS library, "OS"
+                    static const String DebugLibName;                 ///< @brief The name used to identify the Debug library, "Debug"
+                    static const String MezzLibName;                  ///< @brief The name used to identify the Mezzanine library, "Mezzanine"
+                    static const String MezzSafeLibName;              ///< @brief The name used to identify the MezzanineSafe library, "MezzanineSafe"
+                    static const String MezzXMLLibName;               ///< @brief The name used to identify the MezzanineXML library, "MezzanineXML"
+                    static const String MezzXMLSafeLibName;           ///< @brief The name used to identify the MezzanineXMLSafe library, "MezzanineXMLSafe"
+                    static const String MezzThreadingLibName;         ///< @brief The name used to identify the MezzanineThreading library, "MezzanineThreading"
+                    static const String MezzThreadingSafeLibName;     ///< @brief The name used to identify the MezzanineThreadingSafe library, "MezzanineThreadingSafe"
+                    static const String DefaultLibsName;              ///< @brief The name used to identify the Default set of libraries, "Default"
+                    static const String AllLibsName;                  ///< @brief The name used to identify the set of all libraries, "All"
+
+                    static const String BaseTableName;                ///< @brief The name used to identify a table loaded by the Base library, "coroutine"
+                    static const String PackageTableName;             ///< @brief The name used to identify a table loaded by the Package library, "package"
+                    static const String StringTableName;              ///< @brief The name used to identify a table loaded by the String library, "string"
+                    static const String TableTableName;               ///< @brief The name used to identify a table loaded by the Table library, "table"
+                    static const String MathTableName;                ///< @brief The name used to identify a table loaded by the Math library, "math"
+                    static const String IOTableName;                  ///< @brief The name used to identify a table loaded by the IO library, "io"
+                    static const String OSTableName;                  ///< @brief The name used to identify a table loaded by the OS library, "os"
+                    static const String DebugTableName;               ///< @brief The name used to identify a table loaded by the Debug library, "debug"
+                    static const String MezzTableName;                ///< @brief The name used to identify a table loaded by the Mezzanine library, "Mezzanine"
+                    static const String MezzSafeTableName;            ///< @brief The name used to identify a table loaded by the MezzanineSafe library, "MezzanineSafe"
+                    static const String MezzXMLTableName;             ///< @brief The name used to identify a table loaded by the MezzanineXML library, "MezzanineXML"
+                    static const String MezzXMLSafeTableName;         ///< @brief The name used to identify a table loaded by the MezzanineXMLSafe library, "MezzanineXMLSafe"
+                    static const String MezzThreadingTableName;       ///< @brief The name used to identify a table loaded by the MezzanineThreading library, "MezzanineThreading"
+                    static const String MezzThreadingSafeTableName;   ///< @brief The name used to identify a table loaded by the MezzanineThreadingSafe library, "MezzanineThreadingSafe"
 
                     /// @brief Convert a Lua51Libraries value to its name
-                    /// @param Lib a number indicating what libraries a Lua51ScriptingEngine could load
-                    /// @return A reference to one of the names listed on the Lua51ScriptingEngine
+                    /// @param Lib A number indicating what libraries a Lua51ScriptingEngine could load
+                    /// @return A reference to one of the library names listed on the Lua51ScriptingEngine
                     static const String& GetLibName(Lua51Libraries Lib);
+                    /// @brief Convert a Lua51Libraries value to the name of a table it loads
+                    /// @param Lib A number indicating what libraries a Lua51ScriptingEngine could load
+                    /// @return A reference to one of the table names listed on the Lua51ScriptingEngine
+                    static const String& GetTableName(Lua51Libraries Lib);
                     /// @brief Convert a string similar to one of the names on the Lua51ScriptingEngine to number
                     /// @param Name A string containing a name of one of the libraries (without regard to case)
                     /// @return The correlating
                     static Lua51Libraries GetLibFromName(String Name);
-
 
                 ///////////////////////////////////////////////////////////////////////////////////////
                 // Construction/Deconstruction
@@ -197,17 +222,14 @@ namespace Mezzanine
                     /// and sets it to corresponding lua binary.
                     /// @throw If an invalid script is passed this throws ParametersCastException.
                     virtual void Compile(CountedPtr<iScriptCompilable>& ScriptToCompile);
-
                     /// @brief Compile a Lua51 script.
                     /// @param ScriptToCompile A CountedPtr to a Lua51Script.
                     /// @details Compiles the source code present in ScriptToCompile and puts the results back in
                     /// the ByteCode member on the script.
                     virtual void Compile(CountedPtr<Lua51Script>& ScriptToCompile);
-
                     /// @brief Performs the compilation on a script reference
                     /// @param ScriptToCompile A reference to the Lua51Script to compile.
                     virtual void Compile(Lua51Script& ScriptToCompile);
-
                     /// @brief Performs the compilation on a raw pointer.
                     /// @param ScriptToCompile A pointer to the Lua51Script to compile.
                     virtual void Compile(Lua51Script* ScriptToCompile);
@@ -221,8 +243,11 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////////////
                 // Library Manipulation
                     /// @brief Makes Lua function calls in Lua standard libraries available for use in Lua scripts.
-                    /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to load, this defaults to DefaultLibs
+                    /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to loads
                     virtual void OpenLibraries(int LibrariesToOpen);
+                    /// @brief Check the Lua state to see if a table exists.
+                    /// @param LibToCheck Indicator of which library to ch
+                    virtual Boolean IsLibraryOpen(Lua51Libraries LibToCheck);
 
                     /// @brief Nest Lua modules to put libraries in more clean positions
                     /// @details this is used to create the syntax "Mezzanine.XML.Document()" for example.
@@ -305,11 +330,20 @@ namespace Mezzanine
                     /// @brief Set The MezzanineXMLSafe library as the XML member of the MezzanineSafe library or fail silently
                     void SetXMLSafe();
 
-
                     /// @brief Set The MezzanineThreading library as the Threading member of the Mezzanine library or fail silently
                     void SetThreading();
                     /// @brief Set The MezzanineThreadingSafe library as the Threading member of the MezzanineSafe library or fail silently
                     void SetThreadingSafe();
+
+                ///////////////////////////////////////////////////////////////////////////////////////
+                // Library Manipulation
+                public:
+                    // @brief Get the underlying Lua state that can be used with lua api calls directly.
+                    // @return The lua_State this uses
+                    //virtual lua_State* GetRawLuaState();
+
+                    int test();
+                    String tests(String Returns="");
             };
 
             //simplistic error checking function, to be replace with proper exception driven code later.

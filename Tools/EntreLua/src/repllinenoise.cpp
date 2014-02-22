@@ -51,31 +51,75 @@ REPLLineNoise::REPLLineNoise(Executor& TargetExecutor, Mezzanine::String Startin
     : REPL(TargetExecutor, StartingPrompt)
 {}
 
+Trie<char,String> BigList('+');
+
 /// @brief Tab completion callback
 /// @param CurrentInput The Current Input on the command line
 /// @param lc Line completionforthis current iteration of thetab press
 void TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
 {
-   if (CurrentInput[0] == 'h') {
-       linenoiseAddCompletion(lc,String("hello").c_str());
-   }
+    static int count = 0;
+    static String LastInput;
+
+
+
+    count++;
+    if (count==1)
+    {
+        linenoiseAddCompletion(lc,String("hello").c_str());
+    }
+    if (count==2)
+    {
+        linenoiseAddCompletion(lc,String("world").c_str());
+    }
+
+    if (count==3)
+    {
+        count=0;
+    }
 }
 
-#include <iostream>
 void REPLLineNoise::Launch()
 {
+    //Prepare Values
     String CurrentInput;
-    ExecutionResults CurrentResults = Doer.Do("copyright");
+    ExecutionResults CurrentResults = Doer.Do("banner");
     String HistoryDir(ResourceManager::GetCurrentUserDataDir() + ResourceManager::GetDirectorySeparator() + ".EntreLua" + ResourceManager::GetDirectorySeparator());
     String HistoryFile("history.txt");
     String HistoryFullName(HistoryDir+HistoryFile);
 
+    // Prepare History File
     ResourceManager::CreateDirectoryPath(HistoryDir);
+    fstream(HistoryFullName.c_str(),ios_base::app);
+    if(-1==linenoiseHistoryLoad(HistoryFullName.c_str()))
+        { cerr << "Error loading Command history" << endl; }
 
-
-    //ResourceManager::CreateDirectoryPath()
-    int Error = linenoiseHistoryLoad("history.txt");
-
+    // Actually do the command shell stuff
+    linenoiseSetCompletionCallback(TabCompletion);
+    char* RawLine;
+    while(!CurrentResults.Quit)
+    {
+        if(CurrentResults.Output.size())
+        {
+            cout << CurrentResults.Output << endl;
+            CurrentResults.Output.clear();
+        }
+        RawLine = linenoise(Prompt.c_str());
+        if(NULL==RawLine)
+        {
+            CurrentResults.Quit = true;
+            cout << endl;
+        }
+        else // All Good!
+        {
+            linenoiseHistoryAdd(RawLine);
+            linenoiseHistorySave(HistoryFullName.c_str()); /* Save the history on disk. */
+            CurrentInput = String(RawLine);
+            CurrentResults = Doer.Do(CurrentInput);
+            cout << CurrentResults.Output;
+        }
+        free(RawLine);
+    }
 
 
 }

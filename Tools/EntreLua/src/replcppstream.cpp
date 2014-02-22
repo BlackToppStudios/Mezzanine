@@ -54,7 +54,7 @@ REPLCppStream::REPLCppStream(Executor& TargetExecutor, Mezzanine::String Startin
 void REPLCppStream::Launch()
 {
     String CurrentInput;
-    ExecutionResults CurrentResults = Doer.Do("copyright");
+    ExecutionResults CurrentResults = Doer.Do("banner");
 
     while(!CurrentResults.Quit)
     {
