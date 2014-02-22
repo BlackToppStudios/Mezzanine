@@ -499,6 +499,14 @@ namespace Mezzanine
             return NewLayer;
         }
 
+        ImageLayer* QuadRenderable::CreateImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ)
+        {
+            ImageLayer* NewLayer = this->CreateImageLayer();
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            return NewLayer;
+        }
+
         ImageLayer* QuadRenderable::CreateImageLayer(const UInt16 ZOrder, const String& GroupName)
         {
             ImageLayer* NewLayer = this->CreateImageLayer();
@@ -517,6 +525,14 @@ namespace Mezzanine
         {
             ImageLayer* NewLayer = this->CreateImageLayer();
             NewLayer->SetSprite(SpriteName);
+            return NewLayer;
+        }
+
+        ImageLayer* QuadRenderable::CreateImageLayer(const String& SpriteName, const UInt16 NormalZ, const UInt16 HoveredZ)
+        {
+            ImageLayer* NewLayer = this->CreateImageLayer(SpriteName);
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
             return NewLayer;
         }
 
@@ -543,6 +559,14 @@ namespace Mezzanine
             return NewLayer;
         }
 
+        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const UInt16 NormalZ, const UInt16 HoveredZ)
+        {
+            SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer();
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            return NewLayer;
+        }
+
         SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const UInt16 ZOrder, const String& GroupName)
         {
             SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer();
@@ -566,6 +590,14 @@ namespace Mezzanine
             return NewLayer;
         }
 
+        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const String& FontName, const UInt16 NormalZ, const UInt16 HoveredZ)
+        {
+            SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer(FontName);
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            return NewLayer;
+        }
+
         SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const String& FontName, const UInt16 ZOrder, const String& GroupName)
         {
             SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer(FontName);
@@ -580,35 +612,20 @@ namespace Mezzanine
             return NewLayer;
         }
 
-        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const Real& LineHeight)
-        {
-            SingleLineTextLayer* NewLayer = new SingleLineTextLayer(LineHeight,this);
-            NewLayer->_UpdateIndex(this->RenderLayers.size());
-            this->RenderLayers.push_back(NewLayer);
-            this->_MarkDirty();
-            return NewLayer;
-        }
-
-        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const Real& LineHeight, const UInt16 ZOrder, const String& GroupName)
-        {
-            SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer(LineHeight);
-            this->AddLayerToGroup(NewLayer,ZOrder,GroupName);
-            return NewLayer;
-        }
-
-        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const Real& LineHeight, const GroupOrderEntryVector& Entrys)
-        {
-            SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer(LineHeight);
-            this->AddLayerToGroups(NewLayer,Entrys);
-            return NewLayer;
-        }
-
         MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer()
         {
             MultiLineTextLayer* NewLayer = new MultiLineTextLayer(this);
             NewLayer->_UpdateIndex(this->RenderLayers.size());
             this->RenderLayers.push_back(NewLayer);
             this->_MarkDirty();
+            return NewLayer;
+        }
+
+        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const UInt16 NormalZ, const UInt16 HoveredZ)
+        {
+            MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer();
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
             return NewLayer;
         }
 
@@ -635,6 +652,14 @@ namespace Mezzanine
             return NewLayer;
         }
 
+        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const String& FontName, const UInt16 NormalZ, const UInt16 HoveredZ)
+        {
+            MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer(FontName);
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            return NewLayer;
+        }
+
         MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const String& FontName, const UInt16 ZOrder, const String& GroupName)
         {
             MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer(FontName);
@@ -645,29 +670,6 @@ namespace Mezzanine
         MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const String& FontName, const GroupOrderEntryVector& Entrys)
         {
             MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer(FontName);
-            this->AddLayerToGroups(NewLayer,Entrys);
-            return NewLayer;
-        }
-
-        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const Real& LineHeight)
-        {
-            MultiLineTextLayer* NewLayer = new MultiLineTextLayer(LineHeight,this);
-            NewLayer->_UpdateIndex(this->RenderLayers.size());
-            this->RenderLayers.push_back(NewLayer);
-            this->_MarkDirty();
-            return NewLayer;
-        }
-
-        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const Real& LineHeight, const UInt16 ZOrder, const String& GroupName)
-        {
-            MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer(LineHeight);
-            this->AddLayerToGroup(NewLayer,ZOrder,GroupName);
-            return NewLayer;
-        }
-
-        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const Real& LineHeight, const GroupOrderEntryVector& Entrys)
-        {
-            MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer(LineHeight);
             this->AddLayerToGroups(NewLayer,Entrys);
             return NewLayer;
         }
@@ -786,9 +788,17 @@ namespace Mezzanine
             return this->RenderLayerGroups.size();
         }
 
-        void QuadRenderable::AddLayerToGroup(RenderLayer* Layer, const UInt16 ZOrder, const String& GroupName)
+        void QuadRenderable::AddLayerToGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const String& GroupName)
         {
-            this->CreateOrRetrieveRenderLayerGroup(GroupName)->AddLayer(Layer,ZOrder);
+            this->CreateOrRetrieveRenderLayerGroup(GroupName)->AddLayer(Layer,LayerZOrder);
+        }
+
+        void QuadRenderable::AddLayerToExistingGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const String& GroupName)
+        {
+            RenderLayerGroup* ExistingGroup = this->GetRenderLayerGroup(GroupName);
+            if( ExistingGroup != NULL ) {
+                ExistingGroup->AddLayer(Layer,LayerZOrder);
+            }
         }
 
         void QuadRenderable::AddLayerToGroups(RenderLayer* Layer, const GroupOrderEntryVector& Entrys)

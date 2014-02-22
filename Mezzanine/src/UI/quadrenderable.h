@@ -425,6 +425,12 @@ namespace Mezzanine
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
             /// @return Returns a pointer to the created ImageLayer.
             ImageLayer* CreateImageLayer();
+            /// @brief Creates an ImageLayer for this renderable.
+            /// @note This will attempt to add the created layer to both the "Normal" and "Hovered" RenderLayerGroups, which are auto-generated, but not guaranteed to exist.
+            /// @param NormalZ The Zorder which will be used when inserting the created layer into the "Normal" RenderLayerGroup, if it exists.
+            /// @param HoveredZ The Zorder which will be used when inserting the created layer into the "Hovered" RenderLayerGroup, if it exists.
+            /// @return Returns a pointer to the created ImageLayer.
+            ImageLayer* CreateImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ);
             /// @brief Creates an ImageLayer for this renderable and adds it to a RenderLayerGroup.
             /// @note If the requested group does not exist it will be created.
             /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
@@ -441,6 +447,13 @@ namespace Mezzanine
             /// @param SpriteName The name of the sprite to be set to the created layer.
             /// @return Returns a pointer to the created ImageLayer.
             ImageLayer* CreateImageLayer(const String& SpriteName);
+            /// @brief Creates an ImageLayer for this renderable.
+            /// @note This will attempt to add the created layer to both the "Normal" and "Hovered" RenderLayerGroups, which are auto-generated, but not guaranteed to exist.
+            /// @param NormalZ The Zorder which will be used when inserting the created layer into the "Normal" RenderLayerGroup, if it exists.
+            /// @param HoveredZ The Zorder which will be used when inserting the created layer into the "Hovered" RenderLayerGroup, if it exists.
+            /// @param SpriteName The name of the sprite to be set to the created layer.
+            /// @return Returns a pointer to the created ImageLayer.
+            ImageLayer* CreateImageLayer(const String& SpriteName, const UInt16 NormalZ, const UInt16 HoveredZ);
             /// @brief Creates an ImageLayer for this renderable and adds it to a RenderLayerGroup.
             /// @note If the requested group does not exist it will be created.
             /// @param SpriteName The name of the sprite to be set to the created layer.
@@ -460,6 +473,12 @@ namespace Mezzanine
             /// @return Returns a pointer to the created layer.
             SingleLineTextLayer* CreateSingleLineTextLayer();
             /// @brief Creats a SingleLineTextLayer for this renderable.
+            /// @note This will attempt to add the created layer to both the "Normal" and "Hovered" RenderLayerGroups, which are auto-generated, but not guaranteed to exist.
+            /// @param NormalZ The Zorder which will be used when inserting the created layer into the "Normal" RenderLayerGroup, if it exists.
+            /// @param HoveredZ The Zorder which will be used when inserting the created layer into the "Hovered" RenderLayerGroup, if it exists.
+            /// @return Returns a pointer to the created layer.
+            SingleLineTextLayer* CreateSingleLineTextLayer(const UInt16 NormalZ, const UInt16 HoveredZ);
+            /// @brief Creats a SingleLineTextLayer for this renderable.
             /// @note If the requested group does not exist it will be created.
             /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
             /// @param GroupName The name of the group the created TextLayer should be added to.
@@ -476,6 +495,13 @@ namespace Mezzanine
             /// @return Returns a pointer to the created layer.
             SingleLineTextLayer* CreateSingleLineTextLayer(const String& FontName);
             /// @brief Creats a SingleLineTextLayer for this renderable.
+            /// @note This will attempt to add the created layer to both the "Normal" and "Hovered" RenderLayerGroups, which are auto-generated, but not guaranteed to exist.
+            /// @param NormalZ The Zorder which will be used when inserting the created layer into the "Normal" RenderLayerGroup, if it exists.
+            /// @param HoveredZ The Zorder which will be used when inserting the created layer into the "Hovered" RenderLayerGroup, if it exists.
+            /// @param FontName The name of the font to use when rendering characters on the created layer.
+            /// @return Returns a pointer to the created layer.
+            SingleLineTextLayer* CreateSingleLineTextLayer(const String& FontName, const UInt16 NormalZ, const UInt16 HoveredZ);
+            /// @brief Creats a SingleLineTextLayer for this renderable.
             /// @note If the requested group does not exist it will be created.
             /// @param FontName The name of the font to use when rendering characters on the created layer.
             /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
@@ -488,32 +514,17 @@ namespace Mezzanine
             /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
             /// @return Returns a pointer to the created layer.
             SingleLineTextLayer* CreateSingleLineTextLayer(const String& FontName, const GroupOrderEntryVector& Entrys);
-            /// @brief Creats a SingleLineTextLayer for this renderable.
-            /// @note This will not add the created layer to any group, thus it must be added manually to be rendered. @n @n
-            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
-            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
-            /// @return Returns a pointer to the created layer.
-            SingleLineTextLayer* CreateSingleLineTextLayer(const Real& LineHeight);
-            /// @brief Creats a SingleLineTextLayer for this renderable.
-            /// @note If the requested group does not exist it will be created. @n @n
-            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
-            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
-            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created TextLayer should be added to.
-            /// @return Returns a pointer to the created layer.
-            SingleLineTextLayer* CreateSingleLineTextLayer(const Real& LineHeight, const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates a SingleLineTextLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created. @n @n
-            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
-            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
-            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created layer.
-            SingleLineTextLayer* CreateSingleLineTextLayer(const Real& LineHeight, const GroupOrderEntryVector& Entrys);
 
             /// @brief Creats a MultiLineTextLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
             /// @return Returns a pointer to the created layer.
             MultiLineTextLayer* CreateMultiLineTextLayer();
+            /// @brief Creats a MultiLineTextLayer for this renderable.
+            /// @note This will attempt to add the created layer to both the "Normal" and "Hovered" RenderLayerGroups, which are auto-generated, but not guaranteed to exist.
+            /// @param NormalZ The Zorder which will be used when inserting the created layer into the "Normal" RenderLayerGroup, if it exists.
+            /// @param HoveredZ The Zorder which will be used when inserting the created layer into the "Hovered" RenderLayerGroup, if it exists.
+            /// @return Returns a pointer to the created layer.
+            MultiLineTextLayer* CreateMultiLineTextLayer(const UInt16 NormalZ, const UInt16 HoveredZ);
             /// @brief Creats a MultiLineTextLayer for this renderable.
             /// @note If the requested group does not exist it will be created.
             /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
@@ -531,6 +542,13 @@ namespace Mezzanine
             /// @return Returns a pointer to the created layer.
             MultiLineTextLayer* CreateMultiLineTextLayer(const String& FontName);
             /// @brief Creats a MultiLineTextLayer for this renderable.
+            /// @note This will attempt to add the created layer to both the "Normal" and "Hovered" RenderLayerGroups, which are auto-generated, but not guaranteed to exist.
+            /// @param NormalZ The Zorder which will be used when inserting the created layer into the "Normal" RenderLayerGroup, if it exists.
+            /// @param HoveredZ The Zorder which will be used when inserting the created layer into the "Hovered" RenderLayerGroup, if it exists.
+            /// @param FontName The name of the font to use when rendering characters on the created layer.
+            /// @return Returns a pointer to the created layer.
+            MultiLineTextLayer* CreateMultiLineTextLayer(const String& FontName, const UInt16 NormalZ, const UInt16 HoveredZ);
+            /// @brief Creats a MultiLineTextLayer for this renderable.
             /// @note If the requested group does not exist it will be created.
             /// @param FontName The name of the font to use when rendering characters on the created layer.
             /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
@@ -543,27 +561,6 @@ namespace Mezzanine
             /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
             /// @return Returns a pointer to the created layer.
             MultiLineTextLayer* CreateMultiLineTextLayer(const String& FontName, const GroupOrderEntryVector& Entrys);
-            /// @brief Creats a MultiLineTextLayer for this renderable.
-            /// @note This will not add the created layer to any group, thus it must be added manually to be rendered. @n @n
-            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
-            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
-            /// @return Returns a pointer to the created layer.
-            MultiLineTextLayer* CreateMultiLineTextLayer(const Real& LineHeight);
-            /// @brief Creats a MultiLineTextLayer for this renderable.
-            /// @note If the requested group does not exist it will be created. @n @n
-            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
-            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
-            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created TextLayer should be added to.
-            /// @return Returns a pointer to the created layer.
-            MultiLineTextLayer* CreateMultiLineTextLayer(const Real& LineHeight, const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates a MultiLineTextLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created. @n @n
-            /// This constructor defaults to Screen Relative text, but this can be altered after construction.
-            /// @param LineHeight The relative scalar to be used when determining the size of characters generated by this text layer.
-            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created layer.
-            MultiLineTextLayer* CreateMultiLineTextLayer(const Real& LineHeight, const GroupOrderEntryVector& Entrys);
 
             /// @brief Gets a RenderLayer belonging to this QuadRenderable by index.
             /// @param Index The index of the RenderLayer to retrieve.
@@ -621,9 +618,15 @@ namespace Mezzanine
             /// @brief Adds a RenderLayer to the specified group.
             /// @note If the requested group does not exist it will be created.
             /// @param Layer The RenderLayer to be added to the named group.
-            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
+            /// @param LayerZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
             /// @param GroupName The name of the group the created ImageLayer should be added to.
-            void AddLayerToGroup(RenderLayer* Layer, const UInt16 ZOrder, const String& GroupName);
+            void AddLayerToGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const String& GroupName);
+            /// @brief Adds a RenderLayer to the specified group.
+            /// @note Unlike it's counterpart that doesn't specify "Existing", this will only add to groups that already exist and will not create any RenderLayerGroups.
+            /// @param Layer The RenderLayer to be added to the named group.
+            /// @param LayerZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
+            /// @param GroupName The name of the group the created ImageLayer should be added to.
+            void AddLayerToExistingGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const String& GroupName);
             /// @brief Adds a RenderLayer to multiple groups.
             /// @note If the requested groups do not exist they will be created.
             /// @param Layer The RenderLayer to be added to the named groups.

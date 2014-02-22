@@ -595,10 +595,10 @@ namespace Mezzanine
         // Serialization
 
         /// @brief Convert this class to an XML::Node ready for serialization
-        /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
+        /// @param CurrentRoot The point in the XML hierarchy that all this ColourValue should be appended to.
         void ProtoSerialize(XML::Node& CurrentRoot) const;
         /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-        /// @param OneNode and XML::Node containing the data.
+        /// @param OneNode An XML::Node containing the data.
         void ProtoDeSerialize(const XML::Node& OneNode);
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "ColourValue"

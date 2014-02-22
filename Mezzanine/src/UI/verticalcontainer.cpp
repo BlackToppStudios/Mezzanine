@@ -81,8 +81,7 @@ namespace Mezzanine
             this->WorkAreaSize.SetIdentity();
 
             // Setup any additional data for the next series of loops.
-            const Rect ParentRect = this->ParentQuad->GetRect();
-            const Real ActPadding = this->LinearPadding.CalculateActualDimension( ParentRect.Size.Y );
+            const Real ActPadding = this->LinearPadding.CalculateActualDimension( this->ActDims.Size.Y );
             const Real HalfPadding = ActPadding * 0.5;
             std::vector< std::pair<Real,Vector2> > ChildTransformCache( this->ChildWidgets.size() );
 
