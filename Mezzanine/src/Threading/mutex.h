@@ -41,6 +41,9 @@
 #ifndef _mutex_h
 #define _mutex_h
 
+/// @file
+/// @brief This file declares and defines a mutex that is a partial implementation
+
 // Parts of this library use the TinyThread++ libary and those parts are also covered by the following license
 /*
 Copyright (c) 2010-2012 Marcus Geelnard

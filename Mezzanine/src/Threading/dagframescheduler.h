@@ -74,7 +74,7 @@
         %include std_vector.i
     #endif
 #else
-	#include "swig.h"
+    #include "swig.h"
 #endif
 
 
@@ -493,6 +493,38 @@
 /// errors from consistently lengthening of shortening frames.
 /// @section dag_usage Using the DAG FrameScheduler
 /// Still in progress. In the meantime please peruse the unit test source directory for examples.
+/// @section dag_maintanence Code Maintenance Tasks
+/// @subsection dag_maintanence_codestandards Coding Standards Diverge from Mezzanine
+/// There are some fundamental differences in the DAGFrameSchedulers coded when compared to the code
+/// in the Mezzanine.
+/// @n @n
+/// The most obvious is the usage of exceptions. The DAGFrameScheduler does not use
+/// Exceptions in any way. There are a few reasons for this.
+///    1. Exception Thread Safety.
+///    2. No need to copy Exception
+///    3. Performance*
+/// @n @n
+/// * The team at BlackTopp Studios Inc will be some of the first to extol the virtues of exceptions
+/// and downplay their cost. In most situations the cost is negligible. The case of the tighest and
+/// innermost loop in a simulation seemed to us to be one of those situations where the cost matters.
+/// @n @n
+/// There is no use of a number of other Mezzanine foundational classes. The CountedPtr is completely
+/// missing. For the same reasons as exceptions. Raw pointers using RAII and references are used
+/// instead.
+/// @n @n
+/// Most of the Datatypes that are used are in a trimmed down version of the Mezzanine's datatypes.h.
+/// @subsection dag_maintanence_merging Getting changes from the Mezzanine into DAGFrameScheduler
+/// There are 3 directories with code that overlap in the Mezzanine and in the DAGFrameScheduler. Code
+/// That lies outside these directories is independent of the other project. The entire FrameScheduler
+/// library loosely correlates with the Mezzanine::Threading namespace. Then there is the tests and
+/// test framework source code. Presuming you have used git to clone both repositories to
+/// ~/Code/Mezzanine/UnitTests/src <=> ~/Code/DAGFrameScheduler/testframework @n
+/// ~/Code/Mezzanine/Mezzanine/src/Threading <=> ~/Code/DAGFrameScheduler/src @n
+/// ~/Code/Mezzanine/UnitTests/tests <=> ~/Code/DAGFrameScheduler/tests @n
+/// @n @n
+/// For simplicity when BlackTopp Studios Inc merge changes a graphical merge tool capable of directory
+/// merges is used to manually move changes between corresponding directories. Winmerge and Meld (Quite
+/// possibly the prettiest merge tool ever created) are two great examples of tools for doing this.
 
 
 /// @brief All of the Mezzanine game library components reside in this namespace.

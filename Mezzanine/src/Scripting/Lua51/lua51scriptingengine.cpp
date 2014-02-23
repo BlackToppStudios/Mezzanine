@@ -157,6 +157,7 @@ namespace Mezzanine
                 const char* ErrorCString = lua_tolstring(this->State, -1, &Length);
                 ErrorMessage.reserve(Length+2);
                 ErrorMessage = String(ErrorCString);
+                lua_pop(State,1);
                 if(ErrorMessage.length()!=Length)
                     { MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua is putting odd things in error messages:\n"+ErrorMessage); }
                 ErrorMessage += "\n";
@@ -310,7 +311,6 @@ namespace Mezzanine
             // Execution
             CountedPtr<iScript> Lua51ScriptingEngine::Execute(const String& ScriptSource)
             {
-
                 CountedPtr<Lua51Script> Results = Compile(ScriptSource);
                 Execute(Results);
                 return CountedPtrCast<iScript>(Results);
@@ -332,13 +332,8 @@ namespace Mezzanine
 
             void Lua51ScriptingEngine::Execute(Lua51Script& ScriptToRun)
                 { Execute(&ScriptToRun); }
-
-#include <iostream>
-using namespace std;
             void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
             {
-std::cout << "executing: " << ScriptToRun->SourceCode.c_str() << std::endl;
-std::cout << "on stack before compile: " << lua_gettop(State) << std::endl;
                 if(ScriptToRun->FunctionCall)
                 {
                     lua_getglobal(this->State,ScriptToRun->SourceCode.c_str());
@@ -354,7 +349,6 @@ std::cout << "on stack before compile: " << lua_gettop(State) << std::endl;
                     // Since Lua_Dump or lua_load will leave the function on the stack then...
                 }
 
-std::cout << "on stack before args: " << lua_gettop(State) << std::endl;
                 // We just need to push all the arguments
                 LuaArgument* Current;
                 for(ArgumentGroup::const_iterator Iter = ScriptToRun->Args.begin();
@@ -368,14 +362,12 @@ std::cout << "on stack before args: " << lua_gettop(State) << std::endl;
                         { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for parameter purposes.") }
                 }
 
-std::cout << "on stack before execution: " << lua_gettop(State) << std::endl;
                 // Do the actual script
                 ThrowFromLuaErrorCode(
                     //lua_call(this->State, ScriptToRun->Args.size(), ScriptToRun->Returns.size() )
                     lua_pcall(this->State, ScriptToRun->Args.size(), ScriptToRun->Returns.size(), 0)
                 );
 
-std::cout << "on stack before return eval: " << lua_gettop(State) << std::endl;
                 // Need to get return values
                 for(ArgumentGroup::iterator Iter = ScriptToRun->Returns.begin();
                     Iter != ScriptToRun->Returns.end();
@@ -387,8 +379,6 @@ std::cout << "on stack before return eval: " << lua_gettop(State) << std::endl;
                     else
                         { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for return value purposes.") }
                 }
-std::cout << "on stack at end: " << lua_gettop(State) << std::endl;
-
             }
 
             ///////////////////////////////////////////////////////////////////////////////////////
@@ -398,7 +388,7 @@ std::cout << "on stack at end: " << lua_gettop(State) << std::endl;
                 CountedPtr<Lua51Script> Results(
                                 new Lua51Script(SourceToCompile,this)
                             );
-                Compile(Results);
+                //Compile(Results); // It seems the Luq51Script constructor compiles just fine
                 return Results;
             }
 
@@ -424,11 +414,11 @@ std::cout << "on stack at end: " << lua_gettop(State) << std::endl;
                 ThrowFromLuaErrorCode(
                             lua_load(this->State, LuaSourceLoader, ScriptToCompile, ScriptToCompile->GetName().c_str())
                 );
-
                 ThrowFromLuaErrorCode(
                             //lua_dump(this->State, LuaBytecodeDumper, &(ScriptToCompile->CompiledByteCode) )
                             lua_dump(this->State, LuaBytecodeDumper, &ScriptToCompile->GetByteCodeReference() )
                 );
+                lua_pop(State,1);
             }
 
             ///////////////////////////////////////////////////////////////////////////////////////
@@ -440,51 +430,34 @@ std::cout << "on stack at end: " << lua_gettop(State) << std::endl;
             // Library Manipulation
             void Lua51ScriptingEngine::OpenLibraries(int LibrariesToOpen)
             {
-std::cout << "on stack before lib open: " << lua_gettop(State) << std::endl;
-
                 if(LibrariesToOpen & BaseLib)
                     { OpenBaseLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & PackageLib)
                     { OpenPackageLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & StringLib)
                     { OpenStringLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & TableLib)
                     { OpenTableLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & MathLib)
                     { OpenMathLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & IOLib)
                     { OpenIOLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & OSLib)
                     { OpenOSLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & DebugLib)
                     { OpenDebugLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & MezzLib)
                     { OpenMezzanineLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & MezzSafeLib)
                     { OpenMezzanineSafeLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & MezzXMLLib)
                     { OpenMezzanineXMLLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & MezzXMLSafeLib)
                     { OpenMezzanineXMLSafeLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & MezzThreadingLib)
                     { OpenMezzanineThreadingLibrary(); }
-std::cout << "on stack: " << lua_gettop(State) << std::endl;
                 if(LibrariesToOpen & MezzThreadingSafeLib)
                     { OpenMezzanineThreadingSafeLibrary(); }
-std::cout << "on stack after lib open: " << lua_gettop(State) << std::endl;
-
             }
 
             Boolean Lua51ScriptingEngine::IsLibraryOpen(Lua51Libraries LibToCheck)
@@ -501,7 +474,6 @@ std::cout << "on stack after lib open: " << lua_gettop(State) << std::endl;
 
             void Lua51ScriptingEngine::AliasLibrary(const String& Base, const String& Sub, const String& Alias)
             {
-std::cout << "on stac before alias: " << lua_gettop(State) << std::endl;
                 lua_getglobal(State, Base.c_str());
                 if (lua_istable(State, -1))
                 {
@@ -510,7 +482,6 @@ std::cout << "on stac before alias: " << lua_gettop(State) << std::endl;
                     lua_settable(State, -3); // Set the table a -3, Mezzanine to have the index defined by -2 "XML" set to the value at -1 "The MezzanineXML Table"
                     lua_pop(State,1);
                 } //else Fail Silently
-std::cout << "on stac after alias: " << lua_gettop(State) << std::endl;
             }
 
             void Lua51ScriptingEngine::OpenDefaultLibraries()
@@ -623,14 +594,12 @@ std::cout << "on stac after alias: " << lua_gettop(State) << std::endl;
             void Lua51ScriptingEngine::SetThreadingSafe()
                 { AliasLibrary("MezzanineSafe", "MezzanineThreadingSafe", "Threading"); }
 
-            //lua_State* Lua51ScriptingEngine::GetRawLuaState()
-            //    { return State; }
+            lua_State* Lua51ScriptingEngine::GetRawLuaState()
+                { return State; }
 
-            /*int Lua51ScriptingEngine::test()
-            {
-                return lua_gettop(State);
-            }
-
+            int Lua51ScriptingEngine::GetStackCount()
+                { return lua_gettop(State); }
+/*
             String Lua51ScriptingEngine::tests(String Returns)
             {
                 int Top = lua_gettop(State);

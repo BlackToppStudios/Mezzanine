@@ -135,7 +135,7 @@ class PiMakerMonopoly : public MonopolyWorkUnit
                 delete ThreadIndex[Count];
                 delete ThreadData[Count];
             }
-            // ©urrentThreadStorage.GetUsableLogger() << "CalculatingPI in thread" << this_thread::get_id() << endl;
+            //CurrentThreadStorage.GetUsableLogger() << "CalculatingPI in thread" << this_thread::get_id() << endl;
         }
 };
 

@@ -76,12 +76,13 @@ ExecutionResults Executor::Do(Mezzanine::String CommandLine)
     try
     {
         CountedPtr<iScript> CompletedScript=LuaEngine.Execute(CommandLine);
-        ArgumentGroup Returned = CompletedScript->GetAsiScriptMultipleReturn()->GetAllReturns();
+        std::cout << "on stack after string execute: " << LuaEngine.GetStackCount() << std::endl;
+        /*ArgumentGroup Returned = CompletedScript->GetAsiScriptMultipleReturn()->GetAllReturns();
         for(ArgumentGroup::iterator Iter = Returned.begin(); Iter!=Returned.end(); Iter++)
         {
             Results.Returns.push_back( (*Iter)->GetString() );
             cout << (*Iter)->GetString() << endl;
-        }
+        }*/
         //cout << LuaEngine.test() << " " << LuaEngine.tests() << endl;
     } catch (Exception& e) {
         Results.Output = e.what();

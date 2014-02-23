@@ -57,7 +57,7 @@ namespace Mezzanine
     /// @return A Whole which returns in millionths of a second the smallest unit of time that GetTimeStamp can measure.
     Whole MEZZ_LIB GetTimeStampResolution();
 
-    /// @brief Get the amount of logendifical processors, a reasononable amount to use for thread creation.
+    /// @brief Get the amount of logical processors, a reasononable amount to use for thread creation.
     /// @details This returns whatever your OS thinks is the count of CPUs. This could include
     /// Hyperthreading unit on Intel's chip, or it might not, it could include the threads from
     /// Niagra CPUs or it might not, it could return just about any value on a given piece of

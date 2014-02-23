@@ -336,13 +336,13 @@ namespace Mezzanine
                     void SetThreadingSafe();
 
                 ///////////////////////////////////////////////////////////////////////////////////////
-                // Library Manipulation
+                // Other Lua Manipulation
                 public:
-                    // @brief Get the underlying Lua state that can be used with lua api calls directly.
-                    // @return The lua_State this uses
-                    //virtual lua_State* GetRawLuaState();
+                    /// @brief Get the underlying Lua state that can be used with lua api calls directly.
+                    /// @return The lua_State this uses.
+                    virtual lua_State* GetRawLuaState();
 
-                    //int test();
+                    int GetStackCount();
                     //String tests(String Returns="");
             };
 
