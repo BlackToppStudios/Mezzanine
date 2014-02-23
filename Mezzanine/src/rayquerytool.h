@@ -68,7 +68,7 @@ namespace Mezzanine
     {
         private:
             /// @brief True if the last Query yielded a meaningful Result.
-            bool ValidResult;
+            Boolean ValidResult;
             /// @brief An Offset or location from something meaningful to the last query.
             Vector3 Offset;
             /// @brief If there is an WorldObject result to a query the result will be stored in this.

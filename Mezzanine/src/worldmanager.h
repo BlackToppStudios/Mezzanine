@@ -60,7 +60,7 @@ namespace Mezzanine
         World* ParentWorld;
         /// @internal
         /// @brief This stores whether or not processing for some or all objects in this manager has been paused.
-        bool OperationsPaused;
+        Boolean OperationsPaused;
     public:
         /// @brief Class constructor.
         WorldManager();
@@ -79,7 +79,7 @@ namespace Mezzanine
         virtual void Pause(const UInt32 PL) = 0;
         /// @brief Gets whether or not this manager is currently paused.
         /// @return Returns true if this manager has some or all of it's operations paused currently.
-        virtual bool IsPaused() const;
+        virtual Boolean IsPaused() const;
 
         /// @copydoc ManagerBase::Initialize()
         /// @exception If this is called while no valid world is set, this will throw an "INVALID_STATE_EXCEPTION".

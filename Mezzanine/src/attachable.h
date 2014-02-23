@@ -59,10 +59,10 @@ namespace Mezzanine
     class MEZZ_LIB AttachableBase
     {
     protected:
-        bool Updating;
+        Boolean Updating;
         /// @internal
         /// @brief Gets the update status of another attachable.
-        bool GetUpdating(AttachableBase* AB) const;
+        Boolean GetUpdating(AttachableBase* AB) const;
     public:
         /// @brief Class constructor.
         AttachableBase();
@@ -206,8 +206,8 @@ namespace Mezzanine
     protected:
         friend class AttachableParent;
         AttachableParent* Parent;
-        bool LocalTransformDirty;
-        bool GlobalTransformDirty;
+        Boolean LocalTransformDirty;
+        Boolean GlobalTransformDirty;
         Transform LocalXform;
     public:
         /// @brief Class constructor.
@@ -243,7 +243,7 @@ namespace Mezzanine
 
         /// @brief Recalculates objects global transform from parent.
         /// @param FromParent Whether this is being invoked from the parent of this attachable.
-        void _RecalculateGlobalTransform(bool FromParent = false);
+        void _RecalculateGlobalTransform(Boolean FromParent = false);
         /// @brief Recalculates this objects local transform based on it's current global position.
         void _RecalculateLocalTransform();
     };//AttachableChild

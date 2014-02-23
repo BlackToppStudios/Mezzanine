@@ -137,7 +137,7 @@ namespace Mezzanine
             return Results;
         }
 
-        bool Point2PointConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+        Boolean Point2PointConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
         {
             //return this->Point2Point->hasParamBeenSet(Param,Axis);
             // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btPoint2PointConstraint_8cpp_source.html#l00202

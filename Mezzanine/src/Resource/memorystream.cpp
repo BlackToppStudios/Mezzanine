@@ -54,7 +54,7 @@ namespace Mezzanine
 #ifdef USENEWDATASTREAM
         /// @todo Implement this
 #else //USENEWDATASTREAM
-        MemoryStream::MemoryStream(const size_t& BufferSize, bool FreeOnClose, bool ReadOnly)
+        MemoryStream::MemoryStream(const size_t& BufferSize, Boolean FreeOnClose, Boolean ReadOnly)
             : DataStream( ReadOnly ? DataStream::SF_Read : static_cast<DataStream::StreamFlags>(DataStream::SF_Read | DataStream::SF_Write) ),
               FreeBuffer(FreeOnClose)
         {
@@ -67,7 +67,7 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
         }
 
-        MemoryStream::MemoryStream(void* Buffer, const size_t& BufferSize, bool FreeOnClose, bool ReadOnly)
+        MemoryStream::MemoryStream(void* Buffer, const size_t& BufferSize, Boolean FreeOnClose, Boolean ReadOnly)
             : DataStream( ReadOnly ? DataStream::SF_Read : static_cast<DataStream::StreamFlags>(DataStream::SF_Read | DataStream::SF_Write) ),
               FreeBuffer(FreeOnClose)
         {
@@ -102,7 +102,7 @@ namespace Mezzanine
             return BufferEnd;
         }
 
-        void MemoryStream::SetFreeOnClose(bool FreeOnClose)
+        void MemoryStream::SetFreeOnClose(Boolean FreeOnClose)
         {
             FreeBuffer = FreeOnClose;
         }
@@ -188,12 +188,12 @@ namespace Mezzanine
             }
         }
 
-        StreamPos MemoryStream::GetStreamPosition(bool Read)
+        StreamPos MemoryStream::GetStreamPosition(Boolean Read)
         {
             return BufferPos - BufferStart;
         }
 
-        bool MemoryStream::EoF() const
+        Boolean MemoryStream::EoF() const
         {
             return BufferPos >= BufferEnd;
         }
@@ -214,7 +214,7 @@ namespace Mezzanine
 
         size_t MemoryStream::ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim)
         {
-            bool TrimCR = false;
+            Boolean TrimCR = false;
             if(Delim.find_first_of('\n') != String::npos)
             {
                 TrimCR = true;

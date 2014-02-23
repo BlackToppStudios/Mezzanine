@@ -127,7 +127,7 @@ namespace Mezzanine
                 this->MaxSequenceSize = Codes.size() - 1;
         }
 
-        bool SequenceContainer::InputSequenceExists(const MetaCodeContainer& Codes)
+        Boolean SequenceContainer::InputSequenceExists(const MetaCodeContainer& Codes)
         {
             this->VerifyInputSequence(Codes);
             return this->SequencedInputs.hasKey(Codes);

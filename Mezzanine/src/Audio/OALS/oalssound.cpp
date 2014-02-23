@@ -88,7 +88,7 @@ namespace Mezzanine
         namespace OALS
         {
             /// @enum PlaybackState
-            /// @brief This enum describes a set of boolean options common for objects playing back audio.
+            /// @brief This enum describes a set of Boolean options common for objects playing back audio.
             enum PlaybackState
             {
                 PS_Playing = 1,
@@ -148,7 +148,7 @@ namespace Mezzanine
                     alcMakeContextCurrent(this->Context);
             }
 
-            bool Sound::StreamToBuffer(const UInt32 Buffer)
+            Boolean Sound::StreamToBuffer(const UInt32 Buffer)
             {
                 if(this->SoundDecoder)
                 {
@@ -193,7 +193,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            bool Sound::IsValid() const
+            Boolean Sound::IsValid() const
             {
                 return ( this->SoundDecoder && this->SoundDecoder->GetStream() && this->InternalSource );
             }
@@ -262,7 +262,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Playback
 
-            bool Sound::Play()
+            Boolean Sound::Play()
             {
                 if( !IsPaused() )
                 {
@@ -281,7 +281,7 @@ namespace Mezzanine
                 return true;
             }
 
-            bool Sound::IsPlaying() const
+            Boolean Sound::IsPlaying() const
             {
                 return (this->State & OALS::PS_Playing);
             }
@@ -293,7 +293,7 @@ namespace Mezzanine
                 this->State = ( this->IsLooping() ? OALS::PS_Paused | OALS::PS_Looping : OALS::PS_Paused );
             }
 
-            bool Sound::IsPaused() const
+            Boolean Sound::IsPaused() const
             {
                 return (this->State & OALS::PS_Paused);
             }
@@ -307,25 +307,25 @@ namespace Mezzanine
                 this->State = ( this->IsLooping() ? OALS::PS_Stopped | OALS::PS_Looping : OALS::PS_Stopped );
             }
 
-            bool Sound::IsStopped() const
+            Boolean Sound::IsStopped() const
             {
                 return (this->State & OALS::PS_Stopped);
             }
 
-            void Sound::Loop(bool ToLoop)
+            void Sound::Loop(Boolean ToLoop)
             {
                 if(ToLoop) this->State = ( this->State | OALS::PS_Looping );
                 else this->State = ( this->State & ~OALS::PS_Looping );
             }
 
-            bool Sound::IsLooping() const
+            Boolean Sound::IsLooping() const
             {
                 return (this->State & OALS::PS_Looping);
             }
 
-            bool Sound::Seek(const Real Seconds, bool Relative)
+            Boolean Sound::Seek(const Real Seconds, Boolean Relative)
             {
-                bool Ret = false;
+                Boolean Ret = false;
                 if( this->SoundDecoder->IsSeekingSupported() )
                 {
                     Ret = this->SoundDecoder->Seek(Seconds,Relative);
@@ -384,7 +384,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Effects Methods
 
-            bool Sound::AttachEffect(const UInt32 Slot, iEffect* Eff)
+            Boolean Sound::AttachEffect(const UInt32 Slot, iEffect* Eff)
             {
                 if( Eff && Eff->IsValid() == false )
                     return false;
@@ -442,7 +442,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Filter Methods
 
-            bool Sound::AttachFilter(iFilter* Fil)
+            Boolean Sound::AttachFilter(iFilter* Fil)
             {
                 if( Fil && Fil->IsValid() == false )
                     return false;
@@ -503,10 +503,10 @@ namespace Mezzanine
                 this->_UpdateBuffers();
             }
 
-            bool Sound::_UpdateBuffers()
+            Boolean Sound::_UpdateBuffers()
             {
                 Int32 Processed = 0;
-                bool Active = true;
+                Boolean Active = true;
                 if( this->IsPlaying() )
                 {
                     alGetSourcei(this->InternalSource,AL_BUFFERS_PROCESSED,&Processed);

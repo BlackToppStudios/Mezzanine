@@ -194,7 +194,7 @@ namespace Mezzanine
             /// @param YSegments The number of segments, or boxes, the skyplane consists of on the planes Y axis.  This is usful
             /// when giving the skyplane a bow.  By default the skyplane is just one massive box.
             void CreateSkyPlane(const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale=1000.0, Real Tiling=10.0,
-                                bool DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1);
+                                Boolean DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1);
             /// @brief Disables the currently active skyplane.
             /// @details Using this function effectively deletes the skyplane, so you will have to provide a new set of parameters
             /// if you wish to re-create the skyplane.
@@ -211,7 +211,7 @@ namespace Mezzanine
             /// @param DrawFirst Whether or not the skybox should be the first thing rendered in the scene.  Usually you will
             /// want this to be true as it'll ensure all other objects are rendered on top of it.
             /// @param Orientation Optional quaternion to rotate the orientation of the skybox.
-            void CreateSkyBox(const String& Material, const String& Group, Real Distance, bool DrawFirst=true, Quaternion Orientation=Quaternion());
+            void CreateSkyBox(const String& Material, const String& Group, Real Distance, Boolean DrawFirst=true, Quaternion Orientation=Quaternion());
             /// @brief Disables the currently active skybox.
             /// @details Using this function effectively deletes the skybox, so you will have to provide a new set of parameters
             /// if you wish to re-create the skybox.
@@ -232,7 +232,7 @@ namespace Mezzanine
             /// @param Orientation Optional quaternion to rotate the orientation of the skydome.
             /// @param XSegments The number of segments, or boxes, the skydome consists of on the dome's X axis.
             /// @param YSegments The number of segments, or boxes, the skydome consists of on the dome's Y axis.
-            void CreateSkyDome(const String& Material, const String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, bool DrawFirst=true,
+            void CreateSkyDome(const String& Material, const String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, Boolean DrawFirst=true,
                                Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16);
             /// @brief Disables the currently active skydome.
             /// @details Using this function effectively deletes the skydome, so you will have to provide a new set of parameters
@@ -336,7 +336,7 @@ namespace Mezzanine
 
             /// @brief Pauses(or unpauses) all particles stored in this manager.
             /// @param Pause Will pause all Particles if true, unpause if false.
-            void PauseAllParticles(bool Pause);
+            void PauseAllParticles(Boolean Pause);
 
             /// @copydoc WorldManager::Pause(const UInt32)
             virtual void Pause(const UInt32 PL);

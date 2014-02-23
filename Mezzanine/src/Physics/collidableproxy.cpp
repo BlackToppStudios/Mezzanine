@@ -414,7 +414,7 @@ namespace Mezzanine
             return this->ProxyShape;
         }
 
-        void CollidableProxy::SetCollisionResponse(bool Enable)
+        void CollidableProxy::SetCollisionResponse(Boolean Enable)
         {
             if( Enable != this->GetCollisionResponse() )
             {
@@ -427,7 +427,7 @@ namespace Mezzanine
             }
         }
 
-        bool CollidableProxy::GetCollisionResponse() const
+        Boolean CollidableProxy::GetCollisionResponse() const
         {
             return !(this->_GetBasePhysicsObject()->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
         }
@@ -457,17 +457,17 @@ namespace Mezzanine
             Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_STATIC_OBJECT );
         }
 
-        bool CollidableProxy::IsKinematic() const
+        Boolean CollidableProxy::IsKinematic() const
         {
             return this->_GetBasePhysicsObject()->isKinematicObject();
         }
 
-        bool CollidableProxy::IsStatic() const
+        Boolean CollidableProxy::IsStatic() const
         {
             return this->_GetBasePhysicsObject()->isStaticObject();
         }
 
-        bool CollidableProxy::IsStaticOrKinematic() const
+        Boolean CollidableProxy::IsStaticOrKinematic() const
         {
             return this->_GetBasePhysicsObject()->isStaticOrKinematicObject();
         }
@@ -517,7 +517,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Activation State
 
-        void CollidableProxy::SetActivationState(const Physics::ActivationState State, bool Force)
+        void CollidableProxy::SetActivationState(const Physics::ActivationState State, Boolean Force)
         {
             if(Force) this->_GetBasePhysicsObject()->forceActivationState(State);
             else this->_GetBasePhysicsObject()->setActivationState(State);
@@ -528,7 +528,7 @@ namespace Mezzanine
             return static_cast<Physics::ActivationState>( this->_GetBasePhysicsObject()->getActivationState() );
         }
 
-        bool CollidableProxy::IsActive() const
+        Boolean CollidableProxy::IsActive() const
         {
             return this->_GetBasePhysicsObject()->isActive();
         }

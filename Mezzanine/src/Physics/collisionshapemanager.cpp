@@ -98,13 +98,13 @@ namespace Mezzanine
             this->DestroyAllShapes();
         }
 
-        btTriangleMesh* CollisionShapeManager::CreateBulletTrimesh(Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes)
+        btTriangleMesh* CollisionShapeManager::CreateBulletTrimesh(Graphics::Mesh* ObjectMesh, Boolean UseAllSubmeshes)
         {
             Ogre::MeshPtr myMesh = ObjectMesh->_GetInternalMesh();
             Ogre::SubMesh* subMesh = NULL;
             Ogre::IndexData*  IndexData = NULL;
             Ogre::VertexData* VertexData = NULL;
-            bool use32bitindexes = false;
+            Boolean use32bitindexes = false;
             unsigned int triCount = 0;
             unsigned int vCount = 0;
             unsigned int iCount = 0;
@@ -112,7 +112,7 @@ namespace Mezzanine
             Whole IndiPrevSize = 0;
             Ogre::Vector3* vertices = NULL;
             unsigned long* indices = NULL;
-            bool SharedVerts = myMesh->getSubMesh(0)->useSharedVertices;
+            Boolean SharedVerts = myMesh->getSubMesh(0)->useSharedVertices;
 
             if(UseAllSubmeshes)
             {
@@ -391,7 +391,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Shape Creation Utilities
 
-        ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes)
+        ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, Graphics::Mesh* ObjectMesh, Boolean UseAllSubmeshes)
         {
             btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateBulletTrimesh(ObjectMesh,UseAllSubmeshes));
             btShapeHull *hull = new btShapeHull(tmpshape);
@@ -408,51 +408,51 @@ namespace Mezzanine
             return new ConvexHullCollisionShape(Name,convexShape);
         }
 
-        ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
+        ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, Boolean UseAllSubmeshes)
         {
             Graphics::Mesh* ObjectMesh = Graphics::MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
             return this->GenerateConvexHull(Name,ObjectMesh,UseAllSubmeshes);
         }
 
-        DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes)
+        DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, Boolean UseAllSubmeshes)
         {
             btGImpactMeshShape* gimpact = new btGImpactMeshShape(this->CreateBulletTrimesh(ObjectMesh,UseAllSubmeshes));
             return new DynamicMeshCollisionShape(Name,gimpact);
         }
 
-        DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
+        DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, Boolean UseAllSubmeshes)
         {
             Graphics::Mesh* ObjectMesh = Graphics::MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
             return this->GenerateDynamicTriMesh(Name,ObjectMesh,UseAllSubmeshes);
         }
 
-        StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes)
+        StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, Boolean UseAllSubmeshes)
         {
             btBvhTriangleMeshShape* tmpshape = new btBvhTriangleMeshShape(this->CreateBulletTrimesh(ObjectMesh,UseAllSubmeshes),true);
             return new StaticMeshCollisionShape(Name,tmpshape);
         }
 
-        StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
+        StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, Boolean UseAllSubmeshes)
         {
             Graphics::Mesh* ObjectMesh = Graphics::MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
             return this->GenerateStaticTriMesh(Name,ObjectMesh,UseAllSubmeshes);
         }
 
-        CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, Graphics::Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
+        CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, Graphics::Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, Boolean UseAllSubmeshes)
         {
             //new submesh friendly code
             Ogre::MeshPtr myMesh = ObjectMesh->_GetInternalMesh();
             Ogre::SubMesh* subMesh = NULL;
             Ogre::IndexData*  indexData = NULL;
             Ogre::VertexData* vertexData = NULL;
-            bool use32bitindexes = false;
+            Boolean use32bitindexes = false;
             unsigned int currtriCount = 0;
             unsigned int triCount = 0;
             unsigned int vCount = 0;
             unsigned int iCount = 0;
             Whole VertPrevSize = 0;
             Whole IndiPrevSize = 0;
-            bool SharedVerts = myMesh->getSubMesh(0)->useSharedVertices;
+            Boolean SharedVerts = myMesh->getSubMesh(0)->useSharedVertices;
 
             Whole* VertPerSubMesh = NULL;
 
@@ -570,7 +570,7 @@ namespace Mezzanine
             return compound;
         }
 
-        CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
+        CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, Boolean UseAllSubmeshes)
         {
             Graphics::Mesh* ObjectMesh = Graphics::MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
             return this->PerformConvexDecomposition(Name,ObjectMesh,Depth,CPercent,PPercent,UseAllSubmeshes);

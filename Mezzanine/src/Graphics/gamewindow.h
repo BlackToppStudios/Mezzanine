@@ -203,12 +203,12 @@ namespace Mezzanine
             void SetRenderResolution(const Whole& Width, const Whole& Height);
             /// @brief Set the Fullscreen Setting
             /// @details Set the Fullscreen Setting
-            /// @param Fullscreen This accepts a bool. True for fullscreen, false for windowed
-            void SetFullscreen(const bool Fullscreen);
+            /// @param Fullscreen This accepts a Boolean. True for fullscreen, false for windowed
+            void SetFullscreen(const Boolean Fullscreen);
             /// @brief Gets the Fullscreen Setting
             /// @details Gets the Fullscreen Setting
-            /// @return This returns a bool, true if fullscreen is set, false otherwise
-            bool GetFullscreen() const;
+            /// @return This returns a Boolean, true if fullscreen is set, false otherwise
+            Boolean GetFullscreen() const;
             /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
             /// @details This should be useful in situations where it is not possible to update all of the options separately.
             void SetRenderOptions(const WindowSettings& NewSettings);
@@ -227,13 +227,13 @@ namespace Mezzanine
             Whole GetFSAALevel() const;
             /// @brief Enables (or disables) vsync on this window.
             /// @param Enable Whether or not to enable vsync.
-            void EnableVsync(bool Enable);
+            void EnableVsync(Boolean Enable);
             /// @brief Gets whether or not vsync is currently enabled on this window.
             /// @return Returns true if vsync is currently enabled, false otherwise.
             Boolean VsyncEnabled() const;
             /// @brief Hides (shows) the window.
             /// @param Hidden Whether or not to hide the window.
-            void SetHidden(bool Hidden);
+            void SetHidden(Boolean Hidden);
             /// @brief Gets whether this window is hidden.
             /// @return Returns true if this window is being hidden, false otherwise.
             Boolean IsHidden() const;

@@ -78,7 +78,7 @@ namespace Mezzanine
             void AddPressedButtons(MetaCodeContainer& GeneratedCodes) const;
             /// @internal
             /// @brief Checks to see if this code pertains to a button we can track multiple clicks for.
-            bool IsMultiClickable(const Input::InputCode Code) const;
+            Boolean IsMultiClickable(const Input::InputCode Code) const;
             /// @internal
             /// @brief Converts a standard mouse button code to the appropriate multiclick code for that button.
             Input::InputCode ConvertToMultiClickCode(const Input::InputCode Code) const;
@@ -146,19 +146,19 @@ namespace Mezzanine
 
             /// @brief Sets the visibility of the mouse cursor.
             /// @param Visible Whether or not the cursor is to be visible.
-            void SetCursorVisibility(bool Visible);
+            void SetCursorVisibility(Boolean Visible);
             /// @brief Gets the current state of the visibility of the cursor.
             /// @return Returns true if the cursor is visible, false otherwise.
-            bool GetCursorVisibility();
+            Boolean GetCursorVisibility();
             /// @brief Sets whether or not relative mode is enabled.
             /// @return Returns false if relative mode is not supported on this system.  True if the operation was a success.
             /// @remarks "Relative mode" entails hiding the cursor, locking the position, and only updating the mouse delta position each update.
             /// This is useful for First Person Shooter style games.
             /// @param Enable True to enable relative mode, false to disable.
-            bool SetRelativeMode(bool Enable);
+            Boolean SetRelativeMode(Boolean Enable);
             /// @brief Gets whether or not relative mode is enabled.
             /// @return Returns true if relative mode is enabled, false otherwise.
-            bool GetRelativeMode();
+            Boolean GetRelativeMode();
             /// @brief Sets the mouse cursor.
             void SetMouseCursor();
             /// @brief Gets the current mouse cursor.

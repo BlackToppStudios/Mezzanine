@@ -212,13 +212,13 @@ namespace Mezzanine
 
             /// @brief Returns true if this pointer points to something.
             /// @warning Without C++11 this can be accidentally easily be cast to a bool and can do silly things, like bogus pointer multiplication.
-            operator bool()
+            operator Boolean()
             { return 0 != Target.GetPointer(); }
 
             /// @brief Compares the underlying pointer of this and another ManagedPtr, (This had better return false)
             /// @param Other The right hand portion of the comparison
             /// @return Bool Hopefully thi is false, becase
-            bool operator== (ManagedPtr& Other)
+            Boolean operator== (ManagedPtr& Other)
                 { return Target.GetPointer() == Other.Target.GetP0inter(); }
 
             /// @brief Destroy the target and invalidate it.

@@ -129,7 +129,7 @@ namespace Mezzanine
             // BillboardSet Properties
 
             /// @brief Sets whether or not this BillboardSetProxy will increase the size of it's billboard pool automatically when it's limit is reached.
-            /// @param AutoExtend A bool indicating whether or not this proxy is allowed to resize it's own billboard pool.
+            /// @param AutoExtend A Boolean indicating whether or not this proxy is allowed to resize it's own billboard pool.
             virtual void SetAutoExtend(const Boolean AutoExtend);
             /// @brief Gets whether or not this BillboardSetProxy will increase the size of it's billboard pool automatically when it's limit is reached.
             /// @return Returns true if the billboard pool will automatically be resized when it reaches it's limit, false otherwise.

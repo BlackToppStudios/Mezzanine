@@ -177,7 +177,7 @@ namespace Mezzanine
             /// @details Creates a Bullet quaternion with values equal to this class and returns it.
             /// @param normalize Whether or not you want this function to normalize the quaternion for you.
             /// @return A btQuaternion that has the same contents as this Mezzanine::Quaternion.
-            btQuaternion GetBulletQuaternion(bool normalize=false) const;
+            btQuaternion GetBulletQuaternion(Boolean normalize=false) const;
 
             /// @brief Copies an existing Bullet quaternion.
             /// @details This function will copy the values stored in an existing Bullet quaternion
@@ -188,7 +188,7 @@ namespace Mezzanine
             /// @brief Gets a Ogre quaternion.
             /// @details Creates a Ogre quaternion with values equal to this class and returns it.
             /// @param normalize Whether or not you want this function to normalize the quaternion for you.
-            Ogre::Quaternion GetOgreQuaternion(bool normalize=false) const;
+            Ogre::Quaternion GetOgreQuaternion(Boolean normalize=false) const;
 
             /// @brief Copies an existing Ogre quaternion.
             /// @details This function will copy the values stored in an existing Ogre quaternion
@@ -335,37 +335,37 @@ namespace Mezzanine
             /// @brief Equality Comparison Operator from Mezzanine::Quaternion.
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are semantically equal, false otherwise.
-            bool operator==(const Mezzanine::Quaternion& Other) const;
+            Boolean operator==(const Mezzanine::Quaternion& Other) const;
             /// @brief Equality Comparison Operator from Ogre::Quaternion.
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are semantically equal, false otherwise.
-            bool operator==(const Ogre::Quaternion& Other) const;
+            Boolean operator==(const Ogre::Quaternion& Other) const;
             /// @brief Equality Comparison Operator from btQuaternion.
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are semantically equal, false otherwise.
-            bool operator==(const btQuaternion& Other) const;
+            Boolean operator==(const btQuaternion& Other) const;
 
             /// @brief Inequality Comparison Operator from Mezzanine::Quaternion.
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are not semantically equal, false otherwise.
-            bool operator!=(const Mezzanine::Quaternion& Other) const;
+            Boolean operator!=(const Mezzanine::Quaternion& Other) const;
             /// @brief Inequality Comparison Operator from Ogre::Quaternion.
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are not semantically equal, false otherwise.
-            bool operator!=(const Ogre::Quaternion& Other) const;
+            Boolean operator!=(const Ogre::Quaternion& Other) const;
             /// @brief Inequality Comparison Operator from btQuaternion.
             /// @param Other The other quaternion to compare with.
             /// @return True if the Quaternions are not semantically equal, false otherwise.
-            bool operator!=(const btQuaternion& Other) const;
+            Boolean operator!=(const btQuaternion& Other) const;
 
             /// @brief Is every value in this Quaternion less than or equal to its corresponding value in another.
             /// @param Other The Quaternion on the right hand side of the sign.
             /// @note Used primarily for testing. This is not implemented for use with other kinds of Quaternion implementations as it is widely considered useless.
-            bool operator<= (const Mezzanine::Quaternion& Other) const;
+            Boolean operator<= (const Mezzanine::Quaternion& Other) const;
             /// @brief Is every value in this Quaternion greater than or equal to its corresponding value in another.
             /// @param Other The Quaternion on the right hand side of the sign.
             /// @note Used primarily for testing. This is not implemented for use with other kinds of Quaternion implementations as it is widely considered useless.
-            bool operator>= (const Mezzanine::Quaternion& Other) const;
+            Boolean operator>= (const Mezzanine::Quaternion& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization

@@ -138,10 +138,10 @@ namespace Mezzanine
             /// @brief Sets the World Object to be able to collide with other objects in the world.
             /// @details By default collision response is enabled.  Only call this function if you have disabled collision response.
             /// @param Enable Whether or not to enable collision response.
-            virtual void SetCollisionResponse(bool Enable);
+            virtual void SetCollisionResponse(Boolean Enable);
             /// @brief Will this respond to 3d collisions.
             /// @return False is it does not respond to collisions, True if it will
-            virtual bool GetCollisionResponse() const;
+            virtual Boolean GetCollisionResponse() const;
 
             /// @brief Sets the collection of flags that help determine collision response for this object.
             /// @details See Physics::CollisionFlags enum for more details on the available flags.
@@ -164,14 +164,14 @@ namespace Mezzanine
             virtual void SetStatic();
             /// @brief Is the object kinematic.
             /// @return True if the object is kinematic false if it is not.
-            virtual bool IsKinematic() const;
+            virtual Boolean IsKinematic() const;
             /// @brief Is the object static.
             /// @return True if the object is Static false if it is not.
-            virtual bool IsStatic() const;
+            virtual Boolean IsStatic() const;
             /// @brief Checks if the object is either static or kinematic.
             /// @details Checks if the object is either static or kinematic, returns true if it is either.
             /// @return Returns true if the object is static or kinematic.
-            virtual bool IsStaticOrKinematic() const;
+            virtual Boolean IsStaticOrKinematic() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Physics Properties
@@ -229,13 +229,13 @@ namespace Mezzanine
             /// @brief Sets the activation state of the world object.
             /// @param State The activation state to set for this proxy.  See the ActivationState enum for more info.
             /// @param Force Whether or not you want to force the state.  Some states may not apply based on the condition of the proxy if this is set to false.
-            virtual void SetActivationState(const Physics::ActivationState State, bool Force = false);
+            virtual void SetActivationState(const Physics::ActivationState State, Boolean Force = false);
             /// @brief Gets the current activation state of this proxy.
             /// @return Returns a Physics::ActivationState value representing the current state of this proxy.
             virtual Physics::ActivationState GetActivationState() const;
             /// @brief Checks if the object is active in the simulation.
             /// @return Returns true if the object is active, false if it's deactivated(at rest).
-            virtual bool IsActive() const;
+            virtual Boolean IsActive() const;
 
             /// @brief Sets the amount of time this object needs to have no forces enacted upon it to be deactivated.
             /// @details This deactivate simply means it is skipped on more robust checks and force checking.  It does not mean

@@ -365,13 +365,13 @@ namespace Mezzanine
             /// @exception This method can throw a "II_IDENTITY_NOT_FOUND_EXCEPTION" if the a handler of the specified type does not exist.
             /// @param Type A UInt16 that is the ID for the type of Sound instances to mute or unmute.
             /// @param Enable True to mute sounds of the specified type, false to unmute them.
-            virtual void MuteType(const UInt16 Type, bool Enable) = 0;
+            virtual void MuteType(const UInt16 Type, Boolean Enable) = 0;
             /// @brief Gets whether or not Sound instances of the specified type are currently muted.
             /// @note Although this can accept any UInt16 value, be mindful of the SoundType enum to avoid type collisions.
             /// @exception This method can throw a "II_IDENTITY_NOT_FOUND_EXCEPTION" if the a handler of the specified type does not exist.
             /// @param Type A UInt16 that is the ID for the type of Sound instances to check.
             /// @return Returns true if sounds of the specifed type are muted, false otherwise.
-            virtual bool IsTypeMuted(const UInt16 Type) const = 0;
+            virtual Boolean IsTypeMuted(const UInt16 Type) const = 0;
 
             /// @brief Sets the volume for all stored Sound instances.
             /// @param Master The volume to apply to all sounds.
@@ -381,10 +381,10 @@ namespace Mezzanine
             virtual Real GetMasterVolume() const = 0;
             /// @brief Sets whether or not to mute all Audio.
             /// @param Enable Whether or not all sounds should be muted.
-            virtual void SetMasterMute(bool Enable) = 0;
+            virtual void SetMasterMute(Boolean Enable) = 0;
             /// @brief Gets whether or not the Audio subsystem is muted.
-            /// @return Returns a bool indicating whether or not the Audio subsystem is currently muted.
-            virtual bool IsMuted() const = 0;
+            /// @return Returns a Boolean indicating whether or not the Audio subsystem is currently muted.
+            virtual Boolean IsMuted() const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Convenience Type Volume Methods
@@ -397,10 +397,10 @@ namespace Mezzanine
             virtual Real GetAmbientVolume() const;
             /// @brief Sets whether or not to mute all Ambient Sound instances.
             /// @param Enable True to mute Ambient sounds, false to unmute them.
-            virtual void MuteAmbient(bool Enable);
+            virtual void MuteAmbient(Boolean Enable);
             /// @brief Gets whether or not Ambient Sound instances are muted.
             /// @return Returns true if Ambient sounds are muted, false otherwise.
-            virtual bool IsAmbientMuted() const;
+            virtual Boolean IsAmbientMuted() const;
 
             /// @brief Sets the volume for all stored Dialog Sound instances.
             /// @param Dialog The volume to apply to all Dialog sounds.
@@ -410,10 +410,10 @@ namespace Mezzanine
             virtual Real GetDialogVolume() const;
             /// @brief Sets whether or not to mute all Dialog Sound instances.
             /// @param Enable True to mute Dialog sounds, false to unmute them.
-            virtual void MuteDialog(bool Enable);
+            virtual void MuteDialog(Boolean Enable);
             /// @brief Gets whether or not Dialog Sound instances are muted.
             /// @return Returns true if Dialog sounds are muted, false otherwise.
-            virtual bool IsDialogMuted() const;
+            virtual Boolean IsDialogMuted() const;
 
             /// @brief Sets the volume for all stored Effect Sound instances.
             /// @param Effect The volume to apply to all Effect sounds.
@@ -423,10 +423,10 @@ namespace Mezzanine
             virtual Real GetEffectVolume() const;
             /// @brief Sets whether or not to mute all Effect Sound instances.
             /// @param Enable True to mute Effect sounds, false to unmute them.
-            virtual void MuteEffect(bool Enable);
+            virtual void MuteEffect(Boolean Enable);
             /// @brief Gets whether or not Effect Sound instances are muted.
             /// @return Returns true if Effect sounds are muted, false otherwise.
-            virtual bool IsEffectMuted() const;
+            virtual Boolean IsEffectMuted() const;
 
             /// @brief Sets the volume for all stored Music Sound instances.
             /// @param Music The volume to apply to all Music sounds.
@@ -436,10 +436,10 @@ namespace Mezzanine
             virtual Real GetMusicVolume() const;
             /// @brief Sets whether or not to mute all Music Sound instances.
             /// @param Enable True to mute Music sounds, false to unmute them.
-            virtual void MuteMusic(bool Enable);
+            virtual void MuteMusic(Boolean Enable);
             /// @brief Gets whether or not Music Sound instances are muted.
             /// @return Returns true if Music sounds are muted, false otherwise.
-            virtual bool IsMusicMuted() const;
+            virtual Boolean IsMusicMuted() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Recorder Management
@@ -483,7 +483,7 @@ namespace Mezzanine
             /// @brief Checks to see if the named playback device is available.
             /// @param DeviceName The name of the device to check for.
             /// @return Returns true if the device is available on this system, false otherwise.
-            virtual bool PlaybackDeviceNameValid(const String& DeviceName) const = 0;
+            virtual Boolean PlaybackDeviceNameValid(const String& DeviceName) const = 0;
 
             /// @brief Initializes the playback device.
             /// @details This function will initialize the device using the parameters provided.
@@ -492,7 +492,7 @@ namespace Mezzanine
             /// @param DeviceName The name of the device you wish to have this manager interface with/use.
             /// @param OutputFrequency Frequency of the output audio, -1 for the devices default.
             /// @return Returns true if the device was initialized successfully.  False on a failure.
-            virtual bool InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency = 44100) = 0;
+            virtual Boolean InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency = 44100) = 0;
             /// @brief Shuts down the current playback device and unloads all sounds.
             /// @warning This will destroy all sounds and sound proxies in the system.
             virtual void ShutdownPlaybackDevice() = 0;
@@ -521,7 +521,7 @@ namespace Mezzanine
             /// @brief Checks if a @ref iDecoderFactory is already registered with this manager.
             /// @param Format The @ref Audio::Encoding supported by the @ref iDecoderFactory to look for.
             /// @return Returns true if a @ref iDecoderFactory supporting that @ref Audio::Encoding exists, false otherwise.
-            bool DecoderFactoryExists(const Audio::Encoding Format);
+            Boolean DecoderFactoryExists(const Audio::Encoding Format);
             /// @brief Gets an @ref iDecoderFactory by it's supported @ref Audio::Encoding.
             /// @param Format The @ref Audio::Encoding supported by the @ref iDecoderFactory to retrieve.
             /// @return Returns a pointer to the @ref iDecoderFactory registered to the provided @ref Audio::Encoding, or NULL if none are registered.

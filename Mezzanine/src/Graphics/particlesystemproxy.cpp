@@ -137,7 +137,7 @@ namespace Mezzanine
             return this->Template;
         }
 
-        void ParticleSystemProxy::PauseParticleSystem(bool Pause)
+        void ParticleSystemProxy::PauseParticleSystem(Boolean Pause)
         {
             if( this->Paused != Pause ) {
                 this->Paused = Pause;

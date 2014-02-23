@@ -220,7 +220,7 @@ namespace Mezzanine
                                                                  pentity->getParentNode()->_getDerivedScale());
 
                         // test for hitting individual triangles on the mesh
-                        bool new_closest_found = false;
+                        Boolean new_closest_found = false;
                         for (size_t i = 0; i < index_count; i += 3)
                         {
                             // check for a hit against this triangle

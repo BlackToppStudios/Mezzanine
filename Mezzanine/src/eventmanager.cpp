@@ -107,7 +107,7 @@ namespace Mezzanine
         int MezzSDLFilter(void *userdata, SDL_Event *event )
         {
             //We need to protect this thing with a Mutex, SDL 1.3 says this filter could run in different thread.
-            static bool DroppedQuit=false;
+            static Boolean DroppedQuit=false;
 
             if(event!=0)                //if this is a real event
             {
@@ -395,7 +395,7 @@ namespace Mezzanine
 
         RawEvent FromSDLRaw;                                    //used to hold data as we go through loop
         EventUserInput* FromSDLEvent = new EventUserInput();    //Used to build up all of our userinput data into one event
-        //bool ClearKeyPresses=false;                             //if true All the keypresses will be dropped and all keys will be assumed to be up
+        //Boolean ClearKeyPresses=false;                             //if true All the keypresses will be dropped and all keys will be assumed to be up
 
         // Here we iterate through manual check to insert any requested polling checks and perpetuate button and key down events
         for(Internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)

@@ -90,7 +90,7 @@ namespace Mezzanine
         namespace OALS
         {
             /// @enum ProxyState
-            /// @brief This enum describes a set of boolean options common for objects playing back audio in a 3D world.
+            /// @brief This enum describes a set of Boolean options common for objects playing back audio in a 3D world.
             enum ProxyState
             {
                 PS_Playing = 1,
@@ -177,7 +177,7 @@ namespace Mezzanine
                     alcMakeContextCurrent(Context);
             }
 
-            bool OALS::SoundProxy::StreamToBuffer(const UInt32 Buffer)
+            Boolean OALS::SoundProxy::StreamToBuffer(const UInt32 Buffer)
             {
                 if(this->SoundDecoder)
                 {
@@ -227,7 +227,7 @@ namespace Mezzanine
                 return Mezzanine::PT_Audio_SoundProxy;
             }
 
-            bool OALS::SoundProxy::IsValid() const
+            Boolean OALS::SoundProxy::IsValid() const
             {
                 return ( this->SoundDecoder && this->SoundDecoder->GetStream() );//add parameters to check the sources
             }
@@ -299,7 +299,7 @@ namespace Mezzanine
                 this->SetStream(Decode);
             }
 
-            void OALS::SoundProxy::SetDirectSound(bool Enable)
+            void OALS::SoundProxy::SetDirectSound(Boolean Enable)
             {
                 if( this->DirectSound != Enable )
                 {
@@ -323,7 +323,7 @@ namespace Mezzanine
                 }
             }
 
-            bool OALS::SoundProxy::IsDirectingSound() const
+            Boolean OALS::SoundProxy::IsDirectingSound() const
             {
                 return this->DirectSound;
             }
@@ -350,7 +350,7 @@ namespace Mezzanine
                 }
             }
 
-            bool OALS::SoundProxy::IsInWorld() const
+            Boolean OALS::SoundProxy::IsInWorld() const
             {
                 return (this->State & OALS::PS_InWorld);
             }
@@ -363,7 +363,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Playback
 
-            bool OALS::SoundProxy::Play()
+            Boolean OALS::SoundProxy::Play()
             {
                 if( !this->IsInWorld() )
                     return false;
@@ -413,7 +413,7 @@ namespace Mezzanine
                 return true;
             }
 
-            bool OALS::SoundProxy::IsPlaying() const
+            Boolean OALS::SoundProxy::IsPlaying() const
             {
                 return (this->State & OALS::PS_Playing);
             }
@@ -437,7 +437,7 @@ namespace Mezzanine
                 }
             }
 
-            bool OALS::SoundProxy::IsPaused() const
+            Boolean OALS::SoundProxy::IsPaused() const
             {
                 return (this->State & OALS::PS_Paused);
             }
@@ -462,25 +462,25 @@ namespace Mezzanine
                 }
             }
 
-            bool OALS::SoundProxy::IsStopped() const
+            Boolean OALS::SoundProxy::IsStopped() const
             {
                 return (this->State & OALS::PS_Stopped);
             }
 
-            void OALS::SoundProxy::Loop(bool ToLoop)
+            void OALS::SoundProxy::Loop(Boolean ToLoop)
             {
                 if(ToLoop) this->State = ( this->State | OALS::PS_Looping );
                 else this->State = ( this->State & ~OALS::PS_Looping );
             }
 
-            bool OALS::SoundProxy::IsLooping() const
+            Boolean OALS::SoundProxy::IsLooping() const
             {
                 return (this->State & OALS::PS_Looping);
             }
 
-            bool OALS::SoundProxy::Seek(const Real Seconds, bool Relative)
+            Boolean OALS::SoundProxy::Seek(const Real Seconds, Boolean Relative)
             {
-                bool Ret = false;
+                Boolean Ret = false;
                 if( this->SoundDecoder->IsSeekingSupported() )
                 {
                     Ret = this->SoundDecoder->Seek(Seconds,Relative);
@@ -877,7 +877,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Effects Methods
 
-            bool OALS::SoundProxy::AttachEffect(const UInt32 Slot, iEffect* Eff)
+            Boolean OALS::SoundProxy::AttachEffect(const UInt32 Slot, iEffect* Eff)
             {
                 if( Eff && Eff->IsValid() == false )
                     return false;
@@ -951,7 +951,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Filter Methods
 
-            bool OALS::SoundProxy::AttachFilter(iFilter* Fil)
+            Boolean OALS::SoundProxy::AttachFilter(iFilter* Fil)
             {
                 if( Fil && Fil->IsValid() == false )
                     return false;
@@ -1056,10 +1056,10 @@ namespace Mezzanine
                 this->_UpdateBuffers();
             }
 
-            bool OALS::SoundProxy::_UpdateBuffers()
+            Boolean OALS::SoundProxy::_UpdateBuffers()
             {
                 Int32 Processed = 0;
-                bool Active = true;
+                Boolean Active = true;
                 if( this->IsPlaying() )
                 {
                     // Get the minimum non-zero number of processed buffers across all sources

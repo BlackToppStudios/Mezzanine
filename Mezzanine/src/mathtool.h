@@ -110,7 +110,7 @@ namespace Mezzanine
         /// @param Second The second of two Reals to compare.
         /// @param Tolerance The leeway allowed in how far the two can be apart.
         /// @return Returns true if the two numbers are within the amount specified by Tolerance of each other, false otherwise.
-        bool MEZZ_LIB WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance);
+        Boolean MEZZ_LIB WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Angle Calculation Functions and Values

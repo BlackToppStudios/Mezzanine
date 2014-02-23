@@ -54,7 +54,7 @@
 namespace Mezzanine
 {
     template<> Input::InputManager* Singleton<Input::InputManager>::SingletonPtr = NULL;
-    
+
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
@@ -284,7 +284,7 @@ namespace Mezzanine
         void InputManager::AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID)
             { this->Sequences.AddInputSequence(Codes,SequenceID); }
 
-        bool InputManager::InputSequenceExists(const MetaCodeContainer& Codes)
+        Boolean InputManager::InputSequenceExists(const MetaCodeContainer& Codes)
             { return this->Sequences.InputSequenceExists(Codes); }
 
         Int32 InputManager::GetIDofInputSequence(const MetaCodeContainer& Codes)

@@ -104,7 +104,7 @@ namespace Mezzanine
         }
     }
 
-    bool Timer::IsStopped()
+    Boolean Timer::IsStopped()
     {
         this->Update();
         return this->StartStamp == 0;
@@ -135,7 +135,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void GoalTimer::SetAutoReset(const bool AutoReset)
+    void GoalTimer::SetAutoReset(const Boolean AutoReset)
         { this->ResetAtGoal = AutoReset; }
 
     Boolean GoalTimer::GetAutoReset() const

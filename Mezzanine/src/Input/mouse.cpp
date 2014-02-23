@@ -190,7 +190,7 @@ namespace Mezzanine
             }
         }
 
-        bool Mouse::IsMultiClickable(const Input::InputCode Code) const
+        Boolean Mouse::IsMultiClickable(const Input::InputCode Code) const
         {
             return (Input::MOUSEBUTTON_1 <= Code && Input::MOUSEBUTTON_2 >= Code);
         }
@@ -262,16 +262,16 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Configuration Methods
 
-        void Mouse::SetCursorVisibility(bool Visible)
+        void Mouse::SetCursorVisibility(Boolean Visible)
             { SDL_ShowCursor(Visible); }
 
-        bool Mouse::GetCursorVisibility()
+        Boolean Mouse::GetCursorVisibility()
             { return 0 != SDL_ShowCursor(-1); }
 
-        bool Mouse::SetRelativeMode(bool Enable)
+        Boolean Mouse::SetRelativeMode(Boolean Enable)
             { return 0 == SDL_SetRelativeMouseMode( (Enable?SDL_TRUE:SDL_FALSE) ); }
 
-        bool Mouse::GetRelativeMode()
+        Boolean Mouse::GetRelativeMode()
             { return SDL_GetRelativeMouseMode(); }
 
         void Mouse::SetMouseCursor()

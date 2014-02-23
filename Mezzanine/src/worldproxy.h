@@ -74,7 +74,7 @@ namespace Mezzanine
         virtual void RemoveFromWorld() = 0;
         /// @brief Gets whether or not this object is inside of it's world.
         /// @return Returns true if this proxy is inserted in it's respective subsystems world.
-        virtual bool IsInWorld() const = 0;
+        virtual Boolean IsInWorld() const = 0;
 
         /// @brief Gets a pointer to the parent object controlling this proxy.
         /// @return Returns a pointer to the WorldObject controlling this proxy, or NULL if this proxy isn't bound to a WorldObject.

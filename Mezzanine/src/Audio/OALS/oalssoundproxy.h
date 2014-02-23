@@ -166,14 +166,14 @@ namespace Mezzanine
                 UInt16 State;
                 /// @internal
                 /// @brief Stores whether or not sound being emitted in a specific direction.
-                bool DirectSound;
+                Boolean DirectSound;
 
                 /// @internal
                 /// @brief Makes the context this listener belongs to the current context.
                 void MakeCurrent(ALCcontext* Context);
                 /// @internal
                 /// @brief Streams the content from the decoder into an OALS buffer.
-                bool StreamToBuffer(const UInt32 Buffer);
+                Boolean StreamToBuffer(const UInt32 Buffer);
             public:
                 /// @brief Class constructor.
                 /// @param Type The type of sound to initialize.  See @ref Audio::SoundType enum for the basic values.
@@ -191,7 +191,7 @@ namespace Mezzanine
                 virtual Mezzanine::ProxyType GetProxyType() const;
 
                 /// @copydoc iSound::IsValid() const
-                virtual bool IsValid() const;
+                virtual Boolean IsValid() const;
                 /// @copydoc iSound::GetType() const
                 virtual UInt16 GetType() const;
                 /// @copydoc iSound::GetDecoder() const
@@ -210,17 +210,17 @@ namespace Mezzanine
                 /// @copydoc iSound::SetStream(const UInt16, iDecoder*)
                 virtual void SetStream(const UInt16 Type, iDecoder* Decode);
 
-                /// @copydoc Audio::SoundProxy::SetDirectSound(bool)
-                virtual void SetDirectSound(bool Enable);
+                /// @copydoc Audio::SoundProxy::SetDirectSound(Boolean)
+                virtual void SetDirectSound(Boolean Enable);
                 /// @copydoc Audio::SoundProxy::IsDirectingSound() const
-                virtual bool IsDirectingSound() const;
+                virtual Boolean IsDirectingSound() const;
 
                 /// @copydoc Audio::SoundProxy::AddToWorld()
                 virtual void AddToWorld();
                 /// @copydoc Audio::SoundProxy::RemoveFromWorld()
                 virtual void RemoveFromWorld();
                 /// @copydoc WorldProxy::IsInWorld()
-                virtual bool IsInWorld() const;
+                virtual Boolean IsInWorld() const;
 
                 /// @copydoc WorldProxy::GetCreator() const
                 virtual WorldManager* GetCreator() const;
@@ -229,24 +229,24 @@ namespace Mezzanine
                 // Playback
 
                 /// @copydoc iSound::Play()
-                virtual bool Play();
+                virtual Boolean Play();
                 /// @copydoc iSound::IsPlaying() const
-                virtual bool IsPlaying() const;
+                virtual Boolean IsPlaying() const;
                 /// @copydoc iSound::Pause()
                 virtual void Pause();
                 /// @copydoc iSound::IsPaused() const
-                virtual bool IsPaused() const;
+                virtual Boolean IsPaused() const;
                 /// @copydoc iSound::Stop()
                 virtual void Stop();
                 /// @copydoc iSound::IsStopped() const
-                virtual bool IsStopped() const;
-                /// @copydoc iSound::Loop(bool ToLoop)
-                virtual void Loop(bool ToLoop);
+                virtual Boolean IsStopped() const;
+                /// @copydoc iSound::Loop(Boolean ToLoop)
+                virtual void Loop(Boolean ToLoop);
                 /// @copydoc iSound::IsLooping() const
-                virtual bool IsLooping() const;
+                virtual Boolean IsLooping() const;
 
-                /// @copydoc iSound::Seek(const Real, bool)
-                virtual bool Seek(const Real Seconds, bool Relative = false);
+                /// @copydoc iSound::Seek(const Real, Boolean)
+                virtual Boolean Seek(const Real Seconds, Boolean Relative = false);
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Volume Control
@@ -351,7 +351,7 @@ namespace Mezzanine
                 // Effects Methods
 
                 /// @copydoc iSound::AttachEffect(const UInt32, iEffect*)
-                virtual bool AttachEffect(const UInt32 Slot, iEffect* Eff);
+                virtual Boolean AttachEffect(const UInt32 Slot, iEffect* Eff);
                 /// @copydoc iSound::GetEffect(const UInt32 Slot) const
                 virtual iEffect* GetEffect(const UInt32 Slot) const;
                 /// @copydoc iSound::GetMaxEffectSlots() const
@@ -365,7 +365,7 @@ namespace Mezzanine
                 // Filter Methods
 
                 /// @copydoc iSound::AttachFilter(iFilter*)
-                virtual bool AttachFilter(iFilter* Fil);
+                virtual Boolean AttachFilter(iFilter* Fil);
                 /// @copydoc iSound::GetFilter() const
                 virtual iFilter* GetFilter() const;
                 /// @copydoc iSound::RemoveFilter()
@@ -394,7 +394,7 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Updates the buffers for this sound as necessary for seemless playback.
                 /// @return Returns true of there were no errors updating, false if there were.
-                virtual bool _UpdateBuffers();
+                virtual Boolean _UpdateBuffers();
                 /// @internal
                 /// @brief Notifies this sound proxy a new context was created by it's parent @ref SoundScapeManager and needs to create an additional source.
                 /// @param Index The index at which the context was created.
