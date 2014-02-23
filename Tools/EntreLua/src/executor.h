@@ -76,11 +76,13 @@ class Executor
     private:
         /// @brief The actual Lua intrepretter
         Mezzanine::Scripting::Lua::Lua51ScriptingEngine& LuaEngine;
+        /// @brief Should troublshooting stack counts be displayed
+        Mezzanine::Boolean StackCounts;
 
     public:
         /// @brief Initializing constructor
         /// @param TargetExecutor A Lua sript command interpretter that the commands will be executed against.
-        Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine);
+        Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::Boolean DisplayStackCounts=false);
 
         /// @brief Actually Do one command line worth of stuff.
         /// @param CommandLine A string of lua or commands to execute.

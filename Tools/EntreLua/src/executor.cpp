@@ -50,8 +50,9 @@ using namespace Mezzanine;
 using namespace Mezzanine::Scripting;
 using namespace std;
 
-Executor::Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine)
-    : LuaEngine(TargetEngine)
+Executor::Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::Boolean DisplayStackCounts)
+    : LuaEngine(TargetEngine),
+      StackCounts(DisplayStackCounts)
 {}
 
 ExecutionResults Executor::Do(Mezzanine::String CommandLine)
@@ -76,19 +77,18 @@ ExecutionResults Executor::Do(Mezzanine::String CommandLine)
     try
     {
         CountedPtr<iScript> CompletedScript=LuaEngine.Execute(CommandLine);
-        std::cout << "on stack after string execute: " << LuaEngine.GetStackCount() << std::endl;
-        /*ArgumentGroup Returned = CompletedScript->GetAsiScriptMultipleReturn()->GetAllReturns();
+        if(StackCounts)
+            { Results.Output += "On stack after command: " + ToString(LuaEngine.GetStackCount()); }
+        // Get any returns prepare them for display
+        ArgumentGroup Returned = CompletedScript->GetAsiScriptMultipleReturn()->GetAllReturns();
         for(ArgumentGroup::iterator Iter = Returned.begin(); Iter!=Returned.end(); Iter++)
         {
             Results.Returns.push_back( (*Iter)->GetString() );
             cout << (*Iter)->GetString() << endl;
-        }*/
-        //cout << LuaEngine.test() << " " << LuaEngine.tests() << endl;
+        }
     } catch (Exception& e) {
         Results.Output = e.what();
     }
-
-
 
     return Results;
 }

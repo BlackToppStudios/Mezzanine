@@ -67,6 +67,133 @@ enum ExitCodes
     ExitFailure             = 2     ///< Something failed after command line arguments
 };
 
+/// @brief This is used to hold all the options that the user could enter on the command prompt or that Main uses for control flow.
+struct EntreLuaOptions
+{
+        vector<Mezzanine::String> LibraryList;      ///< A List of all Libraries the Mezzanine Lua51ScriptingEngine can load
+        vector<String> OpenList;                    ///< Libraries to be opened
+        vector<String> CloseList;                   ///< Libraries to close/not open
+        vector<String> LoadList;                    ///< External files to load in Lua search path
+        vector<String> ScriptFile;                  ///< File in local directory to execute
+        Mezzanine::String StatementToExecute;       ///< Commands on the raw prompt to execute
+        Mezzanine::Boolean Interactive;             ///< Enter an interactive shell even if executing from other sources
+        Mezzanine::Boolean ReadFromStdIn;           ///< After other execution sources read from stdin
+        Mezzanine::Boolean SimpleShell;             ///< Use a simple more compatible shell
+        Mezzanine::Boolean NoMezzanine;             ///< Skip loading of Mezzanine Libraries
+        Mezzanine::Boolean LoadUnsafeMezzanine;     ///< Don't load the normal Mezzanine Libries load the ones that could break stuff
+        Mezzanine::Boolean DisplayStackCounts;      ///< Display the amount of items on the Lua stack after each command
+
+        /// @brief Create a Default version of this, with all the fields empty except the library list.
+        EntreLuaOptions()
+            : StatementToExecute(""),
+              Interactive(false),
+              ReadFromStdIn(false),
+              SimpleShell(false),
+              NoMezzanine(false),
+              LoadUnsafeMezzanine(false),
+              DisplayStackCounts(false)
+        {
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::NoLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::BaseLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::PackageLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::StringLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::TableLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MathLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::IOLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::OSLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DebugLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzSafeLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzXMLSafeLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingSafeLibName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DefaultLibsName);
+            LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::AllLibsName);
+        }
+};
+
+
+/// @brief Convert the Command line options into a useful body of data.
+/// @param argc The amount of argument from the parent shell.
+/// @param argv The argument vector from the parent shell.
+/// @return A EntreLuaOptions will all the options the user or OS provided//
+EntreLuaOptions ParseCommandLineOption(int argc, char** argv)
+{
+    EntreLuaOptions Results;
+    try
+    {
+        TCLAP::CmdLine cmd("EntreLua - Mezzanine Lua Shell", ' ', "0.01 with Lua5.1");
+
+        TCLAP::ValuesConstraint<Mezzanine::String> LibaryVals( Results.LibraryList );
+        TCLAP::MultiArg<string> OpenlibArg("o", "openlib", "Library to open before shell starts", false, &LibaryVals, cmd);
+        TCLAP::MultiArg<string> CloselibArg("c", "closelib", "Do not open a Library that might be opened before shell starts", false, &LibaryVals, cmd);
+
+        TCLAP::MultiArg<String> LoadArg("l", "load", "Requires/Loads a Module. Force opening of Package lib.", false, "filename", cmd);
+        TCLAP::ValueArg<std::string> StatementArg("e", "execute", "Execute a Lua script entered at the command line.", false, "", "Lua String", cmd);
+        TCLAP::SwitchArg InteractiveSwitch("i","interactive","Enter interactive shell after other items are executed.", cmd, false);
+        TCLAP::SwitchArg StdinSwitch(":","stdin","Read from the Standard Input and execute whatever is found there.", cmd, false);
+        TCLAP::SwitchArg SimpleSwitch("s","simple","Use a simpler shell input method with fewer features but that is compatible in more places.", cmd, false);
+        TCLAP::SwitchArg NoMezzanineSwitch("n", "no-mezzanine", "Do not load/open the Mezzanine by default.", cmd, false);
+        TCLAP::SwitchArg UnsafeSwitch("u", "unsafe", "Load the unrestricted Mezzanine library instead of MezzanineSafe.", cmd, false);
+        TCLAP::UnlabeledMultiArg<String> ScriptAndArgs( "script", "A script to execute instead of an interactive shell", false, "script [args]", cmd);
+        TCLAP::SwitchArg StackSwitch("S", "Stack", "Display stack counts after each command execution.", cmd, false);
+
+        cmd.parse(argc, argv );
+
+        Results.OpenList = OpenlibArg.getValue();
+        Results.CloseList = CloselibArg.getValue();
+        Results.LoadList = LoadArg.getValue();
+        Results.StatementToExecute = StatementArg.getValue();
+        Results.Interactive = InteractiveSwitch.getValue();
+        Results.ReadFromStdIn = StdinSwitch.getValue();
+        Results.SimpleShell = SimpleSwitch.getValue();
+        Results.NoMezzanine = NoMezzanineSwitch.getValue();
+        Results.LoadUnsafeMezzanine = UnsafeSwitch.getValue();
+        Results.ScriptFile = ScriptAndArgs.getValue();
+        Results.DisplayStackCounts = StackSwitch.getValue();
+    } catch (TCLAP::ArgException &e) {
+        cerr << "error: " << e.error() << " for arg " << e.argId() << endl;
+    }
+    return Results;
+}
+
+/// @brief Deal the with many options that load/prevent loading of different libraries.
+/// @param Options a reference to a EntreLuaOptions that contains the library options to work with.
+/// @return An Integer containing a Bit Field representing the libraries to load.
+Integer GetLibsToLoad(EntreLuaOptions& Options)
+{
+    Integer LibsToLoad = Lua51ScriptingEngine::DefaultLibs;
+    for(vector<String>::iterator Iter = Options.OpenList.begin(); Iter!=Options.OpenList.end(); Iter++)
+        { LibsToLoad = LibsToLoad | Lua51ScriptingEngine::GetLibFromName(*Iter); }
+    for(vector<String>::iterator Iter = Options.CloseList.begin(); Iter!=Options.CloseList.end(); Iter++)
+        { LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::GetLibFromName(*Iter); }
+
+    if(Options.LoadUnsafeMezzanine)
+    {
+        LibsToLoad = LibsToLoad | Lua51ScriptingEngine::MezzLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzSafeLib;
+        LibsToLoad = LibsToLoad | Lua51ScriptingEngine::MezzXMLLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzXMLSafeLib;
+        LibsToLoad = LibsToLoad | Lua51ScriptingEngine::MezzThreadingLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzThreadingSafeLib;
+    }
+
+    if(Options.NoMezzanine)
+    {
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzSafeLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzXMLLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzXMLSafeLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzThreadingLib;
+        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzThreadingSafeLib;
+    }
+
+    if(Options.LoadList.size()) // The require statement is... required... for requiring things
+        { LibsToLoad = LibsToLoad | Lua51ScriptingEngine::PackageLib; }
+
+    return LibsToLoad;
+}
+
 /// @brief This is the entry point for a Lua shell with
 /// Here are the Command line options Lua implements and our differences from them
 ///      - -e stat: executes string stat.
@@ -83,143 +210,37 @@ enum ExitCodes
 ///      - -u --unsafe: Load the unlimited (unsafe) version of the Mezzanine instead of MezzanineSafe
 ///      - -o --open: Open a lua or Mezzanine library before the shell starts.
 ///      - -s --simple: Use a shell based on cin, cout instead of linenoise (Which I suspect will have issues on windows)
+///      - -S --Stack: Display stack counts after each command execution
 ///
 /// @return This will return EXIT_SUCCESS, it will do more later.
 /// @param argc Is interpretted as the amount of passed arguments
 /// @param argv Is interpretted as the arguments passed in from the launching shell.
 int main (int argc, char** argv)
 {
-    vector<Mezzanine::String> LibraryList;
-    vector<String> OpenList;
-    vector<String> CloseList;
-    vector<String> LoadList;
-    vector<String> ScriptFile;
-    String StatementToExecute;
-    bool Interactive;
-    bool ReadFromStdIn;
-    bool SimpleShell;
-    bool NoMezzanine;
-    bool LoadUnsafeMezzanine;
-    try
-    {
-        TCLAP::CmdLine cmd("EntreLua - Mezzanine Lua Shell", ' ', "0.01 with Lua5.1");
+    // All the arg interpretion is done here.
+    EntreLuaOptions Options=ParseCommandLineOption(argc, argv);
+    Integer LibsToLoad = GetLibsToLoad(Options);
 
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::NoLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::BaseLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::PackageLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::StringLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::TableLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MathLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::IOLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::OSLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DebugLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzSafeLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzXMLSafeLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::MezzThreadingSafeLibName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::DefaultLibsName);
-        LibraryList.push_back(Mezzanine::Scripting::Lua::Lua51ScriptingEngine::AllLibsName);
-
-        TCLAP::ValuesConstraint<Mezzanine::String> LibaryVals( LibraryList );
-        TCLAP::MultiArg<string> OpenlibArg("o", "openlib", "Library to open before shell starts", false, &LibaryVals, cmd);
-        TCLAP::MultiArg<string> CloselibArg("c", "closelib", "Do not open a Library that might be opened before shell starts", false, &LibaryVals, cmd);
-
-        TCLAP::MultiArg<String> LoadArg("l", "load", "Requires/Loads a Module. Force opening of Package lib.", false, "filename", cmd);
-        TCLAP::ValueArg<std::string> StatementArg("e", "execute", "Execute a Lua script entered at the command line.", false, "", "Lua String", cmd);
-        TCLAP::SwitchArg InteractiveSwitch("i","interactive","Enter interactive shell after other items are executed.", cmd, false);
-        TCLAP::SwitchArg StdinSwitch(":","stdin","Read from the Standard Input and execute whatever is found there.", cmd, false);
-        TCLAP::SwitchArg SimpleSwitch("s","simple","Use a simpler shell input method with fewer features but that works in more places.", cmd, false);
-        TCLAP::SwitchArg NoMezzanineSwitch("n", "no-mezzanine", "Do not load/open the Mezzanine by default.", cmd, false);
-        TCLAP::SwitchArg UnsafeSwitch("u", "unsafe", "Load the unrestricted Mezzanine library instead of MezzanineSafe.", cmd, false);
-        TCLAP::UnlabeledMultiArg<String> ScriptAndArgs( "script", "A script to execute instead of an interactive shell", false, "script [args]", cmd);
-
-        cmd.parse( argc, argv );
-
-        OpenList = OpenlibArg.getValue();
-        CloseList = CloselibArg.getValue();
-        LoadList = LoadArg.getValue();
-        StatementToExecute = StatementArg.getValue();
-        Interactive = InteractiveSwitch.getValue();
-        ReadFromStdIn = StdinSwitch.getValue();
-        SimpleShell = SimpleSwitch.getValue();
-        NoMezzanine = NoMezzanineSwitch.getValue();
-        LoadUnsafeMezzanine = UnsafeSwitch.getValue();
-        ScriptFile=ScriptAndArgs.getValue();
-    } catch (TCLAP::ArgException &e) {
-        cerr << "error: " << e.error() << " for arg " << e.argId() << endl;
-    }
-
-    ///////////////
-    // Argument test
-    /*
-    cout << "Load libraries: " << endl;
-    for(vector<String>::iterator Iter = OpenList.begin(); Iter!=OpenList.end(); Iter++)
-        { cout << "  -" << Lua51ScriptingEngine::GetLibFromName(*Iter) << " - " << *Iter << endl; }
-    cout << "Do not Load libraries: " << endl;
-    for(vector<String>::iterator Iter = CloseList.begin(); Iter!=CloseList.end(); Iter++)
-        { cout << "  -" << Lua51ScriptingEngine::GetLibFromName(*Iter) << " - " << *Iter << endl; }
-    cout << "Execute this statement: " << StatementToExecute << endl;
-    cout << "Requested to manually enter interactive shell: " << Interactive << endl;
-    cout << "Requested to read from stdin: " << ReadFromStdIn << endl;
-    cout << "Use Simple Shell: " << SimpleShell << endl;
-    cout << "Don't load the Mezzanine: " << NoMezzanine  << endl;
-    cout << "Use Unsafe: " << LoadUnsafeMezzanine << endl;
-    // */
-
-    //////////////////////////////////////////////////////////////////////////////////////////
-    // Determine the Libraries to load
-
-    Integer LibsToLoad = Lua51ScriptingEngine::DefaultLibs;
-    for(vector<String>::iterator Iter = OpenList.begin(); Iter!=OpenList.end(); Iter++)
-        { LibsToLoad = LibsToLoad | Lua51ScriptingEngine::GetLibFromName(*Iter); }
-    for(vector<String>::iterator Iter = CloseList.begin(); Iter!=CloseList.end(); Iter++)
-        { LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::GetLibFromName(*Iter); }
-
-    if(LoadUnsafeMezzanine)
-    {
-        LibsToLoad = LibsToLoad | Lua51ScriptingEngine::MezzLib;
-        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzSafeLib;
-        LibsToLoad = LibsToLoad | Lua51ScriptingEngine::MezzXMLLib;
-        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzXMLSafeLib;
-        LibsToLoad = LibsToLoad | Lua51ScriptingEngine::MezzThreadingLib;
-        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzThreadingSafeLib;
-    }
-
-    if(NoMezzanine)
-    {
-        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzLib;
-        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzSafeLib;
-        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzXMLLib;
-        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzXMLSafeLib;
-        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzThreadingLib;
-        LibsToLoad = LibsToLoad & ~Lua51ScriptingEngine::MezzThreadingSafeLib;
-    }
-
-    if(LoadList.size()) // The require statement is... required... for requiring things
-        { LibsToLoad = LibsToLoad | Lua51ScriptingEngine::PackageLib; }
-
+    // all option creation is here.
     Lua51ScriptingEngine TheLua( (Lua51ScriptingEngine::Lua51Libraries)LibsToLoad );
-    Executor Hooded(TheLua);
+    Executor Hooded(TheLua, Options.DisplayStackCounts);
 
-    //////////////////////////////////////////////////////////////////////////////////////////
-    // Choose and launch shell if required
-
-    for(vector<String>::iterator Iter = LoadList.begin(); Iter!=LoadList.end(); Iter++)
+    // The rest is comparatively detailed control flow.
+    for(vector<String>::iterator Iter = Options.LoadList.begin(); Iter!=Options.LoadList.end(); Iter++)
         { Hooded.Do(String("require(\"") + *Iter + String("\")\n")); }
 
-    if(StatementToExecute.size())
-        { Hooded.Do(StatementToExecute); }
+    if(Options.StatementToExecute.size())
+        { Hooded.Do(Options.StatementToExecute); }
 
     // This needs to be implmented still
     /*cout << "Should Execute: ";
     for(vector<String>::iterator Iter = ScriptFile.begin(); Iter!=ScriptFile.end(); Iter++)
         { cout << *Iter << " "; }
     cout << endl;*/
-    if(ScriptFile.size())
+    if(Options.ScriptFile.size())
         { cerr << "File execution not implemented yet" << endl; }
 
-    if(ReadFromStdIn)
+    if(Options.ReadFromStdIn)
     {
         String Total;
         String Current;
@@ -231,10 +252,10 @@ int main (int argc, char** argv)
         Hooded.Do(Total);
     }
 
-    Boolean OtherCommands = (StatementToExecute.size()||ReadFromStdIn);
-    if( !OtherCommands || (OtherCommands && Interactive) )
+    Boolean OtherCommands = (Options.StatementToExecute.size()||Options.ReadFromStdIn);
+    if( !OtherCommands || (OtherCommands && Options.Interactive) )
     {
-        if(SimpleShell)
+        if(Options.SimpleShell)
         {
             REPLCppStream Shell(Hooded);
             Shell.Launch();
@@ -243,8 +264,6 @@ int main (int argc, char** argv)
             Shell.Launch();
         }
     }
-
-
 
     return ExitSuccess;
 }

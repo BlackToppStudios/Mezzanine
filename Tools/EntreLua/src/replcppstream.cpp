@@ -47,8 +47,8 @@
 using namespace Mezzanine;
 using namespace std;
 
-REPLCppStream::REPLCppStream(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
-    : REPL(TargetExecutor, StartingPrompt)
+REPLCppStream::REPLCppStream(Executor& TargetExecutor, Mezzanine::String StartingPrompt, String StartingMultiline, String StartingReturn)
+    : REPL(TargetExecutor, StartingPrompt, StartingMultiline, StartingReturn)
 {}
 
 void REPLCppStream::Launch()

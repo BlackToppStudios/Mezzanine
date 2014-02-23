@@ -46,14 +46,19 @@
 /// @file
 /// @brief The definition of an implementation of a feature rich REPL written with linenoise
 
-/// @brief A class that will take user input from a
+/// @brief A class that will take user input from a terminal and try to take full advantage of the features the terminal offers
 class REPLLineNoise : public REPL
 {
     public:
         /// @brief Initializing constructor
         /// @param TargetExecutor A Lua sripting engine that the commands will be executed against.
         /// @param StartingPrompt The text to start the line
-        REPLLineNoise(Executor& TargetExecutor, Mezzanine::String StartingPrompt="> ");
+        /// @param StartingMultiline What to display during multiline input
+        /// @param StartingReturn What to display when returning values
+        REPLLineNoise(Executor& TargetExecutor,
+                      Mezzanine::String StartingPrompt="> ",
+                      Mezzanine::String StartingMultiline=">> ",
+                      Mezzanine::String StartingReturn="=> ");
 
         /// @brief This is the actual the loop that will do the REPLing
         virtual void Launch();

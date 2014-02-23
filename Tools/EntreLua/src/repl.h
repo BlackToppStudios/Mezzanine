@@ -54,6 +54,10 @@ class REPL
     protected:
         /// @brief What will be display
         Mezzanine::String Prompt;
+        /// @brief What will be displayed during a multiline continuation
+        Mezzanine::String PromptMultiline;
+        /// @brief What will be displayed when returning values
+        Mezzanine::String PromptReturn;
 
         /// @brief The actual Lua intrepretter
         Executor& Doer;
@@ -62,7 +66,12 @@ class REPL
         /// @brief Initializing constructor
         /// @param TargetExecutor A Lua sript command interpretter that the commands will be executed against.
         /// @param StartingPrompt The text to start the line
-        REPL(Executor& TargetExecutor, Mezzanine::String StartingPrompt=">");
+        /// @param StartingMultiline What to display during multiline input
+        /// @param StartingReturn What to display when returning values
+        REPL(Executor& TargetExecutor,
+             Mezzanine::String StartingPrompt,
+             Mezzanine::String StartingMultiline,
+             Mezzanine::String StartingReturn);
 
         /// @brief This is the actual the loop that will do the REPLing
         virtual void Launch()=0;

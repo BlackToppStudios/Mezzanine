@@ -340,8 +340,11 @@ namespace Mezzanine
                 public:
                     /// @brief Get the underlying Lua state that can be used with lua api calls directly.
                     /// @return The lua_State this uses.
-                    virtual lua_State* GetRawLuaState();
+                    /// @warning Don't use this, this is exposed for troubleshooting and when used for other tasks can cause no end of headaches.
+                    lua_State* GetRawLuaState();
 
+                    /// @brief The stack is a specific part of the State relating to how data is passed between functions. How big is that?
+                    /// @return
                     int GetStackCount();
                     //String tests(String Returns="");
             };
