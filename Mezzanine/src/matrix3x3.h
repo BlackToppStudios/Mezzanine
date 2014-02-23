@@ -162,12 +162,12 @@ namespace Mezzanine
             /// @brief Equality comparison operator.
             /// @param Other The other Matrix3x3 to compare against.
             /// @return Returns true if the two Matrix3x3's are equal, false otherwise.
-            bool operator==(const Matrix3x3& Other) const;
+            Boolean operator==(const Matrix3x3& Other) const;
 
             /// @brief Inequality comparison operator.
             /// @param Other The other Matrix3x3 to compare against.
             /// @return Returns true if the two Matrix3x3's are not equal, false otherwise.
-            bool operator!=(const Matrix3x3& Other) const;
+            Boolean operator!=(const Matrix3x3& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Arithmetic Operators With Matrix3x3
@@ -261,7 +261,7 @@ namespace Mezzanine
 
             /// @brief Checks to see if this Matrix has any scaling applied to it.
             /// @return Returns true if this Matrix is scaled, false otherwise.
-            bool HasScaling() const;
+            Boolean HasScaling() const;
     };//Matrix3x3
 }//Mezzanine
 

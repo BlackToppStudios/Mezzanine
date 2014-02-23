@@ -155,13 +155,13 @@ namespace Mezzanine
             StandardStream->seekp(Offset,std::ios::cur);
         }
 
-        StreamPos FileStream::GetStreamPosition(bool Read)
+        StreamPos FileStream::GetStreamPosition(Boolean Read)
         {
             if(Read) return StandardStream->tellg();
             else return StandardStream->tellp();
         }
 
-        bool FileStream::EoF() const
+        Boolean FileStream::EoF() const
         {
             return StandardStream->eof();
         }

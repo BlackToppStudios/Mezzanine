@@ -65,7 +65,7 @@ namespace Mezzanine
         // Generic6DofConstraint Construction and Destruction
 
         Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA,
-                                                      const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
+                                                      const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boolean UseLinearReferenceA)
         {
             this->SetBodies(ProxyA,ProxyB);
             Transform TransformA(VectorA, QuaternionA);
@@ -73,13 +73,13 @@ namespace Mezzanine
             this->Generic6dof = new btGeneric6DofConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
         }
 
-        Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
+        Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boolean UseLinearReferenceA)
         {
             this->SetBodies(ProxyA,ProxyB);
             this->Generic6dof = new btGeneric6DofConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
         }
 
-        Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceB)
+        Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, Boolean UseLinearReferenceB)
         {
             this->SetBodies(ProxyB);
 
@@ -87,7 +87,7 @@ namespace Mezzanine
             this->Generic6dof = new btGeneric6DofConstraint(*(ProxA->_GetPhysicsObject()), transa, UseLinearReferenceB);
         }
 
-        Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyB, const Transform& TransformB, bool UseLinearReferenceB)
+        Generic6DofConstraint::Generic6DofConstraint(RigidProxy* ProxyB, const Transform& TransformB, Boolean UseLinearReferenceB)
         {
             this->SetBodies(ProxyB);
 
@@ -248,13 +248,13 @@ namespace Mezzanine
         void Generic6DofConstraint::SetAngularMotorEnabled(const Vector3& Enableds)
             { SetAngularMotorEnabledOnAxis(Enableds.X,AngularXAsRotationalAxis);  SetAngularMotorEnabledOnAxis(Enableds.Y,AngularYAsRotationalAxis);  SetAngularMotorEnabledOnAxis(Enableds.Z,AngularZAsRotationalAxis); }
 
-        void Generic6DofConstraint::SetAngularMotorEnabledOnAxis(bool Enabled, int Axis)
+        void Generic6DofConstraint::SetAngularMotorEnabledOnAxis(Boolean Enabled, int Axis)
             { this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_enableMotor = Enabled; }
 
         Vector3 Generic6DofConstraint::GetAngularMotorEnabled() const
             { return Vector3(GetAngularMotorEnabledOnAxis(AngularXAsRotationalAxis), GetAngularMotorEnabledOnAxis(AngularYAsRotationalAxis), GetAngularMotorEnabledOnAxis(AngularZAsRotationalAxis)); }
 
-        bool Generic6DofConstraint::GetAngularMotorEnabledOnAxis(int Axis) const
+        Boolean Generic6DofConstraint::GetAngularMotorEnabledOnAxis(int Axis) const
             { return this->Generic6dof->getRotationalLimitMotor(AxisToAngularAxis(Axis))->m_enableMotor; }
 
         ////////////////////////////////////////////////////////////////////////////////
@@ -307,13 +307,13 @@ namespace Mezzanine
         void Generic6DofConstraint::SetLinearMotorEnabled(const Vector3& Enableds)
             { this->SetLinearMotorEnabledOnAxis(Enableds.X,LinearX);  this->SetLinearMotorEnabledOnAxis(Enableds.Y,LinearY);  this->SetLinearMotorEnabledOnAxis(Enableds.Z,LinearZ); }
 
-        void Generic6DofConstraint::SetLinearMotorEnabledOnAxis(bool Enabled, int Axis)
+        void Generic6DofConstraint::SetLinearMotorEnabledOnAxis(Boolean Enabled, int Axis)
             { this->Generic6dof->getTranslationalLimitMotor()->m_enableMotor[Axis] = Enabled; }
 
         Vector3 Generic6DofConstraint::GetLinearMotorEnabled() const
             { return Vector3(this->GetLinearMotorEnabledOnAxis(LinearX), this->GetLinearMotorEnabledOnAxis(LinearY), this->GetLinearMotorEnabledOnAxis(LinearZ)); }
 
-        bool Generic6DofConstraint::GetLinearMotorEnabledOnAxis(int Axis) const
+        Boolean Generic6DofConstraint::GetLinearMotorEnabledOnAxis(int Axis) const
             { return this->Generic6dof->getTranslationalLimitMotor()->m_enableMotor[Axis]; }
 
 
@@ -351,7 +351,7 @@ namespace Mezzanine
             return Results;
         }
 
-        bool Generic6DofConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+        Boolean Generic6DofConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
         {
             // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btGeneric6DofConstraint_8cpp_source.html#l00964
             if(0>Axis || 5<Axis)
@@ -361,10 +361,10 @@ namespace Mezzanine
                     ( Con_CFM==Param      && this->Generic6dof->getFlags() & (BT_6DOF_FLAGS_CFM_NORM << (Axis * BT_6DOF_FLAGS_AXIS_SHIFT)) )   ;   //if we are checking the cfm AND the cfm bit is set
         }
 
-        bool Generic6DofConstraint::GetUseFrameOffset() const
+        Boolean Generic6DofConstraint::GetUseFrameOffset() const
             { return this->Generic6dof->getUseFrameOffset(); }
 
-        void Generic6DofConstraint::SetUseFrameOffset(bool FrameOffset)
+        void Generic6DofConstraint::SetUseFrameOffset(Boolean FrameOffset)
             { this->Generic6dof->setUseFrameOffset(FrameOffset); }
 
         ///////////////////////////////////////////////////////////////////////////////

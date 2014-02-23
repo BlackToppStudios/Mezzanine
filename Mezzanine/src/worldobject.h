@@ -107,7 +107,7 @@ namespace Mezzanine
         virtual World* GetWorld() const;
 
         /// @brief Gets whether or not this object is currently in the world.
-        /// @return Returns a bool indicating if this object has been added to the world.
+        /// @return Returns a Boolean indicating if this object has been added to the world.
         virtual Boolean IsInWorld() const = 0;
 
         /// @brief Checks of the object is static.

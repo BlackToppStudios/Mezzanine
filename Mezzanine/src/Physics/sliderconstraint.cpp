@@ -55,7 +55,7 @@ namespace Mezzanine
         /////////////////////////////////////////
         // Slider Constraint Functions
 
-        SliderConstraint::SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
+        SliderConstraint::SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boolean UseLinearReferenceA)
         {
             this->SetBodies(ProxyA,ProxyB);
 
@@ -64,13 +64,13 @@ namespace Mezzanine
             this->Slider = new btSliderConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), transa, transb, UseLinearReferenceA);
         }
 
-        SliderConstraint::SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA)
+        SliderConstraint::SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boolean UseLinearReferenceA)
         {
             this->SetBodies(ProxyA,ProxyB);
             this->Slider = new btSliderConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseLinearReferenceA);
         }
 
-        SliderConstraint::SliderConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceA)
+        SliderConstraint::SliderConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, Boolean UseLinearReferenceA)
         {
             this->SetBodies(ProxyB);
 
@@ -144,7 +144,7 @@ namespace Mezzanine
             this->Slider->setLowerAngLimit(LowerLimit);
         }
 
-        void SliderConstraint::SetPoweredLinMotor(bool OnOff)
+        void SliderConstraint::SetPoweredLinMotor(Boolean OnOff)
         {
             this->Slider->setPoweredLinMotor(OnOff);
         }
@@ -159,7 +159,7 @@ namespace Mezzanine
             this->Slider->setMaxLinMotorForce(MaxLinMotorForce);
         }
 
-        void SliderConstraint::SetPoweredAngMotor(bool OnOff)
+        void SliderConstraint::SetPoweredAngMotor(Boolean OnOff)
         {
             this->Slider->setPoweredAngMotor(OnOff);
         }
@@ -174,7 +174,7 @@ namespace Mezzanine
             this->Slider->setMaxAngMotorForce(MaxAngMotorForce);
         }
 
-        void SliderConstraint::SetUseFrameOffset(bool FrameOffset)
+        void SliderConstraint::SetUseFrameOffset(Boolean FrameOffset)
         {
             this->Slider->setUseFrameOffset(FrameOffset);
         }
@@ -302,7 +302,7 @@ namespace Mezzanine
             return Results;
         }
 
-        bool SliderConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+        Boolean SliderConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
         {
             // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btGeneric6DofConstraint_8cpp_source.html#l00964
             if(0>Axis || 5<Axis)

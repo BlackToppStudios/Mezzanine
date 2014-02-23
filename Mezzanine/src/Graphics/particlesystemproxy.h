@@ -142,7 +142,7 @@ namespace Mezzanine
 
             /// @brief Pauses this proxy, preventing it from emitting, moving, or removing any particles.
             /// @param Pause Will pauae the proxy if running and Pause is true, otherwise it will resume the proxy if paused and Pause is false.
-            void PauseParticleSystem(bool Pause);
+            void PauseParticleSystem(Boolean Pause);
             /// @brief Gets whether or not this particle system is currently paused.
             /// @return Returns true if this particle system is paused, false otherwise.
             Boolean IsParticleSystemPaused() const;

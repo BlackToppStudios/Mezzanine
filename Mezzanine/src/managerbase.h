@@ -105,8 +105,8 @@ namespace Mezzanine
         /// @brief The actual pointer to the Entresol core class.
         Entresol* TheEntresol;
         /// @internal
-        /// @brief Simple bool indicating whether or not this manager has been initialized.
-        bool Initialized;
+        /// @brief Simple Boolean indicating whether or not this manager has been initialized.
+        Boolean Initialized;
     public:
         /// @brief Class constructor.
         ManagerBase();
@@ -125,7 +125,7 @@ namespace Mezzanine
         virtual void Deinitialize() = 0;
         /// @brief Gets whether or not this manager has been initialized.
         /// @return Returns true if this manager has been initialized, false otherwise.
-        bool IsInitialized() const;
+        Boolean IsInitialized() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Type Identifier Methods

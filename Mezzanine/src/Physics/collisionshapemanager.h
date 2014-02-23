@@ -101,7 +101,7 @@ namespace Mezzanine
             ShapeVector UnnamedShapes;
 
             /// @brief Creates a TriMesh to be used in TriMesh based collision shapes.
-            btTriangleMesh* CreateBulletTrimesh(Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes);
+            btTriangleMesh* CreateBulletTrimesh(Graphics::Mesh* ObjectMesh, Boolean UseAllSubmeshes);
             /// @brief Creates a wrapper for an internal bullet shape.
             CollisionShape* WrapShape(const String& Name, btCollisionShape* InternalShape);
         public:
@@ -164,14 +164,14 @@ namespace Mezzanine
             /// @param Name The name to give the created shape.
             /// @param ObjectMesh The mesh to base this shape off of.
             /// @param UseAllSubmeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual ConvexHullCollisionShape* GenerateConvexHull(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+            virtual ConvexHullCollisionShape* GenerateConvexHull(const String& Name, Graphics::Mesh* ObjectMesh, Boolean UseAllSubmeshes = false);
             /// @brief Generates a Convex Hull from a provided mesh.
             /// @return Returns a pointer to the created shape.
             /// @param Name The name to give the created shape.
             /// @param MeshName The name of the mesh to base this shape off of.
             /// @param Group The resource group where the mesh can be found.
             /// @param UseAllSubmeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual ConvexHullCollisionShape* GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
+            virtual ConvexHullCollisionShape* GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, Boolean UseAllSubmeshes = false);
             /// @brief Generates a mesh shape for dynamic objects.
             /// @note Dynamic Mesh shapes cannot be scaled per object, only globally.  If you are generating this shape and intend to scale it, you will need to make a separate copy of
             /// the shape for each object you intend to set to a different scaling.
@@ -179,7 +179,7 @@ namespace Mezzanine
             /// @param Name The name to give the created shape.
             /// @param ObjectMesh The mesh to base this shape off of.
             /// @param UseAllSubmeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual DynamicMeshCollisionShape* GenerateDynamicTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+            virtual DynamicMeshCollisionShape* GenerateDynamicTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, Boolean UseAllSubmeshes = false);
             /// @brief Generates a mesh shape for dynamic objects.
             /// @note Dynamic Mesh shapes cannot be scaled per object, only globally.  If you are generating this shape and intend to scale it, you will need to make a separate copy of
             /// the shape for each object you intend to set to a different scaling.
@@ -188,20 +188,20 @@ namespace Mezzanine
             /// @param MeshName The name of the mesh to base this shape off of.
             /// @param Group The resource group where the mesh can be found.
             /// @param UseAllSubmeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual DynamicMeshCollisionShape* GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
+            virtual DynamicMeshCollisionShape* GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, Boolean UseAllSubmeshes = false);
             /// @brief Generates a mesh shape for static objects.
             /// @return Returns a pointer to the created shape.
             /// @param Name The name to give the created shape.
             /// @param ObjectMesh The mesh to base this shape off of.
             /// @param UseAllSubmeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual StaticMeshCollisionShape* GenerateStaticTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes = false);
+            virtual StaticMeshCollisionShape* GenerateStaticTriMesh(const String& Name, Graphics::Mesh* ObjectMesh, Boolean UseAllSubmeshes = false);
             /// @brief Generates a mesh shape for static objects.
             /// @return Returns a pointer to the created shape.
             /// @param Name The name to give the created shape.
             /// @param MeshName The name of the mesh to base this shape off of.
             /// @param Group The resource group where the mesh can be found.
             /// @param UseAllSubmeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual StaticMeshCollisionShape* GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes = false);
+            virtual StaticMeshCollisionShape* GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, Boolean UseAllSubmeshes = false);
             /// @brief Generates a compound shape of Convex Hulls from a provided mesh.
             /// @note Compound shapes cannot be scaled per object, only globally.  If you are generating this shape and intend to scale it, you will need to make a separate copy of
             /// the shape for each object you intend to set to a different scaling.
@@ -209,7 +209,7 @@ namespace Mezzanine
             /// @param Name The name to give the created shape.
             /// @param ObjectMesh The mesh to base this shape off of.
             /// @param UseAllSubmeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual CompoundCollisionShape* PerformConvexDecomposition(const String& Name, Graphics::Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes = false);
+            virtual CompoundCollisionShape* PerformConvexDecomposition(const String& Name, Graphics::Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, Boolean UseAllSubmeshes = false);
             /// @brief Generates a compound shape of Convex Hulls from a provided mesh.
             /// @note Compound shapes cannot be scaled per object, only globally.  If you are generating this shape and intend to scale it, you will need to make a separate copy of
             /// the shape for each object you intend to set to a different scaling.
@@ -218,7 +218,7 @@ namespace Mezzanine
             /// @param MeshName The name of the mesh to base this shape off of.
             /// @param Group The resource group where the mesh can be found.
             /// @param UseAllSubmeshes Whether or not you want to use all submesh information when generating this shape.
-            virtual CompoundCollisionShape* PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes = false);
+            virtual CompoundCollisionShape* PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, Boolean UseAllSubmeshes = false);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Shape Saving/Loading Utilities

@@ -148,12 +148,12 @@ namespace Mezzanine
         /// @remarks This function will only create the directory specified at the end of the path.
         /// @param DirectoryPath The path for the newly created directory.
         /// @return Returns true if the directory was created, false in the case of a non-critical error.
-        static bool CreateDirectory(const String& DirectoryPath);
+        static Boolean CreateDirectory(const String& DirectoryPath);
         /// @brief Checks to see if the given path exists and if it is a folder.
         /// @param DirectoryPath A String containing the path to test.
         /// @return True if the item indicated by DirectoryPath exists and it is a directory, false if it does not exist or exists but is a file.
         /// @throws On Error this might throw a Mezzanine::IOException with detail about why it failed
-        static bool DoesDirectoryExist(const String& DirectoryPath);
+        static Boolean DoesDirectoryExist(const String& DirectoryPath);
         /// @brief Remove an empty directory.
         /// @param DirectoryPath Directory to remove.
         /// @throws On Error this might throw a Mezzanine::IOException with details about why it failed.
@@ -218,7 +218,7 @@ namespace Mezzanine
         /// @brief Creates all directories that do not exist in the provided path.
         /// @param DirectoryPath The path for the newly created directory or directories.
         /// @return Returns true if all directories were created, false in the case of a non-critical error.
-        static bool CreateDirectoryPath(const String& DirectoryPath);
+        static Boolean CreateDirectoryPath(const String& DirectoryPath);
 
         /// @brief Get a Listing of the files and subdirectories in a directory.
         /// @details This follows normal command line conventions, "." is the current directory,
@@ -296,7 +296,7 @@ namespace Mezzanine
         /// Options are: filesystem, zip.
         /// @param Group The name of the group the resources at this location belong to.  If the group does not exist it will be created.
         /// @param Recursive Whether or not to search sub-directories.
-        void AddAssetLocation(const String& Location, const ArchiveType Type, const String& Group, const bool Recursive = false);
+        void AddAssetLocation(const String& Location, const ArchiveType Type, const String& Group, const Boolean Recursive = false);
         /// @brief Creates an asset group.
         /// @param GroupName The name to be given to the created asset group.
         void CreateAssetGroup(const String& GroupName);

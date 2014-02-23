@@ -164,7 +164,7 @@ namespace Mezzanine
             }
         }
 
-        BinaryBuffer::BinaryBuffer(const String& DataString, bool IsBase64)
+        BinaryBuffer::BinaryBuffer(const String& DataString, Boolean IsBase64)
         {
             if(IsBase64)
             {
@@ -277,7 +277,7 @@ namespace Mezzanine
             { return Size; }
 
         // Code change to Match BTS naming conventions and formatting
-        bool IsBase64(unsigned char Character)
+        Boolean IsBase64(unsigned char Character)
             { return (isalnum(Character) || (Character == '+') || (Character == '/') || (Character == '=')); }
 
         String Base64Encode(String const& Unencoded)

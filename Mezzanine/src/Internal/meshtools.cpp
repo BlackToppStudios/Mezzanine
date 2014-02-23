@@ -115,7 +115,7 @@ namespace Mezzanine
             TheMesh.ICount = indexData->indexCount;
 
             size_t index_offset = 0;
-            bool use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
+            Boolean use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
 
             long* pLong = static_cast<long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
             short* pShort = reinterpret_cast<short*>(pLong);
@@ -201,13 +201,13 @@ namespace Mezzanine
             TheMesh.RendOp = Render.operationType;
         }
 
-        btTriangleMesh* MeshTools::CreateBulletTrimesh(Ogre::Entity* TheEntity, bool UseAllSubmeshes)
+        btTriangleMesh* MeshTools::CreateBulletTrimesh(Ogre::Entity* TheEntity, Boolean UseAllSubmeshes)
         {
             Ogre::MeshPtr myMesh = TheEntity->getMesh();
             Ogre::SubMesh* subMesh = NULL;
             Ogre::IndexData*  IndexData = NULL;
             Ogre::VertexData* VertexData = NULL;
-            bool use32bitindexes = false;
+            Boolean use32bitindexes = false;
             unsigned int triCount = 0;
             unsigned int vCount = 0;
             unsigned int iCount = 0;
@@ -215,7 +215,7 @@ namespace Mezzanine
             Whole IndiPrevSize = 0;
             Ogre::Vector3* vertices = NULL;
             unsigned long* indices = NULL;
-            bool SharedVerts = myMesh->getSubMesh(0)->useSharedVertices;
+            Boolean SharedVerts = myMesh->getSubMesh(0)->useSharedVertices;
 
             if(UseAllSubmeshes)
             {
@@ -330,7 +330,7 @@ namespace Mezzanine
                                     const Ogre::Quaternion &orient,
                                     const Ogre::Vector3 &scale)
         {
-            bool added_shared = false;
+            Boolean added_shared = false;
             size_t current_offset = 0;
             size_t shared_offset = 0;
             size_t next_offset = 0;
@@ -339,7 +339,7 @@ namespace Mezzanine
 
             Ogre::MeshPtr mesh = entity->getMesh();
 
-            bool useSoftwareBlendingVertices = entity->hasSkeleton();
+            Boolean useSoftwareBlendingVertices = entity->hasSkeleton();
 
             if (useSoftwareBlendingVertices)
             {                                   //10,000th line of code
@@ -418,7 +418,7 @@ namespace Mezzanine
                 size_t numTris = index_data->indexCount / 3;
                 Ogre::HardwareIndexBufferSharedPtr ibuf = index_data->indexBuffer;
 
-                bool use32bitindexes = (ibuf->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
+                Boolean use32bitindexes = (ibuf->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
 
                 unsigned long*  pLong = static_cast<unsigned long*>(ibuf->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
                 unsigned short* pShort = reinterpret_cast<unsigned short*>(pLong);

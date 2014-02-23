@@ -59,7 +59,7 @@ namespace Mezzanine
         class MEZZ_LIB MemoryStream : public DataStream
         {
             protected:
-                bool FreeBuffer;
+                Boolean FreeBuffer;
                 UInt8* BufferStart;
                 UInt8* BufferPos;
                 UInt8* BufferEnd;
@@ -68,13 +68,13 @@ namespace Mezzanine
                 /// @param BufferSize The size of the buffer to be created.
                 /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
                 /// @param ReadOnly If true, writing operations on this stream will be prohibited.
-                MemoryStream(const size_t& BufferSize, bool FreeOnClose = true, bool ReadOnly = false);
+                MemoryStream(const size_t& BufferSize, Boolean FreeOnClose = true, Boolean ReadOnly = false);
                 /// @brief Pre-made buffer constructor.
                 /// @param Buffer The premade buffer to stream from.
                 /// @param BufferSize The size of the buffer to stream to/from.
                 /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
                 /// @param ReadOnly If true, writing operations on this stream will be prohibited.
-                MemoryStream(void* Buffer, const size_t& BufferSize, bool FreeOnClose = false, bool ReadOnly = false);
+                MemoryStream(void* Buffer, const size_t& BufferSize, Boolean FreeOnClose = false, Boolean ReadOnly = false);
                 /// @brief Class destructor.
                 virtual ~MemoryStream();
 
@@ -92,7 +92,7 @@ namespace Mezzanine
                 UInt8* GetBufferEnd() const;
                 /// @brief Sets whether or not you want this stream to free the memory buffer when it closes.
                 /// @param True if you want this stream to free the buffer when it closes, false if you want it preserved.
-                void SetFreeOnClose(bool FreeOnClose);
+                void SetFreeOnClose(Boolean FreeOnClose);
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Stream Access and Manipulation
@@ -107,10 +107,10 @@ namespace Mezzanine
                 virtual void SetStreamPosition(StreamPos Position);
                 /// @copydoc DataStream::SetStreamPosition(StreamOff Offset, SeekOrigin Origin)
                 virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin);
-                /// @copydoc DataStream::GetStreamPosition(bool Read = true)
-                virtual StreamPos GetStreamPosition(bool Read = true);
+                /// @copydoc DataStream::GetStreamPosition(Boolean Read = true)
+                virtual StreamPos GetStreamPosition(Boolean Read = true);
                 /// @copydoc DataStream::EoF() const
-                virtual bool EoF() const;
+                virtual Boolean EoF() const;
                 /// @copydoc DataStream::Close()
                 virtual void Close();
 

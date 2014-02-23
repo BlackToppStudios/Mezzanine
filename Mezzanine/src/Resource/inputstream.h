@@ -84,12 +84,12 @@ namespace Mezzanine
 			virtual ~ResourceInputStream();
 
 			/// @brief Can this be read from
-			/// @return A bool true if it can be read from
-			bool Readable();
+			/// @return A Boolean true if it can be read from
+			Boolean Readable();
 
 			/// @brief Can this be written to
-			/// @return A bool true if it can be written to
-			bool Writeable();
+			/// @return A Boolean true if it can be written to
+			Boolean Writeable();
 
 			template<class T> ResourceInputStream& operator >> ( T& Data )
 			{

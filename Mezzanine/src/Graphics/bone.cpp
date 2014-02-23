@@ -89,10 +89,10 @@ namespace Mezzanine
         UInt16 Bone::GetHandle() const
             { return this->GraphicsBone->getHandle(); }
 
-        void Bone::SetManuallyControlled(bool Manual)
+        void Bone::SetManuallyControlled(Boolean Manual)
             { this->GraphicsBone->setManuallyControlled(Manual); }
 
-        bool Bone::GetManuallyControlled() const
+        Boolean Bone::GetManuallyControlled() const
             { return this->GraphicsBone->isManuallyControlled(); }
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -70,7 +70,7 @@ namespace Mezzanine
 
             /// @brief Checks to see if this sound is valid and is ready for playback.
             /// @return Returns true if this sound is ready for playback, false if it is misconfigured.
-            virtual bool IsValid() const = 0;
+            virtual Boolean IsValid() const = 0;
             /// @brief Gets the sound type of this sound.
             /// @return Returns a SoundType enum value that is the type of this sound.
             virtual UInt16 GetType() const = 0;
@@ -110,33 +110,33 @@ namespace Mezzanine
             /// @brief Plays the sound with it's current configuration.
             /// @note This will restart playback in the event it is already playing.
             /// @return Returns true if the sound succussfully started playing, false if there was an error.
-            virtual bool Play() = 0;
+            virtual Boolean Play() = 0;
             /// @brief Gets whether or not the sound is currently playing.
             /// @return Returns true if the sound is playing, false otherwise.
-            virtual bool IsPlaying() const = 0;
+            virtual Boolean IsPlaying() const = 0;
             /// @brief Pauses playback of the sound at it's current position in the stream.
             virtual void Pause() = 0;
             /// @brief Gets whether or not the sound is currently paused.
             /// @return Returns true if the sound is paused, false otherwise.
-            virtual bool IsPaused() const = 0;
+            virtual Boolean IsPaused() const = 0;
             /// @brief Stops playback of the sound and resets it's position back to the start.
             virtual void Stop() = 0;
             /// @brief Gets whether or not the sound is currently stopped.
             /// @return Returns true if the sound is stopped, false otherwise.
-            virtual bool IsStopped() const = 0;
+            virtual Boolean IsStopped() const = 0;
             /// @brief Sets whether the playback of the sound should loop or not.
             /// @param ToLoop Whether to restart the sound when the end of playback is reached.
-            virtual void Loop(bool ToLoop) = 0;
+            virtual void Loop(Boolean ToLoop) = 0;
             /// @brief Checks to see if the sound is currently set to loop.
             /// @return Returns true if this sound will restart from the beginning when it finishes playing back.
-            virtual bool IsLooping() const = 0;
+            virtual Boolean IsLooping() const = 0;
 
             /// @brief Sets the current position of the stream from which to playback audio.
             /// @note May not be supported by all codecs.
             /// @param Seconds Number of seconds to seek.
             /// @param Relative Whether to seek from the current position or the start of the stream.
             /// @return Returns true on success, False if the codec does not support seeking.
-            virtual bool Seek(const Real Seconds, bool Relative = false) = 0;
+            virtual Boolean Seek(const Real Seconds, Boolean Relative = false) = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Sound Stream Stats
@@ -207,7 +207,7 @@ namespace Mezzanine
             /// @param Slot The slot into which the @ref iEffect will be attached.
             /// @param Eff The @ref iEffect to be attached.
             /// @return Returns true if the @ref iEffect was successfully attached, false otherwise.
-            virtual bool AttachEffect(const UInt32 Slot, iEffect* Eff) = 0;
+            virtual Boolean AttachEffect(const UInt32 Slot, iEffect* Eff) = 0;
             /// @brief Gets the @ref iEffect attached at the specified slot.
             /// @param Slot The slot to retrieve the @ref iEffect from.
             /// @return Returns a pointer to the @ref iEffect attached at the specified slot, or NULL if none are attached.
@@ -230,7 +230,7 @@ namespace Mezzanine
             /// @note This will remove any previously attached filter.  Only one filter can be attached at a given time.
             /// @param Fil The filter to be attached.
             /// @return Returns true if the filter was successfully attached, false otherwise.
-            virtual bool AttachFilter(iFilter* Fil) = 0;
+            virtual Boolean AttachFilter(iFilter* Fil) = 0;
             /// @brief Gets the filter currently being used by this object.
             /// @return Returns a pointer to the currently attached filter, or NULL if there isn't one.
             virtual iFilter* GetFilter() const = 0;

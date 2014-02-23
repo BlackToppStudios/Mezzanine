@@ -67,23 +67,23 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        bool CollidablePair::PairsMatch(const CollidablePair& Pair) const
+        Boolean CollidablePair::PairsMatch(const CollidablePair& Pair) const
         {
-            bool ContainsA = ( this->ProxyA == Pair.ProxyA ) || ( this->ProxyA == Pair.ProxyB );
-            bool ContainsB = ( this->ProxyB == Pair.ProxyA ) || ( this->ProxyB == Pair.ProxyB );
+            Boolean ContainsA = ( this->ProxyA == Pair.ProxyA ) || ( this->ProxyA == Pair.ProxyB );
+            Boolean ContainsB = ( this->ProxyB == Pair.ProxyA ) || ( this->ProxyB == Pair.ProxyB );
             return (ContainsA && ContainsB);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
 
-        bool CollidablePair::operator==(const CollidablePair& Pair) const
+        Boolean CollidablePair::operator==(const CollidablePair& Pair) const
             { return this->PairsMatch(Pair); }
 
-        bool CollidablePair::operator<(const CollidablePair& Pair) const
+        Boolean CollidablePair::operator<(const CollidablePair& Pair) const
             { return this->GetPairID() < Pair.GetPairID(); }
 
-        bool CollidablePair::operator>(const CollidablePair& Pair) const
+        Boolean CollidablePair::operator>(const CollidablePair& Pair) const
             { return this->GetPairID() > Pair.GetPairID(); }
     }//Physics
 }//Mezzanine

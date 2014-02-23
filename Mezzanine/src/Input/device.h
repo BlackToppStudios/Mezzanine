@@ -80,7 +80,7 @@ namespace Mezzanine
             /// @copydoc SequenceContainer::AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID)
             void AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID);
             /// @copydoc SequenceContainer::InputSequenceExists(const MetaCodeContainer& Codes)
-            bool InputSequenceExists(const MetaCodeContainer& Codes);
+            Boolean InputSequenceExists(const MetaCodeContainer& Codes);
             /// @copydoc SequenceContainer::GetIDofInputSequence(const MetaCodeContainer& Codes)
             Int32 GetIDofInputSequence(const MetaCodeContainer& Codes);
             /// @copydoc SequenceContainer::RemoveInputSequence(const MetaCodeContainer& Codes)

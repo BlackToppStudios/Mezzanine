@@ -505,7 +505,7 @@ namespace Mezzanine
             }
         }
 
-        void GraphicsManager::DestroyAllGameWindows(bool ExcludePrimary)
+        void GraphicsManager::DestroyAllGameWindows(Boolean ExcludePrimary)
         {
             for( GameWindowIterator Iter = GameWindows.begin() ; Iter != GameWindows.end() ; ++Iter )
                 { delete *Iter; }
@@ -546,7 +546,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // RenderSystem Management
 
-        void GraphicsManager::SetRenderSystem(const Graphics::RenderSystem& RenderSys, bool InitializeRenderSystem)
+        void GraphicsManager::SetRenderSystem(const Graphics::RenderSystem& RenderSys, Boolean InitializeRenderSystem)
         {
             if(!this->OgreBeenInitialized) this->CurrRenderSys = RenderSys;
             else { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to set RenderSystem after graphics has been initialized.  This is not supported."); }
@@ -620,7 +620,7 @@ namespace Mezzanine
                 Ogre::Root::getSingleton().clearEventTimes();
         }
 
-        void GraphicsManager::SwapAllBuffers(bool WaitForVsync)
+        void GraphicsManager::SwapAllBuffers(Boolean WaitForVsync)
         {
             for( Whole X = 0 ; X < this->GetNumGameWindows() ; X++ )
                 this->GetGameWindow(X)->_GetOgreWindowPointer()->swapBuffers(false);
@@ -689,12 +689,12 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // SubSystem Initialization
 
-        bool GraphicsManager::HasSDLBeenInitialized()
+        Boolean GraphicsManager::HasSDLBeenInitialized()
         {
             return SDL_WasInit(SDL_INIT_VIDEO);
         }
 
-        bool GraphicsManager::HasOgreBeenInitialized()
+        Boolean GraphicsManager::HasOgreBeenInitialized()
         {
             return this->OgreBeenInitialized;
         }

@@ -232,39 +232,39 @@ namespace Mezzanine
         /// @brief Equality Comparison Operator.
         /// @return Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns false.
         /// @param Vec This is the other Mezzanine::Vector3.
-        bool operator== (const Mezzanine::Vector3 &Vec) const;
+        Boolean operator== (const Mezzanine::Vector3 &Vec) const;
         /// @brief Equality Comparison Operator.
         /// @return Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match this returns false.
         /// @param Vec This is an btVector3 that needs to be compared with this.
-        bool operator== (const btVector3 &Vec) const;
+        Boolean operator== (const btVector3 &Vec) const;
         /// @brief Equality Comparison Operator.
         /// @return Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false.
         /// @param Vec This is an Ogre::Vector3 that needs to be compared with this.
-        bool operator== (const Ogre::Vector3 &Vec) const;
+        Boolean operator== (const Ogre::Vector3 &Vec) const;
 
         /// @brief Inequality Comparison Operator.
         /// @return Returns true if X!=X, Y!=Y or Z!=Z. If all of those match this returns false.
         /// @param Vec This is the other Mezzanine::Vector3.
-        bool operator!= (const Mezzanine::Vector3 &Vec) const;
+        Boolean operator!= (const Mezzanine::Vector3 &Vec) const;
         /// @brief Inequality Comparison Operator.
         /// @return Returns true if X!=getX(), Y!=getY() or Z!=getZ(). If all of those match this returns false.
         /// @param Vec This is an btVector3 that needs to be compared with this.
-        bool operator!= (const btVector3 &Vec) const;
+        Boolean operator!= (const btVector3 &Vec) const;
         /// @brief Inequality Comparison Operator.
         /// @return Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false.
         /// @param Vec This is an Ogre::Vector3 that needs to be compared with this.
-        bool operator!= (const Ogre::Vector3 &Vec) const;
+        Boolean operator!= (const Ogre::Vector3 &Vec) const;
 
         /// @brief Less or Equal Comparison Operator.
         /// @return Returns true if X<=X, Y<=Y and Z<=Z. If any of those do not hold this returns false.
         /// @param Vec This is the other Mezzanine::Vector3.
         /// @note Used primarily for testing. This is not implement for use with other kinds of Vector3 implementations as it is widely considered useless.
-        bool operator<= (const Mezzanine::Vector3 &Vec) const;
+        Boolean operator<= (const Mezzanine::Vector3 &Vec) const;
         /// @brief Greater than or Equal Comparison Operator.
         /// @return Returns true if X>=X, Y>=Y and Z>=Z. If any of those do not hold this returns false.
         /// @param Vec This is the other Mezzanine::Vector3.
         /// @note Used primarily for testing. This is not implement for use with other kinds of Vector3 implementations as it is widely considered useless.
-        bool operator>= (const Mezzanine::Vector3 &Vec) const;
+        Boolean operator>= (const Mezzanine::Vector3 &Vec) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators
@@ -397,7 +397,7 @@ namespace Mezzanine
         Real SquaredLength() const;
         /// @brief Checks to see if the length of this vector is zero.
         /// @return Returns true if this vector has zero length, false otherwise.
-        bool IsZeroLength() const;
+        Boolean IsZeroLength() const;
         /// @brief Gets the rotation needed to rotate this vector as an axis to another axis.
         /// @param Axis The target axis to rotate to.
         /// @param FallBackAxis If the Dot produt of this and Axis are invalid FallBackAxis will be used instead otherwise, the rotation is calculated the hard way.

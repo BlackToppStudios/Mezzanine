@@ -60,7 +60,7 @@ namespace Mezzanine
         /// @brief How does gravity
         Mezzanine::AttenuationStyle AttenStyle;
         /// @brief Should world gravity ne ignored
-        bool AllowWorldGrav;
+        Boolean AllowWorldGrav;
     public:
         /// @brief Blank constructor.
         /// @param TheWorld A pointer to the world this object belongs to.

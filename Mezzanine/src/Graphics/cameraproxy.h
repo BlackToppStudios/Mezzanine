@@ -84,7 +84,7 @@ namespace Mezzanine
             /// @brief This is a pointer to the Viewport this camera is attached to, if any.
             Viewport* CameraVP;
             /// @internal
-            /// @brief A bool storing whether or not the FixedYawAxis is being used.
+            /// @brief A Boolean storing whether or not the FixedYawAxis is being used.
             Boolean UseFixedYaw;
 
             /// @internal

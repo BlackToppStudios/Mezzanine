@@ -128,7 +128,7 @@ namespace Mezzanine
                 /// @copydoc WorldProxy::RemoveFromWorld()
                 virtual void RemoveFromWorld();
                 /// @copydoc WorldProxy::IsInWorld() const
-                virtual bool IsInWorld() const;
+                virtual Boolean IsInWorld() const;
 
                 /// @copydoc WorldProxy::GetCreator() const
                 virtual WorldManager* GetCreator() const;

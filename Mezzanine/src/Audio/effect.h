@@ -68,7 +68,7 @@ namespace Mezzanine
 
             /// @brief Gets whether or not this effect is ready for use.
             /// @return Returns if this effect is ready to be used or if it has encountered a fatal error.
-            virtual bool IsValid() const = 0;
+            virtual Boolean IsValid() const = 0;
 
             /// @brief Sets the type of this effect.
             /// @param EffType Type of effect to switch to.
@@ -96,10 +96,10 @@ namespace Mezzanine
             /// @brief Sets whether the effect for each attached source is attenuated by distance.
             /// @remarks If set to true, can cause some interesting and non-realistic effects, so be careful with it.
             /// @param Ignore Whether or not to ignore attenuation.
-            virtual void IgnoreAttenuation(bool Ignore) = 0;
+            virtual void IgnoreAttenuation(Boolean Ignore) = 0;
             /// @brief Gets whether or not attached sources are attenuated by distance.
             /// @return Returns true if the effect for each attached source is attenuated by distance.
-            virtual bool IsIgnoringAttenuation() const = 0;
+            virtual Boolean IsIgnoringAttenuation() const = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Parameter Configuration

@@ -276,7 +276,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Comparison Operators
 
-    bool Matrix3x3::operator==(const Matrix3x3& Other) const
+    Boolean Matrix3x3::operator==(const Matrix3x3& Other) const
     {
         for( Whole Row = 0 ; Row < 3 ; ++Row )
         {
@@ -289,7 +289,7 @@ namespace Mezzanine
         return true;
     }
 
-    bool Matrix3x3::operator!=(const Matrix3x3& Other) const
+    Boolean Matrix3x3::operator!=(const Matrix3x3& Other) const
     {
         for( Whole Row = 0 ; Row < 3 ; ++Row )
         {
@@ -509,7 +509,7 @@ namespace Mezzanine
         Matrix[2][2] *= Scaling.Z;
     }
 
-    bool Matrix3x3::HasScaling() const
+    Boolean Matrix3x3::HasScaling() const
     {
         Real Test = Matrix[0][0] * Matrix[0][0] + Matrix[1][0] * Matrix[1][0] + Matrix[2][0] * Matrix[2][0];
         if (!MathTools::WithinTolerance(Test,1.0,(Real)1e-04))

@@ -271,7 +271,7 @@ namespace Mezzanine
             friend class DebugDrawWorkUnit;
 
             //Some Data Items
-            bool SimulationPaused;
+            Boolean SimulationPaused;
             Integer DebugRenderMode;
             Whole SubstepModifier;
             Whole ThreadCount;
@@ -346,10 +346,10 @@ namespace Mezzanine
 
             /// @brief Pauses the simulation, preventing the physics world from taking action.
             /// @param Pause Wether or not to pause the simulation.
-            void PauseSimulation(bool Pause);
+            void PauseSimulation(Boolean Pause);
             /// @brief Gets Whether or not the simulation is currently paused.
             /// @return Returns whether or not the simulation is paused.
-            bool SimulationIsPaused();
+            Boolean SimulationIsPaused();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Gravity Management
@@ -422,7 +422,7 @@ namespace Mezzanine
             /// @details Adds the constraint to the world so that it can/will take effect.
             /// @param Con The constraint to be added.
             /// @param DisableCollisions Sets whether or not the linked bodies collide with each other.
-            void AddConstraint(Physics::Constraint* Con, bool DisableCollisions = false);
+            void AddConstraint(Physics::Constraint* Con, Boolean DisableCollisions = false);
             /// @brief Gets a constraint by index.
             /// @param Index The index of the constraint you want.
             /// @return Returns a pointer to the specified constraint.

@@ -218,7 +218,7 @@ namespace Mezzanine
             void DestroyGameWindow(GameWindow* ToBeDestroyed);
             /// @brief Destroys every game window created.
             /// @param ExcludePrimary Whether or not you want to spare the primary window created.
-            void DestroyAllGameWindows(bool ExcludePrimary = true);
+            void DestroyAllGameWindows(Boolean ExcludePrimary = true);
             /// @brief Gets the primary(first) game window.
             /// @return Returns a pointer to the primary game window.
             GameWindow* GetPrimaryGameWindow();
@@ -240,7 +240,7 @@ namespace Mezzanine
             /// to know what rendersystem to build for.  Additionally this cannot be swapped/changed at runtime.  If called after a window has been made this will throw an exception.
             /// @param RenderSys The Render system to be used.
             /// @param InitializeRenderSystem Whether to immediately initialize the rendersystem afterwords.
-            void SetRenderSystem(const Graphics::RenderSystem& RenderSys, bool InitializeRenderSystem = false);
+            void SetRenderSystem(const Graphics::RenderSystem& RenderSys, Boolean InitializeRenderSystem = false);
             /// @brief Gets the current rendersystem being used.
             /// @remarks This does not return a pointer or any other kind of accessor to the actual rendersystem structure.  If you need that, then we're doing something wrong.
             /// @return Returns an enum value coresponding to the render system being used.
@@ -276,7 +276,7 @@ namespace Mezzanine
             virtual void RenderOneFrame();
             /// @brief Swaps all the buffers of all GameWindows.
             /// @param WaitForVsync Whether or not the buffer should swap after the vsync interval is completed.
-            virtual void SwapAllBuffers(bool WaitForVsync);
+            virtual void SwapAllBuffers(Boolean WaitForVsync);
 
             /// @copydoc ManagerBase::Initialize()
             /// @details Added a GraphicWorkUnit to the WorkScheduler on the Entresol as a
@@ -295,11 +295,11 @@ namespace Mezzanine
             // SubSystem Initialization
 
             /// @brief Gets whether or not SDL has been started.
-            /// @return Returns a bool indicating whether or not SDL has been initialized yet.
-            bool HasSDLBeenInitialized();
+            /// @return Returns a Boolean indicating whether or not SDL has been initialized yet.
+            Boolean HasSDLBeenInitialized();
             /// @brief Gets whether or not Ogre has been started.
-            /// @return Returns a bool indicating whether or not Ogre has been initialized yet.
-            bool HasOgreBeenInitialized();
+            /// @return Returns a Boolean indicating whether or not Ogre has been initialized yet.
+            Boolean HasOgreBeenInitialized();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods

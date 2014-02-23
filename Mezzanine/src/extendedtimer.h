@@ -87,15 +87,15 @@ namespace Mezzanine
             virtual void Update(const Whole MicroSecondsElapsed);
             virtual void UpdateAsNormal(const Whole MicroSecondsElapsed);
             virtual void UpdateAsStopWatch(const Whole MicroSecondsElapsed);
-            virtual bool CheckMicroSeconds(const ExtendedTimer::TimeStruct Struct);
-            virtual bool CheckMilliSeconds(const ExtendedTimer::TimeStruct Struct);
-            virtual bool CheckSeconds(const ExtendedTimer::TimeStruct Struct);
-            virtual bool CheckMinutes(const ExtendedTimer::TimeStruct Struct);
-            virtual bool CheckHours(const ExtendedTimer::TimeStruct Struct);
-            virtual bool CheckDays(const ExtendedTimer::TimeStruct Struct);
-            virtual bool CheckAll(const ExtendedTimer::TimeStruct Struct);
-            virtual bool CompareCurrentAndGoal(const Integer Current, const Integer Goal);
-            virtual bool GoalReached();
+            virtual Boolean CheckMicroSeconds(const ExtendedTimer::TimeStruct Struct);
+            virtual Boolean CheckMilliSeconds(const ExtendedTimer::TimeStruct Struct);
+            virtual Boolean CheckSeconds(const ExtendedTimer::TimeStruct Struct);
+            virtual Boolean CheckMinutes(const ExtendedTimer::TimeStruct Struct);
+            virtual Boolean CheckHours(const ExtendedTimer::TimeStruct Struct);
+            virtual Boolean CheckDays(const ExtendedTimer::TimeStruct Struct);
+            virtual Boolean CheckAll(const ExtendedTimer::TimeStruct Struct);
+            virtual Boolean CompareCurrentAndGoal(const Integer Current, const Integer Goal);
+            virtual Boolean GoalReached();
         public:
             /// @brief Standard Constructor.
             /// @param style The styling/type of timer to be constructed.
@@ -107,7 +107,7 @@ namespace Mezzanine
             /// @brief Sets whether or not the Timer should reset if it reaches it's goal.  @n
             /// Ex. If a stopwatch reaches 0.
             /// @return Returns a reference to this timer.
-            virtual ExtendedTimer& SetAutoReset(const bool AutoReset);
+            virtual ExtendedTimer& SetAutoReset(const Boolean AutoReset);
             /// @brief Sets the value for Microseconds of the specified struct.
             /// @details If a number greater then 999 is passed in, it will be reduced to 999.
             /// @return Returns a reference to this timer.

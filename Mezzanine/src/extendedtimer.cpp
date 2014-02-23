@@ -162,7 +162,7 @@ namespace Mezzanine
         }else{ return; }
     }
 
-    bool ExtendedTimer::CheckMicroSeconds(const ExtendedTimer::TimeStruct Struct)
+    Boolean ExtendedTimer::CheckMicroSeconds(const ExtendedTimer::TimeStruct Struct)
     {
         if(GetStruct(Struct).Microseconds > 1000)
         {
@@ -174,7 +174,7 @@ namespace Mezzanine
         }else{ return false; }
     }
 
-    bool ExtendedTimer::CheckMilliSeconds(const ExtendedTimer::TimeStruct Struct)
+    Boolean ExtendedTimer::CheckMilliSeconds(const ExtendedTimer::TimeStruct Struct)
     {
         if(GetStruct(Struct).Milliseconds > 1000)
         {
@@ -186,7 +186,7 @@ namespace Mezzanine
         }else{ return false; }
     }
 
-    bool ExtendedTimer::CheckSeconds(const ExtendedTimer::TimeStruct Struct)
+    Boolean ExtendedTimer::CheckSeconds(const ExtendedTimer::TimeStruct Struct)
     {
         if(GetStruct(Struct).Seconds > 60)
         {
@@ -198,7 +198,7 @@ namespace Mezzanine
         }else{ return false; }
     }
 
-    bool ExtendedTimer::CheckMinutes(const ExtendedTimer::TimeStruct Struct)
+    Boolean ExtendedTimer::CheckMinutes(const ExtendedTimer::TimeStruct Struct)
     {
         if(GetStruct(Struct).Minutes > 60)
         {
@@ -210,7 +210,7 @@ namespace Mezzanine
         }else{ return false; }
     }
 
-    bool ExtendedTimer::CheckHours(const ExtendedTimer::TimeStruct Struct)
+    Boolean ExtendedTimer::CheckHours(const ExtendedTimer::TimeStruct Struct)
     {
         if(GetStruct(Struct).Hours > 24)
         {
@@ -222,12 +222,12 @@ namespace Mezzanine
         }else{ return false; }
     }
 
-    bool ExtendedTimer::CheckDays(const ExtendedTimer::TimeStruct Struct)
+    Boolean ExtendedTimer::CheckDays(const ExtendedTimer::TimeStruct Struct)
     {
         return false;
     }
 
-    bool ExtendedTimer::CheckAll(const ExtendedTimer::TimeStruct Struct)
+    Boolean ExtendedTimer::CheckAll(const ExtendedTimer::TimeStruct Struct)
     {
         if(CheckMicroSeconds(Struct) || CheckMilliSeconds(Struct) || CheckSeconds(Struct)
            || CheckMinutes(Struct) || CheckHours(Struct) || CheckDays(Struct))
@@ -236,7 +236,7 @@ namespace Mezzanine
         }else{ return false; }
     }
 
-    bool ExtendedTimer::CompareCurrentAndGoal(const Integer Current, const Integer Goal)
+    Boolean ExtendedTimer::CompareCurrentAndGoal(const Integer Current, const Integer Goal)
     {
         return Timer::StopWatch == Style ? Current < Goal : Current > Goal;
         /*if(Timer::StopWatch == Style)
@@ -247,7 +247,7 @@ namespace Mezzanine
         }*/
     }
 
-    bool ExtendedTimer::GoalReached()
+    Boolean ExtendedTimer::GoalReached()
     {
         if(CurrentTime.Days == GoalTime.Days)
         {
@@ -291,7 +291,7 @@ namespace Mezzanine
         CurrentTime.Days         = InitialTime.Days;
     }
 
-    ExtendedTimer& ExtendedTimer::SetAutoReset(const bool AutoReset)
+    ExtendedTimer& ExtendedTimer::SetAutoReset(const Boolean AutoReset)
     {
         ResetAtGoal = AutoReset;
         return *this;

@@ -196,12 +196,12 @@ namespace Mezzanine
                 /// @param BeginPoint This is checked to see if this is inside the buffer
                 /// @param EndPoint If 0, this is ignored, otherwise this is checked if it is inside the buffer
                 /// @return This returns True if BeginPoint is inside the internal buffer, and EndPoint is 0 is EndPoint is inside the buffer. Other wise this returns false
-                bool CheckInternalBuffer(const std::streampos& BeginPoint, const std::streampos& EndPoint=0);
+                Boolean CheckInternalBuffer(const std::streampos& BeginPoint, const std::streampos& EndPoint=0);
 
                 /// @brief Check if the given points are in the stream
                 /// @param BeginPoint This is checked to see if this is inside the stream
                 /// @param EndPoint If 0, this is ignored, otherwise this is checked if it is inside the stream
-                bool CheckStream(const Whole& BeginPoint, const Whole& EndPoint=0);
+                Boolean CheckStream(const Whole& BeginPoint, const Whole& EndPoint=0);
             public:
 
                 /// @brief constructor
@@ -217,12 +217,12 @@ namespace Mezzanine
                 }
 
                 /// @brief Can this be read from
-                /// @return A bool true if it can be read from
-                bool Readable();
+                /// @return A Boolean true if it can be read from
+                Boolean Readable();
 
                 /// @brief Can this be written to
-                /// @return A bool true if it can be written to
-                bool Writeable();
+                /// @return A Boolean true if it can be written to
+                Boolean Writeable();
 
                 /// @brief Where are you in the current Stream
                 /// @returns The Number of bytes preceding the next byte to be read.

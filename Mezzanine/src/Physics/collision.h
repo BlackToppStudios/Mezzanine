@@ -134,13 +134,13 @@ namespace Mezzanine
             /// @brief Convenience function to see if the provided WorldObject pair match the pair in this class.
             /// @param A The first WorldObject to be compared.  Will be checked against both objects in this collision.
             /// @param B The second WorldObject to be compared.  Will be checked against both objects in this collision.
-            /// @return Returns a bool, true if the pairs match, false otherwise.
-            virtual bool PairsMatch(WorldObject* A, WorldObject* B) const;
+            /// @return Returns a Boolean, true if the pairs match, false otherwise.
+            virtual Boolean PairsMatch(WorldObject* A, WorldObject* B) const;
             /// @brief Convenience function to see if the provided CollidableProxy pair match the pair in this class.
             /// @param A The first CollidableProxy to be compared.  Will be checked against both objects in this collision.
             /// @param B The second CollidableProxy to be compared.  Will be checked against both objects in this collision.
-            /// @return Returns a bool, true if the pairs match, false otherwise.
-            virtual bool PairsMatch(CollidableProxy* A, CollidableProxy* B) const;
+            /// @return Returns a Boolean, true if the pairs match, false otherwise.
+            virtual Boolean PairsMatch(CollidableProxy* A, CollidableProxy* B) const;
             /// @brief Updates this collisions contact point data if it needs updating.
             virtual void Update();
 

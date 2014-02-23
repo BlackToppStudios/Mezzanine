@@ -343,7 +343,7 @@ namespace Mezzanine
                     {
                         // Setup the data to populate
                         Real Volume = 1.0;
-                        bool Mute = false;
+                        Boolean Mute = false;
                         // Get the values
                         CurrSettingValue = (*SubSetIt)->GetSettingValue("Volume");
                         if(!CurrSettingValue.empty())
@@ -362,7 +362,7 @@ namespace Mezzanine
                             // Setup the data to populate
                             UInt16 TypeID = 0;
                             Real Volume = 1.0;
-                            bool Mute = false;
+                            Boolean Mute = false;
                             // Get the values
                             CurrSettingValue = (*SubSetIt)->GetSettingValue("ID");
                             if(!CurrSettingValue.empty())
@@ -568,13 +568,13 @@ namespace Mezzanine
                 return ( Handler->Mute || this->IsMuted() ? 0 : Handler->Volume );
             }
 
-            void OALS::AudioManager::MuteType(const UInt16 Type, bool Enable)
+            void OALS::AudioManager::MuteType(const UInt16 Type, Boolean Enable)
             {
                 SoundTypeHandler* Handler = this->GetOrCreateSoundTypeHandler(Type);
                 Handler->Mute = Enable;
             }
 
-            bool OALS::AudioManager::IsTypeMuted(const UInt16 Type) const
+            Boolean OALS::AudioManager::IsTypeMuted(const UInt16 Type) const
             {
                 SoundTypeHandler* Handler = this->GetOrCreateSoundTypeHandler(Type);
                 return Handler->Mute || this->IsMuted();
@@ -590,12 +590,12 @@ namespace Mezzanine
                 return ( this->IsMuted() ? 0 : this->MasterVolume );
             }
 
-            void OALS::AudioManager::SetMasterMute(bool Enable)
+            void OALS::AudioManager::SetMasterMute(Boolean Enable)
             {
                 this->MasterMute = Enable;
             }
 
-            bool OALS::AudioManager::IsMuted() const
+            Boolean OALS::AudioManager::IsMuted() const
             {
                 return this->MasterMute;
             }
@@ -669,7 +669,7 @@ namespace Mezzanine
                 return alcGetString(NULL,ALC_DEFAULT_DEVICE_SPECIFIER);
             }
 
-            bool OALS::AudioManager::PlaybackDeviceNameValid(const String& DeviceName) const
+            Boolean OALS::AudioManager::PlaybackDeviceNameValid(const String& DeviceName) const
             {
                 for( StringVector::const_iterator NameIt = AvailablePlaybackDevices.begin() ; NameIt != this->AvailablePlaybackDevices.end() ; ++NameIt )
                 {
@@ -679,7 +679,7 @@ namespace Mezzanine
                 return false;
             }
 
-            bool OALS::AudioManager::InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency)
+            Boolean OALS::AudioManager::InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency)
             {
                 /// @todo We should create a "reinitialize" method that preserves sources.
                 if( this->InternalDevice )

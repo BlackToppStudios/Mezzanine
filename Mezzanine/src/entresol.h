@@ -398,7 +398,7 @@ namespace Mezzanine
             /// @brief Perform a series of checks that could change on certain system or from certain codechanges to alert us to any problems early.
             void SanityChecks();
 
-            bool VerifyManagerInitializations();
+            Boolean VerifyManagerInitializations();
 
             /// @internal
             /// @brief This is a map containing all the registered manager factories.
@@ -497,7 +497,7 @@ namespace Mezzanine
 
             /// @brief Pauses all animations, particles, and object movement throughout the world.
             /// @param Pause Pauses the world if true, unpauses if false.
-            void PauseWorld(bool Pause);
+            void PauseWorld(Boolean Pause);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Logging
@@ -571,7 +571,7 @@ namespace Mezzanine
 
             /// @brief This initializes all managers and worlds currently in the Entresol.
             /// @param CallMainLoop Should the main loop be called.
-            void EngineInit(const bool& CallMainLoop = false);
+            void EngineInit(const Boolean& CallMainLoop = false);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Main Loop
@@ -633,13 +633,13 @@ namespace Mezzanine
             /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
             /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
             /// @return Returns a pointer to the created manager.
-            ManagerBase* CreateManager(const String& ManagerImplName, NameValuePairList& Params, bool AddToEntresol = true);
+            ManagerBase* CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boolean AddToEntresol = true);
             /// @brief Creates a new manager.
             /// @param ManagerImplName The name of the manager implementation to create.
             /// @param XMLNode An XML node containing all construction and initialization info for the manager to be created.
             /// @param AddToEntresol Whether or not to add the created manager to the Entresol after creation.
             /// @return Returns a pointer to the created manager.
-            ManagerBase* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, bool AddToEntresol = true);
+            ManagerBase* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boolean AddToEntresol = true);
             /// @brief Destroys a manager.
             /// @param ToBeDestroyed The manager to be destroyed.
             void DestroyManager(ManagerBase* ToBeDestroyed);

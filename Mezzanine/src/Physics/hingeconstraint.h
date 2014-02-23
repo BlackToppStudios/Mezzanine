@@ -71,13 +71,13 @@ namespace Mezzanine
             /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param AxisInB The axis(for ProxyB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param UseReferenceFrameA By default, this constraint uses ProxyB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyA's local space instead.
-            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceFrameA=false);
+            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, Boolean UseReferenceFrameA=false);
             /// @brief Creates a Hinge constraint that will attach an proxy to a point in world space.
             /// @param ProxyA The proxy to apply this constraint to.
             /// @param PivotInA The point in the objects(ProxyA) local space where the constraint is to be attached to world space.
             /// @param AxisInA The axis(for ProxyA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param UseReferenceFrameA By default, this constraint uses ProxyB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyA's local space instead.
-            HingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceFrameA=false);
+            HingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA, Boolean UseReferenceFrameA=false);
             /// @brief Create a Hinge with components of a tranform
             /// @param ProxyA The first proxy to apply this constraint to.
             /// @param ProxyB The second proxy to apply this constraint to.
@@ -86,14 +86,14 @@ namespace Mezzanine
             /// @param QuaternionA The rotation component of Transform A
             /// @param QuaternionB The rotation component of Transform B
             /// @param UseReferenceFrameA By default, this constraint uses ProxyB's local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyAs local space instead.
-            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceFrameA=false);
+            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boolean UseReferenceFrameA=false);
             /// @brief Create a Hinge with components of a tranform
             /// @param ProxyA The first proxy to apply this constraint to.
             /// @param ProxyB The second proxy to apply this constraint to.
             /// @param TransformA The location component of Transform A
             /// @param TransformB The location component of Transform B
             /// @param UseReferenceFrameA By default, this constraint uses ProxyBs local space as the reference for certain values, such as the rotational limits. This simply controls whether or not it should use ProxyAs local space instead.
-            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseReferenceFrameA=false);
+            HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boolean UseReferenceFrameA=false);
             /// @brief Class destructor.
             virtual ~HingeConstraint();
 
@@ -154,14 +154,14 @@ namespace Mezzanine
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
             /// @param TargetVelocity The desired velocity of rotation the motor will have.  This may or may not be achieved based on obstructions in the simulation.
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
-            virtual void EnableMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
+            virtual void EnableMotor(Boolean EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
             /// @brief Enables(or Disables) the motor on the hinge.
             /// @warning Be sure to set values for the Motor max impulse and/or velocity before enabling the motor, or else you may get a crash.
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
-            virtual void EnableMotor(bool EnableMotor);
+            virtual void EnableMotor(Boolean EnableMotor);
             /// @brief Is this motor on this hinge enabled?
             /// @return True if it is, false otherwise.
-            virtual bool GetMotorEnabled() const;
+            virtual Boolean GetMotorEnabled() const;
             /// @brief Sets the maximum amount of force the motor is to apply.
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
             virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
@@ -227,19 +227,19 @@ namespace Mezzanine
             /// @copydoc Constraint::ValidAngularAxis() const
             virtual Constraint::AxisList ValidAngularAxis() const;
             /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
-            virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
+            virtual Boolean HasParamBeenSet(ConstraintParam Param, int Axis) const;
             /// @brief Retrieve the stored value from the physics subsystem(bullet)
             /// @return a True or false.
-            virtual bool GetUseFrameOffset() const;
+            virtual Boolean GetUseFrameOffset() const;
             /// @brief Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet)
             /// @param FrameOffset The new desired value.
-            virtual void SetUseFrameOffset(bool FrameOffset);
+            virtual void SetUseFrameOffset(Boolean FrameOffset);
             /// @brief Is this Using Reference Frame A
             /// @return A the value UseReferenceFrameA is set to internally.
-            virtual bool GetUseReferenceFrameA() const;
+            virtual Boolean GetUseReferenceFrameA() const;
             /// @brief Change whether this is Using Reference Frame A or not
             /// @param UseReferenceFrameA Whether certain math be performed from the perspective of Actor A or Actor B (we think this is the case, but we have not test thoroughly)
-            virtual void SetUseReferenceFrameA(bool UseReferenceFrameA=false);
+            virtual void SetUseReferenceFrameA(Boolean UseReferenceFrameA=false);
 
             /// @copydoc Constraint::GetConstraintBase() const
             virtual btTypedConstraint* GetConstraintBase() const;

@@ -169,7 +169,7 @@ namespace Mezzanine
                 }
             }
 
-            bool Listener::IsInWorld() const
+            Boolean Listener::IsInWorld() const
             {
                 return this->InWorld;
             }

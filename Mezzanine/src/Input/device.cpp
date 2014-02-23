@@ -61,7 +61,7 @@ namespace Mezzanine
             this->Sequences.AddInputSequence(Codes,SequenceID);
         }
 
-        bool Device::InputSequenceExists(const MetaCodeContainer& Codes)
+        Boolean Device::InputSequenceExists(const MetaCodeContainer& Codes)
             { return this->Sequences.InputSequenceExists(Codes); }
 
         Int32 Device::GetIDofInputSequence(const MetaCodeContainer& Codes)

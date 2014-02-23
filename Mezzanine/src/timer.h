@@ -153,7 +153,7 @@ namespace Mezzanine
 
         /// @brief Sets whether or not this Timer should reset if it reaches it's goal.
         /// @param AutoReset Should be true if you want this timer to reset itself back to it's initial time when it reaches it's goal.
-        virtual void SetAutoReset(const bool AutoReset);
+        virtual void SetAutoReset(const Boolean AutoReset);
         /// @brief Gets whether or not this Timer will reset when it reaches it's goal.
         /// @return Returns true if this timer will automatically reset when it reaches it's goal.
         virtual Boolean GetAutoReset() const;

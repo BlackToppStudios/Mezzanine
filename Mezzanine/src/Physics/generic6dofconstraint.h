@@ -110,27 +110,27 @@ namespace Mezzanine
             /// @param QuaternionA Relative rotation from ProxyA.
             /// @param QuaternionB Relative rotation from ProxyB.
             /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
-            Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA = false);
+            Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boolean UseLinearReferenceA = false);
             /// @brief Two proxy Terse constructor.
             /// @param ProxyA The First proxy to be bound.
             /// @param ProxyB  The Second proxy to be bound.
             /// @param TransformA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
             /// @param TransformB The offset and rotation from ProxyBs center of gravity.
             /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
-            Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, bool UseLinearReferenceA = false);
+            Generic6DofConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boolean UseLinearReferenceA = false);
             /// @brief Body and World Verbose constructor.
             /// @param ProxyB The proxy to be bound to the world.
             /// @param VectorB The offset for the ProxyB pivot/hinge/joint.
             /// @param QuaternionB The rotation.
             /// @param UseLinearReferenceB Perform Linear math from ProxyBs perspective, default to true.
             /// @details This Joins an object to the world.
-            Generic6DofConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceB = true);
+            Generic6DofConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, Boolean UseLinearReferenceB = true);
             /// @brief Body and World Terse constructor.
             /// @param ProxyB The proxy to be bound to the world.
             /// @param TransformB The offset and rotation for the ProxyB pivot/hinge/joint.
             /// @param UseLinearReferenceB Perform Linear math from ProxyB's perspective, default to true.
             /// @details This Joins an object to the world.
-            Generic6DofConstraint(RigidProxy* ProxyB, const Transform& TransformB, bool UseLinearReferenceB = true);
+            Generic6DofConstraint(RigidProxy* ProxyB, const Transform& TransformB, Boolean UseLinearReferenceB = true);
             /// @brief Class destructor.
             virtual ~Generic6DofConstraint();
 
@@ -305,14 +305,14 @@ namespace Mezzanine
             /// @brief For one Axis, set whether or not the motor is enabled
             /// @param Enabled Is the motor enabled? TRue for yes, false for no.
             /// @param Axis The Angular Axis to be set, as per AxisToAngularAxis(int).
-            virtual void SetAngularMotorEnabledOnAxis(bool Enabled, int Axis);
+            virtual void SetAngularMotorEnabledOnAxis(Boolean Enabled, int Axis);
             /// @brief Get a Vector3 with 3 zero or nonzero values that store whether or not a given rotational motor is enable.
             /// @return A Vector3 with the forces on the X, Y and Z angular Axis.
             virtual Vector3 GetAngularMotorEnabled() const;
             /// @brief Is a specific rotational motor enabled.
             /// @param Axis The Angular Axis to get, as per AxisToAngularAxis(int).
-            /// @return A bool that is true if the given Axis is enabled.
-            virtual bool GetAngularMotorEnabledOnAxis(int Axis) const;
+            /// @return A Boolean that is true if the given Axis is enabled.
+            virtual Boolean GetAngularMotorEnabledOnAxis(int Axis) const;
 
             ////////////////////////////////////////////////////////////////////////////////
             // Generic6DofConstraint Linear Limit and Motor Details
@@ -374,14 +374,14 @@ namespace Mezzanine
             /// @brief For one Axis, set whether or not the motor is enabled
             /// @param Enabled Is the motor enabled? True for yes, false for no.
             /// @param Axis The Linear Axis to be set.
-            virtual void SetLinearMotorEnabledOnAxis(bool Enabled, int Axis);
+            virtual void SetLinearMotorEnabledOnAxis(Boolean Enabled, int Axis);
             /// @brief Get a Vector3 with 3 zero or nonzero values that store whether or not a given rotational motor is enable.
             /// @return A Vector3 with the forces on the X, Y and Z Linear Axis.
             virtual Vector3 GetLinearMotorEnabled() const;
             /// @brief Is a specific Linear motor enabled.
             /// @param Axis The Linear Axis to get.
-            /// @return A bool that is true if the given Axis is enabled.
-            virtual bool GetLinearMotorEnabledOnAxis(int Axis) const;
+            /// @return A Boolean that is true if the given Axis is enabled.
+            virtual Boolean GetLinearMotorEnabledOnAxis(int Axis) const;
 
             ////////////////////////////////////////////////////////////////////////////////
             // Generic6DofConstraint Axis, Params and other Details
@@ -393,14 +393,14 @@ namespace Mezzanine
             /// @copydoc Constraint::ValidAngularAxis() const
             virtual Constraint::AxisList ValidAngularAxis() const;
             /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
-            virtual bool HasParamBeenSet(ConstraintParam Param, int Axis) const;
+            virtual Boolean HasParamBeenSet(ConstraintParam Param, int Axis) const;
 
             /// @brief Retrieve the stored value from the physics subsystem(bullet)
             /// @return a True or false.
-            virtual bool GetUseFrameOffset() const;
+            virtual Boolean GetUseFrameOffset() const;
             /// @brief Set the stored value for UseFrameOffset on this hinge in the physics subsystem(bullet)
             /// @param FrameOffset The new desired value.
-            virtual void SetUseFrameOffset(bool FrameOffset);
+            virtual void SetUseFrameOffset(Boolean FrameOffset);
 
             /// @copydoc Constraint::GetConstraintBase() const
             virtual btTypedConstraint* GetConstraintBase() const;

@@ -140,7 +140,7 @@ namespace Mezzanine
         Real Fmod(const Real& Numerator, const Real& Denominator)
             { return std::fmod(Numerator,Denominator); }
 
-        bool WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance)
+        Boolean WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance)
             { return ( MathTools::Fabs(Second - First) <= Tolerance ); }
 
         ///////////////////////////////////////////////////////////////////////////////

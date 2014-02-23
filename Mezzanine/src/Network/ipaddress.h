@@ -68,7 +68,7 @@ namespace Mezzanine
             protected:
                 String HostName;
                 //String SocAddress;
-                virtual bool VerifyAddress(const String& Addr) = 0;
+                virtual Boolean VerifyAddress(const String& Addr) = 0;
             public:
                 /// @brief Class Constructor.
                 IPAddress();
@@ -105,7 +105,7 @@ namespace Mezzanine
         {
             protected:
                 //UInt32 SocAddress;
-                virtual bool VerifyAddress(const String& Addr);
+                virtual Boolean VerifyAddress(const String& Addr);
             public:
                 /// @brief Class Constructor.
                 IPAddress_4();
@@ -128,7 +128,7 @@ namespace Mezzanine
         {
             protected:
                 //UInt8 SocAddress[16];
-                virtual bool VerifyAddress(const String& Addr);
+                virtual Boolean VerifyAddress(const String& Addr);
             public:
                 /// @brief Class Constructor.
                 IPAddress_6();

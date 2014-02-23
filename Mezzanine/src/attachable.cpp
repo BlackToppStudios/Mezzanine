@@ -58,7 +58,7 @@ namespace Mezzanine
     AttachableBase::~AttachableBase()
         {  }
 
-    bool AttachableBase::GetUpdating(AttachableBase* AB) const
+    Boolean AttachableBase::GetUpdating(AttachableBase* AB) const
         { return (AB ? AB->Updating : false); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -190,7 +190,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void AttachableChild::_RecalculateGlobalTransform(bool FromParent)
+    void AttachableChild::_RecalculateGlobalTransform(Boolean FromParent)
     {
         // Set data for parent updates appropriately.
         // Can't assign directly in case "FromParent" is false and we need an update, such as when SetLocation() is invoked directly.
