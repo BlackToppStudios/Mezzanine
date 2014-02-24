@@ -105,7 +105,7 @@ namespace Mezzanine
             return Vector3(GetBulletBoxShape()->getHalfExtentsWithMargin());
         }
 
-        Boolean BoxCollisionShape::IsInside(const Vector3& Location, const Real& Tolerance) const
+        Boole BoxCollisionShape::IsInside(const Vector3& Location, const Real& Tolerance) const
         {
             return GetBulletBoxShape()->isInside(Location.GetBulletVector3(),Tolerance);
         }

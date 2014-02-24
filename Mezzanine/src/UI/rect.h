@@ -62,7 +62,7 @@ namespace Mezzanine
             /// @param Min The minimum value of the range.
             /// @param Max The maximum value of the range.
             /// @return Returns true if the provided value is within the provided range, false otherwise.
-            inline Boolean ValueInRange(const Real& Value, const Real& Min, const Real& Max) const
+            inline Boole ValueInRange(const Real& Value, const Real& Min, const Real& Max) const
             {
                 return (Value >= Min) && (Value <= Max);
             }
@@ -71,8 +71,8 @@ namespace Mezzanine
             Vector2 Position;
             /// @brief Vector2 representing the width and height of the rect.
             Vector2 Size;
-            /// @brief Boolean representing whether this rect is represented in relative units or absolute units(pixels).
-            Boolean Relative;
+            /// @brief Boole representing whether this rect is represented in relative units or absolute units(pixels).
+            Boole Relative;
 
             /// @brief Less Detailed Real Constructor.
             /// @param PosX The position of this rect on the X axis.
@@ -90,7 +90,7 @@ namespace Mezzanine
             /// @param PosY The position of this rect on the Y axis.
             /// @param SizeX The size of this rect on the X axis.
             /// @param SizeY The size of this rect on the Y axis.
-            Rect(const Real& PosX, const Real& PosY, const Real& SizeX, const Real& SizeY, Boolean Relative)
+            Rect(const Real& PosX, const Real& PosY, const Real& SizeX, const Real& SizeY, Boole Relative)
             {
                 this->Position.SetValues(PosX,PosY);
                 this->Size.SetValues(SizeX,SizeY);
@@ -111,7 +111,7 @@ namespace Mezzanine
             /// @param Position The position of the Renderable's Rect.
             /// @param Size The size of the Renderable's Rect.
             /// @param Relative Whether or not this Rect is using relative(0-1) or absolute units(Pixels).
-            Rect(const Vector2& Position, const Vector2& Size, Boolean Relative)
+            Rect(const Vector2& Position, const Vector2& Size, Boole Relative)
             {
                 this->Position = Position;
                 this->Size = Size;
@@ -192,12 +192,12 @@ namespace Mezzanine
             /// @brief Checks to see if another Rect is overlapping with this one.
             /// @param OtherRect The other rect to compare against.
             /// @return Returns true if these rects overlap with each other, false otherwise.
-            inline Boolean CheckOverlap(const Rect& OtherRect) const
+            inline Boole CheckOverlap(const Rect& OtherRect) const
             {
-                Boolean XOverlap = ValueInRange(this->Position.X, OtherRect.Position.X, OtherRect.Position.X + OtherRect.Size.X) ||
+                Boole XOverlap = ValueInRange(this->Position.X, OtherRect.Position.X, OtherRect.Position.X + OtherRect.Size.X) ||
                                    ValueInRange(OtherRect.Position.X, this->Position.X, this->Position.X + this->Size.X);
 
-                Boolean YOverlap = ValueInRange(this->Position.Y, OtherRect.Position.Y, OtherRect.Position.Y + OtherRect.Size.Y) ||
+                Boole YOverlap = ValueInRange(this->Position.Y, OtherRect.Position.Y, OtherRect.Position.Y + OtherRect.Size.Y) ||
                                    ValueInRange(OtherRect.Position.Y, this->Position.Y, this->Position.Y + this->Size.Y);
 
                 return (XOverlap && YOverlap);
@@ -205,7 +205,7 @@ namespace Mezzanine
             /// @brief Checks to see if a point in 2D space is inside this rect.
             /// @param Point The point in 2D space to check.
             /// @return Returns true if the provided point is within this rect, false otherwise.
-            inline Boolean IsInside(const Vector2& Point) const
+            inline Boole IsInside(const Vector2& Point) const
             {
                 return ( ValueInRange(Point.X,this->Position.X,this->Position.X + this->Size.X) &&
                          ValueInRange(Point.Y,this->Position.Y,this->Position.Y + this->Size.Y) );
@@ -213,14 +213,14 @@ namespace Mezzanine
             /// @brief Gets whether or point on the X axis is within the limits of this rect or not.
             /// @param Position The point on the X axis.
             /// @return Returns true in the provided position is within this rect's limits, false otherwise.
-            inline Boolean IsWithinWidth(const Real& Position) const
+            inline Boole IsWithinWidth(const Real& Position) const
             {
                 return ValueInRange(Position,this->Position.X,this->Position.X + this->Size.X);
             }
             /// @brief Gets whether or point on the Y axis is within the limits of this rect or not.
             /// @param Position The point on the Y axis.
             /// @return Returns true in the provided position is within this rect's limits, false otherwise.
-            inline Boolean IsWithinHeight(const Real& Position) const
+            inline Boole IsWithinHeight(const Real& Position) const
             {
                 return ValueInRange(Position,this->Position.Y,this->Position.Y + this->Size.Y);
             }
@@ -259,14 +259,14 @@ namespace Mezzanine
             /// @brief Equality Comparison Operator.
             /// @details Checks to see if the two Rects are equal.
             /// @param Other The other Rect to compare against.
-            inline Boolean operator==(const Rect& Other)
+            inline Boole operator==(const Rect& Other)
             {
                 return ( this->Position == Other.Position && this->Size == Other.Size && this->Relative == Other.Relative );
             }
             /// @brief Inequality Comparison Operator.
             /// @details Checks to see if the two rects are different.
             /// @param Other The other Rect to compare against.
-            inline Boolean operator!=(const Rect& Other)
+            inline Boole operator!=(const Rect& Other)
             {
                 return ( this->Position != Other.Position || this->Size != Other.Size || this->Relative != Other.Relative );
             }

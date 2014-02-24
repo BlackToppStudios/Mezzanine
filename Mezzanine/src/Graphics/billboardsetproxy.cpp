@@ -254,16 +254,16 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // BillboardSet Properties
 
-        void BillboardSetProxy::SetAutoExtend(const Boolean AutoExtend)
+        void BillboardSetProxy::SetAutoExtend(const Boole AutoExtend)
             { this->GraphicsBillboardSet->setAutoextend(AutoExtend); }
 
-        Boolean BillboardSetProxy::GetAutoExtend() const
+        Boole BillboardSetProxy::GetAutoExtend() const
             { return this->GraphicsBillboardSet->getAutoextend(); }
 
-        void BillboardSetProxy::SetAccurateFacing(const Boolean AccFace)
+        void BillboardSetProxy::SetAccurateFacing(const Boole AccFace)
             { this->GraphicsBillboardSet->setUseAccurateFacing(AccFace); }
 
-        Boolean BillboardSetProxy::GetAccurateFacing() const
+        Boole BillboardSetProxy::GetAccurateFacing() const
             { return this->GraphicsBillboardSet->getUseAccurateFacing(); }
 
         void BillboardSetProxy::SetPoolSize(const UInt32 Size)
@@ -382,7 +382,7 @@ namespace Mezzanine
 
         void BillboardSetProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            Boolean WasInWorld = false;
+            Boole WasInWorld = false;
             XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
             if( !InWorldAttrib.Empty() ) {
                 WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );

@@ -330,7 +330,7 @@ namespace Mezzanine
             }
         }
 
-        void GameWindow::SetFullscreen(const Boolean Fullscreen)
+        void GameWindow::SetFullscreen(const Boole Fullscreen)
         {
             static SDL_DisplayMode FSDisplayMode;
 
@@ -364,7 +364,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean GameWindow::GetFullscreen() const
+        Boole GameWindow::GetFullscreen() const
         {
             return this->Settings.Fullscreen;
         }
@@ -389,22 +389,22 @@ namespace Mezzanine
         Whole GameWindow::GetFSAALevel() const
             { return this->OgreWindow->getFSAA(); }
 
-        void GameWindow::EnableVsync(Boolean Enable)
+        void GameWindow::EnableVsync(Boole Enable)
             { this->OgreWindow->setVSyncEnabled(Enable); }
 
-        Boolean GameWindow::VsyncEnabled() const
+        Boole GameWindow::VsyncEnabled() const
             { return this->OgreWindow->isVSyncEnabled(); }
 
-        void GameWindow::SetHidden(Boolean Hidden)
+        void GameWindow::SetHidden(Boole Hidden)
             { this->OgreWindow->setHidden(Hidden); }
 
-        Boolean GameWindow::IsHidden() const
+        Boole GameWindow::IsHidden() const
             { return this->OgreWindow->isHidden(); }
 
-        Boolean GameWindow::BorderIsResizeable() const
+        Boole GameWindow::BorderIsResizeable() const
             { return (this->CreationFlags & GameWindow::WF_Resizeable); }
 
-        Boolean GameWindow::IsBorderless() const
+        Boole GameWindow::IsBorderless() const
             { return (this->CreationFlags & GameWindow::WF_Borderless); }
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -73,7 +73,7 @@ namespace Mezzanine
             //    return;
 
             Whole LineIndex = 0;
-            Boolean NewLineDetected = false;
+            Boole NewLineDetected = false;
             TextLine* CurrLine = this->GetOrCreateTextLine(LineIndex);
             if( HorizontalOrder == UI::TO_Left_To_Right ) {
                 CharacterIterator Start = this->Characters.begin();

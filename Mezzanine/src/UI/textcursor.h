@@ -69,7 +69,7 @@ namespace Mezzanine
             TextLayer* Layer;
             /// @internal
             /// @brief Stores the cursors current visibility state.
-            Boolean Visibility;
+            Boole Visibility;
         public:
             /// @brief Class constructor.
             /// @param Creator The layer that this TextCursor belongs to.
@@ -82,10 +82,10 @@ namespace Mezzanine
 
             /// @brief Sets the visibility of this cursor.
             /// @param Visible True to enable rendering of this cursor, false otherwise.
-            virtual void SetVisible(Boolean Visible);
+            virtual void SetVisible(Boole Visible);
             /// @brief Gets the visibility of this cursor.
             /// @return Returns true if this cursor is being rendered along with it's parent TextLayer, false otherwise.
-            virtual Boolean GetVisible() const;
+            virtual Boole GetVisible() const;
 
             /// @brief Sets the index position of this cursor.
             /// @param Index The index indicating the position of this cursor among the characters in the parent layer.

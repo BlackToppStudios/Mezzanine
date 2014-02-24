@@ -86,7 +86,7 @@ namespace Mezzanine
         /// to XML::XPathQuery in the container. \n \n
         /// To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be
         /// converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this,
-        /// @ref XPathQuery::EvaluateBoolean(), @ref XPathQuery::EvaluateNumber() and @ref XPathQuery::EvaluateString() always return a result,
+        /// @ref XPathQuery::EvaluateBoole(), @ref XPathQuery::EvaluateNumber() and @ref XPathQuery::EvaluateString() always return a result,
         /// but EvaluateNodeSet results in an error if the return type is not node set.
         class MEZZ_LIB XPathQuery
         {
@@ -130,7 +130,7 @@ namespace Mezzanine
                 /// @return A bool result of evaluating the expression.
                 /// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
                 /// @param n The XPathNode that will serve as the context for the query.
-                bool EvaluateBoolean(const XPathNode& n) const;
+                bool EvaluateBoole(const XPathNode& n) const;
 
                 // Evaluate expression as double Value in the specified context; performs Type conversion if necessary.
                 /// @brief Evaluate expression as double value in the specified context; performs Type conversion if necessary.

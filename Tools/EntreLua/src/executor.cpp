@@ -50,7 +50,7 @@ using namespace Mezzanine;
 using namespace Mezzanine::Scripting;
 using namespace std;
 
-Executor::Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::Boolean DisplayStackCounts)
+Executor::Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::Boole DisplayStackCounts)
     : LuaEngine(TargetEngine),
       StackCounts(DisplayStackCounts)
 {}

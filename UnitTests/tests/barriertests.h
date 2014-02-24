@@ -64,33 +64,11 @@ vector<Whole> BarrierData2;
 /// @brief A simple function to synchronize in the 'barrier' test
 void BarrierTestHelper(void* ThreadID)
 {
-    Int32 Position = *((Int32*)ThreadID);
-    /*stringstream Output;
-    Output << "-------------------" << endl
-           << "This is the thread with id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
-           << "For this test it requires the data in position: " << Position-1 << endl
-           << "doubling data in position: " << Position%4 << endl;*/
-    BarrierData1[Position-1] *= 2;
-    //TestOutput << Output.str();
-    //Output.str("");
-
+    Int32 Position = (*((Int32*)ThreadID)); // The place to get data from
+    BarrierData1[Position] *= 2;
+    Position=(Position+1)%4; // the place to write data to
     TestBarrier.Wait();
-    /*if(TestBarrier.Wait())
-    {
-        Output << "-------------------" << endl
-               << "This is the thread with id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
-               << "This thread broke the barrier" << endl
-               << "Copy data in position:" << Position%4 << endl;
-    }else{
-        Output << "-------------------" << endl
-               << "This is the thread with id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
-               << "This thread waited for another to break it." << endl
-               << "Copy data in position: " << Position%4 << endl;
-    }*/
-    BarrierData2[Position%4]=BarrierData1[Position%4];
-    //Output << "Data: " << BarrierData2[Position%4] << endl;
-    //TestOutput << Output.str();
-    //Output.str("");
+    BarrierData2[Position]=BarrierData1[Position];
 }
 
 /// @brief Tests for the WorkUnit class
@@ -109,10 +87,10 @@ class barriertests : public UnitTestGroup
                  << "This Threads id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
                  << "A group of data has been populated with 5,10,15 and 20, this should be doubled and copied into a new field of data and will be done by 4 threads. Each thread will be indexed, and will adjust the data from some other thread then synchronize and copy its own data." << endl;
 
-            Int32 One = 1;
-            Int32 Two = 2;
-            Int32 Three = 3;
-            Int32 Four = 4;
+            Int32 One = 0;
+            Int32 Two = 1;
+            Int32 Three = 2;
+            Int32 Four = 3;
             BarrierData1.push_back(5);
             BarrierData1.push_back(10);
             BarrierData1.push_back(15);

@@ -467,12 +467,12 @@ namespace Mezzanine
             /// @return True if use_count() == 1 or if the pointer is invalid
             /// @throw Nothing This member function does not throw exceptions.
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
-            Boolean Unique() const throw()
+            Boole Unique() const throw()
                 { return _ReferenceCounter ? _ReferenceCounter->GetReferenceCount()==1 : true; }
 
             /// @copydoc Unique
             /// @note Provided to match method names on standard smart pointers
-            Boolean unique() const throw()
+            Boole unique() const throw()
                 { return Unique(); }
 
             /// @brief A comparision of two CountedPtr instances
@@ -480,12 +480,12 @@ namespace Mezzanine
             /// object and are part of the same group of CountedPtr managing that object.
             /// @param Other The CountedPtr on the right hand side of the ==
             /// @return This returns true if this and Other use the same reference count and pointer.
-            Boolean operator==(const CountedPtr& Other) const throw()
+            Boole operator==(const CountedPtr& Other) const throw()
                 { return Other._ReferenceCounter == _ReferenceCounter; }
 
             /// @brief Returns true if this pointer points to something.
-            /// @warning Without C++11 this can be accidentally easily be cast to a Boolean and can do sill things.
-            operator Boolean() const throw()
+            /// @warning Without C++11 this can be accidentally easily be cast to a Boole and can do sill things.
+            operator Boole() const throw()
                 { return 0 != _ReferenceCounter; }
 
             /// @internal

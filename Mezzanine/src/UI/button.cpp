@@ -83,7 +83,7 @@ namespace Mezzanine
         void Button::CreateLayoutStrat()
             { this->LayoutStrat = NULL; }
 
-        Boolean Button::HandleInputImpl(const Input::MetaCode& Code)
+        Boole Button::HandleInputImpl(const Input::MetaCode& Code)
         {
             // Check to see if this is an activation code
             if( this->ActivationCodes.count( Input::MetaCodeKey(Code) ) )
@@ -92,7 +92,7 @@ namespace Mezzanine
                 if( Code.IsMouseButton() ) {
                     if( this->IsHovered() && Input::BUTTON_PRESSING == Code.GetMetaValue() )
                     {
-                        Boolean Result = this->Activate();
+                        Boole Result = this->Activate();
                         if(Result)
                             this->MouseActivated = true;
                         return true;
@@ -135,14 +135,14 @@ namespace Mezzanine
             }
         }
 
-        Boolean Button::VertifyActivationCode(const Input::InputCode Code)
+        Boole Button::VertifyActivationCode(const Input::InputCode Code)
         {
             return (Input::KEY_FIRST < Code && Input::KEY_LAST > Code) ||
                    (Input::MOUSEBUTTON_FIRST <= Code && Input::MOUSEBUTTON_LAST >= Code) ||
                    (Input::CONTROLLERBUTTON_FIRST <= Code && Input::CONTROLLERBUTTON_LAST >= Code);
         }
 
-        Boolean Button::Activate()
+        Boole Button::Activate()
         {
             if( this->Activation == AS_Activated )
                 return false;
@@ -154,7 +154,7 @@ namespace Mezzanine
             return true;
         }
 
-        Boolean Button::Deactivate()
+        Boole Button::Deactivate()
         {
             if( this->Activation == AS_Deactivated )
                 return false;
@@ -169,7 +169,7 @@ namespace Mezzanine
             return true;
         }
 
-        Boolean Button::Standby()
+        Boole Button::Standby()
         {
             if(this->Activation == AS_Activation_Standby)
                 return false;
@@ -188,13 +188,13 @@ namespace Mezzanine
         const StopWatchTimer& Button::GetLockoutTimer() const
             { return this->LockoutTimer; }
 
-        Boolean Button::IsActivated() const
+        Boole Button::IsActivated() const
             { return ( this->Activation == AS_Activated ); }
 
-        Boolean Button::IsOnStandby() const
+        Boole Button::IsOnStandby() const
             { return ( this->Activation == AS_Activation_Standby ); }
 
-        Boolean Button::IsDeactivated() const
+        Boole Button::IsDeactivated() const
             { return ( this->Activation == AS_Deactivated ); }
 
         const String& Button::GetTypeName() const

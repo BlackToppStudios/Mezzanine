@@ -269,8 +269,8 @@ namespace Mezzanine
     /// @subsection serializationmisc Other little Things
     /// To simplify and standardize errors thrown, the following functions exist:
     /// @code
-    /// void SerializeError(const String& FailedTo, const String& ClassName, Boolean SOrD = true);
-    /// void DeSerializeError(const String& FailedTo, const String& ClassName, Boolean SOrD = false);
+    /// void SerializeError(const String& FailedTo, const String& ClassName, Boole SOrD = true);
+    /// void DeSerializeError(const String& FailedTo, const String& ClassName, Boole SOrD = false);
     /// @endcode
     /// Both of these functions throw a Mezzanine::Exception with the descriptive text of "Could not {FailedTo} during {ClassName} [De]Serialization."
     /// If SOrD (Serialize Or Deserialize) is true the "De" is not printed.
@@ -457,7 +457,7 @@ namespace Mezzanine
     /// @param ClassName The name of the class throw the exception
     /// @param SOrD Defaults to true, and if true uses the word "Serialization", otherwise uses the word "DeSerialization"
     /// @throw A Mezzanine::Exception with the message "Could not {FailedTo} during {ClassName} [De]Serialization.""Could not {FailedTo} during {ClassName} [De]Serialization."
-    void MEZZ_LIB SerializeError(const String& FailedTo, const String& ClassName, Boolean SOrD = true);
+    void MEZZ_LIB SerializeError(const String& FailedTo, const String& ClassName, Boole SOrD = true);
 
     /// @brief Simply does some string concatenation, then throws an Exception
     /// @param FailedTo What failed to happed for example "create testnode" or "acquire a mutex"
@@ -466,7 +466,7 @@ namespace Mezzanine
     /// @throw A Mezzanine::Exception with the message "Could not {FailedTo} during {ClassName} [De]Serialization."
     /// @details This just calls SerializeError() with the third parameter false. This exists solely to make code
     /// A little more readable.
-    void MEZZ_LIB DeSerializeError(const String& FailedTo, const String& ClassName, Boolean SOrD = false);
+    void MEZZ_LIB DeSerializeError(const String& FailedTo, const String& ClassName, Boole SOrD = false);
 }//Mezzanine
 
 /*

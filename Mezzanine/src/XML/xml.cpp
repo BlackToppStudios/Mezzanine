@@ -6298,9 +6298,9 @@ PUGI__NS_BEGIN
         *Write = 0;
     }
 
-    struct XPathVariableBoolean: XPathVariable
+    struct XPathVariableBoole: XPathVariable
     {
-        XPathVariableBoolean(): Value(false)
+        XPathVariableBoole(): Value(false)
         {
         }
 
@@ -6389,8 +6389,8 @@ PUGI__NS_BEGIN
         case XPathTypeString:
             return new_XPathVariable<XPathVariableString>(Name);
 
-        case XPathTypeBoolean:
-            return new_XPathVariable<XPathVariableBoolean>(Name);
+        case XPathTypeBoole:
+            return new_XPathVariable<XPathVariableBoole>(Name);
 
         default:
             return 0;
@@ -6419,8 +6419,8 @@ PUGI__NS_BEGIN
             delete_XPathVariable(static_cast<XPathVariableString*>(var));
             break;
 
-        case XPathTypeBoolean:
-            delete_XPathVariable(static_cast<XPathVariableBoolean*>(var));
+        case XPathTypeBoole:
+            delete_XPathVariable(static_cast<XPathVariableBoole*>(var));
             break;
 
         default:
@@ -7109,7 +7109,7 @@ PUGI__NS_BEGIN
 
             if (lt != XPathTypeNodeSet && rt != XPathTypeNodeSet)
             {
-                if (lt == XPathTypeBoolean || rt == XPathTypeBoolean)
+                if (lt == XPathTypeBoole || rt == XPathTypeBoole)
                     return comp(lhs->eval_boolean(c, stack), rhs->eval_boolean(c, stack));
                 else if (lt == XPathTypeNumber || rt == XPathTypeNumber)
                     return comp(lhs->eval_number(c, stack), rhs->eval_number(c, stack));
@@ -7149,7 +7149,7 @@ PUGI__NS_BEGIN
                     swap(lt, rt);
                 }
 
-                if (lt == XPathTypeBoolean)
+                if (lt == XPathTypeBoole)
                     return comp(lhs->eval_boolean(c, stack), rhs->eval_boolean(c, stack));
                 else if (lt == XPathTypeNumber)
                 {
@@ -7809,8 +7809,8 @@ PUGI__NS_BEGIN
             {
                 assert(_retType == _data.variable->Type());
 
-                if (_retType == XPathTypeBoolean)
-                    return _data.variable->GetBoolean();
+                if (_retType == XPathTypeBoole)
+                    return _data.variable->GetBoole();
 
                 // fallthrough to Type conversion
             }
@@ -7955,7 +7955,7 @@ PUGI__NS_BEGIN
             {
                 switch (_retType)
                 {
-                case XPathTypeBoolean:
+                case XPathTypeBoole:
                     return eval_boolean(c, stack) ? 1 : 0;
 
                 case XPathTypeString:
@@ -8224,7 +8224,7 @@ PUGI__NS_BEGIN
             {
                 switch (_retType)
                 {
-                case XPathTypeBoolean:
+                case XPathTypeBoole:
                     return XPathStringConst(eval_boolean(c, stack) ? "true" : "false");
 
                 case XPathTypeNumber:
@@ -8476,7 +8476,7 @@ PUGI__NS_BEGIN
             {
             case 'b':
                 if (Name == "boolean" && argc == 1)
-                    return new (alloc_node()) XPathAstNode(ast_func_boolean, XPathTypeBoolean, args[0]);
+                    return new (alloc_node()) XPathAstNode(ast_func_boolean, XPathTypeBoole, args[0]);
 
                 break;
 
@@ -8497,7 +8497,7 @@ PUGI__NS_BEGIN
 
             case 'f':
                 if (Name == "false" && argc == 0)
-                    return new (alloc_node()) XPathAstNode(ast_func_false, XPathTypeBoolean);
+                    return new (alloc_node()) XPathAstNode(ast_func_false, XPathTypeBoole);
                 else if (Name == "floor" && argc == 1)
                     return new (alloc_node()) XPathAstNode(ast_func_floor, XPathTypeNumber, args[0]);
 
@@ -8513,7 +8513,7 @@ PUGI__NS_BEGIN
                 if (Name == "last" && argc == 0)
                     return new (alloc_node()) XPathAstNode(ast_func_last, XPathTypeNumber);
                 else if (Name == "lang" && argc == 1)
-                    return new (alloc_node()) XPathAstNode(ast_func_lang, XPathTypeBoolean, args[0]);
+                    return new (alloc_node()) XPathAstNode(ast_func_lang, XPathTypeBoole, args[0]);
                 else if (Name == "local-Name" && argc <= 1)
                     return ParseFunctionHelper(ast_func_local_Name_0, ast_func_local_Name_1, argc, args);
 
@@ -8527,7 +8527,7 @@ PUGI__NS_BEGIN
                 else if (Name == "normalize-space" && argc <= 1)
                     return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_normalize_space_0 : ast_func_normalize_space_1, XPathTypeString, args[0], args[1]);
                 else if (Name == "not" && argc == 1)
-                    return new (alloc_node()) XPathAstNode(ast_func_not, XPathTypeBoolean, args[0]);
+                    return new (alloc_node()) XPathAstNode(ast_func_not, XPathTypeBoole, args[0]);
                 else if (Name == "number" && argc <= 1)
                     return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_number_0 : ast_func_number_1, XPathTypeNumber, args[0]);
 
@@ -8551,7 +8551,7 @@ PUGI__NS_BEGIN
                 else if (Name == "string-length" && argc <= 1)
                     return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_string_length_0 : ast_func_string_length_1, XPathTypeString, args[0]);
                 else if (Name == "starts-with" && argc == 2)
-                    return new (alloc_node()) XPathAstNode(ast_func_starts_with, XPathTypeBoolean, args[0], args[1]);
+                    return new (alloc_node()) XPathAstNode(ast_func_starts_with, XPathTypeBoole, args[0], args[1]);
                 else if (Name == "substring-before" && argc == 2)
                     return new (alloc_node()) XPathAstNode(ast_func_substring_before, XPathTypeString, args[0], args[1]);
                 else if (Name == "substring-after" && argc == 2)
@@ -8570,7 +8570,7 @@ PUGI__NS_BEGIN
                 if (Name == "translate" && argc == 3)
                     return new (alloc_node()) XPathAstNode(ast_func_translate, XPathTypeString, args[0], args[1]);
                 else if (Name == "true" && argc == 0)
-                    return new (alloc_node()) XPathAstNode(ast_func_true, XPathTypeBoolean);
+                    return new (alloc_node()) XPathAstNode(ast_func_true, XPathTypeBoole);
 
                 break;
 
@@ -9165,7 +9165,7 @@ PUGI__NS_BEGIN
                 XPathAstNode* expr = ParseAdditiveExpression();
 
                 n = new (alloc_node()) XPathAstNode(l == lex_less ? ast_op_less : l == lex_greater ? ast_op_greater :
-                                l == lex_less_or_equal ? ast_op_less_or_equal : ast_op_greater_or_equal, XPathTypeBoolean, n, expr);
+                                l == lex_less_or_equal ? ast_op_less_or_equal : ast_op_greater_or_equal, XPathTypeBoole, n, expr);
             }
 
             return n;
@@ -9186,7 +9186,7 @@ PUGI__NS_BEGIN
 
                 XPathAstNode* expr = ParseRelationalExpression();
 
-                n = new (alloc_node()) XPathAstNode(l == lex_equal ? ast_op_equal : ast_op_not_equal, XPathTypeBoolean, n, expr);
+                n = new (alloc_node()) XPathAstNode(l == lex_equal ? ast_op_equal : ast_op_not_equal, XPathTypeBoole, n, expr);
             }
 
             return n;
@@ -9203,7 +9203,7 @@ PUGI__NS_BEGIN
 
                 XPathAstNode* expr = ParseEqualityExpression();
 
-                n = new (alloc_node()) XPathAstNode(ast_op_and, XPathTypeBoolean, n, expr);
+                n = new (alloc_node()) XPathAstNode(ast_op_and, XPathTypeBoole, n, expr);
             }
 
             return n;
@@ -9220,7 +9220,7 @@ PUGI__NS_BEGIN
 
                 XPathAstNode* expr = ParseAndExpression();
 
-                n = new (alloc_node()) XPathAstNode(ast_op_or, XPathTypeBoolean, n, expr);
+                n = new (alloc_node()) XPathAstNode(ast_op_or, XPathTypeBoole, n, expr);
             }
 
             return n;
@@ -9501,8 +9501,8 @@ namespace XML
         case XPathTypeString:
             return static_cast<const internal::XPathVariableString*>(this)->Name;
 
-        case XPathTypeBoolean:
-            return static_cast<const internal::XPathVariableBoolean*>(this)->Name;
+        case XPathTypeBoole:
+            return static_cast<const internal::XPathVariableBoole*>(this)->Name;
 
         default:
             assert(!"Invalid variable Type");
@@ -9515,9 +9515,9 @@ namespace XML
         return ValueType;
     }
 
-    PUGI__FN bool XPathVariable::GetBoolean() const
+    PUGI__FN bool XPathVariable::GetBoole() const
     {
-        return (ValueType == XPathTypeBoolean) ? static_cast<const internal::XPathVariableBoolean*>(this)->Value : false;
+        return (ValueType == XPathTypeBoole) ? static_cast<const internal::XPathVariableBoole*>(this)->Value : false;
     }
 
     PUGI__FN double XPathVariable::GetNumber() const
@@ -9538,9 +9538,9 @@ namespace XML
 
     PUGI__FN bool XPathVariable::Set(bool Value)
     {
-        if (ValueType != XPathTypeBoolean) return false;
+        if (ValueType != XPathTypeBoole) return false;
 
-        static_cast<internal::XPathVariableBoolean*>(this)->Value = Value;
+        static_cast<internal::XPathVariableBoole*>(this)->Value = Value;
         return true;
     }
 
@@ -9642,7 +9642,7 @@ namespace XML
 
     PUGI__FN bool XPathVariableSet::Set(const Char8* Name, bool Value)
     {
-        XPathVariable* var = Add(Name, XPathTypeBoolean);
+        XPathVariable* var = Add(Name, XPathTypeBoole);
         return var ? var->Set(Value) : false;
     }
 
@@ -9708,7 +9708,7 @@ namespace XML
         return static_cast<internal::XPathQueryImpl*>(QueryImplementation)->GetRoot->retType();
     }
 
-    PUGI__FN bool XPathQuery::EvaluateBoolean(const XPathNode& n) const
+    PUGI__FN bool XPathQuery::EvaluateBoole(const XPathNode& n) const
     {
         if (!QueryImplementation) return false;
 

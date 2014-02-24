@@ -37,105 +37,59 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _rubyscriptargument_cpp
-#define _rubyscriptargument_cpp
+#ifndef _atomicoperationtests_h
+#define _atomicoperationtests_h
 
-#include "datatypes.h"
+#include "mezztest.h"
 
-#ifdef MEZZRUBY
+#include "dagframescheduler.h"
 
-#include "rubyscriptargument.h"
-//#include "rubyscript.h"
-//#include "rubyscriptingengine.h"
-#include "exception.h"
-
+#include <vector>
+#include <stdexcept> //only used to throw for TEST_THROW
 
 /// @file
-/// @brief This file has the implementation for the Ruby script argument.
+/// @brief This file should be used as template/example for building future Unit Tests
 
-extern "C"
+using namespace Mezzanine;
+using namespace Mezzanine::Testing;
+
+Int32 Added = 0;
+
+/// @brief A simple function to synchronize in the 'barrier' test
+void TestHelper(void* )
 {
-    #include "ruby.h"            // Ruby Core
+    Mezzanine::Threading::AtomicAdd(&Added,1);
 }
 
-namespace Mezzanine
+/// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
+class atomicoperationtests : public UnitTestGroup
 {
-    namespace Scripting
-    {
-        namespace Ruby
+    public:
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
+        /// @return Returns a String containing "atomicqueue"
+        virtual String Name()
+            { return String("atomicoperation"); }
+
+        /// @brief This is called when Automatic tests are run
+        void RunAutomaticTests()
         {
-            String RubyArgument::GetString() const
-            {
+            Int32 ThreadCount = 30000;
+            std::vector<Mezzanine::Threading::Thread*> Threads;
+            Threads.reserve(ThreadCount);
+            TestOutput << "Creating " << ThreadCount << " threads and having each one increment a single number." << endl;
+            for(Int32 Counter = 0; Counter<ThreadCount; Counter++)
+                { Threads.push_back(new Mezzanine::Threading::Thread(TestHelper,0)); }
+            for(Int32 Counter = 0; Counter<ThreadCount; Counter++)
+                { Threads[Counter]->join(); }
+            TEST(Added==ThreadCount, "AtomicAddStress");
 
-            }
+        }
 
-            Whole RubyArgument::GetWhole() const
-            {
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
+};
 
-            }
-
-            Integer RubyArgument::GetInteger() const
-            {
-
-            }
-
-            Real RubyArgument::GetReal() const
-            {
-
-            }
-
-            Boole RubyArgument::GetBool() const
-            {
-
-            }
-
-            void RubyArgument::SetValue(ConvertiblePointer NewValue)
-            {
-
-            }
-
-            ConvertiblePointer RubyArgument::GetValue() const
-            {
-
-            }
-
-
-
-
-            RubyIntegerArgument::RubyIntegerArgument(Integer InitialValue)
-            {
-
-            }
-
-            RubyRealArgument::RubyRealArgument(Real InitialValue)
-            {
-
-            }
-
-            RubyWholeArgument::RubyWholeArgument(Whole InitialValue)
-            {
-
-            }
-
-            RubyStringArgument::RubyStringArgument(String InitialValue)
-            {
-
-            }
-
-            RubyBoolArgument::RubyBoolArgument(Boole InitialValue)
-            {
-
-            }
-
-
-
-        } // Ruby
-    } // Scripting
-} // Mezzanine
-
-
-
-
-#endif //  MEZZRUBY
 #endif
 

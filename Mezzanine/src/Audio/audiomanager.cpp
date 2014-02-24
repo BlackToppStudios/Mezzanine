@@ -158,36 +158,36 @@ namespace Mezzanine
             { this->SetTypeVolume(Audio::ST_Ambient,Ambient); }
         Real AudioManager::GetAmbientVolume() const
             { return this->GetTypeVolume(Audio::ST_Ambient); }
-        void AudioManager::MuteAmbient(Boolean Enable)
+        void AudioManager::MuteAmbient(Boole Enable)
             { this->MuteType(Audio::ST_Ambient,Enable); }
-        Boolean AudioManager::IsAmbientMuted() const
+        Boole AudioManager::IsAmbientMuted() const
             { return this->IsTypeMuted(Audio::ST_Ambient); }
 
         void AudioManager::SetDialogVolume(const Real& Dialog)
             { this->SetTypeVolume(Audio::ST_Dialog,Dialog); }
         Real AudioManager::GetDialogVolume() const
             { return this->GetTypeVolume(Audio::ST_Dialog); }
-        void AudioManager::MuteDialog(Boolean Enable)
+        void AudioManager::MuteDialog(Boole Enable)
             { this->MuteType(Audio::ST_Dialog,Enable); }
-        Boolean AudioManager::IsDialogMuted() const
+        Boole AudioManager::IsDialogMuted() const
             { return this->IsTypeMuted(Audio::ST_Dialog); }
 
         void AudioManager::SetEffectVolume(const Real& Effect)
             { this->SetTypeVolume(Audio::ST_Effect,Effect); }
         Real AudioManager::GetEffectVolume() const
             { return this->GetTypeVolume(Audio::ST_Effect); }
-        void AudioManager::MuteEffect(Boolean Enable)
+        void AudioManager::MuteEffect(Boole Enable)
             { this->MuteType(Audio::ST_Effect,Enable); }
-        Boolean AudioManager::IsEffectMuted() const
+        Boole AudioManager::IsEffectMuted() const
             { return this->IsTypeMuted(Audio::ST_Effect); }
 
         void AudioManager::SetMusicVolume(const Real& Music)
             { this->SetTypeVolume(Audio::ST_Music,Music); }
         Real AudioManager::GetMusicVolume() const
             { return this->GetTypeVolume(Audio::ST_Music); }
-        void AudioManager::MuteMusic(Boolean Enable)
+        void AudioManager::MuteMusic(Boole Enable)
             { this->MuteType(Audio::ST_Music,Enable); }
-        Boolean AudioManager::IsMusicMuted() const
+        Boole AudioManager::IsMusicMuted() const
             { return this->IsTypeMuted(Audio::ST_Music); }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -202,11 +202,11 @@ namespace Mezzanine
         void AudioManager::AddDecoderFactory(iDecoderFactory* ToBeAdded)
         {
             this->DecoderFactories.insert(std::pair<Audio::Encoding,iDecoderFactory*>(ToBeAdded->GetSupportedEncoding(),ToBeAdded));
-            //std::pair<DecoderFactoryIterator,Boolean> Result = this->DecoderFactories.insert(std::pair<Audio::Encoding,iDecoderFactory*>(ToBeAdded->GetSupportedEncoding(),ToBeAdded));
+            //std::pair<DecoderFactoryIterator,Boole> Result = this->DecoderFactories.insert(std::pair<Audio::Encoding,iDecoderFactory*>(ToBeAdded->GetSupportedEncoding(),ToBeAdded));
             //return Result.first;
         }
 
-        Boolean AudioManager::DecoderFactoryExists(const Audio::Encoding Encode)
+        Boole AudioManager::DecoderFactoryExists(const Audio::Encoding Encode)
         {
             return this->DecoderFactories.count(Encode);
         }

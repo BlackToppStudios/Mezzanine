@@ -235,7 +235,7 @@ namespace Mezzanine
             /// Perhaps when we implement consoles this should be expanded, maybe even sooner then that.
         }
 
-        Boolean UIManager::SwitchFocus(Widget* NewFocus)
+        Boole UIManager::SwitchFocus(Widget* NewFocus)
         {
             // Check if the focus is changing at all
             if( this->WidgetFocus != NewFocus && !this->FocusIsLocked() )
@@ -258,7 +258,7 @@ namespace Mezzanine
             return false;
         }
 
-        Boolean UIManager::FocusIsLocked() const
+        Boole UIManager::FocusIsLocked() const
         {
             return ( Input::KEY_UNKNOWN != FocusLockCode.GetCode() );
         }
@@ -392,12 +392,12 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Activation Management
 
-        void UIManager::EnableButtonAutoRegister(Boolean Enable)
+        void UIManager::EnableButtonAutoRegister(Boole Enable)
         {
             this->ButtonAutoRegister = Enable;
         }
 
-        Boolean UIManager::ButtonAutoRegisterEnabled()
+        Boole UIManager::ButtonAutoRegisterEnabled()
         {
             return this->ButtonAutoRegister;
         }
@@ -446,7 +446,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean UIManager::IsMarkupParserRegistered(const String& ParserName) const
+        Boole UIManager::IsMarkupParserRegistered(const String& ParserName) const
         {
             ConstMarkupParserIterator MarkupIt = this->MarkupParsers.find(ParserName);
             return ( MarkupIt != this->MarkupParsers.end() );
@@ -530,7 +530,7 @@ namespace Mezzanine
             return NULL;
         }
 
-        Boolean UIManager::MouseIsInUISystem() const
+        Boole UIManager::MouseIsInUISystem() const
         {
             return (HoveredWidget || WidgetFocus);
         }

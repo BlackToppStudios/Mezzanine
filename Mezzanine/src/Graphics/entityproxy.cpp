@@ -196,7 +196,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // RenderableProxy Properties
 
-        void EntityProxy::SetVisible(const Boolean Visible)
+        void EntityProxy::SetVisible(const Boole Visible)
         {
             this->SceneVisible = Visible;
             if( this->GraphicsEntity ) {
@@ -204,12 +204,12 @@ namespace Mezzanine
             }
         }
 
-        Boolean EntityProxy::GetVisible() const
+        Boole EntityProxy::GetVisible() const
         {
             return this->SceneVisible;
         }
 
-        void EntityProxy::SetCastShadows(const Boolean CastShadows)
+        void EntityProxy::SetCastShadows(const Boole CastShadows)
         {
             this->CanCastShadows = CastShadows;
             if( this->GraphicsEntity ) {
@@ -217,12 +217,12 @@ namespace Mezzanine
             }
         }
 
-        Boolean EntityProxy::GetCastShadows() const
+        Boole EntityProxy::GetCastShadows() const
         {
             return this->CanCastShadows;
         }
 
-        Boolean EntityProxy::GetReceiveShadows() const
+        Boole EntityProxy::GetReceiveShadows() const
         {
             return ( this->GraphicsEntity ? this->GraphicsEntity->getReceivesShadows() : false );
         }
@@ -317,7 +317,7 @@ namespace Mezzanine
 
         void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            Boolean WasInWorld = false;
+            Boole WasInWorld = false;
             XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
             if( !InWorldAttrib.Empty() ) {
                 WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );

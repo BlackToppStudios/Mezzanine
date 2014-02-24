@@ -76,12 +76,12 @@ struct EntreLuaOptions
         vector<String> LoadList;                    ///< External files to load in Lua search path
         vector<String> ScriptFile;                  ///< File in local directory to execute
         Mezzanine::String StatementToExecute;       ///< Commands on the raw prompt to execute
-        Mezzanine::Boolean Interactive;             ///< Enter an interactive shell even if executing from other sources
-        Mezzanine::Boolean ReadFromStdIn;           ///< After other execution sources read from stdin
-        Mezzanine::Boolean SimpleShell;             ///< Use a simple more compatible shell
-        Mezzanine::Boolean NoMezzanine;             ///< Skip loading of Mezzanine Libraries
-        Mezzanine::Boolean LoadUnsafeMezzanine;     ///< Don't load the normal Mezzanine Libries load the ones that could break stuff
-        Mezzanine::Boolean DisplayStackCounts;      ///< Display the amount of items on the Lua stack after each command
+        Mezzanine::Boole Interactive;             ///< Enter an interactive shell even if executing from other sources
+        Mezzanine::Boole ReadFromStdIn;           ///< After other execution sources read from stdin
+        Mezzanine::Boole SimpleShell;             ///< Use a simple more compatible shell
+        Mezzanine::Boole NoMezzanine;             ///< Skip loading of Mezzanine Libraries
+        Mezzanine::Boole LoadUnsafeMezzanine;     ///< Don't load the normal Mezzanine Libries load the ones that could break stuff
+        Mezzanine::Boole DisplayStackCounts;      ///< Display the amount of items on the Lua stack after each command
 
         /// @brief Create a Default version of this, with all the fields empty except the library list.
         EntreLuaOptions()
@@ -252,7 +252,7 @@ int main (int argc, char** argv)
         Hooded.Do(Total);
     }
 
-    Boolean OtherCommands = (Options.StatementToExecute.size()||Options.ReadFromStdIn);
+    Boole OtherCommands = (Options.StatementToExecute.size()||Options.ReadFromStdIn);
     if( !OtherCommands || (OtherCommands && Options.Interactive) )
     {
         if(Options.SimpleShell)

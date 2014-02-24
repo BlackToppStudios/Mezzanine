@@ -135,7 +135,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Used to help determine if this Event is valid by checking the contents of the GameWindowEventID
             /// @return True if the event if is between GAME_WINDOW_FIRST and GAME_WINDOW_LAST, false otherwise
-            Boolean IsEventIDValid() const;
+            Boole IsEventIDValid() const;
 
             /// @brief Assignment of a this EventGameWindowData
             /// @param Other the other EventGameWindow to overwite this one.
@@ -144,12 +144,12 @@ namespace Mezzanine
             /// @brief Equality comparison of two EventGameWindowData
             /// @param Other the other EventGameWindow to compare to this one
             /// @return True if identical, false if otherwise.
-            Boolean operator==(const EventGameWindow& Other) const;
+            Boole operator==(const EventGameWindow& Other) const;
 
             /// @brief Equality comparison of this EventGameWindowData and a GameWindowEventID
             /// @param Other the other GameWindowEventID to compare to the one stored in this.
             /// @return True if the GameWindowEventID in this event matches the Other, false if otherwise.
-            Boolean operator==(const GameWindowEventID& Other) const;
+            Boole operator==(const GameWindowEventID& Other) const;
 
         protected:
             /// @internal

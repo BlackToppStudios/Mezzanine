@@ -117,8 +117,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods
 
-            /// @copydoc Renderable::SetVisible(Boolean)
-            virtual void SetVisible(Boolean CanSee);
+            /// @copydoc Renderable::SetVisible(Boole)
+            virtual void SetVisible(Boole CanSee);
             /// @copydoc Renderable::Show()
             virtual void Show();
             /// @copydoc Renderable::Hide()

@@ -107,12 +107,12 @@ namespace Mezzanine
             ActivationState Activation;
             /// @internal
             /// @brief Stores whether or not the current activation of this button was triggered by a mouse.
-            Boolean MouseActivated;
+            Boole MouseActivated;
 
             /// @copydoc QuadRenderable::CreateLayoutStrat()
             virtual void CreateLayoutStrat();
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode& Code)
-            virtual Boolean HandleInputImpl(const Input::MetaCode& Code);
+            virtual Boole HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             virtual void ConstructButton();
@@ -120,19 +120,19 @@ namespace Mezzanine
             /// @brief Verifies the provided to code is valid for this button.
             /// @param Code The code to check.
             /// @return Returns true if this code is valid, false otherwise.
-            virtual Boolean VertifyActivationCode(const Input::InputCode Code);
+            virtual Boole VertifyActivationCode(const Input::InputCode Code);
             /// @internal
             /// @brief Attempts to activate this button.
             /// @return Returns true if this button was successfully activated.
-            virtual Boolean Activate();
+            virtual Boole Activate();
             /// @internal
             /// @brief Attempts to deactivate this button.
             /// @return Returns true if this button was successfully deactivated.
-            virtual Boolean Deactivate();
+            virtual Boole Deactivate();
             /// @internal
             /// @brief Attempts to put this button into standby.
             /// @return Returns true if this button was successfully put into standby.
-            virtual Boolean Standby();
+            virtual Boole Standby();
         //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
@@ -165,16 +165,16 @@ namespace Mezzanine
 
             /// @brief Gets whether or not this button can be activated again.
             /// @return Returns true if this button is not ready to be activated again.
-            Boolean IsActivationLocked() const;
+            Boole IsActivationLocked() const;
             /// @brief Gets whether or not this button is currently activated.
             /// @return Returns true if this button is currently activated, false otherwise.
-            Boolean IsActivated() const;
+            Boole IsActivated() const;
             /// @brief Gets whether or not this button is currently on standby.
             /// @return Returns true if this button is currently on activation standby, false otherwise.
-            Boolean IsOnStandby() const;
+            Boole IsOnStandby() const;
             /// @brief Gets whether or not this button is currently deactivated.
             /// @return Retruns true if this button is currently deactivated, false otherwise.
-            Boolean IsDeactivated() const;
+            Boole IsDeactivated() const;
 
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;

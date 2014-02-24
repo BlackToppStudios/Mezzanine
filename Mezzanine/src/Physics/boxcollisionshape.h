@@ -86,11 +86,11 @@ namespace Mezzanine
             /// @return Returns a vector3 containing the half extents, with scaling applied, with the margin added to each axis (Original value * Scaling).
             virtual Vector3 GetHalfExtentsWithMargin() const;
             /// @brief Checks to see if a point in local space is inside this shape.
-            /// @return Returns a Boolean indicating whether or not the specified point is inside the shape.
+            /// @return Returns a Boole indicating whether or not the specified point is inside the shape.
             /// @param Location The specified point to perform the check.
             /// @param Tolerance The amount of leeway to give in the check.  If the distance from the
             /// specified point is equal or less then the Tolerance provided then this will return true.
-            virtual Boolean IsInside(const Vector3& Location, const Real& Tolerance) const;
+            virtual Boole IsInside(const Vector3& Location, const Real& Tolerance) const;
             /// @copydoc CollisionShape::GetType()
             virtual CollisionShape::ShapeType GetType() const;
             /// @copydoc CollisionShape::GetBulletShape

@@ -61,7 +61,7 @@ namespace Mezzanine
     World* WorldManager::GetWorld() const
         { return this->ParentWorld; }
 
-    Boolean WorldManager::IsPaused() const
+    Boole WorldManager::IsPaused() const
         { return this->OperationsPaused; }
 
     ///////////////////////////////////////////////////////////////////////////////

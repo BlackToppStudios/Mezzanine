@@ -98,7 +98,7 @@ namespace Mezzanine
             /// @brief Gets whether a specific hat is pressed in a specific direction.
             /// @param WhichWay The hat direction to check for.  This value is expected to be 1-6.
             /// @return Returns true if the specified hat is pressed in the requested direction.
-            Boolean IsHatPushedInDirection(const UInt16 Hat, const Input::HatState& WhichWay) const;
+            Boole IsHatPushedInDirection(const UInt16 Hat, const Input::HatState& WhichWay) const;
             /// @brief This Gets the value of the given joystick axis.
             /// @param Axis The axis that you want.  This value is expected to be 1-20.
             /// @return An integer with the Value of the joystick axis.

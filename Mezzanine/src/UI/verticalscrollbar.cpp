@@ -304,7 +304,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
-        void VerticalScrollbar::SetVisible(Boolean CanSee)
+        void VerticalScrollbar::SetVisible(Boole CanSee)
         {
             if( this->AutoHideScroll && CanSee ) {
                 if( this->GetMaxYPages() > 1.0 ) {
@@ -426,7 +426,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean VerticalScrollbar::_MouseScroll(const Vector2& MouseDelta)
+        Boole VerticalScrollbar::_MouseScroll(const Vector2& MouseDelta)
         {
             if( this->ChildLock == this->Scroller && MouseDelta.Y != 0 )
             {
@@ -451,7 +451,7 @@ namespace Mezzanine
             return false;
         }
 
-        Boolean VerticalScrollbar::_MouseWheelScroll(const Integer Direction)
+        Boole VerticalScrollbar::_MouseWheelScroll(const Integer Direction)
         {
             if( Direction == Input::DIRECTIONALMOTION_UPLEFT ) {
                 const Real OldScrollerValue = this->GetScrollerValue();
@@ -495,7 +495,7 @@ namespace Mezzanine
             return false;
         }
 
-        Boolean VerticalScrollbar::_ScrollBackScroll(const Vector2& HitPosition)
+        Boole VerticalScrollbar::_ScrollBackScroll(const Vector2& HitPosition)
         {
             if( this->ChildLock == this->ScrollBack )
             {
@@ -528,7 +528,7 @@ namespace Mezzanine
             return false;
         }
 
-        Boolean VerticalScrollbar::_ButtonScroll(Button* TheButton)
+        Boole VerticalScrollbar::_ButtonScroll(Button* TheButton)
         {
             if( this->ChildLock == this->UpLeftButton ) {
                 const Real OldScrollerValue = this->GetScrollerValue();

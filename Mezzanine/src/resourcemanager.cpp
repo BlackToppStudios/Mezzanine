@@ -127,7 +127,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Directory/Path Management
 
-    Boolean ResourceManager::CreateDirectory(const String& DirectoryPath)
+    Boole ResourceManager::CreateDirectory(const String& DirectoryPath)
     {
         #ifdef WINDOWS
         if(::CreateDirectoryA(DirectoryPath.c_str(),NULL) < 0)
@@ -165,7 +165,7 @@ namespace Mezzanine
         #endif
     }
 
-    Boolean ResourceManager::DoesDirectoryExist(const String& DirectoryPath)
+    Boole ResourceManager::DoesDirectoryExist(const String& DirectoryPath)
     {
         struct stat st;
         if((stat(DirectoryPath.c_str(),&st) == 0))
@@ -355,9 +355,9 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Directory Management
 
-    Boolean ResourceManager::CreateDirectoryPath(const String& DirectoryPath)
+    Boole ResourceManager::CreateDirectoryPath(const String& DirectoryPath)
     {
-        Boolean Result = true;
+        Boole Result = true;
         StringVector FolderNames;
         CountedPtr<StringVector> FolderVec = StringTools::Split(DirectoryPath,"/\\");
         size_t StartIndex = 0;
@@ -571,7 +571,7 @@ namespace Mezzanine
         ResourceGroups.push_back(Name);
     }
 
-    void ResourceManager::AddAssetLocation(const String& Location, const ArchiveType Type, const String& Group, Boolean Recursive)
+    void ResourceManager::AddAssetLocation(const String& Location, const ArchiveType Type, const String& Group, Boole Recursive)
     {
         this->OgreResource->addResourceLocation(Location, GetStringFromArchiveType(Type), Group, Recursive);
         AddAssetGroupName(Group);

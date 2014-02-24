@@ -151,7 +151,7 @@ namespace Mezzanine
                 }
             }
 
-            Boolean Filter::CheckError()
+            Boole Filter::CheckError()
             {
                 Integer ALError = alGetError();
                 return ( ALError == AL_NO_ERROR );
@@ -160,7 +160,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            Boolean Filter::IsValid() const
+            Boole Filter::IsValid() const
             {
                 return this->Valid;
             }
@@ -244,7 +244,7 @@ namespace Mezzanine
                 return this->InternalFilter;
             }
 
-            Boolean Filter::_IsDirty() const
+            Boole Filter::_IsDirty() const
             {
                 return this->Dirty;
             }

@@ -139,7 +139,7 @@ namespace Mezzanine
             /// @brief Is this SmoothTrackIterator on the same track and in the same place as another.
             /// @param Other The Other SmoothTrackIterator to compare this one too.
             /// @return True if the track is the same and the location on the track is close enough to be within 1 epsilon.
-            Boolean operator==(const ThisType& Other) const
+            Boole operator==(const ThisType& Other) const
             {
                 return //TargetTrack==Other.TargetTrack &&
                        (Other.Location-std::numeric_limits<Real>::epsilon())<=Location &&
@@ -148,7 +148,7 @@ namespace Mezzanine
             /// @brief Is this SmoothTrackIterator not on the same track and in the same place as another.
             /// @param Other The Other SmoothTrackIterator to compare this one too.
             /// @return False if the track is the same and the location on the track is close enough to be within 1 epsilon.
-            Boolean operator!=(const ThisType& Other) const
+            Boole operator!=(const ThisType& Other) const
                 { return !operator==(Other); }
 
             /// @brief Get the current location on the SmoothTrackIterator
@@ -221,7 +221,7 @@ namespace Mezzanine
             /// less than ,subtracting or adding one will preserve the apparent offset from the last location on looped
             /// tracks
             /// @return True if the bounds where outside the track and false if they where not.
-            Boolean BoundsCorrect()
+            Boole BoundsCorrect()
             {
                 Real Original = Location;
                 while(1.0<Location)
@@ -269,25 +269,25 @@ namespace Mezzanine
             /// @note The target track and the step size are ignored. This allows for potentially non-sensensical comparison.
             /// @param Right The value on the right of the <.
             /// @return true if this iterator is closer to the start of its track than right one, false otherwise.
-            Boolean operator<(const ThisType& Right)
+            Boole operator<(const ThisType& Right)
                 { return Location < Right.Location; }
             /// @brief Compare which iterator is further toward the track beginning.
             /// @note The target track and the step size are ignored. This allows for potentially non-sensensical comparison.
             /// @param Right The value on the right of the >.
             /// @return true if the other iterator is closer to the start of its track than right one, false otherwise.
-            Boolean operator>(const ThisType& Right)
+            Boole operator>(const ThisType& Right)
                 { return Location > Right.Location; }
             /// @brief Compare which iterator is further along the track
             /// @note The target track and the step size are ignored. This allows for potentially non-sensensical comparison.
             /// @param Right The value on the right of the <=.
             /// @return true if this iterator is closer to the start of its track than right one(or they are equidistant), false otherwise.
-            Boolean operator<=(const ThisType& Right)
+            Boole operator<=(const ThisType& Right)
                 { return Location <= Right.Location; }
             /// @brief Compare which iterator is further toward the track beginning.
             /// @note The target track and the step size are ignored. This allows for potentially non-sensensical comparison.
             /// @param Right The value on the right of the >=.
             /// @return true if the other iterator is closer to the start of its track than right one(or they are equidistant), false otherwise.
-            Boolean operator>=(const ThisType& Right)
+            Boole operator>=(const ThisType& Right)
                 { return Location >= Right.Location; }
 
             /// @brief Get an iterator an arbitrary number of steps forward or backwards.
@@ -332,7 +332,7 @@ namespace Mezzanine
     /// @code
     /// TimedTrackIterator< LinearInterpolator<Vector3> > Iter(&SomeTrack,0.0,0.25,750);
     ///
-    /// Boolean SimulationIsStillRunning = true;
+    /// Boole SimulationIsStillRunning = true;
     /// While(SimulationIsStillRunning)
     /// {
     ///   // This does not increment the iterator like normal iterators, it
@@ -452,7 +452,7 @@ namespace Mezzanine
             /// @brief Is this TimedTrackIterator on the same track and in the same place as another.
             /// @param Other The Other TimedTrackIterator to compare this one too.
             /// @return True if the track is the same and the location on the same track.
-            Boolean operator== (const ThisType& Other) const
+            Boole operator== (const ThisType& Other) const
             {
                 return TargetTrack==Other.TargetTrack &&
                        StartRange==Other.StartRange &&
@@ -464,7 +464,7 @@ namespace Mezzanine
             /// @brief Is this TimedTrackIterator not on the same track and in the same place as another.
             /// @param Other The Other TimedTrackIterator to compare this one too.
             /// @return False if the track is the same and the location on the same track.
-            Boolean operator!= (const ThisType& Other) const
+            Boole operator!= (const ThisType& Other) const
                 { return !operator==(Other); }
 
             /// @brief Get the location on track from the last time it was incremented
@@ -501,12 +501,12 @@ namespace Mezzanine
 
             /// @brief Is this iterator at the end of its range on the track
             /// @return True if the iterator has been incremented to its bounds
-            Boolean AtEnd() const
+            Boole AtEnd() const
                 { return EndTime == CurrentTime; }
 
             /// @brief Is this iterator at the beginning of its range on the track
             /// @return True if the iterator has not been incremented or its time has not yet come.
-            Boolean AtStart() const
+            Boole AtStart() const
                 { return StartTime == CurrentTime; }
     };
 

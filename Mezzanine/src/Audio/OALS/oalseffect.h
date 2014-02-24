@@ -68,13 +68,13 @@ namespace Mezzanine
                 OALS::Filter* EffectFilter;
                 /// @internal
                 /// @brief This stores whether or not this effect has been modified recently.
-                Boolean Dirty;
+                Boole Dirty;
                 /// @internal
                 /// @brief This stores whether or not there was an error with the last settings change.
-                Boolean Valid;
+                Boole Valid;
                 /// @internal
                 /// @brief This stores whether or not audio processed through this effect will ignore attenuation based on distance.
-                Boolean IgnoreAtten;
+                Boole IgnoreAtten;
                 /// @internal
                 /// @brief This stores the volume modifier to be applied to processed Audio.
                 Real Volume;
@@ -86,7 +86,7 @@ namespace Mezzanine
                 UInt32 InternalEffectSlot;
                 /// @internal
                 /// @brief Checks to see if there was a configuration error after setting an effect property.
-                Boolean CheckError();
+                Boole CheckError();
             public:
                 /// @brief Class constructor.
                 /// @param EFXMethods A pointer to the class storing all the methods to the EFX extension.
@@ -98,7 +98,7 @@ namespace Mezzanine
                 // Utility
 
                 /// @copydoc iEffect::IsValid() const
-                virtual Boolean IsValid() const;
+                virtual Boole IsValid() const;
 
                 /// @copydoc iEffect::SetType(const EffectType& EffType)
                 virtual void SetType(const EffectType& EffType);
@@ -115,10 +115,10 @@ namespace Mezzanine
                 virtual void SetVolume(const Real Vol);
                 /// @copydoc iEffect::GetVolume() const
                 virtual Real GetVolume() const;
-                /// @copydoc iEffect::IgnoreAttenuation(Boolean Ignore)
-                virtual void IgnoreAttenuation(Boolean Ignore);
+                /// @copydoc iEffect::IgnoreAttenuation(Boole Ignore)
+                virtual void IgnoreAttenuation(Boole Ignore);
                 /// @copydoc iEffect::IsIgnoringAttenuation() const
-                virtual Boolean IsIgnoringAttenuation() const;
+                virtual Boole IsIgnoringAttenuation() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Parameter Configuration
@@ -190,7 +190,7 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Checks to see if this Filter has been modified since last frame sounds were processed.
                 /// @return Returns true if this Filter needs to be re-applied, false otherwise.
-                Boolean _IsDirty() const;
+                Boole _IsDirty() const;
                 /// @internal
                 /// @brief Clears the dirty flag.
                 void _Clean();

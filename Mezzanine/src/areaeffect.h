@@ -120,12 +120,12 @@ namespace Mezzanine
         virtual void ApplyEffect() = 0;
 
         /// @copydoc Mezzanine::WorldObject::IsInWorld() const
-        virtual Boolean IsInWorld() const;
+        virtual Boole IsInWorld() const;
 
         /// @copydoc Mezzanine::WorldObject::IsStatic() const
-        virtual Boolean IsStatic() const;
+        virtual Boole IsStatic() const;
         /// @copydoc Mezzanine::WorldObject::IsKinematic() const
-        virtual Boolean IsKinematic() const;
+        virtual Boole IsKinematic() const;
 
         /// @copydoc Mezzanine::WorldObject::GetProxies(ProxyContainer&)
         virtual void GetProxies(ProxyContainer& Proxies);

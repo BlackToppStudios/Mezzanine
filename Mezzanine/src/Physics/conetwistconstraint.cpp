@@ -79,7 +79,7 @@ namespace Mezzanine
         btTypedConstraint* ConeTwistConstraint::GetConstraintBase() const
             { return this->ConeTwist; }
 
-        void ConeTwistConstraint::SetAngularOnly(Boolean AngularOnly)
+        void ConeTwistConstraint::SetAngularOnly(Boole AngularOnly)
             { this->ConeTwist->setAngularOnly(AngularOnly); }
 
         void ConeTwistConstraint::SetLimit(int LimitIndex, Real LimitValue)
@@ -106,10 +106,10 @@ namespace Mezzanine
         void ConeTwistConstraint::SetMotorTargetInConstraintSpace(const Quaternion& Quat)
             { this->ConeTwist->setMotorTargetInConstraintSpace( Quat.GetBulletQuaternion() ); }
 
-        void ConeTwistConstraint::EnableMotor(Boolean Enable)
+        void ConeTwistConstraint::EnableMotor(Boole Enable)
             { this->ConeTwist->enableMotor(Enable); }
 
-        Boolean ConeTwistConstraint::IsPassedSwingLimit()
+        Boole ConeTwistConstraint::IsPassedSwingLimit()
             { return this->ConeTwist->isPastSwingLimit(); }
     }//Physics
 }//Mezzanine

@@ -72,7 +72,7 @@ namespace Mezzanine
             this->SetWritePosition(Offset,Origin);
         }
 
-        StreamPos IOStream::GetStreamPosition(Boolean Read = true)
+        StreamPos IOStream::GetStreamPosition(Boole Read = true)
         {
             if(Read) return this->GetReadPosition();
             else return this->GetWritePosition();
@@ -99,12 +99,12 @@ namespace Mezzanine
             return Size;
         }
 
-        Boolean DataStream::IsReadable() const
+        Boole DataStream::IsReadable() const
         {
             return (SFlags & DataStream::SF_Read);
         }
 
-        Boolean DataStream::IsWriteable() const
+        Boole DataStream::IsWriteable() const
         {
             return (SFlags & DataStream::SF_Write);
         }
@@ -133,7 +133,7 @@ namespace Mezzanine
 
         size_t DataStream::ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim)
         {
-            Boolean TrimCR = false;
+            Boole TrimCR = false;
             if(Delim.find_first_of('\n') != String::npos)
             {
                 TrimCR = true;
@@ -175,7 +175,7 @@ namespace Mezzanine
             return TotalCount;
         }
 
-        String DataStream::GetLine(Boolean Trim)
+        String DataStream::GetLine(Boole Trim)
         {
             char Temp[TEMP_STREAM_SIZE];
             String Ret;

@@ -209,7 +209,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Explicit Conversion
 
-    btQuaternion Quaternion::GetBulletQuaternion(Boolean normalize) const
+    btQuaternion Quaternion::GetBulletQuaternion(Boole normalize) const
     {
         btQuaternion Other;
         Other.setX(this->X);
@@ -229,7 +229,7 @@ namespace Mezzanine
         this->W=Other.w();
     }
 
-    Ogre::Quaternion Quaternion::GetOgreQuaternion(Boolean normalize) const
+    Ogre::Quaternion Quaternion::GetOgreQuaternion(Boole normalize) const
     {
         Ogre::Quaternion Other;
         Other.x=this->X;
@@ -444,27 +444,27 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison Operators
 
-    Boolean Quaternion::operator==(const Mezzanine::Quaternion& Other) const
+    Boole Quaternion::operator==(const Mezzanine::Quaternion& Other) const
         { return (this->X==Other.X && this->Y==Other.Y && this->Z==Other.Z && this->W==Other.W); }
 
-    Boolean Quaternion::operator==(const Ogre::Quaternion& Other) const
+    Boole Quaternion::operator==(const Ogre::Quaternion& Other) const
         { return (this->X==Other.x && this->Y==Other.y && this->Z==Other.z && this->W==Other.w); }
 
-    Boolean Quaternion::operator==(const btQuaternion& Other) const
+    Boole Quaternion::operator==(const btQuaternion& Other) const
         { return (this->X==Other.getX() && this->Y==Other.getY() && this->Z==Other.getZ() && this->W==Other.getW()); }
 
-    Boolean Quaternion::operator!=(const Mezzanine::Quaternion& Other) const
+    Boole Quaternion::operator!=(const Mezzanine::Quaternion& Other) const
         { return (this->X!=Other.X || this->Y!=Other.Y || this->Z!=Other.Z || this->W!=Other.W); }
 
-    Boolean Quaternion::operator!=(const Ogre::Quaternion& Other) const
+    Boole Quaternion::operator!=(const Ogre::Quaternion& Other) const
         { return (this->X!=Other.x || this->Y!=Other.y || this->Z!=Other.z || this->W!=Other.w); }
 
-    Boolean Quaternion::operator!=(const btQuaternion& Other) const
+    Boole Quaternion::operator!=(const btQuaternion& Other) const
         { return (this->X!=Other.getX() || this->Y!=Other.getY() || this->Z!=Other.getZ() || this->W!=Other.getW()); }
 
-    Boolean Quaternion::operator<= (const Mezzanine::Quaternion& Other) const
+    Boole Quaternion::operator<= (const Mezzanine::Quaternion& Other) const
         { return (this->X<=Other.X && this->Y<=Other.Y && this->Z<=Other.Z && this->W<=Other.W); }
-    Boolean Quaternion::operator>= (const Mezzanine::Quaternion& Other) const
+    Boole Quaternion::operator>= (const Mezzanine::Quaternion& Other) const
         { return (this->X>=Other.X && this->Y>=Other.Y && this->Z>=Other.Z && this->W>=Other.W); }
 
     // Serializable

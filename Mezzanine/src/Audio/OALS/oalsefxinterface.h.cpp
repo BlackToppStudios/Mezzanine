@@ -77,7 +77,7 @@ namespace Mezzanine
             {
                 /// @internal
                 /// @brief This indicates whether or not all the methods saved are valid and ready for use.
-                Boolean Supported;
+                Boole Supported;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Effect Methods

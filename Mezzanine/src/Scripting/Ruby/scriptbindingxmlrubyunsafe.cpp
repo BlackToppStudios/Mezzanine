@@ -29228,10 +29228,10 @@ _wrap_XPathVariable_get_boolean(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__XPathVariable, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::XPathVariable const *","GetBoolean", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::XPathVariable const *","GetBoole", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::XML::XPathVariable * >(argp1);
-  result = (bool)((Mezzanine::XML::XPathVariable const *)arg1)->GetBoolean();
+  result = (bool)((Mezzanine::XML::XPathVariable const *)arg1)->GetBoole();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -30168,18 +30168,18 @@ _wrap_XPathQuery_evaluate_boolean(int argc, VALUE *argv, VALUE self) {
   }
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_Mezzanine__XML__XPathQuery, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::XPathQuery const *","EvaluateBoolean", 1, self )); 
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::XML::XPathQuery const *","EvaluateBoole", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::XML::XPathQuery * >(argp1);
   res2 = SWIG_ConvertPtr(argv[0], &argp2, SWIGTYPE_p_Mezzanine__XML__XPathNode,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::XML::XPathNode const &","EvaluateBoolean", 2, argv[0] )); 
+    SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "Mezzanine::XML::XPathNode const &","EvaluateBoole", 2, argv[0] )); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::XML::XPathNode const &","EvaluateBoolean", 2, argv[0])); 
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::XML::XPathNode const &","EvaluateBoole", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::XML::XPathNode * >(argp2);
-  result = (bool)((Mezzanine::XML::XPathQuery const *)arg1)->EvaluateBoolean((Mezzanine::XML::XPathNode const &)*arg2);
+  result = (bool)((Mezzanine::XML::XPathQuery const *)arg1)->EvaluateBoole((Mezzanine::XML::XPathNode const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -30474,7 +30474,7 @@ static swig_type_info _swigt__p_Mezzanine__XML__XPathVariableSet = {"_p_Mezzanin
 static swig_type_info _swigt__p_Resource__DataStream = {"_p_Resource__DataStream", "Resource::DataStream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzanine::RawEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_attribute_iterator = {"_p_attribute_iterator", "attribute_iterator *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_bool = {"_p_bool", "bool *|Mezzanine::Boolean *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_bool = {"_p_bool", "bool *|Mezzanine::Boole *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *|Mezzanine::Char8 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_difference_type = {"_p_difference_type", "difference_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_double = {"_p_double", "Mezzanine::PreciseReal *|double *", 0, 0, (void*)0, 0};
@@ -31110,7 +31110,7 @@ SWIGEXPORT void Init_MezzanineXML(void) {
   rb_define_const(mMezzanineXML, "XPathTypeNodeSet", SWIG_From_int(static_cast< int >(Mezzanine::XML::XPathTypeNodeSet)));
   rb_define_const(mMezzanineXML, "XPathTypeNumber", SWIG_From_int(static_cast< int >(Mezzanine::XML::XPathTypeNumber)));
   rb_define_const(mMezzanineXML, "XPathTypeString", SWIG_From_int(static_cast< int >(Mezzanine::XML::XPathTypeString)));
-  rb_define_const(mMezzanineXML, "XPathTypeBoolean", SWIG_From_int(static_cast< int >(Mezzanine::XML::XPathTypeBoolean)));
+  rb_define_const(mMezzanineXML, "XPathTypeBoole", SWIG_From_int(static_cast< int >(Mezzanine::XML::XPathTypeBoole)));
   
   SwigClassNode.klass = rb_define_class_under(mMezzanineXML, "Node", rb_cObject);
   SWIG_TypeClientData(SWIGTYPE_p_Mezzanine__XML__Node, (void *) &SwigClassNode);

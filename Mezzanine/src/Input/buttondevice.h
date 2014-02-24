@@ -85,47 +85,47 @@ namespace Mezzanine
             /// @remarks This function accepts a button number.  Check the number of buttons on this device to get the acceptable range.  1 is the minimum value.
             /// @param Button The button to check the state of.
             /// @return Returns whether or not the requested button is pressed down.
-            Boolean IsButtonPressed(const UInt16 Button) const;
+            Boole IsButtonPressed(const UInt16 Button) const;
             /// @brief Gets whether or not a device button is pressed down.
             /// @param Button The button to check the state of.
             /// @return Returns whether or not the requested button is pressed down.
-            Boolean IsButtonPressed(const Input::InputCode& Button) const;
+            Boole IsButtonPressed(const Input::InputCode& Button) const;
             /// @brief Gets whether or not a device button was pressed this frame.
             /// @remarks This function accepts a button number.  Check the number of buttons on this device to get the acceptable range.  1 is the minimum value.
             /// @param Button The button to check the state of.
             /// @return Returns true if the specified button is being pressed this frame, false otherwise.
-            Boolean IsButtonPressing(const UInt16 Button) const;
+            Boole IsButtonPressing(const UInt16 Button) const;
             /// @brief Gets whether or not a device button was pressed this frame.
             /// @param Button The button to check the state of.
             /// @return Returns true if the specified button is being pressed this frame, false otherwise.
-            Boolean IsButtonPressing(const Input::InputCode& Button) const;
+            Boole IsButtonPressing(const Input::InputCode& Button) const;
             /// @brief Gets whether or not a device button was lifted this frame.
             /// @remarks This function accepts a button number.  Check the number of buttons on this device to get the acceptable range.  1 is the minimum value.
             /// @param Button The button to check the state of.
             /// @return Returns true if the specified button is being lifted this frame, false otherwise.
-            Boolean IsButtonLifting(const UInt16 Button) const;
+            Boole IsButtonLifting(const UInt16 Button) const;
             /// @brief Gets whether or not a device button was lifted this frame.
             /// @param Button The button to check the state of.
             /// @return Returns true if the specified button is being lifted this frame, false otherwise.
-            Boolean IsButtonLifting(const Input::InputCode& Button) const;
+            Boole IsButtonLifting(const Input::InputCode& Button) const;
             /// @brief Gets whether or not a device button was lifted or pressed this frame.
             /// @param Button The button to check the state of.
             /// @return Returns true if the requested button is pressing or lifting, false otherwise.
-            Boolean IsButtonTransitioning(const UInt16 Button) const;
+            Boole IsButtonTransitioning(const UInt16 Button) const;
             /// @brief Gets whether or not a device button was lifted or pressed this frame.
             /// @param Button The button to check the state of.
             /// @return Returns true if the requested button is pressing or lifting, false otherwise.
-            Boolean IsButtonTransitioning(const Input::ButtonState& Button) const;
+            Boole IsButtonTransitioning(const Input::ButtonState& Button) const;
             /// @brief Checks to see if a button on this device is a specific state.
             /// @param Button The button to check the state of.
             /// @param State The button state to check for.
             /// @return Returns true if the requested button is the specified state, false otherwise.
-            Boolean CheckButtonState(const UInt16 Button, const Input::ButtonState& State) const;
+            Boole CheckButtonState(const UInt16 Button, const Input::ButtonState& State) const;
             /// @brief Checks to see if a button on this device is a specific state.
             /// @param Button The button to check the state of.
             /// @param State The button state to check for.
             /// @return Returns true if the requested button is the specified state, false otherwise.
-            Boolean CheckButtonState(const Input::InputCode& Button, const Input::ButtonState& State) const;
+            Boole CheckButtonState(const Input::InputCode& Button, const Input::ButtonState& State) const;
             /// @brief Gets the state of the requested button.
             /// @remarks This function accepts a button number, and as such expects a number from 1 to 20.
             /// @return Returns the actual state of the requested button.

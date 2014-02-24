@@ -80,10 +80,10 @@ namespace Mezzanine
         Screen* Renderable::GetScreen() const
             { return this->ParentScreen; }
 
-        Boolean Renderable::IsWidget() const
+        Boole Renderable::IsWidget() const
             { return this->GetRenderableType() == Renderable::RT_Widget; }
 
-        Boolean Renderable::IsScreen() const
+        Boole Renderable::IsScreen() const
             { return this->GetRenderableType() == Renderable::RT_Screen; }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -146,7 +146,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        Boolean Renderable::_IsDirty() const
+        Boole Renderable::_IsDirty() const
             { return this->Dirty; }
     }//UI
 }//Mezzanine

@@ -57,7 +57,7 @@ namespace Mezzanine
         {
             /// @internal
             /// Checks following bytes for UTF8 validity.
-            Boolean CheckAsFollowingBytes(Int32 HowMany, const char* FirstChar)
+            Boole CheckAsFollowingBytes(Int32 HowMany, const char* FirstChar)
             {
                 for(Int32 Count = 1; HowMany>Count; Count++)
                 {

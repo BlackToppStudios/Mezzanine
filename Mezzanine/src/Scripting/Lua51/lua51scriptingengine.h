@@ -247,7 +247,7 @@ namespace Mezzanine
                     virtual void OpenLibraries(int LibrariesToOpen);
                     /// @brief Check the Lua state to see if a table exists.
                     /// @param LibToCheck Indicator of which library to ch
-                    virtual Boolean IsLibraryOpen(Lua51Libraries LibToCheck);
+                    virtual Boole IsLibraryOpen(Lua51Libraries LibToCheck);
 
                     /// @brief Nest Lua modules to put libraries in more clean positions
                     /// @details this is used to create the syntax "Mezzanine.XML.Document()" for example.

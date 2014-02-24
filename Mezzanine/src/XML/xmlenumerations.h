@@ -185,7 +185,7 @@ namespace Mezzanine
             XPathTypeNodeSet,       ///< Node set (XPathNodeSet)
             XPathTypeNumber,        ///< Number This corresponds to a double or Real.
             XPathTypeString,        ///< Corresponds to the String type.
-            XPathTypeBoolean        ///< Boolean.
+            XPathTypeBoole        ///< Boole.
         };
     }
 } // /namespace Mezzanine

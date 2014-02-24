@@ -73,6 +73,10 @@ freely, subject to the following restrictions:
 #include "mutex.h"
 #endif
 
+#ifndef WINAPI
+    #define WINAPI __stdcall
+#endif
+
 namespace Mezzanine
 {
     namespace Threading

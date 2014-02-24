@@ -170,7 +170,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Boolean VorbisDecoder::IsValid()
+        Boole VorbisDecoder::IsValid()
         {
             return this->Valid;
         }
@@ -180,7 +180,7 @@ namespace Mezzanine
             return Audio::Enc_VORBIS;
         }
 
-        Boolean VorbisDecoder::IsSeekingSupported()
+        Boole VorbisDecoder::IsSeekingSupported()
         {
             if( this->Valid ) return (ov_seekable( &(this->VDID->VorbisFile) ) != 0);
             else return false;
@@ -211,7 +211,7 @@ namespace Mezzanine
             return this->VorbisStream;
         }
 
-        Boolean VorbisDecoder::SetPosition(Int32 Position, Boolean Relative)
+        Boole VorbisDecoder::SetPosition(Int32 Position, Boole Relative)
         {
             if( this->IsSeekingSupported() )
             {
@@ -225,7 +225,7 @@ namespace Mezzanine
             return false;
         }
 
-        Boolean VorbisDecoder::Seek(const Real Seconds, Boolean Relative)
+        Boole VorbisDecoder::Seek(const Real Seconds, Boole Relative)
         {
             if( this->IsSeekingSupported() )
             {

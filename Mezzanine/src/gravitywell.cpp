@@ -177,10 +177,10 @@ namespace Mezzanine
     Real GravityWell::GetFieldStrength() const
         { return this->Strength; }
 
-    void GravityWell::SetAllowWorldGravity(Boolean WorldGravity)
+    void GravityWell::SetAllowWorldGravity(Boole WorldGravity)
         { this->AllowWorldGrav = WorldGravity; }
 
-    Boolean GravityWell::GetAllowWorldGravity() const
+    Boole GravityWell::GetAllowWorldGravity() const
         { return this->AllowWorldGrav; }
 
     void GravityWell::SetAttenuation(const Real Amount, const Mezzanine::AttenuationStyle Style)

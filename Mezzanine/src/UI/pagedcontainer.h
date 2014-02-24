@@ -156,7 +156,7 @@ namespace Mezzanine
             /// only need to call this method manually if a childs size isn't determined yet when it is added to the container.
             /// @param ChildSize The Unified dimensions describing the childs size.
             /// @param Adding Should be true if the child in question is being added to the container, false if it is being removed.
-            virtual void QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boolean Adding) = 0;
+            virtual void QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boole Adding) = 0;
             /// @brief Gets the size of this containers work area.
             /// @return Returns a const reference to a Vector2 containing this containers work area size in pixels.
             virtual const Vector2& GetWorkAreaSize() const;

@@ -94,7 +94,7 @@ namespace Mezzanine
 
         }
 
-        Boolean IPAddress_4::VerifyAddress(const String& Addr)
+        Boole IPAddress_4::VerifyAddress(const String& Addr)
         {
 
         }
@@ -117,7 +117,7 @@ namespace Mezzanine
 
         }
 
-        Boolean IPAddress_6::VerifyAddress(const String& Addr)
+        Boole IPAddress_6::VerifyAddress(const String& Addr)
         {
 
         }

@@ -60,7 +60,7 @@ namespace Mezzanine
         /// @brief How does gravity
         Mezzanine::AttenuationStyle AttenStyle;
         /// @brief Should world gravity ne ignored
-        Boolean AllowWorldGrav;
+        Boole AllowWorldGrav;
     public:
         /// @brief Blank constructor.
         /// @param TheWorld A pointer to the world this object belongs to.
@@ -100,10 +100,10 @@ namespace Mezzanine
         /// @remarks Changing this value while the field is in the world and active is not recommended.
         /// @param WorldGravity If true, then forces exerted by this field will be added to the world gravity, otherwise
         /// world gravity for objects inside will be set to zero.
-        virtual void SetAllowWorldGravity(Boolean WorldGravity);
+        virtual void SetAllowWorldGravity(Boole WorldGravity);
         /// @brief Gets whether or not world gravity is is removed for objects inside this field.
         /// @return Returns a bool indicating whether objects inside are affected by world gravity.
-        virtual Boolean GetAllowWorldGravity() const;
+        virtual Boole GetAllowWorldGravity() const;
 
         /// @brief Sets the attenuation for this field.
         /// @param Amount The amount of force that is dropped off per 1 unit of distance objects are from the AE center.

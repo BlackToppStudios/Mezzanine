@@ -108,8 +108,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods
 
-            /// @copydoc Renderable::SetVisible(Boolean)
-            virtual void SetVisible(Boolean CanSee);
+            /// @copydoc Renderable::SetVisible(Boole)
+            virtual void SetVisible(Boole CanSee);
             /// @copydoc Renderable::Show()
             virtual void Show();
             /// @copydoc Renderable::Hide()
@@ -145,13 +145,13 @@ namespace Mezzanine
             /// @copydoc PageProvider::_NotifyContainerUpdated()
             virtual void _NotifyContainerUpdated();
             /// @copydoc Scrollbar::_MouseScroll(const Vector2&)
-            virtual Boolean _MouseScroll(const Vector2& MouseDelta);
+            virtual Boole _MouseScroll(const Vector2& MouseDelta);
             /// @copydoc Scrollbar::_MouseWheelScroll(const Integer)
-            virtual Boolean _MouseWheelScroll(const Integer Direction);
+            virtual Boole _MouseWheelScroll(const Integer Direction);
             /// @copydoc Scrollbar::_ScrollBackScroll(const Vector2&)
-            virtual Boolean _ScrollBackScroll(const Vector2& HitPosition);
+            virtual Boole _ScrollBackScroll(const Vector2& HitPosition);
             /// @copydoc Scrollbar::_ButtonScroll(Button*)
-            virtual Boolean _ButtonScroll(Button* TheButton);
+            virtual Boole _ButtonScroll(Button* TheButton);
         };//HorizontalScrollbar
 
         ///////////////////////////////////////////////////////////////////////////////

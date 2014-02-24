@@ -65,7 +65,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Boolean RawDecoder::IsValid()
+        Boole RawDecoder::IsValid()
         {
             return ( RawStream );
         }
@@ -75,7 +75,7 @@ namespace Mezzanine
             return Audio::Enc_RAW;
         }
 
-        Boolean RawDecoder::IsSeekingSupported()
+        Boole RawDecoder::IsSeekingSupported()
         {
             return true;
         }
@@ -95,13 +95,13 @@ namespace Mezzanine
             return this->RawStream;
         }
 
-        Boolean RawDecoder::SetPosition(Int32 Position, Boolean Relative)
+        Boole RawDecoder::SetPosition(Int32 Position, Boole Relative)
         {
             this->RawStream->SetStreamPosition(Position,( Relative ? Resource::DataStream::SO_Current : Resource::DataStream::SO_Beginning ));
             return true;
         }
 
-        Boolean RawDecoder::Seek(const Real Seconds, Boolean Relative)
+        Boole RawDecoder::Seek(const Real Seconds, Boole Relative)
         {
             Int32 Pos = static_cast<Int32>( Seconds * static_cast<Real>(this->Frequency) * static_cast<Real>( this->GetSampleSize() ) );
             return this->SetPosition(Pos,Relative);

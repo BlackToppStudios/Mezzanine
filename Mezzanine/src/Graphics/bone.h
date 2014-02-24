@@ -89,10 +89,10 @@ namespace Mezzanine
                 UInt16 GetHandle() const;
                 /// @brief Sets whether or not this bone is to be manually controlled.
                 /// @param Manual True to allow this bone to be explicitly altered, false to make it only accept animation updates.
-                void SetManuallyControlled(Boolean Manual);
+                void SetManuallyControlled(Boole Manual);
                 /// @brief Gets whether or not this bone is being manually controlled.
                 /// @return Returns true if this bone can be directly manipulated, false otherwise.
-                Boolean GetManuallyControlled() const;
+                Boole GetManuallyControlled() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Child Methods

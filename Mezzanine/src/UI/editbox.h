@@ -65,7 +65,7 @@ namespace Mezzanine
             /// @brief Event name for when the text in this widget has been updated.
             static const String EventTextUpdated;
             /// @brief Callback type for input filtering.
-            typedef Boolean (FilterCallback)(const Int32 Glyph);
+            typedef Boole (FilterCallback)(const Int32 Glyph);
         protected:
             friend class EditBoxFactory;
             /// @internal
@@ -79,12 +79,12 @@ namespace Mezzanine
             Integer EditHighlightOrigin;
             /// @internal
             /// @brief Stores whether or not inputs into this widget will alter it's underlying text.
-            Boolean EditingEnabled;
+            Boole EditingEnabled;
 
             /// @copydoc QuadRenderable::CreateLayoutStrat()
             virtual void CreateLayoutStrat();
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode& Code)
-            virtual Boolean HandleInputImpl(const Input::MetaCode& Code);
+            virtual Boole HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             /// @param EditLayerType The type of text layer to be auto-created for editing.
@@ -140,7 +140,7 @@ namespace Mezzanine
             /// and the cursor is enabled (which is handled automatically).  If these criteria are met then this EditBox will consume
             /// the appropriate inputs to display text.
             /// @return Returns true if this EditBox is currently editing and ready for inputs, false otherwise.
-            virtual Boolean IsCurrentlyEditing() const;
+            virtual Boole IsCurrentlyEditing() const;
 
             /// @brief Sets the text in the edit layer of this EditBox.
             /// @param Text A string containing the text the edit layer of this EditBox is to display.
@@ -154,10 +154,10 @@ namespace Mezzanine
 
             /// @brief Sets wether or not this EditBox will consume inputs to generate text.
             /// @param Enable True to consume inputs, false otherwise.
-            virtual void SetEditingEnabled(Boolean Enable);
+            virtual void SetEditingEnabled(Boole Enable);
             /// @brief Gets wether or not this EditBox will consume inputs to generate text.
             /// @return Returns true if this EditBox is currently consuming inputs to generate text, false otherwise.
-            virtual Boolean GetEditingEnabled() const;
+            virtual Boole GetEditingEnabled() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // EditBox Configuration

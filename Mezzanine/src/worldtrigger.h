@@ -64,8 +64,8 @@ namespace Mezzanine
             /// @return Returns a string containing the name of this trigger.
             virtual String GetName();
             /// @brief Checks for the condition for the trigger.
-            /// @return Returns a Boolean indicating whether or not the condition(s) has been met.
-            virtual Boolean ConditionsAreMet() = 0;
+            /// @return Returns a Boole indicating whether or not the condition(s) has been met.
+            virtual Boole ConditionsAreMet() = 0;
             /// @brief Applies the effects of this trigger.
             virtual void ApplyTrigger() = 0;
     };//trigger

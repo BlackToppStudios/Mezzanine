@@ -115,10 +115,10 @@ namespace Mezzanine
             Real ScrollerSize;
             /// @internal
             /// @brief Stores whether or not this scrollbar should hide when there is 1 page or less of list items.  Only used when this is set as a PageProvider.
-            Boolean AutoHideScroll;
+            Boole AutoHideScroll;
 
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode&)
-            virtual Boolean HandleInputImpl(const Input::MetaCode& Code);
+            virtual Boole HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
             /// @brief Subscribes to all the events of this scrollbars children we care about.  Used only on construction.
             virtual void SubscribeToChildEvents();
@@ -179,10 +179,10 @@ namespace Mezzanine
 
             /// @brief Sets whether or not this scrollbar will hide when it's set page container has less than one page to display.
             /// @param AutoHide True to make this hide when this scrollbars page container doesn't have more than one page to display, false to make this always visible.
-            virtual void SetAutoHide(Boolean AutoHide);
+            virtual void SetAutoHide(Boole AutoHide);
             /// @brief Gets whether or not this scrollbar will hide when it's set page container has less than one page to display.
             /// @return Returns true if this scrollbar is hiding when it's page container has less then one page to display, false if it's always visible.
-            virtual Boolean GetAutoHide() const;
+            virtual Boole GetAutoHide() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Fetch Methods
@@ -228,22 +228,22 @@ namespace Mezzanine
             /// @brief Performs the operations for when the scroller is directly manipulated by the mouse.
             /// @param MouseDelta The amount in pixels the mouse has moved since the last frame.
             /// @return Returns true if the scroller was successfully moved, false otherwise.
-            virtual Boolean _MouseScroll(const Vector2& MouseDelta) = 0;
+            virtual Boole _MouseScroll(const Vector2& MouseDelta) = 0;
             /// @internal
             /// @brief Performs the operations for when the scroller is manipulated by the mouse wheel.
             /// @param Direction The direction of the mouse wheel spin.  Usually this will be a casted Input::DirectionalMotionState value.
             /// @return Returns true if the scroller was successfully moved, false otherwise.
-            virtual Boolean _MouseWheelScroll(const Integer Direction) = 0;
+            virtual Boole _MouseWheelScroll(const Integer Direction) = 0;
             /// @internal
             /// @brief Performs the operations for when the scrollback is clicked on to manipulate the scroller.
             /// @param HitPosition The location on the scroll back where the mouse was clicked (in screen coordinates).
             /// @return Returns true if the scroller was successfully moved, false otherwise.
-            virtual Boolean _ScrollBackScroll(const Vector2& HitPosition) = 0;
+            virtual Boole _ScrollBackScroll(const Vector2& HitPosition) = 0;
             /// @internal
             /// @brief Performs the operations for when one of the buttons is pressed to manipulate the scroller.
             /// @param TheButton The button that was activated (or to simulate an activation for).
             /// @return Returns true if the scroller was successfully moved, false otherwise.
-            virtual Boolean _ButtonScroll(Button* TheButton) = 0;
+            virtual Boole _ButtonScroll(Button* TheButton) = 0;
         };//Scrollbar
     }//UI
 }//Mezzanine

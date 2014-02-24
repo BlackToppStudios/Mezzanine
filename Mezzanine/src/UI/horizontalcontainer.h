@@ -86,8 +86,8 @@ namespace Mezzanine
 
             /// @copydoc PagedContainer::UpdateWorkAreaSize()
             virtual void UpdateWorkAreaSize();
-            /// @copydoc PagedContainer::QuickUpdateWorkAreaSize(const UnifiedVec2&, Boolean)
-            virtual void QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boolean Adding);
+            /// @copydoc PagedContainer::QuickUpdateWorkAreaSize(const UnifiedVec2&, Boole)
+            virtual void QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boole Adding);
 
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;

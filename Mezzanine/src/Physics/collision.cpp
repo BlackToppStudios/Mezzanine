@@ -160,23 +160,23 @@ namespace Mezzanine
         WorldObject* Collision::GetObjectB() const
             { return this->ProxyB->GetParentObject(); }
 
-        Boolean Collision::PairsMatch(WorldObject* A, WorldObject* B) const
+        Boole Collision::PairsMatch(WorldObject* A, WorldObject* B) const
         {
             WorldObject* ObjA = this->GetObjectA();
             WorldObject* ObjB = this->GetObjectB();
             if( ObjA && ObjB ) {
-                Boolean ContainsA = ( A == ObjA ) || ( A == ObjB );
-                Boolean ContainsB = ( B == ObjA ) || ( B == ObjB );
+                Boole ContainsA = ( A == ObjA ) || ( A == ObjB );
+                Boole ContainsB = ( B == ObjA ) || ( B == ObjB );
                 return (ContainsA && ContainsB);
             }else{
                 return false;
             }
         }
 
-        Boolean Collision::PairsMatch(CollidableProxy* A, CollidableProxy* B) const
+        Boole Collision::PairsMatch(CollidableProxy* A, CollidableProxy* B) const
         {
-            Boolean ContainsA = ( A == this->GetProxyA() ) || ( A == this->GetProxyB() );
-            Boolean ContainsB = ( B == this->GetProxyA() ) || ( B == this->GetProxyB() );
+            Boole ContainsA = ( A == this->GetProxyA() ) || ( A == this->GetProxyB() );
+            Boole ContainsB = ( B == this->GetProxyA() ) || ( B == this->GetProxyB() );
             return (ContainsA && ContainsB);
         }
 

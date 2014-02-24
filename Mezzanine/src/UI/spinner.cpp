@@ -58,7 +58,7 @@
 
 namespace
 {
-    Mezzanine::Boolean SpinnerFilter(const Mezzanine::Int32 Glyph)
+    Mezzanine::Boole SpinnerFilter(const Mezzanine::Int32 Glyph)
     {
         // If the glyph is a period or a number, then it gets through.
         return ( Glyph == Mezzanine::Int32(46) || ( Glyph >= Mezzanine::Int32(48) && Glyph <= Mezzanine::Int32(57) ) );

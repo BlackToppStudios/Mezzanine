@@ -131,16 +131,16 @@ namespace Mezzanine
             return this->Scale;
         }
 
-        Boolean RenderLayer::IsImageLayer() const
+        Boole RenderLayer::IsImageLayer() const
             { return ( this->GetLayerType() == UI::RLT_Image ); }
 
-        Boolean RenderLayer::IsTextLayer() const
+        Boole RenderLayer::IsTextLayer() const
             { return ( this->IsSingleLineTextLayer() || this->IsMultiLineTextLayer() ); }
 
-        Boolean RenderLayer::IsSingleLineTextLayer() const
+        Boole RenderLayer::IsSingleLineTextLayer() const
             { return ( this->GetLayerType() == UI::RLT_SingleLineText ); }
 
-        Boolean RenderLayer::IsMultiLineTextLayer() const
+        Boole RenderLayer::IsMultiLineTextLayer() const
             { return ( this->GetLayerType() == UI::RLT_MultiLineText ); }
 
         ///////////////////////////////////////////////////////////////////////////////

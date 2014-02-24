@@ -133,13 +133,13 @@ namespace Mezzanine
     Physics::RigidProxy* RigidDebris::GetRigidProxy() const
         { return this->RigProx; }
 
-    Boolean RigidDebris::IsInWorld() const
+    Boole RigidDebris::IsInWorld() const
         { return this->RigProx->IsInWorld(); }
 
-    Boolean RigidDebris::IsStatic() const
+    Boole RigidDebris::IsStatic() const
         { return this->RigProx->IsStatic(); }
 
-    Boolean RigidDebris::IsKinematic() const
+    Boole RigidDebris::IsKinematic() const
         { return this->RigProx->IsKinematic(); }
 
     void RigidDebris::GetProxies(ProxyContainer& Proxies)

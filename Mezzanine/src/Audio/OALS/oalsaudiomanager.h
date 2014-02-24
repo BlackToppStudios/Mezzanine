@@ -147,7 +147,7 @@ namespace Mezzanine
                 // Public Data Members
 
                 /// @brief Whether or not this type of sound is muted.
-                Boolean Mute;
+                Boole Mute;
                 /// @brief The volume currently set for this type of sound.
                 Real Volume;
                 /// @brief Sound storage.
@@ -247,7 +247,7 @@ namespace Mezzanine
                 Real MasterVolume;
                 /// @internal
                 /// @brief Mute variable for all @ref iSound instances.
-                Boolean MasterMute;
+                Boole MasterMute;
 
                 /// @internal
                 /// @brief Gets a SoundTypeHandler by type ID if it exists, or creates a new one if it does not.
@@ -323,19 +323,19 @@ namespace Mezzanine
                 virtual void SetTypeVolume(const UInt16 Type, const Real Vol);
                 /// @copydoc Audio::AudioManager::GetTypeVolume(const UInt16) const
                 virtual Real GetTypeVolume(const UInt16 Type) const;
-                /// @copydoc Audio::AudioManager::MuteType(const UInt16, Boolean)
-                virtual void MuteType(const UInt16 Type, Boolean Enable);
+                /// @copydoc Audio::AudioManager::MuteType(const UInt16, Boole)
+                virtual void MuteType(const UInt16 Type, Boole Enable);
                 /// @copydoc Audio::AudioManager::IsTypeMuted(const UInt16) const
-                virtual Boolean IsTypeMuted(const UInt16 Type) const;
+                virtual Boole IsTypeMuted(const UInt16 Type) const;
 
                 /// @copydoc Audio::AudioManager::SetMasterVolume(const Real&)
                 virtual void SetMasterVolume(const Real& Master);
                 /// @copydoc Audio::AudioManager::GetMasterVolume() const
                 virtual Real GetMasterVolume() const;
-                /// @copydoc Audio::AudioManager::Mute(Boolean)
-                virtual void SetMasterMute(Boolean Enable);
+                /// @copydoc Audio::AudioManager::Mute(Boole)
+                virtual void SetMasterMute(Boole Enable);
                 /// @copydoc Audio::AudioManager::IsMuted() const
-                virtual Boolean IsMuted() const;
+                virtual Boole IsMuted() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Recorder Management
@@ -364,10 +364,10 @@ namespace Mezzanine
                 /// @copydoc Audio::AudioManager::GetDefaultPlaybackDeviceName() const
                 virtual String GetDefaultPlaybackDeviceName() const;
                 /// @copydoc Audio::AudioManager::PlaybackDeviceNameValid(const String&) const
-                virtual Boolean PlaybackDeviceNameValid(const String& DeviceName) const;
+                virtual Boole PlaybackDeviceNameValid(const String& DeviceName) const;
 
                 /// @copydoc Audio::AudioManager::InitializePlaybackDevice(const String&, const Integer)
-                virtual Boolean InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency = 44100);
+                virtual Boole InitializePlaybackDevice(const String& DeviceName, const Integer OutputFrequency = 44100);
                 /// @copydoc Audio::AudioManager::ShutdownPlaybackDevice()
                 virtual void ShutdownPlaybackDevice();
 

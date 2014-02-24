@@ -75,10 +75,10 @@ namespace Mezzanine
             Screen* ParentScreen;
             /// @internal
             /// @brief Stores whether this Renderable is to be rendered (also dependent on parent visibility).
-            Boolean Visible;
+            Boole Visible;
             /// @internal
             /// @brief Stores whether this Renderables vertices need to be regenerated.
-            Boolean Dirty;
+            Boole Dirty;
             /// @internal
             /// @brief The unique name of this Renderable.
             String Name;
@@ -118,26 +118,26 @@ namespace Mezzanine
 
             /// @brief Gets whether or not this renderable is a Widget.
             /// @return Returns true if this renderable is a Widget, false otherwise.
-            Boolean IsWidget() const;
+            Boole IsWidget() const;
             /// @brief Gets whether or not this renderable is a Screen.
             /// @return Returns true if this renderable is a Screen, false otherwise.
-            Boolean IsScreen() const;
+            Boole IsScreen() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility Methods
 
             /// @brief Sets the visibility of this renderable.
-            /// @param CanSee Boolean determining whether or not this renderable should be visible.
-            virtual void SetVisible(Boolean CanSee) = 0;
+            /// @param CanSee Boole determining whether or not this renderable should be visible.
+            virtual void SetVisible(Boole CanSee) = 0;
             /// @brief Gets the visibility setting of this renderable.
             /// @return Returns a bool that is the current visibility setting of this renderable.
-            virtual Boolean GetVisible() const = 0;
+            virtual Boole GetVisible() const = 0;
             /// @brief Gets whether or not this renderable is being drawn.
             /// @details This function will check the visibility of all parent objects to see if it is being
             /// drawn.  This will not tell you whether or not this renderable has it's own visibility setting
             /// enabled.  For that see: GetVisible().
             /// @return Returns a bool representing the visibility of this renderable.
-            virtual Boolean IsVisible() const = 0;
+            virtual Boole IsVisible() const = 0;
             /// @brief Forces this renderable to be shown.
             virtual void Show() = 0;
             /// @brief Forces this renderable to hide.
@@ -174,7 +174,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Gets whether or not this renderable is dirty.
             /// @return Returns true if this renderable is dirty, false otherwise.
-            Boolean _IsDirty() const;
+            Boole _IsDirty() const;
             /// @internal
             /// @brief Refreshes the render data of this renderable.
             virtual void _Clean() = 0;

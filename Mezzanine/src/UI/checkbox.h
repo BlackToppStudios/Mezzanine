@@ -74,7 +74,7 @@ namespace Mezzanine
             friend class CheckBoxFactory;
             /// @internal
             /// @brief Stores whether or not the current state of this CheckBox is locked.
-            Boolean SelectLock;
+            Boole SelectLock;
 
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
@@ -104,16 +104,16 @@ namespace Mezzanine
 
             /// @brief Gets whether this checkbox is selected or not.
             /// @return Returns a bool representing whether or not this checkbox is selected.
-            virtual Boolean IsSelected();
+            virtual Boole IsSelected();
             /// @brief Gets wether this checkbox is locked into it's current state.
             /// @return Returns true if this checkbox can't change it's state, false otherwise.
-            virtual Boolean IsLocked();
+            virtual Boole IsLocked();
             /// @brief Manually select or deselect this checkbox.
             /// @param Select The value to set the status of this checkbox.
-            virtual void ManualSelect(Boolean Select);
+            virtual void ManualSelect(Boole Select);
             /// @brief Locks (or unlocks) the current state of this checkbox.
             /// @param Lock Whether or not to lock the current state of this checkbox.
-            virtual void SetSelectLock(Boolean Lock);
+            virtual void SetSelectLock(Boole Lock);
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
 

@@ -181,10 +181,10 @@ namespace Mezzanine
             };
 
             /// @brief No special care is required for Bool Lua Arguments, so a simple typedef is used.
-            class MEZZ_LIB Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Boolean>
+            class MEZZ_LIB Lua51BoolArgument : public LuaArgument, public ScriptArgumentGeneric<Boole>
             {
                 public:
-                    Lua51BoolArgument(Boolean InitialValue = false) : ScriptArgumentGeneric<Boolean>(InitialValue)
+                    Lua51BoolArgument(Boole InitialValue = false) : ScriptArgumentGeneric<Boole>(InitialValue)
                     {}
 
                     virtual void Push(lua_State* TargetState) const;

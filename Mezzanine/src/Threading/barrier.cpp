@@ -56,13 +56,12 @@ namespace Mezzanine
         {
             if (AtomicAdd(&ThreadCurrent,1) == ThreadGoal)
             {
-                while(0!=AtomicCompareAndSwap32(&ThreadCurrent,ThreadGoal,0));
+                while(0!=AtomicAdd(&ThreadCurrent,0));
                 return true;
             }
             else
             {
                 while (ThreadCurrent < ThreadGoal && ThreadCurrent != 0); // intentionally spinning
-
                 return false;
             }
         }

@@ -64,10 +64,10 @@ namespace Mezzanine
                 EFXInterface* EFX;
                 /// @internal
                 /// @brief This stores whether or not this filter has been modified recently.
-                Boolean Dirty;
+                Boole Dirty;
                 /// @internal
                 /// @brief This stores whether or not there was an error with the last settings change.
-                Boolean Valid;
+                Boole Valid;
                 /// @internal
                 /// @brief This stores the volume modifier to be applied to filtered sounds.
                 Real Volume;
@@ -88,7 +88,7 @@ namespace Mezzanine
                 void UpdateFrequencyVolume();
                 /// @internal
                 /// @brief Checks to see if there was a configuration error after setting a filter property.
-                Boolean CheckError();
+                Boole CheckError();
             public:
                 /// @brief Class constructor.
                 /// @param EFXMethods A pointer to the class storing all the methods to the EFX extension.
@@ -100,7 +100,7 @@ namespace Mezzanine
                 // Utility
 
                 /// @copydoc iFilter::IsValid() const
-                virtual Boolean IsValid() const;
+                virtual Boole IsValid() const;
 
                 /// @copydoc iFilter::SetType(const FilterType FilType)
                 virtual void SetType(const FilterType FilType);
@@ -130,7 +130,7 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Checks to see if this Filter has been modified since last frame sounds were processed.
                 /// @return Returns true if this Filter needs to be re-applied, false otherwise.
-                Boolean _IsDirty() const;
+                Boole _IsDirty() const;
                 /// @internal
                 /// @brief Clears the dirty flag.
                 void _Clean();

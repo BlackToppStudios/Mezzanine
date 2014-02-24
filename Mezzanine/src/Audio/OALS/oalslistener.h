@@ -87,7 +87,7 @@ namespace Mezzanine
                 ALCcontext* Context;
                 /// @internal
                 /// @brief This tracks whether this listener is in the world and active or not.
-                Boolean InWorld;
+                Boole InWorld;
 
                 /// @internal
                 /// @brief Converts our orientation into something OpanAL can read/use.
@@ -128,7 +128,7 @@ namespace Mezzanine
                 /// @copydoc WorldProxy::RemoveFromWorld()
                 virtual void RemoveFromWorld();
                 /// @copydoc WorldProxy::IsInWorld() const
-                virtual Boolean IsInWorld() const;
+                virtual Boole IsInWorld() const;
 
                 /// @copydoc WorldProxy::GetCreator() const
                 virtual WorldManager* GetCreator() const;

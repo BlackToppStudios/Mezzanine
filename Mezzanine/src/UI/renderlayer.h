@@ -119,16 +119,16 @@ namespace Mezzanine
 
             /// @brief Gets whether or not this is an ImageLayer.
             /// @return Returns true if this is an ImageLayer, false otherwise.
-            virtual Boolean IsImageLayer() const;
+            virtual Boole IsImageLayer() const;
             /// @brief Gets whether or not this is an TextLayer.
             /// @return Returns true if this is an TextLayer, false otherwise.
-            virtual Boolean IsTextLayer() const;
+            virtual Boole IsTextLayer() const;
             /// @brief Gets whether or not this is an SingleLineTextLayer.
             /// @return Returns true if this is an SingleLineTextLayer, false otherwise.
-            virtual Boolean IsSingleLineTextLayer() const;
+            virtual Boole IsSingleLineTextLayer() const;
             /// @brief Gets whether or not this is an MultiLineTextLayer.
             /// @return Returns true if this is an MultiLineTextLayer, false otherwise.
-            virtual Boolean IsMultiLineTextLayer() const;
+            virtual Boole IsMultiLineTextLayer() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Rotation Methods

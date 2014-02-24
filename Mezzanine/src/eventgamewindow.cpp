@@ -150,7 +150,7 @@ namespace Mezzanine
         }
     }
 
-    Boolean EventGameWindow::IsEventIDValid() const
+    Boole EventGameWindow::IsEventIDValid() const
         { return ( GAME_WINDOW_FIRST <= this->GetEventID() && this->GetEventID() <= GAME_WINDOW_LAST ); }
 
     void EventGameWindow::operator=(const EventGameWindow& Other)
@@ -162,13 +162,13 @@ namespace Mezzanine
         this->Data->Second=Other.Data->Second;
     }
 
-    Boolean EventGameWindow::operator==(const EventGameWindow& Other) const
+    Boole EventGameWindow::operator==(const EventGameWindow& Other) const
     {
         assert(this->Data);
         return ( this->Data->EventID==Other.Data->EventID && this->Data->First==Other.Data->First && this->Data->Second==Other.Data->Second );
     }
 
-    Boolean EventGameWindow::operator==(const GameWindowEventID& Other) const
+    Boole EventGameWindow::operator==(const GameWindowEventID& Other) const
         { return GetEventID()==Other; }
 
     void EventGameWindow::construct(RawEvent Raw_)

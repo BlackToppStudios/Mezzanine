@@ -98,10 +98,10 @@ namespace Mezzanine
                 virtual void SetStreamPosition(StreamPos Position);
                 /// @copydoc DataStream::SetStreamPosition(StreamOff Offset, SeekOrigin Origin)
                 virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin);
-                /// @copydoc DataStream::GetStreamPosition(Boolean Read = true)
-                virtual StreamPos GetStreamPosition(Boolean Read = true);
+                /// @copydoc DataStream::GetStreamPosition(Boole Read = true)
+                virtual StreamPos GetStreamPosition(Boole Read = true);
                 /// @copydoc DataStream::EoF() const
-                virtual Boolean EoF() const;
+                virtual Boole EoF() const;
                 /// @copydoc DataStream::Close()
                 virtual void Close();
         };//FileStream

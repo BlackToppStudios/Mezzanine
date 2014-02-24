@@ -73,12 +73,12 @@ namespace Mezzanine
 		#endif
 	}
 
-	Boolean ResourceInputStream::Readable()
+	Boole ResourceInputStream::Readable()
 	{
 		return this->OgreBuffer->Readable();
 	}
 
-	Boolean ResourceInputStream::Writeable()
+	Boole ResourceInputStream::Writeable()
 	{
 		return this->OgreBuffer->Writeable();
 	}

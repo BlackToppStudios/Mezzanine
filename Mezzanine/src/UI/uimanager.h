@@ -170,10 +170,10 @@ namespace Mezzanine
             Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
             /// @internal
             /// @brief Stores whether or not newly created buttons will have activation codes binded to them automatically.
-            Boolean ButtonAutoRegister;
+            Boole ButtonAutoRegister;
             /// @internal
             /// @brief Stores whether or not the mouse moved since the last time the UI was updated.
-            Boolean MouseMoved;
+            Boole MouseMoved;
 
             /// @internal
             /// @brief Handles UI processing prior to the update of the main focus.
@@ -212,11 +212,11 @@ namespace Mezzanine
             /// @brief Updates the current focus to a new target.
             /// @param NewFocus The new widget obtaining the UI focus.
             /// @return Returns true if the target widget successfully gained focus, false otherwise.
-            Boolean SwitchFocus(Widget* NewFocus);
+            Boole SwitchFocus(Widget* NewFocus);
             /// @internal
             /// @brief Gets whether or not the systems current focus is locked.
             /// @return Returns true if the focus is currently locked, false otherwise.
-            Boolean FocusIsLocked() const;
+            Boole FocusIsLocked() const;
         public:
             /// @brief Class Constructor.
             UIManager();
@@ -302,10 +302,10 @@ namespace Mezzanine
             /// AddButtonAutoRegister() to be added as activation keys or buttons immediately after they are created. @n
             /// Default: False.
             /// @param Enable Whether or not to enable this feature.
-            void EnableButtonAutoRegister(Boolean Enable);
+            void EnableButtonAutoRegister(Boole Enable);
             /// @brief Gets whether or not the ButtonAutoRegister feature is enabled.
-            /// @return Returns a Boolean indicating whether or not the ButtonAutoRegister feature is enabled.
-            Boolean ButtonAutoRegisterEnabled();
+            /// @return Returns a Boole indicating whether or not the ButtonAutoRegister feature is enabled.
+            Boole ButtonAutoRegisterEnabled();
             /// @brief Adds a key or button that will be auto-registered with every created UI button.
             /// @param Code The input code for the keyboard key or mouse button to be added to the list of codes to be auto-registered.
             void AddAutoRegisterCode(const Input::MetaCode& Code);
@@ -329,7 +329,7 @@ namespace Mezzanine
             /// @brief Checks to see if a MarkupParser has already been registsered under a specific name.
             /// @param ParserName The name of the MarkupParser to check for.
             /// @return Returns true if a MarkupParser is registered under the specified name.
-            Boolean IsMarkupParserRegistered(const String& ParserName) const;
+            Boole IsMarkupParserRegistered(const String& ParserName) const;
             /// @brief Gets a MarkupParser by it's registered name.
             /// @param ParserName The name of the MarkupParser to retrieve.
             /// @return Returns a pointer to the requested MarkupParser, or NULL if none are registered under the specified name.
@@ -376,7 +376,7 @@ namespace Mezzanine
             /// @brief Checks to see if the mouse is over a UI element.
             /// @details This should only be called on after this manager does it's main loop items for best results.
             /// @return Returns true if the mouse is over a visable UI element, false if not.
-            Boolean MouseIsInUISystem() const;
+            Boole MouseIsInUISystem() const;
             /// @brief Suggests a glyph index based on the desired actual height.
             /// @param Height The desired Height of the glyph wanted in pixels.
             /// @param Atlas The altas to search.

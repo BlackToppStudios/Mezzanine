@@ -97,7 +97,7 @@ namespace Mezzanine
         MenuEntry::~MenuEntry()
             {  }
 
-        Boolean MenuEntry::PushOntoStack()
+        Boole MenuEntry::PushOntoStack()
         {
             if( this->MenuStack ) {
                 if( ( this->IsRootEntry() && this->MenuStack->empty() ) ||
@@ -114,7 +114,7 @@ namespace Mezzanine
             return false;
         }
 
-        Boolean MenuEntry::PopFromStack()
+        Boole MenuEntry::PopFromStack()
         {
             if( this->MenuStack ) {
                 if( this->IsTopOfStack() ) {
@@ -129,7 +129,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
-        Boolean MenuEntry::IsRootEntry() const
+        Boole MenuEntry::IsRootEntry() const
         {
             if( this->ParentQuad != NULL && this->ParentQuad->IsWidget() ) {
                 return ( static_cast<Widget*>( this->ParentQuad )->GetTypeName() != MenuEntry::TypeName );
@@ -138,7 +138,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean MenuEntry::IsTopOfStack() const
+        Boole MenuEntry::IsTopOfStack() const
         {
             if( this->MenuStack && !(this->MenuStack->empty()) ) {
                 return ( this->MenuStack->back() == this );
@@ -193,7 +193,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
-        void MenuEntry::SetVisible(Boolean CanSee)
+        void MenuEntry::SetVisible(Boole CanSee)
         {
             if( CanSee ) {
                 if( !this->AutoHideEntry || this->IsTopOfStack() ) {
@@ -218,10 +218,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // MenuEntry Properties
 
-        void MenuEntry::SetAutoHide(Boolean AutoHide)
+        void MenuEntry::SetAutoHide(Boole AutoHide)
             { this->AutoHideEntry = AutoHide; }
 
-        Boolean MenuEntry::GetAutoHide() const
+        Boole MenuEntry::GetAutoHide() const
             { return this->AutoHideEntry; }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -416,13 +416,13 @@ namespace Mezzanine
             if( Selected != NULL && Selected->IsHovered() ) {
                 if( this->PushButton == Selected && this->PopButton == Selected ) {
                     // Since we are toggling, attempt to push first.  It'll automatically do the checks needed for pushing.
-                    Boolean PushResult = this->PushOntoStack();
+                    Boole PushResult = this->PushOntoStack();
                     if( !PushResult ) {
                         // If it failed to push, try popping.
-                        Boolean PopResult = this->PopFromStack();
+                        Boole PopResult = this->PopFromStack();
                         if( !PopResult ) {
                             // If even that failed, then we almost certainly need to do a rollback
-                            Boolean IsRoot = this->IsRootEntry();
+                            Boole IsRoot = this->IsRootEntry();
                             this->RollBackToEntry( IsRoot ? this : static_cast<MenuEntry*>( this->ParentQuad ) );
                             if( !IsRoot ) {
                                 // Last attempt
@@ -431,10 +431,10 @@ namespace Mezzanine
                         }
                     }
                 }else if( this->PushButton == Selected ) {
-                    Boolean PushResult = this->PushOntoStack();
+                    Boole PushResult = this->PushOntoStack();
                     if( !PushResult ) {
                         // Attempt a rollback
-                        Boolean IsRoot = this->IsRootEntry();
+                        Boole IsRoot = this->IsRootEntry();
                         this->RollBackToEntry( IsRoot ? this : static_cast<MenuEntry*>( this->ParentQuad ) );
                         if( !IsRoot ) {
                             // Last attempt
@@ -443,7 +443,7 @@ namespace Mezzanine
                     }
                 }else if( this->PopButton == Selected ) {
                     this->PopFromStack();
-                    /*Boolean PopResult = this->PopFromStack();
+                    /*Boole PopResult = this->PopFromStack();
                     if( !PopResult ) {
                         // Is there anything to do here?
                     }//*/

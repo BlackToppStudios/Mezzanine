@@ -106,7 +106,7 @@ namespace Mezzanine
             /// @copydoc Constraint::ValidAngularAxis() const
             virtual Constraint::AxisList ValidAngularAxis() const;
             /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
-            virtual Boolean HasParamBeenSet(ConstraintParam Param, int Axis) const;
+            virtual Boole HasParamBeenSet(ConstraintParam Param, int Axis) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization

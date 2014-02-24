@@ -314,13 +314,13 @@ namespace Mezzanine
             }
         }
 
-        Boolean QuadRenderable::CheckOverlap(const QuadRenderable* Quad) const
+        Boole QuadRenderable::CheckOverlap(const QuadRenderable* Quad) const
             { return this->GetRect().CheckOverlap(Quad->GetRect()); }
 
-        Boolean QuadRenderable::IsInside(const Vector2& Point) const
+        Boole QuadRenderable::IsInside(const Vector2& Point) const
             { return this->GetRect().IsInside(Point); }
 
-        Boolean QuadRenderable::IsChildOfScreen() const
+        Boole QuadRenderable::IsChildOfScreen() const
             { return (this->ParentScreen == this->ParentQuad); }
 
         void QuadRenderable::PopulateTextLinesInLayers(const Real MaxWidth)
@@ -376,16 +376,16 @@ namespace Mezzanine
             this->_MarkAllLayersDirty();
         }
 
-        void QuadRenderable::SetMousePassthrough(Boolean Enable)
+        void QuadRenderable::SetMousePassthrough(Boole Enable)
             { this->MousePassthrough = Enable; }
 
-        Boolean QuadRenderable::GetMousePassthrough() const
+        Boole QuadRenderable::GetMousePassthrough() const
             { return this->MousePassthrough; }
 
-        void QuadRenderable::SetManualTransformUpdates(Boolean Enable)
+        void QuadRenderable::SetManualTransformUpdates(Boole Enable)
             { this->ManualTransformUpdates = Enable; }
 
-        Boolean QuadRenderable::GetManualTransformUpdates() const
+        Boole QuadRenderable::GetManualTransformUpdates() const
             { return this->ManualTransformUpdates; }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -777,7 +777,7 @@ namespace Mezzanine
             return this->ActiveGroup;
         }
 
-        Boolean QuadRenderable::RenderLayerGroupExists(const String& Name) const
+        Boole QuadRenderable::RenderLayerGroupExists(const String& Name) const
         {
             ConstRenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
             return ( It != this->RenderLayerGroups.end() );
@@ -829,7 +829,7 @@ namespace Mezzanine
         {
             RenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
             if( It == this->RenderLayerGroups.end() ) {
-                Boolean Empty = ( this->RenderLayerGroups.empty() && this->ActiveGroup == NULL );
+                Boole Empty = ( this->RenderLayerGroups.empty() && this->ActiveGroup == NULL );
                 RenderLayerGroup* NewGroup = new RenderLayerGroup(Name,this);
                 this->RenderLayerGroups.insert( std::pair<String,RenderLayerGroup*>(Name,NewGroup) );
                 if( Empty ) {
@@ -1062,7 +1062,7 @@ namespace Mezzanine
         QuadRenderable* QuadRenderable::GetParent() const
             { return this->ParentQuad; }
 
-        QuadRenderable* QuadRenderable::GetNextSibling(Boolean Wrap)
+        QuadRenderable* QuadRenderable::GetNextSibling(Boole Wrap)
         {
             if( this->ParentQuad ) {
                 ConstChildIterator ParentEnd = this->ParentQuad->ChildrenEnd();
@@ -1078,7 +1078,7 @@ namespace Mezzanine
             return NULL;
         }
 
-        QuadRenderable* QuadRenderable::GetPrevSibling(Boolean Wrap)
+        QuadRenderable* QuadRenderable::GetPrevSibling(Boole Wrap)
         {
             if( this->ParentQuad ) {
                 ConstChildIterator ParentEnd = this->ParentQuad->ChildrenEnd();
@@ -1103,7 +1103,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // VertexCaching Methods
 
-        void QuadRenderable::SetLocalVertexCaching(Boolean Enable)
+        void QuadRenderable::SetLocalVertexCaching(Boole Enable)
         {
             if(Enable && !VertexCache) {
                 this->VertexCache = new ScreenRenderData();
@@ -1114,7 +1114,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean QuadRenderable::IsVertexCachingEnabled() const
+        Boole QuadRenderable::IsVertexCachingEnabled() const
         {
             return this->VertexCache != NULL;
         }

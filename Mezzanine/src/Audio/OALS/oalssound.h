@@ -120,7 +120,7 @@ namespace Mezzanine
                 void MakeCurrent();
                 /// @internal
                 /// @brief Streams the content from the decoder into an OALS buffer.
-                Boolean StreamToBuffer(const UInt32 Buffer);
+                Boole StreamToBuffer(const UInt32 Buffer);
             public:
                 /// @brief Class constructor.
                 /// @param Type The type of sound to initialize.  See @ref Audio::SoundType enum for the basic values.
@@ -134,7 +134,7 @@ namespace Mezzanine
                 // Utility
 
                 /// @copydoc iSound::IsValid() const
-                virtual Boolean IsValid() const;
+                virtual Boole IsValid() const;
                 /// @copydoc iSound::GetType() const
                 virtual UInt16 GetType() const;
                 /// @copydoc iSound::GetDecoder() const
@@ -157,24 +157,24 @@ namespace Mezzanine
                 // Playback
 
                 /// @copydoc iSound::Play()
-                virtual Boolean Play();
+                virtual Boole Play();
                 /// @copydoc iSound::IsPlaying() const
-                virtual Boolean IsPlaying() const;
+                virtual Boole IsPlaying() const;
                 /// @copydoc iSound::Pause()
                 virtual void Pause();
                 /// @copydoc iSound::IsPaused() const
-                virtual Boolean IsPaused() const;
+                virtual Boole IsPaused() const;
                 /// @copydoc iSound::Stop()
                 virtual void Stop();
                 /// @copydoc iSound::IsStopped() const
-                virtual Boolean IsStopped() const;
-                /// @copydoc iSound::Loop(Boolean ToLoop)
-                virtual void Loop(Boolean ToLoop);
+                virtual Boole IsStopped() const;
+                /// @copydoc iSound::Loop(Boole ToLoop)
+                virtual void Loop(Boole ToLoop);
                 /// @copydoc iSound::IsLooping() const
-                virtual Boolean IsLooping() const;
+                virtual Boole IsLooping() const;
 
-                /// @copydoc iSound::Seek(const Real, Boolean)
-                virtual Boolean Seek(const Real Seconds, Boolean Relative = false);
+                /// @copydoc iSound::Seek(const Real, Boole)
+                virtual Boole Seek(const Real Seconds, Boole Relative = false);
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Volume Control
@@ -198,7 +198,7 @@ namespace Mezzanine
                 // Effects Methods
 
                 /// @copydoc iSound::AttachEffect(const UInt32, iEffect*)
-                virtual Boolean AttachEffect(const UInt32 Slot, iEffect* Eff);
+                virtual Boole AttachEffect(const UInt32 Slot, iEffect* Eff);
                 /// @copydoc iSound::GetEffect(const UInt32 Slot) const
                 virtual iEffect* GetEffect(const UInt32 Slot) const;
                 /// @copydoc iSound::GetMaxEffectSlots() const
@@ -212,7 +212,7 @@ namespace Mezzanine
                 // Filter Methods
 
                 /// @copydoc iSound::AttachFilter(iFilter*)
-                virtual Boolean AttachFilter(iFilter* Fil);
+                virtual Boole AttachFilter(iFilter* Fil);
                 /// @copydoc iSound::GetFilter() const
                 virtual iFilter* GetFilter() const;
                 /// @copydoc iSound::RemoveFilter()
@@ -227,7 +227,7 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Updates the buffers for this sound as necessary for seemless playback.
                 /// @return Returns true of there were no errors updating, false if there were.
-                virtual Boolean _UpdateBuffers();
+                virtual Boole _UpdateBuffers();
             };//Sound
         }//OALS
     }//Audio

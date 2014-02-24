@@ -26720,7 +26720,7 @@ _wrap_WorldObject_is_in_world(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -26731,7 +26731,7 @@ _wrap_WorldObject_is_in_world(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","IsInWorld", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
-  result = (Mezzanine::Boolean)((Mezzanine::WorldObject const *)arg1)->IsInWorld();
+  result = (Mezzanine::Boole)((Mezzanine::WorldObject const *)arg1)->IsInWorld();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -26744,7 +26744,7 @@ _wrap_WorldObject_is_static(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -26755,7 +26755,7 @@ _wrap_WorldObject_is_static(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","IsStatic", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
-  result = (Mezzanine::Boolean)((Mezzanine::WorldObject const *)arg1)->IsStatic();
+  result = (Mezzanine::Boole)((Mezzanine::WorldObject const *)arg1)->IsStatic();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -26768,7 +26768,7 @@ _wrap_WorldObject_is_kinematic(int argc, VALUE *argv, VALUE self) {
   Mezzanine::WorldObject *arg1 = (Mezzanine::WorldObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -26779,7 +26779,7 @@ _wrap_WorldObject_is_kinematic(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::WorldObject const *","IsKinematic", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::WorldObject * >(argp1);
-  result = (Mezzanine::Boolean)((Mezzanine::WorldObject const *)arg1)->IsKinematic();
+  result = (Mezzanine::Boole)((Mezzanine::WorldObject const *)arg1)->IsKinematic();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -32379,7 +32379,7 @@ _wrap_AreaEffect_is_in_world(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -32390,7 +32390,7 @@ _wrap_AreaEffect_is_in_world(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AreaEffect const *","IsInWorld", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::AreaEffect * >(argp1);
-  result = (Mezzanine::Boolean)((Mezzanine::AreaEffect const *)arg1)->IsInWorld();
+  result = (Mezzanine::Boole)((Mezzanine::AreaEffect const *)arg1)->IsInWorld();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -32403,7 +32403,7 @@ _wrap_AreaEffect_is_static(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -32414,7 +32414,7 @@ _wrap_AreaEffect_is_static(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AreaEffect const *","IsStatic", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::AreaEffect * >(argp1);
-  result = (Mezzanine::Boolean)((Mezzanine::AreaEffect const *)arg1)->IsStatic();
+  result = (Mezzanine::Boole)((Mezzanine::AreaEffect const *)arg1)->IsStatic();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -32427,7 +32427,7 @@ _wrap_AreaEffect_is_kinematic(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AreaEffect *arg1 = (Mezzanine::AreaEffect *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -32438,7 +32438,7 @@ _wrap_AreaEffect_is_kinematic(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AreaEffect const *","IsKinematic", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::AreaEffect * >(argp1);
-  result = (Mezzanine::Boolean)((Mezzanine::AreaEffect const *)arg1)->IsKinematic();
+  result = (Mezzanine::Boole)((Mezzanine::AreaEffect const *)arg1)->IsKinematic();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -36143,7 +36143,7 @@ _wrap_AxisAlignedBox_is_zero(int argc, VALUE *argv, VALUE self) {
   Mezzanine::AxisAlignedBox *arg1 = (Mezzanine::AxisAlignedBox *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -36154,7 +36154,7 @@ _wrap_AxisAlignedBox_is_zero(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::AxisAlignedBox const *","IsZero", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp1);
-  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->IsZero();
+  result = (Mezzanine::Boole)((Mezzanine::AxisAlignedBox const *)arg1)->IsZero();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -36342,7 +36342,7 @@ _wrap_AxisAlignedBox_is_inside(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -36361,7 +36361,7 @@ _wrap_AxisAlignedBox_is_inside(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","IsInside", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->IsInside((Mezzanine::Vector3 const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::AxisAlignedBox const *)arg1)->IsInside((Mezzanine::Vector3 const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -36377,7 +36377,7 @@ _wrap_AxisAlignedBox_is_overlapping__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -36396,7 +36396,7 @@ _wrap_AxisAlignedBox_is_overlapping__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","IsOverlapping", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -36412,7 +36412,7 @@ _wrap_AxisAlignedBox_is_overlapping__SWIG_1(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -36431,7 +36431,7 @@ _wrap_AxisAlignedBox_is_overlapping__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","IsOverlapping", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -36447,7 +36447,7 @@ _wrap_AxisAlignedBox_is_overlapping__SWIG_2(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -36466,7 +36466,7 @@ _wrap_AxisAlignedBox_is_overlapping__SWIG_2(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","IsOverlapping", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Plane * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::AxisAlignedBox const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -36530,9 +36530,9 @@ SWIGINTERN VALUE _wrap_AxisAlignedBox_is_overlapping(int nargs, VALUE *args, VAL
   
 fail:
   Ruby_Format_OverloadedError( argc, 3, "AxisAlignedBox.is_overlapping", 
-    "    Mezzanine::Boolean AxisAlignedBox.is_overlapping(Mezzanine::Sphere const &ToCheck)\n"
-    "    Mezzanine::Boolean AxisAlignedBox.is_overlapping(Mezzanine::AxisAlignedBox const &ToCheck)\n"
-    "    Mezzanine::Boolean AxisAlignedBox.is_overlapping(Mezzanine::Plane const &ToCheck)\n");
+    "    Mezzanine::Boole AxisAlignedBox.is_overlapping(Mezzanine::Sphere const &ToCheck)\n"
+    "    Mezzanine::Boole AxisAlignedBox.is_overlapping(Mezzanine::AxisAlignedBox const &ToCheck)\n"
+    "    Mezzanine::Boole AxisAlignedBox.is_overlapping(Mezzanine::Plane const &ToCheck)\n");
   
   return Qnil;
 }
@@ -36877,7 +36877,7 @@ fail:
   Document-method: Mezzanine::AxisAlignedBox.>
 
   call-seq:
-    >(Other) -> Mezzanine::Boolean
+    >(Other) -> Mezzanine::Boole
 
 Higher than comparison operator.
 */
@@ -36889,7 +36889,7 @@ _wrap_AxisAlignedBox___gt__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -36908,7 +36908,7 @@ _wrap_AxisAlignedBox___gt__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","operator >", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->operator >((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::AxisAlignedBox const *)arg1)->operator >((Mezzanine::AxisAlignedBox const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -36921,7 +36921,7 @@ fail:
   Document-method: Mezzanine::AxisAlignedBox.<
 
   call-seq:
-    <(Other) -> Mezzanine::Boolean
+    <(Other) -> Mezzanine::Boole
 
 Lower than comparison operator.
 */
@@ -36933,7 +36933,7 @@ _wrap_AxisAlignedBox___lt__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -36952,7 +36952,7 @@ _wrap_AxisAlignedBox___lt__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","operator <", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->operator <((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::AxisAlignedBox const *)arg1)->operator <((Mezzanine::AxisAlignedBox const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -36965,7 +36965,7 @@ fail:
   Document-method: Mezzanine::AxisAlignedBox.>=
 
   call-seq:
-    >=(Other) -> Mezzanine::Boolean
+    >=(Other) -> Mezzanine::Boole
 
 Higher or equal comparison operator.
 */
@@ -36977,7 +36977,7 @@ _wrap_AxisAlignedBox___ge__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -36996,7 +36996,7 @@ _wrap_AxisAlignedBox___ge__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","operator >=", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->operator >=((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::AxisAlignedBox const *)arg1)->operator >=((Mezzanine::AxisAlignedBox const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -37009,7 +37009,7 @@ fail:
   Document-method: Mezzanine::AxisAlignedBox.<=
 
   call-seq:
-    <=(Other) -> Mezzanine::Boolean
+    <=(Other) -> Mezzanine::Boole
 
 Lower or equal comparison operator.
 */
@@ -37021,7 +37021,7 @@ _wrap_AxisAlignedBox___le__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -37040,7 +37040,7 @@ _wrap_AxisAlignedBox___le__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","operator <=", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->operator <=((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::AxisAlignedBox const *)arg1)->operator <=((Mezzanine::AxisAlignedBox const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -37053,7 +37053,7 @@ fail:
   Document-method: Mezzanine::AxisAlignedBox.==
 
   call-seq:
-    ==(Other) -> Mezzanine::Boolean
+    ==(Other) -> Mezzanine::Boole
 
 Equality comparison operator.
 */
@@ -37065,7 +37065,7 @@ _wrap_AxisAlignedBox___eq__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -37084,7 +37084,7 @@ _wrap_AxisAlignedBox___eq__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","operator ==", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::AxisAlignedBox const *)arg1)->operator ==((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::AxisAlignedBox const *)arg1)->operator ==((Mezzanine::AxisAlignedBox const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -38005,7 +38005,7 @@ _wrap_RayQueryTool_clear_returns(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -38016,7 +38016,7 @@ _wrap_RayQueryTool_clear_returns(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::RayQueryTool *","ClearReturns", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::RayQueryTool * >(argp1);
-  result = (Mezzanine::Boolean)(arg1)->ClearReturns();
+  result = (Mezzanine::Boole)(arg1)->ClearReturns();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -38029,7 +38029,7 @@ _wrap_RayQueryTool_last_query_results_valid(int argc, VALUE *argv, VALUE self) {
   Mezzanine::RayQueryTool *arg1 = (Mezzanine::RayQueryTool *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -38040,7 +38040,7 @@ _wrap_RayQueryTool_last_query_results_valid(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::RayQueryTool const *","LastQueryResultsValid", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::RayQueryTool * >(argp1);
-  result = (Mezzanine::Boolean)((Mezzanine::RayQueryTool const *)arg1)->LastQueryResultsValid();
+  result = (Mezzanine::Boole)((Mezzanine::RayQueryTool const *)arg1)->LastQueryResultsValid();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -38107,7 +38107,7 @@ _wrap_RayQueryTool_get_first_object_on_ray_by_polygon(int argc, VALUE *argv, VAL
   int res2 = 0 ;
   unsigned long val3 ;
   int ecode3 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -38134,7 +38134,7 @@ _wrap_RayQueryTool_get_first_object_on_ray_by_polygon(int argc, VALUE *argv, VAL
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Whole","GetFirstObjectOnRayByPolygon", 3, argv[1] ));
   } 
   arg3 = static_cast< Mezzanine::Whole >(val3);
-  result = (Mezzanine::Boolean)(arg1)->GetFirstObjectOnRayByPolygon(arg2,arg3);
+  result = (Mezzanine::Boole)(arg1)->GetFirstObjectOnRayByPolygon(arg2,arg3);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -38153,7 +38153,7 @@ _wrap_RayQueryTool_get_first_object_on_ray_by_aabb(int argc, VALUE *argv, VALUE 
   int res2 = 0 ;
   unsigned long val3 ;
   int ecode3 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -38180,7 +38180,7 @@ _wrap_RayQueryTool_get_first_object_on_ray_by_aabb(int argc, VALUE *argv, VALUE 
     SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Whole","GetFirstObjectOnRayByAABB", 3, argv[1] ));
   } 
   arg3 = static_cast< Mezzanine::Whole >(val3);
-  result = (Mezzanine::Boolean)(arg1)->GetFirstObjectOnRayByAABB(arg2,arg3);
+  result = (Mezzanine::Boole)(arg1)->GetFirstObjectOnRayByAABB(arg2,arg3);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -38199,7 +38199,7 @@ _wrap_RayQueryTool_ray_plane_intersection(int argc, VALUE *argv, VALUE self) {
   int res2 = 0 ;
   void *argp3 ;
   int res3 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -38226,7 +38226,7 @@ _wrap_RayQueryTool_ray_plane_intersection(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","RayPlaneIntersection", 3, argv[1])); 
   }
   arg3 = reinterpret_cast< Mezzanine::Plane * >(argp3);
-  result = (Mezzanine::Boolean)(arg1)->RayPlaneIntersection((Mezzanine::Ray const &)*arg2,(Mezzanine::Plane const &)*arg3);
+  result = (Mezzanine::Boole)(arg1)->RayPlaneIntersection((Mezzanine::Ray const &)*arg2,(Mezzanine::Plane const &)*arg3);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -41834,7 +41834,7 @@ SWIGINTERN VALUE
 _wrap_Event_subscribe__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Event *arg1 = (Mezzanine::Event *) 0 ;
   Mezzanine::EventSlotFunctorDefinition *arg2 = (Mezzanine::EventSlotFunctorDefinition *) 0 ;
-  Mezzanine::Boolean arg3 ;
+  Mezzanine::Boole arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -41859,9 +41859,9 @@ _wrap_Event_subscribe__SWIG_1(int argc, VALUE *argv, VALUE self) {
   arg2 = reinterpret_cast< Mezzanine::EventSlotFunctorDefinition * >(argp2);
   ecode3 = SWIG_AsVal_bool(argv[1], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Boolean","Subscribe", 3, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Boole","Subscribe", 3, argv[1] ));
   } 
-  arg3 = static_cast< Mezzanine::Boolean >(val3);
+  arg3 = static_cast< Mezzanine::Boole >(val3);
   result = (Mezzanine::EventSubscriberSlot *)(arg1)->Subscribe(arg2,arg3);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__EventSubscriberSlot, 0 |  0 );
   return vresult;
@@ -42011,7 +42011,7 @@ SWIGINTERN VALUE _wrap_Event_subscribe(int nargs, VALUE *args, VALUE self) {
 fail:
   Ruby_Format_OverloadedError( argc, 4, "Event.subscribe", 
     "    Mezzanine::EventSubscriberSlot * Event.subscribe(Mezzanine::EventSubscriber *Subscriber)\n"
-    "    Mezzanine::EventSubscriberSlot * Event.subscribe(Mezzanine::EventSlotFunctorDefinition *Funct, Mezzanine::Boolean CleanUpAfter)\n"
+    "    Mezzanine::EventSubscriberSlot * Event.subscribe(Mezzanine::EventSlotFunctorDefinition *Funct, Mezzanine::Boole CleanUpAfter)\n"
     "    Mezzanine::EventSubscriberSlot * Event.subscribe(CFunctionSubscriberSlot::SubscriberFunction *CFunct)\n"
     "    Mezzanine::EventSubscriberSlot * Event.subscribe(Mezzanine::Scripting::iScript *SubScript)\n");
   
@@ -43356,8 +43356,8 @@ fail:
   Document-method: Mezzanine::Vector2.==
 
   call-seq:
-    ==(Vec2) -> Mezzanine::Boolean
-    ==(Vec2) -> Mezzanine::Boolean
+    ==(Vec2) -> Mezzanine::Boole
+    ==(Vec2) -> Mezzanine::Boole
 
 Equality comparison operator.
 */
@@ -43369,7 +43369,7 @@ _wrap_Vector2___eq____SWIG_0(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -43388,7 +43388,7 @@ _wrap_Vector2___eq____SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector2 const &","operator ==", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Vector2 * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Vector2 const *)arg1)->operator ==((Mezzanine::Vector2 const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Vector2 const *)arg1)->operator ==((Mezzanine::Vector2 const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -43404,7 +43404,7 @@ _wrap_Vector2___eq____SWIG_1(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -43423,7 +43423,7 @@ _wrap_Vector2___eq____SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Ogre::Vector2 const &","operator ==", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Ogre::Vector2 * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Vector2 const *)arg1)->operator ==((Ogre::Vector2 const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Vector2 const *)arg1)->operator ==((Ogre::Vector2 const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -43473,8 +43473,8 @@ SWIGINTERN VALUE _wrap_Vector2___eq__(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 3, "Vector2.__eq__", 
-    "    Mezzanine::Boolean Vector2.__eq__(Mezzanine::Vector2 const &Vec2)\n"
-    "    Mezzanine::Boolean Vector2.__eq__(Ogre::Vector2 const &Vec2)\n");
+    "    Mezzanine::Boole Vector2.__eq__(Mezzanine::Vector2 const &Vec2)\n"
+    "    Mezzanine::Boole Vector2.__eq__(Ogre::Vector2 const &Vec2)\n");
   
   return Qnil;
 }
@@ -43485,7 +43485,7 @@ fail:
   Document-method: Mezzanine::Vector2.<=
 
   call-seq:
-    <=(Vec) -> Mezzanine::Boolean
+    <=(Vec) -> Mezzanine::Boole
 
 Lower or equal comparison operator.
 */
@@ -43497,7 +43497,7 @@ _wrap_Vector2___le__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -43516,7 +43516,7 @@ _wrap_Vector2___le__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector2 const &","operator <=", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Vector2 * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Vector2 const *)arg1)->operator <=((Mezzanine::Vector2 const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Vector2 const *)arg1)->operator <=((Mezzanine::Vector2 const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -43529,7 +43529,7 @@ fail:
   Document-method: Mezzanine::Vector2.>=
 
   call-seq:
-    >=(Vec) -> Mezzanine::Boolean
+    >=(Vec) -> Mezzanine::Boole
 
 Higher or equal comparison operator.
 */
@@ -43541,7 +43541,7 @@ _wrap_Vector2___ge__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -43560,7 +43560,7 @@ _wrap_Vector2___ge__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector2 const &","operator >=", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Vector2 * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Vector2 const *)arg1)->operator >=((Mezzanine::Vector2 const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Vector2 const *)arg1)->operator >=((Mezzanine::Vector2 const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -45465,7 +45465,7 @@ _wrap_EventPublisher_subscribe__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::EventPublisher *arg1 = (Mezzanine::EventPublisher *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   Mezzanine::EventSlotFunctorDefinition *arg3 = (Mezzanine::EventSlotFunctorDefinition *) 0 ;
-  Mezzanine::Boolean arg4 ;
+  Mezzanine::Boole arg4 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int res2 = SWIG_OLDOBJ ;
@@ -45502,9 +45502,9 @@ _wrap_EventPublisher_subscribe__SWIG_1(int argc, VALUE *argv, VALUE self) {
   arg3 = reinterpret_cast< Mezzanine::EventSlotFunctorDefinition * >(argp3);
   ecode4 = SWIG_AsVal_bool(argv[2], &val4);
   if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "Mezzanine::Boolean","Subscribe", 4, argv[2] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "Mezzanine::Boole","Subscribe", 4, argv[2] ));
   } 
-  arg4 = static_cast< Mezzanine::Boolean >(val4);
+  arg4 = static_cast< Mezzanine::Boole >(val4);
   result = (Mezzanine::EventSubscriberSlot *)(arg1)->Subscribe((Mezzanine::String const &)*arg2,arg3,arg4);
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Mezzanine__EventSubscriberSlot, 0 |  0 );
   if (SWIG_IsNewObj(res2)) delete arg2;
@@ -45702,7 +45702,7 @@ SWIGINTERN VALUE _wrap_EventPublisher_subscribe(int nargs, VALUE *args, VALUE se
 fail:
   Ruby_Format_OverloadedError( argc, 5, "EventPublisher.subscribe", 
     "    Mezzanine::EventSubscriberSlot * EventPublisher.subscribe(Mezzanine::String const &EventName, Mezzanine::EventSubscriber *Sub)\n"
-    "    Mezzanine::EventSubscriberSlot * EventPublisher.subscribe(Mezzanine::String const &EventName, Mezzanine::EventSlotFunctorDefinition *Funct, Mezzanine::Boolean CleanUpAfter)\n"
+    "    Mezzanine::EventSubscriberSlot * EventPublisher.subscribe(Mezzanine::String const &EventName, Mezzanine::EventSlotFunctorDefinition *Funct, Mezzanine::Boole CleanUpAfter)\n"
     "    Mezzanine::EventSubscriberSlot * EventPublisher.subscribe(Mezzanine::String const &EventName, CFunctionSubscriberSlot::SubscriberFunction *CFunct)\n"
     "    Mezzanine::EventSubscriberSlot * EventPublisher.subscribe(Mezzanine::String const &EventName, Mezzanine::Scripting::iScript *SubScript)\n");
   
@@ -46967,7 +46967,7 @@ _wrap_is_inside__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -46989,7 +46989,7 @@ _wrap_is_inside__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","Mezzanine::MathTools::IsInside", 2, argv[1])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
-  result = (Mezzanine::Boolean)Mezzanine::MathTools::IsInside((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::Vector3 const &)*arg2);
+  result = (Mezzanine::Boole)Mezzanine::MathTools::IsInside((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::Vector3 const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -47005,7 +47005,7 @@ _wrap_is_inside__SWIG_1(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -47027,7 +47027,7 @@ _wrap_is_inside__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","Mezzanine::MathTools::IsInside", 2, argv[1])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
-  result = (Mezzanine::Boolean)Mezzanine::MathTools::IsInside((Mezzanine::Sphere const &)*arg1,(Mezzanine::Vector3 const &)*arg2);
+  result = (Mezzanine::Boole)Mezzanine::MathTools::IsInside((Mezzanine::Sphere const &)*arg1,(Mezzanine::Vector3 const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -47076,8 +47076,8 @@ SWIGINTERN VALUE _wrap_is_inside(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 2, "is_inside", 
-    "    Mezzanine::Boolean is_inside(Mezzanine::AxisAlignedBox const &Box, Mezzanine::Vector3 const &Point)\n"
-    "    Mezzanine::Boolean is_inside(Mezzanine::Sphere const &Ball, Mezzanine::Vector3 const &Point)\n");
+    "    Mezzanine::Boole is_inside(Mezzanine::AxisAlignedBox const &Box, Mezzanine::Vector3 const &Point)\n"
+    "    Mezzanine::Boole is_inside(Mezzanine::Sphere const &Ball, Mezzanine::Vector3 const &Point)\n");
   
   return Qnil;
 }
@@ -47091,7 +47091,7 @@ _wrap_overlap__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -47113,7 +47113,7 @@ _wrap_overlap__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)Mezzanine::MathTools::Overlap((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -47129,7 +47129,7 @@ _wrap_overlap__SWIG_1(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -47151,7 +47151,7 @@ _wrap_overlap__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Plane * >(argp2);
-  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::Plane const &)*arg2);
+  result = (Mezzanine::Boole)Mezzanine::MathTools::Overlap((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::Plane const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -47167,7 +47167,7 @@ _wrap_overlap__SWIG_2(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -47189,7 +47189,7 @@ _wrap_overlap__SWIG_2(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::Plane const &)*arg1,(Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)Mezzanine::MathTools::Overlap((Mezzanine::Plane const &)*arg1,(Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -47205,7 +47205,7 @@ _wrap_overlap__SWIG_3(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -47227,7 +47227,7 @@ _wrap_overlap__SWIG_3(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
   }
   arg2 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp2);
-  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boole)Mezzanine::MathTools::Overlap((Mezzanine::AxisAlignedBox const &)*arg1,(Mezzanine::AxisAlignedBox const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -47243,7 +47243,7 @@ _wrap_overlap__SWIG_4(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -47265,7 +47265,7 @@ _wrap_overlap__SWIG_4(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::Sphere const &)*arg1,(Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)Mezzanine::MathTools::Overlap((Mezzanine::Sphere const &)*arg1,(Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -47281,7 +47281,7 @@ _wrap_overlap__SWIG_5(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -47303,7 +47303,7 @@ _wrap_overlap__SWIG_5(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","Mezzanine::MathTools::Overlap", 2, argv[1])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Plane * >(argp2);
-  result = (Mezzanine::Boolean)Mezzanine::MathTools::Overlap((Mezzanine::Plane const &)*arg1,(Mezzanine::Plane const &)*arg2);
+  result = (Mezzanine::Boole)Mezzanine::MathTools::Overlap((Mezzanine::Plane const &)*arg1,(Mezzanine::Plane const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -47408,12 +47408,12 @@ SWIGINTERN VALUE _wrap_overlap(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 2, "overlap", 
-    "    Mezzanine::Boolean overlap(Mezzanine::AxisAlignedBox const &Box, Mezzanine::Sphere const &Ball)\n"
-    "    Mezzanine::Boolean overlap(Mezzanine::AxisAlignedBox const &Box, Mezzanine::Plane const &Surface)\n"
-    "    Mezzanine::Boolean overlap(Mezzanine::Plane const &Surface, Mezzanine::Sphere const &Ball)\n"
-    "    Mezzanine::Boolean overlap(Mezzanine::AxisAlignedBox const &Box1, Mezzanine::AxisAlignedBox const &Box2)\n"
-    "    Mezzanine::Boolean overlap(Mezzanine::Sphere const &Ball1, Mezzanine::Sphere const &Ball2)\n"
-    "    Mezzanine::Boolean overlap(Mezzanine::Plane const &Surface1, Mezzanine::Plane const &Surface2)\n");
+    "    Mezzanine::Boole overlap(Mezzanine::AxisAlignedBox const &Box, Mezzanine::Sphere const &Ball)\n"
+    "    Mezzanine::Boole overlap(Mezzanine::AxisAlignedBox const &Box, Mezzanine::Plane const &Surface)\n"
+    "    Mezzanine::Boole overlap(Mezzanine::Plane const &Surface, Mezzanine::Sphere const &Ball)\n"
+    "    Mezzanine::Boole overlap(Mezzanine::AxisAlignedBox const &Box1, Mezzanine::AxisAlignedBox const &Box2)\n"
+    "    Mezzanine::Boole overlap(Mezzanine::Sphere const &Ball1, Mezzanine::Sphere const &Ball2)\n"
+    "    Mezzanine::Boole overlap(Mezzanine::Plane const &Surface1, Mezzanine::Plane const &Surface2)\n");
   
   return Qnil;
 }
@@ -48405,7 +48405,7 @@ _wrap_Plane_is_overlapping__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -48424,7 +48424,7 @@ _wrap_Plane_is_overlapping__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","IsOverlapping", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -48440,7 +48440,7 @@ _wrap_Plane_is_overlapping__SWIG_1(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -48459,7 +48459,7 @@ _wrap_Plane_is_overlapping__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","IsOverlapping", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -48475,7 +48475,7 @@ _wrap_Plane_is_overlapping__SWIG_2(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -48494,7 +48494,7 @@ _wrap_Plane_is_overlapping__SWIG_2(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","IsOverlapping", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Plane * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Plane const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -48558,9 +48558,9 @@ SWIGINTERN VALUE _wrap_Plane_is_overlapping(int nargs, VALUE *args, VALUE self) 
   
 fail:
   Ruby_Format_OverloadedError( argc, 3, "Plane.is_overlapping", 
-    "    Mezzanine::Boolean Plane.is_overlapping(Mezzanine::Sphere const &ToCheck)\n"
-    "    Mezzanine::Boolean Plane.is_overlapping(Mezzanine::AxisAlignedBox const &ToCheck)\n"
-    "    Mezzanine::Boolean Plane.is_overlapping(Mezzanine::Plane const &ToCheck)\n");
+    "    Mezzanine::Boole Plane.is_overlapping(Mezzanine::Sphere const &ToCheck)\n"
+    "    Mezzanine::Boole Plane.is_overlapping(Mezzanine::AxisAlignedBox const &ToCheck)\n"
+    "    Mezzanine::Boole Plane.is_overlapping(Mezzanine::Plane const &ToCheck)\n");
   
   return Qnil;
 }
@@ -48742,7 +48742,7 @@ fail:
   Document-method: Mezzanine::Plane.==
 
   call-seq:
-    ==(Other) -> Mezzanine::Boolean
+    ==(Other) -> Mezzanine::Boole
 
 Equality comparison operator.
 */
@@ -48754,7 +48754,7 @@ _wrap_Plane___eq__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -48773,7 +48773,7 @@ _wrap_Plane___eq__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","operator ==", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Plane * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Plane const *)arg1)->operator ==((Mezzanine::Plane const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Plane const *)arg1)->operator ==((Mezzanine::Plane const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -49578,7 +49578,7 @@ fail:
   Document-method: Mezzanine::Ray.==
 
   call-seq:
-    ==(Other) -> Mezzanine::Boolean
+    ==(Other) -> Mezzanine::Boole
 
 Equality comparison operator.
 */
@@ -49590,7 +49590,7 @@ _wrap_Ray___eq__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -49609,7 +49609,7 @@ _wrap_Ray___eq__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Ray const &","operator ==", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Ray * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Ray const *)arg1)->operator ==((Mezzanine::Ray const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Ray const *)arg1)->operator ==((Mezzanine::Ray const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -49948,7 +49948,7 @@ _wrap_Sphere_is_inside(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -49967,7 +49967,7 @@ _wrap_Sphere_is_inside(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Vector3 const &","IsInside", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Vector3 * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Sphere const *)arg1)->IsInside((Mezzanine::Vector3 const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Sphere const *)arg1)->IsInside((Mezzanine::Vector3 const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -49983,7 +49983,7 @@ _wrap_Sphere_is_overlapping__SWIG_0(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -50002,7 +50002,7 @@ _wrap_Sphere_is_overlapping__SWIG_0(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","IsOverlapping", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Sphere const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Sphere const *)arg1)->IsOverlapping((Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -50018,7 +50018,7 @@ _wrap_Sphere_is_overlapping__SWIG_1(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -50037,7 +50037,7 @@ _wrap_Sphere_is_overlapping__SWIG_1(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::AxisAlignedBox const &","IsOverlapping", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::AxisAlignedBox * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Sphere const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Sphere const *)arg1)->IsOverlapping((Mezzanine::AxisAlignedBox const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -50053,7 +50053,7 @@ _wrap_Sphere_is_overlapping__SWIG_2(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -50072,7 +50072,7 @@ _wrap_Sphere_is_overlapping__SWIG_2(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Plane const &","IsOverlapping", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Plane * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Sphere const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Sphere const *)arg1)->IsOverlapping((Mezzanine::Plane const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -50136,9 +50136,9 @@ SWIGINTERN VALUE _wrap_Sphere_is_overlapping(int nargs, VALUE *args, VALUE self)
   
 fail:
   Ruby_Format_OverloadedError( argc, 3, "Sphere.is_overlapping", 
-    "    Mezzanine::Boolean Sphere.is_overlapping(Mezzanine::Sphere const &ToCheck)\n"
-    "    Mezzanine::Boolean Sphere.is_overlapping(Mezzanine::AxisAlignedBox const &ToCheck)\n"
-    "    Mezzanine::Boolean Sphere.is_overlapping(Mezzanine::Plane const &ToCheck)\n");
+    "    Mezzanine::Boole Sphere.is_overlapping(Mezzanine::Sphere const &ToCheck)\n"
+    "    Mezzanine::Boole Sphere.is_overlapping(Mezzanine::AxisAlignedBox const &ToCheck)\n"
+    "    Mezzanine::Boole Sphere.is_overlapping(Mezzanine::Plane const &ToCheck)\n");
   
   return Qnil;
 }
@@ -50320,7 +50320,7 @@ fail:
   Document-method: Mezzanine::Sphere.>
 
   call-seq:
-    >(Other) -> Mezzanine::Boolean
+    >(Other) -> Mezzanine::Boole
 
 Higher than comparison operator.
 */
@@ -50332,7 +50332,7 @@ _wrap_Sphere___gt__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -50351,7 +50351,7 @@ _wrap_Sphere___gt__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","operator >", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Sphere const *)arg1)->operator >((Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Sphere const *)arg1)->operator >((Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -50364,7 +50364,7 @@ fail:
   Document-method: Mezzanine::Sphere.<
 
   call-seq:
-    <(Other) -> Mezzanine::Boolean
+    <(Other) -> Mezzanine::Boole
 
 Lower than comparison operator.
 */
@@ -50376,7 +50376,7 @@ _wrap_Sphere___lt__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -50395,7 +50395,7 @@ _wrap_Sphere___lt__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","operator <", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Sphere const *)arg1)->operator <((Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Sphere const *)arg1)->operator <((Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -50408,7 +50408,7 @@ fail:
   Document-method: Mezzanine::Sphere.>=
 
   call-seq:
-    >=(Other) -> Mezzanine::Boolean
+    >=(Other) -> Mezzanine::Boole
 
 Higher or equal comparison operator.
 */
@@ -50420,7 +50420,7 @@ _wrap_Sphere___ge__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -50439,7 +50439,7 @@ _wrap_Sphere___ge__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","operator >=", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Sphere const *)arg1)->operator >=((Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Sphere const *)arg1)->operator >=((Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -50452,7 +50452,7 @@ fail:
   Document-method: Mezzanine::Sphere.<=
 
   call-seq:
-    <=(Other) -> Mezzanine::Boolean
+    <=(Other) -> Mezzanine::Boole
 
 Lower or equal comparison operator.
 */
@@ -50464,7 +50464,7 @@ _wrap_Sphere___le__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -50483,7 +50483,7 @@ _wrap_Sphere___le__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","operator <=", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Sphere const *)arg1)->operator <=((Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Sphere const *)arg1)->operator <=((Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -50496,7 +50496,7 @@ fail:
   Document-method: Mezzanine::Sphere.==
 
   call-seq:
-    ==(Other) -> Mezzanine::Boolean
+    ==(Other) -> Mezzanine::Boole
 
 Equality comparison operator.
 */
@@ -50508,7 +50508,7 @@ _wrap_Sphere___eq__(int argc, VALUE *argv, VALUE self) {
   int res1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -50527,7 +50527,7 @@ _wrap_Sphere___eq__(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "Mezzanine::Sphere const &","operator ==", 2, argv[0])); 
   }
   arg2 = reinterpret_cast< Mezzanine::Sphere * >(argp2);
-  result = (Mezzanine::Boolean)((Mezzanine::Sphere const *)arg1)->operator ==((Mezzanine::Sphere const &)*arg2);
+  result = (Mezzanine::Boole)((Mezzanine::Sphere const *)arg1)->operator ==((Mezzanine::Sphere const &)*arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -50547,8 +50547,8 @@ _wrap_Blank_get(VALUE self) {
 SWIGINTERN VALUE
 _wrap_trim__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String *arg1 = 0 ;
-  Mezzanine::Boolean arg2 ;
-  Mezzanine::Boolean arg3 ;
+  Mezzanine::Boole arg2 ;
+  Mezzanine::Boole arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   bool val2 ;
@@ -50569,14 +50569,14 @@ _wrap_trim__SWIG_0(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< Mezzanine::String * >(argp1);
   ecode2 = SWIG_AsVal_bool(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Boolean","Mezzanine::StringTools::Trim", 2, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Boole","Mezzanine::StringTools::Trim", 2, argv[1] ));
   } 
-  arg2 = static_cast< Mezzanine::Boolean >(val2);
+  arg2 = static_cast< Mezzanine::Boole >(val2);
   ecode3 = SWIG_AsVal_bool(argv[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Boolean","Mezzanine::StringTools::Trim", 3, argv[2] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Boole","Mezzanine::StringTools::Trim", 3, argv[2] ));
   } 
-  arg3 = static_cast< Mezzanine::Boolean >(val3);
+  arg3 = static_cast< Mezzanine::Boole >(val3);
   Mezzanine::StringTools::Trim(*arg1,arg2,arg3);
   return Qnil;
 fail:
@@ -50587,7 +50587,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_trim__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String *arg1 = 0 ;
-  Mezzanine::Boolean arg2 ;
+  Mezzanine::Boole arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   bool val2 ;
@@ -50606,9 +50606,9 @@ _wrap_trim__SWIG_1(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< Mezzanine::String * >(argp1);
   ecode2 = SWIG_AsVal_bool(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Boolean","Mezzanine::StringTools::Trim", 2, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Boole","Mezzanine::StringTools::Trim", 2, argv[1] ));
   } 
-  arg2 = static_cast< Mezzanine::Boolean >(val2);
+  arg2 = static_cast< Mezzanine::Boole >(val2);
   Mezzanine::StringTools::Trim(*arg1,arg2);
   return Qnil;
 fail:
@@ -50698,8 +50698,8 @@ SWIGINTERN VALUE _wrap_trim(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 3, "trim", 
-    "    void trim(Mezzanine::String &Source, Mezzanine::Boolean Left, Mezzanine::Boolean Right)\n"
-    "    void trim(Mezzanine::String &Source, Mezzanine::Boolean Left)\n"
+    "    void trim(Mezzanine::String &Source, Mezzanine::Boole Left, Mezzanine::Boole Right)\n"
+    "    void trim(Mezzanine::String &Source, Mezzanine::Boole Left)\n"
     "    void trim(Mezzanine::String &Source)\n");
   
   return Qnil;
@@ -50950,12 +50950,12 @@ SWIGINTERN VALUE
 _wrap_starts_with(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String *arg1 = 0 ;
   Mezzanine::String *arg2 = 0 ;
-  Mezzanine::Boolean arg3 ;
+  Mezzanine::Boole arg3 ;
   int res1 = SWIG_OLDOBJ ;
   int res2 = SWIG_OLDOBJ ;
   bool val3 ;
   int ecode3 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 3) || (argc > 3)) {
@@ -50985,10 +50985,10 @@ _wrap_starts_with(int argc, VALUE *argv, VALUE self) {
   }
   ecode3 = SWIG_AsVal_bool(argv[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Boolean","Mezzanine::StringTools::StartsWith", 3, argv[2] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Boole","Mezzanine::StringTools::StartsWith", 3, argv[2] ));
   } 
-  arg3 = static_cast< Mezzanine::Boolean >(val3);
-  result = (Mezzanine::Boolean)Mezzanine::StringTools::StartsWith((std::string const &)*arg1,(std::string const &)*arg2,arg3);
+  arg3 = static_cast< Mezzanine::Boole >(val3);
+  result = (Mezzanine::Boole)Mezzanine::StringTools::StartsWith((std::string const &)*arg1,(std::string const &)*arg2,arg3);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   if (SWIG_IsNewObj(res1)) delete arg1;
   if (SWIG_IsNewObj(res2)) delete arg2;
@@ -51004,12 +51004,12 @@ SWIGINTERN VALUE
 _wrap_ends_with(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String *arg1 = 0 ;
   Mezzanine::String *arg2 = 0 ;
-  Mezzanine::Boolean arg3 ;
+  Mezzanine::Boole arg3 ;
   int res1 = SWIG_OLDOBJ ;
   int res2 = SWIG_OLDOBJ ;
   bool val3 ;
   int ecode3 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 3) || (argc > 3)) {
@@ -51039,10 +51039,10 @@ _wrap_ends_with(int argc, VALUE *argv, VALUE self) {
   }
   ecode3 = SWIG_AsVal_bool(argv[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Boolean","Mezzanine::StringTools::EndsWith", 3, argv[2] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "Mezzanine::Boole","Mezzanine::StringTools::EndsWith", 3, argv[2] ));
   } 
-  arg3 = static_cast< Mezzanine::Boolean >(val3);
-  result = (Mezzanine::Boolean)Mezzanine::StringTools::EndsWith((std::string const &)*arg1,(std::string const &)*arg2,arg3);
+  arg3 = static_cast< Mezzanine::Boole >(val3);
+  result = (Mezzanine::Boole)Mezzanine::StringTools::EndsWith((std::string const &)*arg1,(std::string const &)*arg2,arg3);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   if (SWIG_IsNewObj(res1)) delete arg1;
   if (SWIG_IsNewObj(res2)) delete arg2;
@@ -51371,11 +51371,11 @@ fail:
 SWIGINTERN VALUE
 _wrap_convert_to_bool__SWIG_0(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String *arg1 = 0 ;
-  Mezzanine::Boolean arg2 ;
+  Mezzanine::Boole arg2 ;
   int res1 = SWIG_OLDOBJ ;
   bool val2 ;
   int ecode2 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 2) || (argc > 2)) {
@@ -51394,10 +51394,10 @@ _wrap_convert_to_bool__SWIG_0(int argc, VALUE *argv, VALUE self) {
   }
   ecode2 = SWIG_AsVal_bool(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Boolean","Mezzanine::StringTools::ConvertToBool", 2, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Boole","Mezzanine::StringTools::ConvertToBool", 2, argv[1] ));
   } 
-  arg2 = static_cast< Mezzanine::Boolean >(val2);
-  result = (Mezzanine::Boolean)Mezzanine::StringTools::ConvertToBool((std::string const &)*arg1,arg2);
+  arg2 = static_cast< Mezzanine::Boole >(val2);
+  result = (Mezzanine::Boole)Mezzanine::StringTools::ConvertToBool((std::string const &)*arg1,arg2);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   if (SWIG_IsNewObj(res1)) delete arg1;
   return vresult;
@@ -51411,7 +51411,7 @@ SWIGINTERN VALUE
 _wrap_convert_to_bool__SWIG_1(int argc, VALUE *argv, VALUE self) {
   Mezzanine::String *arg1 = 0 ;
   int res1 = SWIG_OLDOBJ ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 1) || (argc > 1)) {
@@ -51428,7 +51428,7 @@ _wrap_convert_to_bool__SWIG_1(int argc, VALUE *argv, VALUE self) {
     }
     arg1 = ptr;
   }
-  result = (Mezzanine::Boolean)Mezzanine::StringTools::ConvertToBool((std::string const &)*arg1);
+  result = (Mezzanine::Boole)Mezzanine::StringTools::ConvertToBool((std::string const &)*arg1);
   vresult = SWIG_From_bool(static_cast< bool >(result));
   if (SWIG_IsNewObj(res1)) delete arg1;
   return vresult;
@@ -51473,8 +51473,8 @@ SWIGINTERN VALUE _wrap_convert_to_bool(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 2, "convert_to_bool", 
-    "    Mezzanine::Boolean convert_to_bool(Mezzanine::String const &ToConvert, Mezzanine::Boolean const Default)\n"
-    "    Mezzanine::Boolean convert_to_bool(Mezzanine::String const &ToConvert)\n");
+    "    Mezzanine::Boole convert_to_bool(Mezzanine::String const &ToConvert, Mezzanine::Boole const Default)\n"
+    "    Mezzanine::Boole convert_to_bool(Mezzanine::String const &ToConvert)\n");
   
   return Qnil;
 }
@@ -51731,7 +51731,7 @@ fail:
 SWIGINTERN VALUE
 _wrap_convert_to_string__SWIG_4(int argc, VALUE *argv, VALUE self) {
   Input::InputCode *arg1 = 0 ;
-  Mezzanine::Boolean arg2 ;
+  Mezzanine::Boole arg2 ;
   void *argp1 ;
   int res1 = 0 ;
   bool val2 ;
@@ -51752,9 +51752,9 @@ _wrap_convert_to_string__SWIG_4(int argc, VALUE *argv, VALUE self) {
   arg1 = reinterpret_cast< Input::InputCode * >(argp1);
   ecode2 = SWIG_AsVal_bool(argv[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Boolean","Mezzanine::StringTools::ConvertToString", 2, argv[1] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "Mezzanine::Boole","Mezzanine::StringTools::ConvertToString", 2, argv[1] ));
   } 
-  arg2 = static_cast< Mezzanine::Boolean >(val2);
+  arg2 = static_cast< Mezzanine::Boole >(val2);
   result = Mezzanine::StringTools::ConvertToString((Input::InputCode const &)*arg1,arg2);
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   return vresult;
@@ -51831,7 +51831,7 @@ fail:
     "    Mezzanine::String convert_to_string(Mezzanine::Vector3 const &ToConvert)\n"
     "    Mezzanine::String convert_to_string(Mezzanine::Quaternion const &ToConvert)\n"
     "    Mezzanine::String convert_to_string(Mezzanine::ColourValue const &ToConvert)\n"
-    "    Mezzanine::String convert_to_string(Input::InputCode const &Code, Mezzanine::Boolean ShiftPressed)\n");
+    "    Mezzanine::String convert_to_string(Input::InputCode const &Code, Mezzanine::Boole ShiftPressed)\n");
   
   return Qnil;
 }
@@ -52135,7 +52135,7 @@ _wrap_Timer_is_stopped(int argc, VALUE *argv, VALUE self) {
   Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -52146,7 +52146,7 @@ _wrap_Timer_is_stopped(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::Timer *","IsStopped", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::Timer * >(argp1);
-  result = (Mezzanine::Boolean)(arg1)->IsStopped();
+  result = (Mezzanine::Boole)(arg1)->IsStopped();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -52240,7 +52240,7 @@ _wrap_GoalTimer_get_auto_reset(int argc, VALUE *argv, VALUE self) {
   Mezzanine::GoalTimer *arg1 = (Mezzanine::GoalTimer *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  Mezzanine::Boolean result;
+  Mezzanine::Boole result;
   VALUE vresult = Qnil;
   
   if ((argc < 0) || (argc > 0)) {
@@ -52251,7 +52251,7 @@ _wrap_GoalTimer_get_auto_reset(int argc, VALUE *argv, VALUE self) {
     SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "Mezzanine::GoalTimer const *","GetAutoReset", 1, self )); 
   }
   arg1 = reinterpret_cast< Mezzanine::GoalTimer * >(argp1);
-  result = (Mezzanine::Boolean)((Mezzanine::GoalTimer const *)arg1)->GetAutoReset();
+  result = (Mezzanine::Boole)((Mezzanine::GoalTimer const *)arg1)->GetAutoReset();
   vresult = SWIG_From_bool(static_cast< bool >(result));
   return vresult;
 fail:
@@ -53187,7 +53187,7 @@ static swig_type_info _swigt__p_SlotIterator = {"_p_SlotIterator", "SlotIterator
 static swig_type_info _swigt__p_SlotPair = {"_p_SlotPair", "SlotPair *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Threading__DefaultThreadSpecificStorage__Type = {"_p_Threading__DefaultThreadSpecificStorage__Type", "Threading::DefaultThreadSpecificStorage::Type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_XML__Node = {"_p_XML__Node", "XML::Node *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_bool = {"_p_bool", "bool *|Mezzanine::Boolean *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_bool = {"_p_bool", "bool *|Mezzanine::Boole *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btQuaternion = {"_p_btQuaternion", "btQuaternion *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btTransform = {"_p_btTransform", "btTransform *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btVector3 = {"_p_btVector3", "btVector3 *", 0, 0, (void*)0, 0};

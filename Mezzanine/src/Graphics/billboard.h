@@ -77,12 +77,12 @@ namespace Mezzanine
 
             /// @brief Gets whether or not this billboard has had it's dimensions individually configured.
             /// @return Returns true if this billboard has had it's dimensions manually altered, false otherwise.
-            Boolean HasOwnDimensions() const;
+            Boole HasOwnDimensions() const;
             /// @brief Resets whatever dimensions are on this billboard to the default provided to the parent BillboardSetProxy.
             void ResetDimensions();
             /// @brief Gets whether or not this billboard is using custom texture coordinates.
             /// @return Returns true if custom texture coordinates have been set for this billboard, false otherwise.
-            Boolean IsUsingTextureCoordRect() const;
+            Boole IsUsingTextureCoordRect() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Billboard Properties

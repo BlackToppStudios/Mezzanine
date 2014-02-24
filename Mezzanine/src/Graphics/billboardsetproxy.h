@@ -129,17 +129,17 @@ namespace Mezzanine
             // BillboardSet Properties
 
             /// @brief Sets whether or not this BillboardSetProxy will increase the size of it's billboard pool automatically when it's limit is reached.
-            /// @param AutoExtend A Boolean indicating whether or not this proxy is allowed to resize it's own billboard pool.
-            virtual void SetAutoExtend(const Boolean AutoExtend);
+            /// @param AutoExtend A Boole indicating whether or not this proxy is allowed to resize it's own billboard pool.
+            virtual void SetAutoExtend(const Boole AutoExtend);
             /// @brief Gets whether or not this BillboardSetProxy will increase the size of it's billboard pool automatically when it's limit is reached.
             /// @return Returns true if the billboard pool will automatically be resized when it reaches it's limit, false otherwise.
-            virtual Boolean GetAutoExtend() const;
+            virtual Boole GetAutoExtend() const;
             /// @brief Sets whether direction vectors will be calculated using a more expensive but more accurate algorithm.
             /// @param AccFace True to increase accuracy of billboard directions, false for the more efficient method.
-            virtual void SetAccurateFacing(const Boolean AccFace);
+            virtual void SetAccurateFacing(const Boole AccFace);
             /// @brief Gets whether direction vectors are being calculated using a more expensive but more accurate algorithm.
             /// @return Returns true if this BillboardSetProxy is using the more accurate and more expensive method for directional vectors, false otherwise.
-            virtual Boolean GetAccurateFacing() const;
+            virtual Boole GetAccurateFacing() const;
             /// @brief Sets a new size of the billboard pool in this set.
             /// @param Size The size the billboard pool in this set should be resized to.
             virtual void SetPoolSize(const UInt32 Size);

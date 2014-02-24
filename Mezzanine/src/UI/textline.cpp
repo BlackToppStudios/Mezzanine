@@ -226,7 +226,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Character Management
 
-        Boolean TextLine::AppendCharacter(Character* ToAdd, const Real MaxWidth)
+        Boole TextLine::AppendCharacter(Character* ToAdd, const Real MaxWidth)
         {
             CharacterIterator Last = this->GetLastCharacter();
             Real CharAdvance = ToAdd->GetCharacterAdvance( Last != this->Characters.end() ? (*Last)->GetCharGlyph() : NULL );
@@ -243,10 +243,10 @@ namespace Mezzanine
             return false;
         }
 
-        Boolean TextLine::AppendCharacters(TextLine::CharacterContainer& ToAdd, const Real MaxWidth)
+        Boole TextLine::AppendCharacters(TextLine::CharacterContainer& ToAdd, const Real MaxWidth)
             { return this->AppendCharacters(ToAdd.begin(),ToAdd.end(),MaxWidth); }
 
-        Boolean TextLine::AppendCharacters(TextLine::CharacterIteratorPair Pair, const Real MaxWidth)
+        Boole TextLine::AppendCharacters(TextLine::CharacterIteratorPair Pair, const Real MaxWidth)
             { return this->AppendCharacters(Pair.first,Pair.second,MaxWidth); }
 
         TextLine::CharacterIterator TextLine::AppendFittingCharacters(TextLine::CharacterContainer& ToAdd, const Real MaxWidth)
@@ -369,7 +369,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Character Management
 
-        Boolean LeftToRightTextLine::AppendCharacters(TextLine::CharacterIterator First, TextLine::CharacterIterator Last, const Real MaxWidth)
+        Boole LeftToRightTextLine::AppendCharacters(TextLine::CharacterIterator First, TextLine::CharacterIterator Last, const Real MaxWidth)
         {
             if( First == Last )
                 return false;
@@ -514,7 +514,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Character Management
 
-        Boolean RightToLeftTextLine::AppendCharacters(TextLine::CharacterIterator First, TextLine::CharacterIterator Last, const Real MaxWidth)
+        Boole RightToLeftTextLine::AppendCharacters(TextLine::CharacterIterator First, TextLine::CharacterIterator Last, const Real MaxWidth)
         {
             if( First == Last )
                 return false;

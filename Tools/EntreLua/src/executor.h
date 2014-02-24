@@ -52,9 +52,9 @@ struct ExecutionResults
     /// @brief The Results the REPL should display.
     Mezzanine::String Output;
     /// @brief Should the REPL quit.
-    Mezzanine::Boolean Quit;
+    Mezzanine::Boole Quit;
     /// @brief Should this be part of a multiline continuation?
-    Mezzanine::Boolean Multiline;
+    Mezzanine::Boole Multiline;
     /// @brief What did the executed script return?
     std::vector<Mezzanine::String> Returns;
 
@@ -62,8 +62,8 @@ struct ExecutionResults
     /// @param DesiredOutput What does the language think the REPL should print
     /// @param Exit Does the executor think the REPL shold Quit.
     ExecutionResults(const Mezzanine::String& DesiredOutput="",
-                     Mezzanine::Boolean Exit = false,
-                     Mezzanine::Boolean MultilineContinuation = false)
+                     Mezzanine::Boole Exit = false,
+                     Mezzanine::Boole MultilineContinuation = false)
         : Output(DesiredOutput),
           Quit(Exit),
           Multiline(MultilineContinuation)
@@ -77,12 +77,12 @@ class Executor
         /// @brief The actual Lua intrepretter
         Mezzanine::Scripting::Lua::Lua51ScriptingEngine& LuaEngine;
         /// @brief Should troublshooting stack counts be displayed
-        Mezzanine::Boolean StackCounts;
+        Mezzanine::Boole StackCounts;
 
     public:
         /// @brief Initializing constructor
         /// @param TargetExecutor A Lua sript command interpretter that the commands will be executed against.
-        Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::Boolean DisplayStackCounts=false);
+        Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::Boole DisplayStackCounts=false);
 
         /// @brief Actually Do one command line worth of stuff.
         /// @param CommandLine A string of lua or commands to execute.

@@ -129,7 +129,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Effect Handling
 
-            Boolean EffectsHandler::IsEffectSupported(const EffectType Type) const
+            Boole EffectsHandler::IsEffectSupported(const EffectType Type) const
             {
                 if( this->EFX->Supported == false )
                     return false;
@@ -138,7 +138,7 @@ namespace Mezzanine
                 EFX->alGenEffects(1,&EffectID);
                 EFX->alEffecti(EffectID,AL_EFFECT_TYPE,ConvertEffectType(Type));
 
-                Boolean Success = (alGetError() == AL_NO_ERROR);
+                Boole Success = (alGetError() == AL_NO_ERROR);
                 EFX->alDeleteEffects(1,&EffectID);
                 return Success;
             }
@@ -188,7 +188,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Filter Handling
 
-            Boolean EffectsHandler::IsFilterSupported(const FilterType Type) const
+            Boole EffectsHandler::IsFilterSupported(const FilterType Type) const
             {
                 if( this->EFX->Supported == false )
                     return false;
@@ -197,7 +197,7 @@ namespace Mezzanine
                 EFX->alGenFilters(1,&FilterID);
                 EFX->alFilteri(FilterID,AL_FILTER_TYPE,ConvertFilterType(Type));
 
-                Boolean Success = (alGetError() == AL_NO_ERROR);
+                Boole Success = (alGetError() == AL_NO_ERROR);
                 EFX->alDeleteFilters(1,&FilterID);
                 return Success;
             }
@@ -247,7 +247,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Preset Handling
 
-            Boolean EffectsHandler::EffectPresetExists(const EffectType Type, const String& Name)
+            Boole EffectsHandler::EffectPresetExists(const EffectType Type, const String& Name)
             {
                 switch(Type)
                 {

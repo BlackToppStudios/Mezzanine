@@ -102,7 +102,7 @@ namespace Mezzanine
             this->ProtoDeSerializeEvents(SelfRoot);
         }
 
-        Boolean Widget::HandleInputImpl(const Input::MetaCode& Code)
+        Boole Widget::HandleInputImpl(const Input::MetaCode& Code)
         {
             return false;
         }
@@ -144,13 +144,13 @@ namespace Mezzanine
         const String& Widget::GetTypeName() const
             { return Widget::TypeName; }
 
-        Boolean Widget::IsHovered() const
+        Boole Widget::IsHovered() const
             { return (this->State & WS_Hovered); }
 
-        Boolean Widget::HasFocus() const
+        Boole Widget::HasFocus() const
             { return (this->State & WS_Focused); }
 
-        Boolean Widget::IsDragged() const
+        Boole Widget::IsDragged() const
             { return (this->State & WS_Dragged); }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -168,7 +168,7 @@ namespace Mezzanine
             else return NULL;
         }
 
-        Boolean Widget::SetGroupFromState(const UInt32 BindState)
+        Boole Widget::SetGroupFromState(const UInt32 BindState)
         {
             StateLayerGroupIterator It = this->StateGroupBindings.find(BindState);
             if( It != this->StateGroupBindings.end() )
@@ -196,7 +196,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
-        void Widget::SetVisible(Boolean CanSee)
+        void Widget::SetVisible(Boole CanSee)
         {
             if( this->Visible != CanSee ) {
                 if(CanSee)
@@ -211,12 +211,12 @@ namespace Mezzanine
             }
         }
 
-        Boolean Widget::GetVisible() const
+        Boole Widget::GetVisible() const
         {
             return this->Visible;
         }
 
-        Boolean Widget::IsVisible() const
+        Boole Widget::IsVisible() const
         {
             if( this->ParentQuad ) {
                 return this->Visible && this->ParentQuad->IsVisible();
@@ -515,7 +515,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        Boolean Widget::_HandleInput(const Input::MetaCode& Code)
+        Boole Widget::_HandleInput(const Input::MetaCode& Code)
         {
             if( this->HandleInputImpl(Code) ) {
                 return true;

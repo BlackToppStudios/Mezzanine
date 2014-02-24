@@ -107,7 +107,7 @@ namespace Mezzanine
             return Results;
         }
 
-        Boolean GearConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+        Boole GearConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
         {
             return false;
         }

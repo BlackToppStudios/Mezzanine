@@ -121,7 +121,7 @@ namespace Mezzanine
         void EditBox::CreateLayoutStrat()
             { this->LayoutStrat = NULL; }
 
-        Boolean EditBox::HandleInputImpl(const Input::MetaCode& Code)
+        Boole EditBox::HandleInputImpl(const Input::MetaCode& Code)
         {
             // Verify we can consume inputs.
             if( this->IsCurrentlyEditing() ) {
@@ -233,7 +233,7 @@ namespace Mezzanine
         const String& EditBox::GetTypeName() const
             { return EditBox::TypeName; }
 
-        Boolean EditBox::IsCurrentlyEditing() const
+        Boole EditBox::IsCurrentlyEditing() const
         {
             TextLayer* EditLayer = this->GetEditLayer();
             if( EditLayer != NULL ) {
@@ -263,7 +263,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // EditBox Properties
 
-        void EditBox::SetEditingEnabled(Boolean Enable)
+        void EditBox::SetEditingEnabled(Boole Enable)
         {
             if( this->EditingEnabled != Enable ) {
                 this->EditingEnabled = Enable;
@@ -271,7 +271,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean EditBox::GetEditingEnabled() const
+        Boole EditBox::GetEditingEnabled() const
             { return this->EditingEnabled; }
 
         ///////////////////////////////////////////////////////////////////////////////

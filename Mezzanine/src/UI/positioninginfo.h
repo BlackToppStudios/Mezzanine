@@ -99,12 +99,12 @@ namespace Mezzanine
             /// @brief Equality comparison operator.
             /// @param Other The other PositioningInfo to compare to.
             /// @return Returns true if these PositioningInfo's are equal, false otherwise.
-            inline Boolean operator==(const PositioningInfo& Other) const
+            inline Boole operator==(const PositioningInfo& Other) const
                 { return this->UPosition == Other.UPosition && this->PositionRules == Other.PositionRules; }
             /// @brief Inequality comparison operator.
             /// @param Other The other PositioningInfo to compare to.
             /// @return Returns true if these PositioningInfo's are not equal, false otherwise.
-            inline Boolean operator!=(const PositioningInfo& Other) const
+            inline Boole operator!=(const PositioningInfo& Other) const
                 { return this->UPosition != Other.UPosition || this->PositionRules != Other.PositionRules; }
 
             ///////////////////////////////////////////////////////////////////////////////

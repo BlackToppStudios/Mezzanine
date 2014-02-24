@@ -319,58 +319,58 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Checks
 
-        Boolean MetaCode::IsKeyboardButton() const
+        Boole MetaCode::IsKeyboardButton() const
             { return (Input::KEY_FIRST <= this->Code && Input::KEY_LAST >= this->Code); }
 
-        Boolean MetaCode::IsMouseButton() const
+        Boole MetaCode::IsMouseButton() const
             { return (Input::MOUSEBUTTON_FIRST <= this->Code && Input::MOUSEBUTTON_LAST >= this->Code); }
 
-        Boolean MetaCode::IsControllerButton() const
+        Boole MetaCode::IsControllerButton() const
             { return (Input::CONTROLLERBUTTON_FIRST <= this->Code && Input::CONTROLLERBUTTON_LAST >= this->Code); }
 
-        Boolean MetaCode::IsDeviceButton() const
+        Boole MetaCode::IsDeviceButton() const
             { return (this->IsKeyboardButton() || this->IsMouseButton() || this->IsControllerButton()); }
 
-        Boolean MetaCode::IsKeyboardEvent() const
+        Boole MetaCode::IsKeyboardEvent() const
             { return this->IsKeyboardButton(); }
 
-        Boolean MetaCode::IsMouseEvent() const
+        Boole MetaCode::IsMouseEvent() const
             { return (Input::MOUSE_FIRST <= this->Code && Input::MOUSE_LAST >= this->Code) || this->IsMouseMultiClickEvent(); }
 
-        Boolean MetaCode::IsMouseMotionEvent() const
+        Boole MetaCode::IsMouseMotionEvent() const
             { return (Input::MOUSEMOTION_FIRST <= this->Code && Input::MOUSEMOTION_LAST && this->Code); }
 
-        Boolean MetaCode::IsMouseMultiClickEvent() const
+        Boole MetaCode::IsMouseMultiClickEvent() const
             { return (Input::COMPOUNDINPUT_MOUSEMULTICLICKFIRST <= this->Code && Input::COMPOUNDINPUT_MOUSEMULTICLICKLAST >= this->Code); }
 
-        Boolean MetaCode::IsMultitouchEvent() const
+        Boole MetaCode::IsMultitouchEvent() const
             { return (Input::MULTITOUCH_FIRST <= this->Code && Input::MULTITOUCH_LAST >= this->Code); }
 
-        Boolean MetaCode::IsControllerEvent() const
+        Boole MetaCode::IsControllerEvent() const
             { return (Input::CONTROLLER_FIRST <= this->Code && Input::CONTROLLER_LAST >= this->Code); }
 
-        Boolean MetaCode::IsControllerAxisEvent() const
+        Boole MetaCode::IsControllerAxisEvent() const
             { return (Input::CONTROLLERAXIS_FIRST <= this->Code && Input::CONTROLLERAXIS_LAST >= this->Code); }
 
-        Boolean MetaCode::IsControllerHatEvent() const
+        Boole MetaCode::IsControllerHatEvent() const
             { return (Input::CONTROLLERHAT_FIRST <= this->Code && Input::CONTROLLERHAT_LAST >= this->Code); }
 
-        Boolean MetaCode::IsInputEvent() const
+        Boole MetaCode::IsInputEvent() const
             { return (Input::INPUTEVENT_FIRST <= this->Code && Input::INPUTEVENT_LAST >= this->Code); }
 
-        Boolean MetaCode::IsAltKey() const
+        Boole MetaCode::IsAltKey() const
             { return (Input::KEY_LALT == this->Code || Input::KEY_RALT == this->Code); }
 
-        Boolean MetaCode::IsCtrlKey() const
+        Boole MetaCode::IsCtrlKey() const
             { return (Input::KEY_LCTRL == this->Code || Input::KEY_RCTRL == this->Code); }
 
-        Boolean MetaCode::IsShiftKey() const
+        Boole MetaCode::IsShiftKey() const
             { return (Input::KEY_LSHIFT == this->Code || Input::KEY_RSHIFT == this->Code); }
 
-        Boolean MetaCode::IsSuperKey() const
+        Boole MetaCode::IsSuperKey() const
             { return (Input::KEY_LSUPER == this->Code || Input::KEY_RSUPER == this->Code); }
 
-        Boolean MetaCode::IsPollable() const
+        Boole MetaCode::IsPollable() const
             { return ( this->IsDeviceButton() ); }
 
         Input::InputDevice MetaCode::GetDeviceType() const
@@ -393,24 +393,24 @@ namespace Mezzanine
             return *this;
         }
 
-        Boolean MetaCode::operator==(const MetaCode& Other) const
+        Boole MetaCode::operator==(const MetaCode& Other) const
         {
             return (this->Code == Other.Code &&
                     this->MetaValue == Other.MetaValue &&
                     this->DeviceIndex == Other.DeviceIndex);
         }
 
-        Boolean MetaCode::operator!=(const MetaCode& Other) const
+        Boole MetaCode::operator!=(const MetaCode& Other) const
         {
             return (this->Code != Other.Code ||
                     this->MetaValue != Other.MetaValue ||
                     this->DeviceIndex != Other.DeviceIndex);
         }
 
-        Boolean MetaCode::operator<(const MetaCode& Other) const
+        Boole MetaCode::operator<(const MetaCode& Other) const
             { return (this->Code < Other.Code); }
 
-        Boolean MetaCode::operator>(const MetaCode& Other) const
+        Boole MetaCode::operator>(const MetaCode& Other) const
             { return (this->Code > Other.Code); }
 
         void MetaCode::ProtoSerialize(XML::Node& CurrentRoot) const

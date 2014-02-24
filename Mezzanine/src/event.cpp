@@ -80,7 +80,7 @@ namespace Mezzanine
         return NewSlot;
     }
 
-    EventSubscriberSlot* Event::Subscribe(EventSlotFunctorDefinition* Funct, Boolean CleanUpAfter)
+    EventSubscriberSlot* Event::Subscribe(EventSlotFunctorDefinition* Funct, Boole CleanUpAfter)
     {
         for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
         {

@@ -90,14 +90,14 @@ namespace Mezzanine
             /// @param QuaternionA Relative rotation from ProxyA.
             /// @param QuaternionB Relative rotation from ProxyB.
             /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
-            Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boolean UseLinearReferenceA = false);
+            Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boole UseLinearReferenceA = false);
             /// @brief Two proxy Terse constructor.
             /// @param ProxyA The First proxy to be bound.
             /// @param ProxyB  The Second proxy to be bound.
             /// @param TransformA The offset and rotation from ProxyAs center of gravity to get to match an offset from ProxyB.
             /// @param TransformB The offset and rotation from ProxyBs center of gravity.
             /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
-            Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boolean UseLinearReferenceA = false);
+            Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boole UseLinearReferenceA = false);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Generic6DofSpringConstraint();
@@ -161,8 +161,8 @@ namespace Mezzanine
             virtual void SetSpringDamping(int Index, Real Damping);
             /// @brief Set the spring's enabled status on a given axis.
             /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
-            /// @param Enable A Boolean with the spring's enabled status.
-            virtual void SetSpringEnabled(int Index, Boolean Enable);
+            /// @param Enable A Boole with the spring's enabled status.
+            virtual void SetSpringEnabled(int Index, Boole Enable);
 
             /// @brief Retrieve the Stiffness of the spring on the given axis
             /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
@@ -174,8 +174,8 @@ namespace Mezzanine
             virtual Real GetSpringDamping(int Index) const;
             /// @brief Retrieve the EnabledStatus of the spring on the given axis
             /// @param Index The Desired axis. This accepts 0,1,2 for Linear X,Y, and Z or 3,4,5 for Angular X,Y, and Z. This can also accept Item from this classes Usable Axis enum;
-            /// @return A Boolean with the requested value.
-            virtual Boolean GetSpringEnabled(int Index) const;
+            /// @return A Boole with the requested value.
+            virtual Boole GetSpringEnabled(int Index) const;
 
             ////////////////////////////////////////////////////////////////////////////////
             // Generic6DofSpringConstraint Calculated Items

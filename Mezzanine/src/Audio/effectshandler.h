@@ -72,7 +72,7 @@ namespace Mezzanine
             /// @brief Checks to see if the given effect type is supported.
             /// @param Type The effect type to be checked.
             /// @return Returns true if the effect is supported, false if the effect isn't supported.
-            virtual Boolean IsEffectSupported(const EffectType Type) const = 0;
+            virtual Boole IsEffectSupported(const EffectType Type) const = 0;
             /// @brief Creates an Audio Effect for use with Audio::Sound instances.
             /// @return Returns a pointer to the created Effect, or NULL if there was an error.
             virtual iEffect* CreateEffect() = 0;
@@ -95,7 +95,7 @@ namespace Mezzanine
             /// @brief Checks to see if the given filter type is supported.
             /// @param Type The filter type to be checked.
             /// @return Returns true if the filter is supported, false if the filter isn't supported.
-            virtual Boolean IsFilterSupported(const FilterType Type) const = 0;
+            virtual Boole IsFilterSupported(const FilterType Type) const = 0;
             /// @brief Creates an Audio Filter for use with @ref iSound instances.
             /// @return Returns a pointer to the created Filter, or NULL if there was an error.
             virtual iFilter* CreateFilter() = 0;
@@ -119,7 +119,7 @@ namespace Mezzanine
             /// @param Type The effect type to be checked.
             /// @param Name The name of the preset to check for.
             /// @return True if it exists, false if not.
-            virtual Boolean EffectPresetExists(const EffectType Type, const String& Name) = 0;
+            virtual Boole EffectPresetExists(const EffectType Type, const String& Name) = 0;
             /// @brief Removes a previously registered effect preset.
             /// @param Type The type of effect to remove.
             /// @param Name The name of the preset to remove.

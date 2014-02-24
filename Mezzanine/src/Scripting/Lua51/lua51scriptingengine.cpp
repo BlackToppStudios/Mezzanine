@@ -460,7 +460,7 @@ namespace Mezzanine
                     { OpenMezzanineThreadingSafeLibrary(); }
             }
 
-            Boolean Lua51ScriptingEngine::IsLibraryOpen(Lua51Libraries LibToCheck)
+            Boole Lua51ScriptingEngine::IsLibraryOpen(Lua51Libraries LibToCheck)
             {
                 lua_getglobal(State, GetTableName(LibToCheck).c_str());
                 if (lua_istable(State, -1))
@@ -617,7 +617,7 @@ namespace Mezzanine
 
                 if(LUA_TBOOLEAN==lua_type(State,Top))
                 {
-                    Returns += " Boolean:";
+                    Returns += " Boole:";
                     Returns += ToString(lua_toboolean(State,Top));
                     lua_pop(State,1);
                     return tests(Returns);

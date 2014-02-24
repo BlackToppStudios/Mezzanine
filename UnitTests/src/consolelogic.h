@@ -67,7 +67,7 @@ namespace Mezzanine
         ///     -  "Cancel" as "Canceled"
         ///     -  "Unsure", "Inconclusive" as Inconclusive
         /// @return Depends on users input
-        TestResult GetTestAnswerFromStdin(Mezzanine::String Question, Boolean FailStatusOnIncorrect = true);
+        TestResult GetTestAnswerFromStdin(Mezzanine::String Question, Boole FailStatusOnIncorrect = true);
 
     }// Testing
 }// Mezzanine

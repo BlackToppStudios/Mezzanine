@@ -132,28 +132,28 @@ namespace Mezzanine
             MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to switch to song not contained within the current Playlist.");
         }
 
-        Boolean MusicPlayer::IsPlaying() const
+        Boole MusicPlayer::IsPlaying() const
             { return this->CurrTrack->IsPlaying(); }
 
-        Boolean MusicPlayer::IsStopped() const
+        Boole MusicPlayer::IsStopped() const
             { return this->CurrTrack->IsStopped(); }
 
-        Boolean MusicPlayer::IsPaused() const
+        Boole MusicPlayer::IsPaused() const
             { return this->CurrTrack->IsPaused(); }
 
-        Boolean MusicPlayer::ContainsSong(iSound* Track) const
+        Boole MusicPlayer::ContainsSong(iSound* Track) const
             { return this->MusicPlaylist->ContainsSound(Track); }
 
-        void MusicPlayer::SetPlaylistRepeat(Boolean Repeat)
+        void MusicPlayer::SetPlaylistRepeat(Boole Repeat)
             { this->EOPRepeat = Repeat; }
 
-        Boolean MusicPlayer::GetPlaylistRepeat() const
+        Boole MusicPlayer::GetPlaylistRepeat() const
             { return this->EOPRepeat; }
 
-        void MusicPlayer::SetPlaylistShuffle(Boolean Shuffle)
+        void MusicPlayer::SetPlaylistShuffle(Boole Shuffle)
             { this->EOPShuffle = Shuffle; }
 
-        Boolean MusicPlayer::GetPlaylistShuffle() const
+        Boole MusicPlayer::GetPlaylistShuffle() const
             { return this->EOPShuffle; }
 
         Playlist* MusicPlayer::GetPlaylist() const

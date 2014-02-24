@@ -67,7 +67,7 @@ namespace Mezzanine
 
             /// @brief Gets whether or not this filter is ready to be used.
             /// @return Returns true if this filter is ready for use, or false if there is an error.
-            virtual Boolean IsValid() const = 0;
+            virtual Boole IsValid() const = 0;
 
             /// @brief Sets the type of filter this is.
             /// @param FilType The type of filter to set this as.  See enum @ref FilterType for more information.

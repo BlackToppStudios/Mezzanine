@@ -107,26 +107,26 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
-        Boolean CheckBox::IsSelected()
+        Boole CheckBox::IsSelected()
         {
             return (this->State & WS_Selected);
         }
 
-        Boolean CheckBox::IsLocked()
+        Boole CheckBox::IsLocked()
         {
             return this->SelectLock;
         }
 
-        void CheckBox::ManualSelect(Boolean Select)
+        void CheckBox::ManualSelect(Boole Select)
         {
             if( this->IsSelected() != Select ) {
-                Boolean NewState = !this->IsSelected();
+                Boole NewState = !this->IsSelected();
                 if( NewState ) this->_OnSelected();
                 else this->_OnDeselected();
             }
         }
 
-        void CheckBox::SetSelectLock(Boolean Lock)
+        void CheckBox::SetSelectLock(Boole Lock)
         {
             this->SelectLock = Lock;
         }
@@ -193,7 +193,7 @@ namespace Mezzanine
             this->Button::_OnDeactivate();
 
             if( this->IsHovered() && !this->SelectLock ) {
-                Boolean NewState = !this->IsSelected();
+                Boole NewState = !this->IsSelected();
                 if( NewState ) this->_OnSelected();
                 else this->_OnDeselected();
             }

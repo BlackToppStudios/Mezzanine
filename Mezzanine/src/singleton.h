@@ -98,7 +98,7 @@ namespace Mezzanine
             }
             /// @brief Checks to see if the singleton pointer is valid.
             /// @return Returns true if the singleton is valid, false otherwise.
-            static Boolean SingletonValid()
+            static Boole SingletonValid()
             {
                 return SingletonPtr != NULL;
             }

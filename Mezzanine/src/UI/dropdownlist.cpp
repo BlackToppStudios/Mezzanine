@@ -175,7 +175,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
-        void DropDownList::SetVisible(Boolean CanSee)
+        void DropDownList::SetVisible(Boole CanSee)
         {
             if( CanSee ) {
                 if( this->ListToggle->IsSelected() ) {

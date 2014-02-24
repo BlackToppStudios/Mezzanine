@@ -165,7 +165,7 @@ namespace Mezzanine
             Entresol::GetSingletonPtr()->GetLogStream() << "Entering OgreDataStreamBuf::xsgetn(char* s=" << Toint(s) << ", std::streamsize n=" << n << ")";
             #endif
 
-            Boolean Fail=false;
+            Boole Fail=false;
             Whole Current = this->GetCurrentLocation();
             Whole Destination = Current+n;
             Whole HowManyToRead=0;
@@ -367,7 +367,7 @@ namespace Mezzanine
             this->setg(BeginPtr, BeginPtr+BackFill, BeginPtr+BufferSize);
         }
 
-        Boolean OgreDataStreamBuf::CheckInternalBuffer(const streampos& BeginPoint, const streampos& EndPoint)
+        Boole OgreDataStreamBuf::CheckInternalBuffer(const streampos& BeginPoint, const streampos& EndPoint)
         {
             #ifdef MEZZDEBUG
             Entresol::GetSingletonPtr()->GetLogStream() << "Entering OgreDataStreamBuf::CheckInternalBuffer( streampos " << BeginPoint << ", streampos " << EndPoint << " )";
@@ -428,7 +428,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean OgreDataStreamBuf::CheckStream(const Whole& BeginPoint, const Whole& EndPoint)
+        Boole OgreDataStreamBuf::CheckStream(const Whole& BeginPoint, const Whole& EndPoint)
         {
             #ifdef MEZZDEBUG
             Entresol::GetSingletonPtr()->GetLogStream() << "Entering OgreDataStreamBuf::CheckStream( Whole " << BeginPoint << ", Whole " << EndPoint << " )" ;
@@ -456,12 +456,12 @@ namespace Mezzanine
             }
         }
 
-        Boolean OgreDataStreamBuf::Readable()
+        Boole OgreDataStreamBuf::Readable()
         {
             return this->OgreStream->isReadable();
         }
 
-        Boolean OgreDataStreamBuf::Writeable()
+        Boole OgreDataStreamBuf::Writeable()
         {
             return this->OgreStream->isWriteable();
         }

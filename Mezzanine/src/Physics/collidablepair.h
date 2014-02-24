@@ -80,7 +80,7 @@ namespace Mezzanine
             /// @brief Checks to see if this pair is the same as another pair.
             /// @param Pair The other pair to compare against.
             /// @return Returns true if the pairs match regardless of ordering, false otherwise.
-            virtual Boolean PairsMatch(const CollidablePair& Pair) const;
+            virtual Boole PairsMatch(const CollidablePair& Pair) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Operators
@@ -88,17 +88,17 @@ namespace Mezzanine
             /// @brief Checks to see if this pair is the same as another pair.
             /// @param Pair The other pair to compare against.
             /// @return Returns true if the pairs match regardless of ordering, false otherwise.
-            virtual Boolean operator==(const CollidablePair& Pair) const;
+            virtual Boole operator==(const CollidablePair& Pair) const;
             /// @brief Checks to see if this pair is less than another pair.
             /// @remarks This check is based on combining the names of the objects and performing a std::string::compare on them.
             /// @param Pair The other pair to compare against.
             /// @return Returns true if this pair is found to be less then the passed in pair, false otherwise.
-            virtual Boolean operator<(const CollidablePair& Pair) const;
+            virtual Boole operator<(const CollidablePair& Pair) const;
             /// @brief Checks to see if this pair is greater than another pair.
             /// @remarks This check is based on combining the names of the objects and performing a std::string::compare on them.
             /// @param Pair The other pair to compare against.
             /// @return Returns true if this pair is found to be greater then the passed in pair, false otherwise.
-            virtual Boolean operator>(const CollidablePair& Pair) const;
+            virtual Boole operator>(const CollidablePair& Pair) const;
         };// CollidablePair
     }//Physics
 }//Mezzanine

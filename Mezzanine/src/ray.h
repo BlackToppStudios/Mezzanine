@@ -62,10 +62,10 @@ namespace Mezzanine
     public:
         /// @brief This is a type used for the ray intersection tests performed on Planes.
         /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boolean,Vector3> PlaneRayTestResult;
+        typedef std::pair<Boole,Vector3> PlaneRayTestResult;
         /// @brief This is a type used for the return of a ray intersection test.
         /// @details This type provides more verbose return data that can be used for further tests.
-        typedef std::pair<Boolean,Ray> GeometryRayTestResult;
+        typedef std::pair<Boole,Ray> GeometryRayTestResult;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Public Data Members
@@ -179,11 +179,11 @@ namespace Mezzanine
         /// @brief Equality operator.
         /// @param Other The other Ray to compare with.
         /// @return Returns true if this Ray is the same as the other provided Ray, false otherwise.
-        Boolean operator==(const Ray& Other) const;
+        Boole operator==(const Ray& Other) const;
         /// @brief Inequality operator.
         /// @param Other The other Ray to compare with.
         /// @return Returns true if this Ray is not the same as the other provided Ray, false otherwise.
-        Boolean operator!=(const Ray& Other) const;
+        Boole operator!=(const Ray& Other) const;
     };//Ray
 }//Mezzanine
 
