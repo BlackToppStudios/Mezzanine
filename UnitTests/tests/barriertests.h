@@ -66,9 +66,8 @@ void BarrierTestHelper(void* ThreadID)
 {
     Int32 Position = (*((Int32*)ThreadID)); // The place to get data from
     BarrierData1[Position] *= 2;
-    Position=(Position+1)%4; // the place to write data to
     TestBarrier.Wait();
-    BarrierData2[Position]=BarrierData1[Position];
+    BarrierData2[Position]=BarrierData1[0]+BarrierData1[1]+BarrierData1[2]+BarrierData1[3];
 }
 
 /// @brief Tests for the WorkUnit class
@@ -85,7 +84,7 @@ class barriertests : public UnitTestGroup
         {
             TestOutput << "Testing Basic Thread Barrier functionality." << endl
                  << "This Threads id: " <<  Mezzanine::Threading::this_thread::get_id() << endl
-                 << "A group of data has been populated with 5,10,15 and 20, this should be doubled and copied into a new field of data and will be done by 4 threads. Each thread will be indexed, and will adjust the data from some other thread then synchronize and copy its own data." << endl;
+                 << "A group of data has been populated with 5,10,15 and 20, this should be doubled and then the total of this place into a new field of data and will be done by 4 threads." << endl;
 
             Int32 One = 0;
             Int32 Two = 1;
@@ -109,10 +108,16 @@ class barriertests : public UnitTestGroup
             T3.join();
             T4.join();
 
-            TEST(10==BarrierData2[0], "BarrierThread1")
-            TEST(20==BarrierData2[1], "BarrierThread2")
-            TEST(30==BarrierData2[2], "BarrierThread3")
-            TEST(40==BarrierData2[3], "BarrierThread4")
+            TestOutput << "Each thread should have 100, here is what they have:" << endl
+                       << "1 - " << BarrierData2[0] << endl
+                       << "2 - " << BarrierData2[1] << endl
+                       << "3 - " << BarrierData2[2] << endl
+                       << "4 - " << BarrierData2[3] << endl;
+
+            TEST(100==BarrierData2[0], "BarrierThread1")
+            TEST(100==BarrierData2[1], "BarrierThread2")
+            TEST(100==BarrierData2[2], "BarrierThread3")
+            TEST(100==BarrierData2[3], "BarrierThread4")
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

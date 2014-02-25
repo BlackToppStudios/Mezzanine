@@ -43,6 +43,8 @@
 
 #include "barrier.h"
 
+#include <cassert>
+
 /// @file
 /// @brief Contains the implementation for the @ref Mezzanine::Threading::Barrier Barrier synchronization object.
 
@@ -50,18 +52,31 @@ namespace Mezzanine
 {
     namespace Threading
     {
-        Barrier::Barrier (const Int32& SynchThreadCount) : ThreadGoal (SynchThreadCount), ThreadCurrent (0) {}
+        Barrier::Barrier (const Int32& SynchThreadCount)
+                        : ThreadGoal (SynchThreadCount),
+                          IsBlocking(1),
+                          ThreadCurrent (0)
+        {}
 
         bool Barrier::Wait()
         {
-            if (AtomicAdd(&ThreadCurrent,1) == ThreadGoal)
+            if(0==AtomicAdd(&IsBlocking,0)) // is a barrier breaking right now
+                { return false; }
+
+            if (AtomicAdd(&ThreadCurrent,1) >= ThreadGoal-1) //
             {
-                while(0!=AtomicAdd(&ThreadCurrent,0));
+                while(0!=AtomicCompareAndSwap32(&ThreadGoal,ThreadGoal,0));
+                AtomicAdd(&IsBlocking,-1);
+                assert(IsBlocking==0);
                 return true;
             }
             else
             {
-                while (ThreadCurrent < ThreadGoal && ThreadCurrent != 0); // intentionally spinning
+                while (AtomicAdd(&IsBlocking,0)); // intentionally spinning
+
+                if(1==AtomicAdd(&ThreadCurrent,-1))
+                    { AtomicAdd(&IsBlocking,1); }
+
                 return false;
             }
         }
