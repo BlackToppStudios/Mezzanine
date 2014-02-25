@@ -124,7 +124,7 @@ namespace Mezzanine
                     }
 
                     // Set up the data for the range of expanding children
-                    Real YPos = ( PrevBottomPos != 0 ? PrevBottomPos + 1 : PrevBottomPos );
+                    Real YPos = PrevBottomPos;
                     Real YSpacePerChild = (NextTopPos - PrevBottomPos) / ExpandingChildCount;
                     // Update the expanding children in the range
                     while( ChildIt != NextNonExpandingChild )
