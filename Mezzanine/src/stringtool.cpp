@@ -186,8 +186,7 @@ namespace Mezzanine
 
         String End = Str.substr(StrLen - PatternLen,PatternLen);
 
-        if(CaseSensitive)
-        {
+        if( !CaseSensitive ) {
             String LowerPattern = Pattern;
             ToLowerCase(End);
             ToLowerCase(LowerPattern);
