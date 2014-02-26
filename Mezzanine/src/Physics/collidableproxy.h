@@ -102,7 +102,7 @@ namespace Mezzanine
             /// @copydoc WorldProxy::RemoveFromWorld()
             virtual void RemoveFromWorld() = 0;
             /// @copydoc WorldProxy::IsInWorld() const
-            virtual Boolean IsInWorld() const;
+            virtual Boole IsInWorld() const;
 
             /// @copydoc WorldProxy::GetCreator() const
             virtual WorldManager* GetCreator() const;
@@ -138,10 +138,10 @@ namespace Mezzanine
             /// @brief Sets the World Object to be able to collide with other objects in the world.
             /// @details By default collision response is enabled.  Only call this function if you have disabled collision response.
             /// @param Enable Whether or not to enable collision response.
-            virtual void SetCollisionResponse(Boolean Enable);
+            virtual void SetCollisionResponse(Boole Enable);
             /// @brief Will this respond to 3d collisions.
             /// @return False is it does not respond to collisions, True if it will
-            virtual Boolean GetCollisionResponse() const;
+            virtual Boole GetCollisionResponse() const;
 
             /// @brief Sets the collection of flags that help determine collision response for this object.
             /// @details See Physics::CollisionFlags enum for more details on the available flags.
@@ -164,14 +164,14 @@ namespace Mezzanine
             virtual void SetStatic();
             /// @brief Is the object kinematic.
             /// @return True if the object is kinematic false if it is not.
-            virtual Boolean IsKinematic() const;
+            virtual Boole IsKinematic() const;
             /// @brief Is the object static.
             /// @return True if the object is Static false if it is not.
-            virtual Boolean IsStatic() const;
+            virtual Boole IsStatic() const;
             /// @brief Checks if the object is either static or kinematic.
             /// @details Checks if the object is either static or kinematic, returns true if it is either.
             /// @return Returns true if the object is static or kinematic.
-            virtual Boolean IsStaticOrKinematic() const;
+            virtual Boole IsStaticOrKinematic() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Physics Properties
@@ -208,7 +208,7 @@ namespace Mezzanine
             /// @brief Gets whether or not anisotropic friction is being used in a specified mode.
             /// @param Mode The Physics::AnisotropicFrictionFlags value to check for.
             /// @return Returns true if the specified mode is the current mode of Anisotropic Friction being used.
-            virtual Boolean IsAnisotropicFrictionModeSet(const Whole Mode) const;
+            virtual Boole IsAnisotropicFrictionModeSet(const Whole Mode) const;
             /// @brief Gets the anisotropic friction factor.
             /// @return Returns a Vector3 representing the anisotropic friction factors on each of the linear axes.
             virtual Vector3 GetAnisotropicFriction() const;
@@ -229,13 +229,13 @@ namespace Mezzanine
             /// @brief Sets the activation state of the world object.
             /// @param State The activation state to set for this proxy.  See the ActivationState enum for more info.
             /// @param Force Whether or not you want to force the state.  Some states may not apply based on the condition of the proxy if this is set to false.
-            virtual void SetActivationState(const Physics::ActivationState State, Boolean Force = false);
+            virtual void SetActivationState(const Physics::ActivationState State, Boole Force = false);
             /// @brief Gets the current activation state of this proxy.
             /// @return Returns a Physics::ActivationState value representing the current state of this proxy.
             virtual Physics::ActivationState GetActivationState() const;
             /// @brief Checks if the object is active in the simulation.
             /// @return Returns true if the object is active, false if it's deactivated(at rest).
-            virtual Boolean IsActive() const;
+            virtual Boole IsActive() const;
 
             /// @brief Sets the amount of time this object needs to have no forces enacted upon it to be deactivated.
             /// @details This deactivate simply means it is skipped on more robust checks and force checking.  It does not mean

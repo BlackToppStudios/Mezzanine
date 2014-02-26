@@ -61,9 +61,9 @@ namespace Mezzanine
         /// @brief This stores the device refresh rate in Hz.
         Whole RefreshRate;
         /// @brief This is the desired state of whether the window is fullscreen or not.
-        Boolean Fullscreen;
+        Boole Fullscreen;
         /// @brief This is the desired state of whether to enable VSync or not.
-        Boolean VSync;
+        Boole VSync;
         /// @brief Struct Constructor
         WindowSettings() : RenderHeight(0),RenderWidth(0),RefreshRate(0),Fullscreen(false),VSync(false) {}
         WindowSettings& operator= (const WindowSettings &GS)

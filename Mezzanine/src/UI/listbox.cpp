@@ -104,7 +104,7 @@ namespace Mezzanine
             this->ParentScreen->DestroyWidget( this->ListContainer );
         }
 
-        Boolean ListBox::HandleInputImpl(const Input::MetaCode& Code)
+        Boole ListBox::HandleInputImpl(const Input::MetaCode& Code)
         {
             if( Code.GetCode() == Input::MOUSEWHEELVERTICAL && this->ActDims.IsInside( this->ParentScreen->GetMouseHitPosition() ) ) {
                 return this->ListScroll->_MouseWheelScroll( Code.GetMetaValue() );

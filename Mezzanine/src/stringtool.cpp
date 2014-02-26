@@ -93,7 +93,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // String Manipulation and checks
 
-    void StringTools::Trim(String& Source, Boolean Left, Boolean Right)
+    void StringTools::Trim(String& Source, Boole Left, Boole Right)
     {
         static const String Delims = " \t\r";
         if(Right)
@@ -155,7 +155,7 @@ namespace Mezzanine
         return Source;
     }
 
-    Boolean StringTools::StartsWith(const String& Str, const String& Pattern, const Boolean CaseSensitive)
+    Boole StringTools::StartsWith(const String& Str, const String& Pattern, const Boole CaseSensitive)
     {
         size_t StrLen = Str.length();
         size_t PatternLen = Pattern.length();
@@ -176,7 +176,7 @@ namespace Mezzanine
         return (Start == Pattern);
     }
 
-    Boolean StringTools::EndsWith(const String& Str, const String& Pattern, const Boolean CaseSensitive)
+    Boole StringTools::EndsWith(const String& Str, const String& Pattern, const Boole CaseSensitive)
     {
         size_t StrLen = Str.length();
         size_t PatternLen = Pattern.length();
@@ -312,7 +312,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Convert-To-Data functions
 
-    Boolean StringTools::ConvertToBool(const String& ToConvert, const Boolean Default)
+    Boole StringTools::ConvertToBool(const String& ToConvert, const Boole Default)
     {
         String StrCopy = ToConvert;
         StringTools::ToLowerCase(StrCopy);
@@ -389,7 +389,7 @@ namespace Mezzanine
         return Result;
     }
 
-    String StringTools::ConvertToString(const Input::InputCode& Code, Boolean ShiftPressed)
+    String StringTools::ConvertToString(const Input::InputCode& Code, Boole ShiftPressed)
     {
         /// @todo Get this ( StringTools::ConvertToString ) to support non us keyboards
         switch(Code)

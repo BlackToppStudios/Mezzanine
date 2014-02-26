@@ -109,7 +109,7 @@ namespace Mezzanine
                 /// @brief Get this as a bool.
                 /// @details Get variable Value; Minimal Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
                 /// @return This as a bool, with any appropriate downcasting.
-                bool GetBoolean() const;
+                bool GetBoole() const;
 
                 /// @details Get variable Value; default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
                 /// @return This as a double.

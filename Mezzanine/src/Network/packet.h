@@ -62,7 +62,7 @@ namespace Mezzanine
                 size_t ReadPos;
                 /// @internal
                 /// @brief Verifies the remaining length of the packet for extraction.
-                Boolean VerifySize(const size_t& Bytes) const;
+                Boole VerifySize(const size_t& Bytes) const;
             public:
                 /// @brief Class constructor.
                 Packet();
@@ -81,8 +81,8 @@ namespace Mezzanine
                 /// @return Returns a size_t indicating the size of this packet in bytes.
                 virtual size_t GetPacketSize() const;
                 /// @brief Gets whether or not the reading of this packet has reached the end.
-                /// @return Returns a Boolean indicating if the read position has reached the end.
-                virtual Boolean EndOfPacket() const;
+                /// @return Returns a Boole indicating if the read position has reached the end.
+                virtual Boole EndOfPacket() const;
                 /// @brief Gets the vector storing the raw data contained in this packet.
                 /// @return Returns a const reference to the vector storing the data of this packet.
                 virtual const std::vector<char>& GetRawData() const;
@@ -90,7 +90,7 @@ namespace Mezzanine
                 /// @brief
                 /// @param Data
                 /// @return Returns a reference to this packet.
-                Packet& operator >>(Boolean& Data);
+                Packet& operator >>(Boole& Data);
                 /// @brief
                 /// @param Data
                 /// @return Returns a reference to this packet.
@@ -151,10 +151,10 @@ namespace Mezzanine
                 /// @param Data The string to be streamed to.
                 /// @return Returns a reference to this packet.
                 Packet& operator >>(const UTF32String& Data);*/
-                /// @brief Streams a Boolean into the packet.
-                /// @param Data The Boolean to be streamed.
+                /// @brief Streams a Boole into the packet.
+                /// @param Data The Boole to be streamed.
                 /// @return Returns a reference to this packet.
-                Packet& operator <<(const Boolean Data);
+                Packet& operator <<(const Boole Data);
                 /// @brief Streams a 8-bit int into the packet.
                 /// @param Data The 8-bit int to be streamed.
                 /// @return Returns a reference to this packet.

@@ -220,7 +220,7 @@ namespace Mezzanine
 
             /// @brief Class Constructor.
             /// @param Ignored This parameter is ignored.
-            WeightedRollingAverage(const Whole& ((Ignored)) = MEZZ_FRAMESTOTRACK)
+            WeightedRollingAverage(const Whole& Ignored = MEZZ_FRAMESTOTRACK)
                :CurrentAverage(0),
                 //WeightCount(RecordCount),
                 LastEntry(1)

@@ -60,15 +60,15 @@ namespace Mezzanine
             /// @brief Bullet constraint that this class encapsulates.
             btSliderConstraint* Slider;
         public:
-            SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boolean UseLinearReferenceA);
+            SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boole UseLinearReferenceA);
             /// @brief Two body Terse constructor.
             /// @param ProxyA The First proxy to be bound.
             /// @param ProxyB  The Second proxy to be bound.
             /// @param TransformA The offset and rotation from ProxyA's center of gravity to get to match an offset from ProxyB.
             /// @param TransformB The offset and rotation from ProxyB's center of gravity.
             /// @param UseLinearReferenceA Perform Linear math from ProxyA's perspective, default to false.
-            SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boolean UseLinearReferenceA = false);
-            SliderConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, Boolean UseLinearReferenceA);
+            SliderConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boole UseLinearReferenceA = false);
+            SliderConstraint(RigidProxy* ProxyB, const Vector3& VectorB, const Quaternion& QuaternionB, Boole UseLinearReferenceA);
             /// @brief Class destructor.
             virtual ~SliderConstraint();
 
@@ -105,13 +105,13 @@ namespace Mezzanine
             virtual void SetUpperAngLimit(const Real& UpperLimit);
             virtual void SetLowerLinLimit(const Real& LowerLimit);
             virtual void SetLowerAngLimit(const Real& LowerLimit);
-            virtual void SetPoweredLinMotor(Boolean OnOff);
+            virtual void SetPoweredLinMotor(Boole OnOff);
             virtual void SetTargetLinMotorVelocity(const Real& TargetLinMotorVelocity);
             virtual void SetMaxLinMotorForce(const Real& MaxLinMotorForce);
-            virtual void SetPoweredAngMotor(Boolean OnOff);
+            virtual void SetPoweredAngMotor(Boole OnOff);
             virtual void SetTargetAngMotorVelocity(const Real& TargetAngMotorVelocity);
             virtual void SetMaxAngMotorForce(const Real& MaxAngMotorForce);
-            virtual void SetUseFrameOffset(Boolean FrameOffset);
+            virtual void SetUseFrameOffset(Boole FrameOffset);
             virtual void SetSoftnessDirLin(const Real& SoftnessDirLin);
             virtual void SetRestitutionDirLin(const Real& RestitutionDirLin);
             virtual void SetDampingDirLin(const Real& DampingDirLin);
@@ -140,7 +140,7 @@ namespace Mezzanine
             /// @copydoc Constraint::ValidAngularAxis() const
             virtual Constraint::AxisList ValidAngularAxis() const;
             /// @copydoc Constraint::ValidAngularAxis(ConstraintParam,int) const
-            virtual Boolean HasParamBeenSet(ConstraintParam Param, int Axis) const;
+            virtual Boole HasParamBeenSet(ConstraintParam Param, int Axis) const;
 
             /// @copydoc Constraint::GetConstraintBase() const
             virtual btTypedConstraint* GetConstraintBase() const;

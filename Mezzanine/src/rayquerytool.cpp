@@ -125,7 +125,7 @@ namespace Mezzanine
         /// @param RayQuery A ManagedRayQuery
         /// @param ActorRay The Ray to follow and see if it hits something
         /// @return True if something is hit, false otherwise.
-        Boolean ExecuteQuery(ManagedRayQuery& RayQuery, Ogre::Ray& Ooray)
+        Boole ExecuteQuery(ManagedRayQuery& RayQuery, Ogre::Ray& Ooray)
         {
             if(RayQuery)          //Double check that the Rayquery is valid
             {
@@ -148,7 +148,7 @@ namespace Mezzanine
     // World Ray Query Results
     ///////////////////////////////////////
 
-    Boolean RayQueryTool::ClearReturns()
+    Boole RayQueryTool::ClearReturns()
     {
         ValidResult = false;
         Offset = Vector3();
@@ -156,7 +156,7 @@ namespace Mezzanine
         return ValidResult;
     }
 
-    Boolean RayQueryTool::LastQueryResultsValid() const
+    Boole RayQueryTool::LastQueryResultsValid() const
         { return ValidResult; }
 
     Vector3 RayQueryTool::LastQueryResultsOffset() const
@@ -173,7 +173,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Ray Queries
     ///////////////////////////////////////
-    Boolean RayQueryTool::GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags)
+    Boole RayQueryTool::GetFirstObjectOnRayByPolygon(Ray ObjectRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
         Ogre::Ray Ooray = ObjectRay.GetOgreRay();
@@ -220,7 +220,7 @@ namespace Mezzanine
                                                                  pentity->getParentNode()->_getDerivedScale());
 
                         // test for hitting individual triangles on the mesh
-                        Boolean new_closest_found = false;
+                        Boole new_closest_found = false;
                         for (size_t i = 0; i < index_count; i += 3)
                         {
                             // check for a hit against this triangle
@@ -264,7 +264,7 @@ namespace Mezzanine
         }
     }
 
-    Boolean RayQueryTool::GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags)
+    Boole RayQueryTool::GetFirstObjectOnRayByAABB(Ray ObjectRay, Whole ObjectFlags)
     {
         ManagedRayQuery RayQuery;
         Ogre::Ray Ooray = ObjectRay.GetOgreRay();
@@ -288,7 +288,7 @@ namespace Mezzanine
         }
     }
 
-    Boolean RayQueryTool::RayPlaneIntersection(const Ray& QueryRay, const Plane& QueryPlane)
+    Boole RayQueryTool::RayPlaneIntersection(const Ray& QueryRay, const Plane& QueryPlane)
     {
         try{
             Vector3 u = QueryRay.Destination - QueryRay.Origin;

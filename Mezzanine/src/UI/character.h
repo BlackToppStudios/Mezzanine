@@ -79,7 +79,7 @@ namespace Mezzanine
             Real LengthOffset;
             /// @internal
             /// @brief Stores whether or not this character is being highlighted.
-            Boolean Highlighted;
+            Boole Highlighted;
         public:
             /// @brief GlyphID Constructor.
             /// @param GlyphID The ID of the glyph to be used when creating this character.
@@ -158,10 +158,10 @@ namespace Mezzanine
 
             /// @brief Sets whether or not this character should be highlighted.
             /// @param Highlight True to highlight this character, false to remove a highlight on it.
-            void SetHighlighted(Boolean Highlight);
+            void SetHighlighted(Boole Highlight);
             /// @brief Gets if this character is being highlighted.
             /// @return Returns true if this character is being highlighted, false otherwise.
-            Boolean GetHighlighted() const;
+            Boole GetHighlighted() const;
 
             /// @brief Sets this Characters sharable traits.
             /// @param Traits The traits to be given to this Character.
@@ -172,23 +172,23 @@ namespace Mezzanine
 
             /// @brief Gets whether or not this character is a glyph.
             /// @return Returns true if this character is a glyph, false otherwise.
-            Boolean IsGlyph() const;
+            Boole IsGlyph() const;
             /// @brief Gets whether or not this character is a sprite.
             /// @return Returns true if this character is a sprite, false otherwise.
-            Boolean IsSprite() const;
+            Boole IsSprite() const;
 
             /// @brief Gets if this character contains valid data for rendering.
             /// @return Returns true if this character can be rendered, false otherwise.
-            Boolean IsRenderable() const;
+            Boole IsRenderable() const;
             /// @brief Gets if this character can be highlighted.
             /// @return Returns true if this character can be highlighted, false otherwise.
-            Boolean IsHighlightable() const;
+            Boole IsHighlightable() const;
             /// @brief Gets if this character is a whitespace glyph.
             /// @return Returns true if this character is a whitespace, false otherwise.
-            Boolean IsWhiteSpace() const;
+            Boole IsWhiteSpace() const;
             /// @brief Gets if this character is a line break character.
             /// @return Returns true if this character indicates a new line, false otherwise.
-            Boolean IsNewLine() const;
+            Boole IsNewLine() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Transform Related Methods
@@ -207,7 +207,7 @@ namespace Mezzanine
             void SetCustomSize(const Vector2& Size);
             /// @brief Whether or not the custom size has been set.
             /// @return Returns true if a custom size has been provided for this character, false if it is using it's default size.
-            Boolean IsCustomSizeSet() const;
+            Boole IsCustomSizeSet() const;
             /// @brief Gets the rendered size of this character.
             /// @return Returns a Vector2 containing the size this character is to be rendered at after scaling.
             Vector2 GetCharacterSize() const;

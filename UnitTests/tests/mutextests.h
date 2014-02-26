@@ -121,7 +121,7 @@ void TryToSquareInThreadSpin(void* Value)
     }
 }
 
-/// @brief Used in ReadEriteSpinLock try_lock tests
+/// @brief Used in ReadWriteSpinLock try_lock tests
 static Mezzanine::Threading::ReadWriteSpinLock TryReadWriteSpinlock;
 /// @brief Used in ReadWriteSpinlock TryWritelock tests
 /// @param Value This is the a value passed into the thread to confirm that it works
@@ -304,7 +304,7 @@ class mutextests : public UnitTestGroup
                     Int32 Value = 10;
                     //LogForMutexes.str("");
                     cout << endl << "Creating " << ThreadCount << " threads to read and write into a value proected by a ReadWriteSpinLock" << endl;
-                    Boolean WriteTest = true;
+                    Boole WriteTest = true;
                     MaxInt Start = GetTimeStamp();
                     for(Whole Counter=0; Counter<ThreadCount; Counter++)
                     {
@@ -356,6 +356,7 @@ class mutextests : public UnitTestGroup
                 TEST(true,"RWSpinLock::ReadWriteLockGuard");
             } // ReadWriteSpinLock and lock guards
         }
+
         /// @brief Since RunAutomaticTests is implemented so is this.
         /// @return returns true
         virtual bool HasAutomaticTests() const

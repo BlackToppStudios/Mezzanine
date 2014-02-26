@@ -276,7 +276,7 @@ namespace Mezzanine
         String File;
         /// @internal
         /// @brief Stores whether or not the settings have been updated and this file needs to be saved/refreshed.
-        Boolean NeedsSave;
+        Boole NeedsSave;
     public:
         /// @brief Class constructor.
         /// @param FileName The name of the file the groups in this class will be saved to.
@@ -292,10 +292,10 @@ namespace Mezzanine
         const String& GetFileName() const;
         /// @brief Sets whether or not this file needs saving.
         /// @param Save Whetehr or not this file has been updated and needs to be saved.
-        void SetNeedsSave(Boolean Save);
+        void SetNeedsSave(Boole Save);
         /// @brief Gets whether or not this file has been updated and needs to be saved.
         /// @return Returns true if this file needs to be saved, false otherwise.
-        Boolean GetNeedsSave() const;
+        Boole GetNeedsSave() const;
 
         /// @brief Adds a group to be saved to this file.
         /// @param Group The group to be added to this file.
@@ -353,10 +353,10 @@ namespace Mezzanine
         SettingFilesContainer SettingFiles;
         /// @internal
         /// @brief Stores whether or not this handler will attempt to automatically generate a path to a file if it doesn't exist.
-        Boolean AutoGenPath;
+        Boole AutoGenPath;
         /// @internal
         /// @brief Stores whether or not this handler will attempt to automatically generate a file if it doesn't exist.
-        Boolean AutoGenFiles;
+        Boole AutoGenFiles;
         /// @internal
         /// @brief Stores the path to be used for file IO operations done by this handler.
         String SettingsFilePath;
@@ -508,16 +508,16 @@ namespace Mezzanine
 
         /// @brief Enables or disables the automatic creation of a directory path when saving.
         /// @param Enable True to allow this object to create folders in the intended save path allowing the path to be valid, false otherwise.
-        void SetAutoGenPath(Boolean Enable);
+        void SetAutoGenPath(Boole Enable);
         /// @brief Gets whether or not this object is currently allowed to create folders when saving.
         /// @return Returns true if this object will create folders in paths it uses to force the path to be valid.
-        Boolean GetAutoGenPath() const;
+        Boole GetAutoGenPath() const;
         /// @brief Enables or disables the automatic creation of settings files on initialization and destruction of this object.
         /// @param Enable True to allow this object to save it's settings sets to a file on initialization and destruction.
-        void SetAutoGenFiles(Boolean Enable);
+        void SetAutoGenFiles(Boole Enable);
         /// @brief Gets whether or not this object is currently allowed to create/update settings files upon initialization and destruction.
         /// @return Returns true if this object will generate or update settings files when it is initialized and destruction.
-        Boolean GetAutoGenFiles() const;
+        Boole GetAutoGenFiles() const;
 
         /// @brief Saves all settings that need saving.
         /// @remarks This function does a few things.  First it will only save the setting groups which have their optional setting
@@ -555,7 +555,7 @@ namespace Mezzanine
         /// @brief Saves all the current setting groups as children of the provided XML node.
         /// @param SaveCurrent Whether or not to also save the current settings to XML.
         /// @param RootSettings The node to populate with all currently loaded settings groups.
-        void SaveSettingsToXML(XML::Node& RootSettings, Boolean SaveCurrent = true);
+        void SaveSettingsToXML(XML::Node& RootSettings, Boole SaveCurrent = true);
         /// @brief Saves the named settings groups as children of the provided XML node.
         /// @param GroupNames A string vector containing the names for all the settings groups to save.
         /// @param RootSettings The node to populate with all currently loaded settings groups.

@@ -151,11 +151,11 @@ namespace Mezzanine
             /// @brief Is every value in this Transform less than or equal to its corresponding value in another.
             /// @param rhs The Transform on the right hand side of the sign.
             /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
-            Boolean operator<= (const Transform& rhs) const;
+            Boole operator<= (const Transform& rhs) const;
             /// @brief Is every value in this Transform greater than or equal to its corresponding value in another.
             /// @param rhs The Transform on the right hand side of the sign.
             /// @note Used primarily for testing. This is not implemented for use with other kinds of Transform implementations as it is widely considered useless.
-            Boolean operator>= (const Transform& rhs) const;
+            Boole operator>= (const Transform& rhs) const;
 
 
     };

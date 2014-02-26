@@ -107,15 +107,15 @@ namespace Mezzanine
         virtual World* GetWorld() const;
 
         /// @brief Gets whether or not this object is currently in the world.
-        /// @return Returns a Boolean indicating if this object has been added to the world.
-        virtual Boolean IsInWorld() const = 0;
+        /// @return Returns a Boole indicating if this object has been added to the world.
+        virtual Boole IsInWorld() const = 0;
 
         /// @brief Checks of the object is static.
         /// @return Returns true if the object is static, false otherwise.
-        virtual Boolean IsStatic() const = 0;
+        virtual Boole IsStatic() const = 0;
         /// @brief Checks of the object is kinematic.
         /// @return Returns true if the object is kinematic, false otherwise.
-        virtual Boolean IsKinematic() const = 0;
+        virtual Boole IsKinematic() const = 0;
 
         /// @brief Populates a container with all of the WorldProxies being used by this WorldObject.
         /// @param Proxies The container of proxies to be populated.

@@ -104,7 +104,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Upper Management
 
-    Boolean World::AddManager(WorldManager* ManagerToAdd)
+    Boole World::AddManager(WorldManager* ManagerToAdd)
     {
         ManagerBase::ManagerType IType = ManagerToAdd->GetInterfaceType();
         for( WorldManagerIterator ManIter = this->WorldManagers.begin() ; ManIter != this->WorldManagers.end() ; ++ManIter )

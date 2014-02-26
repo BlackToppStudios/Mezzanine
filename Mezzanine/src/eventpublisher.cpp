@@ -110,7 +110,7 @@ namespace Mezzanine
     EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, EventSubscriber* Sub)
         { return this->GetEventExcept(EventName)->Subscribe(Sub); }
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, EventSlotFunctorDefinition* Funct, Boolean CleanUpAfter)
+    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, EventSlotFunctorDefinition* Funct, Boole CleanUpAfter)
         { return this->GetEventExcept(EventName)->Subscribe(Funct,CleanUpAfter); }
 
     EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)

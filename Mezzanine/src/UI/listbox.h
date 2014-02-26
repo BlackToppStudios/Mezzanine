@@ -109,7 +109,7 @@ namespace Mezzanine
             ListItemOrdering Ordering;
 
             /// @copydoc Widget::HandleInputImpl(const Input::MetaCode&)
-            virtual Boolean HandleInputImpl(const Input::MetaCode& Code);
+            virtual Boole HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
             /// @brief Convenience method for the construction of a ListBox.
             /// @param Style An enum value representing how the scrollbar child of thie ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.

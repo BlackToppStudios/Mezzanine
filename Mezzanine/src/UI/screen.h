@@ -156,7 +156,7 @@ namespace Mezzanine
             /// @brief Basic container type for the storage of render data on this screen.
             typedef std::vector<AtlasAndPosition>           TextureVertexContainer;
             /// @brief Callback type for child processing.
-            typedef Boolean (ChildCallback)(QuadRenderable* Quad);
+            typedef Boole (ChildCallback)(QuadRenderable* Quad);
         protected:
             friend class Mezzanine::UI::UIManager;
 
@@ -257,12 +257,12 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility and Visibility Methods
 
-            /// @copydoc Renderable::SetVisible(Boolean)
-            virtual void SetVisible(Boolean CanSee);
+            /// @copydoc Renderable::SetVisible(Boole)
+            virtual void SetVisible(Boole CanSee);
             /// @copydoc Renderable::GetVisible() const
-            virtual Boolean GetVisible() const;
+            virtual Boole GetVisible() const;
             /// @copydoc Renderable::IsVisible() const
-            virtual Boolean IsVisible() const;
+            virtual Boole IsVisible() const;
             /// @copydoc Renderable::Show()
             virtual void Show();
             /// @copydoc Renderable::Hide()
@@ -645,7 +645,7 @@ namespace Mezzanine
             /// @param CB The callback implementing how the children are to be processed.
             /// @return Returns the result of the callback, and exits early if true.
             template<typename Callback>
-            Boolean _ProcessAllChildren(Callback* CB)
+            Boole _ProcessAllChildren(Callback* CB)
             {
                 for( ChildIterator ChildIt = this->ChildrenBegin() ; ChildIt != this->ChildrenEnd() ; ++ChildIt )
                 {
@@ -659,7 +659,7 @@ namespace Mezzanine
             /// @param CB The callback implementing how the children are to be processed.
             /// @return Returns the result of the callback, and exits early if true.
             template<typename Callback>
-            Boolean _ReverseProcessAllChildren(Callback* CB)
+            Boole _ReverseProcessAllChildren(Callback* CB)
             {
                 for( ReverseChildIterator RChildIt = this->RChildrenBegin() ; RChildIt != this->RChildrenEnd() ; ++RChildIt )
                 {
@@ -674,7 +674,7 @@ namespace Mezzanine
             /// @param CB The callback implementing how the children are to be processed.
             /// @return Returns the result of the callback, and exits early if true.
             template<typename Callback>
-            static Boolean _ProcessAllChildren(Widget* Wid, Callback* CB)
+            static Boole _ProcessAllChildren(Widget* Wid, Callback* CB)
             {
                 if( (*CB)(Wid) )
                     return true;
@@ -691,7 +691,7 @@ namespace Mezzanine
             /// @param CB The callback implementing how the children are to be processed.
             /// @return Returns the result of the callback, and exits early if true.
             template<typename Callback>
-            static Boolean _ReverseProcessAllChildren(Widget* Wid, Callback* CB)
+            static Boole _ReverseProcessAllChildren(Widget* Wid, Callback* CB)
             {
                 for( ReverseChildIterator RChildIt = Wid->RChildrenBegin() ; RChildIt != Wid->RChildrenEnd() ; ++RChildIt )
                 {

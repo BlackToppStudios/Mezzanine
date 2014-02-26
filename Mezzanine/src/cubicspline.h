@@ -93,12 +93,12 @@ namespace Mezzanine
 
             /// @brief Sort Meta-data elements by time series locations in other Meta-Data
             /// @param e The CubicSplineElement to compare this one too.
-            Boolean operator<(const CubicSplineElement& e) const
+            Boole operator<(const CubicSplineElement& e) const
                 { return x < e.x; }
 
             /// @brief Sort Meta-data elements by time series locations
             /// @param xx The CubicSplineElement to compare this one too.
-            Boolean operator<(const X& xx) const
+            Boole operator<(const X& xx) const
                 { return x < xx; }
     };
 

@@ -70,13 +70,13 @@ namespace Mezzanine
             /// @brief Gets whether or not the decoder is ready to be used.
             /// @note On failure the issue likely lies with the stream being an improper format/encoding.
             /// @return Returns true if this decoder is ready for playback, false otherwise.
-            virtual Boolean IsValid() = 0;
+            virtual Boole IsValid() = 0;
             /// @brief Gets the encoding supported by this decoder.
             /// @return Returns an @ref Audio::Encoding value representing the encoding supported by this decoder.
             virtual Audio::Encoding GetEncoding() const = 0;
             /// @brief Gets whether or not seeking is supported.
             /// @return Returns true if you can skip to a specific point in the stream, false if you are stuck waiting.
-            virtual Boolean IsSeekingSupported() = 0;
+            virtual Boole IsSeekingSupported() = 0;
             /// @brief Gets the Bit Configuration used to decode the audio stream.
             /// @return Returns the Bit Configuration currently being used to decode this stream.
             virtual Audio::BitConfig GetBitConfiguration() const = 0;
@@ -107,12 +107,12 @@ namespace Mezzanine
             /// @param Position The number of bytes to move(if relative) or the actual position in the stream to set.
             /// @param Relative Whether or not to move from the current position.  If false this will set from the beginning.
             /// @return Returns true if the position was successfully set, false otherwise.
-            virtual Boolean SetPosition(Int32 Position, Boolean Relative) = 0;
+            virtual Boole SetPosition(Int32 Position, Boole Relative) = 0;
             /// @brief Moves the current time position in the stream.
             /// @param Seconds The position in seconds to move to in the stream.
             /// @param Relative Whether or not to move from the current position.  If false this will seek from the beginning.
             /// @return Returns true if the position was successfully moved, false otherwise.
-            virtual Boolean Seek(const Real Seconds, Boolean Relative) = 0;
+            virtual Boole Seek(const Real Seconds, Boole Relative) = 0;
 
             /// @brief Reads from the audio stream and writes what is read to a buffer.
             /// @param Output The buffer to write to when reading the audio stream.

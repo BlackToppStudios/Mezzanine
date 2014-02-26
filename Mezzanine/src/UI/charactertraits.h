@@ -93,11 +93,11 @@ namespace Mezzanine
             /// @brief Equality comparison operator.
             /// @param Other The other CharacterTraits to compare with.
             /// @return Returns true if the two CharacterTraits are equal, false otherwise.
-            Boolean operator==(const CharacterTraits& Other) const;
+            Boole operator==(const CharacterTraits& Other) const;
             /// @brief Inequality comparison operator.
             /// @param Other The other CharacterTraits to compare with.
             /// @return Returns true if the two CharacterTraits are not equal, false otherwise.
-            Boolean operator!=(const CharacterTraits& Other) const;
+            Boole operator!=(const CharacterTraits& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization

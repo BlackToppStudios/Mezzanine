@@ -78,7 +78,7 @@ namespace Mezzanine
             UInt32 QueryMask;
             /// @internal
             /// @brief This stores whether the proxy is currently in the graphics world or not.
-            Boolean InWorld;
+            Boole InWorld;
         public:
             /// @brief Class constructor.
             /// @param Creator A pointer to the manager that created this proxy.
@@ -99,7 +99,7 @@ namespace Mezzanine
             /// @copydoc WorldProxy::RemoveFromWorld()
             virtual void RemoveFromWorld();
             /// @copydoc WorldProxy::IsInWorld() const
-            virtual Boolean IsInWorld() const;
+            virtual Boole IsInWorld() const;
 
             /// @copydoc PhysicsProxy::GetCreator() const
             virtual WorldManager* GetCreator() const;
@@ -109,19 +109,19 @@ namespace Mezzanine
 
             /// @brief Sets whether or not this proxy is visible.
             /// @param Visible True to allow this proxy to render, false otherwise.
-            virtual void SetVisible(const Boolean Visible);
+            virtual void SetVisible(const Boole Visible);
             /// @brief Gets whether or not this proxy is visible.
             /// @return Returns true if this proxy is being rendered, false otherwise.
-            virtual Boolean GetVisible() const;
+            virtual Boole GetVisible() const;
             /// @brief Sets whether or not this proxy can cast a shadow.
             /// @param CastShadows True to allow this proxy to cast a shadow, false to prevent it from casting a shadow.
-            virtual void SetCastShadows(const Boolean CastShadows);
+            virtual void SetCastShadows(const Boole CastShadows);
             /// @brief Gets whether or not this proxy can cast a shadow.
             /// @return Returns true if this proxy can cast a shadow, false otherwise.
-            virtual Boolean GetCastShadows() const;
+            virtual Boole GetCastShadows() const;
             /// @brief Gets whether or not this proxy can be rendered with a shadow casted on it.
             /// @return Returns true if this proxy can receive shadows, false otherwise.
-            virtual Boolean GetReceiveShadows() const;
+            virtual Boole GetReceiveShadows() const;
 
             /// @brief Sets which types of lights will affect this proxy.
             /// @param Mask A bitmask used to indicate which types of lights will be applied to this proxy.

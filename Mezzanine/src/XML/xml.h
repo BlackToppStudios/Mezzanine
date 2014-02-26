@@ -1535,9 +1535,9 @@ namespace Mezzanine
 /// have to look for other tutorials or manuals.
 /// \n \n
 /// @subsection XMLXPathTypes XPath Types
-/// Each XPath expression can have one of the following types: boolean, number, string or node set. Boolean type corresponds to bool type, number type corresponds to double type, string
+/// Each XPath expression can have one of the following types: boolean, number, string or node set. Boole type corresponds to bool type, number type corresponds to double type, string
 /// type corresponds to either std::string or std::wstring, depending on whether wide character interface is enabled, and node set corresponds to Mezzanine::XML::XPathNodeSet type. There is
-/// an enumeration, Mezzanine::XML::XPathValueType, which can take the values @ref Mezzanine::XML::XPathValueType "XPathTypeBoolean", @ref Mezzanine::XML::XPathValueType "XPathTypeNumber",
+/// an enumeration, Mezzanine::XML::XPathValueType, which can take the values @ref Mezzanine::XML::XPathValueType "XPathTypeBoole", @ref Mezzanine::XML::XPathValueType "XPathTypeNumber",
 /// @ref Mezzanine::XML::XPathValueType XPathTypeString or @ref Mezzanine::XML::XPathValueType XPathTypeNodeSet, accordingly.
 /// \n \n
 /// Because an XPath node can be either a node or an attribute, there is a special type, Mezzanine::XML::XPathNode, which is a discriminated union of these types. A value of this type
@@ -1672,13 +1672,13 @@ namespace Mezzanine
 /// @endcode
 /// You can evaluate the query using one of the following functions:
 /// @code
-/// bool Mezzanine::XML::XPathQuery::EvaluateBoolean(const Mezzanine::XML::XPathNode& n) const;
+/// bool Mezzanine::XML::XPathQuery::EvaluateBoole(const Mezzanine::XML::XPathNode& n) const;
 /// double Mezzanine::XML::XPathQuery::EvaluateNumber(const Mezzanine::XML::XPathNode& n) const;
 /// Mezzanine::String Mezzanine::XML::XPathQuery::EvaluateString(const Mezzanine::XML::XPathNode& n) const;
 /// Mezzanine::XML::XPathNodeSet Mezzanine::XML::XPathQuery::EvaluateNodeSet(const Mezzanine::XML::XPathNode& n) const;
 /// @endcode
 /// All functions take the context node as an argument, compute the expression and return the result, converted to the requested type. According to XPath specification, value of any
-/// type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, EvaluateBoolean, EvaluateNumber and
+/// type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, EvaluateBoole, EvaluateNumber and
 /// EvaluateString always return a result, but EvaluateNodeSet results in an error if the return type is not node set ( see @ref XMLXPathError ).
 /// @note Calling node.FindNodes("query") is equivalent to calling Mezzanine::XML::XPathQuery("query").EvaluateNodeSet(node).
 ///
@@ -1715,7 +1715,7 @@ namespace Mezzanine
 /// {
 ///     std::string s = QueryName.EvaluateString(tool);
 ///
-///     if (QueryNameValid.EvaluateBoolean(tool)) std::cout << s << std::endl;
+///     if (QueryNameValid.EvaluateBoole(tool)) std::cout << s << std::endl;
 /// }
 /// @endcode
 /// @subsection XMLXPathVariables Using Variables
@@ -1774,7 +1774,7 @@ namespace Mezzanine
 /// \n \n
 /// In order to get variable value, you should use one of the following functions, depending on the variable type:
 /// @code
-/// bool Mezzanine::XML::XPathVariable::GetBoolean() const;
+/// bool Mezzanine::XML::XPathVariable::GetBoole() const;
 /// double Mezzanine::XML::XPathVariable::GetNumber() const;
 /// const char_t* Mezzanine::XML::XPathVariable::GetString() const;
 /// const Mezzanine::XML::XPathNodeSet& Mezzanine::XML::XPathVariable::GetNodeSet() const;
@@ -1796,7 +1796,7 @@ namespace Mezzanine
 /// @code
 /// // Select nodes via compiled query
 /// Mezzanine::XML::XPathVariableSet vars;
-/// vars.Add("remote", Mezzanine::XML::XPathTypeBoolean);
+/// vars.Add("remote", Mezzanine::XML::XPathTypeBoole);
 ///
 /// Mezzanine::XML::XPathQuery QueryRemoteTools("/Profile/Tools/Tool[@AllowRemote = string($remote)]", &vars);
 ///

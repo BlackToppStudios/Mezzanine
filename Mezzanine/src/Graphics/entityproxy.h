@@ -80,10 +80,10 @@ namespace Mezzanine
             UInt32 LightMask;
             /// @internal
             /// @brief Stores whether or not this object should be rendered, regardless of other criteria.
-            Boolean SceneVisible;
+            Boole SceneVisible;
             /// @internal
             /// @brief Stores whether or not this object can cast shadows on other objects.
-            Boolean CanCastShadows;
+            Boole CanCastShadows;
 
             /// @internal
             /// @brief Creates an internal entity based on the provided mesh.
@@ -149,16 +149,16 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // RenderableProxy Properties
 
-            /// @copydoc RenderableProxy::SetVisible(const Boolean)
-            virtual void SetVisible(const Boolean Visible);
+            /// @copydoc RenderableProxy::SetVisible(const Boole)
+            virtual void SetVisible(const Boole Visible);
             /// @copydoc RenderableProxy::GetVisible() const
-            virtual Boolean GetVisible() const;
-            /// @copydoc RenderableProxy::SetCastShadows(const Boolean)
-            virtual void SetCastShadows(const Boolean CastShadows);
+            virtual Boole GetVisible() const;
+            /// @copydoc RenderableProxy::SetCastShadows(const Boole)
+            virtual void SetCastShadows(const Boole CastShadows);
             /// @copydoc RenderableProxy::GetCastShadows() const
-            virtual Boolean GetCastShadows() const;
+            virtual Boole GetCastShadows() const;
             /// @copydoc RenderableProxy::GetReceiveShadows() const
-            virtual Boolean GetReceiveShadows() const;
+            virtual Boole GetReceiveShadows() const;
 
             /// @copydoc RenderableProxy::SetLightMask(const UInt32)
             virtual void SetLightMask(const UInt32 Mask);

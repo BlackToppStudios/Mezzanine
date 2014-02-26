@@ -118,7 +118,7 @@ namespace Mezzanine
         virtual void Stop();
         /// @brief Gets Whether or not this timer is currently running.
         /// @return Returns true if this timer is not currently active, false otherwise.
-        virtual Boolean IsStopped();
+        virtual Boole IsStopped();
         /// @brief Sets the current values to their initial values.
         virtual void Reset();
         /// @brief Gets the type of timer this is.
@@ -138,10 +138,10 @@ namespace Mezzanine
         MaxInt GoalTime;
         /// @internal
         /// @brief Wether or not this timer will reset itself when it reaches it's goal.
-        Boolean ResetAtGoal;
+        Boole ResetAtGoal;
         /// @internal
         /// @brief Checks to see if the goal has been attained as dictated by the type of timer this is.
-        virtual Boolean GoalReached() = 0;
+        virtual Boole GoalReached() = 0;
     public:
         /// @brief Class constructor.
         GoalTimer();
@@ -153,10 +153,10 @@ namespace Mezzanine
 
         /// @brief Sets whether or not this Timer should reset if it reaches it's goal.
         /// @param AutoReset Should be true if you want this timer to reset itself back to it's initial time when it reaches it's goal.
-        virtual void SetAutoReset(const Boolean AutoReset);
+        virtual void SetAutoReset(const Boole AutoReset);
         /// @brief Gets whether or not this Timer will reset when it reaches it's goal.
         /// @return Returns true if this timer will automatically reset when it reaches it's goal.
-        virtual Boolean GetAutoReset() const;
+        virtual Boole GetAutoReset() const;
 
         /// @brief Sets the goal time in Microseconds.
         /// @param Goal The value to set as goal time in Microseconds.
@@ -182,7 +182,7 @@ namespace Mezzanine
         /// @copydoc Timer::Update()
         virtual void Update();
         /// @copydoc GoalTimer::GoalReached()
-        virtual Boolean GoalReached();
+        virtual Boole GoalReached();
     public:
         /// @brief Class constructor.
         StopWatchTimer();
@@ -206,7 +206,7 @@ namespace Mezzanine
         /// @copydoc Timer::Update()
         virtual void Update();
         /// @copydoc GoalTimer::GoalReached()
-        virtual Boolean GoalReached();
+        virtual Boole GoalReached();
     public:
         /// @brief Class constructor.
         AlarmTimer();

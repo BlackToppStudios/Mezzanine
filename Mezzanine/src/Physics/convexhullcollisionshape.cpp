@@ -119,7 +119,7 @@ namespace Mezzanine
             return GetBulletHullShape()->getNumPoints();
         }
 
-        Boolean ConvexHullCollisionShape::IsInside(const Vector3& Location, const Real& Tolerance) const
+        Boole ConvexHullCollisionShape::IsInside(const Vector3& Location, const Real& Tolerance) const
         {
             return GetBulletHullShape()->isInside(Location.GetBulletVector3(),Tolerance);
         }

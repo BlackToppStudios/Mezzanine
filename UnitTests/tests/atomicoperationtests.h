@@ -37,31 +37,59 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef REPL_LINENOISE_H
-#define REPL_LINENOISE_H
+#ifndef _atomicoperationtests_h
+#define _atomicoperationtests_h
 
-#include "repl.h"
-#include "executor.h"
+#include "mezztest.h"
+
+#include "dagframescheduler.h"
+
+#include <vector>
+#include <stdexcept> //only used to throw for TEST_THROW
 
 /// @file
-/// @brief The definition of an implementation of a feature rich REPL written with linenoise
+/// @brief This file should be used as template/example for building future Unit Tests
 
-/// @brief A class that will take user input from a terminal and try to take full advantage of the features the terminal offers
-class REPLLineNoise : public REPL
+using namespace Mezzanine;
+using namespace Mezzanine::Testing;
+
+Int32 Added = 0;
+
+/// @brief A simple function to synchronize in the 'barrier' test
+void TestHelper(void* )
+{
+    Mezzanine::Threading::AtomicAdd(&Added,1);
+}
+
+/// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
+class atomicoperationtests : public UnitTestGroup
 {
     public:
-        /// @brief Initializing constructor
-        /// @param TargetExecutor A Lua sripting engine that the commands will be executed against.
-        /// @param StartingPrompt The text to start the line
-        /// @param StartingMultiline What to display during multiline input
-        /// @param StartingReturn What to display when returning values
-        REPLLineNoise(Executor& TargetExecutor,
-                      Mezzanine::String StartingPrompt="> ",
-                      Mezzanine::String StartingMultiline=">> ",
-                      Mezzanine::String StartingReturn="=> ");
+        /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
+        /// @return Returns a String containing "atomicqueue"
+        virtual String Name()
+            { return String("atomicoperation"); }
 
-        /// @brief This is the actual the loop that will do the REPLing
-        virtual void Launch();
+        /// @brief This is called when Automatic tests are run
+        void RunAutomaticTests()
+        {
+            Int32 ThreadCount = 30000;
+            std::vector<Mezzanine::Threading::Thread*> Threads;
+            Threads.reserve(ThreadCount);
+            TestOutput << "Creating " << ThreadCount << " threads and having each one increment a single number." << endl;
+            for(Int32 Counter = 0; Counter<ThreadCount; Counter++)
+                { Threads.push_back(new Mezzanine::Threading::Thread(TestHelper,0)); }
+            for(Int32 Counter = 0; Counter<ThreadCount; Counter++)
+                { Threads[Counter]->join(); }
+            TEST(Added==ThreadCount, "AtomicAddStress");
+
+        }
+
+        /// @brief Since RunAutomaticTests is implemented so is this.
+        /// @return returns true
+        virtual bool HasAutomaticTests() const
+            { return true; }
 };
 
 #endif
+

@@ -61,6 +61,10 @@ namespace Mezzanine
                 /// @brief The number of threads to have wait.
                 Int32 ThreadGoal;
 
+                /// @brief Does calling wait on this barrier block at presemt
+                /// @details 1 waits, and 0 does not any other value indicates a bug
+                Int32 IsBlocking;
+
                 /// @brief The number of threads currently waiting.
                 Int32 ThreadCurrent;
 
@@ -71,11 +75,18 @@ namespace Mezzanine
 
                 /// @brief Wait until the specified number of threads reach this point.
                 /// @return The last thread to reach this point gets true, the others are returned false.
-                bool Wait ();
+                bool Wait();
+
+                /// @brief If Wait() is called with this block?
+                /// @return A true if this is not blocking and false if threads Calling Wait() will
+                bool Blocking();
+
 
                 /// @brief Set the Thread count Atomically.
                 /// @param NewCount The new amounf threads to sync.
                 void SetThreadSyncCount(Int32 NewCount);
+
+
 
         };//Barrier
     }//Threading

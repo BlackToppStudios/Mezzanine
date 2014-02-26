@@ -75,7 +75,7 @@ namespace Mezzanine
             Lua51Script::Lua51Script() : FunctionCall(false)
                 { }
 
-            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler, Boolean JustAFunctionCall, String ScriptName)
+            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler, Boole JustAFunctionCall, String ScriptName)
                 : SourceCode(InitialSourceCode),
                   Name(ScriptName),
                   FunctionCall(JustAFunctionCall)
@@ -84,7 +84,7 @@ namespace Mezzanine
                     { Compile(Compiler); }
             }
 
-            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Boolean JustAFunctionCall, String ScriptName)
+            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine& Compiler, Boole JustAFunctionCall, String ScriptName)
                 : SourceCode(InitialSourceCode),
                   Name(ScriptName),
                   FunctionCall(JustAFunctionCall)
@@ -134,7 +134,7 @@ namespace Mezzanine
             void Lua51Script::AddArgument(Char8 *Arg)
                 { AddArgument((String(Arg))); }
 
-            void Lua51Script::AddArgument(Boolean Arg)
+            void Lua51Script::AddArgument(Boole Arg)
                 { AddArgument((Lua51BoolArgument(Arg))); }
 
             void Lua51Script::AddArgument()

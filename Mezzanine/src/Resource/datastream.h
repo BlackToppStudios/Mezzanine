@@ -189,7 +189,7 @@ namespace Mezzanine
                 /// @brief Gets the current position in this stream.
                 /// @param Read Whether or not to get the Read position.  If false this will get the write position instead.
                 /// @return Returns a StreamPos representing the current position specified from the beginning of the stream.
-                virtual StreamPos GetStreamPosition(Boolean Read = true);
+                virtual StreamPos GetStreamPosition(Boole Read = true);
         };//IOStream
 
         /// @typedef DataStream
@@ -256,10 +256,10 @@ namespace Mezzanine
                 virtual StreamSize GetSize() const;
                 /// @brief Gets whether this stream can be read.
                 /// @return Returns true if this stream is in reading mode, false otherwise.
-                virtual Boolean IsReadable() const;
+                virtual Boole IsReadable() const;
                 /// @brief Gets whether this stream can be written to.
                 /// @return Returns true if this stream is in writing mode, false otherwise.
-                virtual Boolean IsWriteable() const;
+                virtual Boole IsWriteable() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Stream Access and Manipulation
@@ -288,10 +288,10 @@ namespace Mezzanine
                 /// @brief Gets the current position in this stream.
                 /// @param Read Whether or not to get the Read position.  If false this will get the write position instead.
                 /// @return Returns a StreamPos representing the current position specified from the beginning of the stream.
-                virtual StreamPos GetStreamPosition(Boolean Read = true) = 0;
+                virtual StreamPos GetStreamPosition(Boole Read = true) = 0;
                 /// @brief Gets whether or not the current position is at the end of the file/stream.
                 /// @return Returns true if the current position has reached the end of the stream, false otherwise.
-                virtual Boolean EoF() const = 0;
+                virtual Boole EoF() const = 0;
                 /// @brief Closes the stream to the resource.
                 virtual void Close() = 0;
 
@@ -310,7 +310,7 @@ namespace Mezzanine
                 /// @brief Gets the contents of the current line in the stream.
                 /// @param Trim Whether or not to trim whitespaces on both sides of the string.
                 /// @return Returns a string containing characters from the current position in the stream to the end of the line.
-                virtual String GetLine(Boolean Trim = true);
+                virtual String GetLine(Boole Trim = true);
                 /// @brief Moves the current position to the start of the next line.
                 /// @param Delim The character that marks the end of a line.
                 /// @return Returns the number of bytes skipped.

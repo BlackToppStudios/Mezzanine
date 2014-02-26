@@ -77,7 +77,7 @@ class scriptingbasetests : public UnitTestGroup
             TEST(StringArg.GetTypeData()==Scripting::GenericString,"ArgumentStringType");
             TEST(StringArg.GetInteger()==7,"ArgumentStringAsInteger");
 
-            Scripting::ScriptArgumentGeneric<Boolean> BoolArg(true);
+            Scripting::ScriptArgumentGeneric<Boole> BoolArg(true);
             TEST(BoolArg.GetTypeData()==Scripting::GenericBool,"ArgumentBoolType");
 
             Scripting::ScriptArgumentGeneric<Scripting::NullArgument> NullArg;

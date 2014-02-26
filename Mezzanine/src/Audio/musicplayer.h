@@ -69,16 +69,16 @@ namespace Mezzanine
             Audio::iSound* CurrTrack;
             /// @internal
             /// @brief Stores whether or not the current track has been manually stopped.
-            Boolean ManualStop;
+            Boole ManualStop;
             /// @internal
             /// @brief Stores whether or not this player is currently playing.
-            Boolean Playing;
+            Boole Playing;
             /// @internal
             /// @brief Stores whether or not the player will loop back to the start when it finishes playing all tracks in the playlist.
-            Boolean EOPRepeat;
+            Boole EOPRepeat;
             /// @internal
             /// @brief Stores whether or not the player will shuffle the playlist when it finishes playing all the tracks in the playlist.
-            Boolean EOPShuffle;
+            Boole EOPShuffle;
 
             /// @internal
             /// @brief Gets an iterator to the iSound instance in the current playlist.
@@ -116,33 +116,33 @@ namespace Mezzanine
 
             /// @brief Gets whether or not the current selection is playing.
             /// @return Returns true if the current track is playing, false otherwise.
-            Boolean IsPlaying() const;
+            Boole IsPlaying() const;
             /// @brief Gets whether or not the current selection is stopped.
             /// @return Returns true if the current track is stopped, false otherwise.
-            Boolean IsStopped() const;
+            Boole IsStopped() const;
             /// @brief Gets whether or not the current selection is paused.
             /// @return Returns true if the current track is paused, false otherwise.
-            Boolean IsPaused() const;
+            Boole IsPaused() const;
             /// @brief Checks the set playlist to see if it contains a track.
             /// @param Track The track to check for.
             /// @return Returns true if the current playlist contains the specified song, false otherwise.
-            Boolean ContainsSong(iSound* Track) const;
+            Boole ContainsSong(iSound* Track) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Configuration
 
             /// @brief Sets whether the playlist should return to the start after it reaches the end of the list.
             /// @param Repeat Enables/Disables repeating the playlist when it reaches the end.
-            void SetPlaylistRepeat(Boolean Repeat);
+            void SetPlaylistRepeat(Boole Repeat);
             /// @brief Gets wether playlist repeat is enabled.
             /// @return Returns true if the playlist is set to repeat when it finishes, false otherwise.
-            Boolean GetPlaylistRepeat() const;
+            Boole GetPlaylistRepeat() const;
             /// @brief Sets whether the playlist should shuffle it's contents after it reaches the end of the list.
             /// @param Shuffle Enables/Disables shuffling the playlist when it reaches the end.
-            void SetPlaylistShuffle(Boolean Shuffle);
+            void SetPlaylistShuffle(Boole Shuffle);
             /// @brief Gets wether playlist shuffle is enabled.
             /// @return Returns true if the playlist is set to shuffle when it finishes, false otherwise.
-            Boolean GetPlaylistShuffle() const;
+            Boole GetPlaylistShuffle() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility

@@ -135,11 +135,11 @@ namespace Mezzanine
         /// @brief Equality comparison operator.
         /// @param Other The other Matrix4x4 to compare against.
         /// @return Returns true if the two Matrix4x4's are equal, false otherwise.
-        Boolean operator==(const Matrix4x4& Other) const;
+        Boole operator==(const Matrix4x4& Other) const;
         /// @brief Inequality comparison operator.
         /// @param Other The other Matrix4x4 to compare against.
         /// @return Returns true if the two Matrix4x4's are not equal, false otherwise.
-        Boolean operator!=(const Matrix4x4& Other) const;
+        Boole operator!=(const Matrix4x4& Other) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators With Matrix4x4

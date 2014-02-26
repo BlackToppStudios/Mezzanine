@@ -53,7 +53,7 @@ namespace Mezzanine
 	    /// @param First The first MetaCode to compare.
 	    /// @param Second The second MetaCode to compare.
 	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    Boolean KeyboardCodeCompare(const MetaCode& First, const MetaCode& Second)
+	    Boole KeyboardCodeCompare(const MetaCode& First, const MetaCode& Second)
 	    {
 	        return First.GetCode() < Second.GetCode();
 	    }
@@ -62,7 +62,7 @@ namespace Mezzanine
 	    /// @param First The first MetaCode to compare.
 	    /// @param Second The second MetaCode to compare.
 	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    Boolean MouseCodeCompare(const MetaCode& First, const MetaCode& Second)
+	    Boole MouseCodeCompare(const MetaCode& First, const MetaCode& Second)
 	    {
 	        return First.GetCode() < Second.GetCode();
 	    }
@@ -71,7 +71,7 @@ namespace Mezzanine
 	    /// @param First The first MetaCode to compare.
 	    /// @param Second The second MetaCode to compare.
 	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    Boolean MultitouchCodeCompare(const MetaCode& First, const MetaCode& Second)
+	    Boole MultitouchCodeCompare(const MetaCode& First, const MetaCode& Second)
 	    {
 	        /// @todo When our support for Multitouch devices expands this may need to be expanded as well.
 	        return First.GetCode() < Second.GetCode();
@@ -81,7 +81,7 @@ namespace Mezzanine
 	    /// @param First The first MetaCode to compare.
 	    /// @param Second The second MetaCode to compare.
 	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    Boolean ControllerCodeCompare(const MetaCode& First, const MetaCode& Second)
+	    Boole ControllerCodeCompare(const MetaCode& First, const MetaCode& Second)
 	    {
 	        if( First.GetDeviceIndex() == Second.GetDeviceIndex() ) {
 	            return First.GetCode() < Second.GetCode();
@@ -94,7 +94,7 @@ namespace Mezzanine
 	    /// @param First The first MetaCode to compare.
 	    /// @param Second The second MetaCode to compare.
 	    /// @return Returns true if First should be placed before Second, false otherwise.
-	    Boolean SequenceCodeCompare(const MetaCode& First, const MetaCode& Second)
+	    Boole SequenceCodeCompare(const MetaCode& First, const MetaCode& Second)
 	    {
 	        if( First.GetDeviceIndex() == Second.GetDeviceIndex() ) {
 	            return First.GetMetaValue() < Second.GetMetaValue();
@@ -137,7 +137,7 @@ namespace Mezzanine
         const MetaCode& MetaCodeKey::GetKeyData() const
             { return MCode; }
 
-        Boolean MetaCodeKey::operator<(const MetaCodeKey& Other) const
+        Boole MetaCodeKey::operator<(const MetaCodeKey& Other) const
         {
             if( this->MCode.GetDeviceType() == Other.MCode.GetDeviceType() ) {
                 return Compare(MCode,Other.MCode);

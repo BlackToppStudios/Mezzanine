@@ -81,7 +81,7 @@ namespace Mezzanine
                 Real Thickness;
                 /// @internal
                 /// @brief A bool indicating whether or not an additional segment should be generated between the first and last points.
-                Boolean Closed;
+                Boole Closed;
             //public:
                 /// @brief Class constructor.
                 /// @param RendName The name to give to this Linelist.
@@ -118,7 +118,7 @@ namespace Mezzanine
                 /// @brief Finalizes the list and prepares it for rendering.
                 /// @param Closed Whether or not the line list connects back to it's starting position.  If
                 /// true this will create one last line connecting the last provided position with the first.
-                void End(Boolean Closed = false);
+                void End(Boole Closed = false);
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility Methods
@@ -130,7 +130,7 @@ namespace Mezzanine
                 const PointVector& GetPoints() const;
                 /// @brief Gets whether or not this linelist is enclosed.
                 /// @return Returns true if this linelist has an extra line connecting the first and last entries.
-                Boolean IsClosed() const;
+                Boole IsClosed() const;
                 /// @brief Gets the colour of this linelist.
                 /// @return Returns a const reference to the colourvalue for this linelist.
                 const ColourValue& GetLineColour() const;
@@ -141,12 +141,12 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Visibility Methods
 
-                /// @copydoc Renderable::SetVisible(Boolean)
-                virtual void SetVisible(Boolean CanSee);
+                /// @copydoc Renderable::SetVisible(Boole)
+                virtual void SetVisible(Boole CanSee);
                 /// @copydoc Renderable::GetVisible()
-                virtual Boolean GetVisible() const;
+                virtual Boole GetVisible() const;
                 /// @copydoc Renderable::IsVisible()
-                virtual Boolean IsVisible() const;
+                virtual Boole IsVisible() const;
                 /// @copydoc Renderable::Show()
                 virtual void Show();
                 /// @copydoc Renderable::Hide()

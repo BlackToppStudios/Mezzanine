@@ -81,7 +81,7 @@ namespace Mezzanine
     {
         namespace OALS
         {
-            Boolean Recorder::IsSupported()
+            Boole Recorder::IsSupported()
             {
                 return ( alcIsExtensionPresent(NULL, "ALC_EXT_CAPTURE") == AL_TRUE );
             }
@@ -97,7 +97,7 @@ namespace Mezzanine
             Recorder::~Recorder()
                 {  }
 
-            Boolean Recorder::InitializeDevice()
+            Boole Recorder::InitializeDevice()
             {
                 if(this->RecorderDevice != NULL)
                     this->ShutdownDevice();
@@ -171,7 +171,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Initialization and Shutdown
 
-            Boolean Recorder::Initialize(const String& DeviceName, const UInt32 Freq, const BitConfig Config, const UInt32 IntBufSize)
+            Boole Recorder::Initialize(const String& DeviceName, const UInt32 Freq, const BitConfig Config, const UInt32 IntBufSize)
             {
                 this->CurrentDeviceName = DeviceName;
                 this->Frequency = Freq;
@@ -190,12 +190,12 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            Boolean Recorder::IsReady() const
+            Boole Recorder::IsReady() const
             {
                 return this->RecorderDevice != NULL;
             }
 
-            Boolean Recorder::BeginRecording()
+            Boole Recorder::BeginRecording()
             {
                 if(!this->Recording)
                 {
@@ -251,7 +251,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Recording Configuration
 
-            Boolean Recorder::SetDeviceName(const String& DeviceName)
+            Boole Recorder::SetDeviceName(const String& DeviceName)
             {
                 this->CurrentDeviceName = DeviceName;
                 if(this->RecorderDevice != NULL) {
@@ -267,7 +267,7 @@ namespace Mezzanine
                 return this->CurrentDeviceName;
             }
 
-            Boolean Recorder::SetFrequency(const UInt32 Freq)
+            Boole Recorder::SetFrequency(const UInt32 Freq)
             {
                 this->Frequency = Freq;
                 if(this->RecorderDevice != NULL) {
@@ -283,7 +283,7 @@ namespace Mezzanine
                 return this->Frequency;
             }
 
-            Boolean Recorder::SetBitConfiguration(const BitConfig Config)
+            Boole Recorder::SetBitConfiguration(const BitConfig Config)
             {
                 if( Config > Audio::BC_16Bit_Stereo )
                 {
@@ -304,7 +304,7 @@ namespace Mezzanine
                 return this->BitConfiguration;
             }
 
-            Boolean Recorder::SetInternalBufferSize(const UInt32 Size)
+            Boole Recorder::SetInternalBufferSize(const UInt32 Size)
             {
                 this->InternalBufferSize = Size;
                 if(this->RecorderDevice != NULL) {

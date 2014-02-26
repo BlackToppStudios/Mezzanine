@@ -67,10 +67,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
 
-        Boolean GridVector2::operator==(const GridVector2& Other)
+        Boole GridVector2::operator==(const GridVector2& Other)
             { return ( this->X == Other.X && this->Y == Other.Y ); }
 
-        Boolean GridVector2::operator!=(const GridVector2& Other)
+        Boole GridVector2::operator!=(const GridVector2& Other)
             { return ( this->X != Other.X || this->Y != Other.Y ); }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ namespace Mezzanine
         Whole GridRect::GetBottomCell() const
             { return this->Position.Y + ( this->Size.Y - 1); }
 
-        Boolean GridRect::Envelopes(const GridRect& Other)
+        Boole GridRect::Envelopes(const GridRect& Other)
         {
             return ( this->GetLeftCell() <= Other.GetLeftCell() &&
                      this->GetRightCell() >= Other.GetRightCell() &&
@@ -161,10 +161,10 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Operators
 
-        Boolean GridRect::operator==(const GridRect& Other)
+        Boole GridRect::operator==(const GridRect& Other)
             { return ( this->Position == Other.Position && this->Size == Other.Size ); }
 
-        Boolean GridRect::operator!=(const GridRect& Other)
+        Boole GridRect::operator!=(const GridRect& Other)
             { return ( this->Position != Other.Position || this->Size != Other.Size ); }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -295,7 +295,7 @@ namespace Mezzanine
             this->WorkAreaSize.Y = ActCellSize.Y * static_cast<Real>( GridSize.Y );
         }
 
-        void GridContainer::QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boolean Adding)
+        void GridContainer::QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boole Adding)
         {
             // This method doesn't provide enough information to do what is intended for this container.
             // So do nothing.  Wait for the slow version to do the update.
@@ -405,7 +405,7 @@ namespace Mezzanine
             return Ret;
         }
 
-        Boolean GridContainer::SetChildGridRect(Widget* Child, const GridRect& ChildTrans)
+        Boole GridContainer::SetChildGridRect(Widget* Child, const GridRect& ChildTrans)
         {
             UInt16 Zorder = Child->GetZOrder();
             ChildRectIterator RectEnd = this->ChildRects.end();
@@ -434,7 +434,7 @@ namespace Mezzanine
             return GridRect();
         }
 
-        Boolean GridContainer::RemoveChildGridRect(Widget* Child)
+        Boole GridContainer::RemoveChildGridRect(Widget* Child)
         {
             for( ChildRectIterator RectIt = this->ChildRects.begin() ; RectIt != this->ChildRects.end() ; ++RectIt )
             {

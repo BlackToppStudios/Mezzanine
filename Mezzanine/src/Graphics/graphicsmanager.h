@@ -167,7 +167,7 @@ namespace Mezzanine
             Graphics::RenderSystem CurrRenderSys;
             /// @internal
             /// @brief Stores whether the internal graphics subsystem has been initialized.
-            Boolean OgreBeenInitialized;
+            Boole OgreBeenInitialized;
 
             /// @internal
             /// @brief Construct the manager and set sane defaults.
@@ -218,7 +218,7 @@ namespace Mezzanine
             void DestroyGameWindow(GameWindow* ToBeDestroyed);
             /// @brief Destroys every game window created.
             /// @param ExcludePrimary Whether or not you want to spare the primary window created.
-            void DestroyAllGameWindows(Boolean ExcludePrimary = true);
+            void DestroyAllGameWindows(Boole ExcludePrimary = true);
             /// @brief Gets the primary(first) game window.
             /// @return Returns a pointer to the primary game window.
             GameWindow* GetPrimaryGameWindow();
@@ -240,7 +240,7 @@ namespace Mezzanine
             /// to know what rendersystem to build for.  Additionally this cannot be swapped/changed at runtime.  If called after a window has been made this will throw an exception.
             /// @param RenderSys The Render system to be used.
             /// @param InitializeRenderSystem Whether to immediately initialize the rendersystem afterwords.
-            void SetRenderSystem(const Graphics::RenderSystem& RenderSys, Boolean InitializeRenderSystem = false);
+            void SetRenderSystem(const Graphics::RenderSystem& RenderSys, Boole InitializeRenderSystem = false);
             /// @brief Gets the current rendersystem being used.
             /// @remarks This does not return a pointer or any other kind of accessor to the actual rendersystem structure.  If you need that, then we're doing something wrong.
             /// @return Returns an enum value coresponding to the render system being used.
@@ -276,7 +276,7 @@ namespace Mezzanine
             virtual void RenderOneFrame();
             /// @brief Swaps all the buffers of all GameWindows.
             /// @param WaitForVsync Whether or not the buffer should swap after the vsync interval is completed.
-            virtual void SwapAllBuffers(Boolean WaitForVsync);
+            virtual void SwapAllBuffers(Boole WaitForVsync);
 
             /// @copydoc ManagerBase::Initialize()
             /// @details Added a GraphicWorkUnit to the WorkScheduler on the Entresol as a
@@ -295,11 +295,11 @@ namespace Mezzanine
             // SubSystem Initialization
 
             /// @brief Gets whether or not SDL has been started.
-            /// @return Returns a Boolean indicating whether or not SDL has been initialized yet.
-            Boolean HasSDLBeenInitialized();
+            /// @return Returns a Boole indicating whether or not SDL has been initialized yet.
+            Boole HasSDLBeenInitialized();
             /// @brief Gets whether or not Ogre has been started.
-            /// @return Returns a Boolean indicating whether or not Ogre has been initialized yet.
-            Boolean HasOgreBeenInitialized();
+            /// @return Returns a Boole indicating whether or not Ogre has been initialized yet.
+            Boole HasOgreBeenInitialized();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Type Identifier Methods

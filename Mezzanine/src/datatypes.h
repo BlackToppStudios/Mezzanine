@@ -175,10 +175,10 @@ namespace Mezzanine
     /// @details This should be a char if String is an std::string.
     typedef char Char8;
 
-    /// @typedef Bool
+    /// @typedef Boole
     /// @brief Generally acts a single bit, true or false
     /// @details Normally just a bool, but on some platform alignment matters more than size, so this could be as large as one cpu word in size.
-    typedef bool Boolean;
+    typedef bool Boole;
 
     /// @typedef StringStream
     /// @brief A Datatype used for streaming operations with strings.
@@ -299,11 +299,11 @@ namespace Mezzanine
     template<class T> Real ToReal( const T& Datum )
         { return ConvertTo<Real>(Datum); }
 
-    /// @brief Converts whatever to a Boolean as long as the proper streaming operators are available for it
+    /// @brief Converts whatever to a Boole as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
     /// @return A Bool with the converted data
-    template<class T> Boolean ToBool( const T& Datum )
-        { return ConvertTo<Boolean>(Datum); }
+    template<class T> Boole ToBool( const T& Datum )
+        { return ConvertTo<Boole>(Datum); }
 
     /// @brief Converts whatever to a float as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted

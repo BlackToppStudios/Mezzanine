@@ -77,7 +77,8 @@ namespace Mezzanine
             #ifdef _MEZZ_THREAD_WIN32_
                 return InterlockedExchangeAdd((long*)VariableToChange, Value);
             #else
-                return __sync_add_and_fetch(VariableToChange,Value);
+                //return __sync_add_and_fetch(VariableToChange,Value);
+                return __sync_fetch_and_add(VariableToChange,Value);
             #endif
         }
     }//Threading

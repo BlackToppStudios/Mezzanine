@@ -115,7 +115,7 @@ namespace Mezzanine
                 /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file.
                 /// @param TheEntity The entity from which to extract the information.
                 /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
-                static btTriangleMesh* CreateBulletTrimesh(Ogre::Entity* TheEntity, Boolean UseAllSubmeshes = false);
+                static btTriangleMesh* CreateBulletTrimesh(Ogre::Entity* TheEntity, Boole UseAllSubmeshes = false);
                 /// @brief used to get information about 3d graphical objects at specific locations
                 static void GetMeshInformation(Ogre::Entity *entity,
                                     size_t &vertex_count,

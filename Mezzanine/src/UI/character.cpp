@@ -245,12 +245,12 @@ namespace Mezzanine
             return this->CharTraits.CharColour;
         }
 
-        void Character::SetHighlighted(Boolean Highlight)
+        void Character::SetHighlighted(Boole Highlight)
         {
             this->Highlighted = ( this->IsHighlightable() && Highlight );
         }
 
-        Boolean Character::GetHighlighted() const
+        Boole Character::GetHighlighted() const
         {
             return this->Highlighted;
         }
@@ -268,35 +268,35 @@ namespace Mezzanine
             return this->CharTraits;
         }
 
-        Boolean Character::IsGlyph() const
+        Boole Character::IsGlyph() const
         {
             return (NULL != this->CharGlyph);
         }
 
-        Boolean Character::IsSprite() const
+        Boole Character::IsSprite() const
         {
             return (NULL != this->CharSprite);
         }
 
-        Boolean Character::IsRenderable() const
+        Boole Character::IsRenderable() const
         {
             if( this->CharGlyph && this->CharGlyph->IsWhitespace() ) return false;
             else return true;
         }
 
-        Boolean Character::IsHighlightable() const
+        Boole Character::IsHighlightable() const
         {
             if( this->CharGlyph && this->CharGlyph->IsNewLine() ) return false;
             else return true;
         }
 
-        Boolean Character::IsWhiteSpace() const
+        Boole Character::IsWhiteSpace() const
         {
             if( this->CharGlyph && this->CharGlyph->IsWhitespace() ) return true;
             else return false;
         }
 
-        Boolean Character::IsNewLine() const
+        Boole Character::IsNewLine() const
         {
             if( this->CharGlyph && this->CharGlyph->IsNewLine() ) return true;
             else return false;
@@ -323,7 +323,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean Character::IsCustomSizeSet() const
+        Boole Character::IsCustomSizeSet() const
         {
             const Vector2 Test(-1,-1);
             return (this->CustomSize != Test);

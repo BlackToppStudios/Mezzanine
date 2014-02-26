@@ -166,7 +166,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Comparison Operators
 
-    Boolean Matrix4x4::operator==(const Matrix4x4& Other) const
+    Boole Matrix4x4::operator==(const Matrix4x4& Other) const
     {
         for( Whole Row = 0 ; Row < 4 ; ++Row )
         {
@@ -179,7 +179,7 @@ namespace Mezzanine
         return true;
     }
 
-    Boolean Matrix4x4::operator!=(const Matrix4x4& Other) const
+    Boole Matrix4x4::operator!=(const Matrix4x4& Other) const
     {
         for( Whole Row = 0 ; Row < 4 ; ++Row )
         {

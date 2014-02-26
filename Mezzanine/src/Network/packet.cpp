@@ -67,7 +67,7 @@ namespace Mezzanine
             Clear();
         }
 
-        Boolean Packet::VerifySize(const size_t& Bytes) const
+        Boole Packet::VerifySize(const size_t& Bytes) const
         {
             return RawData.size() >= (ReadPos+Bytes);
         }
@@ -91,7 +91,7 @@ namespace Mezzanine
             return RawData.size();
         }
 
-        Boolean Packet::EndOfPacket() const
+        Boole Packet::EndOfPacket() const
         {
             return (ReadPos >= RawData.size());
         }
@@ -101,7 +101,7 @@ namespace Mezzanine
             return RawData;
         }
 
-        Packet& Packet::operator >>(Boolean& Data)
+        Packet& Packet::operator >>(Boole& Data)
         {
             return *this;
         }
@@ -264,7 +264,7 @@ namespace Mezzanine
             return *this;
         }*/
 
-        Packet& Packet::operator <<(Boolean Data)
+        Packet& Packet::operator <<(Boole Data)
         {
             *this << static_cast<UInt8>(Data);
             return *this;

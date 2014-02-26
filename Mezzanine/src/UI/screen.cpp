@@ -105,7 +105,7 @@ namespace Mezzanine
                 VertexCollectFunctor(ScreenRenderData* pData) : Data(pData) {}
                 ~VertexCollectFunctor() {}
 
-                Boolean operator()(QuadRenderable* Quad)
+                Boole operator()(QuadRenderable* Quad)
                 {
                     Quad->_AppendRenderData(*Data);
                     return false;
@@ -265,7 +265,7 @@ namespace Mezzanine
         Widget* Screen::CheckAndInsertExcept(Widget* ToInsert)
         {
             String WidgetName = ToInsert->GetName();
-            std::pair<WidgetIterator,Boolean> InsertReturn = this->Widgets.insert( std::pair<String,Widget*>(WidgetName,ToInsert) );
+            std::pair<WidgetIterator,Boole> InsertReturn = this->Widgets.insert( std::pair<String,Widget*>(WidgetName,ToInsert) );
             if( !InsertReturn.second )
                 { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + WidgetName + "\" already exists."); }
             return ToInsert;
@@ -343,13 +343,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility and Visibility Methods
 
-        void Screen::SetVisible(Boolean CanSee)
+        void Screen::SetVisible(Boole CanSee)
             { this->Visible = CanSee; }
 
-        Boolean Screen::GetVisible() const
+        Boole Screen::GetVisible() const
             { return this->Visible; }
 
-        Boolean Screen::IsVisible() const
+        Boole Screen::IsVisible() const
             { return this->Visible; }
 
         void Screen::Show()
@@ -980,7 +980,7 @@ namespace Mezzanine
 
         void Screen::_RenderScreen()
         {
-            Boolean Force = false;
+            Boole Force = false;
             if(Orientation != this->GameViewport->GetOrientationMode() ) {
                 this->Orientation = GameViewport->GetOrientationMode();
                 if(this->Orientation == Mezzanine::OM_Degree_90)

@@ -384,7 +384,7 @@ namespace Mezzanine
                 }
             }
 
-            Boolean Effect::CheckError()
+            Boole Effect::CheckError()
             {
                 Integer ALError = alGetError();
                 return ( ALError == AL_NO_ERROR );
@@ -393,7 +393,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            Boolean Effect::IsValid() const
+            Boole Effect::IsValid() const
             {
                 return this->Valid;
             }
@@ -507,7 +507,7 @@ namespace Mezzanine
                 return this->Volume;
             }
 
-            void Effect::IgnoreAttenuation(Boolean Ignore)
+            void Effect::IgnoreAttenuation(Boole Ignore)
             {
                 if( this->IsIgnoringAttenuation() != Ignore )
                 {
@@ -516,7 +516,7 @@ namespace Mezzanine
                 }
             }
 
-            Boolean Effect::IsIgnoringAttenuation() const
+            Boole Effect::IsIgnoringAttenuation() const
             {
                 return this->IgnoreAtten;
             }
@@ -588,7 +588,7 @@ namespace Mezzanine
 
                     ALint BoolParam;
                     this->EFX->alGetEffecti(this->InternalEffect,AL_EAXREVERB_DECAY_HFLIMIT,&BoolParam);
-                    Ret.DecayHFLimit = static_cast<Boolean>(BoolParam);
+                    Ret.DecayHFLimit = static_cast<Boole>(BoolParam);
 
                     return Ret;
                 }else{
@@ -640,7 +640,7 @@ namespace Mezzanine
 
                     ALint BoolParam;
                     this->EFX->alGetEffecti(this->InternalEffect,AL_REVERB_DECAY_HFLIMIT,&BoolParam);
-                    Ret.DecayHFLimit = static_cast<Boolean>(BoolParam);
+                    Ret.DecayHFLimit = static_cast<Boole>(BoolParam);
 
                     return Ret;
                 }else{
@@ -969,7 +969,7 @@ namespace Mezzanine
 
                     ALint BoolParam;
                     this->EFX->alGetEffecti(this->InternalEffect,AL_COMPRESSOR_ONOFF,&BoolParam);
-                    Ret.Active = static_cast<Boolean>(BoolParam);
+                    Ret.Active = static_cast<Boole>(BoolParam);
 
                     return Ret;
                 }else{
@@ -1032,7 +1032,7 @@ namespace Mezzanine
                 return this->InternalEffectSlot;
             }
 
-            Boolean Effect::_IsDirty() const
+            Boole Effect::_IsDirty() const
             {
                 return (this->Dirty || this->EffectFilter->_IsDirty());
             }

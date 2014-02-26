@@ -231,28 +231,28 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
 
-    Boolean Vector3::operator== (const Vector3 &Vec) const
+    Boole Vector3::operator== (const Vector3 &Vec) const
         { return( Vec.X == this->X && Vec.Y == this->Y && Vec.Z == this->Z ); }
 
-    Boolean Vector3::operator== (const btVector3 &Vec) const
+    Boole Vector3::operator== (const btVector3 &Vec) const
         { return( Vec.getX() == this->X && Vec.getY() == this->Y && Vec.getZ() == this->Z ); }
 
-    Boolean Vector3::operator== (const Ogre::Vector3 &Vec) const
+    Boole Vector3::operator== (const Ogre::Vector3 &Vec) const
         { return ( Vec.x == this->X && Vec.y == this->Y && Vec.z == this->Z ); }
 
 
-    Boolean Vector3::operator!= (const Vector3 &Vec) const
+    Boole Vector3::operator!= (const Vector3 &Vec) const
         { return ( Vec.X != this->X || Vec.Y != this->Y || Vec.Z != this->Z ); }
 
-    Boolean Vector3::operator!= (const btVector3 &Vec) const
+    Boole Vector3::operator!= (const btVector3 &Vec) const
         { return ( Vec.getX() != this->X || Vec.getY() != this->Y || Vec.getZ() != this->Z ); }
 
-    Boolean Vector3::operator!= (const Ogre::Vector3 &Vec) const
+    Boole Vector3::operator!= (const Ogre::Vector3 &Vec) const
         { return ( Vec.x != this->X || Vec.y != this->Y || Vec.z != this->Z ); }
 
-    Boolean Vector3::operator<= (const Mezzanine::Vector3 &Vec) const
+    Boole Vector3::operator<= (const Mezzanine::Vector3 &Vec) const
         { return ( this->X <= Vec.X && this->Y <= Vec.Y && this->Z <= Vec.Z); }
-    Boolean Vector3::operator>= (const Mezzanine::Vector3 &Vec) const
+    Boole Vector3::operator>= (const Mezzanine::Vector3 &Vec) const
         { return ( this->X >= Vec.X && this->Y >= Vec.Y && this->Z >= Vec.Z); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -381,7 +381,7 @@ namespace Mezzanine
         return (X * X + Y * Y + Z * Z);
     }
 
-    Boolean Vector3::IsZeroLength() const
+    Boole Vector3::IsZeroLength() const
     {
         return SquaredLength() < (1e-06 * 1e-06);
     }

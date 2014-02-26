@@ -284,7 +284,7 @@ namespace Mezzanine
         void InputManager::AddInputSequence(const MetaCodeContainer& Codes, const Int32& SequenceID)
             { this->Sequences.AddInputSequence(Codes,SequenceID); }
 
-        Boolean InputManager::InputSequenceExists(const MetaCodeContainer& Codes)
+        Boole InputManager::InputSequenceExists(const MetaCodeContainer& Codes)
             { return this->Sequences.InputSequenceExists(Codes); }
 
         Int32 InputManager::GetIDofInputSequence(const MetaCodeContainer& Codes)

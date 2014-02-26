@@ -47,14 +47,19 @@
 /// @brief The Definition of an implementation of the REPL written with C++ iostreams
 
 
-/// @brief A class that will take user input from a
+/// @brief A class that will take user input using IOStreams for maximum compatiblility.
 class REPLCppStream : public REPL
 {
     public:
         /// @brief Initializing constructor
         /// @param TargetExecutor A Lua sripting engine that the commands will be executed against.
         /// @param StartingPrompt The text to start the line
-        REPLCppStream(Executor& TargetExecutor, Mezzanine::String StartingPrompt="> ");
+        /// @param StartingMultiline What to display during multiline input
+        /// @param StartingReturn What to display when returning values
+        REPLCppStream(Executor& TargetExecutor,
+                      Mezzanine::String StartingPrompt="compatibility> ",
+                      Mezzanine::String StartingMultiline=">> ",
+                      Mezzanine::String StartingReturn="=> ");
 
         /// @brief This is the actual the loop that will do the REPLing
         virtual void Launch();

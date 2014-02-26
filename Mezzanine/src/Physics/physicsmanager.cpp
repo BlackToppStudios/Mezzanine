@@ -758,12 +758,12 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Simulation Management
 
-        void PhysicsManager::PauseSimulation(Boolean Pause)
+        void PhysicsManager::PauseSimulation(Boole Pause)
         {
             this->SimulationPaused = Pause;
         }
 
-        Boolean PhysicsManager::SimulationIsPaused()
+        Boole PhysicsManager::SimulationIsPaused()
         {
             return this->SimulationPaused;
         }
@@ -879,7 +879,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Constraint Management
 
-        void PhysicsManager::AddConstraint(Physics::Constraint* Con, Boolean DisableCollisions)
+        void PhysicsManager::AddConstraint(Physics::Constraint* Con, Boole DisableCollisions)
         {
             this->BulletDynamicsWorld->addConstraint(Con->GetConstraintBase(), DisableCollisions);
             this->Constraints.push_back(Con);

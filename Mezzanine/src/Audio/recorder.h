@@ -71,7 +71,7 @@ namespace Mezzanine
             /// @param Config The bit configuration to record and store the audio data.  See enum @ref BitConfig for more information.
             /// @param IntBufSize The size of the internal buffer to allocate for the recorded audio.
             /// @return Returns true if the device was successfully initialized, false if there was a problem.
-            virtual Boolean Initialize(const String& DeviceName = "",  const UInt32 Freq = 22050, const BitConfig Config = BC_16Bit_Mono, const UInt32 IntBufSize = 8192) = 0;
+            virtual Boole Initialize(const String& DeviceName = "",  const UInt32 Freq = 22050, const BitConfig Config = BC_16Bit_Mono, const UInt32 IntBufSize = 8192) = 0;
             /// @brief Shuts down and releases the recording device.
             /// @note If you wish to reuse this recorder after it has been shut down, you will need to reinitialize it.
             virtual void Shutdown() = 0;
@@ -81,12 +81,12 @@ namespace Mezzanine
 
             /// @brief Gets whether or not the current Recorder configuration is ready to start recording audio.
             /// @return Returns true if this Recorder is ready to start recording, false otherise.
-            virtual Boolean IsReady() const = 0;
+            virtual Boole IsReady() const = 0;
 
             /// @brief Starts recording audio from the initialized device.
             /// @note If there is any old data from previous recordings in the buffer, they will be wiped.  You should call @ref iRecorder::GetRecordedAudio before calling this.
             /// @return Returns true if recording was successfully started.
-            virtual Boolean BeginRecording() = 0;
+            virtual Boole BeginRecording() = 0;
             /// @brief Stops the recording of audio if this is currently recording.
             virtual void StopRecording() = 0;
             /// @brief Writes the current contents of the recorder buffer to another buffer.
@@ -106,7 +106,7 @@ namespace Mezzanine
             /// @note If this recorder is already initialized, calling this method may re-initialize it and clear the recorded audio buffer in the process.
             /// @param DeviceName The name of the device to use to record audio.
             /// @return Returns true if there were no errors in setting the device name, false if there was a problem.
-            virtual Boolean SetDeviceName(const String& DeviceName) = 0;
+            virtual Boole SetDeviceName(const String& DeviceName) = 0;
             /// @brief Gets the name of the currently set recording device.
             /// @return Returns a String containing the name of the device this recorder was initialized with, or an empty string if one hasn't been initialized.
             virtual String GetDeviceName() const = 0;
@@ -114,7 +114,7 @@ namespace Mezzanine
             /// @note If this recorder is already initialized, calling this method may re-initialize it and clear the recorded audio buffer in the process.
             /// @param Freq The frequency at which to record and store the audio data in Hz.
             /// @return Returns true if there were no errors in setting the frequency, false if there was a problem.
-            virtual Boolean SetFrequency(const UInt32 Freq) = 0;
+            virtual Boole SetFrequency(const UInt32 Freq) = 0;
             /// @brief Gets the frequency of the captured audio.
             /// @return Returns a UInt32 containing the frequency of the captured audio in Hz.
             virtual UInt32 GetFrequency() const = 0;
@@ -122,14 +122,14 @@ namespace Mezzanine
             /// @note If this recorder is already initialized, calling this method may re-initialize it and clear the recorded audio buffer in the process.
             /// @param Config The bit configuration to record and store the audio data.  See enum @ref BitConfig for more information.
             /// @return Returns true if there were no errors in setting the bit configuration, false if there was a problem.
-            virtual Boolean SetBitConfiguration(const BitConfig Config) = 0;
+            virtual Boole SetBitConfiguration(const BitConfig Config) = 0;
             /// @brief Gets the bit configuration for the audio captured by this recorder.
             /// @return Returns an BitConfig representing the bit format for the audio recorded.
             virtual BitConfig GetBitConfiguration() const = 0;
             /// @brief Sets the size of the internal buffer where the recorded audio may be placed.
             /// @param Size The size of the internal buffer in bytes.
             /// @return Returns true if the internal buffer size was successfully updated, false otherwise.
-            virtual Boolean SetInternalBufferSize(const UInt32 Size) = 0;
+            virtual Boole SetInternalBufferSize(const UInt32 Size) = 0;
             /// @brief Gets the currently set size of the internal buffer in bytes.
             /// @return Returns a UInt32 representing the internal size of the buffer in bytes.
             virtual UInt32 GetInternalBufferSize() const = 0;

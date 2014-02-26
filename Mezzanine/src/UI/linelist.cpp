@@ -57,8 +57,8 @@ namespace Mezzanine
         {
         protected:
             LineList* Parent;
-            /// @copydoc SimpleRenderer::RedrawImpl(Boolean)
-            virtual void RedrawImpl(Boolean Force)
+            /// @copydoc SimpleRenderer::RedrawImpl(Boole)
+            virtual void RedrawImpl(Boole Force)
             {
                 if(!this->Parent->IsVisible())
                 {
@@ -69,7 +69,7 @@ namespace Mezzanine
                 const LineList::PointVector& Positions = this->Parent->GetPoints();
                 const ColourValue& Colour = this->Parent->GetLineColour();
                 const Real& Thickness = this->Parent->GetLineThickness();
-                Boolean IsClosed = this->Parent->IsClosed();
+                Boole IsClosed = this->Parent->IsClosed();
 
                 if(Positions.size() < 2)
                     return;
@@ -186,7 +186,7 @@ namespace Mezzanine
             return *this;
         }
 
-        void LineList::End(Boolean Closed)
+        void LineList::End(Boole Closed)
         {
             this->Closed = Closed;
             //_MarkDirty();
@@ -205,7 +205,7 @@ namespace Mezzanine
             return this->Positions;
         }
 
-        Boolean LineList::IsClosed() const
+        Boole LineList::IsClosed() const
         {
             return this->Closed;
         }
@@ -223,7 +223,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility Methods
 
-        void LineList::SetVisible(Boolean CanSee)
+        void LineList::SetVisible(Boole CanSee)
         {
             if( this->Visible == CanSee )
                 return;
@@ -231,12 +231,12 @@ namespace Mezzanine
             //_MarkDirty();
         }
 
-        Boolean LineList::GetVisible() const
+        Boole LineList::GetVisible() const
         {
             return this->Visible;
         }
 
-        Boolean LineList::IsVisible() const
+        Boole LineList::IsVisible() const
         {
             return (this->Visible && ParentScreen->IsVisible());
         }

@@ -97,7 +97,7 @@ namespace Mezzanine
             Real SpeedFactor;
             /// @internal
             /// @brief Stores whether or not updates to this particle system are paused.
-            Boolean Paused;
+            Boole Paused;
 
             /// @internal
             /// @brief Constructs this particle system from a pre-made particle script.
@@ -142,10 +142,10 @@ namespace Mezzanine
 
             /// @brief Pauses this proxy, preventing it from emitting, moving, or removing any particles.
             /// @param Pause Will pauae the proxy if running and Pause is true, otherwise it will resume the proxy if paused and Pause is false.
-            void PauseParticleSystem(Boolean Pause);
+            void PauseParticleSystem(Boole Pause);
             /// @brief Gets whether or not this particle system is currently paused.
             /// @return Returns true if this particle system is paused, false otherwise.
-            Boolean IsParticleSystemPaused() const;
+            Boole IsParticleSystemPaused() const;
 
             /// @brief Sets a custom parameter of a particle effect.
             /// @remarks The params available to change depends on the internal particle system used.

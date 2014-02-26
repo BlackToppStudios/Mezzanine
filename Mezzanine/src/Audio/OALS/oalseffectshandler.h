@@ -219,7 +219,7 @@ namespace Mezzanine
                 // Effect Handling
 
                 /// @copydoc iEffectsHandler::IsEffectSupported(const EffectType Type) const
-                virtual Boolean IsEffectSupported(const EffectType Type) const;
+                virtual Boole IsEffectSupported(const EffectType Type) const;
                 /// @copydoc iEffectsHandler::CreateEffect()
                 virtual iEffect* CreateEffect();
                 /// @copydoc iEffectsHandler::GetEffect(const UInt32 Index) const
@@ -235,7 +235,7 @@ namespace Mezzanine
                 // Filter Handling
 
                 /// @copydoc iEffectsHandler::IsFilterSupported(const FilterType Type) const
-                virtual Boolean IsFilterSupported(const FilterType Type) const;
+                virtual Boole IsFilterSupported(const FilterType Type) const;
                 /// @copydoc iEffectsHandler::CreateFilter()
                 virtual iFilter* CreateFilter();
                 /// @copydoc iEffectsHandler::GetFilter(const UInt32 Index) const
@@ -251,7 +251,7 @@ namespace Mezzanine
                 // Preset Handling
 
                 /// @copydoc iEffectsHandler::EffectPresetExists(const EffectType Type, const String& Name)
-                virtual Boolean EffectPresetExists(const EffectType Type, const String& Name);
+                virtual Boole EffectPresetExists(const EffectType Type, const String& Name);
                 /// @copydoc iEffectsHandler::RemoveEffectPreset(const EffectType Type, const String& Name)
                 virtual void RemoveEffectPreset(const EffectType Type, const String& Name);
                 /// @copydoc iEffectsHandler::RemoveAllEffectPresets(const EffectType Type)

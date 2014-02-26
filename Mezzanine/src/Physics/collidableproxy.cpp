@@ -53,7 +53,7 @@ John Blackwood - makoenergy02@gmail.com
 
 namespace
 {
-    Mezzanine::Boolean IsConvex(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    Mezzanine::Boole IsConvex(const Mezzanine::Physics::CollisionShape::ShapeType Type)
     {
         switch( Type )
         {
@@ -77,17 +77,17 @@ namespace
         }
     }
 
-    Mezzanine::Boolean IsCompound(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    Mezzanine::Boole IsCompound(const Mezzanine::Physics::CollisionShape::ShapeType Type)
     {
         return Type == Mezzanine::Physics::CollisionShape::ST_Compound;
     }
 
-    Mezzanine::Boolean IsStaticTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    Mezzanine::Boole IsStaticTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
     {
         return Type == Mezzanine::Physics::CollisionShape::ST_StaticTriMesh;
     }
 
-    Mezzanine::Boolean IsDynamicTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
+    Mezzanine::Boole IsDynamicTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
     {
         return Type == Mezzanine::Physics::CollisionShape::ST_DynamicTriMesh;
     }
@@ -298,7 +298,7 @@ namespace Mezzanine
         AxisAlignedBox CollidableProxy::GetAABB() const
             { return ( this->IsInWorld() ? AxisAlignedBox( Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMin ), Vector3( this->_GetBasePhysicsObject()->getBroadphaseHandle()->m_aabbMax ) ) : AxisAlignedBox() ); }
 
-        Boolean CollidableProxy::IsInWorld() const
+        Boole CollidableProxy::IsInWorld() const
             { return ( this->_GetBasePhysicsObject()->getBroadphaseHandle() != NULL ); }
 
         WorldManager* CollidableProxy::GetCreator() const
@@ -414,7 +414,7 @@ namespace Mezzanine
             return this->ProxyShape;
         }
 
-        void CollidableProxy::SetCollisionResponse(Boolean Enable)
+        void CollidableProxy::SetCollisionResponse(Boole Enable)
         {
             if( Enable != this->GetCollisionResponse() )
             {
@@ -427,7 +427,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean CollidableProxy::GetCollisionResponse() const
+        Boole CollidableProxy::GetCollisionResponse() const
         {
             return !(this->_GetBasePhysicsObject()->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
         }
@@ -457,17 +457,17 @@ namespace Mezzanine
             Base->setCollisionFlags( Base->getCollisionFlags() | btCollisionObject::CF_STATIC_OBJECT );
         }
 
-        Boolean CollidableProxy::IsKinematic() const
+        Boole CollidableProxy::IsKinematic() const
         {
             return this->_GetBasePhysicsObject()->isKinematicObject();
         }
 
-        Boolean CollidableProxy::IsStatic() const
+        Boole CollidableProxy::IsStatic() const
         {
             return this->_GetBasePhysicsObject()->isStaticObject();
         }
 
-        Boolean CollidableProxy::IsStaticOrKinematic() const
+        Boole CollidableProxy::IsStaticOrKinematic() const
         {
             return this->_GetBasePhysicsObject()->isStaticOrKinematicObject();
         }
@@ -502,7 +502,7 @@ namespace Mezzanine
             return Physics::AFF_AnisotropicFrictionDisabled;
         }
 
-        Boolean CollidableProxy::IsAnisotropicFrictionModeSet(const Whole Mode) const
+        Boole CollidableProxy::IsAnisotropicFrictionModeSet(const Whole Mode) const
             { return this->_GetBasePhysicsObject()->hasAnisotropicFriction(Mode); }
 
         Vector3 CollidableProxy::GetAnisotropicFriction() const
@@ -517,7 +517,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Activation State
 
-        void CollidableProxy::SetActivationState(const Physics::ActivationState State, Boolean Force)
+        void CollidableProxy::SetActivationState(const Physics::ActivationState State, Boole Force)
         {
             if(Force) this->_GetBasePhysicsObject()->forceActivationState(State);
             else this->_GetBasePhysicsObject()->setActivationState(State);
@@ -528,7 +528,7 @@ namespace Mezzanine
             return static_cast<Physics::ActivationState>( this->_GetBasePhysicsObject()->getActivationState() );
         }
 
-        Boolean CollidableProxy::IsActive() const
+        Boole CollidableProxy::IsActive() const
         {
             return this->_GetBasePhysicsObject()->isActive();
         }
@@ -709,7 +709,7 @@ namespace Mezzanine
 
         void CollidableProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            Boolean WasInWorld = false;
+            Boole WasInWorld = false;
             XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
             if( !InWorldAttrib.Empty() ) {
                 WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );

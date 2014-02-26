@@ -94,7 +94,7 @@ namespace Mezzanine
                 /// be filled with gibberish, and everything before the error will be properly decoded.
                 /// @param DataString A Base64 string to be decode and used as a binary buffer, or a string to be used a buffer if IsBase64 is false
                 /// @param IsBase64 Is the String passed Base64 encoded
-                explicit BinaryBuffer(const String& DataString, Boolean IsBase64 = true);
+                explicit BinaryBuffer(const String& DataString, Boole IsBase64 = true);
 
                 /// @brief Assignment Operator
                 /// @details This deletes the buffer if it is not null, and allocates a fresh one of
@@ -177,7 +177,7 @@ namespace Mezzanine
         /// @brief Is a character a valid Base64 character
         /// @param Char8 a single char to check if it could possibly be valid base64
         /// @return True if the character could be part of a valid block of Base64 text, false otherwise
-        Boolean MEZZ_LIB IsBase64(unsigned char Char8);
+        Boole MEZZ_LIB IsBase64(unsigned char Char8);
 
         /// @brief Converts the contents of a String into a String containing a base64 encoded String
         /// @param Unencoded A String/binary to be encoded

@@ -117,7 +117,7 @@ namespace Mezzanine
             /// @brief Handles input passed to this Action.
             /// @param Code The MetaCode to be processed.
             /// @return Returns true if this input was consumed/handled, false otherwise.
-            Boolean _HandleInput(const Input::MetaCode& Code);
+            Boole _HandleInput(const Input::MetaCode& Code);
         };//Action
     }//UI
 }//Mezzanine

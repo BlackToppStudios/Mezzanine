@@ -71,40 +71,40 @@ namespace Mezzanine
         UInt16 ButtonDevice::GetNumButtons() const
             { return this->Buttons.size(); }
 
-        Boolean ButtonDevice::IsButtonPressed(const UInt16 Button) const
+        Boole ButtonDevice::IsButtonPressed(const UInt16 Button) const
             { return Input::BUTTON_UP < this->GetButtonState(Button); }
 
-        Boolean ButtonDevice::IsButtonPressed(const Input::InputCode& Button) const
+        Boole ButtonDevice::IsButtonPressed(const Input::InputCode& Button) const
             { return Input::BUTTON_UP < this->GetButtonState(Button); }
 
-        Boolean ButtonDevice::IsButtonPressing(const UInt16 Button) const
+        Boole ButtonDevice::IsButtonPressing(const UInt16 Button) const
             { return Input::BUTTON_PRESSING == this->GetButtonState(Button); }
 
-        Boolean ButtonDevice::IsButtonPressing(const Input::InputCode& Button) const
+        Boole ButtonDevice::IsButtonPressing(const Input::InputCode& Button) const
             { return Input::BUTTON_PRESSING == this->GetButtonState(Button); }
 
-        Boolean ButtonDevice::IsButtonLifting(const UInt16 Button) const
+        Boole ButtonDevice::IsButtonLifting(const UInt16 Button) const
             { return Input::BUTTON_LIFTING == this->GetButtonState(Button); }
 
-        Boolean ButtonDevice::IsButtonLifting(const Input::InputCode& Button) const
+        Boole ButtonDevice::IsButtonLifting(const Input::InputCode& Button) const
             { return Input::BUTTON_LIFTING == this->GetButtonState(Button); }
 
-        Boolean ButtonDevice::IsButtonTransitioning(const UInt16 Button) const
+        Boole ButtonDevice::IsButtonTransitioning(const UInt16 Button) const
         {
             Input::ButtonState State = this->GetButtonState(Button);
             return (Input::BUTTON_LIFTING == State || Input::BUTTON_PRESSING == State);
         }
 
-        Boolean ButtonDevice::IsButtonTransitioning(const Input::ButtonState& Button) const
+        Boole ButtonDevice::IsButtonTransitioning(const Input::ButtonState& Button) const
         {
             Input::ButtonState State = this->GetButtonState(Button);
             return (Input::BUTTON_LIFTING == State || Input::BUTTON_PRESSING == State);
         }
 
-        Boolean ButtonDevice::CheckButtonState(const UInt16 Button, const Input::ButtonState& State) const
+        Boole ButtonDevice::CheckButtonState(const UInt16 Button, const Input::ButtonState& State) const
             { return State == this->GetButtonState(Button); }
 
-        Boolean ButtonDevice::CheckButtonState(const Input::InputCode& Button, const Input::ButtonState& State) const
+        Boole ButtonDevice::CheckButtonState(const Input::InputCode& Button, const Input::ButtonState& State) const
             { return State == this->GetButtonState(Button); }
 
         void ButtonDevice::_Update(const MetaCodeContainer& DeltaCodes, MetaCodeContainer& GeneratedCodes)

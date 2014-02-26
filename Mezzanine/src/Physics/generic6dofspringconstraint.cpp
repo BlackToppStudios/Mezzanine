@@ -61,7 +61,7 @@ namespace Mezzanine
         btGeneric6DofSpringConstraint* Generic6DofSpringConstraint::Generic6dofSpring() const
             { return static_cast<btGeneric6DofSpringConstraint*>( this->Generic6dof ); }
 
-        Generic6DofSpringConstraint::Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boolean UseLinearReferenceA)
+        Generic6DofSpringConstraint::Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boole UseLinearReferenceA)
         {
             this->SetBodies(ProxyA,ProxyB);
 
@@ -70,7 +70,7 @@ namespace Mezzanine
             this->Generic6dof = new btGeneric6DofSpringConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), transa, transb, UseLinearReferenceA);
         }
 
-        Generic6DofSpringConstraint::Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boolean UseLinearReferenceA)
+        Generic6DofSpringConstraint::Generic6DofSpringConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boole UseLinearReferenceA)
         {
             this->SetBodies(ProxyA,ProxyB);
 
@@ -138,7 +138,7 @@ namespace Mezzanine
         void Generic6DofSpringConstraint::SetSpringDamping(int Index, Real Damping)
             { this->Generic6dofSpring()->setDamping(Index, Damping); }
 
-        void Generic6DofSpringConstraint::SetSpringEnabled(int Index, Boolean Enable)
+        void Generic6DofSpringConstraint::SetSpringEnabled(int Index, Boole Enable)
             { this->Generic6dofSpring()->enableSpring(Index, Enable); }
 
         Real Generic6DofSpringConstraint::GetSpringStiffness(int Index) const
@@ -147,7 +147,7 @@ namespace Mezzanine
         Real Generic6DofSpringConstraint::GetSpringDamping(int Index) const
             { return this->Generic6dofSpring()->getDamping(Index); }
 
-        Boolean Generic6DofSpringConstraint::GetSpringEnabled(int Index) const
+        Boole Generic6DofSpringConstraint::GetSpringEnabled(int Index) const
             { return this->Generic6dofSpring()->isSpringEnabled(Index); }
 
         ////////////////////////////////////////////////////////////////////////////////

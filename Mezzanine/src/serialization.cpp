@@ -46,11 +46,11 @@
 
 namespace Mezzanine
 {
-    void SerializeError(const String& FailedTo, const String& ClassName, Boolean SOrD)
+    void SerializeError(const String& FailedTo, const String& ClassName, Boole SOrD)
         /// @todo This may not be an appropriate type of exception to throw here, should evaluate if a new exception is needed at some point.
         { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not " + FailedTo + " during " + ClassName + (SOrD? " ":" De") + "Serialization."); }
 
-    void DeSerializeError(const String& FailedTo, const String& ClassName, Boolean SOrD)
+    void DeSerializeError(const String& FailedTo, const String& ClassName, Boole SOrD)
         { SerializeError(FailedTo, ClassName, SOrD); }
 }
 

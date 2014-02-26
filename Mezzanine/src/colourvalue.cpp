@@ -131,10 +131,10 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Overloaded Operators
 
-    Boolean ColourValue::operator==(const ColourValue &Colour) const
+    Boole ColourValue::operator==(const ColourValue &Colour) const
         { return ( Colour.RedChannel == this->RedChannel && Colour.GreenChannel == this->GreenChannel && Colour.BlueChannel == this->BlueChannel && Colour.AlphaChannel == this->AlphaChannel ); }
 
-    Boolean ColourValue::operator!=(const ColourValue &Colour) const
+    Boole ColourValue::operator!=(const ColourValue &Colour) const
         { return ( Colour.RedChannel != this->RedChannel || Colour.GreenChannel != this->GreenChannel || Colour.BlueChannel != this->BlueChannel || Colour.AlphaChannel != this->AlphaChannel ); }
 
     void ColourValue::operator=(const ColourValue &OtherColour)

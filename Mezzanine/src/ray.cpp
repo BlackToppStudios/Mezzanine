@@ -188,10 +188,10 @@ namespace Mezzanine
     Ray& Ray::operator/=(const Real Factor)
         { this->Destination = ( ( this->Destination - this->Origin ) / Factor ) + this->Origin;  return *this; }
 
-    Boolean Ray::operator==(const Ray& Other) const
+    Boole Ray::operator==(const Ray& Other) const
         { return ( this->Origin == Other.Origin && this->Destination == Other.Destination ); }
 
-    Boolean Ray::operator!=(const Ray& Other) const
+    Boole Ray::operator!=(const Ray& Other) const
         { return ( this->Origin != Other.Origin || this->Destination != Other.Destination ); }
 }
 

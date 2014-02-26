@@ -203,12 +203,12 @@ namespace Mezzanine
             void SetRenderResolution(const Whole& Width, const Whole& Height);
             /// @brief Set the Fullscreen Setting
             /// @details Set the Fullscreen Setting
-            /// @param Fullscreen This accepts a Boolean. True for fullscreen, false for windowed
-            void SetFullscreen(const Boolean Fullscreen);
+            /// @param Fullscreen This accepts a Boole. True for fullscreen, false for windowed
+            void SetFullscreen(const Boole Fullscreen);
             /// @brief Gets the Fullscreen Setting
             /// @details Gets the Fullscreen Setting
-            /// @return This returns a Boolean, true if fullscreen is set, false otherwise
-            Boolean GetFullscreen() const;
+            /// @return This returns a Boole, true if fullscreen is set, false otherwise
+            Boole GetFullscreen() const;
             /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
             /// @details This should be useful in situations where it is not possible to update all of the options separately.
             void SetRenderOptions(const WindowSettings& NewSettings);
@@ -227,22 +227,22 @@ namespace Mezzanine
             Whole GetFSAALevel() const;
             /// @brief Enables (or disables) vsync on this window.
             /// @param Enable Whether or not to enable vsync.
-            void EnableVsync(Boolean Enable);
+            void EnableVsync(Boole Enable);
             /// @brief Gets whether or not vsync is currently enabled on this window.
             /// @return Returns true if vsync is currently enabled, false otherwise.
-            Boolean VsyncEnabled() const;
+            Boole VsyncEnabled() const;
             /// @brief Hides (shows) the window.
             /// @param Hidden Whether or not to hide the window.
-            void SetHidden(Boolean Hidden);
+            void SetHidden(Boole Hidden);
             /// @brief Gets whether this window is hidden.
             /// @return Returns true if this window is being hidden, false otherwise.
-            Boolean IsHidden() const;
+            Boole IsHidden() const;
             /// @brief Gets whether or not this window has a resizeable border.
             /// @return Returns true if this window has a border when not fullscreen and it can be resized, false otherwise.
-            Boolean BorderIsResizeable() const;
+            Boole BorderIsResizeable() const;
             /// @brief Gets whether this window is borderless.
             /// @return Returns true if this window has no border, false otherwise.
-            Boolean IsBorderless() const;
+            Boole IsBorderless() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Window Stats Methods

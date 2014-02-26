@@ -247,7 +247,7 @@ namespace Mezzanine
             this->WorkAreaSize.X += HalfPadding;
         }
 
-        void HorizontalContainer::QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boolean Adding)
+        void HorizontalContainer::QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boole Adding)
         {
             const Vector2 ActChildSize = ChildSize.CalculateActualDimensions( this->ActDims.Size );
             const Real ActPadding = this->LinearPadding.CalculateActualDimension( this->ParentQuad ? this->ParentQuad->GetActualSize().X : 0 );

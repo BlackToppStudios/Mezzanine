@@ -129,13 +129,13 @@ namespace Mezzanine
     Physics::SoftProxy* SoftDebris::GetSoftProxy() const
         { return this->SofProx; }
 
-    Boolean SoftDebris::IsInWorld() const
+    Boole SoftDebris::IsInWorld() const
         { return this->SofProx->IsInWorld(); }
 
-    Boolean SoftDebris::IsStatic() const
+    Boole SoftDebris::IsStatic() const
         { return this->SofProx->IsStatic(); }
 
-    Boolean SoftDebris::IsKinematic() const
+    Boole SoftDebris::IsKinematic() const
         { return this->SofProx->IsKinematic(); }
 
     void SoftDebris::GetProxies(ProxyContainer& Proxies)

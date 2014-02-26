@@ -153,13 +153,13 @@ namespace Mezzanine
         EventSlotFunctorDefinition* Functor;
         /// @internal
         /// @brief Stores whether or not the functor is to be deleted when this subscriber is destructed.
-        Boolean CleanUp;
+        Boole CleanUp;
     public:
         /// @brief Class constructor.
         /// @param Ev The event this subscriber slot belongs to.
         /// @param Funct The Functor object to be called when the event is fired.
         /// @param CleanUpAfter Whether or not to delete the functor when this object is deleted.
-        FunctorSubscriberSlot(Event* Ev, EventSlotFunctorDefinition* Funct, Boolean CleanUpAfter);
+        FunctorSubscriberSlot(Event* Ev, EventSlotFunctorDefinition* Funct, Boole CleanUpAfter);
         /// @brief Class destructor.
         virtual ~FunctorSubscriberSlot();
 

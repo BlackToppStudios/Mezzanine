@@ -96,22 +96,22 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
 
-    Boolean Vector2::operator==(const Mezzanine::Vector2& Vec2) const
+    Boole Vector2::operator==(const Mezzanine::Vector2& Vec2) const
         { return ( Vec2.X == this->X && Vec2.Y == this->Y ); }
 
-    Boolean Vector2::operator!=(const Mezzanine::Vector2& Vec2) const
+    Boole Vector2::operator!=(const Mezzanine::Vector2& Vec2) const
         { return ( Vec2.X != this->X || Vec2.Y != this->Y ); }
 
-    Boolean Vector2::operator==(const Ogre::Vector2& Vec2) const
+    Boole Vector2::operator==(const Ogre::Vector2& Vec2) const
         { return ( Vec2.x == this->X && Vec2.y == this->Y ); }
 
-    Boolean Vector2::operator!=(const Ogre::Vector2& Vec2) const
+    Boole Vector2::operator!=(const Ogre::Vector2& Vec2) const
         { return ( Vec2.x != this->X || Vec2.y != this->Y ); }
 
-    Boolean Vector2::operator<= (const Mezzanine::Vector2 &Vec) const
+    Boole Vector2::operator<= (const Mezzanine::Vector2 &Vec) const
         { return ( this->X <= Vec.X && this->Y <= Vec.Y); }
 
-    Boolean Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
+    Boole Vector2::operator>= (const Mezzanine::Vector2 &Vec) const
         { return ( this->X >= Vec.X && this->Y >= Vec.Y); }
 
     ///////////////////////////////////////////////////////////////////////////////

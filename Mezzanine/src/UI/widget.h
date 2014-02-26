@@ -147,7 +147,7 @@ namespace Mezzanine
             /// @brief Consumes input for this widget's use.
             /// @param Code The input to be processed.
             /// @return Returns true if the input was handled, false otherwise.
-            virtual Boolean HandleInputImpl(const Input::MetaCode& Code);
+            virtual Boole HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             void ConstructWidget();
@@ -181,13 +181,13 @@ namespace Mezzanine
             virtual const String& GetTypeName() const;
             /// @brief Gets the result of the last mouse hover check.
             /// @return Returns whether or not the mouse was hovering over this widget during the last check.
-            virtual Boolean IsHovered() const;
+            virtual Boole IsHovered() const;
             /// @brief Gets whether or not this widget currently has focus.
             /// @return True if this widget has focus, false otherwise.
-            virtual Boolean HasFocus() const;
+            virtual Boole HasFocus() const;
             /// @brief Gets whether or not the system mouse is being dragged over this widget.
             /// @return Returns true if the mouse is dragging over this widget, false otherwise.
-            virtual Boolean IsDragged() const;
+            virtual Boole IsDragged() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // State-LayerGroup Binding Methods
@@ -203,7 +203,7 @@ namespace Mezzanine
             /// @brief Sets the group bound to the specified WidgetState as active.
             /// @param BindState The WidgetState bound to the RenderLayerGroup being set.
             /// @return Returns true if the active RenderLayerGroup has changed, false otherwise.
-            virtual Boolean SetGroupFromState(const UInt32 BindState);
+            virtual Boole SetGroupFromState(const UInt32 BindState);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Fetch Methods
@@ -218,12 +218,12 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods
 
-            /// @copydoc Renderable::SetVisible(Boolean)
-            virtual void SetVisible(Boolean CanSee);
+            /// @copydoc Renderable::SetVisible(Boole)
+            virtual void SetVisible(Boole CanSee);
             /// @copydoc Renderable::GetVisible() const
-            virtual Boolean GetVisible() const;
+            virtual Boole GetVisible() const;
             /// @copydoc Renderable::IsVisible() const
-            virtual Boolean IsVisible() const;
+            virtual Boole IsVisible() const;
             /// @copydoc Renderable::Show()
             virtual void Show();
             /// @copydoc Renderable::Hide()
@@ -295,7 +295,7 @@ namespace Mezzanine
             /// @note This input will be passed up if not consumed by this widget.
             /// @param Code The MetaCode to be processed.
             /// @return Returns true if this input was consumed/handled, false otherwise.
-            virtual Boolean _HandleInput(const Input::MetaCode& Code);
+            virtual Boole _HandleInput(const Input::MetaCode& Code);
             /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr Args)
             virtual void _NotifyEvent(EventArgumentsPtr Args);
         };//Widget

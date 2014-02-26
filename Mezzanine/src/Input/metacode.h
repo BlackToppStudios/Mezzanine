@@ -244,62 +244,62 @@ namespace Mezzanine
             // Utility Checks
 
             /// @brief Does this MetaCode Represent a state of a keyboard key.
-            /// @return This returns a Boolean which will be true if this is a keyboard event.
-            Boolean IsKeyboardButton() const;
+            /// @return This returns a Boole which will be true if this is a keyboard event.
+            Boole IsKeyboardButton() const;
             /// @brief Does this MetaCode Represent a state of a Mouse button.
-            /// @return This returns a Boolean which will be true if this is a MOUSEBUTTON_X event.
-            Boolean IsMouseButton() const;
+            /// @return This returns a Boole which will be true if this is a MOUSEBUTTON_X event.
+            Boole IsMouseButton() const;
             /// @brief Does this MetaCode Represent a state of a Controller button.
-            /// @return This returns a Boolean which will be true if this is a CONTROLLERBUTTON_X event.
-            Boolean IsControllerButton() const;
+            /// @return This returns a Boole which will be true if this is a CONTROLLERBUTTON_X event.
+            Boole IsControllerButton() const;
             /// @brief Does this MetaCode Represent a state of any button on an input device.
-            /// @return This returns a Boolean which will be true if this is event pertains to any button on any input device.
-            Boolean IsDeviceButton() const;
+            /// @return This returns a Boole which will be true if this is event pertains to any button on any input device.
+            Boole IsDeviceButton() const;
 
             /// @brief Does this MetaCode Represent a state of a keyboard Event.
-            /// @return This returns a Boolean which will be true if this is between KEY_FIRST and KEY_LAST.
-            Boolean IsKeyboardEvent() const;
+            /// @return This returns a Boole which will be true if this is between KEY_FIRST and KEY_LAST.
+            Boole IsKeyboardEvent() const;
             /// @brief Does this MetaCode Represent a state of a mouse Event.
-            /// @return This returns a Boolean which will be true if this is between MOUSE_FIRST and MOUSE_LAST.
-            Boolean IsMouseEvent() const;
+            /// @return This returns a Boole which will be true if this is between MOUSE_FIRST and MOUSE_LAST.
+            Boole IsMouseEvent() const;
             /// @brief Does this MetaCode Represent movement of the mouse or mouse wheel.
-            /// @return This returns a Boolean which will be true if this is between MOUSEMOTION_FIRST and MOUSEMOTION_LAST.
-            Boolean IsMouseMotionEvent() const;
+            /// @return This returns a Boole which will be true if this is between MOUSEMOTION_FIRST and MOUSEMOTION_LAST.
+            Boole IsMouseMotionEvent() const;
             /// @brief Does this MetaCode Represent multiple clicks of a mouse button.
-            /// @return This returns a Boolean which will be true if this is between the first mouse multiclick input code and the last mouse multiclick input code.
-            Boolean IsMouseMultiClickEvent() const;
+            /// @return This returns a Boole which will be true if this is between the first mouse multiclick input code and the last mouse multiclick input code.
+            Boole IsMouseMultiClickEvent() const;
             /// @brief Does this MetaCode Represent a state of a multitouch device.
-            /// @return This returns a Boolean which will be true if this is between the MULTITOUCH_FIRST and MULTITOUCH_LAST.
-            Boolean IsMultitouchEvent() const;
+            /// @return This returns a Boole which will be true if this is between the MULTITOUCH_FIRST and MULTITOUCH_LAST.
+            Boole IsMultitouchEvent() const;
             /// @brief Does this MetaCode Represent a state of a Controller Event
-            /// @return This returns a Boolean which will be true if this is between CONTROLLER_FIRST and CONTROLLER_LAST.
-            Boolean IsControllerEvent() const;
+            /// @return This returns a Boole which will be true if this is between CONTROLLER_FIRST and CONTROLLER_LAST.
+            Boole IsControllerEvent() const;
             /// @brief Does this MetaCode Represent an axis position on a controller.
-            /// @return This returns a Boolean which will be true if this is between CONTROLLERAXIS_FIRST and CONTROLLERAXIS_LAST.
-            Boolean IsControllerAxisEvent() const;
+            /// @return This returns a Boole which will be true if this is between CONTROLLERAXIS_FIRST and CONTROLLERAXIS_LAST.
+            Boole IsControllerAxisEvent() const;
             /// @brief Does this MetaCode Represent a hat position on a controller.
-            /// @return This returns a Boolean which will be true if this is between CONTROLLERHAT_FIRST and CONTROLLERHAT_LAST.
-            Boolean IsControllerHatEvent() const;
+            /// @return This returns a Boole which will be true if this is between CONTROLLERHAT_FIRST and CONTROLLERHAT_LAST.
+            Boole IsControllerHatEvent() const;
             /// @brief Does this MetaCode Represent some other (non-keyboard and non-mouse button).
-            /// @return This returns a Boolean which will be true if this is between INPUTEVENT_FIRST and INPUTEVENT_LAST.
-            Boolean IsInputEvent() const;
+            /// @return This returns a Boole which will be true if this is between INPUTEVENT_FIRST and INPUTEVENT_LAST.
+            Boole IsInputEvent() const;
 
             /// @brief Is this a left or right Alt key.
-            /// @return This returns a Boolean which will be true if this is a left or right Alt key.
-            Boolean IsAltKey() const;
+            /// @return This returns a Boole which will be true if this is a left or right Alt key.
+            Boole IsAltKey() const;
             /// @brief Is this a left or right Ctrl key.
-            /// @return This returns a Boolean which will be true if this is a left or right Ctrl key.
-            Boolean IsCtrlKey() const;
+            /// @return This returns a Boole which will be true if this is a left or right Ctrl key.
+            Boole IsCtrlKey() const;
             /// @brief Is this a left or right Shift key.
-            /// @return This returns a Boolean which will be true if this is a left or right Shift key.
-            Boolean IsShiftKey() const;
+            /// @return This returns a Boole which will be true if this is a left or right Shift key.
+            Boole IsShiftKey() const;
             /// @brief Is this a left or right Super key (Windows logo key, Apple logo key, etc...).
-            /// @return This returns a Boolean which will be true if this is a left or right Super key.
-            Boolean IsSuperKey() const;
+            /// @return This returns a Boole which will be true if this is a left or right Super key.
+            Boole IsSuperKey() const;
 
             /// @brief Is this metacode a pollable event.
             /// @return if this metacode stores a device button then this is a pollable event.
-            Boolean IsPollable() const;
+            Boole IsPollable() const;
 
             /// @brief Gets the device-type this MetaCode is representing.
             /// @return Returns an Input::InputDevice value for the device this MetaCode is representing.
@@ -315,21 +315,21 @@ namespace Mezzanine
             /// @brief Compares two MetaCode's for equality.
             /// @param Other The other MetaCode to compare with.
             /// @return Returns true if the two MetaCode's are equal, false otherwise.
-            Boolean operator==(const MetaCode& Other) const;
+            Boole operator==(const MetaCode& Other) const;
             /// @brief Compares two MetaCode's for inequality.
             /// @param Other The other MetaCode to compare with.
             /// @return Returns true if the two MetaCode's are not equal, false otherwise.
-            Boolean operator!=(const MetaCode& Other) const;
+            Boole operator!=(const MetaCode& Other) const;
             /// @brief Compares two MetaCode's to see if this is less.
             /// @note This only compares the InputCode contained in both MetaCode's.
             /// @param Other The other MetaCode to compare with.
             /// @return Returns true if this MetaCode is less then the MetaCode being compared, false otherwise.
-            Boolean operator<(const MetaCode& Other) const;
+            Boole operator<(const MetaCode& Other) const;
             /// @brief Compares two MetaCode's to see if this is greater.
             /// @note This only compares the InputCode contained in both MetaCode's.
             /// @param Other The other MetaCode to compare with.
             /// @return Returns true if this MetaCode is greater then the MetaCode being compared, false otherwise.
-            Boolean operator>(const MetaCode& Other) const;
+            Boole operator>(const MetaCode& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization

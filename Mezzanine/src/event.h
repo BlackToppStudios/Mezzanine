@@ -92,7 +92,7 @@ namespace Mezzanine
         /// @param Funct The functor to call when the event is fired.
         /// @param CleanUpAfter Whether or not to delete the functor when this subscriber is no longer subscribed to any events.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.
-        EventSubscriberSlot* Subscribe(EventSlotFunctorDefinition* Funct, Boolean CleanUpAfter);
+        EventSubscriberSlot* Subscribe(EventSlotFunctorDefinition* Funct, Boole CleanUpAfter);
         /// @brief Subscribes a C-style function to this event.
         /// @param CFunct The C-style function to call when the event is fired.
         /// @return Returns a pointer to the created Subscriber slot for the provided subscriber.

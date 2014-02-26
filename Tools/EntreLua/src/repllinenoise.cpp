@@ -47,8 +47,8 @@
 using namespace Mezzanine;
 using namespace std;
 
-REPLLineNoise::REPLLineNoise(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
-    : REPL(TargetExecutor, StartingPrompt)
+REPLLineNoise::REPLLineNoise(Executor& TargetExecutor, Mezzanine::String StartingPrompt, Mezzanine::String StartingMultiline, Mezzanine::String StartingReturn)
+    : REPL(TargetExecutor, StartingPrompt, StartingMultiline, StartingReturn)
 {}
 
 Trie<char,String> BigList('+');
@@ -116,7 +116,7 @@ void REPLLineNoise::Launch()
             linenoiseHistorySave(HistoryFullName.c_str()); /* Save the history on disk. */
             CurrentInput = String(RawLine);
             CurrentResults = Doer.Do(CurrentInput);
-            cout << CurrentResults.Output;
+            //cout << CurrentResults.Output;
         }
         free(RawLine);
     }

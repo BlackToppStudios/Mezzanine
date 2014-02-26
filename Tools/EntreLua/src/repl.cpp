@@ -46,7 +46,7 @@
 using namespace Mezzanine;
 using namespace std;
 
-REPL::REPL(Executor& TargetExecutor, Mezzanine::String StartingPrompt)
+REPL::REPL(Executor& TargetExecutor, Mezzanine::String StartingPrompt, Mezzanine::String StartingMultiline, Mezzanine::String StartingReturn)
     : Prompt(StartingPrompt), Doer(TargetExecutor)
 {
 

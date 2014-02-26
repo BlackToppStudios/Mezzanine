@@ -117,7 +117,7 @@ namespace Mezzanine
             return ExitInvalidArguments;
         }
 
-        TestResult GetTestAnswerFromStdin(Mezzanine::String Question, Boolean FailStatusOnIncorrect)
+        TestResult GetTestAnswerFromStdin(Mezzanine::String Question, Boole FailStatusOnIncorrect)
         {
             Mezzanine::String Input;
             char Answer;

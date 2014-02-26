@@ -92,7 +92,7 @@ namespace Mezzanine
             String SkyMaterialGroupName;
             /// @internal
             /// @brief When is the sky drawn, first or per Z-order
-            Boolean SkyDrawnFirst;
+            Boole SkyDrawnFirst;
             /// @internal
             /// @brief Used to describe a skyplane instead of orientation
             Plane SkyThePlane;
@@ -133,7 +133,7 @@ namespace Mezzanine
                             String FreshSkyMaterialName = "",
                             Quaternion FreshSkyOrientation = Quaternion(0,0,0,0),
                             String FreshSkyMaterialGroupName = "",
-                            Boolean FreshSkyDrawnFirst = false,
+                            Boole FreshSkyDrawnFirst = false,
                             Plane FreshSkyThePlane = Plane(Vector3(0,0,0),0)
                         )
             {
@@ -204,7 +204,7 @@ namespace Mezzanine
             this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(ManagerName+"SceneManager");
 
             // Setup the shadow configuration
-            Boolean TextureShadows = false;
+            Boole TextureShadows = false;
             XML::Node ShadowSettings = XMLNode.GetChild("ShadowSettings");
             if(!ShadowSettings.Empty())
             {
@@ -356,7 +356,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Sky Surface Management
 
-        void SceneManager::CreateSkyPlane(const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, Boolean DrawFirst, Real Bow, int XSegments, int YSegments)
+        void SceneManager::CreateSkyPlane(const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, Boole DrawFirst, Real Bow, int XSegments, int YSegments)
         {
             this->SMD->DisableSky(this);
             this->SMD->UpdateSkyCache(SkyPlane, Material, Quaternion(0,0,0,0), Group, DrawFirst, SkyPlane_);
@@ -368,7 +368,7 @@ namespace Mezzanine
             this->SMD->OgreManager->setSkyPlane(false, Ogre::Plane(), "");
         }
 
-        void SceneManager::CreateSkyBox(const String& Material, const String& Group, Real Distance, Boolean DrawFirst, Quaternion Orientation)
+        void SceneManager::CreateSkyBox(const String& Material, const String& Group, Real Distance, Boole DrawFirst, Quaternion Orientation)
         {
             this->SMD->DisableSky(this);
             this->SMD->UpdateSkyCache(SkyBox, Material, Orientation, Group, DrawFirst);
@@ -380,7 +380,7 @@ namespace Mezzanine
             this->SMD->OgreManager->setSkyBox(false, "");
         }
 
-        void SceneManager::CreateSkyDome(const String& Material, const String& Group, Real Distance, Real Curvature, Real Tiling, Boolean DrawFirst,
+        void SceneManager::CreateSkyDome(const String& Material, const String& Group, Real Distance, Real Curvature, Real Tiling, Boole DrawFirst,
                                         Quaternion Orientation, int XSegments, int YSegments)
         {
             this->SMD->DisableSky(this);
@@ -545,7 +545,7 @@ namespace Mezzanine
         ConstString& SceneManager::GetName() const
             { return this->SMD->OgreManager->getName(); }
 
-        void SceneManager::PauseAllParticles(Boolean Pause)
+        void SceneManager::PauseAllParticles(Boole Pause)
         {
             for( SceneManager::ProxyIterator it = Proxies.begin() ; it != Proxies.end() ; it++ )
                 if( (*it)->GetProxyType() == Mezzanine::PT_Graphics_ParticleSystemProxy )
@@ -689,7 +689,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
                                 << "\" >"
                                 << SMD->SkyThePlane
                                 << "</SkyPlane>";
-                            // const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, Boolean DrawFirst, Real Bow, int XSegments, int YSegments
+                            // const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, Boole DrawFirst, Real Bow, int XSegments, int YSegments
                         }
                         break;
                     case Mezzanine::Graphics::SceneManager::SkyBox:{
@@ -702,7 +702,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
                                 << "\" >"
                                 << "<Orientation>" << SMD->SkyOrientation << "</Orientation>"
                                 << "</SkyBox>";
-                            // const String& Material, const String& Group, Real Distance, Boolean DrawFirst=true, Quaternion Orientation=Quaternion()
+                            // const String& Material, const String& Group, Real Distance, Boole DrawFirst=true, Quaternion Orientation=Quaternion()
                         }
                         break;
                     case Mezzanine::Graphics::SceneManager::SkyDome:{
@@ -720,11 +720,11 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
                                 << "\" >"
                                 << "<Orientation>" << SMD->SkyOrientation << "</Orientation>"
                                 << "</SkyDome>";
-                            // const String& Material, const String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, Boolean DrawFirst=true, Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16
+                            // const String& Material, const String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, Boole DrawFirst=true, Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16
                         }
                         break;
                 }
-                /*  Sky Cache Member - String SkyMaterialName; Quaternion SkyOrientation; String SkyMaterialGroupName; Boolean SkyDrawnFirst; Plane SkyThePlane; */
+                /*  Sky Cache Member - String SkyMaterialName; Quaternion SkyOrientation; String SkyMaterialGroupName; Boole SkyDrawnFirst; Plane SkyThePlane; */
     stream      << "</SceneManager>";
 
 
@@ -736,9 +736,9 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Graphics::Scen
 // --shadow colour
 // --Sky
 // --     Disable
-// --     Plane& SkyPlane, String& Material, String& Group, Real Scale=1000.0, Real Tiling=10.0, Boolean DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1
-// --     SkyBox(String& Material, String& Group, Real Distance, Boolean DrawFirst=true, Quaternion Orientation=Quaternion());
-// --     SkyDome(String& Material, String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, Boolean DrawFirst=true, Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16);
+// --     Plane& SkyPlane, String& Material, String& Group, Real Scale=1000.0, Real Tiling=10.0, Boole DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1
+// --     SkyBox(String& Material, String& Group, Real Distance, Boole DrawFirst=true, Quaternion Orientation=Quaternion());
+// --     SkyDome(String& Material, String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, Boole DrawFirst=true, Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16);
 // -- Ambient light
 // -- iterate over
 // --     lights

@@ -69,7 +69,7 @@ namespace Mezzanine
             this->assign( temp.begin(), temp.end() );
         }
 
-        Boolean Playlist::ContainsSound(iSound* TheSound)
+        Boole Playlist::ContainsSound(iSound* TheSound)
         {
             for( std::list< Audio::iSound* >::iterator it = this->begin() ; it != this->end() ; ++it )
             {

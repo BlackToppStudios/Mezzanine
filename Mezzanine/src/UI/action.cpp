@@ -84,7 +84,7 @@ namespace Mezzanine
             this->FireEvent(Args);
         }
 
-        Boolean Action::_HandleInput(const Input::MetaCode& Code)
+        Boole Action::_HandleInput(const Input::MetaCode& Code)
         {
             return false;
         }

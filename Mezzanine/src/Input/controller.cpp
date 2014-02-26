@@ -136,7 +136,7 @@ namespace Mezzanine
         UInt16 Controller::GetNumHats() const
             { return this->Hats.size(); }
 
-        Boolean Controller::IsHatPushedInDirection(const UInt16 Hat, const Input::HatState& WhichWay) const
+        Boole Controller::IsHatPushedInDirection(const UInt16 Hat, const Input::HatState& WhichWay) const
             { return this->GetHatState(Hat) == WhichWay; }
 
         Int16 Controller::GetAxis(const UInt16 Axis) const

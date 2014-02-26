@@ -77,11 +77,11 @@ namespace Mezzanine
             /// @brief Equality comparison operator.
             /// @param Other The other GridVector2 to compare with.
             /// @return Returns true if both GridVector2s contain the same values, false otherwise.
-            Boolean operator==(const GridVector2& Other);
+            Boole operator==(const GridVector2& Other);
             /// @brief Inequality comparison operator.
             /// @param Other The other GridVector2 to compare with.
             /// @return Returns true if this GridVector2 contains different values as the other GridVector2, false otherwise.
-            Boolean operator!=(const GridVector2& Other);
+            Boole operator!=(const GridVector2& Other);
         };//GridVector2
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -126,7 +126,7 @@ namespace Mezzanine
             /// @brief Gets whether or not this GridRect completely envelopes another GridRect.
             /// @param Other The other GridRect to compare to.
             /// @return Returns true if the provided GridRect is completely overlapped by this GridRect, false otherwise.
-            Boolean Envelopes(const GridRect& Other);
+            Boole Envelopes(const GridRect& Other);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -148,11 +148,11 @@ namespace Mezzanine
             /// @brief Equality comparison operator.
             /// @param Other The other GridRect to compare with.
             /// @return Returns true if both GridRects represent the same transform, false otherwise.
-            Boolean operator==(const GridRect& Other);
+            Boole operator==(const GridRect& Other);
             /// @brief Inequality comparison operator.
             /// @param Other The other GridRect to compare with.
             /// @return Returns true if this GridRect does not represent the same transform as the other GridRect, false otherwise.
-            Boolean operator!=(const GridRect& Other);
+            Boole operator!=(const GridRect& Other);
         };//GridRect
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -217,8 +217,8 @@ namespace Mezzanine
 
             /// @copydoc PagedContainer::UpdateWorkAreaSize()
             virtual void UpdateWorkAreaSize();
-            /// @copydoc PagedContainer::QuickUpdateWorkAreaSize(const UnifiedVec2&, Boolean)
-            virtual void QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boolean Adding);
+            /// @copydoc PagedContainer::QuickUpdateWorkAreaSize(const UnifiedVec2&, Boole)
+            virtual void QuickUpdateWorkAreaSize(const UnifiedVec2& ChildSize, Boole Adding);
 
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
@@ -269,7 +269,7 @@ namespace Mezzanine
             /// @param Child A pointer to the child that is having it's grid transform updated.
             /// @param ChildTrans The grid transform to be given to the child.
             /// @return Returns true if a previous entry was updated, false if a new grid rect entry was inserted.
-            virtual Boolean SetChildGridRect(Widget* Child, const GridRect& ChildTrans);
+            virtual Boole SetChildGridRect(Widget* Child, const GridRect& ChildTrans);
             /// @brief Gets the grid transform of a child in this container.
             /// @param Child A pointer to the child to retrieve the grid transform of.
             /// @return Returns a grid rect representing the specified childs transform on this grid, or an empty rect if the child has no rect for this container.
@@ -278,7 +278,7 @@ namespace Mezzanine
             /// @warning Use this method with extreme caution.  Removing a childs grid rect from this container can cause it to become invisible.
             /// @param Child A pointer to the child that is having it's grid transform removed.
             /// @return Returns true if the grid transform was successfully removed, false if the child had no grid rect in this container.
-            virtual Boolean RemoveChildGridRect(Widget* Child);
+            virtual Boole RemoveChildGridRect(Widget* Child);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Child Management

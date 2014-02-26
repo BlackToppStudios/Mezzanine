@@ -208,7 +208,7 @@ namespace Mezzanine
         Viewport* CameraProxy::GetViewport() const
             { return this->CameraVP; }
 
-        Boolean CameraProxy::IsFixedYawEnabled() const
+        Boole CameraProxy::IsFixedYawEnabled() const
             { return this->UseFixedYaw; }
 
         void CameraProxy::LookAt(const Vector3& TargetLoc)
@@ -286,7 +286,7 @@ namespace Mezzanine
         Real CameraProxy::GetAspectRatio() const
             { return this->GraphicsCamera->getAspectRatio(); }
 
-        void CameraProxy::SetFixedYawAxis(const Boolean UseFixed, const Vector3& Axis)
+        void CameraProxy::SetFixedYawAxis(const Boole UseFixed, const Vector3& Axis)
         {
             this->UseFixedYaw = UseFixed;
             this->FixedYawAxis = Axis;
@@ -336,7 +336,7 @@ namespace Mezzanine
 
             if( !PropertiesNode.Empty() ) {
                 if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
-                    Boolean UseFixed = true;
+                    Boole UseFixed = true;
                     Vector3 FixedYaw = Vector3::Unit_Y();
                     Real OrthoWidth = 0, OrthoHeight = 0;
 

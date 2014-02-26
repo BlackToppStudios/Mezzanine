@@ -61,24 +61,24 @@ namespace Mezzanine
         ////////////////////////////////////////////////////////////////////////////////
         // HingeConstraint Construction and Destruction
 
-        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, Boolean UseReferenceFrameA)
+        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, Boole UseReferenceFrameA)
         {
             this->SetBodies(ProxyA,ProxyB);
 
             btVector3 tempA(AxisInA.GetBulletVector3());
             btVector3 tempB(AxisInB.GetBulletVector3());
-            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, Boolean(UseReferenceFrameA));
+            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, Boole(UseReferenceFrameA));
         }
 
-        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA, Boolean UseReferenceFrameA)
+        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, const Vector3& PivotInA, const Vector3& AxisInA, Boole UseReferenceFrameA)
         {
             this->SetBodies(ProxyA);
 
             btVector3 tempA(AxisInA.GetBulletVector3());
-            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), PivotInA.GetBulletVector3(), tempA, Boolean(UseReferenceFrameA));
+            this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), PivotInA.GetBulletVector3(), tempA, Boole(UseReferenceFrameA));
         }
 
-        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boolean UseReferenceFrameA)
+        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, Boole UseReferenceFrameA)
         {
             this->SetBodies(ProxyA,ProxyB);
 
@@ -87,7 +87,7 @@ namespace Mezzanine
             this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), transa, transb, UseReferenceFrameA);
         }
 
-        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boolean UseReferenceFrameA)
+        HingeConstraint::HingeConstraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Transform& TransformA, const Transform& TransformB, Boole UseReferenceFrameA)
         {
             this->SetBodies(ProxyA,ProxyB);
             this->Hinge = new btHingeConstraint(*(ProxA->_GetPhysicsObject()), *(ProxB->_GetPhysicsObject()), TransformA.GetBulletTransform(), TransformB.GetBulletTransform(), UseReferenceFrameA);
@@ -142,13 +142,13 @@ namespace Mezzanine
         ////////////////////////////////////////////////////////////////////////////////
         // HingeConstraint Angular Motor
 
-        void HingeConstraint::EnableMotor(Boolean EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
+        void HingeConstraint::EnableMotor(Boole EnableMotor, Real TargetVelocity, Real MaxMotorImpulse)
             { this->Hinge->enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse); }
 
-        void HingeConstraint::EnableMotor(Boolean EnableMotor)
+        void HingeConstraint::EnableMotor(Boole EnableMotor)
             { this->Hinge->enableMotor(EnableMotor); }
 
-        Boolean HingeConstraint::GetMotorEnabled() const
+        Boole HingeConstraint::GetMotorEnabled() const
             { return this->Hinge->getEnableAngularMotor(); }
 
         void HingeConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
@@ -230,7 +230,7 @@ namespace Mezzanine
             return Results;
         }
 
-        Boolean HingeConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
+        Boole HingeConstraint::HasParamBeenSet(ConstraintParam Param, int Axis) const
         {
             // the logic here should match the logic in the source at http://bulletphysics.com/Bullet/BulletFull/btHingeConstraint_8cpp_source.html#l00962
             if ( -1!=Axis && 5!=Axis )
@@ -240,16 +240,16 @@ namespace Mezzanine
                     ( Con_CFM==Param      && this->Hinge->getFlags() & BT_HINGE_FLAGS_CFM_NORM )   ;   //if we are checking the cfm AND the cfm bit is set
         }
 
-        Boolean HingeConstraint::GetUseReferenceFrameA() const
+        Boole HingeConstraint::GetUseReferenceFrameA() const
             { return this->Hinge->getUseReferenceFrameA(); }
 
-        void HingeConstraint::SetUseReferenceFrameA(Boolean UseReferenceFrameA)
+        void HingeConstraint::SetUseReferenceFrameA(Boole UseReferenceFrameA)
             { this->Hinge->setUseReferenceFrameA(UseReferenceFrameA); }
 
-        Boolean HingeConstraint::GetUseFrameOffset() const
+        Boole HingeConstraint::GetUseFrameOffset() const
             { return this->Hinge->getUseFrameOffset(); }
 
-        void HingeConstraint::SetUseFrameOffset(Boolean FrameOffset)
+        void HingeConstraint::SetUseFrameOffset(Boole FrameOffset)
             { this->Hinge->setUseFrameOffset(FrameOffset); }
 
         ////////////////////////////////////////////////////////////////////////////////

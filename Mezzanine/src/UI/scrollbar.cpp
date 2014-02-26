@@ -97,7 +97,7 @@ namespace Mezzanine
         Scrollbar::~Scrollbar()
             {  }
 
-        Boolean Scrollbar::HandleInputImpl(const Input::MetaCode& Code)
+        Boole Scrollbar::HandleInputImpl(const Input::MetaCode& Code)
         {
             if( this->ChildLock != NULL ) {
                 if( Code.IsDeviceButton() && Code.GetMetaValueAsButtonState() == Input::BUTTON_DOWN && !( this->ChildLock->IsOnStandby() ) ) {
@@ -157,10 +157,10 @@ namespace Mezzanine
         Real Scrollbar::GetIncrementDistance() const
             { return this->IncrementDistance; }
 
-        void Scrollbar::SetAutoHide(Boolean AutoHide)
+        void Scrollbar::SetAutoHide(Boole AutoHide)
             { this->AutoHideScroll = AutoHide; }
 
-        Boolean Scrollbar::GetAutoHide() const
+        Boole Scrollbar::GetAutoHide() const
             { return this->AutoHideScroll; }
 
         ///////////////////////////////////////////////////////////////////////////////

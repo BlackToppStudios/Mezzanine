@@ -184,7 +184,7 @@ namespace Mezzanine
             /// the value of Decay HF Ratio. This limit, when on, maintains a natural sounding reverberation decay by allowing you to increase the value of
             /// Decay Time without the risk of getting an unnaturally long decay time at high frequencies. If this flag is set to false, high-frequency decay
             /// time isn't automatically limited.
-            Boolean DecayHFLimit;
+            Boole DecayHFLimit;
 
             /// @brief Struct constructor.
             /// @param density The Reverb Modal Density controls the coloration of the late reverb.
@@ -233,7 +233,7 @@ namespace Mezzanine
                 Real hFReference = 5000.0f,
                 Real lFReference = 250.0f,
                 Real roomRolloffFactor = 0.0f,
-                Boolean decayHFLimit = true) :
+                Boole decayHFLimit = true) :
                 Density(density), Diffusion(diffusion), Gain(gain), GainHF(gainHF), GainLF(gainLF),
                 DecayTime(decayTime), DecayHFRatio(decayHFRatio), DecayLFRatio(decayLFRatio),
                 ReflectionsGain(reflectionsGain), ReflectionsDelay(reflectionsDelay),
@@ -317,7 +317,7 @@ namespace Mezzanine
             /// Air Absorption Gain HF. This limit applies regardless of the setting of the property Decay HF Ratio, and the limit doesn't affect the value of Decay HF
             /// Ratio. This limit, when on, maintains a natural sounding reverberation decay by allowing you to increase the value of Decay Time without the risk of
             /// getting an unnaturally long decay time at high frequencies. If this flag is set to false, high-frequency decay time isn't automatically limited.
-            Boolean DecayHFLimit;
+            Boole DecayHFLimit;
 
             /// @brief Struct constructor.
             /// @param density Reverb Modal Density controls the coloration of the late reverb.
@@ -346,7 +346,7 @@ namespace Mezzanine
                 Real lateReverbDelay = 0.011f,
                 Real airAbsorptionGainHF = 0.994f,
                 Real roomRolloffFactor = 0.0f,
-                Boolean decayHFLimit = true) :
+                Boole decayHFLimit = true) :
                 Density(density), Diffusion(diffusion), Gain(gain), GainHF(gainHF),
                 DecayTime(decayTime), DecayHFRatio(decayHFRatio),
                 ReflectionsGain(reflectionsGain), ReflectionsDelay(reflectionsDelay),
@@ -767,12 +767,12 @@ namespace Mezzanine
         struct CompressorParameters
         {
             /// @brief The Compressor can only be switched on and off, it cannot be adjusted.
-            Boolean Active;
+            Boole Active;
 
             /// @brief Struct constructor.
             /// @param active The Compressor can only be switched on and off, it cannot be adjusted.
             CompressorParameters(
-                Boolean active = true) :
+                Boole active = true) :
                 Active(active) {  }
         };// CompressorParameters
 

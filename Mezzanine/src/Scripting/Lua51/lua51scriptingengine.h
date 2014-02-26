@@ -247,7 +247,7 @@ namespace Mezzanine
                     virtual void OpenLibraries(int LibrariesToOpen);
                     /// @brief Check the Lua state to see if a table exists.
                     /// @param LibToCheck Indicator of which library to ch
-                    virtual Boolean IsLibraryOpen(Lua51Libraries LibToCheck);
+                    virtual Boole IsLibraryOpen(Lua51Libraries LibToCheck);
 
                     /// @brief Nest Lua modules to put libraries in more clean positions
                     /// @details this is used to create the syntax "Mezzanine.XML.Document()" for example.
@@ -336,13 +336,16 @@ namespace Mezzanine
                     void SetThreadingSafe();
 
                 ///////////////////////////////////////////////////////////////////////////////////////
-                // Library Manipulation
+                // Other Lua Manipulation
                 public:
-                    // @brief Get the underlying Lua state that can be used with lua api calls directly.
-                    // @return The lua_State this uses
-                    //virtual lua_State* GetRawLuaState();
+                    /// @brief Get the underlying Lua state that can be used with lua api calls directly.
+                    /// @return The lua_State this uses.
+                    /// @warning Don't use this, this is exposed for troubleshooting and when used for other tasks can cause no end of headaches.
+                    lua_State* GetRawLuaState();
 
-                    //int test();
+                    /// @brief The stack is a specific part of the State relating to how data is passed between functions. How big is that?
+                    /// @return
+                    int GetStackCount();
                     //String tests(String Returns="");
             };
 

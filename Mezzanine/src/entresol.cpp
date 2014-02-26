@@ -367,7 +367,7 @@ namespace Mezzanine
             for( XML::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
             {
                 String GroupName, GroupType, GroupPath;
-                Boolean GroupRecursive = false;
+                Boole GroupRecursive = false;
                 // Get the group path
                 CurrAttrib = (*GroupIt).GetAttribute("GroupPath");
                 if(!CurrAttrib.Empty())
@@ -419,7 +419,7 @@ namespace Mezzanine
             {
                 String GroupName, GroupPath;
                 ArchiveType GroupType;
-                Boolean GroupRecursive = false;
+                Boole GroupRecursive = false;
                 // Get the group path
                 CurrAttrib = (*GroupIt).GetAttribute("GroupPath");
                 if(!CurrAttrib.Empty())
@@ -480,7 +480,7 @@ namespace Mezzanine
         }
     }
 
-    Boolean Entresol::VerifyManagerInitializations()
+    Boole Entresol::VerifyManagerInitializations()
     {
         std::vector<String> ManagerNames;
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
@@ -530,7 +530,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    void Entresol::PauseWorld(Boolean Pause)
+    void Entresol::PauseWorld(Boole Pause)
     {
         this->GetPhysicsManager()->PauseSimulation(Pause);
         this->GetSceneManager()->PauseAllParticles(Pause);
@@ -562,7 +562,7 @@ namespace Mezzanine
     // Initialization
     ///////////////////////////////////////
 
-    void Entresol::EngineInit( const Boolean &CallMainLoop )
+    void Entresol::EngineInit( const Boole &CallMainLoop )
     {
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
@@ -625,7 +625,7 @@ namespace Mezzanine
         #endif
     }
 
-    void Entresol::BreakMainLoop(Boolean Break)
+    void Entresol::BreakMainLoop(Boole Break)
     {
         if(Break)
         {
@@ -768,7 +768,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Upper Management
 
-    ManagerBase* Entresol::CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boolean AddToWorld)
+    ManagerBase* Entresol::CreateManager(const String& ManagerImplName, NameValuePairList& Params, Boole AddToWorld)
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
         if( ManIt == this->ManagerFactories.end() )
@@ -781,7 +781,7 @@ namespace Mezzanine
         return NewMan;
     }
 
-    ManagerBase* Entresol::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boolean AddToWorld)
+    ManagerBase* Entresol::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, Boole AddToWorld)
     {
         ManagerFactoryIterator ManIt = this->ManagerFactories.find(ManagerImplName);
         if( ManIt == this->ManagerFactories.end() )

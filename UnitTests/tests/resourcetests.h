@@ -67,7 +67,7 @@ class resourcetests : public UnitTestGroup
         /// set of checks that need to happen and some situations in which tests will be skipped.
         void CreateRemoveDirectory(const String& TestDirString)
         {
-            Boolean Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
+            Boole Exists = Mezzanine::ResourceManager::DoesDirectoryExist(TestDirString);
             TestOutput << "Does testing directory exists: " << Exists << endl;
             if(Exists)
             {

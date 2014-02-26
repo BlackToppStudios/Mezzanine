@@ -93,7 +93,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // FunctorSubscriberSlot Methods
 
-    FunctorSubscriberSlot::FunctorSubscriberSlot(Event* Ev, EventSlotFunctorDefinition* Funct, Boolean CleanUpAfter) :
+    FunctorSubscriberSlot::FunctorSubscriberSlot(Event* Ev, EventSlotFunctorDefinition* Funct, Boole CleanUpAfter) :
         EventSubscriberSlot(Ev),
         Functor(Funct),
         CleanUp(CleanUpAfter)

@@ -178,7 +178,7 @@ namespace Mezzanine
             /// @param Axis The Axis on which to check the param
             /// @details This will probably have to implement the same logic aas what is in the respective get/setparam function of each constraint http://bulletphysics.com/Bullet/BulletFull/classbtTypedConstraint.html#a11f44dd743b59bc05e25d500456e2559
             /// @return True if it has been set, false if it has.
-            virtual Boolean HasParamBeenSet(ConstraintParam Param, int Axis) const = 0;
+            virtual Boole HasParamBeenSet(ConstraintParam Param, int Axis) const = 0;
             /// @brief Get a sorted (low to high) list of All Valid Axis
             /// @details This is implemented using ValidLinearAxis and ValidAngularAxis, Derived versions of this class may wish to make a more specialized
             /// implementation of this method that doesn't have the overhead of passing around 3 vectors by value.
@@ -197,7 +197,7 @@ namespace Mezzanine
             /// @details This is implemented using ValidParamOnAxis, Derived versions of this class may wish to make a more specialized
             /// implementation of this method.
             /// @return True if Param is valid on Axis, and Axis is valid. If anything is invalid this returns false.
-            virtual Boolean IsParamValidOnAxis(ConstraintParam Param, int Axis) const
+            virtual Boole IsParamValidOnAxis(ConstraintParam Param, int Axis) const
             {
                 ParamList Supported = ValidParamOnAxis(Axis);
                 if(size_t(ConstraintParamCount) == Supported.size())                           // no need to check deeper, because everything is supported

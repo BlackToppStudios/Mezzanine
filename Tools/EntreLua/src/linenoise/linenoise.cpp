@@ -2,7 +2,7 @@
  * line editing lib needs to be 20,000 lines of C code.
  *
  * You can find the latest source code at:
- * 
+ *
  *   http://github.com/antirez/linenoise
  *
  * Does a number of crazy assumptions that happen to be true in 99.9999% of
@@ -79,7 +79,7 @@
  * ED2 (Clear entire screen)
  *    Sequence: ESC [ 2 J
  *    Effect: clear the whole screen
- * 
+ *
  */
 
 #ifndef _WIN32
@@ -192,7 +192,7 @@ static int win32read(char *c) {
 
                     case VK_ESCAPE: /* ignore - send ctrl-c, will return -1 */
                         *c = 3;
-						/* *c = 21; */ /* Uncomment this line and comment out the one above to make escape delete the line instead of quitting. */
+                        /* *c = 21; */ /* Uncomment this line and comment out the one above to make escape delete the line instead of quitting. */
                         return 1;
                     case VK_RETURN:  /* enter */
                         *c = 13;
@@ -377,7 +377,7 @@ static void refreshLine(int fd, const char *prompt, char *buf, size_t len, size_
     COORD coord;
 #endif
     size_t plen = strlen(prompt);
-    
+
     while((plen+pos) >= cols) {
         buf++;
         len--;
@@ -454,7 +454,7 @@ static int completeLine(int fd, const char *prompt, char *buf, size_t buflen, si
                 clen = strlen(lc.cvec[i]);
                 refreshLine(fd,prompt,lc.cvec[i],clen,clen,cols);
             } else {
-                //refreshLine(fd,prompt,buf,*len,*pos,cols);
+                refreshLine(fd,prompt,buf,*len,*pos,cols);
             }
 
             nread = read(fd,&c,1);
@@ -513,7 +513,7 @@ static int linenoisePrompt(int fd, char *buf, size_t buflen, const char *prompt)
     /* The latest history entry is always our current buffer, that
      * initially is just an empty string. */
     linenoiseHistoryAdd("");
-    
+
 #ifdef _WIN32
     if (!WriteConsole(hOut, prompt, (DWORD)plen, &foo, NULL)) return -1;
 #else
@@ -820,7 +820,7 @@ int linenoiseHistorySave(const char *filename) {
     FILE *fp = fopen(filename,"w");
 #endif
     int j;
-    
+
     if (fp == NULL) return -1;
     for (j = 0; j < history_len; j++)
         fprintf(fp,"%s\n",history[j]);
@@ -836,12 +836,12 @@ int linenoiseHistorySave(const char *filename) {
 int linenoiseHistoryLoad(const char *filename) {
     FILE *fp = fopen(filename,"r");
     char buf[LINENOISE_MAX_LINE];
-    
+
     if (fp == NULL) return -1;
 
     while (fgets(buf,LINENOISE_MAX_LINE,fp) != NULL) {
         char *p;
-        
+
         p = strchr(buf,'\r');
         if (!p) p = strchr(buf,'\n');
         if (p) *p = '\0';

@@ -168,7 +168,7 @@ namespace Mezzanine
             this->DestroyAllTextLines();
         }
 
-        void TextLayer::RedrawImpl(Boolean Force)
+        void TextLayer::RedrawImpl(Boole Force)
         {
             // Update our text
             Real MaxWidth = this->Parent->GetActualSize().X * this->Scale.X;
@@ -310,7 +310,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Parser Methods
 
-        Boolean TextLayer::SetMarkupParser(MarkupParser* Parser)
+        Boole TextLayer::SetMarkupParser(MarkupParser* Parser)
         {
             if( Parser != NULL ) {
                 this->MUParser = Parser;
@@ -320,7 +320,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean TextLayer::SetMarkupParser(const String& ParserName)
+        Boole TextLayer::SetMarkupParser(const String& ParserName)
         {
             MarkupParser* Parser = Parent->GetScreen()->GetMarkupParser(ParserName);
             return this->SetMarkupParser(Parser);
@@ -603,7 +603,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Cursor Methods
 
-        void TextLayer::SetCursorEnabled(Boolean Enable)
+        void TextLayer::SetCursorEnabled(Boole Enable)
         {
             if( Enable == this->GetCursorEnabled() )
                 return;
@@ -619,7 +619,7 @@ namespace Mezzanine
             this->_MarkDirty();
         }
 
-        Boolean TextLayer::GetCursorEnabled() const
+        Boole TextLayer::GetCursorEnabled() const
         {
             return ( this->Cursor != NULL );
         }

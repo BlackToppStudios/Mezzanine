@@ -67,7 +67,7 @@ namespace Mezzanine
             /// @brief Class destructor.
             virtual ~ConeTwistConstraint();
 
-            virtual void SetAngularOnly(Boolean AngularOnly);
+            virtual void SetAngularOnly(Boole AngularOnly);
             virtual void SetLimit(int LimitIndex, Real LimitValue);
             virtual void SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness=1.0, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
             virtual void SetDamping(Real Damping);
@@ -76,8 +76,8 @@ namespace Mezzanine
             virtual void SetFixThresh(Real FixThresh);
             virtual void SetMotorTarget(const Quaternion& Quat);
             virtual void SetMotorTargetInConstraintSpace(const Quaternion& Quat);
-            virtual void EnableMotor(Boolean Enable);
-            virtual Boolean IsPassedSwingLimit();
+            virtual void EnableMotor(Boole Enable);
+            virtual Boole IsPassedSwingLimit();
 
             /// @copydoc Constraint::GetConstraintBase() const
             virtual btTypedConstraint* GetConstraintBase() const;

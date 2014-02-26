@@ -152,7 +152,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
-        Boolean WavDecoder::IsValid()
+        Boole WavDecoder::IsValid()
         {
             return this->Valid;
         }
@@ -162,7 +162,7 @@ namespace Mezzanine
             return Audio::Enc_WAV;
         }
 
-        Boolean WavDecoder::IsSeekingSupported()
+        Boole WavDecoder::IsSeekingSupported()
         {
             return true;
         }
@@ -191,7 +191,7 @@ namespace Mezzanine
             return this->WavStream;
         }
 
-        Boolean WavDecoder::SetPosition(Int32 Position, Boolean Relative)
+        Boole WavDecoder::SetPosition(Int32 Position, Boole Relative)
         {
             Int32 CurrPos = this->WavStream->GetStreamPosition();
             Int32 StartPos = this->DataOffset;
@@ -209,7 +209,7 @@ namespace Mezzanine
             return true;
         }
 
-        Boolean WavDecoder::Seek(const Real Seconds, Boolean Relative)
+        Boole WavDecoder::Seek(const Real Seconds, Boole Relative)
         {
             Int32 SeekInBytes = ( Seconds * static_cast<Real>(this->SampleRate) * static_cast<Real>(this->Channels) * (static_cast<Real>(this->BitsPerSample) / 8.0) );
             return this->SetPosition(SeekInBytes,Relative);

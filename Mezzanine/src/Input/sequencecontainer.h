@@ -100,7 +100,7 @@ namespace Mezzanine
             /// @exception If the vector of MetaCode's doesn't end with a null MetaCode, an exception will be thrown.
             /// @param Codes A vector containing the sequence of MetaCode's to check for.
             /// @return Returns true if the sequence already exists, false otherwise.
-            Boolean InputSequenceExists(const MetaCodeContainer& Codes);
+            Boole InputSequenceExists(const MetaCodeContainer& Codes);
             /// @brief Gets the ID of the provided sequence of MetaCode's.
             /// @exception If the vector of MetaCode's doesn't end with a null MetaCode, an exception will be thrown.
             /// @param Codes A vector containing the sequence of MetaCode's to get the ID for.

@@ -63,7 +63,7 @@ namespace Mezzanine
             Resource::DataStreamPtr WavStream;
             /// @internal
             /// @brief Tracks and stores the validity of the Wav stream.
-            Boolean Valid;
+            Boole Valid;
             /// @internal
             /// @brief The number of channels in this wav file.
             UInt16 Channels;
@@ -96,11 +96,11 @@ namespace Mezzanine
             // Utility
 
             /// @copydoc iDecoder::IsValid()
-            virtual Boolean IsValid();
+            virtual Boole IsValid();
             /// @copydoc iDecoder::GetEncoding() const
             virtual Audio::Encoding GetEncoding() const;
             /// @copydoc iDecoder::IsSeekingSupported()
-            virtual Boolean IsSeekingSupported();
+            virtual Boole IsSeekingSupported();
             /// @copydoc iDecoder::GetBitConfiguration() const
             virtual Audio::BitConfig GetBitConfiguration() const;
             /// @copydoc iDecoder::GetFrequency() const
@@ -108,10 +108,10 @@ namespace Mezzanine
             /// @copydoc iDecoder::GetStream() const
             virtual Resource::DataStreamPtr GetStream() const;
 
-            /// @copydoc iDecoder::SetPosition(Int32 Position, Boolean Relative)
-            virtual Boolean SetPosition(Int32 Position, Boolean Relative);
-            /// @copydoc iDecoder::Seek(const Real Seconds, Boolean Relative)
-            virtual Boolean Seek(const Real Seconds, Boolean Relative);
+            /// @copydoc iDecoder::SetPosition(Int32 Position, Boole Relative)
+            virtual Boole SetPosition(Int32 Position, Boole Relative);
+            /// @copydoc iDecoder::Seek(const Real Seconds, Boole Relative)
+            virtual Boole Seek(const Real Seconds, Boole Relative);
 
             /// @copydoc iDecoder::ReadAudioData(void* Output, UInt32 Amount)
             virtual UInt32 ReadAudioData(void* Output, UInt32 Amount);

@@ -79,8 +79,8 @@ namespace Mezzanine
         /// @brief Increments a value in a way guaranteed to not lose any atomic increments.
         /// @param VariableToChange A pointer to the 32 bit integer to increment by the amount specified.
         /// @param Value The amount to increment the VariableToChange by.
-        ////// @note This very specific semantics of this function are useless in most scripting so it is not included in Lua and other scripting languages.
-        /// @return The newly incremented value. This is not always *VariableToChange+Value. If another thread attempted and atomic operation on this at the same time the result could be the new value pointed to by VariableToChange plus Value.
+        /// @note This very specific semantics of this function are useless in most scripting so it is not included in Lua and other scripting languages.
+        /// @return The value just before being incremented. This is not always *VariableToChange. If another thread attempted an atomic operation on this at the same time the result could be an unexpected value.
         Int32 MEZZ_LIB AtomicAdd(Int32* VariableToChange, Int32 Value);
 #endif
     }//Threading

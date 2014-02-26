@@ -304,7 +304,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
-        void HorizontalScrollbar::SetVisible(Boolean CanSee)
+        void HorizontalScrollbar::SetVisible(Boole CanSee)
         {
             if( this->AutoHideScroll && CanSee ) {
                 if( this->GetMaxXPages() > 1.0 ) {
@@ -426,7 +426,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean HorizontalScrollbar::_MouseScroll(const Vector2& MouseDelta)
+        Boole HorizontalScrollbar::_MouseScroll(const Vector2& MouseDelta)
         {
             if( this->ChildLock == this->Scroller && MouseDelta.X != 0 )
             {
@@ -451,7 +451,7 @@ namespace Mezzanine
             return false;
         }
 
-        Boolean HorizontalScrollbar::_MouseWheelScroll(const Integer Direction)
+        Boole HorizontalScrollbar::_MouseWheelScroll(const Integer Direction)
         {
             if( Direction == Input::DIRECTIONALMOTION_UPLEFT ) {
                 const Real OldScrollerValue = this->GetScrollerValue();
@@ -495,7 +495,7 @@ namespace Mezzanine
             return false;
         }
 
-        Boolean HorizontalScrollbar::_ScrollBackScroll(const Vector2& HitPosition)
+        Boole HorizontalScrollbar::_ScrollBackScroll(const Vector2& HitPosition)
         {
             if( this->ChildLock == this->ScrollBack )
             {
@@ -528,7 +528,7 @@ namespace Mezzanine
             return false;
         }
 
-        Boolean HorizontalScrollbar::_ButtonScroll(Button* TheButton)
+        Boole HorizontalScrollbar::_ButtonScroll(Button* TheButton)
         {
             if( this->ChildLock == this->UpLeftButton ) {
                 const Real OldScrollerValue = this->GetScrollerValue();

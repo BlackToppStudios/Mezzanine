@@ -259,10 +259,10 @@ namespace Mezzanine
     const String& ObjectSettingFile::GetFileName() const
         { return this->File; }
 
-    void ObjectSettingFile::SetNeedsSave(Boolean Save)
+    void ObjectSettingFile::SetNeedsSave(Boole Save)
         { this->NeedsSave = Save; }
 
-    Boolean ObjectSettingFile::GetNeedsSave() const
+    Boole ObjectSettingFile::GetNeedsSave() const
         { return this->NeedsSave; }
 
     void ObjectSettingFile::AddGroup(ObjectSettingGroup* Group)
@@ -625,16 +625,16 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Saving Utilities
 
-    void ObjectSettingsHandler::SetAutoGenPath(Boolean Enable)
+    void ObjectSettingsHandler::SetAutoGenPath(Boole Enable)
         { this->AutoGenPath = Enable; }
 
-    Boolean ObjectSettingsHandler::GetAutoGenPath() const
+    Boole ObjectSettingsHandler::GetAutoGenPath() const
         { return this->AutoGenPath; }
 
-    void ObjectSettingsHandler::SetAutoGenFiles(Boolean Enable)
+    void ObjectSettingsHandler::SetAutoGenFiles(Boole Enable)
         { this->AutoGenFiles = Enable; }
 
-    Boolean ObjectSettingsHandler::GetAutoGenFiles() const
+    Boole ObjectSettingsHandler::GetAutoGenFiles() const
         { return this->AutoGenFiles; }
 
     void ObjectSettingsHandler::SaveAllSettings()
@@ -647,7 +647,7 @@ namespace Mezzanine
         for( SettingFilesIterator SettingFileIt = this->SettingFiles.begin() ; SettingFileIt != this->SettingFiles.end() ; ++SettingFileIt )
         {
             ObjectSettingFile* CurrFile = (*SettingFileIt).second;
-            Boolean IsCurrentSettingsFile = ( CurrentSettingsSaveFile == CurrFile->GetFileName() );
+            Boole IsCurrentSettingsFile = ( CurrentSettingsSaveFile == CurrFile->GetFileName() );
             if( CurrFile->GetNeedsSave() || IsCurrentSettingsFile ) {
                 if( IsCurrentSettingsFile )
                     GroupNames.push_back( "Current" );
@@ -719,7 +719,7 @@ namespace Mezzanine
         this->SaveSettingsToFile(GroupNames,FileName,SettingsFilePath);
     }
 
-    void ObjectSettingsHandler::SaveSettingsToXML(XML::Node& RootSettings, Boolean SaveCurrent)
+    void ObjectSettingsHandler::SaveSettingsToXML(XML::Node& RootSettings, Boole SaveCurrent)
     {
         StringVector GroupNames;
 

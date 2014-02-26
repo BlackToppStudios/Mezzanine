@@ -97,7 +97,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean RenderableProxy::IsInWorld() const
+        Boole RenderableProxy::IsInWorld() const
             { return this->InWorld; }
 
         WorldManager* RenderableProxy::GetCreator() const
@@ -106,19 +106,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // RenderableProxy Properties
 
-        void RenderableProxy::SetVisible(const Boolean Visible)
+        void RenderableProxy::SetVisible(const Boole Visible)
             { this->_GetBaseGraphicsObject()->setVisible(Visible); }
 
-        Boolean RenderableProxy::GetVisible() const
+        Boole RenderableProxy::GetVisible() const
             { return this->_GetBaseGraphicsObject()->getVisible(); }
 
-        void RenderableProxy::SetCastShadows(const Boolean CastShadows)
+        void RenderableProxy::SetCastShadows(const Boole CastShadows)
             { this->_GetBaseGraphicsObject()->setCastShadows(CastShadows); }
 
-        Boolean RenderableProxy::GetCastShadows() const
+        Boole RenderableProxy::GetCastShadows() const
             { return this->_GetBaseGraphicsObject()->getCastShadows(); }
 
-        Boolean RenderableProxy::GetReceiveShadows() const
+        Boole RenderableProxy::GetReceiveShadows() const
             { return this->_GetBaseGraphicsObject()->getReceivesShadows(); }
 
         void RenderableProxy::SetLightMask(const UInt32 Mask)
@@ -247,7 +247,7 @@ namespace Mezzanine
 
         void RenderableProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            Boolean WasInWorld = false;
+            Boole WasInWorld = false;
             XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
             if( !InWorldAttrib.Empty() ) {
                 WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );

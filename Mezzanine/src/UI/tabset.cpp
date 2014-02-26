@@ -134,7 +134,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Visibility and Priority Methods
 
-        void TabSet::SetVisible(Boolean CanSee)
+        void TabSet::SetVisible(Boole CanSee)
         {
             if( this->Visible == CanSee )
                 return;

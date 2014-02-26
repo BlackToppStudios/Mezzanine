@@ -145,10 +145,10 @@ namespace Mezzanine
     Transform Transform::operator/ (Real rhs) const
         { return Transform(this->Location/rhs,this->Rotation/rhs); }
 
-    Boolean Transform::operator<= (const Transform& rhs) const
+    Boole Transform::operator<= (const Transform& rhs) const
         { return this->Location<=rhs.Location && this->Rotation<=rhs.Rotation; }
 
-    Boolean Transform::operator>= (const Transform& rhs) const
+    Boole Transform::operator>= (const Transform& rhs) const
         { return this->Location>=rhs.Location && this->Rotation>=rhs.Rotation; }
 }
 

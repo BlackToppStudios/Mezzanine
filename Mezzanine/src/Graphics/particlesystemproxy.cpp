@@ -137,7 +137,7 @@ namespace Mezzanine
             return this->Template;
         }
 
-        void ParticleSystemProxy::PauseParticleSystem(Boolean Pause)
+        void ParticleSystemProxy::PauseParticleSystem(Boole Pause)
         {
             if( this->Paused != Pause ) {
                 this->Paused = Pause;
@@ -145,7 +145,7 @@ namespace Mezzanine
             }
         }
 
-        Boolean ParticleSystemProxy::IsParticleSystemPaused() const
+        Boole ParticleSystemProxy::IsParticleSystemPaused() const
         {
             return this->Paused;
         }
@@ -348,7 +348,7 @@ namespace Mezzanine
 
         void ParticleSystemProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
         {
-            Boolean WasInWorld = false;
+            Boole WasInWorld = false;
             XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
             if( !InWorldAttrib.Empty() ) {
                 WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
