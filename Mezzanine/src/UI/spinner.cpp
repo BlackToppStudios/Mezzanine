@@ -467,7 +467,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void Spinner::_NotifyEvent(const EventArguments& Args)
+        void Spinner::_NotifyEvent(EventArgumentsPtr Args)
         {
             const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
             Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);

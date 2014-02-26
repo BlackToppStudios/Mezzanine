@@ -278,7 +278,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void DropDownList::_NotifyEvent(const EventArguments& Args)
+        void DropDownList::_NotifyEvent(EventArgumentsPtr Args)
         {
             const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
             Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);

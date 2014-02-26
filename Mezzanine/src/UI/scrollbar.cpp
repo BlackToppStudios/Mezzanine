@@ -242,7 +242,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void Scrollbar::_NotifyEvent(const EventArguments& Args)
+        void Scrollbar::_NotifyEvent(EventArgumentsPtr Args)
         {
             const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
             Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);

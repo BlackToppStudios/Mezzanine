@@ -148,7 +148,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Notifies all subscribers of this event that this event is firing.
         /// @param Args The arguments and extra data related to this event.
-        void _FireEvent(const EventArguments& Args);
+        void _FireEvent(EventArgumentsPtr Args);
 	};//Event
 }//Mezzanine
 

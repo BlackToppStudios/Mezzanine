@@ -93,7 +93,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Notifies this subscriber of an event being fired.
         /// @param Args The arguments containing specific information regarding this event.
-        virtual void _NotifyEvent(const EventArguments& Args) = 0;
+        virtual void _NotifyEvent(EventArgumentsPtr Args) = 0;
     };//EventSubscriberSlot
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -126,8 +126,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
-        virtual void _NotifyEvent(const EventArguments& Args);
+        /// @copydoc EventSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
+        virtual void _NotifyEvent(EventArgumentsPtr Args);
     };// CustomSubscriberSlot
 
     /// @brief Basic class definition for functors used by this subscriber slot.
@@ -138,7 +138,7 @@ namespace Mezzanine
         virtual ~EventSlotFunctorDefinition() {  }
         /// @brief Executes subscriber specific functionality when the event is fired.
         /// @param Args The arguments that describe the fired event.
-        virtual void operator()(const EventArguments& Args) = 0;
+        virtual void operator()(EventArgumentsPtr Args) = 0;
     };//FunctorDefinition
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -175,8 +175,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
-        virtual void _NotifyEvent(const EventArguments& Args);
+        /// @copydoc EventSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
+        virtual void _NotifyEvent(EventArgumentsPtr Args);
     };//FunctorSubscriberSlot
 
 #ifndef SWIG // This is non-sensical in a scripting language
@@ -188,7 +188,7 @@ namespace Mezzanine
     {
     public:
         /// @brief This is a convenience typedef for a c-style method that accepts EventArguments.
-        typedef void (SubscriberFunction)(const EventArguments& Args);
+        typedef void (SubscriberFunction)(EventArgumentsPtr Args);
     protected:
         /// @internal
         /// @brief A pointer to the c-style function to be called when the event is fired.
@@ -213,8 +213,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
-        virtual void _NotifyEvent(const EventArguments& Args);
+        /// @copydoc EventSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
+        virtual void _NotifyEvent(EventArgumentsPtr Args);
     };// CFunctionSubscriberSlot
 #endif // \SWIG
 
@@ -248,8 +248,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
-        virtual void _NotifyEvent(const EventArguments& Args);
+        /// @copydoc EventSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
+        virtual void _NotifyEvent(EventArgumentsPtr Args);
     };//ScriptSubscriberSlot
 }//Mezzanine
 

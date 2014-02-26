@@ -62,8 +62,8 @@ namespace Mezzanine
         }
     }
 
-    void EventPublisher::FireEvent(const EventArguments& Args)
-        { this->GetEventExcept(Args.EventName)->_FireEvent(Args); }
+    void EventPublisher::FireEvent(EventArgumentsPtr Args)
+        { this->GetEventExcept(Args->EventName)->_FireEvent(Args); }
 
     void EventPublisher::RemoveEvent(const String& EventName)
     {

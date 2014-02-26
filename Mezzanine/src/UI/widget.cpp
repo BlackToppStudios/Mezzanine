@@ -526,7 +526,7 @@ namespace Mezzanine
             }
         }
 
-        void Widget::_NotifyEvent(const EventArguments& Args)
+        void Widget::_NotifyEvent(EventArgumentsPtr Args)
         {
             // Default to doing nothing, must be overridden to add logic if a widget needs it
         }

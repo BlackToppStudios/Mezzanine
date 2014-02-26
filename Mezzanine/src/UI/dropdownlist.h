@@ -160,8 +160,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments&)
-            virtual void _NotifyEvent(const EventArguments& Args);
+            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr)
+            virtual void _NotifyEvent(EventArgumentsPtr Args);
         };//DropDownList
 
         ///////////////////////////////////////////////////////////////////////////////

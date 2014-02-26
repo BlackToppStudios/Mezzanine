@@ -393,7 +393,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void PagedContainer::_NotifyEvent(const EventArguments& Args)
+        void PagedContainer::_NotifyEvent(EventArgumentsPtr Args)
         {
             if( Args.EventName == Widget::EventFocusGained ) {
                 const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);

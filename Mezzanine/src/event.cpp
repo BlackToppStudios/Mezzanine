@@ -229,7 +229,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void Event::_FireEvent(const EventArguments& Args)
+    void Event::_FireEvent(EventArgumentsPtr Args)
     {
         for( SlotIterator SlotIt = this->Slots.begin() ; SlotIt != this->Slots.end() ; ++SlotIt )
         {

@@ -296,8 +296,8 @@ namespace Mezzanine
             /// @param Code The MetaCode to be processed.
             /// @return Returns true if this input was consumed/handled, false otherwise.
             virtual Boolean _HandleInput(const Input::MetaCode& Code);
-            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
-            virtual void _NotifyEvent(const EventArguments& Args);
+            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr Args)
+            virtual void _NotifyEvent(EventArgumentsPtr Args);
         };//Widget
 
         ///////////////////////////////////////////////////////////////////////////////

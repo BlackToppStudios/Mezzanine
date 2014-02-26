@@ -75,7 +75,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Fires an event.
         /// @param Args The arguments/event specific data related to this event.
-        void FireEvent(const EventArguments& Args);
+        void FireEvent(EventArgumentsPtr Args);
         /// @internal
         /// @brief Removes an existing event in this Publisher.
         /// @param EventName The name of the event to be removed.

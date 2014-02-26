@@ -60,7 +60,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Notifies this subscriber of an event being fired.
         /// @param Args The arguments containing specific information regarding this event.
-        virtual void _NotifyEvent(const EventArguments& Args) = 0;
+        virtual void _NotifyEvent(EventArgumentsPtr Args) = 0;
     };//EventSubscriber
 }//Mezzanine
 

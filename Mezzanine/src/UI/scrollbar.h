@@ -222,8 +222,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
-            virtual void _NotifyEvent(const EventArguments& Args);
+            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr Args)
+            virtual void _NotifyEvent(EventArgumentsPtr Args);
             /// @internal
             /// @brief Performs the operations for when the scroller is directly manipulated by the mouse.
             /// @param MouseDelta The amount in pixels the mouse has moved since the last frame.

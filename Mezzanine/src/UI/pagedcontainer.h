@@ -245,8 +245,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
-            virtual void _NotifyEvent(const EventArguments& Args);
+            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr Args)
+            virtual void _NotifyEvent(EventArgumentsPtr Args);
             /// @copydoc QuadRenderable::_AppendRenderDataCascading(ScreenRenderData&)
             virtual void _AppendRenderDataCascading(ScreenRenderData& RenderData);
         };//PagedContainer

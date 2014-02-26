@@ -41,6 +41,7 @@
 #define _eventarguments_h
 
 #include "datatypes.h"
+#include "countedptr.h"
 
 namespace Mezzanine
 {
@@ -52,17 +53,20 @@ namespace Mezzanine
     ///////////////////////////////////////
 	class MEZZ_LIB EventArguments
 	{
-		public:
-            /// @brief The name of the event being fired.
-			const String EventName;
+    public:
+        /// @brief The name of the event being fired.
+        const String EventName;
 
-			/// @brief Class constructor.
-			/// @param Name The name of the event being fired.
-			EventArguments(const String& Name)
-				: EventName(Name) {  }
-			/// @brief Class destructor.
-			virtual ~EventArguments() {  }
+        /// @brief Class constructor.
+        /// @param Name The name of the event being fired.
+        EventArguments(const String& Name) :
+            EventName(Name) {  }
+        /// @brief Class destructor.
+        virtual ~EventArguments() {  }
 	};//EventArguments
+
+	/// @brief Convenience typedef for passing around EventArguments.
+	typedef CountedPtr<EventArguments> EventArgumentsPtr;
 }//Mezzanine
 
 #endif
