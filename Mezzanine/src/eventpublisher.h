@@ -65,6 +65,9 @@ namespace Mezzanine
         /// @internal
         /// @brief A container storing all the Events published by this class by name.
         EventContainer Events;
+        /// @internal
+        /// @brief Stores whether or not events will actually be fired when requested.
+        Boole MuteEvents;
 
         /// @internal
         /// @brief Creates a new event this Publisher can fire.
@@ -91,6 +94,13 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
+
+        /// @brief Sets whether or not event firings by this publisher will be suppressed.
+        /// @param Mute True to prevent events from firing, false for normal operation.
+        void SetMuteEvents(const Boole Mute);
+        /// @brief Gets whether or not event firings by this publisher will be suppressed.
+        /// @return Returns true if events are being supressed, false if this publisher is operating normally.
+        Boole GetMuteEvents() const;
 
         /// @brief Gets an event in this publisher.
         /// @param EventName The name of the event to retrieve.

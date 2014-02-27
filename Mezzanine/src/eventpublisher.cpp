@@ -44,7 +44,8 @@
 
 namespace Mezzanine
 {
-    EventPublisher::EventPublisher()
+    EventPublisher::EventPublisher() :
+        MuteEvents(false)
         {  }
 
     EventPublisher::~EventPublisher()
@@ -63,7 +64,11 @@ namespace Mezzanine
     }
 
     void EventPublisher::FireEvent(EventArgumentsPtr Args)
-        { this->GetEventExcept(Args->EventName)->_FireEvent(Args); }
+    {
+        if( !this->MuteEvents ) {
+            this->GetEventExcept(Args->EventName)->_FireEvent(Args);
+        }
+    }
 
     void EventPublisher::RemoveEvent(const String& EventName)
     {
@@ -85,6 +90,12 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
+
+    void EventPublisher::SetMuteEvents(const Boole Mute)
+        { this->MuteEvents = Mute; }
+
+    Boole EventPublisher::GetMuteEvents() const
+        { return this->MuteEvents; }
 
     Event* EventPublisher::GetEvent(const String& EventName) const
     {
