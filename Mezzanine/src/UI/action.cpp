@@ -74,13 +74,13 @@ namespace Mezzanine
 
         void Action::_OnActivateAction()
         {
-            ActionEventArguments Args(Action::EventActionActivated,this->ActionName);
+            EventArgumentsPtr Args( new ActionEventArguments(Action::EventActionActivated,this->ActionName) );
             this->FireEvent(Args);
         }
 
         void Action::_OnDeactivateAction()
         {
-            ActionEventArguments Args(Action::EventActionDeactivated,this->ActionName);
+            EventArgumentsPtr Args( new ActionEventArguments(Action::EventActionDeactivated,this->ActionName) );
             this->FireEvent(Args);
         }
 

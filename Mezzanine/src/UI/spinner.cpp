@@ -460,7 +460,7 @@ namespace Mezzanine
 
         void Spinner::_OnSpinValueChanged(const Real OldValue, const Real NewValue)
         {
-            SpinnerValueChangedArguments Args(Spinner::EventSpinValueChanged,this->Name,OldValue,NewValue);
+            SpinnerValueChangedArgumentsPtr Args( new SpinnerValueChangedArguments(Spinner::EventSpinValueChanged,this->Name,OldValue,NewValue) );
             this->FireEvent(Args);
         }
 
@@ -469,8 +469,8 @@ namespace Mezzanine
 
         void Spinner::_NotifyEvent(EventArgumentsPtr Args)
         {
-            const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
-            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);
+            WidgetEventArgumentsPtr WidArgs = CountedPtrCast<WidgetEventArguments>(Args);
+            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs->WidgetName);
             if( EventWidget == NULL )
                 return;
 

@@ -74,6 +74,9 @@ namespace Mezzanine
             virtual ~WidgetEventArguments() {  }
         };//WidgetEventArguments
 
+        /// @brief Convenience typedef for passing around WidgetEventArguments.
+        typedef CountedPtr<WidgetEventArguments> WidgetEventArgumentsPtr;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Widget
         /// @headerfile widget.h

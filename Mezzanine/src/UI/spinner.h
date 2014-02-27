@@ -74,6 +74,9 @@ namespace Mezzanine
             virtual ~SpinnerValueChangedArguments() {  }
         };//SpinnerValueChangedArguments
 
+        /// @brief Convenience typedef for passing around SpinnerValueChangedArguments.
+        typedef CountedPtr<SpinnerValueChangedArguments> SpinnerValueChangedArgumentsPtr;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a simple widget for a numeric variable in a box.
         /// @details Like the Scrollbar Widget, the size provided will be for the area of all the

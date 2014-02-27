@@ -72,6 +72,9 @@ namespace Mezzanine
             virtual ~ScrollbarValueChangedArguments() {  }
         };//ScrollbarValueChangedArguments
 
+        /// @brief Convenience typedef for passing around ScrollbarValueChangedArguments.
+        typedef CountedPtr<ScrollbarValueChangedArguments> ScrollbarValueChangedArgumentsPtr;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the scrollbar base class.
         /// @details If you want to have buttons to accompany your scrollbar they'll automatically

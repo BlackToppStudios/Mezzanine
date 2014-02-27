@@ -48,6 +48,9 @@ namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // Widget Static Members
+
         const String Widget::TypeName              = "GenericWidget";
         const String Widget::EventMouseEnter       = "MouseEnter";
         const String Widget::EventMouseExit        = "MouseExit";
@@ -59,6 +62,9 @@ namespace Mezzanine
         const String Widget::EventFocusUnlocked    = "FocusUnlocked";
         const String Widget::EventVisibilityShown  = "VisibilityShown";
         const String Widget::EventVisibilityHidden = "VisibilityHidden";
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Widget Methods
 
         Widget::Widget(Screen* Parent) :
             QuadRenderable(Parent),
@@ -422,7 +428,7 @@ namespace Mezzanine
                 this->State |= WS_Hovered;
                 this->SetGroupFromState(this->State);
 
-                WidgetEventArguments Args(Widget::EventMouseEnter,this->Name);
+                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseEnter,this->Name) );
                 this->FireEvent(Args);
             }
         }
@@ -433,7 +439,7 @@ namespace Mezzanine
                 this->State &= ~WS_Hovered;
                 this->SetGroupFromState(this->State);
 
-                WidgetEventArguments Args(Widget::EventMouseExit,this->Name);
+                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseExit,this->Name) );
                 this->FireEvent(Args);
             }
         }
@@ -444,7 +450,7 @@ namespace Mezzanine
                 this->State |= WS_Dragged;
                 this->SetGroupFromState(this->State);
 
-                WidgetEventArguments Args(Widget::EventMouseDragStart,this->Name);
+                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseDragStart,this->Name) );
                 this->FireEvent(Args);
             }
         }
@@ -455,7 +461,7 @@ namespace Mezzanine
                 this->State &= ~WS_Dragged;
                 this->SetGroupFromState(this->State);
 
-                WidgetEventArguments Args(Widget::EventMouseDragEnd,this->Name);
+                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseDragEnd,this->Name) );
                 this->FireEvent(Args);
             }
         }
@@ -466,7 +472,7 @@ namespace Mezzanine
                 this->State |= WS_Focused;
                 this->SetGroupFromState(this->State);
 
-                WidgetEventArguments Args(Widget::EventFocusGained,this->Name);
+                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventFocusGained,this->Name) );
                 this->FireEvent(Args);
             }
         }
@@ -477,20 +483,20 @@ namespace Mezzanine
                 this->State &= ~WS_Focused;
                 this->SetGroupFromState(this->State);
 
-                WidgetEventArguments Args(Widget::EventFocusLost,this->Name);
+                WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventFocusLost,this->Name) );
                 this->FireEvent(Args);
             }
         }
 
         void Widget::_OnFocusLocked()
         {
-            WidgetEventArguments Args(Widget::EventFocusLocked,this->Name);
+            WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventFocusLocked,this->Name) );
             this->FireEvent(Args);
         }
 
         void Widget::_OnFocusUnlocked()
         {
-            WidgetEventArguments Args(Widget::EventFocusUnlocked,this->Name);
+            WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventFocusUnlocked,this->Name) );
             this->FireEvent(Args);
         }
 
@@ -499,7 +505,7 @@ namespace Mezzanine
             this->Visible = true;
             this->_MarkDirty();
 
-            WidgetEventArguments Args(Widget::EventVisibilityShown,this->Name);
+            WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventVisibilityShown,this->Name) );
             this->FireEvent(Args);
         }
 
@@ -508,7 +514,7 @@ namespace Mezzanine
             this->Visible = false;
             this->_MarkDirty();
 
-            WidgetEventArguments Args(Widget::EventVisibilityHidden,this->Name);
+            WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventVisibilityHidden,this->Name) );
             this->FireEvent(Args);
         }
 

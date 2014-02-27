@@ -135,7 +135,7 @@ namespace Mezzanine
                 this->CurrentSelection = Selected;
                 this->DeselectOtherButtons(Selected);
 
-                WidgetEventArguments Args(RadioButtonGroup::EventGroupButtonSelected,Selected->GetName());
+                WidgetEventArgumentsPtr Args( new WidgetEventArguments( RadioButtonGroup::EventGroupButtonSelected,Selected->GetName()) );
                 this->FireEvent(Args);
             }
         }

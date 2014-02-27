@@ -354,19 +354,19 @@ namespace Mezzanine
 
         void Button::_OnActivate()
         {
-            WidgetEventArguments Args(Button::EventActivated,this->Name);
+            EventArgumentsPtr Args( new WidgetEventArguments(Button::EventActivated,this->Name) );
             this->FireEvent(Args);
         }
 
         void Button::_OnStandby()
         {
-            WidgetEventArguments Args(Button::EventStandby,this->Name);
+            EventArgumentsPtr Args( new WidgetEventArguments(Button::EventStandby,this->Name) );
             this->FireEvent(Args);
         }
 
         void Button::_OnDeactivate()
         {
-            WidgetEventArguments Args(Button::EventDeactivated,this->Name);
+            EventArgumentsPtr Args( new WidgetEventArguments(Button::EventDeactivated,this->Name) );
             this->FireEvent(Args);
         }
 

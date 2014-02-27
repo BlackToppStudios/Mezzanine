@@ -280,19 +280,19 @@ namespace Mezzanine
 
         void DropDownList::_NotifyEvent(EventArgumentsPtr Args)
         {
-            const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
-            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);
+            WidgetEventArgumentsPtr WidArgs = CountedPtrCast<WidgetEventArguments>(Args);
+            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs->WidgetName);
 
             if( EventWidget == this->ListToggle ) {
-                if( WidArgs.EventName == CheckBox::EventSelected ) {
+                if( WidArgs->EventName == CheckBox::EventSelected ) {
                     this->SelectionList->Show();
-                }else if( WidArgs.EventName == CheckBox::EventDeselected ) {
+                }else if( WidArgs->EventName == CheckBox::EventDeselected ) {
                     this->SelectionList->Hide();
                 }
             }
 
             if( EventWidget == this->SelectionList->GetListContainer() ) {
-                if( WidArgs.EventName == PagedContainer::EventChildFocusGained ) {
+                if( WidArgs->EventName == PagedContainer::EventChildFocusGained ) {
                     this->UpdateCurrentSelection( this->SelectionList->GetListContainer()->GetLastFocusedWidget() );
                     this->ListToggle->ManualSelect(false);
                 }

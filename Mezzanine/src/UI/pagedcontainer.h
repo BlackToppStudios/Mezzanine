@@ -70,6 +70,9 @@ namespace Mezzanine
             virtual ~ChildFocusEventArguments() {  }
         };//ChildFocusEventArguments
 
+        /// @brief Convenience typedef for passing around ChildFocusEventArguments.
+        typedef CountedPtr<ChildFocusEventArguments> ChildFocusEventArgumentsPtr;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base class for containers that have a render area and work area of different sizes.
         /// @details The central premise of all PagedLayoutContainers is that their render dimensions does not

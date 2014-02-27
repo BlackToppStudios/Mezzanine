@@ -386,7 +386,7 @@ namespace Mezzanine
 
         void PagedContainer::_OnChildFocusGained(const String& ChildName)
         {
-            ChildFocusEventArguments Args(PagedContainer::EventChildFocusGained,this->Name,ChildName);
+            ChildFocusEventArgumentsPtr Args( new ChildFocusEventArguments(PagedContainer::EventChildFocusGained,this->Name,ChildName) );
             this->FireEvent(Args);
         }
 
@@ -395,9 +395,9 @@ namespace Mezzanine
 
         void PagedContainer::_NotifyEvent(EventArgumentsPtr Args)
         {
-            if( Args.EventName == Widget::EventFocusGained ) {
-                const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
-                Widget* EventWidget = this->GetChild(WidArgs.WidgetName);
+            if( Args->EventName == Widget::EventFocusGained ) {
+                WidgetEventArgumentsPtr WidArgs = CountedPtrCast<WidgetEventArguments>(Args);
+                Widget* EventWidget = this->GetChild(WidArgs->WidgetName);
                 if( EventWidget != NULL ) {
                     this->LastFocusedChild = EventWidget;
                     this->_OnChildFocusGained( this->LastFocusedChild->GetName() );
