@@ -72,7 +72,7 @@ namespace Mezzanine
             }
             else
             {
-                while (AtomicAdd(&IsBlocking,0)); // intentionally spinning
+                while(AtomicAdd(&IsBlocking,0)); // intentionally spinning
 
                 if(1==AtomicAdd(&ThreadCurrent,-1))
                     { AtomicAdd(&IsBlocking,1); }
@@ -83,6 +83,7 @@ namespace Mezzanine
 
         void Barrier::SetThreadSyncCount(Int32 NewCount)
             { while(ThreadGoal!=AtomicCompareAndSwap32(&ThreadGoal,ThreadGoal,NewCount)); }
+
     } // \Threading namespace
 } // \Mezzanine namespace
 #endif

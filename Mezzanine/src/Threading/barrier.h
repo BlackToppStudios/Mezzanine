@@ -77,16 +77,9 @@ namespace Mezzanine
                 /// @return The last thread to reach this point gets true, the others are returned false.
                 bool Wait();
 
-                /// @brief If Wait() is called with this block?
-                /// @return A true if this is not blocking and false if threads Calling Wait() will
-                bool Blocking();
-
-
                 /// @brief Set the Thread count Atomically.
                 /// @param NewCount The new amounf threads to sync.
                 void SetThreadSyncCount(Int32 NewCount);
-
-
 
         };//Barrier
     }//Threading

@@ -484,6 +484,7 @@ static int completeLine(int fd, const char *prompt, char *buf, size_t buflen, si
                     stop = 1;
                     break;
             }
+            completionCallback(buf,&lc);
         }
     }
 

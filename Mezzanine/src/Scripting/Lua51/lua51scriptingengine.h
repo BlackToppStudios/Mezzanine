@@ -347,6 +347,11 @@ namespace Mezzanine
                     /// @return
                     int GetStackCount();
                     //String tests(String Returns="");
+
+                    static bool IsValidCharStartIdentifier(const char IdChar);
+                    static bool IsValidCharInIdentifier(const char IdChar);
+                    static bool IsValidIdentifier(const String& Id);
+
             };
 
             //simplistic error checking function, to be replace with proper exception driven code later.

@@ -53,30 +53,68 @@ REPLLineNoise::REPLLineNoise(Executor& TargetExecutor, Mezzanine::String Startin
 
 Trie<char,String> BigList('+');
 
+String GetCurrentID(const String& CurrentLine)
+{
+    String::const_iterator Iter = CurrentLine.end();
+    if(CurrentLine.begin() == Iter)
+        { return String(); }
+    String Results;
+    Boole Started = false;
+    // Start from end of string looking for characters which are valid in Lua Identifiers
+    for(Iter--; Iter != CurrentLine.begin(); Iter--)
+    {
+        if(Scripting::Lua::Lua51ScriptingEngine::IsValidCharInIdentifier(*Iter))
+        {
+            Results = *Iter + Results;
+            Started = true;
+        }else{
+            if(Scripting::Lua::Lua51ScriptingEngine::IsValidCharStartIdentifier(*(Iter+1)) && Started)
+                { return String(Iter+1,CurrentLine.end()); }
+            return String();
+        }
+    }
+    return CurrentLine;
+}
+
 /// @brief Tab completion callback
 /// @param CurrentInput The Current Input on the command line
 /// @param lc Line completionforthis current iteration of thetab press
 void TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
 {
-    static int count = 0;
-    static String LastInput;
+    const String CurrentLine(CurrentInput);
+    const String CurrentID(GetCurrentID(CurrentInput));
+    //cout << "\n\r" << CurrentID;
 
 
-
-    count++;
-    if (count==1)
+    // This function gets called once per tab strike, this will tell us which tab hit we are on
+    static int TabCount = 0;
+    static String LastInput = String();
+    if(CurrentLine==LastInput)
     {
-        linenoiseAddCompletion(lc,String("hello").c_str());
-    }
-    if (count==2)
-    {
-        linenoiseAddCompletion(lc,String("world").c_str());
+        TabCount++;
+        if (TabCount==3)
+            { TabCount=0; }
+    }else{
+        TabCount = 1;
+        LastInput = CurrentLine;
     }
 
-    if (count==3)
+    if (TabCount==1)
     {
-        count=0;
+        //One tab is a single suggestion twice to insure rotation displays it correctly
+        if(0==lc->len)
+        {
+            linenoiseAddCompletion(lc,(CurrentLine+"hello").c_str());
+            linenoiseAddCompletion(lc,(CurrentLine+"hello").c_str());
+        }
     }
+    if (TabCount==2)
+    {
+        // second tab strike will present options like bash
+        cout << "\r\n" << "\tASdf1\tASdf2" << "\r\n";
+    }
+    // third will be rotated by linenoise back to original input
+
 }
 
 void REPLLineNoise::Launch()

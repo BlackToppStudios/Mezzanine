@@ -51,6 +51,7 @@
 #include "stringtool.h"
 
 #include <cstring>
+#include <cctype>
 #include <algorithm>
 
 /// @file
@@ -599,6 +600,26 @@ namespace Mezzanine
 
             int Lua51ScriptingEngine::GetStackCount()
                 { return lua_gettop(State); }
+
+            bool Lua51ScriptingEngine::IsValidCharStartIdentifier(const char IdChar)
+                { return isalpha(IdChar) || IdChar=='_'; }
+
+            bool Lua51ScriptingEngine::IsValidCharInIdentifier(const char IdChar)
+                { return isalnum(IdChar) || IdChar=='_'; }
+
+            bool Lua51ScriptingEngine::IsValidIdentifier(const String& Id)
+            {
+                String::const_iterator Iter = Id.begin();
+                if( Id.size()==0 || Iter==Id.end() || !IsValidCharStartIdentifier(*Iter) )
+                    { return false; }
+                for(Iter++; Iter!=Id.end(); Iter++)
+                {
+                    if(!IsValidCharInIdentifier(*Iter))
+                        { return false; }
+                }
+                return true;
+            }
+
 /*
             String Lua51ScriptingEngine::tests(String Returns)
             {
