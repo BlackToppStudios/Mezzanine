@@ -49,16 +49,20 @@ namespace Mezzanine
     {
         class PageProvider;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class WidgetEventArguments
-        /// @headerfile widget.h
-        /// @brief This is the base class for widget specific event arguments.
+        /// @brief This is the EventArguments class for when a child of a paged container gains focus.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB ChildFocusEventArguments : public WidgetEventArguments
         {
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Data Members
+
             /// @brief The identification of the source firing this event.
             const String ChildName;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
 
             /// @brief Class constructor.
             /// @param Name The name of the event being fired.
@@ -68,8 +72,40 @@ namespace Mezzanine
                 WidgetEventArguments(Name,Source), ChildName(Child) {  }
             /// @brief Class destructor.
             virtual ~ChildFocusEventArguments() {  }
-        };//ChildFocusEventArguments
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // CountedPtr Functionality
+
+            /// @copydoc EventArguments::GetMostDerived()
+            virtual ChildFocusEventArguments* GetMostDerived()
+                { return this; }
+        };//ChildFocusEventArguments
+    }//UI
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a metaprogramming traits class used by ChildFocusEventArguments.
+        /// @details This is need for an intrusive CountedPtr implementation.  Should a working external reference count be made this
+        /// could be dropped in favor of a leaner implementation.
+        ///////////////////////////////////////
+        template <>
+        class ReferenceCountTraits<UI::ChildFocusEventArguments>
+        {
+        public:
+            /// @brief Typedef communicating the reference count type to be used.
+            typedef UI::ChildFocusEventArguments RefCountType;
+
+            /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
+            /// @param Target A pointer to the target class that is to be reference counted.
+            /// @return Returns a pointer to a new reference counter for the templated type.
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
+            enum { IsCastable = CastStatic };
+        };//ReferenceCountTraits<ChildFocusEventArguments>
+
+    namespace UI
+    {
         /// @brief Convenience typedef for passing around ChildFocusEventArguments.
         typedef CountedPtr<ChildFocusEventArguments> ChildFocusEventArgumentsPtr;
 

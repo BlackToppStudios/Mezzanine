@@ -54,16 +54,20 @@ namespace Mezzanine
         class RenderableContainer;
         class GenericWidgetFactory;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class WidgetEventArguments
-        /// @headerfile widget.h
         /// @brief This is the base class for widget specific event arguments.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB WidgetEventArguments : public EventArguments
         {
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Data Members
+
             /// @brief The identification of the source firing this event.
             const String WidgetName;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
 
             /// @brief Class constructor.
             /// @param Name The name of the event being fired.
@@ -72,8 +76,40 @@ namespace Mezzanine
                 EventArguments(Name), WidgetName(Source) {  }
             /// @brief Class destructor.
             virtual ~WidgetEventArguments() {  }
-        };//WidgetEventArguments
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // CountedPtr Functionality
+
+            /// @copydoc EventArguments::GetMostDerived()
+            virtual WidgetEventArguments* GetMostDerived()
+                { return this; }
+        };//WidgetEventArguments
+    }//UI
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a metaprogramming traits class used by WidgetEventArguments.
+        /// @details This is need for an intrusive CountedPtr implementation.  Should a working external reference count be made this
+        /// could be dropped in favor of a leaner implementation.
+        ///////////////////////////////////////
+        template <>
+        class ReferenceCountTraits<UI::WidgetEventArguments>
+        {
+        public:
+            /// @brief Typedef communicating the reference count type to be used.
+            typedef UI::WidgetEventArguments RefCountType;
+
+            /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
+            /// @param Target A pointer to the target class that is to be reference counted.
+            /// @return Returns a pointer to a new reference counter for the templated type.
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
+            enum { IsCastable = CastStatic };
+        };//ReferenceCountTraits<WidgetEventArguments>
+
+    namespace UI
+    {
         /// @brief Convenience typedef for passing around WidgetEventArguments.
         typedef CountedPtr<WidgetEventArguments> WidgetEventArgumentsPtr;
 

@@ -46,16 +46,23 @@
 namespace Mezzanine
 {
 	///////////////////////////////////////////////////////////////////////////////
-    /// @class EventArguments
-    /// @headerfile eventarguments.h
     /// @brief This is a common class to represent all possible arguments for a given event that is fired.
     /// @details
     ///////////////////////////////////////
 	class MEZZ_LIB EventArguments
 	{
+    private:
+        /// @brief This is count of the number of references to this object.
+        Whole RefCount;
     public:
+        ///////////////////////////////////////////////////////////////////////////////
+        // Public Data Members
+
         /// @brief The name of the event being fired.
         const String EventName;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Construction and Destruction
 
         /// @brief Class constructor.
         /// @param Name The name of the event being fired.
@@ -63,7 +70,54 @@ namespace Mezzanine
             EventName(Name) {  }
         /// @brief Class destructor.
         virtual ~EventArguments() {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // CountedPtr Functionality
+
+        /// @brief Increase the reference count by one and return the updated count.
+        /// @return Returns a Whole representing the updated count.
+        Whole IncrementReferenceCount()
+            { return ++this->RefCount; }
+        /// @brief Decrease the reference count by one and return the updated count.
+        /// @return Returns a Whole representing the updated count.
+        Whole DecrementReferenceCount()
+            { return --this->RefCount; }
+        /// @brief Get the current amount of references.
+        /// @return A Whole with the current reference count
+        Whole GetReferenceCount() const
+            { return this->RefCount; }
+
+        /// @brief Gets the actual pointer to the target of the base type.
+        /// @return Returns a pointer of the targeted type to the object being managed.
+        EventArguments* GetReferenceCountTargetAsPointer()
+            { return this; }
+        /// @brief Get a pointer to the most Derived type of this instance.
+        /// @return Returns a pointer of the most derived type of this.
+        virtual EventArguments* GetMostDerived()
+            { return this; }
 	};//EventArguments
+
+	///////////////////////////////////////////////////////////////////////////////
+    /// @brief This is a metaprogramming traits class used by EventArguments.
+    /// @details This is need for an intrusive CountedPtr implementation.  Should a working external reference count be made this
+    /// could be dropped in favor of a leaner implementation.
+    ///////////////////////////////////////
+	template <>
+    class ReferenceCountTraits<EventArguments>
+    {
+    public:
+        /// @brief Typedef communicating the reference count type to be used.
+        typedef EventArguments RefCountType;
+
+        /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
+        /// @param Target A pointer to the target class that is to be reference counted.
+        /// @return Returns a pointer to a new reference counter for the templated type.
+        static RefCountType* ConstructionPointer(RefCountType* Target)
+            { return Target; }
+
+        /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
+        enum { IsCastable = CastStatic };
+    };//ReferenceCountTraits<EventArguments>
 
 	/// @brief Convenience typedef for passing around EventArguments.
 	typedef CountedPtr<EventArguments> EventArgumentsPtr;
