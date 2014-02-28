@@ -493,7 +493,8 @@ namespace Mezzanine
 
             Real OALS::SoundProxy::GetVolume() const
             {
-                return this->BaseVolume * AudioManager::GetSingletonPtr()->GetTypeVolume(this->SType);
+                AudioManager* AudioMan = AudioManager::GetSingletonPtr();
+                return ( AudioMan->IsMuted() ? 0 : this->BaseVolume * AudioMan->GetTypeVolume(this->SType) );
             }
 
             void OALS::SoundProxy::SetBaseVolume(const Real Base)
