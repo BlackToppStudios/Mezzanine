@@ -501,27 +501,29 @@ namespace Mezzanine
             {
                 const Real OldScrollerValue = this->GetScrollerValue();
                 const Rect OldScrollerRect = this->Scroller->GetRect();
-                Rect NewScrollerRect;
-                NewScrollerRect.Size = OldScrollerRect.Size;
+                const Real ScrollDist = this->ScrollBack->GetActualSize().X * this->IncrementDistance;
+                Rect NewScrollerRect(OldScrollerRect);
 
                 // Early escape in case of error, but in general this shouldn't happen.
-                if( HitPosition.X == -1.0 || HitPosition.Y == -1.0 )
+                if( HitPosition.X < 0.0 || HitPosition.Y < 0.0 )
                     return false;
 
-                if( HitPosition.X < OldScrollerRect.Position.X ) { // Check for above
-                    NewScrollerRect.Position.X = ( OldScrollerRect.Position.X - OldScrollerRect.Size.X >= this->GetLowerScrollLimit() ?
-                                                   this->GetLowerScrollLimit() : OldScrollerRect.Position.X - OldScrollerRect.Size.X );
+                if( HitPosition.X < OldScrollerRect.Position.X ) { // Check for left
+                    NewScrollerRect.Position.X = ( OldScrollerRect.Position.X - OldScrollerRect.Size.X <= this->GetLowerScrollLimit() ?
+                                                   this->GetLowerScrollLimit() : OldScrollerRect.Position.X - ScrollDist );
                     NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
-                }else if( HitPosition.X > OldScrollerRect.Position.X + OldScrollerRect.Size.X ) { // Check for below
+                }else if( HitPosition.X > OldScrollerRect.Position.X + OldScrollerRect.Size.X ) { // Check for right
                     NewScrollerRect.Position.X = ( OldScrollerRect.Position.X + ( OldScrollerRect.Size.X * 2 ) >= this->GetUpperScrollLimit() ?
-                                                   this->GetUpperScrollLimit() - OldScrollerRect.Size.X : OldScrollerRect.Position.X + OldScrollerRect.Size.X );
+                                                   this->GetUpperScrollLimit() - OldScrollerRect.Size.X : OldScrollerRect.Position.X + ScrollDist );
                     NewScrollerRect.Position.Y = OldScrollerRect.Position.Y;
                 }
 
                 this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
 
                 const Real NewScrollerValue = this->GetScrollerValue();
-                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                if( OldScrollerValue != NewScrollerValue ) {
+                    this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                }
 
                 return true;
             }
