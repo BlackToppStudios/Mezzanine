@@ -73,7 +73,7 @@ class TestPublisher: public EventPublisher
 
         void DoTest()
         {
-            EventArguments Stuff("test");
+            EventArgumentsPtr Stuff( new EventArguments("test") );
             this->FireEvent(Stuff);
         }
 };
