@@ -598,7 +598,7 @@ void MakeGUI()
     GUI->LoadMTA("EngineDemo_Menu.mta","Group1");
     GUI->AddAutoRegisterCode(Input::MetaCode(Input::BUTTON_PRESSING,Input::MOUSEBUTTON_1));
     GUI->EnableButtonAutoRegister(true);
-    UI::Screen* DScreen = GUI->CreateScreen(DefaultScreen, "EngineDemo_Menu", UIViewport);
+    UI::Screen* DScreen = GUI->CreateScreen(DefaultScreen, "EngineDemo_Menu", UIViewport,0);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ColourValue Black(0.0,0.0,0.0,1.0);
