@@ -77,10 +77,6 @@ namespace Mezzanine
             /// @brief Convenience method for the construction of a DropDownList.
             /// @param Style An enum value representing how the scrollbar child of thie ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.
             virtual void ConstructDropDownList(const UI::ScrollbarStyle& Style);
-            /// @internal
-            /// @brief Configures the selection display of this DropDownList to match the new selection.
-            /// @param NewSelection A pointer to the item that was selected in the ListBox.
-            virtual void UpdateCurrentSelection(Widget* NewSelection);
         //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
@@ -111,6 +107,10 @@ namespace Mezzanine
 
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
+
+            /// @brief Configures the selection display of this DropDownList to match the new selection.
+            /// @param NewSelection A pointer to the item that was selected in the ListBox.
+            virtual void UpdateCurrentSelection(Widget* NewSelection);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods

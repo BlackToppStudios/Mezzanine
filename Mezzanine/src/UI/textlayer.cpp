@@ -702,7 +702,7 @@ namespace Mezzanine
                 { (*TLIt)->SetAlignment(Align); }
         }
 
-        void TextLayer::SetTextlineVerticalAlignment(const UI::LinearAlignment Align)
+        void TextLayer::SetTextLineVerticalAlignment(const UI::LinearAlignment Align)
         {
             if( this->VerticalAlign == Align )
                 return;
@@ -712,7 +712,7 @@ namespace Mezzanine
             this->_MarkDirty();
         }
 
-        UI::LinearAlignment TextLayer::GetTextlineVerticalAlignment() const
+        UI::LinearAlignment TextLayer::GetTextLineVerticalAlignment() const
         {
             return this->VerticalAlign;
         }

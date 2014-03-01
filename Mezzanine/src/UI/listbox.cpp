@@ -221,7 +221,8 @@ namespace Mezzanine
             SingleLineTextLayer* ItemLayer = NewItem->CreateSingleLineTextLayer();
             ItemLayer->SetDefaultFont( this->ListItemFont );
             ItemLayer->SetText( Text );
-            ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
+            ItemLayer->SetTextLineHorizontalAlignment(UI::LA_Center);
+            ItemLayer->SetTextLineVerticalAlignment(UI::LA_Center);
 
             NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
             NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
@@ -237,7 +238,8 @@ namespace Mezzanine
             MultiLineTextLayer* ItemLayer = NewItem->CreateMultiLineTextLayer();
             ItemLayer->SetDefaultFont( this->ListItemFont );
             ItemLayer->SetText( Text );
-            ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
+            ItemLayer->SetTextLineHorizontalAlignment(UI::LA_Center);
+            ItemLayer->SetTextLineVerticalAlignment(UI::LA_Center);
 
             NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
             NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");

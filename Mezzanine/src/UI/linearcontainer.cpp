@@ -111,12 +111,12 @@ namespace Mezzanine
                 Child->SetSizingPolicy( this->ChildSizing );
             }
 
-            this->QuadRenderable::AddChild(Child);
+            this->PagedContainer::AddChild(Child);
         }
 
         void LinearContainer::AddChild(Widget* Child, const UInt16 ZOrder)
         {
-            this->QuadRenderable::AddChild(Child,ZOrder);
+            this->PagedContainer::AddChild(Child,ZOrder);
         }
 
         ///////////////////////////////////////////////////////////////////////////////

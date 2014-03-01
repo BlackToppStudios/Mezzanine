@@ -114,26 +114,6 @@ namespace Mezzanine
             this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildFocusGained,this);
         }
 
-        void DropDownList::UpdateCurrentSelection(Widget* NewSelection)
-        {
-            RenderLayerGroup* NewSelectionActive = NewSelection->GetActiveGroup();
-            RenderLayerGroup* DisSelectionActive = this->SelectionDisplay->GetActiveGroup();
-            if( NewSelectionActive != NULL && DisSelectionActive != NULL ) {
-                /// @todo This currently assumes the default ZOrder assigned to text layers in list items.  If that should change or be more conveniently
-                /// configurable, this should be updated.
-                RenderLayer* UncastedNewText = NewSelectionActive->GetLayerByZOrder(5);
-                RenderLayer* UncastedDisText = DisSelectionActive->GetLayerByZOrder(5);
-                if( ( UncastedNewText != NULL && UncastedNewText->IsTextLayer() ) &&
-                    ( UncastedDisText != NULL && UncastedDisText->IsTextLayer() ) )
-                {
-                    TextLayer* CastedNewText = static_cast<TextLayer*>( UncastedNewText );
-                    TextLayer* CastedDisText = static_cast<TextLayer*>( UncastedDisText );
-                    CastedDisText->SetDefaultFont( CastedNewText->GetDefaultFont() );
-                    CastedDisText->SetText( CastedNewText->GetText() );
-                }
-            }
-        }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
@@ -151,6 +131,7 @@ namespace Mezzanine
 
             // Updates for the other buttons are done, so now we can re-add the list
             this->AddChild( this->SelectionList );
+            this->SelectionList->SetVisible( this->ListToggle->IsSelected() );
 
             // Update our width to the appropriate size
             this->SelectionList->SetScrollbarWidth( UnifiedDim(this->ListToggle->GetActualSize().X / NewSelfRect.Size.X,0.0) );
@@ -160,7 +141,7 @@ namespace Mezzanine
             NewListRect.Size = this->LayoutStrat->HandleChildSizing(OldSelfRect,NewSelfRect,this->SelectionList);
             NewListRect.Position = this->LayoutStrat->HandleChildPositioning(OldSelfRect,NewSelfRect,NewListRect.Size,this->SelectionList);
 
-            // Finally update the scroller
+            // Finally update the list
             this->SelectionList->UpdateDimensions(OldListRect,NewListRect);
 
             // We done got icky
@@ -170,6 +151,28 @@ namespace Mezzanine
         const String& DropDownList::GetTypeName() const
         {
             return DropDownList::TypeName;
+        }
+
+        void DropDownList::UpdateCurrentSelection(Widget* NewSelection)
+        {
+            if( NewSelection != NULL ) {
+                RenderLayerGroup* NewSelectionActive = NewSelection->GetActiveGroup();
+                RenderLayerGroup* DisSelectionActive = this->SelectionDisplay->GetActiveGroup();
+                if( NewSelectionActive != NULL && DisSelectionActive != NULL ) {
+                    /// @todo This currently assumes the default ZOrder assigned to text layers in list items.  If that should change or be more conveniently
+                    /// configurable, this should be updated.
+                    RenderLayer* UncastedNewText = NewSelectionActive->GetLayerByZOrder(5);
+                    RenderLayer* UncastedDisText = DisSelectionActive->GetLayerByZOrder(5);
+                    if( ( UncastedNewText != NULL && UncastedNewText->IsTextLayer() ) &&
+                        ( UncastedDisText != NULL && UncastedDisText->IsTextLayer() ) )
+                    {
+                        TextLayer* CastedNewText = static_cast<TextLayer*>( UncastedNewText );
+                        TextLayer* CastedDisText = static_cast<TextLayer*>( UncastedDisText );
+                        CastedDisText->SetDefaultFont( CastedNewText->GetDefaultFont() );
+                        CastedDisText->SetText( CastedNewText->GetText() );
+                    }
+                }
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////

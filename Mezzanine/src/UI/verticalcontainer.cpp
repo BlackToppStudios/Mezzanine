@@ -167,11 +167,10 @@ namespace Mezzanine
                     if( TotalLinearSize + ChildSize.Y < YTarget ) {
                         this->VisibleChildren.push_back( (*ChildUpdateIt) );
                         TotalLinearSize += ( ChildSize.Y + ActPadding );
-                        // Increment the index before we proceed.
+                        // Increment the index and iterator before we proceed.
                         ++CurrIndex;
+                        ++ChildUpdateIt;
                     }else{
-                        // Increment the index before we proceed.
-                        ++CurrIndex;
                         break;
                     }
                 }
@@ -202,9 +201,9 @@ namespace Mezzanine
                 // By now all our children have been processed, just have to focus on the last couple steps for visible children.  Start by doing our alignment stuff.
                 switch( this->VisibleChildAlign )
                 {
-                    case UI::LA_TopLeft:      CurrYPos = HalfPadding;
-                    case UI::LA_Center:       CurrYPos = ( NewSelfRect.Position.Y + ( NewSelfRect.Size.Y * 0.5 ) ) - ( TotalLinearSize * 0.5 );
-                    case UI::LA_BottomRight:  CurrYPos = ( NewSelfRect.Position.Y + NewSelfRect.Size.Y ) - ( TotalLinearSize + HalfPadding );
+                    case UI::LA_TopLeft:      CurrYPos = ( NewSelfRect.Position.Y + HalfPadding );                                               break;
+                    case UI::LA_Center:       CurrYPos = ( NewSelfRect.Position.Y + ( NewSelfRect.Size.Y * 0.5 ) ) - ( TotalLinearSize * 0.5 );  break;
+                    case UI::LA_BottomRight:  CurrYPos = ( NewSelfRect.Position.Y + NewSelfRect.Size.Y ) - ( TotalLinearSize + HalfPadding );    break;
                 }
 
                 // Finally, we're at the final processing stage.  We have our visible children and enough data to determine their positions, along with their saved sizes from earlier.

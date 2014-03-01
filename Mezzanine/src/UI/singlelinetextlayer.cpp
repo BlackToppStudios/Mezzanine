@@ -135,7 +135,7 @@ namespace Mezzanine
             { this->SetTextLineHorizontalAlignment(Align); }
 
         void SingleLineTextLayer::VerticallyAlign(const UI::LinearAlignment Align)
-            { this->SetTextlineVerticalAlignment(Align); }
+            { this->SetTextLineVerticalAlignment(Align); }
 
         void SingleLineTextLayer::SetStartIndex(const Integer& Index)
             { this->StartIndex = Index; }

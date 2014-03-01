@@ -384,10 +384,10 @@ namespace Mezzanine
             /// @note TextLines can easily run out of room in a given layer.  If the combined vertical height of the TextLines
             /// in this layer exceed the size given for rendering then this setting is ignored, and text will render from the top.
             /// @param Align The alignment to use.
-            virtual void SetTextlineVerticalAlignment(const UI::LinearAlignment Align);
+            virtual void SetTextLineVerticalAlignment(const UI::LinearAlignment Align);
             /// @brief Gets the current set alignment for positioning textlines in this layer.
             /// @return Returns the current TextLine position alignment.
-            virtual UI::LinearAlignment GetTextlineVerticalAlignment() const;
+            virtual UI::LinearAlignment GetTextLineVerticalAlignment() const;
 
             /// @brief Gets an iterator to the first TextLine.
             /// @return Returns an iterator to the first TextLine being stored by this TextLayer.
