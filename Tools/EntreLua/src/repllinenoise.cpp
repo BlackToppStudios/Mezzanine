@@ -51,7 +51,18 @@ REPLLineNoise::REPLLineNoise(Executor& TargetExecutor, Mezzanine::String Startin
     : REPL(TargetExecutor, StartingPrompt, StartingMultiline, StartingReturn)
 {}
 
-Trie<char,String> BigList('+');
+typedef Trie<char,String> CommandTrie;
+CommandTrie PossibleCommands(0);
+
+void PopulateCommmandTrie()
+{
+    PossibleCommands.clear();
+    PossibleCommands.insert("print","Function");
+    PossibleCommands.insert("pi","Number");
+    PossibleCommands.insert("package","Table");
+    PossibleCommands.insert("package.load","Function");
+    PossibleCommands.insert("package.require","Function");
+}
 
 String GetCurrentID(const String& CurrentLine)
 {
@@ -99,19 +110,31 @@ void TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
         LastInput = CurrentLine;
     }
 
+
+
     if (TabCount==1)
     {
         //One tab is a single suggestion twice to insure rotation displays it correctly
         if(0==lc->len)
         {
-            linenoiseAddCompletion(lc,(CurrentLine+"hello").c_str());
-            linenoiseAddCompletion(lc,(CurrentLine+"hello").c_str());
+            PopulateCommmandTrie();
+            CommandTrie::iterator Iter = PossibleCommands.startsWith(CurrentID.c_str());
+            cout << "\r\n" << CurrentID << "\r\n" << (*Iter).first << "\r\n";
+
+            if(PossibleCommands.end()!=Iter)
+            {
+                linenoiseAddCompletion(lc,(*Iter).first);
+                linenoiseAddCompletion(lc,(*Iter).first);
+            }
+
+            //linenoiseAddCompletion(lc,"(*Iter).first)");
+            //linenoiseAddCompletion(lc,"(*Iter).first)");
         }
     }
     if (TabCount==2)
     {
         // second tab strike will present options like bash
-        cout << "\r\n" << "\tASdf1\tASdf2" << "\r\n";
+        //cout << "\r\n" << "\tASdf1\tASdf2" << "\r\n" << CurrentInput << "\r\n" << " ";
     }
     // third will be rotated by linenoise back to original input
 
