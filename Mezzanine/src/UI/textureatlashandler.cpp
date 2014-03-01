@@ -64,6 +64,7 @@ namespace Mezzanine
         {
             /// @todo Update after we have refactored the resource system if needed.
             Resource::DataStreamPtr AtlasStream = ResourceManager::GetSingletonPtr()->OpenAssetStream(Name,Group);
+            AtlasStream->SetStreamPosition(0);
             XML::Document AtlasDoc;
             AtlasDoc.Load( *AtlasStream.Get() );
 
