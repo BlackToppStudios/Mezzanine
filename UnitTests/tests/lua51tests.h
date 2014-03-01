@@ -155,6 +155,25 @@ class lua51tests : public UnitTestGroup
                 { TargetLib+=lib; }
                 TestOutput << "All Expected: " << TargetLib << "\tActual:" << Scripting::Lua::Lua51ScriptingEngine::AllLibs << endl;
                 TEST((int)Scripting::Lua::Lua51ScriptingEngine::AllLibs==TargetLib, "Engine::LuaLibEnumAll");
+
+                String Valid1("a");
+                String Valid2("S");
+                String Valid3("So_This_is_Valid123124");
+                String Valid4("_is_valid");
+                String Invalid1("");
+                String Invalid2("1_is_not_valid");
+                String Invalid3("_is_n%t_valid");
+                String Invalid4("_is_not_valid$");
+                String Invalid5("(_is_not_valid");
+                TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Valid1)==true, "Engine::ValidIdentifier1");
+                TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Valid2)==true, "Engine::ValidIdentifier2");
+                TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Valid3)==true, "Engine::ValidIdentifier3");
+                TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Valid4)==true, "Engine::ValidIdentifier4");
+                TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Invalid1)==false, "Engine::InvalidIdentifier1");
+                TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Invalid2)==false, "Engine::InvalidIdentifier2");
+                TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Invalid3)==false, "Engine::InvalidIdentifier3");
+                TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Invalid4)==false, "Engine::InvalidIdentifier4");
+                TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Invalid5)==false, "Engine::InvalidIdentifier5");
             }
 
             //////////////////////////////////////////////////////////////////////////////////////////
