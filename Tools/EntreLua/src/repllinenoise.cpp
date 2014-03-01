@@ -54,14 +54,18 @@ REPLLineNoise::REPLLineNoise(Executor& TargetExecutor, Mezzanine::String Startin
 typedef Trie<char,String> CommandTrie;
 CommandTrie PossibleCommands(0);
 
+const String LuaTypeNameFunction("Function");
+const String LuaTypeNameNumber("Number");
+const String LuaTypeNameTable("Table");
+
 void PopulateCommmandTrie()
 {
     PossibleCommands.clear();
-    PossibleCommands.insert("print","Function");
-    PossibleCommands.insert("pi","Number");
-    PossibleCommands.insert("package","Table");
-    PossibleCommands.insert("package.load","Function");
-    PossibleCommands.insert("package.require","Function");
+    PossibleCommands.insert("print", LuaTypeNameFunction);
+    PossibleCommands.insert("pi", LuaTypeNameNumber);
+    PossibleCommands.insert("package", LuaTypeNameTable);
+    PossibleCommands.insert("package.load", LuaTypeNameFunction);
+    PossibleCommands.insert("package.require", LuaTypeNameFunction);
 }
 
 String GetCurrentID(const String& CurrentLine)
@@ -119,21 +123,75 @@ void TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
         {
             PopulateCommmandTrie();
             CommandTrie::iterator Iter = PossibleCommands.startsWith(CurrentID.c_str());
-            cout << "\r\n" << CurrentID << "\r\n" << (*Iter).first << "\r\n";
-
+            // If there is exactly one possible completion, put it in.
             if(PossibleCommands.end()!=Iter)
             {
-                linenoiseAddCompletion(lc,(*Iter).first);
-                linenoiseAddCompletion(lc,(*Iter).first);
+                CommandTrie::iterator IterPlusOne=Iter;
+                IterPlusOne++;
+                if(PossibleCommands.end()==IterPlusOne)
+                {
+                    //Figure out what is on the line that is not the current ID
+                    String CompletionPrefix(CurrentLine,0,CurrentLine.size()-CurrentID.size());
+                    String NewInput(CompletionPrefix+(*Iter).first);
+                    linenoiseAddCompletion(lc,NewInput.c_str());
+                    linenoiseAddCompletion(lc,NewInput.c_str());
+                }else{
+                    // Even if there isn't something to autocomplete, to get the line to redraw
+                    // we need to put something into the autocomplete buffer.
+                    linenoiseAddCompletion(lc,CurrentLine.c_str());
+                    linenoiseAddCompletion(lc,CurrentLine.c_str());
+                }
             }
-
-            //linenoiseAddCompletion(lc,"(*Iter).first)");
-            //linenoiseAddCompletion(lc,"(*Iter).first)");
         }
     }
+
     if (TabCount==2)
     {
-        // second tab strike will present options like bash
+        // second tab strike will present options like bash, but with further distinction
+        vector<String> Functions;
+        vector<String> Tables;
+        vector<String> Numbers;
+        Whole Found = 0;
+        for(CommandTrie::iterator Iter = PossibleCommands.startsWith(CurrentID.c_str());
+            Iter!=PossibleCommands.end();
+            Iter++)
+        {
+            Found++;
+            if(LuaTypeNameFunction==*(Iter->second))
+                { Functions.push_back(Iter->first); }
+            if(LuaTypeNameTable==*(Iter->second))
+                { Tables.push_back(Iter->first); }
+            if(LuaTypeNameNumber==*(Iter->second))
+                { Numbers.push_back(Iter->first); }
+        }
+
+        if(Found)
+            { cout << "\r\n"; }
+
+        if(Functions.size())
+        {
+            cout << "Functions:\r\n";
+            for(vector<String>::const_iterator Iter = Functions.begin();
+                Iter!=Functions.end();
+                Iter++)
+            { cout << "\t" << *Iter << "\r\n"; }
+        }
+        if(Tables.size())
+        {
+            cout << "Tables:\r\n";
+            for(vector<String>::const_iterator Iter = Tables.begin();
+                Iter!=Tables.end();
+                Iter++)
+            { cout << "\t" << *Iter << "\r\n"; }
+        }
+        if(Numbers.size())
+        {
+            cout << "Numbers:\r\n";
+            for(vector<String>::const_iterator Iter = Numbers.begin();
+                Iter!=Numbers.end();
+                Iter++)
+            { cout << "\t" << *Iter << "\r\n"; }
+        }
         //cout << "\r\n" << "\tASdf1\tASdf2" << "\r\n" << CurrentInput << "\r\n" << " ";
     }
     // third will be rotated by linenoise back to original input
