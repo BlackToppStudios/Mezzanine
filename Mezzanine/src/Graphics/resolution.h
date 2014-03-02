@@ -37,10 +37,10 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicswindowsettings_h
-#define _graphicswindowsettings_h
+#ifndef _graphicsresolution_h
+#define _graphicsresolution_h
 
-#include "Graphics/resolution.h"
+#include "datatypes.h"
 
 namespace Mezzanine
 {
@@ -48,49 +48,74 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This stores all the basic configuration options a game window supports.
-        /// @details A game window stores one of these for all of it's configuration options,
-        /// additionally one can be created and passed into the manager to set all the configuration
-        /// options at once.
+        /// @details
         ///////////////////////////////////////
-        struct MEZZ_LIB WindowSettings
+        struct MEZZ_LIB Resolution
         {
             ///////////////////////////////////////////////////////////////////////////////
             // Public Data Members
 
-            /// @brief This stores the Height and Width of the render window.
-            Resolution WinRes;
-            /// @brief This stores the device refresh rate in Hz.
-            Whole RefreshRate;
-            /// @brief This is the desired state of whether the window is fullscreen or not.
-            Boole Fullscreen;
-            /// @brief This is the desired state of whether to enable VSync or not.
-            Boole VSync;
+            /// @brief The pixel width of the window.
+            Whole Width;
+            /// @brief The pixel height of the window.
+            Whole Height;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Construction and Destruction
 
             /// @brief Blank constructor.
-            WindowSettings() :
-                RefreshRate(0),
-                Fullscreen(false),
-                VSync(false)
+            Resolution() :
+                Width(0),
+                Height(0)
                 {  }
+
+            /// @brief Descriptive constructor.
+            /// @param ResWidth The pixel width of the window.
+            /// @param ResHeight The pixel height of the window.
+            Resolution(const Whole ResWidth, const Whole ResHeight) :
+                Width(ResWidth),
+                Height(ResHeight)
+                {  }
+
+            /// @brief Class destructor.
+            ~Resolution()
+                {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Sets the width and height of this resolution.
+            /// @param ResWidth The pixel width of the window.
+            /// @param ResHeight The pixel height of the window.
+            void SetResolution(const Whole ResWidth, const Whole ResHeight)
+            {
+                this->Width = ResWidth;
+                this->Height = ResHeight;
+            }
+
+            /// @brief Converts the values of this Resolution to a human readable string.
+            /// @remarks The format for the presented string is "[Width]x[Height]".  For example: "1024x768".
+            /// @return Returns a string containing the width and height of this resolution.
+            String GetAsString() const
+            {
+                StringStream ResStream;
+                ResStream << this->Width << "x" << this->Height;
+                return ResStream.str();
+            }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Operators
 
             /// @brief Assignment operator.
-            /// @param Other The other WindowSettings to copy from.
+            /// @param Other The other Resolution to copy from.
             /// @return Returns a reference to this.
-            WindowSettings& operator=(const WindowSettings& Other)
+            Resolution& operator=(const Resolution& Other)
             {
-                this->WinRes = Other.WinRes;
-                this->RefreshRate = Other.RefreshRate;
-                this->Fullscreen = Other.Fullscreen;
-                this->VSync = Other.VSync;
+                this->Width = Other.Width;
+                this->Height = Other.Height;
                 return *this;
             }
-        };//WindowSettings
+        };//Resolution
     }//Graphics
 }//Mezzanine
 

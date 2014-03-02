@@ -219,8 +219,8 @@ namespace Mezzanine
 
             SDL_DisplayMode DeskMode;
             SDL_GetDesktopDisplayMode(0,&DeskMode);
-            DesktopSettings.RenderWidth = DeskMode.w;
-            DesktopSettings.RenderHeight = DeskMode.h;
+            DesktopSettings.WinRes.Width = DeskMode.w;
+            DesktopSettings.WinRes.Height = DeskMode.h;
             DesktopSettings.RefreshRate = DeskMode.refresh_rate;
 
         }
@@ -297,8 +297,8 @@ namespace Mezzanine
             {
                 XML::Node WindowConfigNode = CurrentSettings.AppendChild("GameWindow");
                 WindowConfigNode.AppendAttribute("Caption").SetValue( (*WinIt)->GetWindowCaption() );
-                WindowConfigNode.AppendAttribute("Width").SetValue( StringTools::ConvertToString( (*WinIt)->GetRenderWidth() ) );
-                WindowConfigNode.AppendAttribute("Height").SetValue( StringTools::ConvertToString( (*WinIt)->GetRenderHeight() ) );
+                WindowConfigNode.AppendAttribute("Width").SetValue( StringTools::ConvertToString( (*WinIt)->GetWidth() ) );
+                WindowConfigNode.AppendAttribute("Height").SetValue( StringTools::ConvertToString( (*WinIt)->GetHeight() ) );
                 WindowConfigNode.AppendAttribute("Fullscreen").SetValue( StringTools::ConvertToString( (*WinIt)->GetFullscreen() ) );
                 WindowConfigNode.AppendAttribute("Hidden").SetValue( StringTools::ConvertToString( (*WinIt)->IsHidden() ) );
                 WindowConfigNode.AppendAttribute("Vsync").SetValue( StringTools::ConvertToString( (*WinIt)->VsyncEnabled() ) );
@@ -595,17 +595,17 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Query Methods
 
-        const StringVector* GraphicsManager::GetSupportedResolutions()
+        const GraphicsManager::ResolutionContainer& GraphicsManager::GetSupportedResolutions() const
         {
-            return &(this->SupportedResolutions);
+            return this->SupportedResolutions;
         }
 
-        const StringVector* GraphicsManager::GetSupportedDevices()
+        const StringVector& GraphicsManager::GetSupportedDevices() const
         {
-            return &(this->SupportedDevices);
+            return this->SupportedDevices;
         }
 
-        const WindowSettings& GraphicsManager::GetDesktopSettings()
+        const WindowSettings& GraphicsManager::GetDesktopSettings() const
         {
             return this->DesktopSettings;
         }
@@ -630,36 +630,34 @@ namespace Mezzanine
         {
             if( !this->Initialized )
             {
-                this->TheEntresol->GetScheduler().AddWorkUnitMonopoly(RenderWork, "RenderWork");
+                this->TheEntresol->GetScheduler().AddWorkUnitMonopoly(this->RenderWork, "RenderWork");
 
-                if( !this->OgreBeenInitialized )
+                if( !this->OgreBeenInitialized ) {
                     this->InitOgreRenderSystem();
+                }
 
                 Ogre::ConfigOptionMap& CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();
-                for( Ogre::ConfigOptionMap::iterator configItr = CurrentRendererOptions.begin() ;
-                    configItr != CurrentRendererOptions.end() ; configItr++)
+                for( Ogre::ConfigOptionMap::iterator configItr = CurrentRendererOptions.begin() ; configItr != CurrentRendererOptions.end() ; configItr++ )
                 {
-                    if( (configItr)->first == "Video Mode" )
-                    {
+                    if( (configItr)->first == "Video Mode" ) {
                         for( Whole X = 0 ; X < (configItr)->second.possibleValues.size() ; X++ )
                         {
                             String NewRes = (configItr)->second.possibleValues[X];
-                            StringTools::RemoveDuplicateWhitespaces(NewRes);
-                            StringTools::Trim(NewRes);
-                            this->SupportedResolutions.push_back(NewRes);
+                            String ResWidth = NewRes.substr(0,NewRes.find_first_of('x'));
+                            String ResHeight = NewRes.substr(NewRes.find_first_of('x')+1);
+                            StringTools::Trim( ResWidth );
+                            StringTools::Trim( ResHeight );
+                            this->SupportedResolutions.push_back( Resolution( StringTools::ConvertToWhole( ResWidth ) , StringTools::ConvertToWhole( ResHeight ) ) );
                         }
-                        continue;
-                    }
-                    if( (configItr)->first == "Rendering Device" )
-                    {
+                    }else if( (configItr)->first == "Rendering Device" ) {
                         for( Whole Y = 0 ; Y < (configItr)->second.possibleValues.size() ; Y++ )
-                            this->SupportedDevices.push_back((configItr)->second.possibleValues[Y]);
-                        continue;
+                            { this->SupportedDevices.push_back( (configItr)->second.possibleValues[Y] ); }
                     }
                 }
 
-                if(this->AutoGenFiles)
+                if( this->AutoGenFiles ) {
                     this->SaveAllSettings();
+                }
 
                 this->Initialized = true;
             }

@@ -145,6 +145,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/particlesystemproxy.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/pass.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/renderableproxy.h"
+        "${${PROJECT_NAME}_SRC_DIR}Graphics/resolution.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/scenemanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/skeleton.h"
         "${${PROJECT_NAME}_SRC_DIR}Graphics/submesh.h"

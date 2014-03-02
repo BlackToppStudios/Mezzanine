@@ -93,8 +93,7 @@ namespace Mezzanine
         {
             this->Manager = Graphics::GraphicsManager::GetSingletonPtr();
             this->CreationFlags = Flags;
-            this->Settings.RenderWidth = Width;
-            this->Settings.RenderHeight = Height;
+            this->Settings.WinRes.SetResolution(Width,Height);
 
             Ogre::NameValuePairList Opts;
             if(WF_Fullscreen & Flags) {
@@ -139,7 +138,7 @@ namespace Mezzanine
             //#ifdef LINUX
             //Ogre::ResourceGroupManager::getSingleton().addResourceLocation(ResourceManager::GetSingletonPtr()->GetEngineDataDirectory(),"FileSystem");
             //#endif
-            this->OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, this->Settings.RenderWidth, this->Settings.RenderHeight, this->Settings.Fullscreen, &Opts);//*/
+            this->OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, this->Settings.WinRes.Width, this->Settings.WinRes.Height, this->Settings.Fullscreen, &Opts);//*/
 
             if( !(WF_Hidden & Flags) ) {
                 #ifdef WINDOWS
@@ -266,101 +265,94 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Window Metrics Management
 
-        void GameWindow::SetRenderWidth(const Whole& Width)
-        {
-            if( this->Settings.RenderWidth == Width )
-                return;
-            this->SetRenderResolution(Width,this->Settings.RenderHeight);
-            this->Settings.RenderWidth = Width;
-        }
+        void GameWindow::SetWidth(const Whole& Width)
+            { this->SetResolution(Width,this->Settings.WinRes.Height); }
 
-        Whole GameWindow::GetRenderWidth() const
-        {
-            return this->Settings.RenderWidth;
-        }
+        Whole GameWindow::GetWidth() const
+            { return this->Settings.WinRes.Width; }
 
-        void GameWindow::SetRenderHeight(const Whole& Height)
-        {
-            if( this->Settings.RenderHeight == Height )
-                return;
-            this->SetRenderResolution(this->Settings.RenderWidth,Height);
-            this->Settings.RenderHeight = Height;
-        }
+        void GameWindow::SetHeight(const Whole& Height)
+            { this->SetResolution(this->Settings.WinRes.Width,Height); }
 
-        Whole GameWindow::GetRenderHeight() const
-        {
-            return this->Settings.RenderHeight;
-        }
+        Whole GameWindow::GetHeight() const
+            { return this->Settings.WinRes.Height; }
 
-        void GameWindow::SetRenderResolution(const Whole& Width, const Whole& Height)
+        void GameWindow::SetResolution(const Resolution& WinRes)
+            { this->SetResolution(WinRes.Width,WinRes.Height); }
+
+        void GameWindow::SetResolution(const Whole& Width, const Whole& Height)
         {
-            if( this->Settings.RenderWidth == Width && this->Settings.RenderHeight == Height )
-                return;
-            if( this->Settings.Fullscreen ) {
-                SDL_DisplayMode CurrentDisplay;
-                SDL_GetWindowDisplayMode(SDLWindow,&CurrentDisplay);
-                CurrentDisplay.w = Width;
-                CurrentDisplay.h = Height;
-                // CurrentDisplay.refresh_rate = 60;
-                if(SDL_SetWindowDisplayMode(SDLWindow,&CurrentDisplay) == 0)
-                {
-                    this->OgreWindow->setFullscreen(true,Width,Height);
-                    this->UpdateViewportsAndCameras();
-                    this->Settings.RenderWidth = Width;
-                    this->Settings.RenderHeight = Height;
-                    return;
-                }
-            }else{
-                int Result = this->IsLargerThenDesktop(Width,Height);
-                if(Result == 0) {
-                    Whole ResultWidth, ResultHeight;
-                    crossplatform::SanitizeWindowedRes(Width,Height,ResultWidth,ResultHeight);
-                    SDL_SetWindowSize(SDLWindow,ResultWidth,ResultHeight);
-                    this->OgreWindow->setFullscreen(false,ResultWidth,ResultHeight);
-                }else if(Result == 1){
-                    Entresol::GetSingletonPtr()->Log("Cannot create a window larger then the desktop resolution.");
-                    return;
+            if( this->Settings.WinRes.Width != Width || this->Settings.WinRes.Height != Height ) {
+                if( this->Settings.Fullscreen ) {
+                    SDL_DisplayMode CurrentDisplay;
+                    SDL_GetWindowDisplayMode(SDLWindow,&CurrentDisplay);
+                    CurrentDisplay.w = Width;
+                    CurrentDisplay.h = Height;
+                    // CurrentDisplay.refresh_rate = 60;
+                    if(SDL_SetWindowDisplayMode(SDLWindow,&CurrentDisplay) == 0)
+                    {
+                        this->OgreWindow->setFullscreen(true,Width,Height);
+                        this->UpdateViewportsAndCameras();
+                        this->Settings.WinRes.Width = Width;
+                        this->Settings.WinRes.Height = Height;
+                        return;
+                    }
                 }else{
-                    SDL_SetWindowSize(SDLWindow,Width,Height);
-                    this->OgreWindow->setFullscreen(false,Width,Height);
+                    int Result = this->IsLargerThenDesktop(Width,Height);
+                    if(Result == 0) {
+                        Whole ResultWidth, ResultHeight;
+                        crossplatform::SanitizeWindowedRes(Width,Height,ResultWidth,ResultHeight);
+                        SDL_SetWindowSize(SDLWindow,ResultWidth,ResultHeight);
+                        this->OgreWindow->setFullscreen(false,ResultWidth,ResultHeight);
+                    }else if(Result == 1){
+                        Entresol::GetSingletonPtr()->Log("Cannot create a window larger then the desktop resolution.");
+                        return;
+                    }else{
+                        SDL_SetWindowSize(SDLWindow,Width,Height);
+                        this->OgreWindow->setFullscreen(false,Width,Height);
+                    }
+                    this->UpdateViewportsAndCameras();
+                    this->Settings.WinRes.Width = Width;
+                    this->Settings.WinRes.Height = Height;
                 }
-                this->UpdateViewportsAndCameras();
-                this->Settings.RenderWidth = Width;
-                this->Settings.RenderHeight = Height;
             }
+        }
+
+        const Resolution& GameWindow::GetResolution() const
+        {
+            return this->Settings.WinRes;
         }
 
         void GameWindow::SetFullscreen(const Boole Fullscreen)
         {
             static SDL_DisplayMode FSDisplayMode;
 
-            if( Fullscreen == this->Settings.Fullscreen )
-                return;
-
-            if( !Fullscreen && this->Settings.Fullscreen ) {
-                const WindowSettings& DeskSet = this->Manager->GetDesktopSettings();
-                if( this->Settings.RenderWidth > DeskSet.RenderWidth || this->Settings.RenderHeight > DeskSet.RenderHeight ) {
-                    this->Settings.RenderWidth = DeskSet.RenderWidth;
-                    this->Settings.RenderHeight = DeskSet.RenderHeight;
+            if( Fullscreen != this->Settings.Fullscreen ) {
+                if( !Fullscreen && this->Settings.Fullscreen ) {
+                    const WindowSettings& DeskSet = this->Manager->GetDesktopSettings();
+                    if( this->Settings.WinRes.Width > DeskSet.WinRes.Width || this->Settings.WinRes.Height > DeskSet.WinRes.Height ) {
+                        this->Settings.WinRes.Width = DeskSet.WinRes.Width;
+                        this->Settings.WinRes.Height = DeskSet.WinRes.Height;
+                    }
+                    if( this->Settings.WinRes.Width == DeskSet.WinRes.Width || this->Settings.WinRes.Height == DeskSet.WinRes.Height ) {
+                        Whole ResultWidth, ResultHeight;
+                        crossplatform::SanitizeWindowedRes(Settings.WinRes.Width,Settings.WinRes.Height,ResultWidth,ResultHeight);
+                        this->SetResolution(ResultWidth,ResultHeight);
+                        this->Settings.WinRes.Width = DeskSet.WinRes.Width;
+                        this->Settings.WinRes.Height = DeskSet.WinRes.Height;
+                    }
+                }else if(Fullscreen && !Settings.Fullscreen) {
+                    FSDisplayMode.w = this->Settings.WinRes.Width;
+                    FSDisplayMode.h = this->Settings.WinRes.Height;
+                    FSDisplayMode.refresh_rate = Settings.RefreshRate;
+                    SDL_SetWindowDisplayMode(SDLWindow,&FSDisplayMode);
                 }
-                if( this->Settings.RenderWidth == DeskSet.RenderWidth || this->Settings.RenderHeight == DeskSet.RenderHeight ) {
-                    Whole ResultWidth, ResultHeight;
-                    crossplatform::SanitizeWindowedRes(Settings.RenderWidth,Settings.RenderHeight,ResultWidth,ResultHeight);
-                    this->SetRenderResolution(ResultWidth,ResultHeight);
-                    this->Settings.RenderWidth = DeskSet.RenderWidth;
-                    this->Settings.RenderHeight = DeskSet.RenderHeight;
-                }
-            }else if(Fullscreen && !Settings.Fullscreen) {
-                FSDisplayMode.w = this->Settings.RenderWidth;
-                FSDisplayMode.h = this->Settings.RenderHeight;
-                FSDisplayMode.refresh_rate = Settings.RefreshRate;
-                SDL_SetWindowDisplayMode(SDLWindow,&FSDisplayMode);
-            }
 
-            if(SDL_SetWindowFullscreen(SDLWindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0) {
-                this->OgreWindow->setFullscreen(Fullscreen,this->Settings.RenderWidth,this->Settings.RenderHeight);
-                this->UpdateViewportsAndCameras();
-                this->Settings.Fullscreen = Fullscreen;
+                if(SDL_SetWindowFullscreen(SDLWindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0) {
+                    this->OgreWindow->setFullscreen(Fullscreen,this->Settings.WinRes.Width,this->Settings.WinRes.Height);
+                    this->UpdateViewportsAndCameras();
+                    this->Settings.Fullscreen = Fullscreen;
+                }
             }
         }
 
@@ -372,7 +364,7 @@ namespace Mezzanine
         void GameWindow::SetRenderOptions(const WindowSettings& NewSettings)
         {
             this->SetFullscreen( NewSettings.Fullscreen );
-            this->SetRenderResolution( NewSettings.RenderWidth, NewSettings.RenderHeight );
+            this->SetResolution( NewSettings.WinRes.Width, NewSettings.WinRes.Height );
         }
 
         const WindowSettings& GameWindow::GetSettings()

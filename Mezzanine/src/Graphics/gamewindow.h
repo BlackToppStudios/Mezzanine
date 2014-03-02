@@ -41,6 +41,7 @@
 #define _graphicsgamewindow_h
 
 #include "Graphics/windowsettings.h"
+
 namespace Ogre
 {
     class RenderWindow;
@@ -180,40 +181,42 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Window Metrics Management
 
-            /// @brief Sets the Width.
-            /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Width This accepts a Whole.
-            void SetRenderWidth(const Whole& Width);
-            /// @brief Gets the Width of the Rendering Area
-            /// @details Gets the Width of the Rendering Area
-            /// @return This returns the Width of the Rendering Area
-            Whole GetRenderWidth() const;
-            /// @brief Sets the Height.
-            /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Height This accepts a Whole.
-            void SetRenderHeight(const Whole& Height);
-            /// @brief Gets the Height of the Rendering Area
-            /// @details Gets the Height of the Rendering Area
-            /// @return This returns the Height of the Rendering Area
-            Whole GetRenderHeight() const;
-            /// @brief Changes the X and Y Resolution at the same time
-            /// @details This should be useful in situations where it is not possible to update the width and height separately.
-            /// @param Width The new desired Width for the rendering area as a whole number
-            /// @param Height The new desired Width for the rendering area as a whole number
-            void SetRenderResolution(const Whole& Width, const Whole& Height);
-            /// @brief Set the Fullscreen Setting
-            /// @details Set the Fullscreen Setting
-            /// @param Fullscreen This accepts a Boole. True for fullscreen, false for windowed
+            /// @brief Sets the width of the game window.
+            /// @param Width The pixel size of the game window on the X axis.
+            void SetWidth(const Whole& Width);
+            /// @brief Gets the Width of the game window.
+            /// @return Returns a Whole containing the size of the game window on the X axis.
+            Whole GetWidth() const;
+            /// @brief Sets the height of the game window.
+            /// @param Height The pixel size of the game window on the Y axis.
+            void SetHeight(const Whole& Height);
+            /// @brief Gets the height of the game window.
+            /// @return Returns a Whole containing the size of the game window on the Y axis.
+            Whole GetHeight() const;
+
+            /// @brief Sets the width and height of the game window.
+            /// @param WinRes A Resolution containing the width and height to be applied.
+            void SetResolution(const Resolution& WinRes);
+            /// @brief Sets the width and height of the game window.
+            /// @param Width The pixel size of the game window on the X axis.
+            /// @param Height The pixel size of the game window on the Y axis.
+            void SetResolution(const Whole& Width, const Whole& Height);
+            /// @brief Gets the width and height of the game window.
+            /// @return Returns a const Resolution reference containing the pixel size of the window on the X and Y axes.
+            const Resolution& GetResolution() const;
+
+            /// @brief Set the Fullscreen Setting.
+            /// @param Fullscreen This accepts a Boole. True for fullscreen, false for windowed.
             void SetFullscreen(const Boole Fullscreen);
-            /// @brief Gets the Fullscreen Setting
-            /// @details Gets the Fullscreen Setting
+            /// @brief Gets the Fullscreen Setting.
             /// @return This returns a Boole, true if fullscreen is set, false otherwise
             Boole GetFullscreen() const;
-            /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
-            /// @details This should be useful in situations where it is not possible to update all of the options separately.
+
+            /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time.
+            /// @param NewSettings A WindowSettings struct containing all of the window settings to be applied.
             void SetRenderOptions(const WindowSettings& NewSettings);
             /// @brief Gets the current window settings.
-            /// @param Returns a WindowSettings struct with the current window settings.
+            /// @return Returns a WindowSettings struct with the current window settings.
             const WindowSettings& GetSettings();
 
             ///////////////////////////////////////////////////////////////////////////////

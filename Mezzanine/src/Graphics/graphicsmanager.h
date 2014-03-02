@@ -125,6 +125,12 @@ namespace Mezzanine
             typedef GameWindowContainer::iterator         GameWindowIterator;
             /// @brief Const Iterator type for @ref GameWindow instances stored by this class.
             typedef GameWindowContainer::const_iterator   ConstGameWindowIterator;
+            /// @brief Basic container type for storing the detected supported fullscreen resolutions on the current system.
+            typedef std::vector<Resolution>               ResolutionContainer;
+            /// @brief Iterator type for stored supported resolutions.
+            typedef ResolutionContainer::iterator         ResolutionIterator;
+            /// @brief Const Iterator type for stored supported resolutions.
+            typedef ResolutionContainer::const_iterator   ConstResolutionIterator;
             /// @brief Basic container type for internal plugin storage by this class.
             typedef std::vector<Ogre::Plugin*>            InternalPluginContainer;
             /// @brief Basic container type for registered rendersystem type storage by this class.
@@ -144,7 +150,7 @@ namespace Mezzanine
             GameWindowContainer GameWindows;
             /// @internal
             /// @brief A container of strings storing all the detected supported resolutions on the current hardware.
-            StringVector SupportedResolutions;
+            ResolutionContainer SupportedResolutions;
             /// @internal
             /// @brief A container of strings storing all the detected names of video devices on the current hardware.
             StringVector SupportedDevices;
@@ -182,8 +188,8 @@ namespace Mezzanine
             /// @copydoc ObjectSettingsHandler::ApplySettingGroupImpl(ObjectSettingGroup*)
             virtual void ApplySettingGroupImpl(ObjectSettingGroup* Group);
         public:
-            /// @brief Basic constructor
-            /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false
+            /// @brief Basic constructor.
+            /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false.
             GraphicsManager();
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
@@ -260,14 +266,14 @@ namespace Mezzanine
             /// @brief Gets a vector containing all the resolutions supported by this render system on the current hardware.
             /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.
             /// @return Returns a Const Pointer to the vector storing all the supported resolutions.
-            const StringVector* GetSupportedResolutions();
+            const ResolutionContainer& GetSupportedResolutions() const;
             /// @brief Gets a vector containing all the devices supported by this render system on the current hardware.
             /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.
             /// @return Returns a Const Pointer to the vector storing all the supported devices.
-            const StringVector* GetSupportedDevices();
+            const StringVector& GetSupportedDevices() const;
             /// @brief Gets the desktop display settings.
             /// @param Returns a WindowSettings struct with the desktop display settings.
-            const WindowSettings& GetDesktopSettings();
+            const WindowSettings& GetDesktopSettings() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
