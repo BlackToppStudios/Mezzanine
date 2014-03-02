@@ -41,6 +41,7 @@
 #define _lua51scriptingengine_h
 
 #include "datatypes.h"
+#include "trie.h"
 
 #ifdef MEZZLUA51
 
@@ -159,6 +160,16 @@ namespace Mezzanine
                     static const String MezzXMLSafeTableName;         ///< @brief The name used to identify a table loaded by the MezzanineXMLSafe library, "MezzanineXMLSafe"
                     static const String MezzThreadingTableName;       ///< @brief The name used to identify a table loaded by the MezzanineThreading library, "MezzanineThreading"
                     static const String MezzThreadingSafeTableName;   ///< @brief The name used to identify a table loaded by the MezzanineThreadingSafe library, "MezzanineThreadingSafe"
+
+                    static const String TypeNameNil;                  ///< @brief A human friendly representation of the Lua type nil
+                    static const String TypeNameBoolean;              ///< @brief A human friendly representation of the Lua type boolean
+                    static const String TypeNameLightUserData;        ///< @brief A human friendly representation of the Lua type light user data
+                    static const String TypeNameNumber;               ///< @brief A human friendly representation of the Lua type number
+                    static const String TypeNameString;               ///< @brief A human friendly representation of the Lua type string
+                    static const String TypeNameTable;                ///< @brief A human friendly representation of the Lua type table
+                    static const String TypeNameFunction;             ///< @brief A human friendly representation of the Lua type function
+                    static const String TypeNameUserData;             ///< @brief A human friendly representation of the Lua type user data
+                    static const String TypeNameThread;               ///< @brief A human friendly representation of the Lua type thread
 
                     /// @brief Convert a Lua51Libraries value to its name
                     /// @param Lib A number indicating what libraries a Lua51ScriptingEngine could load
@@ -346,11 +357,24 @@ namespace Mezzanine
                     /// @brief The stack is a specific part of the State relating to how data is passed between functions. How big is that?
                     /// @return
                     int GetStackCount();
-                    //String tests(String Returns="");
 
+                    /// @brief Is the given character valid for starting a Lua Identifier
+                    /// @param IdChar A Single character to check
+                    /// @return True if IdChar can be used to start a lua variable name false otherwise
                     static bool IsValidCharStartIdentifier(const char IdChar);
+                    /// @brief Is the given character valid for is in a Lua Identifier
+                    /// @param IdChar A Single character to check
+                    /// @return True if IdChar can be used in a lua variable name false otherwise
                     static bool IsValidCharInIdentifier(const char IdChar);
+                    /// @brief Is a string a valid identifier in Lua
+                    /// @param Id The identifier to check
+                    /// @return True if Id is a valid Lua Indentifier
                     static bool IsValidIdentifier(const String& Id);
+
+                    /// @brief A type for efficiently storing the kinds of Lexigraphical data aboutthe Lua runtime
+                    typedef Mezzanine::Trie<char,const Mezzanine::String*> CommandTrie;
+
+                    void PopulateTabCompletionTrie(CommandTrie& CommandGroup);
 
             };
 

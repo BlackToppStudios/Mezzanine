@@ -69,6 +69,7 @@
 #        Mezz_MinimizeThreadsEachFrame      - On some platforms thread creation is expensive, on others it is cheap and atomics expensive. Use this with your favorite benchmark to maximize performance.
 #        Mezz_DecacheWorkUnits              - Different CPUs have different Cache sizes and different ratios of actual work to IO bandwith. This tries to increase the amount of work done at the expense of forcing work units to be reloaded into CPU from RAM each frame. Use this with your favorite benchmark to maximize performance.
 #        Mezz_FramesToTrack                 - How many frame should the runtime performance metrics be tracked for
+#        Mezz_Lua51IncludeDirectory         - Location of headers for lua 5.1
 #
 # Deprecated options
 #        Mezz_XML                           - Previously disabled/enabled XML options, now XML is used everywhere. Thsi option has been removed.
@@ -598,6 +599,7 @@ mark_as_advanced( FORCE
     # Mezzanine options
     Mezz_UseOgreVersion Mezz_Profile Mezz_ThrowOnSingletonFetch
     Mezz_MinimizeThreadsEachFrame Mezz_FramesToTrack Mezz_DecacheWorkUnits
+    Mezz_Lua51IncludeDirectory
 
     # Misc Options
     CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX CMAKE_DEBUG_POSTFIX CMAKE_GNUtoMS

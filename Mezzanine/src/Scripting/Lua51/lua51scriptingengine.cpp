@@ -215,6 +215,16 @@ namespace Mezzanine
             const String Lua51ScriptingEngine::MezzThreadingTableName      = "MezzanineThreading";
             const String Lua51ScriptingEngine::MezzThreadingSafeTableName  = "MezzanineThreadingSafe";
 
+            const String Lua51ScriptingEngine::TypeNameNil                 = "Nil";
+            const String Lua51ScriptingEngine::TypeNameBoolean             = "Boolean";
+            const String Lua51ScriptingEngine::TypeNameLightUserData       = "Light User Data";
+            const String Lua51ScriptingEngine::TypeNameNumber              = "Number";
+            const String Lua51ScriptingEngine::TypeNameString              = "String";
+            const String Lua51ScriptingEngine::TypeNameTable               = "Table";
+            const String Lua51ScriptingEngine::TypeNameFunction            = "Function";
+            const String Lua51ScriptingEngine::TypeNameUserData            = "User Data";
+            const String Lua51ScriptingEngine::TypeNameThread              = "Thread";
+
             const String& Lua51ScriptingEngine::GetLibName(Lua51ScriptingEngine::Lua51Libraries Lib)
             {
                 switch(Lib)
@@ -618,6 +628,21 @@ namespace Mezzanine
                         { return false; }
                 }
                 return true;
+            }
+
+            void Lua51ScriptingEngine::PopulateTabCompletionTrie(CommandTrie& CommandGroup)
+            {
+                CommandGroup.insert("print", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
+                CommandGroup.insert("pi", &Scripting::Lua::Lua51ScriptingEngine::TypeNameNumber);
+                CommandGroup.insert("package", &Scripting::Lua::Lua51ScriptingEngine::TypeNameTable);
+                CommandGroup.insert("package.load", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
+                CommandGroup.insert("package.require", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
+                CommandGroup.insert("package.os", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
+                CommandGroup.insert("package.fake", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
+                CommandGroup.insert("package.bs", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
+                CommandGroup.insert("package.a", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
+                CommandGroup.insert("package.load2", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
+                CommandGroup.insert("package.mezzanine", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
             }
 
 /*

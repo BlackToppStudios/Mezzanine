@@ -51,8 +51,8 @@ using namespace Mezzanine::Scripting;
 using namespace std;
 
 Executor::Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::Boole DisplayStackCounts)
-    : LuaEngine(TargetEngine),
-      StackCounts(DisplayStackCounts)
+    : StackCounts(DisplayStackCounts),
+      LuaEngine(TargetEngine)
 {}
 
 ExecutionResults Executor::Do(Mezzanine::String CommandLine)
@@ -92,4 +92,3 @@ ExecutionResults Executor::Do(Mezzanine::String CommandLine)
 
     return Results;
 }
-
