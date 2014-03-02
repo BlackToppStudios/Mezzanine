@@ -98,10 +98,8 @@ void TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
 {
     const String CurrentLine(CurrentInput);
     const String CurrentID(GetCurrentID(CurrentInput));
-    //cout << "\n\r" << CurrentID;
 
-
-    // This function gets called once per tab strike, this will tell us which tab hit we are on
+    // This function gets called once per tab strike, this will tell us which tab strike we are on
     static int TabCount = 0;
     static String LastInput = String();
     if(CurrentLine==LastInput)
@@ -113,8 +111,6 @@ void TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
         TabCount = 1;
         LastInput = CurrentLine;
     }
-
-
 
     if (TabCount==1)
     {
@@ -194,7 +190,7 @@ void TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
         }
         //cout << "\r\n" << "\tASdf1\tASdf2" << "\r\n" << CurrentInput << "\r\n" << " ";
     }
-    // third will be rotated by linenoise back to original input
+    // third tab strike will be rotated by linenoise back to original input
 
 }
 
