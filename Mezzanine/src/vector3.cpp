@@ -540,6 +540,16 @@ namespace Mezzanine
 
     String Vector3::SerializableName()
         { return String("Vector3"); }
+
+    const char* Vector3::__str__()
+    {
+        const Whole BufferSize=64; // longest possible vector3 is 59: <Vector3 Version="1" X="1.33333" Y="2.33333" Z="3.33333" />
+        static char buffer[BufferSize];
+        String Temp(ToString(*this));
+        assert(Temp.size()<BufferSize);
+        strncpy(buffer,Temp.c_str(),BufferSize);
+        return buffer;
+    }
 }
 
 Mezzanine::Vector3 operator+ (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
