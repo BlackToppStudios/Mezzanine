@@ -167,6 +167,10 @@ namespace Mezzanine
         /// @param ToConvert The string to be converted to an Integer.
         /// @return Returns an Integer with the converted value.
         Integer MEZZ_LIB ConvertToInteger(const String& ToConvert);
+        /// @brief Converts a string into an Whole.
+        /// @param ToConvert The string to be converted to an Whole.
+        /// @return Returns an Whole with the converted value.
+        Whole MEZZ_LIB ConvertToWhole(const String& ToConvert);
         /// @brief Converts a string into an Int8.
         /// @param ToConvert The string to be converted to an Int8.
         /// @return Returns an Int8 with the converted value.

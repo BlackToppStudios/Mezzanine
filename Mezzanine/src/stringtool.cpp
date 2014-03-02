@@ -341,6 +341,14 @@ namespace Mezzanine
         return Result;
     }
 
+    Whole StringTools::ConvertToWhole(const String& ToConvert)
+    {
+        StringStream converter(ToConvert);
+        Whole Result;
+        converter >> Result;
+        return Result;
+    }
+
     Int8 StringTools::ConvertToInt8(const String& ToConvert)
     {
         StringStream converter(ToConvert);
