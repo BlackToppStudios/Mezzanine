@@ -52,7 +52,6 @@
 
 #include <cstring>
 #include <cctype>
-#include <algorithm>
 
 /// @file
 /// @brief This file has the implementation for the Lua based Scripting system.
@@ -224,6 +223,8 @@ namespace Mezzanine
             const String Lua51ScriptingEngine::TypeNameFunction            = "Function";
             const String Lua51ScriptingEngine::TypeNameUserData            = "User Data";
             const String Lua51ScriptingEngine::TypeNameThread              = "Thread";
+
+            const String Lua51ScriptingEngine::GlobalTableName             = "_G";
 
             const String& Lua51ScriptingEngine::GetLibName(Lua51ScriptingEngine::Lua51Libraries Lib)
             {
@@ -493,6 +494,15 @@ namespace Mezzanine
                     lua_settable(State, -3); // Set the table a -3, Mezzanine to have the index defined by -2 "XML" set to the value at -1 "The MezzanineXML Table"
                     lua_pop(State,1);
                 } //else Fail Silently
+
+                lua_getglobal(State, GlobalTableName.c_str());
+                if (lua_istable(State, -1))
+                {
+                    lua_pushstring(State, Alias.c_str());
+                    lua_getglobal(State, Sub.c_str());
+                    lua_settable(State, -3); // Set the table a -3, Mezzanine to have the index defined by -2 "XML" set to the value at -1 "The MezzanineXML Table"
+                    lua_pop(State,1);
+                } //else Fail Silently
             }
 
             void Lua51ScriptingEngine::OpenDefaultLibraries()
@@ -596,7 +606,7 @@ namespace Mezzanine
             }
 
             void Lua51ScriptingEngine::SetXML()
-                { AliasLibrary("Mezzanine", "MezzanineXML", "XML"); }
+            { AliasLibrary("Mezzanine", "MezzanineXML", "XML"); }
             void Lua51ScriptingEngine::SetXMLSafe()
                 { AliasLibrary("MezzanineSafe", "MezzanineXMLSafe", "XML"); }
 
@@ -617,6 +627,9 @@ namespace Mezzanine
             bool Lua51ScriptingEngine::IsValidCharInIdentifier(const char IdChar)
                 { return isalnum(IdChar) || IdChar=='_'; }
 
+            bool Lua51ScriptingEngine::IsValidCharInTableIdentifier(const char IdChar)
+                { return isalnum(IdChar) || IdChar=='_' || IdChar=='.' || IdChar==':'; }
+
             bool Lua51ScriptingEngine::IsValidIdentifier(const String& Id)
             {
                 String::const_iterator Iter = Id.begin();
@@ -630,108 +643,90 @@ namespace Mezzanine
                 return true;
             }
 
-            void Lua51ScriptingEngine::PopulateTabCompletionTrie(CommandTrie& CommandGroup)
+            const String& Lua51ScriptingEngine::GetLuaTypeString(int StackLocation)
             {
-                CommandGroup.insert("print", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
-                CommandGroup.insert("pi", &Scripting::Lua::Lua51ScriptingEngine::TypeNameNumber);
-                CommandGroup.insert("package", &Scripting::Lua::Lua51ScriptingEngine::TypeNameTable);
-                CommandGroup.insert("package.load", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
-                CommandGroup.insert("package.require", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
-                CommandGroup.insert("package.os", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
-                CommandGroup.insert("package.fake", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
-                CommandGroup.insert("package.bs", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
-                CommandGroup.insert("package.a", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
-                CommandGroup.insert("package.load2", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
-                CommandGroup.insert("package.mezzanine", &Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction);
+                if(std::abs(StackLocation)>GetStackCount())
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "A place outside is attempting to be inspected while getting typestring."); }
+
+                if(LUA_TNIL==lua_type(State,StackLocation))
+                    { return TypeNameNil; }
+                if(LUA_TBOOLEAN==lua_type(State,StackLocation))
+                    { return TypeNameBoolean; }
+                if(LUA_TLIGHTUSERDATA==lua_type(State,StackLocation))
+                    { return TypeNameLightUserData; }
+                if(LUA_TNUMBER==lua_type(State,StackLocation))
+                    { return TypeNameNumber; }
+                if(LUA_TSTRING==lua_type(State,StackLocation))
+                    { return TypeNameString; }
+                if(LUA_TTABLE==lua_type(State,StackLocation))
+                    { return TypeNameTable; }
+                if(LUA_TFUNCTION==lua_type(State,StackLocation))
+                    { return TypeNameFunction; }
+                if(LUA_TUSERDATA==lua_type(State,StackLocation))
+                    { return TypeNameUserData; }
+                if(LUA_TTHREAD==lua_type(State,StackLocation))
+                    { return TypeNameThread; }
+                MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "The thing on the Lua stack match no known types.");
+                return NoLibName;
             }
 
-/*
-            String Lua51ScriptingEngine::tests(String Returns)
+            void Lua51ScriptingEngine::PopulateTabCompletionTrie(CommandTrie& CommandGroup, const String& TableName, std::vector<String> AlreadyDidTables)
             {
-                int Top = lua_gettop(State);
-                if(0==Top)
-                    { return Returns;}
-
-                Returns += " " + ToString(lua_type(State,-1)) + ":";
-
-                if(LUA_TNIL==lua_type(State,Top))
+                // If no table is based start at the basemost  global table
+                int Top = GetStackCount();
+                if(TableName=="")
                 {
-                    Returns += " nil";
-                    lua_pop(State,1);
-                    return tests(Returns);
+                    lua_getglobal(State, GlobalTableName.c_str());
+                    AlreadyDidTables.push_back(GlobalTableName);
+                }
+                else
+                {
+                    lua_getglobal(State, TableName.c_str());
+                    AlreadyDidTables.push_back(TableName);
                 }
 
-                if(LUA_TBOOLEAN==lua_type(State,Top))
+                // Handle errors
+                if(GetStackCount()==Top) // if lua_getglobal puts nothing on the stack
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Lua51 Engine needs a table name to read for tab completion data instead an invalid identifier was passed."); }
+                if(!(LUA_TTABLE==lua_type(State,-1)))
                 {
-                    Returns += " Boole:";
-                    Returns += ToString(lua_toboolean(State,Top));
-                    lua_pop(State,1);
-                    return tests(Returns);
+                    lua_pop(State, 1);
+                    MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Lua51 Engine needs a able name to read for tab completion data instead something else was passed.");
                 }
 
-                if(LUA_TLIGHTUSERDATA==lua_type(State,Top))
+                // iterate of each entry, gather its name and type and recurse into subtables
+                lua_pushnil(State);
+                while (lua_next(State, -2) != 0)
                 {
-                    Returns += " light_data";
-                    lua_pop(State,1);
-                    return tests(Returns);
+                    // Capture Strings(names) and their associated types
+                    if(LUA_TSTRING==lua_type(State,-2))
+                        { CommandGroup.insert((TableName + "." + lua_tostring(State,-2)).c_str(), &GetLuaTypeString(-1)); }
+
+                    // If it is a table and we have no done it yet, recurse
+                    if(LUA_TTABLE==lua_type(State,-1))
+                    {
+                        lua_pop(State, 1);
+                        bool AlreadyParsed = false;
+
+                        for(std::vector<String>::const_iterator Iter = AlreadyDidTables.begin();
+                            AlreadyDidTables.end() != Iter;
+                            Iter++)
+                        {
+                            if(*Iter==TableName)
+                            {
+                                AlreadyParsed = true;
+                                break;
+                            }
+                        }
+                        if(!AlreadyParsed)
+                            { PopulateTabCompletionTrie(CommandGroup, lua_tostring(State,-1), AlreadyDidTables); }
+                    }else{
+                        lua_pop(State, 1);
+                    }
                 }
+                lua_pop(State, 1);
+            }
 
-                if(LUA_TNUMBER==lua_type(State,Top))
-                {
-                    Returns += " Number:";
-                    Returns += ToString(lua_tonumber(State,Top));
-                    lua_pop(State,1);
-                    return tests(Returns);
-                }
-
-                if(LUA_TSTRING==lua_type(State,Top))
-                {
-                    Returns += " String:";
-                    Returns += ToString(lua_tostring(State,Top));
-                    lua_pop(State,1);
-                    return tests(Returns);
-                }
-
-                if(LUA_TTABLE==lua_type(State,Top))
-                {
-                    Returns += " table";
-                    lua_pop(State,1);
-                    return tests(Returns);
-                }
-
-                if(LUA_TFUNCTION==lua_type(State,Top))
-                {
-                    Returns += " Function";
-                    lua_pop(State,1);
-                    return tests(Returns);
-                }
-
-                if(LUA_TUSERDATA==lua_type(State,Top))
-                {
-                    Returns += " user_data";
-                    lua_pop(State,1);
-                    return tests(Returns);
-                }
-
-                if(LUA_TTHREAD==lua_type(State,Top))
-                {
-                    Returns += " thread";
-                    lua_pop(State,1);
-                    return tests(Returns);
-                }
-
-                //    #define LUA_TNIL		0
-                //    #define LUA_TBOOLEAN		1
-                //    #define LUA_TLIGHTUSERDATA	2
-                //    #define LUA_TNUMBER		3
-                //    #define LUA_TSTRING		4
-                //    #define LUA_TTABLE		5
-                //    #define LUA_TFUNCTION		6
-                //    #define LUA_TUSERDATA		7
-                //    #define LUA_TTHREAD		8
-
-                return Returns;
-            }*/
 
         } // Lua
     } // Scripting

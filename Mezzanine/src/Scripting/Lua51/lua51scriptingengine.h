@@ -171,6 +171,8 @@ namespace Mezzanine
                     static const String TypeNameUserData;             ///< @brief A human friendly representation of the Lua type user data
                     static const String TypeNameThread;               ///< @brief A human friendly representation of the Lua type thread
 
+                    static const String GlobalTableName;              ///< @brief The place Lua keeps all the identifiers in a single Lua State
+
                     /// @brief Convert a Lua51Libraries value to its name
                     /// @param Lib A number indicating what libraries a Lua51ScriptingEngine could load
                     /// @return A reference to one of the library names listed on the Lua51ScriptingEngine
@@ -265,6 +267,10 @@ namespace Mezzanine
                     /// "Mezzanine" is the base, "MezzanineXML" another module in the root lua environment
                     /// is the Sub and "XML" is the Alias. This does not "move" the library/module, this
                     /// Simply creates a reference with a new name and location.
+                    /// @n @n
+                    /// To ensure Tab completion works this also creates an alias/reference in the global
+                    /// table. In this above example this will also incidentally create the syntax
+                    /// "XML.Document()"
                     /// @param Base The libary that will have another nested in it.
                     /// @param Sub The library to be nest into another.
                     /// @param Alias The new name of the library when referenced from its nested location.
@@ -366,6 +372,10 @@ namespace Mezzanine
                     /// @param IdChar A Single character to check
                     /// @return True if IdChar can be used in a lua variable name false otherwise
                     static bool IsValidCharInIdentifier(const char IdChar);
+                    /// @brief Is the given character valid for is in a Lua Identifier including tables leading up to it and scoping operators.
+                    /// @param IdChar A Single character to check
+                    /// @return True if IdChar can be used in a lua variable name false otherwise
+                    static bool IsValidCharInTableIdentifier(const char IdChar);
                     /// @brief Is a string a valid identifier in Lua
                     /// @param Id The identifier to check
                     /// @return True if Id is a valid Lua Indentifier
@@ -374,7 +384,11 @@ namespace Mezzanine
                     /// @brief A type for efficiently storing the kinds of Lexigraphical data aboutthe Lua runtime
                     typedef Mezzanine::Trie<char,const Mezzanine::String*> CommandTrie;
 
-                    void PopulateTabCompletionTrie(CommandTrie& CommandGroup);
+                    /// @brief Get a human friendly string containing the type of the thing at the given stack location
+                    /// @param StackLocation Where to look in the Lua stack for item to inspect
+                    /// @return A reference to a constant string on this class.
+                    const String& GetLuaTypeString(int StackLocation);
+                    void PopulateTabCompletionTrie(CommandTrie& CommandGroup, const String& TableName="", std::vector<String> AlreadyDidTables=std::vector<String>());
 
             };
 

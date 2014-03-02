@@ -43,6 +43,7 @@
 #include <mezzanine.h>
 #include "linenoise/linenoise.h"
 #include "repllinenoise.h"
+#include <algorithm>
 
 using namespace Mezzanine;
 using namespace std;
@@ -50,8 +51,28 @@ using namespace Mezzanine::Scripting::Lua;
 
 void REPLLineNoise::PopulateCommmandTrie()
 {
-    PossibleCommands.clear();
-    Doer.LuaEngine.PopulateTabCompletionTrie(PossibleCommands);
+    try
+    {
+        PossibleCommands.clear();
+        Doer.LuaEngine.PopulateTabCompletionTrie(PossibleCommands);
+    } catch (Exception& e) {
+        PossibleCommands.clear();
+        cout << "\r\n" << e.what() << "\r\n";
+    }
+}
+
+String GetMatchingPrefix(const String& StringA, const String& StringB)
+{
+    Whole MatchCount;
+    for(MatchCount=0; MatchCount<=StringA.size() && MatchCount<=StringB.size(); MatchCount++)
+    {
+        if(StringA[MatchCount]!=StringB[MatchCount])
+        {
+            //MatchCount--;
+            break;
+        }
+    }
+    return String(StringA.begin(),StringA.begin()+MatchCount);
 }
 
 void REPLLineNoise::DoTabStrike1(linenoiseCompletions *lc, const String& CurrentID, const String& CurrentLine)
@@ -73,13 +94,23 @@ void REPLLineNoise::DoTabStrike1(linenoiseCompletions *lc, const String& Current
                 linenoiseAddCompletion(lc,NewInput.c_str());
                 linenoiseAddCompletion(lc,NewInput.c_str());
             }else{
-                //should do partial logic here
-
-                // Even if there isn't something to autocomplete, to get the line to redraw
-                // we need to put something into the autocomplete buffer.
-                linenoiseAddCompletion(lc,CurrentLine.c_str());
-                linenoiseAddCompletion(lc,CurrentLine.c_str());
+                String Matching((*Iter).first);
+                for(; PossibleCommands.end()!=Iter; Iter++)
+                {
+                    Matching=GetMatchingPrefix(Matching,(*Iter).first);
+                    if(Matching.size()==0)
+                        { break; }
+                }
+                String CompletionPrefix(CurrentLine,0,CurrentLine.size()-CurrentID.size());
+                String NewInput(CompletionPrefix+Matching);
+                linenoiseAddCompletion(lc,NewInput.c_str());
+                linenoiseAddCompletion(lc,NewInput.c_str());
             }
+        }else{
+            // Even if there isn't something to autocomplete, to get the line to redraw
+            // we need to put something into the autocomplete buffer.
+            linenoiseAddCompletion(lc,CurrentLine.c_str());
+            linenoiseAddCompletion(lc,CurrentLine.c_str());
         }
     }
 }
@@ -182,7 +213,7 @@ String REPLLineNoise::GetCurrentID(const String& CurrentLine)
     // Start from end of string looking for characters which are valid in Lua Identifiers
     for(Iter--; Iter != CurrentLine.begin(); Iter--)
     {
-        if(Scripting::Lua::Lua51ScriptingEngine::IsValidCharInIdentifier(*Iter))
+        if(Scripting::Lua::Lua51ScriptingEngine::IsValidCharInTableIdentifier(*Iter))
         {
             Results = *Iter + Results;
             Started = true;
