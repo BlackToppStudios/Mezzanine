@@ -105,7 +105,7 @@ namespace Mezzanine
                 /// @param Buffer A BinaryBuffer containing the bytecode to load into Lua
                 /// @param Size an output parameter to convey the size of the return to Lua.
                 /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
-                /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
+                /// @warning The Lua documentation clearly indicates sec    ond parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
                 /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
                 const char* LuaBytecodeLoader(lua_State* State, void* BinBuff, size_t* Size)
                 {
@@ -700,7 +700,14 @@ namespace Mezzanine
                 {
                     // Capture Strings(names) and their associated types
                     if(LUA_TSTRING==lua_type(State,-2))
-                        { CommandGroup.insert((TableName + "." + lua_tostring(State,-2)).c_str(), &GetLuaTypeString(-1)); }
+                    {
+                        String TablePrefix;
+                        if(TableName!=String(""))
+                        {
+                            TablePrefix = TableName + ".";
+                        }
+                        CommandGroup.insert((TablePrefix + lua_tostring(State,-2)).c_str(), &GetLuaTypeString(-1));
+                    }
 
                     // If it is a table and we have no done it yet, recurse
                     if(LUA_TTABLE==lua_type(State,-1))
