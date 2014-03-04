@@ -106,6 +106,9 @@ namespace Mezzanine
             /// @brief A pointer to the internal window used for collecting input.
             SDL_Window* SDLWindow;
             /// @internal
+            /// @brief The last set FSAA level for this gamewindow (used for serialization).
+            Whole RequestedFSAA;
+            /// @internal
             /// @brief A bit field containing all the flags used in the construction of this GameWindow.
             Whole CreationFlags;
 
@@ -117,16 +120,12 @@ namespace Mezzanine
             /// @param Flags Additional misc parameters, see WindowFlags enum for more info.
             void CreateGameWindow(const String& WindowCaption, const Whole Width, const Whole Height, const Whole Flags);
             /// @internal
+            /// @brief Inserts a Viewport into this window based on it's ZOrder.
+            /// @param NewVP A pointer to the Viewport being added to this window.
+            void AddViewport(Viewport* NewVP);
+            /// @internal
             /// @brief Updates all the viewports of this window and the cameras attached to them after a change in window geometry.
             void UpdateViewportsAndCameras();
-            /// @internal
-            /// @brief Checks to see if a resolution is larger than the currently set desktop resolution.
-            /// @remarks This method is used for a check that is only really needed on Windows XP.  When a resolution is selected that is larger
-            /// than the desktop resolution then the app hardlocks somewhere inside of SDL.
-            /// @param Width The number of horizontal pixels to check against the desktop.
-            /// @param Height The number of vertical pixels to check against the desktop.
-            /// @return Returns "1" if the resolution provided is larger, "-1" if the resolution is smaller, and "0" if the resolution is the same.
-            int IsLargerThenDesktop(const Whole Width, const Whole Height);
         public:
             /// @brief Class constructor.
             /// @param WindowCaption The caption to be set in the window titlebar.
@@ -134,6 +133,9 @@ namespace Mezzanine
             /// @param Height The desired height in pixels.
             /// @param Flags Additional misc parameters, see WindowFlags enum for more info.
             GameWindow(const String& WindowCaption, const Whole Width, const Whole Height, const Whole Flags);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            GameWindow(const XML::Node& XMLNode);
             /// @brief Class destructor.
             ~GameWindow();
 
@@ -159,6 +161,8 @@ namespace Mezzanine
             /// @brief Destroys a viewport within this window.
             /// @param ToBeDestroyed The viewport that will be destroyed.
             void DestroyViewport(Viewport* ToBeDestroyed);
+            /// @brief Destroys every viewport within this window.
+            void DestroyAllViewports();
 
             /// @brief Gets an iterator to the first viewport in this window.
             ViewportIterator BeginViewport();
@@ -224,10 +228,21 @@ namespace Mezzanine
 
             /// @brief Gets the the text in the titlebar.
             /// @return Returns a const string ref of the text in the titlebar.
-            const String& GetWindowCaption();
-            /// @brief Gets the current level of Anti-Aliasing enabled on this Window.
-            /// @return Returns a Whole indicating which level of AA is enabled on this window, or 0 if AA is disabled.
+            const String& GetWindowCaption() const;
+
+            /// @brief Sets the level of Full Scale Anti-Aliasing to be used when rendering to this window.
+            /// @note Generally when this gets set it will not be applied.  Anti-Aliasing is a construction time property of a window.
+            /// However this will be saved when the game window and it's settings are serialized, which will be used when it is reloaded.
+            /// @param FSAA The Anti-Aliasing level to be used, generally one of these values: 0, 2, 4, 8, or 16.
+            void SetFSAALevel(const Whole FSAA);
+            /// @brief Gets the last set Anti-Aliasing level on this Window.
+            /// @note This may or may not be the same as the current FSAA level setting.
+            /// @return Returns a Whole indicating which level of AA is set on this window.
             Whole GetFSAALevel() const;
+            /// @brief Gets the actual Anti-Aliasing level currently being used by this game window.
+            /// @return Returns the FSAA level currently being used to render this window, or 0 if FSAA is disabled.
+            Whole GetActualFSAALevel() const;
+
             /// @brief Enables (or disables) vsync on this window.
             /// @param Enable Whether or not to enable vsync.
             void EnableVsync(Boole Enable);
@@ -270,6 +285,33 @@ namespace Mezzanine
             /// @brief Gets the longest amount of time it's taken to render a frame.
             /// @return Returns a Real representing the worst time for rendering a frame.
             Real GetWorstFrameTime() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this GameWindow should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @brief Convert the properties of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @brief Convert the viewports of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            void ProtoSerializeViewports(XML::Node& SelfRoot) const;
+
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the viewports of this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            void ProtoDeSerializeViewports(const XML::Node& SelfRoot);
+
+            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

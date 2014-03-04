@@ -294,27 +294,7 @@ namespace Mezzanine
             RenderSystemNode.AppendAttribute("Name").SetValue( this->GetShortenedRenderSystemName(CurrRenderSys) );
             // Create and initialize the window configuration
             for( GameWindowIterator WinIt = this->BeginGameWindow() ; WinIt != this->EndGameWindow() ; ++WinIt )
-            {
-                XML::Node WindowConfigNode = CurrentSettings.AppendChild("GameWindow");
-                WindowConfigNode.AppendAttribute("Caption").SetValue( (*WinIt)->GetWindowCaption() );
-                WindowConfigNode.AppendAttribute("Width").SetValue( StringTools::ConvertToString( (*WinIt)->GetWidth() ) );
-                WindowConfigNode.AppendAttribute("Height").SetValue( StringTools::ConvertToString( (*WinIt)->GetHeight() ) );
-                WindowConfigNode.AppendAttribute("Fullscreen").SetValue( StringTools::ConvertToString( (*WinIt)->GetFullscreen() ) );
-                WindowConfigNode.AppendAttribute("Hidden").SetValue( StringTools::ConvertToString( (*WinIt)->IsHidden() ) );
-                WindowConfigNode.AppendAttribute("Vsync").SetValue( StringTools::ConvertToString( (*WinIt)->VsyncEnabled() ) );
-                WindowConfigNode.AppendAttribute("Resizeable").SetValue( StringTools::ConvertToString( (*WinIt)->BorderIsResizeable() ) );
-                WindowConfigNode.AppendAttribute("Borderless").SetValue( StringTools::ConvertToString( (*WinIt)->IsBorderless() ) );
-                WindowConfigNode.AppendAttribute("FSAA").SetValue( StringTools::ConvertToString( (*WinIt)->GetFSAALevel() ) );
-                /// @todo Currently the maximized setting does nothing in the gamewindow.  If it gets implemented, so does this.
-                //WindowConfigNode.AppendAttribute("Maximized").SetValue( (*WinIt)-> );//
-                for( GameWindow::ViewportIterator VPIt = (*WinIt)->BeginViewport() ; VPIt != (*WinIt)->EndViewport() ; ++VPIt )
-                {
-                    XML::Node ViewportConfigNode = WindowConfigNode.AppendChild("Viewport");
-                    ViewportConfigNode.AppendAttribute("ZOrder").SetValue( (*VPIt)->GetZOrder() );
-                    ViewportConfigNode.AppendAttribute("Position").SetValue( StringTools::ConvertToString( Vector2((*VPIt)->GetLeft(),(*VPIt)->GetTop()) ) );
-                    ViewportConfigNode.AppendAttribute("Size").SetValue( StringTools::ConvertToString( Vector2((*VPIt)->GetWidth(),(*VPIt)->GetHeight()) ) );
-                }
-            }
+                { (*WinIt)->ProtoSerialize(CurrentSettings); }
         }
 
         void GraphicsManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
@@ -350,110 +330,139 @@ namespace Mezzanine
                 }
                 else if( "GameWindow" == (*SubSetIt)->GetName() )
                 {
+                    GameWindow* CurrWindow = NULL;
                     String WinCaption("Mezzanine Window");
                     Whole WinWidth = 800;
                     Whole WinHeight = 600;
                     Whole WinFlags = 0;
 
-                    // Get the caption.
-                    CurrSettingValue = (*SubSetIt)->GetSettingValue("Caption");
-                    if(!CurrSettingValue.empty())
-                        WinCaption = CurrSettingValue;
-                    // Get the width.
-                    CurrSettingValue = (*SubSetIt)->GetSettingValue("Width");
-                    if(!CurrSettingValue.empty())
-                        WinWidth = StringTools::ConvertToUInt32(CurrSettingValue);
-                    // Get the height.
-                    CurrSettingValue = (*SubSetIt)->GetSettingValue("Height");
-                    if(!CurrSettingValue.empty())
-                        WinHeight = StringTools::ConvertToUInt32(CurrSettingValue);
-                    // Get fullscreen.
-                    CurrSettingValue = (*SubSetIt)->GetSettingValue("Fullscreen");
-                    if(!CurrSettingValue.empty())
-                    {
-                        if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | GameWindow::WF_Fullscreen);
-                    }
-                    // Get hidden.
-                    CurrSettingValue = (*SubSetIt)->GetSettingValue("Hidden");
-                    if(!CurrSettingValue.empty())
-                    {
-                        if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | GameWindow::WF_Hidden);
-                    }
-                    // Get vsync.
-                    CurrSettingValue = (*SubSetIt)->GetSettingValue("Vsync");
-                    if(!CurrSettingValue.empty())
-                    {
-                        if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | GameWindow::WF_VsyncEnabled);
-                    }
-                    // Get resizable.
-                    CurrSettingValue = (*SubSetIt)->GetSettingValue("Resizeable");
-                    if(!CurrSettingValue.empty())
-                    {
-                        if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | GameWindow::WF_Resizeable);
-                    }
-                    // Get maximized.
-                    CurrSettingValue = (*SubSetIt)->GetSettingValue("Maximized");
-                    if(!CurrSettingValue.empty())
-                    {
-                        if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | GameWindow::WF_Maximized);
-                    }
-                    // Get borderless.
-                    CurrSettingValue = (*SubSetIt)->GetSettingValue("Borderless");
-                    if(!CurrSettingValue.empty())
-                    {
-                        if(StringTools::ConvertToBool(CurrSettingValue))
-                            WinFlags = (WinFlags | GameWindow::WF_Borderless);
-                    }
-                    // Get the FSAA level
-                    CurrSettingValue = (*SubSetIt)->GetSettingValue("FSAA");
-                    if(!CurrSettingValue.empty())
-                    {
-                        switch (StringTools::ConvertToUInt32(CurrSettingValue))
+                    ObjectSettingSet* PropertiesSet = (*SubSetIt)->GetChildObjectSettingSet("GameWindowProperties");
+                    if( PropertiesSet != NULL ) {
+                        // Get the caption.
+                        CurrSettingValue = PropertiesSet->GetSettingValue("Caption");
+                        if(!CurrSettingValue.empty())
+                            WinCaption = CurrSettingValue;
+                        // Get the width.
+                        CurrSettingValue = PropertiesSet->GetSettingValue("Width");
+                        if(!CurrSettingValue.empty())
+                            WinWidth = StringTools::ConvertToUInt32(CurrSettingValue);
+                        // Get the height.
+                        CurrSettingValue = PropertiesSet->GetSettingValue("Height");
+                        if(!CurrSettingValue.empty())
+                            WinHeight = StringTools::ConvertToUInt32(CurrSettingValue);
+                        // Get fullscreen.
+                        CurrSettingValue = PropertiesSet->GetSettingValue("Fullscreen");
+                        if(!CurrSettingValue.empty())
                         {
-                            case 2:
-                                WinFlags = (WinFlags | GameWindow::WF_FSAA_2);
-                                break;
-                            case 4:
-                                WinFlags = (WinFlags | GameWindow::WF_FSAA_4);
-                                break;
-                            case 8:
-                                WinFlags = (WinFlags | GameWindow::WF_FSAA_8);
-                                break;
-                            case 16:
-                                WinFlags = (WinFlags | GameWindow::WF_FSAA_16);
-                                break;
+                            if(StringTools::ConvertToBool(CurrSettingValue))
+                                WinFlags = (WinFlags | GameWindow::WF_Fullscreen);
                         }
-                    }
-                    // Finally, construct the window.
-                    GameWindow* CurrWindow = this->CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags);
-                    // Set up the viewports
-                    for( ObjectSettingSetContainer::SubSetIterator VPIt = (*SubSetIt)->SubSetBegin() ; VPIt != (*SubSetIt)->SubSetEnd() ; ++VPIt )
-                    {
-                        if( "Viewport" == (*VPIt)->GetName() )
+                        // Get hidden.
+                        CurrSettingValue = PropertiesSet->GetSettingValue("Hidden");
+                        if(!CurrSettingValue.empty())
                         {
-                            Integer ZO = 0;
-                            Vector2 Position(1,1);
-                            Vector2 Size(0,0);
+                            if(StringTools::ConvertToBool(CurrSettingValue))
+                                WinFlags = (WinFlags | GameWindow::WF_Hidden);
+                        }
+                        // Get vsync.
+                        CurrSettingValue = PropertiesSet->GetSettingValue("Vsync");
+                        if(!CurrSettingValue.empty())
+                        {
+                            if(StringTools::ConvertToBool(CurrSettingValue))
+                                WinFlags = (WinFlags | GameWindow::WF_VsyncEnabled);
+                        }
+                        // Get resizable.
+                        CurrSettingValue = PropertiesSet->GetSettingValue("Resizeable");
+                        if(!CurrSettingValue.empty())
+                        {
+                            if(StringTools::ConvertToBool(CurrSettingValue))
+                                WinFlags = (WinFlags | GameWindow::WF_Resizeable);
+                        }
+                        // Get maximized.
+                        CurrSettingValue = PropertiesSet->GetSettingValue("Maximized");
+                        if(!CurrSettingValue.empty())
+                        {
+                            if(StringTools::ConvertToBool(CurrSettingValue))
+                                WinFlags = (WinFlags | GameWindow::WF_Maximized);
+                        }
+                        // Get borderless.
+                        CurrSettingValue = PropertiesSet->GetSettingValue("Borderless");
+                        if(!CurrSettingValue.empty())
+                        {
+                            if(StringTools::ConvertToBool(CurrSettingValue))
+                                WinFlags = (WinFlags | GameWindow::WF_Borderless);
+                        }
+                        // Get the FSAA level
+                        CurrSettingValue = PropertiesSet->GetSettingValue("FSAA");
+                        if(!CurrSettingValue.empty())
+                        {
+                            switch( StringTools::ConvertToUInt32(CurrSettingValue) )
+                            {
+                                case 2:
+                                    WinFlags = (WinFlags | GameWindow::WF_FSAA_2);
+                                    break;
+                                case 4:
+                                    WinFlags = (WinFlags | GameWindow::WF_FSAA_4);
+                                    break;
+                                case 8:
+                                    WinFlags = (WinFlags | GameWindow::WF_FSAA_8);
+                                    break;
+                                case 16:
+                                    WinFlags = (WinFlags | GameWindow::WF_FSAA_16);
+                                    break;
+                            }
+                        }
+                        // Finally, construct the window.
+                        CurrWindow = this->CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags);
+                    }
+                    // Set up the viewports
+                    ObjectSettingSet* ViewportsSet = (*SubSetIt)->GetChildObjectSettingSet("Viewports");
+                    if( ViewportsSet != NULL && CurrWindow != NULL ) {
+                        for( ObjectSettingSetContainer::SubSetIterator VPIt = ViewportsSet->SubSetBegin() ; VPIt != ViewportsSet->SubSetEnd() ; ++VPIt )
+                        {
+                            if( "Viewport" == (*VPIt)->GetName() ) {
+                                Integer ZO = 0;
+                                Vector2 Position(0,0);
+                                Vector2 Size(1,1);
 
-                            CurrSettingValue = (*VPIt)->GetSettingValue("ZOrder");
-                            if(!CurrSettingValue.empty())
-                                ZO = StringTools::ConvertToInteger( CurrSettingValue );
-                            CurrSettingValue = (*VPIt)->GetSettingValue("Position");
-                            if(!CurrSettingValue.empty())
-                                Position = StringTools::ConvertToVector2( CurrSettingValue );
-                            CurrSettingValue = (*VPIt)->GetSettingValue("Size");
-                            if(!CurrSettingValue.empty())
-                                Size = StringTools::ConvertToVector2( CurrSettingValue );
+                                CurrSettingValue = (*VPIt)->GetSettingValue("ZOrder");
+                                if( !CurrSettingValue.empty() ) {
+                                    ZO = StringTools::ConvertToInteger( CurrSettingValue );
+                                }
 
-                            Viewport* CurrViewport = CurrWindow->CreateViewport(NULL,ZO);
-                            CurrViewport->SetDimensions(Position.X,Position.Y,Size.X,Size.Y);
-                        }// if - Viewport
-                    }// for - Viewports
+                                ObjectSettingSet* PositionSet = (*VPIt)->GetChildObjectSettingSet("Position");
+                                if( PositionSet != NULL ) {
+                                    ObjectSettingSet* PositionVector = PositionSet->GetChildObjectSettingSet("Vector2");
+
+                                    CurrSettingValue = PositionVector->GetSettingValue("X");
+                                    if( !CurrSettingValue.empty() ) {
+                                        Position.X = StringTools::ConvertToReal( CurrSettingValue );
+                                    }
+                                    CurrSettingValue = PositionVector->GetSettingValue("Y");
+                                    if( !CurrSettingValue.empty() ) {
+                                        Position.Y = StringTools::ConvertToReal( CurrSettingValue );
+                                    }
+                                }
+
+                                ObjectSettingSet* SizeSet = (*VPIt)->GetChildObjectSettingSet("Size");
+                                if( SizeSet != NULL ) {
+                                    ObjectSettingSet* SizeVector = SizeSet->GetChildObjectSettingSet("Vector2");
+
+                                    CurrSettingValue = SizeVector->GetSettingValue("X");
+                                    if( !CurrSettingValue.empty() ) {
+                                        Size.X = StringTools::ConvertToReal( CurrSettingValue );
+                                    }
+                                    CurrSettingValue = SizeVector->GetSettingValue("Y");
+                                    if( !CurrSettingValue.empty() ) {
+                                        Size.Y = StringTools::ConvertToReal( CurrSettingValue );
+                                    }
+                                }
+
+                                Viewport* CurrViewport = CurrWindow->CreateViewport(NULL,ZO);
+                                CurrViewport->SetDimensions(Position,Size);
+                            }// if - Viewport
+                        }// for - Viewports
+                    }// if - ViewportsSet
                 }// if - RS || GameWindow
             }// for - SubSets
         }
@@ -507,14 +516,14 @@ namespace Mezzanine
 
         void GraphicsManager::DestroyAllGameWindows(Boole ExcludePrimary)
         {
-            for( GameWindowIterator Iter = GameWindows.begin() ; Iter != GameWindows.end() ; ++Iter )
+            for( GameWindowIterator Iter = this->GameWindows.begin() ; Iter != this->GameWindows.end() ; ++Iter )
                 { delete *Iter; }
             this->GameWindows.clear();
 
             if(!ExcludePrimary)
             {
-                delete PrimaryGameWindow;
-                this->PrimaryGameWindow = 0;
+                delete this->PrimaryGameWindow;
+                this->PrimaryGameWindow = NULL;
             }
         }
 

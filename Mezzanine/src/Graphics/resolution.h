@@ -41,6 +41,10 @@
 #define _graphicsresolution_h
 
 #include "datatypes.h"
+#include "XML/xml.h"
+
+#include "serialization.h"
+#include "exception.h"
 
 namespace Mezzanine
 {
@@ -50,8 +54,9 @@ namespace Mezzanine
         /// @brief This stores all the basic configuration options a game window supports.
         /// @details
         ///////////////////////////////////////
-        struct MEZZ_LIB Resolution
+        class MEZZ_LIB Resolution
         {
+        public:
             ///////////////////////////////////////////////////////////////////////////////
             // Public Data Members
 
@@ -114,6 +119,89 @@ namespace Mezzanine
                 this->Width = Other.Width;
                 this->Height = Other.Height;
                 return *this;
+            }
+
+            /// @brief Equality comparison operator.
+            /// @param Other The other Resolution to compare with.
+            /// @return Returns true if this Resolution is equal to the other Resolution, false otherwise.
+            Boole operator==(const Resolution& Other) const
+            {
+                return ( this->Width == Other.Width && this->Height == Other.Height );
+            }
+            /// @brief Inequality comparison operator.
+            /// @param Other The other Resolution to compare with.
+            /// @return Returns true if this Resolution is not equal to the other Resolution, false otherwise.
+            Boole operator!=(const Resolution& Other) const
+            {
+                return ( this->Width != Other.Width || this->Height != Other.Height );
+            }
+            /// @brief Less-than operator.
+            /// @param Other The other Resolution to compare with.
+            /// @return Returns true if this Resolution is smaller than the other Resolution, false otherwise.
+            Boole operator<(const Resolution& Other) const
+            {
+                if( this->Width == Other.Width ) {
+                    return ( this->Height < Other.Height );
+                }else{
+                    return ( this->Width < Other.Width );
+                }
+            }
+            /// @brief Greater-than operator.
+            /// @param Other The other Resolution to compare with.
+            /// @return Returns true if this Resolution is larger than the other Resolution, false otherwise.
+            Boole operator>(const Resolution& Other) const
+            {
+                if( this->Width == Other.Width ) {
+                    return ( this->Height > Other.Height );
+                }else{
+                    return ( this->Width > Other.Width );
+                }
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this Resolution should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const
+            {
+                XML::Node DimNode = ParentNode.AppendChild( Resolution::GetSerializableName() );
+
+                if( DimNode.AppendAttribute("Version").SetValue("1") &&
+                    DimNode.AppendAttribute("Width").SetValue(this->Width) &&
+                    DimNode.AppendAttribute("Height").SetValue(this->Height) )
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",Resolution::GetSerializableName(),true);
+                }
+            }
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot)
+            {
+                XML::Attribute CurrAttrib;
+                if( SelfRoot.Name() == Resolution::GetSerializableName() ) {
+                    if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = SelfRoot.GetAttribute("Width");
+                        if( !CurrAttrib.Empty() )
+                            this->Width = CurrAttrib.AsWhole();
+
+                        CurrAttrib = SelfRoot.GetAttribute("Height");
+                        if( !CurrAttrib.Empty() )
+                            this->Height = CurrAttrib.AsWhole();
+                    }else{
+                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Resolution::GetSerializableName() + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Resolution::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+                }
+            }
+            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName()
+            {
+                return "Resolution";
             }
         };//Resolution
     }//Graphics

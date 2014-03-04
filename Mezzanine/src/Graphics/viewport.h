@@ -80,6 +80,10 @@ namespace Mezzanine
             /// @param ZOrder The render order of this viewport relative to other viewports in the game window.
             /// @param ParentWindow The game window this viewport belongs to.
             Viewport(CameraProxy* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @param ParentWindow The game window this viewport belongs to.
+            Viewport(const XML::Node& XMLNode, GameWindow* ParentWindow);
             /// @brief Class destructor.
             ~Viewport();
 
@@ -91,7 +95,7 @@ namespace Mezzanine
             void SetCamera(CameraProxy* ViewportCamera);
             /// @brief Gets the CameraProxy associated with this viewport.
             /// @return Returns a pointer to the CameraProxy using this viewport.
-            CameraProxy* GetViewportCamera() const;
+            CameraProxy* GetCamera() const;
             /// @brief Gets the game window this viewport belongs to.
             /// @return Returns a pointer to the game window that created this viewport.
             GameWindow* GetParentWindow() const;
@@ -121,6 +125,14 @@ namespace Mezzanine
             /// @param Width A relative value(range: 0-1) representing the width of the viewport.
             /// @param Height A relative value(range: 0-1) representing the height of the viewport.
             void SetDimensions(const Real& Left, const Real& Top, const Real& Width, const Real& Height);
+
+            /// @brief Gets the position of this viewport in it's parent GameWindow in relative units.
+            /// @return Returns a Vector2 containing the relative position of this viewport within the GameWindow.
+            Vector2 GetPosition() const;
+            /// @brief Gets the size of this viewport relative to it's parent GameWindow.
+            /// @return Returns a Vector2 containing the relative size of this viewport.
+            Vector2 GetSize() const;
+
             /// @brief Gets the relative left position of the viewport.
             /// @return Returns a real representing the relative left position of this veiwport.
             Real GetLeft() const;
@@ -133,6 +145,14 @@ namespace Mezzanine
             /// @brief Gets the relative height of the viewport.
             /// @return Returns a real representing the relative height of this veiwport.
             Real GetHeight() const;
+
+            /// @brief Gets the position of this viewport in it's parent GameWindow in pixels.
+            /// @return Returns a Vector2 containing the pixel position of this viewport within the GameWindow.
+            Vector2 GetActualPosition() const;
+            /// @brief Gets the size of this viewport in pixels.
+            /// @return Returns a Vector2 containing the pixel size of this viewport.
+            Vector2 GetActualSize() const;
+
             /// @brief Gets the left position of the viewport in pixels.
             /// @return Returns a whole representing the left position of this veiwport in pixels.
             Whole GetActualLeft() const;
@@ -147,12 +167,25 @@ namespace Mezzanine
             Whole GetActualHeight() const;
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this Viewport should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot);
+            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
             /// @internal
             /// @brief Gets the internal Ogre Viewport.
             /// @return Returns a pointer to the Ogre Viewport this class is based on.
-            Ogre::Viewport* GetOgreViewport() const;
+            Ogre::Viewport* _GetOgreViewport() const;
         };//Viewport
     }//Graphics
 }//Mezzanine
