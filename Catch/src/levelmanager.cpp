@@ -1,33 +1,25 @@
-#ifndef _levelloader_cpp
-#define _levelloader_cpp
+#ifndef _levelmanager_cpp
+#define _levelmanager_cpp
 
-#include "levelloader.h"
+#include "levelmanager.h"
 #include "levelscorer.h"
 #include "catchapp.h"
 #include "throwablegenerator.h"
 #include "leveltriggers.h"
 
-LevelLoader::LevelLoader()
-    : LevelToLoad("")
+void LoadFerris()
 {
-    this->TheEntresol = Entresol::GetSingletonPtr();
-    this->GameApp = CatchApp::GetCatchAppPointer();
-}
-
-LevelLoader::~LevelLoader()
-{
-}
-
-void LevelLoader::LoadFerris()
-{
+    // Get our major roots
+    Entresol* TheEntresol = Entresol::GetSingletonPtr();
+    CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -43,7 +35,7 @@ void LevelLoader::LoadFerris()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = this->TheEntresol->GetCameraManager()->GetCamera(0);
+	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -289,16 +281,19 @@ void LevelLoader::LoadFerris()
     Tray8->GetRigidProxy()->AddSyncObject(BonusZone4);// */
 }
 
-void LevelLoader::LoadBigCurve()
+void LoadBigCurve()
 {
+    // Get our major roots
+    Entresol* TheEntresol = Entresol::GetSingletonPtr();
+    CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -314,7 +309,7 @@ void LevelLoader::LoadBigCurve()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = this->TheEntresol->GetCameraManager()->GetCamera(0);
+	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -415,16 +410,19 @@ void LevelLoader::LoadBigCurve()
     ScoreZone->AddToWorld();// */
 }
 
-void LevelLoader::LoadBlowsNotSucks()
+void LoadBlowsNotSucks()
 {
+    // Get our major roots
+    Entresol* TheEntresol = Entresol::GetSingletonPtr();
+    CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -440,7 +438,7 @@ void LevelLoader::LoadBlowsNotSucks()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = this->TheEntresol->GetCameraManager()->GetCamera(0);
+	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -632,16 +630,19 @@ void LevelLoader::LoadBlowsNotSucks()
     ScoreZone2->AddToWorld();// */
 }
 
-void LevelLoader::LoadJustice()
+void LoadJustice()
 {
+    // Get our major roots
+    Entresol* TheEntresol = Entresol::GetSingletonPtr();
+    CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -657,7 +658,7 @@ void LevelLoader::LoadJustice()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = this->TheEntresol->GetCameraManager()->GetCamera(0);
+	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -852,16 +853,19 @@ void LevelLoader::LoadJustice()
     ScoreZone2->AddToWorld();// */
 }
 
-void LevelLoader::LoadRollers()
+void LoadRollers()
 {
+    // Get our major roots
+    Entresol* TheEntresol = Entresol::GetSingletonPtr();
+    CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -877,7 +881,7 @@ void LevelLoader::LoadRollers()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = this->TheEntresol->GetCameraManager()->GetCamera(0);
+	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -995,16 +999,19 @@ void LevelLoader::LoadRollers()
     ScoreZone->AddToWorld();// */
 }
 
-void LevelLoader::LoadJustBounce()
+void LoadJustBounce()
 {
+    // Get our major roots
+    Entresol* TheEntresol = Entresol::GetSingletonPtr();
+    CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+    Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = TheEntresol->GetSceneManager();
+    AreaEffectManager* AreaEffectMan = TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = TheEntresol->GetDebrisManager();
 
     // Init Resources
     String CommonGroup("Common");
@@ -1020,7 +1027,7 @@ void LevelLoader::LoadJustBounce()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = this->TheEntresol->GetCameraManager()->GetCamera(0);
+	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -1149,44 +1156,226 @@ void LevelLoader::LoadJustBounce()
     ScoreZone->AddToWorld();// */
 }
 
-bool LevelLoader::HasALevelToLoad()
+///////////////////////////////////////////////////////////////////////////////
+// CatchLevel Methods
+
+CatchLevel::CatchLevel(const String& LvlName) :
+    LevelName(LvlName)
+    {  }
+
+CatchLevel::CatchLevel(const String& Group, const XML::Document& LevelDoc) :
+    GroupName(Group)
+    { this->DeSerializeLevelData(LevelDoc); }
+
+CatchLevel::~CatchLevel()
+    {  }
+
+void CatchLevel::DeSerializeLevelData(const XML::Document& LevelDoc)
 {
-    return "" != LevelToLoad;
+    XML::Attribute CurrAttrib;
+
+    XML::Node RootNode = LevelDoc.GetChild("ProfileRoot");
+    if( !RootNode.Empty() ) {
+        // First get the level name
+        XML::Node LevelNameNode = RootNode.GetChild("LevelName");
+        if( !LevelNameNode.Empty() ) {
+            CurrAttrib = LevelNameNode.GetAttribute("Name");
+            if( !CurrAttrib.Empty() ) {
+                this->LevelName = CurrAttrib.AsString();
+            }
+        }
+
+        // Now lets get our score tier data
+        XML::Node ScoreTiersNode = LevelDoc.GetChild("ScoreTiers");
+        if( !ScoreTiersNode.Empty() ) {
+            for( XML::NodeIterator ScoreTierIt = ScoreTiersNode.begin() ; ScoreTierIt != ScoreTiersNode.end() ; ++ScoreTierIt )
+            {
+                Whole TierValue = 0;
+                Whole Threshold = 0;
+
+                CurrAttrib = LevelNameNode.GetAttribute("TierValue");
+                if( !CurrAttrib.Empty() ) {
+                    TierValue = CurrAttrib.AsWhole();
+                }
+
+                CurrAttrib = LevelNameNode.GetAttribute("Threshold");
+                if( !CurrAttrib.Empty() ) {
+                    Threshold = CurrAttrib.AsWhole();
+                }
+
+                if( TierValue > 0 && Threshold > 0 ) {
+                    if( TierValue > this->ScoreTiers.size() ) {
+                        this->ScoreTiers.reserve(TierValue);
+                    }
+                    this->ScoreTiers.at(TierValue) = Threshold;
+                }
+            }
+        }
+    }
 }
 
-void LevelLoader::SetNextLevel(const String& LevelName)
+///////////////////////////////////////////////////////////////////////////////
+// Utility
+
+const String& CatchLevel::GetName() const
+    { return this->LevelName; }
+
+const String& CatchLevel::GetGroupName() const
+    { return this->GroupName; }
+
+///////////////////////////////////////////////////////////////////////////////
+// MetaData Access
+
+Whole CatchLevel::GetScoreThreshold(const Whole Tier) const
+    { return this->ScoreTiers.at(Tier); }
+
+Whole CatchLevel::GetNumScoreTiers() const
+    { return this->ScoreTiers.size(); }
+
+///////////////////////////////////////////////////////////////////////////////
+// LevelLoader Methods
+
+LevelManager::LevelManager(Entresol* Ent, const String& PathToLevels) :
+    LevelPath(PathToLevels),
+    TheEntresol(Ent),
+    LevelToLoad(NULL),
+    CurrentLevel(NULL)
+    { this->GameLevels.push_back( new GameLevel("MainMenu") ); }
+
+LevelManager::~LevelManager()
+    {  }
+
+ResourceManager* LevelManager::GetResourceManager() const
+    { return this->TheEntresol->GetResourceManager(); }
+
+///////////////////////////////////////////////////////////////////////////////
+// Utility
+
+Whole LevelManager::DetectLevels()
 {
-    LevelToLoad = LevelName;
+    Whole Detected = 0;
+    XML::Document LevelDoc;
+    ResourceManager* ResourceMan = this->GetResourceManager();
+    std::set<String> LevelSet = ResourceMan->GetDirContents( this->LevelPath );
+    for( std::set<String>::iterator LvlIt = LevelSet.begin() ; LvlIt != LevelSet.end() ; LvlIt++ )
+    {
+        const String& FileName = (*LvlIt);
+        if( String::npos != FileName.find(".lvl") ) {
+            ++Detected;
+
+            const String AssetGroupName = FileName.substr(0,FileName.find_last_of('.'));
+            const String CompletePath = this->LevelPath + FileName;
+            ResourceMan->AddAssetLocation(CompletePath,Mezzanine::AT_Zip,AssetGroupName);
+
+            LevelDoc.Reset();
+            Resource::DataStreamPtr LevelStream = ResourceMan->OpenAssetStream("Level.xml",AssetGroupName);
+            LevelDoc.Load( *LevelStream.Get() );
+
+            GameLevel* NewLevel = new GameLevel(AssetGroupName,LevelDoc);
+            /*for( GameLevelIterator LvlIt = this->GameLevels.end() ; LvlIt != this->GameLevels.end() ; ++LvlIt )
+            {
+                if( (*LvlIt)->GetName() == NewLevel->GetName() ) {
+                    delete NewLevel;
+                    continue;
+                }
+            }//*/
+            this->GameLevels.push_back(NewLevel);
+        }
+    }
+    return Detected;
 }
 
-String LevelLoader::GetNextLevel()
+void LevelManager::PopulateLevelSelectUI()
 {
-    return LevelToLoad;
+    UI::UIManager* UIMan = this->TheEntresol->GetUIManager();
+    UI::Screen* MainMenuScreen = UIMan->GetScreen("MainMenuScreen");
+    UI::GridContainer* LevelSelect = static_cast<UI::GridContainer*>( MainMenuScreen->GetWidget("MS_LevelSelectGrid") );
+
+    Whole CurrColumn = 0, CurrRow = 0;
+    LevelSelect->DestroyAllChildren();
+
+    for( GameLevelIterator LvlIt = this->GameLevels.begin() ; LvlIt != this->GameLevels.end() ; ++LvlIt )
+    {
+
+    }
 }
 
-String LevelLoader::GetCurrentLevel()
+GameLevel* LevelManager::GetLevel(const Whole Index)
 {
-    return CurrentLevel;
+    return this->GameLevels.at(Index);
 }
 
-void LevelLoader::LoadLevel()
+GameLevel* LevelManager::GetLevel(const String& LevelName)
 {
-    /// @todo The if(Level) statements need to removed in favor of something that will parse an XML file of the level name.
-    if("Ferris" == LevelToLoad)
+    for( GameLevelIterator LvlIt = this->GameLevels.begin() ; LvlIt != this->GameLevels.end() ; ++LvlIt )
+    {
+        if( (*LvlIt)->GetName() == LevelName ) {
+            return (*LvlIt);
+        }
+    }
+    return NULL;
+}
+
+Whole LevelManager::GetNumLevels() const
+{
+    return this->GameLevels.size();
+}
+
+void LevelManager::SetNextLevel(const String& LevelName)
+{
+    GameLevel* Next = this->GetLevel(LevelName);
+    if( Next != NULL ) {
+        this->SetNextLevel( Next );
+    }
+}
+
+void LevelManager::SetNextLevel(GameLevel* NextLevel)
+    { this->LevelToLoad = NextLevel; }
+
+GameLevel* LevelManager::GetNextLevel() const
+    { return this->LevelToLoad; }
+
+GameLevel* LevelManager::GetCurrentLevel() const
+    { return this->CurrentLevel; }
+
+Boole LevelManager::HasALevelToLoad() const
+    { return ( this->LevelToLoad != NULL ); }
+
+void LevelManager::SetLevelPath(const String& PathToLevels)
+    { this->LevelPath = PathToLevels; }
+
+const String& LevelManager::GetLevelPath() const
+    { return this->LevelPath; }
+
+///////////////////////////////////////////////////////////////////////////////
+// Loading and Unloading
+
+void LevelManager::LoadNextLevel()
+{
+    //if( "MainMenu" == this->LevelToLoad->GetName() )
+    //    return;
+
+    /// @todo The if(Level) statements need to removed in favor of something that will parse an XML file of the level.
+    if( "Ferris" == this->LevelToLoad->GetName() )
         LoadFerris();
-    else if("BigCurve" == LevelToLoad)
+    else if( "BigCurve" == this->LevelToLoad->GetName() )
         LoadBigCurve();
-    else if("BlowsNotSucks" == LevelToLoad)
+    else if( "BlowsNotSucks" == this->LevelToLoad->GetName() )
         LoadBlowsNotSucks();
-    else if("Justice" == LevelToLoad)
+    else if( "Justice" == this->LevelToLoad->GetName() )
         LoadJustice();
-    else if("Rollers" == LevelToLoad)
+    else if( "Rollers" == this->LevelToLoad->GetName() )
         LoadRollers();
-    else if("JustBounce" == LevelToLoad)
+    else if( "JustBounce" == this->LevelToLoad->GetName() )
         LoadJustBounce();
 
-    CurrentLevel = LevelToLoad;
-    LevelToLoad = "";
+    this->CurrentLevel = this->LevelToLoad;
+    this->LevelToLoad = NULL;
+}
+
+void LevelManager::UnloadLevel()
+{
+    /// @todo This should be populated with the appropriate logic after the world restructuring and engine state refactors are done.
 }
 
 #endif

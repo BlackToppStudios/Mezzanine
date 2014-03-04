@@ -4,9 +4,9 @@
 #include "uicallbacks.h"
 #include "catchapp.h"
 
-void AllAppExit(const EventArguments& Args)
+void AllAppExit(EventArgumentsPtr Args)
 {
-    CatchApp::GetCatchAppPointer()->GetLevelLoader()->SetNextLevel("");
+    CatchApp::GetCatchAppPointer()->GetLevelManager()->SetNextLevel(NULL);
     Entresol::GetSingletonPtr()->BreakMainLoop();
 }
 

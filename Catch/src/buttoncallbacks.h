@@ -89,34 +89,6 @@ class MSStart : public UI::ActivatableListener
         virtual void DoPreUpdateItems();
         virtual void DoPostUpdateItems();
         virtual void DoVisibilityChangeItems();
-};
-
-class AllAppExit : public UI::ActivatableListener
-{
-    public:
-        AllAppExit();
-        virtual ~AllAppExit();
-        virtual void DoHoverItems();
-        virtual void DoActivateItems();
-        virtual void DoPreUpdateItems();
-        virtual void DoPostUpdateItems();
-        virtual void DoVisibilityChangeItems();
-};
-
-class OptsVideoApply : public UI::ActivatableListener
-{
-    protected:
-        UI::DropDownList* ResolutionList;
-        UI::CheckBox* FullScreenBox;
-        UI::CheckBox* FPSStatsBox;
-    public:
-        OptsVideoApply(UI::DropDownList* ResList, UI::CheckBox* FSBox, UI::CheckBox* StatsBox);
-        virtual ~OptsVideoApply();
-        virtual void DoHoverItems();
-        virtual void DoActivateItems();
-        virtual void DoPreUpdateItems();
-        virtual void DoPostUpdateItems();
-        virtual void DoVisibilityChangeItems();
 };//*/
 
 #endif

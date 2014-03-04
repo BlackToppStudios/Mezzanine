@@ -5,7 +5,7 @@
 
 #include "scorearea.h"
 #include "startarea.h"
-#include "levelloader.h"
+#include "levelmanager.h"
 #include "levelscorer.h"
 #include "itemshop.h"
 #include "profilemanager.h"
@@ -35,6 +35,8 @@ class CatchApp
 
         static CatchApp* TheRealCatchApp;
 
+        AudioSettingsWorkUnit* AudioSettingsWork;
+        VideoSettingsWorkUnit* VideoSettingsWork;
         CatchPreInputWorkUnit* PreInputWork;
         CatchPostInputWorkUnit* PostInputWork;
         CatchPostUIWorkUnit* PostUIWork;
@@ -42,7 +44,7 @@ class CatchApp
 
         Entresol* TheEntresol;
         ProfileManager* Profiles;
-        LevelLoader* Loader;
+        LevelManager* LevelMan;
         LevelScorer* Scorer;
         ItemShop* Shop;
         Debris* LastObjectThrown;
@@ -83,8 +85,16 @@ class CatchApp
         void RegisterStartArea(StartArea* Start);
         void AddThrowable(Debris* Throwable);
 
+        AudioSettingsWorkUnit* GetAudioSettingsWork() const;
+        VideoSettingsWorkUnit* GetVideoSettingsWork() const;
+        CatchPreInputWorkUnit* GetPreInputWork() const;
+        CatchPostInputWorkUnit* GetPostInputWork() const;
+        CatchPostUIWorkUnit* GetPostUIWork() const;
+        CatchPostGraphicsWorkUnit* GetPostGraphicsWork() const;
+        Entresol* GetTheEntresol() const;
+
         ThrowableContainer& GetThrowables();
-        LevelLoader* GetLevelLoader() const;
+        LevelManager* GetLevelManager() const;
         LevelScorer* GetLevelScorer() const;
         ProfileManager* GetProfiles() const;
         ItemShop* GetItemShop() const;
