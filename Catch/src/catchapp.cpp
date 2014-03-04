@@ -98,7 +98,7 @@ void CatchApp::MakeGUI()
     //const Real SSTightText = 0.8;
     //const Real SSLargeText = 0.85;
 
-    const String StatsScreenText = "Ubuntu-14";
+    const String StatsScreenText = "Ubuntu-18";
 
     //GUI->LoadMTA("Catch_Loading.mta","Common");
     UI::Screen* StatsScreen = GUI->CreateScreen("StatsScreen","Catch_Loading",UIViewport,0);
@@ -156,12 +156,12 @@ void CatchApp::MakeGUI()
     ////------------------  Main Menu Screen  ------------------////
     ////////////////////////////////////////////////////////////////
 
+    const Real MMSmallText = 0.60;
     const Real MMNormText = 0.65;
     const Real MMTightText = 0.8;
-    //const Real MMLargeText = 0.85;
-    //const Real MMScreenScaleText = 0.04;
+    const Real MMLargeText = 0.85;
 
-    const String MainMenuScreenText = "Ubuntu-14";
+    const String MainMenuScreenText = "Ubuntu-18";
 
     GUI->LoadMTA("Catch_Menu.mta","Common");
     UI::Screen* MainMenuScreen = GUI->CreateScreen("MainMenuScreen","Catch_Menu",UIViewport,1);
@@ -308,6 +308,7 @@ void CatchApp::MakeGUI()
     // Configure the option list
     UI::ListBox* MMResolutionOptions = MMResolutionList->GetSelectionList();
     MMResolutionOptions->SetListItemFont(MainMenuScreenText);
+    MMResolutionOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,MMLargeText);
     // Configure the background for the listbox container
     UI::VerticalContainer* MMResolutionOptionsList = MMResolutionOptions->GetListContainer();
     MMResolutionOptionsList->CreateImageLayer("MMListBackground",0,0);
@@ -381,6 +382,7 @@ void CatchApp::MakeGUI()
     // Configure the option list
     UI::ListBox* MMFSAAOptions = MMFSAAList->GetSelectionList();
     MMFSAAOptions->SetListItemFont(MainMenuScreenText);
+    MMFSAAOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,MMLargeText);
     // Configure the background for the listbox container
     UI::VerticalContainer* MMFSAAOptionsList = MMFSAAOptions->GetListContainer();
     MMFSAAOptionsList->CreateImageLayer("MMListBackground",0,0);
@@ -534,6 +536,7 @@ void CatchApp::MakeGUI()
     // Configure the option list
     UI::ListBox* MMAudioDeviceOptions = MMAudioDeviceList->GetSelectionList();
     MMAudioDeviceOptions->SetListItemFont(MainMenuScreenText);
+    MMAudioDeviceOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,MMLargeText);
     // Configure the background for the listbox container
     UI::VerticalContainer* MMAudioDeviceOptionsList = MMAudioDeviceOptions->GetListContainer();
     MMAudioDeviceOptionsList->CreateImageLayer("MMListBackground",0,0);
@@ -633,7 +636,7 @@ void CatchApp::MakeGUI()
     MMAppExitWarnText->SetText("Are you sure you want to exit?");
     MMAppExitWarnText->HorizontallyAlign(UI::LA_Center);
     MMAppExitWarnText->VerticallyAlign(UI::LA_Center);
-    MMAppExitWarnText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
+    MMAppExitWarnText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMSmallText);
     MMAppExitWin->AddChild(MMAppExitWarn,1);
 
     // Create and configure the confirm button
@@ -668,7 +671,7 @@ void CatchApp::MakeGUI()
     const Real GSLargeText = 0.85;
     const Real GSMultiLineText = 0.20;
 
-    const String GameScreenText = "Ubuntu-14";
+    const String GameScreenText = "Ubuntu-18";
 
     GUI->LoadMTA("Catch_Game.mta","Common");
     UI::Screen* GameScreen = GUI->CreateScreen("GameScreen","Catch_Game",UIViewport,2);
@@ -829,6 +832,7 @@ void CatchApp::MakeGUI()
     // Configure the option list
     UI::ListBox* GSResolutionOptions = GSResolutionList->GetSelectionList();
     GSResolutionOptions->SetListItemFont(GameScreenText);
+    GSResolutionOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
     // Configure the background for the listbox container
     UI::VerticalContainer* GSResolutionOptionsList = GSResolutionOptions->GetListContainer();
     GSResolutionOptionsList->SetChildSizing(UI::SizingInfo(UI::UnifiedVec2(1.0,0.19)),UI::LinearContainer::SE_OnAdd);
@@ -902,6 +906,7 @@ void CatchApp::MakeGUI()
     // Configure the option list
     UI::ListBox* GSFSAAOptions = GSFSAAList->GetSelectionList();
     GSFSAAOptions->SetListItemFont(GameScreenText);
+    GSFSAAOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
     // Configure the background for the listbox container
     UI::VerticalContainer* GSFSAAOptionsList = GSFSAAOptions->GetListContainer();
     GSFSAAOptionsList->SetChildSizing(UI::SizingInfo(UI::UnifiedVec2(1.0,0.19)),UI::LinearContainer::SE_OnAdd);
@@ -1055,6 +1060,7 @@ void CatchApp::MakeGUI()
     // Configure the option list
     UI::ListBox* GSAudioDeviceOptions = GSAudioDeviceList->GetSelectionList();
     GSAudioDeviceOptions->SetListItemFont(GameScreenText);
+    GSAudioDeviceOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
     // Configure the background for the listbox container
     UI::VerticalContainer* GSAudioDeviceOptionsList = GSAudioDeviceOptions->GetListContainer();
     GSAudioDeviceOptionsList->CreateImageLayer("GSListBackground",0,0);

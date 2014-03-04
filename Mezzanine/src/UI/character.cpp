@@ -337,9 +337,9 @@ namespace Mezzanine
             }else{
                 Real Desired = this->Layer->GetDesiredLineHeight();
                 if( Desired > 0 ) {
-                    Ret = ( ( this->GetUnscaledCharacterSize() * ( Desired / this->GetUnscaledCharacterSize().Y ) ) * this->Layer->GetManualTextScale().X );
+                    Ret = ( ( this->GetUnscaledCharacterSize() * ( Desired / this->GetUnscaledCharacterSize().Y ) ) * this->Layer->GetManualTextScale() );
                 }else{
-                    Ret = ( this->GetUnscaledCharacterSize() * this->Layer->GetManualTextScale().X );
+                    Ret = ( this->GetUnscaledCharacterSize() * this->Layer->GetManualTextScale() );
                 }
             }
             MathTools::Floor( Ret.X );

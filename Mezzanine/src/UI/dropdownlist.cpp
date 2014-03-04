@@ -169,6 +169,7 @@ namespace Mezzanine
                         TextLayer* CastedNewText = static_cast<TextLayer*>( UncastedNewText );
                         TextLayer* CastedDisText = static_cast<TextLayer*>( UncastedDisText );
                         CastedDisText->SetDefaultFont( CastedNewText->GetDefaultFont() );
+                        CastedDisText->SetAutoTextScale( CastedNewText->GetAutoTextScalingMode(), CastedNewText->GetAutoTextScalar() );
                         CastedDisText->SetText( CastedNewText->GetText() );
                     }
                 }
