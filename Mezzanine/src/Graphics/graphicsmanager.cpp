@@ -72,6 +72,7 @@
 #endif
 
 #include <cstdlib>
+#include <algorithm>
 
 namespace Mezzanine
 {
@@ -658,6 +659,7 @@ namespace Mezzanine
                             StringTools::Trim( ResHeight );
                             this->SupportedResolutions.push_back( Resolution( StringTools::ConvertToWhole( ResWidth ) , StringTools::ConvertToWhole( ResHeight ) ) );
                         }
+                        std::sort(this->SupportedResolutions.begin(),this->SupportedResolutions.end());
                     }else if( (configItr)->first == "Rendering Device" ) {
                         for( Whole Y = 0 ; Y < (configItr)->second.possibleValues.size() ; Y++ )
                             { this->SupportedDevices.push_back( (configItr)->second.possibleValues[Y] ); }
