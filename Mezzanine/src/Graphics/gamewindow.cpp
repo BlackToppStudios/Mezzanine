@@ -304,9 +304,10 @@ namespace Mezzanine
                     CurrentDisplay.h = Height;
                     // CurrentDisplay.refresh_rate = 60;
                     if(SDL_SetWindowDisplayMode(SDLWindow,&CurrentDisplay) == 0) {
-                        //this->OgreWindow->setFullscreen(true,Width,Height);
-                        this->OgreWindow->resize(Width,Height);
+                        this->OgreWindow->setFullscreen(true,Width,Height);
+                        //this->OgreWindow->resize(Width,Height);
                     }
+                    //this->OgreWindow->resize(Width,Height);
                 }else{
                     SDL_SetWindowSize(SDLWindow,Width,Height);
                     //this->OgreWindow->setFullscreen(false,Width,Height);
