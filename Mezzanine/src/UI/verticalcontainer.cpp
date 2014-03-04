@@ -46,6 +46,8 @@
 #include "UI/verticalscrollbar.h"
 #include "UI/spinner.h"
 
+#include <algorithm>
+
 namespace Mezzanine
 {
     namespace UI
@@ -100,10 +102,7 @@ namespace Mezzanine
                 // Calculate the sizing with our utility strat, and offset position which we will use later.
                 // Since the constantly updating work area size is tracking the same information as a cursor would, we'll use it as our position cursor.
                 Vector2 ChildSize = this->LayoutStrat->HandleChildSizing(OldSelfRect,NewSelfRect,(*SizeIt));
-                /*// Clamp the perpendicular axis, at least until we get proper expanding widgets.
-                if( ChildSize.X > NewSelfRect.Size.X ) {
-                    ChildSize.X = NewSelfRect.Size.X;
-                }//*/
+
                 ChildTransformCache.at(CurrIndex).first = this->WorkAreaSize.Y;
                 ChildTransformCache.at(CurrIndex).second = ChildSize;
 
@@ -122,7 +121,8 @@ namespace Mezzanine
             Real YTarget = 0;
             if( this->YProvider != NULL ) {
                 this->YProvider->_NotifyContainerUpdated();
-                YTarget = ( this->YProvider->GetCurrentYPage() - 1 ) * this->WorkAreaSize.Y;
+                Real YTargetLimit = ( this->WorkAreaSize.Y + HalfPadding ) - NewSelfRect.Size.Y;
+                YTarget = std::min( ( this->YProvider->GetCurrentYPage() - 1 ) * NewSelfRect.Size.Y, YTargetLimit );
             }
 
             // Set up our data for the loop (and the loop itself) that will go over all the children that will be "above" the visible children.
@@ -222,6 +222,8 @@ namespace Mezzanine
                     VisChild->UpdateDimensions(OldChildRect,NewChildRect);
                     // Increment the cursor
                     CurrYPos += ( NewChildRect.Size.Y + ActPadding );
+                    // Finally show the child
+                    VisChild->Show();
                 }
                 ChildTransformCache.clear();
             }

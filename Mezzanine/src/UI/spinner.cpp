@@ -460,6 +460,10 @@ namespace Mezzanine
 
         void Spinner::_OnSpinValueChanged(const Real OldValue, const Real NewValue)
         {
+            if( this->Container != NULL ) {
+                this->Container->UpdateVisibleChildren();
+            }
+
             SpinnerValueChangedArgumentsPtr Args( new SpinnerValueChangedArguments(Spinner::EventSpinValueChanged,this->Name,OldValue,NewValue) );
             this->FireEvent(Args);
         }

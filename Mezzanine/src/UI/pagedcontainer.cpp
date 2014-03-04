@@ -112,6 +112,12 @@ namespace Mezzanine
             this->_MarkAllLayersDirty();
         }
 
+        void PagedContainer::UpdateVisibleChildren()
+        {
+            Rect CurrDims = this->GetRect();
+            this->UpdateContainerDimensionsImpl(CurrDims,CurrDims);
+        }
+
         Widget* PagedContainer::GetLastFocusedWidget() const
         {
             return this->LastFocusedChild;

@@ -202,6 +202,8 @@ namespace Mezzanine
 
             /// @copydoc QuadRenderable::UpdateDimensions(const Rect&, const Rect&)
             virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);
+            /// @brief Forces an update of the visible children in this container.
+            virtual void UpdateVisibleChildren();
 
             /// @brief Gets a pointer to the last focused child widget in this container.
             /// @return Returns a pointer to the child widget that last gained focus.

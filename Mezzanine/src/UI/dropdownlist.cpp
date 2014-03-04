@@ -117,6 +117,11 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
+        const String& DropDownList::GetTypeName() const
+        {
+            return DropDownList::TypeName;
+        }
+
         void DropDownList::UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect)
         {
             // Update the personal data first
@@ -148,11 +153,6 @@ namespace Mezzanine
             this->_MarkAllLayersDirty();
         }
 
-        const String& DropDownList::GetTypeName() const
-        {
-            return DropDownList::TypeName;
-        }
-
         void DropDownList::UpdateCurrentSelection(Widget* NewSelection)
         {
             if( NewSelection != NULL ) {
@@ -172,6 +172,21 @@ namespace Mezzanine
                         CastedDisText->SetText( CastedNewText->GetText() );
                     }
                 }
+            }
+        }
+
+        String DropDownList::GetSelectionText() const
+        {
+            RenderLayerGroup* DisSelectionActive = this->SelectionDisplay->GetActiveGroup();
+            if( DisSelectionActive != NULL ) {
+                RenderLayer* UncastedDisText = DisSelectionActive->GetLayerByZOrder(5);
+                if( UncastedDisText != NULL && UncastedDisText->IsTextLayer() ) {
+                    return static_cast<TextLayer*>( UncastedDisText )->GetText();
+                }else{
+                    return "";
+                }
+            }else{
+                return "";
             }
         }
 

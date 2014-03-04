@@ -42,8 +42,10 @@
 
 #include "UI/scrollbar.h"
 #include "UI/button.h"
+#include "UI/pagedcontainer.h"
 #include "UI/screen.h"
 #include "UI/uimanager.h"
+
 #include "Input/metacode.h"
 
 #include <algorithm>
@@ -235,6 +237,10 @@ namespace Mezzanine
 
         void Scrollbar::_OnScrollValueChanged(const Real OldValue, const Real NewValue)
         {
+            if( this->Container != NULL ) {
+                this->Container->UpdateVisibleChildren();
+            }
+
             ScrollbarValueChangedArgumentsPtr Args( new ScrollbarValueChangedArguments(Scrollbar::EventScrollValueChanged,this->Name,OldValue,NewValue) );
             this->FireEvent(Args);
         }

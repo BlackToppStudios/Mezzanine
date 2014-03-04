@@ -444,7 +444,9 @@ namespace Mezzanine
                 this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
 
                 const Real NewScrollerValue = this->GetScrollerValue();
-                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                if( OldScrollerValue != NewScrollerValue ) {
+                    this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                }
 
                 return true;
             }
@@ -469,7 +471,9 @@ namespace Mezzanine
                 this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
 
                 const Real NewScrollerValue = this->GetScrollerValue();
-                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                if( OldScrollerValue != NewScrollerValue ) {
+                    this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                }
 
                 return true;
             }else if( Direction == Input::DIRECTIONALMOTION_DOWNRIGHT ) {
@@ -488,7 +492,9 @@ namespace Mezzanine
                 this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
 
                 const Real NewScrollerValue = this->GetScrollerValue();
-                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                if( OldScrollerValue != NewScrollerValue ) {
+                    this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                }
 
                 return true;
             }
@@ -548,7 +554,9 @@ namespace Mezzanine
                 this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
 
                 const Real NewScrollerValue = this->GetScrollerValue();
-                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                if( OldScrollerValue != NewScrollerValue ) {
+                    this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                }
 
                 return true;
             }else if( this->ChildLock == this->DownRightButton ) {
@@ -567,7 +575,9 @@ namespace Mezzanine
                 this->Scroller->UpdateDimensions(OldScrollerRect,NewScrollerRect);
 
                 const Real NewScrollerValue = this->GetScrollerValue();
-                this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                if( OldScrollerValue != NewScrollerValue ) {
+                    this->_OnScrollValueChanged(OldScrollerValue,NewScrollerValue);
+                }
 
                 return true;
             }

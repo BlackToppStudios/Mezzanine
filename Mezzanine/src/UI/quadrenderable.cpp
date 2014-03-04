@@ -1165,7 +1165,7 @@ namespace Mezzanine
 
             for( ConstRenderLayerIterator LayerIt = this->RenderLayers.begin() ; LayerIt != this->RenderLayers.end() ; ++LayerIt )
             {
-                (*LayerIt)->ProtoSerialize(SelfRoot);
+                (*LayerIt)->ProtoSerialize(LayersNode);
             }
         }
 

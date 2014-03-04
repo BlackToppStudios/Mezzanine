@@ -102,15 +102,18 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
-            /// @copydoc QuadRenderable::UpdateDimensions(const Rect&, const Rect&)
-            virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);
-
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
 
+            /// @copydoc QuadRenderable::UpdateDimensions(const Rect&, const Rect&)
+            virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);
             /// @brief Configures the selection display of this DropDownList to match the new selection.
             /// @param NewSelection A pointer to the item that was selected in the ListBox.
             virtual void UpdateCurrentSelection(Widget* NewSelection);
+
+            /// @brief Gets the text being displayed by the current selection.
+            /// @return Returns a String containing the text being displayed by this lists SelectionDisplay.
+            virtual String GetSelectionText() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods
