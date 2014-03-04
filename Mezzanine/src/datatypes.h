@@ -259,10 +259,9 @@ namespace Mezzanine
     /// @return A String with the converted data.
     template<class T> String ToString( const T& Datum )
     {
-        //std::stringstream Converter;
-        // Converter << Datum;
-        //return Converter.str();
-        return ConvertTo<String>(Datum);
+        std::stringstream Converter;
+        Converter << Datum;
+        return Converter.str();
     }
 
     /// @brief Converts whatever to a Whole as long as the proper streaming operators are available for it.

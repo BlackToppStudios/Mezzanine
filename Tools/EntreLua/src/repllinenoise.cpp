@@ -43,28 +43,167 @@
 #include <mezzanine.h>
 #include "linenoise/linenoise.h"
 #include "repllinenoise.h"
+#include <algorithm>
 
 using namespace Mezzanine;
 using namespace std;
+using namespace Mezzanine::Scripting::Lua;
 
-REPLLineNoise::REPLLineNoise(Executor& TargetExecutor, Mezzanine::String StartingPrompt, Mezzanine::String StartingMultiline, Mezzanine::String StartingReturn)
-    : REPL(TargetExecutor, StartingPrompt, StartingMultiline, StartingReturn)
-{}
-
-typedef Trie<char,String> CommandTrie;
-CommandTrie PossibleCommands(0);
-
-void PopulateCommmandTrie()
+void REPLLineNoise::PopulateCommmandTrie()
 {
-    PossibleCommands.clear();
-    PossibleCommands.insert("print","Function");
-    PossibleCommands.insert("pi","Number");
-    PossibleCommands.insert("package","Table");
-    PossibleCommands.insert("package.load","Function");
-    PossibleCommands.insert("package.require","Function");
+    try
+    {
+        PossibleCommands.clear();
+        Doer.LuaEngine.PopulateTabCompletionTrie(PossibleCommands);
+    } catch (Exception& e) {
+        PossibleCommands.clear();
+        cout << "\r\n" << e.what() << "\r\n";
+    }
 }
 
-String GetCurrentID(const String& CurrentLine)
+String GetMatchingPrefix(const String& StringA, const String& StringB)
+{
+    Whole MatchCount;
+    for(MatchCount=0; MatchCount<=StringA.size() && MatchCount<=StringB.size(); MatchCount++)
+    {
+        if(StringA[MatchCount]!=StringB[MatchCount])
+        {
+            //MatchCount--;
+            break;
+        }
+    }
+    return String(StringA.begin(),StringA.begin()+MatchCount);
+}
+
+void REPLLineNoise::DoTabStrike1(linenoiseCompletions *lc, const String& CurrentID, const String& CurrentLine)
+{
+    if(0==lc->len)
+    {
+        PopulateCommmandTrie();
+        Lua51ScriptingEngine::CommandTrie::iterator Iter = PossibleCommands.startsWith(CurrentID.c_str());
+        // If there is exactly one possible completion, put it in.
+        if(PossibleCommands.end()!=Iter)
+        {
+            Lua51ScriptingEngine::CommandTrie::iterator IterPlusOne=Iter;
+            IterPlusOne++;
+            if(PossibleCommands.end()==IterPlusOne)
+            {
+                //Figure out what is on the line that is not the current ID
+                String CompletionPrefix(CurrentLine,0,CurrentLine.size()-CurrentID.size());
+                String NewInput(CompletionPrefix+(*Iter).first);
+                linenoiseAddCompletion(lc,NewInput.c_str());
+                linenoiseAddCompletion(lc,NewInput.c_str());
+            }else{
+                String Matching((*Iter).first);
+                for(; PossibleCommands.end()!=Iter; Iter++)
+                {
+                    Matching=GetMatchingPrefix(Matching,(*Iter).first);
+                    if(Matching.size()==0)
+                        { break; }
+                }
+                String CompletionPrefix(CurrentLine,0,CurrentLine.size()-CurrentID.size());
+                String NewInput(CompletionPrefix+Matching);
+                linenoiseAddCompletion(lc,NewInput.c_str());
+                linenoiseAddCompletion(lc,NewInput.c_str());
+            }
+        }else{
+            // Even if there isn't something to autocomplete, to get the line to redraw
+            // we need to put something into the autocomplete buffer.
+            linenoiseAddCompletion(lc,CurrentLine.c_str());
+            linenoiseAddCompletion(lc,CurrentLine.c_str());
+        }
+    }
+}
+
+void REPLLineNoise::DisplayOtherIdentifiers(const String& Typename, vector<String>& Printing)
+{
+    if(Printing.size())
+    {
+        cout << Typename << ":\r\n";
+        static const Whole Width = 80;
+        static const String Spacer("  ");
+        Whole MaxIDLength = 0;
+        for(vector<String>::const_iterator Iter = Printing.begin();
+            Iter!=Printing.end();
+            Iter++)
+            { if(Iter->size()>MaxIDLength) { MaxIDLength=Iter->size(); } }
+        const Whole PerLineUnadjusted = (Width-Spacer.size())/(MaxIDLength+Spacer.size());
+        const Whole PerLine = PerLineUnadjusted ? PerLineUnadjusted : 1;
+        const Whole IDWidth = (Width-Spacer.size())/PerLine;
+        Whole Counter = 0;
+        for(vector<String>::const_iterator Iter = Printing.begin();
+            Iter!=Printing.end();
+            Iter++)
+        {
+            cout << Spacer << *Iter;
+            for (Whole SpaceCounter=Spacer.size()+Iter->size();
+                 SpaceCounter<IDWidth;
+                 SpaceCounter++)
+                { cout << " "; }
+            Counter++;
+            if(Counter%PerLine==0)
+            {
+                cout << "\r\n";
+                Counter=0;
+            }
+        }
+        if(Counter%PerLine!=0)
+            { cout << "\r\n"; }
+    }
+}
+
+void REPLLineNoise::DoTabStrike2(const String& CurrentID)
+{
+    vector<String> Functions;
+    vector<String> Tables;
+    vector<String> Numbers;
+    vector<String> Nils;
+    vector<String> Booleans;
+    vector<String> Threads;
+    vector<String> UserDatas;
+    vector<String> LightUserDatas;
+    vector<String> Strings;
+    Whole Found = 0;
+    for(Lua51ScriptingEngine::CommandTrie::iterator Iter = PossibleCommands.startsWith(CurrentID.c_str());
+        Iter!=PossibleCommands.end();
+        Iter++)
+    {
+        Found++;
+        if(&Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction==*(Iter->second))
+            { Functions.push_back(Iter->first); }
+        if(&Scripting::Lua::Lua51ScriptingEngine::TypeNameTable==*(Iter->second))
+            { Tables.push_back(Iter->first); }
+        if(&Scripting::Lua::Lua51ScriptingEngine::TypeNameNumber==*(Iter->second))
+            { Numbers.push_back(Iter->first); }
+        if(&Scripting::Lua::Lua51ScriptingEngine::TypeNameNil==*(Iter->second))
+            { Nils.push_back(Iter->first); }
+        if(&Scripting::Lua::Lua51ScriptingEngine::TypeNameBoolean==*(Iter->second))
+            { Booleans.push_back(Iter->first); }
+        if(&Scripting::Lua::Lua51ScriptingEngine::TypeNameThread==*(Iter->second))
+            { Threads.push_back(Iter->first); }
+        if(&Scripting::Lua::Lua51ScriptingEngine::TypeNameUserData==*(Iter->second))
+            { UserDatas.push_back(Iter->first); }
+        if(&Scripting::Lua::Lua51ScriptingEngine::TypeNameLightUserData==*(Iter->second))
+            { LightUserDatas.push_back(Iter->first); }
+        if(&Scripting::Lua::Lua51ScriptingEngine::TypeNameString==*(Iter->second))
+            { Strings.push_back(Iter->first); }
+    }
+
+    if(Found)
+        { cout << "\r\n"; }
+
+    DisplayOtherIdentifiers(Scripting::Lua::Lua51ScriptingEngine::TypeNameFunction, Functions);
+    DisplayOtherIdentifiers(Scripting::Lua::Lua51ScriptingEngine::TypeNameTable, Tables);
+    DisplayOtherIdentifiers(Scripting::Lua::Lua51ScriptingEngine::TypeNameNumber, Numbers);
+    DisplayOtherIdentifiers(Scripting::Lua::Lua51ScriptingEngine::TypeNameNil, Nils);
+    DisplayOtherIdentifiers(Scripting::Lua::Lua51ScriptingEngine::TypeNameBoolean, Booleans);
+    DisplayOtherIdentifiers(Scripting::Lua::Lua51ScriptingEngine::TypeNameThread, Threads);
+    DisplayOtherIdentifiers(Scripting::Lua::Lua51ScriptingEngine::TypeNameUserData, UserDatas);
+    DisplayOtherIdentifiers(Scripting::Lua::Lua51ScriptingEngine::TypeNameLightUserData, LightUserDatas);
+    DisplayOtherIdentifiers(Scripting::Lua::Lua51ScriptingEngine::TypeNameString, Strings);
+}
+
+String REPLLineNoise::GetCurrentID(const String& CurrentLine)
 {
     String::const_iterator Iter = CurrentLine.end();
     if(CurrentLine.begin() == Iter)
@@ -74,7 +213,7 @@ String GetCurrentID(const String& CurrentLine)
     // Start from end of string looking for characters which are valid in Lua Identifiers
     for(Iter--; Iter != CurrentLine.begin(); Iter--)
     {
-        if(Scripting::Lua::Lua51ScriptingEngine::IsValidCharInIdentifier(*Iter))
+        if(Scripting::Lua::Lua51ScriptingEngine::IsValidCharInTableIdentifier(*Iter))
         {
             Results = *Iter + Results;
             Started = true;
@@ -87,17 +226,17 @@ String GetCurrentID(const String& CurrentLine)
     return CurrentLine;
 }
 
-/// @brief Tab completion callback
-/// @param CurrentInput The Current Input on the command line
-/// @param lc Line completionforthis current iteration of thetab press
-void TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
+REPLLineNoise::REPLLineNoise(Executor& TargetExecutor, Mezzanine::String StartingPrompt, Mezzanine::String StartingMultiline, Mezzanine::String StartingReturn)
+    : REPL(TargetExecutor, StartingPrompt, StartingMultiline, StartingReturn),
+      PossibleCommands(0)
+{}
+
+void REPLLineNoise::TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
 {
     const String CurrentLine(CurrentInput);
     const String CurrentID(GetCurrentID(CurrentInput));
-    //cout << "\n\r" << CurrentID;
 
-
-    // This function gets called once per tab strike, this will tell us which tab hit we are on
+    // This function gets called once per tab strike, this will tell us which tab strike we are on
     static int TabCount = 0;
     static String LastInput = String();
     if(CurrentLine==LastInput)
@@ -110,35 +249,28 @@ void TabCompletion(const char *CurrentInput, linenoiseCompletions *lc)
         LastInput = CurrentLine;
     }
 
-
-
     if (TabCount==1)
     {
         //One tab is a single suggestion twice to insure rotation displays it correctly
-        if(0==lc->len)
-        {
-            PopulateCommmandTrie();
-            CommandTrie::iterator Iter = PossibleCommands.startsWith(CurrentID.c_str());
-            cout << "\r\n" << CurrentID << "\r\n" << (*Iter).first << "\r\n";
-
-            if(PossibleCommands.end()!=Iter)
-            {
-                linenoiseAddCompletion(lc,(*Iter).first);
-                linenoiseAddCompletion(lc,(*Iter).first);
-            }
-
-            //linenoiseAddCompletion(lc,"(*Iter).first)");
-            //linenoiseAddCompletion(lc,"(*Iter).first)");
-        }
+        DoTabStrike1(lc, CurrentID, CurrentLine);
     }
+
     if (TabCount==2)
     {
-        // second tab strike will present options like bash
-        //cout << "\r\n" << "\tASdf1\tASdf2" << "\r\n" << CurrentInput << "\r\n" << " ";
+        // second tab strike will present options like bash, but with further distinction
+        DoTabStrike2(CurrentID);
     }
-    // third will be rotated by linenoise back to original input
+    // third tab strike will be rotated by linenoise back to original input
 
 }
+
+/// @brief The REPL that the function TabCompletionCallback will work with
+REPLLineNoise* TargetRepl=0;
+/// @brief Line noise requires a c function pointer for a callback, this is it.
+/// @param CurrentInput A character array linenoise provides, that contains what the user has typed so far
+/// @param lc A linenoise internal structure that stores possible lines for tab completion
+void TabCompletionCallback(const char *CurrentInput, linenoiseCompletions *lc)
+    { TargetRepl->TabCompletion(CurrentInput,lc); }
 
 void REPLLineNoise::Launch()
 {
@@ -148,6 +280,7 @@ void REPLLineNoise::Launch()
     String HistoryDir(ResourceManager::GetCurrentUserDataDir() + ResourceManager::GetDirectorySeparator() + ".EntreLua" + ResourceManager::GetDirectorySeparator());
     String HistoryFile("history.txt");
     String HistoryFullName(HistoryDir+HistoryFile);
+    TargetRepl=this;
 
     // Prepare History File
     ResourceManager::CreateDirectoryPath(HistoryDir);
@@ -156,7 +289,7 @@ void REPLLineNoise::Launch()
         { cerr << "Error loading Command history" << endl; }
 
     // Actually do the command shell stuff
-    linenoiseSetCompletionCallback(TabCompletion);
+    linenoiseSetCompletionCallback(TabCompletionCallback);
     char* RawLine;
     while(!CurrentResults.Quit)
     {

@@ -481,10 +481,17 @@ static int completeLine(int fd, const char *prompt, char *buf, size_t buflen, si
                         nwritten = snprintf(buf,buflen,"%s",lc.cvec[i]);
                         *len = *pos = nwritten;
                     }
+
                     stop = 1;
                     break;
             }
             completionCallback(buf,&lc);
+            if (i < lc.len) {
+                clen = strlen(lc.cvec[i]);
+                refreshLine(fd,prompt,lc.cvec[i],clen,clen,cols);
+            } else {
+                refreshLine(fd,prompt,buf,*len,*pos,cols);
+            }
         }
     }
 

@@ -64,6 +64,15 @@ class vector3tests : public UnitTestGroup
         void RunAutomaticTests()
         {
             {
+                TestOutput << "Checking sizeof Vector3 is stored efficiently, size is: " << sizeof(Vector3) << endl;
+                TEST((sizeof(Mezzanine::Vector3::ChannelType)*3)==sizeof(Vector3), "sizeof");
+                TestOutput << Vector3(1,2,3).__str__() << endl;
+                TestOutput << Vector3(1,2,3) << endl;
+                TestOutput << ToString(Vector3(1,2,3)) << endl;
+
+            }
+
+            {
                 Vector3 Vec;
                 Vec[0]=1.0; //use the non-const
                 Vec[1]=2.0;

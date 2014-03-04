@@ -117,6 +117,9 @@ namespace Mezzanine
         /// @copydoc GetAxisValue(const StandardAxis& Axis)
         Real& operator[] (const Whole& Axis);
 
+        /// @brief What are the X, Y and Z channels implmented with
+        typedef Real ChannelType;
+
         ///////////////////////////////////////////////////////////////////////////////
         // Constructors
 
@@ -460,6 +463,10 @@ namespace Mezzanine
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "Vector3"
         static String SerializableName();
+
+        /// @brief
+        const char* __str__();
+
     };//Vector3
 }//Mezzanine
 

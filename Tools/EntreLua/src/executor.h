@@ -74,12 +74,13 @@ struct ExecutionResults
 class Executor
 {
     private:
-        /// @brief The actual Lua intrepretter
-        Mezzanine::Scripting::Lua::Lua51ScriptingEngine& LuaEngine;
         /// @brief Should troublshooting stack counts be displayed
         Mezzanine::Boole StackCounts;
 
     public:
+        /// @brief The actual Lua intrepretter
+        Mezzanine::Scripting::Lua::Lua51ScriptingEngine& LuaEngine;
+
         /// @brief Initializing constructor
         /// @param TargetExecutor A Lua sript command interpretter that the commands will be executed against.
         Executor(Mezzanine::Scripting::Lua::Lua51ScriptingEngine& TargetEngine, Mezzanine::Boole DisplayStackCounts=false);

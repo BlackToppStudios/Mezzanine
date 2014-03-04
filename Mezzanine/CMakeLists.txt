@@ -902,7 +902,7 @@ set(SDL_STATIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 
 if(${Mezz_Lua51})
         add_subdirectory (libincludes/common/lua51)
-        include_directories(${LuaIncludeDirectory})
+        include_directories(${Mezz_Lua51IncludeDirectory})
 endif(${Mezz_Lua51})
 
 if(${Mezz_Ruby})

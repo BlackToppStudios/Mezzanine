@@ -63,9 +63,50 @@ class trietests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
+            TestOutput << "Creating a Trie with a few things that start with 'p' like 'pi', 'pow' and 'pine'." << endl;
             Trie<char,String> CommandTrie(0);
-            CommandTrie.insert("pa","function");
-            TestOutput << " In The Test" << endl;
+            CommandTrie.insert("pow","function");
+            CommandTrie.insert("pi","number");
+            CommandTrie.insert("pine","object");
+
+            TestOutput << "Creating a trie::iterator from startsWith('p') and trie iterating through it" << endl;
+            Trie<char,String>::iterator Iter = CommandTrie.startsWith("p");
+            TEST(String(Iter->first)==String("pi"),"IterationStartsWithpFirst1");
+            TEST(String(*(Iter->second))==String("number"),"IterationStartsWithpSecond1");
+            TestOutput << Iter->first << ", " << *(Iter->second) << endl;
+            Iter++;
+            TEST(String(Iter->first)==String("pine"),"IterationStartsWithpFirst2");
+            TEST(String(*(Iter->second))==String("object"),"IterationStartsWithpSecond2");
+            TestOutput << Iter->first << ", " << *(Iter->second) << endl;
+            Iter++;
+            TEST(String(Iter->first)==String("pow"),"IterationStartsWithpFirst3");
+            TEST(String(*(Iter->second))==String("function"),"IterationStartsWithpSecond3");
+            TestOutput << Iter->first << ", " << *(Iter->second) << endl;
+            Iter++;
+            TEST(Iter==CommandTrie.end(),"IterationStartsWithpEnd");
+
+
+            TestOutput << "Creating a trie::iterator from startsWith('pi') and trie iterating through it" << endl;
+            Iter = CommandTrie.startsWith("pi");
+            TEST(String(Iter->first)==String("pi"),"IterationStartsWithpiFirst1");
+            TEST(String(*(Iter->second))==String("number"),"IterationStartsWithpiSecond1");
+            TestOutput << Iter->first << ", " << *(Iter->second) << endl;
+            Iter++;
+            TEST(String(Iter->first)==String("pine"),"IterationStartsWithpiFirst2");
+            TEST(String(*(Iter->second))==String("object"),"IterationStartsWithpiSecond2");
+            TestOutput << Iter->first << ", " << *(Iter->second) << endl;
+            Iter++;
+            TEST(Iter==CommandTrie.end(),"IterationStartsWithpiEnd");
+
+
+
+            TestOutput << "Creating a trie::iterator from startsWith('pin') and trie iterating through it" << endl;
+            Iter = CommandTrie.startsWith("pin");
+            TEST(String(Iter->first)==String("pine"),"IterationStartsWithpinFirst");
+            TEST(String(*(Iter->second))==String("object"),"IterationStartsWithpinSecond");
+            TestOutput << Iter->first << ", " << *(Iter->second) << endl;
+            Iter++;
+            TEST(Iter==CommandTrie.end(),"IterationStartsWithpinEnd");
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
