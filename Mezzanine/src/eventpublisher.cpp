@@ -121,7 +121,7 @@ namespace Mezzanine
     EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, EventSubscriber* Sub)
         { return this->GetEventExcept(EventName)->Subscribe(Sub); }
 
-    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, EventSlotFunctorDefinition* Funct, Boole CleanUpAfter)
+    EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, FunctorEventSubscriber* Funct, Boole CleanUpAfter)
         { return this->GetEventExcept(EventName)->Subscribe(Funct,CleanUpAfter); }
 
     EventSubscriberSlot* EventPublisher::Subscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
@@ -139,7 +139,7 @@ namespace Mezzanine
             { (*EventIt).second->Unsubscribe(Subscriber); }
     }
 
-    void EventPublisher::Unsubscribe(EventSlotFunctorDefinition* Funct)
+    void EventPublisher::Unsubscribe(FunctorEventSubscriber* Funct)
     {
         for( EventIterator EventIt = this->Events.begin() ; EventIt != this->Events.begin() ; ++EventIt )
             { (*EventIt).second->Unsubscribe(Funct); }
@@ -174,7 +174,7 @@ namespace Mezzanine
     void EventPublisher::Unsubscribe(const String& EventName, EventSubscriber* Subscriber)
         { this->GetEventExcept(EventName)->Unsubscribe(Subscriber); }
 
-    void EventPublisher::Unsubscribe(const String& EventName, EventSlotFunctorDefinition* Funct)
+    void EventPublisher::Unsubscribe(const String& EventName, FunctorEventSubscriber* Funct)
         { this->GetEventExcept(EventName)->Unsubscribe(Funct); }
 
     void EventPublisher::Unsubscribe(const String& EventName, CFunctionSubscriberSlot::SubscriberFunction* CFunct)
