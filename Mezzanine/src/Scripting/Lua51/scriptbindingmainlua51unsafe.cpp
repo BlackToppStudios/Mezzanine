@@ -1953,18 +1953,18 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__EventPublisher swig_types[70]
 #define SWIGTYPE_p_Mezzanine__EventPumpWorkUnit swig_types[71]
 #define SWIGTYPE_p_Mezzanine__EventQuit swig_types[72]
-#define SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition swig_types[73]
-#define SWIGTYPE_p_Mezzanine__EventSubscriber swig_types[74]
-#define SWIGTYPE_p_Mezzanine__EventSubscriberSlot swig_types[75]
-#define SWIGTYPE_p_Mezzanine__EventUserInput swig_types[76]
-#define SWIGTYPE_p_Mezzanine__Event__SlotContainer__iterator swig_types[77]
-#define SWIGTYPE_p_Mezzanine__Exception swig_types[78]
-#define SWIGTYPE_p_Mezzanine__FieldOfForce swig_types[79]
-#define SWIGTYPE_p_Mezzanine__FileException swig_types[80]
-#define SWIGTYPE_p_Mezzanine__FileNotFoundException swig_types[81]
-#define SWIGTYPE_p_Mezzanine__FilePermissionException swig_types[82]
-#define SWIGTYPE_p_Mezzanine__FileReadException swig_types[83]
-#define SWIGTYPE_p_Mezzanine__FileWriteException swig_types[84]
+#define SWIGTYPE_p_Mezzanine__EventSubscriber swig_types[73]
+#define SWIGTYPE_p_Mezzanine__EventSubscriberSlot swig_types[74]
+#define SWIGTYPE_p_Mezzanine__EventUserInput swig_types[75]
+#define SWIGTYPE_p_Mezzanine__Event__SlotContainer__iterator swig_types[76]
+#define SWIGTYPE_p_Mezzanine__Exception swig_types[77]
+#define SWIGTYPE_p_Mezzanine__FieldOfForce swig_types[78]
+#define SWIGTYPE_p_Mezzanine__FileException swig_types[79]
+#define SWIGTYPE_p_Mezzanine__FileNotFoundException swig_types[80]
+#define SWIGTYPE_p_Mezzanine__FilePermissionException swig_types[81]
+#define SWIGTYPE_p_Mezzanine__FileReadException swig_types[82]
+#define SWIGTYPE_p_Mezzanine__FileWriteException swig_types[83]
+#define SWIGTYPE_p_Mezzanine__FunctorEventSubscriber swig_types[84]
 #define SWIGTYPE_p_Mezzanine__FunctorSubscriberSlot swig_types[85]
 #define SWIGTYPE_p_Mezzanine__GoalTimer swig_types[86]
 #define SWIGTYPE_p_Mezzanine__Graphics__CameraProxy swig_types[87]
@@ -34081,46 +34081,6 @@ fail:
 }
 
 
-static int _wrap_SanitizeWindowedRes(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::Whole *arg1 = 0 ;
-  Mezzanine::Whole *arg2 = 0 ;
-  Mezzanine::Whole *arg3 = 0 ;
-  Mezzanine::Whole *arg4 = 0 ;
-  Mezzanine::Whole temp1 ;
-  Mezzanine::Whole temp2 ;
-
-  SWIG_check_num_args("Mezzanine::crossplatform::SanitizeWindowedRes",4,4)
-  if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::crossplatform::SanitizeWindowedRes",1,"Mezzanine::Whole const &");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::crossplatform::SanitizeWindowedRes",2,"Mezzanine::Whole const &");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::crossplatform::SanitizeWindowedRes",3,"Mezzanine::Whole &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::crossplatform::SanitizeWindowedRes",4,"Mezzanine::Whole &");
-  SWIG_contract_assert((lua_tonumber(L,1)>=0),"number must not be negative")
-  temp1=(Mezzanine::Whole)lua_tonumber(L,1); arg1=&temp1;
-  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
-
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_unsigned_long,0))){
-    SWIG_fail_ptr("SanitizeWindowedRes",3,SWIGTYPE_p_unsigned_long);
-  }
-
-
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_unsigned_long,0))){
-    SWIG_fail_ptr("SanitizeWindowedRes",4,SWIGTYPE_p_unsigned_long);
-  }
-
-  Mezzanine::crossplatform::SanitizeWindowedRes((unsigned long const &)*arg1,(unsigned long const &)*arg2,*arg3,*arg4);
-
-  return SWIG_arg;
-
-  if(0) SWIG_fail;
-
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
 static int _wrap_GetTimeStamp(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::MaxInt result;
@@ -36552,23 +36512,23 @@ static swig_lua_class *swig_Mezzanine_CustomSubscriberSlot_bases[] = {0,0};
 static const char *swig_Mezzanine_CustomSubscriberSlot_base_names[] = {"Mezzanine::EventSubscriberSlot *",0};
 static swig_lua_class _wrap_class_Mezzanine_CustomSubscriberSlot = { "CustomSubscriberSlot", &SWIGTYPE_p_Mezzanine__CustomSubscriberSlot,_wrap_new_CustomSubscriberSlot, swig_delete_CustomSubscriberSlot, swig_Mezzanine_CustomSubscriberSlot_methods, swig_Mezzanine_CustomSubscriberSlot_attributes, { "CustomSubscriberSlot", swig_Mezzanine_CustomSubscriberSlot_cls_methods, swig_Mezzanine_CustomSubscriberSlot_cls_attributes, swig_Mezzanine_CustomSubscriberSlot_cls_constants }, swig_Mezzanine_CustomSubscriberSlot_bases, swig_Mezzanine_CustomSubscriberSlot_base_names };
 
-static int _wrap_EventSlotFunctorDefinition___call(lua_State* L) {
+static int _wrap_FunctorEventSubscriber___call(lua_State* L) {
   int SWIG_arg = 0;
-  Mezzanine::EventSlotFunctorDefinition *arg1 = (Mezzanine::EventSlotFunctorDefinition *) 0 ;
+  Mezzanine::FunctorEventSubscriber *arg1 = (Mezzanine::FunctorEventSubscriber *) 0 ;
   SwigValueWrapper< Mezzanine::CountedPtr< Mezzanine::EventArguments > > arg2 ;
   Mezzanine::EventArgumentsPtr *argp2 ;
 
-  SWIG_check_num_args("Mezzanine::EventSlotFunctorDefinition::operator ()",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EventSlotFunctorDefinition::operator ()",1,"Mezzanine::EventSlotFunctorDefinition *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EventSlotFunctorDefinition::operator ()",2,"Mezzanine::EventArgumentsPtr");
+  SWIG_check_num_args("Mezzanine::FunctorEventSubscriber::operator ()",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::FunctorEventSubscriber::operator ()",1,"Mezzanine::FunctorEventSubscriber *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::FunctorEventSubscriber::operator ()",2,"Mezzanine::EventArgumentsPtr");
 
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition,0))){
-    SWIG_fail_ptr("EventSlotFunctorDefinition___call",1,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber,0))){
+    SWIG_fail_ptr("FunctorEventSubscriber___call",1,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber);
   }
 
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_Mezzanine__CountedPtrT_Mezzanine__EventArguments_t,0))){
-    SWIG_fail_ptr("EventSlotFunctorDefinition___call",2,SWIGTYPE_p_Mezzanine__CountedPtrT_Mezzanine__EventArguments_t);
+    SWIG_fail_ptr("FunctorEventSubscriber___call",2,SWIGTYPE_p_Mezzanine__CountedPtrT_Mezzanine__EventArguments_t);
   }
   arg2 = *argp2;
 
@@ -36584,40 +36544,40 @@ fail:
 }
 
 
-static void swig_delete_EventSlotFunctorDefinition(void *obj) {
-Mezzanine::EventSlotFunctorDefinition *arg1 = (Mezzanine::EventSlotFunctorDefinition *) obj;
+static void swig_delete_FunctorEventSubscriber(void *obj) {
+Mezzanine::FunctorEventSubscriber *arg1 = (Mezzanine::FunctorEventSubscriber *) obj;
 delete arg1;
 }
-static swig_lua_method swig_Mezzanine_EventSlotFunctorDefinition_methods[] = {
-    {"__call", _wrap_EventSlotFunctorDefinition___call},
+static swig_lua_method swig_Mezzanine_FunctorEventSubscriber_methods[] = {
+    {"__call", _wrap_FunctorEventSubscriber___call},
     {0,0}
 };
-static swig_lua_attribute swig_Mezzanine_EventSlotFunctorDefinition_attributes[] = {
+static swig_lua_attribute swig_Mezzanine_FunctorEventSubscriber_attributes[] = {
     {0,0,0}
 };
-static swig_lua_attribute swig_Mezzanine_EventSlotFunctorDefinition_cls_attributes[] = {
+static swig_lua_attribute swig_Mezzanine_FunctorEventSubscriber_cls_attributes[] = {
     {0,0,0}
 };
-static swig_lua_method swig_Mezzanine_EventSlotFunctorDefinition_cls_methods[] = {
+static swig_lua_method swig_Mezzanine_FunctorEventSubscriber_cls_methods[] = {
     {0,0}
 };
-static swig_lua_const_info swig_Mezzanine_EventSlotFunctorDefinition_cls_constants[] = {
+static swig_lua_const_info swig_Mezzanine_FunctorEventSubscriber_cls_constants[] = {
     {0,0,0,0,0,0}
 };
-static swig_lua_class *swig_Mezzanine_EventSlotFunctorDefinition_bases[] = {0};
-static const char *swig_Mezzanine_EventSlotFunctorDefinition_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_EventSlotFunctorDefinition = { "EventSlotFunctorDefinition", &SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition,0, swig_delete_EventSlotFunctorDefinition, swig_Mezzanine_EventSlotFunctorDefinition_methods, swig_Mezzanine_EventSlotFunctorDefinition_attributes, { "EventSlotFunctorDefinition", swig_Mezzanine_EventSlotFunctorDefinition_cls_methods, swig_Mezzanine_EventSlotFunctorDefinition_cls_attributes, swig_Mezzanine_EventSlotFunctorDefinition_cls_constants }, swig_Mezzanine_EventSlotFunctorDefinition_bases, swig_Mezzanine_EventSlotFunctorDefinition_base_names };
+static swig_lua_class *swig_Mezzanine_FunctorEventSubscriber_bases[] = {0};
+static const char *swig_Mezzanine_FunctorEventSubscriber_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_FunctorEventSubscriber = { "FunctorEventSubscriber", &SWIGTYPE_p_Mezzanine__FunctorEventSubscriber,0, swig_delete_FunctorEventSubscriber, swig_Mezzanine_FunctorEventSubscriber_methods, swig_Mezzanine_FunctorEventSubscriber_attributes, { "FunctorEventSubscriber", swig_Mezzanine_FunctorEventSubscriber_cls_methods, swig_Mezzanine_FunctorEventSubscriber_cls_attributes, swig_Mezzanine_FunctorEventSubscriber_cls_constants }, swig_Mezzanine_FunctorEventSubscriber_bases, swig_Mezzanine_FunctorEventSubscriber_base_names };
 
 static int _wrap_new_FunctorSubscriberSlot(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Event *arg1 = (Mezzanine::Event *) 0 ;
-  Mezzanine::EventSlotFunctorDefinition *arg2 = (Mezzanine::EventSlotFunctorDefinition *) 0 ;
+  Mezzanine::FunctorEventSubscriber *arg2 = (Mezzanine::FunctorEventSubscriber *) 0 ;
   Mezzanine::Boole arg3 ;
   Mezzanine::FunctorSubscriberSlot *result = 0 ;
 
   SWIG_check_num_args("Mezzanine::FunctorSubscriberSlot::FunctorSubscriberSlot",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::FunctorSubscriberSlot::FunctorSubscriberSlot",1,"Mezzanine::Event *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::FunctorSubscriberSlot::FunctorSubscriberSlot",2,"Mezzanine::EventSlotFunctorDefinition *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::FunctorSubscriberSlot::FunctorSubscriberSlot",2,"Mezzanine::FunctorEventSubscriber *");
   if(!lua_isboolean(L,3)) SWIG_fail_arg("Mezzanine::FunctorSubscriberSlot::FunctorSubscriberSlot",3,"Mezzanine::Boole");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Event,0))){
@@ -36625,8 +36585,8 @@ static int _wrap_new_FunctorSubscriberSlot(lua_State* L) {
   }
 
 
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition,0))){
-    SWIG_fail_ptr("new_FunctorSubscriberSlot",2,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber,0))){
+    SWIG_fail_ptr("new_FunctorSubscriberSlot",2,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber);
   }
 
   arg3 = (lua_toboolean(L, 3)!=0);
@@ -36645,7 +36605,7 @@ fail:
 static int _wrap_FunctorSubscriberSlot_GetFunctor(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::FunctorSubscriberSlot *arg1 = (Mezzanine::FunctorSubscriberSlot *) 0 ;
-  Mezzanine::EventSlotFunctorDefinition *result = 0 ;
+  Mezzanine::FunctorEventSubscriber *result = 0 ;
 
   SWIG_check_num_args("Mezzanine::FunctorSubscriberSlot::GetFunctor",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::FunctorSubscriberSlot::GetFunctor",1,"Mezzanine::FunctorSubscriberSlot const *");
@@ -36654,8 +36614,8 @@ static int _wrap_FunctorSubscriberSlot_GetFunctor(lua_State* L) {
     SWIG_fail_ptr("FunctorSubscriberSlot_GetFunctor",1,SWIGTYPE_p_Mezzanine__FunctorSubscriberSlot);
   }
 
-  result = (Mezzanine::EventSlotFunctorDefinition *)((Mezzanine::FunctorSubscriberSlot const *)arg1)->GetFunctor();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition,0); SWIG_arg++;
+  result = (Mezzanine::FunctorEventSubscriber *)((Mezzanine::FunctorSubscriberSlot const *)arg1)->GetFunctor();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber,0); SWIG_arg++;
   return SWIG_arg;
 
   if(0) SWIG_fail;
@@ -36964,13 +36924,13 @@ fail:
 static int _wrap_Event_Subscribe__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Event *arg1 = (Mezzanine::Event *) 0 ;
-  Mezzanine::EventSlotFunctorDefinition *arg2 = (Mezzanine::EventSlotFunctorDefinition *) 0 ;
+  Mezzanine::FunctorEventSubscriber *arg2 = (Mezzanine::FunctorEventSubscriber *) 0 ;
   Mezzanine::Boole arg3 ;
   Mezzanine::EventSubscriberSlot *result = 0 ;
 
   SWIG_check_num_args("Mezzanine::Event::Subscribe",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Event::Subscribe",1,"Mezzanine::Event *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Event::Subscribe",2,"Mezzanine::EventSlotFunctorDefinition *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Event::Subscribe",2,"Mezzanine::FunctorEventSubscriber *");
   if(!lua_isboolean(L,3)) SWIG_fail_arg("Mezzanine::Event::Subscribe",3,"Mezzanine::Boole");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Event,0))){
@@ -36978,8 +36938,8 @@ static int _wrap_Event_Subscribe__SWIG_1(lua_State* L) {
   }
 
 
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition,0))){
-    SWIG_fail_ptr("Event_Subscribe",2,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber,0))){
+    SWIG_fail_ptr("Event_Subscribe",2,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber);
   }
 
   arg3 = (lua_toboolean(L, 3)!=0);
@@ -37149,7 +37109,7 @@ static int _wrap_Event_Subscribe(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition, 0)) {
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__FunctorEventSubscriber, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -37169,7 +37129,7 @@ static int _wrap_Event_Subscribe(lua_State* L) {
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Event_Subscribe'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Event::Subscribe(Mezzanine::EventSubscriber *)\n"
-    "    Mezzanine::Event::Subscribe(Mezzanine::EventSlotFunctorDefinition *,Mezzanine::Boole)\n"
+    "    Mezzanine::Event::Subscribe(Mezzanine::FunctorEventSubscriber *,Mezzanine::Boole)\n"
     "    Mezzanine::Event::Subscribe(CFunctionSubscriberSlot::SubscriberFunction *)\n"
     "    Mezzanine::Event::Subscribe(Mezzanine::Scripting::iScript *)\n");
   lua_error(L);return 0;
@@ -37209,19 +37169,19 @@ fail:
 static int _wrap_Event_Unsubscribe__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Event *arg1 = (Mezzanine::Event *) 0 ;
-  Mezzanine::EventSlotFunctorDefinition *arg2 = (Mezzanine::EventSlotFunctorDefinition *) 0 ;
+  Mezzanine::FunctorEventSubscriber *arg2 = (Mezzanine::FunctorEventSubscriber *) 0 ;
 
   SWIG_check_num_args("Mezzanine::Event::Unsubscribe",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Event::Unsubscribe",1,"Mezzanine::Event *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Event::Unsubscribe",2,"Mezzanine::EventSlotFunctorDefinition *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Event::Unsubscribe",2,"Mezzanine::FunctorEventSubscriber *");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Event,0))){
     SWIG_fail_ptr("Event_Unsubscribe",1,SWIGTYPE_p_Mezzanine__Event);
   }
 
 
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition,0))){
-    SWIG_fail_ptr("Event_Unsubscribe",2,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber,0))){
+    SWIG_fail_ptr("Event_Unsubscribe",2,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber);
   }
 
   (arg1)->Unsubscribe(arg2);
@@ -37370,7 +37330,7 @@ static int _wrap_Event_Unsubscribe(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition, 0)) {
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__FunctorEventSubscriber, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -37457,7 +37417,7 @@ static int _wrap_Event_Unsubscribe(lua_State* L) {
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'Event_Unsubscribe'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::Event::Unsubscribe(Mezzanine::EventSubscriber *)\n"
-    "    Mezzanine::Event::Unsubscribe(Mezzanine::EventSlotFunctorDefinition *)\n"
+    "    Mezzanine::Event::Unsubscribe(Mezzanine::FunctorEventSubscriber *)\n"
     "    Mezzanine::Event::Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction *)\n"
     "    Mezzanine::Event::Unsubscribe(Mezzanine::Scripting::iScript *)\n"
     "    Mezzanine::Event::Unsubscribe(Mezzanine::EventSubscriberSlot *)\n");
@@ -40658,7 +40618,7 @@ static int _wrap_EventPublisher_Subscribe__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EventPublisher *arg1 = (Mezzanine::EventPublisher *) 0 ;
   Mezzanine::String *arg2 = 0 ;
-  Mezzanine::EventSlotFunctorDefinition *arg3 = (Mezzanine::EventSlotFunctorDefinition *) 0 ;
+  Mezzanine::FunctorEventSubscriber *arg3 = (Mezzanine::FunctorEventSubscriber *) 0 ;
   Mezzanine::Boole arg4 ;
   Mezzanine::String temp2 ;
   Mezzanine::EventSubscriberSlot *result = 0 ;
@@ -40666,7 +40626,7 @@ static int _wrap_EventPublisher_Subscribe__SWIG_1(lua_State* L) {
   SWIG_check_num_args("Mezzanine::EventPublisher::Subscribe",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EventPublisher::Subscribe",1,"Mezzanine::EventPublisher *");
   if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EventPublisher::Subscribe",2,"Mezzanine::String const &");
-  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::EventPublisher::Subscribe",3,"Mezzanine::EventSlotFunctorDefinition *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::EventPublisher::Subscribe",3,"Mezzanine::FunctorEventSubscriber *");
   if(!lua_isboolean(L,4)) SWIG_fail_arg("Mezzanine::EventPublisher::Subscribe",4,"Mezzanine::Boole");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EventPublisher,0))){
@@ -40675,8 +40635,8 @@ static int _wrap_EventPublisher_Subscribe__SWIG_1(lua_State* L) {
 
   temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
 
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition,0))){
-    SWIG_fail_ptr("EventPublisher_Subscribe",3,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber,0))){
+    SWIG_fail_ptr("EventPublisher_Subscribe",3,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber);
   }
 
   arg4 = (lua_toboolean(L, 4)!=0);
@@ -40873,7 +40833,7 @@ static int _wrap_EventPublisher_Subscribe(lua_State* L) {
       if (_v) {
         {
           void *ptr;
-          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition, 0)) {
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__FunctorEventSubscriber, 0)) {
             _v = 0;
           } else {
             _v = 1;
@@ -40894,7 +40854,7 @@ static int _wrap_EventPublisher_Subscribe(lua_State* L) {
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'EventPublisher_Subscribe'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::EventPublisher::Subscribe(Mezzanine::String const &,Mezzanine::EventSubscriber *)\n"
-    "    Mezzanine::EventPublisher::Subscribe(Mezzanine::String const &,Mezzanine::EventSlotFunctorDefinition *,Mezzanine::Boole)\n"
+    "    Mezzanine::EventPublisher::Subscribe(Mezzanine::String const &,Mezzanine::FunctorEventSubscriber *,Mezzanine::Boole)\n"
     "    Mezzanine::EventPublisher::Subscribe(Mezzanine::String const &,CFunctionSubscriberSlot::SubscriberFunction *)\n"
     "    Mezzanine::EventPublisher::Subscribe(Mezzanine::String const &,Mezzanine::Scripting::iScript *)\n");
   lua_error(L);return 0;
@@ -40934,19 +40894,19 @@ fail:
 static int _wrap_EventPublisher_Unsubscribe__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EventPublisher *arg1 = (Mezzanine::EventPublisher *) 0 ;
-  Mezzanine::EventSlotFunctorDefinition *arg2 = (Mezzanine::EventSlotFunctorDefinition *) 0 ;
+  Mezzanine::FunctorEventSubscriber *arg2 = (Mezzanine::FunctorEventSubscriber *) 0 ;
 
   SWIG_check_num_args("Mezzanine::EventPublisher::Unsubscribe",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EventPublisher::Unsubscribe",1,"Mezzanine::EventPublisher *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::EventPublisher::Unsubscribe",2,"Mezzanine::EventSlotFunctorDefinition *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::EventPublisher::Unsubscribe",2,"Mezzanine::FunctorEventSubscriber *");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EventPublisher,0))){
     SWIG_fail_ptr("EventPublisher_Unsubscribe",1,SWIGTYPE_p_Mezzanine__EventPublisher);
   }
 
 
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition,0))){
-    SWIG_fail_ptr("EventPublisher_Unsubscribe",2,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber,0))){
+    SWIG_fail_ptr("EventPublisher_Unsubscribe",2,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber);
   }
 
   (arg1)->Unsubscribe(arg2);
@@ -41113,13 +41073,13 @@ static int _wrap_EventPublisher_Unsubscribe__SWIG_6(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EventPublisher *arg1 = (Mezzanine::EventPublisher *) 0 ;
   Mezzanine::String *arg2 = 0 ;
-  Mezzanine::EventSlotFunctorDefinition *arg3 = (Mezzanine::EventSlotFunctorDefinition *) 0 ;
+  Mezzanine::FunctorEventSubscriber *arg3 = (Mezzanine::FunctorEventSubscriber *) 0 ;
   Mezzanine::String temp2 ;
 
   SWIG_check_num_args("Mezzanine::EventPublisher::Unsubscribe",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EventPublisher::Unsubscribe",1,"Mezzanine::EventPublisher *");
   if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::EventPublisher::Unsubscribe",2,"Mezzanine::String const &");
-  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::EventPublisher::Unsubscribe",3,"Mezzanine::EventSlotFunctorDefinition *");
+  if(!SWIG_isptrtype(L,3)) SWIG_fail_arg("Mezzanine::EventPublisher::Unsubscribe",3,"Mezzanine::FunctorEventSubscriber *");
 
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EventPublisher,0))){
     SWIG_fail_ptr("EventPublisher_Unsubscribe",1,SWIGTYPE_p_Mezzanine__EventPublisher);
@@ -41127,8 +41087,8 @@ static int _wrap_EventPublisher_Unsubscribe__SWIG_6(lua_State* L) {
 
   temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
 
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition,0))){
-    SWIG_fail_ptr("EventPublisher_Unsubscribe",3,SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber,0))){
+    SWIG_fail_ptr("EventPublisher_Unsubscribe",3,SWIGTYPE_p_Mezzanine__FunctorEventSubscriber);
   }
 
   (arg1)->Unsubscribe((Mezzanine::String const &)*arg2,arg3);
@@ -41289,7 +41249,7 @@ static int _wrap_EventPublisher_Unsubscribe(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition, 0)) {
+        if (SWIG_isptrtype(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__FunctorEventSubscriber, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -41418,7 +41378,7 @@ static int _wrap_EventPublisher_Unsubscribe(lua_State* L) {
       if (_v) {
         {
           void *ptr;
-          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__EventSlotFunctorDefinition, 0)) {
+          if (SWIG_isptrtype(L,argv[2])==0 || SWIG_ConvertPtr(L,argv[2], (void **) &ptr, SWIGTYPE_p_Mezzanine__FunctorEventSubscriber, 0)) {
             _v = 0;
           } else {
             _v = 1;
@@ -41521,12 +41481,12 @@ static int _wrap_EventPublisher_Unsubscribe(lua_State* L) {
   SWIG_Lua_pusherrstring(L,"Wrong arguments for overloaded function 'EventPublisher_Unsubscribe'\n"
     "  Possible C/C++ prototypes are:\n"
     "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::EventSubscriber *)\n"
-    "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::EventSlotFunctorDefinition *)\n"
+    "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::FunctorEventSubscriber *)\n"
     "    Mezzanine::EventPublisher::Unsubscribe(CFunctionSubscriberSlot::SubscriberFunction *)\n"
     "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::Scripting::iScript *)\n"
     "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::EventSubscriberSlot *)\n"
     "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::String const &,Mezzanine::EventSubscriber *)\n"
-    "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::String const &,Mezzanine::EventSlotFunctorDefinition *)\n"
+    "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::String const &,Mezzanine::FunctorEventSubscriber *)\n"
     "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::String const &,CFunctionSubscriberSlot::SubscriberFunction *)\n"
     "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::String const &,Mezzanine::Scripting::iScript *)\n"
     "    Mezzanine::EventPublisher::Unsubscribe(Mezzanine::String const &,Mezzanine::EventSubscriberSlot *)\n");
@@ -46552,6 +46512,27 @@ fail:
 }
 
 
+static int _wrap_ConvertToWhole(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::Whole result;
+
+  SWIG_check_num_args("Mezzanine::StringTools::ConvertToWhole",1,1)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::StringTools::ConvertToWhole",1,"Mezzanine::String const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  result = (Mezzanine::Whole)Mezzanine::StringTools::ConvertToWhole((std::string const &)*arg1);
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+
+  if(0) SWIG_fail;
+
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_ConvertToInt8(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
@@ -47659,7 +47640,6 @@ static const struct luaL_Reg swig_commands[] = {
     { "RayQueryTool_GetMouseRay",_wrap_RayQueryTool_GetMouseRay},
     { "RayQueryTool_SerializableName", _wrap_RayQueryTool_SerializableName},
     { "GetPlatform", _wrap_GetPlatform},
-    { "SanitizeWindowedRes", _wrap_SanitizeWindowedRes},
     { "GetTimeStamp", _wrap_GetTimeStamp},
     { "Debris_GetSerializableName", _wrap_Debris_GetSerializableName},
     { "EventGameWindow_GameWindowEventIDToString", _wrap_EventGameWindow_GameWindowEventIDToString},
@@ -47711,6 +47691,7 @@ static const struct luaL_Reg swig_commands[] = {
     { "ConvertToBool",_wrap_ConvertToBool},
     { "ConvertToReal", _wrap_ConvertToReal},
     { "ConvertToInteger", _wrap_ConvertToInteger},
+    { "ConvertToWhole", _wrap_ConvertToWhole},
     { "ConvertToInt8", _wrap_ConvertToInt8},
     { "ConvertToUInt8", _wrap_ConvertToUInt8},
     { "ConvertToInt16", _wrap_ConvertToInt16},
@@ -48623,7 +48604,6 @@ static swig_type_info _swigt__p_Mezzanine__EventManager = {"_p_Mezzanine__EventM
 static swig_type_info _swigt__p_Mezzanine__EventPublisher = {"_p_Mezzanine__EventPublisher", "Mezzanine::EventPublisher *", 0, 0, (void*)&_wrap_class_Mezzanine_EventPublisher, 0};
 static swig_type_info _swigt__p_Mezzanine__EventPumpWorkUnit = {"_p_Mezzanine__EventPumpWorkUnit", "Mezzanine::EventPumpWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_EventPumpWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__EventQuit = {"_p_Mezzanine__EventQuit", "Mezzanine::EventQuit *", 0, 0, (void*)&_wrap_class_Mezzanine_EventQuit, 0};
-static swig_type_info _swigt__p_Mezzanine__EventSlotFunctorDefinition = {"_p_Mezzanine__EventSlotFunctorDefinition", "Mezzanine::EventSlotFunctorDefinition *", 0, 0, (void*)&_wrap_class_Mezzanine_EventSlotFunctorDefinition, 0};
 static swig_type_info _swigt__p_Mezzanine__EventSubscriber = {"_p_Mezzanine__EventSubscriber", "Mezzanine::EventSubscriber *", 0, 0, (void*)&_wrap_class_Mezzanine_EventSubscriber, 0};
 static swig_type_info _swigt__p_Mezzanine__EventSubscriberSlot = {"_p_Mezzanine__EventSubscriberSlot", "Mezzanine::EventSubscriberSlot *", 0, 0, (void*)&_wrap_class_Mezzanine_EventSubscriberSlot, 0};
 static swig_type_info _swigt__p_Mezzanine__EventUserInput = {"_p_Mezzanine__EventUserInput", "Mezzanine::EventUserInput *", 0, 0, (void*)0, 0};
@@ -48635,6 +48615,7 @@ static swig_type_info _swigt__p_Mezzanine__FileNotFoundException = {"_p_Mezzanin
 static swig_type_info _swigt__p_Mezzanine__FilePermissionException = {"_p_Mezzanine__FilePermissionException", "Mezzanine::FilePermissionException *", 0, 0, (void*)&_wrap_class_Mezzanine_FilePermissionException, 0};
 static swig_type_info _swigt__p_Mezzanine__FileReadException = {"_p_Mezzanine__FileReadException", "Mezzanine::FileReadException *", 0, 0, (void*)&_wrap_class_Mezzanine_FileReadException, 0};
 static swig_type_info _swigt__p_Mezzanine__FileWriteException = {"_p_Mezzanine__FileWriteException", "Mezzanine::FileWriteException *", 0, 0, (void*)&_wrap_class_Mezzanine_FileWriteException, 0};
+static swig_type_info _swigt__p_Mezzanine__FunctorEventSubscriber = {"_p_Mezzanine__FunctorEventSubscriber", "Mezzanine::FunctorEventSubscriber *", 0, 0, (void*)&_wrap_class_Mezzanine_FunctorEventSubscriber, 0};
 static swig_type_info _swigt__p_Mezzanine__FunctorSubscriberSlot = {"_p_Mezzanine__FunctorSubscriberSlot", "Mezzanine::FunctorSubscriberSlot *", 0, 0, (void*)&_wrap_class_Mezzanine_FunctorSubscriberSlot, 0};
 static swig_type_info _swigt__p_Mezzanine__GoalTimer = {"_p_Mezzanine__GoalTimer", "Mezzanine::GoalTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_GoalTimer, 0};
 static swig_type_info _swigt__p_Mezzanine__Graphics__CameraProxy = {"_p_Mezzanine__Graphics__CameraProxy", "Mezzanine::Graphics::CameraProxy *", 0, 0, (void*)0, 0};
@@ -48830,7 +48811,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__EventPublisher,
   &_swigt__p_Mezzanine__EventPumpWorkUnit,
   &_swigt__p_Mezzanine__EventQuit,
-  &_swigt__p_Mezzanine__EventSlotFunctorDefinition,
   &_swigt__p_Mezzanine__EventSubscriber,
   &_swigt__p_Mezzanine__EventSubscriberSlot,
   &_swigt__p_Mezzanine__EventUserInput,
@@ -48842,6 +48822,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__FilePermissionException,
   &_swigt__p_Mezzanine__FileReadException,
   &_swigt__p_Mezzanine__FileWriteException,
+  &_swigt__p_Mezzanine__FunctorEventSubscriber,
   &_swigt__p_Mezzanine__FunctorSubscriberSlot,
   &_swigt__p_Mezzanine__GoalTimer,
   &_swigt__p_Mezzanine__Graphics__CameraProxy,
@@ -49037,7 +49018,6 @@ static swig_cast_info _swigc__p_Mezzanine__EventManager[] = {  {&_swigt__p_Mezza
 static swig_cast_info _swigc__p_Mezzanine__EventPublisher[] = {  {&_swigt__p_Mezzanine__EventPublisher, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EventPumpWorkUnit[] = {  {&_swigt__p_Mezzanine__EventPumpWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EventQuit[] = {  {&_swigt__p_Mezzanine__EventQuit, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__EventSlotFunctorDefinition[] = {  {&_swigt__p_Mezzanine__EventSlotFunctorDefinition, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EventSubscriber[] = {  {&_swigt__p_Mezzanine__EventSubscriber, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EventSubscriberSlot[] = {  {&_swigt__p_Mezzanine__EventSubscriberSlot, 0, 0, 0},  {&_swigt__p_Mezzanine__CustomSubscriberSlot, _p_Mezzanine__CustomSubscriberSlotTo_p_Mezzanine__EventSubscriberSlot, 0, 0},  {&_swigt__p_Mezzanine__FunctorSubscriberSlot, _p_Mezzanine__FunctorSubscriberSlotTo_p_Mezzanine__EventSubscriberSlot, 0, 0},  {&_swigt__p_Mezzanine__ScriptSubscriberSlot, _p_Mezzanine__ScriptSubscriberSlotTo_p_Mezzanine__EventSubscriberSlot, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__EventUserInput[] = {  {&_swigt__p_Mezzanine__EventUserInput, 0, 0, 0},{0, 0, 0, 0}};
@@ -49049,6 +49029,7 @@ static swig_cast_info _swigc__p_Mezzanine__FileNotFoundException[] = {  {&_swigt
 static swig_cast_info _swigc__p_Mezzanine__FilePermissionException[] = {  {&_swigt__p_Mezzanine__FilePermissionException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__FileReadException[] = {  {&_swigt__p_Mezzanine__FileReadException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__FileWriteException[] = {  {&_swigt__p_Mezzanine__FileWriteException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__FunctorEventSubscriber[] = {  {&_swigt__p_Mezzanine__FunctorEventSubscriber, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__FunctorSubscriberSlot[] = {  {&_swigt__p_Mezzanine__FunctorSubscriberSlot, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__GoalTimer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, _p_Mezzanine__AlarmTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__StopWatchTimer, _p_Mezzanine__StopWatchTimerTo_p_Mezzanine__GoalTimer, 0, 0},  {&_swigt__p_Mezzanine__GoalTimer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Graphics__CameraProxy[] = {  {&_swigt__p_Mezzanine__Graphics__CameraProxy, 0, 0, 0},{0, 0, 0, 0}};
@@ -49244,7 +49225,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__EventPublisher,
   _swigc__p_Mezzanine__EventPumpWorkUnit,
   _swigc__p_Mezzanine__EventQuit,
-  _swigc__p_Mezzanine__EventSlotFunctorDefinition,
   _swigc__p_Mezzanine__EventSubscriber,
   _swigc__p_Mezzanine__EventSubscriberSlot,
   _swigc__p_Mezzanine__EventUserInput,
@@ -49256,6 +49236,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__FilePermissionException,
   _swigc__p_Mezzanine__FileReadException,
   _swigc__p_Mezzanine__FileWriteException,
+  _swigc__p_Mezzanine__FunctorEventSubscriber,
   _swigc__p_Mezzanine__FunctorSubscriberSlot,
   _swigc__p_Mezzanine__GoalTimer,
   _swigc__p_Mezzanine__Graphics__CameraProxy,
