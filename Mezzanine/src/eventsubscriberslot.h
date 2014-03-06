@@ -93,7 +93,7 @@ namespace Mezzanine
         /// @internal
         /// @brief Notifies this subscriber of an event being fired.
         /// @param Args The arguments containing specific information regarding this event.
-        virtual void _NotifyEvent(const EventArguments& Args) = 0;
+        virtual void _NotifyEvent(EventArgumentsPtr Args) = 0;
     };//EventSubscriberSlot
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -126,20 +126,26 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
-        virtual void _NotifyEvent(const EventArguments& Args);
+        /// @copydoc EventSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
+        virtual void _NotifyEvent(EventArgumentsPtr Args);
     };// CustomSubscriberSlot
 
-    /// @brief Basic class definition for functors used by this subscriber slot.
-    class EventSlotFunctorDefinition
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Basic class definition for functors used by a FunctorSubscriberSlot.
+    /// @details
+    ///////////////////////////////////////
+    class FunctorEventSubscriber
     {
     public:
+        /// @brief Clsas constructor.
+        FunctorEventSubscriber() {  }
         /// @brief Class destructor.
-        virtual ~EventSlotFunctorDefinition() {  }
+        virtual ~FunctorEventSubscriber() {  }
+
         /// @brief Executes subscriber specific functionality when the event is fired.
         /// @param Args The arguments that describe the fired event.
-        virtual void operator()(const EventArguments& Args) = 0;
-    };//FunctorDefinition
+        virtual void operator()(EventArgumentsPtr Args) = 0;
+    };//FunctorEventSubscriber
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This is a subscriber slot class that makes the appropriate call on a functor.
@@ -150,7 +156,7 @@ namespace Mezzanine
     protected:
         /// @internal
         /// @brief A pointer to the functor to be called when the event is fired.
-        EventSlotFunctorDefinition* Functor;
+        FunctorEventSubscriber* Functor;
         /// @internal
         /// @brief Stores whether or not the functor is to be deleted when this subscriber is destructed.
         Boole CleanUp;
@@ -159,7 +165,7 @@ namespace Mezzanine
         /// @param Ev The event this subscriber slot belongs to.
         /// @param Funct The Functor object to be called when the event is fired.
         /// @param CleanUpAfter Whether or not to delete the functor when this object is deleted.
-        FunctorSubscriberSlot(Event* Ev, EventSlotFunctorDefinition* Funct, Boole CleanUpAfter);
+        FunctorSubscriberSlot(Event* Ev, FunctorEventSubscriber* Funct, Boole CleanUpAfter);
         /// @brief Class destructor.
         virtual ~FunctorSubscriberSlot();
 
@@ -168,15 +174,15 @@ namespace Mezzanine
 
         /// @brief Gets a pointer to the functor used by this subscriber slot.
         /// @return Returns a pointer to the functor subscriber being used in this subscriber slot.
-        EventSlotFunctorDefinition* GetFunctor() const;
+        FunctorEventSubscriber* GetFunctor() const;
         /// @copydoc EventSubscriberSlot::GetType() const
         virtual SlotType GetType() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
-        virtual void _NotifyEvent(const EventArguments& Args);
+        /// @copydoc EventSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
+        virtual void _NotifyEvent(EventArgumentsPtr Args);
     };//FunctorSubscriberSlot
 
 #ifndef SWIG // This is non-sensical in a scripting language
@@ -188,7 +194,7 @@ namespace Mezzanine
     {
     public:
         /// @brief This is a convenience typedef for a c-style method that accepts EventArguments.
-        typedef void (SubscriberFunction)(const EventArguments& Args);
+        typedef void (SubscriberFunction)(EventArgumentsPtr Args);
     protected:
         /// @internal
         /// @brief A pointer to the c-style function to be called when the event is fired.
@@ -213,8 +219,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
-        virtual void _NotifyEvent(const EventArguments& Args);
+        /// @copydoc EventSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
+        virtual void _NotifyEvent(EventArgumentsPtr Args);
     };// CFunctionSubscriberSlot
 #endif // \SWIG
 
@@ -248,8 +254,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        /// @copydoc EventSubscriberSlot::_NotifyEvent(const EventArguments& Args)
-        virtual void _NotifyEvent(const EventArguments& Args);
+        /// @copydoc EventSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
+        virtual void _NotifyEvent(EventArgumentsPtr Args);
     };//ScriptSubscriberSlot
 }//Mezzanine
 

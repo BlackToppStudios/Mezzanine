@@ -249,24 +249,29 @@ namespace Mezzanine
                 this->DecrementSpin->SetUnifiedSize( UnifiedVec2(1,1,0,0) );
 
                 if( Style == UI::Spn_Separate_Horizontal ) {
-                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_Top);
-                    this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
-                    this->IncrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_TopLeft);
+                    this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+                    this->DecrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
 
                     this->ValueDisplay->SetPositioningRules(UI::PF_Anchor_Top);
                     this->ValueDisplay->SetHorizontalSizingRules(UI::SR_Fill_Available);
                     this->ValueDisplay->SetVerticalSizingRules(UI::SR_Unified_Dims);
 
-                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_Top);
-                    this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
-                    this->DecrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
+                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_TopRight);
+                    this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
+                    this->IncrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
+
+                    this->AddChild(this->DecrementSpin,1);
+                    this->AddChild(this->ValueDisplay,2);
+                    this->AddChild(this->IncrementSpin,3);
 
                     if( this->LayoutStrat != NULL ) {
                         delete this->LayoutStrat;
                     }
                     this->LayoutStrat = new HorizontalLayoutStrategy();
                 }else if( Style == Spn_Separate_Vertical ) {
-                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_Left);
+                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_TopLeft);
                     this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Unified_Dims);
                     this->IncrementSpin->SetVerticalSizingRules(UI::SR_Match_Other_Axis);
 
@@ -274,19 +279,19 @@ namespace Mezzanine
                     this->ValueDisplay->SetHorizontalSizingRules(UI::SR_Unified_Dims);
                     this->ValueDisplay->SetVerticalSizingRules(UI::SR_Fill_Available);
 
-                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_Left);
+                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_BottomLeft);
                     this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Unified_Dims);
                     this->DecrementSpin->SetVerticalSizingRules(UI::SR_Match_Other_Axis);
+
+                    this->AddChild(this->IncrementSpin,1);
+                    this->AddChild(this->ValueDisplay,2);
+                    this->AddChild(this->DecrementSpin,3);
 
                     if( this->LayoutStrat != NULL ) {
                         delete this->LayoutStrat;
                     }
                     this->LayoutStrat = new VerticalLayoutStrategy();
                 }
-
-                this->AddChild(this->IncrementSpin,1);
-                this->AddChild(this->ValueDisplay,2);
-                this->AddChild(this->DecrementSpin,3);
             }else if( Style == Spn_Together_Left || Style == Spn_Together_Right ) {
                 this->IncrementSpin->SetUnifiedSize( UnifiedVec2(1,0.5,0,0) );
                 this->IncrementSpin->SetUnifiedPosition( UnifiedVec2(0,0,0,0) );
@@ -455,17 +460,21 @@ namespace Mezzanine
 
         void Spinner::_OnSpinValueChanged(const Real OldValue, const Real NewValue)
         {
-            SpinnerValueChangedArguments Args(Spinner::EventSpinValueChanged,this->Name,OldValue,NewValue);
+            if( this->Container != NULL ) {
+                this->Container->UpdateVisibleChildren();
+            }
+
+            SpinnerValueChangedArgumentsPtr Args( new SpinnerValueChangedArguments(Spinner::EventSpinValueChanged,this->Name,OldValue,NewValue) );
             this->FireEvent(Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void Spinner::_NotifyEvent(const EventArguments& Args)
+        void Spinner::_NotifyEvent(EventArgumentsPtr Args)
         {
-            const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
-            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);
+            WidgetEventArgumentsPtr WidArgs = CountedPtrCast<WidgetEventArguments>(Args);
+            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs->WidgetName);
             if( EventWidget == NULL )
                 return;
 

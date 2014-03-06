@@ -204,7 +204,7 @@ namespace Mezzanine
             this->State |= WS_Selected;
             this->SetGroupFromState(this->State);
 
-            WidgetEventArguments Args(CheckBox::EventSelected,this->Name);
+            EventArgumentsPtr Args( new WidgetEventArguments(CheckBox::EventSelected,this->Name) );
             this->FireEvent(Args);
         }
 
@@ -213,7 +213,7 @@ namespace Mezzanine
             this->State &= ~WS_Selected;
             this->SetGroupFromState(this->State);
 
-            WidgetEventArguments Args(CheckBox::EventDeselected,this->Name);
+            EventArgumentsPtr Args( new WidgetEventArguments(CheckBox::EventDeselected,this->Name) );
             this->FireEvent(Args);
         }
 

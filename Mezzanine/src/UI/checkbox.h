@@ -49,8 +49,6 @@ namespace Mezzanine
     {
         class Button;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class CheckBox
-        /// @headerfile checkbox.h
         /// @brief This is a simple widget for storing a bool value.
         /// @details
         ///////////////////////////////////////
@@ -61,7 +59,7 @@ namespace Mezzanine
             /// @brief Enum describing extended widget states for the CheckBox widget.
             enum WidgetStateExt
             {
-                WS_Selected = 8
+                WS_Selected = Widget::WS_Mezzanine_Reserved_1
             };
 
             /// @brief String containing the type name for this class: "CheckBox".

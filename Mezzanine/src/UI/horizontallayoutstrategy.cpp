@@ -124,7 +124,7 @@ namespace Mezzanine
                     }
 
                     // Set up the data for the range of expanding children
-                    Real XPos = ( PrevRightPos != 0 ? PrevRightPos + 1 : PrevRightPos );
+                    Real XPos = PrevRightPos;
                     Real XSpacePerChild = (NextLeftPos - PrevRightPos) / ExpandingChildCount;
                     // Update the expanding children in the range
                     while( ChildIt != NextNonExpandingChild )

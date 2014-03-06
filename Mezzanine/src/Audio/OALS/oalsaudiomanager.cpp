@@ -565,7 +565,7 @@ namespace Mezzanine
             Real OALS::AudioManager::GetTypeVolume(const UInt16 Type) const
             {
                 SoundTypeHandler* Handler = this->GetOrCreateSoundTypeHandler(Type);
-                return ( Handler->Mute || this->IsMuted() ? 0 : Handler->Volume );
+                return ( Handler != NULL ? Handler->Volume : 0 );
             }
 
             void OALS::AudioManager::MuteType(const UInt16 Type, Boole Enable)

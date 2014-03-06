@@ -41,6 +41,7 @@
 #define _graphicsgamewindow_h
 
 #include "Graphics/windowsettings.h"
+
 namespace Ogre
 {
     class RenderWindow;
@@ -105,6 +106,9 @@ namespace Mezzanine
             /// @brief A pointer to the internal window used for collecting input.
             SDL_Window* SDLWindow;
             /// @internal
+            /// @brief The last set FSAA level for this gamewindow (used for serialization).
+            Whole RequestedFSAA;
+            /// @internal
             /// @brief A bit field containing all the flags used in the construction of this GameWindow.
             Whole CreationFlags;
 
@@ -116,16 +120,12 @@ namespace Mezzanine
             /// @param Flags Additional misc parameters, see WindowFlags enum for more info.
             void CreateGameWindow(const String& WindowCaption, const Whole Width, const Whole Height, const Whole Flags);
             /// @internal
+            /// @brief Inserts a Viewport into this window based on it's ZOrder.
+            /// @param NewVP A pointer to the Viewport being added to this window.
+            void AddViewport(Viewport* NewVP);
+            /// @internal
             /// @brief Updates all the viewports of this window and the cameras attached to them after a change in window geometry.
             void UpdateViewportsAndCameras();
-            /// @internal
-            /// @brief Checks to see if a resolution is larger than the currently set desktop resolution.
-            /// @remarks This method is used for a check that is only really needed on Windows XP.  When a resolution is selected that is larger
-            /// than the desktop resolution then the app hardlocks somewhere inside of SDL.
-            /// @param Width The number of horizontal pixels to check against the desktop.
-            /// @param Height The number of vertical pixels to check against the desktop.
-            /// @return Returns "1" if the resolution provided is larger, "-1" if the resolution is smaller, and "0" if the resolution is the same.
-            int IsLargerThenDesktop(const Whole Width, const Whole Height);
         public:
             /// @brief Class constructor.
             /// @param WindowCaption The caption to be set in the window titlebar.
@@ -133,6 +133,9 @@ namespace Mezzanine
             /// @param Height The desired height in pixels.
             /// @param Flags Additional misc parameters, see WindowFlags enum for more info.
             GameWindow(const String& WindowCaption, const Whole Width, const Whole Height, const Whole Flags);
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            GameWindow(const XML::Node& XMLNode);
             /// @brief Class destructor.
             ~GameWindow();
 
@@ -158,6 +161,8 @@ namespace Mezzanine
             /// @brief Destroys a viewport within this window.
             /// @param ToBeDestroyed The viewport that will be destroyed.
             void DestroyViewport(Viewport* ToBeDestroyed);
+            /// @brief Destroys every viewport within this window.
+            void DestroyAllViewports();
 
             /// @brief Gets an iterator to the first viewport in this window.
             ViewportIterator BeginViewport();
@@ -180,40 +185,42 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Window Metrics Management
 
-            /// @brief Sets the Width.
-            /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Width This accepts a Whole.
-            void SetRenderWidth(const Whole& Width);
-            /// @brief Gets the Width of the Rendering Area
-            /// @details Gets the Width of the Rendering Area
-            /// @return This returns the Width of the Rendering Area
-            Whole GetRenderWidth() const;
-            /// @brief Sets the Height.
-            /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Height This accepts a Whole.
-            void SetRenderHeight(const Whole& Height);
-            /// @brief Gets the Height of the Rendering Area
-            /// @details Gets the Height of the Rendering Area
-            /// @return This returns the Height of the Rendering Area
-            Whole GetRenderHeight() const;
-            /// @brief Changes the X and Y Resolution at the same time
-            /// @details This should be useful in situations where it is not possible to update the width and height separately.
-            /// @param Width The new desired Width for the rendering area as a whole number
-            /// @param Height The new desired Width for the rendering area as a whole number
-            void SetRenderResolution(const Whole& Width, const Whole& Height);
-            /// @brief Set the Fullscreen Setting
-            /// @details Set the Fullscreen Setting
-            /// @param Fullscreen This accepts a Boole. True for fullscreen, false for windowed
+            /// @brief Sets the width of the game window.
+            /// @param Width The pixel size of the game window on the X axis.
+            void SetWidth(const Whole& Width);
+            /// @brief Gets the Width of the game window.
+            /// @return Returns a Whole containing the size of the game window on the X axis.
+            Whole GetWidth() const;
+            /// @brief Sets the height of the game window.
+            /// @param Height The pixel size of the game window on the Y axis.
+            void SetHeight(const Whole& Height);
+            /// @brief Gets the height of the game window.
+            /// @return Returns a Whole containing the size of the game window on the Y axis.
+            Whole GetHeight() const;
+
+            /// @brief Sets the width and height of the game window.
+            /// @param WinRes A Resolution containing the width and height to be applied.
+            void SetResolution(const Resolution& WinRes);
+            /// @brief Sets the width and height of the game window.
+            /// @param Width The pixel size of the game window on the X axis.
+            /// @param Height The pixel size of the game window on the Y axis.
+            void SetResolution(const Whole& Width, const Whole& Height);
+            /// @brief Gets the width and height of the game window.
+            /// @return Returns a const Resolution reference containing the pixel size of the window on the X and Y axes.
+            const Resolution& GetResolution() const;
+
+            /// @brief Set the Fullscreen Setting.
+            /// @param Fullscreen This accepts a Boole. True for fullscreen, false for windowed.
             void SetFullscreen(const Boole Fullscreen);
-            /// @brief Gets the Fullscreen Setting
-            /// @details Gets the Fullscreen Setting
+            /// @brief Gets the Fullscreen Setting.
             /// @return This returns a Boole, true if fullscreen is set, false otherwise
             Boole GetFullscreen() const;
-            /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
-            /// @details This should be useful in situations where it is not possible to update all of the options separately.
+
+            /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time.
+            /// @param NewSettings A WindowSettings struct containing all of the window settings to be applied.
             void SetRenderOptions(const WindowSettings& NewSettings);
             /// @brief Gets the current window settings.
-            /// @param Returns a WindowSettings struct with the current window settings.
+            /// @return Returns a WindowSettings struct with the current window settings.
             const WindowSettings& GetSettings();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -221,10 +228,21 @@ namespace Mezzanine
 
             /// @brief Gets the the text in the titlebar.
             /// @return Returns a const string ref of the text in the titlebar.
-            const String& GetWindowCaption();
-            /// @brief Gets the current level of Anti-Aliasing enabled on this Window.
-            /// @return Returns a Whole indicating which level of AA is enabled on this window, or 0 if AA is disabled.
+            const String& GetWindowCaption() const;
+
+            /// @brief Sets the level of Full Scale Anti-Aliasing to be used when rendering to this window.
+            /// @note Generally when this gets set it will not be applied.  Anti-Aliasing is a construction time property of a window.
+            /// However this will be saved when the game window and it's settings are serialized, which will be used when it is reloaded.
+            /// @param FSAA The Anti-Aliasing level to be used, generally one of these values: 0, 2, 4, 8, or 16.
+            void SetFSAALevel(const Whole FSAA);
+            /// @brief Gets the last set Anti-Aliasing level on this Window.
+            /// @note This may or may not be the same as the current FSAA level setting.
+            /// @return Returns a Whole indicating which level of AA is set on this window.
             Whole GetFSAALevel() const;
+            /// @brief Gets the actual Anti-Aliasing level currently being used by this game window.
+            /// @return Returns the FSAA level currently being used to render this window, or 0 if FSAA is disabled.
+            Whole GetActualFSAALevel() const;
+
             /// @brief Enables (or disables) vsync on this window.
             /// @param Enable Whether or not to enable vsync.
             void EnableVsync(Boole Enable);
@@ -267,6 +285,33 @@ namespace Mezzanine
             /// @brief Gets the longest amount of time it's taken to render a frame.
             /// @return Returns a Real representing the worst time for rendering a frame.
             Real GetWorstFrameTime() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
+
+            /// @brief Convert this class to an XML::Node ready for serialization.
+            /// @param ParentNode The point in the XML hierarchy that all this GameWindow should be appended to.
+            void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @brief Convert the properties of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+            /// @brief Convert the viewports of this class to an XML::Node ready for serialization.
+            /// @param SelfRoot The root node containing all the serialized data for this instance.
+            void ProtoSerializeViewports(XML::Node& SelfRoot) const;
+
+            /// @brief Take the data stored in an XML Node and overwrite this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            void ProtoDeSerialize(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the properties of this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+            /// @brief Take the data stored in an XML Node and overwrite the viewports of this object with it.
+            /// @param SelfRoot An XML::Node containing the data to populate this class with.
+            void ProtoDeSerializeViewports(const XML::Node& SelfRoot);
+
+            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @return A string containing the name of this class.
+            static String GetSerializableName();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods

@@ -186,6 +186,7 @@ namespace Mezzanine
 
             // Get the parent rect and apply the scaling
             Rect ActDims = this->GetAreaRect();
+            Vector2 LayerCenter = ActDims.GetRectCenter();
 
             // Setup the text specific data we'll use
             Vector2 TopLeft, TopRight, BottomLeft, BottomRight;
@@ -230,7 +231,7 @@ namespace Mezzanine
                     TopRight.SetValues( BottomRight.X, TopLeft.Y );
                     BottomLeft.SetValues( TopLeft.X, BottomRight.Y );
 
-                    this->RotationTransform(TopLeft,TopRight,BottomLeft,BottomRight);
+                    this->RotationTransform(TopLeft,TopRight,BottomLeft,BottomRight,LayerCenter);
 
                     if( CurrChar->GetHighlighted() )
                     {
@@ -702,7 +703,7 @@ namespace Mezzanine
                 { (*TLIt)->SetAlignment(Align); }
         }
 
-        void TextLayer::SetTextlineVerticalAlignment(const UI::LinearAlignment Align)
+        void TextLayer::SetTextLineVerticalAlignment(const UI::LinearAlignment Align)
         {
             if( this->VerticalAlign == Align )
                 return;
@@ -712,7 +713,7 @@ namespace Mezzanine
             this->_MarkDirty();
         }
 
-        UI::LinearAlignment TextLayer::GetTextlineVerticalAlignment() const
+        UI::LinearAlignment TextLayer::GetTextLineVerticalAlignment() const
         {
             return this->VerticalAlign;
         }

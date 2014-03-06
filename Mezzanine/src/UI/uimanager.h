@@ -125,6 +125,10 @@ namespace Mezzanine
             typedef ScreenContainer::iterator                      ScreenIterator;
             /// @brief Const Iterator type for @ref Screen instances stored by this class.
             typedef ScreenContainer::const_iterator                ConstScreenIterator;
+            /// @brief Reverse Iterator type for @ref Screen instances stored by this class.
+            typedef ScreenContainer::reverse_iterator              ReverseScreenIterator;
+            /// @brief Const Reverse Iterator type for @ref Screen instances stored by this class.
+            typedef ScreenContainer::const_reverse_iterator        ConstReverseScreenIterator;
             /// @brief Basic container type for @ref Input::MetaCode storage by this class.
             typedef std::vector< Input::MetaCode >                 InputContainer;
             /// @brief Iterator type for @ref Input::MetaCode instances stored by this class.
@@ -233,10 +237,16 @@ namespace Mezzanine
             /// @param Name The name of the file to be loaded.
             /// @param Group The resource group where the MTA file can be found.
             void LoadMTA(const String& Name, const String& Group = "UI");
+
             /// @brief Gets a loaded Atlas being stored in this manager.
             /// @param AtlasName The name of the Atlas, which is usually the name of the file without the extension.
             /// @return Returns a pointer to the requested Atlas, or NULL if it doesn't exist.
             TextureAtlas* GetAtlas(const String& AtlasName);
+            /// @brief Destroys a loaded texture atlas.
+            /// @param ToBeDestroyed A pointer to the texture atlas that will be destroyed.
+            void DestroyAtlas(TextureAtlas* ToBeDestroyed);
+            /// @brief Destroys all loaded texture atlases.
+            void DestroyAllAtlases();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Screen Management
@@ -247,16 +257,17 @@ namespace Mezzanine
             /// @param ScreenName The name to be given to the screen.
             /// @param Atlas The name of a previously loaded mta file to be used with this screen.
             /// @param WindowViewport The viewport to create this screen in.
-            Screen* CreateScreen(const String& ScreenName, const String& Atlas, Graphics::Viewport* WindowViewport);
+            /// @param ZOrder The ZOrder determining the position relative to the other screens.
+            Screen* CreateScreen(const String& ScreenName, const String& Atlas, Graphics::Viewport* WindowViewport, const UInt16 ZOrder);
             /// @brief Gets an already created screen by name.
             /// @return Returns a pointer to the screen of the specified name.
-            Screen* GetScreen(const String& Name);
+            Screen* GetScreen(const String& Name) const;
             /// @brief Gets an already created screen by index.
             /// @return Returns a pointer to the screen at the specified index.
-            Screen* GetScreen(const Whole& Index);
+            Screen* GetScreen(const Whole& Index) const;
             /// @brief Gets the number of screens created and stored in this manager.
             /// @return Returns the number of screens this manager is storing.
-            Whole GetNumScreens();
+            Whole GetNumScreens() const;
             /// @brief Deletes a screen and removes all trace of it from the manager.
             /// @details Destroying a screen will also destroy all of it's layers, and everything contained in those layers.
             /// @param Screen The screen to be destroyed.
@@ -266,20 +277,26 @@ namespace Mezzanine
 
             /// @brief Shows all screens bound to a specific viewport.
             /// @param WindowViewport The viewport bound to all screens to be shown.
-            void ShowScreensOnViewport(Graphics::Viewport* WindowViewport);
+            /// @param Exclude Optional parameter that will make a single screen be excluded from this operation.
+            void ShowScreensOnViewport(Graphics::Viewport* WindowViewport, Screen* Exclude = NULL);
             /// @brief Shows all screens owned by this manager.
-            void ShowAllScreens();
+            /// @param Exclude Optional parameter that will make a single screen be excluded from this operation.
+            void ShowAllScreens(Screen* Exclude = NULL);
             /// @brief Hides all screens bound to a specific viewport.
             /// @param WindowViewport The viewport bound to all screens to be hidden.
             /// @param Exclude Optional parameter that will make a single screen be excluded from this operation.
             void HideScreensOnViewport(Graphics::Viewport* WindowViewport, Screen* Exclude = NULL);
             /// @brief Hides all screens owned by this manager.
-            void HideAllScreens();
-            /// @brief Gets the currently visible screen on the provided viewport.
-            /// @note If there are multiple screens visible on a single viewport then the first screen (in construction order) will be returned.
+            /// @param Exclude Optional parameter that will make a single screen be excluded from this operation.
+            void HideAllScreens(Screen* Exclude = NULL);
+            /// @brief Gets the lowest ZOrder screen that is visible on a viewport.
             /// @param WindowViewport The viewport to check for a visible screen.
-            /// @return Returns a pointer to the screen currently being shown on the requested viewport.
-            Screen* GetVisibleScreenOnViewport(Graphics::Viewport* WindowViewport);
+            /// @return Returns a pointer to the screen at the lowest ZOrder currently being shown on the specified viewport.
+            Screen* GetLowestVisibleScreenOnViewport(Graphics::Viewport* WindowViewport) const;
+            /// @brief Gets the highest ZOrder screen that is visible on a viewport.
+            /// @param WindowViewport The viewport to check for a visible screen.
+            /// @return Returns a pointer to the screen at the highest ZOrder currently being shown on the specified viewport.
+            Screen* GetHighestVisibleScreenOnViewport(Graphics::Viewport* WindowViewport) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // HotKey Management

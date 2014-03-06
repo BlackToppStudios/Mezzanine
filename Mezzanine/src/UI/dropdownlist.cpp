@@ -114,28 +114,13 @@ namespace Mezzanine
             this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildFocusGained,this);
         }
 
-        void DropDownList::UpdateCurrentSelection(Widget* NewSelection)
-        {
-            RenderLayerGroup* NewSelectionActive = NewSelection->GetActiveGroup();
-            RenderLayerGroup* DisSelectionActive = this->SelectionDisplay->GetActiveGroup();
-            if( NewSelectionActive != NULL && DisSelectionActive != NULL ) {
-                /// @todo This currently assumes the default ZOrder assigned to text layers in list items.  If that should change or be more conveniently
-                /// configurable, this should be updated.
-                RenderLayer* UncastedNewText = NewSelectionActive->GetLayerByZOrder(5);
-                RenderLayer* UncastedDisText = DisSelectionActive->GetLayerByZOrder(5);
-                if( ( UncastedNewText != NULL && UncastedNewText->IsTextLayer() ) &&
-                    ( UncastedDisText != NULL && UncastedDisText->IsTextLayer() ) )
-                {
-                    TextLayer* CastedNewText = static_cast<TextLayer*>( UncastedNewText );
-                    TextLayer* CastedDisText = static_cast<TextLayer*>( UncastedDisText );
-                    CastedDisText->SetDefaultFont( CastedNewText->GetDefaultFont() );
-                    CastedDisText->SetText( CastedNewText->GetText() );
-                }
-            }
-        }
-
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
+
+        const String& DropDownList::GetTypeName() const
+        {
+            return DropDownList::TypeName;
+        }
 
         void DropDownList::UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect)
         {
@@ -151,6 +136,7 @@ namespace Mezzanine
 
             // Updates for the other buttons are done, so now we can re-add the list
             this->AddChild( this->SelectionList );
+            this->SelectionList->SetVisible( this->ListToggle->IsSelected() );
 
             // Update our width to the appropriate size
             this->SelectionList->SetScrollbarWidth( UnifiedDim(this->ListToggle->GetActualSize().X / NewSelfRect.Size.X,0.0) );
@@ -160,16 +146,49 @@ namespace Mezzanine
             NewListRect.Size = this->LayoutStrat->HandleChildSizing(OldSelfRect,NewSelfRect,this->SelectionList);
             NewListRect.Position = this->LayoutStrat->HandleChildPositioning(OldSelfRect,NewSelfRect,NewListRect.Size,this->SelectionList);
 
-            // Finally update the scroller
+            // Finally update the list
             this->SelectionList->UpdateDimensions(OldListRect,NewListRect);
 
             // We done got icky
             this->_MarkAllLayersDirty();
         }
 
-        const String& DropDownList::GetTypeName() const
+        void DropDownList::UpdateCurrentSelection(Widget* NewSelection)
         {
-            return DropDownList::TypeName;
+            if( NewSelection != NULL ) {
+                RenderLayerGroup* NewSelectionActive = NewSelection->GetActiveGroup();
+                RenderLayerGroup* DisSelectionActive = this->SelectionDisplay->GetActiveGroup();
+                if( NewSelectionActive != NULL && DisSelectionActive != NULL ) {
+                    /// @todo This currently assumes the default ZOrder assigned to text layers in list items.  If that should change or be more conveniently
+                    /// configurable, this should be updated.
+                    RenderLayer* UncastedNewText = NewSelectionActive->GetLayerByZOrder(5);
+                    RenderLayer* UncastedDisText = DisSelectionActive->GetLayerByZOrder(5);
+                    if( ( UncastedNewText != NULL && UncastedNewText->IsTextLayer() ) &&
+                        ( UncastedDisText != NULL && UncastedDisText->IsTextLayer() ) )
+                    {
+                        TextLayer* CastedNewText = static_cast<TextLayer*>( UncastedNewText );
+                        TextLayer* CastedDisText = static_cast<TextLayer*>( UncastedDisText );
+                        CastedDisText->SetDefaultFont( CastedNewText->GetDefaultFont() );
+                        CastedDisText->SetAutoTextScale( CastedNewText->GetAutoTextScalingMode(), CastedNewText->GetAutoTextScalar() );
+                        CastedDisText->SetText( CastedNewText->GetText() );
+                    }
+                }
+            }
+        }
+
+        String DropDownList::GetSelectionText() const
+        {
+            RenderLayerGroup* DisSelectionActive = this->SelectionDisplay->GetActiveGroup();
+            if( DisSelectionActive != NULL ) {
+                RenderLayer* UncastedDisText = DisSelectionActive->GetLayerByZOrder(5);
+                if( UncastedDisText != NULL && UncastedDisText->IsTextLayer() ) {
+                    return static_cast<TextLayer*>( UncastedDisText )->GetText();
+                }else{
+                    return "";
+                }
+            }else{
+                return "";
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -278,21 +297,21 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void DropDownList::_NotifyEvent(const EventArguments& Args)
+        void DropDownList::_NotifyEvent(EventArgumentsPtr Args)
         {
-            const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
-            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);
+            WidgetEventArgumentsPtr WidArgs = CountedPtrCast<WidgetEventArguments>(Args);
+            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs->WidgetName);
 
             if( EventWidget == this->ListToggle ) {
-                if( WidArgs.EventName == CheckBox::EventSelected ) {
+                if( WidArgs->EventName == CheckBox::EventSelected ) {
                     this->SelectionList->Show();
-                }else if( WidArgs.EventName == CheckBox::EventDeselected ) {
+                }else if( WidArgs->EventName == CheckBox::EventDeselected ) {
                     this->SelectionList->Hide();
                 }
             }
 
             if( EventWidget == this->SelectionList->GetListContainer() ) {
-                if( WidArgs.EventName == PagedContainer::EventChildFocusGained ) {
+                if( WidArgs->EventName == PagedContainer::EventChildFocusGained ) {
                     this->UpdateCurrentSelection( this->SelectionList->GetListContainer()->GetLastFocusedWidget() );
                     this->ListToggle->ManualSelect(false);
                 }

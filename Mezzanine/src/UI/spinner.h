@@ -58,21 +58,62 @@ namespace Mezzanine
         class MEZZ_LIB SpinnerValueChangedArguments : public WidgetEventArguments
         {
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Data Members
+
             /// @brief The pre-update value of the calling Spinner.
             const Real OldSpinValue;
             /// @brief The post-update value of the calling Spinner.
             const Real NewSpinValue;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
 
             /// @brief Class constructor.
             /// @param Name The name of the event being fired.
             /// @param Source The identification of the widget firing this event.
             /// @param OldValue The pre-update value of the calling Spinner.
             /// @param NewValue The post-update value of the calling Spinner.
-            SpinnerValueChangedArguments(const String& Name, const String& Source, const Real& OldValue, const Real& NewValue)
-                : WidgetEventArguments(Name,Source), OldSpinValue(OldValue), NewSpinValue(NewValue) {  }
+            SpinnerValueChangedArguments(const String& Name, const String& Source, const Real& OldValue, const Real& NewValue) :
+                WidgetEventArguments(Name,Source), OldSpinValue(OldValue), NewSpinValue(NewValue) {  }
             /// @brief Class destructor.
             virtual ~SpinnerValueChangedArguments() {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // CountedPtr Functionality
+
+            /// @copydoc EventArguments::GetMostDerived()
+            virtual SpinnerValueChangedArguments* GetMostDerived()
+                { return this; }
         };//SpinnerValueChangedArguments
+    }//UI
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a metaprogramming traits class used by SpinnerValueChangedArguments.
+        /// @details This is need for an intrusive CountedPtr implementation.  Should a working external reference count be made this
+        /// could be dropped in favor of a leaner implementation.
+        ///////////////////////////////////////
+        template <>
+        class ReferenceCountTraits<UI::SpinnerValueChangedArguments>
+        {
+        public:
+            /// @brief Typedef communicating the reference count type to be used.
+            typedef UI::SpinnerValueChangedArguments RefCountType;
+
+            /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
+            /// @param Target A pointer to the target class that is to be reference counted.
+            /// @return Returns a pointer to a new reference counter for the templated type.
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
+            enum { IsCastable = CastStatic };
+        };//ReferenceCountTraits<SpinnerValueChangedArguments>
+
+    namespace UI
+    {
+        /// @brief Convenience typedef for passing around SpinnerValueChangedArguments.
+        typedef CountedPtr<SpinnerValueChangedArguments> SpinnerValueChangedArgumentsPtr;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a simple widget for a numeric variable in a box.
@@ -264,8 +305,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments& Args)
-            virtual void _NotifyEvent(const EventArguments& Args);
+            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr Args)
+            virtual void _NotifyEvent(EventArgumentsPtr Args);
             /// @copydoc PageProvider::_NotifyContainerUpdated()
             virtual void _NotifyContainerUpdated();
         };//Spinner

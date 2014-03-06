@@ -76,10 +76,35 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Applies rotation to a point in 2D space.
+            /// @param Pointer A point in 2D space that will be rotated around another point.
+            /// @param RotationCenter The point that will be rotated around.
             virtual void RotationTransform(Vector2& Point, const Vector2& RotationCenter);
             /// @internal
             /// @brief Applies rotation to a quad in 2D space.
+            /// @note This overload will use the center of the quad defined by the 4 points as the point to be rotated around.
+            /// @param TopLeft The top left corner of the quad to be rotated.
+            /// @param TopRight The top right corner of the quad to be rotated.
+            /// @param BottomLeft The bottom left corner of the quad to be rotated.
+            /// @param BottomRight The bottom right corner of the quad to be rotated.
             virtual void RotationTransform(Vector2& TopLeft, Vector2& TopRight, Vector2& BottomLeft, Vector2& BottomRight);
+            /// @internal
+            /// @brief Applies rotation to a quad in 2D space.
+            /// @param TopLeft The top left corner of the quad to be rotated.
+            /// @param TopRight The top right corner of the quad to be rotated.
+            /// @param BottomLeft The bottom left corner of the quad to be rotated.
+            /// @param BottomRight The bottom right corner of the quad to be rotated.
+            /// @param RotationCenter The point that will be rotated around.
+            virtual void RotationTransform(Vector2& TopLeft, Vector2& TopRight, Vector2& BottomLeft, Vector2& BottomRight, const Vector2& RotationCenter);
+            /// @internal
+            /// @brief Applies rotation to a quad in 2D space.
+            /// @note This overload will use the center of the quad defined by the 4 points as the point to be rotated around.
+            /// @param RotRect An array of 4 Vector2s storing the quad corners to be rotated.
+            virtual void RotationTransform(Vector2* RotRect);
+            /// @internal
+            /// @brief Applies rotation to a quad in 2D space.
+            /// @param RotRect An array of 4 Vector2s storing the quad corners to be rotated.
+            /// @param RotationCenter The point that will be rotated around.
+            virtual void RotationTransform(Vector2* RotRect, const Vector2& RotationCenter);
         //public:
             /// @brief Class constructor.
             /// @param ParentRenderable The renderable that created this layer.
@@ -117,17 +142,26 @@ namespace Mezzanine
             /// @return Returns a Vector2 containing the X and Y scaling applied to this render layer.
             virtual Vector2 GetScale() const;
 
+            /// @brief Gets whether or not this is an LineLayer.
+            /// @return Returns true if this is an LineLayer, false otherwise.
+            virtual Boole IsLineLayer() const;
             /// @brief Gets whether or not this is an ImageLayer.
             /// @return Returns true if this is an ImageLayer, false otherwise.
             virtual Boole IsImageLayer() const;
-            /// @brief Gets whether or not this is an TextLayer.
-            /// @return Returns true if this is an TextLayer, false otherwise.
+            /// @brief Gets whether or not this is a SingleImageLayer.
+            /// @return Returns true if this is a SingleImageLayer, false otherwise.
+            virtual Boole IsSingleImageLayer() const;
+            /// @brief Gets whether or not this is a MultiImageLayer.
+            /// @return Returns true if this is a MultiImageLayer, false otherwise.
+            virtual Boole IsMultiImageLayer() const;
+            /// @brief Gets whether or not this is a TextLayer.
+            /// @return Returns true if this is a TextLayer, false otherwise.
             virtual Boole IsTextLayer() const;
-            /// @brief Gets whether or not this is an SingleLineTextLayer.
-            /// @return Returns true if this is an SingleLineTextLayer, false otherwise.
+            /// @brief Gets whether or not this is a SingleLineTextLayer.
+            /// @return Returns true if this is a SingleLineTextLayer, false otherwise.
             virtual Boole IsSingleLineTextLayer() const;
-            /// @brief Gets whether or not this is an MultiLineTextLayer.
-            /// @return Returns true if this is an MultiLineTextLayer, false otherwise.
+            /// @brief Gets whether or not this is a MultiLineTextLayer.
+            /// @return Returns true if this is a MultiLineTextLayer, false otherwise.
             virtual Boole IsMultiLineTextLayer() const;
 
             ///////////////////////////////////////////////////////////////////////////////

@@ -357,7 +357,7 @@ namespace Mezzanine
         Ray MouseRay;
         if(HoveredViewport)
         {
-            MouseRay = Ray( HoveredViewport->GetViewportCamera()->GetCameraToViewportRay(
+            MouseRay = Ray( HoveredViewport->GetCamera()->GetCameraToViewportRay(
                             MousePos.X / (Real)(HoveredViewport->GetActualWidth()),
                             MousePos.Y / (Real)(HoveredViewport->GetActualHeight()) ) );
             MouseRay *= Length;

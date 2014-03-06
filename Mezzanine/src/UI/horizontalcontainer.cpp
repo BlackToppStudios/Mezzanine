@@ -46,6 +46,8 @@
 #include "UI/horizontalscrollbar.h"
 #include "UI/spinner.h"
 
+#include <algorithm>
+
 namespace Mezzanine
 {
     namespace UI
@@ -100,10 +102,7 @@ namespace Mezzanine
                 // Calculate the sizing with our utility strat, and offset position which we will use later.
                 // Since the constantly updating work area size is tracking the same information as a cursor would, we'll use it as our position cursor.
                 Vector2 ChildSize = this->LayoutStrat->HandleChildSizing(OldSelfRect,NewSelfRect,(*SizeIt));
-                /*// Clamp the perpendicular axis, at least until we get proper expanding widgets.
-                if( ChildSize.X > NewSelfRect.Size.X ) {
-                    ChildSize.X = NewSelfRect.Size.X;
-                }//*/
+
                 ChildTransformCache.at(CurrIndex).first = this->WorkAreaSize.X;
                 ChildTransformCache.at(CurrIndex).second = ChildSize;
 
@@ -122,7 +121,8 @@ namespace Mezzanine
             Real XTarget = 0;
             if( this->XProvider != NULL ) {
                 this->XProvider->_NotifyContainerUpdated();
-                XTarget = ( this->XProvider->GetCurrentXPage() - 1 ) * this->WorkAreaSize.X;
+                Real XTargetLimit = ( this->WorkAreaSize.X + HalfPadding ) - NewSelfRect.Size.X;
+                XTarget = std::min( ( this->XProvider->GetCurrentXPage() - 1 ) * NewSelfRect.Size.X, XTargetLimit );
             }
 
             // Set up our data for the loop (and the loop itself) that will go over all the children that will be "above" the visible children.
@@ -167,11 +167,10 @@ namespace Mezzanine
                     if( TotalLinearSize + ChildSize.X < XTarget ) {
                         this->VisibleChildren.push_back( (*ChildUpdateIt) );
                         TotalLinearSize += ( ChildSize.X + ActPadding );
-                        // Increment the index before we proceed.
+                        // Increment the index and iterator before we proceed.
                         ++CurrIndex;
+                        ++ChildUpdateIt;
                     }else{
-                        // Increment the index before we proceed.
-                        ++CurrIndex;
                         break;
                     }
                 }
@@ -202,9 +201,9 @@ namespace Mezzanine
                 // By now all our children have been processed, just have to focus on the last couple steps for visible children.  Start by doing our alignment stuff.
                 switch( this->VisibleChildAlign )
                 {
-                    case UI::LA_TopLeft:      CurrXPos = HalfPadding;
-                    case UI::LA_Center:       CurrXPos = ( NewSelfRect.Position.X + ( NewSelfRect.Size.X * 0.5 ) ) - ( TotalLinearSize * 0.5 );
-                    case UI::LA_BottomRight:  CurrXPos = ( NewSelfRect.Position.X + NewSelfRect.Size.X ) - ( TotalLinearSize + HalfPadding );
+                    case UI::LA_TopLeft:      CurrXPos = ( NewSelfRect.Position.X + HalfPadding );                                               break;
+                    case UI::LA_Center:       CurrXPos = ( NewSelfRect.Position.X + ( NewSelfRect.Size.X * 0.5 ) ) - ( TotalLinearSize * 0.5 );  break;
+                    case UI::LA_BottomRight:  CurrXPos = ( NewSelfRect.Position.X + NewSelfRect.Size.X ) - ( TotalLinearSize + HalfPadding );    break;
                 }
 
                 // Finally, we're at the final processing stage.  We have our visible children and enough data to determine their positions, along with their saved sizes from earlier.
@@ -223,6 +222,8 @@ namespace Mezzanine
                     VisChild->UpdateDimensions(OldChildRect,NewChildRect);
                     // Increment the cursor
                     CurrXPos += ( NewChildRect.Size.X + ActPadding );
+                    // Finally show the child
+                    VisChild->Show();
                 }
                 ChildTransformCache.clear();
             }

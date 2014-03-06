@@ -48,18 +48,21 @@ namespace Mezzanine
     {
         class TextureAtlas;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class TextureAtlasHandler
-        /// @headerfile textureatlashandler.h
         /// @brief This handles the creation, storage and overall handling of Texture Atlases.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB TextureAtlasHandler
         {
         public:
+            /// @brief Container type for TextureAtlas storage within this class.
             typedef std::map< String, UI::TextureAtlas* >  AtlasContainer;
+            /// @brief Iterator type for TextureAtlases being stored within this class.
             typedef AtlasContainer::iterator               AtlasIterator;
+            /// @brief Const Iterator type for TextureAtlases being stored within this class.
             typedef AtlasContainer::const_iterator         ConstAtlasIterator;
         protected:
+            /// @internal
+            /// @brief Container storing all currently loaded texture atlases.
             AtlasContainer Atlases;
         public:
             /// @brief Class constructor.
@@ -79,6 +82,11 @@ namespace Mezzanine
             /// @param AtlasName The name of the Atlas, which is usually the name of the file without the extension.
             /// @return Returns a pointer to the requested Atlas, or NULL if it doesn't exist.
             UI::TextureAtlas* GetAtlas(const String& AtlasName);
+            /// @brief Destroys a loaded texture atlas.
+            /// @param ToBeDestroyed A pointer to the texture atlas that will be destroyed.
+            void DestroyAtlas(TextureAtlas* ToBeDestroyed);
+            /// @brief Destroys all loaded texture atlases.
+            void DestroyAllAtlases();
         };//TextureAtlasHandler
     }//UI
 }//Mezzanine

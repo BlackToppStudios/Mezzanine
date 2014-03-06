@@ -80,7 +80,7 @@ namespace Mezzanine
         return NewSlot;
     }
 
-    EventSubscriberSlot* Event::Subscribe(EventSlotFunctorDefinition* Funct, Boole CleanUpAfter)
+    EventSubscriberSlot* Event::Subscribe(FunctorEventSubscriber* Funct, Boole CleanUpAfter)
     {
         for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
         {
@@ -148,7 +148,7 @@ namespace Mezzanine
         }
     }
 
-    void Event::Unsubscribe(EventSlotFunctorDefinition* Funct)
+    void Event::Unsubscribe(FunctorEventSubscriber* Funct)
     {
         for( SlotIterator Current = this->Slots.begin() ; Current != this->Slots.end() ; ++Current )
         {
@@ -229,7 +229,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void Event::_FireEvent(const EventArguments& Args)
+    void Event::_FireEvent(EventArgumentsPtr Args)
     {
         for( SlotIterator SlotIt = this->Slots.begin() ; SlotIt != this->Slots.end() ; ++SlotIt )
         {

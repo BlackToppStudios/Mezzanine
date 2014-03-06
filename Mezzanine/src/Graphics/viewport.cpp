@@ -45,6 +45,9 @@
 #include "Graphics/cameraproxy.h"
 #include "Graphics/gamewindow.h"
 
+#include "serialization.h"
+#include "exception.h"
+
 #include <Ogre.h>
 
 namespace Mezzanine
@@ -59,10 +62,13 @@ namespace Mezzanine
             this->OgreViewport = this->Parent->_GetOgreWindowPointer()->addViewport(ViewCam,ZOrder);
         }
 
+        Viewport::Viewport(const XML::Node& XMLNode, GameWindow* ParentWindow) :
+            Parent(ParentWindow),
+            ViewportCam(NULL)
+            { this->ProtoDeSerialize(XMLNode); }
+
         Viewport::~Viewport()
-        {
-            this->Parent->_GetOgreWindowPointer()->removeViewport(this->OgreViewport->getZOrder());
-        }
+            { this->Parent->_GetOgreWindowPointer()->removeViewport(this->OgreViewport->getZOrder()); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Camera and parent Management
@@ -70,16 +76,16 @@ namespace Mezzanine
         void Viewport::SetCamera(CameraProxy* ViewportCamera)
         {
             Ogre::Camera* ViewCam = ViewportCamera ? ViewportCamera->_GetGraphicsObject() : NULL;
-            if(ViewportCam && ViewportCam != ViewportCamera)
-                ViewportCam->CameraVP = NULL;
+            if( this->ViewportCam && this->ViewportCam != ViewportCamera )
+                this->ViewportCam->CameraVP = NULL;
 
-            OgreViewport->setCamera(ViewCam);
+            this->OgreViewport->setCamera(ViewCam);
             this->ViewportCam = ViewportCamera;
-            if(ViewportCam)
-                ViewportCam->CameraVP = this;
+            if( this->ViewportCam )
+                this->ViewportCam->CameraVP = this;
         }
 
-        CameraProxy* Viewport::GetViewportCamera() const
+        CameraProxy* Viewport::GetCamera() const
             { return this->ViewportCam; }
 
         GameWindow* Viewport::GetParentWindow() const
@@ -89,7 +95,7 @@ namespace Mezzanine
         // Utility
 
         Integer Viewport::GetZOrder() const
-            { return OgreViewport->getZOrder(); }
+            { return this->OgreViewport->getZOrder(); }
 
         Mezzanine::OrientationMode Viewport::GetOrientationMode() const
         {
@@ -109,6 +115,12 @@ namespace Mezzanine
         void Viewport::SetDimensions(const Real& Left, const Real& Top, const Real& Width, const Real& Height)
             { this->OgreViewport->setDimensions(Left,Top,Width,Height); }
 
+        Vector2 Viewport::GetPosition() const
+            { return Vector2(this->GetLeft(),this->GetTop()); }
+
+        Vector2 Viewport::GetSize() const
+            { return Vector2(this->GetWidth(),this->GetHeight()); }
+
         Real Viewport::GetLeft() const
             { return this->OgreViewport->getLeft(); }
 
@@ -120,6 +132,12 @@ namespace Mezzanine
 
         Real Viewport::GetHeight() const
             { return this->OgreViewport->getHeight(); }
+
+        Vector2 Viewport::GetActualPosition() const
+            { return Vector2(this->GetActualLeft(),this->GetActualTop()); }
+
+        Vector2 Viewport::GetActualSize() const
+            { return Vector2(this->GetActualWidth(),this->GetActualHeight()); }
 
         Whole Viewport::GetActualLeft() const
             { return this->OgreViewport->getActualLeft(); }
@@ -134,9 +152,83 @@ namespace Mezzanine
             { return this->OgreViewport->getActualHeight(); }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        void Viewport::ProtoSerialize(XML::Node& ParentNode) const
+        {
+            XML::Node ViewNode = ParentNode.AppendChild( Viewport::GetSerializableName() );
+
+            if( ViewNode.AppendAttribute("Version").SetValue("1") &&
+                ViewNode.AppendAttribute("ZOrder").SetValue( this->GetZOrder() ) )
+                //ViewNode.AppendAttribute("CameraName").SetValue( this->GetCamera()->GetName() ) )
+            {
+                XML::Node PositionNode = ViewNode.AppendChild("Position");
+                this->GetPosition().ProtoSerialize(PositionNode);
+
+                XML::Node SizeNode = ViewNode.AppendChild("Size");
+                this->GetSize().ProtoSerialize(SizeNode);
+
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",Viewport::GetSerializableName(),true);
+            }
+        }
+
+        void Viewport::ProtoDeSerialize(const XML::Node& SelfRoot)
+        {
+            // We need to perform some cleanup first, because Ogre doesn't let us change the viewport ZOrder.
+            // Start with the camera
+            CameraProxy* CurrCam = this->ViewportCam;
+            this->ViewportCam = NULL;
+            // Now the viewport itself
+            if( this->OgreViewport ) {
+                this->Parent->_GetOgreWindowPointer()->removeViewport( this->GetZOrder() );
+                this->OgreViewport = NULL;
+            }
+
+            // Now do some deserializing
+            XML::Attribute CurrAttrib;
+            if( SelfRoot.Name() == Viewport::GetSerializableName() ) {
+                if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
+                    Integer ViewZOrder = 0;
+                    Vector2 TempPos, TempSize;
+
+                    CurrAttrib = SelfRoot.GetAttribute("ZOrder");
+                    if( !CurrAttrib.Empty() )
+                        ViewZOrder = CurrAttrib.AsInteger();
+
+                    /*CurrAttrib = SelfRoot.GetAttribute("CameraName");
+                    if( !CurrAttrib.Empty() )
+                        this->SetCamera( CurrAttrib.AsString() );//*/
+
+                    XML::Node PositionNode = SelfRoot.GetChild("Position").GetFirstChild();
+                    if( !PositionNode.Empty() ) {
+                        TempPos.ProtoDeSerialize(PositionNode);
+                    }
+
+                    XML::Node SizeNode = SelfRoot.GetChild("Size").GetFirstChild();
+                    if( !SizeNode.Empty() ) {
+                        TempSize.ProtoDeSerialize(SizeNode);
+                    }
+
+                    this->OgreViewport = this->Parent->_GetOgreWindowPointer()->addViewport(NULL,ViewZOrder);
+                    this->SetDimensions(TempPos,TempSize);
+                    this->SetCamera(CurrCam);
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + Viewport::GetSerializableName() + ": Not Version 1.");
+                }
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Viewport::GetSerializableName() + " was not found in the provided XML node, which was expected.");
+            }
+        }
+
+        String Viewport::GetSerializableName()
+            { return "Viewport"; }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        Ogre::Viewport* Viewport::GetOgreViewport() const
+        Ogre::Viewport* Viewport::_GetOgreViewport() const
             { return this->OgreViewport; }
     }//Graphics
 }//Mezzanine

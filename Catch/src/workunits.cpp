@@ -5,6 +5,256 @@
 #include "catchapp.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+// QueuedSubscriber Methods
+
+QueuedSubscriber::QueuedSubscriber(UI::UIManager* UIMan, ManagerBase* Target) :
+    TargetManager(Target),
+    UITarget(UIMan),
+    Updating(false)
+    {  }
+
+QueuedSubscriber::~QueuedSubscriber()
+    { this->ClearEvents(); }
+
+///////////////////////////////////////////////////////////////////////////////
+// Convenience and Utility
+
+QueuedSubscriber::ConstEventIterator QueuedSubscriber::GetFirstEvent() const
+    { return this->Events.begin(); }
+
+QueuedSubscriber::ConstEventIterator QueuedSubscriber::GetEndEvent() const
+    { return this->Events.end(); }
+
+void QueuedSubscriber::ClearEvents()
+    { this->Events.clear(); }
+
+///////////////////////////////////////////////////////////////////////////////
+// Inherited
+
+void QueuedSubscriber::_NotifyEvent(EventArgumentsPtr Args)
+{
+    if( !this->Updating ) {
+        this->Events.push_back(Args);
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// AudioSettingsWorkUnit Methods
+
+AudioSettingsWorkUnit::AudioSettingsWorkUnit(UI::UIManager* UITarget, ManagerBase* Target)
+    { this->SettingsSubscriber = new QueuedSubscriber(UITarget,Target); }
+
+AudioSettingsWorkUnit::~AudioSettingsWorkUnit()
+    { delete this->SettingsSubscriber; }
+
+QueuedSubscriber* AudioSettingsWorkUnit::GetSettingsSubscriber() const
+    { return this->SettingsSubscriber; }
+
+void AudioSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+{
+    this->SettingsSubscriber->Updating = true;
+    UI::UIManager* UIMan = this->SettingsSubscriber->UITarget;
+    Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( this->SettingsSubscriber->TargetManager );
+    QueuedSubscriber::ConstEventIterator EndEvent = this->SettingsSubscriber->GetEndEvent();
+    for( QueuedSubscriber::ConstEventIterator EvIt = this->SettingsSubscriber->GetFirstEvent() ; EvIt != EndEvent ; ++EvIt )
+    {
+        EventArgumentsPtr Args = (*EvIt);
+        UI::WidgetEventArgumentsPtr WidArgs = CountedPtrCast<UI::WidgetEventArguments>( Args );
+        if( WidArgs->EventName == UI::Scrollbar::EventScrollValueChanged ) {
+            UI::ScrollbarValueChangedArgumentsPtr ScrollArgs = CountedPtrCast<UI::ScrollbarValueChangedArguments>( WidArgs );
+            // Check for "MS_MusicVolume" or "GS_MusicVolume"
+            // Else check for "MS_EffectsVolume" or "GS_EffectsVolume"
+            if( StringTools::EndsWith( WidArgs->WidgetName, "_MusicVolume", true ) ) {
+                AudioMan->SetMusicVolume( ScrollArgs->NewScrollerValue );
+            }else if( StringTools::EndsWith( WidArgs->WidgetName, "_EffectsVolume", true ) ) {
+                AudioMan->SetEffectVolume( ScrollArgs->NewScrollerValue );
+            }
+        }else if( WidArgs->EventName == UI::CheckBox::EventSelected ) {
+            // Check for "MS_MuteBox" or "GS_MuteBox"
+            if( StringTools::EndsWith( WidArgs->WidgetName, "_MuteBox", true ) ) {
+                AudioMan->SetMasterMute(true);
+            }
+        }else if( WidArgs->EventName == UI::CheckBox::EventDeselected ) {
+            // Check for "MS_MuteBox" or "GS_MuteBox"
+            if( StringTools::EndsWith( WidArgs->WidgetName, "_MuteBox", true ) ) {
+                AudioMan->SetMasterMute(false);
+            }
+        }else if( WidArgs->EventName == UI::PagedContainer::EventChildFocusGained ) {
+            //
+            // Fill in later
+            //
+        }else if( WidArgs->EventName == UI::Widget::EventVisibilityShown ) {
+            // Start by getting the proper screen
+            UI::Screen* EventScreen = NULL;
+            // Check for "M" from "MS_" prefix on menu screen widgets.
+            // Else check for "G" from "GS_" prefix on game screen widgets.
+            if( WidArgs->WidgetName.at(0) == 'M' ) {
+                EventScreen = UIMan->GetScreen("MainMenuScreen");
+            }else if( WidArgs->WidgetName.at(0) == 'G' ) {
+                EventScreen = UIMan->GetScreen("GameScreen");
+            }
+            // Proceed only if we have a valid screen
+            if( EventScreen != NULL ) {
+                if( StringTools::EndsWith( WidArgs->WidgetName, "_MusicVolume", true ) ) {
+                    // Update the widget to the current system music volume
+                    UI::Scrollbar* MusicVol = static_cast<UI::Scrollbar*>( EventScreen->GetWidget( WidArgs->WidgetName ) );
+                    MusicVol->SetScrollerValue( AudioMan->GetMusicVolume() );
+                }else if( StringTools::EndsWith( WidArgs->WidgetName, "_EffectsVolume", true ) ) {
+                    // Update the widget to the current system effects volume
+                    UI::Scrollbar* EffectsVol = static_cast<UI::Scrollbar*>( EventScreen->GetWidget( WidArgs->WidgetName ) );
+                    EffectsVol->SetScrollerValue( AudioMan->GetEffectVolume() );
+                }else if( StringTools::EndsWith( WidArgs->WidgetName, "_MuteBox", true ) ) {
+                    // Update the widget to the current system mute setting
+                    UI::CheckBox* MuteBox = static_cast<UI::CheckBox*>( EventScreen->GetWidget( WidArgs->WidgetName ) );
+                    MuteBox->ManualSelect( AudioMan->IsMuted() );
+                }/*else if( StringTools::EndsWith( WidArgs->WidgetName, "_AudioDeviceList", true ) ) {
+                    UI::DropDownList* AudioDeviceList = static_cast<UI::DropDownList*>( EventScreen->GetWidget( WidArgs->WidgetName ) );
+                    UI::ListBox* DeviceContainer = AudioDeviceList->GetSelectionList();
+                    // If we have no items, we need to populate them
+                    if( DeviceContainer->GetNumListItems() == 0 ) {
+                        Whole DetectedDevices = AudioMan->GetAvailablePlaybackDeviceCount();
+                        for( Whole DeviceIndex = 0 ; DeviceIndex < DetectedDevices ; ++DeviceIndex )
+                        {
+                            String DeviceName = AudioMan->GetAvailablePlaybackDeviceName(DeviceIndex);
+                            DeviceContainer->CreateSingleLineListItem(DeviceName,DeviceName);
+                        }
+                        AudioDeviceList->UpdateChildDimensions();
+                    }
+                    AudioDeviceList->UpdateCurrentSelection( DeviceContainer->GetListItem( AudioMan->GetCurrentPlaybackDeviceName() ) );
+                }//*/
+            }
+        }
+    }
+    this->SettingsSubscriber->ClearEvents();
+    this->SettingsSubscriber->Updating = false;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// VideoSettingsWorkUnit Methods
+
+VideoSettingsWorkUnit::VideoSettingsWorkUnit(UI::UIManager* UITarget, ManagerBase* Target)
+    { this->SettingsSubscriber = new QueuedSubscriber(UITarget,Target); }
+
+VideoSettingsWorkUnit::~VideoSettingsWorkUnit()
+    { delete this->SettingsSubscriber; }
+
+QueuedSubscriber* VideoSettingsWorkUnit::GetSettingsSubscriber() const
+    { return this->SettingsSubscriber; }
+
+void VideoSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+{
+    this->SettingsSubscriber->Updating = true;
+    UI::UIManager* UIMan = this->SettingsSubscriber->UITarget;
+    Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->SettingsSubscriber->TargetManager );
+    Graphics::GameWindow* CatchWindow = GraphicsMan->GetGameWindow(0);
+    QueuedSubscriber::ConstEventIterator EndEvent = this->SettingsSubscriber->GetEndEvent();
+    for( QueuedSubscriber::ConstEventIterator EvIt = this->SettingsSubscriber->GetFirstEvent() ; EvIt != EndEvent ; ++EvIt )
+    {
+        EventArgumentsPtr Args = (*EvIt);
+        UI::WidgetEventArgumentsPtr WidArgs = CountedPtrCast<UI::WidgetEventArguments>( Args );
+
+        // Start by getting the proper screen
+        UI::Screen* EventScreen = NULL;
+        // Check for "M" from "MS_" prefix on menu screen widgets.
+        // Else check for "G" from "GS_" prefix on game screen widgets.
+        if( WidArgs->WidgetName.at(0) == 'M' ) {
+            EventScreen = UIMan->GetScreen("MainMenuScreen");
+        }else if( WidArgs->WidgetName.at(0) == 'G' ) {
+            EventScreen = UIMan->GetScreen("GameScreen");
+        }
+
+        // Proceed only if we have a valid screen
+        if( EventScreen != NULL ) {
+            if( WidArgs->EventName == UI::Button::EventDeactivated ) {
+                if( StringTools::EndsWith( WidArgs->WidgetName, "_VideoOptsApply", true ) ) {
+                    String NamePrefix;
+                    if( EventScreen->GetName() == "MainMenuScreen" ) {
+                        NamePrefix = "MS";
+                    }else if( EventScreen->GetName() == "GameScreen" ) {
+                        NamePrefix = "GS";
+                    }
+
+                    // Get our pointers
+                    Graphics::GameWindow* CatchWindow = GraphicsMan->GetGameWindow(0);
+                    UI::UIManager* UIMan = EventScreen->GetManager();
+                    UI::Screen* StatsScreen = UIMan->GetScreen("StatsScreen");
+                    // Create our window related data
+                    Graphics::WindowSettings NewSettings;
+                    NewSettings.Fullscreen = static_cast<UI::CheckBox*>( EventScreen->GetWidget(NamePrefix + "_FullscreenBox") )->IsSelected();
+                    // Get render resolution data
+                    String SelectedRes = static_cast<UI::DropDownList*>( EventScreen->GetWidget(NamePrefix + "_ResolutionList") )->GetSelectionText();
+                    String StrWidth = SelectedRes.substr(0,SelectedRes.find_first_of("x"));
+                    String StrHeight = SelectedRes.substr(SelectedRes.find_last_of("x") + 1);
+                    NewSettings.WinRes.Width = StringTools::ConvertToWhole(StrWidth);
+                    NewSettings.WinRes.Height = StringTools::ConvertToWhole(StrHeight);
+                    // Apply the resolution and fullscreen settings
+                    CatchWindow->SetRenderOptions(NewSettings);//*/
+                    // Now get the FSAA setting and pass it along
+                    String FSAASetting = static_cast<UI::DropDownList*>( EventScreen->GetWidget(NamePrefix + "_FSAAList") )->GetSelectionText();
+                    CatchWindow->SetFSAALevel( StringTools::ConvertToWhole( FSAASetting.substr(1,1) ) );
+
+                    // Apply other settings
+                    UI::CheckBox* FPSStatsBox = static_cast<UI::CheckBox*>( EventScreen->GetWidget(NamePrefix + "_StatsBox") );
+                    StatsScreen->GetWidget("SS_CurrentFPS")->SetVisible( FPSStatsBox->IsSelected() );
+                    StatsScreen->GetWidget("SS_AverageFPS")->SetVisible( FPSStatsBox->IsSelected() );//*/
+                }
+            }else if( WidArgs->EventName == UI::Widget::EventVisibilityShown ) {
+                if( StringTools::EndsWith( WidArgs->WidgetName, "_FSAAList", true ) ) {
+                    UI::DropDownList* FSAAList = static_cast<UI::DropDownList*>( EventScreen->GetWidget( WidArgs->WidgetName ) );
+                    UI::ListBox* FSAAContainer = FSAAList->GetSelectionList();
+                    // If we have no items, we need to populate them
+                    if( FSAAContainer->GetNumListItems() == 0 ) {
+                        FSAAContainer->CreateSingleLineListItem("No AA","No AA");
+                        for( Whole FSAALevel = 1 ; FSAALevel <= 4 ; ++FSAALevel )
+                        {
+                            Whole Temp = 2;
+                            for( Whole X = 1 ; X < FSAALevel ; ++X )
+                                { Temp <<= 1; }
+
+                            StringStream FSAALevelName;
+                            FSAALevelName << "x" << Temp << " AA";
+                            FSAAContainer->CreateSingleLineListItem(FSAALevelName.str(),FSAALevelName.str());
+                        }
+                        FSAAList->UpdateChildDimensions();
+                    }
+                    Whole FSAALevel = CatchWindow->GetFSAALevel();
+                    if( FSAALevel == 0 ) {
+                        FSAAList->UpdateCurrentSelection( FSAAContainer->GetListItem( "No AA" ) );
+                    }else{
+                        StringStream CurrentFSAAName;
+                        CurrentFSAAName << "x" << FSAALevel << " AA";
+                        FSAAList->UpdateCurrentSelection( FSAAContainer->GetListItem( CurrentFSAAName.str() ) );
+                    }
+                }else if( StringTools::EndsWith( WidArgs->WidgetName, "_ResolutionList", true ) ) {
+                    UI::DropDownList* ResolutionList = static_cast<UI::DropDownList*>( EventScreen->GetWidget( WidArgs->WidgetName ) );
+                    UI::ListBox* ResolutionContainer = ResolutionList->GetSelectionList();
+                    // If we have no items, we need to populate them
+                    if( ResolutionContainer->GetNumListItems() == 0 ) {
+                        const Graphics::GraphicsManager::ResolutionContainer& DetectedResolutions = GraphicsMan->GetSupportedResolutions();
+                        for( Graphics::GraphicsManager::ConstResolutionIterator ResIt = DetectedResolutions.begin() ; ResIt != DetectedResolutions.end() ; ++ResIt )
+                        {
+                            String ResolutionName = (*ResIt).GetAsString();
+                            ResolutionContainer->CreateSingleLineListItem(ResolutionName,ResolutionName);
+                        }
+                        ResolutionList->UpdateChildDimensions();
+                    }
+                    ResolutionList->UpdateCurrentSelection( ResolutionContainer->GetListItem( CatchWindow->GetResolution().GetAsString() ) );
+                }else if( StringTools::EndsWith( WidArgs->WidgetName, "_FullscreenBox", true ) ) {
+                    UI::CheckBox* FullscreenBox = static_cast<UI::CheckBox*>( EventScreen->GetWidget( WidArgs->WidgetName ) );
+                    FullscreenBox->ManualSelect( CatchWindow->GetFullscreen() );
+                }else if( StringTools::EndsWith( WidArgs->WidgetName, "_StatsBox", true ) ) {
+                    UI::CheckBox* StatsBox = static_cast<UI::CheckBox*>( EventScreen->GetWidget( WidArgs->WidgetName ) );
+                    UI::Screen* StatsScreen = UIMan->GetScreen("StatsScreen");
+                    StatsBox->ManualSelect( StatsScreen->GetWidget("SS_CurrentFPS")->GetVisible() || StatsScreen->GetWidget("SS_AverageFPS")->GetVisible() );
+                }// Is a widget we're looking for
+            }// Is an event we're looking for
+        }// If we have a screen
+    }// For each event
+    this->SettingsSubscriber->ClearEvents();
+    this->SettingsSubscriber->Updating = false;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // CatchPreInputWorkUnit Methods
 
 CatchPreInputWorkUnit::CatchPreInputWorkUnit(CatchApp* Target) :

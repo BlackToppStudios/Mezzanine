@@ -40,42 +40,58 @@
 #ifndef _graphicswindowsettings_h
 #define _graphicswindowsettings_h
 
-#include "datatypes.h"
+#include "Graphics/resolution.h"
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class WindowSettings
-    /// @headerfile windowsettings.h
-    /// @brief This stores all the basic configuration options a game window supports.
-    /// @details A game window stores one of these for all of it's configuration options,
-    /// additionally one can be created and passed into the manager to set all the configuration
-    /// options at once.
-    ///////////////////////////////////////
-    struct MEZZ_LIB WindowSettings
+    namespace Graphics
     {
-        /// @brief This stores the Height of the renderwindow.
-        Whole RenderHeight;
-        /// @brief This stores the Width of the renderwindow.
-        Whole RenderWidth;
-        /// @brief This stores the device refresh rate in Hz.
-        Whole RefreshRate;
-        /// @brief This is the desired state of whether the window is fullscreen or not.
-        Boole Fullscreen;
-        /// @brief This is the desired state of whether to enable VSync or not.
-        Boole VSync;
-        /// @brief Struct Constructor
-        WindowSettings() : RenderHeight(0),RenderWidth(0),RefreshRate(0),Fullscreen(false),VSync(false) {}
-        WindowSettings& operator= (const WindowSettings &GS)
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This stores all the basic configuration options a game window supports.
+        /// @details A game window stores one of these for all of it's configuration options,
+        /// additionally one can be created and passed into the manager to set all the configuration
+        /// options at once.
+        ///////////////////////////////////////
+        struct MEZZ_LIB WindowSettings
         {
-            this->RenderHeight = GS.RenderHeight;
-            this->RenderWidth = GS.RenderWidth;
-            this->RefreshRate = GS.RefreshRate;
-            this->Fullscreen = GS.Fullscreen;
-            this->VSync = GS.VSync;
-            return *this;
-        }
-    };//WindowSettings
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Data Members
+
+            /// @brief This stores the Height and Width of the render window.
+            Resolution WinRes;
+            /// @brief This stores the device refresh rate in Hz.
+            Whole RefreshRate;
+            /// @brief This is the desired state of whether the window is fullscreen or not.
+            Boole Fullscreen;
+            /// @brief This is the desired state of whether to enable VSync or not.
+            Boole VSync;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
+
+            /// @brief Blank constructor.
+            WindowSettings() :
+                RefreshRate(0),
+                Fullscreen(false),
+                VSync(false)
+                {  }
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Operators
+
+            /// @brief Assignment operator.
+            /// @param Other The other WindowSettings to copy from.
+            /// @return Returns a reference to this.
+            WindowSettings& operator=(const WindowSettings& Other)
+            {
+                this->WinRes = Other.WinRes;
+                this->RefreshRate = Other.RefreshRate;
+                this->Fullscreen = Other.Fullscreen;
+                this->VSync = Other.VSync;
+                return *this;
+            }
+        };//WindowSettings
+    }//Graphics
 }//Mezzanine
 
 #endif

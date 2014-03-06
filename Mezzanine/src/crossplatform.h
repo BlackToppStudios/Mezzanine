@@ -92,13 +92,6 @@ namespace Mezzanine
         /// @return Returns a string based on the platform.  "Windows", "Linux", or "MacOSX".
         String MEZZ_LIB GetPlatform();
 
-        /// @brief Gets cleaned dimensions for a game window.
-        /// @param Width The desired width of the window area.
-        /// @param Height The desired height of the window area.
-        /// @param ActualWidth The modified value of the rendering width, after window decorations have been taken into account.
-        /// @param ActualHeight The modified value of the rendering height, after window decorations have been taken into account.
-        void MEZZ_LIB SanitizeWindowedRes(const Whole& Width, const Whole& Height, Whole& ActualWidth, Whole& ActualHeight);
-
         /// @brief Get a timestamp.
         /// @warning On some platforms this requires a static initialization, an can cause undefined behavior if called before static initializations are complete
         /// @return The largest size integer containing a timestamp that can be compared to other timestamps, but hads no guarantees for external value.

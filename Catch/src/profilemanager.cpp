@@ -7,32 +7,33 @@
 ///////////////////////////////////////////////////////////////////////////////
 // CatchProfile Methods
 
-CatchProfile::CatchProfile(const String& Name)
-    : ProfileName(Name)
-{
-}
+CatchProfile::CatchProfile(const String& Name) :
+    ProfileName(Name)
+    {  }
 
-CatchProfile::CatchProfile(XML::Document& ProfileDoc)
+CatchProfile::CatchProfile(const XML::Document& ProfileDoc)
 {
-    DeSerializeProfileName(ProfileDoc);
-    DeSerializeLevelScores(ProfileDoc);
+    XML::Node RootNode = ProfileDoc.GetChild("ProfileRoot");
+    if( !RootNode.Empty() ) {
+        this->DeSerializeProfileName(RootNode);
+        this->DeSerializeLevelScores(RootNode);
+    }
 }
 
 CatchProfile::~CatchProfile()
-{
-}
+    {  }
 
-void CatchProfile::SerializeProfileName(XML::Document& ProfileDoc)
+void CatchProfile::SerializeProfileName(XML::Node& ProfileRoot) const
 {
-    XML::Node NameNode = ProfileDoc.AppendChild("ProfileName");
+    XML::Node NameNode = ProfileRoot.AppendChild("ProfileName");
     XML::Attribute NameAttrib = NameNode.AppendAttribute("Name");
-    NameAttrib.SetValue(ProfileName);
+    NameAttrib.SetValue( this->ProfileName );
 }
 
-void CatchProfile::SerializeLevelScores(XML::Document& ProfileDoc)
+void CatchProfile::SerializeLevelScores(XML::Node& ProfileRoot) const
 {
-    XML::Node LevelsNode = ProfileDoc.AppendChild("LevelScores");
-    for( LevelScoreMapIterator SecIt = LevelScores.begin() ; SecIt != LevelScores.end() ; ++SecIt )
+    XML::Node LevelsNode = ProfileRoot.AppendChild("LevelScores");
+    for( ConstLevelScoreMapIterator SecIt = this->LevelScores.begin() ; SecIt != this->LevelScores.end() ; ++SecIt )
     {
         XML::Node LevelElement = LevelsNode.AppendChild( (*SecIt).first );
         XML::Attribute LevelHighScore = LevelElement.AppendAttribute("HighestScore");
@@ -40,22 +41,22 @@ void CatchProfile::SerializeLevelScores(XML::Document& ProfileDoc)
     }
 }
 
-void CatchProfile::DeSerializeProfileName(XML::Document& ProfileDoc)
+void CatchProfile::DeSerializeProfileName(const XML::Node& ProfileRoot)
 {
-    XML::Node NameNode = ProfileDoc.GetChild("ProfileName");
+    XML::Node NameNode = ProfileRoot.GetChild("ProfileName");
     XML::Attribute NameAttrib = NameNode.GetAttribute("Name");
-    ProfileName = NameAttrib.AsString();
+    this->ProfileName = NameAttrib.AsString();
 }
 
-void CatchProfile::DeSerializeLevelScores(XML::Document& ProfileDoc)
+void CatchProfile::DeSerializeLevelScores(const XML::Node& ProfileRoot)
 {
-    XML::Node LevelsNode = ProfileDoc.GetChild("LevelScores");
+    XML::Node LevelsNode = ProfileRoot.GetChild("LevelScores");
     for( XML::NodeIterator NodeIt = LevelsNode.begin() ; NodeIt != LevelsNode.end() ; ++NodeIt )
     {
         std::pair<String,Whole> LevelPair;
         LevelPair.first = (*NodeIt).Name();
         LevelPair.second = (*NodeIt).GetAttribute("HighestScore").AsWhole();
-        LevelScores.insert(LevelPair);
+        this->LevelScores.insert(LevelPair);
     }
 }
 
@@ -67,8 +68,9 @@ void CatchProfile::Save(const String& ProfilesDir)
     XML::Attribute Version = DocDecl.AppendAttribute("version");
     Version.SetValue("1.0");
 
-    SerializeProfileName(ProfileDoc);
-    SerializeLevelScores(ProfileDoc);
+    XML::Node RootNode = ProfileDoc.AppendChild("ProfileRoot");
+    this->SerializeProfileName(RootNode);
+    this->SerializeLevelScores(RootNode);
 
     /// @todo Possibly in the future instead of constructing the datastream direct, call on the resource manager to create it(future plans)
     Resource::FileStream SaveStream(ProfileName+".xml",ProfilesDir+"/",(Resource::DataStream::SF_Truncate | Resource::DataStream::SF_Write));
@@ -77,28 +79,28 @@ void CatchProfile::Save(const String& ProfilesDir)
 
 ConstString& CatchProfile::GetName() const
 {
-    return ProfileName;
+    return this->ProfileName;
 }
 
 Whole CatchProfile::GetHighestScore(const String& LevelName) const
 {
-    ConstLevelScoreMapIterator it = LevelScores.find(LevelName);
-    if(it != LevelScores.end()) return (*it).second;
+    ConstLevelScoreMapIterator it = this->LevelScores.find(LevelName);
+    if( it != this->LevelScores.end() ) return (*it).second;
     else return 0;
 }
 
 void CatchProfile::SetNewHighScore(const String& LevelName, const Whole& NewHigh)
 {
-    LevelScores[LevelName] = NewHigh;
+    this->LevelScores[LevelName] = NewHigh;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // ProfileManager Methods
 
-ProfileManager::ProfileManager(const String& ProfilesDir)
-    : ProfilesDirectory(ProfilesDir)
+ProfileManager::ProfileManager(const String& ProfilesDir) :
+    ProfilesDirectory(ProfilesDir)
 {
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    /*ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     XML::Document ProfileDoc;
     std::set<String> ProfileSet = ResourceMan->GetDirContents("./Profiles");
     for( std::set<String>::iterator it = ProfileSet.begin() ; it != ProfileSet.end() ; it++ )
@@ -112,7 +114,7 @@ ProfileManager::ProfileManager(const String& ProfilesDir)
         Resource::FileStream LoadStream(FileName,ProfilesDir,Resource::DataStream::SF_Read);
         ProfileDoc.Load(LoadStream);
         LoadProfile(ProfileDoc);
-    }
+    }//*/
 }
 
 ProfileManager::~ProfileManager()
@@ -128,21 +130,7 @@ ProfileManager::~ProfileManager()
 void ProfileManager::PopulateLevelList(GameProfile* Profile)
 {
     /// @todo UI Update
-    /*ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-    UI::PagedCellGrid* Grid = GetLevelGrid();
-
-    Grid->DestroyAllCells();
-    UI::RenderableRect CellRect(Vector2(0.1,0.1),Vector2(0.33,0.11),true);
-    Vector2 CellSpacing(0.06,0.04);
-    Grid->SetFixedCellSize(CellRect.Size);
-    Grid->SetCellSpacing(CellSpacing);
-    UI::Screen* ParentScreen = Grid->GetParent();
-
-    std::set<String> Files(ResourceMan->GetDirContents("./Levels"));
-    if(Files.empty())
-        return;
-    std::set<String> Previews(ResourceMan->GetDirContents("./Previews"));
+    /*std::set<String> Previews(ResourceMan->GetDirContents("./Previews"));
     for( std::set<String>::iterator it = Files.begin() ; it != Files.end() ; it++ )
     {
         const String& FileName = (*it);

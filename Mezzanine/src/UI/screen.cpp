@@ -160,7 +160,7 @@ namespace Mezzanine
             void renderQueueStarted(Ogre::uint8, const Ogre::String&, bool&) {  }
             void renderQueueEnded(Ogre::uint8 queueGroupId, const Ogre::String& invocation, bool& repeatThisInvocation)
             {
-                if( this->RenderSys->_getViewport() != this->ParentScreen->GetViewport()->GetOgreViewport() || queueGroupId != Ogre::RENDER_QUEUE_OVERLAY )
+                if( this->RenderSys->_getViewport() != this->ParentScreen->GetViewport()->_GetOgreViewport() || queueGroupId != Ogre::RENDER_QUEUE_OVERLAY )
                     return;
                 if( this->ParentScreen->IsVisible() )
                     this->ParentScreen->_RenderScreen();
@@ -243,7 +243,7 @@ namespace Mezzanine
             /// this class' constructor never gets re-assigned.  This needs to be fixed.  Until then if a change does occur
             /// the UI will be rendered at a different time then it needs to be, potentially overwritten by the scene render.
             if( GameViewport ) {
-                Graphics::CameraProxy* Cam = this->GameViewport->GetViewportCamera();
+                Graphics::CameraProxy* Cam = this->GameViewport->GetCamera();
                 if( Cam ) {
                     Graphics::SceneManager* SceneMan = static_cast<Graphics::CameraManager*>( Cam->GetCreator() )->GetScene();
                     if( SceneMan ) return SceneMan;

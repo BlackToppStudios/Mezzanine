@@ -87,13 +87,13 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void CustomSubscriberSlot::_NotifyEvent(const EventArguments& Args)
+    void CustomSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
         { this->Subscriber->_NotifyEvent(Args); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // FunctorSubscriberSlot Methods
 
-    FunctorSubscriberSlot::FunctorSubscriberSlot(Event* Ev, EventSlotFunctorDefinition* Funct, Boole CleanUpAfter) :
+    FunctorSubscriberSlot::FunctorSubscriberSlot(Event* Ev, FunctorEventSubscriber* Funct, Boole CleanUpAfter) :
         EventSubscriberSlot(Ev),
         Functor(Funct),
         CleanUp(CleanUpAfter)
@@ -105,7 +105,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    EventSlotFunctorDefinition* FunctorSubscriberSlot::GetFunctor() const
+    FunctorEventSubscriber* FunctorSubscriberSlot::GetFunctor() const
         { return this->Functor; }
 
     EventSubscriberSlot::SlotType FunctorSubscriberSlot::GetType() const
@@ -114,7 +114,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void FunctorSubscriberSlot::_NotifyEvent(const EventArguments& Args)
+    void FunctorSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
         { this->Functor->operator()(Args); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -140,7 +140,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void CFunctionSubscriberSlot::_NotifyEvent(const EventArguments& Args)
+    void CFunctionSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
         { this->Function(Args); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -166,7 +166,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Internal Methods
 
-    void ScriptSubscriberSlot::_NotifyEvent(const EventArguments& Args)
+    void ScriptSubscriberSlot::_NotifyEvent(EventArgumentsPtr Args)
     {
         /// @todo This needs to be implemented.
     }

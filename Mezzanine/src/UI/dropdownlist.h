@@ -77,10 +77,6 @@ namespace Mezzanine
             /// @brief Convenience method for the construction of a DropDownList.
             /// @param Style An enum value representing how the scrollbar child of thie ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.
             virtual void ConstructDropDownList(const UI::ScrollbarStyle& Style);
-            /// @internal
-            /// @brief Configures the selection display of this DropDownList to match the new selection.
-            /// @param NewSelection A pointer to the item that was selected in the ListBox.
-            virtual void UpdateCurrentSelection(Widget* NewSelection);
         //public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
@@ -106,11 +102,18 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
-            /// @copydoc QuadRenderable::UpdateDimensions(const Rect&, const Rect&)
-            virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);
-
             /// @copydoc Widget::GetTypeName() const
             virtual const String& GetTypeName() const;
+
+            /// @copydoc QuadRenderable::UpdateDimensions(const Rect&, const Rect&)
+            virtual void UpdateDimensions(const Rect& OldSelfRect, const Rect& NewSelfRect);
+            /// @brief Configures the selection display of this DropDownList to match the new selection.
+            /// @param NewSelection A pointer to the item that was selected in the ListBox.
+            virtual void UpdateCurrentSelection(Widget* NewSelection);
+
+            /// @brief Gets the text being displayed by the current selection.
+            /// @return Returns a String containing the text being displayed by this lists SelectionDisplay.
+            virtual String GetSelectionText() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Visibility and Priority Methods
@@ -160,8 +163,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc EventSubscriber::_NotifyEvent(const EventArguments&)
-            virtual void _NotifyEvent(const EventArguments& Args);
+            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr)
+            virtual void _NotifyEvent(EventArgumentsPtr Args);
         };//DropDownList
 
         ///////////////////////////////////////////////////////////////////////////////

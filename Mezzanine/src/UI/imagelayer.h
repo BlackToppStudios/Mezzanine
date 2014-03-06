@@ -49,8 +49,6 @@ namespace Mezzanine
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class ImageLayer
-        /// @headerfile imagelayer.h
         /// @brief This layer is for placing images and basic colours in it's parents' quad space.
         /// @details
         ///////////////////////////////////////
@@ -58,72 +56,29 @@ namespace Mezzanine
         {
         protected:
             /// @internal
-            /// @brief An array of colours to be used for each corner section of this layer.
-            ColourValue FillColours[4];
-            /// @internal
             /// @brief An array of colours to be used for each corner section of the border being rendered with this layer.
             ColourValue BorderColours[4];
-            /// @internal
-            /// @brief A pointer to the sprite that will be rendered by this layer.
-            Sprite* LayerSprite;
             /// @internal
             /// @brief The width of the border to render around this layer in pixels.
             Real BorderWidth;
 
-            /// @copydoc SimpleRenderer::RedrawImpl(bool Force)
-            virtual void RedrawImpl(bool Force);
             /// @internal
             /// @brief Draws the border, if any is set.
-            void DrawBorder(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight,
-                            const Vector2& OuterTopLeft, const Vector2& OuterTopRight, const Vector2& OuterBottomLeft, const Vector2& OuterBottomRight);
+            /// @param InnerRect An array of 4 Vector2s storing the 4 points of the inner rect for the border.
+            /// @param OuterRect An array of 4 Vector2s storing the 4 points of the outer rect for the border.
+            void DrawBorder(const Vector2* InnerRect, const Vector2* OuterRect);
             /// @internal
             /// @brief Draws the main rectangle.
-            void DrawFill(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight);
+            /// @param FillRect An array of 4 Vector2s storing the 4 points of the rect to render.
+            /// @param FillSprite A pointer to the Sprite that will be rendered within the provided rect.
+            /// @param FillColours An array of 4 ColourValues storing the colour to render at each corner.
+            void DrawFill(const Vector2* FillRect, const Sprite* FillSprite, const ColourValue* FillColours);
         public:
             /// @brief Class constructor.
             /// @param ParentRenderable The renderable that created this layer.
             ImageLayer(QuadRenderable* ParentRenderable);
             /// @brief Class destructor.
             virtual ~ImageLayer();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            /// @copydoc RenderLayer::GetLayerType() const
-            virtual UI::RenderLayerType GetLayerType() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Fill Methods
-
-            /// @brief Sets the colour of the layer.
-            /// @param Colour A colour value representing the colour to be set.
-            virtual void SetColour(const ColourValue& Colour);
-            /// @brief Sets the colour for one corner the layer.
-            /// @param Corner Which corner the colour should be applied to.
-            /// @param Colour A colour value representing the colour to be set.
-            virtual void SetColour(const UI::QuadCorner Corner, const ColourValue& Colour);
-            /// @brief Sets the fill image(if provided in the atlas) of the layer.
-            /// @param PSprite A pointer to the sprite to set as the fill.
-            virtual void SetSprite(Sprite* PSprite);
-            /// @brief Sets the fill image(if provided in the atlas) of the layer.
-            /// @param SpriteName The name of the sprite to set as the fill.
-            virtual void SetSprite(const String& SpriteName);
-            /// @brief Sets the fill image(if provided in the atlas) of the layer.
-            /// @param SpriteName The name of the sprite to set as the fill.
-            /// @param Atlas The Atlas to load the sprite from.
-            virtual void SetSprite(const String& SpriteName, const String& Atlas);
-            /// @brief Sets a colour gradient to be applied to this layer.
-            /// @param Grad The direction/style of gradient to enable.
-            /// @param ColourA The colour to apply to the first side of the gradient.
-            /// @param ColourB The colour to apply to the second side of the gradient.
-            virtual void SetGradient(const UI::Gradient Grad, const ColourValue& ColourA, const ColourValue& ColourB);
-            /// @brief Gets the colour of a corner of this layer.
-            /// @param Corner The corner to get the colour for.
-            /// @return Returns the colour of the specified corner.
-            virtual const ColourValue& GetColour(const UI::QuadCorner Corner) const;
-            /// @brief Gets whether or not this layer is entirely transparent.
-            /// @return Returns true if all quad corners of this layer have their value set to zero, false otherwise.
-            virtual bool IsCompletelyTransparent() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Border Methods

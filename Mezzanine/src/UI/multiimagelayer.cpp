@@ -37,31 +37,38 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventsubscriber_h
-#define _eventsubscriber_h
 
-#include "eventarguments.h"
+#ifndef _uimultiimagelayer_cpp
+#define _uimultiimagelayer_cpp
+
+#include "UI/multiimagelayer.h"
+#include "UI/quadrenderable.h"
+#include "UI/screen.h"
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is a base class for all classes that subscribe to events.
-    /// @details
-    ///////////////////////////////////////
-    class MEZZ_LIB EventSubscriber
+    namespace UI
     {
-    protected:
-    //public:
-        /// @brief Class constructor.
-        EventSubscriber();
-        /// @brief Class destructor.
-        virtual ~EventSubscriber();
-    public:
-        /// @internal
-        /// @brief Notifies this subscriber of an event being fired.
-        /// @param Args The arguments containing specific information regarding this event.
-        virtual void _NotifyEvent(EventArgumentsPtr Args) = 0;
-    };//EventSubscriber
+        MultiImageLayer::MultiImageLayer(QuadRenderable* ParentRenderable) :
+            ImageLayer(ParentRenderable)
+        {
+
+        }
+
+        MultiImageLayer::~MultiImageLayer()
+            {  }
+
+        void MultiImageLayer::RedrawImpl(Boole Force)
+        {
+
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        UI::RenderLayerType MultiImageLayer::GetLayerType() const
+            { return UI::RLT_MultiImage; }
+    }//UI
 }//Mezzanine
 
 #endif

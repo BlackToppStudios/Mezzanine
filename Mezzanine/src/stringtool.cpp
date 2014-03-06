@@ -186,8 +186,7 @@ namespace Mezzanine
 
         String End = Str.substr(StrLen - PatternLen,PatternLen);
 
-        if(CaseSensitive)
-        {
+        if( !CaseSensitive ) {
             String LowerPattern = Pattern;
             ToLowerCase(End);
             ToLowerCase(LowerPattern);
@@ -338,6 +337,14 @@ namespace Mezzanine
     {
         StringStream converter(ToConvert);
         Integer Result;
+        converter >> Result;
+        return Result;
+    }
+
+    Whole StringTools::ConvertToWhole(const String& ToConvert)
+    {
+        StringStream converter(ToConvert);
+        Whole Result;
         converter >> Result;
         return Result;
     }

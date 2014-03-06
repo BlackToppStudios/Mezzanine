@@ -148,8 +148,16 @@ namespace Mezzanine
         {
             this->Deinitialize();
             this->DestroyAllScreens();
+            this->DestroyAllMarkupParsers();
+
+            delete this->AtlasHandler;
+            this->AtlasHandler = NULL;
+
+            delete this->HKHandler;
+            this->HKHandler = NULL;
 
             delete this->WidgetUpdateWork;
+            this->WidgetUpdateWork = NULL;
         }
 
         void UIManager::HandlePreFocusInput(const Input::MetaCode& Code)
@@ -276,19 +284,38 @@ namespace Mezzanine
             return this->AtlasHandler->GetAtlas(AtlasName);
         }
 
+        void UIManager::DestroyAtlas(TextureAtlas* ToBeDestroyed)
+        {
+            this->AtlasHandler->DestroyAtlas(ToBeDestroyed);
+        }
+
+        void UIManager::DestroyAllAtlases()
+        {
+            this->AtlasHandler->DestroyAllAtlases();
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Screen Management
 
-        Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Graphics::Viewport* WindowViewport)
+        Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Graphics::Viewport* WindowViewport, const UInt16 ZOrder)
         {
             Screen* MezzScreen = new Screen(ScreenName,Atlas,WindowViewport,this);
+            MezzScreen->_SetZOrder(ZOrder);
+
+            for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
+            {
+                if( (*ScreenIt)->GetZOrder() > ZOrder ) {
+                    this->Screens.insert(ScreenIt,MezzScreen);
+                    return MezzScreen;
+                }
+            }
             this->Screens.push_back(MezzScreen);
             return MezzScreen;
         }
 
-        Screen* UIManager::GetScreen(const String& Name)
+        Screen* UIManager::GetScreen(const String& Name) const
         {
-            for( ScreenIterator it = this->Screens.begin() ; it != this->Screens.end() ; it++ )
+            for( ConstScreenIterator it = this->Screens.begin() ; it != this->Screens.end() ; it++ )
             {
                 if ( Name == (*it)->GetName() ) {
                     Screen* MezzScreen = (*it);
@@ -298,12 +325,12 @@ namespace Mezzanine
             return 0;
         }
 
-        Screen* UIManager::GetScreen(const Whole& Index)
+        Screen* UIManager::GetScreen(const Whole& Index) const
         {
             return this->Screens[Index];
         }
 
-        Whole UIManager::GetNumScreens()
+        Whole UIManager::GetNumScreens() const
         {
             return this->Screens.size();
         }
@@ -329,21 +356,23 @@ namespace Mezzanine
             this->Screens.clear();
         }
 
-        void UIManager::ShowScreensOnViewport(Graphics::Viewport* WindowViewport)
+        void UIManager::ShowScreensOnViewport(Graphics::Viewport* WindowViewport, Screen* Exclude)
         {
             for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
             {
-                if( (*ScreenIt)->GetViewport() == WindowViewport ) {
+                if( (*ScreenIt)->GetViewport() == WindowViewport && (*ScreenIt) != Exclude ) {
                     (*ScreenIt)->Show();
                 }
             }
         }
 
-        void UIManager::ShowAllScreens()
+        void UIManager::ShowAllScreens(Screen* Exclude)
         {
             for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
             {
-                (*ScreenIt)->Show();
+                if( (*ScreenIt) != Exclude ) {
+                    (*ScreenIt)->Show();
+                }
             }
         }
 
@@ -351,23 +380,36 @@ namespace Mezzanine
         {
             for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
             {
-                if( (*ScreenIt)->GetViewport() == WindowViewport ) {
+                if( (*ScreenIt)->GetViewport() == WindowViewport && (*ScreenIt) != Exclude ) {
                     (*ScreenIt)->Hide();
                 }
             }
         }
 
-        void UIManager::HideAllScreens()
+        void UIManager::HideAllScreens(Screen* Exclude)
         {
             for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
             {
-                (*ScreenIt)->Hide();
+                if( (*ScreenIt) != Exclude ) {
+                    (*ScreenIt)->Hide();
+                }
             }
         }
 
-        Screen* UIManager::GetVisibleScreenOnViewport(Graphics::Viewport* WindowViewport)
+        Screen* UIManager::GetLowestVisibleScreenOnViewport(Graphics::Viewport* WindowViewport) const
         {
-            for( ScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
+            for( ConstScreenIterator ScreenIt = this->Screens.begin() ; ScreenIt != this->Screens.end() ; ++ScreenIt )
+            {
+                if( (*ScreenIt)->GetViewport() == WindowViewport && (*ScreenIt)->IsVisible() ) {
+                    return (*ScreenIt);
+                }
+            }
+            return NULL;
+        }
+
+        Screen* UIManager::GetHighestVisibleScreenOnViewport(Graphics::Viewport* WindowViewport) const
+        {
+            for( ConstReverseScreenIterator ScreenIt = this->Screens.rbegin() ; ScreenIt != this->Screens.rend() ; ++ScreenIt )
             {
                 if( (*ScreenIt)->GetViewport() == WindowViewport && (*ScreenIt)->IsVisible() ) {
                     return (*ScreenIt);
@@ -482,10 +524,10 @@ namespace Mezzanine
 
         void UIManager::DestroyAllMarkupParsers()
         {
+            // Since we inserted the default parser into this container under two names, we need to remove one to prevent a double delete.
+            this->UnregisterMarkupParser("");
             for( MarkupParserIterator MarkupIt = this->MarkupParsers.begin() ; MarkupIt != this->MarkupParsers.end() ; ++MarkupIt )
-            {
-                delete (*MarkupIt).second;
-            }
+                { delete (*MarkupIt).second; }
             this->MarkupParsers.clear();
         }
 
@@ -522,10 +564,12 @@ namespace Mezzanine
 
         Widget* UIManager::CheckWidgetUnderPoint(Graphics::Viewport* VP, const Vector2& Point)
         {
-            Screen* VisScreen = this->GetVisibleScreenOnViewport(VP);
-            if( VisScreen != NULL ) {
-                Widget* Wid = VisScreen->FindHoveredWidget(Point);
-                return Wid;
+            for( ReverseScreenIterator ScreenIt = this->Screens.rbegin() ; ScreenIt != this->Screens.rend() ; ++ScreenIt )
+            {
+                Widget* Result = (*ScreenIt)->FindHoveredWidget(Point);
+                if( Result != NULL ) {
+                    return Result;
+                }
             }
             return NULL;
         }

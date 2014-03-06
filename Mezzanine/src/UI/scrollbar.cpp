@@ -42,8 +42,10 @@
 
 #include "UI/scrollbar.h"
 #include "UI/button.h"
+#include "UI/pagedcontainer.h"
 #include "UI/screen.h"
 #include "UI/uimanager.h"
+
 #include "Input/metacode.h"
 
 #include <algorithm>
@@ -235,28 +237,32 @@ namespace Mezzanine
 
         void Scrollbar::_OnScrollValueChanged(const Real OldValue, const Real NewValue)
         {
-            ScrollbarValueChangedArguments Args(Scrollbar::EventScrollValueChanged,this->Name,OldValue,NewValue);
+            if( this->Container != NULL ) {
+                this->Container->UpdateVisibleChildren();
+            }
+
+            ScrollbarValueChangedArgumentsPtr Args( new ScrollbarValueChangedArguments(Scrollbar::EventScrollValueChanged,this->Name,OldValue,NewValue) );
             this->FireEvent(Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
 
-        void Scrollbar::_NotifyEvent(const EventArguments& Args)
+        void Scrollbar::_NotifyEvent(EventArgumentsPtr Args)
         {
-            const WidgetEventArguments& WidArgs = static_cast<const WidgetEventArguments&>(Args);
-            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs.WidgetName);
+            WidgetEventArgumentsPtr WidArgs = CountedPtrCast<WidgetEventArguments>(Args);
+            Widget* EventWidget = this->ParentScreen->GetWidget(WidArgs->WidgetName);
             if( EventWidget == NULL )
                 return;
 
             if( EventWidget == this->Scroller )
             {
-                if( WidArgs.EventName == Button::EventActivated && ChildLock == NULL )
+                if( WidArgs->EventName == Button::EventActivated && ChildLock == NULL )
                 {
                     // Obtain the lock
                     this->ChildLock = this->Scroller;
                 }
-                else if( WidArgs.EventName == Button::EventDeactivated )
+                else if( WidArgs->EventName == Button::EventDeactivated )
                 {
                     // Release the lock
                     this->ChildLock = NULL;
@@ -264,13 +270,13 @@ namespace Mezzanine
             }
             else if( EventWidget == this->ScrollBack )
             {
-                if( WidArgs.EventName == Button::EventActivated && ChildLock == NULL )
+                if( WidArgs->EventName == Button::EventActivated && ChildLock == NULL )
                 {
                     // Obtain the lock
                     this->ChildLock = this->ScrollBack;
                     this->_ScrollBackScroll(ParentScreen->GetMouseHitPosition());
                 }
-                else if( WidArgs.EventName == Button::EventDeactivated )
+                else if( WidArgs->EventName == Button::EventDeactivated )
                 {
                     // Release the lock
                     this->ChildLock = NULL;
@@ -278,13 +284,13 @@ namespace Mezzanine
             }
             else if( EventWidget == this->UpLeftButton )
             {
-                if( WidArgs.EventName == Button::EventActivated && ChildLock == NULL )
+                if( WidArgs->EventName == Button::EventActivated && ChildLock == NULL )
                 {
                     // Obtain the lock
                     this->ChildLock = this->UpLeftButton;
                     this->_ButtonScroll(this->UpLeftButton);
                 }
-                else if( WidArgs.EventName == Button::EventDeactivated )
+                else if( WidArgs->EventName == Button::EventDeactivated )
                 {
                     // Release the lock
                     this->ChildLock = NULL;
@@ -292,13 +298,13 @@ namespace Mezzanine
             }
             else if( EventWidget == this->DownRightButton )
             {
-                if( WidArgs.EventName == Button::EventActivated && ChildLock == NULL )
+                if( WidArgs->EventName == Button::EventActivated && ChildLock == NULL )
                 {
                     // Obtain the lock
                     this->ChildLock = this->DownRightButton;
                     this->_ButtonScroll(this->DownRightButton);
                 }
-                else if( WidArgs.EventName == Button::EventDeactivated )
+                else if( WidArgs->EventName == Button::EventDeactivated )
                 {
                     // Release the lock
                     this->ChildLock = NULL;

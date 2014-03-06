@@ -340,7 +340,7 @@ namespace Mezzanine
 
         void EditBox::_OnTextUpdated()
         {
-            WidgetEventArguments Args(EditBox::EventTextUpdated,this->Name);
+            WidgetEventArgumentsPtr Args( new WidgetEventArguments(EditBox::EventTextUpdated,this->Name) );
             this->FireEvent(Args);
         }
 

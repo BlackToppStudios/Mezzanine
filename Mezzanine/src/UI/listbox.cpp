@@ -74,24 +74,32 @@ namespace Mezzanine
         ListBox::ListBox(Screen* Parent) :
             Widget(Parent),
             ListItemFont(NULL),
+            ListItemCharScaling(0.0),
+            ListItemCharScalingMode(TextLayer::SM_NoAutoScaling),
             Ordering(ListBox::LIO_BottomInsert)
             {  }
 
         ListBox::ListBox(const String& RendName, const UI::ScrollbarStyle& Style, Screen* Parent) :
             Widget(RendName,Parent),
             ListItemFont(NULL),
+            ListItemCharScaling(0.0),
+            ListItemCharScalingMode(TextLayer::SM_NoAutoScaling),
             Ordering(ListBox::LIO_BottomInsert)
             { this->ConstructListBox(Style); }
 
         ListBox::ListBox(const String& RendName, const UnifiedRect& RendRect, const UI::ScrollbarStyle& Style, Screen* Parent) :
             Widget(RendName,RendRect,Parent),
             ListItemFont(NULL),
+            ListItemCharScaling(0.0),
+            ListItemCharScalingMode(TextLayer::SM_NoAutoScaling),
             Ordering(ListBox::LIO_BottomInsert)
             { this->ConstructListBox(Style); }
 
         ListBox::ListBox(const XML::Node& XMLNode, Screen* Parent) :
             Widget(Parent),
             ListItemFont(NULL),
+            ListItemCharScaling(0.0),
+            ListItemCharScalingMode(TextLayer::SM_NoAutoScaling),
             Ordering(ListBox::LIO_BottomInsert)
             { this->ProtoDeSerialize(XMLNode); }
 
@@ -203,6 +211,18 @@ namespace Mezzanine
         FontData* ListBox::GetListItemFont() const
             { return this->ListItemFont; }
 
+        void ListBox::SetListItemTextScale(const TextLayer::ScalingMode Mode, const Real Scalar)
+        {
+            this->ListItemCharScalingMode = Mode;
+            this->ListItemCharScaling = Scalar;
+        }
+
+        TextLayer::ScalingMode ListBox::GetListItemTextScalingMode() const
+            { return this->ListItemCharScalingMode; }
+
+        Real ListBox::GetListItemTextScalar() const
+            { return this->ListItemCharScaling; }
+
         void ListBox::SetListItemOrdering(ListBox::ListItemOrdering Order)
             { this->Ordering = Order; }
 
@@ -220,8 +240,10 @@ namespace Mezzanine
             ListItem* NewItem = this->CreateListItem(ItemName);
             SingleLineTextLayer* ItemLayer = NewItem->CreateSingleLineTextLayer();
             ItemLayer->SetDefaultFont( this->ListItemFont );
+            ItemLayer->SetAutoTextScale( this->ListItemCharScalingMode, this->ListItemCharScaling );
             ItemLayer->SetText( Text );
-            ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
+            ItemLayer->SetTextLineHorizontalAlignment(UI::LA_Center);
+            ItemLayer->SetTextLineVerticalAlignment(UI::LA_Center);
 
             NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
             NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
@@ -236,8 +258,10 @@ namespace Mezzanine
             ListItem* NewItem = this->CreateListItem(ItemName);
             MultiLineTextLayer* ItemLayer = NewItem->CreateMultiLineTextLayer();
             ItemLayer->SetDefaultFont( this->ListItemFont );
+            ItemLayer->SetAutoTextScale( this->ListItemCharScalingMode, this->ListItemCharScaling );
             ItemLayer->SetText( Text );
-            ItemLayer->SetTextlineVerticalAlignment(UI::LA_Center);
+            ItemLayer->SetTextLineHorizontalAlignment(UI::LA_Center);
+            ItemLayer->SetTextLineVerticalAlignment(UI::LA_Center);
 
             NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
             NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
@@ -276,6 +300,8 @@ namespace Mezzanine
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
                 PropertiesNode.AppendAttribute("ListItemFont").SetValue( this->ListItemFont->GetName() ) &&
+                PropertiesNode.AppendAttribute("ListItemCharScalingMode").SetValue( this->GetListItemTextScalingMode() ) &&
+                PropertiesNode.AppendAttribute("ListItemCharScaling").SetValue( this->GetListItemTextScalar() ) &&
                 PropertiesNode.AppendAttribute("Ordering").SetValue( this->GetListItemOrdering() ) )
             {
                 return;
@@ -301,6 +327,14 @@ namespace Mezzanine
                     CurrAttrib = PropertiesNode.GetAttribute("ListItemFont");
                     if( !CurrAttrib.Empty() )
                         this->SetListItemFont( CurrAttrib.AsString() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("ListItemCharScalingMode");
+                    if( !CurrAttrib.Empty() )
+                        this->ListItemCharScalingMode = static_cast<TextLayer::ScalingMode>( CurrAttrib.AsUint() );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("ListItemCharScaling");
+                    if( !CurrAttrib.Empty() )
+                        this->ListItemCharScaling = CurrAttrib.AsReal();
 
                     CurrAttrib = PropertiesNode.GetAttribute("Ordering");
                     if( !CurrAttrib.Empty() )

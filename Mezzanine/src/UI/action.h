@@ -49,26 +49,62 @@ namespace Mezzanine
     {
         class ActionHandler;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class ActionEventArguments
-        /// @headerfile action.h
         /// @brief This is the base class for action specific event arguments.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB ActionEventArguments : public EventArguments
         {
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Public Data Members
+
             /// @brief The identification of the source firing this event.
             const String ActionName;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction and Destruction
 
             /// @brief Class constructor.
             /// @param Name The name of the event being fired.
             /// @param Source The identification of the action firing this event.
-            ActionEventArguments(const String& Name, const String& Source)
-                : EventArguments(Name), ActionName(Source) {  }
+            ActionEventArguments(const String& Name, const String& Source) :
+                EventArguments(Name), ActionName(Source) {  }
             /// @brief Class destructor.
             virtual ~ActionEventArguments() {  }
-        };//ActionEventArguments
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // CountedPtr Functionality
+
+            /// @copydoc EventArguments::GetMostDerived()
+            virtual ActionEventArguments* GetMostDerived()
+                { return this; }
+        };//ActionEventArguments
+    }//UI
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a metaprogramming traits class used by ActionEventArguments.
+        /// @details This is need for an intrusive CountedPtr implementation.  Should a working external reference count be made this
+        /// could be dropped in favor of a leaner implementation.
+        ///////////////////////////////////////
+        template <>
+        class ReferenceCountTraits<UI::ActionEventArguments>
+        {
+        public:
+            /// @brief Typedef communicating the reference count type to be used.
+            typedef UI::ActionEventArguments RefCountType;
+
+            /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
+            /// @param Target A pointer to the target class that is to be reference counted.
+            /// @return Returns a pointer to a new reference counter for the templated type.
+            static RefCountType* ConstructionPointer(RefCountType* Target)
+                { return Target; }
+
+            /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
+            enum { IsCastable = CastStatic };
+        };//ReferenceCountTraits<ActionEventArguments>
+
+    namespace UI
+    {
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Action
         /// @headerfile action.h
