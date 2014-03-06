@@ -524,10 +524,10 @@ namespace Mezzanine
 
         void UIManager::DestroyAllMarkupParsers()
         {
+            // Since we inserted the default parser into this container under two names, we need to remove one to prevent a double delete.
+            this->UnregisterMarkupParser("");
             for( MarkupParserIterator MarkupIt = this->MarkupParsers.begin() ; MarkupIt != this->MarkupParsers.end() ; ++MarkupIt )
-            {
-                delete (*MarkupIt).second;
-            }
+                { delete (*MarkupIt).second; }
             this->MarkupParsers.clear();
         }
 
