@@ -148,8 +148,16 @@ namespace Mezzanine
         {
             this->Deinitialize();
             this->DestroyAllScreens();
+            this->DestroyAllMarkupParsers();
+
+            delete this->AtlasHandler;
+            this->AtlasHandler = NULL;
+
+            delete this->HKHandler;
+            this->HKHandler = NULL;
 
             delete this->WidgetUpdateWork;
+            this->WidgetUpdateWork = NULL;
         }
 
         void UIManager::HandlePreFocusInput(const Input::MetaCode& Code)
@@ -274,6 +282,16 @@ namespace Mezzanine
         TextureAtlas* UIManager::GetAtlas(const String& AtlasName)
         {
             return this->AtlasHandler->GetAtlas(AtlasName);
+        }
+
+        void UIManager::DestroyAtlas(TextureAtlas* ToBeDestroyed)
+        {
+            this->AtlasHandler->DestroyAtlas(ToBeDestroyed);
+        }
+
+        void UIManager::DestroyAllAtlases()
+        {
+            this->AtlasHandler->DestroyAllAtlases();
         }
 
         ///////////////////////////////////////////////////////////////////////////////

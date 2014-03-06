@@ -237,10 +237,16 @@ namespace Mezzanine
             /// @param Name The name of the file to be loaded.
             /// @param Group The resource group where the MTA file can be found.
             void LoadMTA(const String& Name, const String& Group = "UI");
+
             /// @brief Gets a loaded Atlas being stored in this manager.
             /// @param AtlasName The name of the Atlas, which is usually the name of the file without the extension.
             /// @return Returns a pointer to the requested Atlas, or NULL if it doesn't exist.
             TextureAtlas* GetAtlas(const String& AtlasName);
+            /// @brief Destroys a loaded texture atlas.
+            /// @param ToBeDestroyed A pointer to the texture atlas that will be destroyed.
+            void DestroyAtlas(TextureAtlas* ToBeDestroyed);
+            /// @brief Destroys all loaded texture atlases.
+            void DestroyAllAtlases();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Screen Management

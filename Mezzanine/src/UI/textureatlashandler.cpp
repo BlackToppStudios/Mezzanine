@@ -55,7 +55,7 @@ namespace Mezzanine
             {  }
 
         TextureAtlasHandler::~TextureAtlasHandler()
-            {  }
+            { this->DestroyAllAtlases(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Texture Atlas Management
@@ -91,9 +91,28 @@ namespace Mezzanine
 
         UI::TextureAtlas* TextureAtlasHandler::GetAtlas(const String& AtlasName)
         {
-            AtlasIterator It = this->Atlases.find(AtlasName);
-            if(It != this->Atlases.end()) return (*It).second;
-            else { MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Unabled to find Texture Atlas named \"" + AtlasName + "\".") };
+            AtlasIterator AtlasIt = this->Atlases.find(AtlasName);
+            if( AtlasIt != this->Atlases.end() ) {
+                return (*AtlasIt).second;
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Unabled to find Texture Atlas named \"" + AtlasName + "\".");
+            }
+        }
+
+        void TextureAtlasHandler::DestroyAtlas(TextureAtlas* ToBeDestroyed)
+        {
+            AtlasIterator AtlasIt = this->Atlases.find( ToBeDestroyed->GetName() );
+            if( AtlasIt != this->Atlases.end() ) {
+                delete (*AtlasIt).second;
+                this->Atlases.erase(AtlasIt);
+            }
+        }
+
+        void TextureAtlasHandler::DestroyAllAtlases()
+        {
+            for( AtlasIterator AtlasIt = this->Atlases.begin() ; AtlasIt != this->Atlases.end() ; ++AtlasIt )
+                { delete (*AtlasIt).second; }
+            this->Atlases.clear();
         }
     }//UI
 }//Mezzanine
