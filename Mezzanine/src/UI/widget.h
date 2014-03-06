@@ -134,7 +134,17 @@ namespace Mezzanine
                 WS_Untouched = 0,
                 WS_Hovered   = 1,
                 WS_Focused   = 2,
-                WS_Dragged   = 4
+                WS_Dragged   = 4,
+
+                WS_Mezzanine_Reserved_1 = 8,
+                WS_Mezzanine_Reserved_2 = 16,
+                WS_Mezzanine_Reserved_3 = 32,
+                WS_Mezzanine_Reserved_4 = 64,
+
+                WS_User_State_1 = 128,
+                WS_User_State_2 = 256,
+                WS_User_State_3 = 512,
+                WS_User_State_4 = 1024
             };
 
             /// @brief Container class for storing @ref RenderLayerGroup instances in relation to widget states.
@@ -214,7 +224,7 @@ namespace Mezzanine
             // Utility Methods
 
             /// @copydoc Renderable::GetRenderableType() const
-            RenderableType GetRenderableType() const;
+            virtual RenderableType GetRenderableType() const;
             /// @brief Gets the type of widget this is.
             /// @return Returns a const String reference representing the type of widget this is.
             virtual const String& GetTypeName() const;
@@ -227,6 +237,15 @@ namespace Mezzanine
             /// @brief Gets whether or not the system mouse is being dragged over this widget.
             /// @return Returns true if the mouse is dragging over this widget, false otherwise.
             virtual Boole IsDragged() const;
+
+            /// @brief Forces a new state of this Widget.
+            /// @warning Removing any core state flag (Hovered, Dragged, Focused, etc.) can result in some code breaking,
+            /// and won't have their associated events fire.  This should primarily be used to add or remove user flags.
+            /// @param NewState The new state to be applied.
+            virtual void ForceState(const UInt32 NewState);
+            /// @brief Gets the current state of this Widget.
+            /// @return Returns a bitfield describing the current state of this Widget.
+            virtual UInt32 GetState() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // State-LayerGroup Binding Methods

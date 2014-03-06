@@ -159,6 +159,19 @@ namespace Mezzanine
         Boole Widget::IsDragged() const
             { return (this->State & WS_Dragged); }
 
+        void Widget::ForceState(const UInt32 NewState)
+        {
+            if( this->State != NewState ) {
+                this->State = NewState;
+                this->SetGroupFromState(this->State);
+            }
+        }
+
+        UInt32 Widget::GetState() const
+        {
+            return this->State;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // State-LayerGroup Binding Methods
 
