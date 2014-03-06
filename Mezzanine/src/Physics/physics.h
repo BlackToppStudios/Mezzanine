@@ -40,6 +40,9 @@
 #ifndef _physics_h
 #define _physics_h
 
+/// @file
+/// @brief The file to include to get access to all the physics stuff
+
 namespace Mezzanine
 {
     /// @namespace Mezzanine::Physics
@@ -51,6 +54,18 @@ namespace Mezzanine
     }
 }
 
+#include "swig.h"
+#ifdef SWIG_PHYSICS
+    #ifdef SWIG_UNSAFE
+        %module MezzaninePhysics
+    #else
+        #define SWIG_SAFE
+        %module MezzaninePhysicsSafe
+    #endif
+    #define SWIG_MODULE_SET
+#endif
+
+#ifndef SWIG
 #include "Physics/physicsenumerations.h"
 #include "Physics/physicsmanager.h"
 #include "Physics/collisionshapemanager.h"
@@ -90,5 +105,7 @@ namespace Mezzanine
 #include "Physics/spherecollisionshape.h"
 #include "Physics/staticmeshcollisionshape.h"
 #include "Physics/universalconstraint.h"
+#endif //SWIG
+
 
 #endif

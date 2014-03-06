@@ -147,7 +147,7 @@ class lua51tests : public UnitTestGroup
                 TEST(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName(), "Engine::ImplementationName");
                 TestOutput << "Checking lib enum values:" << endl;
                 TestOutput << "Default Expected: " << (541+2048+8192) << "\tActual:" << Scripting::Lua::Lua51ScriptingEngine::DefaultLibs << endl;
-                TEST(541+2048+8192==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
+                TEST(541+2048+8192+32768==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
                 int TargetLib=0;
                 for(int lib = Scripting::Lua::Lua51ScriptingEngine::FirstLib;
                     lib <= Scripting::Lua::Lua51ScriptingEngine::LastLib;
@@ -162,9 +162,9 @@ class lua51tests : public UnitTestGroup
                 String Valid4("_is_valid");
                 String Invalid1("");
                 String Invalid2("1_is_not_valid");
-                String Invalid3("_is_n%t_valid");
+                String Invalid3("is_n%t_valid");
                 String Invalid4("_is_not_valid$");
-                String Invalid5("(_is_not_valid");
+                String Invalid5("is.not_valid");
                 TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Valid1)==true, "Engine::ValidIdentifier1");
                 TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Valid2)==true, "Engine::ValidIdentifier2");
                 TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Valid3)==true, "Engine::ValidIdentifier3");

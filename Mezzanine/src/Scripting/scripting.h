@@ -69,7 +69,7 @@ namespace Mezzanine
 /// @page ScriptingManual
 /// The scripting system is included the Mezzanine::Scripting namespace. It is primarily
 /// composed of four interface classes, four abstract classes. An implementation of a
-/// scripting system should implement these four classes in a sub-namespacef
+/// scripting system should implement these four classes in a sub-namespace:
 ///     - Mezzanine::Scripting::iScript
 ///     - Mezzanine::Scripting::iScriptArgument
 ///     - Mezzanine::Scripting::iScriptingManager
