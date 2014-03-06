@@ -50,13 +50,8 @@ namespace Mezzanine
     {
         ImageLayer::ImageLayer(QuadRenderable* ParentRenderable) :
             RenderLayer(ParentRenderable),
-            LayerSprite(NULL),
             BorderWidth(0)
         {
-            this->FillColours[0] = ColourValue::White();
-            this->FillColours[1] = ColourValue::White();
-            this->FillColours[2] = ColourValue::White();
-            this->FillColours[3] = ColourValue::White();
             this->BorderColours[0] = ColourValue::Black();
             this->BorderColours[1] = ColourValue::Black();
             this->BorderColours[2] = ColourValue::Black();
@@ -66,221 +61,53 @@ namespace Mezzanine
         ImageLayer::~ImageLayer()
             {  }
 
-        void ImageLayer::RedrawImpl(bool Force)
-        {
-            // Get the Texel Offsets
-            Real TexelOffsetX = this->Parent->GetScreen()->GetTexelOffsetX();
-            Real TexelOffsetY = this->Parent->GetScreen()->GetTexelOffsetY();
-
-            // Get the parent rect and apply the scaling
-            Rect ActDims = this->GetAreaRect();
-
-            // Apply the texel offsets
-            Vector2 TopLeft, TopRight, BottomLeft, BottomRight;
-            TopLeft.X = ActDims.Position.X + TexelOffsetX;                        TopLeft.Y = ActDims.Position.Y + TexelOffsetY;
-            TopRight.X = (ActDims.Position.X + ActDims.Size.X) + TexelOffsetX;    TopRight.Y = ActDims.Position.Y + TexelOffsetY;
-            BottomLeft.X = ActDims.Position.X + TexelOffsetX;                     BottomLeft.Y = (ActDims.Position.Y + ActDims.Size.Y) + TexelOffsetY;
-            BottomRight.X = (ActDims.Position.X + ActDims.Size.X) + TexelOffsetX; BottomRight.Y = (ActDims.Position.Y + ActDims.Size.Y) + TexelOffsetY;
-
-            // Border and rotation
-            if(0.0 != this->BorderWidth)
-            {
-                Vector2 OuterTopLeft = TopLeft, OuterTopRight = TopRight, OuterBottomLeft = BottomLeft, OuterBottomRight = BottomRight;
-                OuterTopLeft.X -= BorderWidth;     OuterTopLeft.Y -= BorderWidth;
-                OuterTopRight.X += BorderWidth;    OuterTopRight.Y -= BorderWidth;
-                OuterBottomLeft.X -= BorderWidth;  OuterBottomLeft.Y += BorderWidth;
-                OuterBottomRight.X += BorderWidth; OuterBottomRight.Y += BorderWidth;
-
-                this->RotationTransform(TopLeft,TopRight,BottomLeft,BottomRight);
-                this->RotationTransform(OuterTopLeft,OuterTopRight,OuterBottomLeft,OuterBottomRight);
-                this->DrawBorder(TopLeft,TopRight,BottomLeft,BottomRight,
-                                 OuterTopLeft,OuterTopRight,OuterBottomLeft,OuterBottomRight);
-            }else{
-                this->RotationTransform(TopLeft,TopRight,BottomLeft,BottomRight);
-            }
-            // Fill
-            this->DrawFill(TopLeft,TopRight,BottomLeft,BottomRight);
-        }
-
-        void ImageLayer::DrawBorder(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight,
-                                    const Vector2& OuterTopLeft, const Vector2& OuterTopRight, const Vector2& OuterBottomLeft, const Vector2& OuterBottomRight)
+        void ImageLayer::DrawBorder(const Vector2* InnerRect, const Vector2* OuterRect)
         {
             Vector2 WP = this->Parent->GetScreen()->GetWhitePixel(PriAtlas);
 
             // North
-            if( 0 != this->BorderColours[UI::Border_North].AlphaChannel )
-            {
-                this->PushTriangle(TopLeft, OuterTopRight, OuterTopLeft, WP, this->BorderColours[UI::Border_North], this->PriAtlas);
-                this->PushTriangle(TopLeft, TopRight, OuterTopRight, WP, this->BorderColours[UI::Border_North], this->PriAtlas);
+            if( 0 != this->BorderColours[UI::Border_North].AlphaChannel ) {
+                this->PushTriangle( InnerRect[UI::QC_TopLeft], OuterRect[UI::QC_TopRight], OuterRect[UI::QC_TopLeft], WP, this->BorderColours[UI::Border_North], this->PriAtlas );
+                this->PushTriangle( InnerRect[UI::QC_TopLeft], InnerRect[UI::QC_TopRight], OuterRect[UI::QC_TopRight], WP, this->BorderColours[UI::Border_North], this->PriAtlas );
             }
-
             // East
-            if( 0 != this->BorderColours[UI::Border_East].AlphaChannel )
-            {
-                this->PushTriangle(BottomRight, OuterTopRight, TopRight, WP, this->BorderColours[UI::Border_East], this->PriAtlas);
-                this->PushTriangle(BottomRight, OuterBottomRight, OuterTopRight, WP, this->BorderColours[UI::Border_East], this->PriAtlas);
+            if( 0 != this->BorderColours[UI::Border_East].AlphaChannel ) {
+                this->PushTriangle( InnerRect[UI::QC_BottomRight], OuterRect[UI::QC_TopRight], InnerRect[UI::QC_TopRight], WP, this->BorderColours[UI::Border_East], this->PriAtlas );
+                this->PushTriangle( InnerRect[UI::QC_BottomRight], OuterRect[UI::QC_BottomRight], OuterRect[UI::QC_TopRight], WP, this->BorderColours[UI::Border_East], this->PriAtlas );
             }
-
             // South
-            if( 0 != this->BorderColours[UI::Border_South].AlphaChannel )
-            {
-                this->PushTriangle(OuterBottomLeft, BottomRight, BottomLeft, WP, this->BorderColours[UI::Border_South], this->PriAtlas);
-                this->PushTriangle(OuterBottomLeft, OuterBottomRight, BottomRight, WP, this->BorderColours[UI::Border_South], this->PriAtlas);
+            if( 0 != this->BorderColours[UI::Border_South].AlphaChannel ) {
+                this->PushTriangle( OuterRect[UI::QC_BottomLeft], InnerRect[UI::QC_BottomRight], InnerRect[UI::QC_BottomLeft], WP, this->BorderColours[UI::Border_South], this->PriAtlas );
+                this->PushTriangle( OuterRect[UI::QC_BottomLeft], OuterRect[UI::QC_BottomRight], InnerRect[UI::QC_BottomRight], WP, this->BorderColours[UI::Border_South], this->PriAtlas );
             }
-
             // West
-            if( 0 != this->BorderColours[UI::Border_West].AlphaChannel )
-            {
-                this->PushTriangle(OuterBottomLeft, TopLeft, OuterTopLeft, WP, BorderColours[UI::Border_West], this->PriAtlas);
-                this->PushTriangle(OuterBottomLeft, BottomLeft, TopLeft, WP, BorderColours[UI::Border_West], this->PriAtlas);
+            if( 0 != this->BorderColours[UI::Border_West].AlphaChannel ) {
+                this->PushTriangle( OuterRect[UI::QC_BottomLeft], InnerRect[UI::QC_TopLeft], OuterRect[UI::QC_TopLeft], WP, BorderColours[UI::Border_West], this->PriAtlas );
+                this->PushTriangle( OuterRect[UI::QC_BottomLeft], InnerRect[UI::QC_BottomLeft], InnerRect[UI::QC_TopLeft], WP, BorderColours[UI::Border_West], this->PriAtlas );
             }
         }
 
-        void ImageLayer::DrawFill(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight)
+        void ImageLayer::DrawFill(const Vector2* FillRect, const Sprite* FillSprite, const ColourValue* FillColours)
         {
-            if(!this->IsCompletelyTransparent())
-            {
-                Vector2 UVs[4];
-                if( this->LayerSprite == NULL ) {
-                    UVs[UI::QC_TopLeft] = UVs[UI::QC_TopRight] = UVs[UI::QC_BottomRight] = UVs[UI::QC_BottomLeft] = this->Parent->GetScreen()->GetWhitePixel(this->PriAtlas);
-                }else{
-                    UVs[UI::QC_TopLeft] = this->LayerSprite->GetRelativeAtlasCoords(UI::QC_TopLeft);
-                    UVs[UI::QC_TopRight] = this->LayerSprite->GetRelativeAtlasCoords(UI::QC_TopRight);
-                    UVs[UI::QC_BottomRight] = this->LayerSprite->GetRelativeAtlasCoords(UI::QC_BottomRight);
-                    UVs[UI::QC_BottomLeft] = this->LayerSprite->GetRelativeAtlasCoords(UI::QC_BottomLeft);
-                }
-
-                // Triangle A
-                this->PushVertex(BottomLeft.X, BottomLeft.Y, UVs[UI::QC_BottomLeft], this->FillColours[UI::QC_BottomLeft], this->PriAtlas);      // Left/Bottom  3
-                this->PushVertex(TopRight.X, TopRight.Y, UVs[UI::QC_TopRight], this->FillColours[UI::QC_TopRight], this->PriAtlas);              // Right/Top    1
-                this->PushVertex(TopLeft.X, TopLeft.Y, UVs[UI::QC_TopLeft], this->FillColours[UI::QC_TopLeft], this->PriAtlas);                  // Left/Top     0
-
-                // Triangle B
-                this->PushVertex(BottomLeft.X, BottomLeft.Y, UVs[UI::QC_BottomLeft], this->FillColours[UI::QC_BottomLeft], this->PriAtlas);      // Left/Bottom   3
-                this->PushVertex(BottomRight.X, BottomRight.Y, UVs[UI::QC_BottomRight], this->FillColours[UI::QC_BottomRight], this->PriAtlas);  // Right/Bottom  2
-                this->PushVertex(TopRight.X, TopRight.Y, UVs[UI::QC_TopRight], this->FillColours[UI::QC_TopRight], this->PriAtlas);              // Right/Top     1
-            }
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        UI::RenderLayerType ImageLayer::GetLayerType() const
-        {
-            return UI::RLT_Image;
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Fill Methods
-
-        void ImageLayer::SetColour(const ColourValue& Colour)
-        {
-            this->FillColours[0] = Colour;
-            this->FillColours[1] = Colour;
-            this->FillColours[2] = Colour;
-            this->FillColours[3] = Colour;
-            this->_MarkDirty();
-        }
-
-        void ImageLayer::SetColour(const UI::QuadCorner Corner, const ColourValue& Colour)
-        {
-            this->FillColours[Corner] = Colour;
-            this->_MarkDirty();
-        }
-
-        void ImageLayer::SetSprite(Sprite* PSprite)
-        {
-            /*if(PSprite == NULL)
-            {
-                this->PriAtlas = this->Parent->GetScreen()->GetPrimaryAtlas();
-                UVs[0] = UVs[1] = UVs[2] = UVs[3] = Parent->GetScreen()->GetWhitePixel(PriAtlas);
-                this->_MarkDirty();
+            Vector2 UVs[4];
+            if( FillSprite == NULL ) {
+                UVs[UI::QC_TopLeft] = UVs[UI::QC_TopRight] = UVs[UI::QC_BottomRight] = UVs[UI::QC_BottomLeft] = this->Parent->GetScreen()->GetWhitePixel(this->PriAtlas);
             }else{
-                this->PriAtlas = PSprite->GetAtlasName();
-                Real TexelOffsetX = Parent->GetScreen()->GetTexelOffsetX();
-                Real TexelOffsetY = Parent->GetScreen()->GetTexelOffsetY();
-                if(TexelOffsetX) TexelOffsetX /= PSprite->Atlas->GetTextureSize();
-                if(TexelOffsetY) TexelOffsetY /= PSprite->Atlas->GetTextureSize();
-                UVs[0].X = UVs[3].X = PSprite->GetUVLeft();// - TexelOffsetX;
-                UVs[0].Y = UVs[1].Y = PSprite->GetUVTop();// + TexelOffsetY;
-                UVs[1].X = UVs[2].X = PSprite->GetUVRight();// - TexelOffsetX;
-                UVs[2].Y = UVs[3].Y = PSprite->GetUVBottom();// + TexelOffsetY;
-                this->_MarkDirty();
-            }//*/
-            this->PriAtlas = ( PSprite == NULL ? this->Parent->GetScreen()->GetPrimaryAtlas() : PSprite->GetAtlasName() );
-            this->LayerSprite = PSprite;
-            this->_MarkDirty();
-        }
-
-        void ImageLayer::SetSprite(const String& SpriteName)
-        {
-            Sprite* PSprite = this->Parent->GetScreen()->GetSprite(SpriteName,PriAtlas);
-            this->SetSprite(PSprite);
-        }
-
-        void ImageLayer::SetSprite(const String& SpriteName, const String& Atlas)
-        {
-            Sprite* PSprite = this->Parent->GetScreen()->GetSprite(SpriteName,Atlas);
-            this->SetSprite(PSprite);
-        }
-
-        void ImageLayer::SetGradient(const UI::Gradient Grad, const ColourValue& ColourA, const ColourValue& ColourB)
-        {
-            switch(Grad)
-            {
-                case UI::Gradient_NorthSouth:
-                {
-                    this->FillColours[0] = ColourA;
-                    this->FillColours[1] = ColourA;
-                    this->FillColours[2] = ColourB;
-                    this->FillColours[3] = ColourB;
-                }
-                case UI::Gradient_WestEast:
-                {
-                    this->FillColours[0] = ColourA;
-                    this->FillColours[3] = ColourA;
-                    this->FillColours[1] = ColourB;
-                    this->FillColours[2] = ColourB;
-                }
-                case UI::Gradient_Diagonal_1:
-                {
-                    ColourValue Average;
-                    Average.RedChannel = (ColourA.RedChannel + ColourB.RedChannel) * 0.5f;
-                    Average.GreenChannel = (ColourA.GreenChannel + ColourB.GreenChannel) * 0.5f;
-                    Average.BlueChannel = (ColourA.BlueChannel + ColourB.BlueChannel) * 0.5f;
-                    Average.AlphaChannel = (ColourA.AlphaChannel + ColourB.AlphaChannel) * 0.5f;
-                    this->FillColours[0] = ColourA;
-                    this->FillColours[1] = Average;
-                    this->FillColours[2] = ColourB;
-                    this->FillColours[3] = Average;
-                }
-                case UI::Gradient_Diagonal_2:
-                {
-                    ColourValue Average;
-                    Average.RedChannel = (ColourA.RedChannel + ColourB.RedChannel) * 0.5f;
-                    Average.GreenChannel = (ColourA.GreenChannel + ColourB.GreenChannel) * 0.5f;
-                    Average.BlueChannel = (ColourA.BlueChannel + ColourB.BlueChannel) * 0.5f;
-                    Average.AlphaChannel = (ColourA.AlphaChannel + ColourB.AlphaChannel) * 0.5f;
-                    this->FillColours[0] = Average;
-                    this->FillColours[1] = ColourA;
-                    this->FillColours[2] = Average;
-                    this->FillColours[3] = ColourB;
-                }
+                UVs[UI::QC_TopLeft] = FillSprite->GetRelativeAtlasCoords(UI::QC_TopLeft);
+                UVs[UI::QC_TopRight] = FillSprite->GetRelativeAtlasCoords(UI::QC_TopRight);
+                UVs[UI::QC_BottomRight] = FillSprite->GetRelativeAtlasCoords(UI::QC_BottomRight);
+                UVs[UI::QC_BottomLeft] = FillSprite->GetRelativeAtlasCoords(UI::QC_BottomLeft);
             }
-            this->_MarkDirty();
-        }
 
-        const ColourValue& ImageLayer::GetColour(const UI::QuadCorner Corner) const
-        {
-            return this->FillColours[Corner];
-        }
+            // Triangle A
+            this->PushVertex( FillRect[UI::QC_BottomLeft].X, FillRect[UI::QC_BottomLeft].Y, UVs[UI::QC_BottomLeft], FillColours[UI::QC_BottomLeft], this->PriAtlas );      // Left/Bottom  3
+            this->PushVertex( FillRect[UI::QC_TopRight].X, FillRect[UI::QC_TopRight].Y, UVs[UI::QC_TopRight], FillColours[UI::QC_TopRight], this->PriAtlas );              // Right/Top    1
+            this->PushVertex( FillRect[UI::QC_TopLeft].X, FillRect[UI::QC_TopLeft].Y, UVs[UI::QC_TopLeft], FillColours[UI::QC_TopLeft], this->PriAtlas );                  // Left/Top     0
 
-        bool ImageLayer::IsCompletelyTransparent() const
-        {
-            return ( 0 == this->FillColours[UI::QC_TopLeft].AlphaChannel &&
-                     0 == this->FillColours[UI::QC_TopRight].AlphaChannel &&
-                     0 == this->FillColours[UI::QC_BottomLeft].AlphaChannel &&
-                     0 == this->FillColours[UI::QC_BottomRight].AlphaChannel );
+            // Triangle B
+            this->PushVertex( FillRect[UI::QC_BottomLeft].X, FillRect[UI::QC_BottomLeft].Y, UVs[UI::QC_BottomLeft], FillColours[UI::QC_BottomLeft], this->PriAtlas );      // Left/Bottom   3
+            this->PushVertex( FillRect[UI::QC_BottomRight].X, FillRect[UI::QC_BottomRight].Y, UVs[UI::QC_BottomRight], FillColours[UI::QC_BottomRight], this->PriAtlas );  // Right/Bottom  2
+            this->PushVertex( FillRect[UI::QC_TopRight].X, FillRect[UI::QC_TopRight].Y, UVs[UI::QC_TopRight], FillColours[UI::QC_TopRight], this->PriAtlas );              // Right/Top     1
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -347,38 +174,20 @@ namespace Mezzanine
             XML::Node PropertiesNode = SelfRoot.AppendChild( ImageLayer::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-                PropertiesNode.AppendAttribute("BorderWidth").SetValue(this->BorderWidth) &&
-                PropertiesNode.AppendAttribute("SpriteName").SetValue( this->LayerSprite ? this->LayerSprite->Name : "" ) )
+                PropertiesNode.AppendAttribute("BorderWidth").SetValue(this->BorderWidth) )
             {
-                XML::Node ScaleNode = PropertiesNode.AppendChild("Scale");
-                this->Scale.ProtoSerialize(ScaleNode);
-
-                XML::Node FillColoursNode = PropertiesNode.AppendChild("FillColours");
-
-                XML::Node TopLeftFillNode = FillColoursNode.AppendChild("TopLeft");
-                this->FillColours[UI::QC_TopLeft].ProtoSerialize(TopLeftFillNode);
-
-                XML::Node TopRightFillNode = FillColoursNode.AppendChild("TopRight");
-                this->FillColours[UI::QC_TopRight].ProtoSerialize(TopRightFillNode);
-
-                XML::Node BottomLeftFillNode = FillColoursNode.AppendChild("BottomLeft");
-                this->FillColours[UI::QC_BottomLeft].ProtoSerialize(BottomLeftFillNode);
-
-                XML::Node BottomRightFillNode = FillColoursNode.AppendChild("BottomRight");
-                this->FillColours[UI::QC_BottomRight].ProtoSerialize(BottomRightFillNode);
-
                 XML::Node BorderColoursNode = PropertiesNode.AppendChild("BorderColours");
 
                 XML::Node TopLeftBorderNode = BorderColoursNode.AppendChild("TopLeft");
                 this->BorderColours[UI::QC_TopLeft].ProtoSerialize(TopLeftBorderNode);
 
-                XML::Node TopRightBorderNode = FillColoursNode.AppendChild("TopRight");
+                XML::Node TopRightBorderNode = BorderColoursNode.AppendChild("TopRight");
                 this->BorderColours[UI::QC_TopRight].ProtoSerialize(TopRightBorderNode);
 
-                XML::Node BottomLeftBorderNode = FillColoursNode.AppendChild("BottomLeft");
+                XML::Node BottomLeftBorderNode = BorderColoursNode.AppendChild("BottomLeft");
                 this->BorderColours[UI::QC_BottomLeft].ProtoSerialize(BottomLeftBorderNode);
 
-                XML::Node BottomRightBorderNode = FillColoursNode.AppendChild("BottomRight");
+                XML::Node BottomRightBorderNode = BorderColoursNode.AppendChild("BottomRight");
                 this->BorderColours[UI::QC_BottomRight].ProtoSerialize(BottomRightBorderNode);
 
                 return;
@@ -398,31 +207,6 @@ namespace Mezzanine
                     CurrAttrib = PropertiesNode.GetAttribute("BorderWidth");
                     if( !CurrAttrib.Empty() )
                         this->BorderWidth = CurrAttrib.AsReal();
-
-                    CurrAttrib = PropertiesNode.GetAttribute("SpriteName");
-                    if( !CurrAttrib.Empty() )
-                        this->SetSprite( CurrAttrib.AsString() );
-
-                    XML::Node ScaleNode = PropertiesNode.GetChild("Scale").GetFirstChild();
-                    if( !ScaleNode.Empty() )
-                        this->Scale.ProtoDeSerialize(ScaleNode);
-
-                    XML::Node FillColoursNode = PropertiesNode.GetChild("FillColours");
-                    XML::Node TopLeftFillNode = PropertiesNode.GetChild("TopLeft").GetFirstChild();
-                    if( !TopLeftFillNode.Empty() )
-                        this->FillColours[UI::QC_TopLeft].ProtoDeSerialize(TopLeftFillNode);
-
-                    XML::Node TopRightFillNode = PropertiesNode.GetChild("TopRight").GetFirstChild();
-                    if( !TopRightFillNode.Empty() )
-                        this->FillColours[UI::QC_TopRight].ProtoDeSerialize(TopRightFillNode);
-
-                    XML::Node BottomLeftFillNode = PropertiesNode.GetChild("BottomLeft").GetFirstChild();
-                    if( !BottomLeftFillNode.Empty() )
-                        this->FillColours[UI::QC_BottomLeft].ProtoDeSerialize(BottomLeftFillNode);
-
-                    XML::Node BottomRightFillNode = PropertiesNode.GetChild("BottomRight").GetFirstChild();
-                    if( !BottomRightFillNode.Empty() )
-                        this->FillColours[UI::QC_BottomRight].ProtoDeSerialize(BottomRightFillNode);
 
                     XML::Node BorderColoursNode = PropertiesNode.GetChild("BorderColours");
                     XML::Node TopLeftBorderNode = PropertiesNode.GetChild("TopLeft").GetFirstChild();
@@ -449,14 +233,10 @@ namespace Mezzanine
         }
 
         String ImageLayer::GetDerivedSerializableName() const
-        {
-            return ImageLayer::GetSerializableName();
-        }
+            { return ImageLayer::GetSerializableName(); }
 
         String ImageLayer::GetSerializableName()
-        {
-            return "ImageLayer";
-        }
+            { return "ImageLayer"; }
     }//UI
 }//Mezzanine
 

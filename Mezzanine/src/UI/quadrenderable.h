@@ -54,7 +54,8 @@ namespace Mezzanine
     {
         class ScreenRenderData;
         class RenderLayer;
-        class ImageLayer;
+        class SingleImageLayer;
+        class MultiImageLayer;
         class SingleLineTextLayer;
         class MultiLineTextLayer;
         class LayoutStrategy;
@@ -421,52 +422,74 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // RenderLayer Management
 
-            /// @brief Creates an ImageLayer for this renderable.
+            /// @brief Creates a SingleImageLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
-            /// @return Returns a pointer to the created ImageLayer.
-            ImageLayer* CreateImageLayer();
-            /// @brief Creates an ImageLayer for this renderable.
+            /// @return Returns a pointer to the created SingleImageLayer.
+            SingleImageLayer* CreateSingleImageLayer();
+            /// @brief Creates a SingleImageLayer for this renderable.
             /// @note This will attempt to add the created layer to both the "Normal" and "Hovered" RenderLayerGroups, which are auto-generated, but not guaranteed to exist.
             /// @param NormalZ The Zorder which will be used when inserting the created layer into the "Normal" RenderLayerGroup, if it exists.
             /// @param HoveredZ The Zorder which will be used when inserting the created layer into the "Hovered" RenderLayerGroup, if it exists.
-            /// @return Returns a pointer to the created ImageLayer.
-            ImageLayer* CreateImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ);
-            /// @brief Creates an ImageLayer for this renderable and adds it to a RenderLayerGroup.
+            /// @return Returns a pointer to the created SingleImageLayer.
+            SingleImageLayer* CreateSingleImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ);
+            /// @brief Creates a SingleImageLayer for this renderable and adds it to a RenderLayerGroup.
             /// @note If the requested group does not exist it will be created.
             /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created ImageLayer should be added to.
-            /// @return Returns a pointer to the created ImageLayer.
-            ImageLayer* CreateImageLayer(const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates an ImageLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
+            /// @param GroupName The name of the group the created SingleImageLayer should be added to.
+            /// @return Returns a pointer to the created SingleImageLayer.
+            SingleImageLayer* CreateSingleImageLayer(const UInt16 ZOrder, const String& GroupName);
+            /// @brief Creates a SingleImageLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
             /// @note If the requested groups do not exist they will be created.
             /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created ImageLayer.
-            ImageLayer* CreateImageLayer(const GroupOrderEntryVector& Entrys);
-            /// @brief Creates an ImageLayer for this renderable.
+            /// @return Returns a pointer to the created SingleImageLayer.
+            SingleImageLayer* CreateSingleImageLayer(const GroupOrderEntryVector& Entrys);
+            /// @brief Creates a SingleImageLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
             /// @param SpriteName The name of the sprite to be set to the created layer.
-            /// @return Returns a pointer to the created ImageLayer.
-            ImageLayer* CreateImageLayer(const String& SpriteName);
-            /// @brief Creates an ImageLayer for this renderable.
+            /// @return Returns a pointer to the created SingleImageLayer.
+            SingleImageLayer* CreateSingleImageLayer(const String& SpriteName);
+            /// @brief Creates a SingleImageLayer for this renderable.
             /// @note This will attempt to add the created layer to both the "Normal" and "Hovered" RenderLayerGroups, which are auto-generated, but not guaranteed to exist.
             /// @param NormalZ The Zorder which will be used when inserting the created layer into the "Normal" RenderLayerGroup, if it exists.
             /// @param HoveredZ The Zorder which will be used when inserting the created layer into the "Hovered" RenderLayerGroup, if it exists.
             /// @param SpriteName The name of the sprite to be set to the created layer.
-            /// @return Returns a pointer to the created ImageLayer.
-            ImageLayer* CreateImageLayer(const String& SpriteName, const UInt16 NormalZ, const UInt16 HoveredZ);
-            /// @brief Creates an ImageLayer for this renderable and adds it to a RenderLayerGroup.
+            /// @return Returns a pointer to the created SingleImageLayer.
+            SingleImageLayer* CreateSingleImageLayer(const String& SpriteName, const UInt16 NormalZ, const UInt16 HoveredZ);
+            /// @brief Creates a SingleImageLayer for this renderable and adds it to a RenderLayerGroup.
             /// @note If the requested group does not exist it will be created.
             /// @param SpriteName The name of the sprite to be set to the created layer.
             /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created ImageLayer should be added to.
-            /// @return Returns a pointer to the created ImageLayer.
-            ImageLayer* CreateImageLayer(const String& SpriteName, const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates an ImageLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
+            /// @param GroupName The name of the group the created SingleImageLayer should be added to.
+            /// @return Returns a pointer to the created SingleImageLayer.
+            SingleImageLayer* CreateSingleImageLayer(const String& SpriteName, const UInt16 ZOrder, const String& GroupName);
+            /// @brief Creates a SingleImageLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
             /// @note If the requested groups do not exist they will be created.
             /// @param SpriteName The name of the sprite to be set to the created layer.
             /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created ImageLayer.
-            ImageLayer* CreateImageLayer(const String& SpriteName, const GroupOrderEntryVector& Entrys);
+            /// @return Returns a pointer to the created SingleImageLayer.
+            SingleImageLayer* CreateSingleImageLayer(const String& SpriteName, const GroupOrderEntryVector& Entrys);
+
+            /// @brief Creates an MultiImageLayer for this renderable.
+            /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
+            /// @return Returns a pointer to the created MultiImageLayer.
+            MultiImageLayer* CreateMultiImageLayer();
+            /// @brief Creates an MultiImageLayer for this renderable.
+            /// @note This will attempt to add the created layer to both the "Normal" and "Hovered" RenderLayerGroups, which are auto-generated, but not guaranteed to exist.
+            /// @param NormalZ The Zorder which will be used when inserting the created layer into the "Normal" RenderLayerGroup, if it exists.
+            /// @param HoveredZ The Zorder which will be used when inserting the created layer into the "Hovered" RenderLayerGroup, if it exists.
+            /// @return Returns a pointer to the created MultiImageLayer.
+            MultiImageLayer* CreateMultiImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ);
+            /// @brief Creates an MultiImageLayer for this renderable and adds it to a RenderLayerGroup.
+            /// @note If the requested group does not exist it will be created.
+            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
+            /// @param GroupName The name of the group the created MultiImageLayer should be added to.
+            /// @return Returns a pointer to the created MultiImageLayer.
+            MultiImageLayer* CreateMultiImageLayer(const UInt16 ZOrder, const String& GroupName);
+            /// @brief Creates an MultiImageLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
+            /// @note If the requested groups do not exist they will be created.
+            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
+            /// @return Returns a pointer to the created MultiImageLayer.
+            MultiImageLayer* CreateMultiImageLayer(const GroupOrderEntryVector& Entrys);
 
             /// @brief Creats a SingleLineTextLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.

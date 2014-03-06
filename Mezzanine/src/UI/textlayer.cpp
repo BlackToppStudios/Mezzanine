@@ -186,6 +186,7 @@ namespace Mezzanine
 
             // Get the parent rect and apply the scaling
             Rect ActDims = this->GetAreaRect();
+            Vector2 LayerCenter = ActDims.GetRectCenter();
 
             // Setup the text specific data we'll use
             Vector2 TopLeft, TopRight, BottomLeft, BottomRight;
@@ -230,7 +231,7 @@ namespace Mezzanine
                     TopRight.SetValues( BottomRight.X, TopLeft.Y );
                     BottomLeft.SetValues( TopLeft.X, BottomRight.Y );
 
-                    this->RotationTransform(TopLeft,TopRight,BottomLeft,BottomRight);
+                    this->RotationTransform(TopLeft,TopRight,BottomLeft,BottomRight,LayerCenter);
 
                     if( CurrChar->GetHighlighted() )
                     {

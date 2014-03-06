@@ -142,12 +142,12 @@ namespace Mezzanine
         /// @brief This enum describes the type of RenderLayer this is for use in casting.
         enum RenderLayerType
         {
-            RLT_Image           = 1,  ///< Value representing an ImageLayer.
-            RLT_MultiLineText   = 2,  ///< Value representing a MultiLineTextLayer.
-            RLT_SingleLineText  = 3   ///< Value representing a SingleLineTextLayer.
-            //RLT_MultiImage
+            RLT_Line            = 1,  ///< Value representing a LineLayer.
+            RLT_MultiImage      = 2,  ///< Value representing a MultiImageLayer.
+            RLT_MultiLineText   = 3,  ///< Value representing a MultiLineTextLayer.
+            RLT_SingleImage     = 4,  ///< Value representing a SingleImageLayer.
+            RLT_SingleLineText  = 5   ///< Value representing a SingleLineTextLayer.
             //RLT_Video
-            //RLT_Line
             //RLT_RenderTarget
         };
 

@@ -80,14 +80,45 @@ namespace Mezzanine
 
         void RenderLayer::RotationTransform(Vector2& TopLeft, Vector2& TopRight, Vector2& BottomLeft, Vector2& BottomRight)
         {
-            if( 0 == this->RotAngle )
-                return;
+            if( 0 != this->RotAngle ) {
+                Vector2 RotCenter( TopLeft.X + ( ( BottomRight.X - TopLeft.X ) * 0.5 ), TopLeft.Y + ( ( BottomRight.Y - TopLeft.Y ) * 0.5 ) );
+                this->RotationTransform( TopLeft, RotCenter );
+                this->RotationTransform( TopRight, RotCenter );
+                this->RotationTransform( BottomLeft, RotCenter );
+                this->RotationTransform( BottomRight, RotCenter );
+            }
+        }
 
-            Vector2 RotCenter( TopLeft.X + ((BottomRight.X - TopLeft.X) * 0.5), TopLeft.Y + ((BottomRight.Y - TopLeft.Y) * 0.5) );
-            this->RotationTransform(TopLeft,RotCenter);
-            this->RotationTransform(TopRight,RotCenter);
-            this->RotationTransform(BottomLeft,RotCenter);
-            this->RotationTransform(BottomRight,RotCenter);
+        void RenderLayer::RotationTransform(Vector2& TopLeft, Vector2& TopRight, Vector2& BottomLeft, Vector2& BottomRight, const Vector2& RotationCenter)
+        {
+            if( 0 != this->RotAngle ) {
+                this->RotationTransform( TopLeft, RotationCenter );
+                this->RotationTransform( TopRight, RotationCenter );
+                this->RotationTransform( BottomLeft, RotationCenter );
+                this->RotationTransform( BottomRight, RotationCenter );
+            }
+        }
+
+        void RenderLayer::RotationTransform(Vector2* RotRect)
+        {
+            if( 0 != this->RotAngle ) {
+                Vector2 RotCenter( RotRect[UI::QC_TopLeft].X + ( ( RotRect[UI::QC_BottomRight].X - RotRect[UI::QC_TopLeft].X ) * 0.5 ),
+                                   RotRect[UI::QC_TopLeft].Y + ( ( RotRect[UI::QC_BottomRight].Y - RotRect[UI::QC_TopLeft].Y ) * 0.5 ) );
+                this->RotationTransform( RotRect[UI::QC_TopLeft], RotCenter );
+                this->RotationTransform( RotRect[UI::QC_TopRight], RotCenter );
+                this->RotationTransform( RotRect[UI::QC_BottomLeft], RotCenter );
+                this->RotationTransform( RotRect[UI::QC_BottomRight], RotCenter );
+            }
+        }
+
+        void RenderLayer::RotationTransform(Vector2* RotRect, const Vector2& RotationCenter)
+        {
+            if( 0 != this->RotAngle ) {
+                this->RotationTransform( RotRect[UI::QC_TopLeft], RotationCenter );
+                this->RotationTransform( RotRect[UI::QC_TopRight], RotationCenter );
+                this->RotationTransform( RotRect[UI::QC_BottomLeft], RotationCenter );
+                this->RotationTransform( RotRect[UI::QC_BottomRight], RotationCenter );
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -131,8 +162,17 @@ namespace Mezzanine
             return this->Scale;
         }
 
+        Boole RenderLayer::IsLineLayer() const
+            { return ( this->GetLayerType() == UI::RLT_Line ); }
+
         Boole RenderLayer::IsImageLayer() const
-            { return ( this->GetLayerType() == UI::RLT_Image ); }
+            { return ( this->IsSingleImageLayer() || this->IsMultiImageLayer() ); }
+
+        Boole RenderLayer::IsSingleImageLayer() const
+            { return ( this->GetLayerType() == UI::RLT_SingleImage ); }
+
+        Boole RenderLayer::IsMultiImageLayer() const
+            { return ( this->GetLayerType() == UI::RLT_MultiImage ); }
 
         Boole RenderLayer::IsTextLayer() const
             { return ( this->IsSingleLineTextLayer() || this->IsMultiLineTextLayer() ); }
@@ -159,27 +199,19 @@ namespace Mezzanine
         }
 
         Real RenderLayer::GetRotationDegrees() const
-        {
-            return MathTools::RadiansToDegrees(RotAngle);
-        }
+            { return MathTools::RadiansToDegrees(RotAngle); }
 
         Real RenderLayer::GetRotationRadians() const
-        {
-            return this->RotAngle;
-        }
+            { return this->RotAngle; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Accessor Methods
 
         QuadRenderable* RenderLayer::GetParent() const
-        {
-            return this->Parent;
-        }
+            { return this->Parent; }
 
         Screen* RenderLayer::GetScreen() const
-        {
-            return this->Parent->GetScreen();
-        }
+            { return this->Parent->GetScreen(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization

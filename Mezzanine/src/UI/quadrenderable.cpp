@@ -48,7 +48,8 @@
 #include "UI/widget.h"
 #include "UI/screen.h"
 
-#include "UI/imagelayer.h"
+#include "UI/multiimagelayer.h"
+#include "UI/singleimagelayer.h"
 #include "UI/multilinetextlayer.h"
 #include "UI/singlelinetextlayer.h"
 
@@ -490,63 +491,94 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // RenderLayer Management
 
-        ImageLayer* QuadRenderable::CreateImageLayer()
+        SingleImageLayer* QuadRenderable::CreateSingleImageLayer()
         {
-            ImageLayer* NewLayer = new ImageLayer(this);
+            SingleImageLayer* NewLayer = new SingleImageLayer(this);
             NewLayer->_UpdateIndex(this->RenderLayers.size());
             this->RenderLayers.push_back(NewLayer);
             this->_MarkDirty();
             return NewLayer;
         }
 
-        ImageLayer* QuadRenderable::CreateImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ)
+        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ)
         {
-            ImageLayer* NewLayer = this->CreateImageLayer();
+            SingleImageLayer* NewLayer = this->CreateSingleImageLayer();
             this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
             this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
             return NewLayer;
         }
 
-        ImageLayer* QuadRenderable::CreateImageLayer(const UInt16 ZOrder, const String& GroupName)
+        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const UInt16 ZOrder, const String& GroupName)
         {
-            ImageLayer* NewLayer = this->CreateImageLayer();
+            SingleImageLayer* NewLayer = this->CreateSingleImageLayer();
             this->AddLayerToGroup(NewLayer,ZOrder,GroupName);
             return NewLayer;
         }
 
-        ImageLayer* QuadRenderable::CreateImageLayer(const GroupOrderEntryVector& Entrys)
+        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const GroupOrderEntryVector& Entrys)
         {
-            ImageLayer* NewLayer = this->CreateImageLayer();
+            SingleImageLayer* NewLayer = this->CreateSingleImageLayer();
             this->AddLayerToGroups(NewLayer,Entrys);
             return NewLayer;
         }
 
-        ImageLayer* QuadRenderable::CreateImageLayer(const String& SpriteName)
+        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const String& SpriteName)
         {
-            ImageLayer* NewLayer = this->CreateImageLayer();
+            SingleImageLayer* NewLayer = this->CreateSingleImageLayer();
             NewLayer->SetSprite(SpriteName);
             return NewLayer;
         }
 
-        ImageLayer* QuadRenderable::CreateImageLayer(const String& SpriteName, const UInt16 NormalZ, const UInt16 HoveredZ)
+        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const String& SpriteName, const UInt16 NormalZ, const UInt16 HoveredZ)
         {
-            ImageLayer* NewLayer = this->CreateImageLayer(SpriteName);
+            SingleImageLayer* NewLayer = this->CreateSingleImageLayer(SpriteName);
             this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
             this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
             return NewLayer;
         }
 
-        ImageLayer* QuadRenderable::CreateImageLayer(const String& SpriteName, const UInt16 ZOrder, const String& GroupName)
+        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const String& SpriteName, const UInt16 ZOrder, const String& GroupName)
         {
-            ImageLayer* NewLayer = this->CreateImageLayer(ZOrder,GroupName);
+            SingleImageLayer* NewLayer = this->CreateSingleImageLayer(ZOrder,GroupName);
             NewLayer->SetSprite(SpriteName);
             return NewLayer;
         }
 
-        ImageLayer* QuadRenderable::CreateImageLayer(const String& SpriteName, const GroupOrderEntryVector& Entrys)
+        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const String& SpriteName, const GroupOrderEntryVector& Entrys)
         {
-            ImageLayer* NewLayer = this->CreateImageLayer(Entrys);
+            SingleImageLayer* NewLayer = this->CreateSingleImageLayer(Entrys);
             NewLayer->SetSprite(SpriteName);
+            return NewLayer;
+        }
+
+        MultiImageLayer* QuadRenderable::CreateMultiImageLayer()
+        {
+            MultiImageLayer* NewLayer = new MultiImageLayer(this);
+            NewLayer->_UpdateIndex(this->RenderLayers.size());
+            this->RenderLayers.push_back(NewLayer);
+            this->_MarkDirty();
+            return NewLayer;
+        }
+
+        MultiImageLayer* QuadRenderable::CreateMultiImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ)
+        {
+            MultiImageLayer* NewLayer = this->CreateMultiImageLayer();
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            return NewLayer;
+        }
+
+        MultiImageLayer* QuadRenderable::CreateMultiImageLayer(const UInt16 ZOrder, const String& GroupName)
+        {
+            MultiImageLayer* NewLayer = this->CreateMultiImageLayer();
+            this->AddLayerToGroup(NewLayer,ZOrder,GroupName);
+            return NewLayer;
+        }
+
+        MultiImageLayer* QuadRenderable::CreateMultiImageLayer(const GroupOrderEntryVector& Entrys)
+        {
+            MultiImageLayer* NewLayer = this->CreateMultiImageLayer();
+            this->AddLayerToGroups(NewLayer,Entrys);
             return NewLayer;
         }
 
@@ -1281,8 +1313,13 @@ namespace Mezzanine
                     {
                         RenderLayer* CurrLayer = NULL;
 
-                        if( (*LayerNodeIt).Name() == String("ImageLayer") ) {
-                            CurrLayer = new ImageLayer(this);
+                        if( (*LayerNodeIt).Name() == String("SingleImageLayer") ) {
+                            CurrLayer = new SingleImageLayer(this);
+                            CurrLayer->ProtoDeSerialize( (*LayerNodeIt) );
+                            this->ResizeLayers( CurrLayer->GetIndex() );
+                            this->RenderLayers[ CurrLayer->GetIndex() ] = CurrLayer;
+                        }else if( (*LayerNodeIt).Name() == String("MultiImageLayer") ) {
+                            CurrLayer = new MultiImageLayer(this);
                             CurrLayer->ProtoDeSerialize( (*LayerNodeIt) );
                             this->ResizeLayers( CurrLayer->GetIndex() );
                             this->RenderLayers[ CurrLayer->GetIndex() ] = CurrLayer;
