@@ -172,14 +172,14 @@ void CatchApp::MakeGUI()
     MMBackground->SetPositioningRules(UI::PF_Anchor_Center);
     MMBackground->SetVerticalSizingRules(UI::SR_Unified_Dims);
     MMBackground->SetHorizontalSizingRules(UI::SR_Match_Other_Axis_Unified);
-    MMBackground->CreateImageLayer("MainMenuBackground",0,0);
+    MMBackground->CreateSingleImageLayer("MainMenuBackground",0,0);
     MainMenuScreen->AddChild(MMBackground,0);
 
     // Create the root menu entry
     UI::MenuEntry* MMRootEntry = MainMenuScreen->CreateMenuEntry("MS_MenuRoot",UI::UnifiedRect(0.0,0.914,1.0,0.086));
     MMRootEntry->SetPositioningRules(UI::PF_Anchor_HorizontalCenter | UI::PF_Anchor_Bottom);
     MMRootEntry->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
-    MMRootEntry->CreateImageLayer("MMBrickBackground",0,0);
+    MMRootEntry->CreateSingleImageLayer("MMBrickBackground",0,0);
     MMRootEntry->SetAutoHide(false);
     MainMenuScreen->AddChild(MMRootEntry,1);
     MMRootEntry->ForceRootEntryVisible();
@@ -187,8 +187,8 @@ void CatchApp::MakeGUI()
     ////------------------  Level Select  ------------------////
     // Start with the accessor button
     UI::StackButton* MMLevelSelectAccess = MainMenuScreen->CreateStackButton("MS_LevelSelect",UI::UnifiedRect(0.05,0.18,0.22,0.7));
-    MMLevelSelectAccess->CreateImageLayer("MMButton",0,"Normal");
-    MMLevelSelectAccess->CreateImageLayer("MMHoveredButton",0,"Hovered");
+    MMLevelSelectAccess->CreateSingleImageLayer("MMButton",0,"Normal");
+    MMLevelSelectAccess->CreateSingleImageLayer("MMHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* MMLevelSelectAccessText = MMLevelSelectAccess->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMLevelSelectAccessText->SetText("Level Select");
     MMLevelSelectAccessText->HorizontallyAlign(UI::LA_Center);
@@ -198,7 +198,7 @@ void CatchApp::MakeGUI()
 
     // Create and configure the "window" that houses the level selections
     UI::MenuEntry* MMLevelSelectWin = MainMenuScreen->CreateMenuEntry("MS_LevelSelectWin",UI::UnifiedRect(0.05,-10.3,0.90,9.68));
-    MMLevelSelectWin->CreateImageLayer("MMLSBackground",0,0);
+    MMLevelSelectWin->CreateSingleImageLayer("MMLSBackground",0,0);
     MMLevelSelectWin->SetPushButton(MMLevelSelectAccess);
     MMRootEntry->AddChild(MMLevelSelectWin,5);
 
@@ -209,16 +209,16 @@ void CatchApp::MakeGUI()
 
     // Create the spinner which will allow browsing the grid
     UI::Spinner* MMLevelSelectSpinner = MainMenuScreen->CreateSpinner("MS_LevelSelectSpinner",UI::UnifiedRect(0.65,0.87,0.25,0.08),UI::Spn_Separate_Horizontal,MainMenuScreenText);
-    MMLevelSelectSpinner->GetIncrement()->CreateImageLayer("MMIncrementPage",0,0);
-    MMLevelSelectSpinner->GetDecrement()->CreateImageLayer("MMDecrementPage",0,0);
-    MMLevelSelectSpinner->GetValueDisplay()->CreateImageLayer("MMPageBox",0,0);
+    MMLevelSelectSpinner->GetIncrement()->CreateSingleImageLayer("MMIncrementPage",0,0);
+    MMLevelSelectSpinner->GetDecrement()->CreateSingleImageLayer("MMDecrementPage",0,0);
+    MMLevelSelectSpinner->GetValueDisplay()->CreateSingleImageLayer("MMPageBox",0,0);
     MMLevelSelectWin->AddChild(MMLevelSelectSpinner,3);
 
     // Create the button that will launch the level
     UI::Button* MMLevelStart = MainMenuScreen->CreateButton("MS_LevelStart",UI::UnifiedRect(0.0,0.86,0.16,0.10));
     MMLevelStart->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
-    MMLevelStart->CreateImageLayer("MMLevelStart",0,"Normal");
-    MMLevelStart->CreateImageLayer("MMLevelStartHovered",0,"Hovered");
+    MMLevelStart->CreateSingleImageLayer("MMLevelStart",0,"Normal");
+    MMLevelStart->CreateSingleImageLayer("MMLevelStartHovered",0,"Hovered");
     UI::SingleLineTextLayer* MMLevelStartText = MMLevelStart->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMLevelStartText->SetText("Start");
     MMLevelStartText->HorizontallyAlign(UI::LA_Center);
@@ -229,8 +229,8 @@ void CatchApp::MakeGUI()
     ////------------------  Options  ------------------////
     // Start with the accessor button
     UI::StackButton* MMOptionsAccess = MainMenuScreen->CreateStackButton("MS_Options",UI::UnifiedRect(0.28,0.18,0.22,0.7));
-    MMOptionsAccess->CreateImageLayer("MMButton",0,"Normal");
-    MMOptionsAccess->CreateImageLayer("MMHoveredButton",0,"Hovered");
+    MMOptionsAccess->CreateSingleImageLayer("MMButton",0,"Normal");
+    MMOptionsAccess->CreateSingleImageLayer("MMHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* MMOptionsAccessText = MMOptionsAccess->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMOptionsAccessText->SetText("Options");
     MMOptionsAccessText->HorizontallyAlign(UI::LA_Center);
@@ -240,14 +240,14 @@ void CatchApp::MakeGUI()
 
     // Create and configure the "window" that houses the options display
     UI::MenuEntry* MMOptionsWin = MainMenuScreen->CreateMenuEntry("MS_OptionsWin",UI::UnifiedRect(0.18,-8.08,0.64,6.4));
-    MMOptionsWin->CreateImageLayer("MMOptionsBackground",0,0);
+    MMOptionsWin->CreateSingleImageLayer("MMOptionsBackground",0,0);
     MMOptionsWin->SetPushButton(MMOptionsAccess);
     MMRootEntry->AddChild(MMOptionsWin,6);
 
     // Create the first of the two buttons that will display the two sets of options (video options)
     UI::StackButton* MMVideoSetAccess = MainMenuScreen->CreateStackButton("MS_VideoSetAccess",UI::UnifiedRect(0.11,0.0365,0.34,0.11));
-    MMVideoSetAccess->CreateImageLayer("MMButton",0,"Normal");
-    MMVideoSetAccess->CreateImageLayer("MMHoveredButton",0,"Hovered");
+    MMVideoSetAccess->CreateSingleImageLayer("MMButton",0,"Normal");
+    MMVideoSetAccess->CreateSingleImageLayer("MMHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* MMVideoSetAccessText = MMVideoSetAccess->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMVideoSetAccessText->SetText("Video Options");
     MMVideoSetAccessText->HorizontallyAlign(UI::LA_Center);
@@ -257,8 +257,8 @@ void CatchApp::MakeGUI()
 
     // Create the second of the two buttons that will display the two sets of options (audio options)
     UI::StackButton* MMAudioSetAccess = MainMenuScreen->CreateStackButton("MS_AudioSetAccess",UI::UnifiedRect(0.55,0.0365,0.34,0.11));
-    MMAudioSetAccess->CreateImageLayer("MMButton",0,"Normal");
-    MMAudioSetAccess->CreateImageLayer("MMHoveredButton",0,"Hovered");
+    MMAudioSetAccess->CreateSingleImageLayer("MMButton",0,"Normal");
+    MMAudioSetAccess->CreateSingleImageLayer("MMHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* MMAudioSetAccessText = MMAudioSetAccess->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMAudioSetAccessText->SetText("Audio Options");
     MMAudioSetAccessText->HorizontallyAlign(UI::LA_Center);
@@ -279,7 +279,7 @@ void CatchApp::MakeGUI()
 
     // Create the label for the window resolution list
     UI::Widget* MMResolutionLabel = MainMenuScreen->CreateWidget("MS_ResolutionLabel",UI::UnifiedRect(0.12,0.01,0.415,0.13));
-    MMResolutionLabel->CreateImageLayer("MMButton",0,0);
+    MMResolutionLabel->CreateSingleImageLayer("MMButton",0,0);
     UI::SingleLineTextLayer* MMResolutionLabelText = MMResolutionLabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMResolutionLabelText->SetText("Video Resolutions");
     MMResolutionLabelText->HorizontallyAlign(UI::LA_Center);
@@ -291,7 +291,7 @@ void CatchApp::MakeGUI()
     UI::DropDownList* MMResolutionList = MainMenuScreen->CreateDropDownList("MS_ResolutionList",UI::UnifiedRect(0.065,0.145,0.515,0.12),UI::SB_Separate);
     // Configure the selection display
     UI::Widget* MMResolutionDisplay = MMResolutionList->GetSelectionDisplay();
-    MMResolutionDisplay->CreateImageLayer("MMListSelection",0,0);
+    MMResolutionDisplay->CreateSingleImageLayer("MMListSelection",0,0);
     UI::SingleLineTextLayer* MMResolutionDisplayText = static_cast<UI::SingleLineTextLayer*>( MMResolutionDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
     MMResolutionDisplayText->SetDefaultFont(MainMenuScreenText);
     MMResolutionDisplayText->HorizontallyAlign(UI::LA_Center);
@@ -299,8 +299,8 @@ void CatchApp::MakeGUI()
     MMResolutionDisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMTightText);
     // Configure the list toggle
     UI::CheckBox* MMResolutionToggle = MMResolutionList->GetListToggle();
-    UI::ImageLayer* MMResolutionToggleNormal = MMResolutionToggle->CreateImageLayer("MMListScrollDown");
-    UI::ImageLayer* MMResolutionToggleHovered = MMResolutionToggle->CreateImageLayer("MMHoveredListScrollDown");
+    UI::SingleImageLayer* MMResolutionToggleNormal = MMResolutionToggle->CreateSingleImageLayer("MMListScrollDown");
+    UI::SingleImageLayer* MMResolutionToggleHovered = MMResolutionToggle->CreateSingleImageLayer("MMHoveredListScrollDown");
     MMResolutionToggle->AddLayerToGroup(MMResolutionToggleNormal,0,"Normal");
     MMResolutionToggle->AddLayerToGroup(MMResolutionToggleHovered,0,"Hovered");
     MMResolutionToggle->AddLayerToGroup(MMResolutionToggleNormal,0,"SelectedNormal");
@@ -311,22 +311,22 @@ void CatchApp::MakeGUI()
     MMResolutionOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,MMLargeText);
     // Configure the background for the listbox container
     UI::VerticalContainer* MMResolutionOptionsList = MMResolutionOptions->GetListContainer();
-    MMResolutionOptionsList->CreateImageLayer("MMListBackground",0,0);
+    MMResolutionOptionsList->CreateSingleImageLayer("MMListBackground",0,0);
     MMResolutionOptionsList->SetChildSizing(UI::SizingInfo(UI::UnifiedVec2(1.0,0.19)),UI::LinearContainer::SE_OnAdd);
     // Configure the scrollbar for the option list
     UI::VerticalScrollbar* MMResolutionOptionsScroll = MMResolutionOptions->GetListScroll();
     MMResolutionOptionsScroll->SetIncrementDistance(0.05);
     // Configure the scroller
-    MMResolutionOptionsScroll->GetScroller()->CreateImageLayer("MMListScroller",0,"Normal");
-    MMResolutionOptionsScroll->GetScroller()->CreateImageLayer("MMHoveredListScroller",0,"Hovered");
+    MMResolutionOptionsScroll->GetScroller()->CreateSingleImageLayer("MMListScroller",0,"Normal");
+    MMResolutionOptionsScroll->GetScroller()->CreateSingleImageLayer("MMHoveredListScroller",0,"Hovered");
     // Configure the up button
-    MMResolutionOptionsScroll->GetUpLeftButton()->CreateImageLayer("MMListScrollUp",0,"Normal");
-    MMResolutionOptionsScroll->GetUpLeftButton()->CreateImageLayer("MMHoveredListScrollUp",0,"Hovered");
+    MMResolutionOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("MMListScrollUp",0,"Normal");
+    MMResolutionOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("MMHoveredListScrollUp",0,"Hovered");
     // Configure the down button
-    MMResolutionOptionsScroll->GetDownRightButton()->CreateImageLayer("MMListScrollDown",0,"Normal");
-    MMResolutionOptionsScroll->GetDownRightButton()->CreateImageLayer("MMHoveredListScrollDown",0,"Hovered");
+    MMResolutionOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("MMListScrollDown",0,"Normal");
+    MMResolutionOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("MMHoveredListScrollDown",0,"Hovered");
     // Configure the scroll back
-    MMResolutionOptionsScroll->GetScrollBack()->CreateImageLayer("MMListScrollBackground",0,0);
+    MMResolutionOptionsScroll->GetScrollBack()->CreateSingleImageLayer("MMListScrollBackground",0,0);
     // Wrap up listing configuration
     MMResolutionList->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     MMVideoSet->AddChild(MMResolutionList,11);
@@ -334,16 +334,16 @@ void CatchApp::MakeGUI()
     // Create the checkbox for enabling or disabling fullscreen
     UI::CheckBox* MMFullscreenBox = MainMenuScreen->CreateCheckBox("MS_FullscreenBox",UI::UnifiedRect(0.655,0.145,0,0.12));
     MMFullscreenBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
-    MMFullscreenBox->CreateImageLayer("MMCheckboxUnchecked",0,"Normal");
-    MMFullscreenBox->CreateImageLayer("MMHoveredCheckboxUnchecked",0,"Hovered");
-    MMFullscreenBox->CreateImageLayer("MMCheckboxChecked",0,"SelectedNormal");
-    MMFullscreenBox->CreateImageLayer("MMHoveredCheckboxChecked",0,"SelectedHovered");
+    MMFullscreenBox->CreateSingleImageLayer("MMCheckboxUnchecked",0,"Normal");
+    MMFullscreenBox->CreateSingleImageLayer("MMHoveredCheckboxUnchecked",0,"Hovered");
+    MMFullscreenBox->CreateSingleImageLayer("MMCheckboxChecked",0,"SelectedNormal");
+    MMFullscreenBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",0,"SelectedHovered");
     MMFullscreenBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     MMVideoSet->AddChild(MMFullscreenBox,3);
 
     // Create the label for the fullscreen checkbox
     UI::Widget* MMFullscreenLabel = MainMenuScreen->CreateWidget("MS_FullscreenLabel",UI::UnifiedRect(0.72,0.145,0.22,0.12));
-    MMFullscreenLabel->CreateImageLayer("MMButton",0,0);
+    MMFullscreenLabel->CreateSingleImageLayer("MMButton",0,0);
     UI::SingleLineTextLayer* MMFullscreenLabelText = MMFullscreenLabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMFullscreenLabelText->SetText("Fullscreen");
     MMFullscreenLabelText->HorizontallyAlign(UI::LA_Center);
@@ -353,7 +353,7 @@ void CatchApp::MakeGUI()
 
     // Create the label for the FSAA options
     UI::Widget* MMFSAALabel = MainMenuScreen->CreateWidget("MS_FSAALabel",UI::UnifiedRect(0.12,0.365,0.415,0.13));
-    MMFSAALabel->CreateImageLayer("MMButton",0,0);
+    MMFSAALabel->CreateSingleImageLayer("MMButton",0,0);
     UI::SingleLineTextLayer* MMFSAALabelText = MMFSAALabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMFSAALabelText->SetText("Anti-Aliasing");
     MMFSAALabelText->HorizontallyAlign(UI::LA_Center);
@@ -365,7 +365,7 @@ void CatchApp::MakeGUI()
     UI::DropDownList* MMFSAAList = MainMenuScreen->CreateDropDownList("MS_FSAAList",UI::UnifiedRect(0.065,0.50,0.515,0.12),UI::SB_Separate);
     // Configure the selection display
     UI::Widget* MMFSAADisplay = MMFSAAList->GetSelectionDisplay();
-    MMFSAADisplay->CreateImageLayer("MMListSelection",0,0);
+    MMFSAADisplay->CreateSingleImageLayer("MMListSelection",0,0);
     UI::SingleLineTextLayer* MMFSAADisplayText = static_cast<UI::SingleLineTextLayer*>( MMFSAADisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
     MMFSAADisplayText->SetDefaultFont(MainMenuScreenText);
     MMFSAADisplayText->HorizontallyAlign(UI::LA_Center);
@@ -373,8 +373,8 @@ void CatchApp::MakeGUI()
     MMFSAADisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMTightText);
     // Configure the list toggle
     UI::CheckBox* MMFSAAToggle = MMFSAAList->GetListToggle();
-    UI::ImageLayer* MMFSAAToggleNormal = MMFSAAToggle->CreateImageLayer("MMListScrollDown");
-    UI::ImageLayer* MMFSAAToggleHovered = MMFSAAToggle->CreateImageLayer("MMHoveredListScrollDown");
+    UI::SingleImageLayer* MMFSAAToggleNormal = MMFSAAToggle->CreateSingleImageLayer("MMListScrollDown");
+    UI::SingleImageLayer* MMFSAAToggleHovered = MMFSAAToggle->CreateSingleImageLayer("MMHoveredListScrollDown");
     MMFSAAToggle->AddLayerToGroup(MMFSAAToggleNormal,0,"Normal");
     MMFSAAToggle->AddLayerToGroup(MMFSAAToggleHovered,0,"Hovered");
     MMFSAAToggle->AddLayerToGroup(MMFSAAToggleNormal,0,"SelectedNormal");
@@ -385,22 +385,22 @@ void CatchApp::MakeGUI()
     MMFSAAOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,MMLargeText);
     // Configure the background for the listbox container
     UI::VerticalContainer* MMFSAAOptionsList = MMFSAAOptions->GetListContainer();
-    MMFSAAOptionsList->CreateImageLayer("MMListBackground",0,0);
+    MMFSAAOptionsList->CreateSingleImageLayer("MMListBackground",0,0);
     MMFSAAOptionsList->SetChildSizing(UI::SizingInfo(UI::UnifiedVec2(1.0,0.19)),UI::LinearContainer::SE_OnAdd);
     // Configure the scrollbar for the option list
     UI::VerticalScrollbar* MMFSAAOptionsScroll = MMFSAAOptions->GetListScroll();
     MMFSAAOptionsScroll->SetIncrementDistance(0.05);
     // Configure the scroller
-    MMFSAAOptionsScroll->GetScroller()->CreateImageLayer("MMListScroller",0,"Normal");
-    MMFSAAOptionsScroll->GetScroller()->CreateImageLayer("MMHoveredListScroller",0,"Hovered");
+    MMFSAAOptionsScroll->GetScroller()->CreateSingleImageLayer("MMListScroller",0,"Normal");
+    MMFSAAOptionsScroll->GetScroller()->CreateSingleImageLayer("MMHoveredListScroller",0,"Hovered");
     // Configure the up button
-    MMFSAAOptionsScroll->GetUpLeftButton()->CreateImageLayer("MMListScrollUp",0,"Normal");
-    MMFSAAOptionsScroll->GetUpLeftButton()->CreateImageLayer("MMHoveredListScrollUp",0,"Hovered");
+    MMFSAAOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("MMListScrollUp",0,"Normal");
+    MMFSAAOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("MMHoveredListScrollUp",0,"Hovered");
     // Configure the down button
-    MMFSAAOptionsScroll->GetDownRightButton()->CreateImageLayer("MMListScrollDown",0,"Normal");
-    MMFSAAOptionsScroll->GetDownRightButton()->CreateImageLayer("MMHoveredListScrollDown",0,"Hovered");
+    MMFSAAOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("MMListScrollDown",0,"Normal");
+    MMFSAAOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("MMHoveredListScrollDown",0,"Hovered");
     // Configure the scroll back
-    MMFSAAOptionsScroll->GetScrollBack()->CreateImageLayer("MMListScrollBackground",0,0);
+    MMFSAAOptionsScroll->GetScrollBack()->CreateSingleImageLayer("MMListScrollBackground",0,0);
     // Wrap up listing configuration
     MMFSAAList->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     MMVideoSet->AddChild(MMFSAAList,10);
@@ -408,16 +408,16 @@ void CatchApp::MakeGUI()
     // Create the checkbox for enabling or disabling FPS stats display
     UI::CheckBox* MMStatsBox = MainMenuScreen->CreateCheckBox("MS_StatsBox",UI::UnifiedRect(0.655,0.50,0,0.12));
     MMStatsBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
-    MMStatsBox->CreateImageLayer("MMCheckboxUnchecked",0,"Normal");
-    MMStatsBox->CreateImageLayer("MMHoveredCheckboxUnchecked",0,"Hovered");
-    MMStatsBox->CreateImageLayer("MMCheckboxChecked",0,"SelectedNormal");
-    MMStatsBox->CreateImageLayer("MMHoveredCheckboxChecked",0,"SelectedHovered");
+    MMStatsBox->CreateSingleImageLayer("MMCheckboxUnchecked",0,"Normal");
+    MMStatsBox->CreateSingleImageLayer("MMHoveredCheckboxUnchecked",0,"Hovered");
+    MMStatsBox->CreateSingleImageLayer("MMCheckboxChecked",0,"SelectedNormal");
+    MMStatsBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",0,"SelectedHovered");
     MMStatsBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     MMVideoSet->AddChild(MMStatsBox,7);
 
     // Create the label for the FPS stats display checkbox
     UI::Widget* MMStatsLabel = MainMenuScreen->CreateWidget("MS_StatsLabel",UI::UnifiedRect(0.72,0.50,0.22,0.12));
-    MMStatsLabel->CreateImageLayer("MMButton",0,0);
+    MMStatsLabel->CreateSingleImageLayer("MMButton",0,0);
     UI::SingleLineTextLayer* MMStatsLabelText = MMStatsLabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMStatsLabelText->SetText("Show FPS");
     MMStatsLabelText->HorizontallyAlign(UI::LA_Center);
@@ -427,8 +427,8 @@ void CatchApp::MakeGUI()
 
     // Create the button that will apply all of the currently displayed video settings
     UI::Button* MMVideoOptsApply = MainMenuScreen->CreateButton("MS_VideoOptsApply",UI::UnifiedRect(0.815,0.84,0.17,0.14));
-    MMVideoOptsApply->CreateImageLayer("MMOptionsApplyButton",0,"Normal");
-    MMVideoOptsApply->CreateImageLayer("MMOptionsApplyHoveredButton",0,"Hovered");
+    MMVideoOptsApply->CreateSingleImageLayer("MMOptionsApplyButton",0,"Normal");
+    MMVideoOptsApply->CreateSingleImageLayer("MMOptionsApplyHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* MMVideoOptsApplyText = MMVideoOptsApply->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMVideoOptsApplyText->SetText("Apply");
     MMVideoOptsApplyText->HorizontallyAlign(UI::LA_Center);
@@ -444,7 +444,7 @@ void CatchApp::MakeGUI()
     // Create the label for the Music volume
     UI::Widget* MMMusicVolLabel = MainMenuScreen->CreateWidget("MS_MusicVolLabel",UI::UnifiedRect(0.0,0.01,0.40,0.13));
     MMMusicVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
-    MMMusicVolLabel->CreateImageLayer("MMButton",0,0);
+    MMMusicVolLabel->CreateSingleImageLayer("MMButton",0,0);
     UI::SingleLineTextLayer* MMMusicVolLabelText = MMMusicVolLabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMMusicVolLabelText->SetText("Music Volume");
     MMMusicVolLabelText->HorizontallyAlign(UI::LA_Center);
@@ -458,16 +458,16 @@ void CatchApp::MakeGUI()
     MMMusicVol->SetIncrementDistance(MMScrollerSize * 0.5);
     MMMusicVol->SetScrollerSize(MMScrollerSize);
     // Configure the scroller
-    MMMusicVol->GetScroller()->CreateImageLayer("MMScroller",0,"Normal");
-    MMMusicVol->GetScroller()->CreateImageLayer("MMHoveredScroller",0,"Hovered");
+    MMMusicVol->GetScroller()->CreateSingleImageLayer("MMScroller",0,"Normal");
+    MMMusicVol->GetScroller()->CreateSingleImageLayer("MMHoveredScroller",0,"Hovered");
     // Configure the up button
-    MMMusicVol->GetUpLeftButton()->CreateImageLayer("MMScrollLeft",0,"Normal");
-    MMMusicVol->GetUpLeftButton()->CreateImageLayer("MMHoveredScrollLeft",0,"Hovered");
+    MMMusicVol->GetUpLeftButton()->CreateSingleImageLayer("MMScrollLeft",0,"Normal");
+    MMMusicVol->GetUpLeftButton()->CreateSingleImageLayer("MMHoveredScrollLeft",0,"Hovered");
     // Configure the down button
-    MMMusicVol->GetDownRightButton()->CreateImageLayer("MMScrollRight",0,"Normal");
-    MMMusicVol->GetDownRightButton()->CreateImageLayer("MMHoveredScrollRight",0,"Hovered");
+    MMMusicVol->GetDownRightButton()->CreateSingleImageLayer("MMScrollRight",0,"Normal");
+    MMMusicVol->GetDownRightButton()->CreateSingleImageLayer("MMHoveredScrollRight",0,"Hovered");
     // Configure the scroll back
-    MMMusicVol->GetScrollBack()->CreateImageLayer("MMScrollBackground",0,0);
+    MMMusicVol->GetScrollBack()->CreateSingleImageLayer("MMScrollBackground",0,0);
     // Wrap up Effects volume ocnfiguration
     MMMusicVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,this->AudioSettingsWork->GetSettingsSubscriber());
     MMMusicVol->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
@@ -476,7 +476,7 @@ void CatchApp::MakeGUI()
     // Create the label for the Effects volume
     UI::Widget* MMEffectsVolLabel = MainMenuScreen->CreateWidget("MS_EffectsVolLabel",UI::UnifiedRect(0.0,0.275,0.40,0.13));
     MMEffectsVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
-    MMEffectsVolLabel->CreateImageLayer("MMButton",0,0);
+    MMEffectsVolLabel->CreateSingleImageLayer("MMButton",0,0);
     UI::SingleLineTextLayer* MMEffectsVolLabelText = MMEffectsVolLabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMEffectsVolLabelText->SetText("Effects Volume");
     MMEffectsVolLabelText->HorizontallyAlign(UI::LA_Center);
@@ -490,16 +490,16 @@ void CatchApp::MakeGUI()
     MMEffectsVol->SetIncrementDistance(MMScrollerSize * 0.5);
     MMEffectsVol->SetScrollerSize(MMScrollerSize);
     // Configure the scroller
-    MMEffectsVol->GetScroller()->CreateImageLayer("MMScroller",0,"Normal");
-    MMEffectsVol->GetScroller()->CreateImageLayer("MMHoveredScroller",0,"Hovered");
+    MMEffectsVol->GetScroller()->CreateSingleImageLayer("MMScroller",0,"Normal");
+    MMEffectsVol->GetScroller()->CreateSingleImageLayer("MMHoveredScroller",0,"Hovered");
     // Configure the up button
-    MMEffectsVol->GetUpLeftButton()->CreateImageLayer("MMScrollLeft",0,"Normal");
-    MMEffectsVol->GetUpLeftButton()->CreateImageLayer("MMHoveredScrollLeft",0,"Hovered");
+    MMEffectsVol->GetUpLeftButton()->CreateSingleImageLayer("MMScrollLeft",0,"Normal");
+    MMEffectsVol->GetUpLeftButton()->CreateSingleImageLayer("MMHoveredScrollLeft",0,"Hovered");
     // Configure the down button
-    MMEffectsVol->GetDownRightButton()->CreateImageLayer("MMScrollRight",0,"Normal");
-    MMEffectsVol->GetDownRightButton()->CreateImageLayer("MMHoveredScrollRight",0,"Hovered");
+    MMEffectsVol->GetDownRightButton()->CreateSingleImageLayer("MMScrollRight",0,"Normal");
+    MMEffectsVol->GetDownRightButton()->CreateSingleImageLayer("MMHoveredScrollRight",0,"Hovered");
     // Configure the scroll back
-    MMEffectsVol->GetScrollBack()->CreateImageLayer("MMScrollBackground",0,0);
+    MMEffectsVol->GetScrollBack()->CreateSingleImageLayer("MMScrollBackground",0,0);
     // Wrap up Effects volume ocnfiguration
     MMEffectsVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,this->AudioSettingsWork->GetSettingsSubscriber());
     MMEffectsVol->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
@@ -507,7 +507,7 @@ void CatchApp::MakeGUI()
 
     /*// Create the label for the Audio Device options
     UI::Widget* MMAudioDeviceLabel = MainMenuScreen->CreateWidget("MS_AudioDeviceLabel",UI::UnifiedRect(0.12,0.56,0.415,0.13));
-    MMAudioDeviceLabel->CreateImageLayer("MMButton",0,0);
+    MMAudioDeviceLabel->CreateSingleImageLayer("MMButton",0,0);
     UI::SingleLineTextLayer* MMAudioDeviceLabelText = MMAudioDeviceLabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMAudioDeviceLabelText->SetText("Audio Device");
     MMAudioDeviceLabelText->HorizontallyAlign(UI::LA_Center);
@@ -519,7 +519,7 @@ void CatchApp::MakeGUI()
     UI::DropDownList* MMAudioDeviceList = MainMenuScreen->CreateDropDownList("MS_AudioDeviceList",UI::UnifiedRect(0.065,0.695,0.515,0.12),UI::SB_Separate);
     // Configure the selection display
     UI::Widget* MMAudioDeviceDisplay = MMAudioDeviceList->GetSelectionDisplay();
-    MMAudioDeviceDisplay->CreateImageLayer("MMListSelection",0,0);
+    MMAudioDeviceDisplay->CreateSingleImageLayer("MMListSelection",0,0);
     UI::SingleLineTextLayer* MMAudioDeviceDisplayText = static_cast<UI::SingleLineTextLayer*>( MMAudioDeviceDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
     MMAudioDeviceDisplayText->SetDefaultFont(MainMenuScreenText);
     MMAudioDeviceDisplayText->HorizontallyAlign(UI::LA_Center);
@@ -527,8 +527,8 @@ void CatchApp::MakeGUI()
     MMAudioDeviceDisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMTightText);
     // Configure the list toggle
     UI::CheckBox* MMAudioDeviceToggle = MMAudioDeviceList->GetListToggle();
-    UI::ImageLayer* MMAudioDeviceToggleNormal = MMAudioDeviceToggle->CreateImageLayer("MMListScrollDown");
-    UI::ImageLayer* MMAudioDeviceToggleHovered = MMAudioDeviceToggle->CreateImageLayer("MMHoveredListScrollDown");
+    UI::SingleImageLayer* MMAudioDeviceToggleNormal = MMAudioDeviceToggle->CreateSingleImageLayer("MMListScrollDown");
+    UI::SingleImageLayer* MMAudioDeviceToggleHovered = MMAudioDeviceToggle->CreateSingleImageLayer("MMHoveredListScrollDown");
     MMAudioDeviceToggle->AddLayerToGroup(MMAudioDeviceToggleNormal,0,"Normal");
     MMAudioDeviceToggle->AddLayerToGroup(MMAudioDeviceToggleHovered,0,"Hovered");
     MMAudioDeviceToggle->AddLayerToGroup(MMAudioDeviceToggleNormal,0,"SelectedNormal");
@@ -539,22 +539,22 @@ void CatchApp::MakeGUI()
     MMAudioDeviceOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,MMLargeText);
     // Configure the background for the listbox container
     UI::VerticalContainer* MMAudioDeviceOptionsList = MMAudioDeviceOptions->GetListContainer();
-    MMAudioDeviceOptionsList->CreateImageLayer("MMListBackground",0,0);
+    MMAudioDeviceOptionsList->CreateSingleImageLayer("MMListBackground",0,0);
     MMAudioDeviceOptionsList->SetChildSizing(UI::SizingInfo(UI::UnifiedVec2(1.0,0.19)),UI::LinearContainer::SE_OnAdd);
     // Configure the scrollbar for the option list
     UI::VerticalScrollbar* MMAudioDeviceOptionsScroll = MMAudioDeviceOptions->GetListScroll();
     MMAudioDeviceOptionsScroll->SetIncrementDistance(0.05);
     // Configure the scroller
-    MMAudioDeviceOptionsScroll->GetScroller()->CreateImageLayer("MMListScroller",0,"Normal");
-    MMAudioDeviceOptionsScroll->GetScroller()->CreateImageLayer("MMHoveredListScroller",0,"Hovered");
+    MMAudioDeviceOptionsScroll->GetScroller()->CreateSingleImageLayer("MMListScroller",0,"Normal");
+    MMAudioDeviceOptionsScroll->GetScroller()->CreateSingleImageLayer("MMHoveredListScroller",0,"Hovered");
     // Configure the up button
-    MMAudioDeviceOptionsScroll->GetUpLeftButton()->CreateImageLayer("MMListScrollUp",0,"Normal");
-    MMAudioDeviceOptionsScroll->GetUpLeftButton()->CreateImageLayer("MMHoveredListScrollUp",0,"Hovered");
+    MMAudioDeviceOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("MMListScrollUp",0,"Normal");
+    MMAudioDeviceOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("MMHoveredListScrollUp",0,"Hovered");
     // Configure the down button
-    MMAudioDeviceOptionsScroll->GetDownRightButton()->CreateImageLayer("MMListScrollDown",0,"Normal");
-    MMAudioDeviceOptionsScroll->GetDownRightButton()->CreateImageLayer("MMHoveredListScrollDown",0,"Hovered");
+    MMAudioDeviceOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("MMListScrollDown",0,"Normal");
+    MMAudioDeviceOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("MMHoveredListScrollDown",0,"Hovered");
     // Configure the scroll back
-    MMAudioDeviceOptionsScroll->GetScrollBack()->CreateImageLayer("MMListScrollBackground",0,0);
+    MMAudioDeviceOptionsScroll->GetScrollBack()->CreateSingleImageLayer("MMListScrollBackground",0,0);
     // Wrap up listing configuration
     MMAudioDeviceList->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
     MMAudioSet->AddChild(MMAudioDeviceList,10);//*/
@@ -562,10 +562,10 @@ void CatchApp::MakeGUI()
     // Create the checkbox for enabling or disabling FPS stats display
     UI::CheckBox* MMMuteBox = MainMenuScreen->CreateCheckBox("MS_MuteBox",UI::UnifiedRect(0.655,0.695,0,0.12));
     MMMuteBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
-    MMMuteBox->CreateImageLayer("MMCheckboxUnchecked",0,"Normal");
-    MMMuteBox->CreateImageLayer("MMHoveredCheckboxUnchecked",0,"Hovered");
-    MMMuteBox->CreateImageLayer("MMCheckboxChecked",0,"SelectedNormal");
-    MMMuteBox->CreateImageLayer("MMHoveredCheckboxChecked",0,"SelectedHovered");
+    MMMuteBox->CreateSingleImageLayer("MMCheckboxUnchecked",0,"Normal");
+    MMMuteBox->CreateSingleImageLayer("MMHoveredCheckboxUnchecked",0,"Hovered");
+    MMMuteBox->CreateSingleImageLayer("MMCheckboxChecked",0,"SelectedNormal");
+    MMMuteBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",0,"SelectedHovered");
     MMMuteBox->Subscribe(UI::CheckBox::EventSelected,this->AudioSettingsWork->GetSettingsSubscriber());
     MMMuteBox->Subscribe(UI::CheckBox::EventDeselected,this->AudioSettingsWork->GetSettingsSubscriber());
     MMMuteBox->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
@@ -573,7 +573,7 @@ void CatchApp::MakeGUI()
 
     // Create the label for the FPS stats display checkbox
     UI::Widget* MMMuteLabel = MainMenuScreen->CreateWidget("MS_MuteLabel",UI::UnifiedRect(0.72,0.695,0.22,0.12));
-    MMMuteLabel->CreateImageLayer("MMButton",0,0);
+    MMMuteLabel->CreateSingleImageLayer("MMButton",0,0);
     UI::SingleLineTextLayer* MMMuteLabelText = MMMuteLabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMMuteLabelText->SetText("Mute");
     MMMuteLabelText->HorizontallyAlign(UI::LA_Center);
@@ -583,8 +583,8 @@ void CatchApp::MakeGUI()
 
     // Create the back button for the options window
     UI::StackButton* MMOptsBack = MainMenuScreen->CreateStackButton("MS_OptsBack",UI::UnifiedRect(0.780,0.870,0.156,0.094));
-    MMOptsBack->CreateImageLayer("MMOptionsApplyButton",0,"Normal");
-    MMOptsBack->CreateImageLayer("MMOptionsApplyHoveredButton",0,"Hovered");
+    MMOptsBack->CreateSingleImageLayer("MMOptionsApplyButton",0,"Normal");
+    MMOptsBack->CreateSingleImageLayer("MMOptionsApplyHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* MMOptsBackText = MMOptsBack->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMOptsBackText->SetText("Back");
     MMOptsBackText->HorizontallyAlign(UI::LA_Center);
@@ -596,8 +596,8 @@ void CatchApp::MakeGUI()
     ////------------------  Credits  ------------------////
     // Start with the accessor button
     UI::StackButton* MMCreditsAccess = MainMenuScreen->CreateStackButton("MS_Credits",UI::UnifiedRect(0.51,0.18,0.22,0.7));
-    MMCreditsAccess->CreateImageLayer("MMButton",0,"Normal");
-    MMCreditsAccess->CreateImageLayer("MMHoveredButton",0,"Hovered");
+    MMCreditsAccess->CreateSingleImageLayer("MMButton",0,"Normal");
+    MMCreditsAccess->CreateSingleImageLayer("MMHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* MMCreditsAccessText = MMCreditsAccess->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMCreditsAccessText->SetText("Credits");
     MMCreditsAccessText->HorizontallyAlign(UI::LA_Center);
@@ -607,15 +607,15 @@ void CatchApp::MakeGUI()
 
     // Create and configure the "window" that houses the options display
     UI::MenuEntry* MMCreditsWin = MainMenuScreen->CreateMenuEntry("MS_CreditsWin",UI::UnifiedRect(0.18,-9.04,0.64,6.4));
-    MMCreditsWin->CreateImageLayer("MMOptionsBackground",0,0);
+    MMCreditsWin->CreateSingleImageLayer("MMOptionsBackground",0,0);
     MMCreditsWin->SetPushButton(MMCreditsAccess);
     MMRootEntry->AddChild(MMCreditsWin,7);
 
     ////------------------  Exit Game  ------------------////
     // Start with the accessor button
     UI::StackButton* MMAppExitAccess = MainMenuScreen->CreateStackButton("MS_AppExit",UI::UnifiedRect(0.74,0.18,0.22,0.7));
-    MMAppExitAccess->CreateImageLayer("MMButton",0,"Normal");
-    MMAppExitAccess->CreateImageLayer("MMHoveredButton",0,"Hovered");
+    MMAppExitAccess->CreateSingleImageLayer("MMButton",0,"Normal");
+    MMAppExitAccess->CreateSingleImageLayer("MMHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* MMAppExitAccessText = MMAppExitAccess->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMAppExitAccessText->SetText("Exit Game");
     MMAppExitAccessText->HorizontallyAlign(UI::LA_Center);
@@ -625,13 +625,13 @@ void CatchApp::MakeGUI()
 
     // Create and configure the "window" that houses the exit confirmation
     UI::MenuEntry* MMAppExitWin = MainMenuScreen->CreateMenuEntry("MS_AppExitWin",UI::UnifiedRect(0.25,-8.14,0.5,3.5));
-    MMAppExitWin->CreateImageLayer("MMAppExitBackground",0,0);
+    MMAppExitWin->CreateSingleImageLayer("MMAppExitBackground",0,0);
     MMAppExitWin->SetPushButton(MMAppExitAccess);
     MMRootEntry->AddChild(MMAppExitWin,8);
 
     // Create and configure the display for the confirmation question
     UI::Widget* MMAppExitWarn = MainMenuScreen->CreateWidget("MS_AppExitWarn",UI::UnifiedRect(0.14,0.18,0.72,0.22));
-    MMAppExitWarn->CreateImageLayer("MMAppExitText",0,0);
+    MMAppExitWarn->CreateSingleImageLayer("MMAppExitText",0,0);
     UI::SingleLineTextLayer* MMAppExitWarnText = MMAppExitWarn->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMAppExitWarnText->SetText("Are you sure you want to exit?");
     MMAppExitWarnText->HorizontallyAlign(UI::LA_Center);
@@ -641,8 +641,8 @@ void CatchApp::MakeGUI()
 
     // Create and configure the confirm button
     UI::Button* MMAppExitConf = MainMenuScreen->CreateButton("MS_AppExitConf",UI::UnifiedRect(0.10,0.58,0.35,0.22));
-    MMAppExitConf->CreateImageLayer("MMAppExitButton",0,"Normal");
-    MMAppExitConf->CreateImageLayer("MMAppExitHoveredButton",0,"Hovered");
+    MMAppExitConf->CreateSingleImageLayer("MMAppExitButton",0,"Normal");
+    MMAppExitConf->CreateSingleImageLayer("MMAppExitHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* MMAppExitConfText = MMAppExitConf->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMAppExitConfText->SetText("Yes");
     MMAppExitConfText->HorizontallyAlign(UI::LA_Center);
@@ -653,8 +653,8 @@ void CatchApp::MakeGUI()
 
     // Create and configure the deny button
     UI::StackButton* MMAppExitDeny = MainMenuScreen->CreateStackButton("MS_AppExitDeny",UI::UnifiedRect(0.55,0.58,0.35,0.22));
-    MMAppExitDeny->CreateImageLayer("MMAppExitButton",0,"Normal");
-    MMAppExitDeny->CreateImageLayer("MMAppExitHoveredButton",0,"Hovered");
+    MMAppExitDeny->CreateSingleImageLayer("MMAppExitButton",0,"Normal");
+    MMAppExitDeny->CreateSingleImageLayer("MMAppExitHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* MMAppExitDenyText = MMAppExitDeny->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMAppExitDenyText->SetText("No");
     MMAppExitDenyText->HorizontallyAlign(UI::LA_Center);
@@ -683,12 +683,12 @@ void CatchApp::MakeGUI()
     // Create the widget for displaying the timer logo
     UI::Widget* GSScoreLabel = GameScreen->CreateWidget("GS_ScoreLabel",UI::UnifiedRect(0.0,0.0,0.45,1.0));
     GSScoreLabel->SetPositioningRules(UI::PF_Anchor_TopLeft);
-    GSScoreLabel->CreateImageLayer("GSScoreTextArea",0,0);
+    GSScoreLabel->CreateSingleImageLayer("GSScoreTextArea",0,0);
     GSScore->AddChild(GSScoreLabel,1);
     // Create the widget for displaying the timer value
     UI::Widget* GSScoreValue = GameScreen->CreateWidget("GS_ScoreValue",UI::UnifiedRect(0.0,0.0,0.55,1.0));
     GSScoreValue->SetPositioningRules(UI::PF_Anchor_TopRight);
-    GSScoreValue->CreateImageLayer("GSScoreValueArea",0,0);
+    GSScoreValue->CreateSingleImageLayer("GSScoreValueArea",0,0);
     UI::SingleLineTextLayer* GSScoreValueText = GSScoreValue->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSScoreValueText->SetText("0:00");
     GSScoreValueText->HorizontallyAlign(UI::LA_Center);
@@ -704,12 +704,12 @@ void CatchApp::MakeGUI()
     // Create the widget for displaying the timer logo
     UI::Widget* GSTimerLogo = GameScreen->CreateWidget("GS_TimerLogo",UI::UnifiedRect(0.0,0.0,0.66,1.0));
     GSTimerLogo->SetPositioningRules(UI::PF_Anchor_TopLeft);
-    GSTimerLogo->CreateImageLayer("GSTimerLogo",0,0);
+    GSTimerLogo->CreateSingleImageLayer("GSTimerLogo",0,0);
     GSTimer->AddChild(GSTimerLogo,1);
     // Create the widget for displaying the timer value
     UI::Widget* GSTimerValue = GameScreen->CreateWidget("GS_TimerValue",UI::UnifiedRect(0.0,0.0,0.34,1.0));
     GSTimerValue->SetPositioningRules(UI::PF_Anchor_TopRight);
-    GSTimerValue->CreateImageLayer("GSTimerArea",0,0);
+    GSTimerValue->CreateSingleImageLayer("GSTimerArea",0,0);
     UI::SingleLineTextLayer* GSTimerValueText = GSTimerValue->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSTimerValueText->SetText("0");
     GSTimerValueText->HorizontallyAlign(UI::LA_Center);
@@ -722,8 +722,8 @@ void CatchApp::MakeGUI()
     // Create the menu button
     UI::StackButton* GSMenuAccess = GameScreen->CreateStackButton("GS_MenuAccess",UI::UnifiedRect(0.008,0.935,0.16,0.065));
     GSMenuAccess->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
-    GSMenuAccess->CreateImageLayer("GSMenuStoreButton",0,"Normal");
-    GSMenuAccess->CreateImageLayer("GSMenuStoreHoveredButton",0,"Hovered");
+    GSMenuAccess->CreateSingleImageLayer("GSMenuStoreButton",0,"Normal");
+    GSMenuAccess->CreateSingleImageLayer("GSMenuStoreHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSMenuAccessText = GSMenuAccess->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSMenuAccessText->SetText("Menu");
     GSMenuAccessText->HorizontallyAlign(UI::LA_Center);
@@ -734,8 +734,8 @@ void CatchApp::MakeGUI()
     // Create the item shop button
     UI::StackButton* GSItemShopAccess = GameScreen->CreateStackButton("GS_ItemShopAccess",UI::UnifiedRect(0.822,0.935,0.16,0.065));
     GSItemShopAccess->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
-    GSItemShopAccess->CreateImageLayer("GSMenuStoreButton",0,"Normal");
-    GSItemShopAccess->CreateImageLayer("GSMenuStoreHoveredButton",0,"Hovered");
+    GSItemShopAccess->CreateSingleImageLayer("GSMenuStoreButton",0,"Normal");
+    GSItemShopAccess->CreateSingleImageLayer("GSMenuStoreHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSItemShopAccessText = GSItemShopAccess->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopAccessText->SetText("Store");
     GSItemShopAccessText->HorizontallyAlign(UI::LA_Center);
@@ -747,14 +747,14 @@ void CatchApp::MakeGUI()
     // Create the root entry for the game menu
     UI::MenuEntry* GSMenuRoot = GameScreen->CreateMenuEntry("GS_MenuRoot",UI::UnifiedRect(0.35,0.27,0.3,0.45));
     GSMenuRoot->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
-    GSMenuRoot->CreateImageLayer("GSOptionsMenuBackground",0,0);
+    GSMenuRoot->CreateSingleImageLayer("GSOptionsMenuBackground",0,0);
     GSMenuRoot->SetPushButton(GSMenuAccess);
     GameScreen->AddChild(GSMenuRoot,10);
 
     // Create the options accessor button
     UI::StackButton* GSOptionsAccess = GameScreen->CreateStackButton("GS_Options",UI::UnifiedRect(0.15,0.075,0.70,0.11));
-    GSOptionsAccess->CreateImageLayer("GSOptionsButton",0,"Normal");
-    GSOptionsAccess->CreateImageLayer("GSOptionsHoveredButton",0,"Hovered");
+    GSOptionsAccess->CreateSingleImageLayer("GSOptionsButton",0,"Normal");
+    GSOptionsAccess->CreateSingleImageLayer("GSOptionsHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSOptionsAccessText = GSOptionsAccess->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSOptionsAccessText->SetText("Options");
     GSOptionsAccessText->HorizontallyAlign(UI::LA_Center);
@@ -764,14 +764,14 @@ void CatchApp::MakeGUI()
 
     // Create and configure the "window" that houses the options display
     UI::MenuEntry* GSOptionsWin = GameScreen->CreateMenuEntry("GS_OptionsWin",UI::UnifiedRect(0.18,-8.08,0.64,6.4));
-    GSOptionsWin->CreateImageLayer("GSOptionsBackground",0,0);
+    GSOptionsWin->CreateSingleImageLayer("GSOptionsBackground",0,0);
     GSOptionsWin->SetPushButton(GSOptionsAccess);
     GSMenuRoot->AddChild(GSOptionsWin,7);
 
     // Create the first of the two buttons that will display the two sets of options (video options)
     UI::StackButton* GSVideoSetAccess = GameScreen->CreateStackButton("GS_VideoSetAccess",UI::UnifiedRect(0.11,0.0365,0.34,0.11));
-    GSVideoSetAccess->CreateImageLayer("GSButton",0,"Normal");
-    GSVideoSetAccess->CreateImageLayer("GSHoveredButton",0,"Hovered");
+    GSVideoSetAccess->CreateSingleImageLayer("GSButton",0,"Normal");
+    GSVideoSetAccess->CreateSingleImageLayer("GSHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSVideoSetAccessText = GSVideoSetAccess->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSVideoSetAccessText->SetText("Video Options");
     GSVideoSetAccessText->HorizontallyAlign(UI::LA_Center);
@@ -781,8 +781,8 @@ void CatchApp::MakeGUI()
 
     // Create the second of the two buttons that will display the two sets of options (audio options)
     UI::StackButton* GSAudioSetAccess = GameScreen->CreateStackButton("GS_AudioSetAccess",UI::UnifiedRect(0.55,0.0365,0.34,0.11));
-    GSAudioSetAccess->CreateImageLayer("GSButton",0,"Normal");
-    GSAudioSetAccess->CreateImageLayer("GSHoveredButton",0,"Hovered");
+    GSAudioSetAccess->CreateSingleImageLayer("GSButton",0,"Normal");
+    GSAudioSetAccess->CreateSingleImageLayer("GSHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSAudioSetAccessText = GSAudioSetAccess->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSAudioSetAccessText->SetText("Audio Options");
     GSAudioSetAccessText->HorizontallyAlign(UI::LA_Center);
@@ -803,7 +803,7 @@ void CatchApp::MakeGUI()
 
     // Create the label for the window resolution list
     UI::Widget* GSResolutionLabel = GameScreen->CreateWidget("GS_ResolutionLabel",UI::UnifiedRect(0.12,0.01,0.415,0.13));
-    GSResolutionLabel->CreateImageLayer("GSButton",0,0);
+    GSResolutionLabel->CreateSingleImageLayer("GSButton",0,0);
     UI::SingleLineTextLayer* GSResolutionLabelText = GSResolutionLabel->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSResolutionLabelText->SetText("Video Resolutions");
     GSResolutionLabelText->HorizontallyAlign(UI::LA_Center);
@@ -815,7 +815,7 @@ void CatchApp::MakeGUI()
     UI::DropDownList* GSResolutionList = GameScreen->CreateDropDownList("GS_ResolutionList",UI::UnifiedRect(0.065,0.145,0.515,0.12),UI::SB_Separate);
     // Configure the selection display
     UI::Widget* GSResolutionDisplay = GSResolutionList->GetSelectionDisplay();
-    GSResolutionDisplay->CreateImageLayer("GSListSelection",0,0);
+    GSResolutionDisplay->CreateSingleImageLayer("GSListSelection",0,0);
     UI::SingleLineTextLayer* GSResolutionDisplayText = static_cast<UI::SingleLineTextLayer*>( GSResolutionDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
     GSResolutionDisplayText->SetDefaultFont(GameScreenText);
     GSResolutionDisplayText->HorizontallyAlign(UI::LA_Center);
@@ -823,8 +823,8 @@ void CatchApp::MakeGUI()
     GSResolutionDisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
     // Configure the list toggle
     UI::CheckBox* GSResolutionToggle = GSResolutionList->GetListToggle();
-    UI::ImageLayer* GSResolutionToggleNormal = GSResolutionToggle->CreateImageLayer("GSListScrollDown");
-    UI::ImageLayer* GSResolutionToggleHovered = GSResolutionToggle->CreateImageLayer("GSHoveredListScrollDown");
+    UI::SingleImageLayer* GSResolutionToggleNormal = GSResolutionToggle->CreateSingleImageLayer("GSListScrollDown");
+    UI::SingleImageLayer* GSResolutionToggleHovered = GSResolutionToggle->CreateSingleImageLayer("GSHoveredListScrollDown");
     GSResolutionToggle->AddLayerToGroup(GSResolutionToggleNormal,0,"Normal");
     GSResolutionToggle->AddLayerToGroup(GSResolutionToggleHovered,0,"Hovered");
     GSResolutionToggle->AddLayerToGroup(GSResolutionToggleNormal,0,"SelectedNormal");
@@ -836,21 +836,21 @@ void CatchApp::MakeGUI()
     // Configure the background for the listbox container
     UI::VerticalContainer* GSResolutionOptionsList = GSResolutionOptions->GetListContainer();
     GSResolutionOptionsList->SetChildSizing(UI::SizingInfo(UI::UnifiedVec2(1.0,0.19)),UI::LinearContainer::SE_OnAdd);
-    GSResolutionOptionsList->CreateImageLayer("GSListBackground",0,0);
+    GSResolutionOptionsList->CreateSingleImageLayer("GSListBackground",0,0);
     // Configure the scrollbar for the option list
     UI::VerticalScrollbar* GSResolutionOptionsScroll = GSResolutionOptions->GetListScroll();
     GSResolutionOptionsScroll->SetIncrementDistance(0.05);
     // Configure the scroller
-    GSResolutionOptionsScroll->GetScroller()->CreateImageLayer("GSListScroller",0,"Normal");
-    GSResolutionOptionsScroll->GetScroller()->CreateImageLayer("GSHoveredListScroller",0,"Hovered");
+    GSResolutionOptionsScroll->GetScroller()->CreateSingleImageLayer("GSListScroller",0,"Normal");
+    GSResolutionOptionsScroll->GetScroller()->CreateSingleImageLayer("GSHoveredListScroller",0,"Hovered");
     // Configure the up button
-    GSResolutionOptionsScroll->GetUpLeftButton()->CreateImageLayer("GSListScrollUp",0,"Normal");
-    GSResolutionOptionsScroll->GetUpLeftButton()->CreateImageLayer("GSHoveredListScrollUp",0,"Hovered");
+    GSResolutionOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("GSListScrollUp",0,"Normal");
+    GSResolutionOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("GSHoveredListScrollUp",0,"Hovered");
     // Configure the down button
-    GSResolutionOptionsScroll->GetDownRightButton()->CreateImageLayer("GSListScrollDown",0,"Normal");
-    GSResolutionOptionsScroll->GetDownRightButton()->CreateImageLayer("GSHoveredListScrollDown",0,"Hovered");
+    GSResolutionOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("GSListScrollDown",0,"Normal");
+    GSResolutionOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("GSHoveredListScrollDown",0,"Hovered");
     // Configure the scroll back
-    GSResolutionOptionsScroll->GetScrollBack()->CreateImageLayer("GSListScrollBackground",0,0);
+    GSResolutionOptionsScroll->GetScrollBack()->CreateSingleImageLayer("GSListScrollBackground",0,0);
     // Wrap up listing configuration
     GSResolutionList->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     GSVideoSet->AddChild(GSResolutionList,11);
@@ -858,16 +858,16 @@ void CatchApp::MakeGUI()
     // Create the checkbox for enabling or disabling fullscreen
     UI::CheckBox* GSFullscreenBox = GameScreen->CreateCheckBox("GS_FullscreenBox",UI::UnifiedRect(0.655,0.145,0,0.12));
     GSFullscreenBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
-    GSFullscreenBox->CreateImageLayer("GSCheckboxUnchecked",0,"Normal");
-    GSFullscreenBox->CreateImageLayer("GSHoveredCheckboxUnchecked",0,"Hovered");
-    GSFullscreenBox->CreateImageLayer("GSCheckboxChecked",0,"SelectedNormal");
-    GSFullscreenBox->CreateImageLayer("GSHoveredCheckboxChecked",0,"SelectedHovered");
+    GSFullscreenBox->CreateSingleImageLayer("GSCheckboxUnchecked",0,"Normal");
+    GSFullscreenBox->CreateSingleImageLayer("GSHoveredCheckboxUnchecked",0,"Hovered");
+    GSFullscreenBox->CreateSingleImageLayer("GSCheckboxChecked",0,"SelectedNormal");
+    GSFullscreenBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",0,"SelectedHovered");
     GSFullscreenBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     GSVideoSet->AddChild(GSFullscreenBox,3);
 
     // Create the label for the fullscreen checkbox
     UI::Widget* GSFullscreenLabel = GameScreen->CreateWidget("GS_FullscreenLabel",UI::UnifiedRect(0.72,0.145,0.22,0.12));
-    GSFullscreenLabel->CreateImageLayer("GSButton",0,0);
+    GSFullscreenLabel->CreateSingleImageLayer("GSButton",0,0);
     UI::SingleLineTextLayer* GSFullscreenLabelText = GSFullscreenLabel->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSFullscreenLabelText->SetText("Fullscreen");
     GSFullscreenLabelText->HorizontallyAlign(UI::LA_Center);
@@ -877,7 +877,7 @@ void CatchApp::MakeGUI()
 
     // Create the label for the FSAA options
     UI::Widget* GSFSAALabel = GameScreen->CreateWidget("GS_FSAALabel",UI::UnifiedRect(0.12,0.365,0.415,0.13));
-    GSFSAALabel->CreateImageLayer("GSButton",0,0);
+    GSFSAALabel->CreateSingleImageLayer("GSButton",0,0);
     UI::SingleLineTextLayer* GSFSAALabelText = GSFSAALabel->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSFSAALabelText->SetText("Anti-Aliasing");
     GSFSAALabelText->HorizontallyAlign(UI::LA_Center);
@@ -889,7 +889,7 @@ void CatchApp::MakeGUI()
     UI::DropDownList* GSFSAAList = GameScreen->CreateDropDownList("GS_FSAAList",UI::UnifiedRect(0.065,0.50,0.515,0.12),UI::SB_Separate);
     // Configure the selection display
     UI::Widget* GSFSAADisplay = GSFSAAList->GetSelectionDisplay();
-    GSFSAADisplay->CreateImageLayer("GSListSelection",0,0);
+    GSFSAADisplay->CreateSingleImageLayer("GSListSelection",0,0);
     UI::SingleLineTextLayer* GSFSAADisplayText = static_cast<UI::SingleLineTextLayer*>( GSFSAADisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
     GSFSAADisplayText->SetDefaultFont(GameScreenText);
     GSFSAADisplayText->HorizontallyAlign(UI::LA_Center);
@@ -897,8 +897,8 @@ void CatchApp::MakeGUI()
     GSFSAADisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
     // Configure the list toggle
     UI::CheckBox* GSFSAAToggle = GSFSAAList->GetListToggle();
-    UI::ImageLayer* GSFSAAToggleNormal = GSFSAAToggle->CreateImageLayer("GSListScrollDown");
-    UI::ImageLayer* GSFSAAToggleHovered = GSFSAAToggle->CreateImageLayer("GSHoveredListScrollDown");
+    UI::SingleImageLayer* GSFSAAToggleNormal = GSFSAAToggle->CreateSingleImageLayer("GSListScrollDown");
+    UI::SingleImageLayer* GSFSAAToggleHovered = GSFSAAToggle->CreateSingleImageLayer("GSHoveredListScrollDown");
     GSFSAAToggle->AddLayerToGroup(GSFSAAToggleNormal,0,"Normal");
     GSFSAAToggle->AddLayerToGroup(GSFSAAToggleHovered,0,"Hovered");
     GSFSAAToggle->AddLayerToGroup(GSFSAAToggleNormal,0,"SelectedNormal");
@@ -910,21 +910,21 @@ void CatchApp::MakeGUI()
     // Configure the background for the listbox container
     UI::VerticalContainer* GSFSAAOptionsList = GSFSAAOptions->GetListContainer();
     GSFSAAOptionsList->SetChildSizing(UI::SizingInfo(UI::UnifiedVec2(1.0,0.19)),UI::LinearContainer::SE_OnAdd);
-    GSFSAAOptionsList->CreateImageLayer("GSListBackground",0,0);
+    GSFSAAOptionsList->CreateSingleImageLayer("GSListBackground",0,0);
     // Configure the scrollbar for the option list
     UI::VerticalScrollbar* GSFSAAOptionsScroll = GSFSAAOptions->GetListScroll();
     GSFSAAOptionsScroll->SetIncrementDistance(0.05);
     // Configure the scroller
-    GSFSAAOptionsScroll->GetScroller()->CreateImageLayer("GSListScroller",0,"Normal");
-    GSFSAAOptionsScroll->GetScroller()->CreateImageLayer("GSHoveredListScroller",0,"Hovered");
+    GSFSAAOptionsScroll->GetScroller()->CreateSingleImageLayer("GSListScroller",0,"Normal");
+    GSFSAAOptionsScroll->GetScroller()->CreateSingleImageLayer("GSHoveredListScroller",0,"Hovered");
     // Configure the up button
-    GSFSAAOptionsScroll->GetUpLeftButton()->CreateImageLayer("GSListScrollUp",0,"Normal");
-    GSFSAAOptionsScroll->GetUpLeftButton()->CreateImageLayer("GSHoveredListScrollUp",0,"Hovered");
+    GSFSAAOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("GSListScrollUp",0,"Normal");
+    GSFSAAOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("GSHoveredListScrollUp",0,"Hovered");
     // Configure the down button
-    GSFSAAOptionsScroll->GetDownRightButton()->CreateImageLayer("GSListScrollDown",0,"Normal");
-    GSFSAAOptionsScroll->GetDownRightButton()->CreateImageLayer("GSHoveredListScrollDown",0,"Hovered");
+    GSFSAAOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("GSListScrollDown",0,"Normal");
+    GSFSAAOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("GSHoveredListScrollDown",0,"Hovered");
     // Configure the scroll back
-    GSFSAAOptionsScroll->GetScrollBack()->CreateImageLayer("GSListScrollBackground",0,0);
+    GSFSAAOptionsScroll->GetScrollBack()->CreateSingleImageLayer("GSListScrollBackground",0,0);
     // Wrap up listing configuration
     GSFSAAList->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     GSVideoSet->AddChild(GSFSAAList,10);
@@ -932,16 +932,16 @@ void CatchApp::MakeGUI()
     // Create the checkbox for enabling or disabling FPS stats display
     UI::CheckBox* GSStatsBox = GameScreen->CreateCheckBox("GS_StatsBox",UI::UnifiedRect(0.655,0.50,0,0.12));
     GSStatsBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
-    GSStatsBox->CreateImageLayer("GSCheckboxUnchecked",0,"Normal");
-    GSStatsBox->CreateImageLayer("GSHoveredCheckboxUnchecked",0,"Hovered");
-    GSStatsBox->CreateImageLayer("GSCheckboxChecked",0,"SelectedNormal");
-    GSStatsBox->CreateImageLayer("GSHoveredCheckboxChecked",0,"SelectedHovered");
+    GSStatsBox->CreateSingleImageLayer("GSCheckboxUnchecked",0,"Normal");
+    GSStatsBox->CreateSingleImageLayer("GSHoveredCheckboxUnchecked",0,"Hovered");
+    GSStatsBox->CreateSingleImageLayer("GSCheckboxChecked",0,"SelectedNormal");
+    GSStatsBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",0,"SelectedHovered");
     GSStatsBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     GSVideoSet->AddChild(GSStatsBox,7);
 
     // Create the label for the FPS stats display checkbox
     UI::Widget* GSStatsLabel = GameScreen->CreateWidget("GS_StatsLabel",UI::UnifiedRect(0.72,0.50,0.22,0.12));
-    GSStatsLabel->CreateImageLayer("GSButton",0,0);
+    GSStatsLabel->CreateSingleImageLayer("GSButton",0,0);
     UI::SingleLineTextLayer* GSStatsLabelText = GSStatsLabel->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSStatsLabelText->SetText("Show FPS");
     GSStatsLabelText->HorizontallyAlign(UI::LA_Center);
@@ -951,8 +951,8 @@ void CatchApp::MakeGUI()
 
     // Create the button that will apply all of the currently displayed video settings
     UI::Button* GSVideoOptsApply = GameScreen->CreateButton("GS_VideoOptsApply",UI::UnifiedRect(0.815,0.84,0.17,0.14));
-    GSVideoOptsApply->CreateImageLayer("GSOptionsApplyButton",0,"Normal");
-    GSVideoOptsApply->CreateImageLayer("GSOptionsApplyHoveredButton",0,"Hovered");
+    GSVideoOptsApply->CreateSingleImageLayer("GSOptionsApplyButton",0,"Normal");
+    GSVideoOptsApply->CreateSingleImageLayer("GSOptionsApplyHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSVideoOptsApplyText = GSVideoOptsApply->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSVideoOptsApplyText->SetText("Apply");
     GSVideoOptsApplyText->HorizontallyAlign(UI::LA_Center);
@@ -968,7 +968,7 @@ void CatchApp::MakeGUI()
     // Create the label for the Music volume
     UI::Widget* GSMusicVolLabel = GameScreen->CreateWidget("GS_MusicVolLabel",UI::UnifiedRect(0.0,0.01,0.40,0.13));
     GSMusicVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
-    GSMusicVolLabel->CreateImageLayer("GSButton",0,0);
+    GSMusicVolLabel->CreateSingleImageLayer("GSButton",0,0);
     UI::SingleLineTextLayer* GSMusicVolLabelText = GSMusicVolLabel->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSMusicVolLabelText->SetText("Music Volume");
     GSMusicVolLabelText->HorizontallyAlign(UI::LA_Center);
@@ -982,16 +982,16 @@ void CatchApp::MakeGUI()
     GSMusicVol->SetIncrementDistance(GSScrollerSize * 0.5);
     GSMusicVol->SetScrollerSize(GSScrollerSize);
     // Configure the scroller
-    GSMusicVol->GetScroller()->CreateImageLayer("GSScroller",0,"Normal");
-    GSMusicVol->GetScroller()->CreateImageLayer("GSHoveredScroller",0,"Hovered");
+    GSMusicVol->GetScroller()->CreateSingleImageLayer("GSScroller",0,"Normal");
+    GSMusicVol->GetScroller()->CreateSingleImageLayer("GSHoveredScroller",0,"Hovered");
     // Configure the up button
-    GSMusicVol->GetUpLeftButton()->CreateImageLayer("GSScrollLeft",0,"Normal");
-    GSMusicVol->GetUpLeftButton()->CreateImageLayer("GSHoveredScrollLeft",0,"Hovered");
+    GSMusicVol->GetUpLeftButton()->CreateSingleImageLayer("GSScrollLeft",0,"Normal");
+    GSMusicVol->GetUpLeftButton()->CreateSingleImageLayer("GSHoveredScrollLeft",0,"Hovered");
     // Configure the down button
-    GSMusicVol->GetDownRightButton()->CreateImageLayer("GSScrollRight",0,"Normal");
-    GSMusicVol->GetDownRightButton()->CreateImageLayer("GSHoveredScrollRight",0,"Hovered");
+    GSMusicVol->GetDownRightButton()->CreateSingleImageLayer("GSScrollRight",0,"Normal");
+    GSMusicVol->GetDownRightButton()->CreateSingleImageLayer("GSHoveredScrollRight",0,"Hovered");
     // Configure the scroll back
-    GSMusicVol->GetScrollBack()->CreateImageLayer("GSScrollBackground",0,0);
+    GSMusicVol->GetScrollBack()->CreateSingleImageLayer("GSScrollBackground",0,0);
     // Wrap up Effects volume ocnfiguration
     GSMusicVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,this->AudioSettingsWork->GetSettingsSubscriber());
     GSMusicVol->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
@@ -1000,7 +1000,7 @@ void CatchApp::MakeGUI()
     // Create the label for the Effects volume
     UI::Widget* GSEffectsVolLabel = GameScreen->CreateWidget("GS_EffectsVolLabel",UI::UnifiedRect(0.0,0.275,0.40,0.13));
     GSEffectsVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
-    GSEffectsVolLabel->CreateImageLayer("GSButton",0,0);
+    GSEffectsVolLabel->CreateSingleImageLayer("GSButton",0,0);
     UI::SingleLineTextLayer* GSEffectsVolLabelText = GSEffectsVolLabel->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSEffectsVolLabelText->SetText("Effects Volume");
     GSEffectsVolLabelText->HorizontallyAlign(UI::LA_Center);
@@ -1014,16 +1014,16 @@ void CatchApp::MakeGUI()
     GSEffectsVol->SetIncrementDistance(GSScrollerSize * 0.5);
     GSEffectsVol->SetScrollerSize(GSScrollerSize);
     // Configure the scroller
-    GSEffectsVol->GetScroller()->CreateImageLayer("GSScroller",0,"Normal");
-    GSEffectsVol->GetScroller()->CreateImageLayer("GSHoveredScroller",0,"Hovered");
+    GSEffectsVol->GetScroller()->CreateSingleImageLayer("GSScroller",0,"Normal");
+    GSEffectsVol->GetScroller()->CreateSingleImageLayer("GSHoveredScroller",0,"Hovered");
     // Configure the up button
-    GSEffectsVol->GetUpLeftButton()->CreateImageLayer("GSScrollLeft",0,"Normal");
-    GSEffectsVol->GetUpLeftButton()->CreateImageLayer("GSHoveredScrollLeft",0,"Hovered");
+    GSEffectsVol->GetUpLeftButton()->CreateSingleImageLayer("GSScrollLeft",0,"Normal");
+    GSEffectsVol->GetUpLeftButton()->CreateSingleImageLayer("GSHoveredScrollLeft",0,"Hovered");
     // Configure the down button
-    GSEffectsVol->GetDownRightButton()->CreateImageLayer("GSScrollRight",0,"Normal");
-    GSEffectsVol->GetDownRightButton()->CreateImageLayer("GSHoveredScrollRight",0,"Hovered");
+    GSEffectsVol->GetDownRightButton()->CreateSingleImageLayer("GSScrollRight",0,"Normal");
+    GSEffectsVol->GetDownRightButton()->CreateSingleImageLayer("GSHoveredScrollRight",0,"Hovered");
     // Configure the scroll back
-    GSEffectsVol->GetScrollBack()->CreateImageLayer("GSScrollBackground",0,0);
+    GSEffectsVol->GetScrollBack()->CreateSingleImageLayer("GSScrollBackground",0,0);
     // Wrap up Effects volume ocnfiguration
     GSEffectsVol->Subscribe(UI::Scrollbar::EventScrollValueChanged,this->AudioSettingsWork->GetSettingsSubscriber());
     GSEffectsVol->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
@@ -1031,7 +1031,7 @@ void CatchApp::MakeGUI()
 
     /*// Create the label for the Audio Device options
     UI::Widget* GSAudioDeviceLabel = GameScreen->CreateWidget("GS_AudioDeviceLabel",UI::UnifiedRect(0.12,0.56,0.415,0.13));
-    GSAudioDeviceLabel->CreateImageLayer("GSButton",0,0);
+    GSAudioDeviceLabel->CreateSingleImageLayer("GSButton",0,0);
     UI::SingleLineTextLayer* GSAudioDeviceLabelText = GSAudioDeviceLabel->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSAudioDeviceLabelText->SetText("Audio Device");
     GSAudioDeviceLabelText->HorizontallyAlign(UI::LA_Center);
@@ -1043,7 +1043,7 @@ void CatchApp::MakeGUI()
     UI::DropDownList* GSAudioDeviceList = GameScreen->CreateDropDownList("GS_AudioDeviceList",UI::UnifiedRect(0.065,0.695,0.515,0.12),UI::SB_Separate);
     // Configure the selection display
     UI::Widget* GSAudioDeviceDisplay = GSAudioDeviceList->GetSelectionDisplay();
-    GSAudioDeviceDisplay->CreateImageLayer("GSListSelection",0,0);
+    GSAudioDeviceDisplay->CreateSingleImageLayer("GSListSelection",0,0);
     UI::SingleLineTextLayer* GSAudioDeviceDisplayText = static_cast<UI::SingleLineTextLayer*>( GSAudioDeviceDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
     GSAudioDeviceDisplayText->SetDefaultFont(GameScreenText);
     GSAudioDeviceDisplayText->HorizontallyAlign(UI::LA_Center);
@@ -1051,8 +1051,8 @@ void CatchApp::MakeGUI()
     GSAudioDeviceDisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
     // Configure the list toggle
     UI::CheckBox* GSAudioDeviceToggle = GSAudioDeviceList->GetListToggle();
-    UI::ImageLayer* GSAudioDeviceToggleNormal = GSAudioDeviceToggle->CreateImageLayer("GSListScrollDown");
-    UI::ImageLayer* GSAudioDeviceToggleHovered = GSAudioDeviceToggle->CreateImageLayer("GSHoveredListScrollDown");
+    UI::SingleImageLayer* GSAudioDeviceToggleNormal = GSAudioDeviceToggle->CreateSingleImageLayer("GSListScrollDown");
+    UI::SingleImageLayer* GSAudioDeviceToggleHovered = GSAudioDeviceToggle->CreateSingleImageLayer("GSHoveredListScrollDown");
     GSAudioDeviceToggle->AddLayerToGroup(GSAudioDeviceToggleNormal,0,"Normal");
     GSAudioDeviceToggle->AddLayerToGroup(GSAudioDeviceToggleHovered,0,"Hovered");
     GSAudioDeviceToggle->AddLayerToGroup(GSAudioDeviceToggleNormal,0,"SelectedNormal");
@@ -1063,22 +1063,22 @@ void CatchApp::MakeGUI()
     GSAudioDeviceOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
     // Configure the background for the listbox container
     UI::VerticalContainer* GSAudioDeviceOptionsList = GSAudioDeviceOptions->GetListContainer();
-    GSAudioDeviceOptionsList->CreateImageLayer("GSListBackground",0,0);
+    GSAudioDeviceOptionsList->CreateSingleImageLayer("GSListBackground",0,0);
     GSAudioDeviceOptionsList->SetChildSizing(UI::SizingInfo(UI::UnifiedVec2(1.0,0.19)),UI::LinearContainer::SE_OnAdd);
     // Configure the scrollbar for the option list
     UI::VerticalScrollbar* GSAudioDeviceOptionsScroll = GSAudioDeviceOptions->GetListScroll();
     GSAudioDeviceOptionsScroll->SetIncrementDistance(0.05);
     // Configure the scroller
-    GSAudioDeviceOptionsScroll->GetScroller()->CreateImageLayer("GSListScroller",0,"Normal");
-    GSAudioDeviceOptionsScroll->GetScroller()->CreateImageLayer("GSHoveredListScroller",0,"Hovered");
+    GSAudioDeviceOptionsScroll->GetScroller()->CreateSingleImageLayer("GSListScroller",0,"Normal");
+    GSAudioDeviceOptionsScroll->GetScroller()->CreateSingleImageLayer("GSHoveredListScroller",0,"Hovered");
     // Configure the up button
-    GSAudioDeviceOptionsScroll->GetUpLeftButton()->CreateImageLayer("GSListScrollUp",0,"Normal");
-    GSAudioDeviceOptionsScroll->GetUpLeftButton()->CreateImageLayer("GSHoveredListScrollUp",0,"Hovered");
+    GSAudioDeviceOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("GSListScrollUp",0,"Normal");
+    GSAudioDeviceOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("GSHoveredListScrollUp",0,"Hovered");
     // Configure the down button
-    GSAudioDeviceOptionsScroll->GetDownRightButton()->CreateImageLayer("GSListScrollDown",0,"Normal");
-    GSAudioDeviceOptionsScroll->GetDownRightButton()->CreateImageLayer("GSHoveredListScrollDown",0,"Hovered");
+    GSAudioDeviceOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("GSListScrollDown",0,"Normal");
+    GSAudioDeviceOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("GSHoveredListScrollDown",0,"Hovered");
     // Configure the scroll back
-    GSAudioDeviceOptionsScroll->GetScrollBack()->CreateImageLayer("GSListScrollBackground",0,0);
+    GSAudioDeviceOptionsScroll->GetScrollBack()->CreateSingleImageLayer("GSListScrollBackground",0,0);
     // Wrap up listing configuration
     GSAudioDeviceList->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
     GSAudioSet->AddChild(GSAudioDeviceList,10);//*/
@@ -1086,10 +1086,10 @@ void CatchApp::MakeGUI()
     // Create the checkbox for enabling or disabling FPS stats display
     UI::CheckBox* GSMuteBox = GameScreen->CreateCheckBox("GS_MuteBox",UI::UnifiedRect(0.655,0.695,0,0.12));
     GSMuteBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
-    GSMuteBox->CreateImageLayer("GSCheckboxUnchecked",0,"Normal");
-    GSMuteBox->CreateImageLayer("GSHoveredCheckboxUnchecked",0,"Hovered");
-    GSMuteBox->CreateImageLayer("GSCheckboxChecked",0,"SelectedNormal");
-    GSMuteBox->CreateImageLayer("GSHoveredCheckboxChecked",0,"SelectedHovered");
+    GSMuteBox->CreateSingleImageLayer("GSCheckboxUnchecked",0,"Normal");
+    GSMuteBox->CreateSingleImageLayer("GSHoveredCheckboxUnchecked",0,"Hovered");
+    GSMuteBox->CreateSingleImageLayer("GSCheckboxChecked",0,"SelectedNormal");
+    GSMuteBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",0,"SelectedHovered");
     GSMuteBox->Subscribe(UI::CheckBox::EventSelected,this->AudioSettingsWork->GetSettingsSubscriber());
     GSMuteBox->Subscribe(UI::CheckBox::EventDeselected,this->AudioSettingsWork->GetSettingsSubscriber());
     GSMuteBox->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
@@ -1097,7 +1097,7 @@ void CatchApp::MakeGUI()
 
     // Create the label for the FPS stats display checkbox
     UI::Widget* GSMuteLabel = GameScreen->CreateWidget("GS_MuteLabel",UI::UnifiedRect(0.72,0.695,0.22,0.12));
-    GSMuteLabel->CreateImageLayer("GSButton",0,0);
+    GSMuteLabel->CreateSingleImageLayer("GSButton",0,0);
     UI::SingleLineTextLayer* GSMuteLabelText = GSMuteLabel->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSMuteLabelText->SetText("Mute");
     GSMuteLabelText->HorizontallyAlign(UI::LA_Center);
@@ -1107,8 +1107,8 @@ void CatchApp::MakeGUI()
 
     // Create the back button for the options window
     UI::StackButton* GSOptsBack = GameScreen->CreateStackButton("GS_OptsBack",UI::UnifiedRect(0.780,0.870,0.156,0.094));
-    GSOptsBack->CreateImageLayer("GSOptionsApplyButton",0,"Normal");
-    GSOptsBack->CreateImageLayer("GSOptionsApplyHoveredButton",0,"Hovered");
+    GSOptsBack->CreateSingleImageLayer("GSOptionsApplyButton",0,"Normal");
+    GSOptsBack->CreateSingleImageLayer("GSOptionsApplyHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSOptsBackText = GSOptsBack->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSOptsBackText->SetText("Back");
     GSOptsBackText->HorizontallyAlign(UI::LA_Center);
@@ -1121,8 +1121,8 @@ void CatchApp::MakeGUI()
 
     // Create the game restart button
     UI::Button* GSMenuRestart = GameScreen->CreateButton("GS_MenuRestart",UI::UnifiedRect(0.15,0.445,0.70,0.11));
-    GSMenuRestart->CreateImageLayer("GSOptionsButton",0,"Normal");
-    GSMenuRestart->CreateImageLayer("GSOptionsHoveredButton",0,"Hovered");
+    GSMenuRestart->CreateSingleImageLayer("GSOptionsButton",0,"Normal");
+    GSMenuRestart->CreateSingleImageLayer("GSOptionsHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSMenuRestartText = GSMenuRestart->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSMenuRestartText->SetText("Restart Level");
     GSMenuRestartText->HorizontallyAlign(UI::LA_Center);
@@ -1132,8 +1132,8 @@ void CatchApp::MakeGUI()
 
     // Create the game return button
     UI::StackButton* GSMenuReturn = GameScreen->CreateStackButton("GS_MenuReturn",UI::UnifiedRect(0.15,0.63,0.70,0.11));
-    GSMenuReturn->CreateImageLayer("GSOptionsButton",0,"Hovered");
-    GSMenuReturn->CreateImageLayer("GSOptionsHoveredButton",0,"Normal");
+    GSMenuReturn->CreateSingleImageLayer("GSOptionsButton",0,"Hovered");
+    GSMenuReturn->CreateSingleImageLayer("GSOptionsHoveredButton",0,"Normal");
     UI::SingleLineTextLayer* GSMenuReturnText = GSMenuReturn->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSMenuReturnText->SetText("Return to Game");
     GSMenuReturnText->HorizontallyAlign(UI::LA_Center);
@@ -1144,8 +1144,8 @@ void CatchApp::MakeGUI()
 
     // Create the game restart button
     UI::Button* GSMenuExit = GameScreen->CreateButton("GS_MenuExit",UI::UnifiedRect(0.15,0.815,0.70,0.11));
-    GSMenuExit->CreateImageLayer("GSOptionsButton",0,"Normal");
-    GSMenuExit->CreateImageLayer("GSOptionsHoveredButton",0,"Hovered");
+    GSMenuExit->CreateSingleImageLayer("GSOptionsButton",0,"Normal");
+    GSMenuExit->CreateSingleImageLayer("GSOptionsHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSMenuExitText = GSMenuExit->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSMenuExitText->SetText("Exit to Main Menu");
     GSMenuExitText->HorizontallyAlign(UI::LA_Center);
@@ -1157,7 +1157,7 @@ void CatchApp::MakeGUI()
     // Create the root entry for the item shop
     UI::MenuEntry* GSItemShopRoot = GameScreen->CreateMenuEntry("GS_ItemShopRoot",UI::UnifiedRect(0.25,0.11,0.5,0.78125));
     GSItemShopRoot->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
-    GSItemShopRoot->CreateImageLayer("GSStoreBackground",0,0);
+    GSItemShopRoot->CreateSingleImageLayer("GSStoreBackground",0,0);
     GSItemShopRoot->SetPushButton(GSItemShopAccess);
     GameScreen->AddChild(GSItemShopRoot,8);
 
@@ -1179,14 +1179,14 @@ void CatchApp::MakeGUI()
     // Create the spinner that will determine which items will be displayed
     UI::Spinner* GSItemShopSpinner = GameScreen->CreateSpinner("GS_ItemShopSpinner",UI::UnifiedRect(0.0,0.43,0.25,0.05),UI::Spn_Separate_Horizontal,GameScreenText);
     GSItemShopSpinner->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
-    GSItemShopSpinner->GetIncrement()->CreateImageLayer("GSIncrementPage",0,0);
-    GSItemShopSpinner->GetDecrement()->CreateImageLayer("GSDecrementPage",0,0);
-    GSItemShopSpinner->GetValueDisplay()->CreateImageLayer("GSPageBox",0,0);
+    GSItemShopSpinner->GetIncrement()->CreateSingleImageLayer("GSIncrementPage",0,0);
+    GSItemShopSpinner->GetDecrement()->CreateSingleImageLayer("GSDecrementPage",0,0);
+    GSItemShopSpinner->GetValueDisplay()->CreateSingleImageLayer("GSPageBox",0,0);
     GSItemShopGrid->SetProviders(GSItemShopSpinner,GSItemShopSpinner);
     GSItemShopRoot->AddChild(GSItemShopSpinner,3);
 
     UI::Widget* GSItemShopDescription = GameScreen->CreateWidget("GS_ItemShopDescription",UI::UnifiedRect(0.15,0.5,0.7,0.33));
-    GSItemShopDescription->CreateImageLayer("GSBreakdownBackground",0,0);
+    GSItemShopDescription->CreateSingleImageLayer("GSBreakdownBackground",0,0);
     UI::MultiLineTextLayer* GSItemShopDescriptionText = GSItemShopDescription->CreateMultiLineTextLayer(GameScreenText,1,1);
     GSItemShopDescriptionText->SetText("This is a more exhaustive\ntest of the multi-line\ntext layer.");
     GSItemShopDescriptionText->SetTextLineHorizontalAlignment(UI::LA_Center);
@@ -1195,7 +1195,7 @@ void CatchApp::MakeGUI()
     GSItemShopRoot->AddChild(GSItemShopDescription,4);
 
     UI::Widget* GSItemShopMoney = GameScreen->CreateWidget("GS_ItemShopMoney",UI::UnifiedRect(0.15,0.87,0.20,0.09));
-    GSItemShopMoney->CreateImageLayer("GSStoreButton",0,0);
+    GSItemShopMoney->CreateSingleImageLayer("GSStoreButton",0,0);
     UI::SingleLineTextLayer* GSItemShopMoneyText = GSItemShopMoney->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopMoneyText->SetText("$0");
     GSItemShopMoneyText->HorizontallyAlign(UI::LA_Center);
@@ -1204,8 +1204,8 @@ void CatchApp::MakeGUI()
     GSItemShopRoot->AddChild(GSItemShopMoney,5);
 
     UI::Button* GSItemShopBuy = GameScreen->CreateButton("GS_ItemShopBuy",UI::UnifiedRect(0.40,0.87,0.20,0.09));
-    GSItemShopBuy->CreateImageLayer("GSStoreButton",0,"Normal");
-    GSItemShopBuy->CreateImageLayer("GSStoreHoveredButton",0,"Hovered");
+    GSItemShopBuy->CreateSingleImageLayer("GSStoreButton",0,"Normal");
+    GSItemShopBuy->CreateSingleImageLayer("GSStoreHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSItemShopBuyText = GSItemShopBuy->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopBuyText->SetText("Buy");
     GSItemShopBuyText->HorizontallyAlign(UI::LA_Center);
@@ -1214,8 +1214,8 @@ void CatchApp::MakeGUI()
     GSItemShopRoot->AddChild(GSItemShopBuy,6);
 
     UI::StackButton* GSItemShopBack = GameScreen->CreateStackButton("GS_ItemShopBack",UI::UnifiedRect(0.65,0.87,0.20,0.09));
-    GSItemShopBack->CreateImageLayer("GSStoreButton",0,"Normal");
-    GSItemShopBack->CreateImageLayer("GSStoreHoveredButton",0,"Hovered");
+    GSItemShopBack->CreateSingleImageLayer("GSStoreButton",0,"Normal");
+    GSItemShopBack->CreateSingleImageLayer("GSStoreHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSItemShopBackText = GSItemShopBack->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopBackText->SetText("Back");
     GSItemShopBackText->HorizontallyAlign(UI::LA_Center);
@@ -1228,14 +1228,14 @@ void CatchApp::MakeGUI()
     // Create the "window" that will display the level report
     UI::Widget* GSLevelReport = GameScreen->CreateWidget("GS_LevelReport",UI::UnifiedRect(0.18,0.18,0.64,0.64));
     GSLevelReport->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
-    GSLevelReport->CreateImageLayer("GSOptionsBackground",0,0);
+    GSLevelReport->CreateSingleImageLayer("GSOptionsBackground",0,0);
     GSLevelReport->Hide();
     GameScreen->AddChild(GSLevelReport,9);
 
     // Create the total score display
     UI::Widget* GSLevelReportScore = GameScreen->CreateWidget("GS_LevelReportScore",UI::UnifiedRect(0.0,0.08,0.34,0.125));
     GSLevelReportScore->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
-    GSLevelReportScore->CreateImageLayer("GSAppExitButton",0,0);
+    GSLevelReportScore->CreateSingleImageLayer("GSAppExitButton",0,0);
     UI::SingleLineTextLayer* GSLevelReportScoreText = GSLevelReportScore->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSLevelReportScoreText->SetText("0000");
     GSLevelReportScoreText->HorizontallyAlign(UI::LA_Center);
@@ -1245,12 +1245,12 @@ void CatchApp::MakeGUI()
 
     UI::VerticalContainer* GSLevelReportBreakdown = GameScreen->CreateVerticalContainer("GS_LevelReportBreakdown",UI::UnifiedRect(0.15,0.245,0.70,0.52));
     GSLevelReportBreakdown->SetPadding(UI::UnifiedDim(0.05,0.0));
-    GSLevelReportBreakdown->CreateImageLayer("GSBreakdownBackground",0,0);
+    GSLevelReportBreakdown->CreateSingleImageLayer("GSBreakdownBackground",0,0);
     GSLevelReport->AddChild(GSLevelReportBreakdown,2);
 
     UI::Button* GSLevelReportFinish = GameScreen->CreateButton("GS_LevelReportFinish",UI::UnifiedRect(0.21,0.815,0.25,0.125));
-    GSLevelReportFinish->CreateImageLayer("GSStoreButton",0,"Normal");
-    GSLevelReportFinish->CreateImageLayer("GSStoreHoveredButton",0,"Hovered");
+    GSLevelReportFinish->CreateSingleImageLayer("GSStoreButton",0,"Normal");
+    GSLevelReportFinish->CreateSingleImageLayer("GSStoreHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSLevelReportFinishText = GSLevelReportFinish->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSLevelReportFinishText->SetText("Finish");
     GSLevelReportFinishText->HorizontallyAlign(UI::LA_Center);
@@ -1259,8 +1259,8 @@ void CatchApp::MakeGUI()
     GSLevelReport->AddChild(GSLevelReportFinish,3);
 
     UI::Button* GSLevelReportRetry = GameScreen->CreateButton("GS_LevelReportRetry",UI::UnifiedRect(0.54,0.815,0.25,0.125));
-    GSLevelReportRetry->CreateImageLayer("GSStoreButton",0,"Normal");
-    GSLevelReportRetry->CreateImageLayer("GSStoreHoveredButton",0,"Normal");
+    GSLevelReportRetry->CreateSingleImageLayer("GSStoreButton",0,"Normal");
+    GSLevelReportRetry->CreateSingleImageLayer("GSStoreHoveredButton",0,"Normal");
     UI::SingleLineTextLayer* GSLevelReportRetryText = GSLevelReportRetry->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSLevelReportRetryText->SetText("Retry");
     GSLevelReportRetryText->HorizontallyAlign(UI::LA_Center);
@@ -1283,7 +1283,7 @@ void CatchApp::CreateLoadingScreen()
     BackgroundWidget->SetPositioningRules(UI::PF_Anchor_Center);
     BackgroundWidget->SetVerticalSizingRules(UI::SR_Unified_Dims);
     BackgroundWidget->SetHorizontalSizingRules(UI::SR_Match_Other_Axis_Unified);
-    UI::ImageLayer* LoadBackground = BackgroundWidget->CreateImageLayer();
+    UI::SingleImageLayer* LoadBackground = BackgroundWidget->CreateSingleImageLayer();
     LoadBackground->SetSprite("BTSBanner");
     BackgroundWidget->AddLayerToGroup(LoadBackground,0,"Normal");
     BackgroundWidget->AddLayerToGroup(LoadBackground,0,"Hovered");
@@ -1554,10 +1554,6 @@ int CatchApp::GetCatchin()
     this->InitMusic();
     //Generate the UI
     this->MakeGUI();
-
-    //Setup the Profile
-    if(1 == Profiles->GetNumLoadedProfiles())
-        Profiles->SetActiveProfile(Profiles->GetProfile(0));
 
     Audio::AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
     this->LevelMan->SetNextLevel("MainMenu");
