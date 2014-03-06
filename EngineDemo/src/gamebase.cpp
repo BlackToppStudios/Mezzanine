@@ -610,9 +610,9 @@ void MakeGUI()
 
     //Build the HUD
     UI::StackButton* MenuAccess = DScreen->CreateStackButton("D_MenuAccess",UI::UnifiedRect(0.008,0.932,0.14,0.06,0,0,0,0));
-    UI::ImageLayer* AccessBackground = MenuAccess->CreateImageLayer(0,"Normal");
+    UI::SingleImageLayer* AccessBackground = MenuAccess->CreateSingleImageLayer(0,"Normal");
     AccessBackground->SetColour(ButtonColour);
-    UI::ImageLayer* AccessHoveredBackground = MenuAccess->CreateImageLayer(0,"Hovered");
+    UI::SingleImageLayer* AccessHoveredBackground = MenuAccess->CreateSingleImageLayer(0,"Hovered");
     AccessHoveredBackground->SetColour(HoveredButtonColour);
     UI::SingleLineTextLayer* AccessText = MenuAccess->CreateSingleLineTextLayer();
     AccessText->HorizontallyAlign(UI::LA_Center);
@@ -665,16 +665,16 @@ void MakeGUI()
     //End of HUD
     //Build the Menu
     UI::MenuEntry* DemoMenu = DScreen->CreateMenuEntry("D_Menu",UI::UnifiedRect(0.35,0.27,0.3,0.45,0,0,0,0));
-    UI::ImageLayer* DemoMenuBackground = DemoMenu->CreateImageLayer();
+    UI::SingleImageLayer* DemoMenuBackground = DemoMenu->CreateSingleImageLayer();
     DemoMenuBackground->SetColour(MenuColour);
     DemoMenu->AddLayerToGroup(DemoMenuBackground,0,"Normal");
     DemoMenu->AddLayerToGroup(DemoMenuBackground,0,"Hovered");
     DScreen->AddChild(DemoMenu,6);
 
     UI::StackButton* ReturnButton = DScreen->CreateStackButton("D_Return",UI::UnifiedRect(0.10,0.56,0.80,0.16,0,0,0,0));
-    UI::ImageLayer* ReturnBackground = ReturnButton->CreateImageLayer(0,"Normal");
+    UI::SingleImageLayer* ReturnBackground = ReturnButton->CreateSingleImageLayer(0,"Normal");
     ReturnBackground->SetColour(ButtonColour);
-    UI::ImageLayer* ReturnHoveredBackground = ReturnButton->CreateImageLayer(0,"Hovered");
+    UI::SingleImageLayer* ReturnHoveredBackground = ReturnButton->CreateSingleImageLayer(0,"Hovered");
     ReturnHoveredBackground->SetColour(HoveredButtonColour);
     UI::SingleLineTextLayer* ReturnText = ReturnButton->CreateSingleLineTextLayer();
     ReturnText->HorizontallyAlign(UI::LA_Center);
@@ -686,9 +686,9 @@ void MakeGUI()
     DemoMenu->AddChild(ReturnButton,1);
 
     UI::Button* GameExitButton = DScreen->CreateButton("D_Exit",UI::UnifiedRect(0.10,0.78,0.80,0.16,0,0,0,0));
-    UI::ImageLayer* GameExitBackground = GameExitButton->CreateImageLayer(0,"Normal");
+    UI::SingleImageLayer* GameExitBackground = GameExitButton->CreateSingleImageLayer(0,"Normal");
     GameExitBackground->SetColour(ButtonColour);
-    UI::ImageLayer* GameExitHoveredBackground = GameExitButton->CreateImageLayer(0,"Hovered");
+    UI::SingleImageLayer* GameExitHoveredBackground = GameExitButton->CreateSingleImageLayer(0,"Hovered");
     GameExitHoveredBackground->SetColour(HoveredButtonColour);
     UI::SingleLineTextLayer* GameExitText = GameExitButton->CreateSingleLineTextLayer();
     GameExitText->HorizontallyAlign(UI::LA_Center);
