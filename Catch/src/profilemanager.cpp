@@ -97,10 +97,10 @@ void CatchProfile::SetNewHighScore(const String& LevelName, const Whole& NewHigh
 ///////////////////////////////////////////////////////////////////////////////
 // ProfileManager Methods
 
-ProfileManager::ProfileManager(const String& ProfilesDir)
-    : ProfilesDirectory(ProfilesDir)
+ProfileManager::ProfileManager(const String& ProfilesDir) :
+    ProfilesDirectory(ProfilesDir)
 {
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    /*ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     XML::Document ProfileDoc;
     std::set<String> ProfileSet = ResourceMan->GetDirContents("./Profiles");
     for( std::set<String>::iterator it = ProfileSet.begin() ; it != ProfileSet.end() ; it++ )
@@ -114,7 +114,7 @@ ProfileManager::ProfileManager(const String& ProfilesDir)
         Resource::FileStream LoadStream(FileName,ProfilesDir,Resource::DataStream::SF_Read);
         ProfileDoc.Load(LoadStream);
         LoadProfile(ProfileDoc);
-    }
+    }//*/
 }
 
 ProfileManager::~ProfileManager()
