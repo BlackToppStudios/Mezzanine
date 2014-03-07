@@ -109,7 +109,8 @@ void CatchApp::MakeGUI()
     SSCurrentFPS->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     // Create the widget for displaying the current FPS explanation text
     UI::Widget* SSCurrentFPSLabel = StatsScreen->CreateWidget("SS_CurrentFPSLabel",UI::UnifiedRect(0.0,0.0,0.55,1.0));
-    SSCurrentFPSLabel->SetPositioningRules(UI::PF_Anchor_TopLeft);
+    SSCurrentFPSLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+    SSCurrentFPSLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     UI::SingleLineTextLayer* SSCurrentFPSLabelLayer = SSCurrentFPSLabel->CreateSingleLineTextLayer(StatsScreenText,0,0);
     SSCurrentFPSLabelLayer->SetText("Current FPS: ");
     SSCurrentFPSLabelLayer->HorizontallyAlign(UI::LA_BottomRight);
@@ -118,7 +119,8 @@ void CatchApp::MakeGUI()
     SSCurrentFPS->AddChild(SSCurrentFPSLabel,1);
     // Create the widget for displaying the current FPS value
     UI::Widget* SSCurrentFPSValue = StatsScreen->CreateWidget("SS_CurrentFPSValue",UI::UnifiedRect(0.0,0.0,0.45,1.0));
-    SSCurrentFPSValue->SetPositioningRules(UI::PF_Anchor_TopRight);
+    SSCurrentFPSValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+    SSCurrentFPSValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     UI::SingleLineTextLayer* SSCurrentFPSValueLayer = SSCurrentFPSValue->CreateSingleLineTextLayer(StatsScreenText,0,0);
     SSCurrentFPSValueLayer->SetText("0");
     SSCurrentFPSValueLayer->HorizontallyAlign(UI::LA_TopLeft);
@@ -133,7 +135,8 @@ void CatchApp::MakeGUI()
     SSAverageFPS->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     // Create the widget for displaying the average FPS explanation text
     UI::Widget* SSAverageFPSLabel = StatsScreen->CreateWidget("SS_AverageFPSLabel",UI::UnifiedRect(0.0,0.0,0.55,1.0));
-    SSAverageFPSLabel->SetPositioningRules(UI::PF_Anchor_TopLeft);
+    SSAverageFPSLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+    SSAverageFPSLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     UI::SingleLineTextLayer* SSAverageFPSLabelLayer = SSAverageFPSLabel->CreateSingleLineTextLayer(StatsScreenText,0,0);
     SSAverageFPSLabelLayer->SetText("Average FPS: ");
     SSAverageFPSLabelLayer->HorizontallyAlign(UI::LA_BottomRight);
@@ -142,7 +145,8 @@ void CatchApp::MakeGUI()
     SSAverageFPS->AddChild(SSAverageFPSLabel,1);
     // Create the widget for displaying the average FPS value
     UI::Widget* SSAverageFPSValue = StatsScreen->CreateWidget("SS_AverageFPSValue",UI::UnifiedRect(0.0,0.0,0.45,1.0));
-    SSAverageFPSValue->SetPositioningRules(UI::PF_Anchor_TopRight);
+    SSAverageFPSValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+    SSAverageFPSValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     UI::SingleLineTextLayer* SSAverageFPSValueLayer = SSAverageFPSValue->CreateSingleLineTextLayer(StatsScreenText,0,0);
     SSAverageFPSValueLayer->SetText("0");
     SSAverageFPSValueLayer->HorizontallyAlign(UI::LA_TopLeft);
@@ -169,7 +173,8 @@ void CatchApp::MakeGUI()
     ////-----------------  Main Menu Root  -----------------////
     // Create the widget that will hold the background and lock it at a wide screen size
     UI::Widget* MMBackground = MainMenuScreen->CreateWidget("MS_Background",UI::UnifiedRect(0,0,1.7777,1));
-    MMBackground->SetPositioningRules(UI::PF_Anchor_Center);
+    MMBackground->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMBackground->SetVerticalPositioningRules(UI::PF_Anchor_VerticalCenter);
     MMBackground->SetVerticalSizingRules(UI::SR_Unified_Dims);
     MMBackground->SetHorizontalSizingRules(UI::SR_Match_Other_Axis_Unified);
     MMBackground->CreateSingleImageLayer("MainMenuBackground",0,0);
@@ -177,7 +182,8 @@ void CatchApp::MakeGUI()
 
     // Create the root menu entry
     UI::MenuEntry* MMRootEntry = MainMenuScreen->CreateMenuEntry("MS_MenuRoot",UI::UnifiedRect(0.0,0.914,1.0,0.086));
-    MMRootEntry->SetPositioningRules(UI::PF_Anchor_HorizontalCenter | UI::PF_Anchor_Bottom);
+    MMRootEntry->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMRootEntry->SetVerticalPositioningRules(UI::PF_Anchor_Bottom);
     MMRootEntry->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     MMRootEntry->CreateSingleImageLayer("MMBrickBackground",0,0);
     MMRootEntry->SetAutoHide(false);
@@ -216,7 +222,7 @@ void CatchApp::MakeGUI()
 
     // Create the button that will launch the level
     UI::Button* MMLevelStart = MainMenuScreen->CreateButton("MS_LevelStart",UI::UnifiedRect(0.0,0.86,0.16,0.10));
-    MMLevelStart->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMLevelStart->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     MMLevelStart->CreateSingleImageLayer("MMLevelStart",0,"Normal");
     MMLevelStart->CreateSingleImageLayer("MMLevelStartHovered",0,"Hovered");
     UI::SingleLineTextLayer* MMLevelStartText = MMLevelStart->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
@@ -443,7 +449,7 @@ void CatchApp::MakeGUI()
 
     // Create the label for the Music volume
     UI::Widget* MMMusicVolLabel = MainMenuScreen->CreateWidget("MS_MusicVolLabel",UI::UnifiedRect(0.0,0.01,0.40,0.13));
-    MMMusicVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMMusicVolLabel->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     MMMusicVolLabel->CreateSingleImageLayer("MMButton",0,0);
     UI::SingleLineTextLayer* MMMusicVolLabelText = MMMusicVolLabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMMusicVolLabelText->SetText("Music Volume");
@@ -454,7 +460,7 @@ void CatchApp::MakeGUI()
 
     // Create the Music volume slider
     UI::HorizontalScrollbar* MMMusicVol = MainMenuScreen->CreateHorizontalScrollbar("MS_MusicVolume",UI::UnifiedRect(0.0,0.145,0.7,0.09),UI::SB_Separate);
-    MMMusicVol->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMMusicVol->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     MMMusicVol->SetIncrementDistance(MMScrollerSize * 0.5);
     MMMusicVol->SetScrollerSize(MMScrollerSize);
     // Configure the scroller
@@ -475,7 +481,7 @@ void CatchApp::MakeGUI()
 
     // Create the label for the Effects volume
     UI::Widget* MMEffectsVolLabel = MainMenuScreen->CreateWidget("MS_EffectsVolLabel",UI::UnifiedRect(0.0,0.275,0.40,0.13));
-    MMEffectsVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMEffectsVolLabel->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     MMEffectsVolLabel->CreateSingleImageLayer("MMButton",0,0);
     UI::SingleLineTextLayer* MMEffectsVolLabelText = MMEffectsVolLabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
     MMEffectsVolLabelText->SetText("Effects Volume");
@@ -486,7 +492,7 @@ void CatchApp::MakeGUI()
 
     // Create the Effects volume slider
     UI::HorizontalScrollbar* MMEffectsVol = MainMenuScreen->CreateHorizontalScrollbar("MS_EffectsVolume",UI::UnifiedRect(0.0,0.41,0.7,0.09),UI::SB_Separate);
-    MMEffectsVol->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMEffectsVol->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     MMEffectsVol->SetIncrementDistance(MMScrollerSize * 0.5);
     MMEffectsVol->SetScrollerSize(MMScrollerSize);
     // Configure the scroller
@@ -682,12 +688,14 @@ void CatchApp::MakeGUI()
     GSScore->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     // Create the widget for displaying the timer logo
     UI::Widget* GSScoreLabel = GameScreen->CreateWidget("GS_ScoreLabel",UI::UnifiedRect(0.0,0.0,0.45,1.0));
-    GSScoreLabel->SetPositioningRules(UI::PF_Anchor_TopLeft);
+    GSScoreLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+    GSScoreLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     GSScoreLabel->CreateSingleImageLayer("GSScoreTextArea",0,0);
     GSScore->AddChild(GSScoreLabel,1);
     // Create the widget for displaying the timer value
     UI::Widget* GSScoreValue = GameScreen->CreateWidget("GS_ScoreValue",UI::UnifiedRect(0.0,0.0,0.55,1.0));
-    GSScoreValue->SetPositioningRules(UI::PF_Anchor_TopRight);
+    GSScoreValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+    GSScoreValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     GSScoreValue->CreateSingleImageLayer("GSScoreValueArea",0,0);
     UI::SingleLineTextLayer* GSScoreValueText = GSScoreValue->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSScoreValueText->SetText("0:00");
@@ -703,12 +711,14 @@ void CatchApp::MakeGUI()
     GSTimer->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     // Create the widget for displaying the timer logo
     UI::Widget* GSTimerLogo = GameScreen->CreateWidget("GS_TimerLogo",UI::UnifiedRect(0.0,0.0,0.66,1.0));
-    GSTimerLogo->SetPositioningRules(UI::PF_Anchor_TopLeft);
+    GSTimerLogo->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+    GSTimerLogo->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     GSTimerLogo->CreateSingleImageLayer("GSTimerLogo",0,0);
     GSTimer->AddChild(GSTimerLogo,1);
     // Create the widget for displaying the timer value
     UI::Widget* GSTimerValue = GameScreen->CreateWidget("GS_TimerValue",UI::UnifiedRect(0.0,0.0,0.34,1.0));
-    GSTimerValue->SetPositioningRules(UI::PF_Anchor_TopRight);
+    GSTimerValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+    GSTimerValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     GSTimerValue->CreateSingleImageLayer("GSTimerArea",0,0);
     UI::SingleLineTextLayer* GSTimerValueText = GSTimerValue->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSTimerValueText->SetText("0");
@@ -967,7 +977,7 @@ void CatchApp::MakeGUI()
 
     // Create the label for the Music volume
     UI::Widget* GSMusicVolLabel = GameScreen->CreateWidget("GS_MusicVolLabel",UI::UnifiedRect(0.0,0.01,0.40,0.13));
-    GSMusicVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    GSMusicVolLabel->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     GSMusicVolLabel->CreateSingleImageLayer("GSButton",0,0);
     UI::SingleLineTextLayer* GSMusicVolLabelText = GSMusicVolLabel->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSMusicVolLabelText->SetText("Music Volume");
@@ -978,7 +988,7 @@ void CatchApp::MakeGUI()
 
     // Create the Music volume slider
     UI::HorizontalScrollbar* GSMusicVol = GameScreen->CreateHorizontalScrollbar("GS_MusicVolume",UI::UnifiedRect(0.0,0.145,0.7,0.09),UI::SB_Separate);
-    GSMusicVol->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    GSMusicVol->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     GSMusicVol->SetIncrementDistance(GSScrollerSize * 0.5);
     GSMusicVol->SetScrollerSize(GSScrollerSize);
     // Configure the scroller
@@ -999,7 +1009,7 @@ void CatchApp::MakeGUI()
 
     // Create the label for the Effects volume
     UI::Widget* GSEffectsVolLabel = GameScreen->CreateWidget("GS_EffectsVolLabel",UI::UnifiedRect(0.0,0.275,0.40,0.13));
-    GSEffectsVolLabel->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    GSEffectsVolLabel->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     GSEffectsVolLabel->CreateSingleImageLayer("GSButton",0,0);
     UI::SingleLineTextLayer* GSEffectsVolLabelText = GSEffectsVolLabel->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSEffectsVolLabelText->SetText("Effects Volume");
@@ -1010,7 +1020,7 @@ void CatchApp::MakeGUI()
 
     // Create the Effects volume slider
     UI::HorizontalScrollbar* GSEffectsVol = GameScreen->CreateHorizontalScrollbar("GS_EffectsVolume",UI::UnifiedRect(0.0,0.41,0.7,0.09),UI::SB_Separate);
-    GSEffectsVol->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    GSEffectsVol->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     GSEffectsVol->SetIncrementDistance(GSScrollerSize * 0.5);
     GSEffectsVol->SetScrollerSize(GSScrollerSize);
     // Configure the scroller
@@ -1163,7 +1173,8 @@ void CatchApp::MakeGUI()
 
     // Create the "titlebar" for the item shop window
     UI::Widget* GSItemShopTitle = GameScreen->CreateWidget("GS_ItemShopTitle",UI::UnifiedRect(0.0,0.0,1.0,0.077));
-    GSItemShopTitle->SetPositioningRules(UI::PF_Anchor_HorizontalCenter | UI::PF_Anchor_Top);
+    GSItemShopTitle->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    GSItemShopTitle->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     UI::SingleLineTextLayer* GSItemShopTitleText = GSItemShopTitle->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopTitleText->SetText("Item Shop");
     GSItemShopTitleText->HorizontallyAlign(UI::LA_Center);
@@ -1178,7 +1189,7 @@ void CatchApp::MakeGUI()
 
     // Create the spinner that will determine which items will be displayed
     UI::Spinner* GSItemShopSpinner = GameScreen->CreateSpinner("GS_ItemShopSpinner",UI::UnifiedRect(0.0,0.43,0.25,0.05),UI::Spn_Separate_Horizontal,GameScreenText);
-    GSItemShopSpinner->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    GSItemShopSpinner->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     GSItemShopSpinner->GetIncrement()->CreateSingleImageLayer("GSIncrementPage",0,0);
     GSItemShopSpinner->GetDecrement()->CreateSingleImageLayer("GSDecrementPage",0,0);
     GSItemShopSpinner->GetValueDisplay()->CreateSingleImageLayer("GSPageBox",0,0);
@@ -1234,7 +1245,7 @@ void CatchApp::MakeGUI()
 
     // Create the total score display
     UI::Widget* GSLevelReportScore = GameScreen->CreateWidget("GS_LevelReportScore",UI::UnifiedRect(0.0,0.08,0.34,0.125));
-    GSLevelReportScore->SetPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    GSLevelReportScore->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     GSLevelReportScore->CreateSingleImageLayer("GSAppExitButton",0,0);
     UI::SingleLineTextLayer* GSLevelReportScoreText = GSLevelReportScore->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSLevelReportScoreText->SetText("0000");
@@ -1280,7 +1291,8 @@ void CatchApp::CreateLoadingScreen()
 
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen","Catch_Loading",UIViewport,9);
     UI::Widget* BackgroundWidget = LoadScreen->CreateWidget("LoadBackground",UI::UnifiedRect(0,0,1.7777,1,0,0,0,0));
-    BackgroundWidget->SetPositioningRules(UI::PF_Anchor_Center);
+    BackgroundWidget->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    BackgroundWidget->SetVerticalPositioningRules(UI::PF_Anchor_VerticalCenter);
     BackgroundWidget->SetVerticalSizingRules(UI::SR_Unified_Dims);
     BackgroundWidget->SetHorizontalSizingRules(UI::SR_Match_Other_Axis_Unified);
     UI::SingleImageLayer* LoadBackground = BackgroundWidget->CreateSingleImageLayer();
