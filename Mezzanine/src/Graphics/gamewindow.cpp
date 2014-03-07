@@ -326,7 +326,7 @@ namespace Mezzanine
 
         void GameWindow::SetFullscreen(const Boole Fullscreen)
         {
-            static SDL_DisplayMode FSDisplayMode;
+            //static SDL_DisplayMode FSDisplayMode;
 
             if( Fullscreen != this->Settings.Fullscreen ) {
                 /*if( !Fullscreen && this->Settings.Fullscreen ) {
