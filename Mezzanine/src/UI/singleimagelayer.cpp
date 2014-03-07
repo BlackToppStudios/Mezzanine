@@ -214,10 +214,10 @@ namespace Mezzanine
             XML::Node PropertiesNode = SelfRoot.AppendChild( SingleImageLayer::GetSerializableName() + "Properties" );
 
             if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-                PropertiesNode.AppendAttribute("SpriteName").SetValue( this->LayerSprite ? this->LayerSprite->Name : "" ) )
+                PropertiesNode.AppendAttribute("SpriteName").SetValue( this->LayerSprite ? this->LayerSprite->Name : "" ) &&
+                PropertiesNode.AppendAttribute("SpriteAtlas").SetValue( this->LayerSprite ? this->LayerSprite->GetAtlasName() : "" ) )
             {
                 XML::Node FillColoursNode = PropertiesNode.AppendChild("FillColours");
-
                 XML::Node TopLeftFillNode = FillColoursNode.AppendChild("TopLeft");
                 this->FillColours[UI::QC_TopLeft].ProtoSerialize(TopLeftFillNode);
 
@@ -244,24 +244,32 @@ namespace Mezzanine
 
             if( !PropertiesNode.Empty() ) {
                 if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    String SpriteName, SpriteAtlas;
+
                     CurrAttrib = PropertiesNode.GetAttribute("SpriteName");
                     if( !CurrAttrib.Empty() )
-                        this->SetSprite( CurrAttrib.AsString() );
+                        SpriteName = CurrAttrib.AsString();
+
+                    CurrAttrib = PropertiesNode.GetAttribute("SpriteAtlas");
+                    if( !CurrAttrib.Empty() )
+                        SpriteAtlas = CurrAttrib.AsString();
+
+                    this->SetSprite(SpriteName,SpriteAtlas);
 
                     XML::Node FillColoursNode = PropertiesNode.GetChild("FillColours");
-                    XML::Node TopLeftFillNode = PropertiesNode.GetChild("TopLeft").GetFirstChild();
+                    XML::Node TopLeftFillNode = FillColoursNode.GetChild("TopLeft").GetFirstChild();
                     if( !TopLeftFillNode.Empty() )
                         this->FillColours[UI::QC_TopLeft].ProtoDeSerialize(TopLeftFillNode);
 
-                    XML::Node TopRightFillNode = PropertiesNode.GetChild("TopRight").GetFirstChild();
+                    XML::Node TopRightFillNode = FillColoursNode.GetChild("TopRight").GetFirstChild();
                     if( !TopRightFillNode.Empty() )
                         this->FillColours[UI::QC_TopRight].ProtoDeSerialize(TopRightFillNode);
 
-                    XML::Node BottomLeftFillNode = PropertiesNode.GetChild("BottomLeft").GetFirstChild();
+                    XML::Node BottomLeftFillNode = FillColoursNode.GetChild("BottomLeft").GetFirstChild();
                     if( !BottomLeftFillNode.Empty() )
                         this->FillColours[UI::QC_BottomLeft].ProtoDeSerialize(BottomLeftFillNode);
 
-                    XML::Node BottomRightFillNode = PropertiesNode.GetChild("BottomRight").GetFirstChild();
+                    XML::Node BottomRightFillNode = FillColoursNode.GetChild("BottomRight").GetFirstChild();
                     if( !BottomRightFillNode.Empty() )
                         this->FillColours[UI::QC_BottomRight].ProtoDeSerialize(BottomRightFillNode);
                 }else{
