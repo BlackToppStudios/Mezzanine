@@ -97,7 +97,7 @@ namespace Mezzanine
             this->SelectionDisplay->SetVerticalSizingRules(UI::SR_Unified_Dims);
             this->AddChild(this->SelectionDisplay,1);
             this->ListToggle = this->ParentScreen->CreateCheckBox(this->Name+".Toggle",UnifiedRect(0,0,1,1,0,0,0,0));
-            this->ListToggle->SetPositioningRules(UI::PF_Anchor_Right);
+            this->ListToggle->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
             this->ListToggle->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
             this->ListToggle->SetVerticalSizingRules(UI::SR_Unified_Dims);
             this->AddChild(this->ListToggle,2);

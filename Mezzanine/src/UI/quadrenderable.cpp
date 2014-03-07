@@ -416,16 +416,28 @@ namespace Mezzanine
             return this->SizingPolicy;
         }
 
-        void QuadRenderable::SetPositioningRules(const Whole Rules)
+        void QuadRenderable::SetHorizontalPositioningRules(const Whole Rules)
         {
-            if( this->PositioningPolicy.PositionRules != Rules ) {
-                this->PositioningPolicy.PositionRules = Rules;
+            if( this->PositioningPolicy.HorizontalRules != Rules ) {
+                this->PositioningPolicy.HorizontalRules = Rules;
             }
         }
 
-        Whole QuadRenderable::GetPositioningRules() const
+        Whole QuadRenderable::GetHorizontalPositioningRules() const
         {
-            return this->PositioningPolicy.PositionRules;
+            return this->PositioningPolicy.HorizontalRules;
+        }
+
+        void QuadRenderable::SetVerticalPositioningRules(const Whole Rules)
+        {
+            if( this->PositioningPolicy.VerticalRules != Rules ) {
+                this->PositioningPolicy.VerticalRules = Rules;
+            }
+        }
+
+        Whole QuadRenderable::GetVerticalPositioningRules() const
+        {
+            return this->PositioningPolicy.VerticalRules;
         }
 
         void QuadRenderable::SetHorizontalSizingRules(const Whole Rules)

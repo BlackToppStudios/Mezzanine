@@ -61,32 +61,36 @@ namespace Mezzanine
 
             /// @brief Unified dimensions to be used if the resize rules permits it.
             UnifiedVec2 UPosition;
-            /// @brief Rules for determining the position of a quad.
-            Whole PositionRules;
+            /// @brief Rules for determining the position of a quad on the X axis.
+            Whole HorizontalRules;
+            /// @brief Rules for determining the position of a quad on the Y axis.
+            Whole VerticalRules;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Construction and Destruction
 
             /// @brief Class constructor.
             PositioningInfo() :
-                PositionRules(UI::PF_Unified_Pos) {  }
+                HorizontalRules(UI::PF_Unified_Pos), VerticalRules(UI::PF_Unified_Pos) {  }
             /// @brief PositionFlags constructor.
-            /// @param Rules The rules for determining the position of the object on a transform update.
-            PositioningInfo(const Whole Rules) :
-                PositionRules(Rules) {  }
+            /// @param HRules The rules for determining the position of an object on the X axis during a transform update.
+            /// @param VRules The rules for determining the position of an object on the Y axis during a transform update.
+            PositioningInfo(const Whole HRules, const Whole VRules) :
+                HorizontalRules(HRules), VerticalRules(VRules) {  }
             /// @brief Position constructor.
             /// @param Position The unified position to use if the rules permit it.
             PositioningInfo(const UnifiedVec2& Position) :
-                UPosition(Position), PositionRules(UI::PF_Unified_Pos) {  }
+                UPosition(Position), HorizontalRules(UI::PF_Unified_Pos), VerticalRules(UI::PF_Unified_Pos) {  }
             /// @brief Descriptive constructor.
-            /// @param Rules The rules for determining the position of the object on a transform update.
+            /// @param HRules The rules for determining the position of an object on the X axis during a transform update.
+            /// @param VRules The rules for determining the position of an object on the Y axis during a transform update.
             /// @param Position The unified position to use if the rules permit it.
-            PositioningInfo(const Whole Rules, const UnifiedVec2& Position) :
-                UPosition(Position), PositionRules(Rules) {  }
+            PositioningInfo(const Whole HRules, const Whole VRules, const UnifiedVec2& Position) :
+                UPosition(Position), HorizontalRules(HRules), VerticalRules(VRules) {  }
             /// @brief Copy constructor.
             /// @param Other The other PositioningInfo to copy from.
             PositioningInfo(const PositioningInfo& Other) :
-                UPosition(Other.UPosition), PositionRules(Other.PositionRules) {  }
+                UPosition(Other.UPosition), HorizontalRules(Other.HorizontalRules), VerticalRules(Other.VerticalRules) {  }
             /// @brief Class destructor.
             ~PositioningInfo() {  }
 
@@ -100,12 +104,12 @@ namespace Mezzanine
             /// @param Other The other PositioningInfo to compare to.
             /// @return Returns true if these PositioningInfo's are equal, false otherwise.
             inline Boole operator==(const PositioningInfo& Other) const
-                { return this->UPosition == Other.UPosition && this->PositionRules == Other.PositionRules; }
+                { return this->UPosition == Other.UPosition && this->HorizontalRules == Other.HorizontalRules && this->VerticalRules == Other.VerticalRules; }
             /// @brief Inequality comparison operator.
             /// @param Other The other PositioningInfo to compare to.
             /// @return Returns true if these PositioningInfo's are not equal, false otherwise.
             inline Boole operator!=(const PositioningInfo& Other) const
-                { return this->UPosition != Other.UPosition || this->PositionRules != Other.PositionRules; }
+                { return this->UPosition != Other.UPosition || this->HorizontalRules != Other.HorizontalRules || this->VerticalRules == Other.VerticalRules; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
@@ -117,7 +121,8 @@ namespace Mezzanine
                 XML::Node PositioningNode = ParentNode.AppendChild( PositioningInfo::GetSerializableName() );
 
                 if( PositioningNode.AppendAttribute("Version").SetValue("1") &&
-                    PositioningNode.AppendAttribute("PositionRules").SetValue( this->PositionRules ) )
+                    PositioningNode.AppendAttribute("HorizontalRules").SetValue( this->HorizontalRules ) &&
+                    PositioningNode.AppendAttribute("VerticalRules").SetValue( this->VerticalRules ) )
                 {
                     XML::Node UPositionNode = PositioningNode.AppendChild("UPosition");
                     this->UPosition.ProtoSerialize( UPositionNode );
@@ -134,9 +139,13 @@ namespace Mezzanine
                 XML::Attribute CurrAttrib;
                 if( SelfRoot.Name() == PositioningInfo::GetSerializableName() ) {
                     if(SelfRoot.GetAttribute("Version").AsInt() == 1) {
-                        CurrAttrib = SelfRoot.GetAttribute("PositionRules");
+                        CurrAttrib = SelfRoot.GetAttribute("HorizontalRules");
                         if( !CurrAttrib.Empty() )
-                            this->PositionRules = CurrAttrib.AsUint();
+                            this->HorizontalRules = CurrAttrib.AsWhole();
+
+                        CurrAttrib = SelfRoot.GetAttribute("VerticalRules");
+                        if( !CurrAttrib.Empty() )
+                            this->VerticalRules = CurrAttrib.AsWhole();
 
                         XML::Node PositionNode = SelfRoot.GetChild("UPosition").GetFirstChild();
                         if( !PositionNode.Empty() )
