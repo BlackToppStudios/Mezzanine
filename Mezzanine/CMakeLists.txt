@@ -696,11 +696,18 @@ if(Mezz_Audio_UseOALS)
     include_directories(
         "${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openalsoft"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/include"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/OpenAL32/include"
     )
-
-    set(SoundLibraryNames ${SoundLibraryNames}
-        "openal"
-    )
+    
+    IF(WIN32)
+        set(SoundLibraryNames ${SoundLibraryNames}
+            "OpenAL32"
+        )
+    ELSE()
+        set(SoundLibraryNames ${SoundLibraryNames}
+            "openal"
+        )
+    ENDIF()
 
     add_definitions( "${D}ENABLE_OALS_AUDIO_IMPLEMENTATION" "${D}AL_LIBTYPE_STATIC" )
 endif(Mezz_Audio_UseOALS)
