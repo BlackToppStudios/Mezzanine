@@ -97,14 +97,6 @@ message ( STATUS "Catch! Licenses Output: ${LicenseDir}")
 set (PluginDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Plugins/")
 message ( STATUS "Catch! Plugins Output: ${PluginDir}")
 
-# Previews
-set (PreviewDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Previews/")
-message ( STATUS "Catch! Preview Output: ${PreviewDir}")
-
-# Profiles
-set (ProfileDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Profiles/")
-message ( STATUS "Catch! Profile Output: ${ProfileDir}")
-
 # Content Archive Cache
 set(Catch_ArchiveDir "" CACHE FILEPATH "The Directory that contains The Content Archives for Catch!")
 mark_as_advanced(Catch_ArchiveDir)
@@ -224,8 +216,6 @@ function(CreateDirectoryStructure)
         COMMAND ${CMAKE_COMMAND} -E make_directory "${FontDir}"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${LicenseDir}"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${PluginDir}"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${PreviewDir}"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${ProfileDir}"
         VERBATIM
     )
 endfunction(CreateDirectoryStructure)
