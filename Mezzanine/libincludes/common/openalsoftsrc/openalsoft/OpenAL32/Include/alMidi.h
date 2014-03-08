@@ -101,7 +101,7 @@ inline struct ALfontsound *LookupFontsound(ALCdevice *device, ALuint id)
 inline struct ALfontsound *RemoveFontsound(ALCdevice *device, ALuint id)
 { return (struct ALfontsound*)RemoveUIntMapKey(&device->FontsoundMap, id); }
 
-inline struct ALsfmodulator *LookupModulator(ALfontsound *sound, ALuint id)
+static inline struct ALsfmodulator *LookupModulator(ALfontsound *sound, ALuint id)
 { return (struct ALsfmodulator*)LookupUIntMapKey(&sound->ModulatorMap, id); }
 inline struct ALsfmodulator *RemoveModulator(ALfontsound *sound, ALuint id)
 { return (struct ALsfmodulator*)RemoveUIntMapKey(&sound->ModulatorMap, id); }
