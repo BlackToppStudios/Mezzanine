@@ -34,13 +34,22 @@
 
 #include "alMain.h"
 #include "alu.h"
+#include "threads.h"
+#include "compat.h"
 
 #ifndef DSSPEAKER_5POINT1
-#define DSSPEAKER_5POINT1       6
+#   define DSSPEAKER_5POINT1          0x00000006
 #endif
 #ifndef DSSPEAKER_7POINT1
-#define DSSPEAKER_7POINT1       7
+#   define DSSPEAKER_7POINT1          0x00000007
 #endif
+#ifndef DSSPEAKER_7POINT1_SURROUND
+#   define DSSPEAKER_7POINT1_SURROUND 0x00000008
+#endif
+#ifndef DSSPEAKER_5POINT1_SURROUND
+#   define DSSPEAKER_5POINT1_SURROUND 0x00000009
+#endif
+
 
 DEFINE_GUID(KSDATAFORMAT_SUBTYPE_PCM, 0x00000001, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xaa, 0x00, 0x38, 0x9b, 0x71);
 DEFINE_GUID(KSDATAFORMAT_SUBTYPE_IEEE_FLOAT, 0x00000003, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xaa, 0x00, 0x38, 0x9b, 0x71);
@@ -67,7 +76,7 @@ typedef struct {
     HANDLE             NotifyEvent;
 
     volatile int killNow;
-    ALvoid *thread;
+    althread_t thread;
 } DSoundPlaybackData;
 
 typedef struct {
@@ -121,7 +130,7 @@ static ALCboolean DSoundLoad(void)
 }
 
 
-static BOOL CALLBACK DSoundEnumPlaybackDevices(LPGUID guid, LPCSTR desc, LPCSTR drvname, LPVOID data)
+static BOOL CALLBACK DSoundEnumPlaybackDevices(LPGUID guid, LPCSTR desc, LPCSTR UNUSED(drvname), LPVOID UNUSED(data))
 {
     LPOLESTR guidstr = NULL;
     char str[1024];
@@ -129,9 +138,6 @@ static BOOL CALLBACK DSoundEnumPlaybackDevices(LPGUID guid, LPCSTR desc, LPCSTR 
     void *temp;
     int count;
     ALuint i;
-
-    (void)data;
-    (void)drvname;
 
     if(!guid)
         return TRUE;
@@ -171,7 +177,7 @@ static BOOL CALLBACK DSoundEnumPlaybackDevices(LPGUID guid, LPCSTR desc, LPCSTR 
 }
 
 
-static BOOL CALLBACK DSoundEnumCaptureDevices(LPGUID guid, LPCSTR desc, LPCSTR drvname, LPVOID data)
+static BOOL CALLBACK DSoundEnumCaptureDevices(LPGUID guid, LPCSTR desc, LPCSTR UNUSED(drvname), LPVOID UNUSED(data))
 {
     LPOLESTR guidstr = NULL;
     char str[1024];
@@ -179,9 +185,6 @@ static BOOL CALLBACK DSoundEnumCaptureDevices(LPGUID guid, LPCSTR desc, LPCSTR d
     void *temp;
     int count;
     ALuint i;
-
-    (void)data;
-    (void)drvname;
 
     if(!guid)
         return TRUE;
@@ -221,7 +224,7 @@ static BOOL CALLBACK DSoundEnumCaptureDevices(LPGUID guid, LPCSTR desc, LPCSTR d
 }
 
 
-static ALuint DSoundPlaybackProc(ALvoid *ptr)
+FORCE_ALIGN static ALuint DSoundPlaybackProc(ALvoid *ptr)
 {
     ALCdevice *Device = (ALCdevice*)ptr;
     DSoundPlaybackData *data = (DSoundPlaybackData*)Device->ExtraData;
@@ -237,6 +240,7 @@ static ALuint DSoundPlaybackProc(ALvoid *ptr)
     HRESULT err;
 
     SetRTPriority();
+    SetThreadName(MIXER_THREAD_NAME);
 
     memset(&DSBCaps, 0, sizeof(DSBCaps));
     DSBCaps.dwSize = sizeof(DSBCaps);
@@ -466,9 +470,9 @@ static ALCboolean DSoundResetPlayback(ALCdevice *device)
                 device->FmtChans = DevFmtStereo;
             else if(speakers == DSSPEAKER_QUAD)
                 device->FmtChans = DevFmtQuad;
-            else if(speakers == DSSPEAKER_5POINT1)
+            else if(speakers == DSSPEAKER_5POINT1 || speakers == DSSPEAKER_5POINT1_SURROUND)
                 device->FmtChans = DevFmtX51;
-            else if(speakers == DSSPEAKER_7POINT1)
+            else if(speakers == DSSPEAKER_7POINT1 || speakers == DSSPEAKER_7POINT1_SURROUND)
                 device->FmtChans = DevFmtX71;
             else
                 ERR("Unknown system speaker config: 0x%lx\n", speakers);
@@ -630,8 +634,7 @@ static ALCboolean DSoundStartPlayback(ALCdevice *device)
 {
     DSoundPlaybackData *data = (DSoundPlaybackData*)device->ExtraData;
 
-    data->thread = StartThread(DSoundPlaybackProc, device);
-    if(data->thread == NULL)
+    if(!StartThread(&data->thread, DSoundPlaybackProc, device))
         return ALC_FALSE;
 
     return ALC_TRUE;
@@ -952,8 +955,6 @@ static const BackendFuncs DSoundFuncs = {
     DSoundStopCapture,
     DSoundCaptureSamples,
     DSoundAvailableSamples,
-    ALCdevice_LockDefault,
-    ALCdevice_UnlockDefault,
     ALCdevice_GetLatencyDefault
 };
 

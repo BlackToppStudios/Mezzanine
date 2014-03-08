@@ -40,6 +40,8 @@
 
 #include "alMain.h"
 #include "alu.h"
+#include "threads.h"
+#include "compat.h"
 
 
 DEFINE_GUID(KSDATAFORMAT_SUBTYPE_PCM, 0x00000001, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xaa, 0x00, 0x38, 0x9b, 0x71);
@@ -69,7 +71,7 @@ typedef struct {
     volatile UINT32 Padding;
 
     volatile int killNow;
-    ALvoid *thread;
+    althread_t thread;
 } MMDevApiData;
 
 
@@ -218,7 +220,7 @@ static DevMap *ProbeDevices(IMMDeviceEnumerator *devenum, EDataFlow flowdir, ALu
 }
 
 
-static ALuint MMDevApiProc(ALvoid *ptr)
+FORCE_ALIGN static ALuint MMDevApiProc(ALvoid *ptr)
 {
     ALCdevice *device = ptr;
     MMDevApiData *data = device->ExtraData;
@@ -238,6 +240,7 @@ static ALuint MMDevApiProc(ALvoid *ptr)
     }
 
     SetRTPriority();
+    SetThreadName(MIXER_THREAD_NAME);
 
     update_size = device->UpdateSize;
     buffer_len = update_size * device->NumUpdates;
@@ -597,6 +600,13 @@ static DWORD CALLBACK MMDevApiMsgProc(void *ptr)
 
     CoUninitialize();
 
+    /* HACK: Force Windows to create a message queue for this thread before
+     * returning success, otherwise PostThreadMessage may fail if it gets
+     * called before GetMessage.
+     */
+    PeekMessage(&msg, NULL, WM_USER, WM_USER, PM_NOREMOVE);
+
+    TRACE("Message thread initialization complete\n");
     req->result = S_OK;
     SetEvent(req->FinishedEvt);
 
@@ -676,8 +686,7 @@ static DWORD CALLBACK MMDevApiMsgProc(void *ptr)
             if(SUCCEEDED(hr))
             {
                 data->render = ptr;
-                data->thread = StartThread(MMDevApiProc, device);
-                if(!data->thread)
+                if(!StartThread(&data->thread, MMDevApiProc, device))
                 {
                     if(data->render)
                         IAudioRenderClient_Release(data->render);
@@ -832,7 +841,10 @@ static ALCenum MMDevApiOpenPlayback(ALCdevice *device, const ALCchar *deviceName
     data->NotifyEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
     data->MsgEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
     if(data->NotifyEvent == NULL || data->MsgEvent == NULL)
+    {
+        ERR("Failed to create message events: %lu\n", GetLastError());
         hr = E_FAIL;
+    }
 
     if(SUCCEEDED(hr))
     {
@@ -857,6 +869,8 @@ static ALCenum MMDevApiOpenPlayback(ALCdevice *device, const ALCchar *deviceName
                     break;
                 }
             }
+            if(FAILED(hr))
+                WARN("Failed to find device name matching \"%s\"\n", deviceName);
         }
     }
 
@@ -867,6 +881,8 @@ static ALCenum MMDevApiOpenPlayback(ALCdevice *device, const ALCchar *deviceName
         hr = E_FAIL;
         if(PostThreadMessage(ThreadID, WM_USER_OpenDevice, (WPARAM)&req, (LPARAM)device))
             hr = WaitForResponse(&req);
+        else
+            ERR("Failed to post thread message: %lu\n", GetLastError());
     }
 
     if(FAILED(hr))
@@ -877,6 +893,9 @@ static ALCenum MMDevApiOpenPlayback(ALCdevice *device, const ALCchar *deviceName
         if(data->MsgEvent != NULL)
             CloseHandle(data->MsgEvent);
         data->MsgEvent = NULL;
+
+        free(data->devid);
+        data->devid = NULL;
 
         free(data);
         device->ExtraData = NULL;
@@ -963,8 +982,6 @@ static const BackendFuncs MMDevApiFuncs = {
     NULL,
     NULL,
     NULL,
-    ALCdevice_LockDefault,
-    ALCdevice_UnlockDefault,
     MMDevApiGetLatency
 };
 

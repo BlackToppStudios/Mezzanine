@@ -31,6 +31,7 @@
 #include "alFilter.h"
 #include "alError.h"
 
+
 typedef struct DelayLine
 {
     // The delay lines use sample lengths that are powers of 2 to allow the
@@ -39,18 +40,19 @@ typedef struct DelayLine
     ALfloat *Line;
 } DelayLine;
 
-typedef struct ALverbState {
-    // Must be first in all effects!
-    ALeffectState state;
+typedef struct ALreverbState {
+    DERIVE_FROM_TYPE(ALeffectState);
+
+    ALboolean IsEax;
 
     // All delay lines are allocated as a single buffer to reduce memory
     // fragmentation and management code.
     ALfloat  *SampleBuffer;
     ALuint    TotalSamples;
 
-    // Master effect low-pass filter (2 chained 1-pole filters).
-    FILTER    LpFilter;
-    ALfloat   LpHistory[2];
+    // Master effect filters
+    ALfilterState LpFilter;
+    ALfilterState HpFilter; // EAX only
 
     struct {
         // Modulator delay line.
@@ -160,7 +162,7 @@ typedef struct ALverbState {
     /* Temporary storage used when processing, before deinterlacing. */
     ALfloat ReverbSamples[BUFFERSIZE][4];
     ALfloat EarlySamples[BUFFERSIZE][4];
-} ALverbState;
+} ALreverbState;
 
 /* This is a user config option for modifying the overall output of the reverb
  * effect.
@@ -222,24 +224,24 @@ static const ALfloat LATE_LINE_MULTIPLIER = 4.0f;
 
 
 // Basic delay line input/output routines.
-static __inline ALfloat DelayLineOut(DelayLine *Delay, ALuint offset)
+static inline ALfloat DelayLineOut(DelayLine *Delay, ALuint offset)
 {
     return Delay->Line[offset&Delay->Mask];
 }
 
-static __inline ALvoid DelayLineIn(DelayLine *Delay, ALuint offset, ALfloat in)
+static inline ALvoid DelayLineIn(DelayLine *Delay, ALuint offset, ALfloat in)
 {
     Delay->Line[offset&Delay->Mask] = in;
 }
 
 // Attenuated delay line output routine.
-static __inline ALfloat AttenuatedDelayLineOut(DelayLine *Delay, ALuint offset, ALfloat coeff)
+static inline ALfloat AttenuatedDelayLineOut(DelayLine *Delay, ALuint offset, ALfloat coeff)
 {
     return coeff * Delay->Line[offset&Delay->Mask];
 }
 
 // Basic attenuated all-pass input/output routine.
-static __inline ALfloat AllpassInOut(DelayLine *Delay, ALuint outOffset, ALuint inOffset, ALfloat in, ALfloat feedCoeff, ALfloat coeff)
+static inline ALfloat AllpassInOut(DelayLine *Delay, ALuint outOffset, ALuint inOffset, ALfloat in, ALfloat feedCoeff, ALfloat coeff)
 {
     ALfloat out, feed;
 
@@ -255,7 +257,7 @@ static __inline ALfloat AllpassInOut(DelayLine *Delay, ALuint outOffset, ALuint 
 
 // Given an input sample, this function produces modulation for the late
 // reverb.
-static __inline ALfloat EAXModulation(ALverbState *State, ALfloat in)
+static inline ALfloat EAXModulation(ALreverbState *State, ALfloat in)
 {
     ALfloat sinus, frac;
     ALuint offset;
@@ -264,7 +266,7 @@ static __inline ALfloat EAXModulation(ALverbState *State, ALfloat in)
     // Calculate the sinus rythm (dependent on modulation time and the
     // sampling rate).  The center of the sinus is moved to reduce the delay
     // of the effect when the time or depth are low.
-    sinus = 1.0f - cosf(F_PI*2.0f * State->Mod.Index / State->Mod.Range);
+    sinus = 1.0f - cosf(F_2PI * State->Mod.Index / State->Mod.Range);
 
     // The depth determines the range over which to read the input samples
     // from, so it must be filtered to reduce the distortion caused by even
@@ -292,7 +294,7 @@ static __inline ALfloat EAXModulation(ALverbState *State, ALfloat in)
 }
 
 // Delay line output routine for early reflections.
-static __inline ALfloat EarlyDelayLineOut(ALverbState *State, ALuint index)
+static inline ALfloat EarlyDelayLineOut(ALreverbState *State, ALuint index)
 {
     return AttenuatedDelayLineOut(&State->Early.Delay[index],
                                   State->Offset - State->Early.Offset[index],
@@ -301,7 +303,7 @@ static __inline ALfloat EarlyDelayLineOut(ALverbState *State, ALuint index)
 
 // Given an input sample, this function produces four-channel output for the
 // early reflections.
-static __inline ALvoid EarlyReflection(ALverbState *State, ALfloat in, ALfloat *RESTRICT out)
+static inline ALvoid EarlyReflection(ALreverbState *State, ALfloat in, ALfloat *restrict out)
 {
     ALfloat d[4], v, f[4];
 
@@ -346,7 +348,7 @@ static __inline ALvoid EarlyReflection(ALverbState *State, ALfloat in, ALfloat *
 }
 
 // All-pass input/output routine for late reverb.
-static __inline ALfloat LateAllPassInOut(ALverbState *State, ALuint index, ALfloat in)
+static inline ALfloat LateAllPassInOut(ALreverbState *State, ALuint index, ALfloat in)
 {
     return AllpassInOut(&State->Late.ApDelay[index],
                         State->Offset - State->Late.ApOffset[index],
@@ -355,7 +357,7 @@ static __inline ALfloat LateAllPassInOut(ALverbState *State, ALuint index, ALflo
 }
 
 // Delay line output routine for late reverb.
-static __inline ALfloat LateDelayLineOut(ALverbState *State, ALuint index)
+static inline ALfloat LateDelayLineOut(ALreverbState *State, ALuint index)
 {
     return AttenuatedDelayLineOut(&State->Late.Delay[index],
                                   State->Offset - State->Late.Offset[index],
@@ -363,7 +365,7 @@ static __inline ALfloat LateDelayLineOut(ALverbState *State, ALuint index)
 }
 
 // Low-pass filter input/output routine for late reverb.
-static __inline ALfloat LateLowPassInOut(ALverbState *State, ALuint index, ALfloat in)
+static inline ALfloat LateLowPassInOut(ALreverbState *State, ALuint index, ALfloat in)
 {
     in = lerp(in, State->Late.LpSample[index], State->Late.LpCoeff[index]);
     State->Late.LpSample[index] = in;
@@ -372,7 +374,7 @@ static __inline ALfloat LateLowPassInOut(ALverbState *State, ALuint index, ALflo
 
 // Given four decorrelated input samples, this function produces four-channel
 // output for the late reverb.
-static __inline ALvoid LateReverb(ALverbState *State, const ALfloat *RESTRICT in, ALfloat *RESTRICT out)
+static inline ALvoid LateReverb(ALreverbState *State, const ALfloat *restrict in, ALfloat *restrict out)
 {
     ALfloat d[4], f[4];
 
@@ -443,7 +445,7 @@ static __inline ALvoid LateReverb(ALverbState *State, const ALfloat *RESTRICT in
 
 // Given an input sample, this function mixes echo into the four-channel late
 // reverb.
-static __inline ALvoid EAXEcho(ALverbState *State, ALfloat in, ALfloat *RESTRICT late)
+static inline ALvoid EAXEcho(ALreverbState *State, ALfloat in, ALfloat *restrict late)
 {
     ALfloat out, feed;
 
@@ -477,12 +479,12 @@ static __inline ALvoid EAXEcho(ALverbState *State, ALfloat in, ALfloat *RESTRICT
 
 // Perform the non-EAX reverb pass on a given input sample, resulting in
 // four-channel output.
-static __inline ALvoid VerbPass(ALverbState *State, ALfloat in, ALfloat *RESTRICT out)
+static inline ALvoid VerbPass(ALreverbState *State, ALfloat in, ALfloat *restrict out)
 {
     ALfloat feed, late[4], taps[4];
 
-    // Low-pass filter the incoming sample.
-    in = lpFilter2P(&State->LpFilter, 0, in);
+    // Filter the incoming sample.
+    in = ALfilterState_processSingle(&State->LpFilter, in);
 
     // Feed the initial delay line.
     DelayLineIn(&State->Delay, State->Offset, in);
@@ -516,12 +518,13 @@ static __inline ALvoid VerbPass(ALverbState *State, ALfloat in, ALfloat *RESTRIC
 
 // Perform the EAX reverb pass on a given input sample, resulting in four-
 // channel output.
-static __inline ALvoid EAXVerbPass(ALverbState *State, ALfloat in, ALfloat *RESTRICT early, ALfloat *RESTRICT late)
+static inline ALvoid EAXVerbPass(ALreverbState *State, ALfloat in, ALfloat *restrict early, ALfloat *restrict late)
 {
     ALfloat feed, taps[4];
 
     // Low-pass filter the incoming sample.
-    in = lpFilter2P(&State->LpFilter, 0, in);
+    in = ALfilterState_processSingle(&State->LpFilter, in);
+    in = ALfilterState_processSingle(&State->HpFilter, in);
 
     // Perform any modulation on the input.
     in = EAXModulation(State, in);
@@ -553,12 +556,9 @@ static __inline ALvoid EAXVerbPass(ALverbState *State, ALfloat in, ALfloat *REST
     State->Offset++;
 }
 
-// This processes the reverb state, given the input samples and an output
-// buffer.
-static ALvoid VerbProcess(ALeffectState *effect, ALuint SamplesToDo, const ALfloat *RESTRICT SamplesIn, ALfloat (*RESTRICT SamplesOut)[BUFFERSIZE])
+static ALvoid ALreverbState_processStandard(ALreverbState *State, ALuint SamplesToDo, const ALfloat *restrict SamplesIn, ALfloat (*restrict SamplesOut)[BUFFERSIZE])
 {
-    ALverbState *State = (ALverbState*)effect;
-    ALfloat (*RESTRICT out)[4] = State->ReverbSamples;
+    ALfloat (*restrict out)[4] = State->ReverbSamples;
     ALuint index, c;
 
     /* Process reverb for these samples. */
@@ -568,21 +568,18 @@ static ALvoid VerbProcess(ALeffectState *effect, ALuint SamplesToDo, const ALflo
     for(c = 0;c < MaxChannels;c++)
     {
         ALfloat gain = State->Gain[c];
-        if(gain > 0.00001f)
-        {
-            for(index = 0;index < SamplesToDo;index++)
-                SamplesOut[c][index] += gain * out[index][c&3];
-        }
+        if(!(gain > GAIN_SILENCE_THRESHOLD))
+            continue;
+
+        for(index = 0;index < SamplesToDo;index++)
+            SamplesOut[c][index] += gain * out[index][c&3];
     }
 }
 
-// This processes the EAX reverb state, given the input samples and an output
-// buffer.
-static ALvoid EAXVerbProcess(ALeffectState *effect, ALuint SamplesToDo, const ALfloat *RESTRICT SamplesIn, ALfloat (*RESTRICT SamplesOut)[BUFFERSIZE])
+static ALvoid ALreverbState_processEax(ALreverbState *State, ALuint SamplesToDo, const ALfloat *restrict SamplesIn, ALfloat (*restrict SamplesOut)[BUFFERSIZE])
 {
-    ALverbState *State = (ALverbState*)effect;
-    ALfloat (*RESTRICT early)[4] = State->EarlySamples;
-    ALfloat (*RESTRICT late)[4] = State->ReverbSamples;
+    ALfloat (*restrict early)[4] = State->EarlySamples;
+    ALfloat (*restrict late)[4] = State->ReverbSamples;
     ALuint index, c;
 
     /* Process reverb for these samples. */
@@ -591,15 +588,16 @@ static ALvoid EAXVerbProcess(ALeffectState *effect, ALuint SamplesToDo, const AL
 
     for(c = 0;c < MaxChannels;c++)
     {
-        ALfloat earlyGain = State->Early.PanGain[c];
-        ALfloat lateGain = State->Late.PanGain[c];
+        ALfloat earlyGain, lateGain;
 
-        if(earlyGain > 0.00001f)
+        earlyGain = State->Early.PanGain[c];
+        if(earlyGain > GAIN_SILENCE_THRESHOLD)
         {
             for(index = 0;index < SamplesToDo;index++)
                 SamplesOut[c][index] += earlyGain*early[index][c&3];
         }
-        if(lateGain > 0.00001f)
+        lateGain = State->Late.PanGain[c];
+        if(lateGain > GAIN_SILENCE_THRESHOLD)
         {
             for(index = 0;index < SamplesToDo;index++)
                 SamplesOut[c][index] += lateGain*late[index][c&3];
@@ -607,10 +605,17 @@ static ALvoid EAXVerbProcess(ALeffectState *effect, ALuint SamplesToDo, const AL
     }
 }
 
+static ALvoid ALreverbState_process(ALreverbState *State, ALuint SamplesToDo, const ALfloat *restrict SamplesIn, ALfloat (*restrict SamplesOut)[BUFFERSIZE])
+{
+    if(State->IsEax)
+        ALreverbState_processEax(State, SamplesToDo, SamplesIn, SamplesOut);
+    else
+        ALreverbState_processStandard(State, SamplesToDo, SamplesIn, SamplesOut);
+}
 
 // Given the allocated sample buffer, this function updates each delay line
 // offset.
-static __inline ALvoid RealizeLineOffset(ALfloat *sampleBuffer, DelayLine *Delay)
+static inline ALvoid RealizeLineOffset(ALfloat *sampleBuffer, DelayLine *Delay)
 {
     Delay->Line = &sampleBuffer[(ALintptrEXT)Delay->Line];
 }
@@ -634,7 +639,7 @@ static ALuint CalcLineLength(ALfloat length, ALintptrEXT offset, ALuint frequenc
  * for all lines given the sample rate (frequency).  If an allocation failure
  * occurs, it returns AL_FALSE.
  */
-static ALboolean AllocLines(ALuint frequency, ALverbState *State)
+static ALboolean AllocLines(ALuint frequency, ALreverbState *State)
 {
     ALuint totalSamples, index;
     ALfloat length;
@@ -722,12 +727,8 @@ static ALboolean AllocLines(ALuint frequency, ALverbState *State)
     return AL_TRUE;
 }
 
-// This updates the device-dependant EAX reverb state.  This is called on
-// initialization and any time the device parameters (eg. playback frequency,
-// format) have been changed.
-static ALboolean ReverbDeviceUpdate(ALeffectState *effect, ALCdevice *Device)
+static ALboolean ALreverbState_deviceUpdate(ALreverbState *State, ALCdevice *Device)
 {
-    ALverbState *State = (ALverbState*)effect;
     ALuint frequency = Device->Frequency, index;
 
     // Allocate the delay lines.
@@ -760,28 +761,21 @@ static ALboolean ReverbDeviceUpdate(ALeffectState *effect, ALCdevice *Device)
 
 // Calculate a decay coefficient given the length of each cycle and the time
 // until the decay reaches -60 dB.
-static __inline ALfloat CalcDecayCoeff(ALfloat length, ALfloat decayTime)
+static inline ALfloat CalcDecayCoeff(ALfloat length, ALfloat decayTime)
 {
     return powf(0.001f/*-60 dB*/, length/decayTime);
 }
 
 // Calculate a decay length from a coefficient and the time until the decay
 // reaches -60 dB.
-static __inline ALfloat CalcDecayLength(ALfloat coeff, ALfloat decayTime)
+static inline ALfloat CalcDecayLength(ALfloat coeff, ALfloat decayTime)
 {
     return log10f(coeff) * decayTime / log10f(0.001f)/*-60 dB*/;
 }
 
-// Calculate the high frequency parameter for the I3DL2 coefficient
-// calculation.
-static __inline ALfloat CalcI3DL2HFreq(ALfloat hfRef, ALuint frequency)
-{
-    return cosf(F_PI*2.0f * hfRef / frequency);
-}
-
 // Calculate an attenuation to be applied to the input of any echo models to
 // compensate for modal density and decay time.
-static __inline ALfloat CalcDensityGain(ALfloat a)
+static inline ALfloat CalcDensityGain(ALfloat a)
 {
     /* The energy of a signal can be obtained by finding the area under the
      * squared signal.  This takes the form of Sum(x_n^2), where x is the
@@ -800,7 +794,7 @@ static __inline ALfloat CalcDensityGain(ALfloat a)
 }
 
 // Calculate the mixing matrix coefficients given a diffusion factor.
-static __inline ALvoid CalcMatrixCoeffs(ALfloat diffusion, ALfloat *x, ALfloat *y)
+static inline ALvoid CalcMatrixCoeffs(ALfloat diffusion, ALfloat *x, ALfloat *y)
 {
     ALfloat n, t;
 
@@ -835,7 +829,7 @@ static ALfloat CalcLimitedHfRatio(ALfloat hfRatio, ALfloat airAbsorptionGainHF, 
 
 // Calculate the coefficient for a HF (and eventually LF) decay damping
 // filter.
-static __inline ALfloat CalcDampingCoeff(ALfloat hfRatio, ALfloat length, ALfloat decayTime, ALfloat decayCoeff, ALfloat cw)
+static inline ALfloat CalcDampingCoeff(ALfloat hfRatio, ALfloat length, ALfloat decayTime, ALfloat decayCoeff, ALfloat cw)
 {
     ALfloat coeff, g;
 
@@ -850,7 +844,14 @@ static __inline ALfloat CalcDampingCoeff(ALfloat hfRatio, ALfloat length, ALfloa
 
         // Damping is done with a 1-pole filter, so g needs to be squared.
         g *= g;
-        coeff = lpCoeffCalc(g, cw);
+        if(g < 0.9999f) /* 1-epsilon */
+        {
+            /* Be careful with gains < 0.001, as that causes the coefficient
+             * head towards 1, which will flatten the signal. */
+            g = maxf(g, 0.001f);
+            coeff = (1 - g*cw - sqrtf(2*g*(1-cw) - g*g*(1 - cw*cw))) /
+                    (1 - g);
+        }
 
         // Very low decay times will produce minimal output, so apply an
         // upper bound to the coefficient.
@@ -862,7 +863,7 @@ static __inline ALfloat CalcDampingCoeff(ALfloat hfRatio, ALfloat length, ALfloa
 // Update the EAX modulation index, range, and depth.  Keep in mind that this
 // kind of vibrato is additive and not multiplicative as one may expect.  The
 // downswing will sound stronger than the upswing.
-static ALvoid UpdateModulator(ALfloat modTime, ALfloat modDepth, ALuint frequency, ALverbState *State)
+static ALvoid UpdateModulator(ALfloat modTime, ALfloat modDepth, ALuint frequency, ALreverbState *State)
 {
     ALuint range;
 
@@ -892,7 +893,7 @@ static ALvoid UpdateModulator(ALfloat modTime, ALfloat modDepth, ALuint frequenc
 }
 
 // Update the offsets for the initial effect delay line.
-static ALvoid UpdateDelayLine(ALfloat earlyDelay, ALfloat lateDelay, ALuint frequency, ALverbState *State)
+static ALvoid UpdateDelayLine(ALfloat earlyDelay, ALfloat lateDelay, ALuint frequency, ALreverbState *State)
 {
     // Calculate the initial delay taps.
     State->DelayTap[0] = fastf2u(earlyDelay * frequency);
@@ -900,7 +901,7 @@ static ALvoid UpdateDelayLine(ALfloat earlyDelay, ALfloat lateDelay, ALuint freq
 }
 
 // Update the early reflections gain and line coefficients.
-static ALvoid UpdateEarlyLines(ALfloat reverbGain, ALfloat earlyGain, ALfloat lateDelay, ALverbState *State)
+static ALvoid UpdateEarlyLines(ALfloat reverbGain, ALfloat earlyGain, ALfloat lateDelay, ALreverbState *State)
 {
     ALuint index;
 
@@ -917,7 +918,7 @@ static ALvoid UpdateEarlyLines(ALfloat reverbGain, ALfloat earlyGain, ALfloat la
 }
 
 // Update the offsets for the decorrelator line.
-static ALvoid UpdateDecorrelator(ALfloat density, ALuint frequency, ALverbState *State)
+static ALvoid UpdateDecorrelator(ALfloat density, ALuint frequency, ALreverbState *State)
 {
     ALuint index;
     ALfloat length;
@@ -938,7 +939,7 @@ static ALvoid UpdateDecorrelator(ALfloat density, ALuint frequency, ALverbState 
 }
 
 // Update the late reverb gains, line lengths, and line coefficients.
-static ALvoid UpdateLateLines(ALfloat reverbGain, ALfloat lateGain, ALfloat xMix, ALfloat density, ALfloat decayTime, ALfloat diffusion, ALfloat hfRatio, ALfloat cw, ALuint frequency, ALverbState *State)
+static ALvoid UpdateLateLines(ALfloat reverbGain, ALfloat lateGain, ALfloat xMix, ALfloat density, ALfloat decayTime, ALfloat diffusion, ALfloat hfRatio, ALfloat cw, ALuint frequency, ALreverbState *State)
 {
     ALfloat length;
     ALuint index;
@@ -996,7 +997,7 @@ static ALvoid UpdateLateLines(ALfloat reverbGain, ALfloat lateGain, ALfloat xMix
 
 // Update the echo gain, line offset, line coefficients, and mixing
 // coefficients.
-static ALvoid UpdateEchoLine(ALfloat reverbGain, ALfloat lateGain, ALfloat echoTime, ALfloat decayTime, ALfloat diffusion, ALfloat echoDepth, ALfloat hfRatio, ALfloat cw, ALuint frequency, ALverbState *State)
+static ALvoid UpdateEchoLine(ALfloat reverbGain, ALfloat lateGain, ALfloat echoTime, ALfloat decayTime, ALfloat diffusion, ALfloat echoDepth, ALfloat hfRatio, ALfloat cw, ALuint frequency, ALreverbState *State)
 {
     // Update the offset and coefficient for the echo delay line.
     State->Echo.Offset = fastf2u(echoTime * frequency);
@@ -1028,7 +1029,7 @@ static ALvoid UpdateEchoLine(ALfloat reverbGain, ALfloat lateGain, ALfloat echoT
 }
 
 // Update the early and late 3D panning gains.
-static ALvoid Update3DPanning(const ALCdevice *Device, const ALfloat *ReflectionsPan, const ALfloat *LateReverbPan, ALfloat Gain, ALverbState *State)
+static ALvoid Update3DPanning(const ALCdevice *Device, const ALfloat *ReflectionsPan, const ALfloat *LateReverbPan, ALfloat Gain, ALreverbState *State)
 {
     ALfloat earlyPan[3] = { ReflectionsPan[0], ReflectionsPan[1],
                             ReflectionsPan[2] };
@@ -1037,7 +1038,6 @@ static ALvoid Update3DPanning(const ALCdevice *Device, const ALfloat *Reflection
     ALfloat ambientGain;
     ALfloat dirGain;
     ALfloat length;
-    ALuint index;
 
     Gain *= ReverbBoost;
 
@@ -1063,221 +1063,720 @@ static ALvoid Update3DPanning(const ALCdevice *Device, const ALfloat *Reflection
     }
 
     dirGain = sqrtf(earlyPan[0]*earlyPan[0] + earlyPan[2]*earlyPan[2]);
-    for(index = 0;index < MaxChannels;index++)
-         State->Early.PanGain[index] = 0.0f;
     ComputeAngleGains(Device, atan2f(earlyPan[0], earlyPan[2]), (1.0f-dirGain)*F_PI,
                       lerp(ambientGain, 1.0f, dirGain) * Gain, State->Early.PanGain);
 
     dirGain = sqrtf(latePan[0]*latePan[0] + latePan[2]*latePan[2]);
-    for(index = 0;index < MaxChannels;index++)
-         State->Late.PanGain[index] = 0.0f;
     ComputeAngleGains(Device, atan2f(latePan[0], latePan[2]), (1.0f-dirGain)*F_PI,
                       lerp(ambientGain, 1.0f, dirGain) * Gain, State->Late.PanGain);
 }
 
-// This updates the EAX reverb state.  This is called any time the EAX reverb
-// effect is loaded into a slot.
-static ALvoid ReverbUpdate(ALeffectState *effect, ALCdevice *Device, const ALeffectslot *Slot)
+static ALvoid ALreverbState_update(ALreverbState *State, ALCdevice *Device, const ALeffectslot *Slot)
 {
-    ALverbState *State = (ALverbState*)effect;
     ALuint frequency = Device->Frequency;
-    ALboolean isEAX = AL_FALSE;
-    ALfloat cw, x, y, hfRatio;
+    ALfloat lfscale, hfscale, hfRatio;
+    ALfloat cw, x, y;
 
-    if(Slot->effect.type == AL_EFFECT_EAXREVERB && !EmulateEAXReverb)
-    {
-        State->state.Process = EAXVerbProcess;
-        isEAX = AL_TRUE;
-    }
-    else if(Slot->effect.type == AL_EFFECT_REVERB || EmulateEAXReverb)
-    {
-        State->state.Process = VerbProcess;
-        isEAX = AL_FALSE;
-    }
+    if(Slot->EffectType == AL_EFFECT_EAXREVERB && !EmulateEAXReverb)
+        State->IsEax = AL_TRUE;
+    else if(Slot->EffectType == AL_EFFECT_REVERB || EmulateEAXReverb)
+        State->IsEax = AL_FALSE;
 
     // Calculate the master low-pass filter (from the master effect HF gain).
-    if(isEAX) cw = CalcI3DL2HFreq(Slot->effect.Reverb.HFReference, frequency);
-    else cw = CalcI3DL2HFreq(LOWPASSFREQREF, frequency);
-    // This is done with 2 chained 1-pole filters, so no need to square g.
-    State->LpFilter.coeff = lpCoeffCalc(Slot->effect.Reverb.GainHF, cw);
+    if(State->IsEax)
+    {
+        hfscale = Slot->EffectProps.Reverb.HFReference / frequency;
+        ALfilterState_setParams(&State->LpFilter, ALfilterType_HighShelf,
+                                Slot->EffectProps.Reverb.GainHF,
+                                hfscale, 0.0f);
+        lfscale = Slot->EffectProps.Reverb.LFReference / frequency;
+        ALfilterState_setParams(&State->HpFilter, ALfilterType_LowShelf,
+                                Slot->EffectProps.Reverb.GainLF,
+                                lfscale, 0.0f);
+    }
+    else
+    {
+        hfscale = (ALfloat)LOWPASSFREQREF / frequency;
+        ALfilterState_setParams(&State->LpFilter, ALfilterType_HighShelf,
+                                Slot->EffectProps.Reverb.GainHF,
+                                hfscale, 0.0f);
+    }
 
-    if(isEAX)
+    if(State->IsEax)
     {
         // Update the modulator line.
-        UpdateModulator(Slot->effect.Reverb.ModulationTime,
-                        Slot->effect.Reverb.ModulationDepth,
+        UpdateModulator(Slot->EffectProps.Reverb.ModulationTime,
+                        Slot->EffectProps.Reverb.ModulationDepth,
                         frequency, State);
     }
 
     // Update the initial effect delay.
-    UpdateDelayLine(Slot->effect.Reverb.ReflectionsDelay,
-                    Slot->effect.Reverb.LateReverbDelay,
+    UpdateDelayLine(Slot->EffectProps.Reverb.ReflectionsDelay,
+                    Slot->EffectProps.Reverb.LateReverbDelay,
                     frequency, State);
 
     // Update the early lines.
-    UpdateEarlyLines(Slot->effect.Reverb.Gain,
-                     Slot->effect.Reverb.ReflectionsGain,
-                     Slot->effect.Reverb.LateReverbDelay, State);
+    UpdateEarlyLines(Slot->EffectProps.Reverb.Gain,
+                     Slot->EffectProps.Reverb.ReflectionsGain,
+                     Slot->EffectProps.Reverb.LateReverbDelay, State);
 
     // Update the decorrelator.
-    UpdateDecorrelator(Slot->effect.Reverb.Density, frequency, State);
+    UpdateDecorrelator(Slot->EffectProps.Reverb.Density, frequency, State);
 
     // Get the mixing matrix coefficients (x and y).
-    CalcMatrixCoeffs(Slot->effect.Reverb.Diffusion, &x, &y);
+    CalcMatrixCoeffs(Slot->EffectProps.Reverb.Diffusion, &x, &y);
     // Then divide x into y to simplify the matrix calculation.
     State->Late.MixCoeff = y / x;
 
     // If the HF limit parameter is flagged, calculate an appropriate limit
     // based on the air absorption parameter.
-    hfRatio = Slot->effect.Reverb.DecayHFRatio;
-    if(Slot->effect.Reverb.DecayHFLimit &&
-       Slot->effect.Reverb.AirAbsorptionGainHF < 1.0f)
+    hfRatio = Slot->EffectProps.Reverb.DecayHFRatio;
+    if(Slot->EffectProps.Reverb.DecayHFLimit &&
+       Slot->EffectProps.Reverb.AirAbsorptionGainHF < 1.0f)
         hfRatio = CalcLimitedHfRatio(hfRatio,
-                                     Slot->effect.Reverb.AirAbsorptionGainHF,
-                                     Slot->effect.Reverb.DecayTime);
+                                     Slot->EffectProps.Reverb.AirAbsorptionGainHF,
+                                     Slot->EffectProps.Reverb.DecayTime);
 
+    cw = cosf(F_2PI * hfscale);
     // Update the late lines.
-    UpdateLateLines(Slot->effect.Reverb.Gain, Slot->effect.Reverb.LateReverbGain,
-                    x, Slot->effect.Reverb.Density, Slot->effect.Reverb.DecayTime,
-                    Slot->effect.Reverb.Diffusion, hfRatio, cw, frequency, State);
+    UpdateLateLines(Slot->EffectProps.Reverb.Gain, Slot->EffectProps.Reverb.LateReverbGain,
+                    x, Slot->EffectProps.Reverb.Density, Slot->EffectProps.Reverb.DecayTime,
+                    Slot->EffectProps.Reverb.Diffusion, hfRatio, cw, frequency, State);
 
-    if(isEAX)
+    if(State->IsEax)
     {
         // Update the echo line.
-        UpdateEchoLine(Slot->effect.Reverb.Gain, Slot->effect.Reverb.LateReverbGain,
-                       Slot->effect.Reverb.EchoTime, Slot->effect.Reverb.DecayTime,
-                       Slot->effect.Reverb.Diffusion, Slot->effect.Reverb.EchoDepth,
+        UpdateEchoLine(Slot->EffectProps.Reverb.Gain, Slot->EffectProps.Reverb.LateReverbGain,
+                       Slot->EffectProps.Reverb.EchoTime, Slot->EffectProps.Reverb.DecayTime,
+                       Slot->EffectProps.Reverb.Diffusion, Slot->EffectProps.Reverb.EchoDepth,
                        hfRatio, cw, frequency, State);
 
         // Update early and late 3D panning.
-        Update3DPanning(Device, Slot->effect.Reverb.ReflectionsPan,
-                        Slot->effect.Reverb.LateReverbPan, Slot->Gain, State);
+        Update3DPanning(Device, Slot->EffectProps.Reverb.ReflectionsPan,
+                        Slot->EffectProps.Reverb.LateReverbPan, Slot->Gain, State);
     }
     else
     {
-        ALfloat gain = Slot->Gain;
-        ALuint index;
-
         /* Update channel gains */
-        gain *= sqrtf(2.0f/Device->NumChan) * ReverbBoost;
-        for(index = 0;index < MaxChannels;index++)
-             State->Gain[index] = 0.0f;
-        for(index = 0;index < Device->NumChan;index++)
-        {
-            enum Channel chan = Device->Speaker2Chan[index];
-            State->Gain[chan] = gain;
-        }
+        ALfloat gain = sqrtf(2.0f/Device->NumChan) * ReverbBoost * Slot->Gain;
+        SetGains(Device, gain, State->Gain);
     }
 }
 
-// This destroys the reverb state.  It should be called only when the effect
-// slot has a different (or no) effect loaded over the reverb effect.
-static ALvoid ReverbDestroy(ALeffectState *effect)
+
+static ALvoid ALreverbState_Destruct(ALreverbState *State)
 {
-    ALverbState *State = (ALverbState*)effect;
-    if(State)
-    {
-        free(State->SampleBuffer);
-        State->SampleBuffer = NULL;
-        free(State);
-    }
+    free(State->SampleBuffer);
+    State->SampleBuffer = NULL;
 }
 
-// This creates the reverb state.  It should be called only when the reverb
-// effect is loaded into a slot that doesn't already have a reverb effect.
-ALeffectState *ReverbCreate(void)
+static void ALreverbState_Delete(ALreverbState *state)
 {
-    ALverbState *State = NULL;
+    free(state);
+}
+
+DEFINE_ALEFFECTSTATE_VTABLE(ALreverbState);
+
+
+typedef struct ALreverbStateFactory {
+    DERIVE_FROM_TYPE(ALeffectStateFactory);
+} ALreverbStateFactory;
+
+static ALeffectState *ALreverbStateFactory_create(ALreverbStateFactory* UNUSED(factory))
+{
+    ALreverbState *state;
     ALuint index;
 
-    State = malloc(sizeof(ALverbState));
-    if(!State)
-        return NULL;
+    state = malloc(sizeof(ALreverbState));
+    if(!state) return NULL;
+    SET_VTABLE2(ALreverbState, ALeffectState, state);
 
-    State->state.Destroy = ReverbDestroy;
-    State->state.DeviceUpdate = ReverbDeviceUpdate;
-    State->state.Update = ReverbUpdate;
-    State->state.Process = VerbProcess;
+    state->TotalSamples = 0;
+    state->SampleBuffer = NULL;
 
-    State->TotalSamples = 0;
-    State->SampleBuffer = NULL;
+    ALfilterState_clear(&state->LpFilter);
+    ALfilterState_clear(&state->HpFilter);
 
-    State->LpFilter.coeff = 0.0f;
-    State->LpFilter.history[0] = 0.0f;
-    State->LpFilter.history[1] = 0.0f;
+    state->Mod.Delay.Mask = 0;
+    state->Mod.Delay.Line = NULL;
+    state->Mod.Index = 0;
+    state->Mod.Range = 1;
+    state->Mod.Depth = 0.0f;
+    state->Mod.Coeff = 0.0f;
+    state->Mod.Filter = 0.0f;
 
-    State->Mod.Delay.Mask = 0;
-    State->Mod.Delay.Line = NULL;
-    State->Mod.Index = 0;
-    State->Mod.Range = 1;
-    State->Mod.Depth = 0.0f;
-    State->Mod.Coeff = 0.0f;
-    State->Mod.Filter = 0.0f;
+    state->Delay.Mask = 0;
+    state->Delay.Line = NULL;
+    state->DelayTap[0] = 0;
+    state->DelayTap[1] = 0;
 
-    State->Delay.Mask = 0;
-    State->Delay.Line = NULL;
-    State->DelayTap[0] = 0;
-    State->DelayTap[1] = 0;
-
-    State->Early.Gain = 0.0f;
+    state->Early.Gain = 0.0f;
     for(index = 0;index < 4;index++)
     {
-        State->Early.Coeff[index] = 0.0f;
-        State->Early.Delay[index].Mask = 0;
-        State->Early.Delay[index].Line = NULL;
-        State->Early.Offset[index] = 0;
+        state->Early.Coeff[index] = 0.0f;
+        state->Early.Delay[index].Mask = 0;
+        state->Early.Delay[index].Line = NULL;
+        state->Early.Offset[index] = 0;
     }
 
-    State->Decorrelator.Mask = 0;
-    State->Decorrelator.Line = NULL;
-    State->DecoTap[0] = 0;
-    State->DecoTap[1] = 0;
-    State->DecoTap[2] = 0;
+    state->Decorrelator.Mask = 0;
+    state->Decorrelator.Line = NULL;
+    state->DecoTap[0] = 0;
+    state->DecoTap[1] = 0;
+    state->DecoTap[2] = 0;
 
-    State->Late.Gain = 0.0f;
-    State->Late.DensityGain = 0.0f;
-    State->Late.ApFeedCoeff = 0.0f;
-    State->Late.MixCoeff = 0.0f;
+    state->Late.Gain = 0.0f;
+    state->Late.DensityGain = 0.0f;
+    state->Late.ApFeedCoeff = 0.0f;
+    state->Late.MixCoeff = 0.0f;
     for(index = 0;index < 4;index++)
     {
-        State->Late.ApCoeff[index] = 0.0f;
-        State->Late.ApDelay[index].Mask = 0;
-        State->Late.ApDelay[index].Line = NULL;
-        State->Late.ApOffset[index] = 0;
+        state->Late.ApCoeff[index] = 0.0f;
+        state->Late.ApDelay[index].Mask = 0;
+        state->Late.ApDelay[index].Line = NULL;
+        state->Late.ApOffset[index] = 0;
 
-        State->Late.Coeff[index] = 0.0f;
-        State->Late.Delay[index].Mask = 0;
-        State->Late.Delay[index].Line = NULL;
-        State->Late.Offset[index] = 0;
+        state->Late.Coeff[index] = 0.0f;
+        state->Late.Delay[index].Mask = 0;
+        state->Late.Delay[index].Line = NULL;
+        state->Late.Offset[index] = 0;
 
-        State->Late.LpCoeff[index] = 0.0f;
-        State->Late.LpSample[index] = 0.0f;
+        state->Late.LpCoeff[index] = 0.0f;
+        state->Late.LpSample[index] = 0.0f;
     }
 
     for(index = 0;index < MaxChannels;index++)
     {
-        State->Early.PanGain[index] = 0.0f;
-        State->Late.PanGain[index] = 0.0f;
+        state->Early.PanGain[index] = 0.0f;
+        state->Late.PanGain[index] = 0.0f;
     }
 
-    State->Echo.DensityGain = 0.0f;
-    State->Echo.Delay.Mask = 0;
-    State->Echo.Delay.Line = NULL;
-    State->Echo.ApDelay.Mask = 0;
-    State->Echo.ApDelay.Line = NULL;
-    State->Echo.Coeff = 0.0f;
-    State->Echo.ApFeedCoeff = 0.0f;
-    State->Echo.ApCoeff = 0.0f;
-    State->Echo.Offset = 0;
-    State->Echo.ApOffset = 0;
-    State->Echo.LpCoeff = 0.0f;
-    State->Echo.LpSample = 0.0f;
-    State->Echo.MixCoeff[0] = 0.0f;
-    State->Echo.MixCoeff[1] = 0.0f;
+    state->Echo.DensityGain = 0.0f;
+    state->Echo.Delay.Mask = 0;
+    state->Echo.Delay.Line = NULL;
+    state->Echo.ApDelay.Mask = 0;
+    state->Echo.ApDelay.Line = NULL;
+    state->Echo.Coeff = 0.0f;
+    state->Echo.ApFeedCoeff = 0.0f;
+    state->Echo.ApCoeff = 0.0f;
+    state->Echo.Offset = 0;
+    state->Echo.ApOffset = 0;
+    state->Echo.LpCoeff = 0.0f;
+    state->Echo.LpSample = 0.0f;
+    state->Echo.MixCoeff[0] = 0.0f;
+    state->Echo.MixCoeff[1] = 0.0f;
 
-    State->Offset = 0;
+    state->Offset = 0;
 
-    State->Gain = State->Late.PanGain;
+    state->Gain = state->Late.PanGain;
 
-    return &State->state;
+    return STATIC_CAST(ALeffectState, state);
 }
+
+DEFINE_ALEFFECTSTATEFACTORY_VTABLE(ALreverbStateFactory);
+
+ALeffectStateFactory *ALreverbStateFactory_getFactory(void)
+{
+    static ALreverbStateFactory ReverbFactory = { { GET_VTABLE2(ALreverbStateFactory, ALeffectStateFactory) } };
+
+    return STATIC_CAST(ALeffectStateFactory, &ReverbFactory);
+}
+
+
+void ALeaxreverb_setParami(ALeffect *effect, ALCcontext *context, ALenum param, ALint val)
+{
+    ALeffectProps *props = &effect->Props;
+    switch(param)
+    {
+        case AL_EAXREVERB_DECAY_HFLIMIT:
+            if(!(val >= AL_EAXREVERB_MIN_DECAY_HFLIMIT && val <= AL_EAXREVERB_MAX_DECAY_HFLIMIT))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.DecayHFLimit = val;
+            break;
+
+        default:
+            SET_ERROR_AND_RETURN(context, AL_INVALID_ENUM);
+    }
+}
+void ALeaxreverb_setParamiv(ALeffect *effect, ALCcontext *context, ALenum param, const ALint *vals)
+{
+    ALeaxreverb_setParami(effect, context, param, vals[0]);
+}
+void ALeaxreverb_setParamf(ALeffect *effect, ALCcontext *context, ALenum param, ALfloat val)
+{
+    ALeffectProps *props = &effect->Props;
+    switch(param)
+    {
+        case AL_EAXREVERB_DENSITY:
+            if(!(val >= AL_EAXREVERB_MIN_DENSITY && val <= AL_EAXREVERB_MAX_DENSITY))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.Density = val;
+            break;
+
+        case AL_EAXREVERB_DIFFUSION:
+            if(!(val >= AL_EAXREVERB_MIN_DIFFUSION && val <= AL_EAXREVERB_MAX_DIFFUSION))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.Diffusion = val;
+            break;
+
+        case AL_EAXREVERB_GAIN:
+            if(!(val >= AL_EAXREVERB_MIN_GAIN && val <= AL_EAXREVERB_MAX_GAIN))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.Gain = val;
+            break;
+
+        case AL_EAXREVERB_GAINHF:
+            if(!(val >= AL_EAXREVERB_MIN_GAINHF && val <= AL_EAXREVERB_MAX_GAINHF))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.GainHF = val;
+            break;
+
+        case AL_EAXREVERB_GAINLF:
+            if(!(val >= AL_EAXREVERB_MIN_GAINLF && val <= AL_EAXREVERB_MAX_GAINLF))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.GainLF = val;
+            break;
+
+        case AL_EAXREVERB_DECAY_TIME:
+            if(!(val >= AL_EAXREVERB_MIN_DECAY_TIME && val <= AL_EAXREVERB_MAX_DECAY_TIME))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.DecayTime = val;
+            break;
+
+        case AL_EAXREVERB_DECAY_HFRATIO:
+            if(!(val >= AL_EAXREVERB_MIN_DECAY_HFRATIO && val <= AL_EAXREVERB_MAX_DECAY_HFRATIO))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.DecayHFRatio = val;
+            break;
+
+        case AL_EAXREVERB_DECAY_LFRATIO:
+            if(!(val >= AL_EAXREVERB_MIN_DECAY_LFRATIO && val <= AL_EAXREVERB_MAX_DECAY_LFRATIO))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.DecayLFRatio = val;
+            break;
+
+        case AL_EAXREVERB_REFLECTIONS_GAIN:
+            if(!(val >= AL_EAXREVERB_MIN_REFLECTIONS_GAIN && val <= AL_EAXREVERB_MAX_REFLECTIONS_GAIN))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.ReflectionsGain = val;
+            break;
+
+        case AL_EAXREVERB_REFLECTIONS_DELAY:
+            if(!(val >= AL_EAXREVERB_MIN_REFLECTIONS_DELAY && val <= AL_EAXREVERB_MAX_REFLECTIONS_DELAY))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.ReflectionsDelay = val;
+            break;
+
+        case AL_EAXREVERB_LATE_REVERB_GAIN:
+            if(!(val >= AL_EAXREVERB_MIN_LATE_REVERB_GAIN && val <= AL_EAXREVERB_MAX_LATE_REVERB_GAIN))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.LateReverbGain = val;
+            break;
+
+        case AL_EAXREVERB_LATE_REVERB_DELAY:
+            if(!(val >= AL_EAXREVERB_MIN_LATE_REVERB_DELAY && val <= AL_EAXREVERB_MAX_LATE_REVERB_DELAY))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.LateReverbDelay = val;
+            break;
+
+        case AL_EAXREVERB_AIR_ABSORPTION_GAINHF:
+            if(!(val >= AL_EAXREVERB_MIN_AIR_ABSORPTION_GAINHF && val <= AL_EAXREVERB_MAX_AIR_ABSORPTION_GAINHF))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.AirAbsorptionGainHF = val;
+            break;
+
+        case AL_EAXREVERB_ECHO_TIME:
+            if(!(val >= AL_EAXREVERB_MIN_ECHO_TIME && val <= AL_EAXREVERB_MAX_ECHO_TIME))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.EchoTime = val;
+            break;
+
+        case AL_EAXREVERB_ECHO_DEPTH:
+            if(!(val >= AL_EAXREVERB_MIN_ECHO_DEPTH && val <= AL_EAXREVERB_MAX_ECHO_DEPTH))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.EchoDepth = val;
+            break;
+
+        case AL_EAXREVERB_MODULATION_TIME:
+            if(!(val >= AL_EAXREVERB_MIN_MODULATION_TIME && val <= AL_EAXREVERB_MAX_MODULATION_TIME))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.ModulationTime = val;
+            break;
+
+        case AL_EAXREVERB_MODULATION_DEPTH:
+            if(!(val >= AL_EAXREVERB_MIN_MODULATION_DEPTH && val <= AL_EAXREVERB_MAX_MODULATION_DEPTH))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.ModulationDepth = val;
+            break;
+
+        case AL_EAXREVERB_HFREFERENCE:
+            if(!(val >= AL_EAXREVERB_MIN_HFREFERENCE && val <= AL_EAXREVERB_MAX_HFREFERENCE))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.HFReference = val;
+            break;
+
+        case AL_EAXREVERB_LFREFERENCE:
+            if(!(val >= AL_EAXREVERB_MIN_LFREFERENCE && val <= AL_EAXREVERB_MAX_LFREFERENCE))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.LFReference = val;
+            break;
+
+        case AL_EAXREVERB_ROOM_ROLLOFF_FACTOR:
+            if(!(val >= AL_EAXREVERB_MIN_ROOM_ROLLOFF_FACTOR && val <= AL_EAXREVERB_MAX_ROOM_ROLLOFF_FACTOR))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.RoomRolloffFactor = val;
+            break;
+
+        default:
+            SET_ERROR_AND_RETURN(context, AL_INVALID_ENUM);
+    }
+}
+void ALeaxreverb_setParamfv(ALeffect *effect, ALCcontext *context, ALenum param, const ALfloat *vals)
+{
+    ALeffectProps *props = &effect->Props;
+    switch(param)
+    {
+        case AL_EAXREVERB_REFLECTIONS_PAN:
+            if(!(isfinite(vals[0]) && isfinite(vals[1]) && isfinite(vals[2])))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            LockContext(context);
+            props->Reverb.ReflectionsPan[0] = vals[0];
+            props->Reverb.ReflectionsPan[1] = vals[1];
+            props->Reverb.ReflectionsPan[2] = vals[2];
+            UnlockContext(context);
+            break;
+        case AL_EAXREVERB_LATE_REVERB_PAN:
+            if(!(isfinite(vals[0]) && isfinite(vals[1]) && isfinite(vals[2])))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            LockContext(context);
+            props->Reverb.LateReverbPan[0] = vals[0];
+            props->Reverb.LateReverbPan[1] = vals[1];
+            props->Reverb.LateReverbPan[2] = vals[2];
+            UnlockContext(context);
+            break;
+
+        default:
+            ALeaxreverb_setParamf(effect, context, param, vals[0]);
+            break;
+    }
+}
+
+void ALeaxreverb_getParami(const ALeffect *effect, ALCcontext *context, ALenum param, ALint *val)
+{
+    const ALeffectProps *props = &effect->Props;
+    switch(param)
+    {
+        case AL_EAXREVERB_DECAY_HFLIMIT:
+            *val = props->Reverb.DecayHFLimit;
+            break;
+
+        default:
+            SET_ERROR_AND_RETURN(context, AL_INVALID_ENUM);
+    }
+}
+void ALeaxreverb_getParamiv(const ALeffect *effect, ALCcontext *context, ALenum param, ALint *vals)
+{
+    ALeaxreverb_getParami(effect, context, param, vals);
+}
+void ALeaxreverb_getParamf(const ALeffect *effect, ALCcontext *context, ALenum param, ALfloat *val)
+{
+    const ALeffectProps *props = &effect->Props;
+    switch(param)
+    {
+        case AL_EAXREVERB_DENSITY:
+            *val = props->Reverb.Density;
+            break;
+
+        case AL_EAXREVERB_DIFFUSION:
+            *val = props->Reverb.Diffusion;
+            break;
+
+        case AL_EAXREVERB_GAIN:
+            *val = props->Reverb.Gain;
+            break;
+
+        case AL_EAXREVERB_GAINHF:
+            *val = props->Reverb.GainHF;
+            break;
+
+        case AL_EAXREVERB_GAINLF:
+            *val = props->Reverb.GainLF;
+            break;
+
+        case AL_EAXREVERB_DECAY_TIME:
+            *val = props->Reverb.DecayTime;
+            break;
+
+        case AL_EAXREVERB_DECAY_HFRATIO:
+            *val = props->Reverb.DecayHFRatio;
+            break;
+
+        case AL_EAXREVERB_DECAY_LFRATIO:
+            *val = props->Reverb.DecayLFRatio;
+            break;
+
+        case AL_EAXREVERB_REFLECTIONS_GAIN:
+            *val = props->Reverb.ReflectionsGain;
+            break;
+
+        case AL_EAXREVERB_REFLECTIONS_DELAY:
+            *val = props->Reverb.ReflectionsDelay;
+            break;
+
+        case AL_EAXREVERB_LATE_REVERB_GAIN:
+            *val = props->Reverb.LateReverbGain;
+            break;
+
+        case AL_EAXREVERB_LATE_REVERB_DELAY:
+            *val = props->Reverb.LateReverbDelay;
+            break;
+
+        case AL_EAXREVERB_AIR_ABSORPTION_GAINHF:
+            *val = props->Reverb.AirAbsorptionGainHF;
+            break;
+
+        case AL_EAXREVERB_ECHO_TIME:
+            *val = props->Reverb.EchoTime;
+            break;
+
+        case AL_EAXREVERB_ECHO_DEPTH:
+            *val = props->Reverb.EchoDepth;
+            break;
+
+        case AL_EAXREVERB_MODULATION_TIME:
+            *val = props->Reverb.ModulationTime;
+            break;
+
+        case AL_EAXREVERB_MODULATION_DEPTH:
+            *val = props->Reverb.ModulationDepth;
+            break;
+
+        case AL_EAXREVERB_HFREFERENCE:
+            *val = props->Reverb.HFReference;
+            break;
+
+        case AL_EAXREVERB_LFREFERENCE:
+            *val = props->Reverb.LFReference;
+            break;
+
+        case AL_EAXREVERB_ROOM_ROLLOFF_FACTOR:
+            *val = props->Reverb.RoomRolloffFactor;
+            break;
+
+        default:
+            SET_ERROR_AND_RETURN(context, AL_INVALID_ENUM);
+    }
+}
+void ALeaxreverb_getParamfv(const ALeffect *effect, ALCcontext *context, ALenum param, ALfloat *vals)
+{
+    const ALeffectProps *props = &effect->Props;
+    switch(param)
+    {
+        case AL_EAXREVERB_REFLECTIONS_PAN:
+            LockContext(context);
+            vals[0] = props->Reverb.ReflectionsPan[0];
+            vals[1] = props->Reverb.ReflectionsPan[1];
+            vals[2] = props->Reverb.ReflectionsPan[2];
+            UnlockContext(context);
+            break;
+        case AL_EAXREVERB_LATE_REVERB_PAN:
+            LockContext(context);
+            vals[0] = props->Reverb.LateReverbPan[0];
+            vals[1] = props->Reverb.LateReverbPan[1];
+            vals[2] = props->Reverb.LateReverbPan[2];
+            UnlockContext(context);
+            break;
+
+        default:
+            ALeaxreverb_getParamf(effect, context, param, vals);
+            break;
+    }
+}
+
+DEFINE_ALEFFECT_VTABLE(ALeaxreverb);
+
+void ALreverb_setParami(ALeffect *effect, ALCcontext *context, ALenum param, ALint val)
+{
+    ALeffectProps *props = &effect->Props;
+    switch(param)
+    {
+        case AL_REVERB_DECAY_HFLIMIT:
+            if(!(val >= AL_REVERB_MIN_DECAY_HFLIMIT && val <= AL_REVERB_MAX_DECAY_HFLIMIT))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.DecayHFLimit = val;
+            break;
+
+        default:
+            SET_ERROR_AND_RETURN(context, AL_INVALID_ENUM);
+    }
+}
+void ALreverb_setParamiv(ALeffect *effect, ALCcontext *context, ALenum param, const ALint *vals)
+{
+    ALreverb_setParami(effect, context, param, vals[0]);
+}
+void ALreverb_setParamf(ALeffect *effect, ALCcontext *context, ALenum param, ALfloat val)
+{
+    ALeffectProps *props = &effect->Props;
+    switch(param)
+    {
+        case AL_REVERB_DENSITY:
+            if(!(val >= AL_REVERB_MIN_DENSITY && val <= AL_REVERB_MAX_DENSITY))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.Density = val;
+            break;
+
+        case AL_REVERB_DIFFUSION:
+            if(!(val >= AL_REVERB_MIN_DIFFUSION && val <= AL_REVERB_MAX_DIFFUSION))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.Diffusion = val;
+            break;
+
+        case AL_REVERB_GAIN:
+            if(!(val >= AL_REVERB_MIN_GAIN && val <= AL_REVERB_MAX_GAIN))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.Gain = val;
+            break;
+
+        case AL_REVERB_GAINHF:
+            if(!(val >= AL_REVERB_MIN_GAINHF && val <= AL_REVERB_MAX_GAINHF))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.GainHF = val;
+            break;
+
+        case AL_REVERB_DECAY_TIME:
+            if(!(val >= AL_REVERB_MIN_DECAY_TIME && val <= AL_REVERB_MAX_DECAY_TIME))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.DecayTime = val;
+            break;
+
+        case AL_REVERB_DECAY_HFRATIO:
+            if(!(val >= AL_REVERB_MIN_DECAY_HFRATIO && val <= AL_REVERB_MAX_DECAY_HFRATIO))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.DecayHFRatio = val;
+            break;
+
+        case AL_REVERB_REFLECTIONS_GAIN:
+            if(!(val >= AL_REVERB_MIN_REFLECTIONS_GAIN && val <= AL_REVERB_MAX_REFLECTIONS_GAIN))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.ReflectionsGain = val;
+            break;
+
+        case AL_REVERB_REFLECTIONS_DELAY:
+            if(!(val >= AL_REVERB_MIN_REFLECTIONS_DELAY && val <= AL_REVERB_MAX_REFLECTIONS_DELAY))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.ReflectionsDelay = val;
+            break;
+
+        case AL_REVERB_LATE_REVERB_GAIN:
+            if(!(val >= AL_REVERB_MIN_LATE_REVERB_GAIN && val <= AL_REVERB_MAX_LATE_REVERB_GAIN))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.LateReverbGain = val;
+            break;
+
+        case AL_REVERB_LATE_REVERB_DELAY:
+            if(!(val >= AL_REVERB_MIN_LATE_REVERB_DELAY && val <= AL_REVERB_MAX_LATE_REVERB_DELAY))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.LateReverbDelay = val;
+            break;
+
+        case AL_REVERB_AIR_ABSORPTION_GAINHF:
+            if(!(val >= AL_REVERB_MIN_AIR_ABSORPTION_GAINHF && val <= AL_REVERB_MAX_AIR_ABSORPTION_GAINHF))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.AirAbsorptionGainHF = val;
+            break;
+
+        case AL_REVERB_ROOM_ROLLOFF_FACTOR:
+            if(!(val >= AL_REVERB_MIN_ROOM_ROLLOFF_FACTOR && val <= AL_REVERB_MAX_ROOM_ROLLOFF_FACTOR))
+                SET_ERROR_AND_RETURN(context, AL_INVALID_VALUE);
+            props->Reverb.RoomRolloffFactor = val;
+            break;
+
+        default:
+            SET_ERROR_AND_RETURN(context, AL_INVALID_ENUM);
+    }
+}
+void ALreverb_setParamfv(ALeffect *effect, ALCcontext *context, ALenum param, const ALfloat *vals)
+{
+    ALreverb_setParamf(effect, context, param, vals[0]);
+}
+
+void ALreverb_getParami(const ALeffect *effect, ALCcontext *context, ALenum param, ALint *val)
+{
+    const ALeffectProps *props = &effect->Props;
+    switch(param)
+    {
+        case AL_REVERB_DECAY_HFLIMIT:
+            *val = props->Reverb.DecayHFLimit;
+            break;
+
+        default:
+            SET_ERROR_AND_RETURN(context, AL_INVALID_ENUM);
+    }
+}
+void ALreverb_getParamiv(const ALeffect *effect, ALCcontext *context, ALenum param, ALint *vals)
+{
+    ALreverb_getParami(effect, context, param, vals);
+}
+void ALreverb_getParamf(const ALeffect *effect, ALCcontext *context, ALenum param, ALfloat *val)
+{
+    const ALeffectProps *props = &effect->Props;
+    switch(param)
+    {
+        case AL_REVERB_DENSITY:
+            *val = props->Reverb.Density;
+            break;
+
+        case AL_REVERB_DIFFUSION:
+            *val = props->Reverb.Diffusion;
+            break;
+
+        case AL_REVERB_GAIN:
+            *val = props->Reverb.Gain;
+            break;
+
+        case AL_REVERB_GAINHF:
+            *val = props->Reverb.GainHF;
+            break;
+
+        case AL_REVERB_DECAY_TIME:
+            *val = props->Reverb.DecayTime;
+            break;
+
+        case AL_REVERB_DECAY_HFRATIO:
+            *val = props->Reverb.DecayHFRatio;
+            break;
+
+        case AL_REVERB_REFLECTIONS_GAIN:
+            *val = props->Reverb.ReflectionsGain;
+            break;
+
+        case AL_REVERB_REFLECTIONS_DELAY:
+            *val = props->Reverb.ReflectionsDelay;
+            break;
+
+        case AL_REVERB_LATE_REVERB_GAIN:
+            *val = props->Reverb.LateReverbGain;
+            break;
+
+        case AL_REVERB_LATE_REVERB_DELAY:
+            *val = props->Reverb.LateReverbDelay;
+            break;
+
+        case AL_REVERB_AIR_ABSORPTION_GAINHF:
+            *val = props->Reverb.AirAbsorptionGainHF;
+            break;
+
+        case AL_REVERB_ROOM_ROLLOFF_FACTOR:
+            *val = props->Reverb.RoomRolloffFactor;
+            break;
+
+        default:
+            SET_ERROR_AND_RETURN(context, AL_INVALID_ENUM);
+    }
+}
+void ALreverb_getParamfv(const ALeffect *effect, ALCcontext *context, ALenum param, ALfloat *vals)
+{
+    ALreverb_getParamf(effect, context, param, vals);
+}
+
+DEFINE_ALEFFECT_VTABLE(ALreverb);

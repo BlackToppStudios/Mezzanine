@@ -26,6 +26,7 @@
 
 #include "alMain.h"
 #include "alu.h"
+#include "compat.h"
 
 #include <portaudio.h>
 
@@ -35,7 +36,7 @@ static const ALCchar pa_device[] = "PortAudio Default";
 
 #ifdef HAVE_DYNLOAD
 static void *pa_handle;
-#define MAKE_FUNC(x) static typeof(x) * p##x
+#define MAKE_FUNC(x) static __typeof(x) * p##x
 MAKE_FUNC(Pa_Initialize);
 MAKE_FUNC(Pa_Terminate);
 MAKE_FUNC(Pa_GetErrorText);
@@ -127,30 +128,22 @@ typedef struct {
 } pa_data;
 
 
-static int pa_callback(const void *inputBuffer, void *outputBuffer,
-                       unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo *timeInfo,
-                       const PaStreamCallbackFlags statusFlags, void *userData)
+static int pa_callback(const void *UNUSED(inputBuffer), void *outputBuffer,
+                       unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo *UNUSED(timeInfo),
+                       const PaStreamCallbackFlags UNUSED(statusFlags), void *userData)
 {
     ALCdevice *device = (ALCdevice*)userData;
-
-    (void)inputBuffer;
-    (void)timeInfo;
-    (void)statusFlags;
 
     aluMixData(device, outputBuffer, framesPerBuffer);
     return 0;
 }
 
-static int pa_capture_cb(const void *inputBuffer, void *outputBuffer,
-                         unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo *timeInfo,
-                         const PaStreamCallbackFlags statusFlags, void *userData)
+static int pa_capture_cb(const void *inputBuffer, void *UNUSED(outputBuffer),
+                         unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo *UNUSED(timeInfo),
+                         const PaStreamCallbackFlags UNUSED(statusFlags), void *userData)
 {
     ALCdevice *device = (ALCdevice*)userData;
     pa_data *data = (pa_data*)device->ExtraData;
-
-    (void)outputBuffer;
-    (void)timeInfo;
-    (void)statusFlags;
 
     WriteRingBuffer(data->ring, inputBuffer, framesPerBuffer);
     return 0;
@@ -381,6 +374,9 @@ static void pa_close_capture(ALCdevice *device)
     if(err != paNoError)
         ERR("Error closing stream: %s\n", Pa_GetErrorText(err));
 
+    DestroyRingBuffer(data->ring);
+    data->ring = NULL;
+
     free(data);
     device->ExtraData = NULL;
 }
@@ -431,8 +427,6 @@ static const BackendFuncs pa_funcs = {
     pa_stop_capture,
     pa_capture_samples,
     pa_available_samples,
-    ALCdevice_LockDefault,
-    ALCdevice_UnlockDefault,
     ALCdevice_GetLatencyDefault
 };
 

@@ -5,14 +5,14 @@
 /* Define to the library version */
 #define ALSOFT_VERSION "${LIB_VERSION}"
 
+#ifdef IN_IDE_PARSER
+/* KDevelop's parser doesn't recognize the C99-standard restrict keyword, but
+ * recent versions (at least 4.5.1) do recognize GCC's __restrict. */
+#define restrict __restrict
+#endif 
+
 /* Define any available alignment declaration */
 #define ALIGN(x) ${ALIGN_DECL}
-#ifdef __MINGW32__
-#define align(x) aligned(x)
-#endif
-
-/* Define to the appropriate 'restrict' keyword */
-#define RESTRICT ${RESTRICT_DECL}
 
 /* Define if we have the C11 aligned_alloc function */
 #cmakedefine HAVE_ALIGNED_ALLOC
@@ -29,6 +29,9 @@
 /* Define if we have ARM Neon CPU extensions */
 #cmakedefine HAVE_NEON
 
+/* Define if we have FluidSynth support */
+#cmakedefine HAVE_FLUIDSYNTH
+
 /* Define if we have the ALSA backend */
 #cmakedefine HAVE_ALSA
 
@@ -40,6 +43,9 @@
 
 /* Define if we have the SndIO backend */
 #cmakedefine HAVE_SNDIO
+
+/* Define if we have the QSA backend */
+#cmakedefine HAVE_QSA
 
 /* Define if we have the MMDevApi backend */
 #cmakedefine HAVE_MMDEVAPI
@@ -110,8 +116,17 @@
 /* Define if we have malloc.h */
 #cmakedefine HAVE_MALLOC_H
 
+/* Define if we have alloca.h */
+#cmakedefine HAVE_ALLOCA_H
+
+/* Define if we have strings.h */
+#cmakedefine HAVE_STRINGS_H
+
 /* Define if we have cpuid.h */
 #cmakedefine HAVE_CPUID_H
+
+/* Define if we have sys/sysconf.h */
+#cmakedefine HAVE_SYS_SYSCONF_H
 
 /* Define if we have guiddef.h */
 #cmakedefine HAVE_GUIDDEF_H
@@ -128,9 +143,6 @@
 /* Define if we have fenv.h */
 #cmakedefine HAVE_FENV_H
 
-/* Define if we have fesetround() */
-#cmakedefine HAVE_FESETROUND
-
 /* Define if we have _controlfp() */
 #cmakedefine HAVE__CONTROLFP
 
@@ -139,3 +151,9 @@
 
 /* Define if we have pthread_setschedparam() */
 #cmakedefine HAVE_PTHREAD_SETSCHEDPARAM
+
+/* Define if we have pthread_setname_np() */
+#cmakedefine HAVE_PTHREAD_SETNAME_NP
+
+/* Define if we have pthread_set_name_np() */
+#cmakedefine HAVE_PTHREAD_SET_NAME_NP

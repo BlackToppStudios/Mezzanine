@@ -8,24 +8,23 @@
 #include "alAuxEffectSlot.h"
 
 
-static __inline ALfloat point32(const ALfloat *vals, ALuint frac)
-{ return vals[0]; (void)frac; }
-static __inline ALfloat lerp32(const ALfloat *vals, ALuint frac)
+static inline ALfloat point32(const ALfloat *vals, ALuint UNUSED(frac))
+{ return vals[0]; }
+static inline ALfloat lerp32(const ALfloat *vals, ALuint frac)
 { return lerp(vals[0], vals[1], frac * (1.0f/FRACTIONONE)); }
-static __inline ALfloat cubic32(const ALfloat *vals, ALuint frac)
+static inline ALfloat cubic32(const ALfloat *vals, ALuint frac)
 { return cubic(vals[-1], vals[0], vals[1], vals[2], frac * (1.0f/FRACTIONONE)); }
 
-void Resample_copy32_C(const ALfloat *data, ALuint frac,
-  ALuint increment, ALfloat *RESTRICT OutBuffer, ALuint BufferSize)
+void Resample_copy32_C(const ALfloat *data, ALuint UNUSED(frac),
+  ALuint increment, ALfloat *restrict OutBuffer, ALuint BufferSize)
 {
-    (void)frac;
     assert(increment==FRACTIONONE);
     memcpy(OutBuffer, data, (BufferSize+1)*sizeof(ALfloat));
 }
 
 #define DECL_TEMPLATE(Sampler)                                                \
 void Resample_##Sampler##_C(const ALfloat *data, ALuint frac,                 \
-  ALuint increment, ALfloat *RESTRICT OutBuffer, ALuint BufferSize)           \
+  ALuint increment, ALfloat *restrict OutBuffer, ALuint BufferSize)           \
 {                                                                             \
     ALuint pos = 0;                                                           \
     ALuint i;                                                                 \
@@ -47,11 +46,11 @@ DECL_TEMPLATE(cubic32)
 #undef DECL_TEMPLATE
 
 
-static __inline void ApplyCoeffsStep(ALuint Offset, ALfloat (*RESTRICT Values)[2],
-                                     const ALuint IrSize,
-                                     ALfloat (*RESTRICT Coeffs)[2],
-                                     const ALfloat (*RESTRICT CoeffStep)[2],
-                                     ALfloat left, ALfloat right)
+static inline void ApplyCoeffsStep(ALuint Offset, ALfloat (*restrict Values)[2],
+                                   const ALuint IrSize,
+                                   ALfloat (*restrict Coeffs)[2],
+                                   const ALfloat (*restrict CoeffStep)[2],
+                                   ALfloat left, ALfloat right)
 {
     ALuint c;
     for(c = 0;c < IrSize;c++)
@@ -64,10 +63,10 @@ static __inline void ApplyCoeffsStep(ALuint Offset, ALfloat (*RESTRICT Values)[2
     }
 }
 
-static __inline void ApplyCoeffs(ALuint Offset, ALfloat (*RESTRICT Values)[2],
-                                 const ALuint IrSize,
-                                 ALfloat (*RESTRICT Coeffs)[2],
-                                 ALfloat left, ALfloat right)
+static inline void ApplyCoeffs(ALuint Offset, ALfloat (*restrict Values)[2],
+                               const ALuint IrSize,
+                               ALfloat (*restrict Coeffs)[2],
+                               ALfloat left, ALfloat right)
 {
     ALuint c;
     for(c = 0;c < IrSize;c++)
@@ -83,12 +82,12 @@ static __inline void ApplyCoeffs(ALuint Offset, ALfloat (*RESTRICT Values)[2],
 #undef SUFFIX
 
 
-void MixDirect_C(const DirectParams *params, const ALfloat *RESTRICT data, ALuint srcchan,
+void MixDirect_C(const DirectParams *params, const ALfloat *restrict data, ALuint srcchan,
   ALuint OutPos, ALuint SamplesToDo, ALuint BufferSize)
 {
-    ALfloat (*RESTRICT DryBuffer)[BUFFERSIZE] = params->OutBuffer;
-    ALfloat *RESTRICT ClickRemoval = params->ClickRemoval;
-    ALfloat *RESTRICT PendingClicks = params->PendingClicks;
+    ALfloat (*restrict OutBuffer)[BUFFERSIZE] = params->OutBuffer;
+    ALfloat *restrict ClickRemoval = params->ClickRemoval;
+    ALfloat *restrict PendingClicks = params->PendingClicks;
     ALfloat DrySend;
     ALuint pos;
     ALuint c;
@@ -96,36 +95,36 @@ void MixDirect_C(const DirectParams *params, const ALfloat *RESTRICT data, ALuin
     for(c = 0;c < MaxChannels;c++)
     {
         DrySend = params->Gains[srcchan][c];
-        if(DrySend < 0.00001f)
+        if(!(DrySend > GAIN_SILENCE_THRESHOLD))
             continue;
 
         if(OutPos == 0)
             ClickRemoval[c] -= data[0]*DrySend;
         for(pos = 0;pos < BufferSize;pos++)
-            DryBuffer[c][OutPos+pos] += data[pos]*DrySend;
+            OutBuffer[c][OutPos+pos] += data[pos]*DrySend;
         if(OutPos+pos == SamplesToDo)
             PendingClicks[c] += data[pos]*DrySend;
     }
 }
 
 
-void MixSend_C(const SendParams *params, const ALfloat *RESTRICT data,
+void MixSend_C(const SendParams *params, const ALfloat *restrict data,
   ALuint OutPos, ALuint SamplesToDo, ALuint BufferSize)
 {
-    ALeffectslot *Slot = params->Slot;
-    ALfloat (*RESTRICT WetBuffer)[BUFFERSIZE] = Slot->WetBuffer;
-    ALfloat *RESTRICT WetClickRemoval = Slot->ClickRemoval;
-    ALfloat *RESTRICT WetPendingClicks = Slot->PendingClicks;
-    ALfloat  WetSend = params->Gain;
+    ALfloat (*restrict OutBuffer)[BUFFERSIZE] = params->OutBuffer;
+    ALfloat *restrict ClickRemoval = params->ClickRemoval;
+    ALfloat *restrict PendingClicks = params->PendingClicks;
+    ALfloat WetSend;
     ALuint pos;
 
-    if(WetSend < 0.00001f)
+    WetSend = params->Gain;
+    if(!(WetSend > GAIN_SILENCE_THRESHOLD))
         return;
 
     if(OutPos == 0)
-        WetClickRemoval[0] -= data[0] * WetSend;
+        ClickRemoval[0] -= data[0] * WetSend;
     for(pos = 0;pos < BufferSize;pos++)
-        WetBuffer[0][OutPos+pos] += data[pos] * WetSend;
+        OutBuffer[0][OutPos+pos] += data[pos] * WetSend;
     if(OutPos+pos == SamplesToDo)
-        WetPendingClicks[0] += data[pos] * WetSend;
+        PendingClicks[0] += data[pos] * WetSend;
 }

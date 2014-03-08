@@ -29,6 +29,7 @@
 
 #include "alMain.h"
 #include "alu.h"
+#include "threads.h"
 
 #ifndef WAVE_FORMAT_IEEE_FLOAT
 #define WAVE_FORMAT_IEEE_FLOAT  0x0003
@@ -146,13 +147,10 @@ static void ProbeCaptureDevices(void)
     Posts a message to 'PlaybackThreadProc' everytime a WaveOut Buffer is completed and
     returns to the application (for more data)
 */
-static void CALLBACK WaveOutProc(HWAVEOUT device, UINT msg, DWORD_PTR instance, DWORD_PTR param1, DWORD_PTR param2)
+static void CALLBACK WaveOutProc(HWAVEOUT UNUSED(device), UINT msg, DWORD_PTR instance, DWORD_PTR param1, DWORD_PTR UNUSED(param2))
 {
     ALCdevice *Device = (ALCdevice*)instance;
     WinMMData *data = Device->ExtraData;
-
-    (void)device;
-    (void)param2;
 
     if(msg != WOM_DONE)
         return;
@@ -167,7 +165,7 @@ static void CALLBACK WaveOutProc(HWAVEOUT device, UINT msg, DWORD_PTR instance, 
     Used by "MMSYSTEM" Device.  Called when a WaveOut buffer has used up its
     audio data.
 */
-static DWORD WINAPI PlaybackThreadProc(LPVOID param)
+FORCE_ALIGN static DWORD WINAPI PlaybackThreadProc(LPVOID param)
 {
     ALCdevice *Device = (ALCdevice*)param;
     WinMMData *data = Device->ExtraData;
@@ -178,6 +176,7 @@ static DWORD WINAPI PlaybackThreadProc(LPVOID param)
     FrameSize = FrameSizeFromDevFmt(Device->FmtChans, Device->FmtType);
 
     SetRTPriority();
+    SetThreadName(MIXER_THREAD_NAME);
 
     while(GetMessage(&msg, NULL, 0, 0))
     {
@@ -213,13 +212,10 @@ static DWORD WINAPI PlaybackThreadProc(LPVOID param)
     Posts a message to 'CaptureThreadProc' everytime a WaveIn Buffer is completed and
     returns to the application (with more data)
 */
-static void CALLBACK WaveInProc(HWAVEIN device, UINT msg, DWORD_PTR instance, DWORD_PTR param1, DWORD_PTR param2)
+static void CALLBACK WaveInProc(HWAVEIN UNUSED(device), UINT msg, DWORD_PTR instance, DWORD_PTR param1, DWORD_PTR UNUSED(param2))
 {
     ALCdevice *Device = (ALCdevice*)instance;
     WinMMData *data = Device->ExtraData;
-
-    (void)device;
-    (void)param2;
 
     if(msg != WIM_DATA)
         return;
@@ -243,6 +239,7 @@ static DWORD WINAPI CaptureThreadProc(LPVOID param)
     MSG msg;
 
     FrameSize = FrameSizeFromDevFmt(Device->FmtChans, Device->FmtType);
+    SetThreadName("alsoft-record");
 
     while(GetMessage(&msg, NULL, 0, 0))
     {
@@ -716,8 +713,6 @@ static const BackendFuncs WinMMFuncs = {
     WinMMStopCapture,
     WinMMCaptureSamples,
     WinMMAvailableSamples,
-    ALCdevice_LockDefault,
-    ALCdevice_UnlockDefault,
     ALCdevice_GetLatencyDefault
 };
 

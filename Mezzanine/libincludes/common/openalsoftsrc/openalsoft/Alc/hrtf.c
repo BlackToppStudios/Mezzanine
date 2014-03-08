@@ -28,11 +28,7 @@
 #include "alMain.h"
 #include "alSource.h"
 #include "alu.h"
-
-
-#ifndef PATH_MAX
-#define PATH_MAX 4096
-#endif
+#include "hrtf.h"
 
 
 /* Current data set limits defined by the makehrtf utility. */
@@ -62,16 +58,6 @@ struct Hrtf {
 static const ALchar magicMarker00[8] = "MinPHR00";
 static const ALchar magicMarker01[8] = "MinPHR01";
 
-/* Define the default HRTF:
- *  ALubyte  defaultAzCount  [DefaultHrtf.evCount]
- *  ALushort defaultEvOffset [DefaultHrtf.evCount]
- *  ALshort  defaultCoeffs   [DefaultHrtf.irCount * defaultHrtf.irSize]
- *  ALubyte  defaultDelays   [DefaultHrtf.irCount]
- *
- *  struct Hrtf DefaultHrtf
- */
-#include "hrtf_tables.inc"
-
 static struct Hrtf *LoadedHrtfs = NULL;
 
 /* Calculate the elevation indices given the polar elevation in radians.
@@ -92,7 +78,7 @@ static void CalcEvIndices(const struct Hrtf *Hrtf, ALfloat ev, ALuint *evidx, AL
  */
 static void CalcAzIndices(const struct Hrtf *Hrtf, ALuint evidx, ALfloat az, ALuint *azidx, ALfloat *azmu)
 {
-    az = (F_PI*2.0f + az) * Hrtf->azCount[evidx] / (F_PI*2.0f);
+    az = (F_2PI + az) * Hrtf->azCount[evidx] / (F_2PI);
     azidx[0] = fastf2u(az) % Hrtf->azCount[evidx];
     azidx[1] = (azidx[0] + 1) % Hrtf->azCount[evidx];
     *azmu = az - floorf(az);
@@ -664,24 +650,25 @@ static struct Hrtf *LoadHrtf01(FILE *f, ALuint deviceRate)
 
 static struct Hrtf *LoadHrtf(ALuint deviceRate)
 {
-    const char *fnamelist = NULL;
+    const char *fnamelist = "default-%r.mhr";
 
-    if(!ConfigValueStr(NULL, "hrtf_tables", &fnamelist))
-        return NULL;
+    ConfigValueStr(NULL, "hrtf_tables", &fnamelist);
     while(*fnamelist != '\0')
     {
         struct Hrtf *Hrtf = NULL;
         char fname[PATH_MAX];
+        const char *next;
         ALchar magic[8];
         ALuint i;
         FILE *f;
 
+        i = 0;
         while(isspace(*fnamelist) || *fnamelist == ',')
             fnamelist++;
-        i = 0;
-        while(*fnamelist != '\0' && *fnamelist != ',')
+        next = fnamelist;
+        while(*(fnamelist=next) != '\0' && *fnamelist != ',')
         {
-            const char *next = strpbrk(fnamelist, "%,");
+            next = strpbrk(fnamelist, "%,");
             while(fnamelist != next && *fnamelist && i < sizeof(fname))
                 fname[i++] = *(fnamelist++);
 
@@ -704,7 +691,6 @@ static struct Hrtf *LoadHrtf(ALuint deviceRate)
             }
             else
                 ERR("Invalid marker '%%%c'\n", *next);
-            fnamelist = next;
         }
         i = minu(i, sizeof(fname)-1);
         fname[i] = '\0';
@@ -716,7 +702,7 @@ static struct Hrtf *LoadHrtf(ALuint deviceRate)
             continue;
 
         TRACE("Loading %s...\n", fname);
-        f = fopen(fname, "rb");
+        f = OpenDataFile(fname, "openal/hrtf");
         if(f == NULL)
         {
             ERR("Could not open %s\n", fname);
@@ -774,13 +760,31 @@ const struct Hrtf *GetHrtf(ALCdevice *device)
         Hrtf = LoadHrtf(device->Frequency);
         if(Hrtf != NULL)
             return Hrtf;
-
-        if(device->Frequency == DefaultHrtf.sampleRate)
-            return &DefaultHrtf;
     }
     ERR("Incompatible format: %s %uhz\n",
         DevFmtChannelsString(device->FmtChans), device->Frequency);
     return NULL;
+}
+
+ALCboolean FindHrtfFormat(const ALCdevice *device, enum DevFmtChannels *chans, ALCuint *srate)
+{
+    const struct Hrtf *hrtf = LoadedHrtfs;
+    while(hrtf != NULL)
+    {
+        if(device->Frequency == hrtf->sampleRate)
+            break;
+        hrtf = hrtf->next;
+    }
+
+    if(hrtf == NULL)
+    {
+        hrtf = LoadHrtf(device->Frequency);
+        if(hrtf == NULL) return ALC_FALSE;
+    }
+
+    *chans = DevFmtStereo;
+    *srate = hrtf->sampleRate;
+    return ALC_TRUE;
 }
 
 void FreeHrtfs(void)
