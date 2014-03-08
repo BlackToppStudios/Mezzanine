@@ -93,7 +93,7 @@ namespace Mezzanine
             }
             // Fill
             if( !this->IsCompletelyTransparent() ) {
-                this->DrawFill(RectCorners,LayerSprite,FillColours);
+                this->DrawFill(RectCorners,this->LayerSprite,this->FillColours);
             }
         }
 
