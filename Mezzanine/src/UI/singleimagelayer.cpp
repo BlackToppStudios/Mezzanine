@@ -50,7 +50,8 @@ namespace Mezzanine
     namespace UI
     {
         SingleImageLayer::SingleImageLayer(QuadRenderable* ParentRenderable) :
-            ImageLayer(ParentRenderable)
+            ImageLayer(ParentRenderable),
+            LayerSprite(NULL)
         {
             this->FillColours[UI::QC_TopLeft] = ColourValue::White();
             this->FillColours[UI::QC_TopRight] = ColourValue::White();
