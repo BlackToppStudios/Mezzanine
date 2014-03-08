@@ -275,24 +275,19 @@ namespace Mezzanine
         // Texture Atlas Management
 
         void UIManager::LoadMTA(const String& Name, const String& Group)
-        {
-            this->AtlasHandler->LoadAtlasFromFile(Name,Group);
-        }
+            { this->AtlasHandler->LoadAtlasFromFile(Name,Group); }
 
         TextureAtlas* UIManager::GetAtlas(const String& AtlasName)
-        {
-            return this->AtlasHandler->GetAtlas(AtlasName);
-        }
+            { return this->AtlasHandler->GetAtlas(AtlasName); }
+
+        TextureAtlas* UIManager::GetAtlasExcept(const String& AtlasName)
+            { return this->AtlasHandler->GetAtlasExcept(AtlasName); }
 
         void UIManager::DestroyAtlas(TextureAtlas* ToBeDestroyed)
-        {
-            this->AtlasHandler->DestroyAtlas(ToBeDestroyed);
-        }
+            { this->AtlasHandler->DestroyAtlas(ToBeDestroyed); }
 
         void UIManager::DestroyAllAtlases()
-        {
-            this->AtlasHandler->DestroyAllAtlases();
-        }
+            { this->AtlasHandler->DestroyAllAtlases(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Screen Management

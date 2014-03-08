@@ -95,6 +95,16 @@ namespace Mezzanine
             if( AtlasIt != this->Atlases.end() ) {
                 return (*AtlasIt).second;
             }else{
+                return NULL;
+            }
+        }
+
+        UI::TextureAtlas* TextureAtlasHandler::GetAtlasExcept(const String& AtlasName)
+        {
+            AtlasIterator AtlasIt = this->Atlases.find(AtlasName);
+            if( AtlasIt != this->Atlases.end() ) {
+                return (*AtlasIt).second;
+            }else{
                 MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Unabled to find Texture Atlas named \"" + AtlasName + "\".");
             }
         }
