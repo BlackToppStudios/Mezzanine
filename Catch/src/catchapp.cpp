@@ -209,8 +209,9 @@ void CatchApp::MakeGUI()
     MMRootEntry->AddChild(MMLevelSelectWin,5);
 
     // Create the container that will display all of our levels
-    UI::GridContainer* MMLevelSelectGrid = MainMenuScreen->CreateGridContainer("MS_LevelSelectGrid",UI::UnifiedRect(0.15,0.08,0.70,0.82));
+    UI::GridContainer* MMLevelSelectGrid = MainMenuScreen->CreateGridContainer("MS_LevelSelectGrid",UI::UnifiedRect(0.11,0.10,0.82,0.76));
     MMLevelSelectGrid->SetCellSize(2,4);
+    MMLevelSelectGrid->SetCellPadding( UI::UnifiedVec2(0.08,0.10) );
     MMLevelSelectWin->AddChild(MMLevelSelectGrid,2);
 
     // Create the spinner which will allow browsing the grid
@@ -1476,7 +1477,7 @@ void CatchApp::UnloadLevel()
     if( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() )
         return;
 
-    ResourceManager* ResMan = ResourceManager::GetSingletonPtr();
+    Resource::ResourceManager* ResMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
@@ -1562,10 +1563,13 @@ int CatchApp::GetCatchin()
 	this->CreateLoadingScreen();
 	this->ChangeState(CatchApp::Catch_Loading);
 
-    //Setup the Music
+    // Setup the Music
     this->InitMusic();
-    //Generate the UI
+    // Generate the UI
     this->MakeGUI();
+    // Detect the levels and populate our UI
+    this->LevelMan->DetectLevels();
+    this->LevelMan->PopulateLevelSelectUI();
 
     Audio::AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
     this->LevelMan->SetNextLevel("MainMenu");

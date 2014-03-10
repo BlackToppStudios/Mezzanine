@@ -13,7 +13,7 @@ void LoadFerris()
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
@@ -287,7 +287,7 @@ void LoadBigCurve()
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
@@ -416,7 +416,7 @@ void LoadBlowsNotSucks()
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
@@ -636,7 +636,7 @@ void LoadJustice()
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
@@ -859,7 +859,7 @@ void LoadRollers()
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
@@ -1005,7 +1005,7 @@ void LoadJustBounce()
     Entresol* TheEntresol = Entresol::GetSingletonPtr();
     CatchApp* GameApp = CatchApp::GetCatchAppPointer();
     // Get managers
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
+    Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     Physics::PhysicsManager* PhysMan = TheEntresol->GetPhysicsManager();
@@ -1174,7 +1174,7 @@ void CatchLevel::DeSerializeLevelData(const XML::Document& LevelDoc)
 {
     XML::Attribute CurrAttrib;
 
-    XML::Node RootNode = LevelDoc.GetChild("ProfileRoot");
+    XML::Node RootNode = LevelDoc.GetChild("LevelRoot");
     if( !RootNode.Empty() ) {
         // First get the level name
         XML::Node LevelNameNode = RootNode.GetChild("LevelName");
@@ -1185,29 +1185,69 @@ void CatchLevel::DeSerializeLevelData(const XML::Document& LevelDoc)
             }
         }
 
-        // Now lets get our score tier data
-        XML::Node ScoreTiersNode = LevelDoc.GetChild("ScoreTiers");
+        // Find and assign the preview data
+        XML::Node PreviewNode = RootNode.GetChild("Preview");
+        if( !PreviewNode.Empty() ) {
+            CurrAttrib = PreviewNode.GetAttribute("Atlas");
+            if( !CurrAttrib.Empty() ) {
+                this->PreviewAtlasName = CurrAttrib.AsString();
+            }
+
+            CurrAttrib = PreviewNode.GetAttribute("Image");
+            if( !CurrAttrib.Empty() ) {
+                this->PreviewImageName = CurrAttrib.AsString();
+            }
+        }
+
+        // Get the score tier data
+        XML::Node ScoreTiersNode = RootNode.GetChild("ScoreTiers");
         if( !ScoreTiersNode.Empty() ) {
             for( XML::NodeIterator ScoreTierIt = ScoreTiersNode.begin() ; ScoreTierIt != ScoreTiersNode.end() ; ++ScoreTierIt )
             {
                 Whole TierValue = 0;
                 Whole Threshold = 0;
 
-                CurrAttrib = LevelNameNode.GetAttribute("TierValue");
+                CurrAttrib = (*ScoreTierIt).GetAttribute("TierValue");
                 if( !CurrAttrib.Empty() ) {
                     TierValue = CurrAttrib.AsWhole();
                 }
 
-                CurrAttrib = LevelNameNode.GetAttribute("Threshold");
+                CurrAttrib = (*ScoreTierIt).GetAttribute("Threshold");
                 if( !CurrAttrib.Empty() ) {
                     Threshold = CurrAttrib.AsWhole();
                 }
 
                 if( TierValue > 0 && Threshold > 0 ) {
                     if( TierValue > this->ScoreTiers.size() ) {
-                        this->ScoreTiers.reserve(TierValue);
+                        this->ScoreTiers.resize(TierValue);
                     }
-                    this->ScoreTiers.at(TierValue) = Threshold;
+                    this->ScoreTiers.at(TierValue - 1) = Threshold;
+                }
+            }
+        }
+
+        // Get the scripts that will be run while this level is loaded
+        XML::Node LevelScriptsNode = RootNode.GetChild("LevelScripts");
+        if( !LevelScriptsNode.Empty() ) {
+            for( XML::NodeIterator ScriptNodeIt = LevelScriptsNode.begin() ; ScriptNodeIt != LevelScriptsNode.end() ; ++ScriptNodeIt )
+            {
+                // Prioritize in file script code
+                CurrAttrib = (*ScriptNodeIt).GetAttribute("Source");
+                if( !CurrAttrib.Empty() ) {
+                    //
+                    // Load the script source into a workable script here
+                    //
+
+                    // Don't let loading from a file parse
+                    continue;
+                }
+
+                // Next attempt to load the specified file, if one is specified
+                CurrAttrib = (*ScriptNodeIt).GetAttribute("FileName");
+                if( !CurrAttrib.Empty() ) {
+                    //
+                    // Load the script source into a workable script here
+                    //
                 }
             }
         }
@@ -1223,6 +1263,12 @@ const String& CatchLevel::GetName() const
 const String& CatchLevel::GetGroupName() const
     { return this->GroupName; }
 
+const String& CatchLevel::GetPreviewAtlasName() const
+    { return this->PreviewAtlasName; }
+
+const String& CatchLevel::GetPreviewImageName() const
+    { return this->PreviewImageName; }
+
 ///////////////////////////////////////////////////////////////////////////////
 // MetaData Access
 
@@ -1231,6 +1277,12 @@ Whole CatchLevel::GetScoreThreshold(const Whole Tier) const
 
 Whole CatchLevel::GetNumScoreTiers() const
     { return this->ScoreTiers.size(); }
+
+CatchLevel::ScriptPtr CatchLevel::GetLevelScript(const Whole Index) const
+    { return this->LevelScripts.at(Index); }
+
+Whole CatchLevel::GetNumLevelScripts() const
+    { return this->LevelScripts.size(); }
 
 ///////////////////////////////////////////////////////////////////////////////
 // LevelLoader Methods
@@ -1245,7 +1297,7 @@ LevelManager::LevelManager(Entresol* Ent, const String& PathToLevels) :
 LevelManager::~LevelManager()
     {  }
 
-ResourceManager* LevelManager::GetResourceManager() const
+Resource::ResourceManager* LevelManager::GetResourceManager() const
     { return this->TheEntresol->GetResourceManager(); }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1255,9 +1307,9 @@ Whole LevelManager::DetectLevels()
 {
     Whole Detected = 0;
     XML::Document LevelDoc;
-    ResourceManager* ResourceMan = this->GetResourceManager();
-    std::set<String> LevelSet = ResourceMan->GetDirContents( this->LevelPath );
-    for( std::set<String>::iterator LvlIt = LevelSet.begin() ; LvlIt != LevelSet.end() ; LvlIt++ )
+    Resource::ResourceManager* ResourceMan = this->GetResourceManager();
+    StringVector LevelSet = Resource::GetDirContents( this->LevelPath );
+    for( StringVector::iterator LvlIt = LevelSet.begin() ; LvlIt != LevelSet.end() ; LvlIt++ )
     {
         const String& FileName = (*LvlIt);
         if( String::npos != FileName.find(".lvl") ) {
@@ -1272,13 +1324,6 @@ Whole LevelManager::DetectLevels()
             LevelDoc.Load( *LevelStream.Get() );
 
             GameLevel* NewLevel = new GameLevel(AssetGroupName,LevelDoc);
-            /*for( GameLevelIterator LvlIt = this->GameLevels.end() ; LvlIt != this->GameLevels.end() ; ++LvlIt )
-            {
-                if( (*LvlIt)->GetName() == NewLevel->GetName() ) {
-                    delete NewLevel;
-                    continue;
-                }
-            }//*/
             this->GameLevels.push_back(NewLevel);
         }
     }
@@ -1287,16 +1332,88 @@ Whole LevelManager::DetectLevels()
 
 void LevelManager::PopulateLevelSelectUI()
 {
+    const String LevelNameFont = "Ubuntu-18";
+    const Real LevelNameScale = 0.85;
+
     UI::UIManager* UIMan = this->TheEntresol->GetUIManager();
     UI::Screen* MainMenuScreen = UIMan->GetScreen("MainMenuScreen");
     UI::GridContainer* LevelSelect = static_cast<UI::GridContainer*>( MainMenuScreen->GetWidget("MS_LevelSelectGrid") );
 
+    Whole LevelZOrder = 0;
     Whole CurrColumn = 0, CurrRow = 0;
     LevelSelect->DestroyAllChildren();
 
     for( GameLevelIterator LvlIt = this->GameLevels.begin() ; LvlIt != this->GameLevels.end() ; ++LvlIt )
     {
+        // Setup our names
+        const String& LevelName = (*LvlIt)->GetName();
+        const String& GroupName = (*LvlIt)->GetGroupName();
+        const String& PreviewAtlasName = (*LvlIt)->GetPreviewAtlasName();
+        const String& PreviewImageName = (*LvlIt)->GetPreviewImageName();
+        // Early escape for invalid level
+        if( LevelName == "MainMenu" )
+            continue;
 
+        // We want a 2 wide coloumn straight down
+        if( CurrColumn > 1 ) {
+            CurrColumn = 0;
+            ++CurrRow;
+        }
+
+        // Verify our atlas is loaded, safely
+        UI::TextureAtlas* LevelAtlas = UIMan->GetAtlas(PreviewAtlasName);
+        if( LevelAtlas == NULL ) {
+            UIMan->LoadMTA(PreviewAtlasName,GroupName);
+        }
+
+        // Create the root widget that will glue all the other pieces together
+        UI::Widget* LevelRoot = MainMenuScreen->CreateWidget( LevelName );
+        LevelRoot->CreateSingleImageLayer("MMLevelCellBack",0,0);
+
+        // Create the preview section for this level widget
+        UI::Widget* LevelPortrait = MainMenuScreen->CreateWidget( LevelName + ".Portrait", UI::UnifiedRect(-0.2,0.0,1.3333,1.3) );
+        LevelPortrait->SetHorizontalPositioningRules(UI::PF_Anchor_Left | UI::PF_Anchor_Size);
+        LevelPortrait->SetVerticalPositioningRules(UI::PF_Anchor_VerticalCenter);
+        LevelPortrait->SetHorizontalSizingRules(UI::SR_Match_Other_Axis_Unified);
+        UI::SingleImageLayer* LevelImage = LevelPortrait->CreateSingleImageLayer(0,0);
+        LevelImage->SetSprite( PreviewImageName, PreviewAtlasName.substr( 0, PreviewAtlasName.find_last_of('.') ) );
+        LevelImage->SetScale(Vector2(0.9,0.9));
+        LevelPortrait->CreateSingleImageLayer("MMLevelPreviewBox",1,1);
+        LevelRoot->AddChild(LevelPortrait,1);
+
+        // Create the widget that will place and render the level name text
+        UI::Widget* LevelTitle = MainMenuScreen->CreateWidget( LevelName + ".Title", UI::UnifiedRect(0.4,0.06,0.50,0.4) );
+        UI::SingleLineTextLayer* LevelTitleText = LevelTitle->CreateSingleLineTextLayer(LevelNameFont,0,0);
+        LevelTitleText->SetText(LevelName);
+        LevelTitleText->HorizontallyAlign(UI::LA_Center);
+        LevelTitleText->VerticallyAlign(UI::LA_Center);
+        LevelTitleText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,LevelNameScale);
+        LevelRoot->AddChild(LevelTitle,2);
+
+        const Whole NumStars = 5;
+        // Create the score star display that will indicate the degree of completion for a level
+        UI::Widget* LevelScore = MainMenuScreen->CreateWidget( LevelName + ".Score", UI::UnifiedRect(0.4,0.48,0.50,0.38) );
+        UI::MultiImageLayer* ScoreStars = LevelScore->CreateMultiImageLayer(0,0);
+        ScoreStars->ReserveMultiImageData(NumStars);
+        // Set up our multiple stars for displaying the score threshold achieved
+        for( Whole X = 0 ; X < NumStars ; ++X )
+        {
+            UI::UnifiedVec2 UPosition(0.2 * static_cast<Real>(X),0.0);
+            UI::UnifiedVec2 USize(0.2,1.0);
+
+            ScoreStars->SetImagePosition(X,UPosition);
+            ScoreStars->SetImageSize(X,USize);
+            ScoreStars->SetSprite(X,"MMLevelScoreStar");
+        }
+        LevelRoot->AddChild(LevelScore,3);
+
+        // Insert this level into the grid
+        UI::GridRect LevelGridPos(CurrColumn,CurrRow,1,1);
+        LevelSelect->AddChild(LevelRoot,LevelZOrder,LevelGridPos);
+
+        // Increment our data for the next one
+        ++LevelZOrder;
+        ++CurrColumn;
     }
 }
 
