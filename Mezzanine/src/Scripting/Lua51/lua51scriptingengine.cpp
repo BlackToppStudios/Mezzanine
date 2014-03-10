@@ -583,14 +583,14 @@ namespace Mezzanine
                 lua_pushcfunction(State, luaopen_Mezzanine);
                 lua_pushstring(State, (MezzLibName.c_str()) );
                 lua_call(State, 1, 0);
-                SetXML();
+                //SetM();
             }
             void Lua51ScriptingEngine::OpenMezzanineSafeLibrary()
             {
                 lua_pushcfunction(State, luaopen_MezzanineSafe);
                 lua_pushstring(State, (MezzSafeLibName.c_str()) );
                 lua_call(State, 1, 0);
-                SetXMLSafe();
+                //SetXMLSafe();
             }
 
             void Lua51ScriptingEngine::OpenMezzanineXMLLibrary()
