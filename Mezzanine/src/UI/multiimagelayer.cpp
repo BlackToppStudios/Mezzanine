@@ -215,22 +215,37 @@ namespace Mezzanine
         // Fill Methods
 
         void MultiImageLayer::SetImageRect(const Whole Index, const UnifiedRect& Trans)
-            { this->GetMultiImageData(Index).FillRect = Trans; }
+        {
+            this->GetMultiImageData(Index).FillRect = Trans;
+            this->_MarkDirty();
+        }
 
         const UnifiedRect& MultiImageLayer::GetImageRect(const Whole Index) const
-            { return this->GetMultiImageData(Index).FillRect; }
+        {
+            return this->GetMultiImageData(Index).FillRect;
+        }
 
         void MultiImageLayer::SetImagePosition(const Whole Index, const UnifiedVec2& Position)
-            { this->GetMultiImageData(Index).FillRect.Position = Position; }
+        {
+            this->GetMultiImageData(Index).FillRect.Position = Position;
+            this->_MarkDirty();
+        }
 
         const UnifiedVec2& MultiImageLayer::GetImagePosition(const Whole Index) const
-            { return this->GetMultiImageData(Index).FillRect.Position; }
+        {
+            return this->GetMultiImageData(Index).FillRect.Position;
+        }
 
         void MultiImageLayer::SetImageSize(const Whole Index, const UnifiedVec2& Size)
-            { this->GetMultiImageData(Index).FillRect.Size = Size; }
+        {
+            this->GetMultiImageData(Index).FillRect.Size = Size;
+            this->_MarkDirty();
+        }
 
         const UnifiedVec2& MultiImageLayer::GetImageSize(const Whole Index) const
-            { return this->GetMultiImageData(Index).FillRect.Size; }
+        {
+            return this->GetMultiImageData(Index).FillRect.Size;
+        }
 
         void MultiImageLayer::SetColour(const Whole Index, const ColourValue& Colour)
         {

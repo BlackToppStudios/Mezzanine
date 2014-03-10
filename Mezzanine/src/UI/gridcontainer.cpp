@@ -236,8 +236,8 @@ namespace Mezzanine
 
                 // Next we need to convert the "view rect" into grid coordinates
                 GridRect ViewRect;
-                ViewRect.Position.X = static_cast<Whole>( CurrXPage * XCellsPerPage );
-                ViewRect.Position.Y = static_cast<Whole>( CurrYPage * YCellsPerPage );
+                ViewRect.Position.X = static_cast<Whole>( ( CurrXPage - 1 ) * XCellsPerPage );
+                ViewRect.Position.Y = static_cast<Whole>( ( CurrYPage - 1 ) * YCellsPerPage );
                 ViewRect.Size.X = static_cast<Whole>( XCellsPerPage );
                 ViewRect.Size.Y = static_cast<Whole>( YCellsPerPage );
 
@@ -263,8 +263,8 @@ namespace Mezzanine
                         // Multiply the size of a cell by the column/row we are in, which should get us the base offset for that child.
                         // Then add half the padding, since the padding is supposed to be the total on both sides of that axis.
                         // Lastly apply that to the container position to convert it into a screen position.
-                        NewChildRect.Position.X = NewSelfRect.Size.X + ( ( ActCellSize.X * static_cast<Real>( ChildColumn ) ) + ( ActCellPadding.X * 0.5 ) );
-                        NewChildRect.Position.Y = NewSelfRect.Size.Y + ( ( ActCellSize.Y * static_cast<Real>( ChildRow ) ) + ( ActCellPadding.Y * 0.5 ) );
+                        NewChildRect.Position.X = NewSelfRect.Position.X + ( ( ActCellSize.X * static_cast<Real>( ChildColumn ) ) + ( ActCellPadding.X * 0.5 ) );
+                        NewChildRect.Position.Y = NewSelfRect.Position.Y + ( ( ActCellSize.Y * static_cast<Real>( ChildRow ) ) + ( ActCellPadding.Y * 0.5 ) );
                         // Perform the update.
                         (*RectIt).first->UpdateDimensions(OldChildRect,NewChildRect);
 
