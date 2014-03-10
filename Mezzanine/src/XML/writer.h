@@ -63,7 +63,7 @@
 #include "datatypes.h"
 
 #ifndef SWIG
-#include "resource.h"
+#include "Resource/datastream.h"
 #endif
 
 namespace Mezzanine

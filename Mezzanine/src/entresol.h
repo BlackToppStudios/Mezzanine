@@ -293,7 +293,6 @@ namespace Mezzanine
     class AreaEffectManager;
     class DebrisManager;
     class EventManager;
-    class ResourceManager;
     class NetworkManager;
     class ManagerFactory;
     namespace Audio
@@ -317,6 +316,10 @@ namespace Mezzanine
         class PhysicsManager;
         class CollisionShapeManager;
         class ManagerConstructionInfo;
+    }
+    namespace Resource
+    {
+        class ResourceManager;
     }
     namespace UI
     {
@@ -724,7 +727,7 @@ namespace Mezzanine
             /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
             /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
-            ResourceManager* GetResourceManager(const UInt16 WhichOne = 0);
+            Resource::ResourceManager* GetResourceManager(const UInt16 WhichOne = 0);
             /// @brief This gets the UIManager from the manager list.
             /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
             /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.

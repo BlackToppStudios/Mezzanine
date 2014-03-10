@@ -43,7 +43,7 @@
 #include "graphicsmanager.h"
 #include "eventmanager.h"
 #include "Graphics/cameramanager.h"
-#include "resourcemanager.h"
+#include "Resource/resourcemanager.h"
 #include "UI/uimanager.h"
 #include "Graphics/cameraproxy.h"
 #include "Graphics/cameramanager.h"

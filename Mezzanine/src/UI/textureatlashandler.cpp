@@ -43,7 +43,7 @@
 #include "UI/textureatlashandler.h"
 #include "UI/textureatlas.h"
 
-#include "resourcemanager.h"
+#include "Resource/resourcemanager.h"
 #include "Resource/datastream.h"
 #include "XML/xml.h"
 
@@ -63,7 +63,7 @@ namespace Mezzanine
         void TextureAtlasHandler::LoadAtlasFromFile(const String& Name, const String& Group)
         {
             /// @todo Update after we have refactored the resource system if needed.
-            Resource::DataStreamPtr AtlasStream = ResourceManager::GetSingletonPtr()->OpenAssetStream(Name,Group);
+            Resource::DataStreamPtr AtlasStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(Name,Group);
             AtlasStream->SetStreamPosition(0);
             XML::Document AtlasDoc;
             AtlasDoc.Load( *AtlasStream.Get() );

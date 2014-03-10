@@ -70,38 +70,38 @@ namespace Mezzanine
         ///////////////////////////////////////
         class StreamBase
         {
-            public:
-                /// @enum StreamFlags
-                /// @brief This enum describes the flags that control certain behaviors of a stream.
-                /// @details It is important to note that not all of these flags are used by all streams.
-                enum StreamFlags
-                {
-                    SF_None         = 0,                     ///< Error/no special initialization.
-                    SF_Read         = std::ios_base::in,     ///< Permit read operations on the stream.
-                    SF_Write        = std::ios_base::out,    ///< Permit write operations on the stream.
-                    SF_Append       = std::ios_base::app,    ///< All write operations on the stream are done at the end of the stream.
-                    SF_AtEnd        = std::ios_base::ate,    ///< Moves the starting position of the stream to the end upon initialization.
-                    SF_Binary       = std::ios_base::binary, ///< Tell the stream that the file in question is Binary.
-                    SF_Truncate     = std::ios_base::trunc,  ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
-                };
+        public:
+            /// @enum StreamFlags
+            /// @brief This enum describes the flags that control certain behaviors of a stream.
+            /// @details It is important to note that not all of these flags are used by all streams.
+            enum StreamFlags
+            {
+                SF_None         = 0,                     ///< Error/no special initialization.
+                SF_Read         = std::ios_base::in,     ///< Permit read operations on the stream.
+                SF_Write        = std::ios_base::out,    ///< Permit write operations on the stream.
+                SF_Append       = std::ios_base::app,    ///< All write operations on the stream are done at the end of the stream.
+                SF_AtEnd        = std::ios_base::ate,    ///< Moves the starting position of the stream to the end upon initialization.
+                SF_Binary       = std::ios_base::binary, ///< Tell the stream that the file in question is Binary.
+                SF_Truncate     = std::ios_base::trunc,  ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
+            };
 
-                /// @enum SeekOrigin
-                /// @brief An enum describing which position should be considered the origin for changing the current position in a stream.
-                enum SeekOrigin
-                {
-                    SO_Beginning = std::ios_base::beg,  ///< The beginning of the stream.
-                    SO_Current   = std::ios_base::cur,  ///< The current position for read/write operations in the stream.
-                    SO_End       = std::ios_base::end   ///< The end of the stream.
-                };
-            public:
-                /// @brief Class constructor.
-                StreamBase() {  }
-                /// @brief Class destructor.
-                virtual ~StreamBase() {  }
+            /// @enum SeekOrigin
+            /// @brief An enum describing which position should be considered the origin for changing the current position in a stream.
+            enum SeekOrigin
+            {
+                SO_Beginning = std::ios_base::beg,  ///< The beginning of the stream.
+                SO_Current   = std::ios_base::cur,  ///< The current position for read/write operations in the stream.
+                SO_End       = std::ios_base::end   ///< The end of the stream.
+            };
+        public:
+            /// @brief Class constructor.
+            StreamBase() {  }
+            /// @brief Class destructor.
+            virtual ~StreamBase() {  }
 
-                /// @brief Gets the size of the stream.
-                /// @return Returns the size of this stream in bytes.
-                StreamSize GetSize() const = 0;
+            /// @brief Gets the size of the stream.
+            /// @return Returns the size of this stream in bytes.
+            StreamSize GetSize() const = 0;
         };//StreamBase
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -110,28 +110,28 @@ namespace Mezzanine
         ///////////////////////////////////////
         class IStream : virtual public StreamBase
         {
-            public:
-                /// @brief Class constructor.
-                IStream() {  }
-                /// @brief Class destructor.
-                virtual ~IStream() {  }
+        public:
+            /// @brief Class constructor.
+            IStream() {  }
+            /// @brief Class destructor.
+            virtual ~IStream() {  }
 
-                /// @brief Reads from the stream and copies that data to a buffer.
-                /// @param Buffer The buffer to be populated with the read data.
-                /// @param Size The number of bytes to read from the stream.
-                /// @return Returns the number of bytes successfully read.
-                virtual size_t Read(Char8* Buffer, StreamSize Size) = 0;
+            /// @brief Reads from the stream and copies that data to a buffer.
+            /// @param Buffer The buffer to be populated with the read data.
+            /// @param Size The number of bytes to read from the stream.
+            /// @return Returns the number of bytes successfully read.
+            virtual size_t Read(Char8* Buffer, StreamSize Size) = 0;
 
-                /// @brief Sets the position of the read cursor explicitly.
-                /// @param Position The position to be set.
-                virtual void SetReadPosition(StreamPos Position) = 0;
-                /// @brief Sets the position of the read cursor.
-                /// @param Offset The number of bytes to move the read cursor back(if negative) or forward(if positive).
-                /// @param Origin The starting point to be considered for the offset.
-                virtual void SetReadPosition(StreamOff Offset, SeekOrigin Origin) = 0;
-                /// @brief Gets the current read position in this stream.
-                /// @return Returns a StreamPos representing the current read position.
-                virtual StreamPos GetReadPosition() = 0;
+            /// @brief Sets the position of the read cursor explicitly.
+            /// @param Position The position to be set.
+            virtual void SetReadPosition(StreamPos Position) = 0;
+            /// @brief Sets the position of the read cursor.
+            /// @param Offset The number of bytes to move the read cursor back(if negative) or forward(if positive).
+            /// @param Origin The starting point to be considered for the offset.
+            virtual void SetReadPosition(StreamOff Offset, SeekOrigin Origin) = 0;
+            /// @brief Gets the current read position in this stream.
+            /// @return Returns a StreamPos representing the current read position.
+            virtual StreamPos GetReadPosition() = 0;
         };//IStream
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -140,28 +140,28 @@ namespace Mezzanine
         ///////////////////////////////////////
         class OStream : virtual public StreamBase
         {
-            public:
-                /// @brief Class constructor.
-                OStream() {  }
-                /// @brief Class destructor.
-                virtual ~OStream() {  }
+        public:
+            /// @brief Class constructor.
+            OStream() {  }
+            /// @brief Class destructor.
+            virtual ~OStream() {  }
 
-                /// @brief Writes data to the stream.
-                /// @param Buffer The memory buffer to write to this stream.
-                /// @param Size The size of the buffer being passed in.
-                /// @return Returns the number of bytes successfully written.
-                virtual size_t Write(const Char8* Buffer, StreamSize Size) = 0;
+            /// @brief Writes data to the stream.
+            /// @param Buffer The memory buffer to write to this stream.
+            /// @param Size The size of the buffer being passed in.
+            /// @return Returns the number of bytes successfully written.
+            virtual size_t Write(const Char8* Buffer, StreamSize Size) = 0;
 
-                /// @brief Sets the position of the write cursor explicitly.
-                /// @param Position The position to be set.
-                virtual void SetWritePosition(StreamPos Position) = 0;
-                /// @brief Sets the position of the write cursor.
-                /// @param Offset The number of bytes to move the write cursor back(if negative) or forward(if positive).
-                /// @param Origin The starting point to be considered for the offset.
-                virtual void SetWritePosition(StreamOff Offset, SeekOrigin Origin) = 0;
-                /// @brief Gets the current write position in this stream.
-                /// @return Returns a StreamPos representing the current write position.
-                virtual StreamPos GetWritePosition() = 0;
+            /// @brief Sets the position of the write cursor explicitly.
+            /// @param Position The position to be set.
+            virtual void SetWritePosition(StreamPos Position) = 0;
+            /// @brief Sets the position of the write cursor.
+            /// @param Offset The number of bytes to move the write cursor back(if negative) or forward(if positive).
+            /// @param Origin The starting point to be considered for the offset.
+            virtual void SetWritePosition(StreamOff Offset, SeekOrigin Origin) = 0;
+            /// @brief Gets the current write position in this stream.
+            /// @return Returns a StreamPos representing the current write position.
+            virtual StreamPos GetWritePosition() = 0;
         };//OStream
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -170,26 +170,26 @@ namespace Mezzanine
         ///////////////////////////////////////
         class IOStream : public IStream, public OStream
         {
-            public:
-                /// @brief Class constructor.
-                IOStream() {  }
-                /// @brief Class destructor.
-                virtual ~IOStream() {  }
+        public:
+            /// @brief Class constructor.
+            IOStream() {  }
+            /// @brief Class destructor.
+            virtual ~IOStream() {  }
 
-                /// @brief Advances the position in the stream.
-                /// @param Count The number of bytes to skip/advance in the stream from the current position.
-                virtual void Advance(const StreamOff Count);
-                /// @brief Sets the position of the read and write cursors explicitly.
-                /// @param Position The position to be set.
-                virtual void SetStreamPosition(StreamPos Position);
-                /// @brief Sets the position of the read and write cursors.
-                /// @param Offset The number of bytes to move the cursors back(if negative) or forward(if positive).
-                /// @param Origin The starting point to be considered for the offset.
-                virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin);
-                /// @brief Gets the current position in this stream.
-                /// @param Read Whether or not to get the Read position.  If false this will get the write position instead.
-                /// @return Returns a StreamPos representing the current position specified from the beginning of the stream.
-                virtual StreamPos GetStreamPosition(Boole Read = true);
+            /// @brief Advances the position in the stream.
+            /// @param Count The number of bytes to skip/advance in the stream from the current position.
+            virtual void Advance(const StreamOff Count);
+            /// @brief Sets the position of the read and write cursors explicitly.
+            /// @param Position The position to be set.
+            virtual void SetStreamPosition(StreamPos Position);
+            /// @brief Sets the position of the read and write cursors.
+            /// @param Offset The number of bytes to move the cursors back(if negative) or forward(if positive).
+            /// @param Origin The starting point to be considered for the offset.
+            virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin);
+            /// @brief Gets the current position in this stream.
+            /// @param Read Whether or not to get the Read position.  If false this will get the write position instead.
+            /// @return Returns a StreamPos representing the current position specified from the beginning of the stream.
+            virtual StreamPos GetStreamPosition(Boole Read = true);
         };//IOStream
 
         /// @typedef DataStream
@@ -213,108 +213,108 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB DataStream
         {
-            public:
-                /// @enum StreamFlags
-                /// @brief This enum describes the flags that control certain behaviors of a stream.
-                /// @details It is important to note that not all of these flags are used by all streams.
-                enum StreamFlags
-                {
-                    SF_None         = 0,  ///< Error/no special initialization.
-                    SF_Read         = 1,  ///< Permit read operations on the stream.
-                    SF_Write        = 2,  ///< Permit write operations on the stream.
-                    SF_Append       = 4,  ///< All write operations on the stream are done at the end of the stream.
-                    SF_AtEnd        = 8,  ///< Moves the starting position of the stream to the end upon initialization.
-                    SF_Binary       = 16, ///< Tell the stream that the file in question is Binary.
-                    SF_Truncate     = 32  ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
-                };
+        public:
+            /// @enum StreamFlags
+            /// @brief This enum describes the flags that control certain behaviors of a stream.
+            /// @details It is important to note that not all of these flags are used by all streams.
+            enum StreamFlags
+            {
+                SF_None         = 0,  ///< Error/no special initialization.
+                SF_Read         = 1,  ///< Permit read operations on the stream.
+                SF_Write        = 2,  ///< Permit write operations on the stream.
+                SF_Append       = 4,  ///< All write operations on the stream are done at the end of the stream.
+                SF_AtEnd        = 8,  ///< Moves the starting position of the stream to the end upon initialization.
+                SF_Binary       = 16, ///< Tell the stream that the file in question is Binary.
+                SF_Truncate     = 32  ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
+            };
 
-                /// @enum SeekOrigin
-                /// @brief An enum describing which position should be considered the origin for changing the current position in a stream.
-                enum SeekOrigin
-                {
-                    SO_Beginning = std::ios_base::beg,  ///< The beginning of the stream.
-                    SO_Current   = std::ios_base::cur,  ///< The current position for read/write operations in the stream.
-                    SO_End       = std::ios_base::end   ///< The end of the stream.
-                };
-            protected:
-                /// @brief The type of access this stream has to the resource.
-                UInt16 SFlags;
-                /// @brief The size of the stream.
-                StreamSize Size;
-            public:
-                /// @brief Class constructor.
-                /// @param Flags The flags to use when initializing the stream.
-                DataStream(const UInt16 Flags = SF_Read);
-                /// @brief Class destructor.
-                virtual ~DataStream();
+            /// @enum SeekOrigin
+            /// @brief An enum describing which position should be considered the origin for changing the current position in a stream.
+            enum SeekOrigin
+            {
+                SO_Beginning = std::ios_base::beg,  ///< The beginning of the stream.
+                SO_Current   = std::ios_base::cur,  ///< The current position for read/write operations in the stream.
+                SO_End       = std::ios_base::end   ///< The end of the stream.
+            };
+        protected:
+            /// @brief The type of access this stream has to the resource.
+            UInt16 SFlags;
+            /// @brief The size of the stream.
+            StreamSize Size;
+        public:
+            /// @brief Class constructor.
+            /// @param Flags The flags to use when initializing the stream.
+            DataStream(const UInt16 Flags = SF_Read);
+            /// @brief Class destructor.
+            virtual ~DataStream();
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Utility
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
 
-                /// @brief Gets the size of the stream.
-                /// @return Returns the size of this stream in bytes.
-                virtual StreamSize GetSize() const;
-                /// @brief Gets whether this stream can be read.
-                /// @return Returns true if this stream is in reading mode, false otherwise.
-                virtual Boole IsReadable() const;
-                /// @brief Gets whether this stream can be written to.
-                /// @return Returns true if this stream is in writing mode, false otherwise.
-                virtual Boole IsWriteable() const;
+            /// @brief Gets the size of the stream.
+            /// @return Returns the size of this stream in bytes.
+            virtual StreamSize GetSize() const;
+            /// @brief Gets whether this stream can be read.
+            /// @return Returns true if this stream is in reading mode, false otherwise.
+            virtual Boole IsReadable() const;
+            /// @brief Gets whether this stream can be written to.
+            /// @return Returns true if this stream is in writing mode, false otherwise.
+            virtual Boole IsWriteable() const;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Stream Access and Manipulation
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Access and Manipulation
 
-                /// @brief Reads data from the stream, copying to a buffer.
-                /// @param Buffer The buffer to place data from the stream.
-                /// @param Count The number of bytes to read from the stream.
-                /// @return Returns the number of bytes read.
-                virtual size_t Read(void* Buffer, const size_t& Count) = 0;
-                /// @brief Writes data from the stream, copying from the provided buffer.
-                /// @param Buffer The buffer of data to be written.
-                /// @param Count The number of bytes to write from the buffer to the stream.
-                /// @return Returns the number of bytes written.
-                virtual size_t Write(const void* Buffer, const size_t& Count) = 0;
+            /// @brief Reads data from the stream, copying to a buffer.
+            /// @param Buffer The buffer to place data from the stream.
+            /// @param Count The number of bytes to read from the stream.
+            /// @return Returns the number of bytes read.
+            virtual size_t Read(void* Buffer, const size_t& Count) = 0;
+            /// @brief Writes data from the stream, copying from the provided buffer.
+            /// @param Buffer The buffer of data to be written.
+            /// @param Count The number of bytes to write from the buffer to the stream.
+            /// @return Returns the number of bytes written.
+            virtual size_t Write(const void* Buffer, const size_t& Count) = 0;
 
-                /// @brief Advances the position in the stream.
-                /// @param Count The number of bytes to skip/advance in the stream from the current position.
-                virtual void Advance(const StreamOff Count) = 0;
-                /// @brief Sets the position of the read and write cursors explicitly.
-                /// @param Position The position to be set.
-                virtual void SetStreamPosition(StreamPos Position) = 0;
-                /// @brief Sets the position of the read and write cursors.
-                /// @param Offset The number of bytes to move the cursors back(if negative) or forward(if positive).
-                /// @param Origin The starting point to be considered for the offset.
-                virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin) = 0;
-                /// @brief Gets the current position in this stream.
-                /// @param Read Whether or not to get the Read position.  If false this will get the write position instead.
-                /// @return Returns a StreamPos representing the current position specified from the beginning of the stream.
-                virtual StreamPos GetStreamPosition(Boole Read = true) = 0;
-                /// @brief Gets whether or not the current position is at the end of the file/stream.
-                /// @return Returns true if the current position has reached the end of the stream, false otherwise.
-                virtual Boole EoF() const = 0;
-                /// @brief Closes the stream to the resource.
-                virtual void Close() = 0;
+            /// @brief Advances the position in the stream.
+            /// @param Count The number of bytes to skip/advance in the stream from the current position.
+            virtual void Advance(const StreamOff Count) = 0;
+            /// @brief Sets the position of the read and write cursors explicitly.
+            /// @param Position The position to be set.
+            virtual void SetStreamPosition(StreamPos Position) = 0;
+            /// @brief Sets the position of the read and write cursors.
+            /// @param Offset The number of bytes to move the cursors back(if negative) or forward(if positive).
+            /// @param Origin The starting point to be considered for the offset.
+            virtual void SetStreamPosition(StreamOff Offset, SeekOrigin Origin) = 0;
+            /// @brief Gets the current position in this stream.
+            /// @param Read Whether or not to get the Read position.  If false this will get the write position instead.
+            /// @return Returns a StreamPos representing the current position specified from the beginning of the stream.
+            virtual StreamPos GetStreamPosition(Boole Read = true) = 0;
+            /// @brief Gets whether or not the current position is at the end of the file/stream.
+            /// @return Returns true if the current position has reached the end of the stream, false otherwise.
+            virtual Boole EoF() const = 0;
+            /// @brief Closes the stream to the resource.
+            virtual void Close() = 0;
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Formatting Methods
+            ///////////////////////////////////////////////////////////////////////////////
+            // Formatting Methods
 
-                /// @brief Gets the contents of the stream as a string.
-                /// @return Returns a string with the contents of the stream.
-                virtual String GetAsString();
-                /// @brief Reads a single line from a string.
-                /// @param Buffer Pointer to the buffer to copy to.
-                /// @param MaxCount The maximum number of bytes to read.  Usually you want this to be your buffer size.
-                /// @param Delim The character that marks the end of a line.
-                /// @return Returns the number of bytes actually read, not including the Delimiter.
-                virtual size_t ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim = "\n");
-                /// @brief Gets the contents of the current line in the stream.
-                /// @param Trim Whether or not to trim whitespaces on both sides of the string.
-                /// @return Returns a string containing characters from the current position in the stream to the end of the line.
-                virtual String GetLine(Boole Trim = true);
-                /// @brief Moves the current position to the start of the next line.
-                /// @param Delim The character that marks the end of a line.
-                /// @return Returns the number of bytes skipped.
-                virtual size_t SkipLine(const String& Delim = "\n");
+            /// @brief Gets the contents of the stream as a string.
+            /// @return Returns a string with the contents of the stream.
+            virtual String GetAsString();
+            /// @brief Reads a single line from a string.
+            /// @param Buffer Pointer to the buffer to copy to.
+            /// @param MaxCount The maximum number of bytes to read.  Usually you want this to be your buffer size.
+            /// @param Delim The character that marks the end of a line.
+            /// @return Returns the number of bytes actually read, not including the Delimiter.
+            virtual size_t ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim = "\n");
+            /// @brief Gets the contents of the current line in the stream.
+            /// @param Trim Whether or not to trim whitespaces on both sides of the string.
+            /// @return Returns a string containing characters from the current position in the stream to the end of the line.
+            virtual String GetLine(Boole Trim = true);
+            /// @brief Moves the current position to the start of the next line.
+            /// @param Delim The character that marks the end of a line.
+            /// @return Returns the number of bytes skipped.
+            virtual size_t SkipLine(const String& Delim = "\n");
         };//DataStream
 #endif //USENEWDATASTREAM
         /// @typedef DataStreamPtr

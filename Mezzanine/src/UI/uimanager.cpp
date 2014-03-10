@@ -58,8 +58,8 @@
 #include "Graphics/viewport.h"
 #include "Input/inputmanager.h"
 #include "Input/mouse.h"
+#include "Resource/resourcemanager.h"
 #include "eventmanager.h"
-#include "resourcemanager.h"
 
 #include "mathtool.h"
 #include "timer.h"
@@ -107,7 +107,7 @@ namespace Mezzanine
             ButtonAutoRegister(false),
             MouseMoved(false)
         {
-            ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
+            Resource::ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
             this->AtlasHandler = new TextureAtlasHandler();
             this->HKHandler = new HotKeyHandler();
             //this->ActHandler = new ActionHandler();
@@ -131,7 +131,7 @@ namespace Mezzanine
             MouseMoved(false)
         {
             /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
-            ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
+            Resource::ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
             this->AtlasHandler = new TextureAtlasHandler();
             this->HKHandler = new HotKeyHandler();
             //this->ActHandler = new ActionHandler();
