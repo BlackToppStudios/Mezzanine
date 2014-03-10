@@ -277,13 +277,13 @@ void REPLLineNoise::Launch()
     //Prepare Values
     String CurrentInput;
     ExecutionResults CurrentResults = Doer.Do("banner");
-    String HistoryDir(ResourceManager::GetCurrentUserDataDir() + ResourceManager::GetDirectorySeparator() + ".EntreLua" + ResourceManager::GetDirectorySeparator());
+    String HistoryDir(Resource::GetCurrentUserDataDir() + Resource::GetDirectorySeparator() + ".EntreLua" + Resource::GetDirectorySeparator());
     String HistoryFile("history.txt");
     String HistoryFullName(HistoryDir+HistoryFile);
     TargetRepl=this;
 
     // Prepare History File
-    ResourceManager::CreateDirectoryPath(HistoryDir);
+    Resource::CreateDirectoryPath(HistoryDir);
     fstream(HistoryFullName.c_str(),ios_base::app);
     if(-1==linenoiseHistoryLoad(HistoryFullName.c_str()))
         { cerr << "Error loading Command history" << endl; }
