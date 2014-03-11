@@ -2,7 +2,6 @@
 #define _catchapp_cpp
 
 #include "catchapp.h"
-#include "levelselectcell.h"
 #include "throwablegenerator.h"
 #include "uicallbacks.h"
 
