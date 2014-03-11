@@ -79,7 +79,7 @@ void AudioSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
             if( StringTools::EndsWith( WidArgs->WidgetName, "_MuteBox", true ) ) {
                 AudioMan->SetMasterMute(false);
             }
-        }else if( WidArgs->EventName == UI::PagedContainer::EventChildFocusGained ) {
+        }else if( WidArgs->EventName == UI::PagedContainer::EventChildSelected ) {
             //
             // Fill in later
             //

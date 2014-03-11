@@ -212,6 +212,7 @@ void CatchApp::MakeGUI()
     UI::GridContainer* MMLevelSelectGrid = MainMenuScreen->CreateGridContainer("MS_LevelSelectGrid",UI::UnifiedRect(0.11,0.10,0.82,0.76));
     MMLevelSelectGrid->SetCellSize(2,4);
     MMLevelSelectGrid->SetCellPadding( UI::UnifiedVec2(0.08,0.10) );
+    MMLevelSelectGrid->Subscribe(UI::PagedContainer::EventChildSelected,new MSLevelCellSelect(MainMenuScreen),true);
     MMLevelSelectWin->AddChild(MMLevelSelectGrid,2);
 
     // Create the spinner which will allow browsing the grid

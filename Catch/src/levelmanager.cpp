@@ -1369,6 +1369,21 @@ void LevelManager::PopulateLevelSelectUI()
         // Create the root widget that will glue all the other pieces together
         UI::Widget* LevelRoot = MainMenuScreen->CreateWidget( LevelName );
         LevelRoot->CreateSingleImageLayer("MMLevelCellBack",0,0);
+        UI::SingleImageLayer* SelectedLevelBack = LevelRoot->CreateSingleImageLayer("MMLevelCellBackSelected");
+        // Now we need to setup our RenderLayerGroup bindings for being selected
+        UI::RenderLayerGroup* SelectedNormalGroup = LevelRoot->CreateRenderLayerGroup("SelectedNormal");
+        UI::RenderLayerGroup* SelectedHoveredGroup = LevelRoot->CreateRenderLayerGroup("SelectedHovered");
+        LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1, SelectedNormalGroup );
+        LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1 | UI::Widget::WS_Hovered, SelectedHoveredGroup );
+        LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1 | UI::Widget::WS_Focused, SelectedNormalGroup );
+        LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1 | UI::Widget::WS_Dragged, SelectedNormalGroup );
+        LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1 | UI::Widget::WS_Hovered | UI::Widget::WS_Focused, SelectedHoveredGroup );
+        LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1 | UI::Widget::WS_Focused | UI::Widget::WS_Dragged, SelectedNormalGroup );
+        LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1 | UI::Widget::WS_Dragged | UI::Widget::WS_Hovered, SelectedHoveredGroup );
+        LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1 | UI::Widget::WS_Hovered | UI::Widget::WS_Focused | UI::Widget::WS_Dragged, SelectedHoveredGroup );
+        // Now that bindings work is done, add our selected sprite to the configuration
+        SelectedNormalGroup->AddLayer(SelectedLevelBack,1);
+        SelectedHoveredGroup->AddLayer(SelectedLevelBack,1);
 
         // Create the preview section for this level widget
         UI::Widget* LevelPortrait = MainMenuScreen->CreateWidget( LevelName + ".Portrait", UI::UnifiedRect(-0.2,0.0,1.3333,1.3) );
@@ -1447,7 +1462,10 @@ void LevelManager::SetNextLevel(const String& LevelName)
 }
 
 void LevelManager::SetNextLevel(GameLevel* NextLevel)
-    { this->LevelToLoad = NextLevel; }
+{
+    /// @todo This assignment needs to be made thread-safe somehow.
+    this->LevelToLoad = NextLevel;
+}
 
 GameLevel* LevelManager::GetNextLevel() const
     { return this->LevelToLoad; }
