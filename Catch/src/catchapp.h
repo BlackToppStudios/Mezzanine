@@ -52,7 +52,7 @@ class CatchApp
         Timer* LevelTimer;
         StopWatchTimer* EndTimer;
 
-        bool Paused;
+        Boole Paused;
         CatchApp::GameState CurrentState;
 
         const Plane PlaneOfPlay;
@@ -68,8 +68,8 @@ class CatchApp
 
         void ChangeState(const CatchApp::GameState StateToSet);
 
-        bool CheckEndOfLevel();
-        bool AllStartZonesEmpty();
+        Boole CheckEndOfLevel();
+        Boole AllStartZonesEmpty();
         void UnloadLevel();
     public:
         CatchApp();
@@ -77,11 +77,14 @@ class CatchApp
 
         static CatchApp* GetCatchAppPointer();
         int GetCatchin();
-        void PauseGame(bool Pause);
-        bool GameIsPaused() const;
+        CatchApp::GameState GetState() const;
+        void PauseGame(Boole Pause);
+        Boole GameIsPaused() const;
 
-        bool IsAThrowable(WorldObject* Throwable) const;
-        bool IsInsideAnyStartZone(Debris* Throwable) const;
+        void SetVisibleScreens(const CatchApp::GameState State);
+
+        Boole IsAThrowable(WorldObject* Throwable) const;
+        Boole IsInsideAnyStartZone(Debris* Throwable) const;
         void RegisterStartArea(StartArea* Start);
         void AddThrowable(Debris* Throwable);
 

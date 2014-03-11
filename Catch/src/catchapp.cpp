@@ -1384,50 +1384,22 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
 {
     if(this->CurrentState == StateToSet)
         return;
-    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-    UI::Screen* StatsScreen = UIMan->GetScreen("StatsScreen");
-    switch(StateToSet)
-    {
-        case CatchApp::Catch_GameScreen:
+
+    this->SetVisibleScreens(StateToSet);
+    if( StateToSet == CatchApp::Catch_ScoreScreen ) {
+        this->PauseGame(true);
+        Whole LevelScore = this->Scorer->PresentFinalScore();
+        if( LevelScore > this->Profiles->GetActiveProfile()->GetHighestScore( this->LevelMan->GetCurrentLevel()->GetName() ) )
         {
-            UIMan->HideAllScreens(StatsScreen);
-            UI::Screen* CurrScreen = UIMan->GetScreen("GameScreen");
-            CurrScreen->Show();
-            break;
+            this->Profiles->GetActiveProfile()->SetNewHighScore(this->LevelMan->GetCurrentLevel()->GetName(),LevelScore);
+            /// @todo UI Update
+            //(static_cast<LevelSelectCell*>(this->Profiles->GetLevelGrid()->GetCell(LevelMan->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTools::ConvertToString(LevelScore));
         }
-        case CatchApp::Catch_Loading:
-        {
-            UIMan->HideAllScreens(StatsScreen);
-            UI::Screen* CurrScreen = UIMan->GetScreen("LoadingScreen");
-            CurrScreen->Show();
-            break;
-        }
-        case CatchApp::Catch_MenuScreen:
-        {
-            UIMan->HideAllScreens(StatsScreen);
-            UI::Screen* CurrScreen = UIMan->GetScreen("MainMenuScreen");
-            CurrScreen->Show();
-            break;
-        }
-        case CatchApp::Catch_ScoreScreen:
-        {
-            this->PauseGame(true);
-            Whole LevelScore = this->Scorer->PresentFinalScore();
-            if( LevelScore > this->Profiles->GetActiveProfile()->GetHighestScore( this->LevelMan->GetCurrentLevel()->GetName() ) )
-            {
-                this->Profiles->GetActiveProfile()->SetNewHighScore(this->LevelMan->GetCurrentLevel()->GetName(),LevelScore);
-                /// @todo UI Update
-                //(static_cast<LevelSelectCell*>(this->Profiles->GetLevelGrid()->GetCell(LevelMan->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTools::ConvertToString(LevelScore));
-            }
-            break;
-        }
-        case CatchApp::Catch_Init:
-            break;
     }
     this->CurrentState = StateToSet;
 }
 
-bool CatchApp::CheckEndOfLevel()
+Boole CatchApp::CheckEndOfLevel()
 {
     if( this->Scorer->GetNumScoreAreas() == 0 )
         return false;
@@ -1460,7 +1432,7 @@ bool CatchApp::CheckEndOfLevel()
     }
 }
 
-bool CatchApp::AllStartZonesEmpty()
+Boole CatchApp::AllStartZonesEmpty()
 {
     if(StartAreas.empty())
         return false;
@@ -1599,7 +1571,12 @@ int CatchApp::GetCatchin()
 	return 0;
 }
 
-void CatchApp::PauseGame(bool Pause)
+CatchApp::GameState CatchApp::GetState() const
+{
+    return this->CurrentState;
+}
+
+void CatchApp::PauseGame(Boole Pause)
 {
     UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
     if(Paused == Pause)
@@ -1619,12 +1596,63 @@ void CatchApp::PauseGame(bool Pause)
     Paused = Pause;
 }
 
-bool CatchApp::GameIsPaused() const
+Boole CatchApp::GameIsPaused() const
 {
     return Paused;
 }
 
-bool CatchApp::IsAThrowable(WorldObject* Throwable) const
+void CatchApp::SetVisibleScreens(const CatchApp::GameState State)
+{
+    UI::UIManager* UIMan = this->TheEntresol->GetUIManager();
+    switch( State )
+    {
+        case CatchApp::Catch_GameScreen:
+        case CatchApp::Catch_ScoreScreen:
+        {
+            UIMan->HideAllScreens();
+            UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
+            if( GameScreen != NULL ) {
+                GameScreen->Show();
+            }
+            UI::Screen* StatsScreen = UIMan->GetScreen("StatsScreen");
+            if( StatsScreen != NULL ) {
+                StatsScreen->Show();
+            }
+            break;
+        }
+        case CatchApp::Catch_Loading:
+        {
+            UIMan->HideAllScreens();
+            UI::Screen* LoadingScreen = UIMan->GetScreen("LoadingScreen");
+            if( LoadingScreen != NULL ) {
+                LoadingScreen->Show();
+            }
+            UI::Screen* StatsScreen = UIMan->GetScreen("StatsScreen");
+            if( StatsScreen != NULL ) {
+                StatsScreen->Show();
+            }
+            break;
+        }
+        case CatchApp::Catch_MenuScreen:
+        {
+            UIMan->HideAllScreens();
+            UI::Screen* MainMenuScreen = UIMan->GetScreen("MainMenuScreen");
+            if( MainMenuScreen != NULL ) {
+                MainMenuScreen->Show();
+            }
+            UI::Screen* StatsScreen = UIMan->GetScreen("StatsScreen");
+            if( StatsScreen != NULL ) {
+                StatsScreen->Show();
+            }
+            break;
+        }
+        case CatchApp::Catch_Init:
+        default:
+            break;
+    }
+}
+
+Boole CatchApp::IsAThrowable(WorldObject* Throwable) const
 {
     for( ThrowableContainer::const_iterator ObjIt = this->ThrownItems.begin() ; ObjIt != this->ThrownItems.end() ; ObjIt++ )
     {
@@ -1634,7 +1662,7 @@ bool CatchApp::IsAThrowable(WorldObject* Throwable) const
     return false;
 }
 
-bool CatchApp::IsInsideAnyStartZone(Debris* Throwable) const
+Boole CatchApp::IsInsideAnyStartZone(Debris* Throwable) const
 {
     if( this->StartAreas.empty() )
         return false;
