@@ -287,7 +287,7 @@ namespace Mezzanine
             { return this->ListContainer; }
 
         ListBox::ListItem* ListBox::GetLastSelectedListItem() const
-            { return this->ListContainer->GetLastFocusedWidget(); }
+            { return this->ListContainer->GetLastSelectedChild(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization

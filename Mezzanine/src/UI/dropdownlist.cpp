@@ -111,7 +111,7 @@ namespace Mezzanine
 
             this->ListToggle->Subscribe(CheckBox::EventSelected,this);
             this->ListToggle->Subscribe(CheckBox::EventDeselected,this);
-            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildFocusGained,this);
+            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildSelected,this);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -282,7 +282,7 @@ namespace Mezzanine
 
             this->ListToggle->Subscribe(CheckBox::EventSelected,this);
             this->ListToggle->Subscribe(CheckBox::EventDeselected,this);
-            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildFocusGained,this);
+            this->SelectionList->GetListContainer()->Subscribe(PagedContainer::EventChildSelected,this);
             this->SelectionList->Hide();
         }
 
@@ -311,9 +311,12 @@ namespace Mezzanine
             }
 
             if( EventWidget == this->SelectionList->GetListContainer() ) {
-                if( WidArgs->EventName == PagedContainer::EventChildFocusGained ) {
-                    this->UpdateCurrentSelection( this->SelectionList->GetListContainer()->GetLastFocusedWidget() );
-                    this->ListToggle->ManualSelect(false);
+                if( WidArgs->EventName == PagedContainer::EventChildSelected ) {
+                    ChildSelectedArgumentsPtr SelectedArgs = CountedPtrCast<ChildSelectedArguments>(WidArgs);
+                    if( SelectedArgs->Selected ) {
+                        this->UpdateCurrentSelection( this->SelectionList->GetListContainer()->GetLastSelectedChild() );
+                        this->ListToggle->ManualSelect(false);
+                    }
                 }
             }
         }

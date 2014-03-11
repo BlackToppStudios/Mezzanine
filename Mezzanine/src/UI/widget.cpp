@@ -113,6 +113,11 @@ namespace Mezzanine
             return false;
         }
 
+        void Widget::HandleChildStateChangeImpl(Widget* Child, const UInt32& OldState, const UInt32& NewState)
+        {
+            // Default to nothing
+        }
+
         void Widget::ConstructWidget()
         {
             // Create our events.
@@ -131,14 +136,14 @@ namespace Mezzanine
             RenderLayerGroup* NormalGroup = this->CreateRenderLayerGroup("Normal");
             RenderLayerGroup* HoveredGroup = this->CreateRenderLayerGroup("Hovered");
 
-            this->StateGroupBindings[ WS_Untouched ] = NormalGroup;
-            this->StateGroupBindings[ WS_Hovered ] = HoveredGroup;
-            this->StateGroupBindings[ WS_Focused ] = NormalGroup;
-            this->StateGroupBindings[ WS_Dragged ] = NormalGroup;
-            this->StateGroupBindings[ WS_Hovered | WS_Focused ] = HoveredGroup;
-            this->StateGroupBindings[ WS_Hovered | WS_Dragged ] = HoveredGroup;
-            this->StateGroupBindings[ WS_Focused | WS_Dragged ] = NormalGroup;
-            this->StateGroupBindings[ WS_Hovered | WS_Focused | WS_Dragged ] = HoveredGroup;
+            this->BindGroupToState( WS_Untouched, NormalGroup);
+            this->BindGroupToState( WS_Hovered, HoveredGroup);
+            this->BindGroupToState( WS_Focused, NormalGroup);
+            this->BindGroupToState( WS_Dragged, NormalGroup);
+            this->BindGroupToState( WS_Hovered | WS_Focused, HoveredGroup);
+            this->BindGroupToState( WS_Hovered | WS_Dragged, HoveredGroup);
+            this->BindGroupToState( WS_Focused | WS_Dragged, NormalGroup);
+            this->BindGroupToState( WS_Hovered | WS_Focused | WS_Dragged, HoveredGroup);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -162,8 +167,11 @@ namespace Mezzanine
         void Widget::ForceState(const UInt32 NewState)
         {
             if( this->State != NewState ) {
+                if( this->ParentQuad && this->ParentQuad->IsWidget() ) {
+                    static_cast<UI::Widget*>(this->ParentQuad)->_NotifyChildStateChange(this,this->State,NewState);
+                }
+                this->SetGroupFromState(NewState);
                 this->State = NewState;
-                this->SetGroupFromState(this->State);
             }
         }
 
@@ -438,8 +446,8 @@ namespace Mezzanine
         void Widget::_OnMouseEnter()
         {
             if( !this->IsHovered() ) {
-                this->State |= WS_Hovered;
-                this->SetGroupFromState(this->State);
+                UInt32 NewState = this->State | WS_Hovered;
+                this->ForceState(NewState);
 
                 WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseEnter,this->Name) );
                 this->FireEvent(Args);
@@ -449,8 +457,8 @@ namespace Mezzanine
         void Widget::_OnMouseExit()
         {
             if( this->IsHovered() ) {
-                this->State &= ~WS_Hovered;
-                this->SetGroupFromState(this->State);
+                UInt32 NewState = this->State & ~WS_Hovered;
+                this->ForceState(NewState);
 
                 WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseExit,this->Name) );
                 this->FireEvent(Args);
@@ -460,8 +468,8 @@ namespace Mezzanine
         void Widget::_OnMouseDragStart()
         {
             if( !this->IsDragged() ) {
-                this->State |= WS_Dragged;
-                this->SetGroupFromState(this->State);
+                UInt32 NewState = this->State | WS_Dragged;
+                this->ForceState(NewState);
 
                 WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseDragStart,this->Name) );
                 this->FireEvent(Args);
@@ -471,8 +479,8 @@ namespace Mezzanine
         void Widget::_OnMouseDragEnd()
         {
             if( this->IsDragged() ) {
-                this->State &= ~WS_Dragged;
-                this->SetGroupFromState(this->State);
+                UInt32 NewState = this->State & ~WS_Dragged;
+                this->ForceState(NewState);
 
                 WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventMouseDragEnd,this->Name) );
                 this->FireEvent(Args);
@@ -482,8 +490,8 @@ namespace Mezzanine
         void Widget::_OnFocusGained()
         {
             if( !this->HasFocus() ) {
-                this->State |= WS_Focused;
-                this->SetGroupFromState(this->State);
+                UInt32 NewState = this->State | WS_Focused;
+                this->ForceState(NewState);
 
                 WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventFocusGained,this->Name) );
                 this->FireEvent(Args);
@@ -493,8 +501,8 @@ namespace Mezzanine
         void Widget::_OnFocusLost()
         {
             if( this->HasFocus() ) {
-                this->State &= ~WS_Focused;
-                this->SetGroupFromState(this->State);
+                UInt32 NewState = this->State & ~WS_Focused;
+                this->ForceState(NewState);
 
                 WidgetEventArgumentsPtr Args( new WidgetEventArguments(Widget::EventFocusLost,this->Name) );
                 this->FireEvent(Args);
@@ -539,10 +547,17 @@ namespace Mezzanine
             if( this->HandleInputImpl(Code) ) {
                 return true;
             }else{
-                if( this->ParentQuad && Renderable::RT_Widget == this->ParentQuad->GetRenderableType() )
+                if( this->ParentQuad && this->ParentQuad->IsWidget() )
                     return static_cast<Widget*>(this->ParentQuad)->_HandleInput(Code);
                 else return false;
             }
+        }
+
+        void Widget::_NotifyChildStateChange(Widget* Child, const UInt32& OldState, const UInt32& NewState)
+        {
+            this->HandleChildStateChangeImpl(Child,OldState,NewState);
+            if( this->ParentQuad && this->ParentQuad->IsWidget() )
+                static_cast<Widget*>(this->ParentQuad)->_NotifyChildStateChange(Child,OldState,NewState);
         }
 
         void Widget::_NotifyEvent(EventArgumentsPtr Args)

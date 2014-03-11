@@ -94,14 +94,14 @@ namespace Mezzanine
             RenderLayerGroup* SelectedNormalGroup = this->CreateRenderLayerGroup("SelectedNormal");
             RenderLayerGroup* SelectedHoveredGroup = this->CreateRenderLayerGroup("SelectedHovered");
 
-            this->StateGroupBindings[ WS_Selected ] = SelectedNormalGroup;
-            this->StateGroupBindings[ WS_Selected | WS_Hovered ] = SelectedHoveredGroup;
-            this->StateGroupBindings[ WS_Selected | WS_Focused ] = SelectedNormalGroup;
-            this->StateGroupBindings[ WS_Selected | WS_Dragged ] = SelectedNormalGroup;
-            this->StateGroupBindings[ WS_Selected | WS_Hovered | WS_Focused ] = SelectedHoveredGroup;
-            this->StateGroupBindings[ WS_Selected | WS_Focused | WS_Dragged ] = SelectedNormalGroup;
-            this->StateGroupBindings[ WS_Selected | WS_Dragged | WS_Hovered ] = SelectedHoveredGroup;
-            this->StateGroupBindings[ WS_Selected | WS_Hovered | WS_Focused | WS_Dragged ] = SelectedHoveredGroup;
+            this->BindGroupToState( WS_Selected, SelectedNormalGroup );
+            this->BindGroupToState( WS_Selected | WS_Hovered, SelectedHoveredGroup );
+            this->BindGroupToState( WS_Selected | WS_Focused, SelectedNormalGroup );
+            this->BindGroupToState( WS_Selected | WS_Dragged, SelectedNormalGroup );
+            this->BindGroupToState( WS_Selected | WS_Hovered | WS_Focused, SelectedHoveredGroup );
+            this->BindGroupToState( WS_Selected | WS_Focused | WS_Dragged, SelectedNormalGroup );
+            this->BindGroupToState( WS_Selected | WS_Dragged | WS_Hovered, SelectedHoveredGroup );
+            this->BindGroupToState( WS_Selected | WS_Hovered | WS_Focused | WS_Dragged, SelectedHoveredGroup );
         }
 
         ///////////////////////////////////////////////////////////////////////////////

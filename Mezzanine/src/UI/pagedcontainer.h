@@ -49,10 +49,10 @@ namespace Mezzanine
     {
         class PageProvider;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is the EventArguments class for when a child of a paged container gains focus.
+        /// @brief This is the EventArguments class for when a child of a paged container is selected.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB ChildFocusEventArguments : public WidgetEventArguments
+        class MEZZ_LIB ChildSelectedArguments : public WidgetEventArguments
         {
         public:
             ///////////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,8 @@ namespace Mezzanine
 
             /// @brief The identification of the source firing this event.
             const String ChildName;
+            /// @brief Boole storing whether or not the named child is gaining or losing focus.
+            const Boole Selected;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Construction and Destruction
@@ -68,18 +70,19 @@ namespace Mezzanine
             /// @param Name The name of the event being fired.
             /// @param Source The identification of the widget firing this event.
             /// @param Child The name of the child that has gained focus.
-            ChildFocusEventArguments(const String& Name, const String& Source, const String& Child) :
-                WidgetEventArguments(Name,Source), ChildName(Child) {  }
+            /// @param Select True if the child is becoming the current selection in it's parent container, or false if it is losing the current selection in it's parent container.
+            ChildSelectedArguments(const String& Name, const String& Source, const String& Child, const Boole Select) :
+                WidgetEventArguments(Name,Source), ChildName(Child), Selected(Select) {  }
             /// @brief Class destructor.
-            virtual ~ChildFocusEventArguments() {  }
+            virtual ~ChildSelectedArguments() {  }
 
             ///////////////////////////////////////////////////////////////////////////////
             // CountedPtr Functionality
 
             /// @copydoc EventArguments::GetMostDerived()
-            virtual ChildFocusEventArguments* GetMostDerived()
+            virtual ChildSelectedArguments* GetMostDerived()
                 { return this; }
-        };//ChildFocusEventArguments
+        };//ChildSelectedArguments
     }//UI
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -88,11 +91,11 @@ namespace Mezzanine
         /// could be dropped in favor of a leaner implementation.
         ///////////////////////////////////////
         template <>
-        class ReferenceCountTraits<UI::ChildFocusEventArguments>
+        class ReferenceCountTraits<UI::ChildSelectedArguments>
         {
         public:
             /// @brief Typedef communicating the reference count type to be used.
-            typedef UI::ChildFocusEventArguments RefCountType;
+            typedef UI::ChildSelectedArguments RefCountType;
 
             /// @brief Method responsible for creating a reference count for a CountedPtr of the templated type.
             /// @param Target A pointer to the target class that is to be reference counted.
@@ -102,12 +105,12 @@ namespace Mezzanine
 
             /// @brief Enum used to decide the type of casting to be used by a reference counter of the templated type.
             enum { IsCastable = CastStatic };
-        };//ReferenceCountTraits<ChildFocusEventArguments>
+        };//ReferenceCountTraits<ChildSelectedArguments>
 
     namespace UI
     {
-        /// @brief Convenience typedef for passing around ChildFocusEventArguments.
-        typedef CountedPtr<ChildFocusEventArguments> ChildFocusEventArgumentsPtr;
+        /// @brief Convenience typedef for passing around ChildSelectedArguments.
+        typedef CountedPtr<ChildSelectedArguments> ChildSelectedArgumentsPtr;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is the base class for containers that have a render area and work area of different sizes.
@@ -141,8 +144,8 @@ namespace Mezzanine
 
             /// @brief String containing the type name for this class: "PagedContainer".
             static const String TypeName;
-            /// @brief Event name for when a child of this widget gains focus.
-            static const String EventChildFocusGained;
+            /// @brief Event name for when a child of this widget gets selected.
+            static const String EventChildSelected;
         protected:
             /// @internal
             /// @brief A container of children that meet the criteria for rendering in this container.
@@ -151,8 +154,8 @@ namespace Mezzanine
             /// @brief Vector2 storing the size for all pages of this container.
             Vector2 WorkAreaSize;
             /// @internal
-            /// @brief A pointer to the last child widget that was focused by this container.
-            Widget* LastFocusedChild;
+            /// @brief A pointer to the last child widget that was selected within this container.
+            Widget* LastSelectedChild;
             /// @internal
             /// @brief A pointer to the X axis provider.
             PageProvider* XProvider;
@@ -164,6 +167,8 @@ namespace Mezzanine
             virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
             /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
+            /// @copydoc Widget::HandleChildStateChangeImpl(Widget*,const UInt32&,const UInt32&)
+            virtual void HandleChildStateChangeImpl(Widget* Child, const UInt32& OldState, const UInt32& NewState);
             /// @internal
             /// @brief The container specific logic for updating it's dimensions.
             virtual void UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect) = 0;
@@ -205,9 +210,9 @@ namespace Mezzanine
             /// @brief Forces an update of the visible children in this container.
             virtual void UpdateVisibleChildren();
 
-            /// @brief Gets a pointer to the last focused child widget in this container.
-            /// @return Returns a pointer to the child widget that last gained focus.
-            virtual Widget* GetLastFocusedWidget() const;
+            /// @brief Gets a pointer to the last selected child widget in this container.
+            /// @return Returns a pointer to the child widget that was selected last.
+            virtual Widget* GetLastSelectedChild() const;
 
             /// @brief Gets the current provider configuration of this container.
             /// @return Returns an enum describing the the provider configuration for this container.
@@ -281,13 +286,12 @@ namespace Mezzanine
 
             /// @brief Self logic to be executed when focus is given to a child of this widget.
             /// @param ChildName The name of the child that has gained focus.
-            virtual void _OnChildFocusGained(const String& ChildName);
+            /// @param Selected A Boole indicating whether the child is being selected or deselected.
+            virtual void _OnChildSelected(const String& ChildName, const Boole Selected);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
-            /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr Args)
-            virtual void _NotifyEvent(EventArgumentsPtr Args);
             /// @copydoc QuadRenderable::_AppendRenderDataCascading(ScreenRenderData&)
             virtual void _AppendRenderDataCascading(ScreenRenderData& RenderData);
         };//PagedContainer

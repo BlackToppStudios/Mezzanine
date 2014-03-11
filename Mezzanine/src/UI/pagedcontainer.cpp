@@ -48,29 +48,35 @@ namespace Mezzanine
 {
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        // PagedContainer Static Members
+
         const String PagedContainer::TypeName               = "PagedContainer";
-        const String PagedContainer::EventChildFocusGained  = "ChildFocusGained";
+        const String PagedContainer::EventChildSelected     = "ChildSelected";
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // PagedContainer Methods
 
         PagedContainer::PagedContainer(Screen* Parent) :
             Widget(Parent),
-            LastFocusedChild(NULL),
+            LastSelectedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            { this->AddEvent(PagedContainer::EventChildFocusGained); }
+            { this->AddEvent(PagedContainer::EventChildSelected); }
 
         PagedContainer::PagedContainer(const String& RendName, Screen* Parent) :
             Widget(RendName,Parent),
-            LastFocusedChild(NULL),
+            LastSelectedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            { this->AddEvent(PagedContainer::EventChildFocusGained); }
+            { this->AddEvent(PagedContainer::EventChildSelected); }
 
         PagedContainer::PagedContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent) :
             Widget(RendName,RendRect,Parent),
-            LastFocusedChild(NULL),
+            LastSelectedChild(NULL),
             XProvider(NULL),
             YProvider(NULL)
-            { this->AddEvent(PagedContainer::EventChildFocusGained); }
+            { this->AddEvent(PagedContainer::EventChildSelected); }
 
         PagedContainer::~PagedContainer()
         {
@@ -90,6 +96,24 @@ namespace Mezzanine
         {
             this->Widget::ProtoDeSerializeImpl(SelfRoot);
             this->ProtoDeSerializePageData(SelfRoot);
+        }
+
+        void PagedContainer::HandleChildStateChangeImpl(Widget* Child, const UInt32& OldState, const UInt32& NewState)
+        {
+            if( !( OldState & WS_Focused ) && ( NewState & WS_Focused ) ) {
+                Widget* DirectChild = this->GetClosestChild(Child);
+                if( this->LastSelectedChild != DirectChild ) {
+                    if( this->LastSelectedChild != NULL ) {
+                        ChildSelectedArgumentsPtr DeselectArgs( new ChildSelectedArguments(PagedContainer::EventChildSelected,this->Name,this->LastSelectedChild->GetName(),false) );
+                        this->FireEvent(DeselectArgs);
+                    }
+                    if( DirectChild != NULL ) {
+                        ChildSelectedArgumentsPtr SelectArgs( new ChildSelectedArguments(PagedContainer::EventChildSelected,this->Name,DirectChild->GetName(),true) );
+                        this->FireEvent(SelectArgs);
+                    }
+                    this->LastSelectedChild = DirectChild;
+                }
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -118,9 +142,9 @@ namespace Mezzanine
             this->UpdateContainerDimensionsImpl(CurrDims,CurrDims);
         }
 
-        Widget* PagedContainer::GetLastFocusedWidget() const
+        Widget* PagedContainer::GetLastSelectedChild() const
         {
-            return this->LastFocusedChild;
+            return this->LastSelectedChild;
         }
 
         PagedContainer::ProviderMode PagedContainer::GetProviderConfig() const
@@ -181,7 +205,6 @@ namespace Mezzanine
         {
             this->QuadRenderable::AddChild(Child);
             this->QuickUpdateWorkAreaSize(Child->GetUnifiedSize(),true);
-            Child->Subscribe(Widget::EventFocusGained,this);
         }
 
         void PagedContainer::AddChild(Widget* Child, const UInt16 ZOrder)
@@ -191,21 +214,19 @@ namespace Mezzanine
 
         void PagedContainer::RemoveChild(Widget* ToBeRemoved)
         {
-            if( this->LastFocusedChild == ToBeRemoved ) {
-                this->LastFocusedChild = NULL;
+            if( this->LastSelectedChild == ToBeRemoved ) {
+                this->LastSelectedChild = NULL;
             }
-            ToBeRemoved->Unsubscribe(Widget::EventFocusGained,this);
             this->QuickUpdateWorkAreaSize(ToBeRemoved->GetUnifiedSize(),false);
             this->QuadRenderable::RemoveChild(ToBeRemoved);
         }
 
         void PagedContainer::RemoveAllChildren()
         {
-            this->LastFocusedChild = NULL;
+            this->LastSelectedChild = NULL;
             for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
             {
                 (*It)->_NotifyParenthood(NULL);
-                (*It)->Unsubscribe(Widget::EventFocusGained,this);
             }
             this->ChildWidgets.clear();
             this->UpdateWorkAreaSize();
@@ -214,21 +235,19 @@ namespace Mezzanine
 
         void PagedContainer::DestroyChild(Widget* ToBeDestroyed)
         {
-            if( this->LastFocusedChild == ToBeDestroyed ) {
-                this->LastFocusedChild = NULL;
+            if( this->LastSelectedChild == ToBeDestroyed ) {
+                this->LastSelectedChild = NULL;
             }
-            ToBeDestroyed->Unsubscribe(Widget::EventFocusGained,this);
             this->QuickUpdateWorkAreaSize(ToBeDestroyed->GetUnifiedSize(),false);
             this->QuadRenderable::DestroyChild(ToBeDestroyed);
         }
 
         void PagedContainer::DestroyAllChildren()
         {
-            this->LastFocusedChild = NULL;
+            this->LastSelectedChild = NULL;
             for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
             {
                 (*It)->_NotifyParenthood(NULL);
-                (*It)->Unsubscribe(Widget::EventFocusGained,this);
                 this->ParentScreen->DestroyWidget( (*It) );
             }
             this->ChildWidgets.clear();
@@ -390,26 +409,14 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Event Methods
 
-        void PagedContainer::_OnChildFocusGained(const String& ChildName)
+        void PagedContainer::_OnChildSelected(const String& ChildName, const Boole Selected)
         {
-            ChildFocusEventArgumentsPtr Args( new ChildFocusEventArguments(PagedContainer::EventChildFocusGained,this->Name,ChildName) );
+            ChildSelectedArgumentsPtr Args( new ChildSelectedArguments(PagedContainer::EventChildSelected,this->Name,ChildName,Selected) );
             this->FireEvent(Args);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Methods
-
-        void PagedContainer::_NotifyEvent(EventArgumentsPtr Args)
-        {
-            if( Args->EventName == Widget::EventFocusGained ) {
-                WidgetEventArgumentsPtr WidArgs = CountedPtrCast<WidgetEventArguments>(Args);
-                Widget* EventWidget = this->GetChild(WidArgs->WidgetName);
-                if( EventWidget != NULL ) {
-                    this->LastFocusedChild = EventWidget;
-                    this->_OnChildFocusGained( this->LastFocusedChild->GetName() );
-                }
-            }
-        }
 
         void PagedContainer::_AppendRenderDataCascading(ScreenRenderData& RenderData)
         {

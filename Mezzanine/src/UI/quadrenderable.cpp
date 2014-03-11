@@ -1140,8 +1140,25 @@ namespace Mezzanine
 
         QuadRenderable* QuadRenderable::GetTopMostQuad()
         {
-            if(this->IsChildOfScreen()) return this;
-            else return (this->ParentQuad ? this->ParentQuad->GetTopMostQuad() : this );
+            if( this->IsChildOfScreen() ) {
+                return this;
+            }else{
+                return (this->ParentQuad ? this->ParentQuad->GetTopMostQuad() : this );
+            }
+        }
+
+        Widget* QuadRenderable::GetClosestChild(Widget* Child)
+        {
+            if( Child != NULL ) {
+                QuadRenderable* RetTest = Child;
+                while( RetTest->GetParent() != NULL && RetTest->GetParent() != this )
+                    { RetTest = RetTest->GetParent(); }
+                // By this point the return value will either be NULL or a widget
+                // since it'll hit the ceiling (screen) or find this.
+                // So a blind cast should be safe.
+                return static_cast<Widget*>( RetTest );
+            }
+            return NULL;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
