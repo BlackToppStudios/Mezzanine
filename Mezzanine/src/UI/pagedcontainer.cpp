@@ -147,6 +147,15 @@ namespace Mezzanine
             return this->LastSelectedChild;
         }
 
+        void PagedContainer::ClearSelectedChild()
+        {
+            if( this->LastSelectedChild != NULL ) {
+                ChildSelectedArgumentsPtr DeselectArgs( new ChildSelectedArguments(PagedContainer::EventChildSelected,this->Name,this->LastSelectedChild->GetName(),false) );
+                this->FireEvent(DeselectArgs);
+                this->LastSelectedChild = NULL;
+            }
+        }
+
         PagedContainer::ProviderMode PagedContainer::GetProviderConfig() const
         {
             if( this->XProvider != NULL && this->YProvider != NULL ) {

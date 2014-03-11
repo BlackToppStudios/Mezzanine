@@ -213,6 +213,8 @@ namespace Mezzanine
             /// @brief Gets a pointer to the last selected child widget in this container.
             /// @return Returns a pointer to the child widget that was selected last.
             virtual Widget* GetLastSelectedChild() const;
+            /// @brief Forces the currently selected child to become deselected.
+            virtual void ClearSelectedChild();
 
             /// @brief Gets the current provider configuration of this container.
             /// @return Returns an enum describing the the provider configuration for this container.
