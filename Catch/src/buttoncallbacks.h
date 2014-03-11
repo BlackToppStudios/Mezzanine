@@ -53,30 +53,6 @@ class GSISReturn : public UI::ActivatableListener
         virtual void DoVisibilityChangeItems();
 };
 
-class GSMMReturn : public UI::ActivatableListener
-{
-    public:
-        GSMMReturn();
-        virtual ~GSMMReturn();
-        virtual void DoHoverItems();
-        virtual void DoActivateItems();
-        virtual void DoPreUpdateItems();
-        virtual void DoPostUpdateItems();
-        virtual void DoVisibilityChangeItems();
-};
-
-class GSRestart : public UI::ActivatableListener
-{
-    public:
-        GSRestart();
-        virtual ~GSRestart();
-        virtual void DoHoverItems();
-        virtual void DoActivateItems();
-        virtual void DoPreUpdateItems();
-        virtual void DoPostUpdateItems();
-        virtual void DoVisibilityChangeItems();
-};
-
 class MSStart : public UI::ActivatableListener
 {
     protected:

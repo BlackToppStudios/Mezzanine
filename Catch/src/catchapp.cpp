@@ -104,10 +104,10 @@ void CatchApp::MakeGUI()
 
     ////-------------------  FPS  Stats  -------------------////
     // Create the widget container for the current FPS display
-    UI::Widget* SSCurrentFPS = StatsScreen->CreateWidget("SS_CurrentFPS",UI::UnifiedRect(0.008,0.006,0.21,0.065));
+    UI::Widget* SSCurrentFPS = StatsScreen->CreateWidget("SS_CurrentFPS",UI::UnifiedRect(0.008,0.006,0.23,0.065));
     SSCurrentFPS->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     // Create the widget for displaying the current FPS explanation text
-    UI::Widget* SSCurrentFPSLabel = StatsScreen->CreateWidget("SS_CurrentFPSLabel",UI::UnifiedRect(0.0,0.0,0.55,1.0));
+    UI::Widget* SSCurrentFPSLabel = StatsScreen->CreateWidget("SS_CurrentFPSLabel",UI::UnifiedRect(0.0,0.0,0.65,1.0));
     SSCurrentFPSLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
     SSCurrentFPSLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     UI::SingleLineTextLayer* SSCurrentFPSLabelLayer = SSCurrentFPSLabel->CreateSingleLineTextLayer(StatsScreenText,0,0);
@@ -117,7 +117,7 @@ void CatchApp::MakeGUI()
     SSCurrentFPSLabelLayer->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,SSNormText);
     SSCurrentFPS->AddChild(SSCurrentFPSLabel,1);
     // Create the widget for displaying the current FPS value
-    UI::Widget* SSCurrentFPSValue = StatsScreen->CreateWidget("SS_CurrentFPSValue",UI::UnifiedRect(0.0,0.0,0.45,1.0));
+    UI::Widget* SSCurrentFPSValue = StatsScreen->CreateWidget("SS_CurrentFPSValue",UI::UnifiedRect(0.0,0.0,0.35,1.0));
     SSCurrentFPSValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
     SSCurrentFPSValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     UI::SingleLineTextLayer* SSCurrentFPSValueLayer = SSCurrentFPSValue->CreateSingleLineTextLayer(StatsScreenText,0,0);
@@ -130,10 +130,10 @@ void CatchApp::MakeGUI()
     StatsScreen->AddChild(SSCurrentFPS,1);
 
     // Create the widget container for the average FPS display
-    UI::Widget* SSAverageFPS = StatsScreen->CreateWidget("SS_AverageFPS",UI::UnifiedRect(0.008,0.105,0.21,0.065));
+    UI::Widget* SSAverageFPS = StatsScreen->CreateWidget("SS_AverageFPS",UI::UnifiedRect(0.008,0.105,0.23,0.065));
     SSAverageFPS->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     // Create the widget for displaying the average FPS explanation text
-    UI::Widget* SSAverageFPSLabel = StatsScreen->CreateWidget("SS_AverageFPSLabel",UI::UnifiedRect(0.0,0.0,0.55,1.0));
+    UI::Widget* SSAverageFPSLabel = StatsScreen->CreateWidget("SS_AverageFPSLabel",UI::UnifiedRect(0.0,0.0,0.65,1.0));
     SSAverageFPSLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
     SSAverageFPSLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     UI::SingleLineTextLayer* SSAverageFPSLabelLayer = SSAverageFPSLabel->CreateSingleLineTextLayer(StatsScreenText,0,0);
@@ -143,7 +143,7 @@ void CatchApp::MakeGUI()
     SSAverageFPSLabelLayer->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,SSNormText);
     SSAverageFPS->AddChild(SSAverageFPSLabel,1);
     // Create the widget for displaying the average FPS value
-    UI::Widget* SSAverageFPSValue = StatsScreen->CreateWidget("SS_AverageFPSValue",UI::UnifiedRect(0.0,0.0,0.45,1.0));
+    UI::Widget* SSAverageFPSValue = StatsScreen->CreateWidget("SS_AverageFPSValue",UI::UnifiedRect(0.0,0.0,0.35,1.0));
     SSAverageFPSValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
     SSAverageFPSValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     UI::SingleLineTextLayer* SSAverageFPSValueLayer = SSAverageFPSValue->CreateSingleLineTextLayer(StatsScreenText,0,0);
@@ -231,6 +231,7 @@ void CatchApp::MakeGUI()
     MMLevelStartText->HorizontallyAlign(UI::LA_Center);
     MMLevelStartText->VerticallyAlign(UI::LA_Center);
     MMLevelStartText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
+    MMLevelStart->Subscribe(UI::Button::EventDeactivated,new MSLevelStart(MMLevelSelectGrid),true);
     MMLevelSelectWin->AddChild(MMLevelStart,4);
 
     ////------------------  Options  ------------------////
@@ -791,7 +792,7 @@ void CatchApp::MakeGUI()
     GSOptionsWin->AddChild(GSVideoSetAccess,1);
 
     // Create the second of the two buttons that will display the two sets of options (audio options)
-    UI::StackButton* GSAudioSetAccess = GameScreen->CreateStackButton("GS_AudioSetAccess",UI::UnifiedRect(0.55,0.0365,0.34,0.11));
+    UI::StackButton* GSAudioSetAccess = GameScreen->CreateStackButton("GS_AudioSetAccess",UI::UnifiedRect(0.55,0.0365,0.34,0.12));
     GSAudioSetAccess->CreateSingleImageLayer("GSButton",0,"Normal");
     GSAudioSetAccess->CreateSingleImageLayer("GSHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSAudioSetAccessText = GSAudioSetAccess->CreateSingleLineTextLayer(GameScreenText,1,1);
@@ -1131,7 +1132,7 @@ void CatchApp::MakeGUI()
     // Second button Y placement: 26
 
     // Create the game restart button
-    UI::Button* GSMenuRestart = GameScreen->CreateButton("GS_MenuRestart",UI::UnifiedRect(0.15,0.445,0.70,0.11));
+    UI::Button* GSMenuRestart = GameScreen->CreateButton("GS_MenuRestart",UI::UnifiedRect(0.15,0.445,0.70,0.12));
     GSMenuRestart->CreateSingleImageLayer("GSOptionsButton",0,"Normal");
     GSMenuRestart->CreateSingleImageLayer("GSOptionsHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSMenuRestartText = GSMenuRestart->CreateSingleLineTextLayer(GameScreenText,1,1);
@@ -1139,12 +1140,13 @@ void CatchApp::MakeGUI()
     GSMenuRestartText->HorizontallyAlign(UI::LA_Center);
     GSMenuRestartText->VerticallyAlign(UI::LA_Center);
     GSMenuRestartText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
+    GSMenuRestart->Subscribe(UI::Button::EventDeactivated,&GSRestart);
     GSMenuRoot->AddChild(GSMenuRestart,3);
 
     // Create the game return button
-    UI::StackButton* GSMenuReturn = GameScreen->CreateStackButton("GS_MenuReturn",UI::UnifiedRect(0.15,0.63,0.70,0.11));
-    GSMenuReturn->CreateSingleImageLayer("GSOptionsButton",0,"Hovered");
-    GSMenuReturn->CreateSingleImageLayer("GSOptionsHoveredButton",0,"Normal");
+    UI::StackButton* GSMenuReturn = GameScreen->CreateStackButton("GS_MenuReturn",UI::UnifiedRect(0.15,0.63,0.70,0.12));
+    GSMenuReturn->CreateSingleImageLayer("GSOptionsButton",0,"Normal");
+    GSMenuReturn->CreateSingleImageLayer("GSOptionsHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSMenuReturnText = GSMenuReturn->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSMenuReturnText->SetText("Return to Game");
     GSMenuReturnText->HorizontallyAlign(UI::LA_Center);
@@ -1153,8 +1155,8 @@ void CatchApp::MakeGUI()
     GSMenuRoot->SetPopButton(GSMenuReturn);
     GSMenuRoot->AddChild(GSMenuReturn,4);
 
-    // Create the game restart button
-    UI::Button* GSMenuExit = GameScreen->CreateButton("GS_MenuExit",UI::UnifiedRect(0.15,0.815,0.70,0.11));
+    // Create the game exit button
+    UI::Button* GSMenuExit = GameScreen->CreateButton("GS_MenuExit",UI::UnifiedRect(0.15,0.815,0.70,0.12));
     GSMenuExit->CreateSingleImageLayer("GSOptionsButton",0,"Normal");
     GSMenuExit->CreateSingleImageLayer("GSOptionsHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSMenuExitText = GSMenuExit->CreateSingleLineTextLayer(GameScreenText,1,1);
@@ -1162,6 +1164,7 @@ void CatchApp::MakeGUI()
     GSMenuExitText->HorizontallyAlign(UI::LA_Center);
     GSMenuExitText->VerticallyAlign(UI::LA_Center);
     GSMenuExitText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
+    GSMenuExit->Subscribe(UI::Button::EventDeactivated,&GSMMReturn);
     GSMenuRoot->AddChild(GSMenuExit,5);
 
     ////-----------------  Item Shop Menu  -----------------////
@@ -1268,17 +1271,20 @@ void CatchApp::MakeGUI()
     GSLevelReportFinishText->HorizontallyAlign(UI::LA_Center);
     GSLevelReportFinishText->VerticallyAlign(UI::LA_Center);
     GSLevelReportFinishText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
+    GSLevelReportFinish->Subscribe(UI::Button::EventDeactivated,&GSMMReturn);
     GSLevelReport->AddChild(GSLevelReportFinish,3);
 
     UI::Button* GSLevelReportRetry = GameScreen->CreateButton("GS_LevelReportRetry",UI::UnifiedRect(0.54,0.815,0.25,0.125));
     GSLevelReportRetry->CreateSingleImageLayer("GSStoreButton",0,"Normal");
-    GSLevelReportRetry->CreateSingleImageLayer("GSStoreHoveredButton",0,"Normal");
+    GSLevelReportRetry->CreateSingleImageLayer("GSStoreHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSLevelReportRetryText = GSLevelReportRetry->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSLevelReportRetryText->SetText("Retry");
     GSLevelReportRetryText->HorizontallyAlign(UI::LA_Center);
     GSLevelReportRetryText->VerticallyAlign(UI::LA_Center);
     GSLevelReportRetryText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
+    GSLevelReportRetry->Subscribe(UI::Button::EventDeactivated,&GSRestart);
     GSLevelReport->AddChild(GSLevelReportRetry,4);
+    GSLevelReport->Hide();
 }
 
 void CatchApp::CreateLoadingScreen()
@@ -1472,7 +1478,7 @@ void CatchApp::UnloadLevel()
     StartAreas.clear();
     ThrownItems.clear();
 
-    ResMan->DestroyAssetGroup(LevelMan->GetCurrentLevel()->GetGroupName());
+    //ResMan->DestroyAssetGroup(LevelMan->GetCurrentLevel()->GetGroupName());
     PhysMan->ClearPhysicsMetaData();
     Scorer->ResetLevelData();
     delete EndTimer;

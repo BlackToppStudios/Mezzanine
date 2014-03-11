@@ -10,6 +10,19 @@ void AllAppExit(EventArgumentsPtr Args)
     Entresol::GetSingletonPtr()->BreakMainLoop();
 }
 
+void GSMMReturn(EventArgumentsPtr Args)
+{
+    CatchApp::GetCatchAppPointer()->GetLevelManager()->SetNextLevel("MainMenu");
+    Entresol::GetSingletonPtr()->BreakMainLoop();
+}
+
+void GSRestart(EventArgumentsPtr Args)
+{
+    LevelManager* LevelMan = CatchApp::GetCatchAppPointer()->GetLevelManager();
+    LevelMan->SetNextLevel( LevelMan->GetCurrentLevel() );
+    Entresol::GetSingletonPtr()->BreakMainLoop();
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // MSLevelCellSelect Methods
 
@@ -33,6 +46,23 @@ void MSLevelCellSelect::operator()(EventArgumentsPtr Args)
             }
         }
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// MSLevelStart Methods
+
+MSLevelStart::MSLevelStart(UI::GridContainer* LS) :
+    LevelSelect(LS)
+    {  }
+
+MSLevelStart::~MSLevelStart()
+    {  }
+
+void MSLevelStart::operator()(EventArgumentsPtr Args)
+{
+    CatchApp::GetCatchAppPointer()->GetLevelManager()->SetNextLevel( this->LevelSelect->GetLastSelectedChild()->GetName() );
+    Entresol::GetSingletonPtr()->BreakMainLoop();
+    this->LevelSelect->ClearSelectedChild();
 }
 
 #endif

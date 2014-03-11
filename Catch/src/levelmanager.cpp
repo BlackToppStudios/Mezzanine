@@ -1157,6 +1157,15 @@ void LoadJustBounce()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// Anonymous Namespace Utilities
+
+namespace
+{
+    /// @brief A mutex used by the level loader to set the next level.
+    Threading::Mutex NextLevelMutex;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // CatchLevel Methods
 
 CatchLevel::CatchLevel(const String& LvlName) :
@@ -1463,7 +1472,7 @@ void LevelManager::SetNextLevel(const String& LevelName)
 
 void LevelManager::SetNextLevel(GameLevel* NextLevel)
 {
-    /// @todo This assignment needs to be made thread-safe somehow.
+    Threading::lock_guard<Threading::Mutex> Lock(NextLevelMutex);
     this->LevelToLoad = NextLevel;
 }
 
