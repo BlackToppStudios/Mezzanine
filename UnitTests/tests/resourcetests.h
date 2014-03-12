@@ -231,7 +231,7 @@ class resourcetests : public UnitTestGroup
         String GetCommandResults(String Command)
         {
             Command += " > CommandResults.txt";
-            system(Command.c_str());
+            (system(Command.c_str()));
             std::ifstream File("CommandResults.txt");
             return String( std::istreambuf_iterator<char>(File), std::istreambuf_iterator<char>());
         }

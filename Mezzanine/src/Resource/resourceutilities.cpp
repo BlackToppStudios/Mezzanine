@@ -63,11 +63,12 @@
     #include "pwd.h"
     #include <mach-o/dyld.h> // for _NSGetExecutablePath
 #else
-    #include <unistd.h>//for sleep and getcwd
+    #include <unistd.h>     // for sleep and getcwd
     #include <errno.h>
     #include <sys/stat.h>
     #include <sys/types.h>
     #include <pwd.h>
+    #include <cstring>      // for strerror
 #endif
 
 #include <algorithm>
@@ -132,7 +133,7 @@ namespace Mezzanine
                 }
                 StringStream ExceptionStream;
                 ExceptionStream << "Unable to create directory.  Error follows:" << std::endl;
-                ExceptionStream << strerror(errno);
+                ExceptionStream << std::strerror(errno);
                 MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
             }
             return true;
