@@ -198,6 +198,12 @@ namespace Mezzanine
             /// @return Returns true if the input was handled, false otherwise.
             virtual Boole HandleInputImpl(const Input::MetaCode& Code);
             /// @internal
+            /// @brief Handles the logic to execute when a child of this widget has it's state updated.
+            /// @param Child A pointer to the child that was updated.
+            /// @param OldState The pre-update state of the child.
+            /// @param NewState The post-update state of the child.
+            virtual void HandleChildStateChangeImpl(Widget* Child, const UInt32& OldState, const UInt32& NewState);
+            /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             void ConstructWidget();
         //public:
@@ -354,6 +360,12 @@ namespace Mezzanine
             /// @param Code The MetaCode to be processed.
             /// @return Returns true if this input was consumed/handled, false otherwise.
             virtual Boole _HandleInput(const Input::MetaCode& Code);
+            /// @internal
+            /// @brief Notifies this widget that a child (or grandchild) has had it's state updated.
+            /// @param Child A pointer to the child that was updated.
+            /// @param OldState The pre-update state of the child.
+            /// @param NewState The post-update state of the child.
+            virtual void _NotifyChildStateChange(Widget* Child, const UInt32& OldState, const UInt32& NewState);
             /// @copydoc EventSubscriber::_NotifyEvent(EventArgumentsPtr Args)
             virtual void _NotifyEvent(EventArgumentsPtr Args);
         };//Widget

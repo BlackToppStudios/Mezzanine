@@ -376,13 +376,20 @@ namespace Mezzanine
             /// @return Returns a const @ref SizingInfo reference describing how this QuadRenderable is sized.
             virtual const SizingInfo& GetSizingPolicy() const;
 
-            /// @brief Sets the behavior this quad will have when it is positioned automatically.
+            /// @brief Sets the behavior this quad will have when it is positioned automatically on the X axis.
             /// @note This method is not retroactive.  Setting this to a different value will not cause it to reposition.
-            /// @param Rules The action to take when this is positioned.  See @ref PositioningFlags enum for more info.
-            virtual void SetPositioningRules(const Whole Rules);
-            /// @brief Gets the current behavior this quad will follow when it is positioned automatically.
-            /// @return Returns a bitfield of @ref PositioningFlags reprensenting the action this quad will take when it is positioned.
-            virtual Whole GetPositioningRules() const;
+            /// @param Rules The action to take when this is positioned on the X axis.  See @ref PositioningFlags enum for more info.
+            virtual void SetHorizontalPositioningRules(const Whole Rules);
+            /// @brief Gets the current behavior this quad will follow when it is positioned automatically on the X axis.
+            /// @return Returns a bitfield of @ref PositioningFlags reprensenting the action this quad will take when it is positioned on the X axis.
+            virtual Whole GetHorizontalPositioningRules() const;
+            /// @brief Sets the behavior this quad will have when it is positioned automatically on the Y axis.
+            /// @note This method is not retroactive.  Setting this to a different value will not cause it to reposition.
+            /// @param Rules The action to take when this is positioned on the Y axis.  See @ref PositioningFlags enum for more info.
+            virtual void SetVerticalPositioningRules(const Whole Rules);
+            /// @brief Gets the current behavior this quad will follow when it is positioned automatically on the Y axis.
+            /// @return Returns a bitfield of @ref PositioningFlags reprensenting the action this quad will take when it is positioned on the Y axis.
+            virtual Whole GetVerticalPositioningRules() const;
             /// @brief Sets the behavior this quad will have on the X axis when it is resized.
             /// @note This method is not retroactive.  Setting this to a different value will not cause it to resize.
             /// @param Rules The action to take when this is resized.  See @ref SizingRules enum for more info.
@@ -821,7 +828,12 @@ namespace Mezzanine
             /// @note Since the screen is pretty much always the root and you can get the screen through other methods,
             /// that isn't factored in when searching.  If this quad is a direct child of the screen, this will be returned.
             /// @return Returns a pointer to the QuadRenderable that is both an ancestor of this quad, and a direct child of the screen.
-            virtual QuadRenderable* GetTopMostQuad();
+            QuadRenderable* GetTopMostQuad();
+            /// @brief Gets a pointer to the child of this QuadRenderable that is storing a child, or another quad that is.
+            /// @note If the Child argument is a child of this, this method will return the Child argument.
+            /// @param Child A pointer to the Widget to check for.
+            /// @return Returns a pointer to the Widget most closely related to the specified child that is also a child of this quad, or NULL if the Widget isn't a child of this.
+            Widget* GetClosestChild(Widget* Child);
 
             ///////////////////////////////////////////////////////////////////////////////
             // VertexCaching Methods

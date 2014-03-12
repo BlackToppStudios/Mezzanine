@@ -225,7 +225,7 @@ namespace Mezzanine
         if(this->GetAreaEffectManager()==0)
             { this->AddManager(new AreaEffectManager()); }
         if(this->GetResourceManager()==0)
-            { this->AddManager(new ResourceManager(EngineDataPath)); }
+            { this->AddManager(new Resource::ResourceManager(EngineDataPath)); }
         if(this->GetGraphicsManager()==0)
             { this->AddManager(new Graphics::GraphicsManager()); }
         if(this->GetEventManager()==0)
@@ -279,13 +279,13 @@ namespace Mezzanine
         // Create or set the resource manager.
         /// @todo This currently forces our default resource manager to be constructed, which isn't in line with our factory/initiailzation design.
         /// This should be addressed somehow.
-        if(ResourceManager::SingletonValid())
-            { AddManager(ResourceManager::GetSingletonPtr()); }
+        if(Resource::ResourceManager::SingletonValid())
+            { AddManager(Resource::ResourceManager::GetSingletonPtr()); }
         else
-            { AddManager(new ResourceManager(EngineDataPath, ArchType)); }
+            { AddManager(new Resource::ResourceManager(EngineDataPath, ArchType)); }
 
         // Open and load the initializer doc.
-        ResourceManager* ResourceMan = GetResourceManager();
+        Resource::ResourceManager* ResourceMan = GetResourceManager();
         /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
         Resource::FileStream InitStream(InitializerFile,EngineDataPath);
         XML::Document InitDoc;
@@ -427,7 +427,7 @@ namespace Mezzanine
                 // Get the group type
                 CurrAttrib = (*GroupIt).GetAttribute("GroupType");
                 if(!CurrAttrib.Empty())
-                    GroupType = ResourceManager::GetArchiveTypeFromString(CurrAttrib.AsString());
+                    GroupType = Resource::ResourceManager::GetArchiveTypeFromString(CurrAttrib.AsString());
                 // Get the group name
                 CurrAttrib = (*GroupIt).GetAttribute("GroupName");
                 if(!CurrAttrib.Empty())
@@ -744,7 +744,7 @@ namespace Mezzanine
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Physics::DefaultPhysicsManagerFactory());
         //DefaultResourceManager
         ManIt = this->ManagerFactories.find("DefaultResourceManager");
-        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new DefaultResourceManagerFactory());
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Resource::DefaultResourceManagerFactory());
         //DefaultSceneManager
         ManIt = this->ManagerFactories.find("DefaultSceneManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Graphics::DefaultSceneManagerFactory());
@@ -967,9 +967,9 @@ namespace Mezzanine
         return dynamic_cast<Audio::SoundScapeManager*>( this->GetManager(ManagerBase::MT_SoundScapeManager, WhichOne) );
     }
 
-    ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
+    Resource::ResourceManager* Entresol::GetResourceManager(const UInt16 WhichOne)
     {
-        return dynamic_cast<ResourceManager*>( this->GetManager(ManagerBase::MT_ResourceManager, WhichOne) );
+        return dynamic_cast<Resource::ResourceManager*>( this->GetManager(ManagerBase::MT_ResourceManager, WhichOne) );
     }
 
     UI::UIManager* Entresol::GetUIManager(const UInt16 WhichOne)

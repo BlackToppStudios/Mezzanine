@@ -242,6 +242,10 @@ namespace Mezzanine
             /// @param AtlasName The name of the Atlas, which is usually the name of the file without the extension.
             /// @return Returns a pointer to the requested Atlas, or NULL if it doesn't exist.
             TextureAtlas* GetAtlas(const String& AtlasName);
+            /// @brief Gets a loaded Atlas being stored in this manager.
+            /// @param AtlasName The name of the Atlas, which is usually the name of the file without the extension.
+            /// @return Returns a pointer to the requested Atlas, or throws an exception if it doesn't exist.
+            TextureAtlas* GetAtlasExcept(const String& AtlasName);
             /// @brief Destroys a loaded texture atlas.
             /// @param ToBeDestroyed A pointer to the texture atlas that will be destroyed.
             void DestroyAtlas(TextureAtlas* ToBeDestroyed);

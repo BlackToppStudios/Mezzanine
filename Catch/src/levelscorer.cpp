@@ -3,7 +3,6 @@
 
 #include "levelscorer.h"
 #include "catchapp.h"
-#include "levelreportcell.h"
 
 LevelScorer::LevelScorer() :
     LevelTargetTime(0)

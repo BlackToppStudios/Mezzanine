@@ -79,7 +79,7 @@ void AudioSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
             if( StringTools::EndsWith( WidArgs->WidgetName, "_MuteBox", true ) ) {
                 AudioMan->SetMasterMute(false);
             }
-        }else if( WidArgs->EventName == UI::PagedContainer::EventChildFocusGained ) {
+        }else if( WidArgs->EventName == UI::PagedContainer::EventChildSelected ) {
             //
             // Fill in later
             //
@@ -314,11 +314,13 @@ CatchPostInputWorkUnit::~CatchPostInputWorkUnit()
 
 void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
+    // Setup our pointers
     Graphics::CameraManager* CamMan = Entresol::GetSingletonPtr()->GetCameraManager();
     Input::InputManager* InputMan = Input::InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
     CameraController* DefaultControl = CamMan->GetOrCreateCameraController(CamMan->GetCamera(0));
+    // Determine our camera linear movement
     if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A) )
         DefaultControl->StrafeLeft(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D) )
@@ -327,7 +329,8 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
         DefaultControl->MoveForward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S) )
         DefaultControl->MoveBackward(300 * (this->CatchApplication->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001));
-    static bool MouseCam = false;
+    // Determine our camera angular movement
+    static Boole MouseCam = false;
     if( SysKeyboard->IsButtonPressing(Input::KEY_HOME) )
         MouseCam = true;
     if( SysKeyboard->IsButtonPressing(Input::KEY_END) )
@@ -335,16 +338,25 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
     Vector2 Offset = SysMouse->GetMouseDelta();
     if( MouseCam && Vector2(0,0) != Offset )
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
-
-    if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) )
-    {
+    // Determine our Debug drawer visibility
+    if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) ) {
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-        if(PhysMan->GetDebugRenderingMode())
-        {
+        if( PhysMan->GetDebugRenderingMode() ) {
             PhysMan->SetDebugRenderingMode(Physics::DDM_NoDebug);
         }else{
             PhysMan->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
         }
+    }
+    // Determine UI screen visibility
+    static Boole HideUI = false;
+    if( SysKeyboard->IsButtonPressing(Input::KEY_F4) ) {
+        Boole Toggled = !HideUI;
+        if( Toggled ) {
+            this->CatchApplication->TheEntresol->GetUIManager()->HideAllScreens();
+        }else{
+            this->CatchApplication->SetVisibleScreens( this->CatchApplication->GetState() );
+        }
+        HideUI = Toggled;
     }
 }
 

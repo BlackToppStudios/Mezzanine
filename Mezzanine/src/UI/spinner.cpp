@@ -244,21 +244,23 @@ namespace Mezzanine
             this->RemoveChild( this->ValueDisplay );
 
             if( Style == UI::Spn_Separate_Horizontal || Style == Spn_Separate_Vertical ) {
-                this->IncrementSpin->SetUnifiedSize( UnifiedVec2(1,1,0,0) );
-                this->ValueDisplay->SetUnifiedSize( UnifiedVec2(1,1,0,0) );
-                this->DecrementSpin->SetUnifiedSize( UnifiedVec2(1,1,0,0) );
+                this->IncrementSpin->SetUnifiedSize( UnifiedVec2(1,1) );
+                this->ValueDisplay->SetUnifiedSize( UnifiedVec2(1,1) );
+                this->DecrementSpin->SetUnifiedSize( UnifiedVec2(1,1) );
 
                 if( Style == UI::Spn_Separate_Horizontal ) {
 
-                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_TopLeft);
+                    this->DecrementSpin->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+                    this->DecrementSpin->SetVerticalPositioningRules(UI::PF_Anchor_Top);
                     this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->DecrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
 
-                    this->ValueDisplay->SetPositioningRules(UI::PF_Anchor_Top);
+                    this->ValueDisplay->SetVerticalPositioningRules(UI::PF_Anchor_Top);
                     this->ValueDisplay->SetHorizontalSizingRules(UI::SR_Fill_Available);
                     this->ValueDisplay->SetVerticalSizingRules(UI::SR_Unified_Dims);
 
-                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_TopRight);
+                    this->IncrementSpin->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+                    this->IncrementSpin->SetVerticalPositioningRules(UI::PF_Anchor_Top);
                     this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->IncrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
 
@@ -271,15 +273,17 @@ namespace Mezzanine
                     }
                     this->LayoutStrat = new HorizontalLayoutStrategy();
                 }else if( Style == Spn_Separate_Vertical ) {
-                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_TopLeft);
+                    this->IncrementSpin->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+                    this->IncrementSpin->SetVerticalPositioningRules(UI::PF_Anchor_Top);
                     this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Unified_Dims);
                     this->IncrementSpin->SetVerticalSizingRules(UI::SR_Match_Other_Axis);
 
-                    this->ValueDisplay->SetPositioningRules(UI::PF_Anchor_Left);
+                    this->ValueDisplay->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
                     this->ValueDisplay->SetHorizontalSizingRules(UI::SR_Unified_Dims);
                     this->ValueDisplay->SetVerticalSizingRules(UI::SR_Fill_Available);
 
-                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_BottomLeft);
+                    this->DecrementSpin->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+                    this->DecrementSpin->SetVerticalPositioningRules(UI::PF_Anchor_Bottom);
                     this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Unified_Dims);
                     this->DecrementSpin->SetVerticalSizingRules(UI::SR_Match_Other_Axis);
 
@@ -293,25 +297,28 @@ namespace Mezzanine
                     this->LayoutStrat = new VerticalLayoutStrategy();
                 }
             }else if( Style == Spn_Together_Left || Style == Spn_Together_Right ) {
-                this->IncrementSpin->SetUnifiedSize( UnifiedVec2(1,0.5,0,0) );
-                this->IncrementSpin->SetUnifiedPosition( UnifiedVec2(0,0,0,0) );
+                this->IncrementSpin->SetUnifiedSize( UnifiedVec2(1,0.5) );
+                this->IncrementSpin->SetUnifiedPosition( UnifiedVec2(0,0) );
 
-                this->ValueDisplay->SetUnifiedSize( UnifiedVec2(1,1,0,0) );
-                this->ValueDisplay->SetUnifiedPosition( UnifiedVec2(0,0,0,0) );
+                this->ValueDisplay->SetUnifiedSize( UnifiedVec2(1,1) );
+                this->ValueDisplay->SetUnifiedPosition( UnifiedVec2(0,0) );
 
-                this->DecrementSpin->SetUnifiedSize( UnifiedVec2(1,0.5,0,0) );
-                this->DecrementSpin->SetUnifiedPosition( UnifiedVec2(0,0,0,0) );
+                this->DecrementSpin->SetUnifiedSize( UnifiedVec2(1,0.5) );
+                this->DecrementSpin->SetUnifiedPosition( UnifiedVec2(0,0) );
 
                 if( Style == Spn_Together_Left ) {
-                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_TopLeft);
+                    this->IncrementSpin->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+                    this->IncrementSpin->SetVerticalPositioningRules(UI::PF_Anchor_Top);
                     this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->IncrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
 
-                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_BottomLeft);
+                    this->DecrementSpin->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+                    this->DecrementSpin->SetVerticalPositioningRules(UI::PF_Anchor_Bottom);
                     this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->DecrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
 
-                    this->ValueDisplay->SetPositioningRules(UI::PF_Anchor_Top);
+                    this->ValueDisplay->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+                    this->ValueDisplay->SetVerticalPositioningRules(UI::PF_Anchor_Top);
                     this->ValueDisplay->SetHorizontalSizingRules(UI::SR_Fill_Available);
                     this->ValueDisplay->SetVerticalSizingRules(UI::SR_Unified_Dims);
 
@@ -319,15 +326,18 @@ namespace Mezzanine
                     this->AddChild(this->DecrementSpin,2);
                     this->AddChild(this->ValueDisplay,3);
                 }else if( Style == Spn_Together_Right ) {
-                    this->ValueDisplay->SetPositioningRules(UI::PF_Anchor_Top);
+                    this->ValueDisplay->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+                    this->ValueDisplay->SetVerticalPositioningRules(UI::PF_Anchor_Top);
                     this->ValueDisplay->SetHorizontalSizingRules(UI::SR_Fill_Available);
                     this->ValueDisplay->SetVerticalSizingRules(UI::SR_Unified_Dims);
 
-                    this->IncrementSpin->SetPositioningRules(UI::PF_Anchor_TopRight);
+                    this->IncrementSpin->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+                    this->IncrementSpin->SetVerticalPositioningRules(UI::PF_Anchor_Top);
                     this->IncrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->IncrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
 
-                    this->DecrementSpin->SetPositioningRules(UI::PF_Anchor_BottomRight);
+                    this->DecrementSpin->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+                    this->DecrementSpin->SetVerticalPositioningRules(UI::PF_Anchor_Bottom);
                     this->DecrementSpin->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->DecrementSpin->SetVerticalSizingRules(UI::SR_Unified_Dims);
 

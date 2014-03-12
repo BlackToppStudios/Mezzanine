@@ -55,10 +55,11 @@
 #include "Audio/OALS/oalsaudiomanager.h"
 #include "Audio/OALS/oalssoundscapemanager.h"
 
+#include "Resource/resourcemanager.h"
+
 #include "entresol.h"
 #include "stringtool.h"
 #include "exception.h"
-#include "resourcemanager.h"
 
 namespace Mezzanine
 {
@@ -312,7 +313,7 @@ namespace Mezzanine
 
                 // Setup our needed parameters
                 Audio::Encoding Encode = Audio::Enc_RAW;
-                Resource::DataStreamPtr SoundStream = ResourceManager::GetSingletonPtr()->OpenAssetStream(FileName,Group);
+                Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->OpenAssetStream(FileName,Group);
 
                 // Figure out the encoding from the filename
                 String Extension = FileName.substr(FileName.find_last_of(".")+1);
@@ -342,7 +343,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 // Create our stream and get on with it
-                Resource::DataStreamPtr SoundStream = ResourceManager::GetSingletonPtr()->CreateDataStream(StreamName,Buffer,Length);
+                Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(StreamName,Buffer,Length);
 
                 return this->CreateSoundProxy(Type,SoundStream,Encode);
             }
@@ -353,7 +354,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 // Create our stream and get on with it
-                Resource::DataStreamPtr SoundStream = ResourceManager::GetSingletonPtr()->CreateDataStream(StreamName,Buffer,Length);
+                Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(StreamName,Buffer,Length);
 
                 return this->CreateSoundProxy(Type,SoundStream,Frequency,Config);
             }

@@ -197,7 +197,7 @@ namespace Mezzanine
                     MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,Resolution::GetSerializableName() + " was not found in the provided XML node, which was expected.");
                 }
             }
-            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
+            /// @brief Get the name of the the XML tag the class will leave behind as its instances are serialized.
             /// @return A string containing the name of this class.
             static String GetSerializableName()
             {

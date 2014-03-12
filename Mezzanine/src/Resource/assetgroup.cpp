@@ -41,19 +41,71 @@
 #define _resourceassetgroup_cpp
 
 #include "Resource/assetgroup.h"
+#include "Resource/memorystream.h"
+#include "Resource/filestream.h"
+
+#include <Ogre.h>
 
 namespace Mezzanine
 {
     namespace Resource
     {
-        AssetGroup::AssetGroup()
+        AssetGroup::AssetGroup(const String& GroupName) :
+            Name(GroupName)
         {
-
+            Ogre::ResourceGroupManager::getSingletonPtr()->createResourceGroup(this->Name);
         }
 
         AssetGroup::~AssetGroup()
         {
+            Ogre::ResourceGroupManager::getSingletonPtr()->destroyResourceGroup(this->Name);
+        }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        const String& AssetGroup::GetName() const
+        {
+            return this->Name;
+        }
+
+        void AssetGroup::InitializeAssets()
+        {
+            Ogre::ResourceGroupManager::getSingletonPtr()->initialiseResourceGroup(this->Name);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Stream Management
+
+        Resource::DataStreamPtr AssetGroup::OpenAssetStream(const String& AssetName)
+        {
+            /// @todo This entire method is a bit of a hack.  When the resource system gets refactored it should go through our archives or whatever equivalent.
+            /// Since we currently have to put up with Ogre's system, we'll use it for now as a hack.
+
+            AssetIterator StreamIt = this->GroupAssets.find(AssetName);
+            if( StreamIt != this->GroupAssets.end() )
+                return (*StreamIt).second;
+
+            Ogre::DataStreamPtr OgreStream = Ogre::ResourceGroupManager::getSingletonPtr()->openResource(AssetName,this->Name);
+            Char8* AssetBuffer = new Char8[ OgreStream->size() ];
+            OgreStream->read( (void*)AssetBuffer, OgreStream->size() );
+
+            DataStreamPtr Ret = this->CreateDataStream(AssetName,AssetBuffer,OgreStream->size());
+            return Ret;
+        }
+
+        Resource::DataStreamPtr AssetGroup::CreateDataStream(void* Buffer, const UInt32 BufferSize)
+        {
+            Resource::DataStreamPtr NewStream( new Resource::MemoryStream(Buffer,BufferSize,true) );
+            this->UnnamedGroupAssets.push_back(NewStream);
+            return NewStream;
+        }
+
+        Resource::DataStreamPtr AssetGroup::CreateDataStream(const String& AssetName, void* Buffer, const UInt32 BufferSize)
+        {
+            Resource::DataStreamPtr NewStream( new Resource::MemoryStream(Buffer,BufferSize,true) );
+            this->GroupAssets.insert(std::pair<String,Resource::DataStreamPtr>(AssetName,NewStream));
+            return NewStream;
         }
     }//Resource
 }//Mezzanine

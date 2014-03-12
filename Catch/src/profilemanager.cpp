@@ -2,7 +2,6 @@
 #define _profilemanager_cpp
 
 #include "profilemanager.h"
-#include "levelselectcell.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CatchProfile Methods

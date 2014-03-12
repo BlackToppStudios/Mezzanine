@@ -60,6 +60,7 @@
     #include "Graphics/graphics.h"
     #include "Input/input.h"
     #include "Physics/physics.h"
+    #include "Resource/resource.h"
     #include "Scripting/scripting.h"
     #include "XML/xml.h"
     #include "UI/ui.h"
@@ -134,8 +135,6 @@
 #include "rayquerytool.h"
 
 #ifndef SWIG
-#include "resource.h"
-#include "resourcemanager.h"
 #include "rigiddebris.h"
 #include "serialization.h"
 #include "singleton.h"

@@ -235,17 +235,18 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}quaternion.h"
         "${${PROJECT_NAME}_SRC_DIR}ray.h"
         "${${PROJECT_NAME}_SRC_DIR}rayquerytool.h"
-        "${${PROJECT_NAME}_SRC_DIR}resource.h"
-        "${${PROJECT_NAME}_SRC_DIR}resourcemanager.h"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/resource.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/resourceenumerations.h"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/resourcemanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/archive.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/asset.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assetgroup.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assethandler.h"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/assetid.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/datastream.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/filestream.h"
-        "${${PROJECT_NAME}_SRC_DIR}Resource/inputstream.h"
         "${${PROJECT_NAME}_SRC_DIR}Resource/memorystream.h"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/resourceutilities.h"
         "${${PROJECT_NAME}_SRC_DIR}rigiddebris.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/script.h"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scripting.h"
@@ -517,15 +518,15 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}quaternion.cpp"
         "${${PROJECT_NAME}_SRC_DIR}ray.cpp"
         "${${PROJECT_NAME}_SRC_DIR}rayquerytool.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}resourcemanager.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/resourcemanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/archive.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/asset.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assetgroup.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/assethandler.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/datastream.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/filestream.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}Resource/inputstream.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Resource/memorystream.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Resource/resourceutilities.cpp"
         "${${PROJECT_NAME}_SRC_DIR}rigiddebris.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/scriptingmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingmainlua51.cpp"
@@ -702,11 +703,18 @@ if(Mezz_Audio_UseOALS)
     include_directories(
         "${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openalsoft"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/include"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/OpenAL32/include"
     )
-
-    set(SoundLibraryNames ${SoundLibraryNames}
-        "openal"
-    )
+    
+    IF(WIN32)
+        set(SoundLibraryNames ${SoundLibraryNames}
+            "OpenAL32"
+        )
+    ELSE()
+        set(SoundLibraryNames ${SoundLibraryNames}
+            "openal"
+        )
+    ENDIF()
 
     add_definitions( "${D}ENABLE_OALS_AUDIO_IMPLEMENTATION" "${D}AL_LIBTYPE_STATIC" )
 endif(Mezz_Audio_UseOALS)
@@ -877,7 +885,7 @@ link_directories(
 add_subdirectory (libincludes/common/bulletsrc)
 add_subdirectory (libincludes/common/ogresrc)
 add_subdirectory (libincludes/common/oggvorbis)
-add_subdirectory (libincludes/common/openalsoftsrc/openalsoft)
+add_subdirectory (libincludes/common/openalsoftsrc)
 add_subdirectory (libincludes/common/sdlsrc/SDL)
 
 #######################################

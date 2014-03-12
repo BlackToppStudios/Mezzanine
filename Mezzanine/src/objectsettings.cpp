@@ -42,7 +42,8 @@
 
 #include "objectsettings.h"
 #include "stringtool.h"
-#include "resourcemanager.h"
+#include "Resource/resourcemanager.h"
+#include "Resource/resourceutilities.h"
 #include "Resource/filestream.h"
 
 namespace Mezzanine
@@ -541,14 +542,14 @@ namespace Mezzanine
         if(FirstDol != String::npos && SecondDol != String::npos) {
             String PathKeyWord = Path.substr( FirstDol + 1, ( SecondDol - FirstDol ) - 1 );
             String RestOfPath = Path.substr( SecondDol + 1 );
-            String ActualPath = ResourceManager::GetSingletonPtr()->ResolveDataPathFromString(PathKeyWord);
+            String ActualPath = Resource::ResolveDataPathFromString(PathKeyWord);
             this->SettingsFilePath = ActualPath + RestOfPath;
         }else{
             this->SettingsFilePath = Path;
         }
 
         if( this->AutoGenPath )
-            ResourceManager::GetSingletonPtr()->CreateDirectoryPath(this->SettingsFilePath);
+            Resource::CreateDirectoryPath(this->SettingsFilePath);
     }
 
     const String& ObjectSettingsHandler::GetSettingsFilePath() const
@@ -571,7 +572,7 @@ namespace Mezzanine
 
     CountedPtr<ObjectSettingsHandler::SettingGroupVector> ObjectSettingsHandler::LoadSettingsFromGroup(const String& FileName, const String& Group)
     {
-        String FilePath = ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group);
+        String FilePath = Resource::ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group);
         if( FilePath.empty() ) {
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Failed to find path for file \"" + FileName + "\", in group \"" + Group + "\".");
         }

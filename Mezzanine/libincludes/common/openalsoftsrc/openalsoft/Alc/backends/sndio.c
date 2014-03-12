@@ -26,6 +26,7 @@
 
 #include "alMain.h"
 #include "alu.h"
+#include "threads.h"
 
 #include <sndio.h>
 
@@ -46,7 +47,7 @@ typedef struct {
     ALsizei data_size;
 
     volatile int killNow;
-    ALvoid *thread;
+    althread_t thread;
 } sndio_data;
 
 
@@ -58,6 +59,7 @@ static ALuint sndio_proc(ALvoid *ptr)
     size_t wrote;
 
     SetRTPriority();
+    SetThreadName(MIXER_THREAD_NAME);
 
     frameSize = FrameSizeFromDevFmt(device->FmtChans, device->FmtType);
 
@@ -222,8 +224,7 @@ static ALCboolean sndio_start_playback(ALCdevice *device)
     data->data_size = device->UpdateSize * FrameSizeFromDevFmt(device->FmtChans, device->FmtType);
     data->mix_data = calloc(1, data->data_size);
 
-    data->thread = StartThread(sndio_proc, device);
-    if(data->thread == NULL)
+    if(!StartThread(&data->thread, sndio_proc, device))
     {
         sio_stop(data->sndHandle);
         free(data->mix_data);
@@ -266,8 +267,6 @@ static const BackendFuncs sndio_funcs = {
     NULL,
     NULL,
     NULL,
-    ALCdevice_LockDefault,
-    ALCdevice_UnlockDefault,
     ALCdevice_GetLatencyDefault
 };
 

@@ -22,6 +22,7 @@ enum UserFmtType {
     UserFmtMulaw,
     UserFmtAlaw,
     UserFmtIMA4,
+    UserFmtMSADPCM,
 };
 enum UserFmtChannels {
     UserFmtMono   = AL_MONO_SOFT,
@@ -35,8 +36,7 @@ enum UserFmtChannels {
 
 ALuint BytesFromUserFmt(enum UserFmtType type);
 ALuint ChannelsFromUserFmt(enum UserFmtChannels chans);
-static __inline ALuint FrameSizeFromUserFmt(enum UserFmtChannels chans,
-                                            enum UserFmtType type)
+inline ALuint FrameSizeFromUserFmt(enum UserFmtChannels chans, enum UserFmtType type)
 {
     return ChannelsFromUserFmt(chans) * BytesFromUserFmt(type);
 }
@@ -57,17 +57,17 @@ enum FmtChannels {
     FmtX61    = UserFmtX61,
     FmtX71    = UserFmtX71,
 };
+#define MAX_INPUT_CHANNELS  (8)
 
 ALuint BytesFromFmt(enum FmtType type);
 ALuint ChannelsFromFmt(enum FmtChannels chans);
-static __inline ALuint FrameSizeFromFmt(enum FmtChannels chans, enum FmtType type)
+inline ALuint FrameSizeFromFmt(enum FmtChannels chans, enum FmtType type)
 {
     return ChannelsFromFmt(chans) * BytesFromFmt(type);
 }
 
 
-typedef struct ALbuffer
-{
+typedef struct ALbuffer {
     ALvoid  *data;
 
     ALsizei  Frequency;
@@ -80,9 +80,13 @@ typedef struct ALbuffer
     enum UserFmtChannels OriginalChannels;
     enum UserFmtType     OriginalType;
     ALsizei              OriginalSize;
+    ALsizei              OriginalAlign;
 
     ALsizei  LoopStart;
     ALsizei  LoopEnd;
+
+    ALsizei UnpackAlign;
+    ALsizei PackAlign;
 
     /* Number of times buffer was attached to a source (deletion can only occur when 0) */
     RefCount ref;
@@ -92,6 +96,11 @@ typedef struct ALbuffer
     /* Self ID */
     ALuint id;
 } ALbuffer;
+
+inline struct ALbuffer *LookupBuffer(ALCdevice *device, ALuint id)
+{ return (struct ALbuffer*)LookupUIntMapKey(&device->BufferMap, id); }
+inline struct ALbuffer *RemoveBuffer(ALCdevice *device, ALuint id)
+{ return (struct ALbuffer*)RemoveUIntMapKey(&device->BufferMap, id); }
 
 ALvoid ReleaseALBuffers(ALCdevice *device);
 

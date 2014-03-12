@@ -33,6 +33,8 @@
 
 #include "alMain.h"
 #include "alu.h"
+#include "threads.h"
+#include "compat.h"
 
 #include <sys/audioio.h>
 
@@ -43,11 +45,12 @@ static const char *solaris_driver = "/dev/audio";
 
 typedef struct {
     int fd;
-    volatile int killNow;
-    ALvoid *thread;
 
     ALubyte *mix_data;
     int data_size;
+
+    volatile int killNow;
+    althread_t thread;
 } solaris_data;
 
 
@@ -59,6 +62,7 @@ static ALuint SolarisProc(ALvoid *ptr)
     int wrote;
 
     SetRTPriority();
+    SetThreadName(MIXER_THREAD_NAME);
 
     frameSize = FrameSizeFromDevFmt(Device->FmtChans, Device->FmtType);
 
@@ -207,8 +211,7 @@ static ALCboolean solaris_start_playback(ALCdevice *device)
     data->data_size = device->UpdateSize * FrameSizeFromDevFmt(device->FmtChans, device->FmtType);
     data->mix_data = calloc(1, data->data_size);
 
-    data->thread = StartThread(SolarisProc, device);
-    if(data->thread == NULL)
+    if(!StartThread(&data->thread, SolarisProc, device))
     {
         free(data->mix_data);
         data->mix_data = NULL;
@@ -250,8 +253,6 @@ static const BackendFuncs solaris_funcs = {
     NULL,
     NULL,
     NULL,
-    ALCdevice_LockDefault,
-    ALCdevice_UnlockDefault,
     ALCdevice_GetLatencyDefault
 };
 

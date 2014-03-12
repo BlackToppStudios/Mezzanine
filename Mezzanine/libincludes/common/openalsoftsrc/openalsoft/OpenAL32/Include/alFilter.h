@@ -9,45 +9,56 @@ extern "C" {
 
 #define LOWPASSFREQREF  (5000)
 
-typedef struct {
-    ALfloat coeff;
-#ifndef _MSC_VER
-    ALfloat history[0];
-#else
-    ALfloat history[1];
-#endif
-} FILTER;
 
-static __inline ALfloat lpFilter2P(FILTER *iir, ALuint offset, ALfloat input)
+/* Filters implementation is based on the "Cookbook formulae for audio   *
+ * EQ biquad filter coefficients" by Robert Bristow-Johnson              *
+ * http://www.musicdsp.org/files/Audio-EQ-Cookbook.txt                   */
+
+typedef enum ALfilterType {
+    ALfilterType_HighShelf,
+    ALfilterType_LowShelf,
+    ALfilterType_Peaking,
+
+    ALfilterType_LowPass,
+    ALfilterType_HighPass,
+    ALfilterType_BandPass,
+} ALfilterType;
+
+typedef struct ALfilterState {
+    ALfloat x[2]; /* History of two last input samples  */
+    ALfloat y[2]; /* History of two last output samples */
+    ALfloat a[3]; /* Transfer function coefficients "a" */
+    ALfloat b[3]; /* Transfer function coefficients "b" */
+} ALfilterState;
+
+void ALfilterState_clear(ALfilterState *filter);
+void ALfilterState_setParams(ALfilterState *filter, ALfilterType type, ALfloat gain, ALfloat freq_scale, ALfloat bandwidth);
+
+inline ALfloat ALfilterState_processSingle(ALfilterState *filter, ALfloat sample)
 {
-    ALfloat *history = &iir->history[offset*2];
-    ALfloat a = iir->coeff;
-    ALfloat output = input;
+    ALfloat outsmp;
 
-    output = output + (history[0]-output)*a;
-    history[0] = output;
-    output = output + (history[1]-output)*a;
-    history[1] = output;
+    outsmp = filter->b[0] * sample +
+             filter->b[1] * filter->x[0] +
+             filter->b[2] * filter->x[1] -
+             filter->a[1] * filter->y[0] -
+             filter->a[2] * filter->y[1];
+    filter->x[1] = filter->x[0];
+    filter->x[0] = sample;
+    filter->y[1] = filter->y[0];
+    filter->y[0] = outsmp;
 
-    return output;
+    return outsmp;
 }
 
-static __inline ALfloat lpFilter2PC(const FILTER *iir, ALuint offset, ALfloat input)
+inline ALfloat ALfilterState_processSingleC(const ALfilterState *filter, ALfloat sample)
 {
-    const ALfloat *history = &iir->history[offset*2];
-    ALfloat a = iir->coeff;
-    ALfloat output = input;
-
-    output = output + (history[0]-output)*a;
-    output = output + (history[1]-output)*a;
-
-    return output;
+    return filter->b[0] * sample +
+           filter->b[1] * filter->x[0] +
+           filter->b[2] * filter->x[1] -
+           filter->a[1] * filter->y[0] -
+           filter->a[2] * filter->y[1];
 }
-
-/* Calculates the low-pass filter coefficient given the pre-scaled gain and
- * cos(w) value. Note that g should be pre-scaled (sqr(gain) for one-pole,
- * sqrt(gain) for four-pole, etc) */
-ALfloat lpCoeffCalc(ALfloat g, ALfloat cw);
 
 
 typedef struct ALfilter {
@@ -80,6 +91,11 @@ typedef struct ALfilter {
 #define ALfilter_GetParamiv(x, c, p, v) ((x)->GetParamiv((x),(c),(p),(v)))
 #define ALfilter_GetParamf(x, c, p, v)  ((x)->GetParamf((x),(c),(p),(v)))
 #define ALfilter_GetParamfv(x, c, p, v) ((x)->GetParamfv((x),(c),(p),(v)))
+
+inline struct ALfilter *LookupFilter(ALCdevice *device, ALuint id)
+{ return (struct ALfilter*)LookupUIntMapKey(&device->FilterMap, id); }
+inline struct ALfilter *RemoveFilter(ALCdevice *device, ALuint id)
+{ return (struct ALfilter*)RemoveUIntMapKey(&device->FilterMap, id); }
 
 ALvoid ReleaseALFilters(ALCdevice *device);
 

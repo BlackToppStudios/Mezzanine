@@ -14,16 +14,33 @@ class CatchApp;
 class CatchLevel
 {
 public:
+    /// @brief Convenience typedef for handling return values from the Scripting subsystem.
+    typedef CountedPtr< Scripting::iScript >    ScriptPtr;
     /// @brief Container type for the storage of score tiers.
     typedef std::vector<Whole>                  ScoreTierContainer;
     /// @brief Iterator type for score tiers of a level.
     typedef ScoreTierContainer::iterator        ScoreTierIterator;
     /// @brief Const Iterator type for score tiers of a level.
     typedef ScoreTierContainer::const_iterator  ConstScoreTierIterator;
+    /// @brief Container type for the storage of level-specific scripts.
+    typedef std::vector<ScriptPtr>              ScriptContainer;
+    /// @brief Iterator type for loaded level-specific scripts.
+    typedef ScriptContainer::iterator           ScriptIterator;
+    /// @brief Const Iterator type for loaded level-specific scripts.
+    typedef ScriptContainer::const_iterator     ConstScriptIterator;
 protected:
     /// @internal
     /// @brief Container storing all the score tiers for this level.
     ScoreTierContainer ScoreTiers;
+    /// @brief
+    /// @brief Container storing all of the scripts that are to be run while this level is loaded.
+    ScriptContainer LevelScripts;
+    /// @internal
+    /// @brief The name of the preview Atlas.
+    String PreviewAtlasName;
+    /// @internal
+    /// @brief The name of the preview image.
+    String PreviewImageName;
     /// @internal
     /// @brief The name of this level.
     String LevelName;
@@ -56,6 +73,12 @@ public:
     /// @brief Gets the name of the Asset Group created for this level.
     /// @return Returns a const String reference containing the name of the Asset Group belonging to this level.
     const String& GetGroupName() const;
+    /// @brief Gets the name of the Atlas storing additional UI data for this levels preview.
+    /// @return Returns a const String reference containing the name of the preview atlas for this level.
+    const String& GetPreviewAtlasName() const;
+    /// @brief Gets the name of the preview image for this level.
+    /// @return Returns a const String reference containing the name of the preview image for this level.
+    const String& GetPreviewImageName() const;
 
     ///////////////////////////////////////////////////////////////////////////////
     // MetaData Access
@@ -67,6 +90,14 @@ public:
     /// @brief Gets the number of score tiers for this level.
     /// @return Returns a Whole representing how many score tiers this level has.
     Whole GetNumScoreTiers() const;
+
+    /// @brief Gets a script that is to be run while this level is loaded.
+    /// @param Index The Index of the Script to retrieve.
+    /// @return Returns a CountedPtr to a script run while this level is loaded.
+    ScriptPtr GetLevelScript(const Whole Index) const;
+    /// @brief Gets the number of scipts run while this level is loaded.
+    /// @return Returns a Whole representing how many scipts are to be run while this level is loaded.
+    Whole GetNumLevelScripts() const;
 };//CatchLevel
 
 /// @brief Convenience typedef allowing for possible reuse of code below.
@@ -105,7 +136,7 @@ protected:
     /// @internal
     /// @brief Convenience method for Resource Manager retrieval.
     /// @return Returns a pointer to the Resource Manager to be used for I/O.
-    ResourceManager* GetResourceManager() const;
+    Resource::ResourceManager* GetResourceManager() const;
 public:
     /// @brief Class constructor.
     /// @param Ent A pointer to the initialized Entresol.

@@ -609,7 +609,7 @@ void MakeGUI()
     ColourValue MenuColour(0.4,0.8,0.3,1.0);
 
     //Build the HUD
-    UI::StackButton* MenuAccess = DScreen->CreateStackButton("D_MenuAccess",UI::UnifiedRect(0.008,0.932,0.14,0.06,0,0,0,0));
+    UI::StackButton* MenuAccess = DScreen->CreateStackButton("D_MenuAccess",UI::UnifiedRect(0.008,0.932,0.14,0.06));
     UI::SingleImageLayer* AccessBackground = MenuAccess->CreateSingleImageLayer(0,"Normal");
     AccessBackground->SetColour(ButtonColour);
     UI::SingleImageLayer* AccessHoveredBackground = MenuAccess->CreateSingleImageLayer(0,"Hovered");
@@ -623,7 +623,7 @@ void MakeGUI()
     MenuAccess->AddLayerToGroup(AccessText,1,"Hovered");
     DScreen->AddChild(MenuAccess,1);
 
-    UI::Widget* CurFPS = DScreen->CreateWidget("D_CurFPS",UI::UnifiedRect(0.16,0.008,0.06,0.065,0,0,0,0));
+    UI::Widget* CurFPS = DScreen->CreateWidget("D_CurFPS",UI::UnifiedRect(0.16,0.008,0.06,0.065));
     UI::SingleLineTextLayer* CurFPSText = CurFPS->CreateSingleLineTextLayer();
     CurFPSText->HorizontallyAlign(UI::LA_TopLeft);
     CurFPSText->VerticallyAlign(UI::LA_Center);
@@ -633,7 +633,7 @@ void MakeGUI()
     CurFPS->AddLayerToGroup(CurFPSText,1,"Hovered");
     DScreen->AddChild(CurFPS,2);
 
-    UI::Widget* CurFPSStat = DScreen->CreateWidget("D_CurFPSStat",UI::UnifiedRect(0.008,0.008,0.15,0.065,0,0,0,0));
+    UI::Widget* CurFPSStat = DScreen->CreateWidget("D_CurFPSStat",UI::UnifiedRect(0.008,0.008,0.15,0.065));
     UI::SingleLineTextLayer* CurFPSStatText = CurFPSStat->CreateSingleLineTextLayer();
     CurFPSStatText->HorizontallyAlign(UI::LA_TopLeft);
     CurFPSStatText->VerticallyAlign(UI::LA_Center);
@@ -643,7 +643,7 @@ void MakeGUI()
     CurFPSStat->AddLayerToGroup(CurFPSStatText,1,"Hovered");
     DScreen->AddChild(CurFPSStat,3);
 
-    UI::Widget* AvFPS = DScreen->CreateWidget("D_AvFPS",UI::UnifiedRect(0.16,0.081,0.06,0.065,0,0,0,0));
+    UI::Widget* AvFPS = DScreen->CreateWidget("D_AvFPS",UI::UnifiedRect(0.16,0.081,0.06,0.065));
     UI::SingleLineTextLayer* AvFPSText = AvFPS->CreateSingleLineTextLayer();
     AvFPSText->HorizontallyAlign(UI::LA_TopLeft);
     AvFPSText->VerticallyAlign(UI::LA_Center);
@@ -653,7 +653,7 @@ void MakeGUI()
     AvFPS->AddLayerToGroup(AvFPSText,1,"Hovered");
     DScreen->AddChild(AvFPS,4);
 
-    UI::Widget* AvFPSStat = DScreen->CreateWidget("D_AvFPSStat",UI::UnifiedRect(0.008,0.081,0.15,0.065,0,0,0,0));
+    UI::Widget* AvFPSStat = DScreen->CreateWidget("D_AvFPSStat",UI::UnifiedRect(0.008,0.081,0.15,0.065));
     UI::SingleLineTextLayer* AvFPSStatText = AvFPSStat->CreateSingleLineTextLayer();
     AvFPSStatText->HorizontallyAlign(UI::LA_TopLeft);
     AvFPSStatText->VerticallyAlign(UI::LA_Center);
@@ -664,14 +664,14 @@ void MakeGUI()
     DScreen->AddChild(AvFPSStat,5);
     //End of HUD
     //Build the Menu
-    UI::MenuEntry* DemoMenu = DScreen->CreateMenuEntry("D_Menu",UI::UnifiedRect(0.35,0.27,0.3,0.45,0,0,0,0));
+    UI::MenuEntry* DemoMenu = DScreen->CreateMenuEntry("D_Menu",UI::UnifiedRect(0.35,0.27,0.3,0.45));
     UI::SingleImageLayer* DemoMenuBackground = DemoMenu->CreateSingleImageLayer();
     DemoMenuBackground->SetColour(MenuColour);
     DemoMenu->AddLayerToGroup(DemoMenuBackground,0,"Normal");
     DemoMenu->AddLayerToGroup(DemoMenuBackground,0,"Hovered");
     DScreen->AddChild(DemoMenu,6);
 
-    UI::StackButton* ReturnButton = DScreen->CreateStackButton("D_Return",UI::UnifiedRect(0.10,0.56,0.80,0.16,0,0,0,0));
+    UI::StackButton* ReturnButton = DScreen->CreateStackButton("D_Return",UI::UnifiedRect(0.10,0.56,0.80,0.16));
     UI::SingleImageLayer* ReturnBackground = ReturnButton->CreateSingleImageLayer(0,"Normal");
     ReturnBackground->SetColour(ButtonColour);
     UI::SingleImageLayer* ReturnHoveredBackground = ReturnButton->CreateSingleImageLayer(0,"Hovered");
@@ -685,7 +685,7 @@ void MakeGUI()
     ReturnButton->AddLayerToGroup(ReturnText,1,"Hovered");
     DemoMenu->AddChild(ReturnButton,1);
 
-    UI::Button* GameExitButton = DScreen->CreateButton("D_Exit",UI::UnifiedRect(0.10,0.78,0.80,0.16,0,0,0,0));
+    UI::Button* GameExitButton = DScreen->CreateButton("D_Exit",UI::UnifiedRect(0.10,0.78,0.80,0.16));
     UI::SingleImageLayer* GameExitBackground = GameExitButton->CreateSingleImageLayer(0,"Normal");
     GameExitBackground->SetColour(ButtonColour);
     UI::SingleImageLayer* GameExitHoveredBackground = GameExitButton->CreateSingleImageLayer(0,"Hovered");

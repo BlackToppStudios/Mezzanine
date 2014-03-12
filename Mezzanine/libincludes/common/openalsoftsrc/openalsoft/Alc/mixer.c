@@ -37,13 +37,13 @@
 #include "bs2b.h"
 
 
-static __inline ALfloat Sample_ALbyte(ALbyte val)
+static inline ALfloat Sample_ALbyte(ALbyte val)
 { return val * (1.0f/127.0f); }
 
-static __inline ALfloat Sample_ALshort(ALshort val)
+static inline ALfloat Sample_ALshort(ALshort val)
 { return val * (1.0f/32767.0f); }
 
-static __inline ALfloat Sample_ALfloat(ALfloat val)
+static inline ALfloat Sample_ALfloat(ALfloat val)
 { return val; }
 
 #define DECL_TEMPLATE(T)                                                      \
@@ -84,13 +84,13 @@ static void SilenceData(ALfloat *dst, ALuint samples)
 }
 
 
-static void Filter2P(FILTER *filter, ALuint chan, ALfloat *RESTRICT dst,
-                     const ALfloat *RESTRICT src, ALuint numsamples)
+static void DoFilter(ALfilterState *filter, ALfloat *restrict dst, const ALfloat *restrict src,
+                     ALuint numsamples)
 {
     ALuint i;
     for(i = 0;i < numsamples;i++)
-        dst[i] = lpFilter2P(filter, chan, src[i]);
-    dst[i] = lpFilter2PC(filter, chan, src[i]);
+        dst[i] = ALfilterState_processSingle(filter, src[i]);
+    dst[i] = ALfilterState_processSingleC(filter, src[i]);
 }
 
 
@@ -131,7 +131,7 @@ ALvoid MixSource(ALsource *Source, ALCdevice *Device, ALuint SamplesToDo)
         const ALuint BufferPadding = ResamplerPadding[Resampler];
         ALuint SrcBufferSize, DstBufferSize;
 
-        /* Figure out how many buffer bytes will be needed */
+        /* Figure out how many buffer samples will be needed */
         DataSize64  = SamplesToDo-OutPos+1;
         DataSize64 *= increment;
         DataSize64 += DataPosFrac+FRACTIONMASK;
@@ -328,7 +328,7 @@ ALvoid MixSource(ALsource *Source, ALCdevice *Device, ALuint SamplesToDo)
             {
                 DirectParams *directparms = &Source->Params.Direct;
 
-                Filter2P(&directparms->iirFilter, chan, SrcData, ResampledData,
+                DoFilter(&directparms->LpFilter[chan], SrcData, ResampledData,
                          DstBufferSize);
                 Source->Params.DryMix(directparms, SrcData, chan, OutPos,
                                       SamplesToDo, DstBufferSize);
@@ -337,10 +337,10 @@ ALvoid MixSource(ALsource *Source, ALCdevice *Device, ALuint SamplesToDo)
             for(j = 0;j < Device->NumAuxSends;j++)
             {
                 SendParams *sendparms = &Source->Params.Send[j];
-                if(!sendparms->Slot)
+                if(!sendparms->OutBuffer)
                     continue;
 
-                Filter2P(&sendparms->iirFilter, chan, SrcData, ResampledData,
+                DoFilter(&sendparms->LpFilter[chan], SrcData, ResampledData,
                          DstBufferSize);
                 Source->Params.WetMix(sendparms, SrcData, OutPos,
                                       SamplesToDo, DstBufferSize);

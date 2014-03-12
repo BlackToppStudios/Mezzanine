@@ -97,14 +97,6 @@ message ( STATUS "Catch! Licenses Output: ${LicenseDir}")
 set (PluginDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Plugins/")
 message ( STATUS "Catch! Plugins Output: ${PluginDir}")
 
-# Previews
-set (PreviewDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Previews/")
-message ( STATUS "Catch! Preview Output: ${PreviewDir}")
-
-# Profiles
-set (ProfileDir "$<TARGET_FILE_DIR:${PROJECT_NAME}>/Profiles/")
-message ( STATUS "Catch! Profile Output: ${ProfileDir}")
-
 # Content Archive Cache
 set(Catch_ArchiveDir "" CACHE FILEPATH "The Directory that contains The Content Archives for Catch!")
 mark_as_advanced(Catch_ArchiveDir)
@@ -144,18 +136,12 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}gamebase.h"
     "${${PROJECT_NAME}_SRC_DIR}itemshop.cpp"
     "${${PROJECT_NAME}_SRC_DIR}itemshop.h"
-    "${${PROJECT_NAME}_SRC_DIR}itemshopcell.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}itemshopcell.h"
     "${${PROJECT_NAME}_SRC_DIR}itemshopitems.cpp"
     "${${PROJECT_NAME}_SRC_DIR}itemshopitems.h"
     "${${PROJECT_NAME}_SRC_DIR}levelmanager.cpp"
     "${${PROJECT_NAME}_SRC_DIR}levelmanager.h"
-    "${${PROJECT_NAME}_SRC_DIR}levelreportcell.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}levelreportcell.h"
     "${${PROJECT_NAME}_SRC_DIR}levelscorer.cpp"
     "${${PROJECT_NAME}_SRC_DIR}levelscorer.h"
-    "${${PROJECT_NAME}_SRC_DIR}levelselectcell.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}levelselectcell.h"
     "${${PROJECT_NAME}_SRC_DIR}leveltriggers.cpp"
     "${${PROJECT_NAME}_SRC_DIR}leveltriggers.h"
     "${${PROJECT_NAME}_SRC_DIR}levelzone.cpp"
@@ -224,8 +210,6 @@ function(CreateDirectoryStructure)
         COMMAND ${CMAKE_COMMAND} -E make_directory "${FontDir}"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${LicenseDir}"
         COMMAND ${CMAKE_COMMAND} -E make_directory "${PluginDir}"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${PreviewDir}"
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${ProfileDir}"
         VERBATIM
     )
 endfunction(CreateDirectoryStructure)

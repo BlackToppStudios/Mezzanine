@@ -23,12 +23,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <memory.h>
+#include <errno.h>
 #ifdef HAVE_WINDOWS_H
 #include <windows.h>
 #endif
 
 #include "alMain.h"
 #include "alu.h"
+#include "threads.h"
+#include "compat.h"
 
 
 typedef struct {
@@ -39,7 +42,7 @@ typedef struct {
     ALuint size;
 
     volatile int killNow;
-    ALvoid *thread;
+    althread_t thread;
 } wave_data;
 
 
@@ -92,6 +95,8 @@ static ALuint WaveProc(ALvoid *ptr)
     size_t fs;
     const ALuint restTime = (ALuint64)Device->UpdateSize * 1000 /
                             Device->Frequency / 2;
+
+    SetThreadName(MIXER_THREAD_NAME);
 
     frameSize = FrameSizeFromDevFmt(Device->FmtChans, Device->FmtType);
 
@@ -146,7 +151,7 @@ static ALuint WaveProc(ALvoid *ptr)
             {
                 fs = fwrite(data->buffer, frameSize, Device->UpdateSize,
                             data->f);
-                fs = fs;
+                (void)fs;
             }
             if(ferror(data->f))
             {
@@ -257,7 +262,7 @@ static ALCboolean wave_reset_playback(ALCdevice *device)
     fwrite32le(channel_masks[channels], data->f);
     // 16 byte GUID, sub-type format
     val = fwrite(((bits==32) ? SUBTYPE_FLOAT : SUBTYPE_PCM), 1, 16, data->f);
-    val = val;
+    (void)val;
 
     fprintf(data->f, "data");
     fwrite32le(0xFFFFFFFF, data->f); // 'data' header len; filled in at close
@@ -286,8 +291,7 @@ static ALCboolean wave_start_playback(ALCdevice *device)
         return ALC_FALSE;
     }
 
-    data->thread = StartThread(WaveProc, device);
-    if(data->thread == NULL)
+    if(!StartThread(&data->thread, WaveProc, device))
     {
         free(data->buffer);
         data->buffer = NULL;
@@ -339,8 +343,6 @@ static const BackendFuncs wave_funcs = {
     NULL,
     NULL,
     NULL,
-    ALCdevice_LockDefault,
-    ALCdevice_UnlockDefault,
     ALCdevice_GetLatencyDefault
 };
 

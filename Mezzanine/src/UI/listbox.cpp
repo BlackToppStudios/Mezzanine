@@ -129,8 +129,8 @@ namespace Mezzanine
             this->ListContainer->SetYProvider( this->ListScroll );
             this->AddChild(this->ListContainer,2);
 
-            this->ListScroll->SetPositioningRules(UI::PF_Anchor_Right);
-            this->ListContainer->SetPositioningRules(UI::PF_Anchor_Left);
+            this->ListScroll->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+            this->ListContainer->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
             this->ListScroll->SetUnifiedSize(UnifiedVec2(0.08,1.0,0.0,0.0));
             this->ListContainer->SetUnifiedSize(UnifiedVec2(0.92,1.0,0.0,0.0));
 
@@ -287,7 +287,7 @@ namespace Mezzanine
             { return this->ListContainer; }
 
         ListBox::ListItem* ListBox::GetLastSelectedListItem() const
-            { return this->ListContainer->GetLastFocusedWidget(); }
+            { return this->ListContainer->GetLastSelectedChild(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization

@@ -100,7 +100,8 @@ namespace Mezzanine
             const PositioningInfo& ChildPositioning = Child->GetPositioningPolicy();
 
             // Check for configurations that are just not doable
-            if( ChildPositioning.PositionRules == UI::PF_Anchor_Prev_Offset && ChildPositioning.PositionRules == UI::PF_Anchor_Size )
+            if( ( ChildPositioning.HorizontalRules & UI::PF_Anchor_Prev_Offset && ChildPositioning.HorizontalRules & UI::PF_Anchor_Size ) ||
+                ( ChildPositioning.VerticalRules & UI::PF_Anchor_Prev_Offset && ChildPositioning.VerticalRules & UI::PF_Anchor_Size ) )
                 { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot use both the previous offset and quad size for the updated offset of a child quad.  They are mutually exclusive."); }
 
             // Resolve our position
@@ -121,36 +122,36 @@ namespace Mezzanine
             // Create a variable to store the old axis offset (the number of pixels to the left, or right if negative) on the X axis.
             Real Offset = 0;
             // Do our checks
-            if( ChildPositioning.PositionRules & UI::PF_Anchor_Left && ChildPositioning.PositionRules & UI::PF_Anchor_Right ) { // Check if we're centered
+            if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Left && ChildPositioning.HorizontalRules & UI::PF_Anchor_Right ) { // Check if we're centered
                 // Update the offset if we're configured to.
-                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Prev_Offset ) {
                     // Get the old offset between the center of this quad and it's parent.
                     Offset = ( OldXPos + ( OldXSize * 0.5 ) ) - OldSelfRect.GetHorizontalCenter();
-                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Size ) {
                     // Use the new child size on the horizontal sxis.  Apply the Unified Dim on the X axis.
                     Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewChildSize.X );
                 }
                 // Then add that distance to the updated transform and then subtract the new half size.
                 Ret = ( NewSelfRect.GetHorizontalCenter() + Offset ) - ( NewChildSize.X * 0.5 );
-            }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Left ) { // Check if we're anchored to the left
+            }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Left ) { // Check if we're anchored to the left
                 // Update the offset if we're configured to.
-                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Prev_Offset ) {
                     // Get the old offset between the left edge of this quad and it's parent.
                     // Note: If the child is within the bounds of it's parent, this Offset should always be >= 0.
                     Offset = ( OldXPos - OldSelfRect.GetLeftEdge() );
-                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Size ) {
                     // Use the new child size on the horizontal sxis.  Apply the Unified Dim on the X axis.
                     Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewChildSize.X );
                 }
                 // Then add that distance to the updated transform.
                 Ret = NewSelfRect.GetLeftEdge() + Offset;
-            }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Right ) { // Check if we're anchored to the right
+            }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Right ) { // Check if we're anchored to the right
                 // Update the offset if we're configured to.
-                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Prev_Offset ) {
                     // Get the old offset between the right edge of this quad and it's parent.
                     // Note: If the child is within the bounds of it's parent, this Offset should always be <= 0.
                     Offset = ( ( OldXPos + OldXSize ) - OldSelfRect.GetRightEdge() );
-                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Size ) {
                     // Use the new child size on the horizontal sxis.  Apply the Unified Dim on the X axis.
                     Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewChildSize.X );
                 }
@@ -171,36 +172,36 @@ namespace Mezzanine
             // Create a variable to store the old axis offset (the number of pixels up, or down if negative) on the Y axis.
             Real Offset = 0;
             // Do our checks
-            if( ChildPositioning.PositionRules & UI::PF_Anchor_Top && ChildPositioning.PositionRules & UI::PF_Anchor_Bottom ) { // Check if we're centered
+            if( ChildPositioning.VerticalRules & UI::PF_Anchor_Top && ChildPositioning.VerticalRules & UI::PF_Anchor_Bottom ) { // Check if we're centered
                 // Update the offset if we're configured to.
-                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                if( ChildPositioning.VerticalRules & UI::PF_Anchor_Prev_Offset ) {
                     // Get the old offset between the center of this quad and it's parent.
                     Offset = ( OldYPos + ( OldYSize * 0.5 ) ) - OldSelfRect.GetVerticalCenter();
-                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_Size ) {
                     // Use the new child size on the vertical sxis.  Apply the Unified Dim on the Y axis.
                     Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
                 }
                 // Then add that distance to the updated transform and then subtract the new half size.
                 Ret = ( NewSelfRect.GetVerticalCenter() + Offset ) - ( NewChildSize.Y * 0.5 );
-            }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Top ) { // Check if we're anchored to the top
+            }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_Top ) { // Check if we're anchored to the top
                 // Update the offset if we're configured to.
-                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                if( ChildPositioning.VerticalRules & UI::PF_Anchor_Prev_Offset ) {
                     // Get the old offset between the top edge of this quad and it's parent.
                     // Note: If the child is within the bounds of it's parent, this Offset should always be >= 0.
                     Offset = ( OldYPos - OldSelfRect.GetTopEdge() );
-                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_Size ) {
                     // Use the new child size on the vertical sxis.  Apply the Unified Dim on the X axis.
                     Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
                 }
                 // Then add that distance to the updated transform.
                 Ret = NewSelfRect.GetTopEdge() + Offset;
-            }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Bottom ) { // Check if we're anchored to the bottom
+            }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_Bottom ) { // Check if we're anchored to the bottom
                 // Update the offset if we're configured to.
-                if( ChildPositioning.PositionRules & UI::PF_Anchor_Prev_Offset ) {
+                if( ChildPositioning.VerticalRules & UI::PF_Anchor_Prev_Offset ) {
                     // Get the old offset between the bottom edge of this quad and it's parent.
                     // Note: If the child is within the bounds of it's parent, this Offset should always be <= 0.
                     Offset = ( ( OldYPos + OldYSize ) - OldSelfRect.GetBottomEdge() );
-                }else if( ChildPositioning.PositionRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_Size ) {
                     // Use the new child size on the vertical sxis.  Apply the Unified Dim on the Y axis.
                     Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
                 }

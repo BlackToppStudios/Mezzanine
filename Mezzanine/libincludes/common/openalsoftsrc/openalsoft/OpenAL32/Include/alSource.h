@@ -6,6 +6,8 @@
 #include "alMain.h"
 #include "alu.h"
 #include "alFilter.h"
+#include "alBuffer.h"
+#include "hrtf.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,8 +23,7 @@ extern const ALsizei ResamplerPadding[ResamplerMax];
 extern const ALsizei ResamplerPrePadding[ResamplerMax];
 
 
-typedef struct ALbufferlistitem
-{
+typedef struct ALbufferlistitem {
     struct ALbuffer         *buffer;
     struct ALbufferlistitem *next;
     struct ALbufferlistitem *prev;
@@ -31,17 +32,17 @@ typedef struct ALbufferlistitem
 typedef struct HrtfState {
     ALboolean Moving;
     ALuint Counter;
-    ALIGN(16) ALfloat History[MaxChannels][SRC_HISTORY_LENGTH];
-    ALIGN(16) ALfloat Values[MaxChannels][HRIR_LENGTH][2];
+    ALIGN(16) ALfloat History[MAX_INPUT_CHANNELS][SRC_HISTORY_LENGTH];
+    ALIGN(16) ALfloat Values[MAX_INPUT_CHANNELS][HRIR_LENGTH][2];
     ALuint Offset;
 } HrtfState;
 
 typedef struct HrtfParams {
     ALfloat Gain;
     ALfloat Dir[3];
-    ALIGN(16) ALfloat Coeffs[MaxChannels][HRIR_LENGTH][2];
+    ALIGN(16) ALfloat Coeffs[MAX_INPUT_CHANNELS][HRIR_LENGTH][2];
     ALIGN(16) ALfloat CoeffStep[HRIR_LENGTH][2];
-    ALuint Delay[MaxChannels][2];
+    ALuint Delay[MAX_INPUT_CHANNELS][2];
     ALint DelayStep[2];
     ALuint IrSize;
 } HrtfParams;
@@ -59,23 +60,21 @@ typedef struct DirectParams {
     /* A mixing matrix. First subscript is the channel number of the input data
      * (regardless of channel configuration) and the second is the channel
      * target (eg. FrontLeft). Not used with HRTF. */
-    ALfloat Gains[MaxChannels][MaxChannels];
+    ALfloat Gains[MAX_INPUT_CHANNELS][MaxChannels];
 
-    /* A low-pass filter, using 2 chained one-pole filters. */
-    FILTER iirFilter;
-    ALfloat history[MaxChannels*2];
+    ALfilterState LpFilter[MAX_INPUT_CHANNELS];
 } DirectParams;
 
 typedef struct SendParams {
-    struct ALeffectslot *Slot;
+    ALfloat (*OutBuffer)[BUFFERSIZE];
+    ALfloat *ClickRemoval;
+    ALfloat *PendingClicks;
 
     /* Gain control, which applies to all input channels to a single (mono)
      * output buffer. */
     ALfloat Gain;
 
-    /* A low-pass filter, using 2 chained one-pole filters. */
-    FILTER iirFilter;
-    ALfloat history[MaxChannels*2];
+    ALfilterState LpFilter[MAX_INPUT_CHANNELS];
 } SendParams;
 
 
@@ -177,6 +176,11 @@ typedef struct ALsource
     ALuint id;
 } ALsource;
 #define ALsource_Update(s,a)                 ((s)->Update(s,a))
+
+inline struct ALsource *LookupSource(ALCcontext *context, ALuint id)
+{ return (struct ALsource*)LookupUIntMapKey(&context->SourceMap, id); }
+inline struct ALsource *RemoveSource(ALCcontext *context, ALuint id)
+{ return (struct ALsource*)RemoveUIntMapKey(&context->SourceMap, id); }
 
 ALvoid SetSourceState(ALsource *Source, ALCcontext *Context, ALenum state);
 ALboolean ApplyOffset(ALsource *Source);

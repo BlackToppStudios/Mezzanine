@@ -43,7 +43,8 @@
 #include "Physics/collisionshapemanager.h"
 #include "Graphics/mesh.h"
 #include "Graphics/meshmanager.h"
-#include "resourcemanager.h"
+#include "Resource/resourcemanager.h"
+#include "Resource/filestream.h"
 
 #include "Physics/collisionshape.h"
 #include "Physics/boxcollisionshape.h"
@@ -582,7 +583,7 @@ namespace Mezzanine
         void CollisionShapeManager::LoadAllShapesFromXMLFile(const String& FileName, const String& Group)
         {
             /// @todo Replace this stack allocated stream for one initialized from the Resource Manager, after the system is ready.
-            Resource::FileStream ShapesStream( FileName, ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group) );
+            Resource::FileStream ShapesStream( FileName, Resource::ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group) );
             XML::Document ShapesDoc;
             XML::ParseResult DocResult = ShapesDoc.Load(ShapesStream);
             if( DocResult.Status != XML::StatusOk ) {

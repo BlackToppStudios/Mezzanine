@@ -416,16 +416,28 @@ namespace Mezzanine
             return this->SizingPolicy;
         }
 
-        void QuadRenderable::SetPositioningRules(const Whole Rules)
+        void QuadRenderable::SetHorizontalPositioningRules(const Whole Rules)
         {
-            if( this->PositioningPolicy.PositionRules != Rules ) {
-                this->PositioningPolicy.PositionRules = Rules;
+            if( this->PositioningPolicy.HorizontalRules != Rules ) {
+                this->PositioningPolicy.HorizontalRules = Rules;
             }
         }
 
-        Whole QuadRenderable::GetPositioningRules() const
+        Whole QuadRenderable::GetHorizontalPositioningRules() const
         {
-            return this->PositioningPolicy.PositionRules;
+            return this->PositioningPolicy.HorizontalRules;
+        }
+
+        void QuadRenderable::SetVerticalPositioningRules(const Whole Rules)
+        {
+            if( this->PositioningPolicy.VerticalRules != Rules ) {
+                this->PositioningPolicy.VerticalRules = Rules;
+            }
+        }
+
+        Whole QuadRenderable::GetVerticalPositioningRules() const
+        {
+            return this->PositioningPolicy.VerticalRules;
         }
 
         void QuadRenderable::SetHorizontalSizingRules(const Whole Rules)
@@ -1128,8 +1140,25 @@ namespace Mezzanine
 
         QuadRenderable* QuadRenderable::GetTopMostQuad()
         {
-            if(this->IsChildOfScreen()) return this;
-            else return (this->ParentQuad ? this->ParentQuad->GetTopMostQuad() : this );
+            if( this->IsChildOfScreen() ) {
+                return this;
+            }else{
+                return (this->ParentQuad ? this->ParentQuad->GetTopMostQuad() : this );
+            }
+        }
+
+        Widget* QuadRenderable::GetClosestChild(Widget* Child)
+        {
+            if( Child != NULL ) {
+                QuadRenderable* RetTest = Child;
+                while( RetTest->GetParent() != NULL && RetTest->GetParent() != this )
+                    { RetTest = RetTest->GetParent(); }
+                // By this point the return value will either be NULL or a widget
+                // since it'll hit the ceiling (screen) or find this.
+                // So a blind cast should be safe.
+                return static_cast<Widget*>( RetTest );
+            }
+            return NULL;
         }
 
         ///////////////////////////////////////////////////////////////////////////////

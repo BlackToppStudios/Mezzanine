@@ -50,12 +50,12 @@ namespace Mezzanine
         ///////////////////////////////////////
         class Asset
         {
-            protected:
-            public:
-                /// @brief Class constructor.
-                Asset();
-                /// @brief Class destructor.
-                ~Asset();
+        protected:
+        public:
+            /// @brief Class constructor.
+            Asset();
+            /// @brief Class destructor.
+            ~Asset();
         };//Asset
     }//Resource
 }//Mezzanine
