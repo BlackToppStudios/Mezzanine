@@ -12,7 +12,7 @@
 ScoreArea::ScoreArea(World* TheWorld) :
     LevelZone(TheWorld),
     ScoreMultiplier(1.0)
-    { CatchApp::GetCatchAppPointer()->GetLevelScorer()->RegisterScoreArea( this ); }
+    {  }
 
 ScoreArea::ScoreArea(const String& Name, World* TheWorld, const Vector3& HalfAreaSize) :
     LevelZone(Name,TheWorld,Vector3()),
@@ -29,7 +29,6 @@ ScoreArea::~ScoreArea()
 
 void ScoreArea::CreateScoreArea(const Vector3& HalfAreaSize)
 {
-    CatchApp::GetCatchAppPointer()->GetLevelScorer()->RegisterScoreArea( this );
     //Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
     //Graphics::MeshManager* MeshMan = Entresol::GetSingletonPtr()->GetMeshManager();
     //Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
