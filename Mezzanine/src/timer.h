@@ -53,12 +53,23 @@ namespace Mezzanine
     class MEZZ_LIB Timer
     {
     public:
+        /// @enum TimerType
         /// @brief The style of timer to be used.
         enum TimerType
         {
             Normal,     ///< Counts up forever, ignoring any goal and autoreset
             StopWatch,  ///< Counts down, respecting any goal and autoreset
             Alarm       ///< Counts up, respecting any goal and autoreset
+        };
+        /// @enum TimeFormat
+        /// @brief An enum describing how the text output of a timer should be formatted.
+        enum TimeFormat
+        {
+            TF_Raw_Micro = 1,       ///< Outputs the current time in microseconds.
+            TF_Raw_Milli = 2,       ///< Outputs the current time in milliseconds.
+            TF_Seconds   = 3,       ///< Outputs the current time in seconds.
+            TF_Seconds_Milli = 4,   ///< Outputs the current time in "seconds.milliseconds".  Milliseconds are out to 3 digits.
+            TF_Minutes_Seconds = 5  ///< Outputs the current time in "minutes:seconds".
         };
     protected:
         /// @internal
@@ -124,6 +135,11 @@ namespace Mezzanine
         /// @brief Gets the type of timer this is.
         /// @return Returns an enum value representing the type of timer this is.
         virtual Timer::TimerType GetType() const;
+
+        /// @brief Gets the current time of this timer as a string.
+        /// @param Format A TimeFormat enum value representing how the current time should be presented.
+        /// @return Returns a string containing a description of the current time in the specified format.
+        virtual String GetTimeAsText(const Timer::TimeFormat Format);
     };//Timer
 
     ///////////////////////////////////////////////////////////////////////////////
