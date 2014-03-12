@@ -953,6 +953,7 @@ namespace Mezzanine
                     Child->SetVisible( this->GetVisible() );
                     Child->_NotifyParenthood(this);
                     Child->_MarkAllChildrenDirty();
+                    this->_MarkDirty();
                     return;
                 }
             }
@@ -960,6 +961,7 @@ namespace Mezzanine
             Child->SetVisible( this->GetVisible() );
             Child->_NotifyParenthood(this);
             Child->_MarkAllChildrenDirty();
+            this->_MarkDirty();
         }
 
         void QuadRenderable::AddChild(Widget* Child, const UInt16 ZOrder)

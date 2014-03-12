@@ -44,6 +44,8 @@
 #include "UI/pageprovider.h"
 #include "UI/screen.h"
 
+#include <algorithm>
+
 namespace Mezzanine
 {
     namespace UI
@@ -228,6 +230,11 @@ namespace Mezzanine
             }
             this->QuickUpdateWorkAreaSize(ToBeRemoved->GetUnifiedSize(),false);
             this->QuadRenderable::RemoveChild(ToBeRemoved);
+
+            VisibleChildIterator ChildIt = std::find(this->VisibleChildren.begin(),this->VisibleChildren.end(),ToBeRemoved);
+            if( ChildIt != this->VisibleChildren.end() ) {
+                this->VisibleChildren.erase(ChildIt);
+            }
         }
 
         void PagedContainer::RemoveAllChildren()
@@ -238,6 +245,7 @@ namespace Mezzanine
                 (*It)->_NotifyParenthood(NULL);
             }
             this->ChildWidgets.clear();
+            this->VisibleChildren.clear();
             this->UpdateWorkAreaSize();
             this->_MarkDirty();
         }
@@ -249,6 +257,11 @@ namespace Mezzanine
             }
             this->QuickUpdateWorkAreaSize(ToBeDestroyed->GetUnifiedSize(),false);
             this->QuadRenderable::DestroyChild(ToBeDestroyed);
+
+            VisibleChildIterator ChildIt = std::find(this->VisibleChildren.begin(),this->VisibleChildren.end(),ToBeDestroyed);
+            if( ChildIt != this->VisibleChildren.end() ) {
+                this->VisibleChildren.erase(ChildIt);
+            }
         }
 
         void PagedContainer::DestroyAllChildren()
@@ -260,6 +273,7 @@ namespace Mezzanine
                 this->ParentScreen->DestroyWidget( (*It) );
             }
             this->ChildWidgets.clear();
+            this->VisibleChildren.clear();
             this->UpdateWorkAreaSize();
             this->_MarkDirty();
         }
