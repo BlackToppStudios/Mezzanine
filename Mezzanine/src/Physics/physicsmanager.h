@@ -237,7 +237,7 @@ namespace Mezzanine
         {
         public:
             /// @brief Basic container type for @ref CollidableProxy storage by this class.
-            typedef std::vector< CollidableProxy* >                ProxyContainer;
+            typedef std::vector< CollidableProxy* >             ProxyContainer;
             /// @brief Iterator type for @ref CollidableProxy instances stored by this class.
             typedef ProxyContainer::iterator                    ProxyIterator;
             /// @brief Const Iterator type for @ref CollidableProxy instances stored by this class.
@@ -414,6 +414,21 @@ namespace Mezzanine
             void DestroyProxy(CollidableProxy* ToBeDestroyed);
             /// @brief Deletes all stored CollidableProxy instances.
             void DestroyAllProxies();
+
+            #ifndef SWIG
+            /// @brief Gets an iterator to the first Collidable Proxy in this manager.
+            /// @return Returns an iterator to the first Collidable Proxy being stored by this manager.
+            ProxyIterator BeginCollidableProxy();
+            /// @brief Gets an iterator to one passed the last Collidable Proxy in this manager.
+            /// @return Returns an iterator to one passed the last Collidable Proxy being stored by this manager.
+            ProxyIterator EndCollidableProxy();
+            /// @brief Gets a const iterator to the first Collidable Proxy in this manager.
+            /// @return Returns a const iterator to the first Collidable Proxy being stored by this manager.
+            ConstProxyIterator BeginCollidableProxy() const;
+            /// @brief Gets a const iterator to one passed the last Collidable Proxy in this manager.
+            /// @return Returns a const iterator to one passed the last Collidable Proxy being stored by this manager.
+            ConstProxyIterator EndCollidableProxy() const;
+            #endif
 
             ///////////////////////////////////////////////////////////////////////////////
             // Constraint Management

@@ -190,6 +190,21 @@ namespace Mezzanine
         /// @brief Destroys all Debriss currently within this manager.
         virtual void DestroyAllDebris();
 
+        #ifndef SWIG
+        /// @brief Gets an iterator to the first Debris in this manager.
+        /// @return Returns an iterator to the first Debris being stored by this manager.
+        DebrisIterator BeginDebris();
+        /// @brief Gets an iterator to one passed the last Debris in this manager.
+        /// @return Returns an iterator to one passed the last Debris being stored by this manager.
+        DebrisIterator EndDebris();
+        /// @brief Gets a const iterator to the first Debris in this manager.
+        /// @return Returns a const iterator to the first Debris being stored by this manager.
+        ConstDebrisIterator BeginDebris() const;
+        /// @brief Gets a const iterator to one passed the last Debris in this manager.
+        /// @return Returns a const iterator to one passed the last Debris being stored by this manager.
+        ConstDebrisIterator EndDebris() const;
+        #endif
+
         ///////////////////////////////////////////////////////////////////////////////
         // DebrisFactory Management
 

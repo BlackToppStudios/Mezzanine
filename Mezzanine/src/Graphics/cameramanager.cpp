@@ -131,6 +131,18 @@ namespace Mezzanine
             return;
         }
 
+        CameraManager::CameraIterator CameraManager::BeginCamera()
+            { return this->Cameras.begin(); }
+
+        CameraManager::CameraIterator CameraManager::EndCamera()
+            { return this->Cameras.end(); }
+
+        CameraManager::ConstCameraIterator CameraManager::BeginCamera() const
+            { return this->Cameras.begin(); }
+
+        CameraManager::ConstCameraIterator CameraManager::EndCamera() const
+            { return this->Cameras.end(); }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Camera Controller Management
 
@@ -244,32 +256,22 @@ namespace Mezzanine
         // DefaultCameraManagerFactory Methods
 
         DefaultCameraManagerFactory::DefaultCameraManagerFactory()
-        {
-        }
+            {  }
 
         DefaultCameraManagerFactory::~DefaultCameraManagerFactory()
-        {
-        }
+            {  }
 
         String DefaultCameraManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultCameraManager";
-        }
+            { return "DefaultCameraManager"; }
 
         ManagerBase* DefaultCameraManagerFactory::CreateManager(NameValuePairList& Params)
-        {
-            return new CameraManager();
-        }
+            { return new CameraManager(); }
 
         ManagerBase* DefaultCameraManagerFactory::CreateManager(XML::Node& XMLNode)
-        {
-            return new CameraManager(XMLNode);
-        }
+            { return new CameraManager(XMLNode); }
 
         void DefaultCameraManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-        {
-            delete ToBeDestroyed;
-        }
+            { delete ToBeDestroyed; }
     }//Graphics
 }//Mezzanine
 #endif

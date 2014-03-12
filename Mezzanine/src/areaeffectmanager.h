@@ -197,6 +197,21 @@ namespace Mezzanine
         /// @brief Destroys all actors currently within this manager.
         virtual void DestroyAllAreaEffects();
 
+        #ifndef SWIG
+        /// @brief Gets an iterator to the first AreaEffect in this manager.
+        /// @return Returns an iterator to the first AreaEffect being stored by this manager.
+        AreaEffectIterator BeginAreaEffect();
+        /// @brief Gets an iterator to one passed the last AreaEffect in this manager.
+        /// @return Returns an iterator to one passed the last AreaEffect being stored by this manager.
+        AreaEffectIterator EndAreaEffect();
+        /// @brief Gets a const iterator to the first AreaEffect in this manager.
+        /// @return Returns a const iterator to the first AreaEffect being stored by this manager.
+        ConstAreaEffectIterator BeginAreaEffect() const;
+        /// @brief Gets a const iterator to one passed the last AreaEffect in this manager.
+        /// @return Returns a const iterator to one passed the last AreaEffect being stored by this manager.
+        ConstAreaEffectIterator EndAreaEffect() const;
+        #endif
+
         ///////////////////////////////////////////////////////////////////////////////
         // AreaEffectFactory Management
 

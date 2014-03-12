@@ -876,6 +876,18 @@ namespace Mezzanine
             this->Proxies.clear();
         }
 
+        PhysicsManager::ProxyIterator PhysicsManager::BeginCollidableProxy()
+            { return this->Proxies.begin(); }
+
+        PhysicsManager::ProxyIterator PhysicsManager::EndCollidableProxy()
+            { return this->Proxies.end(); }
+
+        PhysicsManager::ConstProxyIterator PhysicsManager::BeginCollidableProxy() const
+            { return this->Proxies.begin(); }
+
+        PhysicsManager::ConstProxyIterator PhysicsManager::EndCollidableProxy() const
+            { return this->Proxies.end(); }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Constraint Management
 

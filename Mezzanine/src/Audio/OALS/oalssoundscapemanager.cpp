@@ -87,7 +87,7 @@ namespace Mezzanine
 
             void BufferUpdate3DWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
             {
-                for( SoundScapeManager::SoundProxyIterator ProxIt = this->TargetManager->SoundProxies.begin() ; ProxIt != this->TargetManager->SoundProxies.end() ; ++ProxIt )
+                for( SoundScapeManager::ProxyIterator ProxIt = this->TargetManager->Proxies.begin() ; ProxIt != this->TargetManager->Proxies.end() ; ++ProxIt )
                 {
                     (*ProxIt)->_Update();
                 }
@@ -164,7 +164,7 @@ namespace Mezzanine
                     ContextIndex++;
                 }
 
-                for( SoundProxyIterator ProxIt = this->SoundProxies.begin() ; ProxIt != this->SoundProxies.end() ; ++ProxIt )
+                for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
                     (*ProxIt)->_OnContextCreated(ContextIndex,NewContext);
                 }
@@ -186,7 +186,7 @@ namespace Mezzanine
                     ContextIndex++;
                 }
 
-                for( SoundProxyIterator ProxIt = this->SoundProxies.begin() ; ProxIt != this->SoundProxies.end() ; ++ProxIt )
+                for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
                     (*ProxIt)->_OnContextDestroyed(ContextIndex,Context);
                 }
@@ -201,7 +201,7 @@ namespace Mezzanine
                 for( ContextIterator ConIt = this->Contexts.begin() ; ConIt != this->Contexts.end() ; ++ConIt )
                 {
                     UInt32 ContextIndex = 0;
-                    for( SoundProxyIterator ProxIt = this->SoundProxies.begin() ; ProxIt != this->SoundProxies.end() ; ++ProxIt )
+                    for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                     {
                         (*ProxIt)->_OnContextDestroyed( ContextIndex, (*ConIt) );
                     }
@@ -270,7 +270,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,NULL,this->Contexts,this);
-                SoundProxies.push_back(NewSoundProxy);
+                this->Proxies.push_back(NewSoundProxy);
                 return NewSoundProxy;
             }
 
@@ -286,7 +286,7 @@ namespace Mezzanine
 
                 iDecoder* SoundDecoder = Factory->CreateDecoder(Stream);
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,SoundDecoder,this->Contexts,this);
-                SoundProxies.push_back(NewSoundProxy);
+                this->Proxies.push_back(NewSoundProxy);
                 return NewSoundProxy;
             }
 
@@ -302,7 +302,7 @@ namespace Mezzanine
 
                 iDecoder* SoundDecoder = static_cast<RawDecoderFactory*>(Factory)->CreateDecoder(Stream,Frequency,Config);
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,SoundDecoder,this->Contexts,this);
-                SoundProxies.push_back(NewSoundProxy);
+                this->Proxies.push_back(NewSoundProxy);
                 return NewSoundProxy;
             }
 
@@ -361,34 +361,46 @@ namespace Mezzanine
 
             Audio::SoundProxy* SoundScapeManager::GetSoundProxy(const UInt32 Index) const
             {
-                return this->SoundProxies.at(Index);
+                return this->Proxies.at(Index);
             }
 
             UInt32 SoundScapeManager::GetNumSoundProxies() const
             {
-                return this->SoundProxies.size();
+                return this->Proxies.size();
             }
 
             void SoundScapeManager::DestroySoundProxy(Audio::SoundProxy* ToBeDestroyed)
             {
-                for( SoundProxyIterator ProxIt = this->SoundProxies.begin() ; ProxIt != this->SoundProxies.end() ; ++ProxIt )
+                for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
                     if( (*ProxIt) == ToBeDestroyed )
                     {
                         delete ToBeDestroyed;
-                        this->SoundProxies.erase(ProxIt);
+                        this->Proxies.erase(ProxIt);
                     }
                 }
             }
 
             void SoundScapeManager::DestroyAllSoundProxies()
             {
-                for( SoundProxyIterator ProxIt = this->SoundProxies.begin() ; ProxIt != this->SoundProxies.end() ; ++ProxIt )
+                for( ProxyIterator ProxIt = this->Proxies.begin() ; ProxIt != this->Proxies.end() ; ++ProxIt )
                 {
                     delete (*ProxIt);
                 }
-                this->SoundProxies.clear();
+                this->Proxies.clear();
             }
+
+            SoundScapeManager::ProxyIterator SoundScapeManager::BeginSoundProxy()
+                { return this->Proxies.begin(); }
+
+            SoundScapeManager::ProxyIterator SoundScapeManager::EndSoundProxy()
+                { return this->Proxies.end(); }
+
+            SoundScapeManager::ConstProxyIterator SoundScapeManager::BeginSoundProxy() const
+                { return this->Proxies.begin(); }
+
+            SoundScapeManager::ConstProxyIterator SoundScapeManager::EndSoundProxy() const
+                { return this->Proxies.end(); }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
