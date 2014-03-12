@@ -347,14 +347,13 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
         {
             Ray MouseRay = RayQueryTool::GetMouseRay(5000);
 
-            bool firstframe=false;
-            if( RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid | Mezzanine::WO_DebrisSoft) )
-            {
+            Boole firstframe = false;
+            if( RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid | Mezzanine::WO_DebrisSoft) ) {
                 Debris* CastResult = static_cast<Debris*>( RayCaster.LastQueryResultsObjectPtr() );
                 Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
-                if( CastResult->GetType() == Mezzanine::WO_DebrisRigid &&
+                if( CastResult->GetType() & Mezzanine::WO_DebrisRigid &&
                     this->CatchApplication->IsInsideAnyStartZone( CastResult ) &&
-                    !Dragger )
+                    Dragger == NULL )
                 {
                     if( !( static_cast<RigidDebris*>( CastResult )->GetRigidProxy()->IsStaticOrKinematic() ) )
                     {
@@ -377,13 +376,12 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
 
             if(Dragger && RayCaster.RayPlaneIntersection(MouseRay, this->CatchApplication->PlaneOfPlay))
             {
-                if(!firstframe)
-                    { Dragger->SetPivotBLocation(RayCaster.LastQueryResultsOffset()); }
+                if( !firstframe ) {
+                    Dragger->SetPivotBLocation( RayCaster.LastQueryResultsOffset() );
+                }
             }
 
-            if(Dragger &&
-               !this->CatchApplication->IsInsideAnyStartZone(this->CatchApplication->LastObjectThrown))
-            {
+            if(Dragger && !this->CatchApplication->IsInsideAnyStartZone( this->CatchApplication->LastObjectThrown ) ) {
                 Physics::RigidProxy* Prox = Dragger->GetProxyA();
                 Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
                 Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
@@ -391,8 +389,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
         }
 
     }else{  //Since we are no longer clicking we need to setup for the next clicking
-        if(Dragger)
-        {
+        if( Dragger ) {
             Physics::RigidProxy* Prox = Dragger->GetProxyA();
             Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;

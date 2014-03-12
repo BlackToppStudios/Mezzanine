@@ -1540,6 +1540,7 @@ int CatchApp::GetCatchin()
 
     this->PostUIWork = new CatchPostUIWorkUnit(this);
     this->PostUIWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
+    this->PostUIWork->AddDependency( this->TheEntresol->GetPhysicsManager()->GetSimulationWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostUIWork, "PostUIWork" );
 
     this->PauseWork = new CatchPauseWorkUnit(this,this->TheEntresol->GetUIManager());
