@@ -97,7 +97,8 @@ void CatchProfile::SetNewHighScore(const String& LevelName, const Whole& NewHigh
 // ProfileManager Methods
 
 ProfileManager::ProfileManager(const String& ProfilesDir) :
-    ProfilesDirectory(ProfilesDir)
+    ProfilesDirectory(ProfilesDir),
+    ActiveProfile(NULL)
 {
     /*ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     XML::Document ProfileDoc;
@@ -118,12 +119,10 @@ ProfileManager::ProfileManager(const String& ProfilesDir) :
 
 ProfileManager::~ProfileManager()
 {
-    SaveAllProfiles();
-    for( ProfilesIterator it = LoadedProfiles.begin() ; it != LoadedProfiles.end() ; ++it )
-    {
-        delete (*it);
-    }
-    LoadedProfiles.clear();
+    this->SaveAllProfiles();
+    for( ProfilesIterator it = this->LoadedProfiles.begin() ; it != this->LoadedProfiles.end() ; ++it )
+        { delete (*it); }
+    this->LoadedProfiles.clear();
 }
 
 void ProfileManager::PopulateLevelList(GameProfile* Profile)
@@ -161,7 +160,7 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
 GameProfile* ProfileManager::CreateNewProfile(const String& Name)
 {
     GameProfile* Profile = new GameProfile(Name);
-    LoadedProfiles.push_back(Profile);
+    this->LoadedProfiles.push_back(Profile);
     return Profile;
 }
 
@@ -169,7 +168,7 @@ GameProfile* ProfileManager::LoadProfile(const String& FileName)
 {
     XML::Document ProfileDoc;
 
-    return LoadProfile(ProfileDoc);
+    return this->LoadProfile(ProfileDoc);
 }
 
 GameProfile* ProfileManager::LoadProfile(XML::Document& ProfileDoc)
@@ -180,16 +179,15 @@ GameProfile* ProfileManager::LoadProfile(XML::Document& ProfileDoc)
     }catch(IOException Ex){
         //Handle somehow?
     }
-    LoadedProfiles.push_back(Profile);
+    this->LoadedProfiles.push_back(Profile);
     return Profile;
 }
 
 GameProfile* ProfileManager::GetProfile(const String& Name) const
 {
-    for( ConstProfilesIterator it = LoadedProfiles.begin() ; it != LoadedProfiles.end() ; ++it )
+    for( ConstProfilesIterator it = this->LoadedProfiles.begin() ; it != this->LoadedProfiles.end() ; ++it )
     {
-        if( Name == (*it)->GetName() )
-        {
+        if( Name == (*it)->GetName() ) {
             return (*it);
         }
     }
@@ -198,17 +196,17 @@ GameProfile* ProfileManager::GetProfile(const String& Name) const
 
 GameProfile* ProfileManager::GetProfile(const Whole& Index) const
 {
-    return LoadedProfiles.at(Index);
+    return this->LoadedProfiles.at(Index);
 }
 
 Whole ProfileManager::GetNumLoadedProfiles() const
 {
-    return LoadedProfiles.size();
+    return this->LoadedProfiles.size();
 }
 
 void ProfileManager::SaveProfile(const String& Name)
 {
-    for( ProfilesIterator it = LoadedProfiles.begin() ; it != LoadedProfiles.end() ; ++it )
+    for( ProfilesIterator it = this->LoadedProfiles.begin() ; it != this->LoadedProfiles.end() ; ++it )
     {
         if( Name == (*it)->GetName() )
         {
@@ -220,7 +218,7 @@ void ProfileManager::SaveProfile(const String& Name)
 
 void ProfileManager::SaveAllProfiles()
 {
-    for( ProfilesIterator it = LoadedProfiles.begin() ; it != LoadedProfiles.end() ; ++it )
+    for( ProfilesIterator it = this->LoadedProfiles.begin() ; it != this->LoadedProfiles.end() ; ++it )
     {
         (*it)->Save(ProfilesDirectory);
     }
@@ -228,11 +226,11 @@ void ProfileManager::SaveAllProfiles()
 
 void ProfileManager::SetActiveProfile(const String& Name)
 {
-    for( ProfilesIterator it = LoadedProfiles.begin() ; it != LoadedProfiles.end() ; ++it )
+    for( ProfilesIterator it = this->LoadedProfiles.begin() ; it != this->LoadedProfiles.end() ; ++it )
     {
         if( Name == (*it)->GetName() )
         {
-            SetActiveProfile(*it);
+            this->SetActiveProfile(*it);
             break;
         }
     }
@@ -240,13 +238,13 @@ void ProfileManager::SetActiveProfile(const String& Name)
 
 void ProfileManager::SetActiveProfile(GameProfile* Profile)
 {
-    ActiveProfile = Profile;
-    PopulateLevelList(ActiveProfile);
+    this->ActiveProfile = Profile;
+    this->PopulateLevelList(ActiveProfile);
 }
 
 GameProfile* ProfileManager::GetActiveProfile() const
 {
-    return ActiveProfile;
+    return this->ActiveProfile;
 }
 
 /// @todo UI Update

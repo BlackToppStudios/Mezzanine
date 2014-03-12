@@ -19,7 +19,9 @@ CatchApp::CatchApp() :
     PreInputWork(NULL),
     PostInputWork(NULL),
     PostUIWork(NULL),
-    PostGraphicsWork(NULL),
+    PauseWork(NULL),
+    HUDUpdateWork(NULL),
+    EndLevelWork(NULL),
 
     TheEntresol(NULL),
     Profiles(NULL),
@@ -40,7 +42,7 @@ CatchApp::CatchApp() :
 
 	this->TheEntresol = new Entresol( "Data/", AT_FileSystem );
     this->LevelMan = new LevelManager( this->TheEntresol, "Levels/" );
-    this->Scorer = new LevelScorer();
+    this->Scorer = new LevelScorer( this, this->TheEntresol );
     this->Profiles = new ProfileManager("Profiles/");
     this->Shop = new ItemShop();
     ThrowableGenerator::ParseThrowables("");
@@ -65,8 +67,14 @@ CatchApp::~CatchApp()
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostUIWork );
     delete this->PostUIWork;
 
-    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PostGraphicsWork );
-    delete this->PostGraphicsWork;
+    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->PauseWork );
+    delete this->PauseWork;
+
+    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->HUDUpdateWork );
+    delete this->HUDUpdateWork;
+
+    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->EndLevelWork );
+    delete this->EndLevelWork;
 
     delete this->Profiles;
     delete this->LevelMan;
@@ -104,7 +112,7 @@ void CatchApp::MakeGUI()
 
     ////-------------------  FPS  Stats  -------------------////
     // Create the widget container for the current FPS display
-    UI::Widget* SSCurrentFPS = StatsScreen->CreateWidget("SS_CurrentFPS",UI::UnifiedRect(0.008,0.006,0.23,0.065));
+    UI::Widget* SSCurrentFPS = StatsScreen->CreateWidget("SS_CurrentFPS",UI::UnifiedRect(0.008,0.055,0.23,0.065));
     SSCurrentFPS->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     // Create the widget for displaying the current FPS explanation text
     UI::Widget* SSCurrentFPSLabel = StatsScreen->CreateWidget("SS_CurrentFPSLabel",UI::UnifiedRect(0.0,0.0,0.65,1.0));
@@ -130,7 +138,7 @@ void CatchApp::MakeGUI()
     StatsScreen->AddChild(SSCurrentFPS,1);
 
     // Create the widget container for the average FPS display
-    UI::Widget* SSAverageFPS = StatsScreen->CreateWidget("SS_AverageFPS",UI::UnifiedRect(0.008,0.105,0.23,0.065));
+    UI::Widget* SSAverageFPS = StatsScreen->CreateWidget("SS_AverageFPS",UI::UnifiedRect(0.008,0.12,0.23,0.065));
     SSAverageFPS->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     // Create the widget for displaying the average FPS explanation text
     UI::Widget* SSAverageFPSLabel = StatsScreen->CreateWidget("SS_AverageFPSLabel",UI::UnifiedRect(0.0,0.0,0.65,1.0));
@@ -693,6 +701,11 @@ void CatchApp::MakeGUI()
     GSScoreLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
     GSScoreLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     GSScoreLabel->CreateSingleImageLayer("GSScoreTextArea",0,0);
+    UI::SingleLineTextLayer* GSScoreLabelText = GSScoreLabel->CreateSingleLineTextLayer(GameScreenText,1,1);
+    GSScoreLabelText->SetText("Score");
+    GSScoreLabelText->HorizontallyAlign(UI::LA_Center);
+    GSScoreLabelText->VerticallyAlign(UI::LA_Center);
+    GSScoreLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
     GSScore->AddChild(GSScoreLabel,1);
     // Create the widget for displaying the timer value
     UI::Widget* GSScoreValue = GameScreen->CreateWidget("GS_ScoreValue",UI::UnifiedRect(0.0,0.0,0.55,1.0));
@@ -712,13 +725,13 @@ void CatchApp::MakeGUI()
     UI::Widget* GSTimer = GameScreen->CreateWidget("GS_Timer",UI::UnifiedRect(0.8355,0.006,0.16,0.065));
     GSTimer->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     // Create the widget for displaying the timer logo
-    UI::Widget* GSTimerLogo = GameScreen->CreateWidget("GS_TimerLogo",UI::UnifiedRect(0.0,0.0,0.66,1.0));
+    UI::Widget* GSTimerLogo = GameScreen->CreateWidget("GS_TimerLogo",UI::UnifiedRect(0.0,0.0,0.34,1.0));
     GSTimerLogo->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
     GSTimerLogo->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     GSTimerLogo->CreateSingleImageLayer("GSTimerLogo",0,0);
     GSTimer->AddChild(GSTimerLogo,1);
     // Create the widget for displaying the timer value
-    UI::Widget* GSTimerValue = GameScreen->CreateWidget("GS_TimerValue",UI::UnifiedRect(0.0,0.0,0.34,1.0));
+    UI::Widget* GSTimerValue = GameScreen->CreateWidget("GS_TimerValue",UI::UnifiedRect(0.0,0.0,0.66,1.0));
     GSTimerValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
     GSTimerValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     GSTimerValue->CreateSingleImageLayer("GSTimerArea",0,0);
@@ -761,6 +774,8 @@ void CatchApp::MakeGUI()
     GSMenuRoot->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     GSMenuRoot->CreateSingleImageLayer("GSOptionsMenuBackground",0,0);
     GSMenuRoot->SetPushButton(GSMenuAccess);
+    GSMenuRoot->Subscribe(UI::Widget::EventVisibilityShown,this->PauseWork->GetPauseSubscriber());
+    GSMenuRoot->Subscribe(UI::Widget::EventVisibilityHidden,this->PauseWork->GetPauseSubscriber());
     GameScreen->AddChild(GSMenuRoot,10);
 
     // Create the options accessor button
@@ -1173,6 +1188,8 @@ void CatchApp::MakeGUI()
     GSItemShopRoot->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     GSItemShopRoot->CreateSingleImageLayer("GSStoreBackground",0,0);
     GSItemShopRoot->SetPushButton(GSItemShopAccess);
+    GSItemShopRoot->Subscribe(UI::Widget::EventVisibilityShown,this->PauseWork->GetPauseSubscriber());
+    GSItemShopRoot->Subscribe(UI::Widget::EventVisibilityHidden,this->PauseWork->GetPauseSubscriber());
     GameScreen->AddChild(GSItemShopRoot,8);
 
     // Create the "titlebar" for the item shop window
@@ -1258,10 +1275,13 @@ void CatchApp::MakeGUI()
     GSLevelReportScoreText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
     GSLevelReport->AddChild(GSLevelReportScore,1);
 
-    UI::VerticalContainer* GSLevelReportBreakdown = GameScreen->CreateVerticalContainer("GS_LevelReportBreakdown",UI::UnifiedRect(0.15,0.245,0.70,0.52));
-    GSLevelReportBreakdown->SetPadding(UI::UnifiedDim(0.05,0.0));
-    GSLevelReportBreakdown->CreateSingleImageLayer("GSBreakdownBackground",0,0);
-    GSLevelReport->AddChild(GSLevelReportBreakdown,2);
+    UI::Widget* GSLevelReportBreakdownBack = GameScreen->CreateWidget("GS_LevelReportBreakdownBack",UI::UnifiedRect(0.15,0.245,0.70,0.52));
+    GSLevelReportBreakdownBack->CreateSingleImageLayer("GSBreakdownBackground",0,0);
+    GSLevelReport->AddChild(GSLevelReportBreakdownBack,2);
+
+    UI::VerticalContainer* GSLevelReportBreakdown = GameScreen->CreateVerticalContainer("GS_LevelReportBreakdown",UI::UnifiedRect(0.10,0.10,0.80,0.80));
+    GSLevelReportBreakdown->SetChildSizing(UI::SizingInfo(UI::UnifiedVec2(0.9,0.1666)),UI::LinearContainer::SE_OnAdd);
+    GSLevelReportBreakdownBack->AddChild(GSLevelReportBreakdown,1);
 
     UI::Button* GSLevelReportFinish = GameScreen->CreateButton("GS_LevelReportFinish",UI::UnifiedRect(0.21,0.815,0.25,0.125));
     GSLevelReportFinish->CreateSingleImageLayer("GSStoreButton",0,"Normal");
@@ -1395,11 +1415,9 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
     if( StateToSet == CatchApp::Catch_ScoreScreen ) {
         this->PauseGame(true);
         Whole LevelScore = this->Scorer->PresentFinalScore();
-        if( LevelScore > this->Profiles->GetActiveProfile()->GetHighestScore( this->LevelMan->GetCurrentLevel()->GetName() ) )
-        {
-            this->Profiles->GetActiveProfile()->SetNewHighScore(this->LevelMan->GetCurrentLevel()->GetName(),LevelScore);
-            /// @todo UI Update
-            //(static_cast<LevelSelectCell*>(this->Profiles->GetLevelGrid()->GetCell(LevelMan->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTools::ConvertToString(LevelScore));
+        CatchProfile* Active = this->Profiles->GetActiveProfile();
+        if( Active != NULL && LevelScore > Active->GetHighestScore( this->LevelMan->GetCurrentLevel()->GetName() ) ) {
+            Active->SetNewHighScore(this->LevelMan->GetCurrentLevel()->GetName(),LevelScore);
         }
     }
     this->CurrentState = StateToSet;
@@ -1409,30 +1427,26 @@ Boole CatchApp::CheckEndOfLevel()
 {
     if( this->Scorer->GetNumScoreAreas() == 0 )
         return false;
-    if(CurrentState == CatchApp::Catch_ScoreScreen)
+    if( this->CurrentState == CatchApp::Catch_ScoreScreen )
         return true;
-    if(AllStartZonesEmpty())
-    {
-        if(!EndTimer)
-        {
-            EndTimer = new StopWatchTimer();
-            EndTimer->SetInitialTime(5 * 1000000);
-            EndTimer->SetCurrentTime(5 * 1000000);
-            EndTimer->SetGoalTime(0);
-            EndTimer->Start();
+    if( this->AllStartZonesEmpty() ) {
+        if( !this->EndTimer ) {
+            this->EndTimer = new StopWatchTimer();
+            this->EndTimer->SetInitialTime(5 * 1000000);
+            this->EndTimer->SetCurrentTime(5 * 1000000);
+            this->EndTimer->SetGoalTime(0);
+            this->EndTimer->Start();
         }
 
-        if( this->Scorer->GetNumAddedThrowables() > 0 )
-        {
-            EndTimer->Reset();
+        if( this->Scorer->GetNumAddedThrowables() > 0 ) {
+            this->EndTimer->Reset();
         }
 
-        return 0 == EndTimer->GetCurrentTime();
+        return 0 == this->EndTimer->GetCurrentTime();
     }else{
-        if(EndTimer)
-        {
-            delete EndTimer;
-            EndTimer = NULL;
+        if( this->EndTimer ) {
+            delete this->EndTimer;
+            this->EndTimer = NULL;
         }
         return false;
     }
@@ -1455,7 +1469,7 @@ void CatchApp::UnloadLevel()
     if( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() )
         return;
 
-    Resource::ResourceManager* ResMan = Resource::ResourceManager::GetSingletonPtr();
+    //Resource::ResourceManager* ResMan = Resource::ResourceManager::GetSingletonPtr();
     Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
     Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
     UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
@@ -1528,10 +1542,19 @@ int CatchApp::GetCatchin()
     this->PostUIWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
     this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostUIWork, "PostUIWork" );
 
-    this->PostGraphicsWork = new CatchPostGraphicsWorkUnit(this);
-    this->PostGraphicsWork->AddDependency( this->TheEntresol->GetGraphicsManager()->GetRenderWork() );
-    this->PostGraphicsWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
-    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PostGraphicsWork, "PostGraphicsWork" );
+    this->PauseWork = new CatchPauseWorkUnit(this,this->TheEntresol->GetUIManager());
+    this->PauseWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
+    this->PauseWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->PauseWork, "PauseWork" );
+
+    this->HUDUpdateWork = new CatchHUDUpdateWorkUnit(this);
+    this->HUDUpdateWork->AddDependency( this->TheEntresol->GetUIManager()->GetWidgetUpdateWork() );
+    this->HUDUpdateWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->HUDUpdateWork, "HUDUpdateWork" );
+
+    this->EndLevelWork = new CatchEndLevelWorkUnit(this);
+    this->EndLevelWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->EndLevelWork, "EndLevelWork" );
 
     this->RegisterTypes();
 
@@ -1584,22 +1607,26 @@ CatchApp::GameState CatchApp::GetState() const
 
 void CatchApp::PauseGame(Boole Pause)
 {
-    UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
-    if(Paused == Pause)
-        return;
-    if(CurrentState == CatchApp::Catch_ScoreScreen && !Pause)
-        return;
-    if( !Pause && (GameScreen->GetWidget("GS_GameMenu")->IsVisible() || GameScreen->GetWidget("GS_ItemShop")->IsVisible()) )
-        return;
-    TheEntresol->PauseWorld(Pause);
-    if(Pause) LevelTimer->Stop();
-    else LevelTimer->Start();
-    if(EndTimer)
-    {
-        if(Pause) EndTimer->Stop();
-        else EndTimer->Start();
+    if( this->Paused != Pause ) {
+        UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+        if( CurrentState == CatchApp::Catch_ScoreScreen && !Pause ) {
+            return;
+        }
+        if( !Pause && ( GameScreen->GetWidget("GS_MenuRoot")->IsVisible() || GameScreen->GetWidget("GS_ItemShopRoot")->IsVisible() ) ) {
+            return;
+        }
+        this->TheEntresol->PauseWorld(Pause);
+        if( Pause ) {
+            this->LevelTimer->Stop();
+        }else{
+            this->LevelTimer->Start();
+        }
+        if( this->EndTimer ) {
+            if(Pause) this->EndTimer->Stop();
+            else this->EndTimer->Start();
+        }
+        this->Paused = Pause;
     }
-    Paused = Pause;
 }
 
 Boole CatchApp::GameIsPaused() const
@@ -1701,8 +1728,14 @@ CatchPostInputWorkUnit* CatchApp::GetPostInputWork() const
 CatchPostUIWorkUnit* CatchApp::GetPostUIWork() const
     { return this->PostUIWork; }
 
-CatchPostGraphicsWorkUnit* CatchApp::GetPostGraphicsWork() const
-    { return this->PostGraphicsWork; }
+CatchPauseWorkUnit* CatchApp::GetPauseWork() const
+    { return this->PauseWork; }
+
+CatchHUDUpdateWorkUnit* CatchApp::GetHUDUpdateWork() const
+    { return this->HUDUpdateWork; }
+
+CatchEndLevelWorkUnit* CatchApp::GetEndLevelWork() const
+    { return this->EndLevelWork; }
 
 Entresol* CatchApp::GetTheEntresol() const
     { return this->TheEntresol; }

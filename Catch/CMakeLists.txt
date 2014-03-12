@@ -134,8 +134,6 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}WorldObjects/scorearea.h"
     "${${PROJECT_NAME}_SRC_DIR}WorldObjects/startarea.cpp"
     "${${PROJECT_NAME}_SRC_DIR}WorldObjects/startarea.h"
-    "${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.h"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.cpp"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.h"
     "${${PROJECT_NAME}_SRC_DIR}gamebase.cpp"

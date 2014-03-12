@@ -2,64 +2,11 @@
 #define _workunits_h
 
 #include <mezzanine.h>
+#include "queuedsubscriber.h"
 
 using namespace Mezzanine;
 
 class CatchApp;
-
-///////////////////////////////////////////////////////////////////////////////
-/// @brief This is a convenience class used by some of the settings related work units.
-/// @details
-///////////////////////////////////////
-class QueuedSubscriber : public EventSubscriber
-{
-public:
-    /// @brief Container type for EventArguements storage in this class.
-    typedef std::vector<EventArgumentsPtr>        EventContainer;
-    /// @brief Iterator type for EventArguments stored in this class.
-    typedef EventContainer::iterator              EventIterator;
-    /// @brief Const Iterator type for EventArguments stored in this class.
-    typedef EventContainer::const_iterator        ConstEventIterator;
-protected:
-public:
-    /// @brief Container storing all of the Queued events.
-    EventContainer Events;
-    /// @brief A pointer to the manager that this events will eventually change the settings on.
-    ManagerBase* TargetManager;
-    /// @brief A pointer to the UIManager to give this access to the subscribed widgets.
-    UI::UIManager* UITarget;
-    /// @brief Stores whether or not this subscribers events are currently being processed.
-    Boole Updating;
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Construction and Destruction
-
-    /// @brief Class constructor.
-    /// @param UIMan A pointer to the UIManager used for Widget lookups if needed.
-    /// @param Target The target manager this subscriber will alter.
-    QueuedSubscriber(UI::UIManager* UIMan, ManagerBase* Target);
-    /// @brief Class destructor.
-    virtual ~QueuedSubscriber();
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Convenience and Utility
-
-    /// @brief Gets an iterator to the first event.
-    /// @return Returns an Iterator pointing to the first event queued.
-    ConstEventIterator GetFirstEvent() const;
-    /// @brief Gets an iterator to one passed the last event.
-    /// @return Returns an Iterator pointing to one passed the last event queued.
-    ConstEventIterator GetEndEvent() const;
-    /// @brief Clears the queue of all known events.
-    void ClearEvents();
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Inherited
-
-    /// @brief Method used to notify this Subscriber an event it cares about has occured.
-    /// @param Args The specific information regarding the event that was fired.
-    virtual void _NotifyEvent(EventArgumentsPtr Args);
-};//QueuedSubscriber
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief This workunit is responsible fullfilling an Audio settings change requested from the UI.
@@ -70,7 +17,7 @@ class AudioSettingsWorkUnit : public Threading::DefaultWorkUnit
 protected:
     /// @internal
     /// @brief The subscriber used to store settings change requests until they can be processed.
-    QueuedSubscriber* SettingsSubscriber;
+    QueuedSettingsSubscriber* SettingsSubscriber;
 public:
     /// @brief Class constructor.
     /// @param UITarget The UIManager to be used for widget lookups.
@@ -81,7 +28,7 @@ public:
 
     /// @brief Gets a pointer to the subscriber used to queue settings change requests.
     /// @return Returns a pointer to the subscriber storing settings change requests.
-    QueuedSubscriber* GetSettingsSubscriber() const;
+    QueuedSettingsSubscriber* GetSettingsSubscriber() const;
     /// @brief Performs all the tasks this WorkUnit is responsible for.
     /// @param CurrentThreadStorage Storage for a number of utilities and data that is safe for this WorkUnit to access.
     virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
@@ -96,7 +43,7 @@ class VideoSettingsWorkUnit : public Threading::DefaultWorkUnit
 protected:
     /// @internal
     /// @brief The subscriber used to store settings change requests until they can be processed.
-    QueuedSubscriber* SettingsSubscriber;
+    QueuedSettingsSubscriber* SettingsSubscriber;
 public:
     /// @brief Class constructor.
     /// @param UITarget The UIManager to be used for widget lookups.
@@ -107,7 +54,7 @@ public:
 
     /// @brief Gets a pointer to the subscriber used to queue settings change requests.
     /// @return Returns a pointer to the subscriber storing settings change requests.
-    QueuedSubscriber* GetSettingsSubscriber() const;
+    QueuedSettingsSubscriber* GetSettingsSubscriber() const;
     /// @brief Performs all the tasks this WorkUnit is responsible for.
     /// @param CurrentThreadStorage Storage for a number of utilities and data that is safe for this WorkUnit to access.
     virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
@@ -167,6 +114,8 @@ protected:
     /// @internal
     /// @brief A pointer to the Catch core class.
     CatchApp* CatchApplication;
+    /// @internal
+    /// @brief The raycaster used for click and drag in Catch.
     RayQueryTool RayCaster;
 public:
     /// @brief Class constructor.
@@ -181,10 +130,36 @@ public:
 };// CatchPostUIWorkUnit
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @brief This workunit is responsible for all Catch logic to be run after the frame is rendered.
+/// @brief This workunit is responsible for fullfilling a request to pause the game.
 /// @details
 ///////////////////////////////////////
-class CatchPostGraphicsWorkUnit : public Threading::DefaultWorkUnit
+class CatchPauseWorkUnit : public Threading::DefaultWorkUnit
+{
+protected:
+    /// @internal
+    /// @brief The subscriber used to pause state change requests until they can be processed.
+    QueuedPauseSubscriber* PauseSubscriber;
+public:
+    /// @brief Class constructor.
+    /// @param Target A pointer to the Catch core class.
+    /// @param UITarget The UIManager to be used for widget lookups.
+    CatchPauseWorkUnit(CatchApp* Target, UI::UIManager* UITarget);
+    /// @brief Class destructor.
+    virtual ~CatchPauseWorkUnit();
+
+    /// @brief Gets a pointer to the subscriber used to queue pause change requests.
+    /// @return Returns a pointer to the subscriber storing pause change requests.
+    QueuedPauseSubscriber* GetPauseSubscriber() const;
+    /// @brief Performs all the tasks this WorkUnit is responsible for.
+    /// @param CurrentThreadStorage Storage for a number of utilities and data that is safe for this WorkUnit to access.
+    virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+};//CatchPauseWorkUnit
+
+///////////////////////////////////////////////////////////////////////////////
+/// @brief This workunit is responsible for updating the in-game HUD information.
+/// @details
+///////////////////////////////////////
+class CatchHUDUpdateWorkUnit : public Threading::DefaultWorkUnit
 {
 protected:
     /// @internal
@@ -193,13 +168,35 @@ protected:
 public:
     /// @brief Class constructor.
     /// @param Target A pointer to the Catch core class.
-    CatchPostGraphicsWorkUnit(CatchApp* Target);
+    CatchHUDUpdateWorkUnit(CatchApp* Target);
     /// @brief Class destructor.
-    virtual ~CatchPostGraphicsWorkUnit();
+    virtual ~CatchHUDUpdateWorkUnit();
 
     /// @brief Performs all the tasks this WorkUnit is responsible for.
     /// @param CurrentThreadStorage Storage for a number of utilities and data that is safe for this WorkUnit to access.
     virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
-};// CatchPostGraphicsWorkUnit
+};// CatchHUDUpdateWorkUnit
+
+///////////////////////////////////////////////////////////////////////////////
+/// @brief This workunit is responsible for checking if the events need to end a level have occured.
+/// @details
+///////////////////////////////////////
+class CatchEndLevelWorkUnit : public Threading::DefaultWorkUnit
+{
+protected:
+    /// @internal
+    /// @brief A pointer to the Catch core class.
+    CatchApp* CatchApplication;
+public:
+    /// @brief Class constructor.
+    /// @param Target A pointer to the Catch core class.
+    CatchEndLevelWorkUnit(CatchApp* Target);
+    /// @brief Class destructor.
+    virtual ~CatchEndLevelWorkUnit();
+
+    /// @brief Performs all the tasks this WorkUnit is responsible for.
+    /// @param CurrentThreadStorage Storage for a number of utilities and data that is safe for this WorkUnit to access.
+    virtual void DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
+};// CatchEndLevelWorkUnit
 
 #endif

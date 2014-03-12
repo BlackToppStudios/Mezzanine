@@ -47,6 +47,9 @@ protected:
     /// @internal
     /// @brief The name of this levels Asset Group.
     String GroupName;
+    /// @internal
+    /// @brief A whole containing the number of seconds a level needs to be completed in before bonus score is depleted.
+    Whole LevelTargetTime;
 
     /// @internal
     /// @brief Deserializes the relevant data about the level, and populates this class with it.
@@ -82,6 +85,10 @@ public:
 
     ///////////////////////////////////////////////////////////////////////////////
     // MetaData Access
+
+    /// @brief Gets the amount of time for this level to be completed before bonus score is depleted.
+    /// @return Returns a Whole representing the amount of time for this level to be completed in seconds.
+    Whole GetLevelTargetTime() const;
 
     /// @brief Gets the score threshold for the specified tier for this level.
     /// @param Tier The tier to get the score threshold of.

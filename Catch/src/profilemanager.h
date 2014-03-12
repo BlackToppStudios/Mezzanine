@@ -51,8 +51,8 @@ public:
     typedef ProfilesContainer::const_iterator ConstProfilesIterator;
 protected:
     ProfilesContainer LoadedProfiles;
-    GameProfile* ActiveProfile;
     String ProfilesDirectory;
+    GameProfile* ActiveProfile;
 
     void PopulateLevelList(GameProfile* Profile);
 public:

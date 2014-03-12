@@ -3,8 +3,8 @@
 
 #include <mezzanine.h>
 
-#include "scorearea.h"
-#include "startarea.h"
+#include "WorldObjects/scorearea.h"
+#include "WorldObjects/startarea.h"
 #include "levelmanager.h"
 #include "levelscorer.h"
 #include "itemshop.h"
@@ -31,7 +31,8 @@ protected:
     friend class CatchPreInputWorkUnit;
     friend class CatchPostInputWorkUnit;
     friend class CatchPostUIWorkUnit;
-    friend class CatchPostGraphicsWorkUnit;
+    friend class CatchHUDUpdateWorkUnit;
+    friend class CatchEndLevelWorkUnit;
 
     static CatchApp* TheRealCatchApp;
 
@@ -40,7 +41,9 @@ protected:
     CatchPreInputWorkUnit* PreInputWork;
     CatchPostInputWorkUnit* PostInputWork;
     CatchPostUIWorkUnit* PostUIWork;
-    CatchPostGraphicsWorkUnit* PostGraphicsWork;
+    CatchPauseWorkUnit* PauseWork;
+    CatchHUDUpdateWorkUnit* HUDUpdateWork;
+    CatchEndLevelWorkUnit* EndLevelWork;
 
     Entresol* TheEntresol;
     ProfileManager* Profiles;
@@ -93,7 +96,9 @@ public:
     CatchPreInputWorkUnit* GetPreInputWork() const;
     CatchPostInputWorkUnit* GetPostInputWork() const;
     CatchPostUIWorkUnit* GetPostUIWork() const;
-    CatchPostGraphicsWorkUnit* GetPostGraphicsWork() const;
+    CatchPauseWorkUnit* GetPauseWork() const;
+    CatchHUDUpdateWorkUnit* GetHUDUpdateWork() const;
+    CatchEndLevelWorkUnit* GetEndLevelWork() const;
 
     Entresol* GetTheEntresol() const;
 

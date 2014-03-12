@@ -29,9 +29,7 @@ void LoadFerris()
     ResourceMan->InitAssetGroup(FerrisGroup);
 
     // Scoring and Shop Setup
-    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
-    Scorer->SetLevelTargetTime(30);
     Shop->SetLevelCash(100);
 
     // Camera Setup
@@ -303,9 +301,7 @@ void LoadBigCurve()
     ResourceMan->InitAssetGroup(BigCurveGroup);
 
     // Scoring and Shop Setup
-    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
-    Scorer->SetLevelTargetTime(30);
     Shop->SetLevelCash(100);
 
     // Camera Setup
@@ -432,9 +428,7 @@ void LoadBlowsNotSucks()
     ResourceMan->InitAssetGroup(BlowsNotSucksGroup);
 
     // Scoring and Shop Setup
-    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
-    Scorer->SetLevelTargetTime(30);
     Shop->SetLevelCash(100);
 
     // Camera Setup
@@ -652,9 +646,7 @@ void LoadJustice()
     ResourceMan->InitAssetGroup(JusticeGroup);
 
     // Scoring and Shop Setup
-    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
-    Scorer->SetLevelTargetTime(30);
     Shop->SetLevelCash(100);
 
     // Camera Setup
@@ -875,9 +867,7 @@ void LoadRollers()
     ResourceMan->InitAssetGroup(RollersGroup);
 
     // Scoring and Shop Setup
-    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
-    Scorer->SetLevelTargetTime(30);
     Shop->SetLevelCash(100);
 
     // Camera Setup
@@ -1021,9 +1011,7 @@ void LoadJustBounce()
     ResourceMan->InitAssetGroup(JustBounceGroup);
 
     // Scoring and Shop Setup
-    LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
     ItemShop* Shop = CatchApp::GetCatchAppPointer()->GetItemShop();
-    Scorer->SetLevelTargetTime(30);
     Shop->SetLevelCash(100);
 
     // Camera Setup
@@ -1169,11 +1157,13 @@ namespace
 // CatchLevel Methods
 
 CatchLevel::CatchLevel(const String& LvlName) :
-    LevelName(LvlName)
+    LevelName(LvlName),
+    LevelTargetTime(0)
     {  }
 
 CatchLevel::CatchLevel(const String& Group, const XML::Document& LevelDoc) :
-    GroupName(Group)
+    GroupName(Group),
+    LevelTargetTime(0)
     { this->DeSerializeLevelData(LevelDoc); }
 
 CatchLevel::~CatchLevel()
@@ -1185,13 +1175,16 @@ void CatchLevel::DeSerializeLevelData(const XML::Document& LevelDoc)
 
     XML::Node RootNode = LevelDoc.GetChild("LevelRoot");
     if( !RootNode.Empty() ) {
-        // First get the level name
-        XML::Node LevelNameNode = RootNode.GetChild("LevelName");
-        if( !LevelNameNode.Empty() ) {
-            CurrAttrib = LevelNameNode.GetAttribute("Name");
-            if( !CurrAttrib.Empty() ) {
+        // First get the basic level properties
+        XML::Node LevelPropertiesNode = RootNode.GetChild("LevelProperties");
+        if( !LevelPropertiesNode.Empty() ) {
+            CurrAttrib = LevelPropertiesNode.GetAttribute("Name");
+            if( !CurrAttrib.Empty() )
                 this->LevelName = CurrAttrib.AsString();
-            }
+
+            CurrAttrib = LevelPropertiesNode.GetAttribute("TargetTime");
+            if( !CurrAttrib.Empty() )
+                this->LevelTargetTime = CurrAttrib.AsWhole();
         }
 
         // Find and assign the preview data
@@ -1280,6 +1273,9 @@ const String& CatchLevel::GetPreviewImageName() const
 
 ///////////////////////////////////////////////////////////////////////////////
 // MetaData Access
+
+Whole CatchLevel::GetLevelTargetTime() const
+    { return this->LevelTargetTime; }
 
 Whole CatchLevel::GetScoreThreshold(const Whole Tier) const
     { return this->ScoreTiers.at(Tier); }
