@@ -1,0 +1,170 @@
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+/* This file is part of The Mezzanine Engine.
+
+    The Mezzanine Engine is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    The Mezzanine Engine is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* The original authors have included a copy of the license specified above in the
+   'Docs' folder. See 'gpl.txt'
+*/
+/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to
+   Build professional software and charge for their product.
+
+   However there are some practical restrictions, so if your project involves
+   any of the following you should contact us and we will try to work something
+   out:
+    - DRM or Copy Protection of any kind(except Copyrights)
+    - Software Patents You Do Not Wish to Freely License
+    - Any Kind of Linking to Non-GPL licensed Works
+    - Are Currently In Violation of Another Copyright Holder's GPL License
+    - If You want to change our code and not add a few hundred MB of stuff to
+        your distribution
+
+   These and other limitations could cause serious legal problems if you ignore
+   them, so it is best to simply contact us or the Free Software Foundation, if
+   you have any questions.
+
+   Joseph Toppi - toppij@gmail.com
+   John Blackwood - makoenergy02@gmail.com
+*/
+#ifndef _HashedString_cpp
+#define _HashedString_cpp
+
+#include "hashedstring.h"
+#include "Internal/murmurhash3.h.cpp"
+#include "serialization.h"
+#include "exception.h"
+
+namespace Mezzanine
+{
+    Int32 HashedString32::Murmur32bit(const String& ToBeHashed)
+    {
+        Int32 Results = 0;
+        Internal::MurmurHash3_x86_32(ToBeHashed.data(), ToBeHashed.size(), HASHED_STRING_32_SEED, &Results );
+        return Results;
+    }
+
+    HashedString32::HashedString32() :
+        Hash(0)
+    {}
+
+    HashedString32::HashedString32(const String& StartingString) :
+        TheString(StartingString), Hash(Murmur32bit(StartingString))
+    {}
+
+    HashedString32::HashedString32(const String& StartingString, Int32 PrecomputedHash) :
+        TheString(StartingString), Hash(PrecomputedHash)
+    {}
+
+    HashedString32::HashedString32(const HashedString32& StartingString) :
+        TheString(StartingString.TheString), Hash(StartingString.Hash)
+    {}
+
+    bool HashedString32::operator==(const HashedString32& Other) const
+    {
+        //if(Hash==Other.Hash)
+        //    { return TheString == Other.TheString; }
+        //return false;
+        return Hash==Other.Hash;
+    }
+
+    bool HashedString32::operator!=(const HashedString32& Other) const
+    {
+        //if(Hash!=Other.Hash)
+        //    { return TheString != Other.TheString; }
+        //return false;
+        return Hash!=Other.Hash;
+    }
+
+    bool HashedString32::operator<(const HashedString32& Other) const
+    {
+        //if(Hash==Other.Hash)
+        //    { return TheString < Other.TheString; }
+        return Hash < Other.Hash;
+    }
+
+    bool HashedString32::operator>(const HashedString32& Other) const
+    {
+        //if(Hash==Other.Hash)
+        //    { return TheString > Other.TheString; }
+        return Hash > Other.Hash;
+    }
+
+
+    Int32 HashedString32::GetHash() const
+        { return Hash; }
+
+    String HashedString32::GetString() const
+        { return TheString; }
+
+    void HashedString32::SetString(const String& NewString)
+    {
+        TheString = NewString;
+        Hash=Murmur32bit(TheString);
+    }
+
+    void HashedString32::ProtoSerialize(XML::Node& CurrentRoot) const
+    {
+        Mezzanine::XML::Node Hash32Node = CurrentRoot.AppendChild(SerializableName());
+
+        if(Hash32Node)
+        {
+            Mezzanine::XML::Attribute VersionAttr = Hash32Node.AppendAttribute("Version");
+            Mezzanine::XML::Attribute HashAttr = Hash32Node.AppendAttribute("Hash");
+            Mezzanine::XML::Attribute StringAttr = Hash32Node.AppendAttribute("String");
+
+            if( VersionAttr && HashAttr && StringAttr )
+            {
+                if( VersionAttr.SetValue("1") && HashAttr.SetValue(ToString(Hash)) && StringAttr.SetValue(TheString))
+                {
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values", SerializableName(),true);
+                }
+            }else{
+                SerializeError("Create XML Attributes", SerializableName(),true);
+            }
+        }else{
+            SerializeError("Create XML Serialization Node", SerializableName(),true);
+        }
+    }
+
+    void HashedString32::ProtoDeSerialize(const XML::Node& OneNode)
+    {
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+        {
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
+            {
+                Hash=OneNode.GetAttribute("Hash").AsInteger();
+                TheString=OneNode.GetAttribute("String").AsString();
+            }else{
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
+            }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
+        }
+    }
+
+    String HashedString32::SerializableName()
+        { return String("HashedString32"); }
+
+}//Mezzanine
+
+std::ostream& operator << (std::ostream& stream, const Mezzanine::HashedString32& x)
+{
+    Serialize(stream,x);
+    return stream;
+}
+
+
+#endif

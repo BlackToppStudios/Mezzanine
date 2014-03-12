@@ -97,7 +97,7 @@ class spinlocktests : public UnitTestGroup
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
         /// @return Returns a String containing "Mutex"
         virtual String Name()
-            { return String("Mutex"); }
+            { return String("Spinlock"); }
 
         /// @brief Even though the framescheduler does not use Mutexes, any library providing multithreading capabilites without them would be lacking, so we must test them.
         virtual void RunAutomaticTests()

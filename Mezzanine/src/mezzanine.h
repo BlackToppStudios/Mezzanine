@@ -110,6 +110,7 @@
 #include "fieldofforce.h"
 #include "gravityfield.h"
 #include "gravitywell.h"
+#include "hashedstring.h"
 #include "interpolator.h"
 #include "linegroup.h"
 #include "macros.h"

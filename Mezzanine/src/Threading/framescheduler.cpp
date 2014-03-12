@@ -614,7 +614,7 @@ namespace Mezzanine
         void FrameScheduler::WaitUntilNextFrame()
         {
             FrameCount++;
-            Whole TargetFrameEnd;
+            Whole TargetFrameEnd=0;
             if(TargetFrameLength)
             {
                 TargetFrameEnd = TargetFrameLength + CurrentFrameStart;
