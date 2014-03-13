@@ -269,7 +269,7 @@ namespace Mezzanine
                         (*RectIt).first->UpdateDimensions(OldChildRect,NewChildRect);
 
                         // Finally add it to the container of visible children.
-                        (*RectIt).first->Show();
+                        (*RectIt).first->SetVisible( this->GetVisible() );
                         this->VisibleChildren.push_back( (*RectIt).first );
                     }else{
                         const Rect OldChildRect = (*RectIt).first->GetRect();

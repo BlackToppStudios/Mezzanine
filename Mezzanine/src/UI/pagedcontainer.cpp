@@ -185,6 +185,55 @@ namespace Mezzanine
         }
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Visibility and Priority Methods
+
+        void PagedContainer::SetVisible(Boole CanSee)
+        {
+            if( this->Visible != CanSee ) {
+                if(CanSee) {
+                    this->_OnVisibilityShown();
+                }else{
+                    this->_OnVisibilityHidden();
+                }
+
+                for( VisibleChildIterator It = this->VisibleChildren.begin() ; It != this->VisibleChildren.end() ; ++It )
+                    { (*It)->SetVisible(CanSee); }
+            }
+        }
+
+        Boole PagedContainer::GetVisible() const
+        {
+            return this->Visible;
+        }
+
+        Boole PagedContainer::IsVisible() const
+        {
+            if( this->ParentQuad ) {
+                return this->Visible && this->ParentQuad->IsVisible();
+            }else{
+                return this->Visible;
+            }
+        }
+
+        void PagedContainer::Show()
+        {
+            if( this->Visible == false ) {
+                this->_OnVisibilityShown();
+                for( VisibleChildIterator It = this->VisibleChildren.begin() ; It != this->VisibleChildren.end() ; ++It )
+                    { (*It)->Show(); }
+            }
+        }
+
+        void PagedContainer::Hide()
+        {
+            if( this->Visible == true ) {
+                this->_OnVisibilityHidden();
+                for( VisibleChildIterator It = this->VisibleChildren.begin() ; It != this->VisibleChildren.end() ; ++It )
+                    { (*It)->Hide(); }
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
         // PagedContainer Configuration
 
         PageProvider* PagedContainer::GetXProvider() const
@@ -449,21 +498,13 @@ namespace Mezzanine
                     this->VertexCache->Clear();
                     this->_AppendRenderData(*VertexCache);
                     for( VisibleChildIterator ChildIt = this->VisibleChildren.begin() ; ChildIt != this->VisibleChildren.end() ; ++ChildIt )
-                    {
-                        if( (*ChildIt)->IsVisible() ) {
-                            (*ChildIt)->_AppendRenderDataCascading(*VertexCache);
-                        }
-                    }
+                        { (*ChildIt)->_AppendRenderDataCascading(*VertexCache); }
                 }
                 RenderData.Append(*VertexCache);
             }else{
                 this->_AppendRenderData(RenderData);
                 for( VisibleChildIterator It = this->VisibleChildren.begin() ; It != this->VisibleChildren.end() ; ++It )
-                {
-                    if( (*It)->IsVisible() ) {
-                        (*It)->_AppendRenderDataCascading(RenderData);
-                    }
-                }
+                    { (*It)->_AppendRenderDataCascading(RenderData); }
             }
         }
     }//UI

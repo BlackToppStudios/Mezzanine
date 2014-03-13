@@ -228,15 +228,14 @@ namespace Mezzanine
         void Widget::SetVisible(Boole CanSee)
         {
             if( this->Visible != CanSee ) {
-                if(CanSee)
+                if(CanSee) {
                     this->_OnVisibilityShown();
-                else
+                }else{
                     this->_OnVisibilityHidden();
+                }
 
                 for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-                {
-                    (*It)->SetVisible(CanSee);
-                }
+                    { (*It)->SetVisible(CanSee); }
             }
         }
 
@@ -259,9 +258,7 @@ namespace Mezzanine
             if( this->Visible == false ) {
                 this->_OnVisibilityShown();
                 for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-                {
-                    (*It)->Show();
-                }
+                    { (*It)->Show(); }
             }
         }
 
@@ -270,9 +267,7 @@ namespace Mezzanine
             if( this->Visible == true ) {
                 this->_OnVisibilityHidden();
                 for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-                {
-                    (*It)->Hide();
-                }
+                    { (*It)->Hide(); }
             }
         }
 
