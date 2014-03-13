@@ -264,11 +264,9 @@ namespace Mezzanine
 
         void QuadRenderable::AppendLayerVertices(std::vector<VertexData>& Vertices)
         {
-            if( this->ActiveGroup == NULL )
-                return;
-            for( RenderLayerGroup::RenderLayerIterator It = this->ActiveGroup->RenderLayerBegin() ; It != this->ActiveGroup->RenderLayerEnd() ; ++It )
-            {
-                (*It).second->_AppendVertices(Vertices);
+            if( this->ActiveGroup != NULL ) {
+                for( RenderLayerGroup::RenderLayerIterator It = this->ActiveGroup->RenderLayerBegin() ; It != this->ActiveGroup->RenderLayerEnd() ; ++It )
+                    { (*It).second->_AppendVertices(Vertices); }
             }
         }
 

@@ -81,7 +81,7 @@ namespace Mezzanine
             Boole operator()(Widget* Wid)
             {
                 // Can it be seen?
-                if( Wid->IsVisible() && Wid->GetNumVisibleRenderLayers() ) {
+                if( Wid->GetVisible() && Wid->GetNumVisibleRenderLayers() ) {
                     // Is it inside?
                     if( Wid->IsInside(this->MousePos) ) {
                         // Has mouse picking been disabled?

@@ -403,11 +403,14 @@ namespace Mezzanine
 
         Widget* Screen::FindHoveredWidget(const Vector2& MousePos)
         {
-            Widget* Ret = this->MouseStrat->FindHoveredWidget(MousePos);
-            if( Ret != NULL ) this->MouseHitPosition = MousePos;
-            else this->MouseHitPosition.SetValues(-1,-1);
+            if( this->GetVisible() ) {
+                Widget* Ret = this->MouseStrat->FindHoveredWidget(MousePos);
+                if( Ret != NULL ) this->MouseHitPosition = MousePos;
+                else this->MouseHitPosition.SetValues(-1,-1);
 
-            return Ret;
+                return Ret;
+            }
+            return NULL;
         }
 
         const Vector2& Screen::GetMouseHitPosition() const

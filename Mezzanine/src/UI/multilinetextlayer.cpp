@@ -82,7 +82,7 @@ namespace Mezzanine
 
                 do{
                     if( (*Start)->IsWhiteSpace() ) {
-                        // Find the next non-whitespace character
+                        // Find the next non-whitespace character.
                         while( End != CharEnd )
                         {
                             if( (*End)->IsNewLine() ) {
@@ -96,7 +96,7 @@ namespace Mezzanine
                             ++End;
                         }
 
-                        // We got our range, append what we can
+                        // We got our range, append what we can.
                         CharacterIterator Result = CurrLine->AppendFittingCharacters(Start,End,MaxWidth);
                         if( Result != End || NewLineDetected ) {
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
@@ -106,8 +106,10 @@ namespace Mezzanine
                                 break;
                             }
                         }
+                        // Clear out the newline for the next iteration.
+                        NewLineDetected = false;
                     }else{
-                        // Find the next whitespace character
+                        // Find the next whitespace character.
                         while( End != CharEnd )
                         {
                             if( (*End)->IsWhiteSpace() )
@@ -116,10 +118,10 @@ namespace Mezzanine
                             ++End;
                         }
 
-                        // We got our range, so lets try to insert it
+                        // We got our range, so lets try to insert it.
                         if( !CurrLine->AppendCharacters(Start,End,MaxWidth) )
                         {
-                            // If we failed to insert, get the next line and try again
+                            // If we failed to insert, get the next line and try again.
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
                             if( !CurrLine->AppendCharacters(Start,End,MaxWidth) ) {
                                 End = CurrLine->AppendFittingCharacters(Start,End,MaxWidth);
@@ -143,7 +145,7 @@ namespace Mezzanine
 
                 do{
                     if( (*End)->IsWhiteSpace() ) {
-                        // Find the next non-whitespace character
+                        // Find the next non-whitespace character.
                         while( Start != CharEnd )
                         {
                             if( (*Start)->IsNewLine() ) {
@@ -162,7 +164,7 @@ namespace Mezzanine
                         ++AppendPair.first;
                         ++AppendPair.second;
 
-                        // We got our range, append what we can
+                        // We got our range, append what we can.
                         CharacterIterator Result = CurrLine->AppendFittingCharacters(AppendPair,MaxWidth);
                         if( Result != Start || NewLineDetected ) {
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
@@ -172,8 +174,9 @@ namespace Mezzanine
                                 break;
                             }
                         }
+                        NewLineDetected = false;
                     }else{
-                        // Find the next whitespace character
+                        // Find the next whitespace character.
                         while( Start != CharEnd )
                         {
                             if( (*Start)->IsWhiteSpace() )
@@ -187,9 +190,9 @@ namespace Mezzanine
                         ++AppendPair.first;
                         ++AppendPair.second;
 
-                        // We got our range, so lets try to insert it
+                        // We got our range, so lets try to insert it.
                         if( !CurrLine->AppendCharacters(AppendPair,MaxWidth) ) {
-                            // If we failed to insert, get the next line and try again
+                            // If we failed to insert, get the next line and try again.
                             CurrLine = this->GetOrCreateTextLine(++LineIndex);
                             if( !CurrLine->AppendCharacters(AppendPair,MaxWidth) ) {
                                 Start = CurrLine->AppendFittingCharacters(AppendPair,MaxWidth);
@@ -204,9 +207,9 @@ namespace Mezzanine
                 }while( CharEnd != CharEnd );
             }
 
-            // Clean up unused text lines
+            // Clean up unused text lines.
             if( this->TextLines.size() > 1 && this->TextLines.size() >= LineIndex ) {
-                TextLines.erase(this->TextLines.begin() + LineIndex, this->TextLines.end());
+                TextLines.erase(this->TextLines.begin() + LineIndex + 1, this->TextLines.end());
             }
         }
 
