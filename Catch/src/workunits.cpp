@@ -414,13 +414,29 @@ QueuedPauseSubscriber* CatchPauseWorkUnit::GetPauseSubscriber() const
 void CatchPauseWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
     this->PauseSubscriber->StartUpdate();
+    UI::Screen* GameScreen = this->PauseSubscriber->UITarget->GetScreen("GameScreen");
     QueuedSubscriber::ConstEventIterator EndEvent = this->PauseSubscriber->GetEndEvent();
     for( QueuedSubscriber::ConstEventIterator EvIt = this->PauseSubscriber->GetFirstEvent() ; EvIt != EndEvent ; ++EvIt )
     {
+        EventArgumentsPtr Args = (*EvIt);
+        UI::WidgetEventArgumentsPtr WidArgs = CountedPtrCast<UI::WidgetEventArguments>( Args );
+
         if( (*EvIt)->EventName == UI::Widget::EventVisibilityShown ) {
-            this->PauseSubscriber->CatchApplication->PauseGame(true);
+            UI::MenuEntry* EventMenu = static_cast<UI::MenuEntry*>( GameScreen->GetWidget( WidArgs->WidgetName ) );
+            if( EventMenu != NULL ) {
+                UI::MenuEntry::MenuEntryContainer* Stack = EventMenu->_GetMenuStack();
+                if( Stack != NULL && !Stack->empty() ) {
+                    this->PauseSubscriber->CatchApplication->PauseGame(true);
+                }
+            }
         }else if( (*EvIt)->EventName == UI::Button::EventVisibilityHidden ) {
-            this->PauseSubscriber->CatchApplication->PauseGame(false);
+            UI::MenuEntry* EventMenu = static_cast<UI::MenuEntry*>( GameScreen->GetWidget( WidArgs->WidgetName ) );
+            if( EventMenu != NULL ) {
+                UI::MenuEntry::MenuEntryContainer* Stack = EventMenu->_GetMenuStack();
+                if( Stack != NULL && Stack->empty() ) {
+                    this->PauseSubscriber->CatchApplication->PauseGame(false);
+                }
+            }
         }
         /*if( (*EvIt)->EventName == UI::Button::EventActivated ) {
 

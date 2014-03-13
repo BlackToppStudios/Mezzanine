@@ -684,6 +684,7 @@ void CatchApp::MakeGUI()
     ////////////////////////////////////////////////////////////////
 
     const Real GSNormText = 0.65;
+    const Real GSTightText = 0.8;
     const Real GSLargeText = 0.85;
     const Real GSMultiLineText = 0.20;
 
@@ -790,7 +791,9 @@ void CatchApp::MakeGUI()
     GSMenuRoot->AddChild(GSOptionsAccess,1);
 
     // Create and configure the "window" that houses the options display
-    UI::MenuEntry* GSOptionsWin = GameScreen->CreateMenuEntry("GS_OptionsWin",UI::UnifiedRect(0.18,-8.08,0.64,6.4));
+    UI::MenuEntry* GSOptionsWin = GameScreen->CreateMenuEntry("GS_OptionsWin",UI::UnifiedRect(0.0,0.0,1.958,1.237));
+    GSOptionsWin->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    GSOptionsWin->SetVerticalPositioningRules(UI::PF_Anchor_VerticalCenter);
     GSOptionsWin->CreateSingleImageLayer("GSOptionsBackground",0,0);
     GSOptionsWin->SetPushButton(GSOptionsAccess);
     GSMenuRoot->AddChild(GSOptionsWin,7);
@@ -807,7 +810,7 @@ void CatchApp::MakeGUI()
     GSOptionsWin->AddChild(GSVideoSetAccess,1);
 
     // Create the second of the two buttons that will display the two sets of options (audio options)
-    UI::StackButton* GSAudioSetAccess = GameScreen->CreateStackButton("GS_AudioSetAccess",UI::UnifiedRect(0.55,0.0365,0.34,0.12));
+    UI::StackButton* GSAudioSetAccess = GameScreen->CreateStackButton("GS_AudioSetAccess",UI::UnifiedRect(0.55,0.0365,0.34,0.11));
     GSAudioSetAccess->CreateSingleImageLayer("GSButton",0,"Normal");
     GSAudioSetAccess->CreateSingleImageLayer("GSHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSAudioSetAccessText = GSAudioSetAccess->CreateSingleLineTextLayer(GameScreenText,1,1);
@@ -835,7 +838,7 @@ void CatchApp::MakeGUI()
     GSResolutionLabelText->SetText("Video Resolutions");
     GSResolutionLabelText->HorizontallyAlign(UI::LA_Center);
     GSResolutionLabelText->VerticallyAlign(UI::LA_Center);
-    GSResolutionLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
+    GSResolutionLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSTightText);
     GSVideoSet->AddChild(GSResolutionLabel,1);
 
     // Create the listing of detected supported resolutions
@@ -899,7 +902,7 @@ void CatchApp::MakeGUI()
     GSFullscreenLabelText->SetText("Fullscreen");
     GSFullscreenLabelText->HorizontallyAlign(UI::LA_Center);
     GSFullscreenLabelText->VerticallyAlign(UI::LA_Center);
-    GSFullscreenLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
+    GSFullscreenLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSTightText);
     GSVideoSet->AddChild(GSFullscreenLabel,4);
 
     // Create the label for the FSAA options
@@ -909,7 +912,7 @@ void CatchApp::MakeGUI()
     GSFSAALabelText->SetText("Anti-Aliasing");
     GSFSAALabelText->HorizontallyAlign(UI::LA_Center);
     GSFSAALabelText->VerticallyAlign(UI::LA_Center);
-    GSFSAALabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
+    GSFSAALabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSTightText);
     GSVideoSet->AddChild(GSFSAALabel,5);
 
     // Create the listing of detected anti-aliasing options
@@ -973,7 +976,7 @@ void CatchApp::MakeGUI()
     GSStatsLabelText->SetText("Show FPS");
     GSStatsLabelText->HorizontallyAlign(UI::LA_Center);
     GSStatsLabelText->VerticallyAlign(UI::LA_Center);
-    GSStatsLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
+    GSStatsLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSTightText);
     GSVideoSet->AddChild(GSStatsLabel,8);
 
     // Create the button that will apply all of the currently displayed video settings
@@ -1000,7 +1003,7 @@ void CatchApp::MakeGUI()
     GSMusicVolLabelText->SetText("Music Volume");
     GSMusicVolLabelText->HorizontallyAlign(UI::LA_Center);
     GSMusicVolLabelText->VerticallyAlign(UI::LA_Center);
-    GSMusicVolLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
+    GSMusicVolLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSTightText);
     GSAudioSet->AddChild(GSMusicVolLabel,1);
 
     // Create the Music volume slider
@@ -1032,7 +1035,7 @@ void CatchApp::MakeGUI()
     GSEffectsVolLabelText->SetText("Effects Volume");
     GSEffectsVolLabelText->HorizontallyAlign(UI::LA_Center);
     GSEffectsVolLabelText->VerticallyAlign(UI::LA_Center);
-    GSEffectsVolLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
+    GSEffectsVolLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSTightText);
     GSAudioSet->AddChild(GSEffectsVolLabel,3);
 
     // Create the Effects volume slider
@@ -1129,7 +1132,7 @@ void CatchApp::MakeGUI()
     GSMuteLabelText->SetText("Mute");
     GSMuteLabelText->HorizontallyAlign(UI::LA_Center);
     GSMuteLabelText->VerticallyAlign(UI::LA_Center);
-    GSMuteLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
+    GSMuteLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSTightText);
     GSAudioSet->AddChild(GSMuteLabel,6);
 
     // Create the back button for the options window
@@ -1193,9 +1196,8 @@ void CatchApp::MakeGUI()
     GameScreen->AddChild(GSItemShopRoot,8);
 
     // Create the "titlebar" for the item shop window
-    UI::Widget* GSItemShopTitle = GameScreen->CreateWidget("GS_ItemShopTitle",UI::UnifiedRect(0.0,0.0,1.0,0.077));
+    UI::Widget* GSItemShopTitle = GameScreen->CreateWidget("GS_ItemShopTitle",UI::UnifiedRect(0.0,0.018,1.0,0.077));
     GSItemShopTitle->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
-    GSItemShopTitle->SetVerticalPositioningRules(UI::PF_Anchor_Top);
     UI::SingleLineTextLayer* GSItemShopTitleText = GSItemShopTitle->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopTitleText->SetText("Item Shop");
     GSItemShopTitleText->HorizontallyAlign(UI::LA_Center);
@@ -1209,7 +1211,7 @@ void CatchApp::MakeGUI()
     GSItemShopRoot->AddChild(GSItemShopGrid,2);
 
     // Create the spinner that will determine which items will be displayed
-    UI::Spinner* GSItemShopSpinner = GameScreen->CreateSpinner("GS_ItemShopSpinner",UI::UnifiedRect(0.0,0.43,0.25,0.05),UI::Spn_Separate_Horizontal,GameScreenText);
+    UI::Spinner* GSItemShopSpinner = GameScreen->CreateSpinner("GS_ItemShopSpinner",UI::UnifiedRect(0.0,0.47,0.35,0.06),UI::Spn_Separate_Horizontal,GameScreenText);
     GSItemShopSpinner->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     GSItemShopSpinner->GetIncrement()->CreateSingleImageLayer("GSIncrementPage",0,0);
     GSItemShopSpinner->GetDecrement()->CreateSingleImageLayer("GSDecrementPage",0,0);
@@ -1217,16 +1219,17 @@ void CatchApp::MakeGUI()
     GSItemShopGrid->SetProviders(GSItemShopSpinner,GSItemShopSpinner);
     GSItemShopRoot->AddChild(GSItemShopSpinner,3);
 
-    UI::Widget* GSItemShopDescription = GameScreen->CreateWidget("GS_ItemShopDescription",UI::UnifiedRect(0.15,0.5,0.7,0.33));
+    UI::Widget* GSItemShopDescription = GameScreen->CreateWidget("GS_ItemShopDescription",UI::UnifiedRect(0.15,0.54,0.7,0.33));
     GSItemShopDescription->CreateSingleImageLayer("GSBreakdownBackground",0,0);
     UI::MultiLineTextLayer* GSItemShopDescriptionText = GSItemShopDescription->CreateMultiLineTextLayer(GameScreenText,1,1);
+    GSItemShopDescriptionText->SetScale(Vector2(0.88,0.88));
     GSItemShopDescriptionText->SetText("This is a more exhaustive\ntest of the multi-line\ntext layer.");
     GSItemShopDescriptionText->SetTextLineHorizontalAlignment(UI::LA_Center);
     GSItemShopDescriptionText->SetTextLineVerticalAlignment(UI::LA_Center);
-    GSItemShopDescriptionText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSMultiLineText);
+    GSItemShopDescriptionText->SetAutoTextScale(UI::TextLayer::SM_LayerRelative,GSMultiLineText);
     GSItemShopRoot->AddChild(GSItemShopDescription,4);
 
-    UI::Widget* GSItemShopMoney = GameScreen->CreateWidget("GS_ItemShopMoney",UI::UnifiedRect(0.15,0.87,0.20,0.09));
+    UI::Widget* GSItemShopMoney = GameScreen->CreateWidget("GS_ItemShopMoney",UI::UnifiedRect(0.15,0.90,0.20,0.07));
     GSItemShopMoney->CreateSingleImageLayer("GSStoreButton",0,0);
     UI::SingleLineTextLayer* GSItemShopMoneyText = GSItemShopMoney->CreateSingleLineTextLayer(GameScreenText,1,1);
     GSItemShopMoneyText->SetText("$0");
@@ -1235,7 +1238,7 @@ void CatchApp::MakeGUI()
     GSItemShopMoneyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
     GSItemShopRoot->AddChild(GSItemShopMoney,5);
 
-    UI::Button* GSItemShopBuy = GameScreen->CreateButton("GS_ItemShopBuy",UI::UnifiedRect(0.40,0.87,0.20,0.09));
+    UI::Button* GSItemShopBuy = GameScreen->CreateButton("GS_ItemShopBuy",UI::UnifiedRect(0.40,0.90,0.20,0.07));
     GSItemShopBuy->CreateSingleImageLayer("GSStoreButton",0,"Normal");
     GSItemShopBuy->CreateSingleImageLayer("GSStoreHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSItemShopBuyText = GSItemShopBuy->CreateSingleLineTextLayer(GameScreenText,1,1);
@@ -1245,7 +1248,7 @@ void CatchApp::MakeGUI()
     GSItemShopBuyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSLargeText);
     GSItemShopRoot->AddChild(GSItemShopBuy,6);
 
-    UI::StackButton* GSItemShopBack = GameScreen->CreateStackButton("GS_ItemShopBack",UI::UnifiedRect(0.65,0.87,0.20,0.09));
+    UI::StackButton* GSItemShopBack = GameScreen->CreateStackButton("GS_ItemShopBack",UI::UnifiedRect(0.65,0.90,0.20,0.07));
     GSItemShopBack->CreateSingleImageLayer("GSStoreButton",0,"Normal");
     GSItemShopBack->CreateSingleImageLayer("GSStoreHoveredButton",0,"Hovered");
     UI::SingleLineTextLayer* GSItemShopBackText = GSItemShopBack->CreateSingleLineTextLayer(GameScreenText,1,1);
@@ -1609,13 +1612,13 @@ CatchApp::GameState CatchApp::GetState() const
 void CatchApp::PauseGame(Boole Pause)
 {
     if( this->Paused != Pause ) {
-        UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
         if( CurrentState == CatchApp::Catch_ScoreScreen && !Pause ) {
             return;
         }
-        if( !Pause && ( GameScreen->GetWidget("GS_MenuRoot")->IsVisible() || GameScreen->GetWidget("GS_ItemShopRoot")->IsVisible() ) ) {
-            return;
-        }
+        //UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+        //if( !Pause && ( GameScreen->GetWidget("GS_MenuRoot")->IsVisible() || GameScreen->GetWidget("GS_ItemShopRoot")->IsVisible() ) ) {
+        //    return;
+        //}
         this->TheEntresol->PauseWorld(Pause);
         if( Pause ) {
             this->LevelTimer->Stop();
