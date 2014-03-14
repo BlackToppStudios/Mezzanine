@@ -1437,27 +1437,6 @@ void LevelManager::PopulateLevelSelectUI()
     }
 }
 
-GameLevel* LevelManager::GetLevel(const Whole Index)
-{
-    return this->GameLevels.at(Index);
-}
-
-GameLevel* LevelManager::GetLevel(const String& LevelName)
-{
-    for( GameLevelIterator LvlIt = this->GameLevels.begin() ; LvlIt != this->GameLevels.end() ; ++LvlIt )
-    {
-        if( (*LvlIt)->GetName() == LevelName ) {
-            return (*LvlIt);
-        }
-    }
-    return NULL;
-}
-
-Whole LevelManager::GetNumLevels() const
-{
-    return this->GameLevels.size();
-}
-
 void LevelManager::SetNextLevel(const String& LevelName)
 {
     GameLevel* Next = this->GetLevel(LevelName);
@@ -1486,6 +1465,43 @@ void LevelManager::SetLevelPath(const String& PathToLevels)
 
 const String& LevelManager::GetLevelPath() const
     { return this->LevelPath; }
+
+///////////////////////////////////////////////////////////////////////////////
+// Game Level Access
+
+GameLevel* LevelManager::GetLevel(const Whole Index)
+{
+    return this->GameLevels.at(Index);
+}
+
+GameLevel* LevelManager::GetLevel(const String& LevelName)
+{
+    for( GameLevelIterator LvlIt = this->GameLevels.begin() ; LvlIt != this->GameLevels.end() ; ++LvlIt )
+    {
+        if( (*LvlIt)->GetName() == LevelName ) {
+            return (*LvlIt);
+        }
+    }
+    return NULL;
+}
+
+Whole LevelManager::GetNumLevels() const
+{
+    return this->GameLevels.size();
+}
+
+LevelManager::GameLevelIterator LevelManager::BeginGameLevel()
+    { return this->GameLevels.begin(); }
+
+LevelManager::GameLevelIterator LevelManager::EndGameLevel()
+    { return this->GameLevels.end(); }
+
+LevelManager::ConstGameLevelIterator LevelManager::BeginGameLevel() const
+    { return this->GameLevels.begin(); }
+
+LevelManager::ConstGameLevelIterator LevelManager::EndGameLevel() const
+    { return this->GameLevels.end(); }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Loading and Unloading

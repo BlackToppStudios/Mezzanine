@@ -40,12 +40,20 @@ CatchApp::CatchApp() :
     assert(0==CatchApp::TheRealCatchApp);
     CatchApp::TheRealCatchApp = this;
 
-	this->TheEntresol = new Entresol( "Data/", AT_FileSystem );
+    // Initialize the engine
+	this->TheEntresol = new Entresol( "Data/", Mezzanine::AT_FileSystem );
+
+	// Now initialize game specific stuff
+	this->InitializeFromXML( "Data/", Mezzanine::AT_FileSystem, "Catch.mxi" );
+
     this->LevelMan = new LevelManager( this->TheEntresol, "Levels/" );
     this->Scorer = new LevelScorer( this, this->TheEntresol );
-    this->Profiles = new ProfileManager("Profiles/");
     this->Shop = new ItemShop();
     ThrowableGenerator::ParseThrowables("");
+
+    if( this->Profiles == NULL ) {
+        this->Profiles = new ProfileManager(this->TheEntresol,"$ShareableAppData$/.Catch/Profiles/");
+    }
 
     this->LevelTimer = new Timer();
 }
@@ -82,6 +90,36 @@ CatchApp::~CatchApp()
     delete this->Shop;
     delete this->TheEntresol;
     CatchApp::TheRealCatchApp = NULL;
+}
+
+void CatchApp::InitializeFromXML(const String& CatchDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
+{
+	// Start with the XML initializer file
+	Resource::FileStream InitStream(InitializerFile,CatchDataPath);
+    XML::Document InitDoc;
+    XML::ParseResult DocResult = InitDoc.Load(InitStream);
+    if( DocResult.Status != XML::StatusOk )
+    {
+        StringStream ExceptionStream;
+        ExceptionStream << "Failed to parse XML file \"" << InitializerFile << "\".";
+        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+    }
+    XML::Node InitRoot = InitDoc.GetChild("InitializerRoot");
+    if( InitRoot.Empty() )
+    {
+        StringStream ExceptionStream;
+        ExceptionStream << "Failed to find expected Root node in \"" << InitializerFile << "\".";
+        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XML,ExceptionStream.str());
+    }
+
+    // Create the requested managers and set their necessary values.
+    XML::Node Managers = InitRoot.GetChild("Managers");
+    for( XML::NodeIterator ManIt = Managers.begin() ; ManIt != Managers.end() ; ++ManIt )
+    {
+        if( (*ManIt).Name() == String("ProfileManager") && this->Profiles == NULL ) {
+            this->Profiles = new ProfileManager(this->TheEntresol,(*ManIt));
+        }
+    }
 }
 
 void CatchApp::MakeGUI()
@@ -1372,8 +1410,7 @@ void CatchApp::VerifySettings()
     // Ensure file exists
     String AudioSaveFileName("AudioSettings.mxs");
     ObjectSettingFile* AudioSettingFile = AudioMan->GetSettingFile(AudioSaveFileName);
-    if(!AudioSettingFile)
-    {
+    if( !AudioSettingFile ) {
         AudioSettingFile = AudioMan->CreateSettingFile(AudioSaveFileName);
         // This is where you would set any addition settings as game specific defaults that are the same as engine defaults,
         // but Catch is simple and doesn't need that.  However since nothing is being altered, we have to set the save flag manually.
@@ -1386,8 +1423,7 @@ void CatchApp::VerifySettings()
     // Ensure file exists
     String GraphicsSaveFileName("GraphicsSettings.mxs");
     ObjectSettingFile* GraphicsSettingFile = GraphicsMan->GetSettingFile(GraphicsSaveFileName);
-    if(!GraphicsSettingFile)
-    {
+    if( !GraphicsSettingFile ) {
         GraphicsSettingFile = GraphicsMan->CreateSettingFile(GraphicsSaveFileName);
         // Create the window
         Graphics::GameWindow* MainWin = GraphicsMan->CreateGameWindow("Catch!",800,600,Graphics::GameWindow::WF_FSAA_4);
@@ -1397,6 +1433,18 @@ void CatchApp::VerifySettings()
         GraphicsSettingFile->SetNeedsSave(true);
         // Make sure the file saves the "Current" setting group.
         GraphicsMan->SetCurrentSettingsSaveFile(GraphicsSaveFileName);
+    }
+    // Verify the Profile Settings
+    String ProfileSaveFileName("ProfileSettings.mxs");
+    ObjectSettingFile* ProfileSettingFile = this->Profiles->GetSettingFile(ProfileSaveFileName);
+    if( !ProfileSettingFile ) {
+        ProfileSettingFile = this->Profiles->CreateSettingFile(ProfileSaveFileName);
+        // Set the default path for profile loading
+        this->Profiles->SetProfilesDirectory("$ShareableAppData$/.Catch/Profiles/");
+        // Flag the file for saving
+        ProfileSettingFile->SetNeedsSave(true);
+        // Make sure the file saves the "Current" setting group.
+        this->Profiles->SetCurrentSettingsSaveFile(ProfileSaveFileName);
     }
 }
 
@@ -1564,6 +1612,7 @@ int CatchApp::GetCatchin()
 
     // Initialize the managers.
 	this->TheEntresol->EngineInit(false);
+	this->Profiles->Initialize();
 
 	this->CreateLoadingScreen();
 	this->ChangeState(CatchApp::Catch_Loading);
@@ -1575,6 +1624,8 @@ int CatchApp::GetCatchin()
     // Detect the levels and populate our UI
     this->LevelMan->DetectLevels();
     this->LevelMan->PopulateLevelSelectUI();
+    // Detect the profiles and populate our UI
+    this->Profiles->ApplyProfileDataToUI();
 
     Audio::AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
     this->LevelMan->SetNextLevel("MainMenu");

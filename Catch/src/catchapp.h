@@ -63,6 +63,8 @@ protected:
     ThrowableContainer ThrownItems;
     StartAreaContainer StartAreas;
 
+    void InitializeFromXML(const String& CatchDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile);
+
     void MakeGUI();
     void CreateLoadingScreen();
     void InitMusic();
