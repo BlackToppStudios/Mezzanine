@@ -1466,9 +1466,10 @@ void CatchApp::ChangeState(const CatchApp::GameState StateToSet)
     if( StateToSet == CatchApp::Catch_ScoreScreen ) {
         this->PauseGame(true);
         Whole LevelScore = this->Scorer->PresentFinalScore();
+        String LevelName = this->LevelMan->GetCurrentLevel()->GetName();
         CatchProfile* Active = this->Profiles->GetActiveProfile();
-        if( Active != NULL && LevelScore > Active->GetHighestScore( this->LevelMan->GetCurrentLevel()->GetName() ) ) {
-            Active->SetNewHighScore(this->LevelMan->GetCurrentLevel()->GetName(),LevelScore);
+        if( Active != NULL && LevelScore > Active->GetHighestScore( LevelName ) ) {
+            this->Profiles->SetNewHighScore(LevelName,LevelScore);
         }
     }
     this->CurrentState = StateToSet;

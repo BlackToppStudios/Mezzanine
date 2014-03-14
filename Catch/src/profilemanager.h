@@ -130,6 +130,11 @@ public:
     /// @param Profile A pointer to the profile to be read when updating the UI configuration.
     void ApplyProfileDataToUI(GameProfile* Profile);
 
+    /// @brief Updates all profile related data with the achievement of a new high score.
+    /// @param LevelName The name of the level the high score was achieved in.
+    /// @param LevelScore The new high score that was achieved.
+    void SetNewHighScore(const String& LevelName, const Whole LevelScore);
+
     ///////////////////////////////////////////////////////////////////////////////
     // Profile Path Management
 

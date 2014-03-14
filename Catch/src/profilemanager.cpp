@@ -235,6 +235,31 @@ void ProfileManager::ApplyProfileDataToUI(GameProfile* Profile)
     }
 }
 
+void ProfileManager::SetNewHighScore(const String& LevelName, const Whole LevelScore)
+{
+    if( LevelName != "MainMenu" ) {
+        // Get our pointers
+        LevelManager* LevelMan = CatchApp::GetCatchAppPointer()->GetLevelManager();
+        UI::Screen* MainMenuScreen = this->TheEntresol->GetUIManager()->GetScreen("MainMenuScreen");
+
+        GameLevel* HighScoreLevel = LevelMan->GetLevel(LevelName);
+        UI::Widget* LevelScoreWid = MainMenuScreen->GetWidget( LevelName + ".Score" );
+        UI::MultiImageLayer* LevelScoreStars = static_cast<UI::MultiImageLayer*>( LevelScoreWid->GetRenderLayer(0,UI::RLT_MultiImage) );
+
+        for( Whole ScoreTier = 0 ; ScoreTier < HighScoreLevel->GetNumScoreTiers() && ScoreTier < 5 ; ++ScoreTier )
+        {
+            Whole Threshold = HighScoreLevel->GetScoreThreshold(ScoreTier);
+            if( LevelScore > Threshold ) {
+                LevelScoreStars->SetSprite(ScoreTier,"MMLevelScoreStarFilled");
+            }else{
+                LevelScoreStars->SetSprite(ScoreTier,"MMLevelScoreStar");
+            }
+        }
+
+        this->ActiveProfile->SetNewHighScore(LevelName,LevelScore);
+    }
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Profile Path Management
 
