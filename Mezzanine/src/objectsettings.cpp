@@ -589,7 +589,7 @@ namespace Mezzanine
         if( this->SettingsFilePath.empty() ) {
             MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to use a preset path that hasn't been set.");
         }
-        return this->LoadSettingsFromFile(FileName,SettingsFilePath);
+        return this->LoadSettingsFromFile(FileName,this->SettingsFilePath);
     }
 
     CountedPtr<ObjectSettingsHandler::SettingGroupVector> ObjectSettingsHandler::LoadSettingsFromXML(XML::Node& RootSettings)
@@ -755,6 +755,91 @@ namespace Mezzanine
             }
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Serialization
+
+    void ObjectSettingsHandler::ProtoSerialize(XML::Node& SelfRoot) const
+    {
+        /// @todo Add more checks to verify successful appending.
+        XML::Node AutoGenNode = SelfRoot.AppendChild("AutoCreateSettings");
+        AutoGenNode.AppendAttribute("Path").SetValue( this->AutoGenPath );
+        AutoGenNode.AppendAttribute("Files").SetValue( this->AutoGenFiles );
+
+        XML::Node PathNode = SelfRoot.AppendChild("SettingsPath");
+        PathNode.AppendAttribute("Path").SetValue( this->SettingsFilePath );
+
+        XML::Node FilesNode = SelfRoot.AppendChild("SettingsFiles");
+        for( ConstSettingFilesIterator FileIt = this->SettingFiles.begin() ; FileIt != this->SettingFiles.end() ; ++FileIt )
+        {
+            XML::Node FileNode = FilesNode.AppendChild("SettingsFile");
+            FileNode.AppendAttribute("FileName").SetValue( (*FileIt).second->GetFileName() );
+            /// @todo Add serialization and methods for serializing the group or path.
+        }
+    }
+
+    void ObjectSettingsHandler::ProtoDeSerialize(const XML::Node& SelfRoot)
+    {
+        XML::Attribute CurrAttrib;
+        String PathPreset;
+        // Get whether or not to autogen the directory path and settings file.
+        XML::Node AutoGenNode = SelfRoot.GetChild("AutoCreateSettings");
+        if( !AutoGenNode.Empty() ) {
+            CurrAttrib = AutoGenNode.GetAttribute("Path");
+            if(!CurrAttrib.Empty()) {
+                this->AutoGenPath = StringTools::ConvertToBool( CurrAttrib.AsString() );
+            }
+            CurrAttrib = AutoGenNode.GetAttribute("Files");
+            if(!CurrAttrib.Empty()) {
+                this->AutoGenFiles = StringTools::ConvertToBool( CurrAttrib.AsString() );
+            }
+        }
+        // Get preset path to default to if a path is not provided.
+        XML::Node PathNode = SelfRoot.GetChild("SettingsPath");
+        if( !PathNode.Empty() ) {
+            CurrAttrib = PathNode.GetAttribute("Path");
+            if( !CurrAttrib.Empty() ) {
+                PathPreset = CurrAttrib.AsString();
+            }
+
+            if( !PathPreset.empty() ) {
+                this->SetSettingsFilePath(PathPreset);
+            }
+        }
+        // Get the files to be loaded, and load them.
+        XML::Node FilesNode = SelfRoot.GetChild("SettingsFiles");
+        if( !FilesNode.Empty() ) {
+            for( XML::NodeIterator SetFileIt = FilesNode.begin() ; SetFileIt != FilesNode.end() ; ++SetFileIt )
+            {
+                String FileName, FilePath, FileGroup;
+                // Get the filename to load
+                CurrAttrib = (*SetFileIt).GetAttribute("FileName");
+                if( !CurrAttrib.Empty() ) {
+                    FileName = CurrAttrib.AsString();
+                }
+                // Get the path
+                CurrAttrib = (*SetFileIt).GetAttribute("Path");
+                if( !CurrAttrib.Empty() ) {
+                    FilePath = CurrAttrib.AsString();
+                }else{
+                    CurrAttrib = (*SetFileIt).GetAttribute("Group");
+                    if( !CurrAttrib.Empty() ) {
+                        FileGroup = CurrAttrib.AsString();
+                    }
+                }
+
+                if( FilePath.empty() ) {
+                    if(FileGroup.empty()) this->LoadSettings(FileName);
+                    else this->LoadSettingsFromGroup(FileName,FileGroup);
+                }else{
+                    this->LoadSettings(FileName,FilePath);
+                }
+            }
+        }
+    }
+
+    String ObjectSettingsHandler::GetSerializableName()
+        { return "ObjectSettingsHandler"; }
 }
 
 #endif
