@@ -1039,6 +1039,15 @@ if(${Mezz_SWIG})
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
+        # Physics/physics.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingphysicsrubyunsafe.cpp Physics/physics.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
     endif(${Mezz_Ruby})
     # Add support for other languagews here
 endif(${Mezz_SWIG})

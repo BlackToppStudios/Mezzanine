@@ -40,6 +40,11 @@
 #ifndef _physicsmanagerconstructioninfo_h
 #define _physicsmanagerconstructioninfo_h
 
+#include "datatypes.h"
+#ifndef SWIG
+    #include "vector3.h"
+#endif
+
 namespace Mezzanine
 {
     namespace Physics

@@ -42,6 +42,7 @@
 
 #include "Physics/constraint.h"
 
+#ifndef SWIG // Not used by swig because it incomplete
 class btConeTwistConstraint;
 
 namespace Mezzanine
@@ -84,5 +85,7 @@ namespace Mezzanine
         };// ConeTwistConstraint
     }//Physics
 }//Mezzanine
+#endif //SWIG
+
 
 #endif

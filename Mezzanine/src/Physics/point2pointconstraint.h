@@ -148,11 +148,13 @@ namespace Mezzanine
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
+#ifndef SWIG
 /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::Point2PointConstraint& x);
 /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Point2PointConstraint& x);
 /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Point2PointConstraint& x);
+#endif
 
 #endif

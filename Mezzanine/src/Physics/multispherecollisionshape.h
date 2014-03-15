@@ -54,7 +54,7 @@ namespace Mezzanine
         /// @brief A physics shape comprised of multiple sphere's placed in local space.
         /// @details It's important to note that this shape isn't just a bunch of placed sphere's, but
         /// a convex hull comprised of all the provided sphere's.  You can make a capsule shape with
-        /// two sphere's, one above the other(internally this is how it works).
+        /// two sphere's, one above the other (internally this is how it works).
         ///////////////////////////////////////
         class MEZZ_LIB MultiSphereCollisionShape : public PrimitiveCollisionShape
         {
@@ -112,11 +112,13 @@ namespace Mezzanine
     }//Physics
 }//Mezzanine
 
+#ifndef SWIG
 /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize)
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::MultiSphereCollisionShape& ShapeToSerialize);
 /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x)
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::MultiSphereCollisionShape& x);
 /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x)
 void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::MultiSphereCollisionShape& x);
+#endif
 
 #endif

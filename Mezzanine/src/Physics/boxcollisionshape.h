@@ -40,6 +40,8 @@
 #ifndef _physicsboxcollisionshape_h
 #define _physicsboxcollisionshape_h
 
+#include <datatypes.h>
+
 #include "Physics/primitivecollisionshape.h"
 
 class btBoxShape;
@@ -108,12 +110,10 @@ namespace Mezzanine
     }//Physics
 }//Mezzanine
 
+#ifndef SWIG
 /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize)
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::BoxCollisionShape& ShapeToSerialize);
-/* /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x)
-std::istream& operator >> (std::istream& stream, Mezzanine::Physics::BoxCollisionShape& x);
-/// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x)
-void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::BoxCollisionShape& x);*/
+#endif
 
 
 #endif

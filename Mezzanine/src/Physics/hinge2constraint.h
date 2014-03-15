@@ -42,6 +42,7 @@
 
 #include "Physics/generic6dofspringconstraint.h"
 
+#ifndef SWIG
 class btHinge2Constraint;
 
 namespace Mezzanine
@@ -70,5 +71,7 @@ namespace Mezzanine
         };//Hinge2Constraint
     }//Physics
 }//Mezzanine
+#endif
+
 
 #endif

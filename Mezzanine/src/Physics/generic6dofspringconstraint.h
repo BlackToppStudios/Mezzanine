@@ -180,6 +180,7 @@ namespace Mezzanine
             ////////////////////////////////////////////////////////////////////////////////
             // Generic6DofSpringConstraint Calculated Items
 
+            #ifndef SWIG
             /// @internal
             virtual void CalculateSpringEquilibriumPoint();
             /// @internal
@@ -191,6 +192,7 @@ namespace Mezzanine
             virtual Vector3 GetCurrentSpringLinearEquilibriumPoints() const;
             /// @internal
             virtual Real GetCurrentSpringEquilibriumPoint(int Index) const;
+            #endif // SWIG
 
             ////////////////////////////////////////////////////////////////////////////////
             // Generic6DofSpringConstraint Serialization
@@ -212,11 +214,13 @@ namespace Mezzanine
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
+#ifndef SWIG
 /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::Generic6DofSpringConstraint& x);
 /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Generic6DofSpringConstraint& x);
 /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Generic6DofSpringConstraint& x);
+#endif
 
 #endif

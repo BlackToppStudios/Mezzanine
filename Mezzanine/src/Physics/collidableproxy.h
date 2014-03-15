@@ -41,7 +41,10 @@ John Blackwood - makoenergy02@gmail.com
 #define _collidableproxy_h
 
 #include "Physics/physicsenumerations.h"
-#include "axisalignedbox.h"
+
+#ifndef SWIG
+    #include "axisalignedbox.h"
+#endif
 #include "worldproxy.h"
 
 class btCollisionObject;

@@ -91,11 +91,14 @@ namespace Mezzanine
     }//Physics
 }//Mezzanine
 
+
+#ifndef SWIG
 /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize)
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::SphereCollisionShape& ShapeToSerialize);
 /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x)
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::SphereCollisionShape& x);
 /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x)
 void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::SphereCollisionShape& x);
+#endif
 
 #endif

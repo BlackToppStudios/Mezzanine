@@ -63,13 +63,21 @@ namespace Mezzanine
         %module MezzaninePhysicsSafe
     #endif
     #define SWIG_MODULE_SET
+
+    // Tell SWIG to create a module that scripting languages can use called "mezzanine"
+    // and insert a minimum of documentation into the bindingfile
+    %{
+        // code to be inserted verbatim into the swig file goes here
+        #include "mezzanine.h"
+        using namespace Mezzanine;
+        using namespace Mezzanine::Physics;
+    %}
 #endif
 
-#ifndef SWIG
+
 #include "Physics/physicsenumerations.h"
 #include "Physics/physicsmanager.h"
 #include "Physics/collisionshapemanager.h"
-
 #include "Physics/boxcollisionshape.h"
 #include "Physics/capsulecollisionshape.h"
 #include "Physics/collidablepair.h"
@@ -105,7 +113,5 @@ namespace Mezzanine
 #include "Physics/spherecollisionshape.h"
 #include "Physics/staticmeshcollisionshape.h"
 #include "Physics/universalconstraint.h"
-#endif //SWIG
-
 
 #endif

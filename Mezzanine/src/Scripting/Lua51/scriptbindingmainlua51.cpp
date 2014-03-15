@@ -1890,6 +1890,7 @@ typedef struct{} LANGUAGE_OBJ;
 
         using namespace Mezzanine;
         using namespace Mezzanine::Threading;
+        using namespace Mezzanine::Physics;
     
 
 #include <stdexcept>

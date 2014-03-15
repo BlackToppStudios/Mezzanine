@@ -52,7 +52,7 @@ namespace Mezzanine
         /// we subdivided the constraints to unify the interface of those that could be unified. This stores nothing, but
         /// provides uniform access to the transform and rotation functions. \n \n
         /// Any deriving class must implement every thing from TypedConstraint and the four set/get Transform function. It
-        /// is expected that more derived classes will implement the Set/Get Pivot/Rotation Functino in a more efficient
+        /// is expected that more derived classes will implement the Set/Get Pivot/Rotation Function in a more efficient
         /// Manner if a more efficient way exists. The non-transform get/set function are implmented in terms of the
         /// get/set transform function extra copies of values and extra reading/writing may occur if the compiler weakly
         /// optimizes. Of course, implementing more functions could slow down the software if it no longer fits in CPU
@@ -136,11 +136,14 @@ namespace Mezzanine
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
+#ifndef SWIG
 /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::DualTransformConstraint& x);
 /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::DualTransformConstraint& x);
 /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::DualTransformConstraint& x);
+#endif
+
 
 #endif
