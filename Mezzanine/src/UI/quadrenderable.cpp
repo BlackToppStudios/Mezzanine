@@ -264,11 +264,9 @@ namespace Mezzanine
 
         void QuadRenderable::AppendLayerVertices(std::vector<VertexData>& Vertices)
         {
-            if( this->ActiveGroup == NULL )
-                return;
-            for( RenderLayerGroup::RenderLayerIterator It = this->ActiveGroup->RenderLayerBegin() ; It != this->ActiveGroup->RenderLayerEnd() ; ++It )
-            {
-                (*It).second->_AppendVertices(Vertices);
+            if( this->ActiveGroup != NULL ) {
+                for( RenderLayerGroup::RenderLayerIterator It = this->ActiveGroup->RenderLayerBegin() ; It != this->ActiveGroup->RenderLayerEnd() ; ++It )
+                    { (*It).second->_AppendVertices(Vertices); }
             }
         }
 
@@ -953,6 +951,7 @@ namespace Mezzanine
                     Child->SetVisible( this->GetVisible() );
                     Child->_NotifyParenthood(this);
                     Child->_MarkAllChildrenDirty();
+                    this->_MarkDirty();
                     return;
                 }
             }
@@ -960,6 +959,7 @@ namespace Mezzanine
             Child->SetVisible( this->GetVisible() );
             Child->_NotifyParenthood(this);
             Child->_MarkAllChildrenDirty();
+            this->_MarkDirty();
         }
 
         void QuadRenderable::AddChild(Widget* Child, const UInt16 ZOrder)

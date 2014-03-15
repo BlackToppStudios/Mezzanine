@@ -47,20 +47,6 @@ namespace Mezzanine
     namespace UI
     {
         class StackButton;
-        /*class MenuEntryStack;
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief This is a class designed to help MenuEntrys keep track of the Menu tree they belong to.
-        /// @details
-        ///////////////////////////////////////
-        class MEZZ_LIB MenuStack
-        {
-        protected:
-        public:
-            MenuStack();
-            ~MenuStack();
-
-
-        };//MenuStack*/
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class is an entry for a single window/widget in a menu.

@@ -47,6 +47,9 @@ protected:
     /// @internal
     /// @brief The name of this levels Asset Group.
     String GroupName;
+    /// @internal
+    /// @brief A whole containing the number of seconds a level needs to be completed in before bonus score is depleted.
+    Whole LevelTargetTime;
 
     /// @internal
     /// @brief Deserializes the relevant data about the level, and populates this class with it.
@@ -82,6 +85,10 @@ public:
 
     ///////////////////////////////////////////////////////////////////////////////
     // MetaData Access
+
+    /// @brief Gets the amount of time for this level to be completed before bonus score is depleted.
+    /// @return Returns a Whole representing the amount of time for this level to be completed in seconds.
+    Whole GetLevelTargetTime() const;
 
     /// @brief Gets the score threshold for the specified tier for this level.
     /// @param Tier The tier to get the score threshold of.
@@ -148,23 +155,11 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
-    /// @brief Uses the set path to search for all availble game levels that can be loaded.
+    /// @brief Uses the set path to search for all available game levels that can be loaded.
     /// @return Returns the number of levels that were detected.
     Whole DetectLevels();
     /// @brief Populates the Level Select widget with all of the detected levels.
     void PopulateLevelSelectUI();
-
-    /// @brief Gets a level by Index.
-    /// @param Index The index of the level to retrieve.
-    /// @return Returns a pointer to the level at the specified index.
-    GameLevel* GetLevel(const Whole Index);
-    /// @brief Gets a level by name.
-    /// @param LevelName The name of the level to retrieve.
-    /// @return Returns a pointer to the named level.
-    GameLevel* GetLevel(const String& LevelName);
-    /// @brief Gets the number of levels that were detected the last time "DetectLevels" was called.
-    /// @return Returns a Whole representing the number of currenly known, loadable levels.
-    Whole GetNumLevels() const;
 
     /// @brief Sets the next level to be loaded by name.
     /// @param LevelName A string containing the name of the next level that will be loaded.
@@ -189,6 +184,34 @@ public:
     /// @brief Gets the path to where the levels will be loaded from.
     /// @return Returns a const String reference containing the path to the directory where the levels are stored.
     const String& GetLevelPath() const;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Game Level Access
+
+    /// @brief Gets a level by Index.
+    /// @param Index The index of the level to retrieve.
+    /// @return Returns a pointer to the level at the specified index.
+    GameLevel* GetLevel(const Whole Index);
+    /// @brief Gets a level by name.
+    /// @param LevelName The name of the level to retrieve.
+    /// @return Returns a pointer to the named level.
+    GameLevel* GetLevel(const String& LevelName);
+    /// @brief Gets the number of levels that were detected the last time "DetectLevels" was called.
+    /// @return Returns a Whole representing the number of currenly known, loadable levels.
+    Whole GetNumLevels() const;
+
+    /// @brief Gets an iterator to the first GameLevel in this manager.
+    /// @return Returns an iterator to the first GameLevel being stored by this manager.
+    GameLevelIterator BeginGameLevel();
+    /// @brief Gets an iterator to one passed the last GameLevel in this manager.
+    /// @return Returns an iterator to one passed the last GameLevel being stored by this manager.
+    GameLevelIterator EndGameLevel();
+    /// @brief Gets a const iterator to the first GameLevel in this manager.
+    /// @return Returns a const iterator to the first GameLevel being stored by this manager.
+    ConstGameLevelIterator BeginGameLevel() const;
+    /// @brief Gets a const iterator to one passed the last GameLevel in this manager.
+    /// @return Returns a const iterator to one passed the last GameLevel being stored by this manager.
+    ConstGameLevelIterator EndGameLevel() const;
 
     ///////////////////////////////////////////////////////////////////////////////
     // Loading and Unloading

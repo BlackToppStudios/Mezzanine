@@ -110,11 +110,11 @@ namespace Mezzanine
                 /// @brief Const Iterator type for @ref OALS::Listener instances stored by this class.
                 typedef ListenerContainer::const_iterator           ConstListenerIterator;
                 /// @brief Basic container type for @ref OALS::SoundProxy storage by this class.
-                typedef std::vector<OALS::SoundProxy*>              SoundProxyContainer;
+                typedef std::vector<OALS::SoundProxy*>              ProxyContainer;
                 /// @brief Iterator type for @ref OALS::SoundProxy instances stored by this class.
-                typedef SoundProxyContainer::iterator               SoundProxyIterator;
+                typedef ProxyContainer::iterator                    ProxyIterator;
                 /// @brief Const Iterator type for @ref OALS::SoundProxy instances stored by this class.
-                typedef SoundProxyContainer::const_iterator         ConstSoundProxyIterator;
+                typedef ProxyContainer::const_iterator              ConstProxyIterator;
             protected:
                 friend class BufferUpdate3DWorkUnit;
 
@@ -126,7 +126,7 @@ namespace Mezzanine
                 ListenerContainer Listeners;
                 /// @internal
                 /// @brief Container storing all @ref OALS::SoundProxy instances.
-                SoundProxyContainer SoundProxies;
+                ProxyContainer Proxies;
 
                 /// @internal
                 /// @brief The workunit this will use to complete its buffer updates.
@@ -190,6 +190,21 @@ namespace Mezzanine
                 virtual void DestroySoundProxy(Audio::SoundProxy* ToBeDestroyed);
                 /// @copydoc Audio::SoundScapeManager::DestroyAllSoundProxies()
                 virtual void DestroyAllSoundProxies();
+
+                #ifndef SWIG
+                /// @brief Gets an iterator to the first Sound Proxy in this manager.
+                /// @return Returns an iterator to the first Sound Proxy being stored by this manager.
+                ProxyIterator BeginSoundProxy();
+                /// @brief Gets an iterator to one passed the last Sound Proxy in this manager.
+                /// @return Returns an iterator to one passed the last Sound Proxy being stored by this manager.
+                ProxyIterator EndSoundProxy();
+                /// @brief Gets a const iterator to the first Sound Proxy in this manager.
+                /// @return Returns a const iterator to the first Sound Proxy being stored by this manager.
+                ConstProxyIterator BeginSoundProxy() const;
+                /// @brief Gets a const iterator to one passed the last Sound Proxy in this manager.
+                /// @return Returns a const iterator to one passed the last Sound Proxy being stored by this manager.
+                ConstProxyIterator EndSoundProxy() const;
+                #endif
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility

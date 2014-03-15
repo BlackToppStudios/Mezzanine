@@ -130,6 +130,21 @@ namespace Mezzanine
             /// @brief Destroy's all stored camera's.
             void DestroyAllCameras();
 
+            #ifndef SWIG
+            /// @brief Gets an iterator to the first Camera Proxy in this manager.
+            /// @return Returns an iterator to the first Camera Proxy being stored by this manager.
+            CameraIterator BeginCamera();
+            /// @brief Gets an iterator to one passed the last Camera Proxy in this manager.
+            /// @return Returns an iterator to one passed the last Camera Proxy being stored by this manager.
+            CameraIterator EndCamera();
+            /// @brief Gets a const iterator to the first Camera Proxy in this manager.
+            /// @return Returns a const iterator to the first Camera Proxy being stored by this manager.
+            ConstCameraIterator BeginCamera() const;
+            /// @brief Gets a const iterator to one passed the last Camera Proxy in this manager.
+            /// @return Returns a const iterator to one passed the last Camera Proxy being stored by this manager.
+            ConstCameraIterator EndCamera() const;
+            #endif
+
             ///////////////////////////////////////////////////////////////////////////////
             // Camera Controller Management
 

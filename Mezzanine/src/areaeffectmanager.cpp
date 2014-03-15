@@ -287,6 +287,18 @@ namespace Mezzanine
         this->AreaEffects.clear();
     }
 
+    AreaEffectManager::AreaEffectIterator AreaEffectManager::BeginAreaEffect()
+        { return this->AreaEffects.begin(); }
+
+    AreaEffectManager::AreaEffectIterator AreaEffectManager::EndAreaEffect()
+        { return this->AreaEffects.end(); }
+
+    AreaEffectManager::ConstAreaEffectIterator AreaEffectManager::BeginAreaEffect() const
+        { return this->AreaEffects.begin(); }
+
+    AreaEffectManager::ConstAreaEffectIterator AreaEffectManager::EndAreaEffect() const
+        { return this->AreaEffects.end(); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // AreaEffectFactory Management
 

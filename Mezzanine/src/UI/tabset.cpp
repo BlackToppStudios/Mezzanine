@@ -116,7 +116,7 @@ namespace Mezzanine
             this->VisibleChild = NewVisible;
 
             if( this->VisibleChild != NULL ) {
-                this->VisibleChild->SetVisible( this->IsVisible() );
+                this->VisibleChild->SetVisible( this->GetVisible() );
             }
             this->_MarkDirty();
         }

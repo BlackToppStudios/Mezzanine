@@ -199,6 +199,18 @@ namespace Mezzanine
         this->Actors.clear();
     }
 
+    ActorManager::ActorIterator ActorManager::BeginActor()
+        { return this->Actors.begin(); }
+
+    ActorManager::ActorIterator ActorManager::EndActor()
+        { return this->Actors.end(); }
+
+    ActorManager::ConstActorIterator ActorManager::BeginActor() const
+        { return this->Actors.begin(); }
+
+    ActorManager::ConstActorIterator ActorManager::EndActor() const
+        { return this->Actors.end(); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // ActorFactory Management
 

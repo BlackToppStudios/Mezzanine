@@ -128,8 +128,12 @@ endif(${UseCatchArchives})
 ##############################################################################
 #A complete list of our source files and headers
 set(${PROJECT_NAME}_sources
-    "${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.h"
+    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/levelzone.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/levelzone.h"
+    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/scorearea.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/scorearea.h"
+    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/startarea.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}WorldObjects/startarea.h"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.cpp"
     "${${PROJECT_NAME}_SRC_DIR}catchapp.h"
     "${${PROJECT_NAME}_SRC_DIR}gamebase.cpp"
@@ -144,14 +148,10 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}levelscorer.h"
     "${${PROJECT_NAME}_SRC_DIR}leveltriggers.cpp"
     "${${PROJECT_NAME}_SRC_DIR}leveltriggers.h"
-    "${${PROJECT_NAME}_SRC_DIR}levelzone.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}levelzone.h"
     "${${PROJECT_NAME}_SRC_DIR}profilemanager.cpp"
     "${${PROJECT_NAME}_SRC_DIR}profilemanager.h"
-    "${${PROJECT_NAME}_SRC_DIR}scorearea.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}scorearea.h"
-    "${${PROJECT_NAME}_SRC_DIR}startarea.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}startarea.h"
+    "${${PROJECT_NAME}_SRC_DIR}queuedsubscriber.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}queuedsubscriber.h"
     "${${PROJECT_NAME}_SRC_DIR}throwablegenerator.cpp"
     "${${PROJECT_NAME}_SRC_DIR}throwablegenerator.h"
     "${${PROJECT_NAME}_SRC_DIR}uicallbacks.cpp"
@@ -239,6 +239,7 @@ CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-R.ttf ${FontDir}Ubun
 
 #####################################
 # Config Files
+CopyFilesDuringBuild( data/common/config-files/Catch.mxi ${CommonDataDir}Catch.mxi )
 CopyFilesDuringBuild( data/common/config-files/Mezzanine.mxi ${CommonDataDir}Mezzanine.mxi )
 CopyFilesDuringBuild( data/common/config-files/Resources.mxi ${CommonDataDir}Resources.mxi )
 

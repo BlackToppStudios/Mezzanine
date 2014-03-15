@@ -115,21 +115,13 @@ namespace Mezzanine
                     this->VertexCache->Clear();
                     this->_AppendRenderData(*VertexCache);
                     for( VisibleChildIterator ChildIt = this->VisibleChildren.begin() ; ChildIt != this->VisibleChildren.end() ; ++ChildIt )
-                    {
-                        if( (*ChildIt)->IsVisible() ) {
-                            (*ChildIt)->_AppendRenderDataCascading(*VertexCache);
-                        }
-                    }
+                        { (*ChildIt)->_AppendRenderDataCascading(*VertexCache); }
                 }
                 RenderData.Append(*VertexCache);
             }else{
                 this->_AppendRenderData(RenderData);
                 for( VisibleChildIterator It = this->VisibleChildren.begin() ; It != this->VisibleChildren.end() ; ++It )
-                {
-                    if( (*It)->IsVisible() ) {
-                        (*It)->_AppendRenderDataCascading(RenderData);
-                    }
-                }
+                    { (*It)->_AppendRenderDataCascading(RenderData); }
             }
         }
     }//UI

@@ -134,57 +134,8 @@ namespace Mezzanine
         {
             this->Construct();
 
-            XML::Attribute CurrAttrib;
-            String PathPreset;
-            // Get whether or not to autogen the directory path and settings file.
-            XML::Node AutoGenNode = XMLNode.GetChild("AutoCreateSettings");
-            if(!AutoGenNode.Empty())
-            {
-                CurrAttrib = AutoGenNode.GetAttribute("Auto");
-                if(!CurrAttrib.Empty())
-                    this->AutoGenPath = this->AutoGenFiles = StringTools::ConvertToBool( CurrAttrib.AsString() );
-            }
-            // Get preset path to default to if a path is not provided.
-            XML::Node PathNode = XMLNode.GetChild("SettingsPath");
-            if(!PathNode.Empty())
-            {
-                CurrAttrib = PathNode.GetAttribute("Path");
-                if(!CurrAttrib.Empty())
-                    PathPreset = CurrAttrib.AsString();
+            this->ObjectSettingsHandler::ProtoDeSerialize(XMLNode);
 
-                if(!PathPreset.empty())
-                    this->SetSettingsFilePath(PathPreset);
-            }
-            // Get the files to be loaded, and load them.
-            XML::Node FilesNode = XMLNode.GetChild("SettingsFiles");
-            if(!FilesNode.Empty())
-            {
-                for( XML::NodeIterator SetFileIt = FilesNode.begin() ; SetFileIt != FilesNode.end() ; ++SetFileIt )
-                {
-                    String FileName, FilePath, FileGroup;
-                    // Get the filename to load
-                    CurrAttrib = (*SetFileIt).GetAttribute("FileName");
-                    if(!CurrAttrib.Empty())
-                        FileName = CurrAttrib.AsString();
-                    // Get the path
-                    CurrAttrib = (*SetFileIt).GetAttribute("Path");
-                    if(!CurrAttrib.Empty())
-                        FilePath = CurrAttrib.AsString();
-                    else
-                    {
-                        CurrAttrib = (*SetFileIt).GetAttribute("Group");
-                        if(!CurrAttrib.Empty())
-                            FileGroup = CurrAttrib.AsString();
-                    }
-
-                    if(FilePath.empty())
-                    {
-                        if(FileGroup.empty()) this->LoadSettings(FileName);
-                        else this->LoadSettingsFromGroup(FileName,FileGroup);
-                    }
-                    else this->LoadSettings(FileName,FilePath);
-                }
-            }
             /// @todo This is currently necessary because a render window of some kind needs to exist for the loading
             /// of resources that occurs later in world construction (when this is constructed by the world, which this
             /// assumes.  If possible this should be removed, to keep construction more flexible.

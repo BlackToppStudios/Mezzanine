@@ -168,7 +168,7 @@ namespace Mezzanine
             for( PartitionData::WidgetContainer::reverse_iterator WidIt = HoveredPartition->Widgets.rbegin() ; WidIt != HoveredPartition->Widgets.rend() ; ++WidIt )
             {
                 // Can it be seen?
-                if( (*WidIt)->IsVisible() && (*WidIt)->GetNumVisibleRenderLayers() ) {
+                if( (*WidIt)->GetVisible() && (*WidIt)->GetNumVisibleRenderLayers() ) {
                     // Is it inside?
                     if( (*WidIt)->IsInside(MousePos) ) {
                         // Has mouse picking been disabled?

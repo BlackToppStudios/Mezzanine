@@ -520,6 +520,18 @@ namespace Mezzanine
             this->Proxies.clear();
         }
 
+        SceneManager::ProxyIterator SceneManager::BeginRenderableProxy()
+            { return this->Proxies.begin(); }
+
+        SceneManager::ProxyIterator SceneManager::EndRenderableProxy()
+            { return this->Proxies.end(); }
+
+        SceneManager::ConstProxyIterator SceneManager::BeginRenderableProxy() const
+            { return this->Proxies.begin(); }
+
+        SceneManager::ConstProxyIterator SceneManager::EndRenderableProxy() const
+            { return this->Proxies.end(); }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Light Management
 

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<InitializerRoot>
+    <GameSettings>
+    </GameSettings>
+    <Managers>
+        <ProfileManager>
+            <SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
+            <SettingsFiles>
+                <SettingsFile FileName="ProfileSettings.mxs" />
+            </SettingsFiles>
+        </ProfileManager>
+    </Managers>
+</InitializerRoot>

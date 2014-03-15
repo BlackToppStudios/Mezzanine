@@ -309,6 +309,21 @@ namespace Mezzanine
             /// @brief Deletes all stored RenderableProxy instances.
             void DestroyAllProxies();
 
+            #ifndef SWIG
+            /// @brief Gets an iterator to the first Renderable Proxy in this manager.
+            /// @return Returns an iterator to the first Renderable Proxy being stored by this manager.
+            ProxyIterator BeginRenderableProxy();
+            /// @brief Gets an iterator to one passed the last Renderable Proxy in this manager.
+            /// @return Returns an iterator to one passed the last Renderable Proxy being stored by this manager.
+            ProxyIterator EndRenderableProxy();
+            /// @brief Gets a const iterator to the first Renderable Proxy in this manager.
+            /// @return Returns a const iterator to the first Renderable Proxy being stored by this manager.
+            ConstProxyIterator BeginRenderableProxy() const;
+            /// @brief Gets a const iterator to one passed the last Renderable Proxy in this manager.
+            /// @return Returns a const iterator to one passed the last Renderable Proxy being stored by this manager.
+            ConstProxyIterator EndRenderableProxy() const;
+            #endif
+
             ///////////////////////////////////////////////////////////////////////////////
             // Light Management
 

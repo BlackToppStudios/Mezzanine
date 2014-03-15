@@ -168,6 +168,21 @@ namespace Mezzanine
         /// @brief Destroys all Actors currently within this manager.
         virtual void DestroyAllActors();
 
+        #ifndef SWIG
+        /// @brief Gets an iterator to the first Actor in this manager.
+        /// @return Returns an iterator to the first Actor being stored by this manager.
+        ActorIterator BeginActor();
+        /// @brief Gets an iterator to one passed the last Actor in this manager.
+        /// @return Returns an iterator to one passed the last Actor being stored by this manager.
+        ActorIterator EndActor();
+        /// @brief Gets a const iterator to the first Actor in this manager.
+        /// @return Returns a const iterator to the first Actor being stored by this manager.
+        ConstActorIterator BeginActor() const;
+        /// @brief Gets a const iterator to one passed the last Actor in this manager.
+        /// @return Returns a const iterator to one passed the last Actor being stored by this manager.
+        ConstActorIterator EndActor() const;
+        #endif
+
         ///////////////////////////////////////////////////////////////////////////////
         // ActorFactory Management
 

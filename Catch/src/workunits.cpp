@@ -5,54 +5,20 @@
 #include "catchapp.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-// QueuedSubscriber Methods
-
-QueuedSubscriber::QueuedSubscriber(UI::UIManager* UIMan, ManagerBase* Target) :
-    TargetManager(Target),
-    UITarget(UIMan),
-    Updating(false)
-    {  }
-
-QueuedSubscriber::~QueuedSubscriber()
-    { this->ClearEvents(); }
-
-///////////////////////////////////////////////////////////////////////////////
-// Convenience and Utility
-
-QueuedSubscriber::ConstEventIterator QueuedSubscriber::GetFirstEvent() const
-    { return this->Events.begin(); }
-
-QueuedSubscriber::ConstEventIterator QueuedSubscriber::GetEndEvent() const
-    { return this->Events.end(); }
-
-void QueuedSubscriber::ClearEvents()
-    { this->Events.clear(); }
-
-///////////////////////////////////////////////////////////////////////////////
-// Inherited
-
-void QueuedSubscriber::_NotifyEvent(EventArgumentsPtr Args)
-{
-    if( !this->Updating ) {
-        this->Events.push_back(Args);
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////
 // AudioSettingsWorkUnit Methods
 
 AudioSettingsWorkUnit::AudioSettingsWorkUnit(UI::UIManager* UITarget, ManagerBase* Target)
-    { this->SettingsSubscriber = new QueuedSubscriber(UITarget,Target); }
+    { this->SettingsSubscriber = new QueuedSettingsSubscriber(UITarget,Target); }
 
 AudioSettingsWorkUnit::~AudioSettingsWorkUnit()
     { delete this->SettingsSubscriber; }
 
-QueuedSubscriber* AudioSettingsWorkUnit::GetSettingsSubscriber() const
+QueuedSettingsSubscriber* AudioSettingsWorkUnit::GetSettingsSubscriber() const
     { return this->SettingsSubscriber; }
 
 void AudioSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
-    this->SettingsSubscriber->Updating = true;
+    this->SettingsSubscriber->StartUpdate();
     UI::UIManager* UIMan = this->SettingsSubscriber->UITarget;
     Audio::AudioManager* AudioMan = static_cast<Audio::AudioManager*>( this->SettingsSubscriber->TargetManager );
     QueuedSubscriber::ConstEventIterator EndEvent = this->SettingsSubscriber->GetEndEvent();
@@ -126,24 +92,24 @@ void AudioSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
         }
     }
     this->SettingsSubscriber->ClearEvents();
-    this->SettingsSubscriber->Updating = false;
+    this->SettingsSubscriber->EndUpdate();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // VideoSettingsWorkUnit Methods
 
 VideoSettingsWorkUnit::VideoSettingsWorkUnit(UI::UIManager* UITarget, ManagerBase* Target)
-    { this->SettingsSubscriber = new QueuedSubscriber(UITarget,Target); }
+    { this->SettingsSubscriber = new QueuedSettingsSubscriber(UITarget,Target); }
 
 VideoSettingsWorkUnit::~VideoSettingsWorkUnit()
     { delete this->SettingsSubscriber; }
 
-QueuedSubscriber* VideoSettingsWorkUnit::GetSettingsSubscriber() const
+QueuedSettingsSubscriber* VideoSettingsWorkUnit::GetSettingsSubscriber() const
     { return this->SettingsSubscriber; }
 
 void VideoSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
-    this->SettingsSubscriber->Updating = true;
+    this->SettingsSubscriber->StartUpdate();
     UI::UIManager* UIMan = this->SettingsSubscriber->UITarget;
     Graphics::GraphicsManager* GraphicsMan = static_cast<Graphics::GraphicsManager*>( this->SettingsSubscriber->TargetManager );
     Graphics::GameWindow* CatchWindow = GraphicsMan->GetGameWindow(0);
@@ -251,7 +217,7 @@ void VideoSettingsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type
         }// If we have a screen
     }// For each event
     this->SettingsSubscriber->ClearEvents();
-    this->SettingsSubscriber->Updating = false;
+    this->SettingsSubscriber->EndUpdate();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -381,14 +347,13 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
         {
             Ray MouseRay = RayQueryTool::GetMouseRay(5000);
 
-            bool firstframe=false;
-            if( RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid | Mezzanine::WO_DebrisSoft) )
-            {
+            Boole firstframe = false;
+            if( RayCaster.GetFirstObjectOnRayByPolygon(MouseRay,Mezzanine::WO_DebrisRigid | Mezzanine::WO_DebrisSoft) ) {
                 Debris* CastResult = static_cast<Debris*>( RayCaster.LastQueryResultsObjectPtr() );
                 Vector3 LocalPivot = RayCaster.LastQueryResultsOffset();
-                if( CastResult->GetType() == Mezzanine::WO_DebrisRigid &&
+                if( CastResult->GetType() & Mezzanine::WO_DebrisRigid &&
                     this->CatchApplication->IsInsideAnyStartZone( CastResult ) &&
-                    !Dragger )
+                    Dragger == NULL )
                 {
                     if( !( static_cast<RigidDebris*>( CastResult )->GetRigidProxy()->IsStaticOrKinematic() ) )
                     {
@@ -411,13 +376,12 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
 
             if(Dragger && RayCaster.RayPlaneIntersection(MouseRay, this->CatchApplication->PlaneOfPlay))
             {
-                if(!firstframe)
-                    { Dragger->SetPivotBLocation(RayCaster.LastQueryResultsOffset()); }
+                if( !firstframe ) {
+                    Dragger->SetPivotBLocation( RayCaster.LastQueryResultsOffset() );
+                }
             }
 
-            if(Dragger &&
-               !this->CatchApplication->IsInsideAnyStartZone(this->CatchApplication->LastObjectThrown))
-            {
+            if(Dragger && !this->CatchApplication->IsInsideAnyStartZone( this->CatchApplication->LastObjectThrown ) ) {
                 Physics::RigidProxy* Prox = Dragger->GetProxyA();
                 Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
                 Prox->SetActivationState(Mezzanine::Physics::AS_DisableDeactivation);
@@ -425,8 +389,7 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
         }
 
     }else{  //Since we are no longer clicking we need to setup for the next clicking
-        if(Dragger)
-        {
+        if( Dragger ) {
             Physics::RigidProxy* Prox = Dragger->GetProxyA();
             Entresol::GetSingletonPtr()->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
@@ -437,60 +400,108 @@ void CatchPostUIWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& 
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// CatchPostInputWorkUnit Methods
+// CatchPauseWorkUnit Methods
 
-CatchPostGraphicsWorkUnit::CatchPostGraphicsWorkUnit(CatchApp* Target) :
+CatchPauseWorkUnit::CatchPauseWorkUnit(CatchApp* Target, UI::UIManager* UITarget)
+    { this->PauseSubscriber = new QueuedPauseSubscriber(Target,UITarget); }
+
+CatchPauseWorkUnit::~CatchPauseWorkUnit()
+    { delete this->PauseSubscriber; }
+
+QueuedPauseSubscriber* CatchPauseWorkUnit::GetPauseSubscriber() const
+    { return this->PauseSubscriber; }
+
+void CatchPauseWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+{
+    this->PauseSubscriber->StartUpdate();
+    UI::Screen* GameScreen = this->PauseSubscriber->UITarget->GetScreen("GameScreen");
+    QueuedSubscriber::ConstEventIterator EndEvent = this->PauseSubscriber->GetEndEvent();
+    for( QueuedSubscriber::ConstEventIterator EvIt = this->PauseSubscriber->GetFirstEvent() ; EvIt != EndEvent ; ++EvIt )
+    {
+        EventArgumentsPtr Args = (*EvIt);
+        UI::WidgetEventArgumentsPtr WidArgs = CountedPtrCast<UI::WidgetEventArguments>( Args );
+
+        if( (*EvIt)->EventName == UI::Widget::EventVisibilityShown ) {
+            UI::MenuEntry* EventMenu = static_cast<UI::MenuEntry*>( GameScreen->GetWidget( WidArgs->WidgetName ) );
+            if( EventMenu != NULL ) {
+                UI::MenuEntry::MenuEntryContainer* Stack = EventMenu->_GetMenuStack();
+                if( Stack != NULL && !Stack->empty() ) {
+                    this->PauseSubscriber->CatchApplication->PauseGame(true);
+                }
+            }
+        }else if( (*EvIt)->EventName == UI::Button::EventVisibilityHidden ) {
+            UI::MenuEntry* EventMenu = static_cast<UI::MenuEntry*>( GameScreen->GetWidget( WidArgs->WidgetName ) );
+            if( EventMenu != NULL ) {
+                UI::MenuEntry::MenuEntryContainer* Stack = EventMenu->_GetMenuStack();
+                if( Stack != NULL && Stack->empty() ) {
+                    this->PauseSubscriber->CatchApplication->PauseGame(false);
+                }
+            }
+        }
+        /*if( (*EvIt)->EventName == UI::Button::EventActivated ) {
+
+        }else if( (*EvIt)->EventName == UI::Button::EventDeactivated ) {
+
+        }//*/
+    }// For each event
+    this->PauseSubscriber->ClearEvents();
+    this->PauseSubscriber->EndUpdate();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// CatchHUDUpdateWorkUnit Methods
+
+CatchHUDUpdateWorkUnit::CatchHUDUpdateWorkUnit(CatchApp* Target) :
     CatchApplication(Target) {  }
 
-CatchPostGraphicsWorkUnit::~CatchPostGraphicsWorkUnit()
+CatchHUDUpdateWorkUnit::~CatchHUDUpdateWorkUnit()
     {  }
 
-void CatchPostGraphicsWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+void CatchHUDUpdateWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
 {
-    // Update the timer
-    /// @todo UI Update
-    /*UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
-    UI::OpenRenderableContainerWidget* HUDCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_HUD"));
-    UI::Caption* Timer = static_cast<UI::Caption*>(HUDCont->GetAreaRenderable("GS_Timer"));
-    std::stringstream time;
-    Whole TotalSeconds = this->CatchApplication->GetLevelTimer()->GetCurrentTimeInMilliseconds() / 1000;
-    Whole Minutes = TotalSeconds / 60;
-    Whole Seconds;
+    if( this->CatchApplication->GetState() == CatchApp::Catch_GameScreen ) {
+        // Get our UI pointers
+        Graphics::GraphicsManager* GraphicsMan = this->CatchApplication->TheEntresol->GetGraphicsManager();
+        UI::UIManager* UIMan = this->CatchApplication->TheEntresol->GetUIManager();
+        UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
+        UI::Screen* StatsScreen = UIMan->GetScreen("StatsScreen");
 
-    if(60 > TotalSeconds) Seconds = TotalSeconds;
-    else Seconds = TotalSeconds % 60;
+        // Update the timer
+        UI::Widget* TimerWid = GameScreen->GetWidget("GS_TimerValue");
+        static_cast<UI::SingleLineTextLayer*>( TimerWid->GetRenderLayer(0,UI::RLT_SingleLineText) )->SetText( this->CatchApplication->GetLevelTimer()->GetTimeAsText(Timer::TF_Minutes_Seconds) );
 
-    if(10 > Seconds) time << Minutes << ":" << 0 << Seconds;
-    else time << Minutes << ":" << Seconds;
+        // Update the score display
+        LevelScorer::ScorePair LevelScores = this->CatchApplication->GetLevelScorer()->CalculateThrowableScore();
+        UI::Widget* ScoreWid = GameScreen->GetWidget("GS_ScoreValue");
+        static_cast<UI::SingleLineTextLayer*>( ScoreWid->GetRenderLayer(0,UI::RLT_SingleLineText) )->SetText( StringTools::ConvertToString( LevelScores.first + LevelScores.second ) );
 
-    Timer->SetText(time.str());
+        // Update framerate stat display
+        UI::Widget* CurrFPSWid = StatsScreen->GetWidget("SS_CurrentFPSValue");
+        static_cast<UI::SingleLineTextLayer*>( CurrFPSWid->GetRenderLayer(0,UI::RLT_SingleLineText) )->SetText( StringTools::ConvertToString( GraphicsMan->GetGameWindow(0)->GetLastFPS() ) );
 
-    // Update the score
-    LevelScorer::ScorePair Scores = this->CatchApplication->GetLevelScorer()->CalculateThrowableScore();
+        UI::Widget* AverageFPSWid = StatsScreen->GetWidget("SS_AverageFPSValue");
+        static_cast<UI::SingleLineTextLayer*>( AverageFPSWid->GetRenderLayer(0,UI::RLT_SingleLineText) )->SetText( StringTools::ConvertToString( GraphicsMan->GetGameWindow(0)->GetAverageFPS() ) );
+    }
+}
 
-    UI::Caption* ScoreAmount = static_cast<UI::Caption*>( HUDCont->GetAreaRenderable("GS_ScoreArea") );
-    ScoreAmount->SetText( StringTools::ConvertToString( Scores.first + Scores.second ) );
+///////////////////////////////////////////////////////////////////////////////
+// CatchEndLevelWorkUnit Methods
 
-    // Update Stat information
-    Graphics::GraphicsManager* GraphicsMan = Graphics::GraphicsManager::GetSingletonPtr();
-    UI::OpenRenderableContainerWidget* StatsCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_Stats"));
-    UI::Caption* CurFPS = static_cast<UI::Caption*>(StatsCont->GetAreaRenderable("CurFPS"));
-    UI::Caption* AvFPS = static_cast<UI::Caption*>(StatsCont->GetAreaRenderable("AvFPS"));
-    CurFPS->SetText(StringTools::ConvertToString(GraphicsMan->GetGameWindow(0)->GetLastFPS()));
-    AvFPS->SetText(StringTools::ConvertToString(GraphicsMan->GetGameWindow(0)->GetAverageFPS()));
+CatchEndLevelWorkUnit::CatchEndLevelWorkUnit(CatchApp* Target) :
+    CatchApplication(Target) {  }
 
-    StringStream FPSStream;
-    FPSStream << "<FPSReport CurrentFPS=\"" << GraphicsMan->GetGameWindow(0)->GetLastFPS() << "\" AverageFPS=\"" << GraphicsMan->GetGameWindow(0)->GetAverageFPS() << "\" />" << std::endl;
-    this->CatchApplication->TheEntresol->Log(FPSStream.str());
+CatchEndLevelWorkUnit::~CatchEndLevelWorkUnit()
+    {  }
 
+void CatchEndLevelWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
+{
     //See if the level is over
-    if(this->CatchApplication->CurrentState != CatchApp::Catch_ScoreScreen)
-    {
-        if(this->CatchApplication->CheckEndOfLevel())
-        {
+    CatchApp::GameState State = this->CatchApplication->GetState();
+    if( State == CatchApp::Catch_GameScreen && State != CatchApp::Catch_ScoreScreen ) {
+        if( this->CatchApplication->CheckEndOfLevel() ) {
             this->CatchApplication->ChangeState(CatchApp::Catch_ScoreScreen);
         }
-    }//*/
+    }
 }
 
 #endif

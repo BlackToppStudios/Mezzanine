@@ -223,7 +223,7 @@ namespace Mezzanine
                     // Increment the cursor
                     CurrYPos += ( NewChildRect.Size.Y + ActPadding );
                     // Finally show the child
-                    VisChild->Show();
+                    VisChild->SetVisible( this->GetVisible() );
                 }
                 ChildTransformCache.clear();
             }

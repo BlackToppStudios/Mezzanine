@@ -252,6 +252,18 @@ namespace Mezzanine
         this->Debriss.clear();
     }
 
+    DebrisManager::DebrisIterator DebrisManager::BeginDebris()
+        { return this->Debriss.begin(); }
+
+    DebrisManager::DebrisIterator DebrisManager::EndDebris()
+        { return this->Debriss.end(); }
+
+    DebrisManager::ConstDebrisIterator DebrisManager::BeginDebris() const
+        { return this->Debriss.begin(); }
+
+    DebrisManager::ConstDebrisIterator DebrisManager::EndDebris() const
+        { return this->Debriss.end(); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // DebrisFactory Management
 

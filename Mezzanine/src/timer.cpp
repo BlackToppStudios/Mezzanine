@@ -121,6 +121,65 @@ namespace Mezzanine
         return Timer::Normal;
     }
 
+    String Timer::GetTimeAsText(const Timer::TimeFormat Format)
+    {
+        StringStream TimeStream;
+        switch( Format )
+        {
+            case Timer::TF_Raw_Micro:
+            {
+                TimeStream << this->GetCurrentTime();
+                return TimeStream.str();
+                break;
+            }
+            case Timer::TF_Raw_Milli:
+            {
+                TimeStream << this->GetCurrentTimeInMilliseconds();
+                return TimeStream.str();
+                break;
+            }
+            case Timer::TF_Seconds:
+            {
+                TimeStream << ( this->GetCurrentTimeInMilliseconds() / 1000 );
+                return TimeStream.str();
+                break;
+            }
+            case Timer::TF_Seconds_Milli:
+            {
+                Whole Milli = this->GetCurrentTimeInMilliseconds();
+                Whole Seconds = ( Milli / 1000 );
+                Whole Remainder = ( Milli % 1000 );
+                if( Remainder < 10 ) {
+                    TimeStream << Seconds << ".00" << Remainder;
+                }else if( Remainder < 100 ) {
+                    TimeStream << Seconds << ".0" << Remainder;
+                }else{
+                    TimeStream << Seconds << "." << Remainder;
+                }
+                break;
+            }
+            case Timer::TF_Minutes_Seconds:
+            {
+                Whole Seconds = ( this->GetCurrentTimeInMilliseconds() / 1000 );
+                Whole Minutes = Seconds / 60;
+                Whole Remainder = Seconds % 60;
+                if( Remainder < 10 ) {
+                    TimeStream << Minutes << ":0" << Remainder;
+                }else{
+                    TimeStream << Minutes << ":" << Remainder;
+                }
+                return TimeStream.str();
+                break;
+            }
+            default:
+            {
+                return "";
+                break;
+            }
+        }
+        return "";
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // GoalTimer Methods
 

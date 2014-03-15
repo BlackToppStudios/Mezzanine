@@ -167,11 +167,13 @@ namespace Mezzanine
         void Widget::ForceState(const UInt32 NewState)
         {
             if( this->State != NewState ) {
-                if( this->ParentQuad && this->ParentQuad->IsWidget() ) {
-                    static_cast<UI::Widget*>(this->ParentQuad)->_NotifyChildStateChange(this,this->State,NewState);
-                }
-                this->SetGroupFromState(NewState);
+                UInt32 OldState = this->State;
                 this->State = NewState;
+                this->SetGroupFromState(this->State);
+
+                if( this->ParentQuad && this->ParentQuad->IsWidget() ) {
+                    static_cast<UI::Widget*>(this->ParentQuad)->_NotifyChildStateChange(this,OldState,NewState);
+                }
             }
         }
 
@@ -226,15 +228,14 @@ namespace Mezzanine
         void Widget::SetVisible(Boole CanSee)
         {
             if( this->Visible != CanSee ) {
-                if(CanSee)
+                if(CanSee) {
                     this->_OnVisibilityShown();
-                else
+                }else{
                     this->_OnVisibilityHidden();
+                }
 
                 for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-                {
-                    (*It)->SetVisible(CanSee);
-                }
+                    { (*It)->SetVisible(CanSee); }
             }
         }
 
@@ -257,9 +258,7 @@ namespace Mezzanine
             if( this->Visible == false ) {
                 this->_OnVisibilityShown();
                 for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-                {
-                    (*It)->Show();
-                }
+                    { (*It)->Show(); }
             }
         }
 
@@ -268,9 +267,7 @@ namespace Mezzanine
             if( this->Visible == true ) {
                 this->_OnVisibilityHidden();
                 for( ChildIterator It = this->ChildWidgets.begin() ; It != this->ChildWidgets.end() ; ++It )
-                {
-                    (*It)->Hide();
-                }
+                    { (*It)->Hide(); }
             }
         }
 

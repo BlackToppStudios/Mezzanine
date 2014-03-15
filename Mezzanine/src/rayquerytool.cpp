@@ -53,6 +53,7 @@ using namespace std;
 #include "worldobject.h"
 #include "plane.h"
 #include "ray.h"
+#include "mathtool.h"
 #include "managedptr.h"
 #include "serialization.h"
 #include "entresol.h"
@@ -290,7 +291,11 @@ namespace Mezzanine
 
     Boole RayQueryTool::RayPlaneIntersection(const Ray& QueryRay, const Plane& QueryPlane)
     {
-        try{
+        MathTools::PlaneRayTestResult Result = MathTools::Intersects(QueryPlane,QueryRay);
+        this->Offset = Result.second;
+        this->IntersectedObject = NULL;
+        return Result.first;
+        /*try{
             Vector3 u = QueryRay.Destination - QueryRay.Origin;
             Vector3 p0 = Vector3(0,0,0);
 
@@ -347,7 +352,7 @@ namespace Mezzanine
             Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
             Entresol::GetSingletonPtr()->Log(e.what());
             return ClearReturns();
-        }
+        }//*/
     }
 
     Ray RayQueryTool::GetMouseRay(Real Length)

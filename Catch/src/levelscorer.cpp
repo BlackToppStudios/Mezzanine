@@ -4,17 +4,13 @@
 #include "levelscorer.h"
 #include "catchapp.h"
 
-LevelScorer::LevelScorer() :
-    LevelTargetTime(0)
-{
-    TheEntresol = Entresol::GetSingletonPtr();
-    GameApp = CatchApp::GetCatchAppPointer();
-}
+LevelScorer::LevelScorer(CatchApp* App, Entresol* Engine) :
+    TheEntresol(Engine),
+    GameApp(App)
+    {  }
 
 LevelScorer::~LevelScorer()
-{
-    ResetAllData();
-}
+    { this->ResetAllData(); }
 
 Whole LevelScorer::GetItemScoreValue(Debris* Item)
 {
@@ -28,14 +24,19 @@ Whole LevelScorer::GetItemScoreValue(Debris* Item)
 Real LevelScorer::FindHighestMultiplier(Debris* Throwable)
 {
     Real RetMulti = 0.0;
-    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
+    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
+    for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
-        Real ScoreMulti = (*ScoreIt)->GetScoreMultiplier();
-        AreaEffect::ObjectContainer& Overlapping = (*ScoreIt)->GetOverlappingObjects();
-        for( AreaEffect::ConstObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
-        {
-            if( (*ObjIt) == Throwable && ScoreMulti > RetMulti ) {
-                RetMulti = ScoreMulti;
+        if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+            ScoreArea* CurrScore = static_cast<ScoreArea*>( *ScoreIt );
+            Real ScoreMulti = CurrScore->GetScoreMultiplier();
+            AreaEffect::ObjectContainer& Overlapping = CurrScore->GetOverlappingObjects();
+            for( AreaEffect::ConstObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
+            {
+                if( (*ObjIt) == Throwable && ScoreMulti > RetMulti ) {
+                    RetMulti = ScoreMulti;
+                }
             }
         }
     }
@@ -57,23 +58,6 @@ LevelScorer::ScorePair LevelScorer::CalculateThrowableScore()
         }
     }
     return Ret;
-    /*ScorePair Ret;
-    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
-    {
-        Real ScoreMulti = (*ScoreIt)->GetScoreMultiplier();
-        ActorList& Overlapping = (*ScoreIt)->GetOverlappingActors();
-        for( ActorList::const_iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
-        {
-            if( this->GameApp->IsAThrowable( *It ) ) {
-                if( ScoreMulti == 1.0 ) {
-                    Ret.first += this->GetItemScoreValue( *It );
-                }else if( ScoreMulti > 1.0 ) {
-                    Ret.second += ( this->GetItemScoreValue( *It ) * ScoreMulti );
-                }
-            }
-        }
-    }
-    return Ret;//*/
 }
 
 Whole LevelScorer::CalculateTimerScore()
@@ -82,32 +66,35 @@ Whole LevelScorer::CalculateTimerScore()
     Whole TimeScore = 0;
     // Calculate the Time Score
     Timer* LevelTimer = this->GameApp->GetLevelTimer();
+    CatchLevel* CurrentLevel = GameApp->GetLevelManager()->GetCurrentLevel();
     Whole Time = LevelTimer->GetCurrentTimeInMilliseconds() * 0.001;
-    if(Time < this->LevelTargetTime)
-    {
+    Whole LevelTargetTime = ( CurrentLevel != NULL ? CurrentLevel->GetLevelTargetTime() : 0 );
+    if(Time < LevelTargetTime) {
         ThrowableContainer& Throwables = this->GameApp->GetThrowables();
         Whole ActorsInScoreZones = 0;
 
-        for( Whole Areas = 0 ; Areas < this->ScoreAreas.size() ; ++Areas )
+        AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+        AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
+        for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
         {
-            AreaEffect::ObjectContainer& Overlapping = this->ScoreAreas[Areas]->GetOverlappingObjects();
-            for( AreaEffect::ObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
-            {
-                if( this->GameApp->IsAThrowable( *ObjIt ) )
-                    ActorsInScoreZones++;
+            if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+                //ScoreArea* CurrScore = static_cast<ScoreArea*>( *ScoreIt );
+                AreaEffect::ObjectContainer& Overlapping = (*ScoreIt)->GetOverlappingObjects();
+                for( AreaEffect::ObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
+                {
+                    if( this->GameApp->IsAThrowable( *ObjIt ) )
+                        ActorsInScoreZones++;
+                }
             }
         }
 
         Real ThrowableRatio = ((Real)ActorsInScoreZones / (Real)Throwables.size());
-        Real SubTotal = (((Real)this->LevelTargetTime - (Real)Time) * 10) * ThrowableRatio;
+        Real SubTotal = (((Real)LevelTargetTime - (Real)Time) * 10) * ThrowableRatio;
         Real Margin = MathTools::Fmod(SubTotal,5.0);
-        if( Margin >= 2.5 )
-        {
+        if( Margin >= 2.5 ) {
             SubTotal += (5.0 - Margin);
             TimeScore = (Whole)(SubTotal + 0.5);
-        }
-        else if( Margin < 2.5 )
-        {
+        }else if( Margin < 2.5 ) {
             SubTotal -= Margin;
             TimeScore = (Whole)(SubTotal + 0.5);
         }
@@ -125,79 +112,166 @@ Whole LevelScorer::CalculateItemCashScore()
 
 Whole LevelScorer::PresentFinalScore()
 {
+    const String ScoreBreakdownFont = "Ubuntu-18";
+    const Real ScoreBreakdownText = 0.8;
+
     ScorePair ThrowableScores = this->CalculateThrowableScore();
     Whole NormalScore = ThrowableScores.first;
     Whole BonusScore = ThrowableScores.second;
     Whole ShopScore = this->CalculateItemCashScore();
-    Whole TimeScore = this->CalculateTimerScore();
+    Whole TimerScore = this->CalculateTimerScore();
 
     // Update the UI to reflect the calculated scores
-    /// @todo UI Update
-    /*UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
-    UI::Window* ReportWin = static_cast<UI::Window*>(GameScreen->GetWidget("GS_LevelReport"));
+    UI::Screen* GameScreen = this->TheEntresol->GetUIManager()->GetScreen("GameScreen");
+    UI::VerticalContainer* BreakdownList = static_cast<UI::VerticalContainer*>( GameScreen->GetWidget("GS_LevelReportBreakdown") );
 
-    UI::Caption* TotalDisplay = static_cast<UI::Caption*>(ReportWin->GetAreaRenderable("GS_ScoreDisplay"));
-    UI::ScrolledCellGrid* BreakdownList = static_cast<UI::ScrolledCellGrid*>(ReportWin->GetWidget("GS_ScoreBreakdown"));
-    Vector2 BreakDownPosition(0.1,0.1);
-    Vector2 BreakDownSize = BreakdownList->GetFixedCellSize();
+    // Create the widget container for the normal score display
+    UI::Widget* GSNormalArea = GameScreen->CreateWidget("GS_NormalArea");
+    // Create the widget for displaying the normal score explanation text
+    UI::Widget* GSNormalAreaLabel = GameScreen->CreateWidget("GS_NormalAreaLabel",UI::UnifiedRect(0.0,0.0,0.55,1.0));
+    GSNormalAreaLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+    GSNormalAreaLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    UI::SingleLineTextLayer* GSNormalAreaLabelLayer = GSNormalAreaLabel->CreateSingleLineTextLayer(ScoreBreakdownFont,0,0);
+    GSNormalAreaLabelLayer->SetText("Normal Score: ");
+    GSNormalAreaLabelLayer->HorizontallyAlign(UI::LA_BottomRight);
+    GSNormalAreaLabelLayer->VerticallyAlign(UI::LA_Center);
+    GSNormalAreaLabelLayer->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,ScoreBreakdownText);
+    GSNormalArea->AddChild(GSNormalAreaLabel,1);
+    // Create the widget for displaying the normal score value
+    UI::Widget* GSNormalAreaValue = GameScreen->CreateWidget("GS_NormalAreaValue",UI::UnifiedRect(0.0,0.0,0.45,1.0));
+    GSNormalAreaValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+    GSNormalAreaValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    UI::SingleLineTextLayer* GSNormalAreaValueLayer = GSNormalAreaValue->CreateSingleLineTextLayer(ScoreBreakdownFont,0,0);
+    GSNormalAreaValueLayer->SetText( StringTools::ConvertToString( NormalScore ) );
+    GSNormalAreaValueLayer->HorizontallyAlign(UI::LA_TopLeft);
+    GSNormalAreaValueLayer->VerticallyAlign(UI::LA_Center);
+    GSNormalAreaValueLayer->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,ScoreBreakdownText);
+    GSNormalArea->AddChild(GSNormalAreaValue,2);
+    // Wrap up timer configuration
+    BreakdownList->AddChild(GSNormalArea,1);
 
-    LevelReportCell* NormalScoreCell = new LevelReportCell("GS_NormalCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
-    NormalScoreCell->GetDescription()->SetText("Normal Area Score:");
-    NormalScoreCell->GetScore()->SetText(StringTools::ConvertToString(NormalScore));
-    BreakdownList->AddCell(NormalScoreCell);
+    // Create the widget container for the normal score display
+    UI::Widget* GSBonusArea = GameScreen->CreateWidget("GS_BonusArea");
+    // Create the widget for displaying the normal score explanation text
+    UI::Widget* GSBonusAreaLabel = GameScreen->CreateWidget("GS_BonusAreaLabel",UI::UnifiedRect(0.0,0.0,0.55,1.0));
+    GSBonusAreaLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+    GSBonusAreaLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    UI::SingleLineTextLayer* GSBonusAreaLabelLayer = GSBonusAreaLabel->CreateSingleLineTextLayer(ScoreBreakdownFont,0,0);
+    GSBonusAreaLabelLayer->SetText("Bonus Score: ");
+    GSBonusAreaLabelLayer->HorizontallyAlign(UI::LA_BottomRight);
+    GSBonusAreaLabelLayer->VerticallyAlign(UI::LA_Center);
+    GSBonusAreaLabelLayer->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,ScoreBreakdownText);
+    GSBonusArea->AddChild(GSBonusAreaLabel,1);
+    // Create the widget for displaying the normal score value
+    UI::Widget* GSBonusAreaValue = GameScreen->CreateWidget("GS_BonusAreaValue",UI::UnifiedRect(0.0,0.0,0.45,1.0));
+    GSBonusAreaValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+    GSBonusAreaValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    UI::SingleLineTextLayer* GSBonusAreaValueLayer = GSBonusAreaValue->CreateSingleLineTextLayer(ScoreBreakdownFont,0,0);
+    GSBonusAreaValueLayer->SetText( StringTools::ConvertToString( BonusScore ) );
+    GSBonusAreaValueLayer->HorizontallyAlign(UI::LA_TopLeft);
+    GSBonusAreaValueLayer->VerticallyAlign(UI::LA_Center);
+    GSBonusAreaValueLayer->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,ScoreBreakdownText);
+    GSBonusArea->AddChild(GSBonusAreaValue,2);
+    // Wrap up timer configuration
+    BreakdownList->AddChild(GSBonusArea,2);
 
-    LevelReportCell* BonusScoreCell = new LevelReportCell("GS_BonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
-    BonusScoreCell->GetDescription()->SetText("Bonus Area Score:");
-    BonusScoreCell->GetScore()->SetText(StringTools::ConvertToString(BonusScore));
-    BreakdownList->AddCell(BonusScoreCell);
+    // Create the widget container for the normal score display
+    UI::Widget* GSShopArea = GameScreen->CreateWidget("GS_ShopArea");
+    // Create the widget for displaying the normal score explanation text
+    UI::Widget* GSShopAreaLabel = GameScreen->CreateWidget("GS_ShopAreaLabel",UI::UnifiedRect(0.0,0.0,0.55,1.0));
+    GSShopAreaLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+    GSShopAreaLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    UI::SingleLineTextLayer* GSShopAreaLabelLayer = GSShopAreaLabel->CreateSingleLineTextLayer(ScoreBreakdownFont,0,0);
+    GSShopAreaLabelLayer->SetText("Shop Score: ");
+    GSShopAreaLabelLayer->HorizontallyAlign(UI::LA_BottomRight);
+    GSShopAreaLabelLayer->VerticallyAlign(UI::LA_Center);
+    GSShopAreaLabelLayer->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,ScoreBreakdownText);
+    GSShopArea->AddChild(GSShopAreaLabel,1);
+    // Create the widget for displaying the normal score value
+    UI::Widget* GSShopAreaValue = GameScreen->CreateWidget("GS_ShopAreaValue",UI::UnifiedRect(0.0,0.0,0.45,1.0));
+    GSShopAreaValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+    GSShopAreaValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    UI::SingleLineTextLayer* GSShopAreaValueLayer = GSShopAreaValue->CreateSingleLineTextLayer(ScoreBreakdownFont,0,0);
+    GSShopAreaValueLayer->SetText( StringTools::ConvertToString( ShopScore ) );
+    GSShopAreaValueLayer->HorizontallyAlign(UI::LA_TopLeft);
+    GSShopAreaValueLayer->VerticallyAlign(UI::LA_Center);
+    GSShopAreaValueLayer->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,ScoreBreakdownText);
+    GSShopArea->AddChild(GSShopAreaValue,2);
+    // Wrap up timer configuration
+    BreakdownList->AddChild(GSShopArea,3);
 
-    LevelReportCell* RemainingCashBonusCell = new LevelReportCell("GS_RemainingCashBonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
-    RemainingCashBonusCell->GetDescription()->SetText("Shop Cash Score:");
-    RemainingCashBonusCell->GetScore()->SetText(StringTools::ConvertToString(ShopScore));
-    BreakdownList->AddCell(RemainingCashBonusCell);
-
-    LevelReportCell* TimeBonusCell = new LevelReportCell("GS_TimeBonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
-    TimeBonusCell->GetDescription()->SetText("Time Score:");
-    TimeBonusCell->GetScore()->SetText(StringTools::ConvertToString(TimeScore));
-    BreakdownList->AddCell(TimeBonusCell);
+    // Create the widget container for the normal score display
+    UI::Widget* GSTimerArea = GameScreen->CreateWidget("GS_TimerArea");
+    // Create the widget for displaying the normal score explanation text
+    UI::Widget* GSTimerAreaLabel = GameScreen->CreateWidget("GS_TimerAreaLabel",UI::UnifiedRect(0.0,0.0,0.55,1.0));
+    GSTimerAreaLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
+    GSTimerAreaLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    UI::SingleLineTextLayer* GSTimerAreaLabelLayer = GSTimerAreaLabel->CreateSingleLineTextLayer(ScoreBreakdownFont,0,0);
+    GSTimerAreaLabelLayer->SetText("Timer Score: ");
+    GSTimerAreaLabelLayer->HorizontallyAlign(UI::LA_BottomRight);
+    GSTimerAreaLabelLayer->VerticallyAlign(UI::LA_Center);
+    GSTimerAreaLabelLayer->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,ScoreBreakdownText);
+    GSTimerArea->AddChild(GSTimerAreaLabel,1);
+    // Create the widget for displaying the normal score value
+    UI::Widget* GSTimerAreaValue = GameScreen->CreateWidget("GS_TimerAreaValue",UI::UnifiedRect(0.0,0.0,0.45,1.0));
+    GSTimerAreaValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+    GSTimerAreaValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    UI::SingleLineTextLayer* GSTimerAreaValueLayer = GSTimerAreaValue->CreateSingleLineTextLayer(ScoreBreakdownFont,0,0);
+    GSTimerAreaValueLayer->SetText( StringTools::ConvertToString( TimerScore ) );
+    GSTimerAreaValueLayer->HorizontallyAlign(UI::LA_TopLeft);
+    GSTimerAreaValueLayer->VerticallyAlign(UI::LA_Center);
+    GSTimerAreaValueLayer->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,ScoreBreakdownText);
+    GSTimerArea->AddChild(GSTimerAreaValue,2);
+    // Wrap up timer configuration
+    BreakdownList->AddChild(GSTimerArea,4);
 
     Whole ObjectiveScore = 0;
-    for(  ;  ;  )
+    /*for(  ;  ;  )
     {
-        std::stringstream namestream;
-        namestream << "Condition" << ;
-        LevelReportCell* SpecialConditionCell = new LevelReportCell(namestream.str(),,GameScreen);
-        SpecialConditionCell->GetDescription()->SetText("");
-        SpecialConditionCell->GetScore()->SetText("");
-        BreakdownList->AddCell(SpecialConditionCell);
-        // For-Loop for special conditions from LUA.
-    }
+        //
+        // Loop through special conditions from lua
+        //
+    }//*/
 
-    BreakdownList->GenerateGrid();
+    Whole TotalScore = NormalScore+BonusScore+ShopScore+TimerScore+ObjectiveScore;
+    UI::Widget* ScoreDisplay = GameScreen->GetWidget("GS_LevelReportScore");
+    static_cast<UI::SingleLineTextLayer*>( ScoreDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) )->SetText( StringTools::ConvertToString( TotalScore ) );
 
-    Whole TotalScore = NormalScore+BonusScore+ShopScore+TimeScore+ObjectiveScore;
-    TotalDisplay->SetText(StringTools::ConvertToString(TotalScore));
+    BreakdownList->UpdateChildDimensions();
+    GameScreen->GetWidget("GS_LevelReport")->Show();
 
-    ReportWin->Show();//*/
-    /// @todo UI Update
-    return 0;
+    return TotalScore;
 }
 
 Whole LevelScorer::GetNumScoreAreas() const
 {
-    return this->ScoreAreas.size();
+    Whole ScoreAreaCount = 0;
+    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
+    for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
+    {
+        if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+            ++ScoreAreaCount;
+        }
+    }
+    return ScoreAreaCount;
 }
 
 Whole LevelScorer::GetNumAddedThrowables() const
 {
     Whole ThrowableCount = 0;
-    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
+    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
+    for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
-        AreaEffect::ObjectContainer& Added = (*ScoreIt)->GetAddedObjects();
-        for( AreaEffect::ConstObjectIterator ObjIt = Added.begin() ; ObjIt != Added.end() ; ++ObjIt )
-        {
-            if( this->GameApp->IsAThrowable( *ObjIt ) )
-                ++ThrowableCount;
+        if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+            //ScoreArea* CurrScore = static_cast<ScoreArea*>( *ScoreIt );
+            AreaEffect::ObjectContainer& Added = (*ScoreIt)->GetAddedObjects();
+            for( AreaEffect::ConstObjectIterator ObjIt = Added.begin() ; ObjIt != Added.end() ; ++ObjIt )
+            {
+                if( this->GameApp->IsAThrowable( *ObjIt ) )
+                    ++ThrowableCount;
+            }
         }
     }
     return ThrowableCount;
@@ -206,13 +280,18 @@ Whole LevelScorer::GetNumAddedThrowables() const
 Whole LevelScorer::GetNumOverlappingThrowables() const
 {
     Whole ThrowableCount = 0;
-    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
+    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
+    for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
-        AreaEffect::ObjectContainer& Overlapping = (*ScoreIt)->GetOverlappingObjects();
-        for( AreaEffect::ConstObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
-        {
-            if( this->GameApp->IsAThrowable( *ObjIt ) )
-                ++ThrowableCount;
+        if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+            //ScoreArea* CurrScore = static_cast<ScoreArea*>( *ScoreIt );
+            AreaEffect::ObjectContainer& Overlapping = (*ScoreIt)->GetOverlappingObjects();
+            for( AreaEffect::ConstObjectIterator ObjIt = Overlapping.begin() ; ObjIt != Overlapping.end() ; ++ObjIt )
+            {
+                if( this->GameApp->IsAThrowable( *ObjIt ) )
+                    ++ThrowableCount;
+            }
         }
     }
     return ThrowableCount;
@@ -221,13 +300,18 @@ Whole LevelScorer::GetNumOverlappingThrowables() const
 Whole LevelScorer::GetNumRemovedThrowables() const
 {
     Whole ThrowableCount = 0;
-    for( ScoreAreaContainer::const_iterator ScoreIt = this->ScoreAreas.begin() ; ScoreIt != this->ScoreAreas.end() ; ++ScoreIt )
+    AreaEffectManager* AEMan = this->TheEntresol->GetAreaEffectManager();
+    AreaEffectManager::ConstAreaEffectIterator End = AEMan->EndAreaEffect();
+    for( AreaEffectManager::ConstAreaEffectIterator ScoreIt = AEMan->BeginAreaEffect() ; ScoreIt != End ; ++ScoreIt )
     {
-        AreaEffect::ObjectContainer& Removed = (*ScoreIt)->GetRemovedObjects();
-        for( AreaEffect::ConstObjectIterator ObjIt = Removed.begin() ; ObjIt != Removed.end() ; ++ObjIt )
-        {
-            if( this->GameApp->IsAThrowable( *ObjIt ) )
-                ++ThrowableCount;
+        if( (*ScoreIt)->GetDerivedSerializableName() == "ScoreArea" ) {
+            //ScoreArea* CurrScore = static_cast<ScoreArea*>( *ScoreIt );
+            AreaEffect::ObjectContainer& Removed = (*ScoreIt)->GetRemovedObjects();
+            for( AreaEffect::ConstObjectIterator ObjIt = Removed.begin() ; ObjIt != Removed.end() ; ++ObjIt )
+            {
+                if( this->GameApp->IsAThrowable( *ObjIt ) )
+                    ++ThrowableCount;
+            }
         }
     }
     return ThrowableCount;
@@ -239,39 +323,24 @@ Whole LevelScorer::GetNumRemovedThrowables() const
 ///////////////////////////////////////////////////////////////////////////////
 // Configuration
 
-void LevelScorer::RegisterScoreArea(ScoreArea* Score)
-{
-    this->ScoreAreas.push_back(Score);
-}
-
 void LevelScorer::SetThrowableScore(const String& TypeName, const Whole& Score)
 {
-    ItemScoreValues[TypeName] = Score;
+    this->ItemScoreValues[TypeName] = Score;
     //ItemScoreValues.insert(std::pair<String,Whole>(TypeName,Score));
-}
-
-void LevelScorer::SetLevelTargetTime(const Whole& TargetTime)
-{
-    LevelTargetTime = TargetTime;
 }
 
 void LevelScorer::ResetLevelData()
 {
-    /// @todo UI Update
-    /*UI::Screen* GameScreen = UI::UIManager::GetSingletonPtr()->GetScreen("GameScreen");
-    UI::Window* ReportWin = static_cast<UI::Window*>(GameScreen->GetWidget("GS_LevelReport"));
-    UI::ScrolledCellGrid* BreakdownList = static_cast<UI::ScrolledCellGrid*>(ReportWin->GetWidget("GS_ScoreBreakdown"));
-
-    ScoreAreas.clear();
-    LevelTargetTime = 0;
-
-    BreakdownList->DestroyAllCells();//*/
+    UI::UIManager* UIMan = this->TheEntresol->GetUIManager();
+    UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
+    UI::VerticalContainer* BreakdownList = static_cast<UI::VerticalContainer*>( GameScreen->GetWidget("GS_LevelReportBreakdown") );
+    BreakdownList->DestroyAllChildren();
 }
 
 void LevelScorer::ResetAllData()
 {
-    ResetLevelData();
-    ItemScoreValues.clear();
+    this->ResetLevelData();
+    this->ItemScoreValues.clear();
 }
 
 #endif

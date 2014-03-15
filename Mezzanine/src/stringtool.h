@@ -78,14 +78,14 @@ namespace Mezzanine
         /// @brief Converts all lower case characters in a string to their respective upper case.
         /// @param Source The string to be converted.
         void MEZZ_LIB ToUpperCase(String& Source);
-        /// @brief Create a copy of the String that is upper case
-        /// @return The copy of string with lower case letters identified by the local converted to upper case
+        /// @brief Create a copy of the String that is upper case.
+        /// @return The copy of string with lower case letters identified by the local converted to upper case.
         String UpperCaseCopy(String Source);
         /// @brief Converts all upper case characters in a string to their respective lower case.
         /// @param Source The string to be converted.
         void MEZZ_LIB ToLowerCase(String& Source);
-        /// @brief Create a copy of the String that is lower case
-        /// @return The copy of string with upper case letters identified by the local converted to lower case
+        /// @brief Create a copy of the String that is lower case.
+        /// @return The copy of string with upper case letters identified by the local converted to lower case.
         String LowerCaseCopy(String Source);
         /// @brief Checks a string to see if it starts with a specific pattern.
         /// @param Str The string to check.

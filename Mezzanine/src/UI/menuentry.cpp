@@ -119,6 +119,9 @@ namespace Mezzanine
             if( this->MenuStack ) {
                 if( this->IsTopOfStack() ) {
                     this->MenuStack->pop_back();
+                    if( !this->MenuStack->empty() ) {
+                        this->MenuStack->back()->Show();
+                    }
                     this->Hide();
                     return true;
                 }

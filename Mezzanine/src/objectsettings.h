@@ -560,6 +560,19 @@ namespace Mezzanine
         /// @param GroupNames A string vector containing the names for all the settings groups to save.
         /// @param RootSettings The node to populate with all currently loaded settings groups.
         void SaveSettingsToXML(StringVector& GroupNames, XML::Node& RootSettings);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        /// @brief Convert this class to an XML::Node ready for serialization.
+        /// @param SelfRoot The root node containing all the serialized data for this instance.
+        void ProtoSerialize(XML::Node& SelfRoot) const;
+        /// @brief Take the data stored in an XML Node and overwrite this object with it.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        void ProtoDeSerialize(const XML::Node& SelfRoot);
+        /// @brief Get the name of the the XML tag the class will leave behind as its instances are serialized.
+        /// @return A string containing the name of this class.
+        static String GetSerializableName();
     };//ObjectSettingsHandler
 }//Mezzanine
 

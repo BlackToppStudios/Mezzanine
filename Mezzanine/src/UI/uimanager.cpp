@@ -669,7 +669,7 @@ namespace Mezzanine
                 Widget* PassedFocus = this->WidgetFocus;
                 do{
                     PassedFocus = ( PassedFocus->GetParent()->IsWidget() ? static_cast<Widget*>(PassedFocus->GetParent()) : NULL );
-                }while( PassedFocus != NULL && !PassedFocus->IsVisible() );
+                }while( PassedFocus != NULL && !PassedFocus->GetVisible() );
 
                 // Switch the focus, even if it is NULL
                 this->SwitchFocus(PassedFocus);

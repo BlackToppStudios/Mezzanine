@@ -225,6 +225,20 @@ namespace Mezzanine
             virtual ProviderMode GetProviderConfig(const PageProvider* Prov) const;
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Visibility and Priority Methods
+
+            /// @copydoc Renderable::SetVisible(Boole)
+            virtual void SetVisible(Boole CanSee);
+            /// @copydoc Renderable::GetVisible() const
+            virtual Boole GetVisible() const;
+            /// @copydoc Renderable::IsVisible() const
+            virtual Boole IsVisible() const;
+            /// @copydoc Renderable::Show()
+            virtual void Show();
+            /// @copydoc Renderable::Hide()
+            virtual void Hide();
+
+            ///////////////////////////////////////////////////////////////////////////////
             // PagedContainer Configuration
 
             /// @brief Sets the page providers for both axes.

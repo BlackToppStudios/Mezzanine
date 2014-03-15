@@ -314,8 +314,11 @@ namespace Mezzanine
                 if( WidArgs->EventName == PagedContainer::EventChildSelected ) {
                     ChildSelectedArgumentsPtr SelectedArgs = CountedPtrCast<ChildSelectedArguments>(WidArgs);
                     if( SelectedArgs->Selected ) {
-                        this->UpdateCurrentSelection( this->SelectionList->GetListContainer()->GetLastSelectedChild() );
-                        this->ListToggle->ManualSelect(false);
+                        Widget* NewSelected = this->ParentScreen->GetWidget( SelectedArgs->ChildName );
+                        if( NewSelected != NULL ) {
+                            this->UpdateCurrentSelection( NewSelected );
+                            this->ListToggle->ManualSelect(false);
+                        }
                     }
                 }
             }

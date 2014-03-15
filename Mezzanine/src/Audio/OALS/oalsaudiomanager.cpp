@@ -175,57 +175,7 @@ namespace Mezzanine
                 this->BufferUpdate2DWork = new BufferUpdate2DWorkUnit(this);
                 this->EffectFilterCleanWork = new EffectFilterCleanWorkUnit(this);
 
-                XML::Attribute CurrAttrib;
-                String PathPreset;
-                // Get whether or not to autogen the directory path and settings file.
-                XML::Node AutoGenNode = XMLNode.GetChild("AutoCreateSettings");
-                if(!AutoGenNode.Empty())
-                {
-                    CurrAttrib = AutoGenNode.GetAttribute("Auto");
-                    if(!CurrAttrib.Empty())
-                        AutoGenPath = AutoGenFiles = StringTools::ConvertToBool( CurrAttrib.AsString() );
-                }
-                // Get preset path to default to if a path is not provided.
-                XML::Node PathNode = XMLNode.GetChild("SettingsPath");
-                if(!PathNode.Empty())
-                {
-                    CurrAttrib = PathNode.GetAttribute("Path");
-                    if(!CurrAttrib.Empty())
-                        PathPreset = CurrAttrib.AsString();
-
-                    if(!PathPreset.empty())
-                        SetSettingsFilePath(PathPreset);
-                }
-                // Get the files to be loaded, and load them.
-                XML::Node FilesNode = XMLNode.GetChild("SettingsFiles");
-                if(!FilesNode.Empty())
-                {
-                    for( XML::NodeIterator SetFileIt = FilesNode.begin() ; SetFileIt != FilesNode.end() ; ++SetFileIt )
-                    {
-                        String FileName, FilePath, FileGroup;
-                        // Get the filename to load
-                        CurrAttrib = (*SetFileIt).GetAttribute("FileName");
-                        if(!CurrAttrib.Empty())
-                            FileName = CurrAttrib.AsString();
-                        // Get the path
-                        CurrAttrib = (*SetFileIt).GetAttribute("Path");
-                        if(!CurrAttrib.Empty())
-                            FilePath = CurrAttrib.AsString();
-                        else
-                        {
-                            CurrAttrib = (*SetFileIt).GetAttribute("Group");
-                            if(!CurrAttrib.Empty())
-                                FileGroup = CurrAttrib.AsString();
-                        }
-
-                        if(FilePath.empty())
-                        {
-                            if(FileGroup.empty()) LoadSettings(FileName);
-                            else LoadSettingsFromGroup(FileName,FileGroup);
-                        }
-                        else LoadSettings(FileName,FilePath);
-                    }
-                }
+                this->ObjectSettingsHandler::ProtoDeSerialize(XMLNode);
             }
 
             OALS::AudioManager::~AudioManager()
@@ -308,8 +258,7 @@ namespace Mezzanine
                 for( ObjectSettingSetContainer::SubSetIterator SubSetIt = Group->SubSetBegin() ; SubSetIt != Group->SubSetEnd() ; ++SubSetIt )
                 {
                     String CurrSettingValue;
-                    if( "PlaybackDeviceSettings" == (*SubSetIt)->GetName() )
-                    {
+                    if( "PlaybackDeviceSettings" == (*SubSetIt)->GetName() ) {
                         // Setup the data to populate
                         String DeviceName("Default");
                         Integer OutputFreq = -1;
@@ -321,8 +270,7 @@ namespace Mezzanine
                         if(!CurrSettingValue.empty())
                             OutputFreq = StringTools::ConvertToInteger(CurrSettingValue);
 
-                        if( "Default" == DeviceName )
-                        {
+                        if( "Default" == DeviceName ) {
                             DeviceName = this->GetDefaultPlaybackDeviceName();
                         }else{
                             if( !this->PlaybackDeviceNameValid(DeviceName) )
@@ -339,9 +287,7 @@ namespace Mezzanine
                             this->CurrentDeviceName = DeviceName;
                             this->ContextOutputFrequency = OutputFreq;
                         }
-                    }
-                    else if( "MasterSettings" == (*SubSetIt)->GetName() )
-                    {
+                    }else if( "MasterSettings" == (*SubSetIt)->GetName() ) {
                         // Setup the data to populate
                         Real Volume = 1.0;
                         Boole Mute = false;
@@ -355,9 +301,7 @@ namespace Mezzanine
 
                         this->SetMasterVolume(Volume);
                         this->SetMasterMute(Mute);
-                    }
-                    else if( "SettingsByType" == (*SubSetIt)->GetName() )
-                    {
+                    }else if( "SettingsByType" == (*SubSetIt)->GetName() ) {
                         for( ObjectSettingSetContainer::SubSetIterator TypeIt = (*SubSetIt)->SubSetBegin() ; TypeIt != (*SubSetIt)->SubSetEnd() ; ++TypeIt )
                         {
                             // Setup the data to populate
@@ -365,18 +309,17 @@ namespace Mezzanine
                             Real Volume = 1.0;
                             Boole Mute = false;
                             // Get the values
-                            CurrSettingValue = (*SubSetIt)->GetSettingValue("ID");
-                            if(!CurrSettingValue.empty())
+                            CurrSettingValue = (*TypeIt)->GetSettingValue("ID");
+                            if( !CurrSettingValue.empty() )
                                 TypeID = StringTools::ConvertToReal(CurrSettingValue);
-                            CurrSettingValue = (*SubSetIt)->GetSettingValue("Volume");
-                            if(!CurrSettingValue.empty())
+                            CurrSettingValue = (*TypeIt)->GetSettingValue("Volume");
+                            if( !CurrSettingValue.empty() )
                                 Volume = StringTools::ConvertToReal(CurrSettingValue);
-                            CurrSettingValue = (*SubSetIt)->GetSettingValue("Mute");
-                            if(!CurrSettingValue.empty())
+                            CurrSettingValue = (*TypeIt)->GetSettingValue("Mute");
+                            if( !CurrSettingValue.empty() )
                                 Mute = StringTools::ConvertToBool(CurrSettingValue);
 
-                            if( TypeID > 0 )
-                            {
+                            if( TypeID > 0 ) {
                                 SoundTypeHandler* Handler = this->GetOrCreateSoundTypeHandler(TypeID);
                                 Handler->Volume = Volume;
                                 Handler->Mute = Mute;
