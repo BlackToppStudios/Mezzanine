@@ -1751,102 +1751,103 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__Physics__StaticMeshCollisionShape swig_types[98]
 #define SWIGTYPE_p_Mezzanine__Physics__StickyConstraintConstructionInfo swig_types[99]
 #define SWIGTYPE_p_Mezzanine__Physics__StickyData swig_types[100]
-#define SWIGTYPE_p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit swig_types[101]
-#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[102]
-#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[103]
-#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[104]
-#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[105]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[106]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[107]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[108]
-#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[109]
-#define SWIGTYPE_p_Mezzanine__SingletonT_CollisionShapeManager_t swig_types[110]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[111]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[112]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[113]
-#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[114]
-#define SWIGTYPE_p_Mezzanine__Transform swig_types[115]
-#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[116]
-#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[117]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[118]
-#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[119]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[120]
-#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[121]
-#define SWIGTYPE_p_Mezzanine__WorldTrigger swig_types[122]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[123]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[124]
-#define SWIGTYPE_p_ParamList swig_types[125]
-#define SWIGTYPE_p_ProxyContainer swig_types[126]
-#define SWIGTYPE_p_ProxyIterator swig_types[127]
-#define SWIGTYPE_p_SDL_Event swig_types[128]
-#define SWIGTYPE_p_ShapeMap swig_types[129]
-#define SWIGTYPE_p_ShapeMapIterator swig_types[130]
-#define SWIGTYPE_p_ShapeVector swig_types[131]
-#define SWIGTYPE_p_ShapeVectorIterator swig_types[132]
-#define SWIGTYPE_p_StandardAxis swig_types[133]
-#define SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type swig_types[134]
-#define SWIGTYPE_p_Threading__DefaultWorkUnit swig_types[135]
-#define SWIGTYPE_p_Transform swig_types[136]
-#define SWIGTYPE_p_Vector3 swig_types[137]
-#define SWIGTYPE_p_WorldTriggerContainer swig_types[138]
-#define SWIGTYPE_p_WorldTriggerIterator swig_types[139]
-#define SWIGTYPE_p_XML__Node swig_types[140]
-#define SWIGTYPE_p_bool swig_types[141]
-#define SWIGTYPE_p_btBoxShape swig_types[142]
-#define SWIGTYPE_p_btBvhTriangleMeshShape swig_types[143]
-#define SWIGTYPE_p_btCapsuleShape swig_types[144]
-#define SWIGTYPE_p_btCollisionObject swig_types[145]
-#define SWIGTYPE_p_btCollisionShape swig_types[146]
-#define SWIGTYPE_p_btCompoundShape swig_types[147]
-#define SWIGTYPE_p_btConcaveShape swig_types[148]
-#define SWIGTYPE_p_btConeShape swig_types[149]
-#define SWIGTYPE_p_btConvexHullShape swig_types[150]
-#define SWIGTYPE_p_btConvexInternalShape swig_types[151]
-#define SWIGTYPE_p_btCylinderShape swig_types[152]
-#define SWIGTYPE_p_btGImpactMeshShape swig_types[153]
-#define SWIGTYPE_p_btHeightfieldTerrainShape swig_types[154]
-#define SWIGTYPE_p_btMultiSphereShape swig_types[155]
-#define SWIGTYPE_p_btPairCachingGhostObject swig_types[156]
-#define SWIGTYPE_p_btQuaternion swig_types[157]
-#define SWIGTYPE_p_btRigidBody swig_types[158]
-#define SWIGTYPE_p_btSoftBody swig_types[159]
-#define SWIGTYPE_p_btSoftBodyCollisionShape swig_types[160]
-#define SWIGTYPE_p_btSphereShape swig_types[161]
-#define SWIGTYPE_p_btStaticPlaneShape swig_types[162]
-#define SWIGTYPE_p_btTransform swig_types[163]
-#define SWIGTYPE_p_btTypedConstraint swig_types[164]
-#define SWIGTYPE_p_btVector3 swig_types[165]
-#define SWIGTYPE_p_char swig_types[166]
-#define SWIGTYPE_p_double swig_types[167]
-#define SWIGTYPE_p_float swig_types[168]
-#define SWIGTYPE_p_int swig_types[169]
-#define SWIGTYPE_p_long_long swig_types[170]
-#define SWIGTYPE_p_short swig_types[171]
-#define SWIGTYPE_p_signed_char swig_types[172]
-#define SWIGTYPE_p_std__exception swig_types[173]
-#define SWIGTYPE_p_std__istream swig_types[174]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[175]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[176]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[177]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[178]
-#define SWIGTYPE_p_std__string swig_types[179]
-#define SWIGTYPE_p_std__stringstream swig_types[180]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__CollisionShape_p_t swig_types[181]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__ConstraintParam_t swig_types[182]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__Generic6DofConstraint_p_t swig_types[183]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__StickyConstraintConstructionInfo_t swig_types[184]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__Vector3_t swig_types[185]
-#define SWIGTYPE_p_std__vectorT_float_t swig_types[186]
-#define SWIGTYPE_p_std__vectorT_int_t swig_types[187]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[188]
-#define SWIGTYPE_p_std__wstring swig_types[189]
-#define SWIGTYPE_p_unsigned_char swig_types[190]
-#define SWIGTYPE_p_unsigned_int swig_types[191]
-#define SWIGTYPE_p_unsigned_long swig_types[192]
-#define SWIGTYPE_p_unsigned_long_long swig_types[193]
-#define SWIGTYPE_p_unsigned_short swig_types[194]
-static swig_type_info *swig_types[196];
-static swig_module_info swig_module = {swig_types, 195, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__Physics__UniversalConstraint swig_types[101]
+#define SWIGTYPE_p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit swig_types[102]
+#define SWIGTYPE_p_Mezzanine__Quaternion swig_types[103]
+#define SWIGTYPE_p_Mezzanine__RenderingAPIException swig_types[104]
+#define SWIGTYPE_p_Mezzanine__RuntimeAssertionException swig_types[105]
+#define SWIGTYPE_p_Mezzanine__ScriptException swig_types[106]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaErrErrException swig_types[107]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaException swig_types[108]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaRuntimeException swig_types[109]
+#define SWIGTYPE_p_Mezzanine__ScriptLuaYieldException swig_types[110]
+#define SWIGTYPE_p_Mezzanine__SingletonT_CollisionShapeManager_t swig_types[111]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[112]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[113]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[114]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[115]
+#define SWIGTYPE_p_Mezzanine__Transform swig_types[116]
+#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[117]
+#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[118]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[119]
+#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[120]
+#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[121]
+#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[122]
+#define SWIGTYPE_p_Mezzanine__WorldTrigger swig_types[123]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[124]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[125]
+#define SWIGTYPE_p_ParamList swig_types[126]
+#define SWIGTYPE_p_ProxyContainer swig_types[127]
+#define SWIGTYPE_p_ProxyIterator swig_types[128]
+#define SWIGTYPE_p_SDL_Event swig_types[129]
+#define SWIGTYPE_p_ShapeMap swig_types[130]
+#define SWIGTYPE_p_ShapeMapIterator swig_types[131]
+#define SWIGTYPE_p_ShapeVector swig_types[132]
+#define SWIGTYPE_p_ShapeVectorIterator swig_types[133]
+#define SWIGTYPE_p_StandardAxis swig_types[134]
+#define SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type swig_types[135]
+#define SWIGTYPE_p_Threading__DefaultWorkUnit swig_types[136]
+#define SWIGTYPE_p_Transform swig_types[137]
+#define SWIGTYPE_p_Vector3 swig_types[138]
+#define SWIGTYPE_p_WorldTriggerContainer swig_types[139]
+#define SWIGTYPE_p_WorldTriggerIterator swig_types[140]
+#define SWIGTYPE_p_XML__Node swig_types[141]
+#define SWIGTYPE_p_bool swig_types[142]
+#define SWIGTYPE_p_btBoxShape swig_types[143]
+#define SWIGTYPE_p_btBvhTriangleMeshShape swig_types[144]
+#define SWIGTYPE_p_btCapsuleShape swig_types[145]
+#define SWIGTYPE_p_btCollisionObject swig_types[146]
+#define SWIGTYPE_p_btCollisionShape swig_types[147]
+#define SWIGTYPE_p_btCompoundShape swig_types[148]
+#define SWIGTYPE_p_btConcaveShape swig_types[149]
+#define SWIGTYPE_p_btConeShape swig_types[150]
+#define SWIGTYPE_p_btConvexHullShape swig_types[151]
+#define SWIGTYPE_p_btConvexInternalShape swig_types[152]
+#define SWIGTYPE_p_btCylinderShape swig_types[153]
+#define SWIGTYPE_p_btGImpactMeshShape swig_types[154]
+#define SWIGTYPE_p_btHeightfieldTerrainShape swig_types[155]
+#define SWIGTYPE_p_btMultiSphereShape swig_types[156]
+#define SWIGTYPE_p_btPairCachingGhostObject swig_types[157]
+#define SWIGTYPE_p_btQuaternion swig_types[158]
+#define SWIGTYPE_p_btRigidBody swig_types[159]
+#define SWIGTYPE_p_btSoftBody swig_types[160]
+#define SWIGTYPE_p_btSoftBodyCollisionShape swig_types[161]
+#define SWIGTYPE_p_btSphereShape swig_types[162]
+#define SWIGTYPE_p_btStaticPlaneShape swig_types[163]
+#define SWIGTYPE_p_btTransform swig_types[164]
+#define SWIGTYPE_p_btTypedConstraint swig_types[165]
+#define SWIGTYPE_p_btVector3 swig_types[166]
+#define SWIGTYPE_p_char swig_types[167]
+#define SWIGTYPE_p_double swig_types[168]
+#define SWIGTYPE_p_float swig_types[169]
+#define SWIGTYPE_p_int swig_types[170]
+#define SWIGTYPE_p_long_long swig_types[171]
+#define SWIGTYPE_p_short swig_types[172]
+#define SWIGTYPE_p_signed_char swig_types[173]
+#define SWIGTYPE_p_std__exception swig_types[174]
+#define SWIGTYPE_p_std__istream swig_types[175]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[176]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[177]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[178]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[179]
+#define SWIGTYPE_p_std__string swig_types[180]
+#define SWIGTYPE_p_std__stringstream swig_types[181]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__CollisionShape_p_t swig_types[182]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__ConstraintParam_t swig_types[183]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__Generic6DofConstraint_p_t swig_types[184]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Physics__StickyConstraintConstructionInfo_t swig_types[185]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__Vector3_t swig_types[186]
+#define SWIGTYPE_p_std__vectorT_float_t swig_types[187]
+#define SWIGTYPE_p_std__vectorT_int_t swig_types[188]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[189]
+#define SWIGTYPE_p_std__wstring swig_types[190]
+#define SWIGTYPE_p_unsigned_char swig_types[191]
+#define SWIGTYPE_p_unsigned_int swig_types[192]
+#define SWIGTYPE_p_unsigned_long swig_types[193]
+#define SWIGTYPE_p_unsigned_long_long swig_types[194]
+#define SWIGTYPE_p_unsigned_short swig_types[195]
+static swig_type_info *swig_types[197];
+static swig_module_info swig_module = {swig_types, 196, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -47931,6 +47932,132 @@ static swig_lua_class *swig_Mezzanine_Physics_StaticMeshCollisionShape_bases[] =
 static const char *swig_Mezzanine_Physics_StaticMeshCollisionShape_base_names[] = {"Mezzanine::Physics::MeshCollisionShape *",0};
 static swig_lua_class _wrap_class_Mezzanine_Physics_StaticMeshCollisionShape = { "StaticMeshCollisionShape", &SWIGTYPE_p_Mezzanine__Physics__StaticMeshCollisionShape,_wrap_new_StaticMeshCollisionShape, swig_delete_StaticMeshCollisionShape, swig_Mezzanine_Physics_StaticMeshCollisionShape_methods, swig_Mezzanine_Physics_StaticMeshCollisionShape_attributes, swig_Mezzanine_Physics_StaticMeshCollisionShape_bases, swig_Mezzanine_Physics_StaticMeshCollisionShape_base_names };
 
+static int _wrap_new_UniversalConstraint(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
+  Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
+  Mezzanine::Vector3 *arg3 = 0 ;
+  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Vector3 *arg5 = 0 ;
+  Mezzanine::Physics::UniversalConstraint *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",5,5)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",1,"Mezzanine::Physics::RigidProxy *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",2,"Mezzanine::Physics::RigidProxy *");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",3,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",5,"Mezzanine::Vector3 const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
+    SWIG_fail_ptr("new_UniversalConstraint",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
+    SWIG_fail_ptr("new_UniversalConstraint",2,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,3,(void**)&arg3,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("new_UniversalConstraint",3,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("new_UniversalConstraint",4,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,5,(void**)&arg5,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("new_UniversalConstraint",5,SWIGTYPE_p_Mezzanine__Vector3);
+  }
+  
+  result = (Mezzanine::Physics::UniversalConstraint *)new Mezzanine::Physics::UniversalConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Vector3 const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__UniversalConstraint,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_UniversalConstraint_SetUpperLimit(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Physics::UniversalConstraint *arg1 = (Mezzanine::Physics::UniversalConstraint *) 0 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real arg3 ;
+  
+  SWIG_check_num_args("Mezzanine::Physics::UniversalConstraint::SetUpperLimit",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::SetUpperLimit",1,"Mezzanine::Physics::UniversalConstraint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::SetUpperLimit",2,"Mezzanine::Real");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::SetUpperLimit",3,"Mezzanine::Real");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__UniversalConstraint,0))){
+    SWIG_fail_ptr("UniversalConstraint_SetUpperLimit",1,SWIGTYPE_p_Mezzanine__Physics__UniversalConstraint);
+  }
+  
+  arg2 = (Mezzanine::Real)lua_tonumber(L, 2);
+  arg3 = (Mezzanine::Real)lua_tonumber(L, 3);
+  (arg1)->SetUpperLimit(arg2,arg3);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_UniversalConstraint_SetLowerLimit(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Physics::UniversalConstraint *arg1 = (Mezzanine::Physics::UniversalConstraint *) 0 ;
+  Mezzanine::Real arg2 ;
+  Mezzanine::Real arg3 ;
+  
+  SWIG_check_num_args("Mezzanine::Physics::UniversalConstraint::SetLowerLimit",3,3)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::SetLowerLimit",1,"Mezzanine::Physics::UniversalConstraint *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::SetLowerLimit",2,"Mezzanine::Real");
+  if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::SetLowerLimit",3,"Mezzanine::Real");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__UniversalConstraint,0))){
+    SWIG_fail_ptr("UniversalConstraint_SetLowerLimit",1,SWIGTYPE_p_Mezzanine__Physics__UniversalConstraint);
+  }
+  
+  arg2 = (Mezzanine::Real)lua_tonumber(L, 2);
+  arg3 = (Mezzanine::Real)lua_tonumber(L, 3);
+  (arg1)->SetLowerLimit(arg2,arg3);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_UniversalConstraint(void *obj) {
+Mezzanine::Physics::UniversalConstraint *arg1 = (Mezzanine::Physics::UniversalConstraint *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_Physics_UniversalConstraint_methods[] = {
+    {"SetUpperLimit", _wrap_UniversalConstraint_SetUpperLimit}, 
+    {"SetLowerLimit", _wrap_UniversalConstraint_SetLowerLimit}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_Physics_UniversalConstraint_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_Physics_UniversalConstraint_bases[] = {0,0};
+static const char *swig_Mezzanine_Physics_UniversalConstraint_base_names[] = {"Mezzanine::Physics::Generic6DofConstraint *",0};
+static swig_lua_class _wrap_class_Mezzanine_Physics_UniversalConstraint = { "UniversalConstraint", &SWIGTYPE_p_Mezzanine__Physics__UniversalConstraint,_wrap_new_UniversalConstraint, swig_delete_UniversalConstraint, swig_Mezzanine_Physics_UniversalConstraint_methods, swig_Mezzanine_Physics_UniversalConstraint_attributes, swig_Mezzanine_Physics_UniversalConstraint_bases, swig_Mezzanine_Physics_UniversalConstraint_base_names };
+
 #ifdef __cplusplus
 }
 #endif
@@ -48271,6 +48398,9 @@ static swig_lua_const_info swig_constants[] = {
 static void *_p_Mezzanine__Physics__Generic6DofSpringConstraintTo_p_Mezzanine__Physics__Generic6DofConstraint(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Physics::Generic6DofConstraint *)  ((Mezzanine::Physics::Generic6DofSpringConstraint *) x));
 }
+static void *_p_Mezzanine__Physics__UniversalConstraintTo_p_Mezzanine__Physics__Generic6DofConstraint(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Physics::Generic6DofConstraint *)  ((Mezzanine::Physics::UniversalConstraint *) x));
+}
 static void *_p_Mezzanine__Physics__Generic6DofConstraintTo_p_Mezzanine__Physics__DualTransformConstraint(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Physics::DualTransformConstraint *)  ((Mezzanine::Physics::Generic6DofConstraint *) x));
 }
@@ -48282,6 +48412,9 @@ static void *_p_Mezzanine__Physics__HingeConstraintTo_p_Mezzanine__Physics__Dual
 }
 static void *_p_Mezzanine__Physics__SliderConstraintTo_p_Mezzanine__Physics__DualTransformConstraint(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Physics::DualTransformConstraint *)  ((Mezzanine::Physics::SliderConstraint *) x));
+}
+static void *_p_Mezzanine__Physics__UniversalConstraintTo_p_Mezzanine__Physics__DualTransformConstraint(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Physics::DualTransformConstraint *) (Mezzanine::Physics::Generic6DofConstraint *) ((Mezzanine::Physics::UniversalConstraint *) x));
 }
 static void *_p_Mezzanine__Physics__DualTransformConstraintTo_p_Mezzanine__Physics__Constraint(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Physics::Constraint *)  ((Mezzanine::Physics::DualTransformConstraint *) x));
@@ -48303,6 +48436,9 @@ static void *_p_Mezzanine__Physics__Point2PointConstraintTo_p_Mezzanine__Physics
 }
 static void *_p_Mezzanine__Physics__SliderConstraintTo_p_Mezzanine__Physics__Constraint(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Physics::Constraint *) (Mezzanine::Physics::DualTransformConstraint *) ((Mezzanine::Physics::SliderConstraint *) x));
+}
+static void *_p_Mezzanine__Physics__UniversalConstraintTo_p_Mezzanine__Physics__Constraint(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Physics::Constraint *) (Mezzanine::Physics::DualTransformConstraint *)(Mezzanine::Physics::Generic6DofConstraint *) ((Mezzanine::Physics::UniversalConstraint *) x));
 }
 static void *_p_Mezzanine__Physics__HeightfieldCollisionShapeTo_p_Mezzanine__Physics__FieldCollisionShape(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Physics::FieldCollisionShape *)  ((Mezzanine::Physics::HeightfieldCollisionShape *) x));
@@ -48960,6 +49096,7 @@ static swig_type_info _swigt__p_Mezzanine__Physics__SphereCollisionShape = {"_p_
 static swig_type_info _swigt__p_Mezzanine__Physics__StaticMeshCollisionShape = {"_p_Mezzanine__Physics__StaticMeshCollisionShape", "Mezzanine::Physics::StaticMeshCollisionShape *", 0, 0, (void*)&_wrap_class_Mezzanine_Physics_StaticMeshCollisionShape, 0};
 static swig_type_info _swigt__p_Mezzanine__Physics__StickyConstraintConstructionInfo = {"_p_Mezzanine__Physics__StickyConstraintConstructionInfo", "Mezzanine::Physics::StickyConstraintConstructionInfo *", 0, 0, (void*)&_wrap_class_Mezzanine_Physics_StickyConstraintConstructionInfo, 0};
 static swig_type_info _swigt__p_Mezzanine__Physics__StickyData = {"_p_Mezzanine__Physics__StickyData", "Mezzanine::Physics::StickyData *", 0, 0, (void*)&_wrap_class_Mezzanine_Physics_StickyData, 0};
+static swig_type_info _swigt__p_Mezzanine__Physics__UniversalConstraint = {"_p_Mezzanine__Physics__UniversalConstraint", "Mezzanine::Physics::UniversalConstraint *", 0, 0, (void*)&_wrap_class_Mezzanine_Physics_UniversalConstraint, 0};
 static swig_type_info _swigt__p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit = {"_p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit", "Mezzanine::Physics::WorldTriggerUpdateWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Physics_WorldTriggerUpdateWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__Quaternion = {"_p_Mezzanine__Quaternion", "Mezzanine::Quaternion *", 0, 0, (void*)&_wrap_class_Mezzanine_Quaternion, 0};
 static swig_type_info _swigt__p_Mezzanine__RenderingAPIException = {"_p_Mezzanine__RenderingAPIException", "Mezzanine::RenderingAPIException *", 0, 0, (void*)&_wrap_class_Mezzanine_RenderingAPIException, 0};
@@ -49157,6 +49294,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__Physics__StaticMeshCollisionShape,
   &_swigt__p_Mezzanine__Physics__StickyConstraintConstructionInfo,
   &_swigt__p_Mezzanine__Physics__StickyData,
+  &_swigt__p_Mezzanine__Physics__UniversalConstraint,
   &_swigt__p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit,
   &_swigt__p_Mezzanine__Quaternion,
   &_swigt__p_Mezzanine__RenderingAPIException,
@@ -49321,17 +49459,17 @@ static swig_cast_info _swigc__p_Mezzanine__Physics__CollisionShapeManager[] = { 
 static swig_cast_info _swigc__p_Mezzanine__Physics__CollisionShapeManager__ShapeMap__iterator[] = {  {&_swigt__p_Mezzanine__Physics__CollisionShapeManager__ShapeMap__iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__CompoundCollisionShape[] = {  {&_swigt__p_Mezzanine__Physics__CompoundCollisionShape, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__ConeCollisionShape[] = {  {&_swigt__p_Mezzanine__Physics__ConeCollisionShape, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Physics__Constraint[] = {  {&_swigt__p_Mezzanine__Physics__Constraint, 0, 0, 0},  {&_swigt__p_Mezzanine__Physics__DualTransformConstraint, _p_Mezzanine__Physics__DualTransformConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__Generic6DofConstraint, _p_Mezzanine__Physics__Generic6DofConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__Generic6DofSpringConstraint, _p_Mezzanine__Physics__Generic6DofSpringConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__HingeConstraint, _p_Mezzanine__Physics__HingeConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__SliderConstraint, _p_Mezzanine__Physics__SliderConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__GearConstraint, _p_Mezzanine__Physics__GearConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__Point2PointConstraint, _p_Mezzanine__Physics__Point2PointConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Physics__Constraint[] = {  {&_swigt__p_Mezzanine__Physics__Constraint, 0, 0, 0},  {&_swigt__p_Mezzanine__Physics__DualTransformConstraint, _p_Mezzanine__Physics__DualTransformConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__Generic6DofConstraint, _p_Mezzanine__Physics__Generic6DofConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__Generic6DofSpringConstraint, _p_Mezzanine__Physics__Generic6DofSpringConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__UniversalConstraint, _p_Mezzanine__Physics__UniversalConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__HingeConstraint, _p_Mezzanine__Physics__HingeConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__SliderConstraint, _p_Mezzanine__Physics__SliderConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__GearConstraint, _p_Mezzanine__Physics__GearConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__Point2PointConstraint, _p_Mezzanine__Physics__Point2PointConstraintTo_p_Mezzanine__Physics__Constraint, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__ConvexHullCollisionShape[] = {  {&_swigt__p_Mezzanine__Physics__ConvexHullCollisionShape, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__CylinderCollisionShape[] = {  {&_swigt__p_Mezzanine__Physics__CylinderCollisionShape, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__DebugDrawWorkUnit[] = {  {&_swigt__p_Mezzanine__Physics__DebugDrawWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__DefaultCollisionShapeManagerFactory[] = {  {&_swigt__p_Mezzanine__Physics__DefaultCollisionShapeManagerFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__DefaultPhysicsManagerFactory[] = {  {&_swigt__p_Mezzanine__Physics__DefaultPhysicsManagerFactory, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Physics__DualTransformConstraint[] = {  {&_swigt__p_Mezzanine__Physics__DualTransformConstraint, 0, 0, 0},  {&_swigt__p_Mezzanine__Physics__Generic6DofConstraint, _p_Mezzanine__Physics__Generic6DofConstraintTo_p_Mezzanine__Physics__DualTransformConstraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__Generic6DofSpringConstraint, _p_Mezzanine__Physics__Generic6DofSpringConstraintTo_p_Mezzanine__Physics__DualTransformConstraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__HingeConstraint, _p_Mezzanine__Physics__HingeConstraintTo_p_Mezzanine__Physics__DualTransformConstraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__SliderConstraint, _p_Mezzanine__Physics__SliderConstraintTo_p_Mezzanine__Physics__DualTransformConstraint, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Physics__DualTransformConstraint[] = {  {&_swigt__p_Mezzanine__Physics__DualTransformConstraint, 0, 0, 0},  {&_swigt__p_Mezzanine__Physics__Generic6DofConstraint, _p_Mezzanine__Physics__Generic6DofConstraintTo_p_Mezzanine__Physics__DualTransformConstraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__Generic6DofSpringConstraint, _p_Mezzanine__Physics__Generic6DofSpringConstraintTo_p_Mezzanine__Physics__DualTransformConstraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__UniversalConstraint, _p_Mezzanine__Physics__UniversalConstraintTo_p_Mezzanine__Physics__DualTransformConstraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__HingeConstraint, _p_Mezzanine__Physics__HingeConstraintTo_p_Mezzanine__Physics__DualTransformConstraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__SliderConstraint, _p_Mezzanine__Physics__SliderConstraintTo_p_Mezzanine__Physics__DualTransformConstraint, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__DynamicMeshCollisionShape[] = {  {&_swigt__p_Mezzanine__Physics__DynamicMeshCollisionShape, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__FieldCollisionShape[] = {  {&_swigt__p_Mezzanine__Physics__FieldCollisionShape, 0, 0, 0},  {&_swigt__p_Mezzanine__Physics__HeightfieldCollisionShape, _p_Mezzanine__Physics__HeightfieldCollisionShapeTo_p_Mezzanine__Physics__FieldCollisionShape, 0, 0},  {&_swigt__p_Mezzanine__Physics__PlaneCollisionShape, _p_Mezzanine__Physics__PlaneCollisionShapeTo_p_Mezzanine__Physics__FieldCollisionShape, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__GearConstraint[] = {  {&_swigt__p_Mezzanine__Physics__GearConstraint, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Physics__Generic6DofConstraint[] = {  {&_swigt__p_Mezzanine__Physics__Generic6DofConstraint, 0, 0, 0},  {&_swigt__p_Mezzanine__Physics__Generic6DofSpringConstraint, _p_Mezzanine__Physics__Generic6DofSpringConstraintTo_p_Mezzanine__Physics__Generic6DofConstraint, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Physics__Generic6DofConstraint[] = {  {&_swigt__p_Mezzanine__Physics__Generic6DofConstraint, 0, 0, 0},  {&_swigt__p_Mezzanine__Physics__Generic6DofSpringConstraint, _p_Mezzanine__Physics__Generic6DofSpringConstraintTo_p_Mezzanine__Physics__Generic6DofConstraint, 0, 0},  {&_swigt__p_Mezzanine__Physics__UniversalConstraint, _p_Mezzanine__Physics__UniversalConstraintTo_p_Mezzanine__Physics__Generic6DofConstraint, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__Generic6DofSpringConstraint[] = {  {&_swigt__p_Mezzanine__Physics__Generic6DofSpringConstraint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__GhostProxy[] = {  {&_swigt__p_Mezzanine__Physics__GhostProxy, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__HeightfieldCollisionShape[] = {  {&_swigt__p_Mezzanine__Physics__HeightfieldCollisionShape, 0, 0, 0},{0, 0, 0, 0}};
@@ -49354,6 +49492,7 @@ static swig_cast_info _swigc__p_Mezzanine__Physics__SphereCollisionShape[] = {  
 static swig_cast_info _swigc__p_Mezzanine__Physics__StaticMeshCollisionShape[] = {  {&_swigt__p_Mezzanine__Physics__StaticMeshCollisionShape, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__StickyConstraintConstructionInfo[] = {  {&_swigt__p_Mezzanine__Physics__StickyConstraintConstructionInfo, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__StickyData[] = {  {&_swigt__p_Mezzanine__Physics__StickyData, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Physics__UniversalConstraint[] = {  {&_swigt__p_Mezzanine__Physics__UniversalConstraint, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit[] = {  {&_swigt__p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Quaternion[] = {  {&_swigt__p_Mezzanine__Quaternion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__RenderingAPIException[] = {  {&_swigt__p_Mezzanine__RenderingAPIException, 0, 0, 0},{0, 0, 0, 0}};
@@ -49551,6 +49690,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__Physics__StaticMeshCollisionShape,
   _swigc__p_Mezzanine__Physics__StickyConstraintConstructionInfo,
   _swigc__p_Mezzanine__Physics__StickyData,
+  _swigc__p_Mezzanine__Physics__UniversalConstraint,
   _swigc__p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit,
   _swigc__p_Mezzanine__Quaternion,
   _swigc__p_Mezzanine__RenderingAPIException,

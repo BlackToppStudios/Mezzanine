@@ -45688,6 +45688,33 @@ fail:
 }
 
 
+static int _wrap_Timer_GetTimeAsText(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Timer *arg1 = (Mezzanine::Timer *) 0 ;
+  Mezzanine::Timer::TimeFormat arg2 ;
+  Mezzanine::String result;
+  
+  SWIG_check_num_args("Mezzanine::Timer::GetTimeAsText",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Timer::GetTimeAsText",1,"Mezzanine::Timer *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Timer::GetTimeAsText",2,"Mezzanine::Timer::TimeFormat const");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Timer,0))){
+    SWIG_fail_ptr("Timer_GetTimeAsText",1,SWIGTYPE_p_Mezzanine__Timer);
+  }
+  
+  arg2 = (Mezzanine::Timer::TimeFormat const)(int)lua_tonumber(L, 2);
+  result = (arg1)->GetTimeAsText(arg2);
+  lua_pushlstring(L,(&result)->data(),(&result)->size()); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static void swig_delete_Timer(void *obj) {
 Mezzanine::Timer *arg1 = (Mezzanine::Timer *) obj;
 delete arg1;
@@ -45706,6 +45733,7 @@ static swig_lua_method swig_Mezzanine_Timer_methods[] = {
     {"IsStopped", _wrap_Timer_IsStopped}, 
     {"Reset", _wrap_Timer_Reset}, 
     {"GetType", _wrap_Timer_GetType}, 
+    {"GetTimeAsText", _wrap_Timer_GetTimeAsText}, 
     {0,0}
 };
 static swig_lua_attribute swig_Mezzanine_Timer_attributes[] = {
@@ -46538,6 +46566,11 @@ static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("Timer_Normal", Mezzanine::Timer::Normal)},
     {SWIG_LUA_CONSTTAB_INT("Timer_StopWatch", Mezzanine::Timer::StopWatch)},
     {SWIG_LUA_CONSTTAB_INT("Timer_Alarm", Mezzanine::Timer::Alarm)},
+    {SWIG_LUA_CONSTTAB_INT("Timer_TF_Raw_Micro", Mezzanine::Timer::TF_Raw_Micro)},
+    {SWIG_LUA_CONSTTAB_INT("Timer_TF_Raw_Milli", Mezzanine::Timer::TF_Raw_Milli)},
+    {SWIG_LUA_CONSTTAB_INT("Timer_TF_Seconds", Mezzanine::Timer::TF_Seconds)},
+    {SWIG_LUA_CONSTTAB_INT("Timer_TF_Seconds_Milli", Mezzanine::Timer::TF_Seconds_Milli)},
+    {SWIG_LUA_CONSTTAB_INT("Timer_TF_Minutes_Seconds", Mezzanine::Timer::TF_Minutes_Seconds)},
     {0,0,0,0,0,0}
 };
 
