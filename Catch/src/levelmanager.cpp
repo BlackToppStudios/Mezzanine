@@ -1254,7 +1254,7 @@ void CatchLevel::DeSerializeLevelData(const XML::Document& LevelDoc)
                     }
                 }
 
-                //Work->AddScript(ScriptSource);
+                Work->AddScript(ScriptSource);
             }
         }
     }

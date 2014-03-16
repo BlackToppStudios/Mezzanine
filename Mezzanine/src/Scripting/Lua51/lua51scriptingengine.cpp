@@ -112,16 +112,10 @@ namespace Mezzanine
                 /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
                 const char* LuaBytecodeLoader(lua_State* State, void* BinBuff, size_t* Size)
                 {
-                    FlaggedBuffer* LoadingBuffer= reinterpret_cast<FlaggedBuffer*>(BinBuff);
-                    if(LoadingBuffer->Loaded)
-                    {
-                        LoadingBuffer->Loaded = false;
-                        return 0;
-                    }else{
-                        *Size = LoadingBuffer->Size;
-                        LoadingBuffer->Loaded = true;
-                        return (const char*)LoadingBuffer->Binary;
-                    }
+                    FlaggedBuffer* LoadingBuffer = reinterpret_cast<FlaggedBuffer*>(BinBuff);
+                    *Size = LoadingBuffer->Size;
+
+                    return (const char*)LoadingBuffer->Binary;
                 }
 
                 /// @internal
@@ -386,7 +380,7 @@ namespace Mezzanine
                     else
                     {
                         ThrowFromLuaErrorCode(
-                            lua_load(this->State, LuaBytecodeLoader, &ScriptToRun->GetByteCodeReference(), ScriptToRun->GetName().c_str())
+                            lua_load(this->State, LuaBytecodeLoader, &(ScriptToRun->GetByteCodeReference()), ScriptToRun->GetName().c_str())
                         );
                     }
                     // Since Lua_Dump or lua_load will leave the function on the stack then...

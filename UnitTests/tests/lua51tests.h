@@ -488,10 +488,26 @@ class lua51tests : public UnitTestGroup
                     TestOutput << StringReturn->GetString() << endl;
 
                     TEST_RESULT(Testing::Success, "SWIG_Dump");
+
+                    LuaRuntimeSafe.Execute(DumpFunctionCall);
+
+                    TEST_RESULT(Testing::Success, "SWIG_Dump_2ndExecution");
+
+
                 } catch (ScriptLuaException& ) {
                     TEST_RESULT(Testing::Failed, "SWIG_Dump");
+                    TEST_RESULT(Testing::Failed, "SWIG_Dump_2ndFunctionExecution");
                 }
 
+            }
+
+            {
+                TEST_NO_THROW(
+                    Scripting::Lua::Lua51ScriptingEngine LuaRuntimeDoubleRunTest(Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+                    Scripting::Lua::Lua51Script Att("print('Hello from a script about to be run twice')", &LuaRuntimeDoubleRunTest);
+                    LuaRuntimeDoubleRunTest.Execute(Att);
+                    LuaRuntimeDoubleRunTest.Execute(Att);
+                    , "DoubleScriptExecution");
             }
 
             // Wrapped Test Selection
