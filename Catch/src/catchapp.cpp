@@ -41,10 +41,10 @@ CatchApp::CatchApp() :
     CatchApp::TheRealCatchApp = this;
 
     // Initialize the engine
-	this->TheEntresol = new Entresol( "Data/", Mezzanine::AT_FileSystem );
+    this->TheEntresol = new Entresol( "Data/", Mezzanine::AT_FileSystem );
 
-	// Now initialize game specific stuff
-	this->InitializeFromXML( "Data/", Mezzanine::AT_FileSystem, "Catch.mxi" );
+    // Now initialize game specific stuff
+    this->InitializeFromXML( "Data/", Mezzanine::AT_FileSystem, "Catch.mxi" );
 
     this->LevelMan = new LevelManager( this->TheEntresol, "Levels/" );
     this->Scorer = new LevelScorer( this, this->TheEntresol );
@@ -94,8 +94,8 @@ CatchApp::~CatchApp()
 
 void CatchApp::InitializeFromXML(const String& CatchDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
 {
-	// Start with the XML initializer file
-	Resource::FileStream InitStream(InitializerFile,CatchDataPath);
+    // Start with the XML initializer file
+    Resource::FileStream InitStream(InitializerFile,CatchDataPath);
     XML::Document InitDoc;
     XML::ParseResult DocResult = InitDoc.Load(InitStream);
     if( DocResult.Status != XML::StatusOk )
@@ -1612,11 +1612,16 @@ int CatchApp::GetCatchin()
     this->RegisterTypes();
 
     // Initialize the managers.
-	this->TheEntresol->EngineInit(false);
-	this->Profiles->Initialize();
+    this->TheEntresol->EngineInit(false);
 
-	this->CreateLoadingScreen();
-	this->ChangeState(CatchApp::Catch_Loading);
+    this->LuaScriptWork = new Scripting::Lua::Lua51WorkUnit( dynamic_cast<Scripting::Lua::Lua51ScriptingEngine*>(this->TheEntresol->GetScriptingManager()) );
+    this->LuaScriptWork->AddDependency( this->TheEntresol->GetAreaEffectManager()->GetAreaEffectUpdateWork() );
+    this->TheEntresol->GetScheduler().AddWorkUnitMain( this->LuaScriptWork, "PauseWork" );
+
+    this->Profiles->Initialize();
+
+    this->CreateLoadingScreen();
+    this->ChangeState(CatchApp::Catch_Loading);
 
     // Setup the Music
     this->InitMusic();
@@ -1653,7 +1658,7 @@ int CatchApp::GetCatchin()
         this->LevelTimer->Stop();
     }while( this->LevelMan->HasALevelToLoad() );
 
-	return 0;
+    return 0;
 }
 
 CatchApp::GameState CatchApp::GetState() const
@@ -1792,6 +1797,9 @@ CatchHUDUpdateWorkUnit* CatchApp::GetHUDUpdateWork() const
 
 CatchEndLevelWorkUnit* CatchApp::GetEndLevelWork() const
     { return this->EndLevelWork; }
+
+Scripting::Lua::Lua51WorkUnit* CatchApp::GetLuaScriptWork() const
+    { return this->LuaScriptWork; }
 
 Entresol* CatchApp::GetTheEntresol() const
     { return this->TheEntresol; }

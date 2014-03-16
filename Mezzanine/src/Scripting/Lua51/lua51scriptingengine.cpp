@@ -233,6 +233,8 @@ namespace Mezzanine
 
             const String Lua51ScriptingEngine::GlobalTableName             = "_G";
 
+            const String Lua51ScriptingEngine::ScriptEngineName            = "Lua51ScriptingEngine";
+
             const String& Lua51ScriptingEngine::GetLibName(Lua51ScriptingEngine::Lua51Libraries Lib)
             {
                 switch(Lib)
@@ -329,6 +331,20 @@ namespace Mezzanine
                 if(NULL==State)
                     { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
                 OpenLibraries(LibrariesToOpen);
+            }
+
+            Lua51ScriptingEngine::Lua51ScriptingEngine(NameValuePairList& Params) : State(luaL_newstate())
+            {
+                if(NULL==State)
+                    { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
+                OpenLibraries(DefaultLibs);
+            }
+
+            Lua51ScriptingEngine::Lua51ScriptingEngine(const XML::Node& XMLNode) : State(luaL_newstate())
+            {
+                if(NULL==State)
+                    { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
+                OpenLibraries(DefaultLibs);
             }
 
             Lua51ScriptingEngine::~Lua51ScriptingEngine()
@@ -451,7 +467,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////////////
             // For Inheritance
             String Lua51ScriptingEngine::GetImplementationTypeName() const
-                { return String("Lua51ScriptingEngine"); }
+                { return ScriptEngineName; }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // Library Manipulation
@@ -769,6 +785,18 @@ namespace Mezzanine
                 }
                 lua_pop(State, 1);
             }
+
+            String Lua51ScriptingEngineFactory::GetManagerTypeName() const
+            { return Lua51ScriptingEngine::ScriptEngineName; }
+
+            ManagerBase*Lua51ScriptingEngineFactory::CreateManager(NameValuePairList& Params)
+                { return new Lua51ScriptingEngine(Params); }
+
+            ManagerBase*Lua51ScriptingEngineFactory::CreateManager(XML::Node& XMLNode)
+                { return new Lua51ScriptingEngine(XMLNode); }
+
+            void Lua51ScriptingEngineFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+                { delete ToBeDestroyed; }
 
 
         } // Lua

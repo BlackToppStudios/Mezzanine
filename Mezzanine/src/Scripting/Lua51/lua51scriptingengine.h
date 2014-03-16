@@ -49,6 +49,8 @@
 #include "Scripting/script.h"
 #include "Scripting/scriptingmanager.h"
 
+#include "managerfactory.h"
+
 /// @file
 /// @brief This file has the interface for the Lua based implementation of the Scripting system.
 
@@ -182,6 +184,8 @@ namespace Mezzanine
 
                     static const String GlobalTableName;              ///< @brief The place Lua keeps all the identifiers in a single Lua State
 
+                    static const String ScriptEngineName;             ///< @brief The name of this scripting engine for inspection purposes, "Lua51ScriptingEngine";
+
                     /// @brief Convert a Lua51Libraries value to its name
                     /// @param Lib A number indicating what libraries a Lua51ScriptingEngine could load
                     /// @return A reference to one of the library names listed on the Lua51ScriptingEngine
@@ -200,6 +204,10 @@ namespace Mezzanine
                     /// @brief Constructs a Scripting engine with a set of libraries preloaded.
                     /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to load, this defaults to DefaultLibs
                     explicit Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen=DefaultLibs);
+
+                    explicit Lua51ScriptingEngine(NameValuePairList& Params);
+
+                    explicit Lua51ScriptingEngine(const XML::Node& XMLNode);
 
                     /// @brief Virtual Deconstructor
                     virtual ~Lua51ScriptingEngine();
@@ -409,9 +417,31 @@ namespace Mezzanine
                     /// @param StackLocation Where to look in the Lua stack for item to inspect
                     /// @return A reference to a constant string on this class.
                     const String& GetLuaTypeString(int StackLocation);
+
+
                     void PopulateTabCompletionTrie(CommandTrie& CommandGroup, const String& TableName="", std::vector<String> AlreadyDidTables=std::vector<String>());
 
             };
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @class ManagerFactory
+            /// @headerfile managerfactory.h
+            /// @brief This is a base class for factories that construct the managers the engine uses.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB Lua51ScriptingEngineFactory : public ManagerFactory
+            {
+                public:
+                    /// @brief Class constructor.
+                    Lua51ScriptingEngineFactory() {  }
+                    /// @brief Class destructor.
+                    virtual ~Lua51ScriptingEngineFactory() {  }
+
+                    virtual String GetManagerTypeName() const;
+                    virtual ManagerBase* CreateManager(NameValuePairList& Params);
+                    virtual ManagerBase* CreateManager(XML::Node& XMLNode);
+                    virtual void DestroyManager(ManagerBase* ToBeDestroyed);
+            };//ManagerFactory
 
             //simplistic error checking function, to be replace with proper exception driven code later.
             //int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
@@ -426,3 +456,5 @@ namespace Mezzanine
 
 #endif // MEZZLUA51
 #endif // \_scriptinglua_h
+
+

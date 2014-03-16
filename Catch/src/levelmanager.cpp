@@ -7,6 +7,8 @@
 #include "throwablegenerator.h"
 #include "leveltriggers.h"
 
+#include "Scripting/scripting.h"
+
 void LoadFerris()
 {
     // Get our major roots
@@ -33,11 +35,11 @@ void LoadFerris()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
-	DefCamera->SetLocation(Vector3(0,0,425));
-	DefCamera->LookAt(Vector3(0,0,0));
+    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    DefCamera->SetLocation(Vector3(0,0,425));
+    DefCamera->LookAt(Vector3(0,0,0));
 
-	// Lights Setup
+    // Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(150,250,-200);
@@ -305,11 +307,11 @@ void LoadBigCurve()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
-	DefCamera->SetLocation(Vector3(0,0,425));
-	DefCamera->LookAt(Vector3(0,0,0));
+    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    DefCamera->SetLocation(Vector3(0,0,425));
+    DefCamera->LookAt(Vector3(0,0,0));
 
-	// Lights Setup
+    // Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(150,200,200);
@@ -432,11 +434,11 @@ void LoadBlowsNotSucks()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
-	DefCamera->SetLocation(Vector3(0,0,425));
-	DefCamera->LookAt(Vector3(0,0,0));
+    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    DefCamera->SetLocation(Vector3(0,0,425));
+    DefCamera->LookAt(Vector3(0,0,0));
 
-	// Lights Setup
+    // Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,200,200);
@@ -650,11 +652,11 @@ void LoadJustice()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
-	DefCamera->SetLocation(Vector3(0,0,425));
-	DefCamera->LookAt(Vector3(0,0,0));
+    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    DefCamera->SetLocation(Vector3(0,0,425));
+    DefCamera->LookAt(Vector3(0,0,0));
 
-	// Lights Setup
+    // Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,100,200);
@@ -871,11 +873,11 @@ void LoadRollers()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
-	DefCamera->SetLocation(Vector3(0,0,425));
-	DefCamera->LookAt(Vector3(0,0,0));
+    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    DefCamera->SetLocation(Vector3(0,0,425));
+    DefCamera->LookAt(Vector3(0,0,0));
 
-	// Lights Setup
+    // Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,100,200);
@@ -1015,11 +1017,11 @@ void LoadJustBounce()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
-	DefCamera->SetLocation(Vector3(0,0,425));
-	DefCamera->LookAt(Vector3(0,0,0));
+    Graphics::CameraProxy* DefCamera = TheEntresol->GetCameraManager()->GetCamera(0);
+    DefCamera->SetLocation(Vector3(0,0,425));
+    DefCamera->LookAt(Vector3(0,0,0));
 
-	// Lights Setup
+    // Lights Setup
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
     Graphics::LightProxy* DLight = SceneMan->CreateLightProxy(Graphics::LT_Directional);
     Vector3 Loc(-150,100,200);
@@ -1228,29 +1230,31 @@ void CatchLevel::DeSerializeLevelData(const XML::Document& LevelDoc)
             }
         }
 
+        Resource::ResourceManager* ResourceMan = Resource::ResourceManager::GetSingletonPtr();
+        //CatchApp* CatchAppPtr =  CatchApp::GetCatchAppPointer();
+        Scripting::Lua::Lua51WorkUnit* Work = CatchApp::GetCatchAppPointer()->GetLuaScriptWork();
         // Get the scripts that will be run while this level is loaded
         XML::Node LevelScriptsNode = RootNode.GetChild("LevelScripts");
         if( !LevelScriptsNode.Empty() ) {
             for( XML::NodeIterator ScriptNodeIt = LevelScriptsNode.begin() ; ScriptNodeIt != LevelScriptsNode.end() ; ++ScriptNodeIt )
             {
+                String ScriptSource;
                 // Prioritize in file script code
                 CurrAttrib = (*ScriptNodeIt).GetAttribute("Source");
                 if( !CurrAttrib.Empty() ) {
-                    //
-                    // Load the script source into a workable script here
-                    //
-
-                    // Don't let loading from a file parse
-                    continue;
+                    ScriptSource = CurrAttrib.AsString();
                 }
 
-                // Next attempt to load the specified file, if one is specified
-                CurrAttrib = (*ScriptNodeIt).GetAttribute("FileName");
-                if( !CurrAttrib.Empty() ) {
-                    //
-                    // Load the script source into a workable script here
-                    //
+                if( ScriptSource.empty() ) {
+                    // Next attempt to load the specified file, if one is specified
+                    CurrAttrib = (*ScriptNodeIt).GetAttribute("FileName");
+                    if( !CurrAttrib.Empty() ) {
+                        Resource::DataStreamPtr ScriptStream = ResourceMan->OpenAssetStream( CurrAttrib.AsString(), this->LevelName );
+                        ScriptSource = ScriptStream->GetAsString();
+                    }
                 }
+
+                //Work->AddScript(ScriptSource);
             }
         }
     }

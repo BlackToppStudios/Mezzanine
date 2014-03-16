@@ -325,6 +325,10 @@ namespace Mezzanine
     {
         class UIManager;
     }
+    namespace Scripting
+    {
+        class iScriptingManager;
+    }
 }
 
 //Other forward declarations
@@ -334,13 +338,13 @@ class SDL_Surface;
 //forward Declarations so that we do not need #include <Ogre.h>
 namespace Ogre
 {
-	class Root;
-	class RenderSystem;
-	class RenderWindow;
+    class Root;
+    class RenderSystem;
+    class RenderWindow;
     class ResourceGroupManager;
-	class SceneManager;
-	class Camera;
-	class Viewport;
+    class SceneManager;
+    class Camera;
+    class Viewport;
 
     class ParticleFXPlugin;
 }
@@ -732,6 +736,8 @@ namespace Mezzanine
             /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
             /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.
             UI::UIManager* GetUIManager(const UInt16 WhichOne = 0);
+
+            Scripting::iScriptingManager* GetScriptingManager(const UInt16 WhichOne = 0);
     };//Entresol
 }//Mezzanine
 #endif

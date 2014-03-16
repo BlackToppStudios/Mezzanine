@@ -54,6 +54,7 @@
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
+using namespace std;
 
 /// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
 class hashedstringtests : public UnitTestGroup

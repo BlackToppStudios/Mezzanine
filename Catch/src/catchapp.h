@@ -44,6 +44,7 @@ protected:
     CatchPauseWorkUnit* PauseWork;
     CatchHUDUpdateWorkUnit* HUDUpdateWork;
     CatchEndLevelWorkUnit* EndLevelWork;
+    Scripting::Lua::Lua51WorkUnit* LuaScriptWork;
 
     Entresol* TheEntresol;
     ProfileManager* Profiles;
@@ -101,6 +102,7 @@ public:
     CatchPauseWorkUnit* GetPauseWork() const;
     CatchHUDUpdateWorkUnit* GetHUDUpdateWork() const;
     CatchEndLevelWorkUnit* GetEndLevelWork() const;
+    Scripting::Lua::Lua51WorkUnit* GetLuaScriptWork() const;
 
     Entresol* GetTheEntresol() const;
 
