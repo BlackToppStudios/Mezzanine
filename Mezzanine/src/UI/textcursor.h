@@ -41,6 +41,7 @@
 #define _uitextcursor_h
 
 #include "colourvalue.h"
+#include "timer.h"
 #include "UI/rect.h"
 #include "UI/textlayer.h"
 
@@ -61,6 +62,9 @@ namespace Mezzanine
             /// @internal
             /// @brief The colour to be given to the TextCursor.
             ColourValue CursorColour;
+            /*/// @internal
+            /// @brief The timer used for cursor flickering.
+            Timer FlickerTimer;//*/
             /// @internal
             /// @brief The index of the character this TextCursor is to the left of.
             Integer IndexPosition;
@@ -86,6 +90,14 @@ namespace Mezzanine
             /// @brief Gets the visibility of this cursor.
             /// @return Returns true if this cursor is being rendered along with it's parent TextLayer, false otherwise.
             virtual Boole GetVisible() const;
+
+            /*/// @brief Sets whether or not this cursor will flicker while being rendered.
+            /// @note The flicker will occur in half second intervals.
+            /// @param Flicker True to enable cursor flickering, false otherwise.
+            virtual void SetFlicker(Boole Flicker);
+            /// @brief Gets whether or not this cursor will flicker while being rendered.
+            /// @return Returns true if this cursor is currently set to flicker every half second.
+            virtual Boole GetFlicker() const;//*/
 
             /// @brief Sets the index position of this cursor.
             /// @param Index The index indicating the position of this cursor among the characters in the parent layer.

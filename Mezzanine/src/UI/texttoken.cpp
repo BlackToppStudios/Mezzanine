@@ -148,7 +148,7 @@ namespace Mezzanine
 
         UInt32 TextToken::RemoveCharacter(const UInt32 Index)
         {
-            if( this->RenderSize > Index )
+            if( this->RenderSize >= Index )
             {
                 UInt32 RawIndex = this->ConvertRenderIndexToRawIndex(Index);
                 if( RawIndex < 0 ) {
@@ -169,7 +169,7 @@ namespace Mezzanine
 
         UInt32 TextToken::RemoveCharacters(const UInt32 Index, const UInt32 Length)
         {
-            if( this->RenderSize > Index )
+            if( this->RenderSize >= Index )
             {
                 UInt32 RawIndex = this->ConvertRenderIndexToRawIndex(Index);
                 if( RawIndex < 0 ) {
@@ -348,18 +348,23 @@ namespace Mezzanine
 
         TokenString::TokenIndexPair TokenString::GetTokenIndex(const UInt32 Index)
         {
-            TokenIndexPair Ret(this->Tokens.begin(),0);
-            UInt32 IndexCount = 0;
-            for( TokenIterator TokIt = this->Tokens.begin() ; TokIt != this->Tokens.end() ; ++TokIt )
-            {
-                if( IndexCount + (*TokIt)->GetRenderCharacterSize() < Index ) {
-                    IndexCount += (*TokIt)->GetRenderCharacterSize();
-                    continue;
-                }else{
-                    Ret.first = TokIt;
-                    Ret.second = Index - IndexCount;
-                    return Ret;
+            TokenIndexPair Ret;
+            if( this->GetNumTokens() > 0 ) {
+                UInt32 IndexCount = 0;
+                for( TokenIterator TokIt = this->Tokens.begin() ; TokIt != this->Tokens.end() ; ++TokIt )
+                {
+                    if( IndexCount + (*TokIt)->GetRenderCharacterSize() < Index ) {
+                        IndexCount += (*TokIt)->GetRenderCharacterSize();
+                        continue;
+                    }else{
+                        Ret.first = TokIt;
+                        Ret.second = Index - IndexCount;
+                        return Ret;
+                    }
                 }
+            }else{
+                // Fix for manipulating empty strings.
+                this->Tokens.push_back( new TextToken(String(""),TextToken::TT_Text) );
             }
             // If we get to this point, then the index requested is out of bounds.
             // Just return the last token and it's max index.
@@ -379,6 +384,21 @@ namespace Mezzanine
                 Ret.append( (*TokIt)->GetRawCharacterString() );
             }
             return Ret;
+        }
+
+        Whole TokenString::GetNumCharacters() const
+        {
+            Whole Ret = 0;
+            for( ConstTokenIterator TokIt = this->Tokens.begin() ; TokIt != this->Tokens.end() ; ++TokIt )
+            {
+                Ret += (*TokIt)->GetRenderCharacterSize();
+            }
+            return Ret;
+        }
+
+        Whole TokenString::GetNumTokens() const
+        {
+            return this->Tokens.size();
         }
 
         TokenString::TokenIterator TokenString::BeginToken()

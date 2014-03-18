@@ -247,7 +247,11 @@ namespace Mezzanine
 
         void Character::SetHighlighted(Boole Highlight)
         {
-            this->Highlighted = ( this->IsHighlightable() && Highlight );
+            Boole ChangeCheck = ( this->IsHighlightable() && Highlight );
+            if( this->Highlighted != ChangeCheck ) {
+                this->Highlighted = ChangeCheck;
+                this->Layer->_MarkDirty();
+            }
         }
 
         Boole Character::GetHighlighted() const
@@ -313,6 +317,11 @@ namespace Mezzanine
         Real Character::GetLengthOffset() const
         {
             return this->LengthOffset;
+        }
+
+        Real Character::GetRightEdgeLengthOffset() const
+        {
+            return this->LengthOffset + this->GetCharacterSize().X;
         }
 
         void Character::SetCustomSize(const Vector2& Size)

@@ -53,7 +53,9 @@ namespace Mezzanine
     namespace UI
     {
         TextCursor::TextCursor(TextLayer* Creator) :
-            IndexPosition(0), Layer(Creator)
+            IndexPosition(0),
+            Layer(Creator),
+            Visibility(true)
             { this->CursorColour = ColourValue::Black(); }
 
         TextCursor::~TextCursor()
@@ -67,18 +69,35 @@ namespace Mezzanine
 
         Boole TextCursor::GetVisible() const
             { return this->Visibility; }
+            //{ return ( this->GetFlicker() ? ( this->FlickerTimer.GetCurrentTimeInMilliseconds() / 500 ) % 2 : this->Visibility ); }
+
+        /*void TextCursor::SetFlicker(Boole Flicker)
+        {
+            if( Flicker ) this->FlickerTimer->Start();
+            else this->FlickerTimer->Stop();
+        }
+
+        Boole TextCursor::GetFlicker() const
+            { return !( this->FlickerTimer->IsStopped() ); }//*/
 
         void TextCursor::SetCursorIndex(const Integer& Index)
-            { this->IndexPosition = Index; }
+        {
+            if( this->IndexPosition != Index ) {
+                this->IndexPosition = Index;
+                this->Layer->_MarkDirty();
+            }
+        }
 
         Integer TextCursor::GetCursorIndex() const
-            { return this->IndexPosition; }
+        {
+            return this->IndexPosition;
+        }
 
         void TextCursor::SetOffsetPosition(const Vector2& Offset)
         {
             TextLayer::CharIndexPair ResultPair = this->Layer->GetIndexAtOffset(Offset);
             if( ResultPair.first ) {
-                this->IndexPosition = ResultPair.second;
+                this->SetCursorIndex( ResultPair.second );
             }
         }
 
@@ -91,10 +110,17 @@ namespace Mezzanine
             if( this->IndexPosition < 0 || static_cast<Whole>( this->IndexPosition ) >= Layer->GetNumCharacters() ) {
                 TextLayer::TextLineIterator Last = --(Layer->EndTextLine());
 
-                Ret.Position.Y = (*Last)->GetPositionOffset();
-                Ret.Position.X = (*Last)->GetOffsetAtIndex(-1);
-                Ret.Size.Y = (*Last)->GetLineHeight();
-                Ret.Size.X = MathTools::Floor( Ret.Size.Y * 0.1 ) + 1.0;
+                if( (*Last)->GetNumCharacters() > 0 ) {
+                    Ret.Size.Y = (*Last)->GetLineHeight();
+                    Ret.Size.X = MathTools::Floor( Ret.Size.Y * 0.1 ) + 1.0;
+                    Ret.Position.Y = (*Last)->GetPositionOffset();
+                    Ret.Position.X = (*Last)->GetOffsetAtIndex(-1);
+                }else{
+                    Ret.Size.Y = this->Layer->GetDesiredLineHeight();
+                    Ret.Size.X = MathTools::Floor( Ret.Size.Y * 0.1 ) + 1.0;
+                    Ret.Position.Y = ( (*Last)->GetPositionOffset() + ( Ret.Size.Y * 0.5 ) );
+                    Ret.Position.X = (*Last)->GetOffsetAtIndex(-1);
+                }
             }else{
                 Integer IndexCount = 0;
 
@@ -105,21 +131,27 @@ namespace Mezzanine
                     ++LineIt;
                 }
 
-                Ret.Position.Y = (*LineIt)->GetPositionOffset();
-                Ret.Position.X = (*LineIt)->GetOffsetAtIndex( this->IndexPosition - IndexCount );
-                Ret.Size.Y = (*LineIt)->GetLineHeight();
-                Ret.Size.X = MathTools::Floor( Ret.Size.Y * 0.1 ) + 1.0;
+                if( (*LineIt)->GetNumCharacters() > 0 ) {
+                    Ret.Size.Y = (*LineIt)->GetLineHeight();
+                    Ret.Size.X = MathTools::Floor( Ret.Size.Y * 0.1 ) + 1.0;
+                    Ret.Position.Y = (*LineIt)->GetPositionOffset();
+                    Ret.Position.X = (*LineIt)->GetOffsetAtIndex( this->IndexPosition - IndexCount );
+                }else{
+                    Ret.Size.Y = this->Layer->GetDesiredLineHeight();
+                    Ret.Size.X = MathTools::Floor( Ret.Size.Y * 0.1 ) + 1.0;
+                    Ret.Position.Y = ( (*LineIt)->GetPositionOffset() + ( Ret.Size.Y * 0.5 ) );
+                    Ret.Position.X = (*LineIt)->GetOffsetAtIndex( this->IndexPosition - IndexCount );
+                }
             }
             return Ret;
         }
 
         void TextCursor::SetColour(const ColourValue& Colour)
         {
-            if( this->CursorColour == Colour )
-                return;
-
-            this->CursorColour = Colour;
-            this->Layer->_MarkDirty();
+            if( this->CursorColour != Colour ) {
+                this->CursorColour = Colour;
+                this->Layer->_MarkDirty();
+            }
         }
 
         const ColourValue& TextCursor::GetColour() const
@@ -131,19 +163,49 @@ namespace Mezzanine
         // Left and Right Methods
 
         void TextCursor::MoveCursorLeft()
-            { --(this->IndexPosition); }
+        {
+            if( this->IndexPosition > 0 ) {
+                --(this->IndexPosition);
+                this->Layer->_MarkDirty();
+            }else if( this->IndexPosition == -1 ) {
+                Whole NumChars = this->Layer->GetNumCharacters();
+                this->IndexPosition = NumChars - 1;
+                this->Layer->_MarkDirty();
+            }
+        }
 
         void TextCursor::MoveCursorRight()
-            { ++(this->IndexPosition); }
+        {
+            Whole NumChars = this->Layer->GetNumCharacters();
+            if( this->IndexPosition >= 0 && this->IndexPosition < NumChars ) {
+                ++(this->IndexPosition);
+                this->Layer->_MarkDirty();
+            }
+        }
 
         void TextCursor::InsertCharacterAtCursor(const UInt32 GlyphID)
-            { this->Layer->InsertCharacterAtIndex(this->IndexPosition,GlyphID); }
+        {
+            Integer Added = this->Layer->InsertCharacterAtIndex(this->IndexPosition,GlyphID);
+            if( this->IndexPosition >= 0 ) {
+                this->IndexPosition += Added;
+            }
+        }
 
         void TextCursor::InsertCharactersAtCursor(const Char8* Characters, const UInt32 BufSize)
-            { this->Layer->InsertCharactersAtIndex(this->IndexPosition,Characters,BufSize); }
+        {
+            Integer Added = this->Layer->InsertCharactersAtIndex(this->IndexPosition,Characters,BufSize);
+            if( this->IndexPosition >= 0 ) {
+                this->IndexPosition += Added;
+            }
+        }
 
         void TextCursor::InsertCharactersAtCursor(const UInt32* Characters, const UInt32 BufSize)
-            { this->Layer->InsertCharactersAtIndex(this->IndexPosition,Characters,BufSize); }
+        {
+            Integer Added = this->Layer->InsertCharactersAtIndex(this->IndexPosition,Characters,BufSize);
+            if( this->IndexPosition >= 0 ) {
+                this->IndexPosition += Added;
+            }
+        }
 
         void TextCursor::RemoveLeftCharacter()
         {

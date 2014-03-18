@@ -197,9 +197,12 @@ namespace Mezzanine
             /// @warning Adjusting this value manually can create visual artifacts.  Only call this manually if you know what you are doing.
             /// @param Offset The placement offset from the parent's origin in pixels.
             void SetLengthOffset(const Real& Offset);
-            /// @brief Gets the length offset of this Character.
-            /// @return Returns a real representing the number of pixels to offset this from it's parent.
+            /// @brief Gets the length offset of this Character from it's parent TextLine.
+            /// @return Returns a Real representing the number of pixels to offset this from it's parents left edge.
             Real GetLengthOffset() const;
+            /// @brief Gets the length offset of this Characters right side from its parent TextLine.
+            /// @return Returns a Real representing the pixel distance from this characters right side from the parent TextLines left edge.
+            Real GetRightEdgeLengthOffset() const;
             /// @brief Sets the custom size this character is to be resized to.
             /// @remarks The size set here is still subject to scaling from it's parent, and thus is not final. @n @n
             /// The default for this value is (-1,-1), and this can be set at any time to revert to using the characters default size.

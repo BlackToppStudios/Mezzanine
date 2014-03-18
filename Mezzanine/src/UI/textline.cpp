@@ -92,13 +92,13 @@ namespace Mezzanine
                 return Ret;
             }
 
-            while( CharIt != this->Characters.end() && Offset < (*CharIt)->GetLengthOffset() )
+            while( CharIt != this->Characters.end() && Offset > (*CharIt)->GetRightEdgeLengthOffset() )
             {
                 ++CharIt;
             }
 
             // Check if we're too far to the right side to get anything
-            if( CharIt == (--this->Characters.end()) && Offset > (*CharIt)->GetLengthOffset() + (*CharIt)->GetCharacterSize().X ) {
+            if( CharIt == (--this->Characters.end()) && Offset > (*CharIt)->GetRightEdgeLengthOffset() ) {
                 Ret.first = NULL;
                 Ret.second.X = this->GetRightMostCursorPosition();
                 Ret.second.Y = this->PositionOffset;
@@ -118,43 +118,51 @@ namespace Mezzanine
 
         Integer TextLine::GetIndexAtOffset(const Real& Offset) const
         {
-            ConstCharacterIterator CharIt = this->Characters.begin();
-            // Check if we're too far to the left side to get anything
-            if( Offset < (*CharIt)->GetLengthOffset() )
-                return 0;
+            if( !this->Characters.empty() ) {
+                ConstCharacterIterator CharIt = this->Characters.begin();
+                // Check if we're too far to the left side to get anything
+                if( Offset < (*CharIt)->GetLengthOffset() )
+                    return 0;
 
-            Integer RetIndex = 0;
-            while( CharIt != this->Characters.end() && Offset < (*CharIt)->GetLengthOffset() )
-            {
-                ++CharIt;
-                ++RetIndex;
-            }
+                Integer RetIndex = 0;
+                while( CharIt != this->Characters.end() && Offset > (*CharIt)->GetRightEdgeLengthOffset() )
+                {
+                    ++CharIt;
+                    ++RetIndex;
+                }
 
-            if( CharIt == this->Characters.end() )
+                if( CharIt == this->Characters.end() )
+                    return -1;
+
+                // Get our character dimensions for checking which side we should be on
+                Real CharXPos = (*CharIt)->GetLengthOffset();
+                Real CharXSize = (*CharIt)->GetCharacterSize().X;
+                return ( Offset < CharXPos + (CharXSize * 0.5) ? RetIndex : ++RetIndex );
+            }else{
                 return -1;
-
-            // Get our character dimensions for checking which side we should be on
-            Real CharXPos = (*CharIt)->GetLengthOffset();
-            Real CharXSize = (*CharIt)->GetCharacterSize().X;
-            return ( CharXPos + (CharXSize * 0.5) < Offset ? RetIndex : ++RetIndex );
+            }
         }
 
         Real TextLine::GetOffsetAtIndex(const Integer& Index) const
         {
-            if( Index < 0 || static_cast<Whole>(Index) > this->Characters.size() ) {
-                ConstCharacterIterator Last = --(this->Characters.end());
-                return (*Last)->GetLengthOffset() + (*Last)->GetCharacterSize().X;
-            }else{
-                Integer IndexCount = 0;
-                ConstCharacterIterator CharIt = this->Characters.begin();
+            if( !this->Characters.empty() ) {
+                if( Index < 0 || static_cast<Whole>(Index) > this->Characters.size() ) {
+                    ConstCharacterIterator Last = --(this->Characters.end());
+                    return (*Last)->GetLengthOffset() + (*Last)->GetCharacterSize().X;
+                }else{
+                    Integer IndexCount = 0;
+                    ConstCharacterIterator CharIt = this->Characters.begin();
 
-                while( CharIt != this->Characters.end() && IndexCount < Index )
-                {
-                    ++IndexCount;
-                    ++CharIt;
+                    while( CharIt != this->Characters.end() && IndexCount < Index )
+                    {
+                        ++IndexCount;
+                        ++CharIt;
+                    }
+
+                    return (*CharIt)->GetLengthOffset();
                 }
-
-                return (*CharIt)->GetLengthOffset();
+            }else{
+                return this->GetCursorStartPosition();
             }
         }
 

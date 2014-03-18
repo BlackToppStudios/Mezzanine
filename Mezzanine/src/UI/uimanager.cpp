@@ -189,6 +189,7 @@ namespace Mezzanine
 
         void UIManager::HandlePreFocusMouseInput(const Input::MetaCode& Code)
         {
+            // Perform our simple checks for the focus switching/locking
             if( Code.IsMouseButton() ) {
                 if( Input::BUTTON_PRESSING == Code.GetMetaValue() ) {
                     this->SwitchFocus(HoveredWidget);
@@ -199,10 +200,6 @@ namespace Mezzanine
                         if( !this->FocusIsLocked() ) {
                             this->WidgetFocus->_OnFocusLocked();
                             this->FocusLockCode = Code;
-                            // When we lock the focus, also check for mouse movement.  If it has moved, then we're dragging as well.
-                            if( this->MouseMoved ) {
-                                this->WidgetFocus->_OnMouseDragStart();
-                            }
                         }
                     }
                 }else if( Input::BUTTON_LIFTING == Code.GetMetaValue() ) {
@@ -214,6 +211,13 @@ namespace Mezzanine
                             this->FocusLockCode.SetNullValues();
                         }
                     }
+                }
+            }
+
+            // Perform the check for dragging
+            if( this->FocusIsLocked() && this->MouseMoved ) {
+                if( !this->WidgetFocus->IsDragged() ) {
+                    this->WidgetFocus->_OnMouseDragStart();
                 }
             }
         }

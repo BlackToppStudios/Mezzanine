@@ -315,6 +315,8 @@ namespace Mezzanine
             TokenContainer Tokens;
             /// @internal
             /// @brief Gets the token at the string index, and it's local index.
+            /// @param Index The TokenString index of the character to retrieve.
+            /// @return Returns an std::pair containing an iterator to the token at the specified index in the first member, and it's local index in the second member
             TokenIndexPair GetTokenIndex(const UInt32 Index);
         public:
             /// @brief Class constructor.
@@ -328,6 +330,12 @@ namespace Mezzanine
             /// @brief Gets a string containing all the raw characters of the tokens in this string.
             /// @return Returns a string of all the UTF-8 characters in the tokens of this string.
             virtual String GetRawString() const;
+            /// @brief Gets the number of renderable characters that exist in this string.
+            /// @return Returns a Whole containing the number of renderable characters this TokenString is storing.
+            Whole GetNumCharacters() const;
+            /// @brief Gets the number of text tokens in this string.
+            /// @return Returns a Whole containing the number of tokens this TokenString is storing.
+            Whole GetNumTokens() const;
 
             /// @brief Gets an iterator to the first TextToken.
             /// @return Returns an iterator to the first TextToken being stored by this TokenString.
@@ -401,7 +409,7 @@ namespace Mezzanine
             /// @brief Removes all the rendered characters from this string.
             /// @return Returns the number of rendered characters that were actually removed.
             virtual UInt32 ClearAllCharacters();
-        };//InsertTagToken
+        };//TokenString
     }//UI
 }//Mezzanine
 

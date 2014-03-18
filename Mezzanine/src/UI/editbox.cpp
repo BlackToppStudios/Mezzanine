@@ -137,7 +137,7 @@ namespace Mezzanine
                     ( this->InputFilter != NULL ? this->InputFilter( Code.GetMetaValue() ) : true ) )
                 {
                     // If there is a selection range we need to clear it before inserting.
-                    if( HighlightStart != -1 && HighlightEnd != -1 ) {
+                    if( HighlightStart > -1 && HighlightEnd > -1 ) {
                         // Set our post erase position.
                         EditCursor->SetCursorIndex(HighlightStart);
                         EditLayer->RemoveCharacterRange(HighlightStart,HighlightEnd);
@@ -146,30 +146,53 @@ namespace Mezzanine
                     EditLayer->GetCursor()->InsertCharacterAtCursor( Code.GetMetaValue() );
                     this->_OnTextUpdated();
                     return true;
-                }else if( this->IsDragged() && Code.GetCode() == Input::MOUSEABSOLUTEHORIZONTAL ) {
-                    // Assign the horizontal value to the target, then check if we have a complete target.
-                    this->EditHighlightTarget.X = Code.GetMetaValue();
-                    if( this->EditHighlightTarget.X != -1 && this->EditHighlightTarget.Y != -1 ) {
-                        // When the mouse is updated, the absolute position for both axes is send out regardless of change.
-                        // So we'd only get to this point if we've processed both events.  Convert our target to a usable index.
-                        TextLayer::CharIndexPair Result = EditLayer->GetIndexAtOffset( this->EditHighlightTarget - this->ActDims.Position );
-                        if( !Result.first )
-                            return false;
-                        // The mouse can move to earlier characters in the squence, so sort out which index is the actual start in this set.
-                        Integer IndexMin = std::min(this->EditHighlightOrigin,Result.second);
-                        Integer IndexMax = std::max(this->EditHighlightOrigin,Result.second);
-                        // If there was a change, update it.
-                        if( IndexMin != HighlightStart || IndexMax != HighlightEnd ) {
-                            EditLayer->Highlight(IndexMin,IndexMax);
-                        }
-                        // Reset our target, so next frame doesn't use old values.
-                        this->EditHighlightTarget.SetValues(-1,-1);
+                }else if( Code.GetCode() == Input::KEY_BACKSPACE && Code.GetMetaValue() == Input::BUTTON_PRESSING ) {
+                    /// @todo Enable repeat backspace somehow.
+                    if( HighlightStart > -1 && HighlightEnd > -1 ) {
+                        EditCursor->SetCursorIndex(HighlightStart);
+                        EditLayer->RemoveCharacterRange(HighlightStart,HighlightEnd);
+                    }else{
+                        EditCursor->RemoveLeftCharacter();
+                    }
+                    this->_OnTextUpdated();
+                    return true;
+                }else if( Code.GetCode() == Input::KEY_LEFT && Code.GetMetaValue() == Input::BUTTON_PRESSING ) {
+                    /// @todo Enable repeat move somehow.
+                    if( HighlightStart > -1 && HighlightEnd > -1 ) {
+                        EditCursor->SetCursorIndex(HighlightStart);
+                        EditLayer->ClearHighlights();
+                    }else{
+                        EditCursor->MoveCursorLeft();
                     }
                     return true;
-                }else if( this->IsDragged() && Code.GetCode() == Input::MOUSEABSOLUTEVERTICAL ) {
-                    // Assign the horizontal value to the target, then check if we have a complete target.
-                    this->EditHighlightTarget.Y = Code.GetMetaValue();
-                    if( this->EditHighlightTarget.X != -1 && this->EditHighlightTarget.Y != -1 ) {
+                }else if( Code.GetCode() == Input::KEY_RIGHT && Code.GetMetaValue() == Input::BUTTON_PRESSING ) {
+                    /// @todo Enable repeat move somehow.
+                    if( HighlightStart > -1 && HighlightEnd > -1 ) {
+                        EditCursor->SetCursorIndex(HighlightEnd);
+                        EditLayer->ClearHighlights();
+                    }else{
+                        EditCursor->MoveCursorRight();
+                    }
+                    return true;
+                }else if( !this->IsDragged() && Code.GetCode() == Input::MOUSEBUTTON_1 && Code.GetMetaValue() == Input::BUTTON_PRESSING ) {
+                    if( HighlightStart > -1 && HighlightEnd > -1 ) {
+                        EditLayer->ClearHighlights();
+                    }
+                    // Find the offset position of the mouse and use that to update our cursor position.
+                    TextLayer::CharIndexPair Result = EditLayer->GetIndexAtOffset( this->ParentScreen->GetMouseHitPosition() - this->ActDims.Position );
+                    if( !Result.first )
+                        return false;
+                    // Perform the update.
+                    EditCursor->SetCursorIndex( Result.second );
+                    return true;
+                }else if( this->IsDragged() && ( Code.GetCode() == Input::MOUSEABSOLUTEHORIZONTAL || Code.GetCode() == Input::MOUSEABSOLUTEVERTICAL ) ) {
+                    // Assign the horizontal or vertical value to the target, then check if we have a complete target.
+                    if( Code.GetCode() == Input::MOUSEABSOLUTEHORIZONTAL ) {
+                        this->EditHighlightTarget.X = Code.GetMetaValue();
+                    }else if( Code.GetCode() == Input::MOUSEABSOLUTEVERTICAL ) {
+                        this->EditHighlightTarget.Y = Code.GetMetaValue();
+                    }
+                    if( this->EditHighlightTarget.X > -1 && this->EditHighlightTarget.Y > -1 ) {
                         // When the mouse is updated, the absolute position for both axes is send out regardless of change.
                         // So we'd only get to this point if we've processed both events.  Convert our target to a usable index.
                         TextLayer::CharIndexPair Result = EditLayer->GetIndexAtOffset( this->EditHighlightTarget - this->ActDims.Position );
@@ -178,12 +201,16 @@ namespace Mezzanine
                         // The mouse can move to earlier characters in the squence, so sort out which index is the actual start in this set.
                         Integer IndexMin = std::min(this->EditHighlightOrigin,Result.second);
                         Integer IndexMax = std::max(this->EditHighlightOrigin,Result.second);
+                        if( IndexMax == Result.second && IndexMin != Result.second ) {
+                            // If we're dragging to the right, we want the mouse cursor to be on the edge of the highlights, so reduce the index to be used for highlighting.
+                            --IndexMax;
+                        }
                         // If there was a change, update it.
                         if( IndexMin != HighlightStart || IndexMax != HighlightEnd ) {
                             EditLayer->Highlight(IndexMin,IndexMax);
                         }
-                        // Reset our target, so next frame doesn't use old values.
-                        this->EditHighlightTarget.SetValues(-1,-1);
+                        // Update our cursor position
+                        EditCursor->SetCursorIndex(Result.second);
                     }
                     return true;
                 }
@@ -348,7 +375,7 @@ namespace Mezzanine
         {
             TextLayer* EditLayer = this->GetEditLayer();
             if( EditLayer != NULL ) {
-                TextLayer::CharIndexPair Result = EditLayer->GetIndexAtOffset( this->EditHighlightTarget - this->ActDims.Position );
+                TextLayer::CharIndexPair Result = EditLayer->GetIndexAtOffset( this->ParentScreen->GetMouseHitPosition() - this->ActDims.Position );
                 if( Result.first ) {
                     this->EditHighlightOrigin = Result.second;
                 }

@@ -108,6 +108,7 @@ namespace Mezzanine
 #include "UI/textcursor.h"
 #include "UI/textlayer.h"
 #include "UI/textline.h"
+#include "UI/texttoken.h"
 #include "UI/textureatlas.h"
 #include "UI/textureatlashandler.h"
 #include "UI/unifieddim.h"

@@ -224,8 +224,8 @@ namespace Mezzanine
                         // Generate and append
                         TextToken* CurrToken = (*TokIt);
                         this->GenerateCharactersFromToken( (*TokIt),CallingLayer,CurrentTraits,CharacterSegment );
-                        GeneratedCharacters.splice(GeneratedCharacters.end(),CharacterSegment);
                         CurrToken->RenderSize = CharacterSegment.size();
+                        GeneratedCharacters.splice(GeneratedCharacters.end(),CharacterSegment);
                         break;
                     }
                     case TextToken::TT_RangeTagStart:
@@ -261,10 +261,9 @@ namespace Mezzanine
                         }
 
                         // If anything was generated, append it
-                        if( !CharacterSegment.empty() )
-                        {
-                            GeneratedCharacters.splice(GeneratedCharacters.end(),CharacterSegment);
+                        if( !CharacterSegment.empty() ) {
                             CurrToken->RenderSize = CharacterSegment.size();
+                            GeneratedCharacters.splice(GeneratedCharacters.end(),CharacterSegment);
                         }
 
                         break;
@@ -286,8 +285,8 @@ namespace Mezzanine
                         }else{
                             // End tags always belong to a range, without a partner tag this is just an error
                             this->GenerateCharactersFromToken( CurrToken,CallingLayer,CurrentTraits,CharacterSegment );
-                            GeneratedCharacters.splice(GeneratedCharacters.end(),CharacterSegment);
                             CurrToken->RenderSize = CharacterSegment.size();
+                            GeneratedCharacters.splice(GeneratedCharacters.end(),CharacterSegment);
                         }
                         break;
                     }
@@ -307,8 +306,8 @@ namespace Mezzanine
                             }
                         }else{
                             this->GenerateCharactersFromToken( CurrToken,CallingLayer,CurrentTraits,CharacterSegment );
-                            GeneratedCharacters.splice(GeneratedCharacters.end(),CharacterSegment);
                             CurrToken->RenderSize = CharacterSegment.size();
+                            GeneratedCharacters.splice(GeneratedCharacters.end(),CharacterSegment);
                         }
                     }// case insert tag
                 }// switch token type

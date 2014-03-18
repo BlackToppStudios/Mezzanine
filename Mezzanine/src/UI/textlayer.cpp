@@ -81,6 +81,7 @@ namespace Mezzanine
             this->InactiveHLColour = ColourValue::Gray();
             this->ActiveHLColour.AlphaChannel = 0.5;
             this->InactiveHLColour.AlphaChannel = 0.5;
+            this->TextTokens = new TokenString();
 
             // Create our one free line for text
             this->CreateTextLine();
@@ -114,6 +115,7 @@ namespace Mezzanine
             this->InactiveHLColour = ColourValue::Gray();
             this->ActiveHLColour.AlphaChannel = 0.5;
             this->InactiveHLColour.AlphaChannel = 0.5;
+            this->TextTokens = new TokenString();
 
             // Set our font
             this->DefaultCharTraits.CharFont = this->Parent->GetScreen()->GetFont(FontName,this->PriAtlas);
@@ -148,6 +150,7 @@ namespace Mezzanine
             this->InactiveHLColour = ColourValue::Gray();
             this->ActiveHLColour.AlphaChannel = 0.5;
             this->InactiveHLColour.AlphaChannel = 0.5;
+            this->TextTokens = new TokenString();
 
             // Set our font
             UIManager::FontResult Result = UIManager::GetSingletonPtr()->SuggestGlyphIndex(static_cast<UInt32>(this->AutoCharScaling * Parent->GetActualSize().Y),PriAtlas);
@@ -172,8 +175,7 @@ namespace Mezzanine
         {
             // Update our text
             Real MaxWidth = this->Parent->GetActualSize().X * this->Scale.X;
-            if( Force || MaxWidth != this->MaxLineWidth )
-            {
+            if( Force || MaxWidth != this->MaxLineWidth ) {
                 // In general the only time this will be forced is on a resizing of the parent
                 // quad renderable.  So we must repopulate for the change of space.
                 this->MaxLineWidth = MaxWidth;
@@ -190,6 +192,7 @@ namespace Mezzanine
 
             // Setup the text specific data we'll use
             Vector2 TopLeft, TopRight, BottomLeft, BottomRight;
+            Vector2 PrevHLTopRight, PrevHLBottomRight;
             Vector2 WhitePixelCoords;
             Real CursorX = ActDims.Position.X, CursorY = ActDims.Position.Y;
             ColourValue HighlightColour = this->InactiveHLColour;
@@ -197,13 +200,17 @@ namespace Mezzanine
             TextLine* CurrLine = NULL;
 
             // Check if we need the active highlight colour
-            if( this->Parent->IsWidget() && (static_cast<Widget*>(this->Parent))->HasFocus() )
-                HighlightColour = ActiveHLColour;
+            if( this->Parent->IsWidget() && (static_cast<Widget*>(this->Parent))->HasFocus() ) {
+                HighlightColour = this->ActiveHLColour;
+            }
 
             for( TextLineIterator LineIt = this->TextLines.begin() ; LineIt != this->TextLines.end() ; ++LineIt )
             {
                 CurrLine = (*LineIt);
                 CursorY = ActDims.Position.Y + CurrLine->GetPositionOffset();
+
+                PrevHLTopRight.SetValues(-1,-1);
+                PrevHLBottomRight.SetValues(-1,-1);
 
                 // If we have ran out of room, halt rendering
                 if( CursorY >= ActDims.Position.Y + ActDims.Size.Y )
@@ -233,19 +240,37 @@ namespace Mezzanine
 
                     this->RotationTransform(TopLeft,TopRight,BottomLeft,BottomRight,LayerCenter);
 
-                    if( CurrChar->GetHighlighted() )
-                    {
+                    if( CurrChar->GetHighlighted() ) {
                         WhitePixelCoords = CurrChar->GetAtlasWhitePixel();
 
-                        // Triangle A
-                        PushVertex(BottomLeft.X, BottomLeft.Y, WhitePixelCoords, HighlightColour, CharAtlas);     // Left/Bottom  3
-                        PushVertex(TopRight.X, TopRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);         // Right/Top    1
-                        PushVertex(TopLeft.X, TopLeft.Y, WhitePixelCoords, HighlightColour, CharAtlas);           // Left/Top     0
+                        // When higlighting we have to account for kerning, so use the previous characters right edge for this characters left edge.
+                        // This comes with a minor caveat though.  If we have a gap in the highlighting it'll draw highlights over the gap.  However
+                        // with the way the system is set up at the time of this writing, highlights can't have gaps in text layers.  So this shouldn't
+                        // ever be an issue.  If the system changes however...then this will need to be updated to be more intelligent.
+                        if( PrevHLTopRight.X > -1 && PrevHLTopRight.Y > -1 && PrevHLBottomRight.X > -1 && PrevHLBottomRight.Y > -1 ) {
+                            // Triangle A
+                            PushVertex(PrevHLBottomRight.X, PrevHLBottomRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);  // Left/Bottom  3
+                            PushVertex(TopRight.X, TopRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);                    // Right/Top    1
+                            PushVertex(PrevHLTopRight.X, PrevHLTopRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);        // Left/Top     0
 
-                        // Triangle B
-                        PushVertex(BottomLeft.X, BottomLeft.Y, WhitePixelCoords, HighlightColour, CharAtlas);     // Left/Bottom  3
-                        PushVertex(BottomRight.X, BottomRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);   // Right/Bottom 2
-                        PushVertex(TopRight.X, TopRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);         // Right/Top    1
+                            // Triangle B
+                            PushVertex(PrevHLBottomRight.X, PrevHLBottomRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);  // Left/Bottom  3
+                            PushVertex(BottomRight.X, BottomRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);              // Right/Bottom 2
+                            PushVertex(TopRight.X, TopRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);                    // Right/Top    1
+                        }else{
+                            // Triangle A
+                            PushVertex(BottomLeft.X, BottomLeft.Y, WhitePixelCoords, HighlightColour, CharAtlas);     // Left/Bottom  3
+                            PushVertex(TopRight.X, TopRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);         // Right/Top    1
+                            PushVertex(TopLeft.X, TopLeft.Y, WhitePixelCoords, HighlightColour, CharAtlas);           // Left/Top     0
+
+                            // Triangle B
+                            PushVertex(BottomLeft.X, BottomLeft.Y, WhitePixelCoords, HighlightColour, CharAtlas);     // Left/Bottom  3
+                            PushVertex(BottomRight.X, BottomRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);   // Right/Bottom 2
+                            PushVertex(TopRight.X, TopRight.Y, WhitePixelCoords, HighlightColour, CharAtlas);         // Right/Top    1
+                        }
+
+                        PrevHLTopRight = TopRight;
+                        PrevHLBottomRight = BottomRight;
                     }
 
                     // Triangle A
@@ -539,7 +564,7 @@ namespace Mezzanine
         void TextLayer::Highlight(const Integer StartIndex, const Integer EndIndex)
         {
             this->ClearHighlights();
-            CharacterIterator StartIterator = GetCharacterIteratorAtIndex(StartIndex);
+            CharacterIterator StartIterator = this->GetCharacterIteratorAtIndex(StartIndex);
             CharacterIterator EndIterator = ( static_cast<Whole>(EndIndex + 1) >= this->Characters.size() ? this->Characters.end() : this->GetCharacterIteratorAtIndex(EndIndex + 1) );
 
             while( StartIterator != EndIterator )
@@ -564,11 +589,11 @@ namespace Mezzanine
 
         void TextLayer::ClearHighlights()
         {
-            if( this->HighlightStart == -1 || this->HighlightEnd == -1 )
+            if( this->HighlightStart == -1 && this->HighlightEnd == -1 )
                 return;
 
             CharacterIterator StartIterator = this->GetCharacterIteratorAtIndex(this->HighlightStart);
-            CharacterIterator EndIterator = this->GetCharacterIteratorAtIndex(this->HighlightEnd + 1);
+            CharacterIterator EndIterator = ( static_cast<Whole>(this->HighlightEnd + 1) >= this->Characters.size() ? this->Characters.end() : this->GetCharacterIteratorAtIndex(this->HighlightEnd + 1) );
 
             while( StartIterator != EndIterator )
             {
@@ -611,6 +636,7 @@ namespace Mezzanine
 
             if(Enable) {
                 TextLine* Line = this->TextLines.at(0);
+                this->Cursor = new TextCursor(this);
                 this->Cursor->SetOffsetPosition( Vector2(Line->GetCursorStartPosition(),Line->GetPositionOffset()) );
             }else{
                 delete this->Cursor;
@@ -811,71 +837,82 @@ namespace Mezzanine
             return this->Characters.size();
         }
 
-        void TextLayer::InsertCharacterAtIndex(const Integer Index, const UInt32 GlyphID)
+        Integer TextLayer::InsertCharacterAtIndex(const Integer Index, const UInt32 GlyphID)
         {
+            Integer OldSize = this->Characters.size();
             // Do our work
-            this->TextTokens->InsertCharacter(Index,GlyphID);
+            this->TextTokens->InsertCharacter( Index < 0 ? this->TextTokens->GetNumCharacters() : Index ,GlyphID);
             // Regenerate the text
             String RawText = this->GetText();
             this->SetText(RawText);
+            return ( this->Characters.size() - OldSize );
         }
 
-        void TextLayer::InsertCharactersAtIndex(const Integer Index, const Char8* Characters, const UInt32 BufSize)
+        Integer TextLayer::InsertCharactersAtIndex(const Integer Index, const Char8* Characters, const UInt32 BufSize)
         {
+            Integer OldSize = this->Characters.size();
             // Do our work
-            this->TextTokens->InsertCharacters(Index,Characters,BufSize);
+            this->TextTokens->InsertCharacters( Index < 0 ? this->TextTokens->GetNumCharacters() : Index ,Characters,BufSize);
             // Regenerate the text
             String RawText = this->GetText();
             this->SetText(RawText);
+            return ( this->Characters.size() - OldSize );
         }
 
-        void TextLayer::InsertCharactersAtIndex(const Integer Index, const UInt32* Characters, const UInt32 BufSize)
+        Integer TextLayer::InsertCharactersAtIndex(const Integer Index, const UInt32* Characters, const UInt32 BufSize)
         {
+            Integer OldSize = this->Characters.size();
             // Do our work
-            this->TextTokens->InsertCharacters(Index,Characters,BufSize);
+            this->TextTokens->InsertCharacters( Index < 0 ? this->TextTokens->GetNumCharacters() : Index ,Characters,BufSize);
             // Regenerate the text
             String RawText = this->GetText();
             this->SetText(RawText);
+            return ( this->Characters.size() - OldSize );
         }
 
-        void TextLayer::RemoveCharacterAtIndex(const Integer Index)
+        Integer TextLayer::RemoveCharacterAtIndex(const Integer Index)
         {
+            Integer OldSize = this->Characters.size();
             // Do our work
-            this->TextTokens->RemoveCharacter(Index);
+            this->TextTokens->RemoveCharacter( Index < 0 ? this->TextTokens->GetNumCharacters() : Index );
             // Regenerate the text
             String RawText = this->GetText();
             this->SetText(RawText);
+            return ( OldSize - this->Characters.size() );
         }
 
-        void TextLayer::RemoveCharactersAtIndex(const Integer Index, const UInt32 Length)
+        Integer TextLayer::RemoveCharactersAtIndex(const Integer Index, const UInt32 Length)
         {
+            Integer OldSize = this->Characters.size();
             // Do our work
-            this->TextTokens->RemoveCharacters(Index,Length);
+            this->TextTokens->RemoveCharacters( Index < 0 ? this->TextTokens->GetNumCharacters() : Index ,Length);
             // Regenerate the text
             String RawText = this->GetText();
             this->SetText(RawText);
+            return ( OldSize - this->Characters.size() );
         }
 
-        void TextLayer::RemoveCharacterRange(const Integer First, const Integer Last)
+        Integer TextLayer::RemoveCharacterRange(const Integer First, const Integer Last)
         {
-            this->RemoveCharactersAtIndex(First,(Last - First) + 1);
+            return this->RemoveCharactersAtIndex(First,(Last - First) + 1);
         }
 
-        void TextLayer::DestroyAllCharacters()
+        Integer TextLayer::DestroyAllCharacters()
         {
-            // Remove from the TextLines first
+            Integer OldSize = this->Characters.size();
+            // Remove from the TextLines and tokens first
             this->ClearAllTextLines();
+            this->TextTokens->DestroyAllTokens();
             // Now clean up the characters
             for( CharacterIterator CharIt = this->Characters.begin() ; CharIt != this->Characters.end() ; ++CharIt )
-            {
-                delete (*CharIt);
-            }
+                { delete (*CharIt); }
             this->Characters.clear();
 
             this->HighlightStart = -1;
             this->HighlightEnd = -1;
 
             this->_MarkDirty();
+            return OldSize;
         }
 
         TextLayer::CharacterIterator TextLayer::BeginCharacter()
