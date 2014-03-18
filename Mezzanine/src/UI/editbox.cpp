@@ -275,6 +275,7 @@ namespace Mezzanine
             TextLayer* EditLayer = this->GetEditLayer();
             if( EditLayer != NULL ) {
                 EditLayer->SetText(Text);
+                this->_OnTextUpdated();
             }
         }
 

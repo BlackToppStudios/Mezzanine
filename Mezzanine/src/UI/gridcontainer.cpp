@@ -224,8 +224,19 @@ namespace Mezzanine
             // Figure out how many cells we can fit onto a page.
             const Real XCellsPerPage = this->ActDims.Size.X / ActCellSize.X;
             const Real YCellsPerPage = this->ActDims.Size.Y / ActCellSize.Y;
-            const Real CurrXPage = ( this->XProvider != NULL ? this->XProvider->GetCurrentXPage() : 1 );
-            const Real CurrYPage = ( this->YProvider != NULL ? this->YProvider->GetCurrentYPage() : 1 );
+            Real CurrXPage = 1;
+            Real CurrYPage = 1;
+            if( this->XProvider != NULL && this->XProvider == this->YProvider ) {
+                this->XProvider->_NotifyContainerUpdated();
+                CurrXPage = this->XProvider->GetCurrentXPage();
+                CurrYPage = this->YProvider->GetCurrentYPage();
+            }else if( this->XProvider != NULL ) {
+                this->XProvider->_NotifyContainerUpdated();
+                CurrXPage = this->XProvider->GetCurrentXPage();
+            }else if( this->YProvider != NULL ) {
+                this->YProvider->_NotifyContainerUpdated();
+                CurrXPage = this->YProvider->GetCurrentYPage();
+            }
 
             // Only continue if we know there are cells that can fit into the view area.
             if( XCellsPerPage >= 1 && YCellsPerPage >= 1 ) {

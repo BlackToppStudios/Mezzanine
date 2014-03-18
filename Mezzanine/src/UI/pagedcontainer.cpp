@@ -236,6 +236,9 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // PagedContainer Configuration
 
+        void PagedContainer::SetXYProvider(PageProvider* Prov)
+            { this->SetProviders(Prov,Prov); }
+
         PageProvider* PagedContainer::GetXProvider() const
             { return this->XProvider; }
 

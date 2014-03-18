@@ -216,7 +216,7 @@ namespace Mezzanine
 
             /// @brief Sets the value of this Spinner.
             /// @param Value A Real containing the new value of this Spinner.
-            virtual void SetSpinValue(const Real Value);
+            virtual void SetSpinValue(Real Value);
             /// @brief Gets the value of this Spinner.
             /// @return Returns a Real containing the current value of this spinner.
             virtual Real GetSpinValue() const;

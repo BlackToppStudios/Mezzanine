@@ -85,8 +85,8 @@ namespace Mezzanine
             ValueDisplay(NULL),
             SpinValue(0.0),
             IncrementValue(1.0),
-            MinValue(0.0),
-            MaxValue(0.0),
+            MinValue(-1),
+            MaxValue(-1),
             OrderPriority(UI::OP_Horizontal_Vertical)
             {  }
 
@@ -97,8 +97,8 @@ namespace Mezzanine
             ValueDisplay(NULL),
             SpinValue(0.0),
             IncrementValue(1.0),
-            MinValue(0.0),
-            MaxValue(0.0),
+            MinValue(-1),
+            MaxValue(-1),
             OrderPriority(UI::OP_Horizontal_Vertical)
             { this->ConstructSpinner(SpinStyle,EditFont); }
 
@@ -109,8 +109,8 @@ namespace Mezzanine
             ValueDisplay(NULL),
             SpinValue(0.0),
             IncrementValue(1.0),
-            MinValue(0.0),
-            MaxValue(0.0),
+            MinValue(-1),
+            MaxValue(-1),
             OrderPriority(UI::OP_Horizontal_Vertical)
             { this->ConstructSpinner(SpinStyle,this->ParentScreen->GetFont(EditFontName,this->ParentScreen->GetPrimaryAtlas())); }
 
@@ -121,8 +121,8 @@ namespace Mezzanine
             ValueDisplay(NULL),
             SpinValue(0.0),
             IncrementValue(1.0),
-            MinValue(0.0),
-            MaxValue(0.0),
+            MinValue(-1),
+            MaxValue(-1),
             OrderPriority(UI::OP_Horizontal_Vertical)
             { this->ConstructSpinner(SpinStyle,EditFont); }
 
@@ -133,8 +133,8 @@ namespace Mezzanine
             ValueDisplay(NULL),
             SpinValue(0.0),
             IncrementValue(1.0),
-            MinValue(0.0),
-            MaxValue(0.0),
+            MinValue(-1),
+            MaxValue(-1),
             OrderPriority(UI::OP_Horizontal_Vertical)
             { this->ConstructSpinner(SpinStyle,this->ParentScreen->GetFont(EditFontName,this->ParentScreen->GetPrimaryAtlas())); }
 
@@ -145,13 +145,17 @@ namespace Mezzanine
             ValueDisplay(NULL),
             SpinValue(0.0),
             IncrementValue(1.0),
-            MinValue(0.0),
-            MaxValue(0.0),
+            MinValue(-1),
+            MaxValue(-1),
             OrderPriority(UI::OP_Horizontal_Vertical)
             { this->ProtoDeSerialize(XMLNode); }
 
         Spinner::~Spinner()
         {
+            if( this->Container != NULL ) {
+                this->Container->UnbindProvider(this);
+            }
+
             this->RemoveChild( this->IncrementSpin );
             this->ParentScreen->DestroyWidget( this->IncrementSpin );
             this->RemoveChild( this->DecrementSpin );
@@ -172,6 +176,7 @@ namespace Mezzanine
             this->SetButtonLayout(SpinStyle);
 
             this->ValueDisplay->SetInputFilter( &SpinnerFilter );
+            this->ValueDisplay->SetText( StringTools::ConvertToString( this->SpinValue ) );
 
             this->ValueDisplay->Subscribe(EditBox::EventTextUpdated,this);
             this->IncrementSpin->Subscribe(Button::EventDeactivated,this);
@@ -180,8 +185,10 @@ namespace Mezzanine
 
         void Spinner::ClampToLimits(Real& Value)
         {
-            Value = std::max(Value,this->MinValue);
-            Value = std::min(Value,this->MaxValue);
+            if( this->MinValue > 0.0 && this->MaxValue > 0.0 ) {
+                Value = std::max(Value,this->MinValue);
+                Value = std::min(Value,this->MaxValue);
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -193,14 +200,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Spinner Properties
 
-        void Spinner::SetSpinValue(const Real Value)
+        void Spinner::SetSpinValue(Real Value)
         {
-            Real Temp = Value;
-            this->ClampToLimits(Temp);
-            if( this->SpinValue != Temp ) {
-                this->_OnSpinValueChanged(this->SpinValue,Temp);
-                this->ValueDisplay->SetText( StringTools::ConvertToString( Temp ) );
-                this->SpinValue = Temp;
+            this->ClampToLimits(Value);
+            if( this->SpinValue != Value ) {
+                this->_OnSpinValueChanged(this->SpinValue,Value);
+                this->ValueDisplay->SetText( StringTools::ConvertToString( Value ) );
+                this->SpinValue = Value;
             }
         }
 
@@ -392,9 +398,9 @@ namespace Mezzanine
         Real Spinner::GetCurrentXPage() const
         {
             if( this->OrderPriority == UI::OP_Horizontal_Vertical ) {
-                return MathTools::Ceil( MathTools::Fmod( this->SpinValue , this->GetMaxXPages() ) );
+                return MathTools::Ceil( MathTools::Fmod( this->SpinValue , this->GetMaxYPages() ) + 1 );
             }else if( this->OrderPriority == OP_Vertical_Horizontal ) {
-                return MathTools::Ceil( this->SpinValue / this->GetMaxYPages() );
+                return MathTools::Ceil( this->SpinValue / this->GetMaxXPages() );
             }
             return 1;
         }
@@ -402,9 +408,9 @@ namespace Mezzanine
         Real Spinner::GetCurrentYPage() const
         {
             if( this->OrderPriority == UI::OP_Horizontal_Vertical ) {
-                return MathTools::Ceil( this->SpinValue / this->GetMaxXPages() );
+                return MathTools::Ceil( this->SpinValue / this->GetMaxYPages() );
             }else if( this->OrderPriority == OP_Vertical_Horizontal ) {
-                return MathTools::Ceil( MathTools::Fmod( this->SpinValue , this->GetMaxYPages() ) );
+                return MathTools::Ceil( MathTools::Fmod( this->SpinValue , this->GetMaxXPages() ) + 1 );
             }
             return 1;
         }
@@ -489,13 +495,16 @@ namespace Mezzanine
                 return;
 
             if( EventWidget == this->ValueDisplay ) {
+                // Squalch events to prevent an infinite loop.
+                Boole OldMute = this->ValueDisplay->GetMuteEvents();
+                this->ValueDisplay->SetMuteEvents(true);
                 String ValueText = this->ValueDisplay->GetText();
                 Real NewValue = StringTools::ConvertToReal(ValueText);
-                this->ClampToLimits(NewValue);
+                this->SetSpinValue(NewValue);
                 if( this->SpinValue != NewValue ) {
-                    this->_OnSpinValueChanged(this->SpinValue,NewValue);
-                    this->SpinValue = NewValue;
+                    this->ValueDisplay->SetText( StringTools::ConvertToString( this->SpinValue ) );
                 }
+                this->ValueDisplay->SetMuteEvents(OldMute);
             }else if( EventWidget == this->IncrementSpin ) {
                 Real Temp = this->SpinValue + this->IncrementValue;
                 this->SetSpinValue(Temp);
@@ -511,17 +520,21 @@ namespace Mezzanine
                 const Vector2 View = this->Container->GetActualSize();
                 const Vector2 Work = this->Container->GetWorkAreaSize();
 
-                PagedContainer::ProviderMode Config = this->Container->GetProviderConfig(this);
-                if( Config == PagedContainer::PM_Single_X ) {
-                    Real MaxPages = MathTools::Ceil( Work.X / View.X );
-                    this->SetSpinValueLimits(1,MaxPages);
-                }else if( Config == PagedContainer::PM_Single_Y ) {
-                    Real MaxPages = MathTools::Ceil( Work.Y / View.Y );
-                    this->SetSpinValueLimits(1,MaxPages);
-                }else if( Config == PagedContainer::PM_Single_XY ) {
-                    Real MaxXPages = MathTools::Ceil( Work.X / View.X );
-                    Real MaxYPages = MathTools::Ceil( Work.Y / View.Y );
-                    this->SetSpinValueLimits(1,MaxXPages * MaxYPages);
+                if( View.X > 0 && View.Y > 0 ) {
+                    PagedContainer::ProviderMode Config = this->Container->GetProviderConfig(this);
+                    if( Config == PagedContainer::PM_Single_X ) {
+                        Real MaxPages = MathTools::Ceil( Work.X / View.X );
+                        this->SetSpinValueLimits(1,MaxPages);
+                    }else if( Config == PagedContainer::PM_Single_Y ) {
+                        Real MaxPages = MathTools::Ceil( Work.Y / View.Y );
+                        this->SetSpinValueLimits(1,MaxPages);
+                    }else if( Config == PagedContainer::PM_Single_XY ) {
+                        Real MaxXPages = MathTools::Ceil( Work.X / View.X );
+                        Real MaxYPages = MathTools::Ceil( Work.Y / View.Y );
+                        this->SetSpinValueLimits(1,MaxXPages * MaxYPages);
+                    }
+
+                    this->SetSpinValue(this->SpinValue);
                 }
             }
         }

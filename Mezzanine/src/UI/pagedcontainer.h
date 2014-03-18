@@ -251,6 +251,9 @@ namespace Mezzanine
             /// @brief Sets the PageProvider for the Y axis.
             /// @param YProv The PageProvider controlling the current vertical page.
             virtual void SetYProvider(PageProvider* YProv) = 0;
+            /// @brief Sets a single PageProvider as the provider for both the X and Y axis.
+            /// @param Prov The PageProvider to be set for the X and Y axes.
+            virtual void SetXYProvider(PageProvider* Prov);
 
             /// @brief Gets the PageProvider for the X axis.
             /// @return Returns a pointer to the PageProvider for the X axis of this container.
