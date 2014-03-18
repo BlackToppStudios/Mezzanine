@@ -55,6 +55,14 @@ namespace Mezzanine
         void MEZZ_LIB CacheMainArgs(int ArgCount, char** ArgVars);
 
         ///////////////////////////////////////////////////////////////////////////////
+        // File Management
+
+        /*/// @brief Deletes a file existing on the filesystem.
+        /// @param PathAndFile A string containing both the path to the directory where the file is located, and the name of the file to be deleted.
+        /// @return Returns true if the operation was successful, false if it failed.
+        Boole MEZZ_LIB RemoveFile(const String& PathAndFile);//*/
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Basic Directory Management
 
         /// @brief Creates a single new directory.

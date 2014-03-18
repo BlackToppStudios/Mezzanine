@@ -71,6 +71,7 @@
 #endif
 
 #include <algorithm>
+#include <cstdio>
 
 #ifdef CreateDirectory
 #undef CreateDirectory
@@ -104,6 +105,14 @@ namespace Mezzanine
             ArgC = ArgCount;
             ArgV = ArgVars;
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // File Management
+
+        /*Boole RemoveFile(const String& PathAndFile)
+        {
+            return ( remove( PathAndFile.c_str() ) == 0 );
+        }//*/
 
         ///////////////////////////////////////////////////////////////////////////////
         // Basic Directory Management
