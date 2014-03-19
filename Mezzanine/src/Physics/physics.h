@@ -40,6 +40,9 @@
 #ifndef _physics_h
 #define _physics_h
 
+/// @file
+/// @brief The file to include to get access to all the physics stuff
+
 namespace Mezzanine
 {
     /// @namespace Mezzanine::Physics
@@ -51,10 +54,30 @@ namespace Mezzanine
     }
 }
 
+#include "swig.h"
+#ifdef SWIG_PHYSICS
+    #ifdef SWIG_UNSAFE
+        %module MezzaninePhysics
+    #else
+        #define SWIG_SAFE
+        %module MezzaninePhysicsSafe
+    #endif
+    #define SWIG_MODULE_SET
+
+    // Tell SWIG to create a module that scripting languages can use called "mezzanine"
+    // and insert a minimum of documentation into the bindingfile
+    %{
+        // code to be inserted verbatim into the swig file goes here
+        #include "mezzanine.h"
+        using namespace Mezzanine;
+        using namespace Mezzanine::Physics;
+    %}
+#endif
+
+
 #include "Physics/physicsenumerations.h"
 #include "Physics/physicsmanager.h"
 #include "Physics/collisionshapemanager.h"
-
 #include "Physics/boxcollisionshape.h"
 #include "Physics/capsulecollisionshape.h"
 #include "Physics/collidablepair.h"

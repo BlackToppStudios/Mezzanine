@@ -40,9 +40,9 @@
 #ifndef _physicscollision_h
 #define _physicscollision_h
 
-#include "vector3.h"
 #include "Physics/physicsenumerations.h"
 #ifndef SWIG
+    #include "vector3.h"
     #include "XML/xml.h"
 #endif
 

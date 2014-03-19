@@ -155,6 +155,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/windowsettings.h"
         "${${PROJECT_NAME}_SRC_DIR}gravityfield.h"
         "${${PROJECT_NAME}_SRC_DIR}gravitywell.h"
+        "${${PROJECT_NAME}_SRC_DIR}hashedstring.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/input.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/inputmanager.h"
         "${${PROJECT_NAME}_SRC_DIR}Input/inputenumerations.h"
@@ -169,6 +170,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Internal/decompinterface.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/meshtools.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/motionstate.h.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Internal/murmurhash3.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/ogredatastreambuf.h.cpp"
         "${${PROJECT_NAME}_SRC_DIR}interpolator.h"
         "${${PROJECT_NAME}_SRC_DIR}linegroup.h"
@@ -446,6 +448,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Graphics/viewport.cpp"
         "${${PROJECT_NAME}_SRC_DIR}gravityfield.cpp"
         "${${PROJECT_NAME}_SRC_DIR}gravitywell.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}hashedstring.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/inputmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/buttondevice.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Input/controller.cpp"
@@ -458,6 +461,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Internal/decompinterface.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/meshtools.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/motionstate.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Internal/murmurhash3.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Internal/ogredatastreambuf.cpp"
         "${${PROJECT_NAME}_SRC_DIR}interpolator.cpp"
         "${${PROJECT_NAME}_SRC_DIR}linegroup.cpp"
@@ -531,6 +535,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingxmllua51unsafe.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingthreadinglua51.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingthreadinglua51unsafe.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingphysicslua51.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51script.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptargument.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Scripting/Lua51/lua51scriptingengine.cpp"
@@ -986,6 +992,23 @@ if(${Mezz_SWIG})
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )
+        # Physics/physics.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Mezzanine Physics library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_PHYSICS -o Scripting/Lua51/scriptbindingphysicslua51.cpp Physics/physics.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Lua."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -lua -includeall ${Mezz_Lua51_Arguments} -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Lua51/scriptbindingphysicslua51unsafe.cpp Physics/physics.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
     endif(${Mezz_Lua51})
 
     if(${Mezz_Ruby})
@@ -1013,6 +1036,15 @@ if(${Mezz_SWIG})
             PRE_BUILD
             COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Threading library for Ruby."
             COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_THREADING -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingthreadingrubyunsafe.cpp Threading/dagframescheduler.h
+            WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
+            VERBATIM
+        )
+        # Physics/physics.h
+        add_custom_command(
+            TARGET ${SWIG_PROJECT}
+            PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "Preparing Unrestricted(do not use with untrusted scripts) Mezzanine Physics library for Ruby."
+            COMMAND ${SWIG_EXECUTABLE} -c++ -v -Wall -ruby -includeall ${Mezz_Ruby_Arguments} -autorename -DSWIG_PHYSICS -DSWIG_UNSAFE -o Scripting/Ruby/scriptbindingphysicsrubyunsafe.cpp Physics/physics.h
             WORKING_DIRECTORY ${${PROJECT_NAME}_SRC_DIR}
             VERBATIM
         )

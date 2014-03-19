@@ -4,6 +4,8 @@
         <FrameSettings TargetFrameRate="60" />
     </WorldSettings>
     <Managers>
+        <Lua51ScriptingEngine>
+        </Lua51ScriptingEngine>
         <DefaultActorManager>
         </DefaultActorManager>
         <DefaultAreaEffectManager>

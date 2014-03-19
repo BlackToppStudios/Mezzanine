@@ -40,10 +40,12 @@
 #ifndef _collisionshapemanager_h
 #define _collisionshapemanager_h
 
-#include "Physics/collisionshape.h"
 #include "datatypes.h"
-#include "managerbase.h"
-#include "managerfactory.h"
+#include "Physics/collisionshape.h"
+#ifndef SWIG
+    #include "managerbase.h"
+    #include "managerfactory.h"
+#endif
 #include "singleton.h"
 
 class btTriangleMesh;
@@ -51,6 +53,11 @@ class btCollisionShape;
 
 namespace Mezzanine
 {
+    // Used by the scripting language binder to help create bindgings for this class.
+    #ifdef SWIG
+    %template(SingletonCollisionShapeManager) Mezzanine::Singleton<CollisionShapeManager>;
+    #endif
+
     namespace Graphics
     {
         class Mesh;
@@ -63,10 +70,6 @@ namespace Mezzanine
         class StaticMeshCollisionShape;
         class CompoundCollisionShape;
 
-        // Used by the scripting language binder to help create bindgings for this class.
-        #ifdef SWIG
-        %template(SingletonCollisionShapeManager) Mezzanine::Singleton<CollisionShapeManager>;
-        #endif
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class CollisionShapeManager
@@ -149,13 +152,14 @@ namespace Mezzanine
             /// @brief Gets an Iterator to one passed the last CollisionShape in this manager.
             /// @return Returns an Iterator to one passed the last CollisionShape.
             ShapeMapIterator EndCollisionShape();
+            #ifndef SWIG
             /// @brief Gets a Const Iterator to the first CollisionShape in this manager.
             /// @return Returns a Const Iterator to the first CollisionShape.
             ConstShapeMapIterator BeginCollisionShape() const;
             /// @brief Gets a Const Iterator to one passed the last CollisionShape in this manager.
             /// @return Returns a Const Iterator to one passed the last CollisionShape.
             ConstShapeMapIterator EndCollisionShape() const;
-
+            #endif
             ///////////////////////////////////////////////////////////////////////////////
             // Shape Creation Utilities
 
@@ -278,7 +282,7 @@ namespace Mezzanine
             // Type Identifier Methods
 
             /// @copydoc ManagerBase::GetInterfaceType()
-            virtual ManagerType GetInterfaceType() const;
+            virtual ManagerBase::ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
             virtual String GetImplementationTypeName() const;
         };// CollisionShapeManager

@@ -49,6 +49,8 @@
 #include "Scripting/script.h"
 #include "Scripting/scriptingmanager.h"
 
+#include "managerfactory.h"
+
 /// @file
 /// @brief This file has the interface for the Lua based implementation of the Scripting system.
 
@@ -97,6 +99,10 @@ namespace Mezzanine
                     /// @throws This Throws ScriptLuaYieldException, ScriptLuaRuntimeException, ScriptLuaRuntimeException, ScriptLuaErrErrException, SyntaxErrorLuaException, OutOfMemoryException, FileException, ScriptLuaException with as much precision as possible when thrown.
                     virtual void ThrowFromLuaErrorCode(int LuaReturn);
 
+                    /// @brief Checks the internal Lua to see if memory was correctly allocated during its creation
+                    /// @throw If Lua could not get enouugh memory this throws an Exception::MM_OUT_OF_MEMORY_EXCEPTION
+                    void CheckLuaStateAfterConstruction() const;
+
                 public:
                     /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries open a little easier.
                     enum Lua51Libraries
@@ -112,20 +118,25 @@ namespace Mezzanine
                         DebugLib               = 128,       ///< Correlates to @ref Lua51ScriptingEngine::OpenDebugLibrary
                         MezzLib                = 256,       ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
                         MezzSafeLib            = 512,       ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
-                        MezzXMLLib             = 1024,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
-                        MezzXMLSafeLib         = 2048,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
-                        MezzThreadingLib       = 4096,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
-                        MezzThreadingSafeLib   = 8192,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        MezzXMLLib             = 1024,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineXMLLibrary
+                        MezzXMLSafeLib         = 2048,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineXMLSafeLibrary
+                        MezzThreadingLib       = 4096,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineThreadingLibrary
+                        MezzThreadingSafeLib   = 8192,      ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineThreadingSafeLibrary
+                        MezzPhysicsLib         = 16384,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzaninePhysicsLibrary
+                        MezzPhysicsSafeLib     = 32768,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzaninePhysicsSafeLibrary
+
 
                         FirstLib    = BaseLib,              ///< Useful for math based ways to work with libraries, This is equal to the numerically lowest lib
-                        LastLib     = MezzThreadingSafeLib, ///< Useful for math based ways to work with libraries, This is equal to the numerically highest lib
+                        LastLib     = MezzPhysicsSafeLib,   ///< Useful for math based ways to work with libraries, This is equal to the numerically highest lib
 
                         DefaultLibs = BaseLib | StringLib | TableLib | MathLib |
-                                      MezzSafeLib | MezzXMLSafeLib | MezzThreadingSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                                      MezzSafeLib | MezzXMLSafeLib | MezzThreadingSafeLib |
+                                      MezzPhysicsSafeLib,                                   ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
                         AllLibs     = BaseLib | PackageLib | StringLib | TableLib |
                                       MathLib | IOLib | OSLib | DebugLib | MezzLib |
                                       MezzSafeLib | MezzXMLLib | MezzXMLSafeLib |
-                                      MezzThreadingLib | MezzThreadingSafeLib              ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
+                                      MezzThreadingLib | MezzThreadingSafeLib |
+                                      MezzPhysicsSafeLib | MezzPhysicsLib                   ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
                     };
 
                     static const String NoLibName;                    ///< @brief The name used to identify No libraries, "None"
@@ -143,6 +154,8 @@ namespace Mezzanine
                     static const String MezzXMLSafeLibName;           ///< @brief The name used to identify the MezzanineXMLSafe library, "MezzanineXMLSafe"
                     static const String MezzThreadingLibName;         ///< @brief The name used to identify the MezzanineThreading library, "MezzanineThreading"
                     static const String MezzThreadingSafeLibName;     ///< @brief The name used to identify the MezzanineThreadingSafe library, "MezzanineThreadingSafe"
+                    static const String MezzPhysicsLibName;           ///< @brief The name used to identify the MezzanineThreading library, "MezzaninePhysics"
+                    static const String MezzPhysicsSafeLibName;       ///< @brief The name used to identify the MezzanineThreadingSafe library, "MezzaninePhysicsSafe"
                     static const String DefaultLibsName;              ///< @brief The name used to identify the Default set of libraries, "Default"
                     static const String AllLibsName;                  ///< @brief The name used to identify the set of all libraries, "All"
 
@@ -160,6 +173,8 @@ namespace Mezzanine
                     static const String MezzXMLSafeTableName;         ///< @brief The name used to identify a table loaded by the MezzanineXMLSafe library, "MezzanineXMLSafe"
                     static const String MezzThreadingTableName;       ///< @brief The name used to identify a table loaded by the MezzanineThreading library, "MezzanineThreading"
                     static const String MezzThreadingSafeTableName;   ///< @brief The name used to identify a table loaded by the MezzanineThreadingSafe library, "MezzanineThreadingSafe"
+                    static const String MezzPhysicsTableName;         ///< @brief The name used to identify a table loaded by the MezzanineThreading library, "MezzaninePhysics"
+                    static const String MezzPhysicsSafeTableName;     ///< @brief The name used to identify a table loaded by the MezzanineThreadingSafe library, "MezzaninePhysicsSafe"
 
                     static const String TypeNameNil;                  ///< @brief A human friendly representation of the Lua type nil
                     static const String TypeNameBoolean;              ///< @brief A human friendly representation of the Lua type boolean
@@ -173,6 +188,8 @@ namespace Mezzanine
 
                     static const String GlobalTableName;              ///< @brief The place Lua keeps all the identifiers in a single Lua State
 
+                    static const String ScriptEngineName;             ///< @brief The name of this scripting engine for inspection purposes, "Lua51ScriptingEngine";
+
                     /// @brief Convert a Lua51Libraries value to its name
                     /// @param Lib A number indicating what libraries a Lua51ScriptingEngine could load
                     /// @return A reference to one of the library names listed on the Lua51ScriptingEngine
@@ -183,7 +200,7 @@ namespace Mezzanine
                     static const String& GetTableName(Lua51Libraries Lib);
                     /// @brief Convert a string similar to one of the names on the Lua51ScriptingEngine to number
                     /// @param Name A string containing a name of one of the libraries (without regard to case)
-                    /// @return The correlating
+                    /// @return The correlating enumeration value for the passed name.
                     static Lua51Libraries GetLibFromName(String Name);
 
                 ///////////////////////////////////////////////////////////////////////////////////////
@@ -191,6 +208,15 @@ namespace Mezzanine
                     /// @brief Constructs a Scripting engine with a set of libraries preloaded.
                     /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to load, this defaults to DefaultLibs
                     explicit Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen=DefaultLibs);
+
+                    /// @brief Construct a from name value pairs
+                    /// @param Params A collection of name value pairs indicating what to load and not load.
+                    /// @details Each name can be the name of a libname (except None) and the value can
+                    /// either be "Load" or "Unload". To indicate whether or not a library will be loaded
+                    /// or not during instantation.
+                    explicit Lua51ScriptingEngine(NameValuePairList& Params);
+
+                    explicit Lua51ScriptingEngine(const XML::Node& XMLNode);
 
                     /// @brief Virtual Deconstructor
                     virtual ~Lua51ScriptingEngine();
@@ -341,6 +367,13 @@ namespace Mezzanine
                     /// @details This should not allow access to any functions, methods or classes than can execute code or manage files or crash the client malicious ways.
                     virtual void OpenMezzanineThreadingSafeLibrary();
 
+                    /// @brief Make the Physics parts of the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @warning This makes a number of powerful feature available that could cause Denial of Service if untrusted scripts are run.
+                    virtual void OpenMezzaninePhysicsLibrary();
+                    /// @brief Make the Physics parts of the Mezzanine Libary available for use in Lua51 scripts.
+                    /// @details This should not allow access to any functions, methods or classes than can execute code or manage files or crash the client malicious ways.
+                    virtual void OpenMezzaninePhysicsSafeLibrary();
+
                 protected:
                     /// @brief Set The MezzanineXML library as the XML member of the Mezzanine library or fail silently
                     void SetXML();
@@ -351,6 +384,11 @@ namespace Mezzanine
                     void SetThreading();
                     /// @brief Set The MezzanineThreadingSafe library as the Threading member of the MezzanineSafe library or fail silently
                     void SetThreadingSafe();
+
+                    /// @brief Set The MezzanineThreading library as the Threading member of the Mezzanine library or fail silently
+                    void SetPhysics();
+                    /// @brief Set The MezzanineThreadingSafe library as the Threading member of the MezzanineSafe library or fail silently
+                    void SetPhysicsSafe();
 
                 ///////////////////////////////////////////////////////////////////////////////////////
                 // Other Lua Manipulation
@@ -388,9 +426,31 @@ namespace Mezzanine
                     /// @param StackLocation Where to look in the Lua stack for item to inspect
                     /// @return A reference to a constant string on this class.
                     const String& GetLuaTypeString(int StackLocation);
+
+
                     void PopulateTabCompletionTrie(CommandTrie& CommandGroup, const String& TableName="", std::vector<String> AlreadyDidTables=std::vector<String>());
 
             };
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// @class ManagerFactory
+            /// @headerfile managerfactory.h
+            /// @brief This is a base class for factories that construct the managers the engine uses.
+            /// @details
+            ///////////////////////////////////////
+            class MEZZ_LIB Lua51ScriptingEngineFactory : public ManagerFactory
+            {
+                public:
+                    /// @brief Class constructor.
+                    Lua51ScriptingEngineFactory() {  }
+                    /// @brief Class destructor.
+                    virtual ~Lua51ScriptingEngineFactory() {  }
+
+                    virtual String GetManagerTypeName() const;
+                    virtual ManagerBase* CreateManager(NameValuePairList& Params);
+                    virtual ManagerBase* CreateManager(XML::Node& XMLNode);
+                    virtual void DestroyManager(ManagerBase* ToBeDestroyed);
+            };//ManagerFactory
 
             //simplistic error checking function, to be replace with proper exception driven code later.
             //int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
@@ -405,3 +465,5 @@ namespace Mezzanine
 
 #endif // MEZZLUA51
 #endif // \_scriptinglua_h
+
+

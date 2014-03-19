@@ -100,8 +100,12 @@ namespace Mezzanine
                     /// @param ScriptToAdd A iScript to add.
                     virtual void AddScript(CountedPtr<iScript> ScriptToAdd);
                     /// @brief Adds a script similar to push_back (Actually calls it).
-                    ////// @param ScriptToAdd A Lua51Script to add.
+                    /// @param ScriptToAdd A Lua51Script to add.
                     virtual void AddScript(CountedPtr<Lua51Script> ScriptToAdd);
+                    /// @brief Add a script by providing it source code.
+                    /// @param Source The Lua source code to add.
+                    virtual void AddScript(String Source);
+
 
                     /// @brief Get an Iterator to a script from the counted pointer
                     /// @param Target a CountedPtr to convert into an iterator

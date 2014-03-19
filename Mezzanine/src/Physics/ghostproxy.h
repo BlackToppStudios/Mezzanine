@@ -130,6 +130,7 @@ namespace Mezzanine
             virtual btPairCachingGhostObject* _GetPhysicsObject() const;
             /// @copydoc CollidableProxy::_GetBasePhysicsObject()
             virtual btCollisionObject* _GetBasePhysicsObject() const;
+
         };//GhostProxy
     }//Physics
 }//Mezzanine

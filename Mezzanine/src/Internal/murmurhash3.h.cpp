@@ -37,41 +37,44 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physicshinge2constraint_h
-#define _physicshinge2constraint_h
 
-#include "Physics/generic6dofspringconstraint.h"
 
-#ifndef SWIG
-class btHinge2Constraint;
+//-----------------------------------------------------------------------------
+// MurmurHash3 was written by Austin Appleby, and is placed in the public
+// domain. The author hereby disclaims copyright to this source code.
+
+#ifndef _MURMURHASH3_H_
+#define _MURMURHASH3_H_
+
+// If Microsoft Visual Studio
+#if defined(_MSC_VER) && (_MSC_VER < 1600)
+    typedef unsigned char uint8_t;
+    typedef unsigned int uint32_t;
+    typedef unsigned __int64 uint64_t;
+    // Other compilers
+#else
+    #include <stdint.h>
+#endif // !defined(_MSC_VER)
+
+
+/// @file
+/// @brief This is an external library for a non-cryptographic hash function
+/// @details This was chosen because it is fast, resists collisions, works on
+/// all Mezzanine target platforms and is liberally licensed.
+/// @n @n
+/// Copied with written permission on Mar 10, 2014
+/// from https://code.google.com/p/smhasher/
 
 namespace Mezzanine
 {
-    namespace Physics
+    namespace Internal
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class Hinge2Constraint
-        /// @headerfile constraint.h
-        /// @brief
-        /// @details This class is incomplete
-        ///////////////////////////////////////
-        class MEZZ_LIB Hinge2Constraint : public Generic6DofSpringConstraint
-        {
-        protected:
-            /// @brief Bullet constraint that this class encapsulates.
-            btHinge2Constraint* Hinge2;
-        public:
-            /// @brief Class constructor.
-            Hinge2Constraint(RigidProxy* ProxyA, RigidProxy* ProxyB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
-            /// @brief Class destructor.
-            virtual ~Hinge2Constraint();
+        void MurmurHash3_x86_32  ( const void * key, int len, uint32_t seed, void * out );
 
-            virtual void SetUpperLimit(Real Ang1Max);
-            virtual void SetLowerLimit(Real Ang1Min);
-        };//Hinge2Constraint
-    }//Physics
-}//Mezzanine
-#endif
+        void MurmurHash3_x86_128 ( const void * key, int len, uint32_t seed, void * out );
 
+        void MurmurHash3_x64_128 ( const void * key, int len, uint32_t seed, void * out );
+    }
+}
 
-#endif
+#endif // _MURMURHASH3_H_

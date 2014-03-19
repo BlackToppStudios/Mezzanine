@@ -40,8 +40,11 @@
 #ifndef _collisionshape_h
 #define _collisionshape_h
 
-#include "serialization.h"
-#include "transform.h"
+#include "datatypes.h"
+#ifndef SWIG
+    #include "serialization.h"
+    #include "transform.h"
+#endif
 
 class btCollisionShape;
 
@@ -215,6 +218,7 @@ namespace Mezzanine
     }//Physics
 }//Mezzanine
 
+#ifndef SWIG
 /// @brief Serialize an CollisionShape and send it to a stream
 /// @param ShapeToSerialize The CollisionShape serialize
 /// @param stream the std::ostream to send the CollisionShape xml to.
@@ -229,6 +233,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Co
 /// @param OneNode The xml node that contains the deserialize class instance.
 /// @param x The class instance to overwrite witht the proto serialized version in the node.
 void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x);
+#endif
 
 
 #endif

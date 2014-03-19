@@ -80,6 +80,10 @@ namespace Mezzanine
             void Lua51WorkUnit::AddScript(CountedPtr<Lua51Script> ScriptToAdd)
                 { push_back(ScriptToAdd); }
 
+
+            void Lua51WorkUnit::AddScript(String Source)
+                { AddScript(CountedPtr<Lua51Script>(new Lua51Script(Source, LuaRuntime))); }
+
             Lua51WorkUnit::iterator Lua51WorkUnit::find(CountedPtr<Lua51Script> Target)
             {
                 for(Lua51WorkUnit::iterator Iter=this->begin(); Iter!=this->end() ; Iter++)

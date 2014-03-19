@@ -283,6 +283,8 @@ namespace Mezzanine
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
+
+#ifndef SWIG
 /// @brief Convert a constraint to XML and send it down a stream.
 /// @param stream The stream to send it down.
 /// @param x The constraint to send down.
@@ -297,5 +299,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Co
 /// @param OneNode The xml node that contains the deserialize class instance.
 /// @param x The class instance to overwrite witht the proto serialized version in the node.
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x);
+#endif
+
 
 #endif

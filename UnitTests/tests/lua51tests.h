@@ -147,7 +147,7 @@ class lua51tests : public UnitTestGroup
                 TEST(String("Lua51ScriptingEngine")==LuaRuntimeSafe.GetImplementationTypeName(), "Engine::ImplementationName");
                 TestOutput << "Checking lib enum values:" << endl;
                 TestOutput << "Default Expected: " << (541+2048+8192) << "\tActual:" << Scripting::Lua::Lua51ScriptingEngine::DefaultLibs << endl;
-                TEST(541+2048+8192==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
+                TEST(541+2048+8192+32768==Scripting::Lua::Lua51ScriptingEngine::DefaultLibs, "Engine::LuaLibEnumDefault");
                 int TargetLib=0;
                 for(int lib = Scripting::Lua::Lua51ScriptingEngine::FirstLib;
                     lib <= Scripting::Lua::Lua51ScriptingEngine::LastLib;
@@ -162,9 +162,9 @@ class lua51tests : public UnitTestGroup
                 String Valid4("_is_valid");
                 String Invalid1("");
                 String Invalid2("1_is_not_valid");
-                String Invalid3("_is_n%t_valid");
+                String Invalid3("is_n%t_valid");
                 String Invalid4("_is_not_valid$");
-                String Invalid5("(_is_not_valid");
+                String Invalid5("is.not_valid");
                 TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Valid1)==true, "Engine::ValidIdentifier1");
                 TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Valid2)==true, "Engine::ValidIdentifier2");
                 TEST(Scripting::Lua::Lua51ScriptingEngine::IsValidIdentifier(Valid3)==true, "Engine::ValidIdentifier3");
@@ -488,23 +488,48 @@ class lua51tests : public UnitTestGroup
                     TestOutput << StringReturn->GetString() << endl;
 
                     TEST_RESULT(Testing::Success, "SWIG_Dump");
+
+                    LuaRuntimeSafe.Execute(DumpFunctionCall);
+
+                    TEST_RESULT(Testing::Success, "SWIG_Dump_2ndExecution");
+
+
                 } catch (ScriptLuaException& ) {
                     TEST_RESULT(Testing::Failed, "SWIG_Dump");
+                    TEST_RESULT(Testing::Failed, "SWIG_Dump_2ndFunctionExecution");
                 }
 
             }
 
+            {
+                NameValuePairList Parms;
+                Scripting::Lua::Lua51ScriptingEngine RuntimeDefault(Parms);
+
+                // Not exhaustive
+                TEST(RuntimeDefault.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib) &&
+                     RuntimeDefault.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::StringLib) &&
+                     !RuntimeDefault.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::OSLib)
+                    , "NameValuePairConstructionDefault");
+
+                Parms.insert(Parms.begin(), NameValuePair("OS", "Load"));
+                Scripting::Lua::Lua51ScriptingEngine RuntimeOnlyOS(Parms);
+                TEST(!RuntimeOnlyOS.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib) &&
+                     !RuntimeOnlyOS.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::StringLib) &&
+                     RuntimeOnlyOS.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::OSLib)
+                    , "NameValuePairConstructionOS");
+            }
+
+            {
+                TEST_NO_THROW(
+                    Scripting::Lua::Lua51ScriptingEngine LuaRuntimeDoubleRunTest(Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
+                    Scripting::Lua::Lua51Script Att("print('Hello from a script about to be run twice')", &LuaRuntimeDoubleRunTest);
+                    LuaRuntimeDoubleRunTest.Execute(Att);
+                    LuaRuntimeDoubleRunTest.Execute(Att);
+                    , "DoubleScriptExecution");
+            }
+
             // Wrapped Test Selection
             {
-                // files/Classes not tested
-                // worldnode.h
-                // worldobjectgraphicssettings.h
-                // worldobject.h
-                // worldobjectphysicssettings.h
-                // Attachable
-                // FrameScheduler
-                // DoubleBuffered Resource
-
                 // Specific class swig wrapping tests
                 TestLuaScript("function MakePlane(x)\n"
                               "   d=x*3\n"

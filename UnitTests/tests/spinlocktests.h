@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mutextests_h
-#define _mutextests_h
+#ifndef _spinlocktests_h
+#define _spinlocktests_h
 
 #include "mezztest.h"
 
@@ -52,108 +52,106 @@ using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 using namespace Mezzanine::Threading;
 
-/// @brief A place for log outputs in other threads.
-Logger LogForMutexes;
 
 /// @brief Used in testing Basic Mutex
-static Mezzanine::Threading::ThreadId ThreadIDTest=0;
-/// @brief Used in testing Basic Mutex
-static Mezzanine::Threading::Mutex ThreadIDLock;
-/// @brief Used in testing Basic Mutex
-void PutIdInGlobal(void*)
-{
-    LogForMutexes << "Thread T2 trying to lock mutex ThreadIDLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-    ThreadIDLock.Lock();
-    LogForMutexes << "Thread T2 locked mutex: " << endl;
-    ThreadIDTest = Mezzanine::Threading::this_thread::get_id();
-    LogForMutexes << "Thread T2 work complete unlocking mutex: " << endl;
-    ThreadIDLock.Unlock();
-}
+static Mezzanine::Threading::ThreadId ThreadIDSpinTest=0;
 
-/// @brief Used in mutex try_lock tests
-static Mezzanine::Integer TryLockTest=0;
-
-/// @brief Used in mutex try_lock tests
-static Mezzanine::Threading::Mutex TryLock;
-/// @brief Used in mutex try_lock tests
+/// @brief Used in spinlock try_lock tests
+static Mezzanine::Integer TrySpinLockTest=0;
+/// @brief Used in SpinLock try_lock tests
+static Mezzanine::Threading::SpinLock TrySpinlock;
+/// @brief Used in spinlock try_lock tests
 /// @param Value This is the a value passed into the thread to confirm that it works
-void TryToSquareInThread(void* Value)
+void TryToSquareInThreadSpin(void* Value)
 {
-    LogForMutexes << "Thread T4 trying to lock mutex ThreadPassLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-    if (TryLock.TryLock())
+    //LogForMutexes << "Thread T4 trying to lock mutex TrySpinlock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    if (TrySpinlock.TryLock())
     {
-        LogForMutexes << "Thread T4 locked mutex, Squaring the value " << endl;
-        TryLockTest = *(Mezzanine::Integer*)Value * *(Mezzanine::Integer*)Value;
-        TryLock.Unlock();
+        //LogForMutexes << "Thread T4 locked mutex, Squaring the value " << endl;
+        TrySpinLockTest = *(Mezzanine::Integer*)Value * *(Mezzanine::Integer*)Value;
+        TrySpinlock.Unlock();
     }else{
-        LogForMutexes << "Thread T4 could not acquire lock, no work done" << endl;
+        //LogForMutexes << "Thread T4 could not acquire lock, no work done" << endl;
     }
 }
 
+/// @brief Used in testing Basic SpinLock
+static Mezzanine::Threading::SpinLock ThreadIDSpinLock;
+/// @brief Used in testing Basic SpinLock
+void PutIdInGlobalSpin(void*)
+{
+    //LogForMutexes << "Thread  trying to lock SpinLock ThreadIDLock, thread has id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+    ThreadIDSpinLock.Lock();
+    //LogForMutexes << "Thread T2 locked SpinLock: " << endl;
+    ThreadIDSpinTest = Mezzanine::Threading::this_thread::get_id();
+    //LogForMutexes << "Thread T2 work complete unlocking SpinLock: " << endl;
+    ThreadIDSpinLock.Unlock();
+}
+
+
+
 /// @brief Tests for the mutex class
-class mutextests : public UnitTestGroup
+class spinlocktests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
         /// @return Returns a String containing "Mutex"
         virtual String Name()
-            { return String("Mutex"); }
+            { return String("Spinlock"); }
 
         /// @brief Even though the framescheduler does not use Mutexes, any library providing multithreading capabilites without them would be lacking, so we must test them.
         virtual void RunAutomaticTests()
         {
-
-            { // Lock
-                TestOutput << "Testing basic mutex functionality" << endl;
-                TestOutput << "Locking ThreadIDLock in thread: " << Mezzanine::Threading::this_thread::get_id() << endl;
-                ThreadIDLock.Lock();
+            { // SpinLock.Lock
+                TestOutput << "Testing basic SpinLock functionality" << endl;
+                TestOutput << "Locking ThreadIDSpinLock in thread: " << Mezzanine::Threading::this_thread::get_id() << endl;
+                ThreadIDSpinLock.Lock();
 
                 TestOutput << "Creating a thread with identifier T2 and unkown id." << endl;
-                Mezzanine::Threading::Thread T2(PutIdInGlobal);
+                Mezzanine::Threading::Thread T2(PutIdInGlobalSpin);
 
                 TestOutput << "Storing T2's id: " << T2.get_id() << endl;
-                TestOutput << "Unlocking ThreadIDLock from main and sleeping for 300 ms." << endl;
+                TestOutput << "Unlocking ThreadIDSpinLock from main and sleeping for 300 ms." << endl;
                 Mezzanine::Threading::ThreadId T2id = T2.get_id();
-                ThreadIDLock.Unlock();
+                ThreadIDSpinLock.Unlock();
                 Mezzanine::Threading::this_thread::sleep_for(300000);
 
-                ThreadIDLock.Lock();
-                TestOutput << "Does the thread report the same ID as we gathered: " << (ThreadIDTest == T2id) << endl;
-                TEST(ThreadIDTest == T2id,"Mutex::Lock")
-                ThreadIDLock.Unlock();
+                ThreadIDSpinLock.Lock();
+                TestOutput << "Does the thread report the same ID as we gathered: " << (ThreadIDSpinTest == T2id) << endl;
+                TEST(ThreadIDSpinTest == T2id,"SpinLock::Lock")
+                ThreadIDSpinLock.Unlock();
 
                 TestOutput << "Joining T2" << endl;
                 T2.join();
-                TestOutput << LogForMutexes.str();
-                LogForMutexes.str("");
-            } // \ Lock
+                //TestOutput << LogForMutexes.str();
+                //LogForMutexes.str("");
+            } // \ SpinLock.Lock
 
-            { // Trylock
-                TestOutput << "Testing Mutex try_lock()" << endl;
+            { // SpinLock::Trylock
+                TestOutput << "Testing SpinLock try_lock()" << endl;
 
-                TestOutput << "Locking TryLock in main thread with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
-                TEST(TryLock.TryLock(),"Mutex::TryLock");
+                TestOutput << "Locking TrySpinLock in main thread with id: " << Mezzanine::Threading::this_thread::get_id() << endl;
+                TEST(TrySpinlock.TryLock(),"SpinLock::TryLock");
 
                 Mezzanine::Integer Value = 9;
                 TestOutput << "Creating a thread with identifier T4 and unkown id." << endl;
                 TestOutput << "Passing " << Value << " into thread T4, and assigning to output and waiting 200ms." << endl;
-                TryLockTest = Value;
-                Mezzanine::Threading::Thread T4(TryToSquareInThread, &Value);
+                TrySpinLockTest = Value;
+                Mezzanine::Threading::Thread T4(TryToSquareInThreadSpin, &Value);
 
                 Mezzanine::Threading::this_thread::sleep_for(300000);
 
                 TestOutput << "Joining T4" << endl;
                 T4.join();
-                TestOutput << LogForMutexes.str();
-                LogForMutexes.str("");
+                //TestOutput << LogForMutexes.str();
+                //LogForMutexes.str("");
 
-                TestOutput << "Unlocking TryLock." << endl;
-                TryLock.Unlock();
-                TestOutput << "Value from thread's return point is " << TryLockTest << " it should be " << Value << " if it wasn't able to get mutex" << endl;
-                TestOutput << "Did T4 not get the mutex and proceed past mutex as expected: " << (TryLockTest == Value) << endl;
-                TEST(TryLockTest == Value,"Mutex::TryLockExclude");
-            } // Trylock
-
+                TestOutput << "Unlocking TrySpinLock." << endl;
+                TrySpinlock.Unlock();
+                TestOutput << "Value from thread's return point is " << TrySpinLockTest << " it should be " << Value << " if it wasn't able to get SpinLock" << endl;
+                TestOutput << "Did T4 not get the SpinLock and proceed past SpinLock as expected: " << (TrySpinLockTest == Value) << endl;
+                TEST(TrySpinLockTest == Value,"SpinLock::TryLockExclude");
+            } // SpinLock::Trylock
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

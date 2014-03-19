@@ -70,6 +70,9 @@ extern "C"
 
     int luaopen_MezzanineThreading(lua_State* L);
     int luaopen_MezzanineThreadingSafe(lua_State* L);
+
+    int luaopen_MezzaninePhysics(lua_State* L);
+    int luaopen_MezzaninePhysicsSafe(lua_State* L);
 }
 
 namespace Mezzanine
@@ -105,20 +108,14 @@ namespace Mezzanine
                 /// @param Buffer A BinaryBuffer containing the bytecode to load into Lua
                 /// @param Size an output parameter to convey the size of the return to Lua.
                 /// @return A pointer to a binary buffer suitable for Lua's use and the size of that buffer in the output parameter Size
-                /// @warning The Lua documentation clearly indicates second parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
+                /// @warning The Lua documentation clearly indicates sec    ond parameter should be const and the third parameter should be a size_t* but the compiler says long unsigned int*
                 /// @note This is a lua_Reader as per http://www.lua.org/manual/5.1/manual.html#lua_Reader
                 const char* LuaBytecodeLoader(lua_State* State, void* BinBuff, size_t* Size)
                 {
-                    FlaggedBuffer* LoadingBuffer= reinterpret_cast<FlaggedBuffer*>(BinBuff);
-                    if(LoadingBuffer->Loaded)
-                    {
-                        LoadingBuffer->Loaded = false;
-                        return 0;
-                    }else{
-                        *Size = LoadingBuffer->Size;
-                        LoadingBuffer->Loaded = true;
-                        return (const char*)LoadingBuffer->Binary;
-                    }
+                    FlaggedBuffer* LoadingBuffer = reinterpret_cast<FlaggedBuffer*>(BinBuff);
+                    *Size = LoadingBuffer->Size;
+
+                    return (const char*)LoadingBuffer->Binary;
                 }
 
                 /// @internal
@@ -181,6 +178,12 @@ namespace Mezzanine
                 }
             }
 
+            void Lua51ScriptingEngine::CheckLuaStateAfterConstruction() const
+            {
+                if(NULL==State)
+                    { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
+            }
+
             const String Lua51ScriptingEngine::NoLibName                   = "None";
             const String Lua51ScriptingEngine::BaseLibName                 = "Base";
             const String Lua51ScriptingEngine::PackageLibName              = "Package";
@@ -196,6 +199,8 @@ namespace Mezzanine
             const String Lua51ScriptingEngine::MezzXMLSafeLibName          = "MezzanineXMLSafe";
             const String Lua51ScriptingEngine::MezzThreadingLibName        = "MezzanineThreading";
             const String Lua51ScriptingEngine::MezzThreadingSafeLibName    = "MezzanineThreadingSafe";
+            const String Lua51ScriptingEngine::MezzPhysicsLibName          = "MezzaninePhysics";
+            const String Lua51ScriptingEngine::MezzPhysicsSafeLibName      = "MezzaninePhysicsSafe";
             const String Lua51ScriptingEngine::DefaultLibsName             = "Default";
             const String Lua51ScriptingEngine::AllLibsName                 = "All";
 
@@ -213,6 +218,8 @@ namespace Mezzanine
             const String Lua51ScriptingEngine::MezzXMLSafeTableName        = "MezzanineXMLSafe";
             const String Lua51ScriptingEngine::MezzThreadingTableName      = "MezzanineThreading";
             const String Lua51ScriptingEngine::MezzThreadingSafeTableName  = "MezzanineThreadingSafe";
+            const String Lua51ScriptingEngine::MezzPhysicsTableName        = "MezzaninePhysics";
+            const String Lua51ScriptingEngine::MezzPhysicsSafeTableName    = "MezzaninePhysicsSafe";
 
             const String Lua51ScriptingEngine::TypeNameNil                 = "Nil";
             const String Lua51ScriptingEngine::TypeNameBoolean             = "Boolean";
@@ -225,6 +232,8 @@ namespace Mezzanine
             const String Lua51ScriptingEngine::TypeNameThread              = "Thread";
 
             const String Lua51ScriptingEngine::GlobalTableName             = "_G";
+
+            const String Lua51ScriptingEngine::ScriptEngineName            = "Lua51ScriptingEngine";
 
             const String& Lua51ScriptingEngine::GetLibName(Lua51ScriptingEngine::Lua51Libraries Lib)
             {
@@ -245,9 +254,11 @@ namespace Mezzanine
                     case MezzXMLSafeLib:        return MezzXMLSafeLibName;
                     case MezzThreadingLib:      return MezzThreadingLibName;
                     case MezzThreadingSafeLib:  return MezzThreadingSafeLibName;
+                    case MezzPhysicsLib:        return MezzPhysicsLibName;
+                    case MezzPhysicsSafeLib:    return MezzPhysicsSafeLibName;
                     case DefaultLibs:           return DefaultLibsName;
                     case AllLibs:               return AllLibsName;
-                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to library string: "+ToString(Lib));
+                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to library string: " + ToString(Lib));
                 }
             }
 
@@ -269,7 +280,9 @@ namespace Mezzanine
                     case MezzXMLSafeLib:        return MezzXMLSafeTableName;
                     case MezzThreadingLib:      return MezzThreadingTableName;
                     case MezzThreadingSafeLib:  return MezzThreadingSafeTableName;
-                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to table string: "+ToString(Lib));
+                    case MezzPhysicsLib:        return MezzPhysicsTableName;
+                    case MezzPhysicsSafeLib:    return MezzPhysicsSafeTableName;
+                    default: MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Cannot convert given value to table string: " + ToString(Lib));
                 }
             }
 
@@ -284,12 +297,16 @@ namespace Mezzanine
                 {
                     case 'n': if(Name==LowerCaseCopy(NoLibName))       { return NoLib; }       else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with n: " + Name); }
                     case 'b': if(Name==LowerCaseCopy(BaseLibName))     { return BaseLib; }     else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with b: " + Name); }
-                    case 'p': if(Name==LowerCaseCopy(PackageLibName))  { return PackageLib; }  else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with p: " + Name); }
                     case 's': if(Name==LowerCaseCopy(StringLibName))   { return StringLib; }   else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with s: " + Name); }
                     case 't': if(Name==LowerCaseCopy(TableLibName))    { return TableLib; }    else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with t: " + Name); }
                     case 'i': if(Name==LowerCaseCopy(IOLibName))       { return IOLib; }       else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with i: " + Name); }
                     case 'o': if(Name==LowerCaseCopy(OSLibName))       { return OSLib; }       else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with o: " + Name); }
                     case 'a': if(Name==LowerCaseCopy(AllLibsName))     { return AllLibs; }     else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with a: " + Name); }
+                    case 'p':
+                        if     (Name==LowerCaseCopy(PackageLibName))           { return PackageLib; }
+                        else if(Name==LowerCaseCopy(MezzPhysicsLibName))       { return MezzPhysicsLib; }
+                        else if(Name==LowerCaseCopy(MezzPhysicsSafeLibName))   { return MezzPhysicsSafeLib; }
+                        else { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Could not convert name starting with p: " + Name); }
                     case 'm':
                         if     (Name==LowerCaseCopy(MathLibName))              { return MathLib; }
                         else if(Name==LowerCaseCopy(MezzLibName))              { return MezzLib; }
@@ -311,9 +328,39 @@ namespace Mezzanine
             // Construction/Deconstruction
             Lua51ScriptingEngine::Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen) : State(luaL_newstate())
             {
-                if(NULL==State)
-                    { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
+                CheckLuaStateAfterConstruction();
                 OpenLibraries(LibrariesToOpen);
+            }
+
+            Lua51ScriptingEngine::Lua51ScriptingEngine(NameValuePairList& Params) : State(luaL_newstate())
+            {
+                CheckLuaStateAfterConstruction();
+                Integer ToLoad = NoLib;
+                if(Params.empty())
+                    { ToLoad = DefaultLibs; }
+                else
+                {
+                    for(NameValuePairList::iterator Iter = Params.begin(); Params.end() != Iter; Iter++ )
+                    {
+                        Lua51Libraries Lib( GetLibFromName(Iter->first) );
+                        String LoadState(Iter->second);
+                        if(String("Load")==LoadState)
+                            { ToLoad |= Lib; }
+                        else{
+                            if(String("Unload")==LoadState)
+                                { ToLoad &= ~Lib; }
+                            else
+                                { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Unknown loadstate parameter, during name value pair construction."); }
+                        }
+                    }
+                }
+                OpenLibraries( (Lua51Libraries)ToLoad );
+            }
+
+            Lua51ScriptingEngine::Lua51ScriptingEngine(const XML::Node& XMLNode) : State(luaL_newstate())
+            {
+                CheckLuaStateAfterConstruction();
+                OpenLibraries(DefaultLibs);
             }
 
             Lua51ScriptingEngine::~Lua51ScriptingEngine()
@@ -355,7 +402,7 @@ namespace Mezzanine
                     else
                     {
                         ThrowFromLuaErrorCode(
-                            lua_load(this->State, LuaBytecodeLoader, &ScriptToRun->GetByteCodeReference(), ScriptToRun->GetName().c_str())
+                            lua_load(this->State, LuaBytecodeLoader, &(ScriptToRun->GetByteCodeReference()), ScriptToRun->GetName().c_str())
                         );
                     }
                     // Since Lua_Dump or lua_load will leave the function on the stack then...
@@ -436,7 +483,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////////////
             // For Inheritance
             String Lua51ScriptingEngine::GetImplementationTypeName() const
-                { return String("Lua51ScriptingEngine"); }
+                { return ScriptEngineName; }
 
             ///////////////////////////////////////////////////////////////////////////////////////
             // Library Manipulation
@@ -470,6 +517,10 @@ namespace Mezzanine
                     { OpenMezzanineThreadingLibrary(); }
                 if(LibrariesToOpen & MezzThreadingSafeLib)
                     { OpenMezzanineThreadingSafeLibrary(); }
+                if(LibrariesToOpen & MezzPhysicsLib)
+                    { OpenMezzaninePhysicsLibrary(); }
+                if(LibrariesToOpen & MezzPhysicsSafeLib)
+                    { OpenMezzaninePhysicsSafeLibrary(); }
             }
 
             Boole Lua51ScriptingEngine::IsLibraryOpen(Lua51Libraries LibToCheck)
@@ -500,7 +551,7 @@ namespace Mezzanine
                 {
                     lua_pushstring(State, Alias.c_str());
                     lua_getglobal(State, Sub.c_str());
-                    lua_settable(State, -3); // Set the table a -3, Mezzanine to have the index defined by -2 "XML" set to the value at -1 "The MezzanineXML Table"
+                    lua_settable(State, -3);
                     lua_pop(State,1);
                 } //else Fail Silently
             }
@@ -564,14 +615,14 @@ namespace Mezzanine
                 lua_pushcfunction(State, luaopen_Mezzanine);
                 lua_pushstring(State, (MezzLibName.c_str()) );
                 lua_call(State, 1, 0);
-                SetXML();
+                //SetM();
             }
             void Lua51ScriptingEngine::OpenMezzanineSafeLibrary()
             {
                 lua_pushcfunction(State, luaopen_MezzanineSafe);
                 lua_pushstring(State, (MezzSafeLibName.c_str()) );
                 lua_call(State, 1, 0);
-                SetXMLSafe();
+                //SetXMLSafe();
             }
 
             void Lua51ScriptingEngine::OpenMezzanineXMLLibrary()
@@ -581,7 +632,6 @@ namespace Mezzanine
                 lua_call(State, 1, 0);
                 SetXML();
             }
-
             void Lua51ScriptingEngine::OpenMezzanineXMLSafeLibrary()
             {
                 lua_pushcfunction(State, luaopen_MezzanineXMLSafe);
@@ -605,8 +655,23 @@ namespace Mezzanine
                 SetThreadingSafe();
             }
 
+            void Lua51ScriptingEngine::OpenMezzaninePhysicsLibrary()
+            {
+                lua_pushcfunction(State, luaopen_MezzaninePhysics);
+                lua_pushstring(State, (MezzPhysicsLibName.c_str()) );
+                lua_call(State, 1, 0);
+                SetThreading();
+            }
+            void Lua51ScriptingEngine::OpenMezzaninePhysicsSafeLibrary()
+            {
+                lua_pushcfunction(State, luaopen_MezzaninePhysicsSafe);
+                lua_pushstring(State, (MezzPhysicsSafeLibName.c_str()) );
+                lua_call(State, 1, 0);
+                SetThreadingSafe();
+            }
+
             void Lua51ScriptingEngine::SetXML()
-            { AliasLibrary("Mezzanine", "MezzanineXML", "XML"); }
+                { AliasLibrary("Mezzanine", "MezzanineXML", "XML"); }
             void Lua51ScriptingEngine::SetXMLSafe()
                 { AliasLibrary("MezzanineSafe", "MezzanineXMLSafe", "XML"); }
 
@@ -614,6 +679,11 @@ namespace Mezzanine
                 { AliasLibrary("Mezzanine", "MezzanineThreading", "Threading"); }
             void Lua51ScriptingEngine::SetThreadingSafe()
                 { AliasLibrary("MezzanineSafe", "MezzanineThreadingSafe", "Threading"); }
+
+            void Lua51ScriptingEngine::SetPhysics()
+                { AliasLibrary("Mezzanine", "MezzaninePhysics", "Physics"); }
+            void Lua51ScriptingEngine::SetPhysicsSafe()
+                { AliasLibrary("MezzanineSafe", "MezzaninePhysicsSafe", "Physics"); }
 
             lua_State* Lua51ScriptingEngine::GetRawLuaState()
                 { return State; }
@@ -700,7 +770,12 @@ namespace Mezzanine
                 {
                     // Capture Strings(names) and their associated types
                     if(LUA_TSTRING==lua_type(State,-2))
-                        { CommandGroup.insert((TableName + "." + lua_tostring(State,-2)).c_str(), &GetLuaTypeString(-1)); }
+                    {
+                        String TablePrefix;
+                        if(TableName!=String(""))
+                            { TablePrefix = TableName + "."; }
+                        CommandGroup.insert((TablePrefix + lua_tostring(State,-2)).c_str(), &GetLuaTypeString(-1));
+                    }
 
                     // If it is a table and we have no done it yet, recurse
                     if(LUA_TTABLE==lua_type(State,-1))
@@ -726,6 +801,18 @@ namespace Mezzanine
                 }
                 lua_pop(State, 1);
             }
+
+            String Lua51ScriptingEngineFactory::GetManagerTypeName() const
+                { return Lua51ScriptingEngine::ScriptEngineName; }
+
+            ManagerBase*Lua51ScriptingEngineFactory::CreateManager(NameValuePairList& Params)
+                { return new Lua51ScriptingEngine(Params); }
+
+            ManagerBase*Lua51ScriptingEngineFactory::CreateManager(XML::Node& XMLNode)
+                { return new Lua51ScriptingEngine(XMLNode); }
+
+            void Lua51ScriptingEngineFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+                { delete ToBeDestroyed; }
 
 
         } // Lua

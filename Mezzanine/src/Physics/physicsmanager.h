@@ -57,19 +57,21 @@ class btThreadSupportInterface;
 
 typedef float btScalar;
 
-#include <map>
-#include <vector>
-
 #include "datatypes.h"
-#include "worldmanager.h"
-#include "managerfactory.h"
-#include "singleton.h"
-#include "Physics/collidablepair.h"
-#include "Physics/constraint.h"
-#include "Physics/managerconstructioninfo.h"
-#include "Threading/workunit.h"
-#include "Threading/monopoly.h"
-
+#ifndef SWIG
+    #include "worldmanager.h"
+    #include "managerfactory.h"
+    #include "singleton.h"
+#endif
+#ifndef SWIG
+    #include "Physics/collidablepair.h"
+    #include "Physics/constraint.h"
+    #include "Physics/managerconstructioninfo.h"
+#endif
+#ifndef SWIG
+    #include "Threading/workunit.h"
+    #include "Threading/monopoly.h"
+#endif
 namespace Mezzanine
 {
     // internal forward declarations
@@ -450,7 +452,7 @@ namespace Mezzanine
             /// @param Con The constraint to be removed.
             void RemoveConstraint(Physics::Constraint* Con);
             /// @brief Destroys all constraints currently in the manager.
-            /// @details In practice it is cleaner to remove constraints from the world before removing any constrained actors.
+            /// @details In phashedstringractice it is cleaner to remove constraints from the world before removing any constrained actors.
             void DestroyAllConstraints();
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -506,12 +508,14 @@ namespace Mezzanine
             /// @brief Get a CollisionIterator to one past the last Collision.
             /// @return A CollisionIterator to one past the last Collision.
             CollisionIterator EndCollision();
+            #if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
             /// @brief Get a ConstCollisionIterator to the first Collision.
             /// @return A ConstCollisionIterator to the first Collision.
             ConstCollisionIterator BeginCollision() const;
             /// @brief Get a ConstCollisionIterator to one past the last Collision.
             /// @return A ConstCollisionIterator to one past the last Collision.
             ConstCollisionIterator EndCollision() const;
+            #endif
 
             ///////////////////////////////////////////////////////////////////////////////
             // Debug Management
@@ -572,19 +576,21 @@ namespace Mezzanine
             // Type Identifier Methods
 
             /// @copydoc ManagerBase::GetInterfaceType()
-            virtual ManagerType GetInterfaceType() const;
+            virtual ManagerBase::ManagerType GetInterfaceType() const;
             /// @copydoc ManagerBase::GetImplementationTypeName()
             virtual String GetImplementationTypeName() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
 
+            #if !(defined(SWIG) && defined(MEZZLUA51)) // Stop Swig from making lua bindings but allow other languages
             /// @internal
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
             btSoftRigidDynamicsWorld* _GetPhysicsWorldPointer();
             /// @internal
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
             const btSoftRigidDynamicsWorld* _GetPhysicsWorldPointer() const;
+            #endif
         };//PhysicsManager
 
         ///////////////////////////////////////////////////////////////////////////////

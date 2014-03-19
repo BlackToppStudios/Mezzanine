@@ -67,22 +67,52 @@ namespace Mezzanine
 }
 
 /// @page ScriptingManual
+/// Many scripting languages suitable for being embedded in games have a number of
+/// similar traits. All have some kind of runtime that must be initialized, this
+/// runtime accepts strings of script source and performs the steps the source
+/// desribe. Some keep internal track of the source, others expect the the caller to
+/// do so. Most allow passing arguments into scripts and accepting return values.
+/// Some allow the script to be compiled to a bytecode and others do not. A scripting
+/// manager is a generic interface to this functionality and is expected to be the primary
+/// interface for game developers who want to use a given scripting language.
+/// @n @n
+/// Almost every language makes a point of interoperating with C. Some provide a
+/// special Application Prorammer Interface (API - intended for mostly programmers
+/// use) for C to call on like Ruby, Lua and AngelScript. Some take advantage of
+/// the reliable and unchanging C Application Binary Interface (ABI - primarily
+/// for direct executable to executable integration), such as Java, C#,
+/// Ruby when using FFI.
+/// @n @n
+/// In addition to these kinds of complexities, there are different reasons to use
+/// a scripting language. The uses cases fall on a spectrum of "Writing a game in
+/// a Scripting language with just performance sensitive pieces in C/C++" to the
+/// other extreme of "The bulk of the code in C/C++ with the ability to run
+/// scripts for flexibilty". The are reasons for both of these use cases and
+/// they do not meaningfully conflict. Presumably any extra code written in the
+/// more performant C and C++ will benefit all, with the primary reason to not do
+/// so being time and technical skill required to do it. If something is already
+/// written this way, then why not take advantage of it.
+/// @n @n
+/// The Interface of the scripting system was an attempt to
+/// allow enough flexibility to accomodate most scripting and managed languages,
+/// for the purpose of this discussion I mean any language with its own bytecode.
+/// @n @n
+///
 /// The scripting system is included the Mezzanine::Scripting namespace. It is primarily
 /// composed of four interface classes, four abstract classes. An implementation of a
-/// scripting system should implement these four classes in a sub-namespacef
+/// scripting system should implement these four classes in a sub-namespace:
 ///     - Mezzanine::Scripting::iScript
 ///     - Mezzanine::Scripting::iScriptArgument
 ///     - Mezzanine::Scripting::iScriptingManager
 ///     - Mezzanine::Scripting::iScriptWorkUnit
 ///
-/// Many scripting languages suitable for being embedded in games have a number of
-/// similar traits. All have some kind of runtime that mustbe initialized, this
-/// runtime accepts strings of script source and performs the steps the source
-/// desribe. Some keep internal track of the source other expect the the caller to
-/// do so. Most allow passing arguments into scripts and accepting return values.
-/// Some allow the script to be compiled to a byte and others do not. A scripting manager is
 /// @n @n
-/// Whether or not this is updated each build
+/// SWIG ( http://swig.org ) is a tool that generates code in either C or the
+/// target language. It gets the information required to do this byreading the
+/// Mezzanine source code directly. It support a variety of languages but is
+/// currently
+///
+/// Whether or not the  is updated each build
 /// can be controlled by the Mezz_SWIG CMake Flag. When this flag
 /// is enabled a SWIG_Mezzanine build target is added to the project. To satisfy
 /// build systems this target/project compiles src/blank.cpp as the only files.
@@ -150,6 +180,9 @@ namespace Mezzanine
 /// @endcode
 /// @n @n
 ///
+///
+/// Need to say something about modules in lua
+/// datatypes, singleton, vector3, quaternion, and the proxies are likely to be duplicate in multiple places
 ///
 
 #include "script.h"

@@ -72,6 +72,7 @@
 
         using namespace Mezzanine;
         using namespace Mezzanine::Threading;
+        using namespace Mezzanine::Physics;
     %}
 
     %include stl.i

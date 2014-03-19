@@ -52,12 +52,17 @@
 /// @todo Remove #include "mezzanine.h" and just include what is required. Waiting for multithreaded refactor, because we will have to do this again after that.
 #include "mezzanine.h"
 
-//Enabled implementation includes
+// Enabled implementation includes
 #ifdef ENABLE_OALS_AUDIO_IMPLEMENTATION
     // Permit the factories to be visible so they can be auto-added.
     #include "Audio/OALS/oalsaudiomanagerfactory.h"
     #include "Audio/OALS/oalssoundscapemanagerfactory.h"
-#endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
+#endif // ENABLE_OALS_AUDIO_IMPLEMENTATION
+
+#ifdef MEZZLUA51
+    #include "Scripting/Lua51/lua51scriptingengine.h"
+#endif // MEZZLUA51
+
 
 //#include "OgreBspSceneManagerPlugin.h"
 //#include "OgreCgPlugin.h"
@@ -763,6 +768,12 @@ namespace Mezzanine
         ManIt = this->ManagerFactories.find("OALSSoundScapeManager");
         if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Audio::OALS::OALSSoundScapeManagerFactory());
         #endif //ENABLE_OALS_AUDIO_IMPLEMENTATION
+
+        #ifdef MEZZLUA51
+        ManIt = this->ManagerFactories.find("Lua51ScriptingEngine");
+        if( ManIt == this->ManagerFactories.end() ) this->AddManagerFactory(new Scripting::Lua::Lua51ScriptingEngineFactory());
+        #endif
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -977,5 +988,7 @@ namespace Mezzanine
         return dynamic_cast<UI::UIManager*>( this->GetManager(ManagerBase::MT_UIManager, WhichOne) );
     }
 
+    Scripting::iScriptingManager* Entresol::GetScriptingManager(const UInt16 WhichOne)
+        { return dynamic_cast<Scripting::iScriptingManager*>( this->GetManager(ManagerBase::MT_ScriptingManager, WhichOne) ); }
 }
 #endif
