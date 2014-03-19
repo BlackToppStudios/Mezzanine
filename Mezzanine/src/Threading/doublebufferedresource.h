@@ -153,11 +153,7 @@ namespace Mezzanine
 
             public:
                 /// @brief A constructor that automatically creates the resources it supports
-                ThreadSpecificStorage(FrameScheduler* Scheduler_) :
-                    Scheduler(Scheduler_)
-                {
-                    this->ThreadResources.push_back((ConvertiblePointer)new DoubleBufferedLogger);  // must comes first so it lands in spot 0
-                }
+                ThreadSpecificStorage(FrameScheduler* Scheduler_);
 
                 /// @brief Get a Specific kind of double buffered resource.
                 /// @param ResourceID The ID the resource provided.
@@ -169,8 +165,7 @@ namespace Mezzanine
                 /// @brief Get the usable logger for this thread specific resource
                 /// @return A reference to the logger.
                 /// @note A function like this should be provided for any other resources added to derived versions of this class. This encourages getting resources for this thread, and not providing a method to get the commitable resource gently discourages doing it unless its really required.
-                Logger& GetUsableLogger()
-                    { return GetResource<DoubleBufferedLogger>(DBRLogger).GetUsable(); }
+                Logger& GetUsableLogger();
 
                 /// @brief Get a pointer to the FrameScheduler that owns this resource.
                 /// @details This is not required very often by application code, but is used
@@ -178,18 +173,22 @@ namespace Mezzanine
                 /// to commitable parts of double buffered resources. This pointer does not
                 /// confer ownership.
                 /// @return A pointer to the FrameScheduler that owns this resource.
-                FrameScheduler* GetFrameScheduler()
-                    { return Scheduler; }
+                FrameScheduler* GetFrameScheduler();
+
+                /// @copydoc FrameScheduler::GetLastFrameTime() const
+                Whole GetLastFrameTime() const;
+
+                /// @copydoc FrameScheduler::GetLastPauseTime() const
+                Whole GetLastPauseTime() const;
+
+                /// @copydoc FrameScheduler::GetCurrentFrameStart() const
+                MaxInt GetCurrentFrameStart() const;
 
                 /// @brief The commitable and usable version of every double buffered resource for this thread specific storage will be swapped.
-                void SwapAllBufferedResources()
-                    { GetResource<DoubleBufferedLogger>(DBRLogger).SwapUsableAndCommitable(); }
+                void SwapAllBufferedResources();
 
                 /// @brief Deletes all the resources.
-                virtual ~ThreadSpecificStorage()
-                {
-                    delete (DoubleBufferedLogger*)this->ThreadResources[DBRLogger]; // Items must wind up in the correct spot in the vector for this to work. Be careful to get the order right if you overload this.
-                }
+                virtual ~ThreadSpecificStorage();
 
         };//ThreadSpecificStorage
 

@@ -2090,6 +2090,78 @@ fail:
 }
 
 
+static int _wrap_ThreadSpecificStorage_GetLastFrameTime(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ThreadSpecificStorage *arg1 = (Mezzanine::Threading::ThreadSpecificStorage *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::ThreadSpecificStorage::GetLastFrameTime",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ThreadSpecificStorage::GetLastFrameTime",1,"Mezzanine::Threading::ThreadSpecificStorage const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
+    SWIG_fail_ptr("ThreadSpecificStorage_GetLastFrameTime",1,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::Threading::ThreadSpecificStorage const *)arg1)->GetLastFrameTime();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ThreadSpecificStorage_GetLastPauseTime(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ThreadSpecificStorage *arg1 = (Mezzanine::Threading::ThreadSpecificStorage *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::ThreadSpecificStorage::GetLastPauseTime",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ThreadSpecificStorage::GetLastPauseTime",1,"Mezzanine::Threading::ThreadSpecificStorage const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
+    SWIG_fail_ptr("ThreadSpecificStorage_GetLastPauseTime",1,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::Threading::ThreadSpecificStorage const *)arg1)->GetLastPauseTime();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_ThreadSpecificStorage_GetCurrentFrameStart(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Threading::ThreadSpecificStorage *arg1 = (Mezzanine::Threading::ThreadSpecificStorage *) 0 ;
+  Mezzanine::MaxInt result;
+  
+  SWIG_check_num_args("Mezzanine::Threading::ThreadSpecificStorage::GetCurrentFrameStart",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::ThreadSpecificStorage::GetCurrentFrameStart",1,"Mezzanine::Threading::ThreadSpecificStorage const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage,0))){
+    SWIG_fail_ptr("ThreadSpecificStorage_GetCurrentFrameStart",1,SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage);
+  }
+  
+  result = (Mezzanine::MaxInt)((Mezzanine::Threading::ThreadSpecificStorage const *)arg1)->GetCurrentFrameStart();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_ThreadSpecificStorage_SwapAllBufferedResources(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Threading::ThreadSpecificStorage *arg1 = (Mezzanine::Threading::ThreadSpecificStorage *) 0 ;
@@ -2120,6 +2192,9 @@ delete arg1;
 static swig_lua_method swig_Mezzanine_Threading_ThreadSpecificStorage_methods[] = {
     {"GetUsableLogger", _wrap_ThreadSpecificStorage_GetUsableLogger}, 
     {"GetFrameScheduler", _wrap_ThreadSpecificStorage_GetFrameScheduler}, 
+    {"GetLastFrameTime", _wrap_ThreadSpecificStorage_GetLastFrameTime}, 
+    {"GetLastPauseTime", _wrap_ThreadSpecificStorage_GetLastPauseTime}, 
+    {"GetCurrentFrameStart", _wrap_ThreadSpecificStorage_GetCurrentFrameStart}, 
     {"SwapAllBufferedResources", _wrap_ThreadSpecificStorage_SwapAllBufferedResources}, 
     {0,0}
 };
