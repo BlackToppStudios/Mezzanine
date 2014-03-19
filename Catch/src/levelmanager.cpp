@@ -1532,6 +1532,34 @@ void LevelManager::LoadNextLevel()
 void LevelManager::UnloadLevel()
 {
     /// @todo This should be populated with the appropriate logic after the world restructuring and engine state refactors are done.
+    //Resource::ResourceManager* ResMan = Resource::ResourceManager::GetSingletonPtr();
+    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
+    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
+    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
+    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
+    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
+    ActorManager* ActorMan = this->TheEntresol->GetActorManager();
+    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
+    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+
+    PhysMan->DestroyAllConstraints();
+    ActorMan->DestroyAllActors();
+    AreaEffectMan->DestroyAllAreaEffects();
+    DebrisMan->DestroyAllDebris();
+    SceneMan->DestroyAllProxies();
+    SceneMan->DisableSky();
+    PhysMan->DestroyAllProxies();
+    PhysMan->DestroyAllWorldTriggers();
+    CShapeMan->DestroyAllShapes();
+    MeshMan->DestroyAllGeneratedMeshes();
+
+    //ResMan->DestroyAssetGroup(LevelMan->GetCurrentLevel()->GetGroupName());
+    PhysMan->ClearPhysicsMetaData();
+
+    UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
+    GameScreen->GetWidget("GS_LevelReport")->Hide();
+    GameScreen->GetWidget("GS_MenuRoot")->Hide();
+    GameScreen->GetWidget("GS_ItemShopRoot")->Hide();
 }
 
 #endif

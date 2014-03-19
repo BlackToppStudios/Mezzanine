@@ -124,11 +124,13 @@ public:
     /// @brief Uses the set path to search for all available game profiles that can be loaded.
     /// @param Returns the number of levels that were detected.
     Whole DetectProfiles();
+    /// @brief Applys all currently loaded profiles to the list of all profiles in the UI profile configuration.
+    void ApplyProfileDataToProfileList();
     /// @brief Applys the active profile data to the relevant widgets in the UI configuration.
-    void ApplyProfileDataToUI();
+    void ApplyProfileDataToLevelSelect();
     /// @brief Applys profile data to the relevant widgets in the UI configuration.
     /// @param Profile A pointer to the profile to be read when updating the UI configuration.
-    void ApplyProfileDataToUI(GameProfile* Profile);
+    void ApplyProfileDataToLevelSelect(GameProfile* Profile);
 
     /// @brief Updates all profile related data with the achievement of a new high score.
     /// @param LevelName The name of the level the high score was achieved in.
@@ -150,7 +152,7 @@ public:
 
     /// @brief Creates a new blank profile.
     /// @param Name The name to be given to the created profile.
-    /// @return Returns a pointer to the created profile.
+    /// @return Returns a pointer to the created profile or the pre-existing profile of the same name.
     GameProfile* CreateNewProfile(const String& Name);
     /// @brief Loads a profile from the disk.
     /// @param FileName The name of the file to be loaded and parsed.
@@ -171,6 +173,7 @@ public:
     /// @brief Gets the number of currently loaded profiles.
     /// @return Returns a Whole representing the number of currently loaded profiles.
     Whole GetNumLoadedProfiles() const;
+
     /// @brief Saves a profile to the disk.
     /// @param Name The name of the profile to be saved to the disk.
     void SaveProfile(const String& Name);
@@ -179,6 +182,15 @@ public:
     void SaveProfile(GameProfile* Profile);
     /// @brief Saves all currently loaded profiles to the disk.
     void SaveAllProfiles();
+
+    /*/// @brief Destroys a loaded profile.
+    /// @note This will also delete the profile file from the disk.
+    /// @param Name The name of the profile to be destroyed.
+    void DestroyProfile(const String& Name);
+    /// @brief Destroys a loaded profile.
+    /// @note This will also delete the profile file from the disk.
+    /// @param Profile A pointer to the profile to be destroyed.
+    void DestroyProfile(GameProfile* Profile);//*/
 
     ///////////////////////////////////////////////////////////////////////////////
     // ActiveProfile Management
@@ -189,6 +201,9 @@ public:
     /// @brief Sets the currently active profile.
     /// @param Profile A pointer to the profile to set.
     void SetActiveProfile(GameProfile* Profile);
+    /// @brief Gets the name of the currently active profile.
+    /// @return Returns a String containing the name of the currently active profile.
+    String GetActiveProfileName() const;
     /// @brief Gets the currently active profile.
     /// @return Returns a pointer to the profile that is currently being used and displayed.
     GameProfile* GetActiveProfile() const;

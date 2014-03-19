@@ -60,6 +60,8 @@ CatchApp::CatchApp() :
 
 CatchApp::~CatchApp()
 {
+    this->Profiles->Deinitialize();
+
     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->AudioSettingsWork );
     delete this->AudioSettingsWork;
 
@@ -150,12 +152,14 @@ void CatchApp::MakeGUI()
 
     ////-------------------  FPS  Stats  -------------------////
     // Create the widget container for the current FPS display
-    UI::Widget* SSCurrentFPS = StatsScreen->CreateWidget("SS_CurrentFPS",UI::UnifiedRect(0.008,0.055,0.23,0.065));
+    UI::Widget* SSCurrentFPS = StatsScreen->CreateWidget("SS_CurrentFPS",UI::UnifiedRect(0.008,0.065,0.23,0.065));
     SSCurrentFPS->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
+    SSCurrentFPS->SetMousePassthrough(true);
     // Create the widget for displaying the current FPS explanation text
     UI::Widget* SSCurrentFPSLabel = StatsScreen->CreateWidget("SS_CurrentFPSLabel",UI::UnifiedRect(0.0,0.0,0.65,1.0));
     SSCurrentFPSLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
     SSCurrentFPSLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    SSCurrentFPSLabel->SetMousePassthrough(true);
     UI::SingleLineTextLayer* SSCurrentFPSLabelLayer = SSCurrentFPSLabel->CreateSingleLineTextLayer(StatsScreenText,0,0);
     SSCurrentFPSLabelLayer->SetText("Current FPS: ");
     SSCurrentFPSLabelLayer->HorizontallyAlign(UI::LA_BottomRight);
@@ -166,6 +170,7 @@ void CatchApp::MakeGUI()
     UI::Widget* SSCurrentFPSValue = StatsScreen->CreateWidget("SS_CurrentFPSValue",UI::UnifiedRect(0.0,0.0,0.35,1.0));
     SSCurrentFPSValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
     SSCurrentFPSValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    SSCurrentFPSValue->SetMousePassthrough(true);
     UI::SingleLineTextLayer* SSCurrentFPSValueLayer = SSCurrentFPSValue->CreateSingleLineTextLayer(StatsScreenText,0,0);
     SSCurrentFPSValueLayer->SetText("0");
     SSCurrentFPSValueLayer->HorizontallyAlign(UI::LA_TopLeft);
@@ -178,10 +183,12 @@ void CatchApp::MakeGUI()
     // Create the widget container for the average FPS display
     UI::Widget* SSAverageFPS = StatsScreen->CreateWidget("SS_AverageFPS",UI::UnifiedRect(0.008,0.12,0.23,0.065));
     SSAverageFPS->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
+    SSAverageFPS->SetMousePassthrough(true);
     // Create the widget for displaying the average FPS explanation text
     UI::Widget* SSAverageFPSLabel = StatsScreen->CreateWidget("SS_AverageFPSLabel",UI::UnifiedRect(0.0,0.0,0.65,1.0));
     SSAverageFPSLabel->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
     SSAverageFPSLabel->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    SSAverageFPSLabel->SetMousePassthrough(true);
     UI::SingleLineTextLayer* SSAverageFPSLabelLayer = SSAverageFPSLabel->CreateSingleLineTextLayer(StatsScreenText,0,0);
     SSAverageFPSLabelLayer->SetText("Average FPS: ");
     SSAverageFPSLabelLayer->HorizontallyAlign(UI::LA_BottomRight);
@@ -192,6 +199,7 @@ void CatchApp::MakeGUI()
     UI::Widget* SSAverageFPSValue = StatsScreen->CreateWidget("SS_AverageFPSValue",UI::UnifiedRect(0.0,0.0,0.35,1.0));
     SSAverageFPSValue->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
     SSAverageFPSValue->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    SSAverageFPSValue->SetMousePassthrough(true);
     UI::SingleLineTextLayer* SSAverageFPSValueLayer = SSAverageFPSValue->CreateSingleLineTextLayer(StatsScreenText,0,0);
     SSAverageFPSValueLayer->SetText("0");
     SSAverageFPSValueLayer->HorizontallyAlign(UI::LA_TopLeft);
@@ -215,7 +223,7 @@ void CatchApp::MakeGUI()
     GUI->LoadMTA("Catch_Menu.mta","Common");
     UI::Screen* MainMenuScreen = GUI->CreateScreen("MainMenuScreen","Catch_Menu",UIViewport,1);
 
-    ////-----------------  Main Menu Root  -----------------////
+    ////---------------  Screen  Background  ---------------////
     // Create the widget that will hold the background and lock it at a wide screen size
     UI::Widget* MMBackground = MainMenuScreen->CreateWidget("MS_Background",UI::UnifiedRect(0,0,1.7777,1));
     MMBackground->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
@@ -223,8 +231,146 @@ void CatchApp::MakeGUI()
     MMBackground->SetVerticalSizingRules(UI::SR_Unified_Dims);
     MMBackground->SetHorizontalSizingRules(UI::SR_Match_Other_Axis_Unified);
     MMBackground->CreateSingleImageLayer("MainMenuBackground",0,0);
-    MainMenuScreen->AddChild(MMBackground,0);
+    MainMenuScreen->AddChild(MMBackground,1);
 
+    ////-----------------  Profile Select  -----------------////
+    // Create the accessor that will open the profiles configuration
+    UI::StackButton* MMProfilesAccess = MainMenuScreen->CreateStackButton("MS_ProfilesAccess",UI::UnifiedRect(0.0,0.0,0.30,0.06));
+    MMProfilesAccess->SetHorizontalPositioningRules(UI::PF_Anchor_Right);
+    MMProfilesAccess->SetVerticalPositioningRules(UI::PF_Anchor_Top);
+    MMProfilesAccess->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
+    MMProfilesAccess->CreateSingleImageLayer("MMOptionsButton",0,"Normal");
+    MMProfilesAccess->CreateSingleImageLayer("MMOptionsHoveredButton",0,"Hovered");
+    UI::SingleLineTextLayer* MMProfilesAccessText = MMProfilesAccess->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
+    MMProfilesAccessText->SetText( this->Profiles->GetActiveProfileName() );
+    MMProfilesAccessText->HorizontallyAlign(UI::LA_Center);
+    MMProfilesAccessText->VerticallyAlign(UI::LA_Center);
+    MMProfilesAccessText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
+    MainMenuScreen->AddChild(MMProfilesAccess,2);
+
+    // Create the root window for profile configuration
+    UI::MenuEntry* MMProfilesWin = MainMenuScreen->CreateMenuEntry("MS_ProfilesWin",UI::UnifiedRect(0.0,0.0,0.5,0.40));
+    MMProfilesWin->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMProfilesWin->SetVerticalPositioningRules(UI::PF_Anchor_VerticalCenter);
+    MMProfilesWin->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
+    MMProfilesWin->CreateSingleImageLayer("MMOptionsBackground",0,0);
+    MMProfilesWin->SetPushButton(MMProfilesAccess);
+    MainMenuScreen->AddChild(MMProfilesWin,3);
+
+    // Create the label for the profile window
+    UI::Widget* MMProfilesWinLabel = MainMenuScreen->CreateWidget("MS_ProfilesWinLabel",UI::UnifiedRect(0.0,0.08,0.5,0.16));
+    MMProfilesWinLabel->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
+    MMProfilesWinLabel->CreateSingleImageLayer("MMButton",0,0);
+    UI::SingleLineTextLayer* MMProfilesWinLabelText = MMProfilesWinLabel->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
+    MMProfilesWinLabelText->SetText("Profile Select");
+    MMProfilesWinLabelText->HorizontallyAlign(UI::LA_Center);
+    MMProfilesWinLabelText->VerticallyAlign(UI::LA_Center);
+    MMProfilesWinLabelText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
+    MMProfilesWin->AddChild(MMProfilesWinLabel,1);
+
+    // Create the EditBox that will allow players to create new profiles
+    UI::EditBox* MMProfilesEntry = MainMenuScreen->CreateEditBox("MS_ProfilesEntry",UI::UnifiedRect(0.08,0.33,0.58,0.14),UI::RLT_SingleLineText,MainMenuScreenText);
+    MMProfilesEntry->CreateSingleImageLayer("MMAppExitText",0,0);
+    MMProfilesEntry->GetEditLayer()->SetScale(Vector2(0.94,1.0));
+    MMProfilesEntry->GetEditLayer()->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMTightText);
+    //MMProfilesEntry->GetEditLayer()->SetTextLineHorizontalAlignment(UI::LA_Center);
+    MMProfilesEntry->GetEditLayer()->SetTextLineVerticalAlignment(UI::LA_Center);
+    MMProfilesWin->AddChild(MMProfilesEntry,2);
+
+    // Create the button that will use what is entered into the Editbox to create a profile
+    UI::Button* MMProfilesCreate = MainMenuScreen->CreateButton("MS_ProfilesCreate",UI::UnifiedRect(0.68,0.32,0.24,0.16));
+    MMProfilesCreate->CreateSingleImageLayer("MMButton",0,"Normal");
+    MMProfilesCreate->CreateSingleImageLayer("MMHoveredButton",0,"Hovered");
+    UI::SingleLineTextLayer* MMProfilesCreateText = MMProfilesCreate->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
+    MMProfilesCreateText->SetText("Create");
+    MMProfilesCreateText->HorizontallyAlign(UI::LA_Center);
+    MMProfilesCreateText->VerticallyAlign(UI::LA_Center);
+    MMProfilesCreateText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
+    MMProfilesCreate->Subscribe(UI::Button::EventDeactivated,new MSProfileCreate(this->Profiles,MainMenuScreen),true);
+    MMProfilesWin->AddChild(MMProfilesCreate,3);
+
+    // Create the DropdownList that will display the currently available profiles
+    UI::DropDownList* MMProfilesList = MainMenuScreen->CreateDropDownList("MS_ProfilesList",UI::UnifiedRect(0.08,0.57,0.58,0.14),UI::SB_Separate);
+    // Configure the selection display
+    UI::Widget* MMProfilesDisplay = MMProfilesList->GetSelectionDisplay();
+    MMProfilesDisplay->CreateSingleImageLayer("MMListSelection",0,0);
+    UI::SingleLineTextLayer* MMProfilesDisplayText = static_cast<UI::SingleLineTextLayer*>( MMProfilesDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
+    MMProfilesDisplayText->SetDefaultFont(MainMenuScreenText);
+    MMProfilesDisplayText->HorizontallyAlign(UI::LA_Center);
+    MMProfilesDisplayText->VerticallyAlign(UI::LA_Center);
+    MMProfilesDisplayText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMTightText);
+    // Configure the list toggle
+    UI::CheckBox* MMProfilesToggle = MMProfilesList->GetListToggle();
+    UI::SingleImageLayer* MMProfilesToggleNormal = MMProfilesToggle->CreateSingleImageLayer("MMListScrollDown");
+    UI::SingleImageLayer* MMProfilesToggleHovered = MMProfilesToggle->CreateSingleImageLayer("MMHoveredListScrollDown");
+    MMProfilesToggle->AddLayerToGroup(MMProfilesToggleNormal,0,"Normal");
+    MMProfilesToggle->AddLayerToGroup(MMProfilesToggleHovered,0,"Hovered");
+    MMProfilesToggle->AddLayerToGroup(MMProfilesToggleNormal,0,"SelectedNormal");
+    MMProfilesToggle->AddLayerToGroup(MMProfilesToggleHovered,0,"SelectedHovered");
+    // Configure the option list
+    UI::ListBox* MMProfilesOptions = MMProfilesList->GetSelectionList();
+    MMProfilesOptions->SetListItemFont(MainMenuScreenText);
+    MMProfilesOptions->SetListItemTextScale(UI::TextLayer::SM_ParentRelative,MMLargeText);
+    // Configure the background for the listbox container
+    UI::VerticalContainer* MMProfilesOptionsList = MMProfilesOptions->GetListContainer();
+    MMProfilesOptionsList->CreateSingleImageLayer("MMListBackground",0,0);
+    MMProfilesOptionsList->SetChildSizing(UI::SizingInfo(UI::UnifiedVec2(1.0,0.19)),UI::LinearContainer::SE_OnAdd);
+    // Configure the scrollbar for the option list
+    UI::VerticalScrollbar* MMProfilesOptionsScroll = MMProfilesOptions->GetListScroll();
+    MMProfilesOptionsScroll->SetIncrementDistance(0.05);
+    // Configure the scroller
+    MMProfilesOptionsScroll->GetScroller()->CreateSingleImageLayer("MMListScroller",0,"Normal");
+    MMProfilesOptionsScroll->GetScroller()->CreateSingleImageLayer("MMHoveredListScroller",0,"Hovered");
+    // Configure the up button
+    MMProfilesOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("MMListScrollUp",0,"Normal");
+    MMProfilesOptionsScroll->GetUpLeftButton()->CreateSingleImageLayer("MMHoveredListScrollUp",0,"Hovered");
+    // Configure the down button
+    MMProfilesOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("MMListScrollDown",0,"Normal");
+    MMProfilesOptionsScroll->GetDownRightButton()->CreateSingleImageLayer("MMHoveredListScrollDown",0,"Hovered");
+    // Configure the scroll back
+    MMProfilesOptionsScroll->GetScrollBack()->CreateSingleImageLayer("MMListScrollBackground",0,0);
+    // Wrap up listing configuration
+    MMProfilesWin->AddChild(MMProfilesList,8);
+
+    // Create the button that will destroy a selected profile
+    /*UI::Button* MMProfilesDestroy = MainMenuScreen->CreateButton("MS_ProfilesDestroy",UI::UnifiedRect(0.68,0.56,0.24,0.16));
+    MMProfilesDestroy->CreateSingleImageLayer("MMButton",0,"Normal");
+    MMProfilesDestroy->CreateSingleImageLayer("MMHoveredButton",0,"Hovered");
+    UI::SingleLineTextLayer* MMProfilesDestroyText = MMProfilesDestroy->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
+    MMProfilesDestroyText->SetText("Destroy");
+    MMProfilesDestroyText->HorizontallyAlign(UI::LA_Center);
+    MMProfilesDestroyText->VerticallyAlign(UI::LA_Center);
+    MMProfilesDestroyText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
+    //MMLevelStart->Subscribe(UI::Button::EventDeactivated,new MSLevelStart(MMLevelSelectGrid),true);
+    MMProfilesWin->AddChild(MMProfilesDestroy,5);//*/
+
+    // Create the button that will confirm the switch to another profile
+    //UI::Button* MMProfilesSelect = MainMenuScreen->CreateButton("MS_ProfilesSelect",UI::UnifiedRect(0.12,0.76,0.34,0.16));
+    UI::Button* MMProfilesSelect = MainMenuScreen->CreateButton("MS_ProfilesSelect",UI::UnifiedRect(0.68,0.56,0.24,0.16));
+    MMProfilesSelect->CreateSingleImageLayer("MMButton",0,"Normal");
+    MMProfilesSelect->CreateSingleImageLayer("MMHoveredButton",0,"Hovered");
+    UI::SingleLineTextLayer* MMProfilesSelectText = MMProfilesSelect->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
+    MMProfilesSelectText->SetText("Select");
+    MMProfilesSelectText->HorizontallyAlign(UI::LA_Center);
+    MMProfilesSelectText->VerticallyAlign(UI::LA_Center);
+    MMProfilesSelectText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
+    MMProfilesSelect->Subscribe(UI::Button::EventDeactivated,new MSProfileSelect(this->Profiles,MainMenuScreen),true);
+    MMProfilesWin->AddChild(MMProfilesSelect,6);
+
+    // Create the back button for the profile configuration window
+    //UI::StackButton* MMProfilesReturn = MainMenuScreen->CreateStackButton("MS_ProfilesReturn",UI::UnifiedRect(0.54,0.76,0.34,0.16));
+    UI::StackButton* MMProfilesReturn = MainMenuScreen->CreateStackButton("MS_ProfilesReturn",UI::UnifiedRect(0.32,0.76,0.34,0.16));
+    MMProfilesReturn->CreateSingleImageLayer("MMButton",0,"Normal");
+    MMProfilesReturn->CreateSingleImageLayer("MMHoveredButton",0,"Hovered");
+    UI::SingleLineTextLayer* MMProfilesReturnText = MMProfilesReturn->CreateSingleLineTextLayer(MainMenuScreenText,1,1);
+    MMProfilesReturnText->SetText("Back");
+    MMProfilesReturnText->HorizontallyAlign(UI::LA_Center);
+    MMProfilesReturnText->VerticallyAlign(UI::LA_Center);
+    MMProfilesReturnText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
+    MMProfilesWin->SetPopButton(MMProfilesReturn);
+    MMProfilesWin->AddChild(MMProfilesReturn,7);
+
+    ////-----------------  Main Menu Root  -----------------////
     // Create the root menu entry
     UI::MenuEntry* MMRootEntry = MainMenuScreen->CreateMenuEntry("MS_MenuRoot",UI::UnifiedRect(0.0,0.914,1.0,0.086));
     MMRootEntry->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
@@ -232,7 +378,7 @@ void CatchApp::MakeGUI()
     MMRootEntry->SetAspectRatioLock(UI::ARL_Ratio_Y_Axis);
     MMRootEntry->CreateSingleImageLayer("MMBrickBackground",0,0);
     MMRootEntry->SetAutoHide(false);
-    MainMenuScreen->AddChild(MMRootEntry,1);
+    MainMenuScreen->AddChild(MMRootEntry,4);
     MMRootEntry->ForceRootEntryVisible();
 
     ////------------------  Level Select  ------------------////
@@ -253,19 +399,24 @@ void CatchApp::MakeGUI()
     MMLevelSelectWin->SetPushButton(MMLevelSelectAccess);
     MMRootEntry->AddChild(MMLevelSelectWin,5);
 
-    // Create the container that will display all of our levels
-    UI::GridContainer* MMLevelSelectGrid = MainMenuScreen->CreateGridContainer("MS_LevelSelectGrid",UI::UnifiedRect(0.11,0.10,0.82,0.76));
-    MMLevelSelectGrid->SetCellSize(2,4);
-    MMLevelSelectGrid->SetCellPadding( UI::UnifiedVec2(0.08,0.10) );
-    MMLevelSelectGrid->Subscribe(UI::PagedContainer::EventChildSelected,new MSLevelCellSelect(MainMenuScreen),true);
-    MMLevelSelectWin->AddChild(MMLevelSelectGrid,2);
-
     // Create the spinner which will allow browsing the grid
     UI::Spinner* MMLevelSelectSpinner = MainMenuScreen->CreateSpinner("MS_LevelSelectSpinner",UI::UnifiedRect(0.65,0.87,0.25,0.08),UI::Spn_Separate_Horizontal,MainMenuScreenText);
     MMLevelSelectSpinner->GetIncrement()->CreateSingleImageLayer("MMIncrementPage",0,0);
     MMLevelSelectSpinner->GetDecrement()->CreateSingleImageLayer("MMDecrementPage",0,0);
     MMLevelSelectSpinner->GetValueDisplay()->CreateSingleImageLayer("MMPageBox",0,0);
-    MMLevelSelectWin->AddChild(MMLevelSelectSpinner,3);
+    MMLevelSelectSpinner->GetValueDisplay()->GetEditLayer()->SetTextLineHorizontalAlignment(UI::LA_Center);
+    MMLevelSelectSpinner->GetValueDisplay()->GetEditLayer()->SetTextLineVerticalAlignment(UI::LA_Center);
+    MMLevelSelectSpinner->GetValueDisplay()->GetEditLayer()->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,MMNormText);
+    MMLevelSelectSpinner->SetSpinValue(1.0);
+    MMLevelSelectWin->AddChild(MMLevelSelectSpinner,2);
+
+    // Create the container that will display all of our levels
+    UI::GridContainer* MMLevelSelectGrid = MainMenuScreen->CreateGridContainer("MS_LevelSelectGrid",UI::UnifiedRect(0.11,0.10,0.82,0.76));
+    MMLevelSelectGrid->SetCellSize(2,4);
+    MMLevelSelectGrid->SetCellPadding( UI::UnifiedVec2(0.08,0.10) );
+    MMLevelSelectGrid->SetXYProvider(MMLevelSelectSpinner);
+    MMLevelSelectGrid->Subscribe(UI::PagedContainer::EventChildSelected,new MSLevelCellSelect(MainMenuScreen),true);
+    MMLevelSelectWin->AddChild(MMLevelSelectGrid,3);
 
     // Create the button that will launch the level
     UI::Button* MMLevelStart = MainMenuScreen->CreateButton("MS_LevelStart",UI::UnifiedRect(0.0,0.86,0.16,0.10));
@@ -1243,19 +1394,23 @@ void CatchApp::MakeGUI()
     GSItemShopTitleText->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
     GSItemShopRoot->AddChild(GSItemShopTitle,1);
 
-    // Create the grid that will store all of our purchasable items
-    UI::GridContainer* GSItemShopGrid = GameScreen->CreateGridContainer("GS_ItemShopGrid",UI::UnifiedRect(0.15,0.08,0.7,0.33));
-    GSItemShopGrid->SetCellSize(4,3);
-    GSItemShopRoot->AddChild(GSItemShopGrid,2);
-
     // Create the spinner that will determine which items will be displayed
     UI::Spinner* GSItemShopSpinner = GameScreen->CreateSpinner("GS_ItemShopSpinner",UI::UnifiedRect(0.0,0.47,0.35,0.06),UI::Spn_Separate_Horizontal,GameScreenText);
     GSItemShopSpinner->SetHorizontalPositioningRules(UI::PF_Anchor_HorizontalCenter);
     GSItemShopSpinner->GetIncrement()->CreateSingleImageLayer("GSIncrementPage",0,0);
     GSItemShopSpinner->GetDecrement()->CreateSingleImageLayer("GSDecrementPage",0,0);
     GSItemShopSpinner->GetValueDisplay()->CreateSingleImageLayer("GSPageBox",0,0);
-    GSItemShopGrid->SetProviders(GSItemShopSpinner,GSItemShopSpinner);
-    GSItemShopRoot->AddChild(GSItemShopSpinner,3);
+    GSItemShopSpinner->GetValueDisplay()->GetEditLayer()->SetTextLineHorizontalAlignment(UI::LA_Center);
+    GSItemShopSpinner->GetValueDisplay()->GetEditLayer()->SetTextLineVerticalAlignment(UI::LA_Center);
+    GSItemShopSpinner->GetValueDisplay()->GetEditLayer()->SetAutoTextScale(UI::TextLayer::SM_ParentRelative,GSNormText);
+    GSItemShopSpinner->SetSpinValue(1.0);
+    GSItemShopRoot->AddChild(GSItemShopSpinner,2);
+
+    // Create the grid that will store all of our purchasable items
+    UI::GridContainer* GSItemShopGrid = GameScreen->CreateGridContainer("GS_ItemShopGrid",UI::UnifiedRect(0.15,0.08,0.7,0.33));
+    GSItemShopGrid->SetCellSize(4,3);
+    GSItemShopGrid->SetXYProvider(GSItemShopSpinner);
+    GSItemShopRoot->AddChild(GSItemShopGrid,3);
 
     UI::Widget* GSItemShopDescription = GameScreen->CreateWidget("GS_ItemShopDescription",UI::UnifiedRect(0.15,0.54,0.7,0.33));
     GSItemShopDescription->CreateSingleImageLayer("GSBreakdownBackground",0,0);
@@ -1521,39 +1676,14 @@ void CatchApp::UnloadLevel()
     if( "MainMenu" == LevelMan->GetCurrentLevel()->GetName() )
         return;
 
-    //Resource::ResourceManager* ResMan = Resource::ResourceManager::GetSingletonPtr();
-    Physics::CollisionShapeManager* CShapeMan = Physics::CollisionShapeManager::GetSingletonPtr();
-    Graphics::MeshManager* MeshMan = Graphics::MeshManager::GetSingletonPtr();
-    UI::UIManager* UIMan = UI::UIManager::GetSingletonPtr();
-    Physics::PhysicsManager* PhysMan = this->TheEntresol->GetPhysicsManager();
-    Graphics::SceneManager* SceneMan = this->TheEntresol->GetSceneManager();
-    ActorManager* ActorMan = this->TheEntresol->GetActorManager();
-    AreaEffectManager* AreaEffectMan = this->TheEntresol->GetAreaEffectManager();
-    DebrisManager* DebrisMan = this->TheEntresol->GetDebrisManager();
+    this->LevelMan->UnloadLevel();
 
-    PhysMan->DestroyAllConstraints();
-    ActorMan->DestroyAllActors();
-    AreaEffectMan->DestroyAllAreaEffects();
-    DebrisMan->DestroyAllDebris();
-    SceneMan->DestroyAllProxies();
-    SceneMan->DisableSky();
-    PhysMan->DestroyAllProxies();
-    PhysMan->DestroyAllWorldTriggers();
-    CShapeMan->DestroyAllShapes();
-    MeshMan->DestroyAllGeneratedMeshes();
-    StartAreas.clear();
-    ThrownItems.clear();
+    this->StartAreas.clear();
+    this->ThrownItems.clear();
 
-    //ResMan->DestroyAssetGroup(LevelMan->GetCurrentLevel()->GetGroupName());
-    PhysMan->ClearPhysicsMetaData();
-    Scorer->ResetLevelData();
-    delete EndTimer;
-    EndTimer = NULL;
-
-    UI::Screen* GameScreen = UIMan->GetScreen("GameScreen");
-    GameScreen->GetWidget("GS_LevelReport")->Hide();
-    GameScreen->GetWidget("GS_MenuRoot")->Hide();
-    GameScreen->GetWidget("GS_ItemShopRoot")->Hide();
+    this->Scorer->ResetLevelData();
+    delete this->EndTimer;
+    this->EndTimer = NULL;
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()
@@ -1626,7 +1756,8 @@ int CatchApp::GetCatchin()
     this->LevelMan->DetectLevels();
     this->LevelMan->PopulateLevelSelectUI();
     // Detect the profiles and populate our UI
-    this->Profiles->ApplyProfileDataToUI();
+    this->Profiles->ApplyProfileDataToLevelSelect();
+    this->Profiles->ApplyProfileDataToProfileList();
 
     Audio::AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
     this->LevelMan->SetNextLevel("MainMenu");

@@ -2,6 +2,7 @@
 #define _uicallbacks_h
 
 #include <mezzanine.h>
+#include "profilemanager.h"
 
 using namespace Mezzanine;
 
@@ -18,6 +19,57 @@ void GSMMReturn(EventArgumentsPtr Args);
 void GSRestart(EventArgumentsPtr Args);
 
 ///////////////////////////////////////////////////////////////////////////////
+/// @brief This is a callback class for creating a new empty profile.
+/// @details
+///////////////////////////////////////
+class MSProfileCreate : public FunctorEventSubscriber
+{
+protected:
+    /// @internal
+    /// @brief A pointer to the screen where the start button belongs to.
+    UI::Screen* MainScreen;
+    /// @internal
+    /// @brief A pointer to the profile manager that will be doing the actual creating.
+    ProfileManager* ProfileMan;
+public:
+    /// @brief Class constructor.
+    /// @param HostScreen A pointer to the screen to work with.
+    MSProfileCreate(ProfileManager* Manager, UI::Screen* HostScreen);
+    /// @brief Class destructor.
+    virtual ~MSProfileCreate();
+
+    /// @brief Executes subscriber specific functionality when the event is fired.
+    /// @param Args The arguments that describe the fired event.
+    virtual void operator()(EventArgumentsPtr Args);
+};//MSProfileCreate
+
+///////////////////////////////////////////////////////////////////////////////
+/// @brief This is a callback class for setting a new active profile.
+/// @details
+///////////////////////////////////////
+class MSProfileSelect : public FunctorEventSubscriber
+{
+protected:
+    /// @internal
+    /// @brief A pointer to the screen where the profile configuration is updated.
+    UI::Screen* MainScreen;
+    /// @internal
+    /// @brief A pointer to the profile manager that will be doing the actual creating.
+    ProfileManager* ProfileMan;
+public:
+    /// @brief Class constructor.
+    /// @param HostScreen A pointer to the screen to work with.
+    /// @param Manager A pointer to the ProfileManager to be used for profile operations.
+    MSProfileSelect(ProfileManager* Manager, UI::Screen* HostScreen);
+    /// @brief Class destructor.
+    virtual ~MSProfileSelect();
+
+    /// @brief Executes subscriber specific functionality when the event is fired.
+    /// @param Args The arguments that describe the fired event.
+    virtual void operator()(EventArgumentsPtr Args);
+};//MSProfileSelect
+
+///////////////////////////////////////////////////////////////////////////////
 /// @brief This is a callback class for updating the state of a focused level select child.
 /// @details
 ///////////////////////////////////////
@@ -25,8 +77,8 @@ class MSLevelCellSelect : public FunctorEventSubscriber
 {
 protected:
     /// @internal
-    /// @brief A pointer to the screen where the start button belongs to.
-    UI::Screen* LSScreen;
+    /// @brief A pointer to the screen where the profile configuration is updated.
+    UI::Screen* MainScreen;
 public:
     /// @brief Class constructor.
     /// @param HostScreen A pointer to the screen to work with.

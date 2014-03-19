@@ -201,14 +201,30 @@ Whole ProfileManager::DetectProfiles()
     return Detected;
 }
 
-void ProfileManager::ApplyProfileDataToUI()
+void ProfileManager::ApplyProfileDataToProfileList()
+{
+    UI::Screen* MainMenuScreen = this->TheEntresol->GetUIManager()->GetScreen("MainMenuScreen");
+    UI::DropDownList* ProfilesDropList = static_cast<UI::DropDownList*>( MainMenuScreen->GetWidget("MS_ProfilesList") );
+    UI::ListBox* ProfilesList = ProfilesDropList->GetSelectionList();
+
+    ProfilesList->GetListContainer()->DestroyAllChildren();
+    for( ConstProfilesIterator ProIt = this->LoadedProfiles.begin() ; ProIt != this->LoadedProfiles.end() ; ++ProIt )
+    {
+        const String& ProfileName = (*ProIt)->GetName();
+        ProfilesList->CreateSingleLineListItem(ProfileName,ProfileName);
+    }
+    ProfilesList->UpdateChildDimensions();
+    ProfilesDropList->UpdateCurrentSelection( ProfilesList->GetListItem( this->ActiveProfile->GetName() ) );//*/
+}
+
+void ProfileManager::ApplyProfileDataToLevelSelect()
 {
     if( this->ActiveProfile != NULL ) {
-        this->ApplyProfileDataToUI( this->ActiveProfile );
+        this->ApplyProfileDataToLevelSelect( this->ActiveProfile );
     }
 }
 
-void ProfileManager::ApplyProfileDataToUI(GameProfile* Profile)
+void ProfileManager::ApplyProfileDataToLevelSelect(GameProfile* Profile)
 {
     // Get our pointers
     LevelManager* LevelMan = CatchApp::GetCatchAppPointer()->GetLevelManager();
@@ -295,7 +311,11 @@ const String& ProfileManager::GetProfilesDirectory() const
 
 GameProfile* ProfileManager::CreateNewProfile(const String& Name)
 {
-    GameProfile* Profile = new GameProfile(Name);
+    GameProfile* Profile = this->GetProfile(Name);
+    if( Profile != NULL ) {
+        return Profile;
+    }
+    Profile = new GameProfile(Name);
     this->LoadedProfiles.push_back(Profile);
     return Profile;
 }
@@ -359,6 +379,25 @@ void ProfileManager::SaveAllProfiles()
     }
 }
 
+/*void ProfileManager::DestroyProfile(const String& Name)
+{
+    GameProfile* Profile = this->GetProfile(Name);
+    this->DestroyProfile(Profile);
+}
+
+void ProfileManager::DestroyProfile(GameProfile* Profile)
+{
+    // Clear it from our container
+    ProfilesIterator ProIt = std::find(this->LoadedProfiles.begin(),this->LoadedProfiles.end(),Profile);
+    if( ProIt != this->LoadedProfiles.end() ) {
+        this->LoadedProfiles.erase(ProIt);
+    }
+    // Delete it from the disk
+    Resource::RemoveFile( this->ProfilesDirectory + Profile->GetName() );
+    // Clean up the profile itself
+    delete Profile;
+}//*/
+
 ///////////////////////////////////////////////////////////////////////////////
 // ActiveProfile Management
 
@@ -377,6 +416,23 @@ void ProfileManager::SetActiveProfile(GameProfile* Profile)
 {
     this->ActiveProfile = Profile;
     //this->ApplyProfileDataToUI( this->ActiveProfile );
+
+    if( this->ActiveProfile != NULL ) {
+        UI::Screen* MainMenuScreen = this->TheEntresol->GetUIManager()->GetScreen("MainMenuScreen");
+        if( MainMenuScreen != NULL ) {
+            UI::Widget* ProfileDisplay = MainMenuScreen->GetWidget("MS_ProfilesAccess");
+            UI::SingleLineTextLayer* ProfileDisplayText = static_cast<UI::SingleLineTextLayer*>( ProfileDisplay->GetRenderLayer(0,UI::RLT_SingleLineText) );
+            ProfileDisplayText->SetText( this->ActiveProfile->GetName() );
+        }
+    }
+}
+
+String ProfileManager::GetActiveProfileName() const
+{
+    if( this->ActiveProfile != NULL ) {
+        return this->ActiveProfile->GetName();
+    }
+    return "";
 }
 
 GameProfile* ProfileManager::GetActiveProfile() const
@@ -408,6 +464,8 @@ void ProfileManager::Initialize()
 
 void ProfileManager::Deinitialize()
 {
+    this->SaveAllProfiles();
+
     if( this->AutoGenFiles )
         this->SaveAllSettings();
 
