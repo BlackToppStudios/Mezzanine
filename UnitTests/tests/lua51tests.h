@@ -502,6 +502,24 @@ class lua51tests : public UnitTestGroup
             }
 
             {
+                NameValuePairList Parms;
+                Scripting::Lua::Lua51ScriptingEngine RuntimeDefault(Parms);
+
+                // Not exhaustive
+                TEST(RuntimeDefault.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib) &&
+                     RuntimeDefault.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::StringLib) &&
+                     !RuntimeDefault.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::OSLib)
+                    , "NameValuePairConstructionDefault");
+
+                Parms.insert(Parms.begin(), NameValuePair("OS", "Load"));
+                Scripting::Lua::Lua51ScriptingEngine RuntimeOnlyOS(Parms);
+                TEST(!RuntimeOnlyOS.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib) &&
+                     !RuntimeOnlyOS.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::StringLib) &&
+                     RuntimeOnlyOS.IsLibraryOpen(Scripting::Lua::Lua51ScriptingEngine::OSLib)
+                    , "NameValuePairConstructionOS");
+            }
+
+            {
                 TEST_NO_THROW(
                     Scripting::Lua::Lua51ScriptingEngine LuaRuntimeDoubleRunTest(Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
                     Scripting::Lua::Lua51Script Att("print('Hello from a script about to be run twice')", &LuaRuntimeDoubleRunTest);
@@ -512,15 +530,6 @@ class lua51tests : public UnitTestGroup
 
             // Wrapped Test Selection
             {
-                // files/Classes not tested
-                // worldnode.h
-                // worldobjectgraphicssettings.h
-                // worldobject.h
-                // worldobjectphysicssettings.h
-                // Attachable
-                // FrameScheduler
-                // DoubleBuffered Resource
-
                 // Specific class swig wrapping tests
                 TestLuaScript("function MakePlane(x)\n"
                               "   d=x*3\n"

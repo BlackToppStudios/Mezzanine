@@ -99,6 +99,10 @@ namespace Mezzanine
                     /// @throws This Throws ScriptLuaYieldException, ScriptLuaRuntimeException, ScriptLuaRuntimeException, ScriptLuaErrErrException, SyntaxErrorLuaException, OutOfMemoryException, FileException, ScriptLuaException with as much precision as possible when thrown.
                     virtual void ThrowFromLuaErrorCode(int LuaReturn);
 
+                    /// @brief Checks the internal Lua to see if memory was correctly allocated during its creation
+                    /// @throw If Lua could not get enouugh memory this throws an Exception::MM_OUT_OF_MEMORY_EXCEPTION
+                    void CheckLuaStateAfterConstruction() const;
+
                 public:
                     /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries open a little easier.
                     enum Lua51Libraries
@@ -196,7 +200,7 @@ namespace Mezzanine
                     static const String& GetTableName(Lua51Libraries Lib);
                     /// @brief Convert a string similar to one of the names on the Lua51ScriptingEngine to number
                     /// @param Name A string containing a name of one of the libraries (without regard to case)
-                    /// @return The correlating
+                    /// @return The correlating enumeration value for the passed name.
                     static Lua51Libraries GetLibFromName(String Name);
 
                 ///////////////////////////////////////////////////////////////////////////////////////
@@ -205,6 +209,11 @@ namespace Mezzanine
                     /// @param LibrariesToOpen A Lua51Libraries bitmap indicating which libraries to load, this defaults to DefaultLibs
                     explicit Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen=DefaultLibs);
 
+                    /// @brief Construct a from name value pairs
+                    /// @param Params A collection of name value pairs indicating what to load and not load.
+                    /// @details Each name can be the name of a libname (except None) and the value can
+                    /// either be "Load" or "Unload". To indicate whether or not a library will be loaded
+                    /// or not during instantation.
                     explicit Lua51ScriptingEngine(NameValuePairList& Params);
 
                     explicit Lua51ScriptingEngine(const XML::Node& XMLNode);

@@ -178,6 +178,12 @@ namespace Mezzanine
                 }
             }
 
+            void Lua51ScriptingEngine::CheckLuaStateAfterConstruction() const
+            {
+                if(NULL==State)
+                    { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
+            }
+
             const String Lua51ScriptingEngine::NoLibName                   = "None";
             const String Lua51ScriptingEngine::BaseLibName                 = "Base";
             const String Lua51ScriptingEngine::PackageLibName              = "Package";
@@ -322,22 +328,38 @@ namespace Mezzanine
             // Construction/Deconstruction
             Lua51ScriptingEngine::Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen) : State(luaL_newstate())
             {
-                if(NULL==State)
-                    { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
+                CheckLuaStateAfterConstruction();
                 OpenLibraries(LibrariesToOpen);
             }
 
             Lua51ScriptingEngine::Lua51ScriptingEngine(NameValuePairList& Params) : State(luaL_newstate())
             {
-                if(NULL==State)
-                    { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
-                OpenLibraries(DefaultLibs);
+                CheckLuaStateAfterConstruction();
+                Integer ToLoad = NoLib;
+                if(Params.empty())
+                    { ToLoad = DefaultLibs; }
+                else
+                {
+                    for(NameValuePairList::iterator Iter = Params.begin(); Params.end() != Iter; Iter++ )
+                    {
+                        Lua51Libraries Lib( GetLibFromName(Iter->first) );
+                        String LoadState(Iter->second);
+                        if(String("Load")==LoadState)
+                            { ToLoad |= Lib; }
+                        else{
+                            if(String("Unload")==LoadState)
+                                { ToLoad &= ~Lib; }
+                            else
+                                { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Unknown loadstate parameter, during name value pair construction."); }
+                        }
+                    }
+                }
+                OpenLibraries( (Lua51Libraries)ToLoad );
             }
 
             Lua51ScriptingEngine::Lua51ScriptingEngine(const XML::Node& XMLNode) : State(luaL_newstate())
             {
-                if(NULL==State)
-                    { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
+                CheckLuaStateAfterConstruction();
                 OpenLibraries(DefaultLibs);
             }
 
@@ -781,7 +803,7 @@ namespace Mezzanine
             }
 
             String Lua51ScriptingEngineFactory::GetManagerTypeName() const
-            { return Lua51ScriptingEngine::ScriptEngineName; }
+                { return Lua51ScriptingEngine::ScriptEngineName; }
 
             ManagerBase*Lua51ScriptingEngineFactory::CreateManager(NameValuePairList& Params)
                 { return new Lua51ScriptingEngine(Params); }
