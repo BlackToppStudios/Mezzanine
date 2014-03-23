@@ -74,6 +74,7 @@ freely, subject to the following restrictions:
 #endif
 
 #ifndef WINAPI
+    /// @brief Used to force the aclling convention of a function to match the way windows does it.
     #define WINAPI __stdcall
 #endif
 
