@@ -1792,72 +1792,73 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[139]
 #define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[140]
 #define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[141]
-#define SWIGTYPE_p_Mezzanine__Timer swig_types[142]
-#define SWIGTYPE_p_Mezzanine__Transform swig_types[143]
-#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[144]
-#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[145]
-#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[146]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[147]
-#define SWIGTYPE_p_Mezzanine__World swig_types[148]
-#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[149]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[150]
-#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[151]
-#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[152]
-#define SWIGTYPE_p_ObjectContainer swig_types[153]
-#define SWIGTYPE_p_ObjectIterator swig_types[154]
-#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[155]
-#define SWIGTYPE_p_Ogre__ColourValue swig_types[156]
-#define SWIGTYPE_p_Ogre__Plane swig_types[157]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[158]
-#define SWIGTYPE_p_Ogre__Ray swig_types[159]
-#define SWIGTYPE_p_Ogre__Sphere swig_types[160]
-#define SWIGTYPE_p_Ogre__Vector2 swig_types[161]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[162]
-#define SWIGTYPE_p_PlaneRayTestResult swig_types[163]
-#define SWIGTYPE_p_ProxyContainer swig_types[164]
-#define SWIGTYPE_p_ProxyIterator swig_types[165]
-#define SWIGTYPE_p_RayTestResult swig_types[166]
-#define SWIGTYPE_p_SDL_Event swig_types[167]
-#define SWIGTYPE_p_SlotContainer swig_types[168]
-#define SWIGTYPE_p_SlotIterator swig_types[169]
-#define SWIGTYPE_p_SlotPair swig_types[170]
-#define SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type swig_types[171]
-#define SWIGTYPE_p_XML__Node swig_types[172]
-#define SWIGTYPE_p_bool swig_types[173]
-#define SWIGTYPE_p_btQuaternion swig_types[174]
-#define SWIGTYPE_p_btTransform swig_types[175]
-#define SWIGTYPE_p_btVector3 swig_types[176]
-#define SWIGTYPE_p_char swig_types[177]
-#define SWIGTYPE_p_double swig_types[178]
-#define SWIGTYPE_p_float swig_types[179]
-#define SWIGTYPE_p_int swig_types[180]
-#define SWIGTYPE_p_long_long swig_types[181]
-#define SWIGTYPE_p_short swig_types[182]
-#define SWIGTYPE_p_signed_char swig_types[183]
-#define SWIGTYPE_p_std__exception swig_types[184]
-#define SWIGTYPE_p_std__listT_Mezzanine__EventBase_p_t swig_types[185]
-#define SWIGTYPE_p_std__listT_Mezzanine__EventGameWindow_p_t swig_types[186]
-#define SWIGTYPE_p_std__listT_Mezzanine__EventQuit_p_t swig_types[187]
-#define SWIGTYPE_p_std__listT_Mezzanine__EventUserInput_p_t swig_types[188]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[189]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[190]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[191]
-#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[192]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[193]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[194]
-#define SWIGTYPE_p_std__string swig_types[195]
-#define SWIGTYPE_p_std__stringstream swig_types[196]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_t swig_types[197]
-#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_t swig_types[198]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[199]
-#define SWIGTYPE_p_std__wstring swig_types[200]
-#define SWIGTYPE_p_unsigned_char swig_types[201]
-#define SWIGTYPE_p_unsigned_int swig_types[202]
-#define SWIGTYPE_p_unsigned_long swig_types[203]
-#define SWIGTYPE_p_unsigned_long_long swig_types[204]
-#define SWIGTYPE_p_unsigned_short swig_types[205]
-static swig_type_info *swig_types[207];
-static swig_module_info swig_module = {swig_types, 206, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type swig_types[142]
+#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[143]
+#define SWIGTYPE_p_Mezzanine__Timer swig_types[144]
+#define SWIGTYPE_p_Mezzanine__Transform swig_types[145]
+#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[146]
+#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[147]
+#define SWIGTYPE_p_Mezzanine__Vector2 swig_types[148]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[149]
+#define SWIGTYPE_p_Mezzanine__World swig_types[150]
+#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[151]
+#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[152]
+#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[153]
+#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[154]
+#define SWIGTYPE_p_ObjectContainer swig_types[155]
+#define SWIGTYPE_p_ObjectIterator swig_types[156]
+#define SWIGTYPE_p_Ogre__AxisAlignedBox swig_types[157]
+#define SWIGTYPE_p_Ogre__ColourValue swig_types[158]
+#define SWIGTYPE_p_Ogre__Plane swig_types[159]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[160]
+#define SWIGTYPE_p_Ogre__Ray swig_types[161]
+#define SWIGTYPE_p_Ogre__Sphere swig_types[162]
+#define SWIGTYPE_p_Ogre__Vector2 swig_types[163]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[164]
+#define SWIGTYPE_p_PlaneRayTestResult swig_types[165]
+#define SWIGTYPE_p_ProxyContainer swig_types[166]
+#define SWIGTYPE_p_ProxyIterator swig_types[167]
+#define SWIGTYPE_p_RayTestResult swig_types[168]
+#define SWIGTYPE_p_SDL_Event swig_types[169]
+#define SWIGTYPE_p_SlotContainer swig_types[170]
+#define SWIGTYPE_p_SlotIterator swig_types[171]
+#define SWIGTYPE_p_SlotPair swig_types[172]
+#define SWIGTYPE_p_XML__Node swig_types[173]
+#define SWIGTYPE_p_bool swig_types[174]
+#define SWIGTYPE_p_btQuaternion swig_types[175]
+#define SWIGTYPE_p_btTransform swig_types[176]
+#define SWIGTYPE_p_btVector3 swig_types[177]
+#define SWIGTYPE_p_char swig_types[178]
+#define SWIGTYPE_p_double swig_types[179]
+#define SWIGTYPE_p_float swig_types[180]
+#define SWIGTYPE_p_int swig_types[181]
+#define SWIGTYPE_p_long_long swig_types[182]
+#define SWIGTYPE_p_short swig_types[183]
+#define SWIGTYPE_p_signed_char swig_types[184]
+#define SWIGTYPE_p_std__exception swig_types[185]
+#define SWIGTYPE_p_std__listT_Mezzanine__EventBase_p_t swig_types[186]
+#define SWIGTYPE_p_std__listT_Mezzanine__EventGameWindow_p_t swig_types[187]
+#define SWIGTYPE_p_std__listT_Mezzanine__EventQuit_p_t swig_types[188]
+#define SWIGTYPE_p_std__listT_Mezzanine__EventUserInput_p_t swig_types[189]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[190]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[191]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Ray_t swig_types[192]
+#define SWIGTYPE_p_std__pairT_bool_Mezzanine__Vector3_t swig_types[193]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[194]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[195]
+#define SWIGTYPE_p_std__string swig_types[196]
+#define SWIGTYPE_p_std__stringstream swig_types[197]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldObject_p_t swig_types[198]
+#define SWIGTYPE_p_std__vectorT_Mezzanine__WorldProxy_p_t swig_types[199]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[200]
+#define SWIGTYPE_p_std__wstring swig_types[201]
+#define SWIGTYPE_p_unsigned_char swig_types[202]
+#define SWIGTYPE_p_unsigned_int swig_types[203]
+#define SWIGTYPE_p_unsigned_long swig_types[204]
+#define SWIGTYPE_p_unsigned_long_long swig_types[205]
+#define SWIGTYPE_p_unsigned_short swig_types[206]
+static swig_type_info *swig_types[208];
+static swig_module_info swig_module = {swig_types, 207, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1889,8 +1890,22 @@ typedef struct{} LANGUAGE_OBJ;
         #endif
 
         using namespace Mezzanine;
-        using namespace Mezzanine::Threading;
-        using namespace Mezzanine::Physics;
+        //using namespace Mezzanine::Threading;
+        //using namespace Mezzanine::Physics;
+
+        // Fix cross module type-usage
+        namespace Mezzanine
+        {
+            namespace Physics
+            {
+                typedef Mezzanine::Vector3 Vector3;
+            }
+            namespace Threading
+            {
+
+            }
+            typedef Threading::RawFile RawFile;
+        }
     
 
 #include <stdexcept>
@@ -21618,19 +21633,19 @@ static int _wrap_new_ActorUpdateWorkUnit(lua_State* L) {
 static int _wrap_ActorUpdateWorkUnit_DoWork(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::ActorUpdateWorkUnit *arg1 = (Mezzanine::ActorUpdateWorkUnit *) 0 ;
-  Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::ActorUpdateWorkUnit::DoWork",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::ActorUpdateWorkUnit::DoWork",1,"Mezzanine::ActorUpdateWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::ActorUpdateWorkUnit::DoWork",2,"Threading::DefaultThreadSpecificStorage::Type &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::ActorUpdateWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__ActorUpdateWorkUnit,0))){
     SWIG_fail_ptr("ActorUpdateWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__ActorUpdateWorkUnit);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type,0))){
-    SWIG_fail_ptr("ActorUpdateWorkUnit_DoWork",2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,0))){
+    SWIG_fail_ptr("ActorUpdateWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type);
   }
   
   (arg1)->DoWork(*arg2);
@@ -28303,19 +28318,19 @@ static int _wrap_new_AreaEffectUpdateWorkUnit(lua_State* L) {
 static int _wrap_AreaEffectUpdateWorkUnit_DoWork(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::AreaEffectUpdateWorkUnit *arg1 = (Mezzanine::AreaEffectUpdateWorkUnit *) 0 ;
-  Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::AreaEffectUpdateWorkUnit::DoWork",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::AreaEffectUpdateWorkUnit::DoWork",1,"Mezzanine::AreaEffectUpdateWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::AreaEffectUpdateWorkUnit::DoWork",2,"Threading::DefaultThreadSpecificStorage::Type &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::AreaEffectUpdateWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__AreaEffectUpdateWorkUnit,0))){
     SWIG_fail_ptr("AreaEffectUpdateWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__AreaEffectUpdateWorkUnit);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type,0))){
-    SWIG_fail_ptr("AreaEffectUpdateWorkUnit_DoWork",2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,0))){
+    SWIG_fail_ptr("AreaEffectUpdateWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type);
   }
   
   (arg1)->DoWork(*arg2);
@@ -33345,19 +33360,19 @@ static int _wrap_new_DebrisUpdateWorkUnit(lua_State* L) {
 static int _wrap_DebrisUpdateWorkUnit_DoWork(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::DebrisUpdateWorkUnit *arg1 = (Mezzanine::DebrisUpdateWorkUnit *) 0 ;
-  Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::DebrisUpdateWorkUnit::DoWork",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::DebrisUpdateWorkUnit::DoWork",1,"Mezzanine::DebrisUpdateWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::DebrisUpdateWorkUnit::DoWork",2,"Threading::DefaultThreadSpecificStorage::Type &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::DebrisUpdateWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__DebrisUpdateWorkUnit,0))){
     SWIG_fail_ptr("DebrisUpdateWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__DebrisUpdateWorkUnit);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type,0))){
-    SWIG_fail_ptr("DebrisUpdateWorkUnit_DoWork",2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,0))){
+    SWIG_fail_ptr("DebrisUpdateWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type);
   }
   
   (arg1)->DoWork(*arg2);
@@ -37929,19 +37944,19 @@ static int _wrap_new_EventPumpWorkUnit(lua_State* L) {
 static int _wrap_EventPumpWorkUnit_DoWork(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::EventPumpWorkUnit *arg1 = (Mezzanine::EventPumpWorkUnit *) 0 ;
-  Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::EventPumpWorkUnit::DoWork",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::EventPumpWorkUnit::DoWork",1,"Mezzanine::EventPumpWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EventPumpWorkUnit::DoWork",2,"Threading::DefaultThreadSpecificStorage::Type &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::EventPumpWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__EventPumpWorkUnit,0))){
     SWIG_fail_ptr("EventPumpWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__EventPumpWorkUnit);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type,0))){
-    SWIG_fail_ptr("EventPumpWorkUnit_DoWork",2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,0))){
+    SWIG_fail_ptr("EventPumpWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type);
   }
   
   (arg1)->DoWork(*arg2);
@@ -47237,12 +47252,14 @@ static swig_type_info _swigt__p_Mezzanine__SyntaxErrorException = {"_p_Mezzanine
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorLuaException = {"_p_Mezzanine__SyntaxErrorLuaException", "Mezzanine::SyntaxErrorLuaException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorLuaException, 0};
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorXMLException = {"_p_Mezzanine__SyntaxErrorXMLException", "Mezzanine::SyntaxErrorXMLException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorXMLException, 0};
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorXPathException = {"_p_Mezzanine__SyntaxErrorXPathException", "Mezzanine::SyntaxErrorXPathException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorXPathException, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type = {"_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__RawFile = {"_p_Mezzanine__Threading__RawFile", "Mezzanine::Threading::RawFile *|Mezzanine::RawFile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Timer = {"_p_Mezzanine__Timer", "Mezzanine::Timer *", 0, 0, (void*)&_wrap_class_Mezzanine_Timer, 0};
 static swig_type_info _swigt__p_Mezzanine__Transform = {"_p_Mezzanine__Transform", "Mezzanine::Transform *", 0, 0, (void*)&_wrap_class_Mezzanine_Transform, 0};
 static swig_type_info _swigt__p_Mezzanine__TransformableChildObject = {"_p_Mezzanine__TransformableChildObject", "Mezzanine::TransformableChildObject *", 0, 0, (void*)&_wrap_class_Mezzanine_TransformableChildObject, 0};
 static swig_type_info _swigt__p_Mezzanine__TransformableObject = {"_p_Mezzanine__TransformableObject", "Mezzanine::TransformableObject *", 0, 0, (void*)&_wrap_class_Mezzanine_TransformableObject, 0};
 static swig_type_info _swigt__p_Mezzanine__Vector2 = {"_p_Mezzanine__Vector2", "Mezzanine::Vector2 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector2, 0};
-static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector3, 0};
+static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *|Mezzanine::Physics::Vector3 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector3, 0};
 static swig_type_info _swigt__p_Mezzanine__World = {"_p_Mezzanine__World", "Mezzanine::World *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldManager = {"_p_Mezzanine__WorldManager", "Mezzanine::WorldManager *", 0, 0, (void*)&_wrap_class_Mezzanine_WorldManager, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldObject = {"_p_Mezzanine__WorldObject", "Mezzanine::WorldObject *", 0, 0, (void*)&_wrap_class_Mezzanine_WorldObject, 0};
@@ -47266,7 +47283,6 @@ static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzan
 static swig_type_info _swigt__p_SlotContainer = {"_p_SlotContainer", "SlotContainer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SlotIterator = {"_p_SlotIterator", "SlotIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SlotPair = {"_p_SlotPair", "SlotPair *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Threading__DefaultThreadSpecificStorage__Type = {"_p_Threading__DefaultThreadSpecificStorage__Type", "Threading::DefaultThreadSpecificStorage::Type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_XML__Node = {"_p_XML__Node", "XML::Node *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_bool = {"_p_bool", "bool *|Mezzanine::Boole *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_btQuaternion = {"_p_btQuaternion", "btQuaternion *", 0, 0, (void*)0, 0};
@@ -47445,6 +47461,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__SyntaxErrorLuaException,
   &_swigt__p_Mezzanine__SyntaxErrorXMLException,
   &_swigt__p_Mezzanine__SyntaxErrorXPathException,
+  &_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,
+  &_swigt__p_Mezzanine__Threading__RawFile,
   &_swigt__p_Mezzanine__Timer,
   &_swigt__p_Mezzanine__Transform,
   &_swigt__p_Mezzanine__TransformableChildObject,
@@ -47474,7 +47492,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_SlotContainer,
   &_swigt__p_SlotIterator,
   &_swigt__p_SlotPair,
-  &_swigt__p_Threading__DefaultThreadSpecificStorage__Type,
   &_swigt__p_XML__Node,
   &_swigt__p_bool,
   &_swigt__p_btQuaternion,
@@ -47653,6 +47670,8 @@ static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorException[] = {  {&_swigt_
 static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorLuaException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorXMLException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorXPathException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type[] = {  {&_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__RawFile[] = {  {&_swigt__p_Mezzanine__Threading__RawFile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Timer[] = {  {&_swigt__p_Mezzanine__AlarmTimer, _p_Mezzanine__AlarmTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__StopWatchTimer, _p_Mezzanine__StopWatchTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__GoalTimer, _p_Mezzanine__GoalTimerTo_p_Mezzanine__Timer, 0, 0},  {&_swigt__p_Mezzanine__Timer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Transform[] = {  {&_swigt__p_Mezzanine__Transform, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__TransformableChildObject[] = {  {&_swigt__p_Mezzanine__TransformableChildObject, 0, 0, 0},{0, 0, 0, 0}};
@@ -47682,7 +47701,6 @@ static swig_cast_info _swigc__p_SDL_Event[] = {  {&_swigt__p_SDL_Event, 0, 0, 0}
 static swig_cast_info _swigc__p_SlotContainer[] = {  {&_swigt__p_SlotContainer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SlotIterator[] = {  {&_swigt__p_SlotIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SlotPair[] = {  {&_swigt__p_SlotPair, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Threading__DefaultThreadSpecificStorage__Type[] = {  {&_swigt__p_Threading__DefaultThreadSpecificStorage__Type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_XML__Node[] = {  {&_swigt__p_XML__Node, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_bool[] = {  {&_swigt__p_bool, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_btQuaternion[] = {  {&_swigt__p_btQuaternion, 0, 0, 0},{0, 0, 0, 0}};
@@ -47861,6 +47879,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__SyntaxErrorLuaException,
   _swigc__p_Mezzanine__SyntaxErrorXMLException,
   _swigc__p_Mezzanine__SyntaxErrorXPathException,
+  _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,
+  _swigc__p_Mezzanine__Threading__RawFile,
   _swigc__p_Mezzanine__Timer,
   _swigc__p_Mezzanine__Transform,
   _swigc__p_Mezzanine__TransformableChildObject,
@@ -47890,7 +47910,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_SlotContainer,
   _swigc__p_SlotIterator,
   _swigc__p_SlotPair,
-  _swigc__p_Threading__DefaultThreadSpecificStorage__Type,
   _swigc__p_XML__Node,
   _swigc__p_bool,
   _swigc__p_btQuaternion,

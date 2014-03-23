@@ -1766,29 +1766,29 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[113]
 #define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[114]
 #define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[115]
-#define SWIGTYPE_p_Mezzanine__Transform swig_types[116]
-#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[117]
-#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[118]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[119]
-#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[120]
-#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[121]
-#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[122]
-#define SWIGTYPE_p_Mezzanine__WorldTrigger swig_types[123]
-#define SWIGTYPE_p_Ogre__Quaternion swig_types[124]
-#define SWIGTYPE_p_Ogre__Vector3 swig_types[125]
-#define SWIGTYPE_p_ParamList swig_types[126]
-#define SWIGTYPE_p_ProxyContainer swig_types[127]
-#define SWIGTYPE_p_ProxyIterator swig_types[128]
-#define SWIGTYPE_p_SDL_Event swig_types[129]
-#define SWIGTYPE_p_ShapeMap swig_types[130]
-#define SWIGTYPE_p_ShapeMapIterator swig_types[131]
-#define SWIGTYPE_p_ShapeVector swig_types[132]
-#define SWIGTYPE_p_ShapeVectorIterator swig_types[133]
-#define SWIGTYPE_p_StandardAxis swig_types[134]
-#define SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type swig_types[135]
-#define SWIGTYPE_p_Threading__DefaultWorkUnit swig_types[136]
-#define SWIGTYPE_p_Transform swig_types[137]
-#define SWIGTYPE_p_Vector3 swig_types[138]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type swig_types[116]
+#define SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit swig_types[117]
+#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[118]
+#define SWIGTYPE_p_Mezzanine__Transform swig_types[119]
+#define SWIGTYPE_p_Mezzanine__TransformableChildObject swig_types[120]
+#define SWIGTYPE_p_Mezzanine__TransformableObject swig_types[121]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[122]
+#define SWIGTYPE_p_Mezzanine__WorldManager swig_types[123]
+#define SWIGTYPE_p_Mezzanine__WorldObject swig_types[124]
+#define SWIGTYPE_p_Mezzanine__WorldProxy swig_types[125]
+#define SWIGTYPE_p_Mezzanine__WorldTrigger swig_types[126]
+#define SWIGTYPE_p_Ogre__Quaternion swig_types[127]
+#define SWIGTYPE_p_Ogre__Vector3 swig_types[128]
+#define SWIGTYPE_p_ParamList swig_types[129]
+#define SWIGTYPE_p_ProxyContainer swig_types[130]
+#define SWIGTYPE_p_ProxyIterator swig_types[131]
+#define SWIGTYPE_p_SDL_Event swig_types[132]
+#define SWIGTYPE_p_ShapeMap swig_types[133]
+#define SWIGTYPE_p_ShapeMapIterator swig_types[134]
+#define SWIGTYPE_p_ShapeVector swig_types[135]
+#define SWIGTYPE_p_ShapeVectorIterator swig_types[136]
+#define SWIGTYPE_p_StandardAxis swig_types[137]
+#define SWIGTYPE_p_Transform swig_types[138]
 #define SWIGTYPE_p_WorldTriggerContainer swig_types[139]
 #define SWIGTYPE_p_WorldTriggerIterator swig_types[140]
 #define SWIGTYPE_p_XML__Node swig_types[141]
@@ -1879,8 +1879,22 @@ typedef struct{} LANGUAGE_OBJ;
         #endif
 
         using namespace Mezzanine;
-        using namespace Mezzanine::Threading;
-        using namespace Mezzanine::Physics;
+        //using namespace Mezzanine::Threading;
+        //using namespace Mezzanine::Physics;
+
+        // Fix cross module type-usage
+        namespace Mezzanine
+        {
+            namespace Physics
+            {
+                typedef Mezzanine::Vector3 Vector3;
+            }
+            namespace Threading
+            {
+
+            }
+            typedef Threading::RawFile RawFile;
+        }
     
 
 #include <stdexcept>
@@ -2217,19 +2231,19 @@ static int _wrap_new_SimulationWorkUnit(lua_State* L) {
 static int _wrap_SimulationWorkUnit_DoWork(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::SimulationWorkUnit *arg1 = (Mezzanine::Physics::SimulationWorkUnit *) 0 ;
-  Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::SimulationWorkUnit::DoWork",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SimulationWorkUnit::DoWork",1,"Mezzanine::Physics::SimulationWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SimulationWorkUnit::DoWork",2,"Threading::DefaultThreadSpecificStorage::Type &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SimulationWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__SimulationWorkUnit,0))){
     SWIG_fail_ptr("SimulationWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__Physics__SimulationWorkUnit);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type,0))){
-    SWIG_fail_ptr("SimulationWorkUnit_DoWork",2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,0))){
+    SWIG_fail_ptr("SimulationWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type);
   }
   
   (arg1)->DoWork(*arg2);
@@ -2367,19 +2381,19 @@ fail:
 static int _wrap_SimulationMonopolyWorkUnit_DoWork(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::SimulationMonopolyWorkUnit *arg1 = (Mezzanine::Physics::SimulationMonopolyWorkUnit *) 0 ;
-  Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::SimulationMonopolyWorkUnit::DoWork",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SimulationMonopolyWorkUnit::DoWork",1,"Mezzanine::Physics::SimulationMonopolyWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SimulationMonopolyWorkUnit::DoWork",2,"Threading::DefaultThreadSpecificStorage::Type &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SimulationMonopolyWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__SimulationMonopolyWorkUnit,0))){
     SWIG_fail_ptr("SimulationMonopolyWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__Physics__SimulationMonopolyWorkUnit);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type,0))){
-    SWIG_fail_ptr("SimulationMonopolyWorkUnit_DoWork",2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,0))){
+    SWIG_fail_ptr("SimulationMonopolyWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type);
   }
   
   (arg1)->DoWork(*arg2);
@@ -2467,19 +2481,19 @@ static int _wrap_new_WorldTriggerUpdateWorkUnit(lua_State* L) {
 static int _wrap_WorldTriggerUpdateWorkUnit_DoWork(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::WorldTriggerUpdateWorkUnit *arg1 = (Mezzanine::Physics::WorldTriggerUpdateWorkUnit *) 0 ;
-  Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::WorldTriggerUpdateWorkUnit::DoWork",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::WorldTriggerUpdateWorkUnit::DoWork",1,"Mezzanine::Physics::WorldTriggerUpdateWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::WorldTriggerUpdateWorkUnit::DoWork",2,"Threading::DefaultThreadSpecificStorage::Type &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::WorldTriggerUpdateWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit,0))){
     SWIG_fail_ptr("WorldTriggerUpdateWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type,0))){
-    SWIG_fail_ptr("WorldTriggerUpdateWorkUnit_DoWork",2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,0))){
+    SWIG_fail_ptr("WorldTriggerUpdateWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type);
   }
   
   (arg1)->DoWork(*arg2);
@@ -2565,19 +2579,19 @@ static int _wrap_new_DebugDrawWorkUnit(lua_State* L) {
 static int _wrap_DebugDrawWorkUnit_DoWork(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::DebugDrawWorkUnit *arg1 = (Mezzanine::Physics::DebugDrawWorkUnit *) 0 ;
-  Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::DebugDrawWorkUnit::DoWork",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::DebugDrawWorkUnit::DoWork",1,"Mezzanine::Physics::DebugDrawWorkUnit *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::DebugDrawWorkUnit::DoWork",2,"Threading::DefaultThreadSpecificStorage::Type &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::DebugDrawWorkUnit::DoWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__DebugDrawWorkUnit,0))){
     SWIG_fail_ptr("DebugDrawWorkUnit_DoWork",1,SWIGTYPE_p_Mezzanine__Physics__DebugDrawWorkUnit);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type,0))){
-    SWIG_fail_ptr("DebugDrawWorkUnit_DoWork",2,SWIGTYPE_p_Threading__DefaultThreadSpecificStorage__Type);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,0))){
+    SWIG_fail_ptr("DebugDrawWorkUnit_DoWork",2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type);
   }
   
   (arg1)->DoWork(*arg2);
@@ -2773,22 +2787,22 @@ fail:
 static int _wrap_PhysicsManager_SetWorldGravity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
-  Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::PhysicsManager::SetWorldGravity",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::SetWorldGravity",1,"Mezzanine::Physics::PhysicsManager *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::SetWorldGravity",2,"Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::SetWorldGravity",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
     SWIG_fail_ptr("PhysicsManager_SetWorldGravity",1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Vector3,0))){
-    SWIG_fail_ptr("PhysicsManager_SetWorldGravity",2,SWIGTYPE_p_Vector3);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("PhysicsManager_SetWorldGravity",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetWorldGravity((Vector3 const &)*arg2);
+  (arg1)->SetWorldGravity((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -2803,7 +2817,7 @@ fail:
 static int _wrap_PhysicsManager_GetWorldGravity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
-  Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::PhysicsManager::GetWorldGravity",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::GetWorldGravity",1,"Mezzanine::Physics::PhysicsManager *");
@@ -2814,8 +2828,8 @@ static int _wrap_PhysicsManager_GetWorldGravity(lua_State* L) {
   
   result = (arg1)->GetWorldGravity();
   {
-    Vector3 * resultptr = new Vector3((const Vector3 &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vector3,1); SWIG_arg++;
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -2830,22 +2844,22 @@ fail:
 static int _wrap_PhysicsManager_SetWorldSoftGravity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
-  Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::PhysicsManager::SetWorldSoftGravity",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::SetWorldSoftGravity",1,"Mezzanine::Physics::PhysicsManager *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::SetWorldSoftGravity",2,"Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::SetWorldSoftGravity",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
     SWIG_fail_ptr("PhysicsManager_SetWorldSoftGravity",1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Vector3,0))){
-    SWIG_fail_ptr("PhysicsManager_SetWorldSoftGravity",2,SWIGTYPE_p_Vector3);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("PhysicsManager_SetWorldSoftGravity",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetWorldSoftGravity((Vector3 const &)*arg2);
+  (arg1)->SetWorldSoftGravity((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -2860,7 +2874,7 @@ fail:
 static int _wrap_PhysicsManager_GetWorldSoftGravity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
-  Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::PhysicsManager::GetWorldSoftGravity",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::GetWorldSoftGravity",1,"Mezzanine::Physics::PhysicsManager *");
@@ -2871,8 +2885,8 @@ static int _wrap_PhysicsManager_GetWorldSoftGravity(lua_State* L) {
   
   result = (arg1)->GetWorldSoftGravity();
   {
-    Vector3 * resultptr = new Vector3((const Vector3 &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vector3,1); SWIG_arg++;
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -4287,7 +4301,7 @@ fail:
 static int _wrap_PhysicsManager_GetSimulationWork(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
-  Threading::DefaultWorkUnit *result = 0 ;
+  Mezzanine::Threading::DefaultWorkUnit *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::PhysicsManager::GetSimulationWork",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::GetSimulationWork",1,"Mezzanine::Physics::PhysicsManager *");
@@ -4296,8 +4310,8 @@ static int _wrap_PhysicsManager_GetSimulationWork(lua_State* L) {
     SWIG_fail_ptr("PhysicsManager_GetSimulationWork",1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
   }
   
-  result = (Threading::DefaultWorkUnit *)(arg1)->GetSimulationWork();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Threading__DefaultWorkUnit,0); SWIG_arg++; 
+  result = (Mezzanine::Threading::DefaultWorkUnit *)(arg1)->GetSimulationWork();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__DefaultWorkUnit,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -4781,22 +4795,22 @@ fail:
 static int _wrap_CollisionShape_SetScaling(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollisionShape *arg1 = (Mezzanine::Physics::CollisionShape *) 0 ;
-  Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CollisionShape::SetScaling",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollisionShape::SetScaling",1,"Mezzanine::Physics::CollisionShape *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollisionShape::SetScaling",2,"Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollisionShape::SetScaling",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__CollisionShape,0))){
     SWIG_fail_ptr("CollisionShape_SetScaling",1,SWIGTYPE_p_Mezzanine__Physics__CollisionShape);
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Vector3,0))){
-    SWIG_fail_ptr("CollisionShape_SetScaling",2,SWIGTYPE_p_Vector3);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("CollisionShape_SetScaling",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetScaling((Vector3 const &)*arg2);
+  (arg1)->SetScaling((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -4811,7 +4825,7 @@ fail:
 static int _wrap_CollisionShape_GetScaling(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollisionShape *arg1 = (Mezzanine::Physics::CollisionShape *) 0 ;
-  Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::CollisionShape::GetScaling",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollisionShape::GetScaling",1,"Mezzanine::Physics::CollisionShape const *");
@@ -4822,8 +4836,8 @@ static int _wrap_CollisionShape_GetScaling(lua_State* L) {
   
   result = ((Mezzanine::Physics::CollisionShape const *)arg1)->GetScaling();
   {
-    Vector3 * resultptr = new Vector3((const Vector3 &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vector3,1); SWIG_arg++;
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -7870,20 +7884,20 @@ static swig_lua_class _wrap_class_Mezzanine_Physics_PrimitiveCollisionShape = { 
 static int _wrap_new_BoxCollisionShape__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
-  Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   Mezzanine::String temp1 ;
   Mezzanine::Physics::BoxCollisionShape *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::BoxCollisionShape::BoxCollisionShape",2,2)
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Physics::BoxCollisionShape::BoxCollisionShape",1,"Mezzanine::String const &");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::BoxCollisionShape::BoxCollisionShape",2,"Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::BoxCollisionShape::BoxCollisionShape",2,"Mezzanine::Physics::Vector3 const &");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Vector3,0))){
-    SWIG_fail_ptr("new_BoxCollisionShape",2,SWIGTYPE_p_Vector3);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("new_BoxCollisionShape",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  result = (Mezzanine::Physics::BoxCollisionShape *)new Mezzanine::Physics::BoxCollisionShape((Mezzanine::String const &)*arg1,(Vector3 const &)*arg2);
+  result = (Mezzanine::Physics::BoxCollisionShape *)new Mezzanine::Physics::BoxCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Physics::Vector3 const &)*arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__BoxCollisionShape,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -7997,7 +8011,7 @@ static int _wrap_new_BoxCollisionShape(lua_State* L) {
     if (_v) {
       {
         void *ptr;
-        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Vector3, 0)) {
+        if (lua_isuserdata(L,argv[1])==0 || SWIG_ConvertPtr(L,argv[1], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector3, 0)) {
           _v = 0;
         } else {
           _v = 1;
@@ -8011,7 +8025,7 @@ static int _wrap_new_BoxCollisionShape(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_BoxCollisionShape'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::BoxCollisionShape::BoxCollisionShape(Mezzanine::String const &,Vector3 const &)\n"
+    "    Mezzanine::Physics::BoxCollisionShape::BoxCollisionShape(Mezzanine::String const &,Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::BoxCollisionShape::BoxCollisionShape(Mezzanine::String const &,btBoxShape *)\n"
     "    Mezzanine::Physics::BoxCollisionShape::BoxCollisionShape(XML::Node)\n");
   lua_error(L);return 0;
@@ -8021,7 +8035,7 @@ static int _wrap_new_BoxCollisionShape(lua_State* L) {
 static int _wrap_BoxCollisionShape_GetCleanHalfExtents(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::BoxCollisionShape *arg1 = (Mezzanine::Physics::BoxCollisionShape *) 0 ;
-  Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::BoxCollisionShape::GetCleanHalfExtents",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::BoxCollisionShape::GetCleanHalfExtents",1,"Mezzanine::Physics::BoxCollisionShape const *");
@@ -8032,8 +8046,8 @@ static int _wrap_BoxCollisionShape_GetCleanHalfExtents(lua_State* L) {
   
   result = ((Mezzanine::Physics::BoxCollisionShape const *)arg1)->GetCleanHalfExtents();
   {
-    Vector3 * resultptr = new Vector3((const Vector3 &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vector3,1); SWIG_arg++;
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -8048,7 +8062,7 @@ fail:
 static int _wrap_BoxCollisionShape_GetHalfExtents(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::BoxCollisionShape *arg1 = (Mezzanine::Physics::BoxCollisionShape *) 0 ;
-  Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::BoxCollisionShape::GetHalfExtents",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::BoxCollisionShape::GetHalfExtents",1,"Mezzanine::Physics::BoxCollisionShape const *");
@@ -8059,8 +8073,8 @@ static int _wrap_BoxCollisionShape_GetHalfExtents(lua_State* L) {
   
   result = ((Mezzanine::Physics::BoxCollisionShape const *)arg1)->GetHalfExtents();
   {
-    Vector3 * resultptr = new Vector3((const Vector3 &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vector3,1); SWIG_arg++;
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -8075,7 +8089,7 @@ fail:
 static int _wrap_BoxCollisionShape_GetHalfExtentsWithMargin(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::BoxCollisionShape *arg1 = (Mezzanine::Physics::BoxCollisionShape *) 0 ;
-  Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::BoxCollisionShape::GetHalfExtentsWithMargin",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::BoxCollisionShape::GetHalfExtentsWithMargin",1,"Mezzanine::Physics::BoxCollisionShape const *");
@@ -8086,8 +8100,8 @@ static int _wrap_BoxCollisionShape_GetHalfExtentsWithMargin(lua_State* L) {
   
   result = ((Mezzanine::Physics::BoxCollisionShape const *)arg1)->GetHalfExtentsWithMargin();
   {
-    Vector3 * resultptr = new Vector3((const Vector3 &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vector3,1); SWIG_arg++;
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -8102,14 +8116,14 @@ fail:
 static int _wrap_BoxCollisionShape_IsInside(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::BoxCollisionShape *arg1 = (Mezzanine::Physics::BoxCollisionShape *) 0 ;
-  Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   Mezzanine::Real *arg3 = 0 ;
   Mezzanine::Real temp3 ;
   Mezzanine::Boole result;
   
   SWIG_check_num_args("Mezzanine::Physics::BoxCollisionShape::IsInside",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::BoxCollisionShape::IsInside",1,"Mezzanine::Physics::BoxCollisionShape const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::BoxCollisionShape::IsInside",2,"Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::BoxCollisionShape::IsInside",2,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::BoxCollisionShape::IsInside",3,"Mezzanine::Real const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__BoxCollisionShape,0))){
@@ -8117,12 +8131,12 @@ static int _wrap_BoxCollisionShape_IsInside(lua_State* L) {
   }
   
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Vector3,0))){
-    SWIG_fail_ptr("BoxCollisionShape_IsInside",2,SWIGTYPE_p_Vector3);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("BoxCollisionShape_IsInside",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
   temp3=(Mezzanine::Real)lua_tonumber(L,3); arg3=&temp3;
-  result = (Mezzanine::Boole)((Mezzanine::Physics::BoxCollisionShape const *)arg1)->IsInside((Vector3 const &)*arg2,(Mezzanine::Real const &)*arg3);
+  result = (Mezzanine::Boole)((Mezzanine::Physics::BoxCollisionShape const *)arg1)->IsInside((Mezzanine::Physics::Vector3 const &)*arg2,(Mezzanine::Real const &)*arg3);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
   
@@ -8286,7 +8300,7 @@ static int _wrap_new_CapsuleCollisionShape__SWIG_0(lua_State* L) {
   Mezzanine::String *arg1 = 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Real *arg3 = 0 ;
-  Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::String temp1 ;
   Mezzanine::Real temp2 ;
   Mezzanine::Real temp3 ;
@@ -8296,16 +8310,16 @@ static int _wrap_new_CapsuleCollisionShape__SWIG_0(lua_State* L) {
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Physics::CapsuleCollisionShape::CapsuleCollisionShape",1,"Mezzanine::String const &");
   if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::CapsuleCollisionShape::CapsuleCollisionShape",2,"Mezzanine::Real const &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::CapsuleCollisionShape::CapsuleCollisionShape",3,"Mezzanine::Real const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::CapsuleCollisionShape::CapsuleCollisionShape",4,"Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::CapsuleCollisionShape::CapsuleCollisionShape",4,"Mezzanine::Physics::Vector3 const &");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
   temp3=(Mezzanine::Real)lua_tonumber(L,3); arg3=&temp3;
   
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_Vector3,0))){
-    SWIG_fail_ptr("new_CapsuleCollisionShape",4,SWIGTYPE_p_Vector3);
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,4,(void**)&arg4,SWIGTYPE_p_Mezzanine__Vector3,0))){
+    SWIG_fail_ptr("new_CapsuleCollisionShape",4,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  result = (Mezzanine::Physics::CapsuleCollisionShape *)new Mezzanine::Physics::CapsuleCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Real const &)*arg2,(Mezzanine::Real const &)*arg3,(Vector3 const &)*arg4);
+  result = (Mezzanine::Physics::CapsuleCollisionShape *)new Mezzanine::Physics::CapsuleCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Real const &)*arg2,(Mezzanine::Real const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__CapsuleCollisionShape,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -8465,7 +8479,7 @@ static int _wrap_new_CapsuleCollisionShape(lua_State* L) {
         if (_v) {
           {
             void *ptr;
-            if (lua_isuserdata(L,argv[3])==0 || SWIG_ConvertPtr(L,argv[3], (void **) &ptr, SWIGTYPE_p_Vector3, 0)) {
+            if (lua_isuserdata(L,argv[3])==0 || SWIG_ConvertPtr(L,argv[3], (void **) &ptr, SWIGTYPE_p_Mezzanine__Vector3, 0)) {
               _v = 0;
             } else {
               _v = 1;
@@ -8510,7 +8524,7 @@ static int _wrap_new_CapsuleCollisionShape(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_CapsuleCollisionShape'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::CapsuleCollisionShape::CapsuleCollisionShape(Mezzanine::String const &,Mezzanine::Real const &,Mezzanine::Real const &,Vector3 const &)\n"
+    "    Mezzanine::Physics::CapsuleCollisionShape::CapsuleCollisionShape(Mezzanine::String const &,Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::CapsuleCollisionShape::CapsuleCollisionShape(Mezzanine::String const &,Mezzanine::Real const &,Mezzanine::Real const &,StandardAxis)\n"
     "    Mezzanine::Physics::CapsuleCollisionShape::CapsuleCollisionShape(XML::Node)\n"
     "    Mezzanine::Physics::CapsuleCollisionShape::CapsuleCollisionShape(Mezzanine::String const &,btCapsuleShape *)\n");
@@ -8617,7 +8631,7 @@ fail:
 static int _wrap_CapsuleCollisionShape_GetUpAxis(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CapsuleCollisionShape *arg1 = (Mezzanine::Physics::CapsuleCollisionShape *) 0 ;
-  Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::CapsuleCollisionShape::GetUpAxis",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CapsuleCollisionShape::GetUpAxis",1,"Mezzanine::Physics::CapsuleCollisionShape const *");
@@ -8628,8 +8642,8 @@ static int _wrap_CapsuleCollisionShape_GetUpAxis(lua_State* L) {
   
   result = ((Mezzanine::Physics::CapsuleCollisionShape const *)arg1)->GetUpAxis();
   {
-    Vector3 * resultptr = new Vector3((const Vector3 &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Vector3,1); SWIG_arg++;
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
   
@@ -27271,12 +27285,12 @@ fail:
 static int _wrap_CollidableProxy_SetAnisotropicFriction(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollidableProxy *arg1 = (Mezzanine::Physics::CollidableProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   Mezzanine::Whole arg3 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CollidableProxy::SetAnisotropicFriction",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::SetAnisotropicFriction",1,"Mezzanine::Physics::CollidableProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::SetAnisotropicFriction",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::SetAnisotropicFriction",2,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::SetAnisotropicFriction",3,"Mezzanine::Whole const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy,0))){
@@ -27290,7 +27304,7 @@ static int _wrap_CollidableProxy_SetAnisotropicFriction(lua_State* L) {
   
   SWIG_contract_assert((lua_tonumber(L,3)>=0),"number must not be negative")
   arg3 = (Mezzanine::Whole const)lua_tonumber(L, 3);
-  (arg1)->SetAnisotropicFriction((Mezzanine::Vector3 const &)*arg2,arg3);
+  (arg1)->SetAnisotropicFriction((Mezzanine::Physics::Vector3 const &)*arg2,arg3);
   
   return SWIG_arg;
   
@@ -27357,7 +27371,7 @@ fail:
 static int _wrap_CollidableProxy_GetAnisotropicFriction(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollidableProxy *arg1 = (Mezzanine::Physics::CollidableProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::CollidableProxy::GetAnisotropicFriction",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::GetAnisotropicFriction",1,"Mezzanine::Physics::CollidableProxy const *");
@@ -27368,7 +27382,7 @@ static int _wrap_CollidableProxy_GetAnisotropicFriction(lua_State* L) {
   
   result = ((Mezzanine::Physics::CollidableProxy const *)arg1)->GetAnisotropicFriction();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -27647,11 +27661,11 @@ fail:
 static int _wrap_CollidableProxy_SetLocation__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollidableProxy *arg1 = (Mezzanine::Physics::CollidableProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CollidableProxy::SetLocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::SetLocation",1,"Mezzanine::Physics::CollidableProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::SetLocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::SetLocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy,0))){
     SWIG_fail_ptr("CollidableProxy_SetLocation",1,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy);
@@ -27662,7 +27676,7 @@ static int _wrap_CollidableProxy_SetLocation__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("CollidableProxy_SetLocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetLocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetLocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -27769,7 +27783,7 @@ static int _wrap_CollidableProxy_SetLocation(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'CollidableProxy_SetLocation'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::CollidableProxy::SetLocation(Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::Physics::CollidableProxy::SetLocation(Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::CollidableProxy::SetLocation(Mezzanine::Real const,Mezzanine::Real const,Mezzanine::Real const)\n");
   lua_error(L);return 0;
 }
@@ -27778,7 +27792,7 @@ static int _wrap_CollidableProxy_SetLocation(lua_State* L) {
 static int _wrap_CollidableProxy_GetLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollidableProxy *arg1 = (Mezzanine::Physics::CollidableProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::CollidableProxy::GetLocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::GetLocation",1,"Mezzanine::Physics::CollidableProxy const *");
@@ -27789,7 +27803,7 @@ static int _wrap_CollidableProxy_GetLocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::CollidableProxy const *)arg1)->GetLocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -27971,11 +27985,11 @@ fail:
 static int _wrap_CollidableProxy_SetScale__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollidableProxy *arg1 = (Mezzanine::Physics::CollidableProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CollidableProxy::SetScale",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::SetScale",1,"Mezzanine::Physics::CollidableProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::SetScale",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::SetScale",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy,0))){
     SWIG_fail_ptr("CollidableProxy_SetScale",1,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy);
@@ -27986,7 +28000,7 @@ static int _wrap_CollidableProxy_SetScale__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("CollidableProxy_SetScale",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetScale((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetScale((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -28093,7 +28107,7 @@ static int _wrap_CollidableProxy_SetScale(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'CollidableProxy_SetScale'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::CollidableProxy::SetScale(Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::Physics::CollidableProxy::SetScale(Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::CollidableProxy::SetScale(Mezzanine::Real const,Mezzanine::Real const,Mezzanine::Real const)\n");
   lua_error(L);return 0;
 }
@@ -28102,7 +28116,7 @@ static int _wrap_CollidableProxy_SetScale(lua_State* L) {
 static int _wrap_CollidableProxy_GetScale(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollidableProxy *arg1 = (Mezzanine::Physics::CollidableProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::CollidableProxy::GetScale",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::GetScale",1,"Mezzanine::Physics::CollidableProxy const *");
@@ -28113,7 +28127,7 @@ static int _wrap_CollidableProxy_GetScale(lua_State* L) {
   
   result = ((Mezzanine::Physics::CollidableProxy const *)arg1)->GetScale();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -28129,11 +28143,11 @@ fail:
 static int _wrap_CollidableProxy_Translate__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollidableProxy *arg1 = (Mezzanine::Physics::CollidableProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CollidableProxy::Translate",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::Translate",1,"Mezzanine::Physics::CollidableProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::Translate",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::Translate",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy,0))){
     SWIG_fail_ptr("CollidableProxy_Translate",1,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy);
@@ -28144,7 +28158,7 @@ static int _wrap_CollidableProxy_Translate__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("CollidableProxy_Translate",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->Translate((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->Translate((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -28251,7 +28265,7 @@ static int _wrap_CollidableProxy_Translate(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'CollidableProxy_Translate'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::CollidableProxy::Translate(Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::Physics::CollidableProxy::Translate(Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::CollidableProxy::Translate(Mezzanine::Real const,Mezzanine::Real const,Mezzanine::Real const)\n");
   lua_error(L);return 0;
 }
@@ -28338,12 +28352,12 @@ fail:
 static int _wrap_CollidableProxy_Rotate__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollidableProxy *arg1 = (Mezzanine::Physics::CollidableProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   Mezzanine::Real arg3 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CollidableProxy::Rotate",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::Rotate",1,"Mezzanine::Physics::CollidableProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::Rotate",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::Rotate",2,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::Rotate",3,"Mezzanine::Real const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy,0))){
@@ -28356,7 +28370,7 @@ static int _wrap_CollidableProxy_Rotate__SWIG_0(lua_State* L) {
   }
   
   arg3 = (Mezzanine::Real const)lua_tonumber(L, 3);
-  (arg1)->Rotate((Mezzanine::Vector3 const &)*arg2,arg3);
+  (arg1)->Rotate((Mezzanine::Physics::Vector3 const &)*arg2,arg3);
   
   return SWIG_arg;
   
@@ -28461,7 +28475,7 @@ static int _wrap_CollidableProxy_Rotate(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'CollidableProxy_Rotate'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::CollidableProxy::Rotate(Mezzanine::Vector3 const &,Mezzanine::Real const)\n"
+    "    Mezzanine::Physics::CollidableProxy::Rotate(Mezzanine::Physics::Vector3 const &,Mezzanine::Real const)\n"
     "    Mezzanine::Physics::CollidableProxy::Rotate(Mezzanine::Quaternion const &)\n");
   lua_error(L);return 0;
 }
@@ -28470,11 +28484,11 @@ static int _wrap_CollidableProxy_Rotate(lua_State* L) {
 static int _wrap_CollidableProxy_Scale__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CollidableProxy *arg1 = (Mezzanine::Physics::CollidableProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CollidableProxy::Scale",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::Scale",1,"Mezzanine::Physics::CollidableProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::Scale",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CollidableProxy::Scale",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy,0))){
     SWIG_fail_ptr("CollidableProxy_Scale",1,SWIGTYPE_p_Mezzanine__Physics__CollidableProxy);
@@ -28485,7 +28499,7 @@ static int _wrap_CollidableProxy_Scale__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("CollidableProxy_Scale",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->Scale((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->Scale((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -28592,7 +28606,7 @@ static int _wrap_CollidableProxy_Scale(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'CollidableProxy_Scale'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::CollidableProxy::Scale(Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::Physics::CollidableProxy::Scale(Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::CollidableProxy::Scale(Mezzanine::Real const,Mezzanine::Real const,Mezzanine::Real const)\n");
   lua_error(L);return 0;
 }
@@ -29372,7 +29386,7 @@ static int _wrap_Collision_GetWorldLocation(lua_State* L) {
   Mezzanine::Physics::Collision *arg1 = (Mezzanine::Physics::Collision *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   Mezzanine::Whole temp2 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Collision::GetWorldLocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Collision::GetWorldLocation",1,"Mezzanine::Physics::Collision *");
@@ -29386,7 +29400,7 @@ static int _wrap_Collision_GetWorldLocation(lua_State* L) {
   temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
   result = (arg1)->GetWorldLocation((Mezzanine::Whole const &)*arg2);
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -29404,7 +29418,7 @@ static int _wrap_Collision_GetLocalALocation(lua_State* L) {
   Mezzanine::Physics::Collision *arg1 = (Mezzanine::Physics::Collision *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   Mezzanine::Whole temp2 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Collision::GetLocalALocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Collision::GetLocalALocation",1,"Mezzanine::Physics::Collision *");
@@ -29418,7 +29432,7 @@ static int _wrap_Collision_GetLocalALocation(lua_State* L) {
   temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
   result = (arg1)->GetLocalALocation((Mezzanine::Whole const &)*arg2);
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -29436,7 +29450,7 @@ static int _wrap_Collision_GetLocalBLocation(lua_State* L) {
   Mezzanine::Physics::Collision *arg1 = (Mezzanine::Physics::Collision *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   Mezzanine::Whole temp2 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Collision::GetLocalBLocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Collision::GetLocalBLocation",1,"Mezzanine::Physics::Collision *");
@@ -29450,7 +29464,7 @@ static int _wrap_Collision_GetLocalBLocation(lua_State* L) {
   temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
   result = (arg1)->GetLocalBLocation((Mezzanine::Whole const &)*arg2);
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -29468,7 +29482,7 @@ static int _wrap_Collision_GetNormal(lua_State* L) {
   Mezzanine::Physics::Collision *arg1 = (Mezzanine::Physics::Collision *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   Mezzanine::Whole temp2 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Collision::GetNormal",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Collision::GetNormal",1,"Mezzanine::Physics::Collision *");
@@ -29482,7 +29496,7 @@ static int _wrap_Collision_GetNormal(lua_State* L) {
   temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
   result = (arg1)->GetNormal((Mezzanine::Whole const &)*arg2);
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -29769,13 +29783,13 @@ static int _wrap_CompoundCollisionShape_AddChildShape__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CompoundCollisionShape *arg1 = (Mezzanine::Physics::CompoundCollisionShape *) 0 ;
   Mezzanine::Physics::CollisionShape *arg2 = (Mezzanine::Physics::CollisionShape *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
   Mezzanine::Quaternion *arg4 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",1,"Mezzanine::Physics::CompoundCollisionShape *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",2,"Mezzanine::Physics::CollisionShape *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",3,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",3,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",4,"Mezzanine::Quaternion const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__CompoundCollisionShape,0))){
@@ -29797,7 +29811,7 @@ static int _wrap_CompoundCollisionShape_AddChildShape__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("CompoundCollisionShape_AddChildShape",4,SWIGTYPE_p_Mezzanine__Quaternion);
   }
   
-  (arg1)->AddChildShape(arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Quaternion const &)*arg4);
+  (arg1)->AddChildShape(arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Quaternion const &)*arg4);
   
   return SWIG_arg;
   
@@ -29813,12 +29827,12 @@ static int _wrap_CompoundCollisionShape_AddChildShape__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CompoundCollisionShape *arg1 = (Mezzanine::Physics::CompoundCollisionShape *) 0 ;
   Mezzanine::Physics::CollisionShape *arg2 = (Mezzanine::Physics::CollisionShape *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",1,"Mezzanine::Physics::CompoundCollisionShape *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",2,"Mezzanine::Physics::CollisionShape *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",3,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::CompoundCollisionShape::AddChildShape",3,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__CompoundCollisionShape,0))){
     SWIG_fail_ptr("CompoundCollisionShape_AddChildShape",1,SWIGTYPE_p_Mezzanine__Physics__CompoundCollisionShape);
@@ -29834,7 +29848,7 @@ static int _wrap_CompoundCollisionShape_AddChildShape__SWIG_1(lua_State* L) {
     SWIG_fail_ptr("CompoundCollisionShape_AddChildShape",3,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->AddChildShape(arg2,(Mezzanine::Vector3 const &)*arg3);
+  (arg1)->AddChildShape(arg2,(Mezzanine::Physics::Vector3 const &)*arg3);
   
   return SWIG_arg;
   
@@ -30005,8 +30019,8 @@ static int _wrap_CompoundCollisionShape_AddChildShape(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'CompoundCollisionShape_AddChildShape'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::CompoundCollisionShape::AddChildShape(Mezzanine::Physics::CollisionShape *,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &)\n"
-    "    Mezzanine::Physics::CompoundCollisionShape::AddChildShape(Mezzanine::Physics::CollisionShape *,Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::Physics::CompoundCollisionShape::AddChildShape(Mezzanine::Physics::CollisionShape *,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &)\n"
+    "    Mezzanine::Physics::CompoundCollisionShape::AddChildShape(Mezzanine::Physics::CollisionShape *,Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::CompoundCollisionShape::AddChildShape(Mezzanine::Physics::CollisionShape *,Transform const &)\n");
   lua_error(L);return 0;
 }
@@ -30333,7 +30347,7 @@ static int _wrap_new_ConeCollisionShape__SWIG_0(lua_State* L) {
   Mezzanine::String *arg1 = 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Real *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::String temp1 ;
   Mezzanine::Real temp2 ;
   Mezzanine::Real temp3 ;
@@ -30343,7 +30357,7 @@ static int _wrap_new_ConeCollisionShape__SWIG_0(lua_State* L) {
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Physics::ConeCollisionShape::ConeCollisionShape",1,"Mezzanine::String const &");
   if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::ConeCollisionShape::ConeCollisionShape",2,"Mezzanine::Real const &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::ConeCollisionShape::ConeCollisionShape",3,"Mezzanine::Real const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::ConeCollisionShape::ConeCollisionShape",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::ConeCollisionShape::ConeCollisionShape",4,"Mezzanine::Physics::Vector3 const &");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
   temp3=(Mezzanine::Real)lua_tonumber(L,3); arg3=&temp3;
@@ -30352,7 +30366,7 @@ static int _wrap_new_ConeCollisionShape__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("new_ConeCollisionShape",4,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  result = (Mezzanine::Physics::ConeCollisionShape *)new Mezzanine::Physics::ConeCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Real const &)*arg2,(Mezzanine::Real const &)*arg3,(Mezzanine::Vector3 const &)*arg4);
+  result = (Mezzanine::Physics::ConeCollisionShape *)new Mezzanine::Physics::ConeCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Real const &)*arg2,(Mezzanine::Real const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__ConeCollisionShape,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -30546,7 +30560,7 @@ static int _wrap_new_ConeCollisionShape(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_ConeCollisionShape'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::ConeCollisionShape::ConeCollisionShape(Mezzanine::String const &,Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::Physics::ConeCollisionShape::ConeCollisionShape(Mezzanine::String const &,Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::ConeCollisionShape::ConeCollisionShape(Mezzanine::String const &,Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::StandardAxis)\n"
     "    Mezzanine::Physics::ConeCollisionShape::ConeCollisionShape(Mezzanine::String const &,btConeShape *)\n"
     "    Mezzanine::Physics::ConeCollisionShape::ConeCollisionShape(XML::Node)\n");
@@ -30701,7 +30715,7 @@ fail:
 static int _wrap_ConeCollisionShape_GetUpAxis(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::ConeCollisionShape *arg1 = (Mezzanine::Physics::ConeCollisionShape *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::ConeCollisionShape::GetUpAxis",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ConeCollisionShape::GetUpAxis",1,"Mezzanine::Physics::ConeCollisionShape const *");
@@ -30712,7 +30726,7 @@ static int _wrap_ConeCollisionShape_GetUpAxis(lua_State* L) {
   
   result = ((Mezzanine::Physics::ConeCollisionShape const *)arg1)->GetUpAxis();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -32259,20 +32273,20 @@ static swig_lua_class _wrap_class_Mezzanine_Physics_Constraint = { "Constraint",
 static int _wrap_new_ConvexHullCollisionShape__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
-  std::vector< Mezzanine::Vector3 > *arg2 = 0 ;
+  std::vector< Mezzanine::Physics::Vector3 > *arg2 = 0 ;
   Mezzanine::String temp1 ;
   Mezzanine::Physics::ConvexHullCollisionShape *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::ConvexHullCollisionShape::ConvexHullCollisionShape",2,2)
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::ConvexHullCollisionShape",1,"Mezzanine::String const &");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::ConvexHullCollisionShape",2,"std::vector< Mezzanine::Vector3 > const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::ConvexHullCollisionShape",2,"std::vector< Mezzanine::Physics::Vector3 > const &");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_std__vectorT_Mezzanine__Vector3_t,0))){
     SWIG_fail_ptr("new_ConvexHullCollisionShape",2,SWIGTYPE_p_std__vectorT_Mezzanine__Vector3_t);
   }
   
-  result = (Mezzanine::Physics::ConvexHullCollisionShape *)new Mezzanine::Physics::ConvexHullCollisionShape((Mezzanine::String const &)*arg1,(std::vector< Mezzanine::Vector3 > const &)*arg2);
+  result = (Mezzanine::Physics::ConvexHullCollisionShape *)new Mezzanine::Physics::ConvexHullCollisionShape((Mezzanine::String const &)*arg1,(std::vector< Mezzanine::Physics::Vector3 > const &)*arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__ConvexHullCollisionShape,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -32400,7 +32414,7 @@ static int _wrap_new_ConvexHullCollisionShape(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_ConvexHullCollisionShape'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::ConvexHullCollisionShape::ConvexHullCollisionShape(Mezzanine::String const &,std::vector< Mezzanine::Vector3 > const &)\n"
+    "    Mezzanine::Physics::ConvexHullCollisionShape::ConvexHullCollisionShape(Mezzanine::String const &,std::vector< Mezzanine::Physics::Vector3 > const &)\n"
     "    Mezzanine::Physics::ConvexHullCollisionShape::ConvexHullCollisionShape(Mezzanine::String const &,btConvexHullShape *)\n"
     "    Mezzanine::Physics::ConvexHullCollisionShape::ConvexHullCollisionShape(XML::Node)\n");
   lua_error(L);return 0;
@@ -32410,11 +32424,11 @@ static int _wrap_new_ConvexHullCollisionShape(lua_State* L) {
 static int _wrap_ConvexHullCollisionShape_AddPoint(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::ConvexHullCollisionShape *arg1 = (Mezzanine::Physics::ConvexHullCollisionShape *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::ConvexHullCollisionShape::AddPoint",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::AddPoint",1,"Mezzanine::Physics::ConvexHullCollisionShape *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::AddPoint",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::AddPoint",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__ConvexHullCollisionShape,0))){
     SWIG_fail_ptr("ConvexHullCollisionShape_AddPoint",1,SWIGTYPE_p_Mezzanine__Physics__ConvexHullCollisionShape);
@@ -32425,7 +32439,7 @@ static int _wrap_ConvexHullCollisionShape_AddPoint(lua_State* L) {
     SWIG_fail_ptr("ConvexHullCollisionShape_AddPoint",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->AddPoint((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->AddPoint((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -32442,7 +32456,7 @@ static int _wrap_ConvexHullCollisionShape_GetUnscaledPoint(lua_State* L) {
   Mezzanine::Physics::ConvexHullCollisionShape *arg1 = (Mezzanine::Physics::ConvexHullCollisionShape *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   Mezzanine::Whole temp2 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::ConvexHullCollisionShape::GetUnscaledPoint",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::GetUnscaledPoint",1,"Mezzanine::Physics::ConvexHullCollisionShape const *");
@@ -32456,7 +32470,7 @@ static int _wrap_ConvexHullCollisionShape_GetUnscaledPoint(lua_State* L) {
   temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
   result = ((Mezzanine::Physics::ConvexHullCollisionShape const *)arg1)->GetUnscaledPoint((Mezzanine::Whole const &)*arg2);
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -32474,7 +32488,7 @@ static int _wrap_ConvexHullCollisionShape_GetPoint(lua_State* L) {
   Mezzanine::Physics::ConvexHullCollisionShape *arg1 = (Mezzanine::Physics::ConvexHullCollisionShape *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   Mezzanine::Whole temp2 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::ConvexHullCollisionShape::GetPoint",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::GetPoint",1,"Mezzanine::Physics::ConvexHullCollisionShape const *");
@@ -32488,7 +32502,7 @@ static int _wrap_ConvexHullCollisionShape_GetPoint(lua_State* L) {
   temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
   result = ((Mezzanine::Physics::ConvexHullCollisionShape const *)arg1)->GetPoint((Mezzanine::Whole const &)*arg2);
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -32528,14 +32542,14 @@ fail:
 static int _wrap_ConvexHullCollisionShape_IsInside(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::ConvexHullCollisionShape *arg1 = (Mezzanine::Physics::ConvexHullCollisionShape *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   Mezzanine::Real *arg3 = 0 ;
   Mezzanine::Real temp3 ;
   Mezzanine::Boole result;
   
   SWIG_check_num_args("Mezzanine::Physics::ConvexHullCollisionShape::IsInside",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::IsInside",1,"Mezzanine::Physics::ConvexHullCollisionShape const *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::IsInside",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::IsInside",2,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::ConvexHullCollisionShape::IsInside",3,"Mezzanine::Real const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__ConvexHullCollisionShape,0))){
@@ -32548,7 +32562,7 @@ static int _wrap_ConvexHullCollisionShape_IsInside(lua_State* L) {
   }
   
   temp3=(Mezzanine::Real)lua_tonumber(L,3); arg3=&temp3;
-  result = (Mezzanine::Boole)((Mezzanine::Physics::ConvexHullCollisionShape const *)arg1)->IsInside((Mezzanine::Vector3 const &)*arg2,(Mezzanine::Real const &)*arg3);
+  result = (Mezzanine::Boole)((Mezzanine::Physics::ConvexHullCollisionShape const *)arg1)->IsInside((Mezzanine::Physics::Vector3 const &)*arg2,(Mezzanine::Real const &)*arg3);
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
   return SWIG_arg;
   
@@ -32713,7 +32727,7 @@ static int _wrap_new_CylinderCollisionShape__SWIG_0(lua_State* L) {
   Mezzanine::String *arg1 = 0 ;
   Mezzanine::Real *arg2 = 0 ;
   Mezzanine::Real *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::String temp1 ;
   Mezzanine::Real temp2 ;
   Mezzanine::Real temp3 ;
@@ -32723,7 +32737,7 @@ static int _wrap_new_CylinderCollisionShape__SWIG_0(lua_State* L) {
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",1,"Mezzanine::String const &");
   if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",2,"Mezzanine::Real const &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",3,"Mezzanine::Real const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",4,"Mezzanine::Physics::Vector3 const &");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
   temp3=(Mezzanine::Real)lua_tonumber(L,3); arg3=&temp3;
@@ -32732,7 +32746,7 @@ static int _wrap_new_CylinderCollisionShape__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("new_CylinderCollisionShape",4,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  result = (Mezzanine::Physics::CylinderCollisionShape *)new Mezzanine::Physics::CylinderCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Real const &)*arg2,(Mezzanine::Real const &)*arg3,(Mezzanine::Vector3 const &)*arg4);
+  result = (Mezzanine::Physics::CylinderCollisionShape *)new Mezzanine::Physics::CylinderCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Real const &)*arg2,(Mezzanine::Real const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__CylinderCollisionShape,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -32779,15 +32793,15 @@ fail:
 static int _wrap_new_CylinderCollisionShape__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
   Mezzanine::String temp1 ;
   Mezzanine::Physics::CylinderCollisionShape *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",3,3)
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",1,"Mezzanine::String const &");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",2,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",3,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",2,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",3,"Mezzanine::Physics::Vector3 const &");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Vector3,0))){
@@ -32799,7 +32813,7 @@ static int _wrap_new_CylinderCollisionShape__SWIG_2(lua_State* L) {
     SWIG_fail_ptr("new_CylinderCollisionShape",3,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  result = (Mezzanine::Physics::CylinderCollisionShape *)new Mezzanine::Physics::CylinderCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Vector3 const &)*arg2,(Mezzanine::Vector3 const &)*arg3);
+  result = (Mezzanine::Physics::CylinderCollisionShape *)new Mezzanine::Physics::CylinderCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Physics::Vector3 const &)*arg2,(Mezzanine::Physics::Vector3 const &)*arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__CylinderCollisionShape,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -32814,14 +32828,14 @@ fail:
 static int _wrap_new_CylinderCollisionShape__SWIG_3(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   Mezzanine::StandardAxis arg3 ;
   Mezzanine::String temp1 ;
   Mezzanine::Physics::CylinderCollisionShape *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",3,3)
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",1,"Mezzanine::String const &");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",2,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isnumber(L,3)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape",3,"Mezzanine::StandardAxis");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   
@@ -32830,7 +32844,7 @@ static int _wrap_new_CylinderCollisionShape__SWIG_3(lua_State* L) {
   }
   
   arg3 = (Mezzanine::StandardAxis)(int)lua_tonumber(L, 3);
-  result = (Mezzanine::Physics::CylinderCollisionShape *)new Mezzanine::Physics::CylinderCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Vector3 const &)*arg2,arg3);
+  result = (Mezzanine::Physics::CylinderCollisionShape *)new Mezzanine::Physics::CylinderCollisionShape((Mezzanine::String const &)*arg1,(Mezzanine::Physics::Vector3 const &)*arg2,arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__CylinderCollisionShape,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -33045,10 +33059,10 @@ static int _wrap_new_CylinderCollisionShape(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_CylinderCollisionShape'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape(Mezzanine::String const &,Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape(Mezzanine::String const &,Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape(Mezzanine::String const &,Mezzanine::Real const &,Mezzanine::Real const &,Mezzanine::StandardAxis)\n"
-    "    Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape(Mezzanine::String const &,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n"
-    "    Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape(Mezzanine::String const &,Mezzanine::Vector3 const &,Mezzanine::StandardAxis)\n"
+    "    Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape(Mezzanine::String const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &)\n"
+    "    Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape(Mezzanine::String const &,Mezzanine::Physics::Vector3 const &,Mezzanine::StandardAxis)\n"
     "    Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape(Mezzanine::String const &,btCylinderShape *)\n"
     "    Mezzanine::Physics::CylinderCollisionShape::CylinderCollisionShape(XML::Node)\n");
   lua_error(L);return 0;
@@ -33062,7 +33076,7 @@ static int _wrap_CylinderCollisionShape_CreateHalfExtents(lua_State* L) {
   Mezzanine::StandardAxis arg3 ;
   Mezzanine::Real temp1 ;
   Mezzanine::Real temp2 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::CylinderCollisionShape::CreateHalfExtents",3,3)
   if(!lua_isnumber(L,1)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::CreateHalfExtents",1,"Mezzanine::Real const &");
@@ -33073,7 +33087,7 @@ static int _wrap_CylinderCollisionShape_CreateHalfExtents(lua_State* L) {
   arg3 = (Mezzanine::StandardAxis)(int)lua_tonumber(L, 3);
   result = Mezzanine::Physics::CylinderCollisionShape::CreateHalfExtents((float const &)*arg1,(float const &)*arg2,arg3);
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -33089,7 +33103,7 @@ fail:
 static int _wrap_CylinderCollisionShape_GetHalfExtents(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CylinderCollisionShape *arg1 = (Mezzanine::Physics::CylinderCollisionShape *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::CylinderCollisionShape::GetHalfExtents",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::GetHalfExtents",1,"Mezzanine::Physics::CylinderCollisionShape const *");
@@ -33100,7 +33114,7 @@ static int _wrap_CylinderCollisionShape_GetHalfExtents(lua_State* L) {
   
   result = ((Mezzanine::Physics::CylinderCollisionShape const *)arg1)->GetHalfExtents();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -33116,7 +33130,7 @@ fail:
 static int _wrap_CylinderCollisionShape_GetHalfExtentsWithMargin(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CylinderCollisionShape *arg1 = (Mezzanine::Physics::CylinderCollisionShape *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::CylinderCollisionShape::GetHalfExtentsWithMargin",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::GetHalfExtentsWithMargin",1,"Mezzanine::Physics::CylinderCollisionShape const *");
@@ -33127,7 +33141,7 @@ static int _wrap_CylinderCollisionShape_GetHalfExtentsWithMargin(lua_State* L) {
   
   result = ((Mezzanine::Physics::CylinderCollisionShape const *)arg1)->GetHalfExtentsWithMargin();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -33167,7 +33181,7 @@ fail:
 static int _wrap_CylinderCollisionShape_GetUpAxis(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::CylinderCollisionShape *arg1 = (Mezzanine::Physics::CylinderCollisionShape *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::CylinderCollisionShape::GetUpAxis",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::CylinderCollisionShape::GetUpAxis",1,"Mezzanine::Physics::CylinderCollisionShape const *");
@@ -33178,7 +33192,7 @@ static int _wrap_CylinderCollisionShape_GetUpAxis(lua_State* L) {
   
   result = ((Mezzanine::Physics::CylinderCollisionShape const *)arg1)->GetUpAxis();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -33455,11 +33469,11 @@ fail:
 static int _wrap_DualTransformConstraint_SetPivotALocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::DualTransformConstraint *arg1 = (Mezzanine::Physics::DualTransformConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::DualTransformConstraint::SetPivotALocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::DualTransformConstraint::SetPivotALocation",1,"Mezzanine::Physics::DualTransformConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::DualTransformConstraint::SetPivotALocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::DualTransformConstraint::SetPivotALocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__DualTransformConstraint,0))){
     SWIG_fail_ptr("DualTransformConstraint_SetPivotALocation",1,SWIGTYPE_p_Mezzanine__Physics__DualTransformConstraint);
@@ -33470,7 +33484,7 @@ static int _wrap_DualTransformConstraint_SetPivotALocation(lua_State* L) {
     SWIG_fail_ptr("DualTransformConstraint_SetPivotALocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetPivotALocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetPivotALocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -33485,11 +33499,11 @@ fail:
 static int _wrap_DualTransformConstraint_SetPivotBLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::DualTransformConstraint *arg1 = (Mezzanine::Physics::DualTransformConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::DualTransformConstraint::SetPivotBLocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::DualTransformConstraint::SetPivotBLocation",1,"Mezzanine::Physics::DualTransformConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::DualTransformConstraint::SetPivotBLocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::DualTransformConstraint::SetPivotBLocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__DualTransformConstraint,0))){
     SWIG_fail_ptr("DualTransformConstraint_SetPivotBLocation",1,SWIGTYPE_p_Mezzanine__Physics__DualTransformConstraint);
@@ -33500,7 +33514,7 @@ static int _wrap_DualTransformConstraint_SetPivotBLocation(lua_State* L) {
     SWIG_fail_ptr("DualTransformConstraint_SetPivotBLocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetPivotBLocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetPivotBLocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -33515,7 +33529,7 @@ fail:
 static int _wrap_DualTransformConstraint_GetPivotALocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::DualTransformConstraint *arg1 = (Mezzanine::Physics::DualTransformConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::DualTransformConstraint::GetPivotALocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::DualTransformConstraint::GetPivotALocation",1,"Mezzanine::Physics::DualTransformConstraint const *");
@@ -33526,7 +33540,7 @@ static int _wrap_DualTransformConstraint_GetPivotALocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::DualTransformConstraint const *)arg1)->GetPivotALocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -33542,7 +33556,7 @@ fail:
 static int _wrap_DualTransformConstraint_GetPivotBLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::DualTransformConstraint *arg1 = (Mezzanine::Physics::DualTransformConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::DualTransformConstraint::GetPivotBLocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::DualTransformConstraint::GetPivotBLocation",1,"Mezzanine::Physics::DualTransformConstraint const *");
@@ -33553,7 +33567,7 @@ static int _wrap_DualTransformConstraint_GetPivotBLocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::DualTransformConstraint const *)arg1)->GetPivotBLocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -34142,16 +34156,16 @@ static int _wrap_new_GearConstraint(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::Real arg5 ;
   Mezzanine::Physics::GearConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::GearConstraint::GearConstraint",5,5)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::GearConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::GearConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::GearConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::GearConstraint",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::GearConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::GearConstraint",4,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::GearConstraint",5,"Mezzanine::Real const");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
@@ -34174,7 +34188,7 @@ static int _wrap_new_GearConstraint(lua_State* L) {
   }
   
   arg5 = (Mezzanine::Real const)lua_tonumber(L, 5);
-  result = (Mezzanine::Physics::GearConstraint *)new Mezzanine::Physics::GearConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,arg5);
+  result = (Mezzanine::Physics::GearConstraint *)new Mezzanine::Physics::GearConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,arg5);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__GearConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -34189,11 +34203,11 @@ fail:
 static int _wrap_GearConstraint_SetAxisA(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::GearConstraint *arg1 = (Mezzanine::Physics::GearConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::GearConstraint::SetAxisA",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::SetAxisA",1,"Mezzanine::Physics::GearConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::SetAxisA",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::SetAxisA",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__GearConstraint,0))){
     SWIG_fail_ptr("GearConstraint_SetAxisA",1,SWIGTYPE_p_Mezzanine__Physics__GearConstraint);
@@ -34204,7 +34218,7 @@ static int _wrap_GearConstraint_SetAxisA(lua_State* L) {
     SWIG_fail_ptr("GearConstraint_SetAxisA",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAxisA((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAxisA((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -34219,11 +34233,11 @@ fail:
 static int _wrap_GearConstraint_SetAxisB(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::GearConstraint *arg1 = (Mezzanine::Physics::GearConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::GearConstraint::SetAxisB",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::SetAxisB",1,"Mezzanine::Physics::GearConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::SetAxisB",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::SetAxisB",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__GearConstraint,0))){
     SWIG_fail_ptr("GearConstraint_SetAxisB",1,SWIGTYPE_p_Mezzanine__Physics__GearConstraint);
@@ -34234,7 +34248,7 @@ static int _wrap_GearConstraint_SetAxisB(lua_State* L) {
     SWIG_fail_ptr("GearConstraint_SetAxisB",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAxisB((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAxisB((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -34249,7 +34263,7 @@ fail:
 static int _wrap_GearConstraint_GetAxisA(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::GearConstraint *arg1 = (Mezzanine::Physics::GearConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::GearConstraint::GetAxisA",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::GetAxisA",1,"Mezzanine::Physics::GearConstraint const *");
@@ -34260,7 +34274,7 @@ static int _wrap_GearConstraint_GetAxisA(lua_State* L) {
   
   result = ((Mezzanine::Physics::GearConstraint const *)arg1)->GetAxisA();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -34276,7 +34290,7 @@ fail:
 static int _wrap_GearConstraint_GetAxisB(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::GearConstraint *arg1 = (Mezzanine::Physics::GearConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::GearConstraint::GetAxisB",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::GearConstraint::GetAxisB",1,"Mezzanine::Physics::GearConstraint const *");
@@ -34287,7 +34301,7 @@ static int _wrap_GearConstraint_GetAxisB(lua_State* L) {
   
   result = ((Mezzanine::Physics::GearConstraint const *)arg1)->GetAxisB();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -34596,8 +34610,8 @@ static int _wrap_new_Generic6DofConstraint__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::Quaternion *arg5 = 0 ;
   Mezzanine::Quaternion *arg6 = 0 ;
   Mezzanine::Boole arg7 ;
@@ -34606,8 +34620,8 @@ static int _wrap_new_Generic6DofConstraint__SWIG_1(lua_State* L) {
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",7,7)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",4,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",5,"Mezzanine::Quaternion const &");
   if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",6,"Mezzanine::Quaternion const &");
   if(!lua_isboolean(L,7)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",7,"Mezzanine::Boole");
@@ -34642,7 +34656,7 @@ static int _wrap_new_Generic6DofConstraint__SWIG_1(lua_State* L) {
   }
   
   arg7 = (lua_toboolean(L, 7)!=0);
-  result = (Mezzanine::Physics::Generic6DofConstraint *)new Mezzanine::Physics::Generic6DofConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6,arg7);
+  result = (Mezzanine::Physics::Generic6DofConstraint *)new Mezzanine::Physics::Generic6DofConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6,arg7);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -34658,8 +34672,8 @@ static int _wrap_new_Generic6DofConstraint__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::Quaternion *arg5 = 0 ;
   Mezzanine::Quaternion *arg6 = 0 ;
   Mezzanine::Physics::Generic6DofConstraint *result = 0 ;
@@ -34667,8 +34681,8 @@ static int _wrap_new_Generic6DofConstraint__SWIG_2(lua_State* L) {
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",6,6)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",4,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",5,"Mezzanine::Quaternion const &");
   if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",6,"Mezzanine::Quaternion const &");
   
@@ -34701,7 +34715,7 @@ static int _wrap_new_Generic6DofConstraint__SWIG_2(lua_State* L) {
     SWIG_fail_ptr("new_Generic6DofConstraint",6,SWIGTYPE_p_Mezzanine__Quaternion);
   }
   
-  result = (Mezzanine::Physics::Generic6DofConstraint *)new Mezzanine::Physics::Generic6DofConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6);
+  result = (Mezzanine::Physics::Generic6DofConstraint *)new Mezzanine::Physics::Generic6DofConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -34809,14 +34823,14 @@ fail:
 static int _wrap_new_Generic6DofConstraint__SWIG_5(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   Mezzanine::Quaternion *arg3 = 0 ;
   Mezzanine::Boole arg4 ;
   Mezzanine::Physics::Generic6DofConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",2,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",3,"Mezzanine::Quaternion const &");
   if(!lua_isboolean(L,4)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",4,"Mezzanine::Boole");
   
@@ -34835,7 +34849,7 @@ static int _wrap_new_Generic6DofConstraint__SWIG_5(lua_State* L) {
   }
   
   arg4 = (lua_toboolean(L, 4)!=0);
-  result = (Mezzanine::Physics::Generic6DofConstraint *)new Mezzanine::Physics::Generic6DofConstraint(arg1,(Mezzanine::Vector3 const &)*arg2,(Mezzanine::Quaternion const &)*arg3,arg4);
+  result = (Mezzanine::Physics::Generic6DofConstraint *)new Mezzanine::Physics::Generic6DofConstraint(arg1,(Mezzanine::Physics::Vector3 const &)*arg2,(Mezzanine::Quaternion const &)*arg3,arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -34850,13 +34864,13 @@ fail:
 static int _wrap_new_Generic6DofConstraint__SWIG_6(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   Mezzanine::Quaternion *arg3 = 0 ;
   Mezzanine::Physics::Generic6DofConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",2,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint",3,"Mezzanine::Quaternion const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
@@ -34873,7 +34887,7 @@ static int _wrap_new_Generic6DofConstraint__SWIG_6(lua_State* L) {
     SWIG_fail_ptr("new_Generic6DofConstraint",3,SWIGTYPE_p_Mezzanine__Quaternion);
   }
   
-  result = (Mezzanine::Physics::Generic6DofConstraint *)new Mezzanine::Physics::Generic6DofConstraint(arg1,(Mezzanine::Vector3 const &)*arg2,(Mezzanine::Quaternion const &)*arg3);
+  result = (Mezzanine::Physics::Generic6DofConstraint *)new Mezzanine::Physics::Generic6DofConstraint(arg1,(Mezzanine::Physics::Vector3 const &)*arg2,(Mezzanine::Quaternion const &)*arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -35312,12 +35326,12 @@ static int _wrap_new_Generic6DofConstraint(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_Generic6DofConstraint'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n"
-    "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &)\n"
+    "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n"
+    "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &)\n"
     "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Transform const &,Mezzanine::Transform const &,Mezzanine::Boole)\n"
     "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Transform const &,Mezzanine::Transform const &)\n"
-    "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n"
-    "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &)\n"
+    "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n"
+    "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &)\n"
     "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Transform const &,Mezzanine::Boole)\n"
     "    Mezzanine::Physics::Generic6DofConstraint::Generic6DofConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Transform const &)\n");
   lua_error(L);return 0;
@@ -35441,11 +35455,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetPivotALocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetPivotALocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetPivotALocation",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetPivotALocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetPivotALocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetPivotALocation",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -35456,7 +35470,7 @@ static int _wrap_Generic6DofConstraint_SetPivotALocation(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetPivotALocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetPivotALocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetPivotALocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -35471,11 +35485,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetPivotBLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetPivotBLocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetPivotBLocation",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetPivotBLocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetPivotBLocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetPivotBLocation",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -35486,7 +35500,7 @@ static int _wrap_Generic6DofConstraint_SetPivotBLocation(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetPivotBLocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetPivotBLocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetPivotBLocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -35501,7 +35515,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetPivotALocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetPivotALocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetPivotALocation",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -35512,7 +35526,7 @@ static int _wrap_Generic6DofConstraint_GetPivotALocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetPivotALocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -35528,7 +35542,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetPivotBLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetPivotBLocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetPivotBLocation",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -35539,7 +35553,7 @@ static int _wrap_Generic6DofConstraint_GetPivotBLocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetPivotBLocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -35701,11 +35715,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetLinearLimitUpper(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetLinearLimitUpper",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearLimitUpper",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearLimitUpper",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearLimitUpper",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetLinearLimitUpper",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -35716,7 +35730,7 @@ static int _wrap_Generic6DofConstraint_SetLinearLimitUpper(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetLinearLimitUpper",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetLinearLimitUpper((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetLinearLimitUpper((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -35731,11 +35745,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetLinearLimitLower(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetLinearLimitLower",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearLimitLower",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearLimitLower",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearLimitLower",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetLinearLimitLower",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -35746,7 +35760,7 @@ static int _wrap_Generic6DofConstraint_SetLinearLimitLower(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetLinearLimitLower",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetLinearLimitLower((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetLinearLimitLower((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -35761,7 +35775,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetLinearLimitUpper(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetLinearLimitUpper",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetLinearLimitUpper",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -35772,7 +35786,7 @@ static int _wrap_Generic6DofConstraint_GetLinearLimitUpper(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetLinearLimitUpper();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -35788,7 +35802,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetLinearLimitLower(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetLinearLimitLower",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetLinearLimitLower",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -35799,7 +35813,7 @@ static int _wrap_Generic6DofConstraint_GetLinearLimitLower(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetLinearLimitLower();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -35815,11 +35829,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetAngularLimitUpper(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitUpper",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitUpper",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitUpper",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitUpper",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularLimitUpper",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -35830,7 +35844,7 @@ static int _wrap_Generic6DofConstraint_SetAngularLimitUpper(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularLimitUpper",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAngularLimitUpper((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAngularLimitUpper((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -35845,11 +35859,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetAngularLimitLower(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitLower",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitLower",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitLower",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitLower",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularLimitLower",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -35860,7 +35874,7 @@ static int _wrap_Generic6DofConstraint_SetAngularLimitLower(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularLimitLower",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAngularLimitLower((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAngularLimitLower((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -35875,7 +35889,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetAngularLimitUpper(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetAngularLimitUpper",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetAngularLimitUpper",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -35886,7 +35900,7 @@ static int _wrap_Generic6DofConstraint_GetAngularLimitUpper(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetAngularLimitUpper();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -35902,7 +35916,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetAngularLimitLower(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetAngularLimitLower",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetAngularLimitLower",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -35913,7 +35927,7 @@ static int _wrap_Generic6DofConstraint_GetAngularLimitLower(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetAngularLimitLower();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -36010,11 +36024,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetAngularLimitMaxForce(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitMaxForce",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitMaxForce",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitMaxForce",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularLimitMaxForce",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularLimitMaxForce",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -36025,7 +36039,7 @@ static int _wrap_Generic6DofConstraint_SetAngularLimitMaxForce(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularLimitMaxForce",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAngularLimitMaxForce((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAngularLimitMaxForce((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -36069,7 +36083,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetAngularLimitMaxForce(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetAngularLimitMaxForce",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetAngularLimitMaxForce",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -36080,7 +36094,7 @@ static int _wrap_Generic6DofConstraint_GetAngularLimitMaxForce(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetAngularLimitMaxForce();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -36123,11 +36137,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetAngularMotorTargetVelocity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorTargetVelocity",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorTargetVelocity",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorTargetVelocity",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorTargetVelocity",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularMotorTargetVelocity",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -36138,7 +36152,7 @@ static int _wrap_Generic6DofConstraint_SetAngularMotorTargetVelocity(lua_State* 
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularMotorTargetVelocity",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAngularMotorTargetVelocity((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAngularMotorTargetVelocity((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -36182,7 +36196,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetAngularMotorTargetVelocity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetAngularMotorTargetVelocity",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetAngularMotorTargetVelocity",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -36193,7 +36207,7 @@ static int _wrap_Generic6DofConstraint_GetAngularMotorTargetVelocity(lua_State* 
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetAngularMotorTargetVelocity();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -36236,11 +36250,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetAngularMotorMaxForce(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorMaxForce",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorMaxForce",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorMaxForce",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorMaxForce",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularMotorMaxForce",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -36251,7 +36265,7 @@ static int _wrap_Generic6DofConstraint_SetAngularMotorMaxForce(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularMotorMaxForce",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAngularMotorMaxForce((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAngularMotorMaxForce((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -36295,7 +36309,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetAngularMotorMaxForce(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetAngularMotorMaxForce",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetAngularMotorMaxForce",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -36306,7 +36320,7 @@ static int _wrap_Generic6DofConstraint_GetAngularMotorMaxForce(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetAngularMotorMaxForce();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -36349,11 +36363,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetAngularMotorDamping(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorDamping",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorDamping",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorDamping",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorDamping",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularMotorDamping",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -36364,7 +36378,7 @@ static int _wrap_Generic6DofConstraint_SetAngularMotorDamping(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularMotorDamping",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAngularMotorDamping((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAngularMotorDamping((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -36408,7 +36422,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetAngularMotorDamping(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetAngularMotorDamping",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetAngularMotorDamping",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -36419,7 +36433,7 @@ static int _wrap_Generic6DofConstraint_GetAngularMotorDamping(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetAngularMotorDamping();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -36462,11 +36476,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetAngularMotorRestitution(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorRestitution",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorRestitution",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorRestitution",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorRestitution",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularMotorRestitution",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -36477,7 +36491,7 @@ static int _wrap_Generic6DofConstraint_SetAngularMotorRestitution(lua_State* L) 
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularMotorRestitution",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAngularMotorRestitution((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAngularMotorRestitution((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -36521,7 +36535,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetAngularMotorRestitution(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetAngularMotorRestitution",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetAngularMotorRestitution",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -36532,7 +36546,7 @@ static int _wrap_Generic6DofConstraint_GetAngularMotorRestitution(lua_State* L) 
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetAngularMotorRestitution();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -36575,11 +36589,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetAngularMotorEnabled(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorEnabled",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorEnabled",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorEnabled",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetAngularMotorEnabled",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularMotorEnabled",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -36590,7 +36604,7 @@ static int _wrap_Generic6DofConstraint_SetAngularMotorEnabled(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetAngularMotorEnabled",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAngularMotorEnabled((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAngularMotorEnabled((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -36634,7 +36648,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetAngularMotorEnabled(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetAngularMotorEnabled",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetAngularMotorEnabled",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -36645,7 +36659,7 @@ static int _wrap_Generic6DofConstraint_GetAngularMotorEnabled(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetAngularMotorEnabled();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -36838,11 +36852,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetLinearMotorMaxForce(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorMaxForce",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorMaxForce",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorMaxForce",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorMaxForce",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetLinearMotorMaxForce",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -36853,7 +36867,7 @@ static int _wrap_Generic6DofConstraint_SetLinearMotorMaxForce(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetLinearMotorMaxForce",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetLinearMotorMaxForce((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetLinearMotorMaxForce((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -36897,7 +36911,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetLinearMotorMaxForce(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetLinearMotorMaxForce",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetLinearMotorMaxForce",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -36908,7 +36922,7 @@ static int _wrap_Generic6DofConstraint_GetLinearMotorMaxForce(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetLinearMotorMaxForce();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -36951,11 +36965,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetLinearMotorTargetVelocity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorTargetVelocity",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorTargetVelocity",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorTargetVelocity",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorTargetVelocity",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetLinearMotorTargetVelocity",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -36966,7 +36980,7 @@ static int _wrap_Generic6DofConstraint_SetLinearMotorTargetVelocity(lua_State* L
     SWIG_fail_ptr("Generic6DofConstraint_SetLinearMotorTargetVelocity",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetLinearMotorTargetVelocity((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetLinearMotorTargetVelocity((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -37010,7 +37024,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetLinearMotorTargetVelocity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetLinearMotorTargetVelocity",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetLinearMotorTargetVelocity",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -37021,7 +37035,7 @@ static int _wrap_Generic6DofConstraint_GetLinearMotorTargetVelocity(lua_State* L
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetLinearMotorTargetVelocity();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -37064,11 +37078,11 @@ fail:
 static int _wrap_Generic6DofConstraint_SetLinearMotorEnabled(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorEnabled",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorEnabled",1,"Mezzanine::Physics::Generic6DofConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorEnabled",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::SetLinearMotorEnabled",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint,0))){
     SWIG_fail_ptr("Generic6DofConstraint_SetLinearMotorEnabled",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofConstraint);
@@ -37079,7 +37093,7 @@ static int _wrap_Generic6DofConstraint_SetLinearMotorEnabled(lua_State* L) {
     SWIG_fail_ptr("Generic6DofConstraint_SetLinearMotorEnabled",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetLinearMotorEnabled((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetLinearMotorEnabled((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -37123,7 +37137,7 @@ fail:
 static int _wrap_Generic6DofConstraint_GetLinearMotorEnabled(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofConstraint *arg1 = (Mezzanine::Physics::Generic6DofConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofConstraint::GetLinearMotorEnabled",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofConstraint::GetLinearMotorEnabled",1,"Mezzanine::Physics::Generic6DofConstraint const *");
@@ -37134,7 +37148,7 @@ static int _wrap_Generic6DofConstraint_GetLinearMotorEnabled(lua_State* L) {
   
   result = ((Mezzanine::Physics::Generic6DofConstraint const *)arg1)->GetLinearMotorEnabled();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -37532,8 +37546,8 @@ static int _wrap_new_Generic6DofSpringConstraint__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::Quaternion *arg5 = 0 ;
   Mezzanine::Quaternion *arg6 = 0 ;
   Mezzanine::Boole arg7 ;
@@ -37542,8 +37556,8 @@ static int _wrap_new_Generic6DofSpringConstraint__SWIG_1(lua_State* L) {
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",7,7)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",4,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",5,"Mezzanine::Quaternion const &");
   if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",6,"Mezzanine::Quaternion const &");
   if(!lua_isboolean(L,7)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",7,"Mezzanine::Boole");
@@ -37578,7 +37592,7 @@ static int _wrap_new_Generic6DofSpringConstraint__SWIG_1(lua_State* L) {
   }
   
   arg7 = (lua_toboolean(L, 7)!=0);
-  result = (Mezzanine::Physics::Generic6DofSpringConstraint *)new Mezzanine::Physics::Generic6DofSpringConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6,arg7);
+  result = (Mezzanine::Physics::Generic6DofSpringConstraint *)new Mezzanine::Physics::Generic6DofSpringConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6,arg7);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -37594,8 +37608,8 @@ static int _wrap_new_Generic6DofSpringConstraint__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::Quaternion *arg5 = 0 ;
   Mezzanine::Quaternion *arg6 = 0 ;
   Mezzanine::Physics::Generic6DofSpringConstraint *result = 0 ;
@@ -37603,8 +37617,8 @@ static int _wrap_new_Generic6DofSpringConstraint__SWIG_2(lua_State* L) {
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",6,6)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",4,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",5,"Mezzanine::Quaternion const &");
   if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint",6,"Mezzanine::Quaternion const &");
   
@@ -37637,7 +37651,7 @@ static int _wrap_new_Generic6DofSpringConstraint__SWIG_2(lua_State* L) {
     SWIG_fail_ptr("new_Generic6DofSpringConstraint",6,SWIGTYPE_p_Mezzanine__Quaternion);
   }
   
-  result = (Mezzanine::Physics::Generic6DofSpringConstraint *)new Mezzanine::Physics::Generic6DofSpringConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6);
+  result = (Mezzanine::Physics::Generic6DofSpringConstraint *)new Mezzanine::Physics::Generic6DofSpringConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -37978,8 +37992,8 @@ static int _wrap_new_Generic6DofSpringConstraint(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_Generic6DofSpringConstraint'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n"
-    "    Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &)\n"
+    "    Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n"
+    "    Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &)\n"
     "    Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Transform const &,Mezzanine::Transform const &,Mezzanine::Boole)\n"
     "    Mezzanine::Physics::Generic6DofSpringConstraint::Generic6DofSpringConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Transform const &,Mezzanine::Transform const &)\n");
   lua_error(L);return 0;
@@ -37989,11 +38003,11 @@ static int _wrap_new_Generic6DofSpringConstraint(lua_State* L) {
 static int _wrap_Generic6DofSpringConstraint_SetSpringLinearStiffness(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearStiffness",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearStiffness",1,"Mezzanine::Physics::Generic6DofSpringConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearStiffness",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearStiffness",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint,0))){
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringLinearStiffness",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint);
@@ -38004,7 +38018,7 @@ static int _wrap_Generic6DofSpringConstraint_SetSpringLinearStiffness(lua_State*
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringLinearStiffness",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetSpringLinearStiffness((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetSpringLinearStiffness((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -38019,11 +38033,11 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_SetSpringLinearDamping(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearDamping",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearDamping",1,"Mezzanine::Physics::Generic6DofSpringConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearDamping",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearDamping",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint,0))){
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringLinearDamping",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint);
@@ -38034,7 +38048,7 @@ static int _wrap_Generic6DofSpringConstraint_SetSpringLinearDamping(lua_State* L
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringLinearDamping",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetSpringLinearDamping((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetSpringLinearDamping((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -38049,11 +38063,11 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_SetSpringLinearEnabled(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearEnabled",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearEnabled",1,"Mezzanine::Physics::Generic6DofSpringConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearEnabled",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringLinearEnabled",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint,0))){
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringLinearEnabled",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint);
@@ -38064,7 +38078,7 @@ static int _wrap_Generic6DofSpringConstraint_SetSpringLinearEnabled(lua_State* L
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringLinearEnabled",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetSpringLinearEnabled((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetSpringLinearEnabled((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -38079,7 +38093,7 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_GetSpringLinearStiffness(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringLinearStiffness",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringLinearStiffness",1,"Mezzanine::Physics::Generic6DofSpringConstraint const *");
@@ -38090,7 +38104,7 @@ static int _wrap_Generic6DofSpringConstraint_GetSpringLinearStiffness(lua_State*
   
   result = ((Mezzanine::Physics::Generic6DofSpringConstraint const *)arg1)->GetSpringLinearStiffness();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -38106,7 +38120,7 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_GetSpringLinearDamping(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringLinearDamping",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringLinearDamping",1,"Mezzanine::Physics::Generic6DofSpringConstraint const *");
@@ -38117,7 +38131,7 @@ static int _wrap_Generic6DofSpringConstraint_GetSpringLinearDamping(lua_State* L
   
   result = ((Mezzanine::Physics::Generic6DofSpringConstraint const *)arg1)->GetSpringLinearDamping();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -38133,7 +38147,7 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_GetSpringLinearEnabled(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringLinearEnabled",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringLinearEnabled",1,"Mezzanine::Physics::Generic6DofSpringConstraint const *");
@@ -38144,7 +38158,7 @@ static int _wrap_Generic6DofSpringConstraint_GetSpringLinearEnabled(lua_State* L
   
   result = ((Mezzanine::Physics::Generic6DofSpringConstraint const *)arg1)->GetSpringLinearEnabled();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -38160,11 +38174,11 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_SetSpringAngularStiffness(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularStiffness",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularStiffness",1,"Mezzanine::Physics::Generic6DofSpringConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularStiffness",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularStiffness",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint,0))){
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringAngularStiffness",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint);
@@ -38175,7 +38189,7 @@ static int _wrap_Generic6DofSpringConstraint_SetSpringAngularStiffness(lua_State
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringAngularStiffness",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetSpringAngularStiffness((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetSpringAngularStiffness((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -38190,11 +38204,11 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_SetSpringAngularDamping(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularDamping",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularDamping",1,"Mezzanine::Physics::Generic6DofSpringConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularDamping",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularDamping",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint,0))){
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringAngularDamping",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint);
@@ -38205,7 +38219,7 @@ static int _wrap_Generic6DofSpringConstraint_SetSpringAngularDamping(lua_State* 
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringAngularDamping",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetSpringAngularDamping((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetSpringAngularDamping((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -38220,11 +38234,11 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_SetSpringAngularEnabled(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularEnabled",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularEnabled",1,"Mezzanine::Physics::Generic6DofSpringConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularEnabled",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::SetSpringAngularEnabled",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint,0))){
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringAngularEnabled",1,SWIGTYPE_p_Mezzanine__Physics__Generic6DofSpringConstraint);
@@ -38235,7 +38249,7 @@ static int _wrap_Generic6DofSpringConstraint_SetSpringAngularEnabled(lua_State* 
     SWIG_fail_ptr("Generic6DofSpringConstraint_SetSpringAngularEnabled",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetSpringAngularEnabled((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetSpringAngularEnabled((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -38250,7 +38264,7 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_GetSpringAngularStiffness(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringAngularStiffness",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringAngularStiffness",1,"Mezzanine::Physics::Generic6DofSpringConstraint const *");
@@ -38261,7 +38275,7 @@ static int _wrap_Generic6DofSpringConstraint_GetSpringAngularStiffness(lua_State
   
   result = ((Mezzanine::Physics::Generic6DofSpringConstraint const *)arg1)->GetSpringAngularStiffness();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -38277,7 +38291,7 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_GetSpringAngularDamping(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringAngularDamping",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringAngularDamping",1,"Mezzanine::Physics::Generic6DofSpringConstraint const *");
@@ -38288,7 +38302,7 @@ static int _wrap_Generic6DofSpringConstraint_GetSpringAngularDamping(lua_State* 
   
   result = ((Mezzanine::Physics::Generic6DofSpringConstraint const *)arg1)->GetSpringAngularDamping();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -38304,7 +38318,7 @@ fail:
 static int _wrap_Generic6DofSpringConstraint_GetSpringAngularEnabled(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Generic6DofSpringConstraint *arg1 = (Mezzanine::Physics::Generic6DofSpringConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringAngularEnabled",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Generic6DofSpringConstraint::GetSpringAngularEnabled",1,"Mezzanine::Physics::Generic6DofSpringConstraint const *");
@@ -38315,7 +38329,7 @@ static int _wrap_Generic6DofSpringConstraint_GetSpringAngularEnabled(lua_State* 
   
   result = ((Mezzanine::Physics::Generic6DofSpringConstraint const *)arg1)->GetSpringAngularEnabled();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -39201,20 +39215,20 @@ static int _wrap_new_HingeConstraint__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
-  Mezzanine::Vector3 *arg5 = 0 ;
-  Mezzanine::Vector3 *arg6 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg5 = 0 ;
+  Mezzanine::Physics::Vector3 *arg6 = 0 ;
   Mezzanine::Boole arg7 ;
   Mezzanine::Physics::HingeConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::HingeConstraint",7,7)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",4,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",5,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",6,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",4,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",5,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",6,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isboolean(L,7)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",7,"Mezzanine::Boole");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
@@ -39247,7 +39261,7 @@ static int _wrap_new_HingeConstraint__SWIG_0(lua_State* L) {
   }
   
   arg7 = (lua_toboolean(L, 7)!=0);
-  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Vector3 const &)*arg5,(Mezzanine::Vector3 const &)*arg6,arg7);
+  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,(Mezzanine::Physics::Vector3 const &)*arg5,(Mezzanine::Physics::Vector3 const &)*arg6,arg7);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -39263,19 +39277,19 @@ static int _wrap_new_HingeConstraint__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
-  Mezzanine::Vector3 *arg5 = 0 ;
-  Mezzanine::Vector3 *arg6 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg5 = 0 ;
+  Mezzanine::Physics::Vector3 *arg6 = 0 ;
   Mezzanine::Physics::HingeConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::HingeConstraint",6,6)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",4,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",5,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",6,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",4,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",5,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",6,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("new_HingeConstraint",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -39306,7 +39320,7 @@ static int _wrap_new_HingeConstraint__SWIG_1(lua_State* L) {
     SWIG_fail_ptr("new_HingeConstraint",6,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Vector3 const &)*arg5,(Mezzanine::Vector3 const &)*arg6);
+  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,(Mezzanine::Physics::Vector3 const &)*arg5,(Mezzanine::Physics::Vector3 const &)*arg6);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -39321,15 +39335,15 @@ fail:
 static int _wrap_new_HingeConstraint__SWIG_2(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
   Mezzanine::Boole arg4 ;
   Mezzanine::Physics::HingeConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::HingeConstraint",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",2,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",2,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isboolean(L,4)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",4,"Mezzanine::Boole");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
@@ -39347,7 +39361,7 @@ static int _wrap_new_HingeConstraint__SWIG_2(lua_State* L) {
   }
   
   arg4 = (lua_toboolean(L, 4)!=0);
-  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,(Mezzanine::Vector3 const &)*arg2,(Mezzanine::Vector3 const &)*arg3,arg4);
+  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,(Mezzanine::Physics::Vector3 const &)*arg2,(Mezzanine::Physics::Vector3 const &)*arg3,arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -39362,14 +39376,14 @@ fail:
 static int _wrap_new_HingeConstraint__SWIG_3(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
   Mezzanine::Physics::HingeConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,3)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",2,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",2,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("new_HingeConstraint",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -39385,7 +39399,7 @@ static int _wrap_new_HingeConstraint__SWIG_3(lua_State* L) {
     SWIG_fail_ptr("new_HingeConstraint",3,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,(Mezzanine::Vector3 const &)*arg2,(Mezzanine::Vector3 const &)*arg3);
+  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,(Mezzanine::Physics::Vector3 const &)*arg2,(Mezzanine::Physics::Vector3 const &)*arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -39401,8 +39415,8 @@ static int _wrap_new_HingeConstraint__SWIG_4(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::Quaternion *arg5 = 0 ;
   Mezzanine::Quaternion *arg6 = 0 ;
   Mezzanine::Boole arg7 ;
@@ -39411,8 +39425,8 @@ static int _wrap_new_HingeConstraint__SWIG_4(lua_State* L) {
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::HingeConstraint",7,7)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",4,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",5,"Mezzanine::Quaternion const &");
   if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",6,"Mezzanine::Quaternion const &");
   if(!lua_isboolean(L,7)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",7,"Mezzanine::Boole");
@@ -39447,7 +39461,7 @@ static int _wrap_new_HingeConstraint__SWIG_4(lua_State* L) {
   }
   
   arg7 = (lua_toboolean(L, 7)!=0);
-  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6,arg7);
+  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6,arg7);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -39463,8 +39477,8 @@ static int _wrap_new_HingeConstraint__SWIG_5(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::Quaternion *arg5 = 0 ;
   Mezzanine::Quaternion *arg6 = 0 ;
   Mezzanine::Physics::HingeConstraint *result = 0 ;
@@ -39472,8 +39486,8 @@ static int _wrap_new_HingeConstraint__SWIG_5(lua_State* L) {
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::HingeConstraint",6,6)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",4,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",5,"Mezzanine::Quaternion const &");
   if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::HingeConstraint",6,"Mezzanine::Quaternion const &");
   
@@ -39506,7 +39520,7 @@ static int _wrap_new_HingeConstraint__SWIG_5(lua_State* L) {
     SWIG_fail_ptr("new_HingeConstraint",6,SWIGTYPE_p_Mezzanine__Quaternion);
   }
   
-  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6);
+  result = (Mezzanine::Physics::HingeConstraint *)new Mezzanine::Physics::HingeConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -40053,12 +40067,12 @@ static int _wrap_new_HingeConstraint(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_HingeConstraint'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Boole)\n"
-    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n"
-    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Boole)\n"
-    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n"
-    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n"
-    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &)\n"
+    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Boole)\n"
+    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &)\n"
+    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Boole)\n"
+    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &)\n"
+    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n"
+    "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &)\n"
     "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Transform const &,Mezzanine::Transform const &,Mezzanine::Boole)\n"
     "    Mezzanine::Physics::HingeConstraint::HingeConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Transform const &,Mezzanine::Transform const &)\n");
   lua_error(L);return 0;
@@ -40068,11 +40082,11 @@ static int _wrap_new_HingeConstraint(lua_State* L) {
 static int _wrap_HingeConstraint_SetPivotALocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::HingeConstraint *arg1 = (Mezzanine::Physics::HingeConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::SetPivotALocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::SetPivotALocation",1,"Mezzanine::Physics::HingeConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::SetPivotALocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::SetPivotALocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint,0))){
     SWIG_fail_ptr("HingeConstraint_SetPivotALocation",1,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint);
@@ -40083,7 +40097,7 @@ static int _wrap_HingeConstraint_SetPivotALocation(lua_State* L) {
     SWIG_fail_ptr("HingeConstraint_SetPivotALocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetPivotALocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetPivotALocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -40098,11 +40112,11 @@ fail:
 static int _wrap_HingeConstraint_SetPivotBLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::HingeConstraint *arg1 = (Mezzanine::Physics::HingeConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::SetPivotBLocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::SetPivotBLocation",1,"Mezzanine::Physics::HingeConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::SetPivotBLocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::SetPivotBLocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint,0))){
     SWIG_fail_ptr("HingeConstraint_SetPivotBLocation",1,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint);
@@ -40113,7 +40127,7 @@ static int _wrap_HingeConstraint_SetPivotBLocation(lua_State* L) {
     SWIG_fail_ptr("HingeConstraint_SetPivotBLocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetPivotBLocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetPivotBLocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -40128,7 +40142,7 @@ fail:
 static int _wrap_HingeConstraint_GetPivotALocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::HingeConstraint *arg1 = (Mezzanine::Physics::HingeConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::GetPivotALocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::GetPivotALocation",1,"Mezzanine::Physics::HingeConstraint const *");
@@ -40139,7 +40153,7 @@ static int _wrap_HingeConstraint_GetPivotALocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::HingeConstraint const *)arg1)->GetPivotALocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -40155,7 +40169,7 @@ fail:
 static int _wrap_HingeConstraint_GetPivotBLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::HingeConstraint *arg1 = (Mezzanine::Physics::HingeConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::GetPivotBLocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::GetPivotBLocation",1,"Mezzanine::Physics::HingeConstraint const *");
@@ -40166,7 +40180,7 @@ static int _wrap_HingeConstraint_GetPivotBLocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::HingeConstraint const *)arg1)->GetPivotBLocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -41185,11 +41199,11 @@ fail:
 static int _wrap_HingeConstraint_SetAxis(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::HingeConstraint *arg1 = (Mezzanine::Physics::HingeConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::HingeConstraint::SetAxis",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::SetAxis",1,"Mezzanine::Physics::HingeConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::SetAxis",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::HingeConstraint::SetAxis",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint,0))){
     SWIG_fail_ptr("HingeConstraint_SetAxis",1,SWIGTYPE_p_Mezzanine__Physics__HingeConstraint);
@@ -41200,7 +41214,7 @@ static int _wrap_HingeConstraint_SetAxis(lua_State* L) {
     SWIG_fail_ptr("HingeConstraint_SetAxis",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAxis((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAxis((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -41780,11 +41794,11 @@ fail:
 static int _wrap_ManagerConstructionInfo_GeographyLowerBounds_set(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::ManagerConstructionInfo *arg1 = (Mezzanine::Physics::ManagerConstructionInfo *) 0 ;
-  Mezzanine::Vector3 *arg2 = (Mezzanine::Vector3 *) 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = (Mezzanine::Physics::Vector3 *) 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::ManagerConstructionInfo::GeographyLowerBounds",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::GeographyLowerBounds",1,"Mezzanine::Physics::ManagerConstructionInfo *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::GeographyLowerBounds",2,"Mezzanine::Vector3 *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::GeographyLowerBounds",2,"Mezzanine::Physics::Vector3 *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo,0))){
     SWIG_fail_ptr("ManagerConstructionInfo_GeographyLowerBounds_set",1,SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo);
@@ -41810,7 +41824,7 @@ fail:
 static int _wrap_ManagerConstructionInfo_GeographyLowerBounds_get(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::ManagerConstructionInfo *arg1 = (Mezzanine::Physics::ManagerConstructionInfo *) 0 ;
-  Mezzanine::Vector3 *result = 0 ;
+  Mezzanine::Physics::Vector3 *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::ManagerConstructionInfo::GeographyLowerBounds",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::GeographyLowerBounds",1,"Mezzanine::Physics::ManagerConstructionInfo *");
@@ -41819,7 +41833,7 @@ static int _wrap_ManagerConstructionInfo_GeographyLowerBounds_get(lua_State* L) 
     SWIG_fail_ptr("ManagerConstructionInfo_GeographyLowerBounds_get",1,SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo);
   }
   
-  result = (Mezzanine::Vector3 *)& ((arg1)->GeographyLowerBounds);
+  result = (Mezzanine::Physics::Vector3 *)& ((arg1)->GeographyLowerBounds);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Vector3,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -41834,11 +41848,11 @@ fail:
 static int _wrap_ManagerConstructionInfo_GeographyUpperBounds_set(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::ManagerConstructionInfo *arg1 = (Mezzanine::Physics::ManagerConstructionInfo *) 0 ;
-  Mezzanine::Vector3 *arg2 = (Mezzanine::Vector3 *) 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = (Mezzanine::Physics::Vector3 *) 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::ManagerConstructionInfo::GeographyUpperBounds",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::GeographyUpperBounds",1,"Mezzanine::Physics::ManagerConstructionInfo *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::GeographyUpperBounds",2,"Mezzanine::Vector3 *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::GeographyUpperBounds",2,"Mezzanine::Physics::Vector3 *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo,0))){
     SWIG_fail_ptr("ManagerConstructionInfo_GeographyUpperBounds_set",1,SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo);
@@ -41864,7 +41878,7 @@ fail:
 static int _wrap_ManagerConstructionInfo_GeographyUpperBounds_get(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::ManagerConstructionInfo *arg1 = (Mezzanine::Physics::ManagerConstructionInfo *) 0 ;
-  Mezzanine::Vector3 *result = 0 ;
+  Mezzanine::Physics::Vector3 *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::ManagerConstructionInfo::GeographyUpperBounds",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::GeographyUpperBounds",1,"Mezzanine::Physics::ManagerConstructionInfo *");
@@ -41873,7 +41887,7 @@ static int _wrap_ManagerConstructionInfo_GeographyUpperBounds_get(lua_State* L) 
     SWIG_fail_ptr("ManagerConstructionInfo_GeographyUpperBounds_get",1,SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo);
   }
   
-  result = (Mezzanine::Vector3 *)& ((arg1)->GeographyUpperBounds);
+  result = (Mezzanine::Physics::Vector3 *)& ((arg1)->GeographyUpperBounds);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Vector3,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -41888,11 +41902,11 @@ fail:
 static int _wrap_ManagerConstructionInfo_Gravity_set(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::ManagerConstructionInfo *arg1 = (Mezzanine::Physics::ManagerConstructionInfo *) 0 ;
-  Mezzanine::Vector3 *arg2 = (Mezzanine::Vector3 *) 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = (Mezzanine::Physics::Vector3 *) 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::ManagerConstructionInfo::Gravity",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::Gravity",1,"Mezzanine::Physics::ManagerConstructionInfo *");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::Gravity",2,"Mezzanine::Vector3 *");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::Gravity",2,"Mezzanine::Physics::Vector3 *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo,0))){
     SWIG_fail_ptr("ManagerConstructionInfo_Gravity_set",1,SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo);
@@ -41918,7 +41932,7 @@ fail:
 static int _wrap_ManagerConstructionInfo_Gravity_get(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::ManagerConstructionInfo *arg1 = (Mezzanine::Physics::ManagerConstructionInfo *) 0 ;
-  Mezzanine::Vector3 *result = 0 ;
+  Mezzanine::Physics::Vector3 *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::ManagerConstructionInfo::Gravity",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::ManagerConstructionInfo::Gravity",1,"Mezzanine::Physics::ManagerConstructionInfo *");
@@ -41927,7 +41941,7 @@ static int _wrap_ManagerConstructionInfo_Gravity_get(lua_State* L) {
     SWIG_fail_ptr("ManagerConstructionInfo_Gravity_get",1,SWIGTYPE_p_Mezzanine__Physics__ManagerConstructionInfo);
   }
   
-  result = (Mezzanine::Vector3 *)& ((arg1)->Gravity);
+  result = (Mezzanine::Physics::Vector3 *)& ((arg1)->Gravity);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Vector3,0); SWIG_arg++; 
   return SWIG_arg;
   
@@ -41978,14 +41992,14 @@ static swig_lua_class _wrap_class_Mezzanine_Physics_ManagerConstructionInfo = { 
 static int _wrap_new_MultiSphereCollisionShape__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
-  std::vector< Mezzanine::Vector3 > *arg2 = 0 ;
+  std::vector< Mezzanine::Physics::Vector3 > *arg2 = 0 ;
   std::vector< Mezzanine::Real > *arg3 = 0 ;
   Mezzanine::String temp1 ;
   Mezzanine::Physics::MultiSphereCollisionShape *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::MultiSphereCollisionShape::MultiSphereCollisionShape",3,3)
   if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::Physics::MultiSphereCollisionShape::MultiSphereCollisionShape",1,"Mezzanine::String const &");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::MultiSphereCollisionShape::MultiSphereCollisionShape",2,"std::vector< Mezzanine::Vector3 > const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::MultiSphereCollisionShape::MultiSphereCollisionShape",2,"std::vector< Mezzanine::Physics::Vector3 > const &");
   if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::MultiSphereCollisionShape::MultiSphereCollisionShape",3,"std::vector< Mezzanine::Real > const &");
   temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
   
@@ -41998,7 +42012,7 @@ static int _wrap_new_MultiSphereCollisionShape__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("new_MultiSphereCollisionShape",3,SWIGTYPE_p_std__vectorT_float_t);
   }
   
-  result = (Mezzanine::Physics::MultiSphereCollisionShape *)new Mezzanine::Physics::MultiSphereCollisionShape((Mezzanine::String const &)*arg1,(std::vector< Mezzanine::Vector3 > const &)*arg2,(std::vector< Mezzanine::Real > const &)*arg3);
+  result = (Mezzanine::Physics::MultiSphereCollisionShape *)new Mezzanine::Physics::MultiSphereCollisionShape((Mezzanine::String const &)*arg1,(std::vector< Mezzanine::Physics::Vector3 > const &)*arg2,(std::vector< Mezzanine::Real > const &)*arg3);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__MultiSphereCollisionShape,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -42136,7 +42150,7 @@ static int _wrap_new_MultiSphereCollisionShape(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_MultiSphereCollisionShape'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::MultiSphereCollisionShape::MultiSphereCollisionShape(Mezzanine::String const &,std::vector< Mezzanine::Vector3 > const &,std::vector< Mezzanine::Real > const &)\n"
+    "    Mezzanine::Physics::MultiSphereCollisionShape::MultiSphereCollisionShape(Mezzanine::String const &,std::vector< Mezzanine::Physics::Vector3 > const &,std::vector< Mezzanine::Real > const &)\n"
     "    Mezzanine::Physics::MultiSphereCollisionShape::MultiSphereCollisionShape(Mezzanine::String const &,btMultiSphereShape *)\n"
     "    Mezzanine::Physics::MultiSphereCollisionShape::MultiSphereCollisionShape(XML::Node)\n");
   lua_error(L);return 0;
@@ -42148,7 +42162,7 @@ static int _wrap_MultiSphereCollisionShape_GetSphereLocation(lua_State* L) {
   Mezzanine::Physics::MultiSphereCollisionShape *arg1 = (Mezzanine::Physics::MultiSphereCollisionShape *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   Mezzanine::Whole temp2 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::MultiSphereCollisionShape::GetSphereLocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::MultiSphereCollisionShape::GetSphereLocation",1,"Mezzanine::Physics::MultiSphereCollisionShape const *");
@@ -42162,7 +42176,7 @@ static int _wrap_MultiSphereCollisionShape_GetSphereLocation(lua_State* L) {
   temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
   result = ((Mezzanine::Physics::MultiSphereCollisionShape const *)arg1)->GetSphereLocation((Mezzanine::Whole const &)*arg2);
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -42510,15 +42524,15 @@ static int _wrap_new_Point2PointConstraint__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::Physics::Point2PointConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",4,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("new_Point2PointConstraint",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -42539,7 +42553,7 @@ static int _wrap_new_Point2PointConstraint__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("new_Point2PointConstraint",4,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  result = (Mezzanine::Physics::Point2PointConstraint *)new Mezzanine::Physics::Point2PointConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4);
+  result = (Mezzanine::Physics::Point2PointConstraint *)new Mezzanine::Physics::Point2PointConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__Point2PointConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -42554,12 +42568,12 @@ fail:
 static int _wrap_new_Point2PointConstraint__SWIG_1(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   Mezzanine::Physics::Point2PointConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("new_Point2PointConstraint",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -42570,7 +42584,7 @@ static int _wrap_new_Point2PointConstraint__SWIG_1(lua_State* L) {
     SWIG_fail_ptr("new_Point2PointConstraint",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  result = (Mezzanine::Physics::Point2PointConstraint *)new Mezzanine::Physics::Point2PointConstraint(arg1,(Mezzanine::Vector3 const &)*arg2);
+  result = (Mezzanine::Physics::Point2PointConstraint *)new Mezzanine::Physics::Point2PointConstraint(arg1,(Mezzanine::Physics::Vector3 const &)*arg2);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__Point2PointConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -42660,8 +42674,8 @@ static int _wrap_new_Point2PointConstraint(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_Point2PointConstraint'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &)\n"
-    "    Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &)\n");
+    "    Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &)\n"
+    "    Mezzanine::Physics::Point2PointConstraint::Point2PointConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &)\n");
   lua_error(L);return 0;
 }
 
@@ -42669,11 +42683,11 @@ static int _wrap_new_Point2PointConstraint(lua_State* L) {
 static int _wrap_Point2PointConstraint_SetPivotALocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Point2PointConstraint *arg1 = (Mezzanine::Physics::Point2PointConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Point2PointConstraint::SetPivotALocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::SetPivotALocation",1,"Mezzanine::Physics::Point2PointConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::SetPivotALocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::SetPivotALocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Point2PointConstraint,0))){
     SWIG_fail_ptr("Point2PointConstraint_SetPivotALocation",1,SWIGTYPE_p_Mezzanine__Physics__Point2PointConstraint);
@@ -42684,7 +42698,7 @@ static int _wrap_Point2PointConstraint_SetPivotALocation(lua_State* L) {
     SWIG_fail_ptr("Point2PointConstraint_SetPivotALocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetPivotALocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetPivotALocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -42699,11 +42713,11 @@ fail:
 static int _wrap_Point2PointConstraint_SetPivotBLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Point2PointConstraint *arg1 = (Mezzanine::Physics::Point2PointConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::Point2PointConstraint::SetPivotBLocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::SetPivotBLocation",1,"Mezzanine::Physics::Point2PointConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::SetPivotBLocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::SetPivotBLocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__Point2PointConstraint,0))){
     SWIG_fail_ptr("Point2PointConstraint_SetPivotBLocation",1,SWIGTYPE_p_Mezzanine__Physics__Point2PointConstraint);
@@ -42714,7 +42728,7 @@ static int _wrap_Point2PointConstraint_SetPivotBLocation(lua_State* L) {
     SWIG_fail_ptr("Point2PointConstraint_SetPivotBLocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetPivotBLocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetPivotBLocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -42729,7 +42743,7 @@ fail:
 static int _wrap_Point2PointConstraint_GetPivotALocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Point2PointConstraint *arg1 = (Mezzanine::Physics::Point2PointConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Point2PointConstraint::GetPivotALocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::GetPivotALocation",1,"Mezzanine::Physics::Point2PointConstraint const *");
@@ -42740,7 +42754,7 @@ static int _wrap_Point2PointConstraint_GetPivotALocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::Point2PointConstraint const *)arg1)->GetPivotALocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -42756,7 +42770,7 @@ fail:
 static int _wrap_Point2PointConstraint_GetPivotBLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::Point2PointConstraint *arg1 = (Mezzanine::Physics::Point2PointConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::Point2PointConstraint::GetPivotBLocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::Point2PointConstraint::GetPivotBLocation",1,"Mezzanine::Physics::Point2PointConstraint const *");
@@ -42767,7 +42781,7 @@ static int _wrap_Point2PointConstraint_GetPivotBLocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::Point2PointConstraint const *)arg1)->GetPivotBLocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -43897,11 +43911,11 @@ fail:
 static int _wrap_RigidProxy_SetLinearMovementFactor(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::SetLinearMovementFactor",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetLinearMovementFactor",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetLinearMovementFactor",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetLinearMovementFactor",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("RigidProxy_SetLinearMovementFactor",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -43912,7 +43926,7 @@ static int _wrap_RigidProxy_SetLinearMovementFactor(lua_State* L) {
     SWIG_fail_ptr("RigidProxy_SetLinearMovementFactor",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetLinearMovementFactor((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetLinearMovementFactor((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -43927,7 +43941,7 @@ fail:
 static int _wrap_RigidProxy_GetLinearMovementFactor(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::GetLinearMovementFactor",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::GetLinearMovementFactor",1,"Mezzanine::Physics::RigidProxy const *");
@@ -43938,7 +43952,7 @@ static int _wrap_RigidProxy_GetLinearMovementFactor(lua_State* L) {
   
   result = ((Mezzanine::Physics::RigidProxy const *)arg1)->GetLinearMovementFactor();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -43954,11 +43968,11 @@ fail:
 static int _wrap_RigidProxy_SetAngularMovementFactor(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::SetAngularMovementFactor",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetAngularMovementFactor",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetAngularMovementFactor",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetAngularMovementFactor",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("RigidProxy_SetAngularMovementFactor",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -43969,7 +43983,7 @@ static int _wrap_RigidProxy_SetAngularMovementFactor(lua_State* L) {
     SWIG_fail_ptr("RigidProxy_SetAngularMovementFactor",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAngularMovementFactor((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAngularMovementFactor((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -43984,7 +43998,7 @@ fail:
 static int _wrap_RigidProxy_GetAngularMovementFactor(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::GetAngularMovementFactor",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::GetAngularMovementFactor",1,"Mezzanine::Physics::RigidProxy const *");
@@ -43995,7 +44009,7 @@ static int _wrap_RigidProxy_GetAngularMovementFactor(lua_State* L) {
   
   result = ((Mezzanine::Physics::RigidProxy const *)arg1)->GetAngularMovementFactor();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -44138,11 +44152,11 @@ fail:
 static int _wrap_RigidProxy_SetLinearVelocity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::SetLinearVelocity",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetLinearVelocity",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetLinearVelocity",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetLinearVelocity",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("RigidProxy_SetLinearVelocity",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -44153,7 +44167,7 @@ static int _wrap_RigidProxy_SetLinearVelocity(lua_State* L) {
     SWIG_fail_ptr("RigidProxy_SetLinearVelocity",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetLinearVelocity((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetLinearVelocity((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -44168,7 +44182,7 @@ fail:
 static int _wrap_RigidProxy_GetLinearVelocity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::GetLinearVelocity",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::GetLinearVelocity",1,"Mezzanine::Physics::RigidProxy const *");
@@ -44179,7 +44193,7 @@ static int _wrap_RigidProxy_GetLinearVelocity(lua_State* L) {
   
   result = ((Mezzanine::Physics::RigidProxy const *)arg1)->GetLinearVelocity();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -44195,11 +44209,11 @@ fail:
 static int _wrap_RigidProxy_SetAngularVelocity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::SetAngularVelocity",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetAngularVelocity",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetAngularVelocity",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetAngularVelocity",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("RigidProxy_SetAngularVelocity",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -44210,7 +44224,7 @@ static int _wrap_RigidProxy_SetAngularVelocity(lua_State* L) {
     SWIG_fail_ptr("RigidProxy_SetAngularVelocity",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetAngularVelocity((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetAngularVelocity((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -44225,7 +44239,7 @@ fail:
 static int _wrap_RigidProxy_GetAngularVelocity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::GetAngularVelocity",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::GetAngularVelocity",1,"Mezzanine::Physics::RigidProxy const *");
@@ -44236,7 +44250,7 @@ static int _wrap_RigidProxy_GetAngularVelocity(lua_State* L) {
   
   result = ((Mezzanine::Physics::RigidProxy const *)arg1)->GetAngularVelocity();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -44252,11 +44266,11 @@ fail:
 static int _wrap_RigidProxy_SetGravity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::SetGravity",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetGravity",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetGravity",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::SetGravity",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("RigidProxy_SetGravity",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -44267,7 +44281,7 @@ static int _wrap_RigidProxy_SetGravity(lua_State* L) {
     SWIG_fail_ptr("RigidProxy_SetGravity",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetGravity((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetGravity((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -44282,7 +44296,7 @@ fail:
 static int _wrap_RigidProxy_GetGravity(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::GetGravity",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::GetGravity",1,"Mezzanine::Physics::RigidProxy const *");
@@ -44293,7 +44307,7 @@ static int _wrap_RigidProxy_GetGravity(lua_State* L) {
   
   result = ((Mezzanine::Physics::RigidProxy const *)arg1)->GetGravity();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -44309,11 +44323,11 @@ fail:
 static int _wrap_RigidProxy_ApplyForce(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::ApplyForce",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::ApplyForce",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::ApplyForce",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::ApplyForce",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("RigidProxy_ApplyForce",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -44324,7 +44338,7 @@ static int _wrap_RigidProxy_ApplyForce(lua_State* L) {
     SWIG_fail_ptr("RigidProxy_ApplyForce",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->ApplyForce((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->ApplyForce((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -44339,7 +44353,7 @@ fail:
 static int _wrap_RigidProxy_GetAppliedForce(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::GetAppliedForce",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::GetAppliedForce",1,"Mezzanine::Physics::RigidProxy const *");
@@ -44350,7 +44364,7 @@ static int _wrap_RigidProxy_GetAppliedForce(lua_State* L) {
   
   result = ((Mezzanine::Physics::RigidProxy const *)arg1)->GetAppliedForce();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -44366,11 +44380,11 @@ fail:
 static int _wrap_RigidProxy_ApplyTorque(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::ApplyTorque",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::ApplyTorque",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::ApplyTorque",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::ApplyTorque",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("RigidProxy_ApplyTorque",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -44381,7 +44395,7 @@ static int _wrap_RigidProxy_ApplyTorque(lua_State* L) {
     SWIG_fail_ptr("RigidProxy_ApplyTorque",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->ApplyTorque((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->ApplyTorque((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -44396,7 +44410,7 @@ fail:
 static int _wrap_RigidProxy_GetAppliedTorque(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::RigidProxy::GetAppliedTorque",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::RigidProxy::GetAppliedTorque",1,"Mezzanine::Physics::RigidProxy const *");
@@ -44407,7 +44421,7 @@ static int _wrap_RigidProxy_GetAppliedTorque(lua_State* L) {
   
   result = ((Mezzanine::Physics::RigidProxy const *)arg1)->GetAppliedTorque();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -44755,8 +44769,8 @@ static int _wrap_new_SliderConstraint__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
   Mezzanine::Quaternion *arg5 = 0 ;
   Mezzanine::Quaternion *arg6 = 0 ;
   Mezzanine::Boole arg7 ;
@@ -44765,8 +44779,8 @@ static int _wrap_new_SliderConstraint__SWIG_0(lua_State* L) {
   SWIG_check_num_args("Mezzanine::Physics::SliderConstraint::SliderConstraint",7,7)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",4,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",4,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",5,"Mezzanine::Quaternion const &");
   if(!lua_isuserdata(L,6)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",6,"Mezzanine::Quaternion const &");
   if(!lua_isboolean(L,7)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",7,"Mezzanine::Boole");
@@ -44801,7 +44815,7 @@ static int _wrap_new_SliderConstraint__SWIG_0(lua_State* L) {
   }
   
   arg7 = (lua_toboolean(L, 7)!=0);
-  result = (Mezzanine::Physics::SliderConstraint *)new Mezzanine::Physics::SliderConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6,arg7);
+  result = (Mezzanine::Physics::SliderConstraint *)new Mezzanine::Physics::SliderConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,(Mezzanine::Quaternion const &)*arg5,(Mezzanine::Quaternion const &)*arg6,arg7);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__SliderConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -44909,14 +44923,14 @@ fail:
 static int _wrap_new_SliderConstraint__SWIG_3(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   Mezzanine::Quaternion *arg3 = 0 ;
   Mezzanine::Boole arg4 ;
   Mezzanine::Physics::SliderConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::SliderConstraint::SliderConstraint",4,4)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",1,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",2,"Mezzanine::Physics::Vector3 const &");
   if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",3,"Mezzanine::Quaternion const &");
   if(!lua_isboolean(L,4)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SliderConstraint",4,"Mezzanine::Boole");
   
@@ -44935,7 +44949,7 @@ static int _wrap_new_SliderConstraint__SWIG_3(lua_State* L) {
   }
   
   arg4 = (lua_toboolean(L, 4)!=0);
-  result = (Mezzanine::Physics::SliderConstraint *)new Mezzanine::Physics::SliderConstraint(arg1,(Mezzanine::Vector3 const &)*arg2,(Mezzanine::Quaternion const &)*arg3,arg4);
+  result = (Mezzanine::Physics::SliderConstraint *)new Mezzanine::Physics::SliderConstraint(arg1,(Mezzanine::Physics::Vector3 const &)*arg2,(Mezzanine::Quaternion const &)*arg3,arg4);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__SliderConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -45158,10 +45172,10 @@ static int _wrap_new_SliderConstraint(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'new_SliderConstraint'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::SliderConstraint::SliderConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n"
+    "    Mezzanine::Physics::SliderConstraint::SliderConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n"
     "    Mezzanine::Physics::SliderConstraint::SliderConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Transform const &,Mezzanine::Transform const &,Mezzanine::Boole)\n"
     "    Mezzanine::Physics::SliderConstraint::SliderConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::RigidProxy *,Mezzanine::Transform const &,Mezzanine::Transform const &)\n"
-    "    Mezzanine::Physics::SliderConstraint::SliderConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n");
+    "    Mezzanine::Physics::SliderConstraint::SliderConstraint(Mezzanine::Physics::RigidProxy *,Mezzanine::Physics::Vector3 const &,Mezzanine::Quaternion const &,Mezzanine::Boole)\n");
   lua_error(L);return 0;
 }
 
@@ -45283,11 +45297,11 @@ fail:
 static int _wrap_SliderConstraint_SetPivotALocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::SliderConstraint *arg1 = (Mezzanine::Physics::SliderConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::SliderConstraint::SetPivotALocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SetPivotALocation",1,"Mezzanine::Physics::SliderConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SetPivotALocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SetPivotALocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__SliderConstraint,0))){
     SWIG_fail_ptr("SliderConstraint_SetPivotALocation",1,SWIGTYPE_p_Mezzanine__Physics__SliderConstraint);
@@ -45298,7 +45312,7 @@ static int _wrap_SliderConstraint_SetPivotALocation(lua_State* L) {
     SWIG_fail_ptr("SliderConstraint_SetPivotALocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetPivotALocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetPivotALocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -45313,11 +45327,11 @@ fail:
 static int _wrap_SliderConstraint_SetPivotBLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::SliderConstraint *arg1 = (Mezzanine::Physics::SliderConstraint *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::SliderConstraint::SetPivotBLocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SetPivotBLocation",1,"Mezzanine::Physics::SliderConstraint *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SetPivotBLocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::SetPivotBLocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__SliderConstraint,0))){
     SWIG_fail_ptr("SliderConstraint_SetPivotBLocation",1,SWIGTYPE_p_Mezzanine__Physics__SliderConstraint);
@@ -45328,7 +45342,7 @@ static int _wrap_SliderConstraint_SetPivotBLocation(lua_State* L) {
     SWIG_fail_ptr("SliderConstraint_SetPivotBLocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetPivotBLocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetPivotBLocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -45343,7 +45357,7 @@ fail:
 static int _wrap_SliderConstraint_GetPivotALocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::SliderConstraint *arg1 = (Mezzanine::Physics::SliderConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::SliderConstraint::GetPivotALocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::GetPivotALocation",1,"Mezzanine::Physics::SliderConstraint const *");
@@ -45354,7 +45368,7 @@ static int _wrap_SliderConstraint_GetPivotALocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::SliderConstraint const *)arg1)->GetPivotALocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -45370,7 +45384,7 @@ fail:
 static int _wrap_SliderConstraint_GetPivotBLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::SliderConstraint *arg1 = (Mezzanine::Physics::SliderConstraint *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::SliderConstraint::GetPivotBLocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SliderConstraint::GetPivotBLocation",1,"Mezzanine::Physics::SliderConstraint const *");
@@ -45381,7 +45395,7 @@ static int _wrap_SliderConstraint_GetPivotBLocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::SliderConstraint const *)arg1)->GetPivotBLocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -46773,11 +46787,11 @@ fail:
 static int _wrap_SoftProxy_SetLocation__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::SoftProxy *arg1 = (Mezzanine::Physics::SoftProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::SoftProxy::SetLocation",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SetLocation",1,"Mezzanine::Physics::SoftProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SetLocation",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SetLocation",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__SoftProxy,0))){
     SWIG_fail_ptr("SoftProxy_SetLocation",1,SWIGTYPE_p_Mezzanine__Physics__SoftProxy);
@@ -46788,7 +46802,7 @@ static int _wrap_SoftProxy_SetLocation__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("SoftProxy_SetLocation",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetLocation((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetLocation((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -46895,7 +46909,7 @@ static int _wrap_SoftProxy_SetLocation(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'SoftProxy_SetLocation'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::SoftProxy::SetLocation(Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::Physics::SoftProxy::SetLocation(Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::SoftProxy::SetLocation(Mezzanine::Real const,Mezzanine::Real const,Mezzanine::Real const)\n");
   lua_error(L);return 0;
 }
@@ -46904,7 +46918,7 @@ static int _wrap_SoftProxy_SetLocation(lua_State* L) {
 static int _wrap_SoftProxy_GetLocation(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::SoftProxy *arg1 = (Mezzanine::Physics::SoftProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::SoftProxy::GetLocation",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::GetLocation",1,"Mezzanine::Physics::SoftProxy const *");
@@ -46915,7 +46929,7 @@ static int _wrap_SoftProxy_GetLocation(lua_State* L) {
   
   result = ((Mezzanine::Physics::SoftProxy const *)arg1)->GetLocation();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -47097,11 +47111,11 @@ fail:
 static int _wrap_SoftProxy_SetScale__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::SoftProxy *arg1 = (Mezzanine::Physics::SoftProxy *) 0 ;
-  Mezzanine::Vector3 *arg2 = 0 ;
+  Mezzanine::Physics::Vector3 *arg2 = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::SoftProxy::SetScale",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SetScale",1,"Mezzanine::Physics::SoftProxy *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SetScale",2,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::SetScale",2,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__SoftProxy,0))){
     SWIG_fail_ptr("SoftProxy_SetScale",1,SWIGTYPE_p_Mezzanine__Physics__SoftProxy);
@@ -47112,7 +47126,7 @@ static int _wrap_SoftProxy_SetScale__SWIG_0(lua_State* L) {
     SWIG_fail_ptr("SoftProxy_SetScale",2,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  (arg1)->SetScale((Mezzanine::Vector3 const &)*arg2);
+  (arg1)->SetScale((Mezzanine::Physics::Vector3 const &)*arg2);
   
   return SWIG_arg;
   
@@ -47219,7 +47233,7 @@ static int _wrap_SoftProxy_SetScale(lua_State* L) {
   
   lua_pushstring(L,"Wrong arguments for overloaded function 'SoftProxy_SetScale'\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::SoftProxy::SetScale(Mezzanine::Vector3 const &)\n"
+    "    Mezzanine::Physics::SoftProxy::SetScale(Mezzanine::Physics::Vector3 const &)\n"
     "    Mezzanine::Physics::SoftProxy::SetScale(Mezzanine::Real const,Mezzanine::Real const,Mezzanine::Real const)\n");
   lua_error(L);return 0;
 }
@@ -47228,7 +47242,7 @@ static int _wrap_SoftProxy_SetScale(lua_State* L) {
 static int _wrap_SoftProxy_GetScale(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::SoftProxy *arg1 = (Mezzanine::Physics::SoftProxy *) 0 ;
-  Mezzanine::Vector3 result;
+  Mezzanine::Physics::Vector3 result;
   
   SWIG_check_num_args("Mezzanine::Physics::SoftProxy::GetScale",1,1)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::SoftProxy::GetScale",1,"Mezzanine::Physics::SoftProxy const *");
@@ -47239,7 +47253,7 @@ static int _wrap_SoftProxy_GetScale(lua_State* L) {
   
   result = ((Mezzanine::Physics::SoftProxy const *)arg1)->GetScale();
   {
-    Mezzanine::Vector3 * resultptr = new Mezzanine::Vector3((const Mezzanine::Vector3 &) result);
+    Mezzanine::Physics::Vector3 * resultptr = new Mezzanine::Physics::Vector3((const Mezzanine::Physics::Vector3 &) result);
     SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_Mezzanine__Vector3,1); SWIG_arg++;
   }
   return SWIG_arg;
@@ -47936,17 +47950,17 @@ static int _wrap_new_UniversalConstraint(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::RigidProxy *arg1 = (Mezzanine::Physics::RigidProxy *) 0 ;
   Mezzanine::Physics::RigidProxy *arg2 = (Mezzanine::Physics::RigidProxy *) 0 ;
-  Mezzanine::Vector3 *arg3 = 0 ;
-  Mezzanine::Vector3 *arg4 = 0 ;
-  Mezzanine::Vector3 *arg5 = 0 ;
+  Mezzanine::Physics::Vector3 *arg3 = 0 ;
+  Mezzanine::Physics::Vector3 *arg4 = 0 ;
+  Mezzanine::Physics::Vector3 *arg5 = 0 ;
   Mezzanine::Physics::UniversalConstraint *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",5,5)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",1,"Mezzanine::Physics::RigidProxy *");
   if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",2,"Mezzanine::Physics::RigidProxy *");
-  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",3,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",4,"Mezzanine::Vector3 const &");
-  if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",5,"Mezzanine::Vector3 const &");
+  if(!lua_isuserdata(L,3)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",3,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,4)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",4,"Mezzanine::Physics::Vector3 const &");
+  if(!lua_isuserdata(L,5)) SWIG_fail_arg("Mezzanine::Physics::UniversalConstraint::UniversalConstraint",5,"Mezzanine::Physics::Vector3 const &");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy,0))){
     SWIG_fail_ptr("new_UniversalConstraint",1,SWIGTYPE_p_Mezzanine__Physics__RigidProxy);
@@ -47972,7 +47986,7 @@ static int _wrap_new_UniversalConstraint(lua_State* L) {
     SWIG_fail_ptr("new_UniversalConstraint",5,SWIGTYPE_p_Mezzanine__Vector3);
   }
   
-  result = (Mezzanine::Physics::UniversalConstraint *)new Mezzanine::Physics::UniversalConstraint(arg1,arg2,(Mezzanine::Vector3 const &)*arg3,(Mezzanine::Vector3 const &)*arg4,(Mezzanine::Vector3 const &)*arg5);
+  result = (Mezzanine::Physics::UniversalConstraint *)new Mezzanine::Physics::UniversalConstraint(arg1,arg2,(Mezzanine::Physics::Vector3 const &)*arg3,(Mezzanine::Physics::Vector3 const &)*arg4,(Mezzanine::Physics::Vector3 const &)*arg5);
   SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Physics__UniversalConstraint,1); SWIG_arg++; 
   return SWIG_arg;
   
@@ -48523,15 +48537,6 @@ static void *_p_Mezzanine__Physics__MultiSphereCollisionShapeTo_p_Mezzanine__Phy
 }
 static void *_p_Mezzanine__Physics__SphereCollisionShapeTo_p_Mezzanine__Physics__PrimitiveCollisionShape(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Physics::PrimitiveCollisionShape *)  ((Mezzanine::Physics::SphereCollisionShape *) x));
-}
-static void *_p_Mezzanine__Physics__SimulationWorkUnitTo_p_Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Threading::DefaultWorkUnit *)  ((Mezzanine::Physics::SimulationWorkUnit *) x));
-}
-static void *_p_Mezzanine__Physics__WorldTriggerUpdateWorkUnitTo_p_Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Threading::DefaultWorkUnit *)  ((Mezzanine::Physics::WorldTriggerUpdateWorkUnit *) x));
-}
-static void *_p_Mezzanine__Physics__DebugDrawWorkUnitTo_p_Threading__DefaultWorkUnit(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Threading::DefaultWorkUnit *)  ((Mezzanine::Physics::DebugDrawWorkUnit *) x));
 }
 static void *_p_Mezzanine__Physics__CollidableProxyTo_p_Mezzanine__TransformableObject(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::TransformableObject *) (Mezzanine::WorldProxy *) ((Mezzanine::Physics::CollidableProxy *) x));
@@ -49111,10 +49116,13 @@ static swig_type_info _swigt__p_Mezzanine__SyntaxErrorException = {"_p_Mezzanine
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorLuaException = {"_p_Mezzanine__SyntaxErrorLuaException", "Mezzanine::SyntaxErrorLuaException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorLuaException, 0};
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorXMLException = {"_p_Mezzanine__SyntaxErrorXMLException", "Mezzanine::SyntaxErrorXMLException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorXMLException, 0};
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorXPathException = {"_p_Mezzanine__SyntaxErrorXPathException", "Mezzanine::SyntaxErrorXPathException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorXPathException, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type = {"_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type", "Mezzanine::Threading::DefaultThreadSpecificStorage::Type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__DefaultWorkUnit = {"_p_Mezzanine__Threading__DefaultWorkUnit", "Mezzanine::Threading::DefaultWorkUnit *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__RawFile = {"_p_Mezzanine__Threading__RawFile", "Mezzanine::Threading::RawFile *|Mezzanine::RawFile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Transform = {"_p_Mezzanine__Transform", "Mezzanine::Transform *", 0, 0, (void*)&_wrap_class_Mezzanine_Transform, 0};
 static swig_type_info _swigt__p_Mezzanine__TransformableChildObject = {"_p_Mezzanine__TransformableChildObject", "Mezzanine::TransformableChildObject *", 0, 0, (void*)&_wrap_class_Mezzanine_TransformableChildObject, 0};
 static swig_type_info _swigt__p_Mezzanine__TransformableObject = {"_p_Mezzanine__TransformableObject", "Mezzanine::TransformableObject *", 0, 0, (void*)&_wrap_class_Mezzanine_TransformableObject, 0};
-static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector3, 0};
+static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *|Mezzanine::Physics::Vector3 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector3, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldManager = {"_p_Mezzanine__WorldManager", "Mezzanine::WorldManager *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldObject = {"_p_Mezzanine__WorldObject", "Mezzanine::WorldObject *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WorldProxy = {"_p_Mezzanine__WorldProxy", "Mezzanine::WorldProxy *", 0, 0, (void*)&_wrap_class_Mezzanine_WorldProxy, 0};
@@ -49130,10 +49138,7 @@ static swig_type_info _swigt__p_ShapeMapIterator = {"_p_ShapeMapIterator", "Shap
 static swig_type_info _swigt__p_ShapeVector = {"_p_ShapeVector", "ShapeVector *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ShapeVectorIterator = {"_p_ShapeVectorIterator", "ShapeVectorIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_StandardAxis = {"_p_StandardAxis", "StandardAxis *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Threading__DefaultThreadSpecificStorage__Type = {"_p_Threading__DefaultThreadSpecificStorage__Type", "Threading::DefaultThreadSpecificStorage::Type *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Threading__DefaultWorkUnit = {"_p_Threading__DefaultWorkUnit", "Threading::DefaultWorkUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Transform = {"_p_Transform", "Transform *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Vector3 = {"_p_Vector3", "Vector3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_WorldTriggerContainer = {"_p_WorldTriggerContainer", "WorldTriggerContainer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_WorldTriggerIterator = {"_p_WorldTriggerIterator", "WorldTriggerIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_XML__Node = {"_p_XML__Node", "XML::Node *", 0, 0, (void*)0, 0};
@@ -49181,7 +49186,7 @@ static swig_type_info _swigt__p_std__vectorT_Mezzanine__Physics__CollisionShape_
 static swig_type_info _swigt__p_std__vectorT_Mezzanine__Physics__ConstraintParam_t = {"_p_std__vectorT_Mezzanine__Physics__ConstraintParam_t", "Mezzanine::Physics::Constraint::ParamList *|std::vector< enum Mezzanine::Physics::ConstraintParam > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_Mezzanine__Physics__Generic6DofConstraint_p_t = {"_p_std__vectorT_Mezzanine__Physics__Generic6DofConstraint_p_t", "std::vector< Mezzanine::Physics::StickyConstraint * > *|std::vector< Mezzanine::Physics::Generic6DofConstraint * > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_Mezzanine__Physics__StickyConstraintConstructionInfo_t = {"_p_std__vectorT_Mezzanine__Physics__StickyConstraintConstructionInfo_t", "std::vector< Mezzanine::Physics::StickyConstraintConstructionInfo > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_Mezzanine__Vector3_t = {"_p_std__vectorT_Mezzanine__Vector3_t", "std::vector< Mezzanine::Vector3 > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_Mezzanine__Vector3_t = {"_p_std__vectorT_Mezzanine__Vector3_t", "std::vector< Mezzanine::Vector3 > *|std::vector< Mezzanine::Physics::Vector3 > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_float_t = {"_p_std__vectorT_float_t", "std::vector< float > *|std::vector< Mezzanine::Real > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_int_t = {"_p_std__vectorT_int_t", "Mezzanine::Physics::Constraint::AxisList *|std::vector< int > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_std__string_t = {"_p_std__vectorT_std__string_t", "std::vector< std::string > *|Mezzanine::StringVector *", 0, 0, (void*)0, 0};
@@ -49309,6 +49314,9 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__SyntaxErrorLuaException,
   &_swigt__p_Mezzanine__SyntaxErrorXMLException,
   &_swigt__p_Mezzanine__SyntaxErrorXPathException,
+  &_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,
+  &_swigt__p_Mezzanine__Threading__DefaultWorkUnit,
+  &_swigt__p_Mezzanine__Threading__RawFile,
   &_swigt__p_Mezzanine__Transform,
   &_swigt__p_Mezzanine__TransformableChildObject,
   &_swigt__p_Mezzanine__TransformableObject,
@@ -49328,10 +49336,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_ShapeVector,
   &_swigt__p_ShapeVectorIterator,
   &_swigt__p_StandardAxis,
-  &_swigt__p_Threading__DefaultThreadSpecificStorage__Type,
-  &_swigt__p_Threading__DefaultWorkUnit,
   &_swigt__p_Transform,
-  &_swigt__p_Vector3,
   &_swigt__p_WorldTriggerContainer,
   &_swigt__p_WorldTriggerIterator,
   &_swigt__p_XML__Node,
@@ -49507,6 +49512,9 @@ static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorException[] = {  {&_swigt_
 static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorLuaException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorXMLException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorXPathException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type[] = {  {&_swigt__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__DefaultWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__RawFile[] = {  {&_swigt__p_Mezzanine__Threading__RawFile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Transform[] = {  {&_swigt__p_Mezzanine__Transform, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__TransformableChildObject[] = {  {&_swigt__p_Mezzanine__TransformableChildObject, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__TransformableObject[] = {  {&_swigt__p_Mezzanine__Physics__CollidableProxy, _p_Mezzanine__Physics__CollidableProxyTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__Physics__GhostProxy, _p_Mezzanine__Physics__GhostProxyTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__Physics__SoftProxy, _p_Mezzanine__Physics__SoftProxyTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__TransformableObject, 0, 0, 0},  {&_swigt__p_Mezzanine__Physics__RigidProxy, _p_Mezzanine__Physics__RigidProxyTo_p_Mezzanine__TransformableObject, 0, 0},  {&_swigt__p_Mezzanine__WorldProxy, _p_Mezzanine__WorldProxyTo_p_Mezzanine__TransformableObject, 0, 0},{0, 0, 0, 0}};
@@ -49526,10 +49534,7 @@ static swig_cast_info _swigc__p_ShapeMapIterator[] = {  {&_swigt__p_ShapeMapIter
 static swig_cast_info _swigc__p_ShapeVector[] = {  {&_swigt__p_ShapeVector, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ShapeVectorIterator[] = {  {&_swigt__p_ShapeVectorIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_StandardAxis[] = {  {&_swigt__p_StandardAxis, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Threading__DefaultThreadSpecificStorage__Type[] = {  {&_swigt__p_Threading__DefaultThreadSpecificStorage__Type, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Threading__DefaultWorkUnit[] = {  {&_swigt__p_Threading__DefaultWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Physics__SimulationWorkUnit, _p_Mezzanine__Physics__SimulationWorkUnitTo_p_Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Physics__WorldTriggerUpdateWorkUnit, _p_Mezzanine__Physics__WorldTriggerUpdateWorkUnitTo_p_Threading__DefaultWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Physics__DebugDrawWorkUnit, _p_Mezzanine__Physics__DebugDrawWorkUnitTo_p_Threading__DefaultWorkUnit, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Transform[] = {  {&_swigt__p_Transform, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Vector3[] = {  {&_swigt__p_Vector3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_WorldTriggerContainer[] = {  {&_swigt__p_WorldTriggerContainer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_WorldTriggerIterator[] = {  {&_swigt__p_WorldTriggerIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_XML__Node[] = {  {&_swigt__p_XML__Node, 0, 0, 0},{0, 0, 0, 0}};
@@ -49705,6 +49710,9 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__SyntaxErrorLuaException,
   _swigc__p_Mezzanine__SyntaxErrorXMLException,
   _swigc__p_Mezzanine__SyntaxErrorXPathException,
+  _swigc__p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,
+  _swigc__p_Mezzanine__Threading__DefaultWorkUnit,
+  _swigc__p_Mezzanine__Threading__RawFile,
   _swigc__p_Mezzanine__Transform,
   _swigc__p_Mezzanine__TransformableChildObject,
   _swigc__p_Mezzanine__TransformableObject,
@@ -49724,10 +49732,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_ShapeVector,
   _swigc__p_ShapeVectorIterator,
   _swigc__p_StandardAxis,
-  _swigc__p_Threading__DefaultThreadSpecificStorage__Type,
-  _swigc__p_Threading__DefaultWorkUnit,
   _swigc__p_Transform,
-  _swigc__p_Vector3,
   _swigc__p_WorldTriggerContainer,
   _swigc__p_WorldTriggerIterator,
   _swigc__p_XML__Node,

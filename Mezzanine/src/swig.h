@@ -71,9 +71,37 @@
         #endif
 
         using namespace Mezzanine;
-        using namespace Mezzanine::Threading;
-        using namespace Mezzanine::Physics;
+        //using namespace Mezzanine::Threading;
+        //using namespace Mezzanine::Physics;
+
+        // Fix cross module type-usage
+        namespace Mezzanine
+        {
+            namespace Physics
+            {
+                typedef Mezzanine::Vector3 Vector3;
+            }
+            namespace Threading
+            {
+
+            }
+            typedef Threading::RawFile RawFile;
+        }
     %}
+
+    // Fix cross module type-usage
+    namespace Mezzanine
+    {
+        namespace Physics
+        {
+            typedef Mezzanine::Vector3 Vector3;
+        }
+        namespace Threading
+        {
+
+        }
+        typedef Threading::RawFile RawFile;
+    }
 
     %include stl.i
     %include stdint.i
