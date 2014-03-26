@@ -527,9 +527,9 @@ namespace Mezzanine
         DestroyAllManagerFactories();
         DestroyLogging();
 
-        SDL_Quit();
-
         DestroyOgre();
+
+        SDL_Quit();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
