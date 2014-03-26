@@ -152,8 +152,8 @@ namespace Mezzanine
             #endif
         #else
             #ifdef _MEZZ_THREAD_APPLE_
-                Whole CacheSize;
-                Whole CSSize = sizeof(CacheSize);
+                size_t CacheSize;
+                size_t CSSize = sizeof(CacheSize);
                 if(0==sysctlbyname("hw.l4icachesize", &CacheSize, &CSSize, NULL, 0))
                 {
                     return CacheSize;

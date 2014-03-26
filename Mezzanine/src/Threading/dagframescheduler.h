@@ -502,9 +502,9 @@
 /// Exceptions in any way. There are a few reasons for this.
 ///    1. Exception Thread Safety.
 ///    2. No need to copy Exception
-///    3. Performance*
+///    3. Performance.
 /// @n @n
-/// * The team at BlackTopp Studios Inc will be some of the first to extol the virtues of exceptions
+/// The team at BlackTopp Studios Inc will be some of the first to extol the virtues of exceptions
 /// and downplay their cost. In most situations the cost is negligible. The case of the tighest and
 /// innermost loop in a simulation seemed to us to be one of those situations where the cost matters.
 /// @n @n

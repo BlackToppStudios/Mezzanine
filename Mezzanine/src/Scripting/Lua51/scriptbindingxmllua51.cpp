@@ -1650,62 +1650,64 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_Mezzanine__XML__Attribute swig_types[0]
-#define SWIGTYPE_p_Mezzanine__XML__AttributeIterator swig_types[1]
-#define SWIGTYPE_p_Mezzanine__XML__AttributeStruct swig_types[2]
-#define SWIGTYPE_p_Mezzanine__XML__Document swig_types[3]
-#define SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator swig_types[4]
-#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[5]
-#define SWIGTYPE_p_Mezzanine__XML__NodeIterator swig_types[6]
-#define SWIGTYPE_p_Mezzanine__XML__NodeStruct swig_types[7]
-#define SWIGTYPE_p_Mezzanine__XML__NodeText swig_types[8]
-#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t swig_types[9]
-#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t swig_types[10]
-#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t swig_types[11]
-#define SWIGTYPE_p_Mezzanine__XML__ParseResult swig_types[12]
-#define SWIGTYPE_p_Mezzanine__XML__TreeWalker swig_types[13]
-#define SWIGTYPE_p_Mezzanine__XML__XPathNode swig_types[14]
-#define SWIGTYPE_p_Mezzanine__XML__XPathNodeSet swig_types[15]
-#define SWIGTYPE_p_Mezzanine__XML__XPathParseResult swig_types[16]
-#define SWIGTYPE_p_Mezzanine__XML__XPathQuery swig_types[17]
-#define SWIGTYPE_p_Mezzanine__XML__XPathVariable swig_types[18]
-#define SWIGTYPE_p_Mezzanine__XML__XPathVariableSet swig_types[19]
-#define SWIGTYPE_p_SDL_Event swig_types[20]
-#define SWIGTYPE_p_attribute_iterator swig_types[21]
-#define SWIGTYPE_p_bool swig_types[22]
-#define SWIGTYPE_p_char swig_types[23]
-#define SWIGTYPE_p_difference_type swig_types[24]
-#define SWIGTYPE_p_double swig_types[25]
-#define SWIGTYPE_p_f_p_void__void swig_types[26]
-#define SWIGTYPE_p_f_size_t__p_void swig_types[27]
-#define SWIGTYPE_p_float swig_types[28]
-#define SWIGTYPE_p_int swig_types[29]
-#define SWIGTYPE_p_iterator swig_types[30]
-#define SWIGTYPE_p_iterator_category swig_types[31]
-#define SWIGTYPE_p_long_long swig_types[32]
-#define SWIGTYPE_p_ptrdiff_t swig_types[33]
-#define SWIGTYPE_p_short swig_types[34]
-#define SWIGTYPE_p_signed_char swig_types[35]
-#define SWIGTYPE_p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t swig_types[36]
-#define SWIGTYPE_p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t swig_types[37]
-#define SWIGTYPE_p_std__istream swig_types[38]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[39]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[40]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[41]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[42]
-#define SWIGTYPE_p_std__string swig_types[43]
-#define SWIGTYPE_p_std__stringstream swig_types[44]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[45]
-#define SWIGTYPE_p_std__wstring swig_types[46]
-#define SWIGTYPE_p_unsigned_char swig_types[47]
-#define SWIGTYPE_p_unsigned_int swig_types[48]
-#define SWIGTYPE_p_unsigned_long swig_types[49]
-#define SWIGTYPE_p_unsigned_long_long swig_types[50]
-#define SWIGTYPE_p_unsigned_short swig_types[51]
-#define SWIGTYPE_p_value_type swig_types[52]
-#define SWIGTYPE_p_wchar_t swig_types[53]
-static swig_type_info *swig_types[55];
-static swig_module_info swig_module = {swig_types, 54, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[0]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[1]
+#define SWIGTYPE_p_Mezzanine__XML__Attribute swig_types[2]
+#define SWIGTYPE_p_Mezzanine__XML__AttributeIterator swig_types[3]
+#define SWIGTYPE_p_Mezzanine__XML__AttributeStruct swig_types[4]
+#define SWIGTYPE_p_Mezzanine__XML__Document swig_types[5]
+#define SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator swig_types[6]
+#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[7]
+#define SWIGTYPE_p_Mezzanine__XML__NodeIterator swig_types[8]
+#define SWIGTYPE_p_Mezzanine__XML__NodeStruct swig_types[9]
+#define SWIGTYPE_p_Mezzanine__XML__NodeText swig_types[10]
+#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t swig_types[11]
+#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t swig_types[12]
+#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t swig_types[13]
+#define SWIGTYPE_p_Mezzanine__XML__ParseResult swig_types[14]
+#define SWIGTYPE_p_Mezzanine__XML__TreeWalker swig_types[15]
+#define SWIGTYPE_p_Mezzanine__XML__XPathNode swig_types[16]
+#define SWIGTYPE_p_Mezzanine__XML__XPathNodeSet swig_types[17]
+#define SWIGTYPE_p_Mezzanine__XML__XPathParseResult swig_types[18]
+#define SWIGTYPE_p_Mezzanine__XML__XPathQuery swig_types[19]
+#define SWIGTYPE_p_Mezzanine__XML__XPathVariable swig_types[20]
+#define SWIGTYPE_p_Mezzanine__XML__XPathVariableSet swig_types[21]
+#define SWIGTYPE_p_SDL_Event swig_types[22]
+#define SWIGTYPE_p_attribute_iterator swig_types[23]
+#define SWIGTYPE_p_bool swig_types[24]
+#define SWIGTYPE_p_char swig_types[25]
+#define SWIGTYPE_p_difference_type swig_types[26]
+#define SWIGTYPE_p_double swig_types[27]
+#define SWIGTYPE_p_f_p_void__void swig_types[28]
+#define SWIGTYPE_p_f_size_t__p_void swig_types[29]
+#define SWIGTYPE_p_float swig_types[30]
+#define SWIGTYPE_p_int swig_types[31]
+#define SWIGTYPE_p_iterator swig_types[32]
+#define SWIGTYPE_p_iterator_category swig_types[33]
+#define SWIGTYPE_p_long_long swig_types[34]
+#define SWIGTYPE_p_ptrdiff_t swig_types[35]
+#define SWIGTYPE_p_short swig_types[36]
+#define SWIGTYPE_p_signed_char swig_types[37]
+#define SWIGTYPE_p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t swig_types[38]
+#define SWIGTYPE_p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t swig_types[39]
+#define SWIGTYPE_p_std__istream swig_types[40]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[41]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[42]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[43]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[44]
+#define SWIGTYPE_p_std__string swig_types[45]
+#define SWIGTYPE_p_std__stringstream swig_types[46]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[47]
+#define SWIGTYPE_p_std__wstring swig_types[48]
+#define SWIGTYPE_p_unsigned_char swig_types[49]
+#define SWIGTYPE_p_unsigned_int swig_types[50]
+#define SWIGTYPE_p_unsigned_long swig_types[51]
+#define SWIGTYPE_p_unsigned_long_long swig_types[52]
+#define SWIGTYPE_p_unsigned_short swig_types[53]
+#define SWIGTYPE_p_value_type swig_types[54]
+#define SWIGTYPE_p_wchar_t swig_types[55]
+static swig_type_info *swig_types[57];
+static swig_module_info swig_module = {swig_types, 56, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1737,8 +1739,22 @@ typedef struct{} LANGUAGE_OBJ;
         #endif
 
         using namespace Mezzanine;
-        using namespace Mezzanine::Threading;
-        using namespace Mezzanine::Physics;
+        //using namespace Mezzanine::Threading;
+        //using namespace Mezzanine::Physics;
+
+        // Fix cross module type-usage
+        namespace Mezzanine
+        {
+            namespace Physics
+            {
+                typedef Mezzanine::Vector3 Vector3;
+            }
+            namespace Threading
+            {
+
+            }
+            typedef Threading::RawFile RawFile;
+        }
     
 
 #include <stdexcept>
@@ -20771,6 +20787,8 @@ static swig_lua_const_info swig_constants[] = {
 static void *_p_Mezzanine__XML__DocumentTo_p_Mezzanine__XML__Node(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::XML::Node *)  ((Mezzanine::XML::Document *) x));
 }
+static swig_type_info _swigt__p_Mezzanine__Threading__RawFile = {"_p_Mezzanine__Threading__RawFile", "Mezzanine::Threading::RawFile *|Mezzanine::RawFile *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *|Mezzanine::Physics::Vector3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__Attribute = {"_p_Mezzanine__XML__Attribute", "Mezzanine::XML::Attribute *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_Attribute, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__AttributeIterator = {"_p_Mezzanine__XML__AttributeIterator", "Mezzanine::XML::AttributeIterator *|Mezzanine::XML::Node::attribute_iterator *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_AttributeIterator, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__AttributeStruct = {"_p_Mezzanine__XML__AttributeStruct", "Mezzanine::XML::AttributeStruct *", 0, 0, (void*)0, 0};
@@ -20827,6 +20845,8 @@ static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0
 static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "wchar_t *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_Mezzanine__Threading__RawFile,
+  &_swigt__p_Mezzanine__Vector3,
   &_swigt__p_Mezzanine__XML__Attribute,
   &_swigt__p_Mezzanine__XML__AttributeIterator,
   &_swigt__p_Mezzanine__XML__AttributeStruct,
@@ -20883,6 +20903,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_wchar_t,
 };
 
+static swig_cast_info _swigc__p_Mezzanine__Threading__RawFile[] = {  {&_swigt__p_Mezzanine__Threading__RawFile, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Vector3[] = {  {&_swigt__p_Mezzanine__Vector3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__Attribute[] = {  {&_swigt__p_Mezzanine__XML__Attribute, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__AttributeIterator[] = {  {&_swigt__p_Mezzanine__XML__AttributeIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__AttributeStruct[] = {  {&_swigt__p_Mezzanine__XML__AttributeStruct, 0, 0, 0},{0, 0, 0, 0}};
@@ -20939,6 +20961,8 @@ static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 
 static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_Mezzanine__Threading__RawFile,
+  _swigc__p_Mezzanine__Vector3,
   _swigc__p_Mezzanine__XML__Attribute,
   _swigc__p_Mezzanine__XML__AttributeIterator,
   _swigc__p_Mezzanine__XML__AttributeStruct,

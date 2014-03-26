@@ -664,20 +664,25 @@ namespace Mezzanine
                 this->BulletDispatcherThreads = NULL;
             }
 
-            if(this->ThreadCount)
+            if(this->TheEntresol)
             {
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
-            }else{
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
+                if(this->ThreadCount)
+                {
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+                }else{
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
+                }
             }
             delete this->SimulationWork;
             this->SimulationWork = NULL;
 
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
+            if(this->TheEntresol)
+                { this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork ); }
             delete this->WorldTriggerUpdateWork;
             this->WorldTriggerUpdateWork = NULL;
 
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork );
+            if(this->TheEntresol)
+                { this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork ); }
             delete this->DebugDrawWork;
             this->DebugDrawWork = NULL;
         }

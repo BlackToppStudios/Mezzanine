@@ -1666,51 +1666,52 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__Threading__LogAggregator swig_types[13]
 #define SWIGTYPE_p_Mezzanine__Threading__MonopolyWorkUnit swig_types[14]
 #define SWIGTYPE_p_Mezzanine__Threading__Mutex swig_types[15]
-#define SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock swig_types[16]
-#define SWIGTYPE_p_Mezzanine__Threading__ScopedTimer swig_types[17]
-#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[18]
-#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[19]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[20]
-#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[21]
-#define SWIGTYPE_p_Mezzanine__Threading__WorkSorter swig_types[22]
-#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[23]
-#define SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit swig_types[24]
-#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[25]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[26]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[27]
-#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[28]
-#define SWIGTYPE_p_RawFile swig_types[29]
-#define SWIGTYPE_p_Resource swig_types[30]
-#define SWIGTYPE_p_SDL_Event swig_types[31]
-#define SWIGTYPE_p_Type swig_types[32]
-#define SWIGTYPE_p_bool swig_types[33]
-#define SWIGTYPE_p_char swig_types[34]
-#define SWIGTYPE_p_double swig_types[35]
-#define SWIGTYPE_p_f_p_void__void swig_types[36]
-#define SWIGTYPE_p_float swig_types[37]
-#define SWIGTYPE_p_int swig_types[38]
-#define SWIGTYPE_p_long_long swig_types[39]
-#define SWIGTYPE_p_native_handle_type swig_types[40]
-#define SWIGTYPE_p_pthread_t swig_types[41]
-#define SWIGTYPE_p_short swig_types[42]
-#define SWIGTYPE_p_signed_char swig_types[43]
-#define SWIGTYPE_p_std__fstream swig_types[44]
-#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[45]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[46]
-#define SWIGTYPE_p_std__ostream swig_types[47]
-#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[48]
-#define SWIGTYPE_p_std__setT_std__string_t swig_types[49]
-#define SWIGTYPE_p_std__string swig_types[50]
-#define SWIGTYPE_p_std__stringstream swig_types[51]
-#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[52]
-#define SWIGTYPE_p_std__wstring swig_types[53]
-#define SWIGTYPE_p_unsigned_char swig_types[54]
-#define SWIGTYPE_p_unsigned_int swig_types[55]
-#define SWIGTYPE_p_unsigned_long swig_types[56]
-#define SWIGTYPE_p_unsigned_long_long swig_types[57]
-#define SWIGTYPE_p_unsigned_short swig_types[58]
-static swig_type_info *swig_types[60];
-static swig_module_info swig_module = {swig_types, 59, 0, 0, 0, 0};
+#define SWIGTYPE_p_Mezzanine__Threading__RawFile swig_types[16]
+#define SWIGTYPE_p_Mezzanine__Threading__ReadWriteSpinLock swig_types[17]
+#define SWIGTYPE_p_Mezzanine__Threading__ScopedTimer swig_types[18]
+#define SWIGTYPE_p_Mezzanine__Threading__SpinLock swig_types[19]
+#define SWIGTYPE_p_Mezzanine__Threading__Thread swig_types[20]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadId swig_types[21]
+#define SWIGTYPE_p_Mezzanine__Threading__ThreadSpecificStorage swig_types[22]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkSorter swig_types[23]
+#define SWIGTYPE_p_Mezzanine__Threading__WorkUnitKey swig_types[24]
+#define SWIGTYPE_p_Mezzanine__Threading__iAsynchronousWorkUnit swig_types[25]
+#define SWIGTYPE_p_Mezzanine__Threading__iWorkUnit swig_types[26]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[27]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_float_float_t swig_types[28]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_int_int_t swig_types[29]
+#define SWIGTYPE_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t swig_types[30]
+#define SWIGTYPE_p_Resource swig_types[31]
+#define SWIGTYPE_p_SDL_Event swig_types[32]
+#define SWIGTYPE_p_Type swig_types[33]
+#define SWIGTYPE_p_bool swig_types[34]
+#define SWIGTYPE_p_char swig_types[35]
+#define SWIGTYPE_p_double swig_types[36]
+#define SWIGTYPE_p_f_p_void__void swig_types[37]
+#define SWIGTYPE_p_float swig_types[38]
+#define SWIGTYPE_p_int swig_types[39]
+#define SWIGTYPE_p_long_long swig_types[40]
+#define SWIGTYPE_p_native_handle_type swig_types[41]
+#define SWIGTYPE_p_pthread_t swig_types[42]
+#define SWIGTYPE_p_short swig_types[43]
+#define SWIGTYPE_p_signed_char swig_types[44]
+#define SWIGTYPE_p_std__fstream swig_types[45]
+#define SWIGTYPE_p_std__listT_std__pairT_std__string_std__string_t_t swig_types[46]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[47]
+#define SWIGTYPE_p_std__ostream swig_types[48]
+#define SWIGTYPE_p_std__pairT_std__string_std__string_t swig_types[49]
+#define SWIGTYPE_p_std__setT_std__string_t swig_types[50]
+#define SWIGTYPE_p_std__string swig_types[51]
+#define SWIGTYPE_p_std__stringstream swig_types[52]
+#define SWIGTYPE_p_std__vectorT_std__string_t swig_types[53]
+#define SWIGTYPE_p_std__wstring swig_types[54]
+#define SWIGTYPE_p_unsigned_char swig_types[55]
+#define SWIGTYPE_p_unsigned_int swig_types[56]
+#define SWIGTYPE_p_unsigned_long swig_types[57]
+#define SWIGTYPE_p_unsigned_long_long swig_types[58]
+#define SWIGTYPE_p_unsigned_short swig_types[59]
+static swig_type_info *swig_types[61];
+static swig_module_info swig_module = {swig_types, 60, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1742,8 +1743,22 @@ typedef struct{} LANGUAGE_OBJ;
         #endif
 
         using namespace Mezzanine;
-        using namespace Mezzanine::Threading;
-        using namespace Mezzanine::Physics;
+        //using namespace Mezzanine::Threading;
+        //using namespace Mezzanine::Physics;
+
+        // Fix cross module type-usage
+        namespace Mezzanine
+        {
+            namespace Physics
+            {
+                typedef Mezzanine::Vector3 Vector3;
+            }
+            namespace Threading
+            {
+
+            }
+            typedef Threading::RawFile RawFile;
+        }
     
 
 #include <stdexcept>
@@ -7568,7 +7583,7 @@ static int _wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_0(lua_State* L) {
   Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
   Mezzanine::String *arg2 = 0 ;
   Mezzanine::String temp2 ;
-  RawFile *result = 0 ;
+  Mezzanine::RawFile *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile",1,"Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *");
@@ -7579,8 +7594,8 @@ static int _wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_0(lua_State* L) {
   }
   
   temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
-  result = (RawFile *)((Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *)arg1)->GetFile((Mezzanine::String const &)*arg2);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_RawFile,0); SWIG_arg++; 
+  result = (Mezzanine::RawFile *)((Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *)arg1)->GetFile((Mezzanine::String const &)*arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__RawFile,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -7596,7 +7611,7 @@ static int _wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_1(lua_State* L) {
   Mezzanine::Threading::AsynchronousFileLoadWorkUnit *arg1 = (Mezzanine::Threading::AsynchronousFileLoadWorkUnit *) 0 ;
   Mezzanine::Whole *arg2 = 0 ;
   Mezzanine::Whole temp2 ;
-  RawFile *result = 0 ;
+  Mezzanine::RawFile *result = 0 ;
   
   SWIG_check_num_args("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile",2,2)
   if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Threading::AsynchronousFileLoadWorkUnit::GetFile",1,"Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *");
@@ -7608,8 +7623,8 @@ static int _wrap_AsynchronousFileLoadWorkUnit_GetFile__SWIG_1(lua_State* L) {
   
   SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
   temp2=(Mezzanine::Whole)lua_tonumber(L,2); arg2=&temp2;
-  result = (RawFile *)((Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *)arg1)->GetFile((Mezzanine::Whole const &)*arg2);
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_RawFile,0); SWIG_arg++; 
+  result = (Mezzanine::RawFile *)((Mezzanine::Threading::AsynchronousFileLoadWorkUnit const *)arg1)->GetFile((Mezzanine::Whole const &)*arg2);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__Threading__RawFile,0); SWIG_arg++; 
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -8690,6 +8705,7 @@ static swig_type_info _swigt__p_Mezzanine__Threading__FrameScheduler = {"_p_Mezz
 static swig_type_info _swigt__p_Mezzanine__Threading__LogAggregator = {"_p_Mezzanine__Threading__LogAggregator", "Mezzanine::Threading::LogAggregator *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_LogAggregator, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__MonopolyWorkUnit = {"_p_Mezzanine__Threading__MonopolyWorkUnit", "Mezzanine::Threading::MonopolyWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_MonopolyWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__Mutex = {"_p_Mezzanine__Threading__Mutex", "Mezzanine::Threading::Mutex *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_Mutex, 0};
+static swig_type_info _swigt__p_Mezzanine__Threading__RawFile = {"_p_Mezzanine__Threading__RawFile", "Mezzanine::Threading::RawFile *|Mezzanine::RawFile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__ReadWriteSpinLock = {"_p_Mezzanine__Threading__ReadWriteSpinLock", "Mezzanine::Threading::ReadWriteSpinLock *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ReadWriteSpinLock, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__ScopedTimer = {"_p_Mezzanine__Threading__ScopedTimer", "Mezzanine::Threading::ScopedTimer *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_ScopedTimer, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__SpinLock = {"_p_Mezzanine__Threading__SpinLock", "Mezzanine::Threading::SpinLock *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_SpinLock, 0};
@@ -8700,10 +8716,10 @@ static swig_type_info _swigt__p_Mezzanine__Threading__WorkSorter = {"_p_Mezzanin
 static swig_type_info _swigt__p_Mezzanine__Threading__WorkUnitKey = {"_p_Mezzanine__Threading__WorkUnitKey", "Mezzanine::Threading::WorkUnitKey *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_WorkUnitKey, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit = {"_p_Mezzanine__Threading__iAsynchronousWorkUnit", "Mezzanine::Threading::iAsynchronousWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_iAsynchronousWorkUnit, 0};
 static swig_type_info _swigt__p_Mezzanine__Threading__iWorkUnit = {"_p_Mezzanine__Threading__iWorkUnit", "Mezzanine::Threading::iWorkUnit *", 0, 0, (void*)&_wrap_class_Mezzanine_Threading_iWorkUnit, 0};
+static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *|Mezzanine::Physics::Vector3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t = {"_p_Mezzanine__WeightedRollingAverageT_float_float_t", "Mezzanine::WeightedRollingAverage< Mezzanine::Real,Mezzanine::Real > *|Mezzanine::WeightedRollingAverage< float,float > *", 0, 0, (void*)&_wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Real_Sc_Mezzanine_Real_Sg_, 0};
 static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t = {"_p_Mezzanine__WeightedRollingAverageT_int_int_t", "Mezzanine::WeightedRollingAverage< Mezzanine::Integer,Mezzanine::Integer > *|Mezzanine::WeightedRollingAverage< int,int > *", 0, 0, (void*)&_wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Integer_Sc_Mezzanine_Integer_Sg_, 0};
 static swig_type_info _swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t = {"_p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t", "Mezzanine::WeightedRollingAverage< unsigned long,unsigned long > *|Mezzanine::WeightedRollingAverage< Mezzanine::Whole,Mezzanine::Whole > *", 0, 0, (void*)&_wrap_class_Mezzanine_WeightedRollingAverage_Sl_Mezzanine_Whole_Sc_Mezzanine_Whole_Sg_, 0};
-static swig_type_info _swigt__p_RawFile = {"_p_RawFile", "RawFile *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Resource = {"_p_Resource", "Resource *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SDL_Event = {"_p_SDL_Event", "SDL_Event *|Mezzanine::RawEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Type = {"_p_Type", "Type *", 0, 0, (void*)0, 0};
@@ -8751,6 +8767,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__Threading__LogAggregator,
   &_swigt__p_Mezzanine__Threading__MonopolyWorkUnit,
   &_swigt__p_Mezzanine__Threading__Mutex,
+  &_swigt__p_Mezzanine__Threading__RawFile,
   &_swigt__p_Mezzanine__Threading__ReadWriteSpinLock,
   &_swigt__p_Mezzanine__Threading__ScopedTimer,
   &_swigt__p_Mezzanine__Threading__SpinLock,
@@ -8761,10 +8778,10 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__Threading__WorkUnitKey,
   &_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit,
   &_swigt__p_Mezzanine__Threading__iWorkUnit,
+  &_swigt__p_Mezzanine__Vector3,
   &_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t,
   &_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t,
   &_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,
-  &_swigt__p_RawFile,
   &_swigt__p_Resource,
   &_swigt__p_SDL_Event,
   &_swigt__p_Type,
@@ -8812,6 +8829,7 @@ static swig_cast_info _swigc__p_Mezzanine__Threading__FrameScheduler[] = {  {&_s
 static swig_cast_info _swigc__p_Mezzanine__Threading__LogAggregator[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__MonopolyWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__MonopolyWorkUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__Mutex[] = {  {&_swigt__p_Mezzanine__Threading__Mutex, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Threading__RawFile[] = {  {&_swigt__p_Mezzanine__Threading__RawFile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__ReadWriteSpinLock[] = {  {&_swigt__p_Mezzanine__Threading__ReadWriteSpinLock, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__ScopedTimer[] = {  {&_swigt__p_Mezzanine__Threading__ScopedTimer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__SpinLock[] = {  {&_swigt__p_Mezzanine__Threading__SpinLock, 0, 0, 0},{0, 0, 0, 0}};
@@ -8822,10 +8840,10 @@ static swig_cast_info _swigc__p_Mezzanine__Threading__WorkSorter[] = {  {&_swigt
 static swig_cast_info _swigc__p_Mezzanine__Threading__WorkUnitKey[] = {  {&_swigt__p_Mezzanine__Threading__WorkUnitKey, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__iAsynchronousWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iAsynchronousWorkUnit, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Threading__iWorkUnit[] = {  {&_swigt__p_Mezzanine__Threading__LogAggregator, _p_Mezzanine__Threading__LogAggregatorTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__iWorkUnit, 0, 0, 0},  {&_swigt__p_Mezzanine__Threading__DefaultWorkUnit, _p_Mezzanine__Threading__DefaultWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__iAsynchronousWorkUnit, _p_Mezzanine__Threading__iAsynchronousWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__WorkSorter, _p_Mezzanine__Threading__WorkSorterTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__MonopolyWorkUnit, _p_Mezzanine__Threading__MonopolyWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},  {&_swigt__p_Mezzanine__Threading__AsynchronousFileLoadWorkUnit, _p_Mezzanine__Threading__AsynchronousFileLoadWorkUnitTo_p_Mezzanine__Threading__iWorkUnit, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Vector3[] = {  {&_swigt__p_Mezzanine__Vector3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_float_float_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_float_float_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_int_int_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_int_int_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t[] = {  {&_swigt__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_RawFile[] = {  {&_swigt__p_RawFile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Resource[] = {  {&_swigt__p_Resource, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SDL_Event[] = {  {&_swigt__p_SDL_Event, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Type[] = {  {&_swigt__p_Type, 0, 0, 0},{0, 0, 0, 0}};
@@ -8873,6 +8891,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__Threading__LogAggregator,
   _swigc__p_Mezzanine__Threading__MonopolyWorkUnit,
   _swigc__p_Mezzanine__Threading__Mutex,
+  _swigc__p_Mezzanine__Threading__RawFile,
   _swigc__p_Mezzanine__Threading__ReadWriteSpinLock,
   _swigc__p_Mezzanine__Threading__ScopedTimer,
   _swigc__p_Mezzanine__Threading__SpinLock,
@@ -8883,10 +8902,10 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__Threading__WorkUnitKey,
   _swigc__p_Mezzanine__Threading__iAsynchronousWorkUnit,
   _swigc__p_Mezzanine__Threading__iWorkUnit,
+  _swigc__p_Mezzanine__Vector3,
   _swigc__p_Mezzanine__WeightedRollingAverageT_float_float_t,
   _swigc__p_Mezzanine__WeightedRollingAverageT_int_int_t,
   _swigc__p_Mezzanine__WeightedRollingAverageT_unsigned_long_unsigned_long_t,
-  _swigc__p_RawFile,
   _swigc__p_Resource,
   _swigc__p_SDL_Event,
   _swigc__p_Type,

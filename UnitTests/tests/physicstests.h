@@ -37,50 +37,40 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _rayquerytests_h
-#define _rayquerytests_h
+#ifndef _physicstests_h
+#define _physicstests_h
 
 #include "mezztest.h"
 
-#include "rayquerytool.h"
-#include "XML/xml.h"
-
-#include "sstream"
-#include <stdexcept> //only used to throw for TEST_THROW
+#include "mezzanine.h"
 
 /// @file
-/// @brief Currently only test serialization of the RayQueryTool, but should be expanded.
+/// @brief Basic tests of the physics system
 
+using namespace std;
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
+using namespace Mezzanine::Threading;
 
-/// @brief Test of the Mezzanine::RayQueryTool
-class rayquerytests : public UnitTestGroup
+/// @brief Tests for the WorkUnit class
+class physicstests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "RayQuery"
+        /// @return Returns a String containing "Physics"
         virtual String Name()
-            { return String("RayQuery"); }
+            { return String("Physics"); }
 
-        /// @brief This is called when Automatic tests are run
+        /// @brief Test if the barrier works properly
         void RunAutomaticTests()
         {
-            XML::Document Doc;
-            RayQueryTool RayCaster;
-            RayCaster.ProtoSerialize(Doc);
-            StringStream Buffer;
-            Doc.Save(Buffer);
+            Mezzanine::Physics::PhysicsManager Simulation;
+            Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
+            RigidA->AddToWorld();
+            Simulation.SetWorldGravity(Vector3(0.0,9.8,0.0));
 
-            String Expected("<?xml version=\"1.0\"?><RayQueryTool Version=\"1\" ValidResult=\"false\" WorldObject=\"\"><Offset><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></Offset></RayQueryTool>");
-            TestOutput << "Serialized RayCaster looks like:" << endl
-                       << "\"" << Buffer.str() << "\"" << endl
-                       << "Expected:"  << endl
-                       << "\"" << Expected << "\"" << endl;
 
-            Test(Expected==String(Buffer.str()),"Serialize");
 
-            /// @todo Add the rest of the test for
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
