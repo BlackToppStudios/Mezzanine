@@ -148,11 +148,10 @@ namespace Mezzanine
             this->Deinitialize();
             this->DestroyAllGameWindows(false);
 
-            UInt32 InitSDLSystems = SDL_WasInit(0);
-            if( SDL_INIT_VIDEO | InitSDLSystems )
-            {
-                SDL_QuitSubSystem(SDL_INIT_VIDEO);
-            }
+            //UInt32 InitSDLSystems = SDL_WasInit(0);
+            //if( SDL_INIT_VIDEO | InitSDLSystems ) {
+            //    SDL_QuitSubSystem(SDL_INIT_VIDEO);
+            //}
 
             delete RenderWork;
         }
