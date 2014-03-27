@@ -62,39 +62,40 @@ class crashonclosetests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
+            ////////////////////////////////////////////////////////////////
+            // Linux SDL unloadsx X11 Ogre still needs crash
             {
-                TestOutput << "Creating an entresol and a window, then closing them." << endl;
-                Mezzanine::Entresol Crasher;
+                {
+                    TestOutput << "Creating an entresol and a window, then closing them." << endl;
+                    Mezzanine::Entresol Crasher;
+
+                    #ifdef LINUX
+                    bool Loaded=false; //Fix this so it actually checks
+                    TEST(Loaded,"X11LoadedOnCreation");
+                    #else
+                    TEST(Testing::Skipped,"X11LoadedOnCreation");
+                    #endif
+
+                    TEST_RESULT(Testing::Success, "CreatedEngineWithoutSegFault");
+
+                    Crasher.EngineInit();
+
+                }
+                TEST_RESULT(Testing::Success, "DestroyedEngineWithoutSegFault");
 
                 #ifdef LINUX
                 bool Loaded=false; //Fix this so it actually checks
-                TEST(Loaded,"X11LoadedOnCreation");
+                TEST(Loaded,"X11UnloadedOnDestruction");
                 #else
-                TEST(Testing::Skipped,"X11LoadedOnCreation");
+                TEST(Testing::Skipped,"X11UnloadedOnDestruction");
                 #endif
-
-                TEST_RESULT(Testing::Success, "CreatedEngineWithoutSegFault");
-
-                Crasher.EngineInit();
-
             }
-            TEST_RESULT(Testing::Success, "DestroyedEngineWithoutSegFault");
 
-            #ifdef LINUX
-            bool Loaded=false; //Fix this so it actually checks
-            TEST(Loaded,"X11UnloadedOnDestruction");
-            #else
-            TEST(Testing::Skipped,"X11UnloadedOnDestruction");
-            #endif
-
+            ////////////////////////////////////////////////////////////////
+            // Entresolused for timing when it doesn't exist crash
             {
                 Mezzanine::Physics::PhysicsManager Simulation;
                 Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
-                Simulation.SetSimulationSubstepModifier(3);
-                Physics::SphereCollisionShape Ball("Ball",5.0);
-                RigidA->SetCollisionShape(&Ball);
-                RigidA->AddToWorld();
-                Simulation.SetWorldGravity(Vector3(0.0,9.8,0.0));
                 FrameScheduler FS;
                 Mezzanine::Threading::ThreadSpecificStorage Ignored(&FS);
                 Simulation.GetSimulationWork()->DoWork(Ignored);
