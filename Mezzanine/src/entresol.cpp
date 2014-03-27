@@ -569,6 +569,7 @@ namespace Mezzanine
 
     void Entresol::EngineInit( const Boole &CallMainLoop )
     {
+        Graphics::GraphicsManager::GetSingletonPtr()->Initialize();
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
             StringStream InitStream;
@@ -579,12 +580,9 @@ namespace Mezzanine
                 (*Iter)->Initialize();
             }
         }
-        Graphics::GraphicsManager::GetSingletonPtr()->Initialize();
 
         if(CallMainLoop)
-        {
-            this->MainLoop();
-        }
+            { this->MainLoop(); }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

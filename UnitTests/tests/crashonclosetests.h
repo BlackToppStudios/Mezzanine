@@ -77,9 +77,8 @@ class crashonclosetests : public UnitTestGroup
 
                 Crasher.EngineInit();
 
-
             }
-            TEST_RESULT(Testing::Success, "CreatedEngineWithoutSegFault");
+            TEST_RESULT(Testing::Success, "DestroyedEngineWithoutSegFault");
 
             #ifdef LINUX
             bool Loaded=false; //Fix this so it actually checks
