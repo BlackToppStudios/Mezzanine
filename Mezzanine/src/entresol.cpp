@@ -657,13 +657,13 @@ namespace Mezzanine
         { WorkScheduler.SetFrameLength(NewTargetTime); }
 
     Whole Entresol::GetTargetFrameTimeMilliseconds() const
-        { return WorkScheduler.GetFrameLength()/1000; }
+        { return WorkScheduler.GetFrameLength()*0.0001; }
 
     Whole Entresol::GetTargetFrameTimeMicroseconds() const
         { return WorkScheduler.GetFrameLength(); }
 
     Whole Entresol::GetLastFrameTimeMilliseconds() const
-        { return WorkScheduler.GetLastFrameTime()/1000; }
+        { return WorkScheduler.GetLastFrameTime()*0.001; }
 
     Whole Entresol::GetLastFrameTimeMicroseconds() const
         { return WorkScheduler.GetLastFrameTime(); }

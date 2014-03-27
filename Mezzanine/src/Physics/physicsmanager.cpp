@@ -262,10 +262,8 @@ namespace Mezzanine
                 return;
 
             this->TargetManager->ThreadResources = &CurrentThreadStorage;
-            Real FloatTime = this->TargetManager->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001; // Convert from MilliSeconds to Seconds
-            //Real IdealStep = static_cast<Real>( this->TargetManager->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
-            //IdealStep /= this->TargetManager->SubstepModifier;
-            //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
+            //Real FloatTime = this->TargetManager->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001; // Convert from MilliSeconds to Seconds
+            Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001;// Convert from MicroSeconds to Seconds
             int MaxSteps = ( FloatTime < this->TargetManager->StepSize ) ? 1 : int( FloatTime / this->TargetManager->StepSize ) + 1;
             this->TargetManager->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->TargetManager->StepSize );
             this->TargetManager->ThreadResources = NULL;
@@ -664,25 +662,12 @@ namespace Mezzanine
                 this->BulletDispatcherThreads = NULL;
             }
 
-            if(this->TheEntresol)
-            {
-                if(this->ThreadCount)
-                {
-                    this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
-                }else{
-                    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
-                }
-            }
             delete this->SimulationWork;
             this->SimulationWork = NULL;
 
-            if(this->TheEntresol)
-                { this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork ); }
             delete this->WorldTriggerUpdateWork;
             this->WorldTriggerUpdateWork = NULL;
 
-            if(this->TheEntresol)
-                { this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork ); }
             delete this->DebugDrawWork;
             this->DebugDrawWork = NULL;
         }
@@ -1201,12 +1186,25 @@ namespace Mezzanine
                 this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
 
                 // Simulation work configuration
-                if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                if( (this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded) && this->TheEntresol) {
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
                 }else{
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
                 }
                 this->SimulationWork->ClearDependencies();
+
+                if(this->TheEntresol)
+                {
+                    if(this->ThreadCount){
+                        this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+                    }else{
+                        this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
+                    }
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork );
+                }
+
+
 
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
