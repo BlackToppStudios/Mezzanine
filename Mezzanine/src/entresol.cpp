@@ -77,6 +77,7 @@
 
 #include <sstream>
 #include <string>
+#include <cassert>
 
 using namespace std;
 
@@ -131,8 +132,11 @@ namespace Mezzanine
 
     void Entresol::DestroyOgre()
     {
-        //Ogre::Root::getSingleton().shutdown();
-        delete Ogre::Root::getSingletonPtr(); // This should be done by the shutdown method shouldn't it?
+        #ifdef LINUX
+        assert( !( SDL_WasInit(0) | SDL_INIT_VIDEO ) && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
+        #endif
+
+        delete Ogre::Root::getSingletonPtr();
         OgreCore = 0;
         delete SubSystemParticleFXPlugin;
     }
