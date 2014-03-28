@@ -278,6 +278,7 @@ namespace Mezzanine
             Whole SubstepModifier;
             Whole ThreadCount;
             Real StepSize;
+            Real TimeMultiplier; ///< A Multiplier that adjusts how fast physics runs relative to clock time.
 
             ManagerConstructionInfo WorldConstructionInfo;
 
@@ -352,6 +353,13 @@ namespace Mezzanine
             /// @brief Gets Whether or not the simulation is currently paused.
             /// @return Returns whether or not the simulation is paused.
             Boole SimulationIsPaused();
+
+            /// @brief How much faster or slower that reality is the physic ssystem
+            /// @return 1 indicates normal time, less indicates slower and higher indicates faster times
+            Real GetTimeMultiplier() const;
+            /// @brief Change how fast the physicsworks relatve to well time
+            /// @param value 2.0 to double simulation, .5 to half it.
+            void SetTimeMultiplier(const Real &value);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Gravity Management
