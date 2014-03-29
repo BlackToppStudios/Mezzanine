@@ -132,13 +132,19 @@ namespace Mezzanine
 
     void Entresol::DestroyOgre()
     {
-        #ifdef LINUX
-        assert( !( SDL_WasInit(0) | SDL_INIT_VIDEO ) && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
-        #endif
-
         delete Ogre::Root::getSingletonPtr();
         OgreCore = 0;
         delete SubSystemParticleFXPlugin;
+    }
+
+    void Entresol::DestroySDL()
+    {
+        #ifdef LINUX
+        // Fail is SDL is de-intialized before Ogre, but only if Ogre has been initialized.
+        assert( NULL==OgreCore // ( (SDL_WasInit(0) | SDL_INIT_VIDEO)
+                && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
+        #endif
+        SDL_Quit();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -532,8 +538,7 @@ namespace Mezzanine
         DestroyLogging();
 
         DestroyOgre();
-
-        SDL_Quit();
+        DestroySDL();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -661,7 +666,7 @@ namespace Mezzanine
         { WorkScheduler.SetFrameLength(NewTargetTime); }
 
     Whole Entresol::GetTargetFrameTimeMilliseconds() const
-        { return WorkScheduler.GetFrameLength()*0.0001; }
+        { return WorkScheduler.GetFrameLength()*0.001; }
 
     Whole Entresol::GetTargetFrameTimeMicroseconds() const
         { return WorkScheduler.GetFrameLength(); }

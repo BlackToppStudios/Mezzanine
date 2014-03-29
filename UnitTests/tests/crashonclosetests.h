@@ -68,14 +68,6 @@ class crashonclosetests : public UnitTestGroup
                 {
                     TestOutput << "Creating an entresol and a window, then closing them." << endl;
                     Mezzanine::Entresol Crasher;
-
-                    #ifdef LINUX
-                    bool Loaded=false; //Fix this so it actually checks
-                    TEST(Loaded,"X11LoadedOnCreation");
-                    #else
-                    TEST(Testing::Skipped,"X11LoadedOnCreation");
-                    #endif
-
                     TEST_RESULT(Testing::Success, "CreatedEngineWithoutSegFault");
 
                     Crasher.EngineInit();
@@ -83,12 +75,7 @@ class crashonclosetests : public UnitTestGroup
                 }
                 TEST_RESULT(Testing::Success, "DestroyedEngineWithoutSegFault");
 
-                #ifdef LINUX
-                bool Loaded=false; //Fix this so it actually checks
-                TEST(Loaded,"X11UnloadedOnDestruction");
-                #else
-                TEST(Testing::Skipped,"X11UnloadedOnDestruction");
-                #endif
+
             }
 
             ////////////////////////////////////////////////////////////////
