@@ -101,6 +101,7 @@ namespace Mezzanine
             /// @internal
             /// @brief A pointer to the manager this work unit is processing.
             PhysicsManager* TargetManager;
+        private:
             /// @internal
             /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
@@ -134,8 +135,9 @@ namespace Mezzanine
             /// @internal
             /// @brief A pointer to the manager this work unit is processing.
             PhysicsManager* TargetManager;
+        private:
             /// @internal
-            /// @brief Protected copy constructor.  THIS IS NOT ALLOWED.
+            /// @brief Private copy constructor.  THIS IS NOT ALLOWED.
             /// @param Other The other work unit being copied from.  WHICH WILL NEVER HAPPEN.
             SimulationMonopolyWorkUnit(const SimulationMonopolyWorkUnit& Other);
             /// @internal
@@ -152,8 +154,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Sets the number of threads this work unit is allowed to use during it's monopoly.
-            /// @param AmountToUse The number of threads permitted for use.
+            /// @brief A no-op but declared for compatibility with Monopoly work unit
+            /// @param AmountToUse The number of threads permitted for use, if this were implemented
             virtual void UseThreads(const Whole& AmountToUse);
             /// @brief Gets the number of threads this work unit will attempt to use during it's monopoly.
             /// @return Returns a Whole representing the number of threads that will be attempted to be created during running of this monopoly.
@@ -307,9 +309,6 @@ namespace Mezzanine
             /// @internal
             /// @brief The work unit that updates the debug drawer with the latest physics rendering.
             DebugDrawWorkUnit* DebugDrawWork;
-            /// @internal
-            /// @brief Can be used for thread safe logging and other thread specific resources.
-            Threading::DefaultThreadSpecificStorage::Type* ThreadResources;
 
             /// @brief This takes care of all the real work in contructing this
             /// @details This method is called by all the constructors to insure consistent behavior.
@@ -569,6 +568,9 @@ namespace Mezzanine
             virtual void Initialize();
             /// @copydoc ManagerBase::Deinitialize()
             virtual void Deinitialize();
+
+            /// @brief The work that needs to be done each frame.
+            void DoPerFrameWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
 
             /// @brief Gets a pointer to the work unit that steps the simulation.
             /// @return Returns a pointer to the DefaultWorkUnit that steps the simulation.

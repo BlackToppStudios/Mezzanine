@@ -249,17 +249,7 @@ namespace Mezzanine
         // Utility
 
         void SimulationWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-        {
-            if( this->TargetManager->SimulationIsPaused() )
-                return;
-
-            this->TargetManager->ThreadResources = &CurrentThreadStorage;
-            //Real FloatTime = this->TargetManager->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001; // Convert from MilliSeconds to Seconds
-            Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001 * this->TargetManager->GetTimeMultiplier();// Convert from MicroSeconds to Seconds
-            int MaxSteps = ( FloatTime < this->TargetManager->StepSize ) ? 1 : int( FloatTime / this->TargetManager->StepSize ) + 1;
-            this->TargetManager->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->TargetManager->StepSize );
-            this->TargetManager->ThreadResources = NULL;
-        }
+            { this->TargetManager->DoPerFrameWork(CurrentThreadStorage); }
 
         ///////////////////////////////////////////////////////////
         // SimulationMonopolyWorkUnit functions
@@ -286,19 +276,7 @@ namespace Mezzanine
             { return this->TargetManager->ThreadCount; }
 
         void SimulationMonopolyWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-        {
-            if( this->TargetManager->SimulationIsPaused() )
-                return;
-
-            this->TargetManager->ThreadResources = &CurrentThreadStorage;
-            Real FloatTime = this->TargetManager->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001; // Convert from MilliSeconds to Seconds
-            //Real IdealStep = static_cast<Real>( this->TargetManager->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
-            //IdealStep /= this->TargetManager->SubstepModifier;
-            //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
-            int MaxSteps = ( FloatTime < this->TargetManager->StepSize ) ? 1 : int( FloatTime / this->TargetManager->StepSize ) + 1;
-            this->TargetManager->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->TargetManager->StepSize );
-            this->TargetManager->ThreadResources = NULL;
-        }
+            { this->TargetManager->DoPerFrameWork(CurrentThreadStorage); }
 
         ///////////////////////////////////////////////////////////
         // WorldTriggerUpdate functions
@@ -377,8 +355,7 @@ namespace Mezzanine
 
             SimulationWork(NULL),
             WorldTriggerUpdateWork(NULL),
-            DebugDrawWork(NULL),
-            ThreadResources(NULL)
+            DebugDrawWork(NULL)
         {
             ManagerConstructionInfo Info;
             Info.PhysicsFlags = (ManagerConstructionInfo::PCF_SoftRigidWorld | ManagerConstructionInfo::PCF_LimitlessWorld);
@@ -405,8 +382,7 @@ namespace Mezzanine
 
             SimulationWork(NULL),
             WorldTriggerUpdateWork(NULL),
-            DebugDrawWork(NULL),
-            ThreadResources(NULL)
+            DebugDrawWork(NULL)
         {
             this->Construct(Info);
         }
@@ -431,8 +407,7 @@ namespace Mezzanine
 
             SimulationWork(NULL),
             WorldTriggerUpdateWork(NULL),
-            DebugDrawWork(NULL),
-            ThreadResources(NULL)
+            DebugDrawWork(NULL)
         {
             ManagerConstructionInfo Info;
             XML::Attribute CurrAttrib;
@@ -1180,6 +1155,16 @@ namespace Mezzanine
 
                 this->Initialized = false;
             }
+        }
+
+        void PhysicsManager::DoPerFrameWork(Threading::DefaultThreadSpecificStorage::Type &CurrentThreadStorage)
+        {
+            if( this->SimulationIsPaused() )
+                return;
+
+            Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001 * this->GetTimeMultiplier();// Convert from MicroSeconds to Seconds
+            int MaxSteps = ( FloatTime < this->StepSize ) ? 1 : int( FloatTime / this->StepSize ) + 1;
+            this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->StepSize );
         }
 
         Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()
