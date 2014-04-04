@@ -610,93 +610,77 @@ void MakeGUI()
 
     //Build the HUD
     UI::StackButton* MenuAccess = DScreen->CreateStackButton("D_MenuAccess",UI::UnifiedRect(0.008,0.932,0.14,0.06));
-    UI::SingleImageLayer* AccessBackground = MenuAccess->CreateSingleImageLayer(0,"Normal");
+    UI::SingleImageLayer* AccessBackground = MenuAccess->CreateSingleImageLayer(UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     AccessBackground->SetColour(ButtonColour);
-    UI::SingleImageLayer* AccessHoveredBackground = MenuAccess->CreateSingleImageLayer(0,"Hovered");
+    UI::SingleImageLayer* AccessHoveredBackground = MenuAccess->CreateSingleImageLayer(UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
     AccessHoveredBackground->SetColour(HoveredButtonColour);
-    UI::SingleLineTextLayer* AccessText = MenuAccess->CreateSingleLineTextLayer();
+    UI::SingleLineTextLayer* AccessText = MenuAccess->CreateSingleLineTextLayer(1,1);
     AccessText->HorizontallyAlign(UI::LA_Center);
     AccessText->VerticallyAlign(UI::LA_Center);
     AccessText->SetDefaultFont("Ubuntu-14");
     AccessText->SetText("Menu");
-    MenuAccess->AddLayerToGroup(AccessText,1,"Normal");
-    MenuAccess->AddLayerToGroup(AccessText,1,"Hovered");
     DScreen->AddChild(MenuAccess,1);
 
     UI::Widget* CurFPS = DScreen->CreateWidget("D_CurFPS",UI::UnifiedRect(0.16,0.008,0.06,0.065));
-    UI::SingleLineTextLayer* CurFPSText = CurFPS->CreateSingleLineTextLayer();
+    UI::SingleLineTextLayer* CurFPSText = CurFPS->CreateSingleLineTextLayer(1,1);
     CurFPSText->HorizontallyAlign(UI::LA_TopLeft);
     CurFPSText->VerticallyAlign(UI::LA_Center);
     CurFPSText->SetDefaultFont("Ubuntu-14");
     CurFPSText->SetText("0.0");
-    CurFPS->AddLayerToGroup(CurFPSText,1,"Normal");
-    CurFPS->AddLayerToGroup(CurFPSText,1,"Hovered");
     DScreen->AddChild(CurFPS,2);
 
     UI::Widget* CurFPSStat = DScreen->CreateWidget("D_CurFPSStat",UI::UnifiedRect(0.008,0.008,0.15,0.065));
-    UI::SingleLineTextLayer* CurFPSStatText = CurFPSStat->CreateSingleLineTextLayer();
+    UI::SingleLineTextLayer* CurFPSStatText = CurFPSStat->CreateSingleLineTextLayer(1,1);
     CurFPSStatText->HorizontallyAlign(UI::LA_TopLeft);
     CurFPSStatText->VerticallyAlign(UI::LA_Center);
     CurFPSStatText->SetDefaultFont("Ubuntu-14");
     CurFPSStatText->SetText("Current FPS: ");
-    CurFPSStat->AddLayerToGroup(CurFPSStatText,1,"Normal");
-    CurFPSStat->AddLayerToGroup(CurFPSStatText,1,"Hovered");
     DScreen->AddChild(CurFPSStat,3);
 
     UI::Widget* AvFPS = DScreen->CreateWidget("D_AvFPS",UI::UnifiedRect(0.16,0.081,0.06,0.065));
-    UI::SingleLineTextLayer* AvFPSText = AvFPS->CreateSingleLineTextLayer();
+    UI::SingleLineTextLayer* AvFPSText = AvFPS->CreateSingleLineTextLayer(1,1);
     AvFPSText->HorizontallyAlign(UI::LA_TopLeft);
     AvFPSText->VerticallyAlign(UI::LA_Center);
     AvFPSText->SetDefaultFont("Ubuntu-14");
     AvFPSText->SetText("0.0");
-    AvFPS->AddLayerToGroup(AvFPSText,1,"Normal");
-    AvFPS->AddLayerToGroup(AvFPSText,1,"Hovered");
     DScreen->AddChild(AvFPS,4);
 
     UI::Widget* AvFPSStat = DScreen->CreateWidget("D_AvFPSStat",UI::UnifiedRect(0.008,0.081,0.15,0.065));
-    UI::SingleLineTextLayer* AvFPSStatText = AvFPSStat->CreateSingleLineTextLayer();
+    UI::SingleLineTextLayer* AvFPSStatText = AvFPSStat->CreateSingleLineTextLayer(1,1);
     AvFPSStatText->HorizontallyAlign(UI::LA_TopLeft);
     AvFPSStatText->VerticallyAlign(UI::LA_Center);
     AvFPSStatText->SetDefaultFont("Ubuntu-14");
     AvFPSStatText->SetText("Average FPS: ");
-    AvFPSStat->AddLayerToGroup(AvFPSStatText,1,"Normal");
-    AvFPSStat->AddLayerToGroup(AvFPSStatText,1,"Hovered");
     DScreen->AddChild(AvFPSStat,5);
     //End of HUD
     //Build the Menu
     UI::MenuEntry* DemoMenu = DScreen->CreateMenuEntry("D_Menu",UI::UnifiedRect(0.35,0.27,0.3,0.45));
-    UI::SingleImageLayer* DemoMenuBackground = DemoMenu->CreateSingleImageLayer();
+    UI::SingleImageLayer* DemoMenuBackground = DemoMenu->CreateSingleImageLayer(1,1);
     DemoMenuBackground->SetColour(MenuColour);
-    DemoMenu->AddLayerToGroup(DemoMenuBackground,0,"Normal");
-    DemoMenu->AddLayerToGroup(DemoMenuBackground,0,"Hovered");
     DScreen->AddChild(DemoMenu,6);
 
     UI::StackButton* ReturnButton = DScreen->CreateStackButton("D_Return",UI::UnifiedRect(0.10,0.56,0.80,0.16));
-    UI::SingleImageLayer* ReturnBackground = ReturnButton->CreateSingleImageLayer(0,"Normal");
+    UI::SingleImageLayer* ReturnBackground = ReturnButton->CreateSingleImageLayer(UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     ReturnBackground->SetColour(ButtonColour);
-    UI::SingleImageLayer* ReturnHoveredBackground = ReturnButton->CreateSingleImageLayer(0,"Hovered");
+    UI::SingleImageLayer* ReturnHoveredBackground = ReturnButton->CreateSingleImageLayer(UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
     ReturnHoveredBackground->SetColour(HoveredButtonColour);
-    UI::SingleLineTextLayer* ReturnText = ReturnButton->CreateSingleLineTextLayer();
+    UI::SingleLineTextLayer* ReturnText = ReturnButton->CreateSingleLineTextLayer(1,1);
     ReturnText->HorizontallyAlign(UI::LA_Center);
     ReturnText->VerticallyAlign(UI::LA_Center);
     ReturnText->SetDefaultFont("Ubuntu-14");
     ReturnText->SetText("Return To Demo");
-    ReturnButton->AddLayerToGroup(ReturnText,1,"Normal");
-    ReturnButton->AddLayerToGroup(ReturnText,1,"Hovered");
     DemoMenu->AddChild(ReturnButton,1);
 
     UI::Button* GameExitButton = DScreen->CreateButton("D_Exit",UI::UnifiedRect(0.10,0.78,0.80,0.16));
-    UI::SingleImageLayer* GameExitBackground = GameExitButton->CreateSingleImageLayer(0,"Normal");
+    UI::SingleImageLayer* GameExitBackground = GameExitButton->CreateSingleImageLayer(UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     GameExitBackground->SetColour(ButtonColour);
-    UI::SingleImageLayer* GameExitHoveredBackground = GameExitButton->CreateSingleImageLayer(0,"Hovered");
+    UI::SingleImageLayer* GameExitHoveredBackground = GameExitButton->CreateSingleImageLayer(UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
     GameExitHoveredBackground->SetColour(HoveredButtonColour);
-    UI::SingleLineTextLayer* GameExitText = GameExitButton->CreateSingleLineTextLayer();
+    UI::SingleLineTextLayer* GameExitText = GameExitButton->CreateSingleLineTextLayer(1,1);
     GameExitText->HorizontallyAlign(UI::LA_Center);
     GameExitText->VerticallyAlign(UI::LA_Center);
     GameExitText->SetDefaultFont("Ubuntu-14");
     GameExitText->SetText("Exit Demo");
-    GameExitButton->AddLayerToGroup(GameExitText,1,"Normal");
-    GameExitButton->AddLayerToGroup(GameExitText,1,"Hovered");
     DemoMenu->AddChild(GameExitButton,2);
 
     DemoMenu->SetPushButton(MenuAccess);
