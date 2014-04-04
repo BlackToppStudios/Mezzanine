@@ -263,7 +263,7 @@ namespace Mezzanine
 /// determine the partition the mouse is located it, and only check the Widgets within that partition.  Due to the costs involved in updating the cache for the NineBoxStrategy, it is only
 /// recommended to use it when you have a large and mostly static UI with infrequent updates.  By default, all Screens create and use the BruteStrategy class for hover checks.
 /// \n \n
-/// "Render Data" collected by a UI Screen pertains to any data that is necessary for the Screen to be rendered.  As of the time of this writing, it is a std::vector of proceadurally
+/// "Render Data" collected by a UI Screen pertains to any data that is necessary for the Screen to be rendered.  As of the time of this writing, it is a std::vector of procedurally
 /// generated vertices.  However this is subject to change.  See issues #96 and #97 on the Mezzanine issue tracker ( https://github.com/BlackToppStudios/Mezzanine/issues ) for more
 /// information on these potential changes.  To collect these vertices the @ref Mezzanine::UI::QuadRenderable::_AppendRenderDataCascading(ScreenRenderData&) method is used.  This method
 /// iterates over every Widget in the hierarchy starting with the lowest ZOrder child of the screen.  For each Widget checked, it will first append any vertices that belong to that Widget,
@@ -273,7 +273,7 @@ namespace Mezzanine
 /// \n \n
 /// Once all of the RenderData has been collected from every Widget in the hierarchy the first thing that is done is the converting of Screen coordinates on each verticy to coordinates
 /// that can be read by and used by the video card.  Video devices use a coordinate system the top left corner is (-1,-1), the center is (0,0), and the bottom right is (1,1).  After the
-/// verticies are transformed they are assembled into a render operation that will get passed into the internal graphics subsystem.  Collecting render data is not done during any widget
+/// vertices are transformed they are assembled into a render operation that will get passed into the internal graphics subsystem.  Collecting render data is not done during any widget
 /// updates.  Instead it is a part of a callback that gets called during the graphics rendering work unit (which is a monopoly work unit).
 /// \n \n
 /// The UI Screen class also comes with a small set of templated utility methods that can be used to perform tasks on all Widgets in the Widget hierarchy.  The methods are as follows: \n
@@ -409,7 +409,7 @@ namespace Mezzanine
 /// returns false) then the input will be passed upwards in the Widget hierarchy until it is consumed or reaches the Screen.  The UI manager may do additional processing if no Widget "uses"
 /// the input.  More detailed information on how inputs are handled by the Widget class can be found here: @ref UIInputLife .
 /// \n \n
-/// In addition to the core functionality, the Widget also comes with a few utility methods relating to hovered child Widgets and setting the Stste.  There are a couple of convenient methods
+/// In addition to the core functionality, the Widget also comes with a few utility methods relating to hovered child Widgets and setting the state.  There are a couple of convenient methods
 /// that will check whether a child of a Widget is hovered.  The @ref Mezzanine::UI::Widget::GetHoveredSubWidget() const method will return either a pointer to an immediate child that the
 /// mouse is hovered over, or NULL if the mouse is not hovered over any immediate children.  For a deeper check, you can use the @ref Mezzanine::UI::Widget::GetBottomMostHoveredWidget() method
 /// which will search all children, and children of children, etc..  The return is the same, NULL if none are hovered, or a pointer to the hovered child.  \n
@@ -464,7 +464,7 @@ namespace Mezzanine
 ///     - @ref Mezzanine::UI::TextLayer::SetDefaultFont(const String&) \n
 ///     - @ref Mezzanine::UI::TextLayer::SetDefaultFont(const String&,const String&) \n
 /// \n
-/// Note that the constructor listed here should not be called directly.  Instead the appropriate create method should be called on the QuadRenderable that takes a Font or FontName as a paramter.
+/// Note that the constructor listed here should not be called directly.  Instead the appropriate create method should be called on the QuadRenderable that takes a Font or FontName as a parameter.
 /// In addition to a default font, text layers also use a default text colour to decide what colour text should be when one isn't specified in Markup.  This value defaults to white, but can be
 /// set using the @ref Mezzanine::UI::TextLayer::SetTextColour(const ColourValue&) method.
 /// \n \n
@@ -519,7 +519,7 @@ namespace Mezzanine
 /// "overlapping" word should be red text.  The "tags" word should be the layers default character colour.  All text should be in the layers default font. \n
 /// The sixth test string should display the entire text, including "[Colour Value=ff0000]", in the layers default font and text colour. \n
 /// A few extra notes about the tags:  The names of both the tags and their parameters are case sensitive and the parameters must not have spaces when defining their values, only when separating
-/// different paramters or the tag name.  For example: "[Colour Value=ff0000]" is good, while "[Colour Value = ff0000]" is bad. \n
+/// different parameters or the tag name.  For example: "[Colour Value=ff0000]" is good, while "[Colour Value = ff0000]" is bad. \n
 /// More information on creating and setting a MarkupParser that isn't the default can be found here: @ref UIMarkup .
 /// \n \n
 /// Glyphs or Sprites can be inserted directly into a TextLayer or removed from a TextLayer using the following methods: \n
@@ -547,7 +547,7 @@ namespace Mezzanine
 /// There are two types of scaling that can be set for text displayed by a TextLayer: Manual and Auto.  Manual text scaling is set with the
 /// @ref Mezzanine::UI::TextLayer::SetManualTextScale(const Vector2&) method and it simply applies the values of the provided vector to each of the characters within the TextLayer.  Auto text scaling
 /// is set with the @ref Mezzanine::UI::TextLayer::SetAutoTextScale(const TextLayer::ScalingMode, const Real) method and will instead scale both axes evenly based on how much Y scaling is needed to
-/// achieve the desired height for a given character.  The height that is used to calculate this isn't based on the pixel height of the character if it is a glyph, but rather the lineheight of the
+/// achieve the desired height for a given character.  The height that is used to calculate this isn't based on the pixel height of the character if it is a glyph, but rather the line height of the
 /// font used by that character.  So you don't have to worry about strange and unevenly stretched glyphs from the same font.  If both manual and auto text scaling are enabled on a TextLayer, then the
 /// auto scaling will be applied first, getting it to the desired height and then manual scaling will be applied.
 /// \n \n
@@ -572,7 +572,7 @@ namespace Mezzanine
 /// transparent, then you could create a golden bordered button labeled "Start" with a blue marble background.
 /// \n \n
 /// The @ref UI::Mezzanine::Widget class also has a way to bind a specific RenderLayerGroup to a WidgetState for that particular Widget ( covered in more detail here: @ref UIWidget ).  So the
-/// RenderLayerGroup in the previous example could be set to the "WS_Untouched" state, while another similiar RenderLayerGroup that reuses the border and text RenderLayers with a new SingleImageLayer
+/// RenderLayerGroup in the previous example could be set to the "WS_Untouched" state, while another similar RenderLayerGroup that reuses the border and text RenderLayers with a new SingleImageLayer
 /// that has an alternate background art could be bound to a state with "WS_Hovered" in it.  This gives you a look that will automatically be updated when the mouse is hovered over that Widget.  In
 /// practice however, the base Widget class already creates a "Normal" and "Hovered" RenderLayerGroups that you can add RenderLayers to, so the tedious parts that are common to do are done for you.
 /// \n \n
