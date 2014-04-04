@@ -570,6 +570,7 @@ namespace Mezzanine
             virtual void Deinitialize();
 
             /// @brief The work that needs to be done each frame.
+            /// @param CurrentThreadStorage The context of the current frame for the work to do.
             void DoPerFrameWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage);
 
             /// @brief Gets a pointer to the work unit that steps the simulation.

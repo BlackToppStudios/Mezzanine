@@ -2175,7 +2175,7 @@ static swig_lua_class *swig_std_string_bases[] = {0};
 static const char *swig_std_string_base_names[] = {0};
 static swig_lua_class _wrap_class_std_string = { "string", &SWIGTYPE_p_std__string,_wrap_new_string, swig_delete_string, swig_std_string_methods, swig_std_string_attributes, swig_std_string_bases, swig_std_string_base_names };
 
-static int _wrap_new_SimulationWorkUnit__SWIG_1(lua_State* L) {
+static int _wrap_new_SimulationWorkUnit(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
   Mezzanine::Physics::SimulationWorkUnit *result = 0 ;
@@ -2196,35 +2196,6 @@ static int _wrap_new_SimulationWorkUnit__SWIG_1(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_new_SimulationWorkUnit(lua_State* L) {
-  int argc;
-  int argv[2]={
-    1,2
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 1) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      return _wrap_new_SimulationWorkUnit__SWIG_1(L);
-    }
-  }
-  
-  lua_pushstring(L,"Wrong arguments for overloaded function 'new_SimulationWorkUnit'\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::SimulationWorkUnit::SimulationWorkUnit(Mezzanine::Physics::PhysicsManager *)\n");
-  lua_error(L);return 0;
 }
 
 
@@ -2273,7 +2244,7 @@ static swig_lua_class *swig_Mezzanine_Physics_SimulationWorkUnit_bases[] = {0};
 static const char *swig_Mezzanine_Physics_SimulationWorkUnit_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_Physics_SimulationWorkUnit = { "SimulationWorkUnit", &SWIGTYPE_p_Mezzanine__Physics__SimulationWorkUnit,_wrap_new_SimulationWorkUnit, swig_delete_SimulationWorkUnit, swig_Mezzanine_Physics_SimulationWorkUnit_methods, swig_Mezzanine_Physics_SimulationWorkUnit_attributes, swig_Mezzanine_Physics_SimulationWorkUnit_bases, swig_Mezzanine_Physics_SimulationWorkUnit_base_names };
 
-static int _wrap_new_SimulationMonopolyWorkUnit__SWIG_1(lua_State* L) {
+static int _wrap_new_SimulationMonopolyWorkUnit(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
   Mezzanine::Physics::SimulationMonopolyWorkUnit *result = 0 ;
@@ -2294,35 +2265,6 @@ static int _wrap_new_SimulationMonopolyWorkUnit__SWIG_1(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_new_SimulationMonopolyWorkUnit(lua_State* L) {
-  int argc;
-  int argv[2]={
-    1,2
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 1) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__Physics__PhysicsManager, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      return _wrap_new_SimulationMonopolyWorkUnit__SWIG_1(L);
-    }
-  }
-  
-  lua_pushstring(L,"Wrong arguments for overloaded function 'new_SimulationMonopolyWorkUnit'\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::Physics::SimulationMonopolyWorkUnit::SimulationMonopolyWorkUnit(Mezzanine::Physics::PhysicsManager *)\n");
-  lua_error(L);return 0;
 }
 
 
@@ -2774,6 +2716,57 @@ static int _wrap_PhysicsManager_SimulationIsPaused(lua_State* L) {
   
   result = (Mezzanine::Boole)(arg1)->SimulationIsPaused();
   lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PhysicsManager_GetTimeMultiplier(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
+  Mezzanine::Real result;
+  
+  SWIG_check_num_args("Mezzanine::Physics::PhysicsManager::GetTimeMultiplier",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::GetTimeMultiplier",1,"Mezzanine::Physics::PhysicsManager const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
+    SWIG_fail_ptr("PhysicsManager_GetTimeMultiplier",1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
+  }
+  
+  result = (Mezzanine::Real)((Mezzanine::Physics::PhysicsManager const *)arg1)->GetTimeMultiplier();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_PhysicsManager_SetTimeMultiplier(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
+  Mezzanine::Real *arg2 = 0 ;
+  Mezzanine::Real temp2 ;
+  
+  SWIG_check_num_args("Mezzanine::Physics::PhysicsManager::SetTimeMultiplier",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::SetTimeMultiplier",1,"Mezzanine::Physics::PhysicsManager *");
+  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::SetTimeMultiplier",2,"Mezzanine::Real const &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
+    SWIG_fail_ptr("PhysicsManager_SetTimeMultiplier",1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
+  }
+  
+  temp2=(Mezzanine::Real)lua_tonumber(L,2); arg2=&temp2;
+  (arg1)->SetTimeMultiplier((Mezzanine::Real const &)*arg2);
+  
   return SWIG_arg;
   
   if(0) SWIG_fail;
@@ -4298,6 +4291,36 @@ fail:
 }
 
 
+static int _wrap_PhysicsManager_DoPerFrameWork(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
+  Mezzanine::Threading::DefaultThreadSpecificStorage::Type *arg2 = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::Physics::PhysicsManager::DoPerFrameWork",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::DoPerFrameWork",1,"Mezzanine::Physics::PhysicsManager *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::Physics::PhysicsManager::DoPerFrameWork",2,"Mezzanine::Threading::DefaultThreadSpecificStorage::Type &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager,0))){
+    SWIG_fail_ptr("PhysicsManager_DoPerFrameWork",1,SWIGTYPE_p_Mezzanine__Physics__PhysicsManager);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type,0))){
+    SWIG_fail_ptr("PhysicsManager_DoPerFrameWork",2,SWIGTYPE_p_Mezzanine__Threading__DefaultThreadSpecificStorage__Type);
+  }
+  
+  (arg1)->DoPerFrameWork(*arg2);
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_PhysicsManager_GetSimulationWork(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Physics::PhysicsManager *arg1 = (Mezzanine::Physics::PhysicsManager *) 0 ;
@@ -4428,6 +4451,8 @@ delete arg1;
 static swig_lua_method swig_Mezzanine_Physics_PhysicsManager_methods[] = {
     {"PauseSimulation", _wrap_PhysicsManager_PauseSimulation}, 
     {"SimulationIsPaused", _wrap_PhysicsManager_SimulationIsPaused}, 
+    {"GetTimeMultiplier", _wrap_PhysicsManager_GetTimeMultiplier}, 
+    {"SetTimeMultiplier", _wrap_PhysicsManager_SetTimeMultiplier}, 
     {"SetWorldGravity", _wrap_PhysicsManager_SetWorldGravity}, 
     {"GetWorldGravity", _wrap_PhysicsManager_GetWorldGravity}, 
     {"SetWorldSoftGravity", _wrap_PhysicsManager_SetWorldSoftGravity}, 
@@ -4465,6 +4490,7 @@ static swig_lua_method swig_Mezzanine_Physics_PhysicsManager_methods[] = {
     {"MainLoopInitialize", _wrap_PhysicsManager_MainLoopInitialize}, 
     {"Initialize", _wrap_PhysicsManager_Initialize}, 
     {"Deinitialize", _wrap_PhysicsManager_Deinitialize}, 
+    {"DoPerFrameWork", _wrap_PhysicsManager_DoPerFrameWork}, 
     {"GetSimulationWork", _wrap_PhysicsManager_GetSimulationWork}, 
     {"GetWorldTriggerUpdateWork", _wrap_PhysicsManager_GetWorldTriggerUpdateWork}, 
     {"GetDebugDrawWork", _wrap_PhysicsManager_GetDebugDrawWork}, 

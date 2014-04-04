@@ -488,7 +488,7 @@ namespace Mezzanine
 
         void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
         {
-            this->ThreadCount = ( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ? crossplatform::GetCPUCount() : 0 );
+            this->ThreadCount = ( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded) ? crossplatform::GetCPUCount() : 0;
 
             // Create the broadphase
             if( Info.PhysicsFlags & ManagerConstructionInfo::PCF_LimitlessWorld ) {
@@ -1162,7 +1162,7 @@ namespace Mezzanine
             if( this->SimulationIsPaused() )
                 return;
 
-            Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001 * this->GetTimeMultiplier();// Convert from MicroSeconds to Seconds
+            Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001 * this->GetTimeMultiplier(); // Convert from MicroSeconds to Seconds
             int MaxSteps = ( FloatTime < this->StepSize ) ? 1 : int( FloatTime / this->StepSize ) + 1;
             this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->StepSize );
         }

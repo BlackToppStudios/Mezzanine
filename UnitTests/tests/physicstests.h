@@ -64,18 +64,27 @@ class physicstests : public UnitTestGroup
         /// @brief Test if the barrier works properly
         void RunAutomaticTests()
         {
+            TestOutput << "Creating A creating a rigid body and subjecting it to just a little gravity." << endl;
+
+            // 0
             Mezzanine::Physics::PhysicsManager Simulation;
             Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
             Simulation.SetSimulationSubstepModifier(3);
             Physics::SphereCollisionShape Ball("Ball",5.0);
             RigidA->SetCollisionShape(&Ball);
             RigidA->AddToWorld();
+            // 7
             Simulation.SetWorldGravity(Vector3(0.0,9.8,0.0));
             FrameScheduler FS;
             Mezzanine::Threading::ThreadSpecificStorage Ignored(&FS);
+            // 11
+            // Ignored.GetFrameScheduler()->GetFrameTimeRollingAverage().Insert(1000); // Rolling Average methods are not available to Lua, I think because they are templates.
+            // 13
+            Threading::this_thread::sleep_for(1000000);
             Simulation.GetSimulationWork()->DoWork(Ignored);
-
-
+            Threading::this_thread::sleep_for(1000000);
+            Simulation.GetSimulationWork()->DoWork(Ignored);
+            TestOutput << "Location of " << RigidA->GetLocation();
 
 
         }

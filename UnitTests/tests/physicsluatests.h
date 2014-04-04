@@ -65,14 +65,32 @@ class physicsluatests : public UnitTestGroup
         void RunAutomaticTests()
         {
             Scripting::Lua::Lua51ScriptingEngine Lua;
+            TestOutput << "Creating A creating a rigid body and subjecting it to just a little gravity." << endl;
+
+            // lines in cpp of physics manager tests
+            // 0
             Lua.Execute("Simulation = MezzaninePhysicsSafe.PhysicsManager()");
             Lua.Execute("RigidA = Simulation:CreateRigidProxy(10.0)");
             Lua.Execute("Simulation:SetSimulationSubstepModifier(3)");
             Lua.Execute("Ball = MezzaninePhysicsSafe.SphereCollisionShape('Ball',5.0)");
             Lua.Execute("RigidA:SetCollisionShape(Ball)");
             Lua.Execute("RigidA:AddToWorld()");
-            Lua.Execute("Simulation:SetWorldGravity(MezzanineSafe.Vector3(0.0, 9.8, 0.0));");
+            // 7
+            Lua.Execute("Simulation:SetWorldGravity(MezzanineSafe.Vector3(0.0, 9.8, 0.0))");
+            Lua.Execute("FS=MezzanineThreadingSafe.FrameScheduler()");
+            Lua.Execute("Ignored=MezzanineThreadingSafe.ThreadSpecificStorage(FS)");
+            // 11
+            // Lua.Execute("Ignored:GetFrameScheduler():GetFrameTimeRollingAverage():Insert(1000)"); // Can't do this in Lua Won't do it here
+            // 13
+            Lua.Execute("MezzanineThreadingSafe.sleep_for(100000)");
+            Lua.Execute("Simulation:GetSimulationWork():DoWork(Ignored)");
+            Lua.Execute("MezzanineThreadingSafe.sleep_for(100000)");
+            Lua.Execute("Simulation:GetSimulationWork():DoWork(Ignored)");
+            // 11
 
+
+
+            Lua.Execute("");
 
         }
 
