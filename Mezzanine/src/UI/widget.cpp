@@ -42,6 +42,7 @@
 
 #include "UI/widget.h"
 #include "UI/screen.h"
+#include "UI/renderlayergroup.h"
 #include "UI/layoutstrategy.h"
 
 namespace Mezzanine
@@ -133,8 +134,8 @@ namespace Mezzanine
             this->AddEvent(Widget::EventVisibilityHidden);
 
             // Create our render groups and bind them
-            RenderLayerGroup* NormalGroup = this->CreateRenderLayerGroup("Normal");
-            RenderLayerGroup* HoveredGroup = this->CreateRenderLayerGroup("Hovered");
+            RenderLayerGroup* NormalGroup = this->CreateRenderLayerGroup(Widget::WG_Normal);
+            RenderLayerGroup* HoveredGroup = this->CreateRenderLayerGroup(Widget::WG_Hovered);
 
             this->BindGroupToState( WS_Untouched, NormalGroup);
             this->BindGroupToState( WS_Hovered, HoveredGroup);
@@ -299,7 +300,7 @@ namespace Mezzanine
 
                     if( BindingNode.AppendAttribute("Version").SetValue("1") &&
                         BindingNode.AppendAttribute("StateID").SetValue( (*BindingIt).first ) &&
-                        BindingNode.AppendAttribute("LayerGroupName").SetValue( (*BindingIt).second->GetName() ) )
+                        BindingNode.AppendAttribute("LayerGroupID").SetValue( (*BindingIt).second->GetGroupID() ) )
                     {
                         continue;
                     }else{
@@ -366,23 +367,20 @@ namespace Mezzanine
                     {
                         if( (*BindingNodeIt).GetAttribute("Version").AsInt() == 1 ) {
                             UInt32 StateID = 0;
-                            String LayerGroupName;
 
                             CurrAttrib = (*BindingNodeIt).GetAttribute("StateID");
                             if( !CurrAttrib.Empty() )
                                 StateID = CurrAttrib.AsUint();
 
-                            CurrAttrib = (*BindingNodeIt).GetAttribute("LayerGroupName");
-                            if( !CurrAttrib.Empty() )
-                                LayerGroupName = CurrAttrib.AsString();
-
-                            if( !LayerGroupName.empty() ) { //Don't check the StateID because 0 is valid >.>
-                                RenderLayerGroup* NamedGroup = this->GetRenderLayerGroup(LayerGroupName);
+                            CurrAttrib = (*BindingNodeIt).GetAttribute("LayerGroupID");
+                            if( !CurrAttrib.Empty() ) {
+                                UInt16 LayerGroupID = CurrAttrib.AsUint();
+                                RenderLayerGroup* NamedGroup = this->GetRenderLayerGroup( LayerGroupID );
                                 if( NamedGroup != NULL ) {
                                     this->StateGroupBindings.insert( std::pair<UInt32,RenderLayerGroup*>(StateID,NamedGroup) );
                                 }else{
                                     StringStream ExceptionStream;
-                                    ExceptionStream << "Named RenderLayerGroup \"" << LayerGroupName << "\" not found when deserializing Widget named \"" << this->GetName() << "\".";
+                                    ExceptionStream << "Named RenderLayerGroup \"" << LayerGroupID << "\" not found when deserializing Widget named \"" << this->GetName() << "\".";
                                     MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
                                 }
                             }

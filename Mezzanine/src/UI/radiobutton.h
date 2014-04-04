@@ -133,7 +133,6 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "RadioButton".
             static const String TypeName;
         protected:
-            friend class RadioButtonFactory;
             /// @internal
             /// @brief A pointer to the group this RadioButton belongs to.
             RadioButtonGroup* ButtonGroup;
@@ -142,7 +141,7 @@ namespace Mezzanine
             virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
             /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             RadioButton(Screen* Parent);
@@ -161,7 +160,7 @@ namespace Mezzanine
             RadioButton(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~RadioButton();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 

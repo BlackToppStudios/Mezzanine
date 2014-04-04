@@ -44,6 +44,7 @@
 #include "UI/textlayer.h"
 #include "UI/singlelinetextlayer.h"
 #include "UI/multilinetextlayer.h"
+#include "UI/renderlayergroup.h"
 #include "UI/textcursor.h"
 #include "UI/font.h"
 #include "UI/screen.h"
@@ -237,8 +238,8 @@ namespace Mezzanine
             EditLayer->SetDefaultFont(EditFont);
 
             // Add the edit layer to the default groups.
-            this->AddLayerToGroup(EditLayer,5,"Normal");
-            this->AddLayerToGroup(EditLayer,5,"Hovered");
+            this->AddLayerToGroup(EditLayer,5,Widget::WG_Normal);
+            this->AddLayerToGroup(EditLayer,5,Widget::WG_Hovered);
         }
 
         void EditBox::UpdateEditMode()

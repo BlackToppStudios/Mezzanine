@@ -332,10 +332,26 @@ namespace Mezzanine
             // Widget Management
 
             /// @brief Creates a widget from an XML::Node.
+            /// @note This IS a polymorphic create method, and can create a widget of any type that has it's factory registered.
             /// @exception This method will throw an exception if the WidgetNode is not named after a known widget.
             /// @param WidgetNode The XML node populated with data needed to construct a widget.
             /// @return Returns a pointer to the created widget.
             virtual Widget* CreateWidget(const XML::Node& WidgetNode);
+            /// @brief Creates a widget based on the provided typename.
+            /// @note This IS a polymorphic create method, and can create a widget of any type that has it's factory registered.
+            /// @param TypeName The class name of the widget to be created.
+            /// @param RendName The unique instance name to be given to the widget.
+            /// @param Params A NameValuePairMap containing the params to be applied during construction.
+            /// @return Returns a pointer to the created widget.
+            virtual Widget* CreateWidget(const String& TypeName, const String& RendName, const NameValuePairMap& Params);
+            /// @brief Creates a widget based on the provided typename.
+            /// @note This IS a polymorphic create method, and can create a widget of any type that has it's factory registered.
+            /// @param TypeName The class name of the widget to be created.
+            /// @param RendName The unique instance name to be given to the widget.
+            /// @param RendRect The dimensions that will be assigned to the created Widget.
+            /// @param Params A NameValuePairMap containing the params to be applied during construction.
+            /// @return Returns a pointer to the created widget.
+            virtual Widget* CreateWidget(const String& TypeName, const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params);
 
             /// @brief Gets a widget in this screen by name.
             /// @param Name The name of the widget to get.
@@ -355,12 +371,12 @@ namespace Mezzanine
             // Convenience Widget Creation Methods
 
             /// @brief Creates a generic widget.
-            /// @note This is not a polymorphic create method.  It will case an instance of the widget base class.
+            /// @note This IS NOT a polymorphic create method.  It will case an instance of the widget base class.
             /// @param RendName The name to be given to this Widget.
             /// @return Returns a pointer to the created Widget.
             virtual Widget* CreateWidget(const String& RendName);
             /// @brief Creates a generic widget.
-            /// @note This is not a polymorphic create method.  It will case an instance of the widget base class.
+            /// @note This IS NOT a polymorphic create method.  It will case an instance of the widget base class.
             /// @param RendName The name to be given to this Widget.
             /// @param RendRect The rect describing this Widget's transform relative to it's parent.
             /// @return Returns a pointer to the created Widget.

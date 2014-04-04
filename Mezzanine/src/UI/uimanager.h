@@ -326,8 +326,11 @@ namespace Mezzanine
             void EnableButtonAutoRegister(Boole Enable);
             /// @brief Gets whether or not the ButtonAutoRegister feature is enabled.
             /// @return Returns a Boole indicating whether or not the ButtonAutoRegister feature is enabled.
-            Boole ButtonAutoRegisterEnabled();
+            Boole ButtonAutoRegisterEnabled() const;
             /// @brief Adds a key or button that will be auto-registered with every created UI button.
+            /// @note Buttons expect the input to be a button of some sort, but do not descriminate based on device.  If you provide an
+            /// input that is not a Mouse, Keyboard, or Controller button then checks inside the button will fail and the button won't
+            /// activate or deactivate.
             /// @param Code The input code for the keyboard key or mouse button to be added to the list of codes to be auto-registered.
             void AddAutoRegisterCode(const Input::MetaCode& Code);
             /// @brief Removes a previously set auto-registering input code.
@@ -337,7 +340,7 @@ namespace Mezzanine
             void RemoveAllAutoRegisterCodes();
             /// @brief Gets the list of codes that will be auto-registered with each UI button.
             /// @return Returns a pointer to the vector containing all the codes to be auto-registered with every UI button.
-            InputContainer* GetAutoRegisteredCodes();
+            const InputContainer& GetAutoRegisteredCodes() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // MarkupParser Management

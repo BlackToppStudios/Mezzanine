@@ -133,7 +133,6 @@ namespace Mezzanine
             /// @brief Event name for when the value in this Spinner is updated.
             static const String EventSpinValueChanged;
         protected:
-            friend class SpinnerFactory;
             /// @internal
             /// @brief A pointer to the button that will increment the spin value.
             Button* IncrementSpin;
@@ -168,7 +167,7 @@ namespace Mezzanine
             /// @brief Ensures the provided value is within the configured limits.
             /// @param Value The value to verify.
             virtual void ClampToLimits(Real& Value);
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             Spinner(Screen* Parent);
@@ -204,7 +203,7 @@ namespace Mezzanine
             Spinner(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~Spinner();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 

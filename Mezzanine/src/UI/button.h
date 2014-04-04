@@ -95,7 +95,6 @@ namespace Mezzanine
             /// @brief Event name for when this activatable widget is deactivated.
             static const String EventDeactivated;
         protected:
-            friend class ButtonFactory;
             /// @internal
             /// @brief The timer that will be used when a button is locked from activating a second time within a certain period.
             StopWatchTimer LockoutTimer;
@@ -133,7 +132,7 @@ namespace Mezzanine
             /// @brief Attempts to put this button into standby.
             /// @return Returns true if this button was successfully put into standby.
             virtual Boole Standby();
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             Button(Screen* Parent);
@@ -152,7 +151,7 @@ namespace Mezzanine
             Button(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Standard destructor.
             virtual ~Button();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 

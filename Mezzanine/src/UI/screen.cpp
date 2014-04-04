@@ -523,12 +523,32 @@ namespace Mezzanine
 
         Widget* Screen::CreateWidget(const XML::Node& WidgetNode)
         {
-            String WidgetTypeName = WidgetNode.Name();
-            WidgetFactoryIterator FactIt = this->WidgetFactories.find( WidgetTypeName );
+            String TypeName = WidgetNode.Name();
+            WidgetFactoryIterator FactIt = this->WidgetFactories.find( TypeName );
             if( FactIt != this->WidgetFactories.end() ) {
                 return this->CheckAndInsertExcept( (*FactIt).second->CreateWidget(WidgetNode,this) );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + WidgetTypeName + "\", which has no factory registered.");
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
+            }
+        }
+
+        Widget* Screen::CreateWidget(const String& TypeName, const String& RendName, const NameValuePairMap& Params)
+        {
+            WidgetFactoryIterator FactIt = this->WidgetFactories.find( TypeName );
+            if( FactIt != this->WidgetFactories.end() ) {
+                return this->CheckAndInsertExcept( (*FactIt).second->CreateWidget(RendName,Params,this) );
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
+            }
+        }
+
+        Widget* Screen::CreateWidget(const String& TypeName, const String& RendName, const UnifiedRect& RendRect, const NameValuePairMap& Params)
+        {
+            WidgetFactoryIterator FactIt = this->WidgetFactories.find( TypeName );
+            if( FactIt != this->WidgetFactories.end() ) {
+                return this->CheckAndInsertExcept( (*FactIt).second->CreateWidget(RendName,RendRect,Params,this) );
+            }else{
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to create widget of type \"" + TypeName + "\", which has no factory registered.");
             }
         }
 
@@ -1059,7 +1079,6 @@ namespace Mezzanine
                 return;
 
             Whole KnownVertexCount = 0;
-            //Whole PreviousTally = 0;
             String CurrentName = this->PrimaryAtlas;
             AtlasAndPosition MyObject(this->PrimaryAtlas);
             this->TextureByVertex.clear();
@@ -1070,7 +1089,6 @@ namespace Mezzanine
             this->_Transform(TempVertexCache,0,KnownVertexCount);
 
             this->ResizeVertexBuffer(KnownVertexCount);
-            //OgreVertex* WriteIterator = (OgreVertex*) this->SID->VertexBuffer->lock(Ogre::HardwareBuffer::HBL_DISCARD);
             Vertex* WriteIterator = (Vertex*) this->SID->VertexBuffer->lock(Ogre::HardwareBuffer::HBL_DISCARD);
             for( Whole Index = 0 ; Index < TempVertexCache.Size() ; ++Index )
             {
@@ -1087,11 +1105,6 @@ namespace Mezzanine
                     CurrentName = TempVertexCache[Index].Atlas;
                 }
 
-                /*OgreVertex NewVertex;
-                NewVertex.Position = TempVertexCache[Index].Vert.Position.GetOgreVector3();
-                NewVertex.Colour = TempVertexCache[Index].Vert.Colour.GetOgreColourValue();
-                NewVertex.UV = TempVertexCache[Index].Vert.UV.GetOgreVector2();
-                *WriteIterator++ = NewVertex;// */
                 const Vertex& NewVertex = TempVertexCache[Index].Vert;
                 *WriteIterator++ = NewVertex;
             }

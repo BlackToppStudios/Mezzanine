@@ -65,7 +65,6 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "TabSet".
             static const String TypeName;
         protected:
-            friend class TabSetFactory;
             /// @internal
             /// @brief A container storing all the bindings to
             TabbedSubSetContainer SubSetBindings;
@@ -77,7 +76,7 @@ namespace Mezzanine
             virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
             /// @copydoc Renderable::ProtoDeSerializeImpl(const XML::Node&)
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             TabSet(Screen* Parent);
@@ -96,7 +95,7 @@ namespace Mezzanine
             TabSet(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~TabSet();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 

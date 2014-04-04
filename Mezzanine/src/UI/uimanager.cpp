@@ -434,20 +434,16 @@ namespace Mezzanine
         // Activation Management
 
         void UIManager::EnableButtonAutoRegister(Boole Enable)
-        {
-            this->ButtonAutoRegister = Enable;
-        }
+            { this->ButtonAutoRegister = Enable; }
 
-        Boole UIManager::ButtonAutoRegisterEnabled()
-        {
-            return this->ButtonAutoRegister;
-        }
+        Boole UIManager::ButtonAutoRegisterEnabled() const
+            { return this->ButtonAutoRegister; }
 
         void UIManager::AddAutoRegisterCode(const Input::MetaCode& Code)
         {
             for( InputIterator It = this->AutoRegisterCodes.begin() ; It != this->AutoRegisterCodes.end() ; It++ )
             {
-                if((*It)==Code)
+                if( (*It) == Code )
                     return;
             }
             this->AutoRegisterCodes.push_back(Code);
@@ -457,7 +453,7 @@ namespace Mezzanine
         {
             for( InputIterator It = this->AutoRegisterCodes.begin() ; It != this->AutoRegisterCodes.end() ; It++ )
             {
-                if((*It)==Code) {
+                if( (*It) == Code ) {
                     this->AutoRegisterCodes.erase(It);
                     return;
                 }
@@ -465,14 +461,10 @@ namespace Mezzanine
         }
 
         void UIManager::RemoveAllAutoRegisterCodes()
-        {
-            this->AutoRegisterCodes.clear();
-        }
+            { this->AutoRegisterCodes.clear(); }
 
-        UIManager::InputContainer* UIManager::GetAutoRegisteredCodes()
-        {
-            return &(this->AutoRegisterCodes);
-        }
+        const UIManager::InputContainer& UIManager::GetAutoRegisteredCodes() const
+            { return this->AutoRegisterCodes; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // MarkupParser Management

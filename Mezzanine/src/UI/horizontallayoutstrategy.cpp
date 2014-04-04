@@ -81,17 +81,19 @@ namespace Mezzanine
                     ++ExpandingChildCount;
                 }
 
-                // if we're on top of a non-expanding child, such as starting with one or have two in a row
+                // If we're on top of a non-expanding child, such as starting with one or have two in a row
                 if( ExpandingChildCount == 0 ) {
                     // Do our updates and move on with the loop
                     QuadRenderable* NoExChild = (*NextNonExpandingChild);
-                    const Rect OldChildRect = NoExChild->GetRect();
-                    Rect NewChildRect;
+                    if( !NoExChild->GetManualTransformUpdates() ) {
+                        const Rect OldChildRect = NoExChild->GetRect();
+                        Rect NewChildRect;
 
-                    NewChildRect.Size = this->HandleChildSizing(OldSelfRect,NewSelfRect,NoExChild);
-                    NewChildRect.Position = this->HandleChildPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,NoExChild);
-                    NoExChild->UpdateDimensions(OldChildRect,NewChildRect);
-                    PrevRightPos = NewChildRect.Position.X + NewChildRect.Size.X;
+                        NewChildRect.Size = this->HandleChildSizing(OldSelfRect,NewSelfRect,NoExChild);
+                        NewChildRect.Position = this->HandleChildPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,NoExChild);
+                        NoExChild->UpdateDimensions(OldChildRect,NewChildRect);
+                        PrevRightPos = NewChildRect.Position.X + NewChildRect.Size.X;
+                    }
 
                     // Increment if it's not the end node and move on
                     if( NextNonExpandingChild != ChildQuads.end() )
@@ -105,19 +107,21 @@ namespace Mezzanine
                     // We got a range now so lets process the "fixed" child first if it is valid
                     if( NextNonExpandingChild != ChildQuads.end() ) {
                         QuadRenderable* NoExChild = (*NextNonExpandingChild);
-                        const Rect OldChildRect = NoExChild->GetRect();
-                        Rect NewChildRect;
+                        if( !NoExChild->GetManualTransformUpdates() ) {
+                            const Rect OldChildRect = NoExChild->GetRect();
+                            Rect NewChildRect;
 
-                        NewChildRect.Size = this->HandleChildSizing(OldSelfRect,NewSelfRect,NoExChild);
-                        NewChildRect.Position = this->HandleChildPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,NoExChild);
+                            NewChildRect.Size = this->HandleChildSizing(OldSelfRect,NewSelfRect,NoExChild);
+                            NewChildRect.Position = this->HandleChildPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,NoExChild);
 
-                        this->CheckChildAspectRatio(OldChildRect.Size,NewChildRect.Size,NoExChild);
-                        this->ClampChildToMinSize(NewSelfRect,NewChildRect.Size,NoExChild);
-                        this->ClampChildToMaxSize(NewSelfRect,NewChildRect.Size,NoExChild);
+                            this->CheckChildAspectRatio(OldChildRect.Size,NewChildRect.Size,NoExChild);
+                            this->ClampChildToMinSize(NewSelfRect,NewChildRect.Size,NoExChild);
+                            this->ClampChildToMaxSize(NewSelfRect,NewChildRect.Size,NoExChild);
 
-                        NoExChild->UpdateDimensions(OldChildRect,NewChildRect);
-                        NextLeftPos = NewChildRect.Position.X;
-                        FixedRightPos = NewChildRect.Position.X + NewChildRect.Size.X;
+                            NoExChild->UpdateDimensions(OldChildRect,NewChildRect);
+                            NextLeftPos = NewChildRect.Position.X;
+                            FixedRightPos = NewChildRect.Position.X + NewChildRect.Size.X;
+                        }
                     }else{
                         // Just use the right edge of the parent if the child isn't valid
                         NextLeftPos = NewSelfRect.Position.X + NewSelfRect.Size.X;
@@ -130,19 +134,21 @@ namespace Mezzanine
                     while( ChildIt != NextNonExpandingChild )
                     {
                         QuadRenderable* ExChild = (*ChildIt);
-                        const Rect OldChildRect = ExChild->GetRect();
-                        Rect NewChildRect;
+                        if( !ExChild->GetManualTransformUpdates() ) {
+                            const Rect OldChildRect = ExChild->GetRect();
+                            Rect NewChildRect;
 
-                        NewChildRect.Size.X = XSpacePerChild;
-                        NewChildRect.Size.Y = ( ExChild->GetVerticalSizingRules() == UI::SR_Fill_Available ? NewSelfRect.Size.Y : this->HandleChildVerticalSizing(OldSelfRect,NewSelfRect,XSpacePerChild,ExChild) );
-                        NewChildRect.Position.X = XPos;
-                        NewChildRect.Position.Y = this->HandleChildVerticalPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,ExChild);
+                            NewChildRect.Size.X = XSpacePerChild;
+                            NewChildRect.Size.Y = ( ExChild->GetVerticalSizingRules() == UI::SR_Fill_Available ? NewSelfRect.Size.Y : this->HandleChildVerticalSizing(OldSelfRect,NewSelfRect,XSpacePerChild,ExChild) );
+                            NewChildRect.Position.X = XPos;
+                            NewChildRect.Position.Y = this->HandleChildVerticalPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,ExChild);
 
-                        this->CheckChildAspectRatio(OldChildRect.Size,NewChildRect.Size,ExChild);
-                        this->ClampChildToMinSize(NewSelfRect,NewChildRect.Size,ExChild);
-                        this->ClampChildToMaxSize(NewSelfRect,NewChildRect.Size,ExChild);
+                            this->CheckChildAspectRatio(OldChildRect.Size,NewChildRect.Size,ExChild);
+                            this->ClampChildToMinSize(NewSelfRect,NewChildRect.Size,ExChild);
+                            this->ClampChildToMaxSize(NewSelfRect,NewChildRect.Size,ExChild);
 
-                        ExChild->UpdateDimensions(OldChildRect,NewChildRect);
+                            ExChild->UpdateDimensions(OldChildRect,NewChildRect);
+                        }
                         ++ChildIt;
                     }
                     PrevRightPos = FixedRightPos;

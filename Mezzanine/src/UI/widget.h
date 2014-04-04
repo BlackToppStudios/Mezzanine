@@ -146,6 +146,25 @@ namespace Mezzanine
                 WS_User_State_3 = 512,
                 WS_User_State_4 = 1024
             };
+            /// @enum WidgetGroupID
+            /// @brief Enum used to conveniently track the pre-made RenderLayerGroups used by Widgets.
+            enum WidgetGroupID
+            {
+                WG_Normal    = 1,
+                WG_Hovered   = 2,
+                WG_Focused   = 3,
+                WG_Dragged   = 4,
+
+                WG_Mezzanine_Reserved_1 = 9,
+                WG_Mezzanine_Reserved_2 = 10,
+                WG_Mezzanine_Reserved_3 = 11,
+                WG_Mezzanine_Reserved_4 = 12,
+
+                WG_User_Group_1 = 17,
+                WG_User_Group_2 = 18,
+                WG_User_Group_3 = 19,
+                WG_User_Group_4 = 20
+            };
 
             /// @brief Container class for storing @ref RenderLayerGroup instances in relation to widget states.
             typedef std::map<UInt32,RenderLayerGroup*>       StateLayerGroupMap;
@@ -177,7 +196,6 @@ namespace Mezzanine
             /// @brief Event name for when this widget is switched from being shown to being hidden.
             static const String EventVisibilityHidden;
         protected:
-            friend class GenericWidgetFactory;
             /// @internal
             /// @brief Map containing all the RenderLayerGroups bound to specific widget states.
             StateLayerGroupMap StateGroupBindings;
@@ -206,7 +224,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             void ConstructWidget();
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             Widget(Screen* Parent);
@@ -225,7 +243,7 @@ namespace Mezzanine
             Widget(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Standard destructor.
             virtual ~Widget();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
@@ -323,28 +341,28 @@ namespace Mezzanine
             // Internal Event Methods
 
             /// @brief Self logic to be executed when the mouse cursor enters the bounds of this widget.
-            /// @details This method should be exclusively called by the UIManager.
+            /// @remarks This method should be exclusively called by the UIManager.
             virtual void _OnMouseEnter();
             /// @brief Self logic to be executed when the mouse cursor leaves the bounds of thiw widget.
-            /// @details This method should be exclusively called by the UIManager.
+            /// @remarks This method should be exclusively called by the UIManager.
             virtual void _OnMouseExit();
             /// @brief Self logic to be executed when the mouse cursor starts dragging across the bounds of this widget.
-            /// @details This method should be exclusively called by the UIManager.
+            /// @remarks This method should be exclusively called by the UIManager.
             virtual void _OnMouseDragStart();
             /// @brief Self logic to be executed when the mouse cursor stops dragging across the bounds of this widget.
-            /// @details This method should be exclusively called by the UIManager.
+            /// @remarks This method should be exclusively called by the UIManager.
             virtual void _OnMouseDragEnd();
             /// @brief Self logic to be executed when focus is given to this widget.
-            /// @details This method should be exclusively called by the UIManager.
+            /// @remarks This method should be exclusively called by the UIManager.
             virtual void _OnFocusGained();
             /// @brief Self logic to be executed when focus is removed from this widget.
-            /// @details This method should be exclusively called by the UIManager.
+            /// @remarks This method should be exclusively called by the UIManager.
             virtual void _OnFocusLost();
             /// @brief Self logic to be executed when focus is locked to this widget.
-            /// @details This method should be exclusively called by the UIManager.
+            /// @remarks This method should be exclusively called by the UIManager.
             virtual void _OnFocusLocked();
             /// @brief Self logic to be executed when focus is no longer locked to this widget.
-            /// @details This method should be exclusively called by the UIManager.
+            /// @remarks This method should be exclusively called by the UIManager.
             virtual void _OnFocusUnlocked();
             /// @brief Self logic to be executed when this widget becomes visible.
             virtual void _OnVisibilityShown();
