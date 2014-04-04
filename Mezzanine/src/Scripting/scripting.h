@@ -120,8 +120,8 @@ namespace Mezzanine
 /// @n @n
 /// This can be run manually by invoking that target specifically. For example:
 /// @code
-/// $make SWIG_Mezzanine
-/// ninja SWIG_Mezzanine
+/// $ make SWIG_Mezzanine
+/// $ ninja SWIG_Mezzanine
 /// @endcode
 /// @section CppApiToLua How the C++ API converts to Lua
 /// The Documentation for the C++ API is also the canonical documentation for the

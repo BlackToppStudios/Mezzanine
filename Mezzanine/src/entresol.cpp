@@ -77,6 +77,7 @@
 
 #include <sstream>
 #include <string>
+#include <cassert>
 
 using namespace std;
 
@@ -131,10 +132,19 @@ namespace Mezzanine
 
     void Entresol::DestroyOgre()
     {
-        //Ogre::Root::getSingleton().shutdown();
-        delete Ogre::Root::getSingletonPtr(); // This should be done by the shutdown method shouldn't it?
+        delete Ogre::Root::getSingletonPtr();
         OgreCore = 0;
         delete SubSystemParticleFXPlugin;
+    }
+
+    void Entresol::DestroySDL()
+    {
+        #ifdef LINUX
+        // Fail is SDL is de-intialized before Ogre, but only if Ogre has been initialized.
+        assert( NULL==OgreCore // ( (SDL_WasInit(0) | SDL_INIT_VIDEO)
+                && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
+        #endif
+        SDL_Quit();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -527,9 +537,8 @@ namespace Mezzanine
         DestroyAllManagerFactories();
         DestroyLogging();
 
-        SDL_Quit();
-
         DestroyOgre();
+        DestroySDL();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -569,6 +578,7 @@ namespace Mezzanine
 
     void Entresol::EngineInit( const Boole &CallMainLoop )
     {
+        Graphics::GraphicsManager::GetSingletonPtr()->Initialize();
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
             StringStream InitStream;
@@ -579,12 +589,9 @@ namespace Mezzanine
                 (*Iter)->Initialize();
             }
         }
-        Graphics::GraphicsManager::GetSingletonPtr()->Initialize();
 
         if(CallMainLoop)
-        {
-            this->MainLoop();
-        }
+            { this->MainLoop(); }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -659,13 +666,13 @@ namespace Mezzanine
         { WorkScheduler.SetFrameLength(NewTargetTime); }
 
     Whole Entresol::GetTargetFrameTimeMilliseconds() const
-        { return WorkScheduler.GetFrameLength()/1000; }
+        { return WorkScheduler.GetFrameLength()*0.001; }
 
     Whole Entresol::GetTargetFrameTimeMicroseconds() const
         { return WorkScheduler.GetFrameLength(); }
 
     Whole Entresol::GetLastFrameTimeMilliseconds() const
-        { return WorkScheduler.GetLastFrameTime()/1000; }
+        { return WorkScheduler.GetLastFrameTime()*0.001; }
 
     Whole Entresol::GetLastFrameTimeMicroseconds() const
         { return WorkScheduler.GetLastFrameTime(); }

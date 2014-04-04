@@ -37,50 +37,43 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _rayquerytests_h
-#define _rayquerytests_h
+#ifndef _physicsluatests_h
+#define _physicsluatests_h
 
 #include "mezztest.h"
 
-#include "rayquerytool.h"
-#include "XML/xml.h"
-
-#include "sstream"
-#include <stdexcept> //only used to throw for TEST_THROW
+#include "mezzanine.h"
 
 /// @file
-/// @brief Currently only test serialization of the RayQueryTool, but should be expanded.
+/// @brief Basic tests of the physics system
 
+using namespace std;
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
+using namespace Mezzanine::Threading;
 
-/// @brief Test of the Mezzanine::RayQueryTool
-class rayquerytests : public UnitTestGroup
+/// @brief Tests for the WorkUnit class
+class physicsluatests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "RayQuery"
+        /// @return Returns a String containing "PhysicsLua"
         virtual String Name()
-            { return String("RayQuery"); }
+            { return String("PhysicsLua"); }
 
-        /// @brief This is called when Automatic tests are run
+        /// @brief Test if the barrier works properly
         void RunAutomaticTests()
         {
-            XML::Document Doc;
-            RayQueryTool RayCaster;
-            RayCaster.ProtoSerialize(Doc);
-            StringStream Buffer;
-            Doc.Save(Buffer);
+            Scripting::Lua::Lua51ScriptingEngine Lua;
+            Lua.Execute("Simulation = MezzaninePhysicsSafe.PhysicsManager()");
+            Lua.Execute("RigidA = Simulation:CreateRigidProxy(10.0)");
+            Lua.Execute("Simulation:SetSimulationSubstepModifier(3)");
+            Lua.Execute("Ball = MezzaninePhysicsSafe.SphereCollisionShape('Ball',5.0)");
+            Lua.Execute("RigidA:SetCollisionShape(Ball)");
+            Lua.Execute("RigidA:AddToWorld()");
+            Lua.Execute("Simulation:SetWorldGravity(MezzanineSafe.Vector3(0.0, 9.8, 0.0));");
 
-            String Expected("<?xml version=\"1.0\"?><RayQueryTool Version=\"1\" ValidResult=\"false\" WorldObject=\"\"><Offset><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></Offset></RayQueryTool>");
-            TestOutput << "Serialized RayCaster looks like:" << endl
-                       << "\"" << Buffer.str() << "\"" << endl
-                       << "Expected:"  << endl
-                       << "\"" << Expected << "\"" << endl;
 
-            Test(Expected==String(Buffer.str()),"Serialize");
-
-            /// @todo Add the rest of the test for
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

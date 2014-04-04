@@ -37,50 +37,59 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _rayquerytests_h
-#define _rayquerytests_h
+#ifndef _crash_on_close_tests_h
+#define _crash_on_close_tests_h
 
 #include "mezztest.h"
 
-#include "rayquerytool.h"
-#include "XML/xml.h"
-
-#include "sstream"
-#include <stdexcept> //only used to throw for TEST_THROW
+#include "mezzanine.h"
 
 /// @file
-/// @brief Currently only test serialization of the RayQueryTool, but should be expanded.
+/// @brief This file should be used as template/example for building future Unit Tests
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
-/// @brief Test of the Mezzanine::RayQueryTool
-class rayquerytests : public UnitTestGroup
+/// @brief A small series of sample tests, which can be used as a boilerplate so creating new test groups
+class crashonclosetests : public UnitTestGroup
 {
     public:
         /// @copydoc Mezzanine::Testing::UnitTestGroup::Name
-        /// @return Returns a String containing "RayQuery"
+        /// @return Returns a String containing "BoilerPlate"
         virtual String Name()
-            { return String("RayQuery"); }
+            { return String("CrashOnClose"); }
 
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
-            XML::Document Doc;
-            RayQueryTool RayCaster;
-            RayCaster.ProtoSerialize(Doc);
-            StringStream Buffer;
-            Doc.Save(Buffer);
+            ////////////////////////////////////////////////////////////////
+            // Linux SDL unloadsx X11 Ogre still needs crash
+            {
+                {
+                    TestOutput << "Creating an entresol and a window, then closing them." << endl;
+                    Mezzanine::Entresol Crasher;
+                    TEST_RESULT(Testing::Success, "CreatedEngineWithoutSegFault");
 
-            String Expected("<?xml version=\"1.0\"?><RayQueryTool Version=\"1\" ValidResult=\"false\" WorldObject=\"\"><Offset><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></Offset></RayQueryTool>");
-            TestOutput << "Serialized RayCaster looks like:" << endl
-                       << "\"" << Buffer.str() << "\"" << endl
-                       << "Expected:"  << endl
-                       << "\"" << Expected << "\"" << endl;
+                    Crasher.EngineInit();
 
-            Test(Expected==String(Buffer.str()),"Serialize");
+                }
+                TEST_RESULT(Testing::Success, "DestroyedEngineWithoutSegFault");
 
-            /// @todo Add the rest of the test for
+
+            }
+
+            ////////////////////////////////////////////////////////////////
+            // Entresolused for timing when it doesn't exist crash
+            {
+                Mezzanine::Physics::PhysicsManager Simulation;
+                Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
+                FrameScheduler FS;
+                Mezzanine::Threading::ThreadSpecificStorage Ignored(&FS);
+                Simulation.GetSimulationWork()->DoWork(Ignored);
+                TEST_RESULT(Testing::Success, "PhysicsWithoutEntresol");
+            }
+
+
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

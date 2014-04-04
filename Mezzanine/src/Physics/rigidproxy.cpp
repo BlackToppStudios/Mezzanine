@@ -141,7 +141,8 @@ namespace Mezzanine
                 }else{
                     this->CollidableProxy::SetCollisionShape(Shape);
                 }
-                CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape);
+                if (CollisionShapeManager::GetSingletonPtr())
+                    { CollisionShapeManager::GetSingletonPtr()->StoreShape(Shape); }
             }else{
                 this->CollidableProxy::SetCollisionShape(Shape);
             }

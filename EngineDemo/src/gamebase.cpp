@@ -131,6 +131,26 @@ class DemoPostInputWorkUnit : public Threading::DefaultWorkUnit
             if( SysKeyboard->IsButtonPressed(Input::KEY_END))
                 { MouseCam = false; }
 
+
+            if( SysKeyboard->IsButtonPressed(Input::KEY_BACKSLASH) )
+                { Entresol::GetSingletonPtr()->GetPhysicsManager()->SetTimeMultiplier(1.0); }
+
+            if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHTBRACKET) )
+            {
+                Real Factor = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetTimeMultiplier() * 1.5;
+                if(Factor>2.0)
+                    { Factor = 2.0; }
+                Entresol::GetSingletonPtr()->GetPhysicsManager()->SetTimeMultiplier(Factor);
+            }
+
+            if( SysKeyboard->IsButtonPressed(Input::KEY_LEFTBRACKET) )
+            {
+                Real Factor = Entresol::GetSingletonPtr()->GetPhysicsManager()->GetTimeMultiplier() * .75;
+                if(Factor<0.01)
+                    { Factor = 0.01; }
+                Entresol::GetSingletonPtr()->GetPhysicsManager()->SetTimeMultiplier(Factor);
+            }
+
             Vector2 Offset = SysMouse->GetMouseDelta();
             if( MouseCam && Vector2(0,0) != Offset )
                 DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
@@ -385,6 +405,7 @@ int main(int argc, char **argv)
 
     // ©onfigure the wireframe Drawer
     //TheEntresol->GetPhysicsManager()->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
+    TheEntresol->GetPhysicsManager()->SetSimulationSubstepModifier(3);
 
     //Setup some camera tricks
     TheEntresol->GetCameraManager()->GetCamera(0)->SetLocation(Vector3(0.0,200.0,450.0));

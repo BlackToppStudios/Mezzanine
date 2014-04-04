@@ -177,9 +177,7 @@ namespace Mezzanine
         }
 
         InternalDebugDrawer::~InternalDebugDrawer()
-        {
-            delete this->WireFrame;
-        }
+            { delete this->WireFrame; }
 
         void InternalDebugDrawer::PrepareForUpdate()
         {
@@ -197,17 +195,13 @@ namespace Mezzanine
         }
 
         void InternalDebugDrawer::drawLine(const btVector3& from,const btVector3& to,const btVector3& color)
-        {
-            this->WireFrame->DrawLine( Vector3(from), Vector3(to), ColourValue(color.getX(),color.getY(),color.getZ()) );
-        }
+            { this->WireFrame->DrawLine( Vector3(from), Vector3(to), ColourValue(color.getX(),color.getY(),color.getZ()) ); }
 
         void InternalDebugDrawer::drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color)
-        {
-        }
+            {}
 
         void InternalDebugDrawer::draw3dText(const btVector3& location,const char* textString)
-        {
-        }
+            {}
 
         void InternalDebugDrawer::setDebugMode(int debugMode)
         {
@@ -222,9 +216,7 @@ namespace Mezzanine
         }
 
         int InternalDebugDrawer::getDebugMode() const
-        {
-            return this->DebugDrawing;
-        }
+            { return this->DebugDrawing; }
 
         void InternalDebugDrawer::reportErrorWarning(const char* warningString)
         {
@@ -257,19 +249,7 @@ namespace Mezzanine
         // Utility
 
         void SimulationWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-        {
-            if( this->TargetManager->SimulationIsPaused() )
-                return;
-
-            this->TargetManager->ThreadResources = &CurrentThreadStorage;
-            Real FloatTime = this->TargetManager->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001; // Convert from MilliSeconds to Seconds
-            //Real IdealStep = static_cast<Real>( this->TargetManager->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
-            //IdealStep /= this->TargetManager->SubstepModifier;
-            //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
-            int MaxSteps = ( FloatTime < this->TargetManager->StepSize ) ? 1 : int( FloatTime / this->TargetManager->StepSize ) + 1;
-            this->TargetManager->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->TargetManager->StepSize );
-            this->TargetManager->ThreadResources = NULL;
-        }
+            { this->TargetManager->DoPerFrameWork(CurrentThreadStorage); }
 
         ///////////////////////////////////////////////////////////
         // SimulationMonopolyWorkUnit functions
@@ -290,29 +270,13 @@ namespace Mezzanine
         // Utility
 
         void SimulationMonopolyWorkUnit::UseThreads(const Whole& AmountToUse)
-        {
-            // Do nothing
-        }
+            {}
 
         Whole SimulationMonopolyWorkUnit::UsingThreadCount()
-        {
-            return this->TargetManager->ThreadCount;
-        }
+            { return this->TargetManager->ThreadCount; }
 
         void SimulationMonopolyWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Type& CurrentThreadStorage)
-        {
-            if( this->TargetManager->SimulationIsPaused() )
-                return;
-
-            this->TargetManager->ThreadResources = &CurrentThreadStorage;
-            Real FloatTime = this->TargetManager->TheEntresol->GetLastFrameTimeMilliseconds() * 0.001; // Convert from MilliSeconds to Seconds
-            //Real IdealStep = static_cast<Real>( this->TargetManager->TheEntresol->GetTargetFrameTimeMilliseconds() ) * 0.001;
-            //IdealStep /= this->TargetManager->SubstepModifier;
-            //IdealStep = ( IdealStep < 1.0/240.0 ? 1.0/240.0 : IdealStep );
-            int MaxSteps = ( FloatTime < this->TargetManager->StepSize ) ? 1 : int( FloatTime / this->TargetManager->StepSize ) + 1;
-            this->TargetManager->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->TargetManager->StepSize );
-            this->TargetManager->ThreadResources = NULL;
-        }
+            { this->TargetManager->DoPerFrameWork(CurrentThreadStorage); }
 
         ///////////////////////////////////////////////////////////
         // WorldTriggerUpdate functions
@@ -377,6 +341,7 @@ namespace Mezzanine
             SubstepModifier(1),
             ThreadCount(0),
             StepSize(1.0/60.0),
+            TimeMultiplier(1.0),
 
             GhostCallback(NULL),
             BulletSolverThreads(NULL),
@@ -390,8 +355,7 @@ namespace Mezzanine
 
             SimulationWork(NULL),
             WorldTriggerUpdateWork(NULL),
-            DebugDrawWork(NULL),
-            ThreadResources(NULL)
+            DebugDrawWork(NULL)
         {
             ManagerConstructionInfo Info;
             Info.PhysicsFlags = (ManagerConstructionInfo::PCF_SoftRigidWorld | ManagerConstructionInfo::PCF_LimitlessWorld);
@@ -404,6 +368,7 @@ namespace Mezzanine
             SubstepModifier(1),
             ThreadCount(0),
             StepSize(1.0/60.0),
+            TimeMultiplier(1.0),
 
             GhostCallback(NULL),
             BulletSolverThreads(NULL),
@@ -417,8 +382,7 @@ namespace Mezzanine
 
             SimulationWork(NULL),
             WorldTriggerUpdateWork(NULL),
-            DebugDrawWork(NULL),
-            ThreadResources(NULL)
+            DebugDrawWork(NULL)
         {
             this->Construct(Info);
         }
@@ -429,6 +393,7 @@ namespace Mezzanine
             SubstepModifier(1),
             ThreadCount(0),
             StepSize(1.0/60.0),
+            TimeMultiplier(1.0),
 
             GhostCallback(NULL),
             BulletSolverThreads(NULL),
@@ -442,8 +407,7 @@ namespace Mezzanine
 
             SimulationWork(NULL),
             WorldTriggerUpdateWork(NULL),
-            DebugDrawWork(NULL),
-            ThreadResources(NULL)
+            DebugDrawWork(NULL)
         {
             ManagerConstructionInfo Info;
             XML::Attribute CurrAttrib;
@@ -664,20 +628,12 @@ namespace Mezzanine
                 this->BulletDispatcherThreads = NULL;
             }
 
-            if(this->ThreadCount)
-            {
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
-            }else{
-                this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
-            }
             delete this->SimulationWork;
             this->SimulationWork = NULL;
 
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
             delete this->WorldTriggerUpdateWork;
             this->WorldTriggerUpdateWork = NULL;
 
-            this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork );
             delete this->DebugDrawWork;
             this->DebugDrawWork = NULL;
         }
@@ -751,30 +707,28 @@ namespace Mezzanine
         }
 
         void PhysicsManager::InternalTickCallback(btDynamicsWorld* world, btScalar timeStep)
-        {
-            Entresol::GetSingletonPtr()->GetPhysicsManager()->ProcessAllCollisions();
-        }
+            { Entresol::GetSingletonPtr()->GetPhysicsManager()->ProcessAllCollisions(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Simulation Management
 
         void PhysicsManager::PauseSimulation(Boole Pause)
-        {
-            this->SimulationPaused = Pause;
-        }
+            { this->SimulationPaused = Pause; }
 
         Boole PhysicsManager::SimulationIsPaused()
-        {
-            return this->SimulationPaused;
-        }
+            { return this->SimulationPaused; }
+
+        Real PhysicsManager::GetTimeMultiplier() const
+            { return TimeMultiplier; }
+
+        void PhysicsManager::SetTimeMultiplier(const Real &value)
+            { TimeMultiplier = value; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Gravity Management
 
         void PhysicsManager::SetWorldGravity(const Vector3& pgrav)
-        {
-            this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
-        }
+            { this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3()); }
 
         Vector3 PhysicsManager::GetWorldGravity()
         {
@@ -783,9 +737,7 @@ namespace Mezzanine
         }
 
         void PhysicsManager::SetWorldSoftGravity(const Vector3& sgrav)
-        {
-            this->BulletDynamicsWorld->getWorldInfo().m_gravity = sgrav.GetBulletVector3();
-        }
+            { this->BulletDynamicsWorld->getWorldInfo().m_gravity = sgrav.GetBulletVector3(); }
 
         Vector3 PhysicsManager::GetWorldSoftGravity()
         {
@@ -898,14 +850,10 @@ namespace Mezzanine
         }
 
         Physics::Constraint* PhysicsManager::GetConstraint(const Whole& Index)
-        {
-            return this->Constraints[Index];
-        }
+            { return this->Constraints[Index]; }
 
         Whole PhysicsManager::GetNumConstraints()
-        {
-            return this->Constraints.size();
-        }
+            { return this->Constraints.size(); }
 
         void PhysicsManager::RemoveConstraint(Physics::Constraint* Con)
         {
@@ -934,9 +882,7 @@ namespace Mezzanine
         // Trigger Management
 
         void PhysicsManager::AddWorldTrigger(WorldTrigger* Trig)
-        {
-            this->Triggers.push_back(Trig);
-        }
+            { this->Triggers.push_back(Trig); }
 
         WorldTrigger* PhysicsManager::GetWorldTrigger(const String& Name)
         {
@@ -951,14 +897,10 @@ namespace Mezzanine
         }
 
         WorldTrigger* PhysicsManager::GetWorldTrigger(const Whole& Index)
-        {
-            return this->Triggers.at(Index);
-        }
+            { return this->Triggers.at(Index); }
 
         Whole PhysicsManager::GetNumWorldTriggers()
-        {
-            return this->Triggers.size();
-        }
+            { return this->Triggers.size(); }
 
         void PhysicsManager::RemoveWorldTrigger(WorldTrigger* Trig)
         {
@@ -990,9 +932,7 @@ namespace Mezzanine
         }
 
         Whole PhysicsManager::GetNumCollisions()
-        {
-            return this->Collisions.size();
-        }
+            { return this->Collisions.size(); }
 
         void PhysicsManager::RemoveCollision(Physics::Collision* Col)
         {
@@ -1040,24 +980,16 @@ namespace Mezzanine
         }
 
         PhysicsManager::CollisionIterator PhysicsManager::BeginCollision()
-        {
-            return this->Collisions.begin();
-        }
+            { return this->Collisions.begin(); }
 
         PhysicsManager::CollisionIterator PhysicsManager::EndCollision()
-        {
-            return this->Collisions.end();
-        }
+            { return this->Collisions.end(); }
 
         PhysicsManager::ConstCollisionIterator PhysicsManager::BeginCollision() const
-        {
-            return this->Collisions.begin();
-        }
+            { return this->Collisions.begin(); }
 
         PhysicsManager::ConstCollisionIterator PhysicsManager::EndCollision() const
-        {
-            return this->Collisions.end();
-        }
+            { return this->Collisions.end(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Debug Management
@@ -1071,9 +1003,7 @@ namespace Mezzanine
         }
 
         Integer PhysicsManager::GetDebugRenderingMode() const
-        {
-            return this->DebugRenderMode;
-        }
+            { return this->DebugRenderMode; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
@@ -1117,9 +1047,7 @@ namespace Mezzanine
         }
 
         void PhysicsManager::SetSimulationSubstepModifier(const Whole& Modifier)
-        {
-            SubstepModifier = Modifier;
-        }
+            { SubstepModifier = Modifier; }
 
         void PhysicsManager::Pause(const UInt32 PL)
         {
@@ -1196,12 +1124,25 @@ namespace Mezzanine
                 this->BulletDynamicsWorld->setDebugDrawer( this->BulletDrawer );
 
                 // Simulation work configuration
-                if( this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded ) {
+                if( (this->WorldConstructionInfo.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded) && this->TheEntresol) {
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
                 }else{
                     this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
                 }
                 this->SimulationWork->ClearDependencies();
+
+                if(this->TheEntresol)
+                {
+                    if(this->ThreadCount){
+                        this->TheEntresol->GetScheduler().RemoveWorkUnitMonopoly( static_cast<Threading::MonopolyWorkUnit*>( this->SimulationWork ) );
+                    }else{
+                        this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->SimulationWork );
+                    }
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->WorldTriggerUpdateWork );
+                    this->TheEntresol->GetScheduler().RemoveWorkUnitMain( this->DebugDrawWork );
+                }
+
+
 
                 // Debug Draw work configuration
                 // Must add as affinity since it manipulates raw buffers and makes rendersystem calls under the hood.
@@ -1216,20 +1157,24 @@ namespace Mezzanine
             }
         }
 
-        Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()
+        void PhysicsManager::DoPerFrameWork(Threading::DefaultThreadSpecificStorage::Type &CurrentThreadStorage)
         {
-            return this->SimulationWork;
+            if( this->SimulationIsPaused() )
+                return;
+
+            Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001 * this->GetTimeMultiplier();// Convert from MicroSeconds to Seconds
+            int MaxSteps = ( FloatTime < this->StepSize ) ? 1 : int( FloatTime / this->StepSize ) + 1;
+            this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->StepSize );
         }
+
+        Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()
+            { return this->SimulationWork; }
 
         WorldTriggerUpdateWorkUnit* PhysicsManager::GetWorldTriggerUpdateWork()
-        {
-            return this->WorldTriggerUpdateWork;
-        }
+            { return this->WorldTriggerUpdateWork; }
 
         DebugDrawWorkUnit* PhysicsManager::GetDebugDrawWork()
-        {
-            return this->DebugDrawWork;
-        }
+            { return this->DebugDrawWork; }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Type Identifier Methods
@@ -1253,17 +1198,13 @@ namespace Mezzanine
         // DefaultPhysicsManagerFactory Methods
 
         DefaultPhysicsManagerFactory::DefaultPhysicsManagerFactory()
-        {
-        }
+            {}
 
         DefaultPhysicsManagerFactory::~DefaultPhysicsManagerFactory()
-        {
-        }
+            {}
 
         String DefaultPhysicsManagerFactory::GetManagerTypeName() const
-        {
-            return "DefaultPhysicsManager";
-        }
+            { return "DefaultPhysicsManager"; }
 
         ManagerBase* DefaultPhysicsManagerFactory::CreateManager(NameValuePairList& Params)
         {
@@ -1312,14 +1253,10 @@ namespace Mezzanine
         }
 
         ManagerBase* DefaultPhysicsManagerFactory::CreateManager(XML::Node& XMLNode)
-        {
-            return new PhysicsManager(XMLNode);
-        }
+            { return new PhysicsManager(XMLNode); }
 
         void DefaultPhysicsManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
-        {
-            delete ToBeDestroyed;
-        }
+            { delete ToBeDestroyed; }
     }//Physics
 }//Mezzanine
 

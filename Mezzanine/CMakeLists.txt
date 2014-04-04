@@ -553,6 +553,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Threading/asynchronousworkunit.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/atomicoperations.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/barrier.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Threading/doublebufferedresource.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/framescheduler.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/frameschedulerworkunits.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Threading/logtools.cpp"

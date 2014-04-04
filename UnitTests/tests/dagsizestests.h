@@ -71,7 +71,7 @@ struct VecMapTestSpeed
 
     double GetTimescale()
     {
-        if(VectorTime!=0 && MapTime!=0)
+        if(VectorTime!=0)
             { return double(MapTime)/double(VectorTime); }
         return 0.0;
     }
@@ -242,7 +242,7 @@ class dagsizestests : public UnitTestGroup
             TEST_WARN(sizeof(DefaultWorkUnit)<=CachLineSize,"DefaultWorkUnitFitsInCacheLine");
             TEST_WARN(sizeof(WorkUnitKey)<=CachLineSize,"WorkUnitKeyFitsInCacheLine");
             TEST_WARN(sizeof(DefaultRollingAverage<Whole>::Type)<CachLineSize,"DefaultRollingAverageFitsInCacheLine");
-
+/*
             TestOutput << "This algorithm presumes that vectors under a certain size are just faster than sets/trees/maps below that size. This checks where that stops being true." << endl;
             stringstream trash;
             Whole Count1 = WhenIsVectorSlowerThanSet(trash);
@@ -251,8 +251,12 @@ class dagsizestests : public UnitTestGroup
             TestOutput << "Element count 2: " << Count2 << endl;
             Whole Count3 = WhenIsVectorSlowerThanSet(trash);
             TestOutput << "Element count 3: " << Count3 << endl;
-            TestOutput << "Are These higher than 800? " << ((Count1+Count2+Count3)/3>800) << " - If not the DAG scheduling algorithm may need to be revised" << endl;
-            TEST_WARN((Count1+Count2+Count3)/3>800,"VectorSpeed");
+            Whole TotalTime = Count1+Count2+Count3;
+            Whole AverageTime = TotalTime / 3;
+            TestOutput << "Are These higher than 800? " << (AverageTime>800) << " - If not the DAG scheduling algorithm may need to be revised." << endl;
+            TestOutput << "Output to defeat compiiler optimizations" << endl << trash.str() << endl;
+            TEST_WARN(AverageTime>800,"VectorSpeed");
+// */
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
