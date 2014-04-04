@@ -560,7 +560,21 @@ namespace Mezzanine
 /// \n \n
 /// @subsection UILayerGroups Render Layer Groups
 /// The @ref Mezzanine::UI::RenderLayerGroup class is a grouping of RenderLayers sorted by ZOrder to achieve a specific visual effect.  RenderLayerGroups can have RenderLayers belonging to the same
-/// QuadRenderable added to them.
+/// QuadRenderable added to them.  RenderLayerGroups are initialized from the QuadRenderable class using either the @ref Mezzanine::UI::QuadRenderable::CreateRenderLayerGroup(const UInt16) method or
+/// the @ref Mezzanine::UI::QuadRenderable::CreateOrRetrieveRenderLayerGroup(const UInt16) method.  The ID passed in needs to be unique among the RenderGroupLayers in that QuadRenderable or an
+/// exception will be thrown.  To help with keeping track of IDs the @ref Mezzanine::UI::Widget::WidgetGroupID enum has a few named defaults based on the available Widget states.
+/// \n \n
+/// RenderLayers can have a different ZOrder for each RenderLayerGroup they belong to and can be in an any number of RenderLayerGroups.  Like with QuadRenderables, RenderLayers are sorted in the
+/// RenderLayerGroup by ZOrder from lowest to highest.  It also determines which RenderLayer will be more visible if there is an overlap.  Unlike the QuadRenderable class, by design there should be a
+/// considerable amount of overlap among RenderLayers within a RenderLayerGroup.  The RenderLayers with higher ZOrders will be rendered on top of lower ZOrder RenderLayers; making them more visible.
+/// For example, in many cases a RenderLayerGroup will have 2 RenderLayers.  One SingleImageRenderLayer with a lower ZOrder and a SingleLineTextLayer with text to create a button.  You could further
+/// customize it's appearance with another SingleImageLayer at the highest ZOrder that is just an image of a border fitting your application art style.  Assuming the center of the border image is
+/// transparent, then you could create a golden bordered button labeled "Start" with a blue marble background.
+/// \n \n
+/// The @ref UI::Mezzanine::Widget class also has a way to bind a specific RenderLayerGroup to a WidgetState for that particular Widget ( covered in more detail here: @ref UIWidget ).  So the
+/// RenderLayerGroup in the previous example could be set to the "WS_Untouched" state, while another similiar RenderLayerGroup that reuses the border and text RenderLayers with a new SingleImageLayer
+/// that has an alternate background art could be bound to a state with "WS_Hovered" in it.  This gives you a look that will automatically be updated when the mouse is hovered over that Widget.  In
+/// practice however, the base Widget class already creates a "Normal" and "Hovered" RenderLayerGroups that you can add RenderLayers to, so the tedious parts that are common to do are done for you.
 /// \n \n
 /// @subsection UICaching Local Vertex Caching
 /// Local Vertex Caching is a feature available to each QuadRenderable and is designed to be a minor optimization that can be enabled for static portions of a UI.  Vertex Caching can be enabled
@@ -572,7 +586,37 @@ namespace Mezzanine
 ///
 /// \n \n
 /// @section UIInputLife The Lifetime of an Input
-/// Input Lifetime text.
+/// The lifetime of an input making it's journey through @ref Mezzanine::UI starts with a call to @ref Mezzanine::UI::UIManager::InjectInput(const MetaCode&) .  The "Input" referred to in this
+/// section is a @ref Mezzanine::Input::MetaCode instance.  Inside a call to "InjectInput" checks are performed on the input to see if any variables need to be set before processing and then is
+/// stored in another container which will be used when the @ref Mezzanine::UI::WidgetUpdateWork is run in the framescheduler.  When @ref Mezzanine::UI::WidgetUpdateWork is run it will automatically
+/// collect all of the inputs new since the last frame from the @ref Mezzanine::Input::InputManager , so this does not need to be done manually and can get you some weird behavior if you attempt
+/// to do so.  Manual calls to "InjectInput" should only be done in special cases where you are simulating an input that was not made by the user or in Mezzanine configurations without an
+/// InputManager.
+/// \n \n
+/// After all of the new inputs from the input subsystem have been collected and a few other non-input checks have been performed, each input is processed individually.  Inputs are first passed over
+/// to "pre-focus" checks, which are checks that are performed by the UI manager prior to being passed off to the Widget focus if one is set.  This is where checks for locking and unlocking the focus
+/// are done.  A focus can be set by clicking any mouse button while the mouse is hovered over a Widget.  If a focus is already set then it is dropped as the focus before setting the new one.  This
+/// is prevented if the focus is locked.  Focus is locked (in addition to gaining focus) when a mouse button is pressed over a Widget.  The UI manager keeps track of that input and looks for a
+/// corresponding "Lift" input for that button.  When it detects it the lock will be lifted and a switch will be allowed.  A lock being lifted doesn't mean that a switch will happen immediately and
+/// the same Widget can keep it's focus or even have it's focus locked again.
+/// @todo When hotkeys become available, they will also be able to manipulate/switch the focus.
+/// \n \n
+/// Once the pre-focus checks are complete the input will be passed off to the focus if one is set.  If no focus is set then this set is skipped for that input and it's passed on to the post-focus
+/// checks.  If one is set then the @ref Mezzanine::UI::Widget::_HandleInput(const MetaCode&) method is called on the focus, which internally calls @ref Mezzanine::UI::_HandleInputImpl(const MetaCode&)
+/// to be processed by the specific Widget implementation.  In the implementation method the input will be relevant and "consumed" or it will be an input that the Widget cannot use.  If the input
+/// is consumed, then the internal method will return true, which will also return true to the UI manager.  However if the input is something it cannot use then the implementation method will return
+/// false and cause the input to be passed up the Widget hierarchy starting with the parent of the focus.  The parent of the focus then goes through all the same processes as the focus.  It goes to
+/// the implementation method and can be consumed.  If it is then true is returned to the UI manager indicating it was consumed.  Otherwise the parent of that Widget gets an opportunity to consume the
+/// input and so on until either a Widget consumes the input or the Screen all these Widgets belong to is reached.  If true is returned to the UI manager from any of these checks then post-focus checks
+/// are skipped for that input.
+/// \n \n
+/// If the input was consumed, then the UI manager will move on to the next input and repeat the cycle starting at pre-focus checks.  If the focus (or any of it's parent Widgets) did not consume the
+/// input, then it'll move on to the post-focus checks.
+/// @todo Currently this is a (very) small section because while the structure is there no actual checks are performed.  In the future Actions or tab switching between Widgets may go here.
+/// \n \n
+/// After all of the inputs have been processed, then the container storing the inputs is cleared to make room for the next frames inputs.  In most cases the number of inputs to be processed in a given
+/// frame will be either 0 or 1.  A typical frame where there is mouse movement is 4 or 5 inputs.  In the extreme case where you would have a 4-way split screen with controllers there could be upwards
+/// of ~40 inputs to be processed in a given update.
 ///
 /// \n \n
 /// @section UIConfig Configuring and Expanding
@@ -604,8 +648,8 @@ namespace Mezzanine
 /// @subsection UIStacked Stacked Containers and Buttons
 /// Stacked Containers and Buttons text.
 
-/// Hotkeys?
-/// Actions?
-/// Widget Implementations?
+// Hotkeys?
+// Actions?
+// Widget Implementations?
 
 #endif
