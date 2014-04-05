@@ -133,7 +133,7 @@ namespace Mezzanine
     void Entresol::DestroyOgre()
     {
         #ifdef LINUX
-        assert( !( SDL_WasInit(0) | SDL_INIT_VIDEO ) && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
+        //assert( !( SDL_WasInit(0) | SDL_INIT_VIDEO ) && "SDL already shut down.  SDL Shutdown forces x11 unload, which Ogre needs for it's shutdown." );
         #endif
 
         delete Ogre::Root::getSingletonPtr();
