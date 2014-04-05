@@ -151,13 +151,14 @@ namespace Mezzanine
             static String SerializableName();
     }; // HashedString32
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Class External << Operators for streaming or assignment
 
+    /// @brief Send a HashedString32 down a stream serialized.
+    /// @param stream The std::ostream to send it down.
+    /// @param x The HashedString32 to Send
+    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::HashedString32& x);
 }//Mezzanine
-
-/// @brief Send a HashedString32 down a stream serialized.
-/// @param stream The std::ostream to send it down.
-/// @param x The HashedString32 to Send
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::HashedString32& x);
 
 
 #endif

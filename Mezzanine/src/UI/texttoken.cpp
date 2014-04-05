@@ -52,6 +52,30 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // TextToken Methods
 
+        TextToken::TextToken() :
+            Type(TT_Error),
+            RenderSize(0)
+            {  }
+
+        TextToken::TextToken(const String& RawText, const TokenType TType) :
+            Type(TType),
+            RenderSize(0),
+            Text(RawText)
+            {  }
+
+        TextToken::TextToken(const Char8* Characters, const UInt32 Size) :
+            Type(TT_Text),
+            RenderSize(0)
+            { this->InsertCharacters(0,Characters,Size); }
+
+        TextToken::TextToken(const UInt32* Characters, const UInt32 Size) :
+            Type(TT_Text),
+            RenderSize(0)
+            { this->InsertCharacters(0,Characters,Size); }
+
+        TextToken::~TextToken()
+            {  }
+
         UInt32 TextToken::ConvertRenderIndexToRawIndex(const UInt32 Index)
         {
             Int32 BytesAdvance = 0;
@@ -206,10 +230,19 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // TagToken Methods
 
+        TagToken::TagToken()
+            {  }
+
+        TagToken::TagToken(const String& RawText, const String& Name, const TokenType TType) :
+            TextToken(RawText,TType),
+            TagName(Name)
+            {  }
+
+        TagToken::~TagToken()
+            {  }
+
         const String& TagToken::GetTagName() const
-        {
-            return this->TagName;
-        }
+            { return this->TagName; }
 
         String TagToken::GetParameter(const String& Param) const
         {
@@ -221,10 +254,20 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // RangeTagToken Methods
 
+        RangeTagToken::RangeTagToken() :
+            PartnerTag(NULL)
+            {  }
+
+        RangeTagToken::RangeTagToken(const String& RawText, const String& Name, const TokenType TType) :
+            TagToken(RawText,Name,TType),
+            PartnerTag(NULL)
+            {  }
+
+        RangeTagToken::~RangeTagToken()
+            {  }
+
         RangeTagToken* RangeTagToken::GetPartnerTag() const
-        {
-            return this->PartnerTag;
-        }
+            { return this->PartnerTag; }
 
         UInt32 RangeTagToken::InsertCharacter(const UInt32 Index, UInt32 UChar)
         {
@@ -288,6 +331,16 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // InsertTagToken Methods
+
+        InsertTagToken::InsertTagToken()
+            {  }
+
+        InsertTagToken::InsertTagToken(const String& RawText, const String& Name) :
+            TagToken(RawText,Name,TextToken::TT_InsertTag)
+            {  }
+
+        InsertTagToken::~InsertTagToken()
+            {  }
 
         UInt32 InsertTagToken::InsertCharacter(const UInt32 Index, UInt32 UChar)
         {

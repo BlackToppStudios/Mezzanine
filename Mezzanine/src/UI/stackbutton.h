@@ -57,11 +57,10 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "StackButton".
             static const String TypeName;
         protected:
-            friend class StackButtonFactory;
             /// @internal
             /// @brief A pointer storing the StackedContainer this button is bound to.
             StackedContainer* BoundContainer;
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             StackButton(Screen* Parent);
@@ -80,7 +79,7 @@ namespace Mezzanine
             StackButton(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Standard destructor.
             virtual ~StackButton();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 

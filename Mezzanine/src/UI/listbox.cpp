@@ -47,6 +47,7 @@
 #include "UI/verticalcontainer.h"
 #include "UI/singlelinetextlayer.h"
 #include "UI/multilinetextlayer.h"
+#include "UI/renderlayergroup.h"
 #include "UI/layoutstrategy.h"
 
 #include "Input/inputmanager.h"
@@ -245,8 +246,8 @@ namespace Mezzanine
             ItemLayer->SetTextLineHorizontalAlignment(UI::LA_Center);
             ItemLayer->SetTextLineVerticalAlignment(UI::LA_Center);
 
-            NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
-            NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
+            NewItem->AddLayerToGroup(ItemLayer,5,Widget::WG_Normal);
+            NewItem->AddLayerToGroup(ItemLayer,5,Widget::WG_Hovered);
             return NewItem;
         }
 
@@ -263,8 +264,8 @@ namespace Mezzanine
             ItemLayer->SetTextLineHorizontalAlignment(UI::LA_Center);
             ItemLayer->SetTextLineVerticalAlignment(UI::LA_Center);
 
-            NewItem->AddLayerToGroup(ItemLayer,5,"Normal");
-            NewItem->AddLayerToGroup(ItemLayer,5,"Hovered");
+            NewItem->AddLayerToGroup(ItemLayer,5,Widget::WG_Normal);
+            NewItem->AddLayerToGroup(ItemLayer,5,Widget::WG_Hovered);
             return NewItem;
         }
 

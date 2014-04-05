@@ -86,31 +86,24 @@ namespace Mezzanine
         Boole Button::HandleInputImpl(const Input::MetaCode& Code)
         {
             // Check to see if this is an activation code
-            if( this->ActivationCodes.count( Input::MetaCodeKey(Code) ) )
-            {
+            if( this->ActivationCodes.count( Input::MetaCodeKey(Code) ) ) {
                 // Are we changing our activation state from a mouse code?
                 if( Code.IsMouseButton() ) {
-                    if( this->IsHovered() && Input::BUTTON_PRESSING == Code.GetMetaValue() )
-                    {
+                    if( this->IsHovered() && Input::BUTTON_PRESSING == Code.GetMetaValue() ) {
                         Boole Result = this->Activate();
                         if(Result)
                             this->MouseActivated = true;
                         return true;
-                    }
-                    else if( Input::BUTTON_LIFTING == Code.GetMetaValue() )
-                    {
+                    }else if( Input::BUTTON_LIFTING == Code.GetMetaValue() ) {
                         this->Deactivate();
                         this->MouseActivated = false;
                         return true;
                     }
                 }else{
-                    if( Input::BUTTON_PRESSING == Code.GetMetaValue() )
-                    {
+                    if( Input::BUTTON_PRESSING == Code.GetMetaValue() ) {
                         this->Activate();
                         return true;
-                    }
-                    else if( Input::BUTTON_LIFTING == Code.GetMetaValue() )
-                    {
+                    }else if( Input::BUTTON_LIFTING == Code.GetMetaValue() ) {
                         this->Deactivate();
                         return true;
                     }
@@ -129,9 +122,9 @@ namespace Mezzanine
             UIManager* Manager = this->ParentScreen->GetManager();
             if( Manager->ButtonAutoRegisterEnabled() )
             {
-                UIManager::InputContainer* Codes = Manager->GetAutoRegisteredCodes();
-                for( Whole X = 0 ; X < Codes->size() ; X++ )
-                    this->BindActivationKeyOrButton(Codes->at(X));
+                const UIManager::InputContainer& Codes = Manager->GetAutoRegisteredCodes();
+                for( Whole X = 0 ; X < Codes.size() ; X++ )
+                    this->BindActivationKeyOrButton(Codes.at(X));
             }
         }
 

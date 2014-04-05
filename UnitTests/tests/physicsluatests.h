@@ -67,6 +67,9 @@ class physicsluatests : public UnitTestGroup
             Scripting::Lua::Lua51ScriptingEngine Lua;
             Lua.Execute("Simulation = MezzaninePhysicsSafe.PhysicsManager()");
             Lua.Execute("RigidA = Simulation:CreateRigidProxy(10.0)");
+            Lua.Execute("Simulation:SetSimulationSubstepModifier(3)");
+            Lua.Execute("Ball = MezzaninePhysicsSafe.SphereCollisionShape('Ball',5.0)");
+            Lua.Execute("RigidA:SetCollisionShape(Ball)");
             Lua.Execute("RigidA:AddToWorld()");
             Lua.Execute("Simulation:SetWorldGravity(MezzanineSafe.Vector3(0.0, 9.8, 0.0));");
 

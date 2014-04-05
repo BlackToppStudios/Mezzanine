@@ -174,7 +174,6 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "GricContainer".
             static const String TypeName;
         protected:
-            friend class GridContainerFactory;
             using PagedContainer::AddChild;
             /// @internal
             /// @brief Container storing pairs of Grid rects and the children they apply to.
@@ -192,7 +191,7 @@ namespace Mezzanine
             virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
             /// @copydoc PagedLayoutContainer::UpdateContainerDimensionsImpl(const Rect&,const Rect&)
             virtual void UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect);
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             GridContainer(Screen* Parent);
@@ -211,7 +210,7 @@ namespace Mezzanine
             GridContainer(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~GridContainer();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 

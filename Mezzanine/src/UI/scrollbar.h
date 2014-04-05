@@ -175,7 +175,7 @@ namespace Mezzanine
             /// @brief Gets the pixel position of the lower limit the scroller can be placed on.
             /// @return Returns a Real representing the scrollers limit limit.
             virtual Real GetLowerScrollLimit() const = 0;
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent screen that created this scrollbar.
             Scrollbar(Screen* Parent);
@@ -190,7 +190,7 @@ namespace Mezzanine
             Scrollbar(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
             /// @brief Standard class destructor.
             virtual ~Scrollbar();
-        public:
+
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 

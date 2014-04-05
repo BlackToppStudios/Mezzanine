@@ -62,30 +62,34 @@ class crashonclosetests : public UnitTestGroup
         /// @brief This is called when Automatic tests are run
         void RunAutomaticTests()
         {
+            ////////////////////////////////////////////////////////////////
+            // Linux SDL unloadsx X11 Ogre still needs crash
             {
-                TestOutput << "Creating an entresol and a window, then closing them." << endl;
-                Mezzanine::Entresol Crasher;
+                {
+                    TestOutput << "Creating an entresol and a window, then closing them." << endl;
+                    Mezzanine::Entresol Crasher;
+                    TEST_RESULT(Testing::Success, "CreatedEngineWithoutSegFault");
 
-                #ifdef LINUX
-                bool Loaded=false; //Fix this so it actually checks
-                TEST(Loaded,"X11LoadedOnCreation");
-                #else
-                TEST(Testing::Skipped,"X11LoadedOnCreation");
-                #endif
+                    Crasher.EngineInit();
 
-                TEST_RESULT(Testing::Success, "CreatedEngineWithoutSegFault");
+                }
+                TEST_RESULT(Testing::Success, "DestroyedEngineWithoutSegFault");
 
-                Crasher.EngineInit();
 
             }
-            TEST_RESULT(Testing::Success, "DestroyedEngineWithoutSegFault");
 
-            #ifdef LINUX
-            bool Loaded=false; //Fix this so it actually checks
-            TEST(Loaded,"X11UnloadedOnDestruction");
-            #else
-            TEST(Testing::Skipped,"X11UnloadedOnDestruction");
-            #endif
+            ////////////////////////////////////////////////////////////////
+            // Entresolused for timing when it doesn't exist crash
+            {
+                Mezzanine::Physics::PhysicsManager Simulation;
+                Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
+                FrameScheduler FS;
+                Mezzanine::Threading::ThreadSpecificStorage Ignored(&FS);
+                Simulation.GetSimulationWork()->DoWork(Ignored);
+                TEST_RESULT(Testing::Success, "PhysicsWithoutEntresol");
+            }
+
+
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

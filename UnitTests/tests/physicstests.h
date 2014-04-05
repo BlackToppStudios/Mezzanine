@@ -66,8 +66,15 @@ class physicstests : public UnitTestGroup
         {
             Mezzanine::Physics::PhysicsManager Simulation;
             Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
+            Simulation.SetSimulationSubstepModifier(3);
+            Physics::SphereCollisionShape Ball("Ball",5.0);
+            RigidA->SetCollisionShape(&Ball);
             RigidA->AddToWorld();
             Simulation.SetWorldGravity(Vector3(0.0,9.8,0.0));
+            FrameScheduler FS;
+            Mezzanine::Threading::ThreadSpecificStorage Ignored(&FS);
+            Simulation.GetSimulationWork()->DoWork(Ignored);
+
 
 
 

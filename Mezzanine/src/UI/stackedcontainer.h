@@ -58,7 +58,7 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "StackedContainer".
             static const String TypeName;
         protected:
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             StackedContainer(Screen* Parent);
@@ -73,7 +73,7 @@ namespace Mezzanine
             StackedContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
             /// @brief Class destructor.
             virtual ~StackedContainer();
-        public:
+
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 

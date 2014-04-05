@@ -60,7 +60,7 @@ namespace Mezzanine
         {
         public:
             /// @brief Basic container type for @ref QuadRenderable storage by this class.
-            typedef std::list<Widget*>                         ChildContainer;
+            typedef std::vector<Widget*>                       ChildContainer;
             /// @brief Iterator type for @ref QuadRenderable instances stored by this class.
             typedef ChildContainer::iterator                   ChildIterator;
             /// @brief Const Iterator type for @ref QuadRenderable instances stored by this class.

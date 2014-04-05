@@ -61,109 +61,31 @@ namespace Mezzanine
         class LayoutStrategy;
         class QuadRenderable;
         class Widget;
-        //////////////////////////////////////////////////////////////////////////////
-        /// @struct RenderLayerGroup
-        /// @headerfile layeredrenderable.h
-        /// @brief This class stores a group of render layers that can be set to be rendered.
-        /// @details A QuadRenderable can only render one group of layers at a time, but a single layer can be added to
-        /// as many RenderLayerGroup's as the user see's fit.
+        class RenderLayerGroup;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief This is a small convenience class used to store a RenderLayerGroup ID and a ZOrder on that RenderLayerGroup.
+        /// @details This class is mostly used for placing RenderLayers into RenderLayerGroups, either during or after RenderLayer construction.
         ///////////////////////////////////////
-        struct MEZZ_LIB RenderLayerGroup
+        struct MEZZ_LIB GroupOrderEntry
         {
-        public:
-            /// @brief An std::pair type for storing ZOrders in relation to @ref RenderLayer instances.
-            typedef std::pair<UInt16,RenderLayer*>        RenderLayerPair;
-            /// @brief Basic container type for @ref RenderLayerPair storage by this class.
-            typedef std::list<RenderLayerPair>            RenderLayerContainer;
-            /// @brief Iterator type for @ref RenderLayerPair instances stored by this class.
-            typedef RenderLayerContainer::iterator        RenderLayerIterator;
-            /// @brief Const Iterator type for @ref RenderLayerPair instances stored by this class.
-            typedef RenderLayerContainer::const_iterator  ConstRenderLayerIterator;
-        protected:
-            /// @internal
-            /// @brief Container storing all the layers that belong to this group and their ZOrders.
-            RenderLayerContainer RenderLayers;
-            /// @internal
-            /// @brief The name of this group.
-            String GroupName;
-            /// @internal
-            /// @brief A pointer to the host QuadRenderable.
-            QuadRenderable* ParentQuad;
-        public:
+            /// @brief The ID of the RenderLayerGroup this entry is referring to.
+            UInt16 GroupID;
+            /// @brief The ZOrder within the specified RenderLayerGroup to modify.
+            UInt16 LayerZOrder;
+
             /// @brief Class constructor.
-            /// @param Name The name to give to this RenderLayerGroup.
-            /// @param Creator The Quad that owns this RenderLayerGroup.
-            RenderLayerGroup(const String& Name, QuadRenderable* Creator);
+            GroupOrderEntry(const UInt16 ID, const UInt16 ZOrder) :
+                GroupID(ID),
+                LayerZOrder(ZOrder)
+                {  }
             /// @brief Class destructor.
-            ~RenderLayerGroup();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Utility
-
-            /// @brief Gets the name of this RenderLayerGroup.
-            /// @return Returns a const reference to the name of this RenderLayerGroup.
-            const String& GetName() const;
-            /// @brief Notifies this RenderLayerGroup that it has become the active group.
-            /// @remarks This shouldn't need to ever be called manually and is automatically called when
-            /// a QuadRenderable sets it as the active RenderLayerGroup.  This method exists to reset the
-            /// state of a layer (or group of layers) if necessary to achieve the visual effect desired.
-            void NotifyActive();
-            /// @brief Notifies this RenderLayerGroup that it is no longer the active group.
-            /// @remarks This is a straightforward counterpart to the "NotifyActive" method also on this
-            /// class, and also shouldn't ever need to be called manually.
-            void NotifyInactive();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // RenderLayer Management
-
-            /// @brief Adds a layer to this group by it's ZOrder.
-            /// @param RL The layer to add.
-            /// @param ZOrder The ZOrder at which to add the layer.
-            void AddLayer(RenderLayer* RL, const UInt16 ZOrder);
-            /// @brief Gets a RenderLayer in this group by it's index.
-            /// @param Index The index of the RenderLayer to retrieve.  Note: RenderLayers are sorted via ZOrder.
-            /// @return Returns a pointer to the RenderLayer at the specified index.
-            RenderLayer* GetLayer(const Whole Index) const;
-            /// @brief Gets a RenderLayer in this group by it's ZOrder.
-            /// @param ZOrder The ZOrder of the RenderLayer to retrieve.
-            /// @return Returns a pointer to the layer at the specified ZOrder, or NULL if no layers exist at that ZOrder.
-            RenderLayer* GetLayerByZOrder(const UInt16 ZOrder) const;
-            /// @brief Gets the number of RenderLayers assigned to this group.
-            /// @return Returns a UInt32 containing the number of RenderLayers in this group.
-            UInt32 GetNumRenderLayers() const;
-            /// @brief Swaps the layers contained by this group and another group.
-            /// @param OtherGroup The other RenderLayerGroup to swap layers with.
-            void SwapLayers(RenderLayerGroup* OtherGroup);
-            /// @brief Removes a layer from this group.
-            /// @param RL The RenderLayer to be removed.
-            void RemoveLayer(RenderLayer* RL);
-            /// @brief Removes every layer in this group, from this group.
-            void RemoveAllLayers();
-
-            /// @brief Gets an iterator to the first RenderLayer.
-            /// @return Returns an iterator to the first RenderLayer being stored by this group.
-            RenderLayerIterator RenderLayerBegin();
-            /// @brief Gets an iterator to one passed the last RenderLayer.
-            /// @return Returns an iterator to one passed the last RenderLayer being stored by this group.
-            RenderLayerIterator RenderLayerEnd();
-            /// @brief Gets a const iterator to the first RenderLayer.
-            /// @return Returns a const iterator to the first RenderLayer being stored by this group.
-            ConstRenderLayerIterator RenderLayerBegin() const;
-            /// @brief Gets an iterator to one passed the last RenderLayer.
-            /// @return Returns an iterator to one passed the last RenderLayer being stored by this group.
-            ConstRenderLayerIterator RenderLayerEnd() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Serialization
-
-            /// @brief Get the name of the the XML tag the Renderable class will leave behind as its instances are serialized.
-            /// @return A string containing the name of this class.
-            static String GetSerializableName();
-        };//RenderLayerGroup
+            ~GroupOrderEntry()
+                {  }
+        };//GroupOrderEntry
+        /// @brief Convenience container type for @ref GroupOrderEntry storage.
+        typedef std::vector<GroupOrderEntry> GroupOrderEntryVector;
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class QuadRenderable
-        /// @headerfile quadrenderable.h
         /// @brief This represents a nestable quad for an object in a GUI layout.
         /// @details QuadRenderables use "Unified" units for setting their position and size.  Unified units
         /// contain both relative and absolute information for their position on screen or inside their
@@ -183,7 +105,7 @@ namespace Mezzanine
         {
         public:
             /// @brief Basic container type for @ref Widget storage by this class.
-            typedef std::list<Widget*>                         ChildContainer;
+            typedef std::vector<Widget*>                       ChildContainer;
             /// @brief Iterator type for @ref Widget instances stored by this class.
             typedef ChildContainer::iterator                   ChildIterator;
             /// @brief Const Iterator type for @ref Widget instances stored by this class.
@@ -199,15 +121,11 @@ namespace Mezzanine
             /// @brief Const Iterator type for @ref RenderLayer instances stored by this class.
             typedef RenderLayerContainer::const_iterator       ConstRenderLayerIterator;
             /// @brief Basic container type for @ref RenderLayerGroup storage by this class.
-            typedef std::map<String,RenderLayerGroup*>         RenderLayerGroupContainer;
+            typedef std::vector<RenderLayerGroup*>             RenderLayerGroupContainer;
             /// @brief Iterator type for @ref RenderLayerGroup instances stored by this class.
             typedef RenderLayerGroupContainer::iterator        RenderLayerGroupIterator;
             /// @brief Const Iterator type for @ref RenderLayerGroup instances stored by this class.
             typedef RenderLayerGroupContainer::const_iterator  ConstRenderLayerGroupIterator;
-            /// @brief An std::pair type for storing ZOrders in relation to a named @ref RenderLayerGroup.
-            typedef std::pair<UInt16,String>                   GroupOrderEntry;
-            /// @brief Container type for @ref GroupOrderEntry storage by this class.
-            typedef std::vector<GroupOrderEntry>               GroupOrderEntryVector;
         protected:
             /// @internal
             /// @brief This is a container storing all the @ref RenderLayerGroup instances created by and belonging to this Quad.
@@ -264,7 +182,12 @@ namespace Mezzanine
             /// @brief Resizes the container for RenderLayers in this QuadRenderable.
             /// @param NewSize The new capacity for RenderLayer storage.
             void ResizeLayers(const Whole NewSize);
-        //public:
+            /// @internal
+            /// @brief Creates a new RenderLayerGroup with the provided ID, without checking if it is unique.
+            /// @param ID The ID to be given to the RenderLayerGroup.
+            /// @return Returns a pointer to the created RenderLayerGroup.
+            RenderLayerGroup* CreateRenderLayerGroupNoCheck(const UInt16 ID);
+        public:
             /// @brief Blank constructor.
             /// @note This is primarily useful for (and used as) a basic constructor suitable for XML deserialization post-construction.
             /// @param Parent The parent screen that created this renderable.
@@ -282,7 +205,7 @@ namespace Mezzanine
             /// @note Any and all children of this quad at the time of it's destruction will be destroyed as well.
             /// If you want to preserve the children for whatever reason, remove them from the quad prior to destroying it.
             virtual ~QuadRenderable();
-        public:
+
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
@@ -441,15 +364,9 @@ namespace Mezzanine
             SingleImageLayer* CreateSingleImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ);
             /// @brief Creates a SingleImageLayer for this renderable and adds it to a RenderLayerGroup.
             /// @note If the requested group does not exist it will be created.
-            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created SingleImageLayer should be added to.
+            /// @param GroupAndZ A GroupOrderEntry containing the ID of the RenderLayerGroup to add the created layer to and the ZOrder to insert it at.
             /// @return Returns a pointer to the created SingleImageLayer.
-            SingleImageLayer* CreateSingleImageLayer(const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates a SingleImageLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created.
-            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created SingleImageLayer.
-            SingleImageLayer* CreateSingleImageLayer(const GroupOrderEntryVector& Entrys);
+            SingleImageLayer* CreateSingleImageLayer(const GroupOrderEntry& GroupAndZ);
             /// @brief Creates a SingleImageLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
             /// @param SpriteName The name of the sprite to be set to the created layer.
@@ -465,16 +382,9 @@ namespace Mezzanine
             /// @brief Creates a SingleImageLayer for this renderable and adds it to a RenderLayerGroup.
             /// @note If the requested group does not exist it will be created.
             /// @param SpriteName The name of the sprite to be set to the created layer.
-            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created SingleImageLayer should be added to.
+            /// @param GroupAndZ A GroupOrderEntry containing the ID of the RenderLayerGroup to add the created layer to and the ZOrder to insert it at.
             /// @return Returns a pointer to the created SingleImageLayer.
-            SingleImageLayer* CreateSingleImageLayer(const String& SpriteName, const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates a SingleImageLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created.
-            /// @param SpriteName The name of the sprite to be set to the created layer.
-            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created SingleImageLayer.
-            SingleImageLayer* CreateSingleImageLayer(const String& SpriteName, const GroupOrderEntryVector& Entrys);
+            SingleImageLayer* CreateSingleImageLayer(const String& SpriteName, const GroupOrderEntry& GroupAndZ);
 
             /// @brief Creates an MultiImageLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
@@ -488,15 +398,9 @@ namespace Mezzanine
             MultiImageLayer* CreateMultiImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ);
             /// @brief Creates an MultiImageLayer for this renderable and adds it to a RenderLayerGroup.
             /// @note If the requested group does not exist it will be created.
-            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created MultiImageLayer should be added to.
+            /// @param GroupAndZ A GroupOrderEntry containing the ID of the RenderLayerGroup to add the created layer to and the ZOrder to insert it at.
             /// @return Returns a pointer to the created MultiImageLayer.
-            MultiImageLayer* CreateMultiImageLayer(const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates an MultiImageLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created.
-            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created MultiImageLayer.
-            MultiImageLayer* CreateMultiImageLayer(const GroupOrderEntryVector& Entrys);
+            MultiImageLayer* CreateMultiImageLayer(const GroupOrderEntry& GroupAndZ);
 
             /// @brief Creats a SingleLineTextLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
@@ -510,15 +414,9 @@ namespace Mezzanine
             SingleLineTextLayer* CreateSingleLineTextLayer(const UInt16 NormalZ, const UInt16 HoveredZ);
             /// @brief Creats a SingleLineTextLayer for this renderable.
             /// @note If the requested group does not exist it will be created.
-            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created TextLayer should be added to.
+            /// @param GroupAndZ A GroupOrderEntry containing the ID of the RenderLayerGroup to add the created layer to and the ZOrder to insert it at.
             /// @return Returns a pointer to the created layer.
-            SingleLineTextLayer* CreateSingleLineTextLayer(const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates a SingleLineTextLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created.
-            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created layer.
-            SingleLineTextLayer* CreateSingleLineTextLayer(const GroupOrderEntryVector& Entrys);
+            SingleLineTextLayer* CreateSingleLineTextLayer(const GroupOrderEntry& GroupAndZ);
             /// @brief Creats a SingleLineTextLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
             /// @param FontName The name of the font to use when rendering characters on the created layer.
@@ -534,16 +432,9 @@ namespace Mezzanine
             /// @brief Creats a SingleLineTextLayer for this renderable.
             /// @note If the requested group does not exist it will be created.
             /// @param FontName The name of the font to use when rendering characters on the created layer.
-            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created TextLayer should be added to.
+            /// @param GroupAndZ A GroupOrderEntry containing the ID of the RenderLayerGroup to add the created layer to and the ZOrder to insert it at.
             /// @return Returns a pointer to the created layer.
-            SingleLineTextLayer* CreateSingleLineTextLayer(const String& FontName, const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates a SingleLineTextLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created.
-            /// @param FontName The name of the font to use when rendering characters on the created layer.
-            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created layer.
-            SingleLineTextLayer* CreateSingleLineTextLayer(const String& FontName, const GroupOrderEntryVector& Entrys);
+            SingleLineTextLayer* CreateSingleLineTextLayer(const String& FontName, const GroupOrderEntry& GroupAndZ);
 
             /// @brief Creats a MultiLineTextLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
@@ -557,15 +448,9 @@ namespace Mezzanine
             MultiLineTextLayer* CreateMultiLineTextLayer(const UInt16 NormalZ, const UInt16 HoveredZ);
             /// @brief Creats a MultiLineTextLayer for this renderable.
             /// @note If the requested group does not exist it will be created.
-            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created TextLayer should be added to.
+            /// @param GroupAndZ A GroupOrderEntry containing the ID of the RenderLayerGroup to add the created layer to and the ZOrder to insert it at.
             /// @return Returns a pointer to the created layer.
-            MultiLineTextLayer* CreateMultiLineTextLayer(const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates a MultiLineTextLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created.
-            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created layer.
-            MultiLineTextLayer* CreateMultiLineTextLayer(const GroupOrderEntryVector& Entrys);
+            MultiLineTextLayer* CreateMultiLineTextLayer(const GroupOrderEntry& GroupAndZ);
             /// @brief Creats a MultiLineTextLayer for this renderable.
             /// @note This will not add the created layer to any group, thus it must be added manually to be rendered.
             /// @param FontName The name of the font to use when rendering characters on the created layer.
@@ -581,16 +466,9 @@ namespace Mezzanine
             /// @brief Creats a MultiLineTextLayer for this renderable.
             /// @note If the requested group does not exist it will be created.
             /// @param FontName The name of the font to use when rendering characters on the created layer.
-            /// @param ZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created TextLayer should be added to.
+            /// @param GroupAndZ A GroupOrderEntry containing the ID of the RenderLayerGroup to add the created layer to and the ZOrder to insert it at.
             /// @return Returns a pointer to the created layer.
-            MultiLineTextLayer* CreateMultiLineTextLayer(const String& FontName, const UInt16 ZOrder, const String& GroupName);
-            /// @brief Creates a MultiLineTextLayer for this renderable and adds it to all the specified RenderLayerGroups at the provided ZOrders.
-            /// @note If the requested groups do not exist they will be created.
-            /// @param FontName The name of the font to use when rendering characters on the created layer.
-            /// @param Entrys A vector of std::pair's that contain the ZOrders and the names of the groups the created layer should be added to.
-            /// @return Returns a pointer to the created layer.
-            MultiLineTextLayer* CreateMultiLineTextLayer(const String& FontName, const GroupOrderEntryVector& Entrys);
+            MultiLineTextLayer* CreateMultiLineTextLayer(const String& FontName, const GroupOrderEntry& GroupAndZ);
 
             /// @brief Gets a RenderLayer belonging to this QuadRenderable by index.
             /// @param Index The index of the RenderLayer to retrieve.
@@ -630,8 +508,8 @@ namespace Mezzanine
             // RenderLayerGroup Management
 
             /// @brief Sets the RenderLayerGroup that will be used to render this renderable.
-            /// @param Name The name of the RenderLayerGroup that will be used.
-            void SetActiveGroup(const String& Name);
+            /// @param GroupID The ID of the RenderLayerGroup that will be used.
+            void SetActiveGroup(const UInt16 GroupID);
             /// @brief Sets the RenderLayerGroup that will be used to render this renderable.
             /// @param Group Pointer to the RenderLayerGroup that will be used.
             void SetActiveGroup(RenderLayerGroup* Group);
@@ -639,9 +517,9 @@ namespace Mezzanine
             /// @return Returns a pointer to the group currently being used to render this renderable.
             RenderLayerGroup* GetActiveGroup() const;
             /// @brief Checks to see if a RenderLayerGroup exists.
-            /// @param Name The name of the RenderLayerGroup to check for.
+            /// @param GroupID The ID of the RenderLayerGroup to check for.
             /// @return Returns true if the named RenderLayerGroup exists in this renderable.
-            Boole RenderLayerGroupExists(const String& Name) const;
+            Boole RenderLayerGroupExists(const UInt16 GroupID) const;
             /// @brief Gets the number of RenderLayerGroup's created for this renderable.
             /// @return Returns a UInt32 containing the number of RenderLayerGroups in this renderable.
             UInt32 GetNumRenderLayerGroups() const;
@@ -649,14 +527,19 @@ namespace Mezzanine
             /// @note If the requested group does not exist it will be created.
             /// @param Layer The RenderLayer to be added to the named group.
             /// @param LayerZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created ImageLayer should be added to.
-            void AddLayerToGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const String& GroupName);
+            /// @param GroupID The ID of the group the created ImageLayer should be added to.
+            void AddLayerToGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const UInt16 GroupID);
+            /// @brief Adds a RenderLayer to the specified group.
+            /// @note If the requested group does not exist it will be created.
+            /// @param Layer The RenderLayer to be added to the named group.
+            /// @param GroupAndZ A GroupOrderEntry containing the ID of the RenderLayerGroup to add the specified layer to and the ZOrder to insert it at.
+            void AddLayerToGroup(RenderLayer* Layer, const GroupOrderEntry& GroupAndZ);
             /// @brief Adds a RenderLayer to the specified group.
             /// @note Unlike it's counterpart that doesn't specify "Existing", this will only add to groups that already exist and will not create any RenderLayerGroups.
             /// @param Layer The RenderLayer to be added to the named group.
             /// @param LayerZOrder The ZOrder that will be given to this layer to determine the order it is rendered with other layers.
-            /// @param GroupName The name of the group the created ImageLayer should be added to.
-            void AddLayerToExistingGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const String& GroupName);
+            /// @param GroupID The ID of the group the created ImageLayer should be added to.
+            void AddLayerToExistingGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const UInt16 GroupID);
             /// @brief Adds a RenderLayer to multiple groups.
             /// @note If the requested groups do not exist they will be created.
             /// @param Layer The RenderLayer to be added to the named groups.
@@ -664,8 +547,8 @@ namespace Mezzanine
             void AddLayerToGroups(RenderLayer* Layer, const GroupOrderEntryVector& Entrys);
             /// @brief Removes a single RenderLayer from a specified RenderLayerGroup.
             /// @param Layer The RenderLayer to be removed from the named group.
-            /// @param GroupName The name of the RenderLayerGroup the provided layer will be removed from.
-            void RemoveLayerFromGroup(RenderLayer* Layer, const String& GroupName);
+            /// @param GroupID The ID of the RenderLayerGroup the provided layer will be removed from.
+            void RemoveLayerFromGroup(RenderLayer* Layer, const UInt16 GroupID);
             /// @brief Removes a single RenderLayer from all RenderLayerGroups owned by this QuadRenderable.
             /// @param Layer The RenderLayer to be removed from all groups.
             void RemoveLayerFromAllGroups(RenderLayer* Layer);
@@ -674,25 +557,25 @@ namespace Mezzanine
             /// @exception This function will throw an exception if a group already exists with the provided name.
             /// @remarks The first RenderLayerGroup that is created will automatically be set to the ActiveGroup.  You can override
             /// this by calling "SetActiveGroup" manually after creating any additional RenderLayerGroup.
-            /// @param Name The name to be given to the new RenderLayerGroup.
+            /// @param GroupID The unique ID to be given to the new RenderLayerGroup.
             /// @return Returns a pointer to the created RenderLayerGroup.
-            RenderLayerGroup* CreateRenderLayerGroup(const String& Name);
-            /// @brief Gets the named RenderLayerGroup or creates one with the specified name if it does not exist.
+            RenderLayerGroup* CreateRenderLayerGroup(const UInt16 GroupID);
+            /// @brief Gets the named RenderLayerGroup or creates one with the specified ID if it does not exist.
             /// @remarks This function is unlike the "create" function in that it won't throw an exception in an error condition,
             /// and it is unlike the "get" function in that it will not return a NULL pointer.  This function guarentee's returning
-            /// a valid RenderLayerGroup with the given name. @n @n
+            /// a valid RenderLayerGroup with the given ID. @n @n
             /// The first RenderLayerGroup that is created will automatically be set to the ActiveGroup.  You can override
             /// this by calling "SetActiveGroup" manually after creating any additional RenderLayerGroup.
-            /// @param Name The name of the RenderLayerGroup to get or create.
+            /// @param GroupID The unique ID of the RenderLayerGroup to get or create.
             /// @return Returns a pointer to the named RenderLayerGroup.
-            RenderLayerGroup* CreateOrRetrieveRenderLayerGroup(const String& Name);
-            /// @brief Gets a RenderLayerGroup by name.
-            /// @param Name The name of the RenderLayerGroup to retrieve.
+            RenderLayerGroup* CreateOrRetrieveRenderLayerGroup(const UInt16 GroupID);
+            /// @brief Gets a RenderLayerGroup by ID.
+            /// @param GroupID The unique ID of the RenderLayerGroup to retrieve.
             /// @return Returns a pointer to the named RenderLayerGroup, or NULL if it does not exist.
-            RenderLayerGroup* GetRenderLayerGroup(const String& Name) const;
-            /// @brief Destroy's a RenderLayerGroup by name.
-            /// @param Name The name of the RenderLayerGroup to destroy.
-            void DestroyRenderLayerGroup(const String& Name);
+            RenderLayerGroup* GetRenderLayerGroup(const UInt16 GroupID) const;
+            /// @brief Destroy's a RenderLayerGroup by ID.
+            /// @param GroupID The unique ID of the RenderLayerGroup to destroy.
+            void DestroyRenderLayerGroup(const UInt16 GroupID);
             /// @brief Destroy's a RenderLayerGroup by pointer.
             /// @param ToBeDestroyed The RenderLayerGroup to be destroyed.
             void DestroyRenderLayerGroup(RenderLayerGroup* ToBeDestroyed);

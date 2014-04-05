@@ -443,6 +443,9 @@ namespace Mezzanine
             /// @internal
             /// @brief Do any teardown required for Ogre, then destroy Ogre.
             void DestroyOgre();
+            /// @internal
+            /// @brief Do any teardown required for SDL
+            void DestroySDL();
 
         public:
             ///////////////////////////////////////////////////////////////////////////////

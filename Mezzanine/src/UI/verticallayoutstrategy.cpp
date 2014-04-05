@@ -85,13 +85,15 @@ namespace Mezzanine
                 if( ExpandingChildCount == 0 ) {
                     // Do our updates and move on with the loop
                     QuadRenderable* NoExChild = (*NextNonExpandingChild);
-                    const Rect OldChildRect = NoExChild->GetRect();
-                    Rect NewChildRect;
+                    if( !NoExChild->GetManualTransformUpdates() ) {
+                        const Rect OldChildRect = NoExChild->GetRect();
+                        Rect NewChildRect;
 
-                    NewChildRect.Size = this->HandleChildSizing(OldSelfRect,NewSelfRect,NoExChild);
-                    NewChildRect.Position = this->HandleChildPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,NoExChild);
-                    NoExChild->UpdateDimensions(OldChildRect,NewChildRect);
-                    PrevBottomPos = NewChildRect.Position.Y + NewChildRect.Size.Y;
+                        NewChildRect.Size = this->HandleChildSizing(OldSelfRect,NewSelfRect,NoExChild);
+                        NewChildRect.Position = this->HandleChildPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,NoExChild);
+                        NoExChild->UpdateDimensions(OldChildRect,NewChildRect);
+                        PrevBottomPos = NewChildRect.Position.Y + NewChildRect.Size.Y;
+                    }
 
                     // Increment if it's not the end node and move on
                     if( NextNonExpandingChild != ChildQuads.end() )
@@ -105,19 +107,21 @@ namespace Mezzanine
                     // We got a range now so lets process the "fixed" child first if it is valid
                     if( NextNonExpandingChild != ChildQuads.end() ) {
                         QuadRenderable* NoExChild = (*NextNonExpandingChild);
-                        const Rect OldChildRect = NoExChild->GetRect();
-                        Rect NewChildRect;
+                        if( !NoExChild->GetManualTransformUpdates() ) {
+                            const Rect OldChildRect = NoExChild->GetRect();
+                            Rect NewChildRect;
 
-                        NewChildRect.Size = this->HandleChildSizing(OldSelfRect,NewSelfRect,NoExChild);
-                        NewChildRect.Position = this->HandleChildPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,NoExChild);
+                            NewChildRect.Size = this->HandleChildSizing(OldSelfRect,NewSelfRect,NoExChild);
+                            NewChildRect.Position = this->HandleChildPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,NoExChild);
 
-                        this->CheckChildAspectRatio(OldChildRect.Size,NewChildRect.Size,NoExChild);
-                        this->ClampChildToMinSize(NewSelfRect,NewChildRect.Size,NoExChild);
-                        this->ClampChildToMaxSize(NewSelfRect,NewChildRect.Size,NoExChild);
+                            this->CheckChildAspectRatio(OldChildRect.Size,NewChildRect.Size,NoExChild);
+                            this->ClampChildToMinSize(NewSelfRect,NewChildRect.Size,NoExChild);
+                            this->ClampChildToMaxSize(NewSelfRect,NewChildRect.Size,NoExChild);
 
-                        NoExChild->UpdateDimensions(OldChildRect,NewChildRect);
-                        NextTopPos = NewChildRect.Position.Y;
-                        FixedBottomPos = NewChildRect.Position.Y + NewChildRect.Size.Y;
+                            NoExChild->UpdateDimensions(OldChildRect,NewChildRect);
+                            NextTopPos = NewChildRect.Position.Y;
+                            FixedBottomPos = NewChildRect.Position.Y + NewChildRect.Size.Y;
+                        }
                     }else{
                         // Just use the bottom edge of the parent if the child isn't valid
                         NextTopPos = NewSelfRect.Position.Y + NewSelfRect.Size.Y;
@@ -130,19 +134,21 @@ namespace Mezzanine
                     while( ChildIt != NextNonExpandingChild )
                     {
                         QuadRenderable* ExChild = (*ChildIt);
-                        const Rect OldChildRect = ExChild->GetRect();
-                        Rect NewChildRect;
+                        if( !ExChild->GetManualTransformUpdates() ) {
+                            const Rect OldChildRect = ExChild->GetRect();
+                            Rect NewChildRect;
 
-                        NewChildRect.Size.X = ( ExChild->GetHorizontalSizingRules() == UI::SR_Fill_Available ? NewSelfRect.Size.Y : this->HandleChildHorizontalSizing(OldSelfRect,NewSelfRect,YSpacePerChild,ExChild) );
-                        NewChildRect.Size.Y = YSpacePerChild;
-                        NewChildRect.Position.X = this->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,ExChild);
-                        NewChildRect.Position.Y = YPos;
+                            NewChildRect.Size.X = ( ExChild->GetHorizontalSizingRules() == UI::SR_Fill_Available ? NewSelfRect.Size.Y : this->HandleChildHorizontalSizing(OldSelfRect,NewSelfRect,YSpacePerChild,ExChild) );
+                            NewChildRect.Size.Y = YSpacePerChild;
+                            NewChildRect.Position.X = this->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewChildRect.Size,ExChild);
+                            NewChildRect.Position.Y = YPos;
 
-                        this->CheckChildAspectRatio(OldChildRect.Size,NewChildRect.Size,ExChild);
-                        this->ClampChildToMinSize(NewSelfRect,NewChildRect.Size,ExChild);
-                        this->ClampChildToMaxSize(NewSelfRect,NewChildRect.Size,ExChild);
+                            this->CheckChildAspectRatio(OldChildRect.Size,NewChildRect.Size,ExChild);
+                            this->ClampChildToMinSize(NewSelfRect,NewChildRect.Size,ExChild);
+                            this->ClampChildToMaxSize(NewSelfRect,NewChildRect.Size,ExChild);
 
-                        ExChild->UpdateDimensions(OldChildRect,NewChildRect);
+                            ExChild->UpdateDimensions(OldChildRect,NewChildRect);
+                        }
                         ++ChildIt;
                     }
                     PrevBottomPos = FixedBottomPos;

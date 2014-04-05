@@ -61,6 +61,13 @@ namespace Mezzanine
             {
                 WS_Selected = Widget::WS_Mezzanine_Reserved_1
             };
+            /// @enum WidgetGroupIDExt
+            /// @brief Enum describing additional pre-initialized RenderLayerGroups created by the Checkbox widget.
+            enum WidgetGroupIDExt
+            {
+                WG_SelectedNormal = Widget::WG_Mezzanine_Reserved_1,
+                WG_SelectedHovered = Widget::WG_Mezzanine_Reserved_2
+            };
 
             /// @brief String containing the type name for this class: "CheckBox".
             static const String TypeName;
@@ -69,7 +76,6 @@ namespace Mezzanine
             /// @brief Event name for when this checkbox is Deselected.
             static const String EventDeselected;
         protected:
-            friend class CheckBoxFactory;
             /// @internal
             /// @brief Stores whether or not the current state of this CheckBox is locked.
             Boole SelectLock;
@@ -77,7 +83,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Contains all the common necessary startup initializations for this class.
             void ConstructCheckbox();
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             CheckBox(Screen* Parent);
@@ -96,7 +102,7 @@ namespace Mezzanine
             CheckBox(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~CheckBox();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 
