@@ -158,13 +158,16 @@ namespace Mezzanine
     String HashedString32::SerializableName()
         { return String("HashedString32"); }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Class External << Operators for streaming or assignment
+
+    std::ostream& operator << (std::ostream& stream, const Mezzanine::HashedString32& x)
+    {
+        Serialize(stream,x);
+        return stream;
+    }
 }//Mezzanine
 
-std::ostream& operator << (std::ostream& stream, const Mezzanine::HashedString32& x)
-{
-    Serialize(stream,x);
-    return stream;
-}
 
 
 #endif
