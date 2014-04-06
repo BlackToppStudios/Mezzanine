@@ -71,12 +71,14 @@ namespace Mezzanine
 
             void Lua51IntegerArgument::Push(lua_State* TargetState) const
                 { lua_pushinteger(TargetState, this->Datum); }
-
             void Lua51IntegerArgument::Pop(lua_State* TargetState)
             {
                 int Top = lua_gettop(TargetState);
                 if(LUA_TNUMBER==lua_type(TargetState,Top))
-                    { Datum = lua_tointeger(TargetState,Top); }
+                {
+                    Datum = lua_tointeger(TargetState,Top);
+                    lua_pop(TargetState,1);
+                }
                 else
                 { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Integer), but found something else.") }
             }
@@ -87,7 +89,10 @@ namespace Mezzanine
             {
                 int Top = lua_gettop(TargetState);
                 if(LUA_TNUMBER==lua_type(TargetState,Top))
-                    { Datum = lua_tonumber(TargetState,Top); }
+                {
+                    Datum = lua_tonumber(TargetState,Top);
+                    lua_pop(TargetState,1);
+                }
                 else
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Real), but found something else.") }
             }
@@ -98,7 +103,10 @@ namespace Mezzanine
             {
                 int Top = lua_gettop(TargetState);
                 if(LUA_TNUMBER==lua_type(TargetState,Top))
-                    { Datum = lua_tointeger(TargetState,Top); }
+                {
+                    Datum = lua_tointeger(TargetState,Top);
+                    lua_pop(TargetState,1);
+                }
                 else
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua number(Whole), but found something else.") }
             }
@@ -109,7 +117,10 @@ namespace Mezzanine
             {
                 int Top = lua_gettop(TargetState);
                 if(LUA_TSTRING==lua_type(TargetState,Top))
-                    { Datum = lua_tostring(TargetState,Top); }
+                {
+                    Datum = lua_tostring(TargetState,Top);
+                    lua_pop(TargetState,1);
+                }
                 else
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
             }
@@ -120,7 +131,10 @@ namespace Mezzanine
             {
                 int Top = lua_gettop(TargetState);
                 if(LUA_TBOOLEAN==lua_type(TargetState,Top))
-                    { Datum = lua_toboolean(TargetState,Top); }
+                {
+                    Datum = lua_toboolean(TargetState,Top);
+                    lua_pop(TargetState,1);
+                }
                 else
                     { MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION, "Expected a Lua string(String), but found something else.") }
             }

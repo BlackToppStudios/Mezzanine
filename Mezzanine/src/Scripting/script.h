@@ -325,6 +325,11 @@ namespace Mezzanine
                 /// such language runtimes.
                 virtual void AddReturn(CountedPtr<iScriptArgument> ReturnArg) = 0;
 
+                /// @brief Retrieve a value returned from a script.
+                /// @param ReturnNumber The index of the return to return.
+                /// @return A reference counted pointer to a ScriptArgument.
+                virtual CountedPtr<iScriptArgument> GetReturn(Whole ReturnNumber) const = 0;
+
                 /// @brief Get a pointer to the most Derived type of this class
                 /// @return A pointer of the most derived pointing to this.
                 virtual iScriptMultipleReturn* GetMostDerived()

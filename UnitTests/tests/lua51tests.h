@@ -70,12 +70,12 @@ class lua51tests : public UnitTestGroup
                 LuaRuntimeSafe.Execute(RealArgScript);
                 Scripting::Lua::Lua51Script RealArgCall(FunctionToCall,LuaRuntimeSafe,true);
                 RealArgCall.AddArgument(Input);
-                CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
-                RealArgCall.AddReturn(RealReturn);
                 LuaRuntimeSafe.Execute(RealArgCall);
-                TestOutput << " Recieved " << RealReturn->GetReal() << " while expecting " << ExpectedOutput << endl;
+                //TestOutput << " Recieved " << RealReturn->GetReal() << " while expecting " << ExpectedOutput << endl;
+                Real Returned = RealArgCall.GetReturn(0)->GetReal();
+                TestOutput << " Recieved " << Returned << " while expecting " << ExpectedOutput << endl;
 
-                TEST((ExpectedOutput==RealReturn->GetReal() || (RealReturn->GetReal()-Epsilon<ExpectedOutput && ExpectedOutput<RealReturn->GetReal()+Epsilon))
+                TEST((ExpectedOutput==Returned || (Returned-Epsilon<ExpectedOutput && ExpectedOutput<Returned+Epsilon))
                      , String("SWIGWrapped::") + FeatureName);
             } catch (ScriptLuaException& ) {
                 TEST_RESULT(Testing::Failed, String("SWIGWrapped::") + FeatureName);
@@ -221,11 +221,9 @@ class lua51tests : public UnitTestGroup
                     Scripting::Lua::Lua51Script IntArgCall("TakeArgInt",LuaRuntimeSafe,true);
                     //IntArgCall.AddArgument(Scripting::Lua::Lua51IntegerArgument(9));
                     IntArgCall.AddArgument(9);
-                    CountedPtr<Scripting::Lua::Lua51IntegerArgument> IntReturn(new Scripting::Lua::Lua51IntegerArgument);
-                    IntArgCall.AddReturn(IntReturn);
                     LuaRuntimeSafe.Execute(IntArgCall);
 
-                    TEST(18==IntReturn->GetInteger(),"Engine::PassInt");
+                    TEST(18==IntArgCall.GetReturn(0)->GetInteger(),"Engine::PassInt");
 
                 } catch (ScriptLuaException&) {
                     TEST_RESULT(Testing::Failed,"Engine::PassInt");
@@ -241,11 +239,9 @@ class lua51tests : public UnitTestGroup
 
                     Scripting::Lua::Lua51Script WholeArgCall("TakeArgWhole",LuaRuntimeSafe,true);
                     WholeArgCall.AddArgument(9);
-                    CountedPtr<Scripting::Lua::Lua51WholeArgument> WholeReturn(new Scripting::Lua::Lua51WholeArgument);
-                    WholeArgCall.AddReturn(WholeReturn);
                     LuaRuntimeSafe.Execute(WholeArgCall);
 
-                    TEST(18==WholeReturn->GetWhole(), "Engine::PassWhole");
+                    TEST(18==WholeArgCall.GetReturn(0)->GetWhole(), "Engine::PassWhole");
                 } catch (ScriptLuaException& ) {
                     TEST_RESULT(Testing::Failed,"Engine::PassWhole");
                 }
@@ -260,11 +256,9 @@ class lua51tests : public UnitTestGroup
 
                     Scripting::Lua::Lua51Script RealArgCall("TakeArgReal",LuaRuntimeSafe,true);
                     RealArgCall.AddArgument(Real(9.5));
-                    CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
-                    RealArgCall.AddReturn(RealReturn);
                     LuaRuntimeSafe.Execute(RealArgCall);
 
-                    TEST(19.0==RealReturn->GetWhole(), "Engine::PassReal");
+                    TEST(19.0==RealArgCall.GetReturn(0)->GetWhole(), "Engine::PassReal");
                 } catch (ScriptLuaException& ) {
                     TEST_RESULT(Testing::Failed,"Engine::PassReal");
                 }
@@ -280,11 +274,9 @@ class lua51tests : public UnitTestGroup
 
                     Scripting::Lua::Lua51Script StringArgCall("TakeArgString",LuaRuntimeSafe,true);
                     StringArgCall.AddArgument((char*)"Hello ");
-                    CountedPtr<Scripting::Lua::Lua51StringArgument> StringReturn(new Scripting::Lua::Lua51StringArgument);
-                    StringArgCall.AddReturn(StringReturn);
                     LuaRuntimeSafe.Execute(StringArgCall);
 
-                    TEST(String("Hello World!")==StringReturn->GetString(), "Engine::PassString");
+                    TEST(String("Hello World!")==StringArgCall.GetReturn(0)->GetString(), "Engine::PassString");
                 } catch (ScriptLuaException& ) {
                     TEST_RESULT(Testing::Failed,"Engine::PassString");
                 }
@@ -300,11 +292,9 @@ class lua51tests : public UnitTestGroup
 
                     Scripting::Lua::Lua51Script BoolArgCall("TakeArgBool",LuaRuntimeSafe,true);
                     BoolArgCall.AddArgument(false);
-                    CountedPtr<Scripting::Lua::Lua51BoolArgument> BoolReturn(new Scripting::Lua::Lua51BoolArgument);
-                    BoolArgCall.AddReturn(BoolReturn);
                     LuaRuntimeSafe.Execute(BoolArgCall);
 
-                    TEST(true==BoolReturn->GetBool(), "Engine::PassBool");
+                    TEST(true==BoolArgCall.GetReturn(0)->GetBool(), "Engine::PassBool");
                 } catch (ScriptLuaException& ) {
                     TEST_RESULT(Testing::Failed,"Engine::PassBool");
                 }
@@ -324,11 +314,9 @@ class lua51tests : public UnitTestGroup
 
                     Scripting::Lua::Lua51Script NilArgCall("TakeArgNil",LuaRuntimeSafe,true);
                     NilArgCall.AddArgument();
-                    CountedPtr<Scripting::Lua::Lua51NilArgument> NilReturn(new Scripting::Lua::Lua51NilArgument);
-                    NilArgCall.AddReturn(NilReturn);
                     LuaRuntimeSafe.Execute(NilArgCall);
 
-                    TEST(false==NilReturn->GetBool(),"Engine::PassNil");
+                    TEST(false==NilArgCall.GetReturn(0)->GetBool(),"Engine::PassNil");
                 } catch (ScriptLuaException& ) {
                     TEST_RESULT(Testing::Failed,"Engine::PassNil");
                 }
@@ -423,8 +411,6 @@ class lua51tests : public UnitTestGroup
 
                     Scripting::Lua::Lua51Script ScriptCall("MakeDoc",LuaRuntimeSafe,true);
                     ScriptCall.AddArgument(String("NameOfElement"));
-                    CountedPtr<Scripting::Lua::Lua51RealArgument> RealReturn(new Scripting::Lua::Lua51RealArgument);
-                    ScriptCall.AddReturn(RealReturn);
                     LuaRuntimeSafe.Execute(ScriptCall);
 
                     TEST_RESULT(Testing::Failed, "Engine::XMLOldSyntax");
@@ -480,12 +466,9 @@ class lua51tests : public UnitTestGroup
                     Scripting::Lua::Lua51Script DumpScript(Source, LuaRuntimeSafe);
                     LuaRuntimeSafe.Execute(DumpScript);
                     Scripting::Lua::Lua51Script DumpFunctionCall("MezzanineDump",LuaRuntimeSafe,true);
-
-                    CountedPtr<Scripting::Lua::Lua51StringArgument> StringReturn(new Scripting::Lua::Lua51StringArgument);
-                    DumpFunctionCall.AddReturn(StringReturn);
                     LuaRuntimeSafe.Execute(DumpFunctionCall);
 
-                    TestOutput << StringReturn->GetString() << endl;
+                    TestOutput << DumpFunctionCall.GetReturn(0) << endl;
 
                     TEST_RESULT(Testing::Success, "SWIG_Dump");
 
@@ -675,11 +658,11 @@ class lua51tests : public UnitTestGroup
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 //Kinda useless in garbage collected languages, Maybe useful for determining when collection happens
-                TestLuaScript("function TestFuncScop(x)\n"
+                TestLuaScript("function TestFuncScope(x)\n"
                               "   STimer=MezzanineSafe.Threading.ScopedTimer()"
                               "   return x\n"
                               "end",
-                              "Threading::ScopedTimer", "TestFuncScop", 100, 100, 0.0,
+                              "Threading::ScopedTimer", "TestFuncScope", 100, 100, 0.0,
                                Scripting::Lua::Lua51ScriptingEngine::DefaultLibs);
 
                 TestLuaScript("function TestAABB(x)\n"

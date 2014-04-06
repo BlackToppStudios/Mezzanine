@@ -103,6 +103,31 @@ namespace Mezzanine
                     /// @throw If Lua could not get enouugh memory this throws an Exception::MM_OUT_OF_MEMORY_EXCEPTION
                     void CheckLuaStateAfterConstruction() const;
 
+                    /// @internal
+                    /// @brief Put a lua script onto the stack, compiling it if needed.
+                    /// @param ScriptToLoad A Script to put onto the lua stack.
+                    /// @details This adds one item to the the Lua stack
+                    void ScriptOntoStack(Lua51Script* ScriptToLoad);
+
+                    /// @internal
+                    /// @brief Put the arguments in a script onto the stack
+                    /// @param ScriptToLoad A Script with 0 or more arguments to load.
+                    void ScriptArgsOntoStack(Lua51Script* ScriptToLoad);
+
+                    /// @internal
+                    /// @brief Execute a thing on the top of the stack with arguments already put there
+                    /// @param ArgumentCount How many args are onthe stack for the script
+                    void StackExecute(Whole ArgumentCount);
+
+                    /// @internal
+                    /// @brief Remove Scripts from Lua stack and put them into arguments on the passed script
+                    /// @param ScriptWasRun the script was just run and needs to have its returns arguments loaded
+                    /// @param PreviousStackSize How big was the stack before execution
+                    /// @return The Amount of returns loaded into ScriptWasRun
+                    Whole ScriptArgsFromStack(Lua51Script* ScriptWasRun, Integer PreviousStackSize);
+
+                    CountedPtr<iScriptArgument> ScriptArgFromStack();
+
                 public:
                     /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries open a little easier.
                     enum Lua51Libraries
