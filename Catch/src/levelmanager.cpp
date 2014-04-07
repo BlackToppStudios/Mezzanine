@@ -1380,8 +1380,8 @@ void LevelManager::PopulateLevelSelectUI()
         LevelRoot->CreateSingleImageLayer("MMLevelCellBack",0,0);
         UI::SingleImageLayer* SelectedLevelBack = LevelRoot->CreateSingleImageLayer("MMLevelCellBackSelected");
         // Now we need to setup our RenderLayerGroup bindings for being selected
-        UI::RenderLayerGroup* SelectedNormalGroup = LevelRoot->CreateRenderLayerGroup("SelectedNormal");
-        UI::RenderLayerGroup* SelectedHoveredGroup = LevelRoot->CreateRenderLayerGroup("SelectedHovered");
+        UI::RenderLayerGroup* SelectedNormalGroup = LevelRoot->CreateRenderLayerGroup(UI::CheckBox::WG_SelectedNormal);
+        UI::RenderLayerGroup* SelectedHoveredGroup = LevelRoot->CreateRenderLayerGroup(UI::CheckBox::WG_SelectedHovered);
         LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1, SelectedNormalGroup );
         LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1 | UI::Widget::WS_Hovered, SelectedHoveredGroup );
         LevelRoot->BindGroupToState( UI::Widget::WS_User_State_1 | UI::Widget::WS_Focused, SelectedNormalGroup );

@@ -91,8 +91,8 @@ namespace Mezzanine
             this->AddEvent(CheckBox::EventSelected);
             this->AddEvent(CheckBox::EventDeselected);
             // Add some more render layer groups
-            RenderLayerGroup* SelectedNormalGroup = this->CreateRenderLayerGroup("SelectedNormal");
-            RenderLayerGroup* SelectedHoveredGroup = this->CreateRenderLayerGroup("SelectedHovered");
+            RenderLayerGroup* SelectedNormalGroup = this->CreateRenderLayerGroup(CheckBox::WG_SelectedNormal);
+            RenderLayerGroup* SelectedHoveredGroup = this->CreateRenderLayerGroup(CheckBox::WG_SelectedHovered);
 
             this->BindGroupToState( WS_Selected, SelectedNormalGroup );
             this->BindGroupToState( WS_Selected | WS_Hovered, SelectedHoveredGroup );

@@ -105,8 +105,7 @@ namespace Mezzanine
                     NewTagToken = new TextToken(Text,TextToken::TT_Error);
                 }
 
-                if( NewTagToken->GetTokenType() != TextToken::TT_Error )
-                {
+                if( NewTagToken->GetTokenType() != TextToken::TT_Error ) {
                     TagToken* CastedTag = static_cast<TagToken*>( NewTagToken );
                     NameValuePairMap TagParams;
                     if( Text[Position] == '=' ) {
@@ -152,14 +151,12 @@ namespace Mezzanine
             while( static_cast<UInt32>(Position) < Token->Text.size() )
             {
                 Int32 GlyphID = Unicode::GetIntFromCharacter(BytesAdvance,StrBuf + Position);
-                if( GlyphID == -1 )
-                {
+                if( GlyphID == -1 ) {
                     MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting to parse non-UTF8 encoded markup text.  Encode in UTF8 and try again.");
                 }
 
                 Glyph* TheGlyph = Traits.CharFont->GetGlyph(static_cast<UInt32>(GlyphID));
-                if( TheGlyph == NULL )
-                {
+                if( TheGlyph == NULL ) {
                     StringStream ExceptionStream;
                     ExceptionStream << "Attempting to parse unknown Glyph ID: " << GlyphID << ".  Provided font (" << Traits.CharFont->GetName() << ") does not contain that Glyph.";
                     MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,ExceptionStream.str());
@@ -328,14 +325,11 @@ namespace Mezzanine
                 size_t TagStartPos = Source.find_first_of( this->GetMarkupTagStart(), Position );
 
                 // Deal with non-tag text if needed
-                if( TagStartPos == String::npos )
-                {
+                if( TagStartPos == String::npos ) {
                     // No tag for the remainder of the string, make our token and then exit
                     RetTokens->PushToken( CreateTextToken( Source.substr(Position) ) );
                     break;
-                }
-                else if( TagStartPos - Position > 0 )
-                {
+                }else if( TagStartPos - Position > 0 ) {
                     // We have text between our current position and our tag, make a token for it
                     RetTokens->PushToken( CreateTextToken( Source.substr(Position,TagStartPos - Position) ) );
                 }
@@ -344,24 +338,20 @@ namespace Mezzanine
                 size_t TagEndPos = Source.find_first_of( this->GetMarkupTagEnd(), TagStartPos );
 
                 // if we didn't get a match, this isn't a valid token so make a text token instead
-                if( TagEndPos == String::npos )
-                {
+                if( TagEndPos == String::npos ) {
                     RetTokens->PushToken( CreateTextToken( Source.substr(TagStartPos) ) );
                     break;
                 }
 
                 // Otherwise make a proper tag token and link it if it's an end tag
                 TextToken* NewTagToken = CreateTagToken( Source.substr(TagStartPos,TagEndPos - TagStartPos + 1) );
-                if( NewTagToken->Type == TextToken::TT_RangeTagEnd )
-                {
+                if( NewTagToken->Type == TextToken::TT_RangeTagEnd ) {
                     RangeTagToken* EndToken = static_cast<RangeTagToken*>( NewTagToken );
                     for( TokenString::ReverseTokenIterator TokIt = RetTokens->ReverseBeginToken() ; TokIt != RetTokens->ReverseEndToken() ; ++TokIt )
                     {
-                        if( (*TokIt)->Type == TextToken::TT_RangeTagStart )
-                        {
+                        if( (*TokIt)->Type == TextToken::TT_RangeTagStart ) {
                             RangeTagToken* TagCheck = static_cast<RangeTagToken*>( (*TokIt) );
-                            if( TagCheck->PartnerTag == NULL && TagCheck->TagName == EndToken->TagName )
-                            {
+                            if( TagCheck->PartnerTag == NULL && TagCheck->TagName == EndToken->TagName ) {
                                 TagCheck->PartnerTag = EndToken;
                                 EndToken->PartnerTag = TagCheck;
                             }

@@ -48,6 +48,7 @@
 #include "UI/screen.h"
 #include "UI/verticalcontainer.h"
 #include "UI/singlelinetextlayer.h"
+#include "UI/renderlayergroup.h"
 #include "UI/horizontallayoutstrategy.h"
 
 #include "stringtool.h"
@@ -106,8 +107,8 @@ namespace Mezzanine
             this->SelectionList->Hide();
 
             SingleLineTextLayer* DisplayText = this->SelectionDisplay->CreateSingleLineTextLayer();
-            this->SelectionDisplay->AddLayerToGroup(DisplayText,5,"Normal");
-            this->SelectionDisplay->AddLayerToGroup(DisplayText,5,"Hovered");
+            this->SelectionDisplay->AddLayerToGroup(DisplayText,5,Widget::WG_Normal);
+            this->SelectionDisplay->AddLayerToGroup(DisplayText,5,Widget::WG_Hovered);
 
             this->ListToggle->Subscribe(CheckBox::EventSelected,this);
             this->ListToggle->Subscribe(CheckBox::EventDeselected,this);
@@ -127,15 +128,10 @@ namespace Mezzanine
             // Update the personal data first
             this->ActDims = NewSelfRect;
 
-            /// @todo Fix the need to remove and re-add this child.
-            // Remove the list as a child because manual transform updates aren't properly checked in the linear stategies.
-            this->RemoveChild( this->SelectionList );
-
             // Update the children
             this->LayoutStrat->Layout(OldSelfRect,NewSelfRect,this->ChildWidgets);
 
-            // Updates for the other buttons are done, so now we can re-add the list
-            this->AddChild( this->SelectionList );
+            // Set the visibility
             this->SelectionList->SetVisible( this->ListToggle->IsSelected() );
 
             // Update our width to the appropriate size

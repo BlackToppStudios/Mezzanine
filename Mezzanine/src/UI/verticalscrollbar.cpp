@@ -276,15 +276,8 @@ namespace Mezzanine
             const Real ScrollSize = this->GetScrollerSize();
             const Rect OldScrollerRect = this->Scroller->GetRect();
 
-            /// @todo Fix the need to remove and re-add this child.
-            // Remove the scroller as a child because manual transform updates aren't properly checked in the linear stategies.
-            this->RemoveChild( this->Scroller );
-
             // Update the children
             this->LayoutStrat->Layout(OldSelfRect,NewSelfRect,this->ChildWidgets);
-
-            // Updates for the other buttons are done, so now we can re-add the scroller
-            this->AddChild( this->Scroller );
 
             // Next prepare the new rect for the scroller
             const Rect ScrollBackRect = this->ScrollBack->GetRect();

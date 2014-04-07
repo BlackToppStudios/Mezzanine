@@ -86,26 +86,21 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             /// @note This is mostly used for inheritence purposes.
-            TextToken() :
-                Type(TT_Error), RenderSize(0) {  }
+            TextToken();
             /// @brief Descriptive constructor.
             /// @param RawText A string containing the raw text of this token.
             /// @param TType The type of text token to be created.
-            TextToken(const String& RawText, const TokenType TType) :
-                Type(TType), RenderSize(0), Text(RawText) {  }
+            TextToken(const String& RawText, const TokenType TType);
             /// @brief Char8 constructor.
             /// @param Characters A buffer of UTF-8 characters to populate this TextToken with.
             /// @param Size The number of characters that exist in the provided buffer.
-            TextToken(const Char8* Characters, const UInt32 Size) :
-                Type(TT_Text), RenderSize(0) { this->InsertCharacters(0,Characters,Size); }
+            TextToken(const Char8* Characters, const UInt32 Size);
             /// @brief Char8 constructor.
             /// @param Characters A buffer of UTF-32 characters to populate this TextToken with.
             /// @param Size The number of characters that exist in the provided buffer.
-            TextToken(const UInt32* Characters, const UInt32 Size) :
-                Type(TT_Text), RenderSize(0) { this->InsertCharacters(0,Characters,Size); }
+            TextToken(const UInt32* Characters, const UInt32 Size);
             /// @brief Class destructor.
-            virtual ~TextToken()
-                {  }
+            virtual ~TextToken();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -175,17 +170,14 @@ namespace Mezzanine
             NameValuePairMap Params;
         public:
             /// @brief Class constructor.
-            TagToken()
-                {  }
+            TagToken();
             /// @brief Descriptive constructor.
             /// @param RawText A string containing the raw text of this token.
             /// @param Name The name of this tag.
             /// @param TType The type of text token to be created.
-            TagToken(const String& RawText, const String& Name, const TokenType TType) :
-                TextToken(RawText,TType), TagName(Name) {  }
+            TagToken(const String& RawText, const String& Name, const TokenType TType);
             /// @brief Class destructor.
-            virtual ~TagToken()
-                {  }
+            virtual ~TagToken();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -213,17 +205,14 @@ namespace Mezzanine
             RangeTagToken* PartnerTag;
         public:
             /// @brief Class constructor.
-            RangeTagToken() :
-                PartnerTag(NULL) {  }
+            RangeTagToken();
             /// @brief Descriptive constructor.
             /// @param RawText A string containing the raw text of this token.
             /// @param Name The name of this tag.
             /// @param TType The type of text token to be created.
-            RangeTagToken(const String& RawText, const String& Name, const TokenType TType) :
-                TagToken(RawText,Name,TType), PartnerTag(NULL) {  }
+            RangeTagToken(const String& RawText, const String& Name, const TokenType TType);
             /// @brief Class destructor.
-            virtual ~RangeTagToken()
-                {  }
+            virtual ~RangeTagToken();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -261,17 +250,14 @@ namespace Mezzanine
             friend class MarkupParser;
         public:
             /// @brief Class constructor.
-            InsertTagToken()
-                {  }
+            InsertTagToken();
             /// @brief Descriptive constructor.
             /// @param RawText A string containing the raw text of this token.
             /// @param Name The name of this tag.
             /// @param TType The type of text token to be created.
-            InsertTagToken(const String& RawText, const String& Name) :
-                TagToken(RawText,Name,TextToken::TT_InsertTag) {  }
+            InsertTagToken(const String& RawText, const String& Name);
             /// @brief Class destructor.
-            virtual ~InsertTagToken()
-                {  }
+            virtual ~InsertTagToken();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inserting and Removing

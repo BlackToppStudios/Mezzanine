@@ -1,0 +1,167 @@
+// © Copyright 2010 - 2014 BlackTopp Studios Inc.
+/* This file is part of The Mezzanine Engine.
+
+    The Mezzanine Engine is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    The Mezzanine Engine is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with The Mezzanine Engine.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* The original authors have included a copy of the license specified above in the
+   'Docs' folder. See 'gpl.txt'
+*/
+/* We welcome the use of the Mezzanine engine to anyone, including companies who wish to
+   Build professional software and charge for their product.
+
+   However there are some practical restrictions, so if your project involves
+   any of the following you should contact us and we will try to work something
+   out:
+    - DRM or Copy Protection of any kind(except Copyrights)
+    - Software Patents You Do Not Wish to Freely License
+    - Any Kind of Linking to Non-GPL licensed Works
+    - Are Currently In Violation of Another Copyright Holder's GPL License
+    - If You want to change our code and not add a few hundred MB of stuff to
+        your distribution
+
+   These and other limitations could cause serious legal problems if you ignore
+   them, so it is best to simply contact us or the Free Software Foundation, if
+   you have any questions.
+
+   Joseph Toppi - toppij@gmail.com
+   John Blackwood - makoenergy02@gmail.com
+*/
+#ifndef _uirenderlayergroup_cpp
+#define _uirenderlayergroup_cpp
+
+#include "UI/renderlayergroup.h"
+#include "UI/renderlayer.h"
+#include "UI/quadrenderable.h"
+
+namespace Mezzanine
+{
+    namespace UI
+    {
+        RenderLayerGroup::RenderLayerGroup(const UInt16 ID, QuadRenderable* Creator) :
+            GroupID(ID),
+            ParentQuad(Creator)
+            {  }
+
+        RenderLayerGroup::~RenderLayerGroup()
+            {  }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility
+
+        UInt16 RenderLayerGroup::GetGroupID() const
+            { return this->GroupID; }
+
+        void RenderLayerGroup::NotifyActive()
+        {
+            for( RenderLayerIterator It = this->RenderLayers.begin() ; It != this->RenderLayers.end() ; ++It )
+                { (*It).second->NotifyActive(); }
+        }
+
+        void RenderLayerGroup::NotifyInactive()
+        {
+            for( RenderLayerIterator It = this->RenderLayers.begin() ; It != this->RenderLayers.end() ; ++It )
+                { (*It).second->NotifyInactive(); }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // RenderLayer Management
+
+        void RenderLayerGroup::AddLayer(RenderLayer* RL, const UInt16 ZOrder)
+        {
+            for( RenderLayerIterator It = this->RenderLayers.begin() ; It != this->RenderLayers.end() ; ++It )
+            {
+                if( (*It).first > ZOrder ) {
+                    this->RenderLayers.insert(It,RenderLayerPair(ZOrder,RL));
+                    if( this->ParentQuad->GetActiveGroup() == this ) {
+                        this->ParentQuad->_MarkDirty();
+                    }
+                    return;
+                }
+            }
+            this->RenderLayers.push_back(RenderLayerPair(ZOrder,RL));
+            if( this->ParentQuad->GetActiveGroup() == this ) {
+                this->ParentQuad->_MarkDirty();
+            }
+            return;
+        }
+
+        RenderLayer* RenderLayerGroup::GetLayer(const Whole Index) const
+        {
+            return this->RenderLayers.at(Index).second;
+        }
+
+        RenderLayer* RenderLayerGroup::GetLayerByZOrder(const UInt16 ZOrder) const
+        {
+            for( ConstRenderLayerIterator RendIt = this->RenderLayers.begin() ; RendIt != this->RenderLayers.end() ; ++RendIt )
+            {
+                if( (*RendIt).first == ZOrder )
+                    return (*RendIt).second;
+            }
+            return NULL;
+        }
+
+        UInt32 RenderLayerGroup::GetNumRenderLayers() const
+        {
+            return this->RenderLayers.size();
+        }
+
+        void RenderLayerGroup::SwapLayers(RenderLayerGroup* OtherGroup)
+        {
+            this->RenderLayers.swap( OtherGroup->RenderLayers );
+            if( this->ParentQuad->GetActiveGroup() == this ) {
+                this->ParentQuad->_MarkDirty();
+            }
+        }
+
+        void RenderLayerGroup::RemoveLayer(RenderLayer* RL)
+        {
+            for( RenderLayerIterator It = this->RenderLayers.begin() ; It != this->RenderLayers.end() ; ++It )
+            {
+                if( (*It).second == RL ) {
+                    this->RenderLayers.erase(It);
+                    if( this->ParentQuad->GetActiveGroup() == this ) {
+                        this->ParentQuad->_MarkDirty();
+                    }
+                    return;
+                }
+            }
+        }
+
+        void RenderLayerGroup::RemoveAllLayers()
+        {
+            // We don't own them, QuadRenderables do, so just clear
+            this->RenderLayers.clear();
+        }
+
+        RenderLayerGroup::RenderLayerIterator RenderLayerGroup::RenderLayerBegin()
+            { return this->RenderLayers.begin(); }
+
+        RenderLayerGroup::RenderLayerIterator RenderLayerGroup::RenderLayerEnd()
+            { return this->RenderLayers.end(); }
+
+        RenderLayerGroup::ConstRenderLayerIterator RenderLayerGroup::RenderLayerBegin() const
+            { return this->RenderLayers.begin(); }
+
+        RenderLayerGroup::ConstRenderLayerIterator RenderLayerGroup::RenderLayerEnd() const
+            { return this->RenderLayers.end(); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+
+        String RenderLayerGroup::GetSerializableName()
+            { return "RenderLayerGroup"; }
+    }//UI
+}//Mezzanine
+
+#endif

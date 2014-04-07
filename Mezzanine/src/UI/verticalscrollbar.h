@@ -56,8 +56,6 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "VerticalScrollbar".
             static const String TypeName;
         protected:
-            friend class VerticalScrollbarFactory;
-
             /// @internal
             /// @brief Constructor helper function for creating a vertically aligned scrollbar.
             /// @param ScrollStyle The button style to be applied to this scrollbar.
@@ -66,7 +64,7 @@ namespace Mezzanine
             virtual Real GetUpperScrollLimit() const;
             /// @copydoc Scrollbar::GetLowerScrollLimit() const
             virtual Real GetLowerScrollLimit() const;
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent screen that created this scrollbar.
             VerticalScrollbar(Screen* Parent);
@@ -87,7 +85,7 @@ namespace Mezzanine
             VerticalScrollbar(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~VerticalScrollbar();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 

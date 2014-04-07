@@ -42,8 +42,7 @@
 
 #include "UI/quadrenderable.h"
 
-#include "UI/multilinetextlayer.h"
-#include "UI/singlelinetextlayer.h"
+#include "UI/renderlayergroup.h"
 #include "UI/layoutstrategy.h"
 #include "UI/widget.h"
 #include "UI/screen.h"
@@ -62,133 +61,6 @@ namespace Mezzanine
 {
     namespace UI
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        // RenderLayerGroup Methods
-
-        RenderLayerGroup::RenderLayerGroup(const String& Name, QuadRenderable* Creator) :
-            GroupName(Name),
-            ParentQuad(Creator)
-            {  }
-
-        RenderLayerGroup::~RenderLayerGroup()
-            {  }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Utility
-
-        const String& RenderLayerGroup::GetName() const
-        {
-            return this->GroupName;
-        }
-
-        void RenderLayerGroup::NotifyActive()
-        {
-            for( RenderLayerIterator It = this->RenderLayers.begin() ; It != this->RenderLayers.end() ; ++It )
-                { (*It).second->NotifyActive(); }
-        }
-
-        void RenderLayerGroup::NotifyInactive()
-        {
-            for( RenderLayerIterator It = this->RenderLayers.begin() ; It != this->RenderLayers.end() ; ++It )
-                { (*It).second->NotifyInactive(); }
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // RenderLayer Management
-
-        void RenderLayerGroup::AddLayer(RenderLayer* RL, const UInt16 ZOrder)
-        {
-            for( RenderLayerIterator It = this->RenderLayers.begin() ; It != this->RenderLayers.end() ; ++It )
-            {
-                if( (*It).first > ZOrder ) {
-                    this->RenderLayers.insert(It,RenderLayerPair(ZOrder,RL));
-                    if( this->ParentQuad->GetActiveGroup() == this ) {
-                        this->ParentQuad->_MarkDirty();
-                    }
-                    return;
-                }
-            }
-            this->RenderLayers.push_back(RenderLayerPair(ZOrder,RL));
-            if( this->ParentQuad->GetActiveGroup() == this ) {
-                this->ParentQuad->_MarkDirty();
-            }
-            return;
-        }
-
-        RenderLayer* RenderLayerGroup::GetLayer(const Whole Index) const
-        {
-            Whole Count = 0;
-            ConstRenderLayerIterator RendIt = this->RenderLayers.begin();
-            while( Count < Index && RendIt != this->RenderLayers.end() )
-            {
-                ++Count;
-                ++RendIt;
-            }
-
-            return ( RendIt != this->RenderLayers.end() ? (*RendIt).second : NULL );
-        }
-
-        RenderLayer* RenderLayerGroup::GetLayerByZOrder(const UInt16 ZOrder) const
-        {
-            for( ConstRenderLayerIterator RendIt = this->RenderLayers.begin() ; RendIt != this->RenderLayers.end() ; ++RendIt )
-            {
-                if( (*RendIt).first == ZOrder )
-                    return (*RendIt).second;
-            }
-            return NULL;
-        }
-
-        UInt32 RenderLayerGroup::GetNumRenderLayers() const
-        {
-            return this->RenderLayers.size();
-        }
-
-        void RenderLayerGroup::SwapLayers(RenderLayerGroup* OtherGroup)
-        {
-            this->RenderLayers.swap( OtherGroup->RenderLayers );
-            if( this->ParentQuad->GetActiveGroup() == this ) {
-                this->ParentQuad->_MarkDirty();
-            }
-        }
-
-        void RenderLayerGroup::RemoveLayer(RenderLayer* RL)
-        {
-            for( RenderLayerIterator It = this->RenderLayers.begin() ; It != this->RenderLayers.end() ; ++It )
-            {
-                if( (*It).second == RL ) {
-                    this->RenderLayers.erase(It);
-                    if( this->ParentQuad->GetActiveGroup() == this ) {
-                        this->ParentQuad->_MarkDirty();
-                    }
-                    return;
-                }
-            }
-        }
-
-        void RenderLayerGroup::RemoveAllLayers()
-        {
-            // We don't own them, QuadRenderables do, so just clear
-            this->RenderLayers.clear();
-        }
-
-        RenderLayerGroup::RenderLayerIterator RenderLayerGroup::RenderLayerBegin()
-            { return this->RenderLayers.begin(); }
-
-        RenderLayerGroup::RenderLayerIterator RenderLayerGroup::RenderLayerEnd()
-            { return this->RenderLayers.end(); }
-
-        RenderLayerGroup::ConstRenderLayerIterator RenderLayerGroup::RenderLayerBegin() const
-            { return this->RenderLayers.begin(); }
-
-        RenderLayerGroup::ConstRenderLayerIterator RenderLayerGroup::RenderLayerEnd() const
-            { return this->RenderLayers.end(); }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Serialization
-
-        String RenderLayerGroup::GetSerializableName()
-            { return "RenderLayerGroup"; }
-
         ///////////////////////////////////////////////////////////////////////////////
         // QuadRenderable Methods
 
@@ -279,6 +151,16 @@ namespace Mezzanine
 
                 this->RenderLayers.resize(Pow2,NULL);
             }
+        }
+
+        RenderLayerGroup* QuadRenderable::CreateRenderLayerGroupNoCheck(const UInt16 ID)
+        {
+            RenderLayerGroup* NewGroup = new RenderLayerGroup(ID,this);
+            if( this->RenderLayerGroups.empty() && this->ActiveGroup == NULL ) {
+                this->SetActiveGroup( NewGroup );
+            }
+            this->RenderLayerGroups.push_back( NewGroup );
+            return NewGroup;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -513,22 +395,15 @@ namespace Mezzanine
         SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ)
         {
             SingleImageLayer* NewLayer = this->CreateSingleImageLayer();
-            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
-            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,Widget::WG_Normal);
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,Widget::WG_Hovered);
             return NewLayer;
         }
 
-        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const UInt16 ZOrder, const String& GroupName)
+        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const GroupOrderEntry& GroupAndZ)
         {
             SingleImageLayer* NewLayer = this->CreateSingleImageLayer();
-            this->AddLayerToGroup(NewLayer,ZOrder,GroupName);
-            return NewLayer;
-        }
-
-        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const GroupOrderEntryVector& Entrys)
-        {
-            SingleImageLayer* NewLayer = this->CreateSingleImageLayer();
-            this->AddLayerToGroups(NewLayer,Entrys);
+            this->AddLayerToGroup(NewLayer,GroupAndZ);
             return NewLayer;
         }
 
@@ -542,21 +417,14 @@ namespace Mezzanine
         SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const String& SpriteName, const UInt16 NormalZ, const UInt16 HoveredZ)
         {
             SingleImageLayer* NewLayer = this->CreateSingleImageLayer(SpriteName);
-            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
-            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,Widget::WG_Normal);
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,Widget::WG_Hovered);
             return NewLayer;
         }
 
-        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const String& SpriteName, const UInt16 ZOrder, const String& GroupName)
+        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const String& SpriteName, const GroupOrderEntry& GroupAndZ)
         {
-            SingleImageLayer* NewLayer = this->CreateSingleImageLayer(ZOrder,GroupName);
-            NewLayer->SetSprite(SpriteName);
-            return NewLayer;
-        }
-
-        SingleImageLayer* QuadRenderable::CreateSingleImageLayer(const String& SpriteName, const GroupOrderEntryVector& Entrys)
-        {
-            SingleImageLayer* NewLayer = this->CreateSingleImageLayer(Entrys);
+            SingleImageLayer* NewLayer = this->CreateSingleImageLayer(GroupAndZ);
             NewLayer->SetSprite(SpriteName);
             return NewLayer;
         }
@@ -573,22 +441,15 @@ namespace Mezzanine
         MultiImageLayer* QuadRenderable::CreateMultiImageLayer(const UInt16 NormalZ, const UInt16 HoveredZ)
         {
             MultiImageLayer* NewLayer = this->CreateMultiImageLayer();
-            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
-            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,Widget::WG_Normal);
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,Widget::WG_Hovered);
             return NewLayer;
         }
 
-        MultiImageLayer* QuadRenderable::CreateMultiImageLayer(const UInt16 ZOrder, const String& GroupName)
+        MultiImageLayer* QuadRenderable::CreateMultiImageLayer(const GroupOrderEntry& GroupAndZ)
         {
             MultiImageLayer* NewLayer = this->CreateMultiImageLayer();
-            this->AddLayerToGroup(NewLayer,ZOrder,GroupName);
-            return NewLayer;
-        }
-
-        MultiImageLayer* QuadRenderable::CreateMultiImageLayer(const GroupOrderEntryVector& Entrys)
-        {
-            MultiImageLayer* NewLayer = this->CreateMultiImageLayer();
-            this->AddLayerToGroups(NewLayer,Entrys);
+            this->AddLayerToGroup(NewLayer,GroupAndZ);
             return NewLayer;
         }
 
@@ -604,22 +465,15 @@ namespace Mezzanine
         SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const UInt16 NormalZ, const UInt16 HoveredZ)
         {
             SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer();
-            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
-            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,Widget::WG_Normal);
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,Widget::WG_Hovered);
             return NewLayer;
         }
 
-        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const UInt16 ZOrder, const String& GroupName)
+        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const GroupOrderEntry& GroupAndZ)
         {
             SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer();
-            this->AddLayerToGroup(NewLayer,ZOrder,GroupName);
-            return NewLayer;
-        }
-
-        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const GroupOrderEntryVector& Entrys)
-        {
-            SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer();
-            this->AddLayerToGroups(NewLayer,Entrys);
+            this->AddLayerToGroup(NewLayer,GroupAndZ);
             return NewLayer;
         }
 
@@ -635,22 +489,15 @@ namespace Mezzanine
         SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const String& FontName, const UInt16 NormalZ, const UInt16 HoveredZ)
         {
             SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer(FontName);
-            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
-            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,Widget::WG_Normal);
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,Widget::WG_Hovered);
             return NewLayer;
         }
 
-        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const String& FontName, const UInt16 ZOrder, const String& GroupName)
+        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const String& FontName, const GroupOrderEntry& GroupAndZ)
         {
             SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer(FontName);
-            this->AddLayerToGroup(NewLayer,ZOrder,GroupName);
-            return NewLayer;
-        }
-
-        SingleLineTextLayer* QuadRenderable::CreateSingleLineTextLayer(const String& FontName, const GroupOrderEntryVector& Entrys)
-        {
-            SingleLineTextLayer* NewLayer = this->CreateSingleLineTextLayer(FontName);
-            this->AddLayerToGroups(NewLayer,Entrys);
+            this->AddLayerToGroup(NewLayer,GroupAndZ);
             return NewLayer;
         }
 
@@ -666,22 +513,15 @@ namespace Mezzanine
         MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const UInt16 NormalZ, const UInt16 HoveredZ)
         {
             MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer();
-            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
-            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,Widget::WG_Normal);
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,Widget::WG_Hovered);
             return NewLayer;
         }
 
-        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const UInt16 ZOrder, const String& GroupName)
+        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const GroupOrderEntry& GroupAndZ)
         {
             MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer();
-            this->AddLayerToGroup(NewLayer,ZOrder,GroupName);
-            return NewLayer;
-        }
-
-        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const GroupOrderEntryVector& Entrys)
-        {
-            MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer();
-            this->AddLayerToGroups(NewLayer,Entrys);
+            this->AddLayerToGroup(NewLayer,GroupAndZ);
             return NewLayer;
         }
 
@@ -697,22 +537,15 @@ namespace Mezzanine
         MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const String& FontName, const UInt16 NormalZ, const UInt16 HoveredZ)
         {
             MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer(FontName);
-            this->AddLayerToExistingGroup(NewLayer,NormalZ,"Normal");
-            this->AddLayerToExistingGroup(NewLayer,HoveredZ,"Hovered");
+            this->AddLayerToExistingGroup(NewLayer,NormalZ,Widget::WG_Normal);
+            this->AddLayerToExistingGroup(NewLayer,HoveredZ,Widget::WG_Hovered);
             return NewLayer;
         }
 
-        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const String& FontName, const UInt16 ZOrder, const String& GroupName)
+        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const String& FontName, const GroupOrderEntry& GroupAndZ)
         {
             MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer(FontName);
-            this->AddLayerToGroup(NewLayer,ZOrder,GroupName);
-            return NewLayer;
-        }
-
-        MultiLineTextLayer* QuadRenderable::CreateMultiLineTextLayer(const String& FontName, const GroupOrderEntryVector& Entrys)
-        {
-            MultiLineTextLayer* NewLayer = this->CreateMultiLineTextLayer(FontName);
-            this->AddLayerToGroups(NewLayer,Entrys);
+            this->AddLayerToGroup(NewLayer,GroupAndZ);
             return NewLayer;
         }
 
@@ -742,9 +575,9 @@ namespace Mezzanine
 
         void QuadRenderable::DestroyRenderLayer(RenderLayer* ToBeDestroyed)
         {
-            for( RenderLayerGroupIterator It = this->RenderLayerGroups.begin() ; It != this->RenderLayerGroups.end() ; ++It )
+            for( RenderLayerGroupIterator GroupIt = this->RenderLayerGroups.begin() ; GroupIt != this->RenderLayerGroups.end() ; ++GroupIt )
             {
-                (*It).second->RemoveLayer(ToBeDestroyed);
+                (*GroupIt)->RemoveLayer(ToBeDestroyed);
             }
             for( Whole Index = 0 ; Index < this->RenderLayers.size() ; ++Index )
             {
@@ -764,9 +597,9 @@ namespace Mezzanine
 
         void QuadRenderable::DestroyAllRenderLayers()
         {
-            for( RenderLayerGroupIterator It = this->RenderLayerGroups.begin() ; It != this->RenderLayerGroups.end() ; ++It )
+            for( RenderLayerGroupIterator GroupIt = this->RenderLayerGroups.begin() ; GroupIt != this->RenderLayerGroups.end() ; ++GroupIt )
             {
-                (*It).second->RemoveAllLayers();
+                (*GroupIt)->RemoveAllLayers();
             }
             for( RenderLayerIterator It = this->RenderLayers.begin() ; It != this->RenderLayers.end() ; ++It )
             {
@@ -790,13 +623,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // RenderLayerGroup Management
 
-        void QuadRenderable::SetActiveGroup(const String& Name)
+        void QuadRenderable::SetActiveGroup(const UInt16 GroupID)
         {
-            RenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
-            if( It != this->RenderLayerGroups.end() ) {
-                this->SetActiveGroup( (*It).second );
+            RenderLayerGroup* ToSet = this->GetRenderLayerGroup(GroupID);
+            if( ToSet != NULL ) {
+                this->SetActiveGroup( ToSet );
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" does not exist in QuadRenderable: \"" + GetName() + "\"." );
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" does not exist in QuadRenderable: \"" + this->GetName() + "\"." );
             }
         }
 
@@ -804,40 +637,36 @@ namespace Mezzanine
         {
             if( this->ActiveGroup != Group ) {
                 // Out with the old
-                if( this->ActiveGroup != NULL )
+                if( this->ActiveGroup != NULL ) {
                     this->ActiveGroup->NotifyInactive();
+                }
                 // In with the new
                 this->ActiveGroup = Group;
-                if( this->ActiveGroup != NULL )
+                if( this->ActiveGroup != NULL ) {
                     this->ActiveGroup->NotifyActive();
+                }
                 this->_MarkDirty();
             }
         }
 
         RenderLayerGroup* QuadRenderable::GetActiveGroup() const
-        {
-            return this->ActiveGroup;
-        }
+            { return this->ActiveGroup; }
 
-        Boole QuadRenderable::RenderLayerGroupExists(const String& Name) const
-        {
-            ConstRenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
-            return ( It != this->RenderLayerGroups.end() );
-        }
+        Boole QuadRenderable::RenderLayerGroupExists(const UInt16 GroupID) const
+            { return ( this->GetRenderLayerGroup(GroupID) != NULL ); }
 
         UInt32 QuadRenderable::GetNumRenderLayerGroups() const
-        {
-            return this->RenderLayerGroups.size();
-        }
+            { return this->RenderLayerGroups.size(); }
 
-        void QuadRenderable::AddLayerToGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const String& GroupName)
-        {
-            this->CreateOrRetrieveRenderLayerGroup(GroupName)->AddLayer(Layer,LayerZOrder);
-        }
+        void QuadRenderable::AddLayerToGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const UInt16 GroupID)
+            { this->CreateOrRetrieveRenderLayerGroup(GroupID)->AddLayer(Layer,LayerZOrder); }
 
-        void QuadRenderable::AddLayerToExistingGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const String& GroupName)
+        void QuadRenderable::AddLayerToGroup(RenderLayer* Layer, const GroupOrderEntry& GroupAndZ)
+            { this->AddLayerToGroup(Layer,GroupAndZ.LayerZOrder,GroupAndZ.GroupID); }
+
+        void QuadRenderable::AddLayerToExistingGroup(RenderLayer* Layer, const UInt16 LayerZOrder, const UInt16 GroupID)
         {
-            RenderLayerGroup* ExistingGroup = this->GetRenderLayerGroup(GroupName);
+            RenderLayerGroup* ExistingGroup = this->GetRenderLayerGroup(GroupID);
             if( ExistingGroup != NULL ) {
                 ExistingGroup->AddLayer(Layer,LayerZOrder);
             }
@@ -846,78 +675,75 @@ namespace Mezzanine
         void QuadRenderable::AddLayerToGroups(RenderLayer* Layer, const GroupOrderEntryVector& Entrys)
         {
             for( GroupOrderEntryVector::const_iterator It = Entrys.begin() ; It != Entrys.end() ; ++It )
-            {
-                this->CreateOrRetrieveRenderLayerGroup( (*It).second )->AddLayer( Layer, (*It).first );
-            }
+                { this->CreateOrRetrieveRenderLayerGroup( (*It).GroupID )->AddLayer( Layer, (*It).LayerZOrder ); }
         }
 
-        void QuadRenderable::RemoveLayerFromGroup(RenderLayer* Layer, const String& GroupName)
+        void QuadRenderable::RemoveLayerFromGroup(RenderLayer* Layer, const UInt16 GroupID)
         {
-            RenderLayerGroupIterator It = this->RenderLayerGroups.find(GroupName);
-            if( It != this->RenderLayerGroups.end() ) {
-                (*It).second->RemoveLayer(Layer);
+            RenderLayerGroup* GroupCheck = this->GetRenderLayerGroup(GroupID);
+            if( GroupCheck != NULL ) {
+                GroupCheck->RemoveLayer(Layer);
             }
         }
 
         void QuadRenderable::RemoveLayerFromAllGroups(RenderLayer* Layer)
         {
-            for( RenderLayerGroupIterator It = this->RenderLayerGroups.begin() ; It != this->RenderLayerGroups.end() ; ++It )
-            {
-                (*It).second->RemoveLayer(Layer);
-            }
+            for( RenderLayerGroupIterator GroupIt = this->RenderLayerGroups.begin() ; GroupIt != this->RenderLayerGroups.end() ; ++GroupIt )
+                { (*GroupIt)->RemoveLayer(Layer); }
         }
 
-        RenderLayerGroup* QuadRenderable::CreateRenderLayerGroup(const String& Name)
+        RenderLayerGroup* QuadRenderable::CreateRenderLayerGroup(const UInt16 GroupID)
         {
-            RenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
-            if( It == this->RenderLayerGroups.end() ) {
-                Boole Empty = ( this->RenderLayerGroups.empty() && this->ActiveGroup == NULL );
-                RenderLayerGroup* NewGroup = new RenderLayerGroup(Name,this);
-                this->RenderLayerGroups.insert( std::pair<String,RenderLayerGroup*>(Name,NewGroup) );
-                if( Empty ) {
-                    this->SetActiveGroup( NewGroup );
-                }
-                return NewGroup;
+            RenderLayerGroup* GroupCheck = this->GetRenderLayerGroup(GroupID);
+            if( GroupCheck == NULL ) {
+                return this->CreateRenderLayerGroupNoCheck(GroupID);
             }else{
                 MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"RenderLayerGroup named \"" + Name + "\" already exists in QuadRenderable: \"" + this->GetName() + "\"." );
+            }
+            return NULL;//This should never happen, but compilation warnings are annoying.
+        }
+
+        RenderLayerGroup* QuadRenderable::CreateOrRetrieveRenderLayerGroup(const UInt16 GroupID)
+        {
+            RenderLayerGroup* Ret = this->GetRenderLayerGroup(GroupID);
+            if( Ret == NULL ) {
+                Ret = this->CreateRenderLayerGroupNoCheck(GroupID);
+            }
+            return Ret;
+        }
+
+        RenderLayerGroup* QuadRenderable::GetRenderLayerGroup(const UInt16 GroupID) const
+        {
+            for( ConstRenderLayerGroupIterator GroupIt = this->RenderLayerGroups.begin() ; GroupIt != this->RenderLayerGroups.end() ; ++GroupIt )
+            {
+                if( (*GroupIt)->GetGroupID() == GroupID ) {
+                    return (*GroupIt);
+                }
             }
             return NULL;
         }
 
-        RenderLayerGroup* QuadRenderable::CreateOrRetrieveRenderLayerGroup(const String& Name)
+        void QuadRenderable::DestroyRenderLayerGroup(const UInt16 GroupID)
         {
-            RenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
-            if( It != this->RenderLayerGroups.end() ) return (*It).second;
-            else return this->CreateRenderLayerGroup(Name);
-        }
-
-        RenderLayerGroup* QuadRenderable::GetRenderLayerGroup(const String& Name) const
-        {
-            ConstRenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
-            if( It != this->RenderLayerGroups.end() ) return (*It).second;
-            else return NULL;
-        }
-
-        void QuadRenderable::DestroyRenderLayerGroup(const String& Name)
-        {
-            RenderLayerGroupIterator It = this->RenderLayerGroups.find(Name);
-            if( It != this->RenderLayerGroups.end() ) {
-                delete (*It).second;
-                this->RenderLayerGroups.erase(It);
+            for( RenderLayerGroupIterator GroupIt = this->RenderLayerGroups.begin() ; GroupIt != this->RenderLayerGroups.end() ; ++GroupIt )
+            {
+                if( (*GroupIt)->GetGroupID() == GroupID ) {
+                    delete (*GroupIt);
+                    this->RenderLayerGroups.erase(GroupIt);
+                    return;
+                }
             }
         }
 
         void QuadRenderable::DestroyRenderLayerGroup(RenderLayerGroup* ToBeDestroyed)
         {
-            this->DestroyRenderLayerGroup(ToBeDestroyed->GetName());
+            this->DestroyRenderLayerGroup(ToBeDestroyed->GetGroupID());
         }
 
         void QuadRenderable::DestroyAllRenderLayerGroups()
         {
-            for( RenderLayerGroupIterator It = this->RenderLayerGroups.begin() ; It != this->RenderLayerGroups.end() ; ++It )
-            {
-                delete (*It).second;
-            }
+            for( RenderLayerGroupIterator GroupIt = this->RenderLayerGroups.begin() ; GroupIt != this->RenderLayerGroups.end() ; ++GroupIt )
+                { delete (*GroupIt); }
             this->RenderLayerGroups.clear();
         }
 
@@ -1204,6 +1030,10 @@ namespace Mezzanine
                 PropertiesNode.AppendAttribute("ZOrder").SetValue(this->ZOrder) &&
                 PropertiesNode.AppendAttribute("VertexCache").SetValue( this->IsVertexCachingEnabled() ? "true" : "false" ) )
             {
+                if( this->ActiveGroup != NULL ) {
+                    PropertiesNode.AppendAttribute("ActiveGroup").SetValue( ActiveGroup->GetGroupID() );
+                }
+
                 XML::Node ActDimsNode = PropertiesNode.AppendChild("Dimensions");
                 this->ActDims.ProtoSerialize( ActDimsNode );
                 XML::Node PositioningPolicyNode = PropertiesNode.AppendChild("PositioningPolicy");
@@ -1240,20 +1070,20 @@ namespace Mezzanine
             for( ConstRenderLayerGroupIterator GroupIt = this->RenderLayerGroups.begin() ; GroupIt != this->RenderLayerGroups.end() ; ++GroupIt )
             {
                 XML::Node CurrGroupNode = GroupsNode.AppendChild( "RenderLayerGroup" );
-                if( CurrGroupNode.AppendAttribute( "Name" ).SetValue( (*GroupIt).first ) ) {
-                    for( RenderLayerGroup::RenderLayerIterator LayerIt = (*GroupIt).second->RenderLayerBegin() ; LayerIt != (*GroupIt).second->RenderLayerEnd() ; ++LayerIt )
+                if( CurrGroupNode.AppendAttribute( "GroupID" ).SetValue( (*GroupIt)->GetGroupID() ) ) {
+                    for( RenderLayerGroup::RenderLayerIterator LayerIt = (*GroupIt)->RenderLayerBegin() ; LayerIt != (*GroupIt)->RenderLayerEnd() ; ++LayerIt )
                     {
                         XML::Node CurrLayerNode = CurrGroupNode.AppendChild( "RenderLayer" );
 
                         if( CurrLayerNode.AppendAttribute( "Index" ).SetValue( (*LayerIt).second->GetIndex() ) == false ) {
                             SerializeError("Create XML Attribute Values","Index",true);
                         }
-                        if( CurrLayerNode.AppendAttribute( "ZOrder" ).SetValue( (*GroupIt).first ) == false ) {
+                        if( CurrLayerNode.AppendAttribute( "ZOrder" ).SetValue( (*LayerIt).first ) == false ) {
                             SerializeError("Create XML Attribute Values","ZOrder",true);
                         }
                     }
                 }else{
-                    SerializeError("Create XML Attribute Values","Name",true);
+                    SerializeError("Create XML Attribute Values","GroupID",true);
                 }
             }
         }
@@ -1305,9 +1135,9 @@ namespace Mezzanine
                     if( !CurrAttrib.Empty() )
                         this->SetLocalVertexCaching( StringTools::ConvertToBool( CurrAttrib.AsString() ) );
 
-                    String ActiveRenderGroup = PropertiesNode.GetAttribute("ActiveGroupName").AsString();
-                    if( !ActiveRenderGroup.empty() )
-                        this->SetActiveGroup(ActiveRenderGroup);
+                    CurrAttrib = PropertiesNode.GetAttribute("ActiveGroupName");
+                    if( !CurrAttrib.Empty() )
+                        this->SetActiveGroup( CurrAttrib.AsUint() );
 
                     // Get the properties that need their own nodes
                     XML::Node DimsNode = PropertiesNode.GetChild("Dimensions").GetFirstChild();
@@ -1384,9 +1214,9 @@ namespace Mezzanine
                     {
                         RenderLayerGroup* CurrGroup = NULL;
 
-                        CurrAttrib = (*GroupNodeIt).GetAttribute("Name");
+                        CurrAttrib = (*GroupNodeIt).GetAttribute("GroupID");
                         if( !CurrAttrib.Empty() )
-                            CurrGroup = this->CreateRenderLayerGroup( CurrAttrib.AsString() );
+                            CurrGroup = this->CreateRenderLayerGroup( CurrAttrib.AsUint() );
 
                         if( CurrGroup ) {
                             for( XML::NodeIterator LayerNodeIt = (*GroupNodeIt).begin() ; LayerNodeIt != (*GroupNodeIt).end() ; ++LayerNodeIt )

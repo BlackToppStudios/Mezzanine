@@ -67,7 +67,6 @@ namespace Mezzanine
             /// @brief Callback type for input filtering.
             typedef Boole (FilterCallback)(const Int32 Glyph);
         protected:
-            friend class EditBoxFactory;
             /// @internal
             /// @brief Stores the screen position where the mouse is located during editing.  Used to find the end index for highlighting.
             Vector2 EditHighlightTarget;
@@ -93,7 +92,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Convenience method that will check the configuration of this EditBox to determine if inputs will be consumed by this EditBox.
             virtual void UpdateEditMode();
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             EditBox(Screen* Parent);
@@ -129,7 +128,7 @@ namespace Mezzanine
             EditBox(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~EditBox();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 

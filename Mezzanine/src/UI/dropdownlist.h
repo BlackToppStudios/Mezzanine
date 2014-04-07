@@ -62,7 +62,6 @@ namespace Mezzanine
             /// @brief String containing the type name for this class: "DropDownList".
             static const String TypeName;
         protected:
-            friend class DropDownListFactory;
             /// @internal
             /// @brief A pointer to a copy of the ListItem that is the current selection.
             Widget* SelectionDisplay;
@@ -77,7 +76,7 @@ namespace Mezzanine
             /// @brief Convenience method for the construction of a DropDownList.
             /// @param Style An enum value representing how the scrollbar child of thie ListBox will be constructed.  See @ref UI::ScrollbarStyle enum for more info.
             virtual void ConstructDropDownList(const UI::ScrollbarStyle& Style);
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             DropDownList(Screen* Parent);
@@ -98,7 +97,7 @@ namespace Mezzanine
             DropDownList(const XML::Node& XMLNode, Screen* Parent);
             /// @brief Class destructor.
             virtual ~DropDownList();
-        public:
+        //public:
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods
 

@@ -172,7 +172,7 @@ namespace Mezzanine
             /// @internal
             /// @brief The container specific logic for updating it's dimensions.
             virtual void UpdateContainerDimensionsImpl(const Rect& OldSelfRect, const Rect& NewSelfRect) = 0;
-        //public:
+        public:
             /// @brief Blank constructor.
             /// @param Parent The parent Screen that created this widget.
             PagedContainer(Screen* Parent);
@@ -187,7 +187,7 @@ namespace Mezzanine
             PagedContainer(const String& RendName, const UnifiedRect& RendRect, Screen* Parent);
             /// @brief Class destructor.
             virtual ~PagedContainer();
-        public:
+
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 

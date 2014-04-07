@@ -133,6 +133,7 @@ namespace Mezzanine
             /// state of a layer (or group of layers) if necessary to achieve the visual effect desired.
             virtual void NotifyInactive();
             /// @brief Gets a rect containing the actual position and size of this layer.
+            /// @note This Rect does have scaling applied, but not any set rotation of the layer.
             /// @return Returns a Rect containing the area of this layer in pixels.
             virtual Rect GetAreaRect() const;
             /// @brief Sets the scaling to be applied to this render layer.

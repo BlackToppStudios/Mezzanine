@@ -116,8 +116,7 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Aligns the text of the caption.
-            /// @details Default value for this is UI::Txt_Middle.
+            /// @brief Sets the current alignment for the text in this line of text.
             /// @param Align The enum value representing the horizontal alignment to be set.
             void SetAlignment(const UI::LinearAlignment Align);
             /// @brief Gets the current alignment for the text in this line of text.
