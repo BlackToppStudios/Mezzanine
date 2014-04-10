@@ -99,11 +99,6 @@ namespace Mezzanine
             Vector2 NewPosition;
             const PositioningInfo& ChildPositioning = Child->GetPositioningPolicy();
 
-            // Check for configurations that are just not doable
-            if( ( ChildPositioning.HorizontalRules & UI::PF_Anchor_Prev_Offset && ChildPositioning.HorizontalRules & UI::PF_Anchor_Size ) ||
-                ( ChildPositioning.VerticalRules & UI::PF_Anchor_Prev_Offset && ChildPositioning.VerticalRules & UI::PF_Anchor_Size ) )
-                { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot use both the previous offset and quad size for the updated offset of a child quad.  They are mutually exclusive."); }
-
             // Resolve our position
             NewPosition.X = MathTools::Floor( this->HandleChildHorizontalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child) );
             NewPosition.Y = MathTools::Floor( this->HandleChildVerticalPositioning(OldSelfRect,NewSelfRect,NewChildSize,Child) );
@@ -287,7 +282,7 @@ namespace Mezzanine
                 default:
                     { Ret = OldSize.X;                                                         break; }
             }
-            return std::max(Ret,0);
+            return std::max(Ret,Real(0.0));
         }
 
         Real LayoutStrategy::HandleChildVerticalSizing(const Rect& OldSelfRect, const Rect& NewSelfRect, const Real PrevAxisResult, QuadRenderable* Child)
@@ -310,7 +305,7 @@ namespace Mezzanine
                 default:
                     { Ret = OldSize.Y;                                                                                break; }
             }
-            return std::max(Ret,0);
+            return std::max(Ret,Real(0.0));
         }
 
         void LayoutStrategy::CheckChildAspectRatio(const Vector2& OldChildSize, Vector2& NewChildSize, QuadRenderable* Child)

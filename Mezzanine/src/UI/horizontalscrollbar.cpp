@@ -148,7 +148,7 @@ namespace Mezzanine
                     this->AddChild(this->ScrollBack,0);
 
                     this->UpLeftButton = ParentScreen->CreateButton(this->Name+".LeftButton",UnifiedRect(UnifiedVec2(-1,-1,0,0),ChildSize));
-                    this->UpLeftButton->SetHorizontalPositioningRules(UI::PF_Anchor_Right | UI::PF_Anchor_Size);
+                    this->UpLeftButton->SetHorizontalPositioningRules(UI::PF_Anchor_Right | UI::PF_Anchor_SelfSize);
                     this->UpLeftButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->UpLeftButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->UpLeftButton,1);
@@ -173,7 +173,7 @@ namespace Mezzanine
                     this->AddChild(this->UpLeftButton,0);
 
                     this->DownRightButton = ParentScreen->CreateButton(this->Name+".RightButton",UnifiedRect(UnifiedVec2(1,1,0,0),ChildSize));
-                    this->DownRightButton->SetHorizontalPositioningRules(UI::PF_Anchor_Left | UI::PF_Anchor_Size);
+                    this->DownRightButton->SetHorizontalPositioningRules(UI::PF_Anchor_Left | UI::PF_Anchor_SelfSize);
                     this->DownRightButton->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
                     this->DownRightButton->SetVerticalSizingRules(UI::SR_Unified_Dims);
                     this->AddChild(this->DownRightButton,1);
