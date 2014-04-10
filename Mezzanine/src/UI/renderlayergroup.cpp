@@ -49,8 +49,8 @@ namespace Mezzanine
     namespace UI
     {
         RenderLayerGroup::RenderLayerGroup(const UInt16 ID, QuadRenderable* Creator) :
-            GroupID(ID),
-            ParentQuad(Creator)
+            ParentQuad(Creator),
+            GroupID(ID)
             {  }
 
         RenderLayerGroup::~RenderLayerGroup()

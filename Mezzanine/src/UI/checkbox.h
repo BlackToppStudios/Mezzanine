@@ -50,7 +50,7 @@ namespace Mezzanine
         class Button;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a simple widget for storing a bool value.
-        /// @details
+        /// @details This class does not use a LayoutStrategy.
         ///////////////////////////////////////
         class MEZZ_LIB CheckBox : public Button
         {

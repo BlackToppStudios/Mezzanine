@@ -125,7 +125,7 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a simple widget where only one of it's selections can be selected at a time.
-        /// @details
+        /// @details This class does not use a LayoutStrategy.
         ///////////////////////////////////////
         class RadioButton : public CheckBox
         {

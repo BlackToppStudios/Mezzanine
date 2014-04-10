@@ -127,9 +127,12 @@ namespace Mezzanine
                 if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Prev_Offset ) {
                     // Get the old offset between the center of this quad and it's parent.
                     Offset = ( OldXPos + ( OldXSize * 0.5 ) ) - OldSelfRect.GetHorizontalCenter();
-                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_SelfSize ) {
                     // Use the new child size on the horizontal sxis.  Apply the Unified Dim on the X axis.
                     Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewChildSize.X );
+                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_ParentSize ) {
+                    // Use this quads new size on the horizontal sxis.  Apply the Unified Dim on the X axis.
+                    Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewSelfRect.Size.X );
                 }
                 // Then add that distance to the updated transform and then subtract the new half size.
                 Ret = ( NewSelfRect.GetHorizontalCenter() + Offset ) - ( NewChildSize.X * 0.5 );
@@ -139,9 +142,12 @@ namespace Mezzanine
                     // Get the old offset between the left edge of this quad and it's parent.
                     // Note: If the child is within the bounds of it's parent, this Offset should always be >= 0.
                     Offset = ( OldXPos - OldSelfRect.GetLeftEdge() );
-                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_SelfSize ) {
                     // Use the new child size on the horizontal sxis.  Apply the Unified Dim on the X axis.
                     Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewChildSize.X );
+                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_ParentSize ) {
+                    // Use this quads new size on the horizontal sxis.  Apply the Unified Dim on the X axis.
+                    Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewSelfRect.Size.X );
                 }
                 // Then add that distance to the updated transform.
                 Ret = NewSelfRect.GetLeftEdge() + Offset;
@@ -151,9 +157,12 @@ namespace Mezzanine
                     // Get the old offset between the right edge of this quad and it's parent.
                     // Note: If the child is within the bounds of it's parent, this Offset should always be <= 0.
                     Offset = ( ( OldXPos + OldXSize ) - OldSelfRect.GetRightEdge() );
-                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_SelfSize ) {
                     // Use the new child size on the horizontal sxis.  Apply the Unified Dim on the X axis.
                     Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewChildSize.X );
+                }else if( ChildPositioning.HorizontalRules & UI::PF_Anchor_ParentSize ) {
+                    // Use this quads new size on the horizontal sxis.  Apply the Unified Dim on the X axis.
+                    Offset = ChildPositioning.UPosition.X.CalculateActualDimension( NewSelfRect.Size.X );
                 }
                 // Then add that distance to the updated transform.
                 Ret = ( NewSelfRect.GetRightEdge() + Offset ) - NewChildSize.X;
@@ -177,9 +186,12 @@ namespace Mezzanine
                 if( ChildPositioning.VerticalRules & UI::PF_Anchor_Prev_Offset ) {
                     // Get the old offset between the center of this quad and it's parent.
                     Offset = ( OldYPos + ( OldYSize * 0.5 ) ) - OldSelfRect.GetVerticalCenter();
-                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_SelfSize ) {
                     // Use the new child size on the vertical sxis.  Apply the Unified Dim on the Y axis.
                     Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
+                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_ParentSize ) {
+                    // Use this quads new size on the vertical sxis.  Apply the Unified Dim on the Y axis.
+                    Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewSelfRect.Size.Y );
                 }
                 // Then add that distance to the updated transform and then subtract the new half size.
                 Ret = ( NewSelfRect.GetVerticalCenter() + Offset ) - ( NewChildSize.Y * 0.5 );
@@ -189,9 +201,12 @@ namespace Mezzanine
                     // Get the old offset between the top edge of this quad and it's parent.
                     // Note: If the child is within the bounds of it's parent, this Offset should always be >= 0.
                     Offset = ( OldYPos - OldSelfRect.GetTopEdge() );
-                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_SelfSize ) {
                     // Use the new child size on the vertical sxis.  Apply the Unified Dim on the X axis.
                     Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
+                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_ParentSize ) {
+                    // Use this quads new size on the vertical sxis.  Apply the Unified Dim on the Y axis.
+                    Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewSelfRect.Size.Y );
                 }
                 // Then add that distance to the updated transform.
                 Ret = NewSelfRect.GetTopEdge() + Offset;
@@ -201,9 +216,12 @@ namespace Mezzanine
                     // Get the old offset between the bottom edge of this quad and it's parent.
                     // Note: If the child is within the bounds of it's parent, this Offset should always be <= 0.
                     Offset = ( ( OldYPos + OldYSize ) - OldSelfRect.GetBottomEdge() );
-                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_Size ) {
+                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_SelfSize ) {
                     // Use the new child size on the vertical sxis.  Apply the Unified Dim on the Y axis.
                     Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewChildSize.Y );
+                }else if( ChildPositioning.VerticalRules & UI::PF_Anchor_ParentSize ) {
+                    // Use this quads new size on the vertical sxis.  Apply the Unified Dim on the Y axis.
+                    Offset = ChildPositioning.UPosition.Y.CalculateActualDimension( NewSelfRect.Size.Y );
                 }
                 // Then add that distance to the updated transform.
                 Ret = ( NewSelfRect.GetBottomEdge() + Offset ) - NewChildSize.Y;
@@ -253,42 +271,46 @@ namespace Mezzanine
 
         Real LayoutStrategy::HandleChildHorizontalSizing(const Rect& OldSelfRect, const Rect& NewSelfRect, const Real PrevAxisResult, QuadRenderable* Child)
         {
+            Real Ret = 0.0;
             const SizingInfo& ChildSizing = Child->GetSizingPolicy();
             Vector2 OldSize = Child->GetActualSize();
             // Horizontal second
             switch(ChildSizing.HorizontalRules)
             {
                 case UI::SR_Unified_Dims:
-                    { return ChildSizing.USize.X.CalculateActualDimension(NewSelfRect.Size.X);  break; }
+                    { Ret = ChildSizing.USize.X.CalculateActualDimension(NewSelfRect.Size.X);  break; }
                 case UI::SR_Match_Other_Axis:
-                    { return PrevAxisResult;                                                    break; }
+                    { Ret = PrevAxisResult;                                                    break; }
                 case UI::SR_Match_Other_Axis_Unified:
-                    { return ChildSizing.USize.X.CalculateActualDimension(PrevAxisResult);      break; }
+                    { Ret = ChildSizing.USize.X.CalculateActualDimension(PrevAxisResult);      break; }
                 case UI::SR_Fixed_Size:
                 default:
-                    { return OldSize.X;                                                         break; }
+                    { Ret = OldSize.X;                                                         break; }
             }
+            return std::max(Ret,0);
         }
 
         Real LayoutStrategy::HandleChildVerticalSizing(const Rect& OldSelfRect, const Rect& NewSelfRect, const Real PrevAxisResult, QuadRenderable* Child)
         {
+            Real Ret = 0.0;
             const SizingInfo& ChildSizing = Child->GetSizingPolicy();
             Vector2 OldSize = Child->GetActualSize();
             // Vertical first
             switch(ChildSizing.VerticalRules)
             {
                 case UI::SR_Unified_Dims:
-                    { return ChildSizing.USize.Y.CalculateActualDimension(NewSelfRect.Size.Y);                         break; }
+                    { Ret = ChildSizing.USize.Y.CalculateActualDimension(NewSelfRect.Size.Y);                         break; }
                 case UI::SR_Match_Other_Axis:
-                    { return PrevAxisResult;                                                                           break; }
+                    { Ret = PrevAxisResult;                                                                           break; }
                 case UI::SR_Match_Other_Axis_Unified:
-                    { return ChildSizing.USize.Y.CalculateActualDimension(PrevAxisResult);                             break; }
+                    { Ret = ChildSizing.USize.Y.CalculateActualDimension(PrevAxisResult);                             break; }
                 case UI::SR_Size_For_Text:
-                    { Child->PopulateTextLinesInLayers(PrevAxisResult);  return Child->GetIdealHeightForText() + 2.0;  break; }
+                    { Child->PopulateTextLinesInLayers(PrevAxisResult);  Ret = Child->GetIdealHeightForText() + 2.0;  break; }
                 case UI::SR_Fixed_Size:
                 default:
-                    { return OldSize.Y;                                                                                break; }
+                    { Ret = OldSize.Y;                                                                                break; }
             }
+            return std::max(Ret,0);
         }
 
         void LayoutStrategy::CheckChildAspectRatio(const Vector2& OldChildSize, Vector2& NewChildSize, QuadRenderable* Child)

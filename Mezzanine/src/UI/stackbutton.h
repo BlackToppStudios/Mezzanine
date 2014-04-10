@@ -49,7 +49,7 @@ namespace Mezzanine
         class StackedContainer;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a button with additional data used to track the binding to a StackedContainer which can be serialized.
-        /// @details
+        /// @details This class does not use a LayoutStrategy.
         ///////////////////////////////////////
         class StackButton : public Button
         {

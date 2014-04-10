@@ -123,7 +123,9 @@ namespace Mezzanine
         /// the height will be the same as the width provided.  In either case making the two buttons
         /// perfectly square in size, with the remaining space going to the display caption.  @n
         /// In the case of the together format, then half of the height is taken and that is used for
-        /// both the width and height, and then they are placed on the appropriate side.
+        /// both the width and height, and then they are placed on the appropriate side. @n @n
+        /// This class can use either a HorizontalLayoutStrategy, VerticalLayoutStrategy, or the
+        /// LayoutStrategy base class depeding on the set button layout/SpinStyle.
         ///////////////////////////////////////
         class MEZZ_LIB Spinner : public PageProvider
         {

@@ -104,17 +104,18 @@ namespace Mezzanine
         /// @details These flags are not used if the container object is simply repositioned.  Only when a new position
         /// is needed after the container is resized.  If rules for one axis isn't covered, the Unified position is used.
         /// @n @n
-        /// If PF_Anchor_Prev_Offset or PF_Anchor_Size are not specified in the positioning bitfield for a quad, an offset
-        /// of 0 will be used on the specified edge.
+        /// If PF_Anchor_Prev_Offset, PF_Anchor_ParentSize, or PF_Anchor_SelfSize are not specified in the positioning
+        /// bitfield for a quad, an offset of 0 will be used on the specified edge.
         enum PositioningFlags
         {
             PF_Unified_Pos             = 0,                                           ///< Does not anchor to any side, using only the provided unified dimensions.
             PF_Anchor_Prev_Offset      = 1,                                           ///< Uses the offset of the old transform to determine the offset for the new transform, preserving absolute distance between updates.
-            PF_Anchor_Size             = 2,                                           ///< Uses the updated size of the quad as the offset for the new transform, and applies the Unified Dim of the appropriate axis to it.
-            PF_Anchor_Top              = 4,                                           ///< Anchors to the top side of the quad.
-            PF_Anchor_Bottom           = 8,                                           ///< Anchors to the bottom side of the quad.
-            PF_Anchor_Left             = 16,                                          ///< Anchors to the left side of the quad.
-            PF_Anchor_Right            = 32,                                          ///< Anchors to the right side of the quad.
+            PF_Anchor_ParentSize       = 2,                                           ///< Uses the parents updated size of as the offset for the new transform, and applies the Unified Dim of the appropriate axis to it.
+            PF_Anchor_SelfSize         = 4,                                           ///< Uses the its own updated size as the offset for the new transform, and applies the Unified Dim of the appropriate axis to it.
+            PF_Anchor_Top              = 8,                                           ///< Anchors to the top side of the quad.
+            PF_Anchor_Bottom           = 16,                                          ///< Anchors to the bottom side of the quad.
+            PF_Anchor_Left             = 32,                                          ///< Anchors to the left side of the quad.
+            PF_Anchor_Right            = 64,                                          ///< Anchors to the right side of the quad.
 
             PF_Anchor_TopLeft          = (PF_Anchor_Top | PF_Anchor_Left),            ///< Anchors to the top and left sides of the quad.
             PF_Anchor_TopRight         = (PF_Anchor_Top | PF_Anchor_Right),           ///< Anchors to the top and right sides of the quad.

@@ -51,7 +51,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class is an entry for a single window/widget in a menu.
         /// @details This class can be used to represent a single window/widget in a heirarchy
-        /// that will change visibility as one would expect in a game menu.
+        /// that will change visibility as one would expect in a game menu. @n @n
+        /// This class uses the base LayoutStrategy.
         ///////////////////////////////////////
         class MEZZ_LIB MenuEntry : public StackedContainer
         {

@@ -48,7 +48,8 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a widget that stores sets of renderables but only displays one at a time.
-        /// @details This widget is useful for tabbed option displays.
+        /// @details This widget is useful for tabbed option displays. @n @n
+        /// This class uses the base LayoutStrategy.
         ///////////////////////////////////////
         class MEZZ_LIB TabSet : public StackedContainer
         {

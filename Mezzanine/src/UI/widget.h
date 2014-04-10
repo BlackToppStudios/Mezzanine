@@ -114,15 +114,14 @@ namespace Mezzanine
         typedef CountedPtr<WidgetEventArguments> WidgetEventArgumentsPtr;
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Widget
-        /// @headerfile widget.h
         /// @brief This is the base class for all widgets.
         /// @details A widget is really a mechanism for implementing not-so-generic UI behaviors.  They
         /// are control stuctures allowing UI elements to interact with each other and potentially classes
         /// outside the UI system(through the event system). @n @n
         /// This class automatically creates a "Normal" and "Hovered" RenderLayerGroup that are used with
         /// the events of this class, these groups should be used and additional groups only made for special
-        /// cases.
+        /// cases. @n @n
+        /// Instances of the Widget base class use the base LayoutStrategy.
         ///////////////////////////////////////
         class MEZZ_LIB Widget : public QuadRenderable, public EventPublisher, public EventSubscriber
         {

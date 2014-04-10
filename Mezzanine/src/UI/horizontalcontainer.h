@@ -51,7 +51,7 @@ namespace Mezzanine
         class Spinner;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief A layout container that aligns it's children along a common X axis.
-        /// @details
+        /// @details This class uses a HorizontalLayoutStrategy.
         ///////////////////////////////////////
         class MEZZ_LIB HorizontalContainer : public LinearContainer
         {
