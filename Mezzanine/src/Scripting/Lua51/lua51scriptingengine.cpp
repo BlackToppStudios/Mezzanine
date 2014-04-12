@@ -53,7 +53,6 @@
 #include <cstring>
 #include <cctype>
 #include <cassert>
-#include <iostream>
 
 /// @file
 /// @brief This file has the implementation for the Lua based Scripting system.
@@ -482,19 +481,14 @@ namespace Mezzanine
             {
                 Integer StackSize = lua_gettop(this->State);
                 Integer TempStackSize = lua_gettop(this->State);
-                std::cout << "before: " << (TempStackSize = lua_gettop(this->State)) << std::endl;
                 ScriptOntoStack(ScriptToRun);
-                std::cout << "after ScriptOntoStack: " << (TempStackSize = lua_gettop(this->State)) << std::endl;
                 assert(lua_gettop(this->State) == StackSize + 1);
                 ScriptArgsOntoStack(ScriptToRun);
-                std::cout << "after ScriptArgsOntoStack: " << (TempStackSize = lua_gettop(this->State)) << std::endl;
                 assert(lua_gettop(this->State) == StackSize + 1 + Integer(ScriptToRun->GetArgumentCount()));
 
                 StackExecute(ScriptToRun->GetArgumentCount());
-                std::cout << "after StackExecute: " << (TempStackSize = lua_gettop(this->State)) << std::endl;
 
                 ScriptArgsFromStack(ScriptToRun, StackSize);
-                std::cout << "after ScriptArgsFromStack: " << (TempStackSize = lua_gettop(this->State)) << std::endl;
                 assert(lua_gettop(this->State) == StackSize);
             }
 

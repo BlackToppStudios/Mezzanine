@@ -126,6 +126,7 @@ namespace Mezzanine
                     /// @return The Amount of returns loaded into ScriptWasRun
                     Whole ScriptArgsFromStack(Lua51Script* ScriptWasRun, Integer PreviousStackSize);
 
+
                     CountedPtr<iScriptArgument> ScriptArgFromStack();
 
                 public:
