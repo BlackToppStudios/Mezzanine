@@ -86,7 +86,7 @@ namespace Mezzanine
         Boole Button::HandleInputImpl(const Input::MetaCode& Code)
         {
             // Check to see if this is an activation code
-            if( this->ActivationCodes.count( Input::MetaCodeKey(Code) ) ) {
+            if( Code.IsDeviceButton() && this->ActivationCodes.count( Input::MetaCodeKey(Code) ) ) {
                 // Are we changing our activation state from a mouse code?
                 if( Code.IsMouseButton() ) {
                     if( this->IsHovered() && Input::BUTTON_PRESSING == Code.GetMetaValue() ) {
