@@ -323,8 +323,7 @@ namespace Mezzanine
             if( this->SID->VertexBuffer.isNull() )
                 this->CreateVertexBuffer(RequestedSize);
 
-            if(RequestedSize > this->SID->VertexBuffer->getNumVertices() )
-            {
+            if(RequestedSize > this->SID->VertexBuffer->getNumVertices() ) {
                 // Update only by powers of 2
                 Whole NewVertexBufferSize = 1;
                 while(NewVertexBufferSize < RequestedSize)
@@ -335,6 +334,7 @@ namespace Mezzanine
                     NewVertexBufferSize,
                     Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
                     false);
+
                 this->SID->RenderOp.vertexData->vertexStart = 0;
                 this->SID->RenderOp.vertexData->vertexBufferBinding->setBinding(0,this->SID->VertexBuffer);
             }
