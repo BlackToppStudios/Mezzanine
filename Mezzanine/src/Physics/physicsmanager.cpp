@@ -488,6 +488,7 @@ namespace Mezzanine
 
         void PhysicsManager::Construct(const ManagerConstructionInfo& Info)
         {
+            this->CallBackWorld = NULL;
             this->ThreadCount = ( Info.PhysicsFlags & ManagerConstructionInfo::PCF_Multithreaded) ? crossplatform::GetCPUCount() : 0;
 
             // Create the broadphase
@@ -706,8 +707,9 @@ namespace Mezzanine
             }//*/
         }
 
+        PhysicsManager* PhysicsManager::CallBackWorld;
         void PhysicsManager::InternalTickCallback(btDynamicsWorld* world, btScalar timeStep)
-            { Entresol::GetSingletonPtr()->GetPhysicsManager()->ProcessAllCollisions(); }
+            { CallBackWorld->ProcessAllCollisions(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Simulation Management
@@ -1164,7 +1166,9 @@ namespace Mezzanine
 
             Real FloatTime = Real(CurrentThreadStorage.GetLastFrameTime()) * 0.000001 * this->GetTimeMultiplier(); // Convert from MicroSeconds to Seconds
             int MaxSteps = ( FloatTime < this->StepSize ) ? 1 : int( FloatTime / this->StepSize ) + 1;
+            CallBackWorld = this;
             this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, this->StepSize );
+            CallBackWorld = NULL;
         }
 
         Threading::DefaultWorkUnit* PhysicsManager::GetSimulationWork()

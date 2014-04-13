@@ -64,29 +64,60 @@ class physicstests : public UnitTestGroup
         /// @brief Test if the barrier works properly
         void RunAutomaticTests()
         {
-            TestOutput << "Creating A creating a rigid body and subjecting it to just a little gravity." << endl;
+            {
+                TestOutput << "Creating A creating a rigid body and subjecting it to just a little gravity." << endl;
+                // 0
+                Mezzanine::Physics::PhysicsManager Simulation;
+                Simulation.SetWorldGravity(Vector3(0.0,9.8,0.0));
+                Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
+                Simulation.SetSimulationSubstepModifier(3);
+                Physics::SphereCollisionShape Ball("Ball",5.0);
+                RigidA->SetCollisionShape(&Ball);
+                RigidA->SetLocation(Vector3(1.0, 1.0, 1.0));
+                RigidA->AddToWorld();
+                // 9
+                FrameScheduler FS;
+                FS.AddWorkUnitMain(Simulation.GetSimulationWork(),"Physics");
+                FS.DoOneFrame();
+                FS.DoOneFrame();
+                FS.RemoveWorkUnitMain(Simulation.GetSimulationWork());
+                // 15
 
-            // 0
-            Mezzanine::Physics::PhysicsManager Simulation;
-            Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
-            Simulation.SetSimulationSubstepModifier(3);
-            Physics::SphereCollisionShape Ball("Ball",5.0);
-            RigidA->SetCollisionShape(&Ball);
-            RigidA->AddToWorld();
-            // 7
-            Simulation.SetWorldGravity(Vector3(0.0,9.8,0.0));
-            FrameScheduler FS;
-            Mezzanine::Threading::ThreadSpecificStorage Ignored(&FS);
-            // 11
-            // Ignored.GetFrameScheduler()->GetFrameTimeRollingAverage().Insert(1000); // Rolling Average methods are not available to Lua, I think because they are templates.
-            // 13
-            Threading::this_thread::sleep_for(1000000);
-            Simulation.GetSimulationWork()->DoWork(Ignored);
-            Threading::this_thread::sleep_for(1000000);
-            Simulation.GetSimulationWork()->DoWork(Ignored);
-            TestOutput << "Location of " << RigidA->GetLocation();
+                TestOutput << "Location: " << RigidA->GetLocation() << endl;
+                TEST_EQUAL_MULTI_EPSILON(Vector3(1.0, 1.00272, 1.0), RigidA->GetLocation(), "DeterminismGravityTest", 100);
+            }
+            {
+                TestOutput << "Creating A creating a rigid body and subjecting it to just a little gravity 10,000 times." << endl;
+                MaxInt StartTime = GetTimeStamp();
+                Real X = 0.0; Real Y = 0.0; Real Z = 0.0;
+                for(Whole Counter=0; Counter<10000; Counter++)
+                {
+                    // 0
+                    Mezzanine::Physics::PhysicsManager Simulation;
+                    Simulation.SetWorldGravity(Vector3(0.0,9.8,0.0));
+                    Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
+                    Simulation.SetSimulationSubstepModifier(3);
+                    Physics::SphereCollisionShape Ball("Ball",5.0);
+                    RigidA->SetCollisionShape(&Ball);
+                    RigidA->SetLocation(Vector3(1.0, 1.0, 1.0));
+                    RigidA->AddToWorld();
+                    // 9
+                    FrameScheduler FS;
+                    FS.SetFrameLength(0);
+                    FS.AddWorkUnitMain(Simulation.GetSimulationWork(),"Physics");
+                    FS.DoOneFrame();
+                    FS.DoOneFrame();
+                    FS.RemoveWorkUnitMain(Simulation.GetSimulationWork());
+                    // 15
+                    X=RigidA->GetLocation().X;
+                    Y=RigidA->GetLocation().Y;
+                    Z=RigidA->GetLocation().Z;
+                }
+                MaxInt EndTime = GetTimeStamp();
 
-
+                Vector3 Results(X,Y,Z);
+                TestOutput << "Location: " << Results << endl << "It Took: " << (EndTime-StartTime) << " microseconds" << endl;
+            }
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.

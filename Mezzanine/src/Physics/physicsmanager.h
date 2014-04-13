@@ -324,6 +324,9 @@ namespace Mezzanine
             /// @details This function is automatically called every step.
             virtual void ProcessAllCollisions();
 
+            /// @brief The World that will be used for the InternalTickCallback
+            /// @warning The prevents two PhysicsManagers from running in two differen
+            static PhysicsManager* CallBackWorld;
             /// @brief Internal Callback that is called each substep of the simulation.
             static void InternalTickCallback(btDynamicsWorld* world, btScalar timeStep);
         public:

@@ -64,34 +64,84 @@ class physicsluatests : public UnitTestGroup
         /// @brief Test if the barrier works properly
         void RunAutomaticTests()
         {
-            Scripting::Lua::Lua51ScriptingEngine Lua;
-            TestOutput << "Creating A creating a rigid body and subjecting it to just a little gravity." << endl;
+            {
+                Scripting::Lua::Lua51ScriptingEngine Lua;
+                TestOutput << "Creating A creating a rigid body and subjecting it to just a little gravity." << endl;
 
-            // lines in cpp of physics manager tests
-            // 0
-            Lua.Execute("Simulation = MezzaninePhysicsSafe.PhysicsManager()");
-            Lua.Execute("RigidA = Simulation:CreateRigidProxy(10.0)");
-            Lua.Execute("Simulation:SetSimulationSubstepModifier(3)");
-            Lua.Execute("Ball = MezzaninePhysicsSafe.SphereCollisionShape('Ball',5.0)");
-            Lua.Execute("RigidA:SetCollisionShape(Ball)");
-            Lua.Execute("RigidA:AddToWorld()");
-            // 7
-            Lua.Execute("Simulation:SetWorldGravity(MezzanineSafe.Vector3(0.0, 9.8, 0.0))");
-            Lua.Execute("FS=MezzanineThreadingSafe.FrameScheduler()");
-            Lua.Execute("Ignored=MezzanineThreadingSafe.ThreadSpecificStorage(FS)");
-            // 11
-            // Lua.Execute("Ignored:GetFrameScheduler():GetFrameTimeRollingAverage():Insert(1000)"); // Can't do this in Lua Won't do it here
-            // 13
-            Lua.Execute("MezzanineThreadingSafe.sleep_for(100000)");
-            Lua.Execute("Simulation:GetSimulationWork():DoWork(Ignored)");
-            Lua.Execute("MezzanineThreadingSafe.sleep_for(100000)");
-            Lua.Execute("Simulation:GetSimulationWork():DoWork(Ignored)");
-            // 11
+                // lines in cpp of physics manager tests
+                String Src( "-- 0                                                               \n"
+                            "Simulation = MezzaninePhysicsSafe.PhysicsManager()                 \n"
+                            "Simulation:SetWorldGravity(MezzanineSafe.Vector3(0.0, 9.8, 0.0))   \n"
+                            "RigidA = Simulation:CreateRigidProxy(10.0)                         \n"
+                            "Simulation:SetSimulationSubstepModifier(3)                         \n"
+                            "Ball = MezzaninePhysicsSafe.SphereCollisionShape('Ball',5.0)       \n"
+                            "RigidA:SetCollisionShape(Ball)                                     \n"
+                            "RigidA:SetLocation(MezzanineSafe.Vector3(1.0, 1.0, 1.0))           \n"
+                            "RigidA:AddToWorld()                                                \n"
+                            "-- 9                                                               \n"
+                            "FS=MezzanineThreadingSafe.FrameScheduler()                         \n"
+                            "FS:AddWorkUnitMain(Simulation:GetSimulationWork(),'Physics')       \n"
+                            "FS:DoOneFrame()                                                    \n"
+                            "FS:DoOneFrame()                                                    \n"
+                            "FS:RemoveWorkUnitMain(Simulation:GetSimulationWork())              \n"
+                            "-- 15                                                              \n"
+                            "LocationX = RigidA:GetLocation().X                                 \n"
+                            "LocationY = RigidA:GetLocation().Y                                 \n"
+                            "LocationZ = RigidA:GetLocation().Z                                 \n");
+                CountedPtr<Scripting::iScript> ScriptCompiled = Lua.Execute(Src);
+
+                Vector3 Results(Lua.GetValue("LocationX")->GetReal(),Lua.GetValue("LocationY")->GetReal(),Lua.GetValue("LocationZ")->GetReal());
+
+                TestOutput << "Location: " << Results << endl;
+                TEST_EQUAL_MULTI_EPSILON(Vector3(1.0, 1.00272, 1.0), Results, "DeterminismGravityTest", 100);
+            }
+
+            {
+                Scripting::Lua::Lua51ScriptingEngine Lua;
+                TestOutput << "Creating A creating a rigid body and subjecting it to just a little gravity 10,000 times." << endl;
+
+                // lines in cpp of physics manager tests
+                String Src( "-- 0                                                               \n"
+                            "Simulation = MezzaninePhysicsSafe.PhysicsManager()                 \n"
+                            "Simulation:SetWorldGravity(MezzanineSafe.Vector3(0.0, 9.8, 0.0))   \n"
+                            "RigidA = Simulation:CreateRigidProxy(10.0)                         \n"
+                            "Simulation:SetSimulationSubstepModifier(3)                         \n"
+                            "Ball = MezzaninePhysicsSafe.SphereCollisionShape('Ball',5.0)       \n"
+                            "RigidA:SetCollisionShape(Ball)                                     \n"
+                            "RigidA:SetLocation(MezzanineSafe.Vector3(1.0, 1.0, 1.0))           \n"
+                            "RigidA:AddToWorld()                                                \n"
+                            "-- 9                                                               \n"
+                            "FS=MezzanineThreadingSafe.FrameScheduler()                         \n"
+                            "FS:SetFrameLength(0)                                               \n"
+                            "FS:AddWorkUnitMain(Simulation:GetSimulationWork(),'Physics')       \n"
+                            "FS:DoOneFrame()                                                    \n"
+                            "FS:DoOneFrame()                                                    \n"
+                            "FS:RemoveWorkUnitMain(Simulation:GetSimulationWork())              \n"
+                            "-- 15                                                              \n"
+                            "LocationX = RigidA:GetLocation().X                                 \n"
+                            "LocationY = RigidA:GetLocation().Y                                 \n"
+                            "LocationZ = RigidA:GetLocation().Z                                 \n");
+
+                MaxInt StartTimeRaw = GetTimeStamp();
+                for(Whole Counter=0; Counter<10000; Counter++)
+                    { Lua.Execute(Src); }
+                MaxInt EndTimeRaw = GetTimeStamp();
+
+                MaxInt StartTimeCompiled = GetTimeStamp();
+                CountedPtr<Scripting::iScript> ScriptCompiled = Lua.Execute(Src);
+                for(Whole Counter=0; Counter<9999; Counter++)
+                    { Lua.Execute(ScriptCompiled); }
+                MaxInt EndTimeCompiled = GetTimeStamp();
+
+                Vector3 Results(Lua.GetValue("LocationX")->GetReal(),Lua.GetValue("LocationY")->GetReal(),Lua.GetValue("LocationZ")->GetReal());
+
+                TestOutput << "Location: " << Results << endl
+                           << "It Took (src): " << (EndTimeRaw-StartTimeRaw) << " microseconds" << endl
+                           << "It Took (compiled): " << (EndTimeCompiled-StartTimeCompiled) << " microseconds" << endl;
 
 
 
-            Lua.Execute("");
-
+            }
         }
 
         /// @brief Since RunAutomaticTests is implemented so is this.
