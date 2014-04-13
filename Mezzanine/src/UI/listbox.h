@@ -55,7 +55,7 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a widget for displaying a list of captions in a box.
-        /// @details
+        /// @details This class uses the base LayoutStrategy.
         /// @remarks ListItems owned by a ListBox are not direct children of the ListBox.  Instead they are direct children of
         /// the VerticalContainer that is the child of the ListBox.  There are convenience methods that allow light management
         /// of ListItems, but they are really just wrappers around similiar methods on the VerticalContainer.

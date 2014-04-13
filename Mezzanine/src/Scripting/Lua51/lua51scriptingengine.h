@@ -126,6 +126,10 @@ namespace Mezzanine
                     /// @return The Amount of returns loaded into ScriptWasRun
                     Whole ScriptArgsFromStack(Lua51Script* ScriptWasRun, Integer PreviousStackSize);
 
+
+                    /// @internal
+                    /// @brief Get the top value of the Lua stack
+                    /// @return A Counter Pointer to an iScriptArgument.
                     CountedPtr<iScriptArgument> ScriptArgFromStack();
 
                 public:
@@ -452,7 +456,18 @@ namespace Mezzanine
                     /// @return A reference to a constant string on this class.
                     const String& GetLuaTypeString(int StackLocation);
 
+                    /// @brief Get the Value stored in a lua identifier
+                    /// @param LuaIdentifier The name of the variable in lua to get the value from.
+                    /// @return A counted pointer to an iScriptArgument to allow easy use of the "->GetString()", "->GetInteger()" and similar styles of syntax.
+                    CountedPtr<iScriptArgument> GetValue(const String& LuaIdentifier);
 
+                    /// @internal
+                    /// @brief Populate a Trie with all the members and types in the current lua runtime
+                    /// @return The return value is provided in the CommandGroup argument.
+                    /// @param CommandGroup The Trie to be populated.
+                    /// @param TableName the name of the table to iterate over and populate the Trie with.
+                    /// @param AlreadyDidTables To break cycles a list tables to skip descending into can be provided.
+                    /// @warning This is marked as internal because it does far too much and should be broken in many smaller functions
                     void PopulateTabCompletionTrie(CommandTrie& CommandGroup, const String& TableName="", std::vector<String> AlreadyDidTables=std::vector<String>());
 
             };

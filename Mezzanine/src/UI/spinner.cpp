@@ -274,10 +274,7 @@ namespace Mezzanine
                     this->AddChild(this->ValueDisplay,2);
                     this->AddChild(this->IncrementSpin,3);
 
-                    if( this->LayoutStrat != NULL ) {
-                        delete this->LayoutStrat;
-                    }
-                    this->LayoutStrat = new HorizontalLayoutStrategy();
+                    this->_SetLayoutStrat( new HorizontalLayoutStrategy() );
                 }else if( Style == Spn_Separate_Vertical ) {
                     this->IncrementSpin->SetHorizontalPositioningRules(UI::PF_Anchor_Left);
                     this->IncrementSpin->SetVerticalPositioningRules(UI::PF_Anchor_Top);
@@ -297,10 +294,7 @@ namespace Mezzanine
                     this->AddChild(this->ValueDisplay,2);
                     this->AddChild(this->DecrementSpin,3);
 
-                    if( this->LayoutStrat != NULL ) {
-                        delete this->LayoutStrat;
-                    }
-                    this->LayoutStrat = new VerticalLayoutStrategy();
+                    this->_SetLayoutStrat( new VerticalLayoutStrategy() );
                 }
             }else if( Style == Spn_Together_Left || Style == Spn_Together_Right ) {
                 this->IncrementSpin->SetUnifiedSize( UnifiedVec2(1,0.5) );
@@ -352,10 +346,7 @@ namespace Mezzanine
                     this->AddChild(this->DecrementSpin,3);
                 }
 
-                if( this->LayoutStrat != NULL ) {
-                    delete this->LayoutStrat;
-                }
-                this->LayoutStrat = new HorizontalLayoutStrategy();
+                this->_SetLayoutStrat( new HorizontalLayoutStrategy() );
             }
         }
 

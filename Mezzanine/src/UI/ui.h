@@ -626,27 +626,213 @@ namespace Mezzanine
 ///     - @ref UIMarkup
 ///
 /// @subsection UISizePos Sizing and Positioning
-/// Sizing and Positioning text.
+/// Positioning and Sizing of QuadRenderables in Mezzanine::UI does not lock you into either Absolute(pixel) or Relative units to define the sizes.  Both modes are supported and can even be blended to
+/// achieve very finely grained configurations.  The primary classes that support this are: @ref Mezzanine::UI::UnifiedDim , @ref Mezzanine::UI::UnifiedVec2 , and @ref Mezzanine::UI::UnifiedRect .  The
+/// UnifiedDim class stores two Reals, one for relative and one for absolute, to express it's length on a given dimension.  The @ref Mezzanine::UI::UnifiedDim::CalculateActualDimension(const Real&) const
+/// method accepts a Real that is expected to be an absolute length that the relative portion is to be based on.  Using that, it will first multiply the relative value with the parameter passed in and
+/// add the stored absolute value to it.  Either the relative or absolute components can be zero, or even negative if that is what your configuration calls for.
+/// @code
+/// Real ParentXSize = 70;                                              // 70 pixel wide parent
+/// Real AltParentXSize = 25;                                           // Alternate parent size of 25 pixels
+///
+/// UI::UnifiedDim ChildXSize(0.6,-10.0);                               // We want the child to always be a little over half the size of the parent, minus 10 pixels
+/// Real Ret1 = ChildXSize.CalculateActualDimension(ParentXSize);       // ( 70 * 0.6 ) + -10.0 = 32 pixels
+/// Real Ret2 = ChildXSize.CalculateActualDimension(AltParentSize);     // ( 25 * 0.6 ) + -10.0 = 5 pixels
+///
+/// UI::UnifiedDim AbsChildXSize(0.0,25.0);                             // Fixed size child with only the absolute portion with a non-zero value.
+/// Real Ret3 = AbsChildXSize.CalculateActualDimension(ParentXSize);    // ( 70 * 0.0 ) + 25.0 = 25 pixels
+/// Real Ret4 = AbsChildXSize.CalculateActualDimension(AldParentXSize); // ( 25 * 0.0 ) + 25.0 = 25 pixels
+///
+/// UI::UnifiedDim.RelChildXSize(0.4,0.0);                              // Pure scaling child with only the relative portion with a non-zero value.
+/// Real Ret5 = RelChildXSize.CalculateActualDimension(ParentXSize);    // ( 70 * 0.4 ) + 0.0 = 28 pixels
+/// Real Ret6 = RelChildXSize.CalculateActualDimension(AldParentXSize); // ( 25 * 0.4 ) + 0.0 = 10 pixels
+/// @endcode
+/// Negative results for sizes will always be clamped to 0 to prevent rendering artifacts.  \n
+/// When the dimension calculated is going to be used for a position, then the relative component will still use the parents size for it's calculation, and then it will be added to the parents position.
+/// This will cause negative results for positions to move the child QuadRenderable outside of the bounds of it's parent (up if on the Y axis, to the left if on the X axis).  Note that moving outside the
+/// bounds of the parent is perfectly valid from a technical standpoint, as is having a child be larger than it's parent.
+/// @code
+/// UI::Rect ParentRect(75.0,100.0,150.0,120.0);                        // Rect at pixel position (75,100) that is 150 pixels wide and 120 pixels tall
+/// UI::UnifiedRect RelRect(0.2,0.2,0.6,0.6);                           // Pure scaling child rect that is a little over half the size of the parent and centered
+/// UI::UnifiedRect NegRect(0.0,-0.1,1.0,0.1);                          // Pure scaling child rect that is outside the parents bounds, matches the width of the parent and is one tenth it's height
+/// UI::UnifiedRect MixRect(0.1,0.1,0.8,0.8,-5.0,-5.0,5.0,5.0);         // Rect that is 4/5's the size of it's parent and centered with an additional 5 pixels added to it's size
+///
+/// UI::Rect Ret1 = RelRect.CalculateActualDimension(ParentRect);       // Position.X: 75 + ( ( 150 * 0.2 ) + 0.0 ) = 105 pixels from the left
+///                                                                     // Position.Y: 100 + ( ( 120 * 0.2 ) + 0.0 ) = 124 pixels from the top
+///                                                                     // Size.X:     ( 150 * 0.6 ) + 0.0 = 90 pixels
+///                                                                     // Size.Y:     ( 120 * 0.6 ) + 0.0 = 72 pixels
+///
+/// UI::Rect Ret2 = NegRect.CalculateActualDimension(ParentRect);       // Position.X: 75 + ( ( 150 * 0.0 ) + 0.0 ) = 75 pixels from the left
+///                                                                     // Position.Y: 100 + ( ( 120 * -0.1 ) + 0.0 ) = 88 pixels from the top
+///                                                                     // Size.X:     ( 150 * 1.0 ) + 0.0 = 150 pixels
+///                                                                     // Size.Y:     ( 120 * 0.1 ) + 0.0 = 12 pixels
+///
+/// UI::Rect Ret3 = MixRect.CalculateActualDimension(ParentRect);       // Position.X: 75 + ( ( 150 * 0.1 ) + -5.0 ) = 85 pixels from the left
+///                                                                     // Position.Y: 100 + ( ( 120 * 0.1 ) + -5.0 ) = 107 pixels from the top
+///                                                                     // Size.X:     ( 150 * 0.8 ) + 5.0 = 125 pixels
+///                                                                     // Size.Y:     ( 120 * 0.8 ) + 5.0 = 101 pixels
+/// @endcode
+/// The last thing to keep in mind when using Unified Dimensions is that all relative components are relative to the immediate parents size, not the size of the Screen or highest non-Screen parent.
+/// So the same UnifiedRect will cause lower children to shrink more and more if the relative components are less than 1, or grow more and more if the relative components are more than 1.  When a
+/// final value for position or size is found, it will be Ceil'd to ensure no unintended blending occurs.  So each final value should be a whole number expressed as a Real.
+/// @code
+/// UI::Rect ParentRect(75.0,100.0,160.0,120.0);                        // Rect at pixel position (75,100) that is 150 pixels wide and 120 pixels tall
+/// UI::UnifiedRect ChildRect(0.25,0.25,0.5,0.5);                       // Child rect that is half the size of it's parent and centered
+/// UI::UnifiedRect GrandChildRect(0.25,0.25,0.5,0.5);                  // Child rect that is half the size of it's parent and centered
+///
+/// UI::Rect ChildRet = ChildRect.CalculateActualDimension(ParentRect); // Position.X: 75 + ( ( 160 * 0.25 ) + 0.0 ) = 115 pixels from the left
+///                                                                     // Position.Y: 100 + ( ( 120 * 0.25 ) + 0.0 ) = 140 pixels from the top
+///                                                                     // Size.X:     ( 150 * 0.5 ) + 0.0 = 75 pixels
+///                                                                     // Size.Y:     ( 120 * 0.5 ) + 0.0 = 60 pixels
+///
+/// UI::Rect GrandChildRet = GrandChildRect.CalculateActualDimension(ChildRet); // Position.X: 115 + ( ( 75 * 0.25 ) + 0.0 ) = 134 pixels from the left - Relative portion ceil'd to 19
+///                                                                             // Position.Y: 140 + ( ( 60 * 0.25 ) + 0.0 ) = 155 pixels from the top
+///                                                                             // Size.X:     ( 75 * 0.5 ) + 0.0 = 38 pixels - Relative portion ceil'd to 38
+///                                                                             // Size.Y:     ( 60 * 0.5 ) + 0.0 = 30 pixels
+/// @endcode
+/// In practice you should never need to call "CalculateActualDimension" manually.  You can set the UnifiedDims and positioning/sizing flags and the system will handle those calls for you.  The
+/// QuadRenderable has the following methods to set UnifiedDims: \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetUnifiedPosition(const UnifiedVec2&) \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetUnifiedSize(const UnifiedVec2&) \n
+/// \n
+/// In addition to UnifiedDim's, there are flags that can be set to manipulate how positions and sizes are calculated.  Some of which don't require you to set UnifedDim's at all.  The
+/// @ref Mezzanine::UI::PositionFlags enum is used to describe how a QuadRenderable is to be positioned on an update.  The @ref Mezzanine::UI::SizingRules enum is used to describe how a QuadRenderable
+/// is to be sized during an update.  For both of these enums the default value is to use the set UnifiedDims exclusively.  Both positioning and sizing can be set per-axis.
 /// \n \n
+/// The @ref Mezzanine::UI::PositionFlags enum is designed to define offsets and edges to apply those offsets to.  The "PF_Anchor_Prev_Offset", "PF_Anchor_ParentSize", and "PF_Anchor_SelfSize" enum
+/// values are designed to allow you to define how the offset is to be calculated.  The "PF_Anchor_Top", "PF_Anchor_Bottom", "PF_Anchor_Left", and "PF_Anchor_Right" enum values (and the values that
+/// are the combined results of those values) are used to define the edge to use for the offset.  A center positioning is allowed and support through either the convenience enum value or setting both
+/// edges on a given axis.  The edge defined is for both the parent and the child.  So setting the positioning flags to "PF_Anchor_Prev_Offset | PF_Anchor_Top" then it will get the distance between
+/// the parents top edge and the childs top edge before the update occured, and will ensure that the new position of the child will have the same distance.  If multiple offset flags are defined then
+/// the flag with the lowest value will be applied.  This is simply a consequence of how the algorithm was written and positioning is not designed to have multiple offsets set for a single
+/// QuadRenderable.  You should set either 0 or 1 offset value.  If no offset enum value is defined then the offset will be 0.  Mixing axes when setting positioning flags will cause the invalid axis
+/// values to be ignored.  You cannot set the horizontal positioning of a QuadRenderable to anchor to the top edge of it's parent.  The QuadRenderable has the following methods to set positioning
+/// flags: \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetHorizontalPositioningRules(const Whole) \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetVerticalPositioningRules(const Whole) \n
+/// \n
+/// The @ref Mezzanine::UI::SizingRules enum doesn't have any special tricks like the positioning flags do.  Despite the fact that the SizingRules enum is set up like a bitfield, only one value is
+/// intended to be set at a given time.  The "SR_Match_Other_Axis", "SR_Match_Other_Axis_Unified", and "SR_Size_For_Text" being set on a given axis will require the opposite axis to be calculated
+/// first.  If both axes have a SizingRules set that causes them to depend on the other, a circular dependency will occur and an exception will be thrown.  The "SR_Fill_Available" value will cause
+/// the QuadRenderable it is applied to to expand on that axis dynamically based on the space available in the parent.  This type of sizing is somewhat limited in where it can be used.  The default
+/// @ref Mezzanine::UI::LayoutStrategy class does not support it's use and if it is applied to a QuadRenderable that is updated by it then UnifiedDims will be used.  The
+/// @ref Mezzanine::UI::HorizontalStrategy and @ref Mezzanine::UI::VerticalStrategy classes support this value being set by children updated by it.  More information on LayoutStrategies, their use,
+/// thier features, and extending them is available here: @ref UILayout .  The QuadRenderable has the following methods to set sizing rules: \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetHorizontalSizingRules(const Whole) \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetVerticalSizingRules(const Whole) \n
+/// \n
+/// The @ref Mezzanine::UI::AspectRatioLock enum is used to set how a QuadRenderable is to react to changes to its aspect ratio.  In many cases either "ARL_Ratio_Unlocked" or "ARL_Ratio_Y_Axis" will
+/// be sufficient for most QuadRenderables.  "ARL_Ratio_Y_Axis" in particular is useful if you are only worried about switch between widescreen and non-widescreen resolutions.  The
+/// "ARL_Ratio_Locked_Expanding" and "ARL_Ratio_Locked_Shrinking" enum values do not favor one axis over the other when locking the aspect ratio.  "ARL_Ratio_Locked_Expanding" will force the axis
+/// with the less growth to match the relative growth of the axis with more growth.  "ARL_Ratio_Locked_Shrinking" is like "ARL_Ratio_Locked_Expanding" but will clamp to less growth instead.  The
+/// QuadRenderable has the following method to set aspect ratio lock: \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetAspectRatioLock(const UI::AspectRatioLock) \n
+/// \n
+/// A minimum and maximum size can be set for any QuadRenderable.  Minimum and maximum sizes can be expressed as UnifiedDims allowing them to change dynamically as sizes change.  Checks for enforcing
+/// minimum and maximum sizes are done after all calculations for the new size are done, and then they are clamped.  Zero'd out UnifiedDims indicate that the feature is disabled.  The QuadRenderable
+/// has the following methods to set the minimum and maximum sizes: \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetMinSize(const UnifiedVec2&) \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetMaxSize(const UnifiedVec2&) \n
+/// \n
+/// The @ref Mezzanine::UI::SizingInfo and @ref Mezzanine::UI::PositioningInfo classes are used by the QuadRenderable class to store all the information needed for the particular type of operation
+/// including all of the features covered in this section.  Instances of @ref Mezzanine::UI::SizingInfo or @ref Mezzanine::UI::PositioningInfo can be applied to and/or retrieved from a QuadRenderable
+/// using the following methods: \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetPositioningPolicy(const PositioningInfo&) \n
+///     - @ref Mezzanine::UI::QuadRenderable::GetPositioningPolicy() const \n
+///     - @ref Mezzanine::UI::QuadRenderable::SetSizingPolicy(const SizingInfo&) \n
+///     - @ref Mezzanine::UI::QuadRenderable::GetSizingPolicy() const \n
+/// \n
 /// @subsection UILayout Layout Strategies
-/// Layout Strategies text.
+/// The @ref Mezzanine::UI::LayoutStrategy base class is an abstraction that performs the actual positioning and sizing of child Widgets within a QuadRenderable.  LayoutStrategies can be applied to
+/// QuadRenderables using the @ref Mezzanine::UI::QuadRenderable::_SetLayoutStrat(LayoutStrategy*) method.  All Widgets that expect to have children have their appropriate LayoutStrategy applied by
+/// their respective factory immediately after construction.  Widgets that do not expect to have Widget children do not recieve a LayoutStrategy and any children that are added to it will not have
+/// thier dimensions updated.  In nearly all cases you shouldn't need to change the LayoutStrategy of a QuadRenderable.  All Widgets provided by default have which LayoutStrategy they use (if any)
+/// in their detailed description.
+/// \n \n
+/// The @ref Mezzanine::UI::HorizontalLayoutStrategy and @ref Mezzanine::UI::VerticalLayoutStrategy classes exist to enable the use of the "SR_Fill_Available" value for sizing child Widgets, as that
+/// value is not supported and is ignored by the LayoutStrategy base class.  These are both LayoutStrategies that are designed to be used with Widets that have their children placed in a linear
+/// sequence.
 /// \n \n
 /// @subsection UIFactories Widget Factories
-/// Widget Factories text.
+/// Widgets use a factory pattern to handle their construction and destruction.  An implementation of a @ref Mezzanine::UI::WidgetFactory must be created and then registered with a UI Screen using
+/// the @ref Mezzanine::UI::Screen::AddWidgetFactory(WidgetFactory*) method for a Screen to be able to create a Widget of that type.  For convenience, all of the default provided Widgets are
+/// automatically registered for each Screen when it is constructed.  There are also a large number of convenience methods that wrap calls to the polymorphic factories to make them simpler to work
+/// with.
+/// \n \n
+/// If you want to create a new Widget outside of the default Widget set you will have to create a factory of that Widget.  The factories for the default Widgets all have convenience methods that
+/// cast to the appropriate created type, but similar methods are not necessary when creating a Widget factory.  After registering the factory with the method described above, you can use one of
+/// the following methods to create a Widget of that type: \n
+///     - @ref Mezzanine::UI::Screen::CreateWidget(const XML::Node&) \n
+///     - @ref Mezzanine::UI::Screen::CreateWidget(const String&, const String&, const NameValuePairMap&) \n
+///     - @ref Mezzanine::UI::Screen::CreateWidget(const String&, const String&, const UnifiedRect&, const NameValuePairMap&) \n
+/// \n
+/// Currently there are no methods to allow the external creation of Widgets for a Screen.  Attempting to access the factory and calling the method to create the Widget should not be attempted.  It
+/// should successfully create the Widget, but then there is no functionality to add it to the Screen afterwards.  Aside from defining the @ref Mezzanine::UI::WidgetFactory::DestroyWidget(Widget*)
+/// method on a factory, the system automatically handles the destruction of all Widget instances, so no special tricks are needed.
 /// \n \n
 /// @subsection UIMarkup Markup Parsers
-/// Markup Parsers text.
+/// The @ref Mezzanine::UI::MarkupParser base class is used by TextLayers to enable markup in the text they display.  The markup supported is very simple, currently limited to just a few exposed
+/// rendering properties.  A markup parser can be created and then made available to the UI system using the @ref Mezzanine::UI::UIManager::RegisterMarkupParser(const String&, MarkupParser*)
+/// method.  Registering a markup parser with the UI manager is not required, however if you do not then TextLayers that are deserialized may not have their markup parsers set properly and any use
+/// of markup in those TextLayers may fail.  A @ref Mezzanine::UI::DefaultMarkupParser is automatically created and registered on the UI manager when it is constructed.
+/// \n \n
+/// Most of the functionality needed for a MarkupParser is provided in the base class.  When a string is parsed it is first lex'd into a series of tokens that separates the rendered text from the
+/// valid start/end/insert tags.  Characters that denote the start and end of a tag can be customized in a derived markup parser.  This operation is done in the
+/// @ref Mezzanine::UI::MarkupParser::Lex(const String&) const method.  The returned @ref Mezzanine::UI::TokenString is then passed into
+/// @ref Mezzanine::UI::MarkupParser::ParseTextTokens(TokenString*, const CharacterTraits&, TextLayer*) const method, which will process all of the tag tokens generate characters from the next with
+/// the character traits desired.  The @ref Mezzanine::UI::MarkupTag base class is available to define a valid tag for a MarkupParser and how it affects text that is to be rendered.
+/// \n \n
+/// The @ref Mezzanine::UI::DefaultMarkupParser class provides a basic implementation of a MarkupParser that enables users to change the colour or font of a range of characters, or insert a Sprite
+/// into the characters to be rendered.  When changing the appearance of a range of text, you are limited to the properties available on the @ref Mezzanine::UI::CharacterTraits class.  Those
+/// available properties are likely to be expanded in the future to include things such as Bold, Italics, and Underline after Vector fonts become supported.  If you are creating an insert tag, the
+/// character it creates must be returned with a @ref Mezzanine::UI::MarkupParser::ProcessResult .  The @ref Mezzanine::UI::MarkupParser::Initialize() method is designed to be where the supported
+/// tags are created and added.
 ///
 /// \n \n
 /// @section UIContainer Container Widgets
 ///     - @ref UIPaged
 ///     - @ref UIStacked
 ///
-/// @subsection UIPaged Paged Containers and Providers
-/// Paged Containers and Providers text.
 /// \n \n
+/// Most default provided Widgets are not designed and do not expect to have any children added to them, filling a narrow role where any child it needs is automatically initialized.  The base
+/// @ref Mezzanine::UI::Widget class is a good really basic container for abitrary combinations of other Widgets.  However it doesn't have any special behaviors for hiding a portion of its children
+/// based on other factors.  To meet that need, there are a few Widgets explicitly designed to be containers that only show a portion of their children at a time.  These containers come in two
+/// flavors; containers derived from @ref Mezzanine::UI::PagedContainer and containers derived from @ref Mezzanine::UI::StackedContainer .
+/// \n \n
+/// @subsection UIPaged Paged Containers and Providers
+/// The @ref Mezzanine::UI::PagedContainer is a container class that uses an area larger than what can be seen to place Widgets into.  The View area is the actual Widget size in which children can
+/// be rendered.  The Work area is (usually) larger than the View area and stores how much space is being taken up by children.  For all paged containers the Work area size is automatically calcaulted
+/// when a paged container has it's dimensions updated, or a child is added/removed from it.  The Work area is a square that is needed to encompass the all of the children being stored by that
+/// container.
+/// \n \n
+/// The "position" of the View area within the Work area is determined by a @ref Mezzanine::UI::PageProvider .  The Work area is divided by the View area for a given axis to determine the number of
+/// pages that exist on that axis.  A PageProvider can then be set as the provider for that axis and any value between 0 and the max number of pages is valid.  The number that is returned by
+/// @ref Mezzanine::UI::PageProvider::GetCurrentXPage() const or @ref Mezzanine::UI::PageProvider::GetCurrentYPage() const (depending on the axis it is set to) is the top or left position of the view
+/// area expressed as a page.  Pages do not have to be Whole numbers and are returned from PageProviders as Real numbers.  This page value is then multiplied by the size of the View area on that axis
+/// to get the actual position of the View area within the Work area.  Children are then compared against this to determine if they should be rendered.  Only children that can be rendered completely
+/// are rendered.  Currently there is no clipping supported due to limitations of rendering, but that is subject to change in the future.  See issue #103 on the Mezzanine issue tracker
+/// ( https://github.com/BlackToppStudios/Mezzanine/issues ) for more information on this potential change.  PageProviders are set to one or both axes using one of the following methods: \n
+///     - @ref Mezzanine::UI::PageProvider::SetProviders(PageProvider*, PageProvider*) \n
+///     - @ref Mezzanine::UI::PageProvider::SetXProvider(PageProvider*) \n
+///     - @ref Mezzanine::UI::PageProvider::SetYProvider(PageProvider*) \n
+///     - @ref Mezzanine::UI::PageProvider::SetXYProvider(PageProvider*) \n
+/// \n
+/// PagedContainers also check for when a child gains focus, and stores the last child to have gained focus as a convenience for additional custom behaviors with derived classes.  The PageContainer
+/// has a single event that can be subscribed to for custom behaviors outside of the class as well; @ref Mezzanine::UI::PagedContainer::EventChildSelected .  If your needs are simpler, you can retrieve
+/// a pointer to the child directly using the @ref Mezzanine::UI::PagedContainer::GetLastSelectedChild() const method.  The last selected child can also be cleared for future checks in needed using the
+/// @ref Mezzanine::UI::PagedContainer::ClearSelectedChild() method.  The following classes are examples of PagedContainers: \n
+///     - @ref Mezzanine::UI::GridContainer \n
+///     - @ref Mezzanine::UI::HorizontalContainer \n
+///     - @ref Mezzanine::UI::VerticalContainer \n
+/// \n
 /// @subsection UIStacked Stacked Containers and Buttons
-/// Stacked Containers and Buttons text.
+/// The @ref Mezzanine::UI::StackedContainer is a container class that stores children in explicit sets and intends for a single set to be rendered at a time.  These containers are conceptually much
+/// more simple than PagedContainers, and primarily use the @ref Mezzanine::UI::StackedButton class to handle the visibility of a given set of Widgets.  The StackedContainer class does not enforce how
+/// the sets of Widgets are stored.  However, sets of Widgets are expected to have an ID expressed as a UInt16 (or enum value within that range) and somehow possible to be bound to a StackButton.  When
+/// that StackButton is activated, the bound set will become visible.  In many cases you will want to make the previously visible set invisible, but that is ultimately up to the implementation.  The
+/// following classes are examples of StackedContainers: \n
+///     - @ref Mezzanine::UI::MenuEntry \n
+///     - @ref Mezzanine::UI::TabSet \n
 
 // Hotkeys?
 // Actions?

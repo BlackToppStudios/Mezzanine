@@ -788,6 +788,12 @@ namespace Mezzanine
                 return NoLibName;
             }
 
+            CountedPtr<iScriptArgument> Lua51ScriptingEngine::GetValue(const String& LuaIdentifier)
+            {
+                lua_getglobal(State, LuaIdentifier.c_str());
+                return ScriptArgFromStack();
+            }
+
             void Lua51ScriptingEngine::PopulateTabCompletionTrie(CommandTrie& CommandGroup, const String& TableName, std::vector<String> AlreadyDidTables)
             {
                 // If no table is based start at the basemost  global table

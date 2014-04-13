@@ -1396,7 +1396,7 @@ void LevelManager::PopulateLevelSelectUI()
 
         // Create the preview section for this level widget
         UI::Widget* LevelPortrait = MainMenuScreen->CreateWidget( LevelName + ".Portrait", UI::UnifiedRect(-0.2,0.0,1.3333,1.3) );
-        LevelPortrait->SetHorizontalPositioningRules(UI::PF_Anchor_Left | UI::PF_Anchor_Size);
+        LevelPortrait->SetHorizontalPositioningRules(UI::PF_Anchor_Left | UI::PF_Anchor_SelfSize);
         LevelPortrait->SetVerticalPositioningRules(UI::PF_Anchor_VerticalCenter);
         LevelPortrait->SetHorizontalSizingRules(UI::SR_Match_Other_Axis_Unified);
         UI::SingleImageLayer* LevelImage = LevelPortrait->CreateSingleImageLayer(0,0);

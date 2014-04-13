@@ -157,7 +157,7 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a container class for placing child objects on a 2 dimensional grid.
-        /// @details
+        /// @details This class does not use a LayoutStrategy.
         ///////////////////////////////////////
         class MEZZ_LIB GridContainer : public PagedContainer
         {

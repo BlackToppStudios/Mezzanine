@@ -51,7 +51,7 @@ namespace Mezzanine
         class FontData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief Widget for handling the input and manipulation of text.
-        /// @details
+        /// @details This class does not use a LayoutStrategy.
         /// @remarks The auto-created text layer used for editing will be given a ZOrder of 5 on all auto-created
         /// RenderLayerGroups.  When the layer is to be edited, the EditBox will attempt to get the layer at ZOrder
         /// 5 in the active group.  If there is no active group, or no layer at ZOrder 5 in the active group, or the

@@ -186,6 +186,7 @@ namespace Mezzanine
             /// @return Returns true if the new MarkupParser was successfully set, false otherwise.
             virtual Boole SetMarkupParser(MarkupParser* Parser);
             /// @brief Sets the MarkupParser to be used by this TextLayer via it's registered name.
+            /// @remarks This method will check the UIManager to see if the named MarkupParser exists.  If it does not then it will set NULL.
             /// @param ParserName The name of the registered parser to retrieve and set for this TextLayer.
             /// @return Returns true if the new MarkupParser was successfully set, false otherwise.
             virtual Boole SetMarkupParser(const String& ParserName);

@@ -48,7 +48,7 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This is a scrollbar class aligned on the X axis.
-        /// @details
+        /// @details This class uses a HorizontalLayoutStrategy.
         ///////////////////////////////////////
         class MEZZ_LIB HorizontalScrollbar : public Scrollbar
         {

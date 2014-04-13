@@ -787,6 +787,7 @@ namespace Mezzanine
             virtual void _NotifyParenthood(QuadRenderable* NewParent);
             /// @internal
             /// @brief Sets a new LayoutStrategy for this quad to use.
+            /// @note If a LayoutStrategy is already applied to this, then the old one will be deleted.
             /// @param ToSet A pointer to the new LayoutStrategy for this quad to use.
             virtual void _SetLayoutStrat(LayoutStrategy* ToSet);
 

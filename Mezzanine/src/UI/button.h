@@ -60,6 +60,8 @@ namespace Mezzanine
         /// @brief This class is a helper class, specifically for use as a button.
         /// @details Unlike rectangles and captions, this class can be interacted with by clicking.
         /// It is important to understand what you want your space to do when selecting the class to use.
+        /// @n @n
+        /// This class does not use a LayoutStrategy.
         ///////////////////////////////////////
         class MEZZ_LIB Button : public Widget
         {

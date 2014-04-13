@@ -223,10 +223,10 @@ class lua51tests : public UnitTestGroup
                     IntArgCall.AddArgument(9);
                     LuaRuntimeSafe.Execute(IntArgCall);
 
-                    TEST(18==IntArgCall.GetReturn(0)->GetInteger(),"Engine::PassInt");
+                    TEST(18==IntArgCall.GetReturn(0)->GetInteger(),"Argument::PassInt");
 
                 } catch (ScriptLuaException&) {
-                    TEST_RESULT(Testing::Failed,"Engine::PassInt");
+                    TEST_RESULT(Testing::Failed,"Argument::PassInt");
                 }
 
                 try
@@ -241,9 +241,9 @@ class lua51tests : public UnitTestGroup
                     WholeArgCall.AddArgument(9);
                     LuaRuntimeSafe.Execute(WholeArgCall);
 
-                    TEST(18==WholeArgCall.GetReturn(0)->GetWhole(), "Engine::PassWhole");
+                    TEST(18==WholeArgCall.GetReturn(0)->GetWhole(), "Argument::PassWhole");
                 } catch (ScriptLuaException& ) {
-                    TEST_RESULT(Testing::Failed,"Engine::PassWhole");
+                    TEST_RESULT(Testing::Failed,"Argument::PassWhole");
                 }
 
                 try
@@ -258,9 +258,9 @@ class lua51tests : public UnitTestGroup
                     RealArgCall.AddArgument(Real(9.5));
                     LuaRuntimeSafe.Execute(RealArgCall);
 
-                    TEST(19.0==RealArgCall.GetReturn(0)->GetWhole(), "Engine::PassReal");
+                    TEST(19.0==RealArgCall.GetReturn(0)->GetWhole(), "Argument::PassReal");
                 } catch (ScriptLuaException& ) {
-                    TEST_RESULT(Testing::Failed,"Engine::PassReal");
+                    TEST_RESULT(Testing::Failed,"Argument::PassReal");
                 }
 
                 try
@@ -276,9 +276,9 @@ class lua51tests : public UnitTestGroup
                     StringArgCall.AddArgument((char*)"Hello ");
                     LuaRuntimeSafe.Execute(StringArgCall);
 
-                    TEST(String("Hello World!")==StringArgCall.GetReturn(0)->GetString(), "Engine::PassString");
+                    TEST(String("Hello World!")==StringArgCall.GetReturn(0)->GetString(), "Argument::PassString");
                 } catch (ScriptLuaException& ) {
-                    TEST_RESULT(Testing::Failed,"Engine::PassString");
+                    TEST_RESULT(Testing::Failed,"Argument::PassString");
                 }
 
                 try
@@ -294,9 +294,9 @@ class lua51tests : public UnitTestGroup
                     BoolArgCall.AddArgument(false);
                     LuaRuntimeSafe.Execute(BoolArgCall);
 
-                    TEST(true==BoolArgCall.GetReturn(0)->GetBool(), "Engine::PassBool");
+                    TEST(true==BoolArgCall.GetReturn(0)->GetBoole(), "Argument::PassBool");
                 } catch (ScriptLuaException& ) {
-                    TEST_RESULT(Testing::Failed,"Engine::PassBool");
+                    TEST_RESULT(Testing::Failed,"Argument::PassBool");
                 }
 
 
@@ -316,9 +316,40 @@ class lua51tests : public UnitTestGroup
                     NilArgCall.AddArgument();
                     LuaRuntimeSafe.Execute(NilArgCall);
 
-                    TEST(false==NilArgCall.GetReturn(0)->GetBool(),"Engine::PassNil");
+                    TEST(false==NilArgCall.GetReturn(0)->GetBoole(),"Argument::PassNil");
                 } catch (ScriptLuaException& ) {
-                    TEST_RESULT(Testing::Failed,"Engine::PassNil");
+                    TEST_RESULT(Testing::Failed,"Argument::PassNil");
+                }
+
+                {
+                    TestOutput << "Using some simple scripts to store basic values in Lua variables." << std::endl;
+                    Integer StackSizeStart=LuaRuntimeSafe.GetStackCount();
+                    LuaRuntimeSafe.Execute("String='A String in String'");
+                    LuaRuntimeSafe.Execute("Number=42");
+                    LuaRuntimeSafe.Execute("AFloatingPointNumber=4.2");
+                    LuaRuntimeSafe.Execute("ANil=nil");
+                    LuaRuntimeSafe.Execute("ABoolean=false");
+                    TEST(LuaRuntimeSafe.GetStackCount()==StackSizeStart, "Engine::ExecutionDoesntLeakStackEntries");
+
+                    StackSizeStart=LuaRuntimeSafe.GetStackCount();
+                    TestOutput << "Retrieving String, expecting 'A String in String' but received: \t" << LuaRuntimeSafe.GetValue("String")->GetString() << std::endl;
+                    TEST(String("A String in String")==LuaRuntimeSafe.GetValue("String")->GetString(), "Argument::RetrieveString");
+
+                    TestOutput << "Retrieving Integer, expecting '42' but received: \t\t" << LuaRuntimeSafe.GetValue("Number")->GetInteger() << std::endl;
+                    TEST(42==LuaRuntimeSafe.GetValue("Number")->GetInteger(), "Argument::RetrieveInteger");
+
+                    TestOutput << "Retrieving Real, expecting '4.2' but received: \t\t" << LuaRuntimeSafe.GetValue("AFloatingPointNumber")->GetReal() << std::endl;
+                    TEST_EQUAL_EPSILON(Real(4.2), (LuaRuntimeSafe.GetValue("AFloatingPointNumber")->GetReal()), "Argument::RetrieveReal");
+
+                    TestOutput << "Retrieving Nil as a string, expecting 'Nil' but received: \t" << LuaRuntimeSafe.GetValue("ANil")->GetString() << std::endl;
+                    TEST(String("Nil")==LuaRuntimeSafe.GetValue("ANil")->GetString(), "Argument::RetrieveNil");
+
+                    TestOutput << "Retrieving Boole, expecting 'false' but received: \t\t" << LuaRuntimeSafe.GetValue("ABoolean")->GetReal() << std::endl;
+                    TEST(false==LuaRuntimeSafe.GetValue("ABoolean")->GetBoole(), "Argument::RetrieveBoole");
+                    TEST(LuaRuntimeSafe.GetStackCount()==StackSizeStart, "Argument::RetrievalDoesntLeakStackEntries");
+                    TestOutput << "" << std::endl;
+
+
                 }
 
                 {
@@ -326,6 +357,7 @@ class lua51tests : public UnitTestGroup
                     //Get argument from stack of arbitrary type and of specifictype
                 }
             }
+
 
             //////////////////////////////////////////////////////////////////////////////////////////
             // Library Tests
