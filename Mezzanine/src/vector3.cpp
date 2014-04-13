@@ -550,80 +550,84 @@ namespace Mezzanine
         strncpy(buffer,Temp.c_str(),BufferSize);
         return buffer;
     }
-}
 
-Mezzanine::Vector3 operator+ (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
-    { return lhs + Vec; }
-Mezzanine::Vector3 operator- (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
-    { return Mezzanine::Vector3(Vec.getX()-lhs.X, Vec.getY()-lhs.Y, Vec.getZ()-lhs.Z); }
-Mezzanine::Vector3 operator* (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
-    { return lhs * Vec; }
-Mezzanine::Vector3 operator/ (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
-    { return Mezzanine::Vector3(Vec.getX()/lhs.X, Vec.getY()/lhs.Y, Vec.getZ()/lhs.Z); }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Right Hand Arithmetic Operators
 
-Mezzanine::Vector3 operator+ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return lhs + Vec; }
-Mezzanine::Vector3 operator- (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return Mezzanine::Vector3(Vec.x-lhs.X, Vec.y-lhs.Y, Vec.z-lhs.Z); }
-Mezzanine::Vector3 operator* (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return lhs * Vec; }
-Mezzanine::Vector3 operator/ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
-    { return Mezzanine::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
+    Mezzanine::Vector3 operator+ (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
+        { return lhs + Vec; }
+    Mezzanine::Vector3 operator- (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
+        { return Mezzanine::Vector3(Vec.getX()-lhs.X, Vec.getY()-lhs.Y, Vec.getZ()-lhs.Z); }
+    Mezzanine::Vector3 operator* (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
+        { return lhs * Vec; }
+    Mezzanine::Vector3 operator/ (const btVector3  &Vec, const Mezzanine::Vector3& lhs)
+        { return Mezzanine::Vector3(Vec.getX()/lhs.X, Vec.getY()/lhs.Y, Vec.getZ()/lhs.Z); }
 
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-std::ostream& operator << (std::ostream& stream, const Mezzanine::Vector3& x)
-{
-    //stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\"/>";
-    Serialize(stream,x);
-    return stream;
-}
+    Mezzanine::Vector3 operator+ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
+        { return lhs + Vec; }
+    Mezzanine::Vector3 operator- (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
+        { return Mezzanine::Vector3(Vec.x-lhs.X, Vec.y-lhs.Y, Vec.z-lhs.Z); }
+    Mezzanine::Vector3 operator* (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
+        { return lhs * Vec; }
+    Mezzanine::Vector3 operator/ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs)
+        { return Mezzanine::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
 
-std::istream& operator >> (std::istream& stream, Mezzanine::Vector3& Vec)
-    { return DeSerialize(stream, Vec); }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Class External << Operators for streaming or assignment
 
-void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector3& Vec)
-    { Vec.ProtoDeSerialize(OneNode); }
+    std::ostream& operator << (std::ostream& stream, const Mezzanine::Vector3& x)
+    {
+        //stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\"/>";
+        Serialize(stream,x);
+        return stream;
+    }
 
-Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const Mezzanine::Vector3& VecFrom)
-{
-    VecTo = VecFrom.GetOgreVector3();
-    return VecTo;
-}
+    std::istream& operator >> (std::istream& stream, Mezzanine::Vector3& Vec)
+        { return DeSerialize(stream, Vec); }
 
-Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom)
-{
-    VecTo.x=VecFrom.getX();
-    VecTo.y=VecFrom.getY();
-    VecTo.z=VecFrom.getZ();
-    return VecTo;
-}
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector3& Vec)
+        { Vec.ProtoDeSerialize(OneNode); }
 
-btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom)
-{
-    VecTo.setX(VecFrom.x);
-    VecTo.setY(VecFrom.y);
-    VecTo.setZ(VecFrom.z);
-    VecTo.setW(0);
-    return VecTo;
-}
+    Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const Mezzanine::Vector3& VecFrom)
+    {
+        VecTo = VecFrom.GetOgreVector3();
+        return VecTo;
+    }
 
-btVector3& operator << (btVector3& VecTo, const Mezzanine::Vector3& VecFrom)
-{
-    VecTo=VecFrom.GetBulletVector3();
-    return VecTo;
-}
+    Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom)
+    {
+        VecTo.x=VecFrom.getX();
+        VecTo.y=VecFrom.getY();
+        VecTo.z=VecFrom.getZ();
+        return VecTo;
+    }
 
-Mezzanine::Vector3& operator << (Mezzanine::Vector3& VecTo, const Ogre::Vector3& VecFrom)
-{
-    VecTo=VecFrom;
-    return VecTo;
-}
+    btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom)
+    {
+        VecTo.setX(VecFrom.x);
+        VecTo.setY(VecFrom.y);
+        VecTo.setZ(VecFrom.z);
+        VecTo.setW(0);
+        return VecTo;
+    }
 
-Mezzanine::Vector3& operator << (Mezzanine::Vector3& VecTo, const btVector3& VecFrom)
-{
-    VecTo=VecFrom;
-    return VecTo;
+    btVector3& operator << (btVector3& VecTo, const Mezzanine::Vector3& VecFrom)
+    {
+        VecTo=VecFrom.GetBulletVector3();
+        return VecTo;
+    }
+
+    Mezzanine::Vector3& operator << (Mezzanine::Vector3& VecTo, const Ogre::Vector3& VecFrom)
+    {
+        VecTo=VecFrom;
+        return VecTo;
+    }
+
+    Mezzanine::Vector3& operator << (Mezzanine::Vector3& VecTo, const btVector3& VecFrom)
+    {
+        VecTo=VecFrom;
+        return VecTo;
+    }
 }
 
 #endif

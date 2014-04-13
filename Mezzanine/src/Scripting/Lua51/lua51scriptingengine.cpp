@@ -52,6 +52,7 @@
 
 #include <cstring>
 #include <cctype>
+#include <cassert>
 
 /// @file
 /// @brief This file has the implementation for the Lua based Scripting system.
@@ -182,6 +183,91 @@ namespace Mezzanine
             {
                 if(NULL==State)
                     { MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Could not allocate Memory for Lua interpretter"); }
+            }
+
+            void Lua51ScriptingEngine::ScriptOntoStack(Lua51Script* ScriptToLoad)
+            {
+                if(ScriptToLoad->FunctionCall)
+                {
+                    lua_getglobal(this->State,ScriptToLoad->SourceCode.c_str());
+                }else{
+                    if(!ScriptToLoad->IsCompiled())
+                        { Compile(ScriptToLoad); }
+                    else
+                    {
+                        ThrowFromLuaErrorCode(
+                            lua_load(this->State, LuaBytecodeLoader, &(ScriptToLoad->GetByteCodeReference()), ScriptToLoad->GetName().c_str())
+                        );
+                    }
+                }
+            }
+
+            void Lua51ScriptingEngine::ScriptArgsOntoStack(Lua51Script* ScriptToLoad)
+            {
+                LuaArgument* Current;
+                for(ArgumentGroup::const_iterator Iter = ScriptToLoad->Args.begin();
+                    Iter != ScriptToLoad->Args.end();
+                    Iter++ )
+                {
+                    Current = dynamic_cast<LuaArgument*>(Iter->Get());
+                    if(Current)
+                        { Current->Push(this->State); }
+                    else
+                        { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for parameter purposes.") }
+                }
+            }
+
+            void Lua51ScriptingEngine::StackExecute(Whole ArgumentCount)
+            {
+                ThrowFromLuaErrorCode(
+                    lua_pcall(this->State, ArgumentCount, LUA_MULTRET, 0)
+                );
+            }
+
+            Whole Lua51ScriptingEngine::ScriptArgsFromStack(Lua51Script* ScriptWasRun, Integer PreviousStackSize)
+            {
+                while(lua_gettop(State)>PreviousStackSize)
+                    { ScriptWasRun->AddReturn(ScriptArgFromStack()); }
+
+                return PreviousStackSize-lua_gettop(State);
+//                LuaArgument* Current;
+//                for(ArgumentGroup::iterator Iter = ScriptWasRun->Returns.begin();
+//                    Iter != ScriptWasRun->Returns.end();
+//                    Iter++ )
+//                {
+//                    Current = dynamic_cast<LuaArgument*>(Iter->Get());
+//                    if(Current)
+//                        { Current->Pop(this->State); }
+//                    else
+//                        { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for return value purposes.") }
+//                }
+            }
+
+            CountedPtr<iScriptArgument> Lua51ScriptingEngine::ScriptArgFromStack()
+            {
+                iScriptArgument* Results = NULL;
+                Integer StackLocation = lua_gettop(State);
+                if(LUA_TNIL==lua_type(State,StackLocation))
+                    { Results = new Lua51NilArgument; }
+                if(LUA_TBOOLEAN==lua_type(State,StackLocation))
+                    { Results = new Lua51BoolArgument; }
+                if(LUA_TLIGHTUSERDATA==lua_type(State,StackLocation))
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for return value purposes. Found a LightUserData."); }
+                if(LUA_TNUMBER==lua_type(State,StackLocation))
+                    { Results = new Lua51RealArgument; }
+                if(LUA_TSTRING==lua_type(State,StackLocation))
+                    { Results = new Lua51StringArgument; }
+                if(LUA_TTABLE==lua_type(State,StackLocation))
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for return value purposes. Found a Table."); }
+                if(LUA_TFUNCTION==lua_type(State,StackLocation))
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for return value purposes. Found a Function."); }
+                if(LUA_TUSERDATA==lua_type(State,StackLocation))
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for return value purposes. Found a UserData."); }
+                if(LUA_TTHREAD==lua_type(State,StackLocation))
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for return value purposes. Found a Thread."); }
+
+                dynamic_cast<LuaArgument*>(Results)->Pop(State);
+                return CountedPtr<iScriptArgument>(Results);
             }
 
             const String Lua51ScriptingEngine::NoLibName                   = "None";
@@ -393,51 +479,14 @@ namespace Mezzanine
                 { Execute(&ScriptToRun); }
             void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
             {
-                if(ScriptToRun->FunctionCall)
-                {
-                    lua_getglobal(this->State,ScriptToRun->SourceCode.c_str());
-                }else{
-                    if(!ScriptToRun->IsCompiled())
-                        { Compile(ScriptToRun); }
-                    else
-                    {
-                        ThrowFromLuaErrorCode(
-                            lua_load(this->State, LuaBytecodeLoader, &(ScriptToRun->GetByteCodeReference()), ScriptToRun->GetName().c_str())
-                        );
-                    }
-                    // Since Lua_Dump or lua_load will leave the function on the stack then...
-                }
-
-                // We just need to push all the arguments
-                LuaArgument* Current;
-                for(ArgumentGroup::const_iterator Iter = ScriptToRun->Args.begin();
-                    Iter != ScriptToRun->Args.end();
-                    Iter++ )
-                {
-                    Current = dynamic_cast<LuaArgument*>(Iter->Get());
-                    if(Current)
-                        { Current->Push(this->State); }
-                    else
-                        { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for parameter purposes.") }
-                }
-
-                // Do the actual script
-                ThrowFromLuaErrorCode(
-                    //lua_call(this->State, ScriptToRun->Args.size(), ScriptToRun->Returns.size() )
-                    lua_pcall(this->State, ScriptToRun->Args.size(), ScriptToRun->Returns.size(), 0)
-                );
-
-                // Need to get return values
-                for(ArgumentGroup::iterator Iter = ScriptToRun->Returns.begin();
-                    Iter != ScriptToRun->Returns.end();
-                    Iter++ )
-                {
-                    Current = dynamic_cast<LuaArgument*>(Iter->Get());
-                    if(Current)
-                        { Current->Pop(this->State); }
-                    else
-                        { MEZZ_EXCEPTION(Exception::PARAMETERS_CAST_EXCEPTION, "A LuaArgument could not be converted as one for return value purposes.") }
-                }
+                Integer StackSize = lua_gettop(this->State);
+                ScriptOntoStack(ScriptToRun);
+                assert(lua_gettop(this->State) == StackSize + 1);
+                ScriptArgsOntoStack(ScriptToRun);
+                assert(lua_gettop(this->State) == StackSize + 1 + Integer(ScriptToRun->GetArgumentCount()));
+                StackExecute(ScriptToRun->GetArgumentCount());
+                ScriptArgsFromStack(ScriptToRun, StackSize);
+                assert(lua_gettop(this->State) == StackSize);
             }
 
             ///////////////////////////////////////////////////////////////////////////////////////
@@ -447,7 +496,6 @@ namespace Mezzanine
                 CountedPtr<Lua51Script> Results(
                                 new Lua51Script(SourceToCompile,this)
                             );
-                //Compile(Results); // It seems the Luq51Script constructor compiles just fine
                 return Results;
             }
 
@@ -716,7 +764,7 @@ namespace Mezzanine
             const String& Lua51ScriptingEngine::GetLuaTypeString(int StackLocation)
             {
                 if(std::abs(StackLocation)>GetStackCount())
-                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "A place outside is attempting to be inspected while getting typestring."); }
+                    { MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "Attempting to inspect beyond Lua stack while getting typestring."); }
 
                 if(LUA_TNIL==lua_type(State,StackLocation))
                     { return TypeNameNil; }

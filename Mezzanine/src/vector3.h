@@ -608,129 +608,128 @@ namespace std
 
 } // std
 
-///////////////////////////////////////////////////////////////////////////////
-// Right Hand Arithmetic Operators
-/// @brief Right Hand Addition Operator for Bullet Vectors with a Mezzanine::Vector3.
-/// @param Vec The Bullet Vector to be added.
-/// @param lhs The Mezzanine::Vector3 to be added.
-/// @return A Mezzanine::Vector3 with the Sum.
-Mezzanine::Vector3 MEZZ_LIB operator+ (const btVector3  &Vec, const Mezzanine::Vector3& lhs);
+namespace Mezzanine
+{
+    ///////////////////////////////////////////////////////////////////////////////
+    // Right Hand Arithmetic Operators
 
-/// @brief Right Hand Subtraction Operator for Bullet Vectors with a Mezzanine::Vector3.
-/// @param Vec The Bullet Vector to be subtracted from.
-/// @param lhs The Mezzanine::Vector3 to be subtracted.
-/// @return A Mezzanine::Vector3 with the difference.
-Mezzanine::Vector3 MEZZ_LIB operator- (const btVector3  &Vec, const Mezzanine::Vector3& lhs);
+    /// @brief Right Hand Addition Operator for Bullet Vectors with a Mezzanine::Vector3.
+    /// @param Vec The Bullet Vector to be added.
+    /// @param lhs The Mezzanine::Vector3 to be added.
+    /// @return A Mezzanine::Vector3 with the Sum.
+    Mezzanine::Vector3 MEZZ_LIB operator+ (const btVector3  &Vec, const Mezzanine::Vector3& lhs);
 
-/// @brief Right Hand Multiplication Operator for Bullet Vectors with a Mezzanine::Vector3.
-/// @param Vec The Bullet Vector to be multiplied.
-/// @param lhs The Mezzanine::Vector3 to be multiplied.
-/// @return A Mezzanine::Vector3 with the product.
-Mezzanine::Vector3 MEZZ_LIB operator* (const btVector3  &Vec, const Mezzanine::Vector3& lhs);
+    /// @brief Right Hand Subtraction Operator for Bullet Vectors with a Mezzanine::Vector3.
+    /// @param Vec The Bullet Vector to be subtracted from.
+    /// @param lhs The Mezzanine::Vector3 to be subtracted.
+    /// @return A Mezzanine::Vector3 with the difference.
+    Mezzanine::Vector3 MEZZ_LIB operator- (const btVector3  &Vec, const Mezzanine::Vector3& lhs);
 
-/// @brief Right Hand Division Operator for Bullet Vectors with a Mezzanine::Vector3.
-/// @param Vec The Bullet Vector to be divided by.
-/// @param lhs The Mezzanine::Vector3 to be divided.
-/// @return A Mezzanine::Vector3 with the results
-Mezzanine::Vector3 MEZZ_LIB operator/ (const btVector3  &Vec, const Mezzanine::Vector3& lhs);
+    /// @brief Right Hand Multiplication Operator for Bullet Vectors with a Mezzanine::Vector3.
+    /// @param Vec The Bullet Vector to be multiplied.
+    /// @param lhs The Mezzanine::Vector3 to be multiplied.
+    /// @return A Mezzanine::Vector3 with the product.
+    Mezzanine::Vector3 MEZZ_LIB operator* (const btVector3  &Vec, const Mezzanine::Vector3& lhs);
 
+    /// @brief Right Hand Division Operator for Bullet Vectors with a Mezzanine::Vector3.
+    /// @param Vec The Bullet Vector to be divided by.
+    /// @param lhs The Mezzanine::Vector3 to be divided.
+    /// @return A Mezzanine::Vector3 with the results
+    Mezzanine::Vector3 MEZZ_LIB operator/ (const btVector3  &Vec, const Mezzanine::Vector3& lhs);
 
-/// @brief Right Hand Addition Operator for Ogre Vectors with a Mezzanine::Vector3.
-/// @param Vec The Ogre Vector to be added.
-/// @param lhs The Mezzanine::Vector3 to be added.
-/// @return A Mezzanine::Vector3 with the Sum.
-Mezzanine::Vector3 MEZZ_LIB operator+ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs);
+    /// @brief Right Hand Addition Operator for Ogre Vectors with a Mezzanine::Vector3.
+    /// @param Vec The Ogre Vector to be added.
+    /// @param lhs The Mezzanine::Vector3 to be added.
+    /// @return A Mezzanine::Vector3 with the Sum.
+    Mezzanine::Vector3 MEZZ_LIB operator+ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs);
 
-/// @brief Right Hand Subtraction Operator for Ogre Vectors with a Mezzanine::Vector3.
-/// @param Vec The Ogre Vector to be subtracted from.
-/// @param lhs The Mezzanine::Vector3 to be subtracted.
-/// @return A Mezzanine::Vector3 with the difference.
-Mezzanine::Vector3 MEZZ_LIB operator- (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs);
+    /// @brief Right Hand Subtraction Operator for Ogre Vectors with a Mezzanine::Vector3.
+    /// @param Vec The Ogre Vector to be subtracted from.
+    /// @param lhs The Mezzanine::Vector3 to be subtracted.
+    /// @return A Mezzanine::Vector3 with the difference.
+    Mezzanine::Vector3 MEZZ_LIB operator- (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs);
 
-/// @brief Right Hand Multiplication Operator for Ogre Vectors with a Mezzanine::Vector3.
-/// @param Vec The Ogre Vector to be multiplied.
-/// @param lhs The Mezzanine::Vector3 to be multiplied.
-/// @return A Mezzanine::Vector3 with the product.
-Mezzanine::Vector3 MEZZ_LIB operator* (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs);
+    /// @brief Right Hand Multiplication Operator for Ogre Vectors with a Mezzanine::Vector3.
+    /// @param Vec The Ogre Vector to be multiplied.
+    /// @param lhs The Mezzanine::Vector3 to be multiplied.
+    /// @return A Mezzanine::Vector3 with the product.
+    Mezzanine::Vector3 MEZZ_LIB operator* (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs);
 
-/// @brief Right Hand Division Operator for Ogre Vectors with a Mezzanine::Vector3.
-/// @param Vec The Ogre Vector to be divided by.
-/// @param lhs The Mezzanine::Vector3 to be divided.
-/// @return A Mezzanine::Vector3 with the results
-Mezzanine::Vector3 MEZZ_LIB operator/ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs);
+    /// @brief Right Hand Division Operator for Ogre Vectors with a Mezzanine::Vector3.
+    /// @param Vec The Ogre Vector to be divided by.
+    /// @param lhs The Mezzanine::Vector3 to be divided.
+    /// @return A Mezzanine::Vector3 with the results
+    Mezzanine::Vector3 MEZZ_LIB operator/ (const Ogre::Vector3 &Vec, const Mezzanine::Vector3& lhs);
 
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
+    ///////////////////////////////////////////////////////////////////////////////
+    // Class External << Operators for streaming or assignment
 
-// We can skip these operators when creating bindings with swig
-#ifndef SWIG
+    // We can skip these operators when creating bindings with swig
+    #ifndef SWIG
 
-/// @brief Used to Serialize an Mezzanine::Vector3 to a human readable stream
-/// @details The current XML format
-/// will create one node with no child nodes. The name of the xml node will be "Vector3". It will have 4 attributes.
-/// "Version", will be set to a value of 1, indicating if came from version 1 compatible Vector3. It will also have an "X", "Y" and
-/// "Z" attributes will values set appropriately. For example '<Vector3 Version="1" X="1" Y="2" Z="3" />'.
-/// @param x The Mezzanine::Vector3 to be converted to characters.
-/// @param stream The place to send the characters, that define the Mezzanine::Vector3.
-/// @return Get an std::ostream that was written to, this allow chaining of the << operators.
-std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Vector3& x);
+    /// @brief Used to Serialize an Mezzanine::Vector3 to a human readable stream
+    /// @details The current XML format
+    /// will create one node with no child nodes. The name of the xml node will be "Vector3". It will have 4 attributes.
+    /// "Version", will be set to a value of 1, indicating if came from version 1 compatible Vector3. It will also have an "X", "Y" and
+    /// "Z" attributes will values set appropriately. For example '<Vector3 Version="1" X="1" Y="2" Z="3" />'.
+    /// @param x The Mezzanine::Vector3 to be converted to characters.
+    /// @param stream The place to send the characters, that define the Mezzanine::Vector3.
+    /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
+    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Vector3& x);
 
-/// @brief Used to de-serialize an Mezzanine::Vector3 from a stream
-/// @details This reads in the xml and sets the target vector according to values
-/// from the stream.
-/// @param Vec The Mezzanine::Vector3 that will accept the values from the xml
-/// @param stream The place to get the characters from, that define the Mezzanine::Vector3.
-/// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
-/// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
-std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Vector3& Vec);
+    /// @brief Used to de-serialize an Mezzanine::Vector3 from a stream
+    /// @details This reads in the xml and sets the target vector according to values
+    /// from the stream.
+    /// @param Vec The Mezzanine::Vector3 that will accept the values from the xml
+    /// @param stream The place to get the characters from, that define the Mezzanine::Vector3.
+    /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
+    /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
+    std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Vector3& Vec);
 
-/// @brief Converts an XML node into a Mezzanine::Vector3
-/// @details This will convert an XML::Node will a valid serialized Mezzanine::Vector3 into a Mezzanine::Vector3
-/// @param OneNode An XML Node containing the the text of a Vector3
-/// @param Vec the Mezzanine::Vector3 to store the deserialized Vector3
-/// @return This returns a reference to the XML::Node for operator chaining or whatever.
-/// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
-void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector3& Vec);
+    /// @brief Converts an XML node into a Mezzanine::Vector3
+    /// @details This will convert an XML::Node will a valid serialized Mezzanine::Vector3 into a Mezzanine::Vector3
+    /// @param OneNode An XML Node containing the the text of a Vector3
+    /// @param Vec the Mezzanine::Vector3 to store the deserialized Vector3
+    /// @return This returns a reference to the XML::Node for operator chaining or whatever.
+    /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
+    void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector3& Vec);
 
-/// @brief Conversion Assignment Operator to Ogre::Vector3.
-/// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a\ Mezzanine::Vector3, this vector will be copied and unchanged.
-/// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).
-Ogre::Vector3& MEZZ_LIB operator << (Ogre::Vector3& VecTo, const Mezzanine::Vector3& VecFrom);
+    /// @brief Conversion Assignment Operator to Ogre::Vector3.
+    /// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.
+    /// @param VecFrom The right hand side, is a\ Mezzanine::Vector3, this vector will be copied and unchanged.
+    /// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).
+    Ogre::Vector3& MEZZ_LIB operator << (Ogre::Vector3& VecTo, const Mezzanine::Vector3& VecFrom);
 
-/// @brief Conversion Assignment Operator to Ogre::Vector3.
-/// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.
-/// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).
-Ogre::Vector3& MEZZ_LIB operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom);
+    /// @brief Conversion Assignment Operator to Ogre::Vector3.
+    /// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.
+    /// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.
+    /// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).
+    Ogre::Vector3& MEZZ_LIB operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom);
 
-/// @brief Conversion Assignment Operator to btVector3.
-/// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
-/// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).
-btVector3& MEZZ_LIB operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom);
+    /// @brief Conversion Assignment Operator to btVector3.
+    /// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.
+    /// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
+    /// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).
+    btVector3& MEZZ_LIB operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom);
 
-/// @brief Conversion Assignment Operator to btVector3.
-/// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a Mezzanine::Vector3, this vector will be copied and unchanged.
-/// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).
-btVector3& MEZZ_LIB operator << (btVector3& VecTo, const Mezzanine::Vector3& VecFrom);
+    /// @brief Conversion Assignment Operator to btVector3.
+    /// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.
+    /// @param VecFrom The right hand side, is a Mezzanine::Vector3, this vector will be copied and unchanged.
+    /// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).
+    btVector3& MEZZ_LIB operator << (btVector3& VecTo, const Mezzanine::Vector3& VecFrom);
 
-/// @brief Conversion Assignment Operator to Mezzanine::Vector3.
-/// @param VecTo The left hand side vector, is an Mezzanine::Vector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
-/// @return An Mezzanine::Vector3 in case multiple operators are chainged together (not usually a good idea).
-Mezzanine::Vector3& MEZZ_LIB operator << (Mezzanine::Vector3& VecTo, const Ogre::Vector3& VecFrom);
+    /// @brief Conversion Assignment Operator to Mezzanine::Vector3.
+    /// @param VecTo The left hand side vector, is an Mezzanine::Vector3. The values of VecFrom will be copied here.
+    /// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
+    /// @return An Mezzanine::Vector3 in case multiple operators are chainged together (not usually a good idea).
+    Mezzanine::Vector3& MEZZ_LIB operator << (Mezzanine::Vector3& VecTo, const Ogre::Vector3& VecFrom);
 
-/// @brief Conversion Assignment Operator to Mezzanine::Vector3.
-/// @param VecTo The left hand side vector, is an Mezzanine::Vector3. The values of VecFrom will be copied here.
-/// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.
-/// @return An Mezzanine::Vector3 in case multiple operators are chainged together (not usually a good idea).
-Mezzanine::Vector3& MEZZ_LIB operator << (Mezzanine::Vector3& VecTo, const btVector3& VecFrom);
+    /// @brief Conversion Assignment Operator to Mezzanine::Vector3.
+    /// @param VecTo The left hand side vector, is an Mezzanine::Vector3. The values of VecFrom will be copied here.
+    /// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.
+    /// @return An Mezzanine::Vector3 in case multiple operators are chainged together (not usually a good idea).
+    Mezzanine::Vector3& MEZZ_LIB operator << (Mezzanine::Vector3& VecTo, const btVector3& VecFrom);
 #endif // \SWIG
-
-
-
-
+}
 
 #endif // \include gaurd

@@ -209,6 +209,9 @@ namespace Mezzanine
 
             ArgumentGroup Lua51Script::GetAllReturns() const
                 { return Returns; }
+
+            CountedPtr<iScriptArgument> Lua51Script::GetReturn(Whole ReturnNumber) const
+                { return Returns.at(ReturnNumber); }
         } // Lua
     } // Scripting
 } // Mezzanine

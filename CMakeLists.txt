@@ -551,16 +551,6 @@ set(SDLLibraryNames
     "SDL2-static"
 )
 
-Message(STATUS "Looking for OpenMP.")
-find_package(OpenMP)
-if(OPENMP_FOUND)
-    Message(STATUS "Found OpenMP.")
-    #set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-    #set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-else(OPENMP_FOUND)
-    Message("Did not find OpenMP.")
-endif(OPENMP_FOUND)
-
 ###############################################################################
 # Perform Common Tasks for build options and configuration.
 

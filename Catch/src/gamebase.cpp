@@ -11,8 +11,8 @@ int main(int argc, char **argv)
 {
 	// Temporary Hack
     #ifdef MACOSX
-	String ExeDir = Mezzanine::ResourceManager::GetExecutableDirFromArg(argc,argv);
-	Mezzanine::ResourceManager::ChangeDirectory(ExeDir);
+	String ExeDir = Mezzanine::Resource::GetExecutableDirFromArg(argc,argv);
+	Mezzanine::Resource::ChangeWorkingDirectory(ExeDir);
     #endif
 	
     CatchApp* Catch = new CatchApp();
