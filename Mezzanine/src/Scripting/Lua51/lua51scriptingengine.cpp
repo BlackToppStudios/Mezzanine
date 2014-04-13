@@ -480,7 +480,6 @@ namespace Mezzanine
             void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
             {
                 Integer StackSize = lua_gettop(this->State);
-                Integer TempStackSize = lua_gettop(this->State);
                 ScriptOntoStack(ScriptToRun);
                 assert(lua_gettop(this->State) == StackSize + 1);
                 ScriptArgsOntoStack(ScriptToRun);
@@ -790,6 +789,12 @@ namespace Mezzanine
                     { return TypeNameThread; }
                 MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "The thing on the Lua stack match no known types.");
                 return NoLibName;
+            }
+
+            CountedPtr<iScriptArgument> Lua51ScriptingEngine::GetValue(const String& LuaIdentifier)
+            {
+                lua_getglobal(State, LuaIdentifier.c_str());
+                return ScriptArgFromStack();
             }
 
             void Lua51ScriptingEngine::PopulateTabCompletionTrie(CommandTrie& CommandGroup, const String& TableName, std::vector<String> AlreadyDidTables)

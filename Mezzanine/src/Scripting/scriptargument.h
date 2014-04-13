@@ -95,7 +95,7 @@ namespace Mezzanine
 
                 /// @brief Get the Argument as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Boole GetBool() const = 0;
+                virtual Boole GetBoole() const = 0;
 
                 /// @brief Is this value representing a Null/Nil value.
                 /// @return True if ths argument is null, false if it is anything other Type. This may of may not for language specific semantics.
@@ -176,7 +176,7 @@ namespace Mezzanine
 
                 /// @brief Get the Argument as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Boole GetBool() const
+                virtual Boole GetBoole() const
                     { return ToBool(Datum); }
 
                 /// @brief Is this value representing a Null/Nil value.
@@ -252,7 +252,7 @@ namespace Mezzanine
 
                 /// @brief Get the Integer as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Boole GetBool() const
+                virtual Boole GetBoole() const
                     { return Boole(Datum); }
 
                 /// @brief Is this value representing a Null/Nil value.
@@ -328,7 +328,7 @@ namespace Mezzanine
 
                 /// @brief Get the Whole Number as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Boole GetBool() const
+                virtual Boole GetBoole() const
                     { return Boole(Datum); }
 
                 /// @brief Is this value representing a Null/Nil value.
@@ -404,7 +404,7 @@ namespace Mezzanine
 
                 /// @brief Get the String as a Bool
                 /// @return The argument value lexographically converted as an @ref Bool
-                virtual Boole GetBool() const
+                virtual Boole GetBoole() const
                     { return ToBool(Datum); }
 
                 /// @brief Is this value representing a Null/Nil value.
@@ -480,7 +480,7 @@ namespace Mezzanine
 
                 /// @brief Get the Real as a Bool
                 /// @return The Real value lexographically converted as an @ref Bool
-                virtual Boole GetBool() const
+                virtual Boole GetBoole() const
                     { return Boole(Datum); }
 
                 /// @brief Is this value representing a Null/Nil value.
@@ -556,7 +556,7 @@ namespace Mezzanine
 
                 /// @brief Get the Bool.
                 /// @return The Bool.
-                virtual Boole GetBool() const
+                virtual Boole GetBoole() const
                     { return Datum; }
 
                 /// @brief Is this value representing a Null/Nil value.
@@ -634,7 +634,7 @@ namespace Mezzanine
 
                 /// @brief Get as a Bool.
                 /// @return False.
-                virtual Boole GetBool() const
+                virtual Boole GetBoole() const
                     { return false; }
 
                 /// @brief Is this value representing a Null/Nil value.
