@@ -541,8 +541,8 @@ void CatchApp::MakeGUI()
     MMFullscreenBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
     MMFullscreenBox->CreateSingleImageLayer("MMCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     MMFullscreenBox->CreateSingleImageLayer("MMHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
-    MMFullscreenBox->CreateSingleImageLayer("MMCheckboxChecked",0,UI::CheckBox::WG_SelectedNormal);
-    MMFullscreenBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",0,UI::CheckBox::WG_SelectedHovered);
+    MMFullscreenBox->CreateSingleImageLayer("MMCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
+    MMFullscreenBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
     MMFullscreenBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     MMVideoSet->AddChild(MMFullscreenBox,3);
 
@@ -582,8 +582,8 @@ void CatchApp::MakeGUI()
     UI::SingleImageLayer* MMFSAAToggleHovered = MMFSAAToggle->CreateSingleImageLayer("MMHoveredListScrollDown");
     MMFSAAToggle->AddLayerToGroup(MMFSAAToggleNormal,UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     MMFSAAToggle->AddLayerToGroup(MMFSAAToggleHovered,UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
-    MMFSAAToggle->AddLayerToGroup(MMFSAAToggleNormal,0,UI::CheckBox::WG_SelectedNormal);
-    MMFSAAToggle->AddLayerToGroup(MMFSAAToggleHovered,0,UI::CheckBox::WG_SelectedHovered);
+    MMFSAAToggle->AddLayerToGroup(MMFSAAToggleNormal,UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
+    MMFSAAToggle->AddLayerToGroup(MMFSAAToggleHovered,UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
     // Configure the option list
     UI::ListBox* MMFSAAOptions = MMFSAAList->GetSelectionList();
     MMFSAAOptions->SetListItemFont(MainMenuScreenText);
@@ -615,8 +615,8 @@ void CatchApp::MakeGUI()
     MMStatsBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
     MMStatsBox->CreateSingleImageLayer("MMCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     MMStatsBox->CreateSingleImageLayer("MMHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
-    MMStatsBox->CreateSingleImageLayer("MMCheckboxChecked",0,UI::CheckBox::WG_SelectedNormal);
-    MMStatsBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",0,UI::CheckBox::WG_SelectedHovered);
+    MMStatsBox->CreateSingleImageLayer("MMCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
+    MMStatsBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
     MMStatsBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     MMVideoSet->AddChild(MMStatsBox,7);
 
@@ -769,8 +769,8 @@ void CatchApp::MakeGUI()
     MMMuteBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
     MMMuteBox->CreateSingleImageLayer("MMCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     MMMuteBox->CreateSingleImageLayer("MMHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
-    MMMuteBox->CreateSingleImageLayer("MMCheckboxChecked",0,UI::CheckBox::WG_SelectedNormal);
-    MMMuteBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",0,UI::CheckBox::WG_SelectedHovered);
+    MMMuteBox->CreateSingleImageLayer("MMCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
+    MMMuteBox->CreateSingleImageLayer("MMHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
     MMMuteBox->Subscribe(UI::CheckBox::EventSelected,this->AudioSettingsWork->GetSettingsSubscriber());
     MMMuteBox->Subscribe(UI::CheckBox::EventDeselected,this->AudioSettingsWork->GetSettingsSubscriber());
     MMMuteBox->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
@@ -1079,8 +1079,8 @@ void CatchApp::MakeGUI()
     GSFullscreenBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
     GSFullscreenBox->CreateSingleImageLayer("GSCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     GSFullscreenBox->CreateSingleImageLayer("GSHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
-    GSFullscreenBox->CreateSingleImageLayer("GSCheckboxChecked",0,UI::CheckBox::WG_SelectedNormal);
-    GSFullscreenBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",0,UI::CheckBox::WG_SelectedHovered);
+    GSFullscreenBox->CreateSingleImageLayer("GSCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
+    GSFullscreenBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
     GSFullscreenBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     GSVideoSet->AddChild(GSFullscreenBox,3);
 
@@ -1153,8 +1153,8 @@ void CatchApp::MakeGUI()
     GSStatsBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
     GSStatsBox->CreateSingleImageLayer("GSCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     GSStatsBox->CreateSingleImageLayer("GSHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
-    GSStatsBox->CreateSingleImageLayer("GSCheckboxChecked",0,UI::CheckBox::WG_SelectedNormal);
-    GSStatsBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",0,UI::CheckBox::WG_SelectedHovered);
+    GSStatsBox->CreateSingleImageLayer("GSCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
+    GSStatsBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
     GSStatsBox->Subscribe(UI::Widget::EventVisibilityShown,this->VideoSettingsWork->GetSettingsSubscriber());
     GSVideoSet->AddChild(GSStatsBox,7);
 
@@ -1307,8 +1307,8 @@ void CatchApp::MakeGUI()
     GSMuteBox->SetHorizontalSizingRules(UI::SR_Match_Other_Axis);
     GSMuteBox->CreateSingleImageLayer("GSCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Normal,0));
     GSMuteBox->CreateSingleImageLayer("GSHoveredCheckboxUnchecked",UI::GroupOrderEntry(UI::Widget::WG_Hovered,0));
-    GSMuteBox->CreateSingleImageLayer("GSCheckboxChecked",0,UI::CheckBox::WG_SelectedNormal);
-    GSMuteBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",0,UI::CheckBox::WG_SelectedHovered);
+    GSMuteBox->CreateSingleImageLayer("GSCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedNormal,0));
+    GSMuteBox->CreateSingleImageLayer("GSHoveredCheckboxChecked",UI::GroupOrderEntry(UI::CheckBox::WG_SelectedHovered,0));
     GSMuteBox->Subscribe(UI::CheckBox::EventSelected,this->AudioSettingsWork->GetSettingsSubscriber());
     GSMuteBox->Subscribe(UI::CheckBox::EventDeselected,this->AudioSettingsWork->GetSettingsSubscriber());
     GSMuteBox->Subscribe(UI::Widget::EventVisibilityShown,this->AudioSettingsWork->GetSettingsSubscriber());
