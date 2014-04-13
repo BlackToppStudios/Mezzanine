@@ -86,6 +86,7 @@ class crashonclosetests : public UnitTestGroup
                 FrameScheduler FS;
                 Mezzanine::Threading::ThreadSpecificStorage Ignored(&FS);
                 Simulation.GetSimulationWork()->DoWork(Ignored);
+                TestOutput << "Location of an RigidProxy to prevent optimization: " << RigidA->GetLocation() << endl;
                 TEST_RESULT(Testing::Success, "PhysicsWithoutEntresol");
             }
 
