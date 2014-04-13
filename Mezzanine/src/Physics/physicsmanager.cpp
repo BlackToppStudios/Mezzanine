@@ -170,28 +170,32 @@ namespace Mezzanine
             virtual void reportErrorWarning(const char* warningString);
         };
 
-        InternalDebugDrawer::InternalDebugDrawer()
-        {
-            this->DebugDrawing = Physics::DDM_NoDebug;
-            this->WireFrame = new Mezzanine::LineGroup();
-        }
+        InternalDebugDrawer::InternalDebugDrawer() :
+            WireFrame(NULL),
+            DebugDrawing(Physics::DDM_NoDebug)
+            {  }
 
         InternalDebugDrawer::~InternalDebugDrawer()
-            { delete this->WireFrame; }
+        {
+            if( this->WireFrame != NULL )
+                delete this->WireFrame;
+        }
 
         void InternalDebugDrawer::PrepareForUpdate()
         {
-            if( this->WireFrame != NULL ) {
-                this->WireFrame->AddToWorld();
-                this->WireFrame->ClearLines();
+            if( this->WireFrame == NULL ) {
+                this->WireFrame = new Mezzanine::LineGroup();
+                if( this->DebugDrawing != Physics::DDM_NoDebug ) {
+                    this->WireFrame->AddToWorld();
+                }
             }
+            this->WireFrame->AddToWorld();
+            this->WireFrame->ClearLines();
         }
 
         void InternalDebugDrawer::FinalizeUpdate()
         {
-            if( this->WireFrame != NULL ) {
-                this->WireFrame->DrawLines();
-            }
+            this->WireFrame->DrawLines();
         }
 
         void InternalDebugDrawer::drawLine(const btVector3& from,const btVector3& to,const btVector3& color)
@@ -996,8 +1000,8 @@ namespace Mezzanine
 
         void PhysicsManager::SetDebugRenderingMode(const Integer DebugRenderingMode)
         {
+            this->DebugRenderMode = DebugRenderingMode;
             if( this->BulletDrawer ) {
-                this->DebugRenderMode = DebugRenderingMode;
                 this->BulletDrawer->setDebugMode( DebugRenderingMode );
             }
         }
@@ -1011,8 +1015,11 @@ namespace Mezzanine
         void PhysicsManager::ResetPhysicsWorld(ManagerConstructionInfo* Info)
         {
             this->Destroy();
-            if(Info) this->Construct(*Info);
-            else this->Construct(WorldConstructionInfo);
+            if( Info != NULL ) {
+                this->Construct( *Info );
+            }else{
+                this->Construct( WorldConstructionInfo );
+            }
 
             if( this->Initialized && this->BulletDrawer == NULL ) {
                 this->BulletDrawer = new debug::InternalDebugDrawer();

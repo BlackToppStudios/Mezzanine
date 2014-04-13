@@ -84,8 +84,33 @@ namespace Mezzanine
         /// @details Mezzanine::LineGroup is a simple wrapper around this to perform precise
         /// low level interactions with Ogre, the rendering subsystem. This uses too much stuff
         /// from ogre to use publicly. so we need to hide it here in the Mezzanine::internal namespace.
-        class Line3D: public Ogre::SimpleRenderable
+        class Line3D : public Ogre::SimpleRenderable
         {
+        protected:
+            /// @internal
+            /// @brief Gets how rotated this is currently
+            /// @details Returns a quaternion with the rotation
+            /// @return Is a Ogre::Quaternion which stores the rotation information of this Line3D
+            const Ogre::Quaternion getWorldOrientation(void) const;
+            /// @internal
+            /// @brief Get the position of this Line3d
+            /// @return This returns a Ogre::Vector3 with the Position relative to the world Origin
+            const Ogre::Vector3 getWorldPosition(void) const;
+            /// @internal
+            /// @brief Resizes the Vertex Buffer.
+            /// @note The Vertex Buffer will not shrink, only grow.  Passing in a smaller size will do nothing.
+            /// @param RequestedSize The new size for the existing buffer.
+            void ResizeVertexBuffer(const Whole RequestedSize);
+
+            /// @internal
+            /// @brief This is a vector which stores the point data
+            std::vector<LineVertex> Points;
+            /// @internal
+            /// @brief Internal pointer to the vertex buffer for this object.
+            Ogre::HardwareVertexBufferSharedPtr VertexBuffer;
+            /// @internal
+            /// @brief Pointer to the node that will be used exclusively for this renderable.
+            Ogre::SceneNode* SelfNode;
         public:
             /// @internal
             /// @brief Default Constructor
@@ -142,27 +167,7 @@ namespace Mezzanine
             /// @brief Retrieves the scene node that will be used to attach this object to the scenegraph.
             /// @return Returns a pointer to this LineDatas scenenode.
             Ogre::SceneNode* GetNode() const;
-        protected:
-            /// @internal
-            /// @brief Gets how rotated this is currently
-            /// @details Returns a quaternion with the rotation
-            /// @return Is a Ogre::Quaternion which stores the rotation information of this Line3D
-            const Ogre::Quaternion getWorldOrientation(void) const;
-            /// @internal
-            /// @brief Get the position of this Line3d
-            /// @return This returns a Ogre::Vector3 with the Position relative to the world Origin
-            const Ogre::Vector3 getWorldPosition(void) const;
-
-            /// @internal
-            /// @brief This is a vector which stores the point data
-            std::vector<LineVertex> Points;
-            /// @internal
-            /// @brief Internal pointer to the vertex buffer for this object.
-            Ogre::HardwareVertexBufferSharedPtr VertexBuffer;
-            /// @internal
-            /// @brief Pointer to the node that will be used exclusively for this renderable.
-            Ogre::SceneNode* SelfNode;
-        };
+        };//Line3D
 
         Line3D::Line3D()
         {
@@ -205,6 +210,31 @@ namespace Mezzanine
             delete mRenderOp.vertexData;
         }
 
+        const Ogre::Quaternion Line3D::getWorldOrientation() const
+            { return this->SelfNode->_getDerivedOrientation(); }
+
+        const Ogre::Vector3 Line3D::getWorldPosition() const
+            { return this->SelfNode->_getDerivedPosition(); }
+
+        void Line3D::ResizeVertexBuffer(const Whole RequestedSize)
+        {
+            if(RequestedSize > this->VertexBuffer->getNumVertices() ) {
+                // Update only by powers of 2
+                Whole NewVertexBufferSize = 1;
+                while(NewVertexBufferSize < RequestedSize)
+                    NewVertexBufferSize <<= 1;
+
+                this->VertexBuffer = Ogre::HardwareBufferManager::getSingletonPtr()->createVertexBuffer(
+                    this->mRenderOp.vertexData->vertexDeclaration->getVertexSize(0),
+                    NewVertexBufferSize,
+                    Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
+                    false);
+
+                this->mRenderOp.vertexData->vertexStart = 0;
+                this->mRenderOp.vertexData->vertexBufferBinding->setBinding(0,this->VertexBuffer);
+            }
+        }
+
         void Line3D::AddPoint(const Vector3& NewPoint, const ColourValue& Colour)
         {
             this->Points.push_back( LineVertex(NewPoint,Colour) );
@@ -244,10 +274,9 @@ namespace Mezzanine
         {
             // Drawing stuff
             Whole NumPoints = this->Points.size();
-            if( NumPoints > 0 )
-            {
-                if( mRenderOp.vertexData->vertexCount < NumPoints )
-                {
+            if( NumPoints > 0 ) {
+                this->ResizeVertexBuffer(NumPoints);
+                /*if( mRenderOp.vertexData->vertexCount < NumPoints ) {
                     Whole NewVertexBufferSize = 1;
                     while(NewVertexBufferSize < NumPoints)
                         NewVertexBufferSize <<= 1;
@@ -258,10 +287,9 @@ namespace Mezzanine
                         Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
                         false);
 
-                    mRenderOp.vertexData->vertexBufferBinding->setBinding(0,this->VertexBuffer);
-                    mRenderOp.vertexData->vertexCount = NewVertexBufferSize;
                     mRenderOp.vertexData->vertexStart = 0;
-                }
+                    mRenderOp.vertexData->vertexBufferBinding->setBinding(0,this->VertexBuffer);
+                }//*/
 
                 Vector3 vaabMin = this->Points[0].Position;
                 Vector3 vaabMax = this->Points[0].Position;
@@ -298,6 +326,7 @@ namespace Mezzanine
                         vaabMax.Z = CurrVertex.Position.Z;
                 }
                 this->VertexBuffer->unlock();
+                this->mRenderOp.vertexData->vertexCount = NumPoints;
 
                 mBox.setExtents(vaabMin.GetOgreVector3(), vaabMax.GetOgreVector3());
             }
@@ -315,25 +344,10 @@ namespace Mezzanine
         }
 
         Real Line3D::getBoundingRadius() const
-        {
-            return Ogre::Math::Sqrt(std::max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength()));
-            //return mRadius;
-        }
+            { return Ogre::Math::Sqrt(std::max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength())); }
 
         Ogre::SceneNode* Line3D::GetNode() const
-        {
-            return this->SelfNode;
-        }
-
-        const Ogre::Quaternion Line3D::getWorldOrientation() const
-        {
-            return this->SelfNode->_getDerivedOrientation();
-        }
-
-        const Ogre::Vector3 Line3D::getWorldPosition() const
-        {
-            return this->SelfNode->_getDerivedPosition();
-        }
+            { return this->SelfNode; }
     }// /internal
 
 
@@ -352,40 +366,25 @@ namespace Mezzanine
     }
 
     void LineGroup::AddPoint(const Vector3& NewPoint, const ColourValue& Colour)
-    {
-        this->LineData->AddPoint(NewPoint,Colour);
-    }
+        { this->LineData->AddPoint(NewPoint,Colour); }
 
     const Vector3 LineGroup::GetPoint(const Whole Index) const
-    {
-        Vector3 temp(this->LineData->GetPoint(Index));
-        return temp;
-    }
+        { return Vector3(this->LineData->GetPoint(Index)); }
 
     Whole LineGroup::GetNumPoints(void) const
-    {
-        return this->LineData->GetNumPoints();
-    }
+        { return this->LineData->GetNumPoints(); }
 
     void LineGroup::UpdatePoint(const Whole Index, const Vector3& NewValue)
-    {
-        return this->LineData->UpdatePoint(Index,NewValue);
-    }
+        { return this->LineData->UpdatePoint(Index,NewValue); }
 
     void LineGroup::ClearLines()
-    {
-        this->LineData->ClearPoints();
-    }
+        { this->LineData->ClearPoints(); }
 
     void LineGroup::DrawLine(const Vector3& Start, const Vector3& End, const ColourValue& Colour)
-    {
-        this->LineData->DrawLine(Start,End,Colour);
-    }
+        { this->LineData->DrawLine(Start,End,Colour); }
 
     void LineGroup::DrawLines()
-    {
-        this->LineData->DrawLines();
-    }
+        { this->LineData->DrawLines(); }
 
     void LineGroup::AddToWorld()
     {
@@ -395,7 +394,7 @@ namespace Mezzanine
 
     void LineGroup::RemoveFromWorld()
     {
-        if( this->LineData->isAttached() != false )
+        if( this->LineData->isAttached() == true )
             this->LineData->GetNode()->detachObject(this->LineData);
     }
 
