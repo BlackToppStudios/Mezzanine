@@ -69,6 +69,8 @@ namespace Mezzanine
         /// @return Depends on users input
         TestResult GetTestAnswerFromStdin(Mezzanine::String Question, Boole FailStatusOnIncorrect = true);
 
+
+        void sleep_for(UInt32 MicroSeconds);
     }// Testing
 }// Mezzanine
 

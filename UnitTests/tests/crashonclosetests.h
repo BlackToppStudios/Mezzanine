@@ -63,15 +63,14 @@ class crashonclosetests : public UnitTestGroup
         void RunAutomaticTests()
         {
             ////////////////////////////////////////////////////////////////
-            // Linux SDL unloadsx X11 Ogre still needs crash
+            // Linux SDL unloads X11 Ogre still needs crash
             {
                 {
                     TestOutput << "Creating an entresol and a window, then closing them." << endl;
                     Mezzanine::Entresol Crasher;
                     TEST_RESULT(Testing::Success, "CreatedEngineWithoutSegFault");
 
-                    Crasher.EngineInit();
-
+                    Crasher.EngineInit(); // Cannot be optimized out because it logs so much
                 }
                 TEST_RESULT(Testing::Success, "DestroyedEngineWithoutSegFault");
 
@@ -83,10 +82,13 @@ class crashonclosetests : public UnitTestGroup
             {
                 Mezzanine::Physics::PhysicsManager Simulation;
                 Mezzanine::Physics::RigidProxy* RigidA = Simulation.CreateRigidProxy(10.0);
+                RigidA->SetGravity(Vector3(0,9.8,0));
                 FrameScheduler FS;
                 Mezzanine::Threading::ThreadSpecificStorage Ignored(&FS);
                 Simulation.GetSimulationWork()->DoWork(Ignored);
+                TestOutput << "Location of an RigidProxy to prevent optimization: " << RigidA->GetLocation() << endl;
                 TEST_RESULT(Testing::Success, "PhysicsWithoutEntresol");
+                TestOutput << "Some information from the simulation to prevent optimizing the crash out: " << Simulation.GetNumProxies();
             }
 
 

@@ -236,6 +236,7 @@ class AllUnitTestGroups : public UnitTestGroup
                                     bool FullOutput = true,
                                     bool HeaderOutput = true)
         {
+            sleep_for(500000); // A half second sleep to allow subprocesses to finish output and not clobber stdout
             if(ExecuteInThisMemorySpace) // we are running a test in a seperate process, so we need to control the output for communcation purposes
             {
                 WriteTempFile(*this);

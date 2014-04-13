@@ -53,7 +53,6 @@
 #include <cstring>
 #include <cctype>
 #include <cassert>
-#include <iostream>
 
 /// @file
 /// @brief This file has the implementation for the Lua based Scripting system.
@@ -481,20 +480,12 @@ namespace Mezzanine
             void Lua51ScriptingEngine::Execute(Lua51Script* ScriptToRun)
             {
                 Integer StackSize = lua_gettop(this->State);
-                Integer TempStackSize = lua_gettop(this->State);
-                std::cout << "before: " << (TempStackSize = lua_gettop(this->State)) << std::endl;
                 ScriptOntoStack(ScriptToRun);
-                std::cout << "after ScriptOntoStack: " << (TempStackSize = lua_gettop(this->State)) << std::endl;
                 assert(lua_gettop(this->State) == StackSize + 1);
                 ScriptArgsOntoStack(ScriptToRun);
-                std::cout << "after ScriptArgsOntoStack: " << (TempStackSize = lua_gettop(this->State)) << std::endl;
                 assert(lua_gettop(this->State) == StackSize + 1 + Integer(ScriptToRun->GetArgumentCount()));
-
                 StackExecute(ScriptToRun->GetArgumentCount());
-                std::cout << "after StackExecute: " << (TempStackSize = lua_gettop(this->State)) << std::endl;
-
                 ScriptArgsFromStack(ScriptToRun, StackSize);
-                std::cout << "after ScriptArgsFromStack: " << (TempStackSize = lua_gettop(this->State)) << std::endl;
                 assert(lua_gettop(this->State) == StackSize);
             }
 
@@ -505,7 +496,6 @@ namespace Mezzanine
                 CountedPtr<Lua51Script> Results(
                                 new Lua51Script(SourceToCompile,this)
                             );
-                //Compile(Results); // It seems the Luq51Script constructor compiles just fine
                 return Results;
             }
 
@@ -796,6 +786,12 @@ namespace Mezzanine
                     { return TypeNameThread; }
                 MEZZ_EXCEPTION(Exception::PARAMETERS_RANGE_EXCEPTION, "The thing on the Lua stack match no known types.");
                 return NoLibName;
+            }
+
+            CountedPtr<iScriptArgument> Lua51ScriptingEngine::GetValue(const String& LuaIdentifier)
+            {
+                lua_getglobal(State, LuaIdentifier.c_str());
+                return ScriptArgFromStack();
             }
 
             void Lua51ScriptingEngine::PopulateTabCompletionTrie(CommandTrie& CommandGroup, const String& TableName, std::vector<String> AlreadyDidTables)

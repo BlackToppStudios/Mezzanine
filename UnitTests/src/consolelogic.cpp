@@ -49,6 +49,21 @@
 #include <vector>
 #include <sstream>
 
+#ifdef _MEZZ_THREAD_WIN32_
+    #ifndef WIN32_LEAN_AND_MEAN
+        #define WIN32_LEAN_AND_MEAN
+        #define __UNDEF_LEAN_AND_MEAN
+    #endif
+    #include <windows.h>
+    #ifdef __UNDEF_LEAN_AND_MEAN
+        #undef WIN32_LEAN_AND_MEAN
+        #undef __UNDEF_LEAN_AND_MEAN
+    #endif
+#else
+    #include <unistd.h>
+#endif
+
+
 using namespace Mezzanine;
 using namespace std;
 
@@ -153,6 +168,15 @@ namespace Mezzanine
                 default:
                     return Testing::Unknown;
             }
+        }
+
+        void sleep_for(UInt32 MicroSeconds)
+        {
+        #if defined(_MEZZ_THREAD_WIN32_)
+            Sleep(MicroSeconds/1000);
+        #else
+            usleep(MicroSeconds);
+        #endif
         }
 
     }// Testing
