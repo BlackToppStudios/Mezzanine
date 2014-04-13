@@ -307,10 +307,10 @@ void CatchPostInputWorkUnit::DoWork(Threading::DefaultThreadSpecificStorage::Typ
     // Determine our Debug drawer visibility
     if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) ) {
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
-        if( PhysMan->GetDebugRenderingMode() ) {
-            PhysMan->SetDebugRenderingMode(Physics::DDM_NoDebug);
+        if( PhysMan->GetDebugRenderingMode() == Physics::DDM_NoDebug ) {
+            PhysMan->SetDebugRenderingMode( Physics::DDM_DrawWireframe );
         }else{
-            PhysMan->SetDebugRenderingMode(Physics::DDM_DrawWireframe);
+            PhysMan->SetDebugRenderingMode( Physics::DDM_NoDebug );
         }
     }
     // Determine UI screen visibility
