@@ -198,13 +198,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
-            virtual void ProtoSerialize(XML::Node& ParentNode) const;
             /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
-
-            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
-            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
             /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 

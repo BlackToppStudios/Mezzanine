@@ -47,16 +47,13 @@ namespace Mezzanine
     namespace Audio
     {
         SoundScapeManager::SoundScapeManager()
-        {
-        }
+            {  }
 
         SoundScapeManager::SoundScapeManager(XML::Node& XMLNode)
-        {
-        }
+            {  }
 
         SoundScapeManager::~SoundScapeManager()
-        {
-        }
+            {  }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility

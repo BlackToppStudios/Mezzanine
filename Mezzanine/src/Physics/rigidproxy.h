@@ -105,21 +105,26 @@ namespace Mezzanine
             /// @internal
             /// @brief RigidBody proxy used by the internal physics.
             btRigidBody* PhysicsRigidBody;
-            /// @internal
+            /*/// @internal
             /// @brief
             /// @internal
             /// @brief Data related to sticky behavior, if any is enabled.
-            //StickyData* StickyContacts;
+            StickyData* StickyContacts;*/
 
             /// @internal
             /// @brief Used to create the physics representation of the rigid body.
             /// @param Mass The mass of the rigid body to be created.
             virtual void CreateRigidObject(const Real Mass);
         public:
-            /// @brief Standard Constructor.
+            /// @brief Class Constructor.
             /// @param Mass The mass of the rigid body.
             /// @param Creator A pointer to the manager that created this proxy.
             RigidProxy(const Real Mass, PhysicsManager* Creator);
+            /// @brief Class Constructor.
+            /// @param Mass The mass of the rigid body.
+            /// @param Shape A pointer to the collision shape that will be applied to this proxy.
+            /// @param Creator A pointer to the manager that created this proxy.
+            RigidProxy(const Real Mass, CollisionShape* Shape, PhysicsManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.

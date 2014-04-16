@@ -53,6 +53,7 @@ namespace Mezzanine
     namespace Physics
     {
         class GhostProxy;
+        class CollisionShape;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief This class is used to define area's in the world that have unique effects.
@@ -89,7 +90,8 @@ namespace Mezzanine
 
         /// @internal
         /// @brief Common constructor method for AreaEffect base class.
-        virtual void CreateAreaEffect();
+        /// @param Shape A pointer to the collision shape that will be applied to this object.
+        virtual void CreateAreaEffect(Physics::CollisionShape* Shape);
         /// @internal
         /// @brief Common destructor method for AreaEffect base class.
         virtual void DestroyAreaEffect();
@@ -101,6 +103,11 @@ namespace Mezzanine
         /// @param Name The name to be given to this object.
         /// @param TheWorld A pointer to the world this object belongs to.
         AreaEffect(const String& Name, World* TheWorld);
+        /// @brief Class constructor.
+        /// @param Name The name to be given to this object.
+        /// @param Shape A pointer to the collision shape that will be applied to this object.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        AreaEffect(const String& Name, Physics::CollisionShape* Shape, World* TheWorld);
         /// @brief Class destructor.
         virtual ~AreaEffect();
 

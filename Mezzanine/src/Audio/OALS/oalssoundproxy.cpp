@@ -55,6 +55,7 @@
 #include "Audio/OALS/oalseffect.h"
 #include "Audio/OALS/oalsdefines.h"
 #include "exception.h"
+#include "serialization.h"
 
 #include "Audio/audiomanager.h"
 #include "Audio/decoderfactory.h"
@@ -132,8 +133,7 @@ namespace Mezzanine
                 for( UInt32 Index = 0 ; Index < OALS_MAX_LISTENERS_PER_MANAGER ; ++Index )
                 {
                     this->ContextsAndSources[Index].first = Contexts[Index];
-                    if( this->ContextsAndSources[Index].first )
-                    {
+                    if( this->ContextsAndSources[Index].first ) {
                         // Make the necessary context current
                         this->MakeCurrent( this->ContextsAndSources[Index].first );
                         // Create our source
@@ -154,8 +154,7 @@ namespace Mezzanine
             {
                 for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                 {
-                    if( (*CSI).first != NULL && (*CSI).second != 0 )
-                    {
+                    if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                         this->MakeCurrent( (*CSI).first );
                         // Stop the source
                         alSourceStop((*CSI).second);
@@ -170,6 +169,16 @@ namespace Mezzanine
                 delete this->SoundDecoder;
             }
 
+            void OALS::SoundProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
+            {
+                this->WorldProxy::ProtoSerializeImpl(SelfRoot);
+            }
+
+            void OALS::SoundProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+            {
+                this->WorldProxy::ProtoDeSerializeImpl(SelfRoot);
+            }
+
             void OALS::SoundProxy::MakeCurrent(ALCcontext* Context)
             {
                 ALCcontext* CurrContext = alcGetCurrentContext();
@@ -179,8 +188,7 @@ namespace Mezzanine
 
             Boole OALS::SoundProxy::StreamToBuffer(const UInt32 Buffer)
             {
-                if(this->SoundDecoder)
-                {
+                if( this->SoundDecoder ) {
                     UInt32 TotalRead = 0;
                     UInt8 ErrorCount = 0;
                     Char8 TempBuffer[OALS_SOURCE_BUFFER_SIZE];
@@ -223,33 +231,23 @@ namespace Mezzanine
             // Utility
 
             Mezzanine::ProxyType OALS::SoundProxy::GetProxyType() const
-            {
-                return Mezzanine::PT_Audio_SoundProxy;
-            }
+                { return Mezzanine::PT_Audio_SoundProxy; }
 
             Boole OALS::SoundProxy::IsValid() const
-            {
-                return ( this->SoundDecoder && this->SoundDecoder->GetStream() );//add parameters to check the sources
-            }
+                { return ( this->SoundDecoder && this->SoundDecoder->GetStream() ); }//add parameters to check the sources
 
             UInt16 OALS::SoundProxy::GetType() const
-            {
-                return this->SType;
-            }
+                { return this->SType; }
 
             iDecoder* OALS::SoundProxy::GetDecoder() const
-            {
-                return this->SoundDecoder;
-            }
+                { return this->SoundDecoder; }
 
             void OALS::SoundProxy::SetPitch(const Real Pitch)
             {
-                if( this->SoundPitch != Pitch )
-                {
+                if( this->SoundPitch != Pitch ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_PITCH,Pitch);
                         }
@@ -266,12 +264,10 @@ namespace Mezzanine
             void OALS::SoundProxy::SetStream(Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
             {
                 iDecoderFactory* Factory = AudioManager::GetSingletonPtr()->GetDecoderFactory(Encode);
-                if( Factory != NULL )
-                {
-                    if( this->SoundDecoder )
-                    {
-                        delete SoundDecoder;
-                        SoundDecoder = NULL;
+                if( Factory != NULL ) {
+                    if( this->SoundDecoder ) {
+                        delete this->SoundDecoder;
+                        this->SoundDecoder = NULL;
                     }
                     this->SoundDecoder = Factory->CreateDecoder(Stream);
                 }
@@ -285,8 +281,7 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetStream(iDecoder* Decode)
             {
-                if( this->SoundDecoder )
-                {
+                if( this->SoundDecoder ) {
                     delete SoundDecoder;
                     SoundDecoder = NULL;
                 }
@@ -301,13 +296,11 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetDirectSound(Boole Enable)
             {
-                if( this->DirectSound != Enable )
-                {
+                if( this->DirectSound != Enable ) {
                     // This is unfortuately hackish
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
 
                             if( Enable ) {
@@ -330,8 +323,7 @@ namespace Mezzanine
 
             void OALS::SoundProxy::AddToWorld()
             {
-                if( !this->IsInWorld() )
-                {
+                if( !this->IsInWorld() ) {
                     this->State = ( this->State | OALS::PS_InWorld );
                     if( this->IsPaused() ) {
                         this->Play();
@@ -341,8 +333,7 @@ namespace Mezzanine
 
             void OALS::SoundProxy::RemoveFromWorld()
             {
-                if( this->IsInWorld() )
-                {
+                if( this->IsInWorld() ) {
                     this->State = ( this->State & ~OALS::PS_InWorld );
                     if( this->IsPlaying() ) {
                         this->Pause();
@@ -369,16 +360,14 @@ namespace Mezzanine
                     return false;
 
                 // Setup the buffers for playback
-                if( !this->IsPaused() )
-                {
+                if( !this->IsPaused() ) {
                     UInt32 QueueSize = 0;
                     /// @todo Currently in this method we iterate over all the sources for each context twice due to the order in which these
                     /// operations have to be done.  Purge the buffers before refreshing them and making them available to the sources, otherwise
                     /// audio artifacts may surface.  If this can be refactored more cleanly somehow, it should be done.
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcei((*CSI).second,AL_BUFFER,0);
                         }
@@ -390,8 +379,7 @@ namespace Mezzanine
                     }
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourceQueueBuffers((*CSI).second,QueueSize,&Buffers[0]);
                         }
@@ -400,8 +388,7 @@ namespace Mezzanine
 
                 for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                 {
-                    if( (*CSI).first != NULL && (*CSI).second != 0 )
-                    {
+                    if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                         this->MakeCurrent( (*CSI).first );
                         alSourcePlay((*CSI).second);
                     }
@@ -420,13 +407,11 @@ namespace Mezzanine
 
             void OALS::SoundProxy::Pause()
             {
-                if( this->IsPlaying() )
-                {
+                if( this->IsPlaying() ) {
                     // Pause the source
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             alSourcePause((*CSI).second);
                         }
                     }
@@ -444,12 +429,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::Stop()
             {
-                if( !(this->IsStopped()) )
-                {
+                if( !(this->IsStopped()) ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             alSourceStop((*CSI).second);
                         }
                     }
@@ -481,8 +464,7 @@ namespace Mezzanine
             Boole OALS::SoundProxy::Seek(const Real Seconds, Boole Relative)
             {
                 Boole Ret = false;
-                if( this->SoundDecoder->IsSeekingSupported() )
-                {
+                if( this->SoundDecoder->IsSeekingSupported() ) {
                     Ret = this->SoundDecoder->Seek(Seconds,Relative);
                 }
                 return Ret;
@@ -509,12 +491,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetMinVolume(const Real MinVol)
             {
-                if( this->MinVolume != MinVol )
-                {
+                if( this->MinVolume != MinVol ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_MIN_GAIN,MinVol);
                         }
@@ -530,12 +510,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetMaxVolume(const Real MaxVol)
             {
-                if( this->MaxVolume != MaxVol )
-                {
+                if( this->MaxVolume != MaxVol ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_MAX_GAIN,MaxVol);
                         }
@@ -554,12 +532,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetRolloffFactor(const Real& Rolloff)
             {
-                if( this->RolloffFactor != Rolloff )
-                {
+                if( this->RolloffFactor != Rolloff ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_ROLLOFF_FACTOR,Rolloff);
                         }
@@ -575,12 +551,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetMinDistance(const Real& MinDistance)
             {
-                if( this->MinDist != MinDistance )
-                {
+                if( this->MinDist != MinDistance ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_REFERENCE_DISTANCE,MinDistance);
                         }
@@ -596,12 +570,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetMaxDistance(const Real& MaxDistance)
             {
-                if( this->MaxDist != MaxDistance )
-                {
+                if( this->MaxDist != MaxDistance ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_MAX_DISTANCE,MaxDistance);
                         }
@@ -617,12 +589,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetInnerConeAngle(const Real& InnerAngle)
             {
-                if( this->InnerConeAngle != InnerAngle )
-                {
+                if( this->InnerConeAngle != InnerAngle ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_CONE_INNER_ANGLE,InnerAngle);
                         }
@@ -638,12 +608,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetOuterConeAngle(const Real& OuterAngle)
             {
-                if( this->OuterConeAngle != OuterAngle )
-                {
+                if( this->OuterConeAngle != OuterAngle ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_CONE_OUTER_ANGLE,OuterAngle);
                         }
@@ -659,12 +627,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetOuterConeVolume(const Real& OuterVolume)
             {
-                if( this->OuterConeVolume != OuterVolume )
-                {
+                if( this->OuterConeVolume != OuterVolume ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_CONE_OUTER_GAIN,OuterVolume);
                         }
@@ -680,12 +646,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetDopplerStrength(const Real& DopStr)
             {
-                if( this->DopplerStrength != DopStr )
-                {
+                if( this->DopplerStrength != DopStr ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcef((*CSI).second,AL_DOPPLER_FACTOR,DopStr);
                         }
@@ -701,12 +665,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetDopplerVelocity(const Vector3& DopVel)
             {
-                if( this->DopplerVelocity != DopVel )
-                {
+                if( this->DopplerVelocity != DopVel ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSource3f((*CSI).second,AL_DOPPLER_VELOCITY,DopVel.X,DopVel.Y,DopVel.Z);
                         }
@@ -722,12 +684,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetVelocity(const Vector3& Vel)
             {
-                if( this->Velocity != Vel )
-                {
+                if( this->Velocity != Vel ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSource3f((*CSI).second,AL_VELOCITY,Vel.X,Vel.Y,Vel.Z);
                         }
@@ -746,12 +706,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetLocation(const Vector3& Loc)
             {
-                if( this->Location != Loc )
-                {
+                if( this->Location != Loc ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSource3f((*CSI).second,AL_POSITION,Loc.X,Loc.Y,Loc.Z);
                         }
@@ -773,12 +731,10 @@ namespace Mezzanine
 
             void OALS::SoundProxy::SetOrientation(const Quaternion& Ori)
             {
-                if( this->Orientation != Ori )
-                {
+                if( this->Orientation != Ori ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
 
                             if( this->DirectSound ) {
@@ -883,17 +839,14 @@ namespace Mezzanine
                 if( Eff && Eff->IsValid() == false )
                     return false;
 
-                if( Slot < this->Effects.size() )
-                {
+                if( Slot < this->Effects.size() ) {
                     OALS::Effect* BeingAdded = static_cast<OALS::Effect*>(Eff);
-                    if( BeingAdded )
-                    {
+                    if( BeingAdded ) {
                         this->Effects[Slot] = BeingAdded;
 
                         for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                         {
-                            if( (*CSI).first != NULL && (*CSI).second != 0 )
-                            {
+                            if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                                 this->MakeCurrent( (*CSI).first );
 
                                 ALuint EffectSlotID = BeingAdded->_GetInternalEffectSlot();
@@ -934,14 +887,12 @@ namespace Mezzanine
 
             void OALS::SoundProxy::RemoveEffect(const UInt32 Slot)
             {
-                if( Slot < this->Effects.size() )
-                {
+                if( Slot < this->Effects.size() ) {
                     this->Effects[Slot] = NULL;
 
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSource3i((*CSI).second,AL_AUXILIARY_SEND_FILTER,AL_EFFECTSLOT_NULL,Slot,AL_FILTER_NULL);
                         }
@@ -958,12 +909,10 @@ namespace Mezzanine
                     return false;
 
                 this->SoundFilter = static_cast<OALS::Filter*>(Fil);
-                if( this->SoundFilter != NULL )
-                {
+                if( this->SoundFilter != NULL ) {
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
 
                             ALuint FilterID = this->SoundFilter->_GetInternalFilter();
@@ -981,14 +930,12 @@ namespace Mezzanine
 
             void OALS::SoundProxy::RemoveFilter()
             {
-                if( this->SoundFilter != NULL )
-                {
+                if( this->SoundFilter != NULL ) {
                     this->SoundFilter = NULL;
 
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
-                        if( (*CSI).first != NULL && (*CSI).second != 0 )
-                        {
+                        if( (*CSI).first != NULL && (*CSI).second != 0 ) {
                             this->MakeCurrent( (*CSI).first );
                             alSourcei((*CSI).second,AL_DIRECT_FILTER,AL_FILTER_NULL);
                         }
@@ -999,27 +946,159 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            void OALS::SoundProxy::ProtoSerialize(XML::Node& ParentNode) const
+            void OALS::SoundProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             {
-                /// @todo Implement this.
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for SoundProxies.");
+                this->WorldProxy::ProtoSerializeProperties(SelfRoot);
+
+                XML::Node PropertiesNode = SelfRoot.AppendChild( OALS::SoundProxy::GetSerializableName() + "Properties" );
+
+                if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                    PropertiesNode.AppendAttribute("DopplerStrength").SetValue( this->GetDopplerStrength() ) &&
+                    PropertiesNode.AppendAttribute("OuterConeAngle").SetValue( this->GetOuterConeAngle() ) &&
+                    PropertiesNode.AppendAttribute("OuterConeVolume").SetValue( this->GetOuterConeVolume() ) &&
+                    PropertiesNode.AppendAttribute("InnerConeAngle").SetValue( this->GetInnerConeAngle() ) &&
+                    PropertiesNode.AppendAttribute("MinDist").SetValue( this->GetMinDistance() ) &&
+                    PropertiesNode.AppendAttribute("MaxDist").SetValue( this->GetMaxDistance() ) &&
+                    PropertiesNode.AppendAttribute("RolloffFactor").SetValue( this->GetRolloffFactor() ) &&
+                    PropertiesNode.AppendAttribute("BaseVolume").SetValue( this->GetBaseVolume() ) &&
+                    PropertiesNode.AppendAttribute("MinVolume").SetValue( this->GetMinVolume() ) &&
+                    PropertiesNode.AppendAttribute("MaxVolume").SetValue( this->GetMaxVolume() ) &&
+                    PropertiesNode.AppendAttribute("SoundPitch").SetValue( this->GetPitch() ) &&
+                    PropertiesNode.AppendAttribute("SType").SetValue( this->GetType() ) &&
+                    PropertiesNode.AppendAttribute("State").SetValue( this->State ) &&
+                    PropertiesNode.AppendAttribute("DirectSound").SetValue( this->IsDirectingSound() ) )
+                {
+                    XML::Node VelocityNode = PropertiesNode.AppendChild("Velocity");
+                    this->GetVelocity().ProtoSerialize( VelocityNode );
+                    XML::Node DopplerVelocityNode = PropertiesNode.AppendChild("DopplerVelocity");
+                    this->GetDopplerVelocity().ProtoSerialize( DopplerVelocityNode );
+
+                    return;
+                }else{
+                    SerializeError("Create XML Attribute Values",OALS::SoundProxy::GetSerializableName() + "Properties",true);
+                }
             }
 
-            void OALS::SoundProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
+            void OALS::SoundProxy::ProtoSerializeDecoder(XML::Node& SelfRoot) const
             {
-                /// @todo Implement this.
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Serialization not yet implemented for SoundProxies.");
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Decoder Serialization not currently implemented.")
+            }
+
+            void OALS::SoundProxy::ProtoSerializeFilter(XML::Node& SelfRoot) const
+            {
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Filter Serialization not currently implemented.")
+            }
+
+            void OALS::SoundProxy::ProtoSerializeEffects(XML::Node& SelfRoot) const
+            {
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
+            }
+
+            void OALS::SoundProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            {
+                this->WorldProxy::ProtoDeSerializeProperties(SelfRoot);
+
+                XML::Attribute CurrAttrib;
+                XML::Node PropertiesNode = SelfRoot.GetChild( OALS::SoundProxy::GetSerializableName() + "Properties" );
+
+                if( !PropertiesNode.Empty() ) {
+                    if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                        CurrAttrib = PropertiesNode.GetAttribute("DopplerStrength");
+                        if( !CurrAttrib.Empty() )
+                            this->SetDopplerStrength( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("OuterConeAngle");
+                        if( !CurrAttrib.Empty() )
+                            this->SetOuterConeAngle( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("OuterConeVolume");
+                        if( !CurrAttrib.Empty() )
+                            this->SetOuterConeVolume( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("InnerConeAngle");
+                        if( !CurrAttrib.Empty() )
+                            this->SetInnerConeAngle( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("MinDist");
+                        if( !CurrAttrib.Empty() )
+                            this->SetMinDistance( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("MaxDist");
+                        if( !CurrAttrib.Empty() )
+                            this->SetMaxDistance( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("RolloffFactor");
+                        if( !CurrAttrib.Empty() )
+                            this->SetRolloffFactor( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("BaseVolume");
+                        if( !CurrAttrib.Empty() )
+                            this->SetBaseVolume( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("MinVolume");
+                        if( !CurrAttrib.Empty() )
+                            this->SetMinVolume( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("MaxVolume");
+                        if( !CurrAttrib.Empty() )
+                            this->SetMaxVolume( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("SoundPitch");
+                        if( !CurrAttrib.Empty() )
+                            this->SetPitch( CurrAttrib.AsReal() );
+
+                        CurrAttrib = PropertiesNode.GetAttribute("SType");
+                        if( !CurrAttrib.Empty() )
+                            this->SType = CurrAttrib.AsUint();
+
+                        CurrAttrib = PropertiesNode.GetAttribute("State");
+                        if( !CurrAttrib.Empty() )
+                            this->State = CurrAttrib.AsUint();
+
+                        CurrAttrib = PropertiesNode.GetAttribute("DirectSound");
+                        if( !CurrAttrib.Empty() )
+                            this->SetDirectSound( CurrAttrib.AsBool() );
+
+                        // Get the properties that need their own nodes
+                        XML::Node VelocityNode = PropertiesNode.GetChild("Velocity").GetFirstChild();
+                        if( !VelocityNode.Empty() ) {
+                            Vector3 Vel(VelocityNode);
+                            this->SetVelocity(Vel);
+                        }
+
+                        XML::Node DopplerVelocityNode = PropertiesNode.GetChild("DopplerVelocity").GetFirstChild();
+                        if( !DopplerVelocityNode.Empty() ) {
+                            Vector3 DopVel(DopplerVelocityNode);
+                            this->SetDopplerVelocity(DopVel);
+                        }
+                    }else{
+                        MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (OALS::SoundProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                    }
+                }else{
+                    MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,OALS::SoundProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
+                }
+            }
+
+            void OALS::SoundProxy::ProtoDeSerializeDecoder(const XML::Node& SelfRoot)
+            {
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Decoder Serialization not currently implemented.")
+            }
+
+            void OALS::SoundProxy::ProtoDeSerializeFilter(const XML::Node& SelfRoot)
+            {
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Filter Serialization not currently implemented.")
+            }
+
+            void OALS::SoundProxy::ProtoDeSerializeEffects(const XML::Node& SelfRoot)
+            {
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Effect Serialization not currently implemented.")
             }
 
             String OALS::SoundProxy::GetDerivedSerializableName() const
-            {
-                return this->OALS::SoundProxy::SerializableName();
-            }
+                { return this->OALS::SoundProxy::SerializableName(); }
 
             String OALS::SoundProxy::SerializableName()
-            {
-                return "OALSSoundProxy";
-            }
+                { return "OALSSoundProxy"; }
 
             ///////////////////////////////////////////////////////////////////////////////
             // Internal Methods
@@ -1033,8 +1112,7 @@ namespace Mezzanine
                     alSourcef( (*CSI).second, AL_GAIN, this->GetVolume() );
 
                     // Update our filter
-                    if( this->SoundFilter != NULL && this->SoundFilter->_IsDirty() )
-                    {
+                    if( this->SoundFilter != NULL && this->SoundFilter->_IsDirty() ) {
                         ALuint FilterID = this->SoundFilter->_GetInternalFilter();
                         alSourcei( (*CSI).second, AL_DIRECT_FILTER, FilterID );
                     }
@@ -1043,8 +1121,7 @@ namespace Mezzanine
                     for( UInt32 Index = 0 ; Index < this->Effects.size() ; ++Index )
                     {
                         OALS::Effect* CurrEffect = this->Effects.at(Index);
-                        if( CurrEffect != NULL && CurrEffect->_IsDirty() )
-                        {
+                        if( CurrEffect != NULL && CurrEffect->_IsDirty() ) {
                             //ALuint EffectID = CurrEffect->_GetInternalEffect();
                             ALuint EffectSlotID = CurrEffect->_GetInternalEffectSlot();
                             ALuint FilterID = ( CurrEffect->GetFilter() != NULL ? static_cast<OALS::Filter*>(CurrEffect->GetFilter())->_GetInternalFilter() : AL_FILTER_NULL );
@@ -1061,8 +1138,7 @@ namespace Mezzanine
             {
                 Int32 Processed = 0;
                 Boole Active = true;
-                if( this->IsPlaying() )
-                {
+                if( this->IsPlaying() ) {
                     // Get the minimum non-zero number of processed buffers across all sources
                     for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                     {
@@ -1083,8 +1159,7 @@ namespace Mezzanine
                         }
 
                         Active = StreamToBuffer(Buffer);
-                        if( Active )
-                        {
+                        if( Active ) {
                             for( ContextSourceIterator CSI = this->ContextsAndSources.begin() ; CSI != this->ContextsAndSources.end() ; ++CSI )
                             {
                                 this->MakeCurrent( (*CSI).first );
@@ -1100,8 +1175,7 @@ namespace Mezzanine
                 {
                     this->MakeCurrent( (*CSI).first );
                     alGetSourcei( (*CSI).second, AL_SOURCE_STATE, &OALSState );
-                    if( OALSState == AL_STOPPED && !IsStopped() )
-                    {
+                    if( OALSState == AL_STOPPED && !IsStopped() ) {
                         this->SoundDecoder->SetPosition(0,false);
                         this->State = ( this->IsLooping() ? OALS::PS_Stopped | OALS::PS_Looping : OALS::PS_Stopped );
                         break;
@@ -1112,8 +1186,7 @@ namespace Mezzanine
 
             void OALS::SoundProxy::_OnContextCreated(const UInt32 Index, ALCcontext* Context)
             {
-                if( Index < this->ContextsAndSources.size() )
-                {
+                if( Index < this->ContextsAndSources.size() ) {
                     ALCcontext* OldContext = this->ContextsAndSources[Index].first;
                     //UInt32 SourceID = this->ContextsAndSources[Index].second;
 
@@ -1130,13 +1203,11 @@ namespace Mezzanine
 
             void OALS::SoundProxy::_OnContextDestroyed(const UInt32 Index, ALCcontext* Context)
             {
-                if( Index < this->ContextsAndSources.size() )
-                {
+                if( Index < this->ContextsAndSources.size() ) {
                     ALCcontext* Context = this->ContextsAndSources[Index].first;
                     UInt32 SourceID = this->ContextsAndSources[Index].second;
 
-                    if( Context != NULL && SourceID != 0 )
-                    {
+                    if( Context != NULL && SourceID != 0 ) {
                         this->MakeCurrent(Context);
                         alSourceStop(SourceID);
                         alDeleteSources(1,&SourceID);

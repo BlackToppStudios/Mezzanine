@@ -61,6 +61,14 @@ namespace Mezzanine
             this->CreateGhostObject();
         }
 
+        GhostProxy::GhostProxy(CollisionShape* Shape, PhysicsManager* Creator) :
+            CollidableProxy(Creator),
+            PhysicsGhostBody(NULL)
+        {
+            this->CreateGhostObject();
+            this->SetCollisionShape(Shape);
+        }
+
         GhostProxy::GhostProxy(const XML::Node& SelfRoot, PhysicsManager* Creator) :
             CollidableProxy(Creator),
             PhysicsGhostBody(NULL)

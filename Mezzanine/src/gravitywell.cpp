@@ -69,6 +69,14 @@ namespace Mezzanine
         AllowWorldGrav(true)
         {  }
 
+    GravityWell::GravityWell(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
+        AreaEffect(Name,Shape,TheWorld),
+        AttenAmount(0),
+        Strength(0),
+        AttenStyle(Mezzanine::Att_None),
+        AllowWorldGrav(true)
+        {  }
+
     GravityWell::GravityWell(const XML::Node& SelfRoot, World* TheWorld) :
         AreaEffect(TheWorld),
         AttenAmount(0),
@@ -274,6 +282,9 @@ namespace Mezzanine
 
     GravityWell* GravityWellFactory::CreateGravityWell(const String& Name, World* TheWorld)
         { return new GravityWell(Name,TheWorld); }
+
+    GravityWell* GravityWellFactory::CreateGravityWell(const String& Name, Physics::CollisionShape* AEShape, World* TheWorld)
+        { return new GravityWell(Name,AEShape,TheWorld); }
 
     GravityWell* GravityWellFactory::CreateGravityWell(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<GravityWell*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }

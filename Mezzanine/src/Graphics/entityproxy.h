@@ -85,6 +85,10 @@ namespace Mezzanine
             /// @brief Stores whether or not this object can cast shadows on other objects.
             Boole CanCastShadows;
 
+            /// @copydoc WorldProxy::ProtoSerializeImpl(XML::Node&) const
+            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
+            /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
+            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
             /// @internal
             /// @brief Creates an internal entity based on the provided mesh.
             /// @param ObjectMesh A pointer to the mesh to be applied to this proxy.
@@ -184,16 +188,12 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
-            virtual void ProtoSerialize(XML::Node& ParentNode) const;
             /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the mesh of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeMesh(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
-            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
             /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the mesh of this object with it.

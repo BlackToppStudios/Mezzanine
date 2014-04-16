@@ -43,6 +43,7 @@
 #include "fieldofforce.h"
 
 #include "Physics/rigidproxy.h"
+#include "Physics/ghostproxy.h"
 
 #include "serialization.h"
 #include "exception.h"
@@ -63,6 +64,15 @@ namespace Mezzanine
 
     FieldOfForce::FieldOfForce(const String& Name, World* TheWorld) :
         AreaEffect(Name,TheWorld),
+        AttenSource(Vector3(0,0,0)),
+        Direction(Vector3(0,1,0)),
+        AttenAmount(0),
+        Strength(0),
+        AttenStyle(Mezzanine::Att_None)
+        {  }
+
+    FieldOfForce::FieldOfForce(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
+        AreaEffect(Name,Shape,TheWorld),
         AttenSource(Vector3(0,0,0)),
         Direction(Vector3(0,1,0)),
         AttenAmount(0),
@@ -97,8 +107,7 @@ namespace Mezzanine
 
         if(0 == this->Strength)
             return;
-        if( !this->OverlappingObjects.empty() )
-        {
+        if( !this->OverlappingObjects.empty() ) {
             Vector3 ObjectLoc;
             //Real Distance, AppliedStrength, InvMass;
             Real Distance, AppliedStrength;
@@ -275,6 +284,9 @@ namespace Mezzanine
 
     FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const String& Name, World* TheWorld)
         { return new FieldOfForce(Name,TheWorld); }
+
+    FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const String& Name, Physics::CollisionShape* AEShape, World* TheWorld)
+        { return new FieldOfForce(Name,AEShape,TheWorld); }
 
     FieldOfForce* FieldOfForceFactory::CreateFieldOfForce(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<FieldOfForce*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }

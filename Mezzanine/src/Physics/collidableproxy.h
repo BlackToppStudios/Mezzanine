@@ -66,10 +66,10 @@ namespace Mezzanine
         class MEZZ_LIB CollidableProxy : public WorldProxy
         {
         protected:
-            /// @internal
+            /*/// @internal
             /// @brief A vector3 storing the scaling applied to this body.
             /// @note This exists because in bullet scaling is a property of shapes instead of bodies.
-            //Vector3 BodyScale;
+            Vector3 BodyScale;//*/
             /// @internal
             /// @brief The physics shape of this proxy.
             CollisionShape* ProxyShape;
@@ -85,6 +85,11 @@ namespace Mezzanine
             /// @internal
             /// @brief  Stores the kind of World Objects that can collide with each other.
             Int16 CollisionMask;
+
+            /// @copydoc WorldProxy::ProtoSerializeImpl(XML::Node&) const
+            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
+            /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
+            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
         public:
             /// @brief Standard Constructor.
             /// @param Creator A pointer to the manager that created this proxy.
@@ -302,17 +307,13 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
-            virtual void ProtoSerialize(XML::Node& ParentNode) const;
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
             virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the shape of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeShape(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
-            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
             virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the shape of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.

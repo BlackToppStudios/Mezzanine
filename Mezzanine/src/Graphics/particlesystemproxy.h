@@ -99,6 +99,10 @@ namespace Mezzanine
             /// @brief Stores whether or not updates to this particle system are paused.
             Boole Paused;
 
+            /// @copydoc WorldProxy::ProtoSerializeImpl(XML::Node&) const
+            virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
+            /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
+            virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
             /// @internal
             /// @brief Constructs this particle system from a pre-made particle script.
             /// @param Name The name of this particle effect.
@@ -208,8 +212,8 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
-            /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
-            virtual void ProtoSerialize(XML::Node& ParentNode) const;
+            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
             /// @brief Convert the template name of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeTemplate(XML::Node& SelfRoot) const;
@@ -222,11 +226,9 @@ namespace Mezzanine
             /// @brief Convert the affectors of this class to an XML::Node ready for serialization.
             /// @param SelfRoot The root node containing all the serialized data for this instance.
             virtual void ProtoSerializeAffectors(XML::Node& SelfRoot) const;
-            /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
-            virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
 
-            /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
-            virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
+            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
             /// @brief Take the data stored in an XML Node and overwrite the template name of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             virtual void ProtoDeSerializeTemplate(const XML::Node& SelfRoot);
@@ -239,8 +241,6 @@ namespace Mezzanine
             /// @brief Take the data stored in an XML Node and overwrite the affectors of this object with it.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             virtual void ProtoDeSerializeAffectors(const XML::Node& SelfRoot);
-            /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
-            virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
 
             /// @copydoc WorldProxy::GetDerivedSerializableName() const
             virtual String GetDerivedSerializableName() const;

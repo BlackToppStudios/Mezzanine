@@ -43,6 +43,7 @@
 #include "gravityfield.h"
 
 #include "Physics/rigidproxy.h"
+#include "Physics/ghostproxy.h"
 #include "Physics/physicsmanager.h"
 
 #include "entresol.h"
@@ -57,6 +58,10 @@ namespace Mezzanine
 
     GravityField::GravityField(const String& Name, World* TheWorld) :
         AreaEffect(Name,TheWorld)
+        {  }
+
+    GravityField::GravityField(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
+        AreaEffect(Name,Shape,TheWorld)
         {  }
 
     GravityField::GravityField(const XML::Node& SelfRoot, World* TheWorld) :
@@ -172,6 +177,9 @@ namespace Mezzanine
 
     GravityField* GravityFieldFactory::CreateGravityField(const String& Name, World* TheWorld)
         { return new GravityField(Name,TheWorld); }
+
+    GravityField* GravityFieldFactory::CreateGravityField(const String& Name, Physics::CollisionShape* AEShape, World* TheWorld)
+        { return new GravityField(Name,AEShape,TheWorld); }
 
     GravityField* GravityFieldFactory::CreateGravityField(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<GravityField*>( this->CreateAreaEffect(XMLNode,TheWorld) ); }

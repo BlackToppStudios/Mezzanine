@@ -69,6 +69,11 @@ namespace Mezzanine
         /// @param Name The name to be given to this object.
         /// @param TheWorld A pointer to the world this object belongs to.
         GravityWell(const String& Name, World* TheWorld);
+        /// @brief Class constructor.
+        /// @param Name The name to be given to this object.
+        /// @param Shape A pointer to the Collision shape that will be applied to this object.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        GravityWell(const String& Name, Physics::CollisionShape* Shape, World* TheWorld);
         /// @brief XML constructor.
         /// @param SelfRoot An XML::Node containing the data to populate this class with.
         /// @param TheWorld A pointer to the world this object belongs to.
@@ -155,6 +160,11 @@ namespace Mezzanine
         /// @param Name The name to be given to this object.
         /// @param TheWorld A pointer to the world this object belongs to.
         virtual GravityWell* CreateGravityWell(const String& Name, World* TheWorld);
+        /// @brief Creates a GravityWell object.
+        /// @param Name The name to be given to this object.
+        /// @param AEShape A pointer to the Collision shape that will be applied to this object.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        virtual GravityWell* CreateGravityWell(const String& Name, Physics::CollisionShape* AEShape, World* TheWorld);
         /// @brief Creates a GravityWell object.
         /// @param XMLNode The node of the xml document to construct from.
         /// @param TheWorld A pointer to the world this object belongs to.

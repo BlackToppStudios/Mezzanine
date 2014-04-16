@@ -68,21 +68,30 @@ namespace Mezzanine
     AreaEffect::AreaEffect(World* TheWorld) :
         WorldObject(TheWorld),
         Ghost(NULL)
-        { this->CreateAreaEffect(); }
+        { this->CreateAreaEffect(NULL); }
 
     AreaEffect::AreaEffect(const String& Name, World* TheWorld) :
         WorldObject(Name,TheWorld),
         Ghost(NULL)
-        { this->CreateAreaEffect(); }
+        { this->CreateAreaEffect(NULL); }
+
+    AreaEffect::AreaEffect(const String& Name, Physics::CollisionShape* Shape, World* TheWorld) :
+        WorldObject(Name,TheWorld),
+        Ghost(NULL)
+        { this->CreateAreaEffect(Shape); }
 
     AreaEffect::~AreaEffect()
         { this->DestroyAreaEffect(); }
 
-    void AreaEffect::CreateAreaEffect()
+    void AreaEffect::CreateAreaEffect(Physics::CollisionShape* Shape)
     {
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
         if( PhysMan != NULL ) {
-            this->Ghost = PhysMan->CreateGhostProxy();
+            if( Shape == NULL ) {
+                this->Ghost = PhysMan->CreateGhostProxy();
+            }else{
+                this->Ghost = PhysMan->CreateGhostProxy(Shape,false);
+            }
 
             UInt16 ColGroup = Physics::CF_SensorFilter;
             UInt16 ColMask = Physics::CF_AllFilter & ~(Physics::CF_SensorFilter | Physics::CF_StaticFilter);

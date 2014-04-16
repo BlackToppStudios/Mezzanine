@@ -64,6 +64,14 @@ namespace Mezzanine
             this->CreateRigidObject(Mass);
         }
 
+        RigidProxy::RigidProxy(const Real Mass, CollisionShape* Shape, PhysicsManager* Creator) :
+            CollidableProxy(Creator),
+            PhysicsRigidBody(NULL)
+        {
+            this->CreateRigidObject(Mass);
+            this->SetCollisionShape(Shape);
+        }
+
         RigidProxy::RigidProxy(const XML::Node& SelfRoot, PhysicsManager* Creator) :
             CollidableProxy(Creator),
             PhysicsRigidBody(NULL)

@@ -761,6 +761,16 @@ namespace Mezzanine
             return NewProxy;
         }
 
+        GhostProxy* PhysicsManager::CreateGhostProxy(CollisionShape* Shape, const Boole AddToWorld)
+        {
+            GhostProxy* NewProxy = new GhostProxy(Shape,this);
+            this->Proxies.push_back(NewProxy);
+            if( AddToWorld ) {
+                NewProxy->AddToWorld();
+            }
+            return NewProxy;
+        }
+
         GhostProxy* PhysicsManager::CreateGhostProxy(const XML::Node& SelfRoot)
         {
             GhostProxy* NewProxy = new GhostProxy(SelfRoot,this);
@@ -772,6 +782,16 @@ namespace Mezzanine
         {
             RigidProxy* NewProxy = new RigidProxy(Mass,this);
             this->Proxies.push_back(NewProxy);
+            return NewProxy;
+        }
+
+        RigidProxy* PhysicsManager::CreateRigidProxy(const Real Mass, CollisionShape* Shape, const Boole AddToWorld)
+        {
+            RigidProxy* NewProxy = new RigidProxy(Mass,Shape,this);
+            this->Proxies.push_back(NewProxy);
+            if( AddToWorld ) {
+                NewProxy->AddToWorld();
+            }
             return NewProxy;
         }
 

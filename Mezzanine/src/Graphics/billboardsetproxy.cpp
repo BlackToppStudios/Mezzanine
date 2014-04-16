@@ -175,6 +175,18 @@ namespace Mezzanine
         BillboardSetProxy::~BillboardSetProxy()
             { this->DestroyBillboardSet(); }
 
+        void BillboardSetProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
+        {
+            this->WorldProxy::ProtoSerializeImpl(SelfRoot);
+            this->ProtoSerializeBillboards(SelfRoot);
+        }
+
+        void BillboardSetProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+        {
+            this->WorldProxy::ProtoDeSerializeImpl(SelfRoot);
+            this->ProtoDeSerializeBillboards(SelfRoot);
+        }
+
         void BillboardSetProxy::CreateBillboardSet(const UInt32 InitialPoolSize)
         {
             this->GraphicsBillboardSet = this->Manager->_GetGraphicsWorldPointer()->createBillboardSet(InitialPoolSize);
@@ -326,17 +338,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void BillboardSetProxy::ProtoSerialize(XML::Node& ParentNode) const
-        {
-            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
-                SerializeError("Create XML Attribute Values",BillboardSetProxy::GetSerializableName(),true);
-            }
-
-            this->ProtoSerializeProperties(SelfRoot);
-            this->ProtoSerializeBillboards(SelfRoot);
-        }
-
         void BillboardSetProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
@@ -369,31 +370,13 @@ namespace Mezzanine
         {
             XML::Node BillboardsNode = SelfRoot.AppendChild( BillboardSetProxy::GetSerializableName() + "Billboards" );
 
-            if( BillboardsNode.AppendAttribute("Version").SetValue("1") )
-            {
+            if( BillboardsNode.AppendAttribute("Version").SetValue("1") ) {
                 for( ConstBillboardIterator BillIt = this->Billboards.begin() ; BillIt != this->Billboards.end() ; ++BillIt )
                 {
                     (*BillIt)->ProtoSerialize( BillboardsNode );
                 }
             }else{
                 SerializeError("Create XML Attribute Values",BillboardSetProxy::GetSerializableName() + "Billboards",true);
-            }
-        }
-
-        void BillboardSetProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
-        {
-            Boole WasInWorld = false;
-            XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
-            if( !InWorldAttrib.Empty() ) {
-                WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
-            }
-
-            this->DestroyAllBillboards();
-            this->ProtoDeSerializeProperties(SelfRoot);
-            this->ProtoDeSerializeBillboards(SelfRoot);
-
-            if( WasInWorld ) {
-                this->AddToWorld();
             }
         }
 
@@ -463,6 +446,8 @@ namespace Mezzanine
 
         void BillboardSetProxy::ProtoDeSerializeBillboards(const XML::Node& SelfRoot)
         {
+            this->DestroyAllBillboards();
+
             XML::Node BillboardsNode = SelfRoot.GetChild( BillboardSetProxy::GetSerializableName() + "Billboards" );
 
             if( !BillboardsNode.Empty() ) {

@@ -75,6 +75,24 @@ namespace Mezzanine
         ParticleSystemProxy::~ParticleSystemProxy()
             { this->DestroyParticleSystem(); }
 
+        void ParticleSystemProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
+        {
+            this->ProtoSerializeTemplate(SelfRoot);
+            this->ProtoSerializeCustomParameters(SelfRoot);
+            this->WorldProxy::ProtoSerializeImpl(SelfRoot);
+            this->ProtoSerializeEmitters(SelfRoot);
+            this->ProtoSerializeAffectors(SelfRoot);
+        }
+
+        void ParticleSystemProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+        {
+            this->ProtoDeSerializeTemplate(SelfRoot);
+            this->ProtoDeSerializeCustomParameters(SelfRoot);
+            this->WorldProxy::ProtoDeSerializeImpl(SelfRoot);
+            this->ProtoDeSerializeEmitters(SelfRoot);
+            this->ProtoDeSerializeAffectors(SelfRoot);
+        }
+
         void ParticleSystemProxy::CreateParticleSystem(const String& Template)
         {
             this->GraphicsParticleSystem = this->Manager->_GetGraphicsWorldPointer()->createParticleSystem(ParticleSystemProxy::GenerateName(),Template);
@@ -234,18 +252,20 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void ParticleSystemProxy::ProtoSerialize(XML::Node& ParentNode) const
+        void ParticleSystemProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
-            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
-                SerializeError("Create XML Attribute Values",ParticleSystemProxy::GetSerializableName(),true);
-            }
+            this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
 
-            this->ProtoSerializeTemplate(SelfRoot);
-            this->ProtoSerializeCustomParameters(SelfRoot);
-            this->ProtoSerializeProperties(SelfRoot);
-            this->ProtoSerializeEmitters(SelfRoot);
-            this->ProtoSerializeAffectors(SelfRoot);
+            XML::Node PropertiesNode = SelfRoot.AppendChild( ParticleSystemProxy::GetSerializableName() + "Properties" );
+
+            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
+                PropertiesNode.AppendAttribute("Paused").SetValue( this->IsParticleSystemPaused() ) &&
+                PropertiesNode.AppendAttribute("SpeedFactor").SetValue( this->GetSpeedFactor() ) )
+            {
+                return;
+            }else{
+                SerializeError("Create XML Attribute Values",ParticleSystemProxy::GetSerializableName() + "Properties",true);
+            }
         }
 
         void ParticleSystemProxy::ProtoSerializeTemplate(XML::Node& SelfRoot) const
@@ -330,39 +350,27 @@ namespace Mezzanine
             }
         }
 
-        void ParticleSystemProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
+        void ParticleSystemProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
         {
-            this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
+            this->RenderableProxy::ProtoDeSerializeProperties(SelfRoot);
 
-            XML::Node PropertiesNode = SelfRoot.AppendChild( ParticleSystemProxy::GetSerializableName() + "Properties" );
+            XML::Attribute CurrAttrib;
+            XML::Node PropertiesNode = SelfRoot.GetChild( ParticleSystemProxy::GetSerializableName() + "Properties" );
 
-            if( PropertiesNode.AppendAttribute("Version").SetValue("1") &&
-                PropertiesNode.AppendAttribute("Paused").SetValue( this->IsParticleSystemPaused() ) &&
-                PropertiesNode.AppendAttribute("SpeedFactor").SetValue( this->GetSpeedFactor() ) )
-            {
-                return;
+            if( !PropertiesNode.Empty() ) {
+                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
+                    CurrAttrib = PropertiesNode.GetAttribute("Paused");
+                    if( !CurrAttrib.Empty() )
+                        this->PauseParticleSystem( StringTools::ConvertToBool( CurrAttrib.AsString() ) );
+
+                    CurrAttrib = PropertiesNode.GetAttribute("SpeedFactor");
+                    if( !CurrAttrib.Empty() )
+                        this->SetSpeedFactor( CurrAttrib.AsReal() );
+                }else{
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ParticleSystemProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
+                }
             }else{
-                SerializeError("Create XML Attribute Values",ParticleSystemProxy::GetSerializableName() + "Properties",true);
-            }
-        }
-
-        void ParticleSystemProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
-        {
-            Boole WasInWorld = false;
-            XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
-            if( !InWorldAttrib.Empty() ) {
-                WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
-            }
-
-            this->DestroyParticleSystem();
-            this->ProtoDeSerializeTemplate(SelfRoot);
-            this->ProtoDeSerializeCustomParameters(SelfRoot);
-            this->ProtoDeSerializeProperties(SelfRoot);
-            this->ProtoDeSerializeEmitters(SelfRoot);
-            this->ProtoDeSerializeAffectors(SelfRoot);
-
-            if( WasInWorld ) {
-                this->AddToWorld();
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,ParticleSystemProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 
@@ -474,30 +482,6 @@ namespace Mezzanine
                         this->GetAffector(Index)->ProtoDeSerialize(AffectorNode);
                     }
                 }
-            }
-        }
-
-        void ParticleSystemProxy::ProtoDeSerializeProperties(const XML::Node& SelfRoot)
-        {
-            this->RenderableProxy::ProtoDeSerializeProperties(SelfRoot);
-
-            XML::Attribute CurrAttrib;
-            XML::Node PropertiesNode = SelfRoot.GetChild( ParticleSystemProxy::GetSerializableName() + "Properties" );
-
-            if( !PropertiesNode.Empty() ) {
-                if(PropertiesNode.GetAttribute("Version").AsInt() == 1) {
-                    CurrAttrib = PropertiesNode.GetAttribute("Paused");
-                    if( !CurrAttrib.Empty() )
-                        this->PauseParticleSystem( StringTools::ConvertToBool( CurrAttrib.AsString() ) );
-
-                    CurrAttrib = PropertiesNode.GetAttribute("SpeedFactor");
-                    if( !CurrAttrib.Empty() )
-                        this->SetSpeedFactor( CurrAttrib.AsReal() );
-                }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (ParticleSystemProxy::GetSerializableName() + "Properties" ) + ": Not Version 1.");
-                }
-            }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,ParticleSystemProxy::GetSerializableName() + "Properties" + " was not found in the provided XML node, which was expected.");
             }
         }
 

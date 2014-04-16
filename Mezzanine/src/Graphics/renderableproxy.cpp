@@ -215,16 +215,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void RenderableProxy::ProtoSerialize(XML::Node& ParentNode) const
-        {
-            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
-                SerializeError("Create XML Attribute Values",WorldProxy::GetSerializableName(),true);
-            }
-
-            this->ProtoSerializeProperties(SelfRoot);
-        }
-
         void RenderableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             this->WorldProxy::ProtoSerializeProperties(SelfRoot);
@@ -242,21 +232,6 @@ namespace Mezzanine
                 return;
             }else{
                 SerializeError("Create XML Attribute Values",RenderableProxy::GetSerializableName() + "Properties",true);
-            }
-        }
-
-        void RenderableProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
-        {
-            Boole WasInWorld = false;
-            XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
-            if( !InWorldAttrib.Empty() ) {
-                WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
-            }
-
-            this->ProtoDeSerializeProperties(SelfRoot);
-
-            if( WasInWorld ) {
-                this->AddToWorld();
             }
         }
 

@@ -78,19 +78,13 @@ namespace
     }
 
     Mezzanine::Boole IsCompound(const Mezzanine::Physics::CollisionShape::ShapeType Type)
-    {
-        return Type == Mezzanine::Physics::CollisionShape::ST_Compound;
-    }
+        { return Type == Mezzanine::Physics::CollisionShape::ST_Compound; }
 
     Mezzanine::Boole IsStaticTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
-    {
-        return Type == Mezzanine::Physics::CollisionShape::ST_StaticTriMesh;
-    }
+        { return Type == Mezzanine::Physics::CollisionShape::ST_StaticTriMesh; }
 
     Mezzanine::Boole IsDynamicTrimesh(const Mezzanine::Physics::CollisionShape::ShapeType Type)
-    {
-        return Type == Mezzanine::Physics::CollisionShape::ST_DynamicTriMesh;
-    }
+        { return Type == Mezzanine::Physics::CollisionShape::ST_DynamicTriMesh; }
 }
 
 namespace Mezzanine
@@ -292,6 +286,18 @@ namespace Mezzanine
         CollidableProxy::~CollidableProxy()
             {  }
 
+        void CollidableProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
+        {
+            this->WorldProxy::ProtoSerializeImpl(SelfRoot);
+            this->ProtoSerializeShape(SelfRoot);
+        }
+
+        void CollidableProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+        {
+            this->WorldProxy::ProtoDeSerializeImpl(SelfRoot);
+            this->ProtoDeSerializeShape(SelfRoot);
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Utility
 
@@ -314,24 +320,16 @@ namespace Mezzanine
         }
 
         void CollidableProxy::SetCollisionGroup(const Int16 Group)
-        {
-            this->CollisionGroup = Group;
-        }
+            { this->CollisionGroup = Group; }
 
         void CollidableProxy::SetCollisionMask(const Int16 Mask)
-        {
-            this->CollisionMask = Mask;
-        }
+            { this->CollisionMask = Mask; }
 
         Int16 CollidableProxy::GetCollisionGroup() const
-        {
-            return this->CollisionGroup;
-        }
+            { return this->CollisionGroup; }
 
         Int16 CollidableProxy::GetCollisionMask() const
-        {
-            return this->CollisionMask;
-        }
+            { return this->CollisionMask; }
 
         void CollidableProxy::SetCollisionShape(CollisionShape* Shape)
         {
@@ -428,19 +426,13 @@ namespace Mezzanine
         }
 
         Boole CollidableProxy::GetCollisionResponse() const
-        {
-            return !(this->_GetBasePhysicsObject()->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
-        }
+            { return !(this->_GetBasePhysicsObject()->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE); }
 
         void CollidableProxy::SetCollisionFlags(const Whole Flags)
-        {
-            this->_GetBasePhysicsObject()->setCollisionFlags(Flags);
-        }
+            { this->_GetBasePhysicsObject()->setCollisionFlags(Flags); }
 
         Whole CollidableProxy::GetCollisionFlags() const
-        {
-            return this->_GetBasePhysicsObject()->getCollisionFlags();
-        }
+            { return this->_GetBasePhysicsObject()->getCollisionFlags(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Static or Kinematic Properties
@@ -458,19 +450,13 @@ namespace Mezzanine
         }
 
         Boole CollidableProxy::IsKinematic() const
-        {
-            return this->_GetBasePhysicsObject()->isKinematicObject();
-        }
+            { return this->_GetBasePhysicsObject()->isKinematicObject(); }
 
         Boole CollidableProxy::IsStatic() const
-        {
-            return this->_GetBasePhysicsObject()->isStaticObject();
-        }
+            { return this->_GetBasePhysicsObject()->isStaticObject(); }
 
         Boole CollidableProxy::IsStaticOrKinematic() const
-        {
-            return this->_GetBasePhysicsObject()->isStaticOrKinematicObject();
-        }
+            { return this->_GetBasePhysicsObject()->isStaticOrKinematicObject(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Physics Properties
@@ -524,24 +510,16 @@ namespace Mezzanine
         }
 
         Physics::ActivationState CollidableProxy::GetActivationState() const
-        {
-            return static_cast<Physics::ActivationState>( this->_GetBasePhysicsObject()->getActivationState() );
-        }
+            { return static_cast<Physics::ActivationState>( this->_GetBasePhysicsObject()->getActivationState() ); }
 
         Boole CollidableProxy::IsActive() const
-        {
-            return this->_GetBasePhysicsObject()->isActive();
-        }
+            { return this->_GetBasePhysicsObject()->isActive(); }
 
         void CollidableProxy::SetDeactivationTime(const Real Time)
-        {
-            this->_GetBasePhysicsObject()->setDeactivationTime(Time);
-        }
+            { this->_GetBasePhysicsObject()->setDeactivationTime(Time); }
 
         Real CollidableProxy::GetDeactivationTime() const
-        {
-            return this->_GetBasePhysicsObject()->getDeactivationTime();
-        }
+            { return this->_GetBasePhysicsObject()->getDeactivationTime(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Transform Methods
@@ -656,17 +634,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void CollidableProxy::ProtoSerialize(XML::Node& ParentNode) const
-        {
-            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
-                SerializeError("Create XML Attribute Values",CollidableProxy::GetSerializableName(),true);
-            }
-
-            this->ProtoSerializeProperties(SelfRoot);
-            this->ProtoSerializeShape(SelfRoot);
-        }
-
         void CollidableProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             this->WorldProxy::ProtoSerializeProperties(SelfRoot);
@@ -704,22 +671,6 @@ namespace Mezzanine
                 return;
             }else{
                 SerializeError("Create XML Attribute Values",CollidableProxy::GetSerializableName() + "Shape",true);
-            }
-        }
-
-        void CollidableProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
-        {
-            Boole WasInWorld = false;
-            XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
-            if( !InWorldAttrib.Empty() ) {
-                WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
-            }
-
-            this->ProtoDeSerializeProperties(SelfRoot);
-            this->ProtoDeSerializeShape(SelfRoot);
-
-            if( WasInWorld ) {
-                this->AddToWorld();
             }
         }
 

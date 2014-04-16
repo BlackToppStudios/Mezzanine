@@ -138,8 +138,7 @@ namespace Mezzanine
 
             void Listener::SetMetersPerUnit(const Real Meters)
             {
-                if( this->MPU != Meters )
-                {
+                if( this->MPU != Meters ) {
                     this->MakeCurrent();
                     alListenerf(AL_METERS_PER_UNIT,Meters);
                     this->MPU = Meters;

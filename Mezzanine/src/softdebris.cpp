@@ -86,7 +86,7 @@ namespace Mezzanine
     {
         Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
         if( SceneMan ) {
-            this->EntProx = SceneMan->CreateEntityProxy();
+            this->EntProx = SceneMan->CreateEntityProxy(false);
             this->EntProx->_Bind( this );
         }
 

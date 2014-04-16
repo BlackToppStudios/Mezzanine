@@ -168,6 +168,10 @@ namespace Mezzanine
                 /// @brief Stores whether or not sound being emitted in a specific direction.
                 Boole DirectSound;
 
+                /// @copydoc WorldProxy::ProtoSerializeImpl(XML::Node&) const
+                virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
+                /// @copydoc WorldProxy::ProtoDeSerializeImpl(const XML::Node&)
+                virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
                 /// @internal
                 /// @brief Makes the context this listener belongs to the current context.
                 void MakeCurrent(ALCcontext* Context);
@@ -374,10 +378,29 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Serialization
 
-                /// @copydoc WorldProxy::ProtoSerialize(XML::Node&) const
-                virtual void ProtoSerialize(XML::Node& ParentNode) const;
-                /// @copydoc WorldProxy::ProtoDeSerialize(const XML::Node&)
-                virtual void ProtoDeSerialize(const XML::Node& SelfRoot);
+                /// @copydoc WorldProxy::ProtoSerializeProperties(XML::Node&) const
+                virtual void ProtoSerializeProperties(XML::Node& SelfRoot) const;
+                /// @brief Convert the Decoder used by this class to an XML::Node ready for serialization.
+                /// @param SelfRoot The root node containing all the serialized data for this instance.
+                virtual void ProtoSerializeDecoder(XML::Node& SelfRoot) const;
+                /// @brief Convert the Filter attached to this class to an XML::Node ready for serialization.
+                /// @param SelfRoot The root node containing all the serialized data for this instance.
+                virtual void ProtoSerializeFilter(XML::Node& SelfRoot) const;
+                /// @brief Convert the Effects attached to this class to an XML::Node ready for serialization.
+                /// @param SelfRoot The root node containing all the serialized data for this instance.
+                virtual void ProtoSerializeEffects(XML::Node& SelfRoot) const;
+
+                /// @copydoc WorldProxy::ProtoDeSerializeProperties(const XML::Node&)
+                virtual void ProtoDeSerializeProperties(const XML::Node& SelfRoot);
+                /// @brief Take the data stored in an XML Node and overwrite the Decoder used by this object with it.
+                /// @param SelfRoot An XML::Node containing the data to populate this class with.
+                virtual void ProtoDeSerializeDecoder(const XML::Node& SelfRoot);
+                /// @brief Take the data stored in an XML Node and overwrite the Filter attached to this object with it.
+                /// @param SelfRoot An XML::Node containing the data to populate this class with.
+                virtual void ProtoDeSerializeFilter(const XML::Node& SelfRoot);
+                /// @brief Take the data stored in an XML Node and overwrite the Effects attached to this object with it.
+                /// @param SelfRoot An XML::Node containing the data to populate this class with.
+                virtual void ProtoDeSerializeEffects(const XML::Node& SelfRoot);
 
                 /// @copydoc WorldProxy::GetDerivedSerializableName() const
                 virtual String GetDerivedSerializableName() const;

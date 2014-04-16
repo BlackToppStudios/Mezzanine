@@ -56,6 +56,15 @@ namespace Mezzanine
         /// @internal
         /// @brief Pointer to the Object this proxy belongs to.
         WorldObject* ParentObject;
+
+        /// @internal
+        /// @brief Implementation method for serializing additional sets of data.
+        /// @param SelfRoot The root node containing all the serialized data for this instance.
+        virtual void ProtoSerializeImpl(XML::Node& SelfRoot) const;
+        /// @internal
+        /// @brief Implementation method for deseriailizing additional sets of data.
+        /// @param SelfRoot An XML::Node containing the data to populate this class with.
+        virtual void ProtoDeSerializeImpl(const XML::Node& SelfRoot);
     public:
         /// @brief Class constructor.
         WorldProxy();

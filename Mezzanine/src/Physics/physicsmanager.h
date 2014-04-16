@@ -87,6 +87,7 @@ namespace Mezzanine
         class ParallelCollisionDispatcher;
         class PhysicsManager;
         class CollidableProxy;
+        class CollisionShape;
         class GhostProxy;
         class RigidProxy;
         class SoftProxy;
@@ -391,6 +392,11 @@ namespace Mezzanine
             /// @return Returns a pointer to the created proxy.
             GhostProxy* CreateGhostProxy();
             /// @brief Creates a new GhostProxy.
+            /// @param Shape A pointer to the collision shape that will be applied to the new proxy.
+            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
+            /// @return Returns a pointer to the created proxy.
+            GhostProxy* CreateGhostProxy(CollisionShape* Shape, const Boole AddToWorld = true);
+            /// @brief Creates a new GhostProxy.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             GhostProxy* CreateGhostProxy(const XML::Node& SelfRoot);
@@ -398,6 +404,12 @@ namespace Mezzanine
             /// @param Mass The mass of the new proxy.
             /// @return Returns a pointer to the created proxy.
             RigidProxy* CreateRigidProxy(const Real Mass);
+            /// @brief Creates a new RigidProxy.
+            /// @param Mass The mass of the new proxy.
+            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
+            /// @param Shape A pointer to the collision shape that will be applied to the new proxy.
+            /// @return Returns a pointer to the created proxy.
+            RigidProxy* CreateRigidProxy(const Real Mass, CollisionShape* Shape, const Boole AddToWorld = true);
             /// @brief Creates a new RigidProxy.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.

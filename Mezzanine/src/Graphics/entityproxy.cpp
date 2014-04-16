@@ -102,6 +102,18 @@ namespace Mezzanine
         EntityProxy::~EntityProxy()
             { this->DestroyEntity(); }
 
+        void EntityProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
+        {
+            this->WorldProxy::ProtoSerializeImpl(SelfRoot);
+            this->ProtoSerializeMesh(SelfRoot);
+        }
+
+        void EntityProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+        {
+            this->ProtoDeSerializeMesh(SelfRoot);
+            this->WorldProxy::ProtoDeSerializeImpl(SelfRoot);
+        }
+
         void EntityProxy::CreateEntity(Mesh* ObjectMesh)
         {
             if( ObjectMesh != NULL ) {
@@ -285,17 +297,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
 
-        void EntityProxy::ProtoSerialize(XML::Node& ParentNode) const
-        {
-            XML::Node SelfRoot = ParentNode.AppendChild(this->GetDerivedSerializableName());
-            if( !SelfRoot.AppendAttribute("InWorld").SetValue( this->IsInWorld() ? "true" : "false" ) ) {
-                SerializeError("Create XML Attribute Values",EntityProxy::GetSerializableName(),true);
-            }
-
-            this->ProtoSerializeProperties(SelfRoot);
-            this->ProtoSerializeMesh(SelfRoot);
-        }
-
         void EntityProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
         {
             this->RenderableProxy::ProtoSerializeProperties(SelfRoot);
@@ -312,22 +313,6 @@ namespace Mezzanine
                 return;
             }else{
                 SerializeError("Create XML Attribute Values",EntityProxy::GetSerializableName() + "Mesh",true);
-            }
-        }
-
-        void EntityProxy::ProtoDeSerialize(const XML::Node& SelfRoot)
-        {
-            Boole WasInWorld = false;
-            XML::Attribute InWorldAttrib = SelfRoot.GetAttribute("InWorld");
-            if( !InWorldAttrib.Empty() ) {
-                WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
-            }
-
-            this->ProtoDeSerializeMesh(SelfRoot);
-            this->ProtoDeSerializeProperties(SelfRoot);
-
-            if( WasInWorld ) {
-                this->AddToWorld();
             }
         }
 

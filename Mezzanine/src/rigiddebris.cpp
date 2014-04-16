@@ -73,6 +73,12 @@ namespace Mezzanine
         RigProx(NULL)
         { this->CreateRigidDebris(Mass); }
 
+    RigidDebris::RigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld) :
+        Debris(Name,TheWorld),
+        EntProx(NULL),
+        RigProx(NULL)
+        { this->CreateRigidDebris(Mass,DebMesh,DebShape); }
+
     RigidDebris::RigidDebris(const XML::Node& SelfRoot, World* TheWorld) :
         Debris(TheWorld),
         EntProx(NULL),
@@ -86,13 +92,32 @@ namespace Mezzanine
     {
         Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
         if( SceneMan ) {
-            this->EntProx = SceneMan->CreateEntityProxy();
+            this->EntProx = SceneMan->CreateEntityProxy(false);
             this->EntProx->_Bind( this );
         }
 
         Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
         if( PhysMan ) {
-            this->RigProx = PhysMan->CreateRigidProxy(Mass);
+            this->RigProx = PhysMan->CreateRigidProxy(Mass,false);
+            this->RigProx->_Bind( this );
+        }
+
+        if( this->EntProx && this->RigProx ) {
+            this->RigProx->AddSyncObject( this->EntProx );
+        }
+    }
+
+    void RigidDebris::CreateRigidDebris(const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape)
+    {
+        Graphics::SceneManager* SceneMan = Entresol::GetSingletonPtr()->GetSceneManager();
+        if( SceneMan ) {
+            this->EntProx = SceneMan->CreateEntityProxy(DebMesh,false);
+            this->EntProx->_Bind( this );
+        }
+
+        Physics::PhysicsManager* PhysMan = Entresol::GetSingletonPtr()->GetPhysicsManager();
+        if( PhysMan ) {
+            this->RigProx = PhysMan->CreateRigidProxy(Mass,DebShape,false);
             this->RigProx->_Bind( this );
         }
 
@@ -406,6 +431,9 @@ namespace Mezzanine
 
     RigidDebris* RigidDebrisFactory::CreateRigidDebris(const String& Name, const Real Mass, World* TheWorld)
         { return new RigidDebris(Name,Mass,TheWorld); }
+
+    RigidDebris* RigidDebrisFactory::CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld)
+        { return new RigidDebris(Name,Mass,DebMesh,DebShape,TheWorld); }
 
     RigidDebris* RigidDebrisFactory::CreateRigidDebris(const XML::Node& XMLNode, World* TheWorld)
         { return static_cast<RigidDebris*>( this->CreateDebris(XMLNode,TheWorld) ); }

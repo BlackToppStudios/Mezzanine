@@ -264,17 +264,20 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Proxy Management
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
 
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,NULL,this->Contexts,this);
                 this->Proxies.push_back(NewSoundProxy);
+                if( AddToWorld ) {
+                    NewSoundProxy->AddToWorld();
+                }
                 return NewSoundProxy;
             }
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const Audio::Encoding Encode, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
@@ -287,10 +290,13 @@ namespace Mezzanine
                 iDecoder* SoundDecoder = Factory->CreateDecoder(Stream);
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,SoundDecoder,this->Contexts,this);
                 this->Proxies.push_back(NewSoundProxy);
+                if( AddToWorld ) {
+                    NewSoundProxy->AddToWorld();
+                }
                 return NewSoundProxy;
             }
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, Resource::DataStreamPtr Stream, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
@@ -303,10 +309,13 @@ namespace Mezzanine
                 iDecoder* SoundDecoder = static_cast<RawDecoderFactory*>(Factory)->CreateDecoder(Stream,Frequency,Config);
                 OALS::SoundProxy* NewSoundProxy = new OALS::SoundProxy(Type,SoundDecoder,this->Contexts,this);
                 this->Proxies.push_back(NewSoundProxy);
+                if( AddToWorld ) {
+                    NewSoundProxy->AddToWorld();
+                }
                 return NewSoundProxy;
             }
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& FileName, const String& Group, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
@@ -334,10 +343,10 @@ namespace Mezzanine
                     MEZZ_EXCEPTION(Exception::PARAMETERS_EXCEPTION,"Attempting playback of audio with unsupported encoding.");
                 }
 
-                return this->CreateSoundProxy(Type,SoundStream,Encode);
+                return this->CreateSoundProxy(Type,SoundStream,Encode,AddToWorld);
             }
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const Audio::Encoding Encode, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
@@ -345,10 +354,10 @@ namespace Mezzanine
                 // Create our stream and get on with it
                 Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(StreamName,Buffer,Length);
 
-                return this->CreateSoundProxy(Type,SoundStream,Encode);
+                return this->CreateSoundProxy(Type,SoundStream,Encode,AddToWorld);
             }
 
-            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config)
+            Audio::SoundProxy* SoundScapeManager::CreateSoundProxy(const UInt16 Type, const String& StreamName, Char8* Buffer, const UInt32 Length, const UInt32 Frequency, const Audio::BitConfig Config, const Boole AddToWorld)
             {
                 if( this->Initialized == false )
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot create a new SoundProxy without an audio device being initialized."); }
@@ -356,7 +365,7 @@ namespace Mezzanine
                 // Create our stream and get on with it
                 Resource::DataStreamPtr SoundStream = Resource::ResourceManager::GetSingletonPtr()->CreateDataStream(StreamName,Buffer,Length);
 
-                return this->CreateSoundProxy(Type,SoundStream,Frequency,Config);
+                return this->CreateSoundProxy(Type,SoundStream,Frequency,Config,AddToWorld);
             }
 
             Audio::SoundProxy* SoundScapeManager::GetSoundProxy(const UInt32 Index) const

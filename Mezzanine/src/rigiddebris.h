@@ -50,10 +50,12 @@ namespace Mezzanine
     namespace Graphics
     {
         class EntityProxy;
+        class Mesh;
     }
     namespace Physics
     {
         class RigidProxy;
+        class CollisionShape;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @brief A non-deformable debris.
@@ -74,6 +76,12 @@ namespace Mezzanine
         /// @param Mass The mass of the debris object.
         virtual void CreateRigidDebris(const Real Mass);
         /// @internal
+        /// @brief Verbose construction method for RigidDebris.
+        /// @param Mass The mass of the debris object.
+        /// @param DebMesh A pointer to the Graphics mesh that will be applied to the new RigidDebris.
+        /// @param DebShape A pointer to the Collision shape that will be applied to the new RigidDebris.
+        virtual void CreateRigidDebris(const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape);
+        /// @internal
         /// @brief Destruction method for RigidDebris.
         virtual void DestroyRigidDebris();
     public:
@@ -85,6 +93,13 @@ namespace Mezzanine
         /// @param Mass The mass of the debris object.
         /// @param TheWorld A pointer to the world this object belongs to.
         RigidDebris(const String& Name, const Real Mass, World* TheWorld);
+        /// @brief Class constructor.
+        /// @param Name The name to be given to this object.
+        /// @param Mass The mass of the debris object.
+        /// @param DebMesh A pointer to the Graphics mesh that will be applied to the new RigidDebris.
+        /// @param DebShape A pointer to the Collision shape that will be applied to the new RigidDebris.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        RigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld);
         /// @brief XML constructor.
         /// @param SelfRoot An XML::Node containing the data to populate this class with.
         /// @param TheWorld A pointer to the world this object belongs to.
@@ -214,6 +229,13 @@ namespace Mezzanine
         /// @param Mass The mass of the debris object.
         /// @param TheWorld A pointer to the world this object belongs to.
         virtual RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, World* TheWorld);
+        /// @brief Creates a RigidDebris object.
+        /// @param Name The name to be given to this object.
+        /// @param Mass The mass of the debris object.
+        /// @param DebMesh A pointer to the Graphics mesh that will be applied to the debris object.
+        /// @param DebShape A pointer to the Collision shape that will be applied to the debris object.
+        /// @param TheWorld A pointer to the world this object belongs to.
+        virtual RigidDebris* CreateRigidDebris(const String& Name, const Real Mass, Graphics::Mesh* DebMesh, Physics::CollisionShape* DebShape, World* TheWorld);
         /// @brief Creates a RigidDebris object.
         /// @param XMLNode The node of the xml document to construct from.
         /// @param TheWorld A pointer to the world this object belongs to.

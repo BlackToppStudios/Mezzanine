@@ -251,43 +251,50 @@ namespace Mezzanine
 
             /// @brief Creates a new BillboardSetProxy.
             /// @param InitialPoolSize The number of billboards to reserve space for.
+            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            BillboardSetProxy* CreateBillboardSetProxy(const UInt32 InitialPoolSize = 20);
+            BillboardSetProxy* CreateBillboardSetProxy(const UInt32 InitialPoolSize = 20, const Boole AddToWorld = true);
             /// @brief Creates a new BillboardSetProxy.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             BillboardSetProxy* CreateBillboardSetProxy(const XML::Node& SelfRoot);
             /// @brief Creates a new EntityProxy.
+            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy();
+            EntityProxy* CreateEntityProxy(const Boole AddToWorld = true);
             /// @brief Creates a new EntityProxy.
             /// @param TheMesh A pointer to the mesh to be applied to this proxy.
+            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(Mesh* TheMesh);
+            EntityProxy* CreateEntityProxy(Mesh* TheMesh, const Boole AddToWorld = true);
             /// @brief Creates a new EntityProxy.
             /// @param MeshName The name of the mesh to be loaded and applied to this proxy.
             /// @param GroupName The resource group name where the mesh can be found.
+            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            EntityProxy* CreateEntityProxy(const String& MeshName, const String& GroupName);
+            EntityProxy* CreateEntityProxy(const String& MeshName, const String& GroupName, const Boole AddToWorld = true);
             /// @brief Creates a new EntityProxy.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             EntityProxy* CreateEntityProxy(const XML::Node& SelfRoot);
             /// @brief Creates a new LightProxy.
+            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            LightProxy* CreateLightProxy();
+            LightProxy* CreateLightProxy(const Boole AddToWorld = true);
             /// @brief Creates a new LightProxy.
             /// @param Type The type of light this light is to be constructed as.
+            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            LightProxy* CreateLightProxy(const Graphics::LightType Type);
+            LightProxy* CreateLightProxy(const Graphics::LightType Type, const Boole AddToWorld = true);
             /// @brief Creates a new LightProxy.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.
             LightProxy* CreateLightProxy(const XML::Node& SelfRoot);
             /// @brief Creates a new ParticleSystemProxy.
             /// @param Template Name of the particle script to be used in creating this particle effect.
+            /// @param AddToWorld Wether or not the new proxy should be added to the world after it has been created.
             /// @return Returns a pointer to the created proxy.
-            ParticleSystemProxy* CreateParticleSystemProxy(const String& Template);
+            ParticleSystemProxy* CreateParticleSystemProxy(const String& Template, const Boole AddToWorld = true);
             /// @brief Creates a new ParticleSystemProxy.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @return Returns a pointer to the created proxy.

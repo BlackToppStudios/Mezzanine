@@ -405,10 +405,13 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Creating Proxies
 
-        BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const UInt32 InitialPoolSize)
+        BillboardSetProxy* SceneManager::CreateBillboardSetProxy(const UInt32 InitialPoolSize, const Boole AddToWorld)
         {
             BillboardSetProxy* NewProxy = new BillboardSetProxy(InitialPoolSize,this);
             this->Proxies.push_back(NewProxy);
+            if( AddToWorld ) {
+                NewProxy->AddToWorld();
+            }
             return NewProxy;
         }
 
@@ -419,24 +422,33 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        EntityProxy* SceneManager::CreateEntityProxy()
+        EntityProxy* SceneManager::CreateEntityProxy(const Boole AddToWorld)
         {
             EntityProxy* NewProxy = new EntityProxy(this);
             this->Proxies.push_back(NewProxy);
+            if( AddToWorld ) {
+                NewProxy->AddToWorld();
+            }
             return NewProxy;
         }
 
-        EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh)
+        EntityProxy* SceneManager::CreateEntityProxy(Mesh* TheMesh, const Boole AddToWorld)
         {
             EntityProxy* NewProxy = new EntityProxy(TheMesh,this);
             this->Proxies.push_back(NewProxy);
+            if( AddToWorld ) {
+                NewProxy->AddToWorld();
+            }
             return NewProxy;
         }
 
-        EntityProxy* SceneManager::CreateEntityProxy(const String& MeshName, const String& GroupName)
+        EntityProxy* SceneManager::CreateEntityProxy(const String& MeshName, const String& GroupName, const Boole AddToWorld)
         {
             EntityProxy* NewProxy = new EntityProxy(MeshName,GroupName,this);
             this->Proxies.push_back(NewProxy);
+            if( AddToWorld ) {
+                NewProxy->AddToWorld();
+            }
             return NewProxy;
         }
 
@@ -447,17 +459,23 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        LightProxy* SceneManager::CreateLightProxy()
+        LightProxy* SceneManager::CreateLightProxy(const Boole AddToWorld)
         {
             LightProxy* NewProxy = new LightProxy(this);
             this->Proxies.push_back(NewProxy);
+            if( AddToWorld ) {
+                NewProxy->AddToWorld();
+            }
             return NewProxy;
         }
 
-        LightProxy* SceneManager::CreateLightProxy(const Graphics::LightType Type)
+        LightProxy* SceneManager::CreateLightProxy(const Graphics::LightType Type, const Boole AddToWorld)
         {
             LightProxy* NewProxy = new LightProxy(Type,this);
             this->Proxies.push_back(NewProxy);
+            if( AddToWorld ) {
+                NewProxy->AddToWorld();
+            }
             return NewProxy;
         }
 
@@ -468,10 +486,13 @@ namespace Mezzanine
             return NewProxy;
         }
 
-        ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const String& Template)
+        ParticleSystemProxy* SceneManager::CreateParticleSystemProxy(const String& Template, const Boole AddToWorld)
         {
             ParticleSystemProxy* NewProxy = new ParticleSystemProxy(Template,this);
             this->Proxies.push_back(NewProxy);
+            if( AddToWorld ) {
+                NewProxy->AddToWorld();
+            }
             return NewProxy;
         }
 

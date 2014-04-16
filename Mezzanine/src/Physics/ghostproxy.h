@@ -67,6 +67,10 @@ namespace Mezzanine
             /// @brief Class constructor.
             /// @param Creator A pointer to the manager that created this proxy.
             GhostProxy(PhysicsManager* Creator);
+            /// @brief Shape constructor.
+            /// @param Shape A pointer to the collision shape that will be applied to this proxy.
+            /// @param Creator A pointer to the manager that created this proxy.
+            GhostProxy(CollisionShape* Shape, PhysicsManager* Creator);
             /// @brief XML constructor.
             /// @param SelfRoot An XML::Node containing the data to populate this class with.
             /// @param Creator A pointer to the manager that created this proxy.

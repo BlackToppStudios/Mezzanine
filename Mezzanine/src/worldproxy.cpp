@@ -57,6 +57,12 @@ namespace Mezzanine
     WorldProxy::~WorldProxy()
         {  }
 
+    void WorldProxy::ProtoSerializeImpl(XML::Node& SelfRoot) const
+        { this->ProtoSerializeProperties(SelfRoot); }
+
+    void WorldProxy::ProtoDeSerializeImpl(const XML::Node& SelfRoot)
+        { this->ProtoDeSerializeProperties(SelfRoot); }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Utility
 
@@ -73,7 +79,7 @@ namespace Mezzanine
             SerializeError("Create XML Attribute Values",WorldProxy::GetSerializableName(),true);
         }
 
-        this->ProtoSerializeProperties(SelfRoot);
+        this->ProtoSerializeImpl(SelfRoot);
     }
 
     void WorldProxy::ProtoSerializeProperties(XML::Node& SelfRoot) const
@@ -103,7 +109,7 @@ namespace Mezzanine
             WasInWorld = StringTools::ConvertToBool( InWorldAttrib.AsString() );
         }
 
-        this->ProtoDeSerializeProperties(SelfRoot);
+        this->ProtoDeSerializeImpl(SelfRoot);
 
         if( WasInWorld ) {
             this->AddToWorld();
