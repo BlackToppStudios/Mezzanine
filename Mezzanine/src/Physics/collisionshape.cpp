@@ -246,7 +246,7 @@ namespace Mezzanine
                 case CollisionShape::ST_Heightfield:
                     return new HeightfieldCollisionShape(Name_);
                 case CollisionShape::ST_Plane:
-                    return new PlaneCollisionShape(Name_);
+                    return new PlaneCollisionShape(OneNode);
                 case CollisionShape::ST_Soft:          /// @todo Complete CreateShape function once SoftCollisionShape can be deserialized
                     //return new SoftCollisionShape(Name_,(btSoftBodyCollisionShape*)ShapeToModel);
                     { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a SoftCollisionShape."); }
