@@ -116,7 +116,6 @@ Table Of Contents</h1>
 </li>
 </ul>
 <p><br/>
- <br/>
  </p>
 <h1><a class="anchor" id="UIOverview"></a>
 Overview</h1>
@@ -183,7 +182,6 @@ UIManager</h2>
  <br/>
  Throughout the entire UI system there can only be a single widget that is being focused and is given input priority. That widget is evaluated, stored, and can be accessed through the UIManager using the <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a5fafcbd96be2cf5e8f97d8ba9631879a" title="Gets the current widget being controlled. ">Mezzanine::UI::UIManager::GetWidgetFocus() const </a>method. The focus widget and the hovered widget may not be the same widget, and you may want to access them separately. To retrieve the hovered widget use the <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa91adb7c42a330d5d485cf20561245e1">method</a>. Both the focus and hovered widget (be them separate widgets or not) are in part evaluated from hover checks. Hover checks are primarily performed by UI Screens, however a system-wide hover check can be called on using the <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa2f224e648ef7be571a72f0ec3a077c9">Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&amp;)</a> method. Note that this method is already called on once per update with the appropriate parameters IF the mouse is determined to have moved since the last update. As such you shouldn't need to call on this method manually, but can if the need arises. Calling <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa2f224e648ef7be571a72f0ec3a077c9">Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&amp;)</a> will not update the stored focus or hovered widgets. Screens on the specified viewport will be checked based on ZOrder, with the highest order Screens checked first.</p>
 <p><br/>
- <br/>
  </p>
 <h2><a class="anchor" id="UIClassScreen"></a>
 Screen</h2>
@@ -607,6 +605,6 @@ Stacked Containers and Buttons</h2>
 </ul>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 19 2014 15:37:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 17:06:10 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>
