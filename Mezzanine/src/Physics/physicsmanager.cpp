@@ -713,7 +713,11 @@ namespace Mezzanine
 
         PhysicsManager* PhysicsManager::CallBackWorld;
         void PhysicsManager::InternalTickCallback(btDynamicsWorld* world, btScalar timeStep)
-            { CallBackWorld->ProcessAllCollisions(); }
+        {
+            if( CallBackWorld != NULL ) {
+                CallBackWorld->ProcessAllCollisions();
+            }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Simulation Management
