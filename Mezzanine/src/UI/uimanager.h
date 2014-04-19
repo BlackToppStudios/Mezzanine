@@ -321,7 +321,7 @@ namespace Mezzanine
             /// @brief Enables whether or not to automatically set the activation key or button for UI buttons.
             /// @details If true, this will cause every UI button to have keyboard keys or mouse buttons added with
             /// AddButtonAutoRegister() to be added as activation keys or buttons immediately after they are created. @n
-            /// Default: False.
+            /// Manager Default Setting: False.
             /// @param Enable Whether or not to enable this feature.
             void EnableButtonAutoRegister(Boole Enable);
             /// @brief Gets whether or not the ButtonAutoRegister feature is enabled.

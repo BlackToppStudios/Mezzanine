@@ -127,19 +127,19 @@ endfunction(CopyLicenseFromMezzanineDuringBuild)
 
 ##############################################################################
 # Define Extra Dependencies only the EntreLua Shell Requires
-set(TclapProject "Tclap")
+set(${PROJECT_NAME}TclapProject "${PROJECT_NAME}Tclap")
 add_subdirectory (libs)
-message("Looking for Tclap headers at: ${TclapIncludeDirectory}")
-include_directories(${TclapIncludeDirectory})
+message("Looking for Tclap headers at: ${${PROJECT_NAME}TclapIncludeDirectory}")
+include_directories(${${PROJECT_NAME}TclapIncludeDirectory})
 
 
 ##############################################################################
 # Define the executable and say it requires Mezzanine
-include_directories( ${${PROJECT_NAME}_SOURCE_DIR} ${${PROJECT_NAME}_MEZZANINE_BIN_SRC} ${ProjectIncludeDir} )
+include_directories( ${${PROJECT_NAME}_SOURCE_DIR} ${${PROJECT_NAME}_MEZZANINE_BIN_SRC} ${ProjectIncludeDir} ${${PROJECT_NAME}TclapIncludeDirectory})
 link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
-add_dependencies( ${PROJECT_NAME} Mezzanine ${TclapProject})
+add_dependencies( ${PROJECT_NAME} Mezzanine ${${PROJECT_NAME}TclapProject})
 target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName})
 
 
