@@ -265,7 +265,7 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:154: Warning: Member ti (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:136: Warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/transform.h:165: Warning: Member operator<<(std::ostream &stream, const Mezzanine::Transform &x) (function) of file transform.h is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:271: Warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:273: Warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:129: Warning: unable to resolve reference to `UIFeedBack' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:146: Warning: unable to resolve reference to `UIHover' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:204: Warning: unable to resolve reference to `UIClassSCreen' for \ref command
@@ -393,14 +393,14 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:91: Warning: Member operator==(T const &key) const  (function) of class Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:95: Warning: Member operator==(NodeItemClass const &oth) const  (function) of class Mezzanine::NodeItem is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/trie.h:107: Warning: Member set(T const &key) (function) of class Mezzanine::NodeItem is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:376: Warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:375: Warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:374: Warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:743: Warning: Member GetScriptingManager(const UInt16 WhichOne=0) (function) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:378: Warning: Member ConstManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:377: Warning: Member ManagerFactoryIterator (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:376: Warning: Member ManagerFactoryMap (typedef) of class Mezzanine::Entresol is not documented.
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:745: Warning: Member GetScriptingManager(const UInt16 WhichOne=0) (function) of class Mezzanine::Entresol is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/singleton.h:70: Warning: Member SingletonPtr (variable) of class Singleton< Entresol > is not documented.
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:483: Warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:485: Warning: argument 'PluginsFileName' of command @param is not found in the argument list of Mezzanine::Entresol::Entresol(const Physics::ManagerConstructionInfo &PhysicsInfo, const String &SceneType, const String &EngineDataPath, const String &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded)
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.cpp:157: Warning: Found unknown command `\TODO'
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:532: Warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:534: Warning: return type of member Mezzanine::Entresol::GetLogAggregator is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventgamewindow.h:110: Warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/eventgamewindow.cpp:62: Warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class Mezzanine::EventGameWindowData is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/managerbase.h:68: Warning: Member ManagerType (enumeration) of class Mezzanine::ManagerBase is not documented.
@@ -1698,4 +1698,4 @@ todo:127: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputIm
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:148: Warning: unable to resolve reference to `Mezzanine::ResourceManager' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:156: Warning: unable to resolve reference to `mainloop1' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:162: Warning: unable to resolve reference to `actorcontainer1' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:209: Warning: unable to resolve reference to `LuaManual' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:211: Warning: unable to resolve reference to `LuaManual' for \ref command
