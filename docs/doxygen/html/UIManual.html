@@ -80,7 +80,7 @@ Table Of Contents</h1>
 <ul>
 <li><a class="el" href="UIManual.html#UIOverview">Overview</a><ul>
 <li><a class="el" href="UIManual.html#UIIntroduction">Introduction</a></li>
-<li>UIFeedBack</li>
+<li><a class="el" href="UIManual.html#UIFeedback">Feedback</a></li>
 <li><a class="el" href="UIManual.html#UIAcknowledgments">Acknowledgments</a></li>
 </ul>
 </li>
@@ -91,7 +91,6 @@ Table Of Contents</h1>
 <li><a class="el" href="UIManual.html#UIClassWidget">Widget</a></li>
 </ul>
 </li>
-<li><a class="el" href="UIManual.html#UIInputLife">The Lifetime of an Input</a></li>
 <li><a class="el" href="UIManual.html#UIRender">The Render Classes</a><ul>
 <li><a class="el" href="UIManual.html#UILayers">Render Layers</a><ul>
 <li><a class="el" href="UIManual.html#UIImageLayer">SingleImageLayer and MultiImageLayer</a></li>
@@ -102,10 +101,10 @@ Table Of Contents</h1>
 <li><a class="el" href="UIManual.html#UICaching">Local Vertex Caching</a></li>
 </ul>
 </li>
+<li><a class="el" href="UIManual.html#UIInputLife">The Lifetime of an Input</a></li>
 <li><a class="el" href="UIManual.html#UIConfig">Configuring and Expanding</a><ul>
 <li><a class="el" href="UIManual.html#UISizePos">Sizing and Positioning</a></li>
 <li><a class="el" href="UIManual.html#UILayout">Layout Strategies</a></li>
-<li>UIHover</li>
 <li><a class="el" href="UIManual.html#UIFactories">Widget Factories</a></li>
 <li><a class="el" href="UIManual.html#UIMarkup">Markup Parsers</a></li>
 </ul>
@@ -124,30 +123,30 @@ Overview</h1>
 <ul>
 <li><a class="el" href="UIManual.html#UIIntroduction">Introduction</a></li>
 <li><a class="el" href="UIManual.html#UIFeedback">Feedback</a></li>
+<li><a class="el" href="UIManual.html#UIAcknowledgments">Acknowledgments</a></li>
 </ul>
 <h2><a class="anchor" id="UIIntroduction"></a>
 Introduction</h2>
-<p>The <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> UI subsystem is designed to be a powerful and feature rich Graphical User Interface system that can be used to power all the UI needs of a given game. <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> attempts to assemble render operations in as few batches as possible for maximum performance. <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> also provides a default set of Widgets to use when assembling an in-game UI that should meet most basic needs, and can be extended if the needs of a game are not met. <br/>
+<p>The <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> User Interface (UI) subsystem is designed to be a powerful and feature rich Graphical User Interface system that can be used to power all the UI needs of a given game. <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> attempts to assemble render operations in as few batches as possible for maximum performance. <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> also provides a default set of Widgets to use when assembling an in-game UI that should meet most basic needs, and can be extended if the needs of a game are not met. <br/>
  <br/>
  </p>
 <h2><a class="anchor" id="UIFeedback"></a>
 Feedback</h2>
-<p>If you believe you've found a bug in <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> (bugs include compilation problems (errors/warnings), crashes, performance degradation and incorrect behavior), please contact Blacktopp Studios Inc ( <a href="http://www.blacktoppstudios.com/">http://www.blacktoppstudios.com/</a> ) . We check the the Forums ( <a href="http://www.blacktoppstudios.com/?page_id=753">http://www.blacktoppstudios.com/?page_id=753</a> ) and items sent by our contact form ( <a href="http://www.blacktoppstudios.com/?page_id=33">http://www.blacktoppstudios.com/?page_id=33</a> ) regularly. Be sure to include the relevant information so that the bug can be reproduced: the version of <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a>, compiler version and target architecture, the code that uses <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> and exhibits the bug, etc. <br/>
+<p>If you believe you've found a bug in <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> (bugs include compilation problems (errors/warnings), crashes, performance degradation or incorrect behavior), please contact Blacktopp Studios Inc ( <a href="http://www.blacktoppstudios.com/">http://www.blacktoppstudios.com/</a> ) . We check the the Forums ( <a href="http://www.blacktoppstudios.com/?page_id=753">http://www.blacktoppstudios.com/?page_id=753</a> ) and items sent by our contact form ( <a href="http://www.blacktoppstudios.com/?page_id=33">http://www.blacktoppstudios.com/?page_id=33</a> ) regularly. Be sure to include the relevant information so that the bug can be reproduced: the version of <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a>, compiler version and target architecture, the code that uses <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> and exhibits the bug, etc. <br/>
  <br/>
  Feature requests can be reported the same way as bugs, so if you're missing some functionality in <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> or if the API is rough in some places and you can suggest an improvement, please let us know. However, please note that there are many factors when considering API changes (compatibility with previous versions, API redundancy, etc.). <br/>
  <br/>
- If you have a contribution to <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a>, such as build script for some build system/IDE, or a well-designed set of helper functions, or a binding to some language other than C++, please let us know. You can include the relevant patches as issue attachments. We will have to communicate on the Licensing terms of your contribution though. <br/>
+ If you have a contribution to <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a>, such as build script for some build system/IDE, a well-designed set of helper functions, or a binding to some language other than C++, please let us know. You can include the relevant patches as issue attachments. We will have to communicate on the Licensing terms of your contribution though. <br/>
  <br/>
  </p>
 <h2><a class="anchor" id="UIAcknowledgments"></a>
 Acknowledgments</h2>
-<p>By no means does the author of <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> consider themselves an expert on UI systems nor claims all of the concepts used in <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> are completely original. In fact the first iteration of <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> was a paper thin wrapper around Gorilla; a simple UI rendering library written for Ogre3D. This wrapper was expanded with an early attempt to add typical behaviors such as detecting key presses and mouse hovers was made and something resembling a working system came out of it. But that early system was still severely limited and did not have much in the way of forward thinking applied to it. It was an academic exercise as it was a hack. Maintaining it was impractical. <br/>
+<p>By no means does the author of <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> consider themselves an expert on UI systems nor claims all of the concepts used in <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> are completely original. In fact the first iteration of <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> was a paper thin wrapper around Gorilla ( <a href="http://www.ogre3d.org/tikiwiki/Gorilla">http://www.ogre3d.org/tikiwiki/Gorilla</a> ); a simple UI rendering library written for Ogre3D. This wrapper was expanded with an early attempt to add typical behaviors such as detecting key presses and mouse hovers was made and something resembling a working system came out of it. But that early system was still severely limited and did not have much in the way of forward thinking applied to it. It was as much an academic exercise as it was a hack. Maintaining it was impractical. <br/>
  <br/>
  So actual planning was put forth to create a sane system the core of which could stand the test of time without the need for additional extensive refactors. To do this an extensive amount of research was done to better understand how others resolved the issues I had encountered, as well as the issues they encountered from thier early choices, and issues they completely dodged. As a result, there are concepts from a large number of other sources/libraries. Core input handling was inspired by Torque3D. Event handling was inspired by CEGUI. RenderLayer was inspired by Unity3D 4. LayoutStrategy was inspired by Qt. TextLayer, TextLine, and TextCursor was inspired by QuickGui. The RenderData dirty/caching system was inspired by Gorilla. <br/>
  <br/>
  Thank you to everyone responsible for the creation and ongoing existence of these libraries and sharing their thought process for the benefit of others. Without them <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem. ">Mezzanine::UI</a> could not exist in it's current form, instead being left as a poorly thought out hack.</p>
 <p><br/>
- <br/>
  </p>
 <h1><a class="anchor" id="UICore"></a>
 The Core Classes</h1>
@@ -164,16 +163,25 @@ UIManager</h2>
  The UIManager only stores a single WorkUnit for the updating of every visible Screen and the Widgets it contains. This UI WorkUnit depends upon the Input System/WorkUnit and then when it runs automatically injects all of the new inputs detected since the last frame update into itself. Inputs may also be injected manually (see <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aacb361620fdc4810031ac35c0f5b1792">Mezzanine::UI::UIManager::InjectInput(const Input::MetaCode&amp;)</a> ) at any time the WidgetUpdateWorkUnit isn't executing to simulate any input a MetaCode can represent. More information on the lifetime of an Input in the UI system can be found here: <a class="el" href="UIManual.html#UIInputLife">The Lifetime of an Input</a> . <br/>
  <br/>
  The UI::Button class has a concept of Activation and Deactivation, however there is no default input for this. On the UI::Button you can set whatever code for Activation and Deactivation you need for your game or application. Although, usually for the sake of user experience you will want to set the same activation code or codes for each UI::Button in your configuration. There are a set of methods on the UIManager to facilitate this. The methods controlling the Auto Register behavior are as follows: <br/>
- <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a3e426db3d7a77c80c2bdddaec48b8305">Mezzanine::UI::UIManager::EnableButtonAutoRegister(Boole)</a> <br/>
- <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a7873b03f14b7a46cc72de92282a3819c">Mezzanine::UI::UIManager::ButtonAutoRegisterEnabled() const </a><br/>
- <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa8c610e73954524b71c6726d6e094b3e">Mezzanine::UI::UIManager::AddAutoRegisterCode(const Input::MetaCode&amp;)</a> <br/>
- <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a6616e375862e47786d6f89d040176682">Mezzanine::UI::UIManager::RemoveAutoRegisterCode(const Input::MetaCode&amp;)</a> <br/>
- <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a014b9aec6f646919866bd5bd9e3943aa">Mezzanine::UI::UIManager::RemoveAllAutoRegisterCodes()</a> <br/>
- <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a32330435bdf9ab64ed9a28c3a8d73610">Mezzanine::UI::UIManager::GetAutoRegisteredCodes() const </a><br/>
- <br/>
+</p>
+<ul>
+<li><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a3e426db3d7a77c80c2bdddaec48b8305">Mezzanine::UI::UIManager::EnableButtonAutoRegister(Boole)</a> <br/>
+</li>
+<li><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a7873b03f14b7a46cc72de92282a3819c">Mezzanine::UI::UIManager::ButtonAutoRegisterEnabled() const </a><br/>
+</li>
+<li><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa8c610e73954524b71c6726d6e094b3e">Mezzanine::UI::UIManager::AddAutoRegisterCode(const Input::MetaCode&amp;)</a> <br/>
+</li>
+<li><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a6616e375862e47786d6f89d040176682">Mezzanine::UI::UIManager::RemoveAutoRegisterCode(const Input::MetaCode&amp;)</a> <br/>
+</li>
+<li><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a014b9aec6f646919866bd5bd9e3943aa">Mezzanine::UI::UIManager::RemoveAllAutoRegisterCodes()</a> <br/>
+</li>
+<li><a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a32330435bdf9ab64ed9a28c3a8d73610">Mezzanine::UI::UIManager::GetAutoRegisteredCodes() const </a><br/>
+</li>
+</ul>
+<p><br/>
  It is important to note that these methods are not retroactive in any way. Adding or removing an Auto-Register code will not update all of the created buttons. Any change to the configuration you need to do will need to be done manually. Ideally you should set the Button Auto-Register codes shortly after the construction of the UIManager and before construction of any UI Screens to ensure they all get the same codes. <br/>
  <br/>
- Throughout the entire UI system there can only be a single widget that is being focused and is given input priority. That widget is evaluated, stored, and can be accessed through the UIManager using the <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a5fafcbd96be2cf5e8f97d8ba9631879a">method</a>. The focus widget and the hovered widget may not be the same widget, and you may want to access them separately. To retrieve the hovered widget use the <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa91adb7c42a330d5d485cf20561245e1">method</a>. Both the focus and hovered widget (be them separate widgets or not) are in part evaluated from hover checks. Hover checks are primarily performed by UI Screens, however a system-wide hover check can be called on using the <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa2f224e648ef7be571a72f0ec3a077c9">Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&amp;)</a> method. Note that this method is already called on once per update with the appropriate parameters IF the mouse is determined to have moved since the last update. As such you shouldn't need to call on this method manually, but can if the need arises. Calling <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa2f224e648ef7be571a72f0ec3a077c9">Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&amp;)</a> will not update the stored focus or hovered widgets. Screens on the specified viewport will be checked based on ZOrder, with the highest order Screens checked first.</p>
+ Throughout the entire UI system there can only be a single widget that is being focused and is given input priority. That widget is evaluated, stored, and can be accessed through the UIManager using the <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a5fafcbd96be2cf5e8f97d8ba9631879a" title="Gets the current widget being controlled. ">Mezzanine::UI::UIManager::GetWidgetFocus() const </a>method. The focus widget and the hovered widget may not be the same widget, and you may want to access them separately. To retrieve the hovered widget use the <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa91adb7c42a330d5d485cf20561245e1">method</a>. Both the focus and hovered widget (be them separate widgets or not) are in part evaluated from hover checks. Hover checks are primarily performed by UI Screens, however a system-wide hover check can be called on using the <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa2f224e648ef7be571a72f0ec3a077c9">Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&amp;)</a> method. Note that this method is already called on once per update with the appropriate parameters IF the mouse is determined to have moved since the last update. As such you shouldn't need to call on this method manually, but can if the need arises. Calling <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#aa2f224e648ef7be571a72f0ec3a077c9">Mezzanine::UI::UIManager::CheckWidgetUnderPoint(Graphics::Viewport*, const Vector2&amp;)</a> will not update the stored focus or hovered widgets. Screens on the specified viewport will be checked based on ZOrder, with the highest order Screens checked first.</p>
 <p><br/>
  <br/>
  </p>
@@ -257,7 +265,8 @@ Widget</h2>
  <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ae8944098cbb987f74ca5121d7918703f">Mezzanine::UI::Widget::EventFocusUnlocked</a> <br/>
  <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#adb711c8968a93e455f7db9120e712b94">Mezzanine::UI::Widget::EventVisibilityShown</a> <br/>
  <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#aa5c260343a9b6035abf5a1b4cbbf486f">Mezzanine::UI::Widget::EventVisibilityHidden</a> <br/>
- <br/>
+</p>
+<p><br/>
  In addition to being a <a class="el" href="classMezzanine_1_1EventPublisher.html">Mezzanine::EventPublisher</a> , the Widget class is also a <a class="el" href="classMezzanine_1_1EventSubscriber.html">Mezzanine::EventSubscriber</a> . The default implementation of the "_HandleInput(const Input::MetaCode&amp;)" method is empty, and must be overridden by a derived class if a Widget needs to subscribe to events belonging to another Widget. <br/>
  <br/>
  Aside from managing its own Widget state, the Widget class is designed to receive and respond to inputs. The method it does this with is the <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a78d0eba1976512a72e971fde9cddae85">Mezzanine::UI::Widget::_HandleInput(const Input::MetaCode&amp;)</a> method. Inside this method it calls <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a4fc489f70065926d9a58b0a330e65076">Mezzanine::UI::Widget::HandleInputImpl(const Input::MetaCode&amp;)</a> , which is intended to be overridden by derived classes and have class specific logic that will check if it is the type of input the Widget responds to, process the input if it is, and then return true or false based on whether or not the input was "used". The default implementation on the Widget base class always returns false. If the input was not used (if the method returns false) then the input will be passed upwards in the Widget hierarchy until it is consumed or reaches the Screen. The UI manager may do additional processing if no Widget "uses" the input. More detailed information on how inputs are handled by the Widget class can be found here: <a class="el" href="UIManual.html#UIInputLife">The Lifetime of an Input</a> . <br/>
@@ -308,11 +317,14 @@ SingleLineTextLayer and MultiLineTextLayer</h3>
 <li><a class="el" href="classMezzanine_1_1UI_1_1TextLayer.html#a9957e86dc4fec612400b464535fd7eb2">Mezzanine::UI::TextLayer::SetDefaultFont(const String&amp;)</a> <br/>
 </li>
 <li><a class="el" href="classMezzanine_1_1UI_1_1TextLayer.html#a145ad34eda26809114f0699f9253c1b5">Mezzanine::UI::TextLayer::SetDefaultFont(const String&amp;,const String&amp;)</a> <br/>
- <br/>
+</li>
+</ul>
+<p><br/>
  Note that the constructor listed here should not be called directly. Instead the appropriate create method should be called on the QuadRenderable that takes a Font or FontName as a parameter. In addition to a default font, text layers also use a default text colour to decide what colour text should be when one isn't specified in Markup. This value defaults to white, but can be set using the <a class="el" href="classMezzanine_1_1UI_1_1TextLayer.html#a25a1c5ece1b5c3f90c0fa658229a3a01">Mezzanine::UI::TextLayer::SetTextColour(const ColourValue&amp;)</a> method. <br/>
  <br/>
  Text passed into a TextLayer is converted into a series of <a class="el" href="classMezzanine_1_1UI_1_1Character.html">Mezzanine::UI::Character</a> instances. The Character class exists to provide an abstraction for both Glyphs and Sprites to be rendered within a TextLayer. Characters can be individually highlighted, coloured, or have a custom size set using the following methods: <br/>
-</li>
+</p>
+<ul>
 <li><a class="el" href="classMezzanine_1_1UI_1_1Character.html#a7ca330d2b10c4c1d38329e118ce06aac">Mezzanine::UI::Character::SetHighlighted(Boole)</a> <br/>
 </li>
 <li><a class="el" href="classMezzanine_1_1UI_1_1Character.html#a397037717ea6eb1e4b08601390c63d0e">Mezzanine::UI::Character::SetCharacterColour(const ColourValue&amp;)</a> <br/>
@@ -528,11 +540,12 @@ Widget Factories</h2>
 <li><a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a7ec259e5da49af23b63539f1fb119a4c">Mezzanine::UI::Screen::CreateWidget(const String&amp;, const String&amp;, const NameValuePairMap&amp;)</a> <br/>
 </li>
 <li><a class="el" href="classMezzanine_1_1UI_1_1Screen.html#ad6c62263a08824e8213c753f76bc0881">Mezzanine::UI::Screen::CreateWidget(const String&amp;, const String&amp;, const UnifiedRect&amp;, const NameValuePairMap&amp;)</a> <br/>
- <br/>
+</li>
+</ul>
+<p><br/>
  Currently there are no methods to allow the external creation of Widgets for a Screen. Attempting to access the factory and calling the method to create the Widget should not be attempted. It should successfully create the Widget, but then there is no functionality to add it to the Screen afterwards. Aside from defining the <a class="el" href="classMezzanine_1_1UI_1_1WidgetFactory.html#ad3e296fa7f746c7fbcdb17d14a80fe9e">Mezzanine::UI::WidgetFactory::DestroyWidget(Widget*)</a> method on a factory, the system automatically handles the destruction of all Widget instances, so no special tricks are needed. <br/>
  <br/>
- </li>
-</ul>
+ </p>
 <h2><a class="anchor" id="UIMarkup"></a>
 Markup Parsers</h2>
 <p>The <a class="el" href="classMezzanine_1_1UI_1_1MarkupParser.html">Mezzanine::UI::MarkupParser</a> base class is used by TextLayers to enable markup in the text they display. The markup supported is very simple, currently limited to just a few exposed rendering properties. A markup parser can be created and then made available to the UI system using the <a class="el" href="classMezzanine_1_1UI_1_1UIManager.html#a8069bfc57230320c6a75294099a74d42">Mezzanine::UI::UIManager::RegisterMarkupParser(const String&amp;, MarkupParser*)</a> method. Registering a markup parser with the UI manager is not required, however if you do not then TextLayers that are deserialized may not have their markup parsers set properly and any use of markup in those TextLayers may fail. A <a class="el" href="classMezzanine_1_1UI_1_1DefaultMarkupParser.html">Mezzanine::UI::DefaultMarkupParser</a> is automatically created and registered on the UI manager when it is constructed. <br/>
@@ -550,7 +563,6 @@ Container Widgets</h1>
 <li><a class="el" href="UIManual.html#UIStacked">Stacked Containers and Buttons</a></li>
 </ul>
 <p><br/>
- <br/>
  Most default provided Widgets are not designed and do not expect to have any children added to them, filling a narrow role where any child it needs is automatically initialized. The base <a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Mezzanine::UI::Widget</a> class is a good really basic container for abitrary combinations of other Widgets. However it doesn't have any special behaviors for hiding a portion of its children based on other factors. To meet that need, there are a few Widgets explicitly designed to be containers that only show a portion of their children at a time. These containers come in two flavors; containers derived from <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html">Mezzanine::UI::PagedContainer</a> and containers derived from <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html">Mezzanine::UI::StackedContainer</a> . <br/>
  <br/>
  </p>
@@ -568,17 +580,21 @@ Paged Containers and Providers</h2>
 <li>Mezzanine::UI::PageProvider::SetYProvider(PageProvider*) <br/>
 </li>
 <li>Mezzanine::UI::PageProvider::SetXYProvider(PageProvider*) <br/>
- <br/>
- PagedContainers also check for when a child gains focus, and stores the last child to have gained focus as a convenience for additional custom behaviors with derived classes. The PageContainer has a single event that can be subscribed to for custom behaviors outside of the class as well; <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a2aae4b7b7016333d2205812fc65786a4">Mezzanine::UI::PagedContainer::EventChildSelected</a> . If your needs are simpler, you can retrieve a pointer to the child directly using the <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ae9c205b9cc4b48e5ff38a2f73c17e001">method</a>. The last selected child can also be cleared for future checks in needed using the <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a361920557b4f31e680b306c527230564">Mezzanine::UI::PagedContainer::ClearSelectedChild()</a> method. The following classes are examples of PagedContainers: <br/>
 </li>
+</ul>
+<p><br/>
+ PagedContainers also check for when a child gains focus, and stores the last child to have gained focus as a convenience for additional custom behaviors with derived classes. The PageContainer has a single event that can be subscribed to for custom behaviors outside of the class as well; <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a2aae4b7b7016333d2205812fc65786a4">Mezzanine::UI::PagedContainer::EventChildSelected</a> . If your needs are simpler, you can retrieve a pointer to the child directly using the <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ae9c205b9cc4b48e5ff38a2f73c17e001">method</a>. The last selected child can also be cleared for future checks in needed using the <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a361920557b4f31e680b306c527230564">Mezzanine::UI::PagedContainer::ClearSelectedChild()</a> method. The following classes are examples of PagedContainers: <br/>
+</p>
+<ul>
 <li><a class="el" href="classMezzanine_1_1UI_1_1GridContainer.html">Mezzanine::UI::GridContainer</a> <br/>
 </li>
 <li><a class="el" href="classMezzanine_1_1UI_1_1HorizontalContainer.html">Mezzanine::UI::HorizontalContainer</a> <br/>
 </li>
 <li><a class="el" href="classMezzanine_1_1UI_1_1VerticalContainer.html">Mezzanine::UI::VerticalContainer</a> <br/>
- <br/>
- </li>
+</li>
 </ul>
+<p><br/>
+ </p>
 <h2><a class="anchor" id="UIStacked"></a>
 Stacked Containers and Buttons</h2>
 <p>The <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html">Mezzanine::UI::StackedContainer</a> is a container class that stores children in explicit sets and intends for a single set to be rendered at a time. These containers are conceptually much more simple than PagedContainers, and primarily use the Mezzanine::UI::StackedButton class to handle the visibility of a given set of Widgets. The StackedContainer class does not enforce how the sets of Widgets are stored. However, sets of Widgets are expected to have an ID expressed as a UInt16 (or enum value within that range) and somehow possible to be bound to a StackButton. When that StackButton is activated, the bound set will become visible. In many cases you will want to make the previously visible set invisible, but that is ultimately up to the implementation. The following classes are examples of StackedContainers: <br/>
@@ -591,6 +607,6 @@ Stacked Containers and Buttons</h2>
 </ul>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 19 2014 14:14:04 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 15:37:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

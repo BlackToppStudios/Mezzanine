@@ -266,33 +266,31 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/Threading/thread.cpp:136: Warning: Member try (variable) of namespace Mezzanine::Threading is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/transform.h:165: Warning: Member operator<<(std::ostream &stream, const Mezzanine::Transform &x) (function) of file transform.h is not documented.
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:273: Warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:129: Warning: unable to resolve reference to `UIFeedBack' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:146: Warning: unable to resolve reference to `UIHover' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:204: Warning: unable to resolve reference to `UIClassSCreen' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:344: Warning: unable to resolve reference to `Mezzanine::UI::Screen::CreateWidget(const String&,const String&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:423: Warning: unable to resolve reference to `UISingleImage' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:424: Warning: unable to resolve reference to `UIMultiImage' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:425: Warning: unable to resolve reference to `UISingleLineText' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:426: Warning: unable to resolve reference to `UIMultiLineText' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:574: Warning: unable to resolve reference to `UI::Mezzanine::Widget' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:574: Warning: unable to resolve reference to `UIWidget' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:581: Warning: unable to resolve reference to `Mezzanine::QuadRenderable::SetLocalVertexCaching(Boole)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:589: Warning: unable to resolve reference to `Mezzanine::UI::UIManager::InjectInput(const MetaCode&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:591: Warning: unable to resolve reference to `Mezzanine::UI::WidgetUpdateWork' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:591: Warning: unable to resolve reference to `Mezzanine::UI::WidgetUpdateWork' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:605: Warning: unable to resolve reference to `Mezzanine::UI::Widget::_HandleInput(const MetaCode&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:605: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputImpl(const MetaCode&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:631: Warning: unable to resolve reference to `Mezzanine::UI::UnifiedDim::CalculateActualDimension(const Real&)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:699: Warning: unable to resolve reference to `Mezzanine::UI::PositionFlags' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:345: Warning: unable to resolve reference to `Mezzanine::UI::Screen::CreateWidget(const String&,const String&)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:425: Warning: unable to resolve reference to `UISingleImage' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:426: Warning: unable to resolve reference to `UIMultiImage' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:427: Warning: unable to resolve reference to `UISingleLineText' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:428: Warning: unable to resolve reference to `UIMultiLineText' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:577: Warning: unable to resolve reference to `UI::Mezzanine::Widget' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:577: Warning: unable to resolve reference to `UIWidget' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:584: Warning: unable to resolve reference to `Mezzanine::QuadRenderable::SetLocalVertexCaching(Boole)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:592: Warning: unable to resolve reference to `Mezzanine::UI::UIManager::InjectInput(const MetaCode&)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:594: Warning: unable to resolve reference to `Mezzanine::UI::WidgetUpdateWork' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:594: Warning: unable to resolve reference to `Mezzanine::UI::WidgetUpdateWork' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:608: Warning: unable to resolve reference to `Mezzanine::UI::Widget::_HandleInput(const MetaCode&)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:608: Warning: unable to resolve reference to `Mezzanine::UI::_HandleInputImpl(const MetaCode&)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:634: Warning: unable to resolve reference to `Mezzanine::UI::UnifiedDim::CalculateActualDimension(const Real&)' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:702: Warning: unable to resolve reference to `Mezzanine::UI::PositionFlags' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:719: Warning: unable to resolve reference to `Mezzanine::UI::HorizontalStrategy' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:719: Warning: unable to resolve reference to `Mezzanine::UI::VerticalStrategy' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:788: Warning: unable to resolve reference to `Mezzanine::UI::MarkupParser::ProcessResult' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:815: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetProviders(PageProvider*, PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:816: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXProvider(PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:817: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetYProvider(PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:818: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXYProvider(PageProvider*)' for \ref command
-/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:830: Warning: unable to resolve reference to `Mezzanine::UI::StackedButton' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:705: Warning: unable to resolve reference to `Mezzanine::UI::PositionFlags' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:722: Warning: unable to resolve reference to `Mezzanine::UI::HorizontalStrategy' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:722: Warning: unable to resolve reference to `Mezzanine::UI::VerticalStrategy' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:792: Warning: unable to resolve reference to `Mezzanine::UI::MarkupParser::ProcessResult' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:819: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetProviders(PageProvider*, PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:820: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXProvider(PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:821: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetYProvider(PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:822: Warning: unable to resolve reference to `Mezzanine::UI::PageProvider::SetXYProvider(PageProvider*)' for \ref command
+/home/sqeaky/Code/Mezzanine/Mezzanine/src/UI/ui.h:836: Warning: unable to resolve reference to `Mezzanine::UI::StackedButton' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:567: Warning: explicit link request to 'wstream' could not be resolved
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:647: Warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xml.h:647: Warning: explicit link request to 'x' could not be resolved
