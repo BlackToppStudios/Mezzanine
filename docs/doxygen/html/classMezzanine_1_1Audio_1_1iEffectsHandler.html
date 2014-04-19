@@ -164,9 +164,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a41958da8b9039b59c4dacbf7fc868bff"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a41958da8b9039b59c4dacbf7fc868bff">DestroyFilter</a> (<a class="el" href="classMezzanine_1_1Audio_1_1iFilter.html">iFilter</a> *ToBeDestroyed)=0</td></tr>
 <tr class="memdesc:a41958da8b9039b59c4dacbf7fc868bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a single <a class="el" href="classMezzanine_1_1Audio_1_1iFilter.html">iFilter</a> instance.  <a href="#a41958da8b9039b59c4dacbf7fc868bff">More...</a><br/></td></tr>
 <tr class="separator:a41958da8b9039b59c4dacbf7fc868bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3805605e0cd32343675a42862516c25f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a3805605e0cd32343675a42862516c25f">EffectPresetExists</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bb">EffectType</a> Type, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)=0</td></tr>
-<tr class="memdesc:a3805605e0cd32343675a42862516c25f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not an effect preset exists within this handler.  <a href="#a3805605e0cd32343675a42862516c25f">More...</a><br/></td></tr>
-<tr class="separator:a3805605e0cd32343675a42862516c25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a709c1786e999f2c3e6ffc4a3290c0e1d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a709c1786e999f2c3e6ffc4a3290c0e1d">EffectPresetExists</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bb">EffectType</a> Type, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)=0</td></tr>
+<tr class="memdesc:a709c1786e999f2c3e6ffc4a3290c0e1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not an effect preset exists within this handler.  <a href="#a709c1786e999f2c3e6ffc4a3290c0e1d">More...</a><br/></td></tr>
+<tr class="separator:a709c1786e999f2c3e6ffc4a3290c0e1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a070919355b872f1141265a1746822e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structMezzanine_1_1Audio_1_1AutowahParameters.html">AutowahParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a8a070919355b872f1141265a1746822e">GetAutowahEffectPreset</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name) const =0</td></tr>
 <tr class="memdesc:a8a070919355b872f1141265a1746822e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a previously registered preset for the Autowah Effect.  <a href="#a8a070919355b872f1141265a1746822e">More...</a><br/></td></tr>
 <tr class="separator:a8a070919355b872f1141265a1746822e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,12 +218,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a9ba4bd2991fef41a964ef8a9833d81ae"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structMezzanine_1_1Audio_1_1VocalMorpherParameters.html">VocalMorpherParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a9ba4bd2991fef41a964ef8a9833d81ae">GetVocalMorpherEffectPreset</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name) const =0</td></tr>
 <tr class="memdesc:a9ba4bd2991fef41a964ef8a9833d81ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a previously registered preset for the Vocal Morpher Effect.  <a href="#a9ba4bd2991fef41a964ef8a9833d81ae">More...</a><br/></td></tr>
 <tr class="separator:a9ba4bd2991fef41a964ef8a9833d81ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a876ec340ad3e65562a5e715fb1742791"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a876ec340ad3e65562a5e715fb1742791">IsEffectSupported</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bb">EffectType</a> Type) const =0</td></tr>
-<tr class="memdesc:a876ec340ad3e65562a5e715fb1742791"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the given effect type is supported.  <a href="#a876ec340ad3e65562a5e715fb1742791">More...</a><br/></td></tr>
-<tr class="separator:a876ec340ad3e65562a5e715fb1742791"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b074f324db0f76f9f80784a4ceb0545"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a1b074f324db0f76f9f80784a4ceb0545">IsFilterSupported</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#a4ae44587c749b5036b51f2c2963c098d">FilterType</a> Type) const =0</td></tr>
-<tr class="memdesc:a1b074f324db0f76f9f80784a4ceb0545"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the given filter type is supported.  <a href="#a1b074f324db0f76f9f80784a4ceb0545">More...</a><br/></td></tr>
-<tr class="separator:a1b074f324db0f76f9f80784a4ceb0545"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4951a6b4b5dddb4c4a7d3017c19b9d27"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a4951a6b4b5dddb4c4a7d3017c19b9d27">IsEffectSupported</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bb">EffectType</a> Type) const =0</td></tr>
+<tr class="memdesc:a4951a6b4b5dddb4c4a7d3017c19b9d27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the given effect type is supported.  <a href="#a4951a6b4b5dddb4c4a7d3017c19b9d27">More...</a><br/></td></tr>
+<tr class="separator:a4951a6b4b5dddb4c4a7d3017c19b9d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7687e54422f4acd206f4556a8a2b481"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#aa7687e54422f4acd206f4556a8a2b481">IsFilterSupported</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#a4ae44587c749b5036b51f2c2963c098d">FilterType</a> Type) const =0</td></tr>
+<tr class="memdesc:aa7687e54422f4acd206f4556a8a2b481"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the given filter type is supported.  <a href="#aa7687e54422f4acd206f4556a8a2b481">More...</a><br/></td></tr>
+<tr class="separator:aa7687e54422f4acd206f4556a8a2b481"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88c71c19f8fd29cf7e5998b74dbf4c92"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Audio_1_1iEffectsHandler.html#a88c71c19f8fd29cf7e5998b74dbf4c92">RemoveAllEffectPresets</a> (const <a class="el" href="namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bb">EffectType</a> Type)=0</td></tr>
 <tr class="memdesc:a88c71c19f8fd29cf7e5998b74dbf4c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all effect presets for a specific effect type.  <a href="#a88c71c19f8fd29cf7e5998b74dbf4c92">More...</a><br/></td></tr>
 <tr class="separator:a88c71c19f8fd29cf7e5998b74dbf4c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -911,7 +911,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a3805605e0cd32343675a42862516c25f"></a>
+<a class="anchor" id="a709c1786e999f2c3e6ffc4a3290c0e1d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -919,7 +919,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::iEffectsHandler::EffectPresetExists </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::iEffectsHandler::EffectPresetExists </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bb">EffectType</a>&#160;</td>
           <td class="paramname"><em>Type</em>, </td>
@@ -1502,7 +1502,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a876ec340ad3e65562a5e715fb1742791"></a>
+<a class="anchor" id="a4951a6b4b5dddb4c4a7d3017c19b9d27"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1510,7 +1510,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::iEffectsHandler::IsEffectSupported </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::iEffectsHandler::IsEffectSupported </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Audio.html#ac76e1a0a0871bf406c318afa3e3135bb">EffectType</a>&#160;</td>
           <td class="paramname"><em>Type</em>)</td><td></td>
@@ -1535,7 +1535,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a1b074f324db0f76f9f80784a4ceb0545"></a>
+<a class="anchor" id="aa7687e54422f4acd206f4556a8a2b481"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1543,7 +1543,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Mezzanine::Audio::iEffectsHandler::IsFilterSupported </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Audio::iEffectsHandler::IsFilterSupported </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1Audio.html#a4ae44587c749b5036b51f2c2963c098d">FilterType</a>&#160;</td>
           <td class="paramname"><em>Type</em>)</td><td></td>
@@ -1648,6 +1648,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

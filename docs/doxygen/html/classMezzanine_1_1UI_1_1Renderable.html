@@ -109,7 +109,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1UI_1_1Renderable__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1UI_1_1Renderable__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -126,9 +127,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2baeb986e6644b0e0c547988813cdd31"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a2baeb986e6644b0e0c547988813cdd31">_AppendRenderData</a> (<a class="el" href="classMezzanine_1_1UI_1_1ScreenRenderData.html">ScreenRenderData</a> &amp;RenderData)=0</td></tr>
 <tr class="memdesc:a2baeb986e6644b0e0c547988813cdd31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends the vertices of this renderable to another vector.  <a href="#a2baeb986e6644b0e0c547988813cdd31">More...</a><br/></td></tr>
 <tr class="separator:a2baeb986e6644b0e0c547988813cdd31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ea8a6c7945213b4e0453796f5dc295b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a1ea8a6c7945213b4e0453796f5dc295b">_IsDirty</a> () const </td></tr>
-<tr class="memdesc:a1ea8a6c7945213b4e0453796f5dc295b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is dirty.  <a href="#a1ea8a6c7945213b4e0453796f5dc295b">More...</a><br/></td></tr>
-<tr class="separator:a1ea8a6c7945213b4e0453796f5dc295b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff9b4e83aa9f92da0d6c65709466c621"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#aff9b4e83aa9f92da0d6c65709466c621">_Clean</a> ()=0</td></tr>
+<tr class="memdesc:aff9b4e83aa9f92da0d6c65709466c621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refreshes the render data of this renderable.  <a href="#aff9b4e83aa9f92da0d6c65709466c621">More...</a><br/></td></tr>
+<tr class="separator:aff9b4e83aa9f92da0d6c65709466c621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2753b83531c7511aa963b62148a7fb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#ae2753b83531c7511aa963b62148a7fb9">_IsDirty</a> () const </td></tr>
+<tr class="memdesc:ae2753b83531c7511aa963b62148a7fb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is dirty.  <a href="#ae2753b83531c7511aa963b62148a7fb9">More...</a><br/></td></tr>
+<tr class="separator:ae2753b83531c7511aa963b62148a7fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2ee062b232e9c66ff13e757a9e16eb8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#aa2ee062b232e9c66ff13e757a9e16eb8">_MarkDirty</a> ()=0</td></tr>
 <tr class="memdesc:aa2ee062b232e9c66ff13e757a9e16eb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks this renderable as dirty, and informs other renderables if needed.  <a href="#aa2ee062b232e9c66ff13e757a9e16eb8">More...</a><br/></td></tr>
 <tr class="separator:aa2ee062b232e9c66ff13e757a9e16eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,22 +148,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a49b409afd4e5afa7e336f47bfa5d4ad4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a49b409afd4e5afa7e336f47bfa5d4ad4">GetScreen</a> () const </td></tr>
 <tr class="memdesc:a49b409afd4e5afa7e336f47bfa5d4ad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the parent screen of this renderable.  <a href="#a49b409afd4e5afa7e336f47bfa5d4ad4">More...</a><br/></td></tr>
 <tr class="separator:a49b409afd4e5afa7e336f47bfa5d4ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c3d2796f0cdedd4dee0b742d7ca5418"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a2c3d2796f0cdedd4dee0b742d7ca5418">GetVisible</a> () const =0</td></tr>
-<tr class="memdesc:a2c3d2796f0cdedd4dee0b742d7ca5418"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility setting of this renderable.  <a href="#a2c3d2796f0cdedd4dee0b742d7ca5418">More...</a><br/></td></tr>
-<tr class="separator:a2c3d2796f0cdedd4dee0b742d7ca5418"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe1e08b3fc492c95816d1c432b340f37"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#abe1e08b3fc492c95816d1c432b340f37">GetVisible</a> () const =0</td></tr>
+<tr class="memdesc:abe1e08b3fc492c95816d1c432b340f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility setting of this renderable.  <a href="#abe1e08b3fc492c95816d1c432b340f37">More...</a><br/></td></tr>
+<tr class="separator:abe1e08b3fc492c95816d1c432b340f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34c7eb5791a3e84473491f56cf139e7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34c7eb5791a3e84473491f56cf139e7b"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a34c7eb5791a3e84473491f56cf139e7b">Hide</a> ()=0</td></tr>
 <tr class="memdesc:a34c7eb5791a3e84473491f56cf139e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this renderable to hide. <br/></td></tr>
 <tr class="separator:a34c7eb5791a3e84473491f56cf139e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25dd8bf03c81d90e122a65202d5b35fa"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a25dd8bf03c81d90e122a65202d5b35fa">IsScreen</a> () const </td></tr>
-<tr class="memdesc:a25dd8bf03c81d90e122a65202d5b35fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a>.  <a href="#a25dd8bf03c81d90e122a65202d5b35fa">More...</a><br/></td></tr>
-<tr class="separator:a25dd8bf03c81d90e122a65202d5b35fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af480d7a1c5384a0470941f63f878b555"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#af480d7a1c5384a0470941f63f878b555">IsVisible</a> () const =0</td></tr>
-<tr class="memdesc:af480d7a1c5384a0470941f63f878b555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is being drawn.  <a href="#af480d7a1c5384a0470941f63f878b555">More...</a><br/></td></tr>
-<tr class="separator:af480d7a1c5384a0470941f63f878b555"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1343f82ce980f27069850e245c3a866"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#af1343f82ce980f27069850e245c3a866">IsWidget</a> () const </td></tr>
-<tr class="memdesc:af1343f82ce980f27069850e245c3a866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. ">Widget</a>.  <a href="#af1343f82ce980f27069850e245c3a866">More...</a><br/></td></tr>
-<tr class="separator:af1343f82ce980f27069850e245c3a866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44a095c51c4daa7930323b183d985d08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a44a095c51c4daa7930323b183d985d08">IsScreen</a> () const </td></tr>
+<tr class="memdesc:a44a095c51c4daa7930323b183d985d08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a>.  <a href="#a44a095c51c4daa7930323b183d985d08">More...</a><br/></td></tr>
+<tr class="separator:a44a095c51c4daa7930323b183d985d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a596c9a69a08ac32214d948d7100993"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a5a596c9a69a08ac32214d948d7100993">IsVisible</a> () const =0</td></tr>
+<tr class="memdesc:a5a596c9a69a08ac32214d948d7100993"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is being drawn.  <a href="#a5a596c9a69a08ac32214d948d7100993">More...</a><br/></td></tr>
+<tr class="separator:a5a596c9a69a08ac32214d948d7100993"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30293c628c15dc3fb19dbcf7ab8e30a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a30293c628c15dc3fb19dbcf7ab8e30a8">IsWidget</a> () const </td></tr>
+<tr class="memdesc:a30293c628c15dc3fb19dbcf7ab8e30a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is a <a class="el" href="classMezzanine_1_1UI_1_1Widget.html" title="This is the base class for all widgets. ">Widget</a>.  <a href="#a30293c628c15dc3fb19dbcf7ab8e30a8">More...</a><br/></td></tr>
+<tr class="separator:a30293c628c15dc3fb19dbcf7ab8e30a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9411ee4f32045b6ac95b63f94a0552a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#ad9411ee4f32045b6ac95b63f94a0552a">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
 <tr class="memdesc:ad9411ee4f32045b6ac95b63f94a0552a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> <a class="el" href="classMezzanine_1_1Node.html">Node</a> and overwrite this object with it.  <a href="#ad9411ee4f32045b6ac95b63f94a0552a">More...</a><br/></td></tr>
 <tr class="separator:ad9411ee4f32045b6ac95b63f94a0552a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,9 +176,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:aa93250f8b8cc1f34a4f94d251229d00e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#aa93250f8b8cc1f34a4f94d251229d00e">ProtoSerializeProperties</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot) const </td></tr>
 <tr class="memdesc:aa93250f8b8cc1f34a4f94d251229d00e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the properties of this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a> ready for serialization.  <a href="#aa93250f8b8cc1f34a4f94d251229d00e">More...</a><br/></td></tr>
 <tr class="separator:aa93250f8b8cc1f34a4f94d251229d00e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7151b2eb819db9b6061f1bd852c17ea4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a7151b2eb819db9b6061f1bd852c17ea4">SetVisible</a> (Boolean CanSee)=0</td></tr>
-<tr class="memdesc:a7151b2eb819db9b6061f1bd852c17ea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this renderable.  <a href="#a7151b2eb819db9b6061f1bd852c17ea4">More...</a><br/></td></tr>
-<tr class="separator:a7151b2eb819db9b6061f1bd852c17ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cba3a9e144766fbbf03c2e9bb6c8ae5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a1cba3a9e144766fbbf03c2e9bb6c8ae5">SetVisible</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> CanSee)=0</td></tr>
+<tr class="memdesc:a1cba3a9e144766fbbf03c2e9bb6c8ae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this renderable.  <a href="#a1cba3a9e144766fbbf03c2e9bb6c8ae5">More...</a><br/></td></tr>
+<tr class="separator:a1cba3a9e144766fbbf03c2e9bb6c8ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8900bd0cca4fb06cac681768fc35ba40"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8900bd0cca4fb06cac681768fc35ba40"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a8900bd0cca4fb06cac681768fc35ba40">Show</a> ()=0</td></tr>
 <tr class="memdesc:a8900bd0cca4fb06cac681768fc35ba40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this renderable to be shown. <br/></td></tr>
@@ -207,18 +211,18 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a4ee1a580b00608d7a0aaf4816c371d61"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a4ee1a580b00608d7a0aaf4816c371d61">Dirty</a></td></tr>
-<tr class="memdesc:a4ee1a580b00608d7a0aaf4816c371d61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether this Renderables vertices need to be regenerated.  <a href="#a4ee1a580b00608d7a0aaf4816c371d61">More...</a><br/></td></tr>
-<tr class="separator:a4ee1a580b00608d7a0aaf4816c371d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d97d9c60300d22359d6bfcdc9a4daf7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a5d97d9c60300d22359d6bfcdc9a4daf7">Dirty</a></td></tr>
+<tr class="memdesc:a5d97d9c60300d22359d6bfcdc9a4daf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether this Renderables vertices need to be regenerated.  <a href="#a5d97d9c60300d22359d6bfcdc9a4daf7">More...</a><br/></td></tr>
+<tr class="separator:a5d97d9c60300d22359d6bfcdc9a4daf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82c8384b0aab812fe3e499ff97e36e38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a82c8384b0aab812fe3e499ff97e36e38">Name</a></td></tr>
 <tr class="memdesc:a82c8384b0aab812fe3e499ff97e36e38"><td class="mdescLeft">&#160;</td><td class="mdescRight">The unique name of this <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy. ">Renderable</a>.  <a href="#a82c8384b0aab812fe3e499ff97e36e38">More...</a><br/></td></tr>
 <tr class="separator:a82c8384b0aab812fe3e499ff97e36e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aababfcf3e472f26c2c61cc40d19ce04d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1Screen.html">Screen</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#aababfcf3e472f26c2c61cc40d19ce04d">ParentScreen</a></td></tr>
 <tr class="memdesc:aababfcf3e472f26c2c61cc40d19ce04d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">Screen</a> that created this <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy. ">Renderable</a>.  <a href="#aababfcf3e472f26c2c61cc40d19ce04d">More...</a><br/></td></tr>
 <tr class="separator:aababfcf3e472f26c2c61cc40d19ce04d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea90bbcd11e170dc2a34940fd7fc96fc"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#aea90bbcd11e170dc2a34940fd7fc96fc">Visible</a></td></tr>
-<tr class="memdesc:aea90bbcd11e170dc2a34940fd7fc96fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether this <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy. ">Renderable</a> is to be rendered (also dependent on parent visibility).  <a href="#aea90bbcd11e170dc2a34940fd7fc96fc">More...</a><br/></td></tr>
-<tr class="separator:aea90bbcd11e170dc2a34940fd7fc96fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07de03b8366e81bdd5e3018f697cc078"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a07de03b8366e81bdd5e3018f697cc078">Visible</a></td></tr>
+<tr class="memdesc:a07de03b8366e81bdd5e3018f697cc078"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether this <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy. ">Renderable</a> is to be rendered (also dependent on parent visibility).  <a href="#a07de03b8366e81bdd5e3018f697cc078">More...</a><br/></td></tr>
+<tr class="separator:a07de03b8366e81bdd5e3018f697cc078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -346,12 +350,39 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1ea8a6c7945213b4e0453796f5dc295b"></a>
+<a class="anchor" id="aff9b4e83aa9f92da0d6c65709466c621"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::UI::Renderable::_Clean </td>
+          <td>(</td>
+          <td class="paramname">)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Refreshes the render data of this renderable. </p>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#ab496d3420e5d6307669106019fec7884">Mezzanine::UI::QuadRenderable</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2753b83531c7511aa963b62148a7fb9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::UI::Renderable::_IsDirty </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::UI::Renderable::_IsDirty </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -520,7 +551,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2c3d2796f0cdedd4dee0b742d7ca5418"></a>
+<a class="anchor" id="abe1e08b3fc492c95816d1c432b340f37"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -528,7 +559,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual Boolean Mezzanine::UI::Renderable::GetVisible </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::UI::Renderable::GetVisible </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -544,16 +575,16 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 <p>Gets the visibility setting of this renderable. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a bool that is the current visibility setting of this renderable. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a1a1be80325ec10c3ea997b0380aabe24">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#afaac487bfd3de4776d151d83be921e86">Mezzanine::UI::Widget</a>, and <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a66c336bfe264aec1258b0868c75b0406">Mezzanine::UI::LineList</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a1eb24c334309113dc3e74dc3443f9e23">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a495f81dd5d9a7cf41dad20beae945d08">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#aaff2b527b460a0cc1bafd50354610d82">Mezzanine::UI::PagedContainer</a>, and <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a63df37848047aceaa540d0f4211c94dd">Mezzanine::UI::LineList</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a25dd8bf03c81d90e122a65202d5b35fa"></a>
+<a class="anchor" id="a44a095c51c4daa7930323b183d985d08"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Boolean Mezzanine::UI::Renderable::IsScreen </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::UI::Renderable::IsScreen </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -568,7 +599,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af480d7a1c5384a0470941f63f878b555"></a>
+<a class="anchor" id="a5a596c9a69a08ac32214d948d7100993"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -576,7 +607,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual Boolean Mezzanine::UI::Renderable::IsVisible </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::UI::Renderable::IsVisible </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -590,19 +621,19 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 </div><div class="memdoc">
 
 <p>Gets whether or not this renderable is being drawn. </p>
-<p>This function will check the visibility of all parent objects to see if it is being drawn. This will not tell you whether or not this renderable has it's own visibility setting enabled. For that see: <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#a2c3d2796f0cdedd4dee0b742d7ca5418" title="Gets the visibility setting of this renderable. ">GetVisible()</a>. </p>
+<p>This function will check the visibility of all parent objects to see if it is being drawn. This will not tell you whether or not this renderable has it's own visibility setting enabled. For that see: <a class="el" href="classMezzanine_1_1UI_1_1Renderable.html#abe1e08b3fc492c95816d1c432b340f37" title="Gets the visibility setting of this renderable. ">GetVisible()</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a bool representing the visibility of this renderable. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#ab0b98cc3b2799a54429b5a85c3b67c9f">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ac1dd8ee7c3403a740e5d86ff8152a56f">Mezzanine::UI::Widget</a>, and <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#aff31754583d869da2dcd4feefdeba8c5">Mezzanine::UI::LineList</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a378cdda56feb7d208010cba7f7fdea3c">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a406d94e6fac01c9ad4d4a6c7ee88b128">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ab3451882d6a4c9e86564a62e1ff58ae7">Mezzanine::UI::PagedContainer</a>, and <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a50075e278ea201d55e3194fbf249d775">Mezzanine::UI::LineList</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af1343f82ce980f27069850e245c3a866"></a>
+<a class="anchor" id="a30293c628c15dc3fb19dbcf7ab8e30a8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Boolean Mezzanine::UI::Renderable::IsWidget </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::UI::Renderable::IsWidget </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -683,7 +714,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a23b0e87cdbf1fff29ba663ffbcb9f430">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a44366c907886f1ec5f10bcd88a20c0a9">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a6f51117f8a3e43fea891a960419c38da">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a1f1541aa21f8eb786dc43a2f3de411d2">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#addc865661782bfd9f205ddecbdcc5d2b">Mezzanine::UI::TabSet</a>, and <a class="el" href="classMezzanine_1_1UI_1_1PageProvider.html#aa225a9ca5b925d7c54b2f5d9b54d47fe">Mezzanine::UI::PageProvider</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a44366c907886f1ec5f10bcd88a20c0a9">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1GridContainer.html#ac9b45a4b6e607e07c922e1731bec238d">Mezzanine::UI::GridContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a23b0e87cdbf1fff29ba663ffbcb9f430">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a1f1541aa21f8eb786dc43a2f3de411d2">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a6f51117f8a3e43fea891a960419c38da">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#addc865661782bfd9f205ddecbdcc5d2b">Mezzanine::UI::TabSet</a>, and <a class="el" href="classMezzanine_1_1UI_1_1PageProvider.html#aa225a9ca5b925d7c54b2f5d9b54d47fe">Mezzanine::UI::PageProvider</a>.</p>
 
 <p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00071">71</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
@@ -719,7 +750,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a3bc5531a5b48f72adc68a67bb678d607">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a218ff11907f2d9e48b29db8669cc5149">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a57a9b1c3db30867221c35f9caef6e4a7">Mezzanine::UI::ListBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ad5034dac942649e6707b1f3773ce74d9">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a223fca97b2c251e202ffcca335427556">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1Spinner.html#a3cb6637dbbc4c80038a3bae251109cb0">Mezzanine::UI::Spinner</a>, <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a30f0ed3ff0204e54f5c7dd9e909daa7a">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Scrollbar.html#a590b0988fc3b1fa26b0c5343e8283747">Mezzanine::UI::Scrollbar</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#adf82e393154c01d8bfd6baf360be0800">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#ab66b2f6ff985c867c0449231b33bc6a9">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1EditBox.html#a99ea8de8d205c12c37628daf66455016">Mezzanine::UI::EditBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1DropDownList.html#aa0f12a47421e1380e5c46edf021e6f22">Mezzanine::UI::DropDownList</a>, <a class="el" href="classMezzanine_1_1UI_1_1LinearContainer.html#a8a0caf2be2b8e89acf551ea31f1cc7bc">Mezzanine::UI::LinearContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#ab913f7c9009dc7a994116a9bbe711031">Mezzanine::UI::TabSet</a>, <a class="el" href="classMezzanine_1_1UI_1_1CheckBox.html#a73cf39ac71bbfdae44c6177954565404">Mezzanine::UI::CheckBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalContainer.html#ac51182ca0b3a1937c2cd1f8640f7cf98">Mezzanine::UI::HorizontalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1VerticalContainer.html#aeca887942a075f050eb0267c7253ad6a">Mezzanine::UI::VerticalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1LayoutContainer.html#a375fb5ffade5ba359a94528265ed0a68">Mezzanine::UI::LayoutContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a9bb5ff02a41e40d1756461d514582544">Mezzanine::UI::StackedContainer</a>, and <a class="el" href="classMezzanine_1_1UI_1_1StackButton.html#aeb1c397e954932b20c11fe8800ae7948">Mezzanine::UI::StackButton</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a3bc5531a5b48f72adc68a67bb678d607">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a218ff11907f2d9e48b29db8669cc5149">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ad5034dac942649e6707b1f3773ce74d9">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1GridContainer.html#a8fd9a0ed9b3c942c44a211f61a3cd646">Mezzanine::UI::GridContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#a223fca97b2c251e202ffcca335427556">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1Spinner.html#a3cb6637dbbc4c80038a3bae251109cb0">Mezzanine::UI::Spinner</a>, <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a57a9b1c3db30867221c35f9caef6e4a7">Mezzanine::UI::ListBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1Scrollbar.html#a590b0988fc3b1fa26b0c5343e8283747">Mezzanine::UI::Scrollbar</a>, <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a30f0ed3ff0204e54f5c7dd9e909daa7a">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#ab66b2f6ff985c867c0449231b33bc6a9">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#adf82e393154c01d8bfd6baf360be0800">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1EditBox.html#a99ea8de8d205c12c37628daf66455016">Mezzanine::UI::EditBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#ab913f7c9009dc7a994116a9bbe711031">Mezzanine::UI::TabSet</a>, <a class="el" href="classMezzanine_1_1UI_1_1DropDownList.html#aa0f12a47421e1380e5c46edf021e6f22">Mezzanine::UI::DropDownList</a>, <a class="el" href="classMezzanine_1_1UI_1_1LinearContainer.html#a8a0caf2be2b8e89acf551ea31f1cc7bc">Mezzanine::UI::LinearContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1CheckBox.html#a73cf39ac71bbfdae44c6177954565404">Mezzanine::UI::CheckBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalContainer.html#ac51182ca0b3a1937c2cd1f8640f7cf98">Mezzanine::UI::HorizontalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1VerticalContainer.html#aeca887942a075f050eb0267c7253ad6a">Mezzanine::UI::VerticalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1LayoutContainer.html#a375fb5ffade5ba359a94528265ed0a68">Mezzanine::UI::LayoutContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1StackButton.html#aeb1c397e954932b20c11fe8800ae7948">Mezzanine::UI::StackButton</a>, and <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a9bb5ff02a41e40d1756461d514582544">Mezzanine::UI::StackedContainer</a>.</p>
 
 <p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00118">118</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
@@ -791,7 +822,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a8c712c0841d87ac1877138aea882389e">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a6b9380b1c2090865fd3a5d5594db2de5">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a3980086ff183d72e3cd4d167a09e2541">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ae7953f187e73262870356b75cb8c8eee">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a4afe84426556c5c022820c0441941674">Mezzanine::UI::TabSet</a>, and <a class="el" href="classMezzanine_1_1UI_1_1PageProvider.html#a4cb25ab0e632d4de8da93cc4c23c11b9">Mezzanine::UI::PageProvider</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a6b9380b1c2090865fd3a5d5594db2de5">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1GridContainer.html#ab9d425952631c07b7e259d2f4edd11a8">Mezzanine::UI::GridContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#a8c712c0841d87ac1877138aea882389e">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ae7953f187e73262870356b75cb8c8eee">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a3980086ff183d72e3cd4d167a09e2541">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a4afe84426556c5c022820c0441941674">Mezzanine::UI::TabSet</a>, and <a class="el" href="classMezzanine_1_1UI_1_1PageProvider.html#a4cb25ab0e632d4de8da93cc4c23c11b9">Mezzanine::UI::PageProvider</a>.</p>
 
 <p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00068">68</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
@@ -827,13 +858,13 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#ae4f401cfb744ce06ba13e0b11aae2d84">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a31fed01ddf5da7b13bad59c24c7a650c">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a47bba138ac182a5036c0d63dcb4b4f73">Mezzanine::UI::ListBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#adb35852881cdcf4c7721fdd6f5e93d54">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ac002c0fe9a2e567c36bc1c94278d36f1">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1Spinner.html#a24570671c8de9799750940ffa674d13d">Mezzanine::UI::Spinner</a>, <a class="el" href="classMezzanine_1_1UI_1_1Button.html#ac3e8ac5096ce45b9d398f3ab3ffc9697">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Scrollbar.html#ab8009458db83e50a6079b5516016e72a">Mezzanine::UI::Scrollbar</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#aff730645125ba5b71a1338cacd383390">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a9b3f52a54dbc3cc31c77fc7219448d41">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1EditBox.html#ae1fd651a3478fa3a15f582cdc985c4dc">Mezzanine::UI::EditBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1DropDownList.html#ad7f82ca04a79fa2e0f5bfac1fa55b309">Mezzanine::UI::DropDownList</a>, <a class="el" href="classMezzanine_1_1UI_1_1LinearContainer.html#afed672bea8b4ac6e6870de4d2191617f">Mezzanine::UI::LinearContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a0deaddc581a7b75df381c211ceb7d968">Mezzanine::UI::TabSet</a>, <a class="el" href="classMezzanine_1_1UI_1_1CheckBox.html#af6cb134b27c8fbea93bccab8d4d07990">Mezzanine::UI::CheckBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalContainer.html#aa7d54d3afcc4c49de48782ec067c1aad">Mezzanine::UI::HorizontalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1VerticalContainer.html#a06c359773d7011b3652d981930708e67">Mezzanine::UI::VerticalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1LayoutContainer.html#a1948c25a7d57f27320d7e91471278330">Mezzanine::UI::LayoutContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a0fd4de65833ee2000477308d37c39fe5">Mezzanine::UI::StackedContainer</a>, and <a class="el" href="classMezzanine_1_1UI_1_1StackButton.html#a103effccdeb69265cf4c0f3091c0a6fc">Mezzanine::UI::StackButton</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1QuadRenderable.html#ae4f401cfb744ce06ba13e0b11aae2d84">Mezzanine::UI::QuadRenderable</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a31fed01ddf5da7b13bad59c24c7a650c">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#adb35852881cdcf4c7721fdd6f5e93d54">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1GridContainer.html#a0dc700d2de03ad54b376cbe547c4ddee">Mezzanine::UI::GridContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ac002c0fe9a2e567c36bc1c94278d36f1">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1Spinner.html#a24570671c8de9799750940ffa674d13d">Mezzanine::UI::Spinner</a>, <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a47bba138ac182a5036c0d63dcb4b4f73">Mezzanine::UI::ListBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1Scrollbar.html#ab8009458db83e50a6079b5516016e72a">Mezzanine::UI::Scrollbar</a>, <a class="el" href="classMezzanine_1_1UI_1_1Button.html#ac3e8ac5096ce45b9d398f3ab3ffc9697">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#aff730645125ba5b71a1338cacd383390">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1RadioButton.html#a9b3f52a54dbc3cc31c77fc7219448d41">Mezzanine::UI::RadioButton</a>, <a class="el" href="classMezzanine_1_1UI_1_1EditBox.html#ae1fd651a3478fa3a15f582cdc985c4dc">Mezzanine::UI::EditBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a0deaddc581a7b75df381c211ceb7d968">Mezzanine::UI::TabSet</a>, <a class="el" href="classMezzanine_1_1UI_1_1DropDownList.html#ad7f82ca04a79fa2e0f5bfac1fa55b309">Mezzanine::UI::DropDownList</a>, <a class="el" href="classMezzanine_1_1UI_1_1LinearContainer.html#afed672bea8b4ac6e6870de4d2191617f">Mezzanine::UI::LinearContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1CheckBox.html#af6cb134b27c8fbea93bccab8d4d07990">Mezzanine::UI::CheckBox</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalContainer.html#aa7d54d3afcc4c49de48782ec067c1aad">Mezzanine::UI::HorizontalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1VerticalContainer.html#a06c359773d7011b3652d981930708e67">Mezzanine::UI::VerticalContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1LayoutContainer.html#a1948c25a7d57f27320d7e91471278330">Mezzanine::UI::LayoutContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1StackButton.html#a103effccdeb69265cf4c0f3091c0a6fc">Mezzanine::UI::StackButton</a>, and <a class="el" href="classMezzanine_1_1UI_1_1StackedContainer.html#a0fd4de65833ee2000477308d37c39fe5">Mezzanine::UI::StackedContainer</a>.</p>
 
 <p>Definition at line <a class="el" href="renderable_8cpp_source.html#l00099">99</a> of file <a class="el" href="renderable_8cpp_source.html">renderable.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7151b2eb819db9b6061f1bd852c17ea4"></a>
+<a class="anchor" id="a1cba3a9e144766fbbf03c2e9bb6c8ae5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -843,7 +874,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
         <tr>
           <td class="memname">virtual void Mezzanine::UI::Renderable::SetVisible </td>
           <td>(</td>
-          <td class="paramtype">Boolean&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td>
           <td class="paramname"><em>CanSee</em>)</td><td></td>
           <td></td>
         </tr>
@@ -858,17 +889,17 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 <p>Sets the visibility of this renderable. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CanSee</td><td>Boolean determining whether or not this renderable should be visible. </td></tr>
+    <tr><td class="paramname">CanSee</td><td>Boole determining whether or not this renderable should be visible. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#a3f1baded39d9aca136003934701d1796">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a292248a312427b1bb2058b7639246a2b">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#ab96f1ad5ba4865c7af400bea59da482b">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a5891e4d34d86851b006a434ca1e775bd">Mezzanine::UI::LineList</a>, <a class="el" href="classMezzanine_1_1UI_1_1DropDownList.html#a7ff9e8c141a59a1b69dfeb34d947916e">Mezzanine::UI::DropDownList</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalScrollbar.html#a148fbe12cb5cb4fc8dfb82da9833d86f">Mezzanine::UI::HorizontalScrollbar</a>, <a class="el" href="classMezzanine_1_1UI_1_1VerticalScrollbar.html#a14276038d1fd774768c8b8b5bc2a6289">Mezzanine::UI::VerticalScrollbar</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a14fc010495b8cdb14a80646048045999">Mezzanine::UI::TabSet</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ad901ba919152a9d2e755574f7ee1b2dd">Mezzanine::UI::Widget</a>, <a class="el" href="classMezzanine_1_1UI_1_1Screen.html#ac37e65c4ef61c8f43062d775dbc77f6e">Mezzanine::UI::Screen</a>, <a class="el" href="classMezzanine_1_1UI_1_1PagedContainer.html#ae50264c913a74c38a69ef32787b847cc">Mezzanine::UI::PagedContainer</a>, <a class="el" href="classMezzanine_1_1UI_1_1MenuEntry.html#a3df2cd3343c094210e2ea3d2a506b967">Mezzanine::UI::MenuEntry</a>, <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a0f82b06e5f9f86226c7eba5490e5a4f1">Mezzanine::UI::LineList</a>, <a class="el" href="classMezzanine_1_1UI_1_1DropDownList.html#af7e1087afdbc84b0447f811829cb5870">Mezzanine::UI::DropDownList</a>, <a class="el" href="classMezzanine_1_1UI_1_1TabSet.html#a0353716643d2a8d29edfd8687e1e0572">Mezzanine::UI::TabSet</a>, <a class="el" href="classMezzanine_1_1UI_1_1HorizontalScrollbar.html#a44c5bbfaf19a9b1fb19a2698f64fca91">Mezzanine::UI::HorizontalScrollbar</a>, and <a class="el" href="classMezzanine_1_1UI_1_1VerticalScrollbar.html#a285eeacf6e18a68f6833d3be86bc7aa1">Mezzanine::UI::VerticalScrollbar</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a4ee1a580b00608d7a0aaf4816c371d61"></a>
+<a class="anchor" id="a5d97d9c60300d22359d6bfcdc9a4daf7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -876,7 +907,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Boolean Mezzanine::UI::Renderable::Dirty</td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::UI::Renderable::Dirty</td>
         </tr>
       </table>
   </td>
@@ -940,7 +971,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aea90bbcd11e170dc2a34940fd7fc96fc"></a>
+<a class="anchor" id="a07de03b8366e81bdd5e3018f697cc078"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -948,7 +979,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Boolean Mezzanine::UI::Renderable::Visible</td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::UI::Renderable::Visible</td>
         </tr>
       </table>
   </td>
@@ -970,6 +1001,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

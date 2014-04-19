@@ -188,7 +188,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="lockguard_8h.html" title="Declares a tool for automatically unlocking a mutex in an exception safe way. ">lockguard.h</a>&quot;</span></div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="logtools_8h.html" title="The definitions of the logging tools. ">logtools.h</a>&quot;</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="monopoly_8h.html" title="Contains an interface for a kind of WorkUnit that consumes time on multiple thread. ">monopoly.h</a>&quot;</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mutex_8h.html" title="Declares a Mutex, Mutex tools. ">mutex.h</a>&quot;</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mutex_8h.html" title="This file declares and defines a mutex that is a partial implementation. ">mutex.h</a>&quot;</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="readwritespinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object. ">readwritespinlock.h</a>&quot;</span></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rollingaverage_8h.html" title="This stores the implementation and the declaration of the RollingAverage, BufferedRollingAverage, WeightedRollingAverage and the DefaultRollingAverage. ">rollingaverage.h</a>&quot;</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="spinlock_8h.html" title="Declares a Mutex, Mutex tools, and at least one MutexLike object. ">spinlock.h</a>&quot;</span></div>
@@ -579,26 +579,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="comment">/// errors from consistently lengthening of shortening frames.</span></div>
 <div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="comment">/// @section dag_usage Using the DAG FrameScheduler</span></div>
 <div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="comment">/// Still in progress. In the meantime please peruse the unit test source directory for examples.</span></div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="comment">/// @brief All of the Mezzanine game library components reside in this namespace.</span></div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="comment">/// @details The DAG Frame Scheduler is just one part of many in the Mezzanine. The Mezzanine as a</span></div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="comment">/// whole is intended to tie a complex collection of libraries into one cohesive library.</span></div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="comment"></span><span class="keyword">namespace </span>Mezzanine</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;{<span class="comment"></span></div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;<span class="comment">    /// @brief This is where game specific threading algorithms and a minimalistic subset of the std threading library a held</span></div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;<span class="comment">    /// @details This implements all of the multithreaded algorithms from BlackTopp Studios, parts of std::thread,</span></div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;<span class="comment">    /// std::this_thread, std:: mutex, and maybe a few others. In general only the specialized gaming algorithms store here are</span></div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;<span class="comment">    /// intended to be used in game code.</span></div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;<span class="comment"></span>    <span class="keyword">namespace </span>Threading</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    {</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    }<span class="comment">//Threading</span></div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="comment">/// @section dag_maintanence Code Maintenance Tasks</span></div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;<span class="comment">/// @subsection dag_maintanence_codestandards Coding Standards Diverge from Mezzanine</span></div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="comment">/// There are some fundamental differences in the DAGFrameSchedulers coded when compared to the code</span></div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="comment">/// in the Mezzanine.</span></div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="comment">/// @n @n</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="comment">/// The most obvious is the usage of exceptions. The DAGFrameScheduler does not use</span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="comment">/// Exceptions in any way. There are a few reasons for this.</span></div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;<span class="comment">///    1. Exception Thread Safety.</span></div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;<span class="comment">///    2. No need to copy Exception</span></div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;<span class="comment">///    3. Performance.</span></div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;<span class="comment">/// @n @n</span></div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;<span class="comment">/// The team at BlackTopp Studios Inc will be some of the first to extol the virtues of exceptions</span></div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="comment">/// and downplay their cost. In most situations the cost is negligible. The case of the tighest and</span></div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="comment">/// innermost loop in a simulation seemed to us to be one of those situations where the cost matters.</span></div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;<span class="comment">/// @n @n</span></div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;<span class="comment">/// There is no use of a number of other Mezzanine foundational classes. The CountedPtr is completely</span></div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;<span class="comment">/// missing. For the same reasons as exceptions. Raw pointers using RAII and references are used</span></div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="comment">/// instead.</span></div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="comment">/// @n @n</span></div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="comment">/// Most of the Datatypes that are used are in a trimmed down version of the Mezzanine&#39;s datatypes.h.</span></div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="comment">/// @subsection dag_maintanence_merging Getting changes from the Mezzanine into DAGFrameScheduler</span></div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;<span class="comment">/// There are 3 directories with code that overlap in the Mezzanine and in the DAGFrameScheduler. Code</span></div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="comment">/// That lies outside these directories is independent of the other project. The entire FrameScheduler</span></div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;<span class="comment">/// library loosely correlates with the Mezzanine::Threading namespace. Then there is the tests and</span></div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;<span class="comment">/// test framework source code. Presuming you have used git to clone both repositories to</span></div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;<span class="comment">/// ~/Code/Mezzanine/UnitTests/src &lt;=&gt; ~/Code/DAGFrameScheduler/testframework @n</span></div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;<span class="comment">/// ~/Code/Mezzanine/Mezzanine/src/Threading &lt;=&gt; ~/Code/DAGFrameScheduler/src @n</span></div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;<span class="comment">/// ~/Code/Mezzanine/UnitTests/tests &lt;=&gt; ~/Code/DAGFrameScheduler/tests @n</span></div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;<span class="comment">/// @n @n</span></div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;<span class="comment">/// For simplicity when BlackTopp Studios Inc merge changes a graphical merge tool capable of directory</span></div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;<span class="comment">/// merges is used to manually move changes between corresponding directories. Winmerge and Meld (Quite</span></div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;<span class="comment">/// possibly the prettiest merge tool ever created) are two great examples of tools for doing this.</span></div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;<span class="comment">/// @brief All of the Mezzanine game library components reside in this namespace.</span></div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;<span class="comment">/// @details The DAG Frame Scheduler is just one part of many in the Mezzanine. The Mezzanine as a</span></div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;<span class="comment">/// whole is intended to tie a complex collection of libraries into one cohesive library.</span></div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;<span class="comment"></span><span class="keyword">namespace </span>Mezzanine</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;{<span class="comment"></span></div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;<span class="comment">    /// @brief This is where game specific threading algorithms and a minimalistic subset of the std threading library a held</span></div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;<span class="comment">    /// @details This implements all of the multithreaded algorithms from BlackTopp Studios, parts of std::thread,</span></div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;<span class="comment">    /// std::this_thread, std:: mutex, and maybe a few others. In general only the specialized gaming algorithms store here are</span></div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;<span class="comment">    /// intended to be used in game code.</span></div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;<span class="comment"></span>    <span class="keyword">namespace </span>Threading</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;    {</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    }<span class="comment">//Threading</span></div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:42 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

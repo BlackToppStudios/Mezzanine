@@ -30,6 +30,7 @@ var searchData=
   ['sr_5ffill_5favailable',['SR_Fill_Available',['../namespaceMezzanine_1_1UI.html#af126c73bf3db9e5ae1409a386376c73fa20f268eebe414a61ca8af5b396138742',1,'Mezzanine::UI']]],
   ['sr_5ffixed_5fsize',['SR_Fixed_Size',['../namespaceMezzanine_1_1UI.html#af126c73bf3db9e5ae1409a386376c73fa7b098cbcc9282045d92d3dcd6047d9c3',1,'Mezzanine::UI']]],
   ['sr_5fmatch_5fother_5faxis',['SR_Match_Other_Axis',['../namespaceMezzanine_1_1UI.html#af126c73bf3db9e5ae1409a386376c73facba4a65624b6180ca4d739cd980e4c6b',1,'Mezzanine::UI']]],
+  ['sr_5fmatch_5fother_5faxis_5funified',['SR_Match_Other_Axis_Unified',['../namespaceMezzanine_1_1UI.html#af126c73bf3db9e5ae1409a386376c73fa6aae3fc9d99fe4ecc35e86777ed41ddf',1,'Mezzanine::UI']]],
   ['sr_5fsize_5ffor_5ftext',['SR_Size_For_Text',['../namespaceMezzanine_1_1UI.html#af126c73bf3db9e5ae1409a386376c73fa83f33115aaa4207c75ea0d1bd488ff79',1,'Mezzanine::UI']]],
   ['sr_5funified_5fdims',['SR_Unified_Dims',['../namespaceMezzanine_1_1UI.html#af126c73bf3db9e5ae1409a386376c73fa5de930d46df2a884deba388fa9de6855',1,'Mezzanine::UI']]],
   ['sst_5fnone',['SST_None',['../classMezzanine_1_1Graphics_1_1SceneManager.html#a2cd20720f0f55c9b1cd27077516849b3a54527f22ad8a18c3200559ea468ff0f1',1,'Mezzanine::Graphics::SceneManager']]],

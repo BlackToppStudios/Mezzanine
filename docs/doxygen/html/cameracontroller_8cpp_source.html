@@ -212,7 +212,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        Vector3 Dest(Loc + Vector3(0,-2000,0));</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        Ray GroundRay(Loc,Dest);</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer. ">UInt32</a> flags = Mezzanine::WO_MeshTerrain | Mezzanine::WO_HeightfieldTerrain | Mezzanine::WO_VectorFieldTerrain | Mezzanine::WO_VoxelTerrain;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">if</span>(!RayCaster.<a class="code" href="classMezzanine_1_1RayQueryTool.html#aa57b94b3bc9da74092902208d8934170" title="This will find the first Object to intesect the Given ray. ">GetFirstObjectOnRayByPolygon</a>(GroundRay,flags))</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">if</span>(!RayCaster.<a class="code" href="classMezzanine_1_1RayQueryTool.html#ae7a00dc1eda91e0d65ee8c6cea672bc4" title="This will find the first Object to intesect the Given ray. ">GetFirstObjectOnRayByPolygon</a>(GroundRay,flags))</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            { <span class="keywordflow">return</span> 0; }</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number. ">Real</a> Distance = Loc.Y - (RayCaster.<a class="code" href="classMezzanine_1_1RayQueryTool.html#abaf62ca797d7fcd0619da4f10c2f2776" title="It is common to ray query for WorldObjects, if so the results can be retrieved with this...">LastQueryResultsObjectPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1TransformableObject.html#a19db95dd2c1d51cae4eff5bc455654f3" title="Gets this objects current location. ">GetLocation</a>() + RayCaster.<a class="code" href="classMezzanine_1_1RayQueryTool.html#a9b051c71fd78e081e2f0b40e2db2b1c2" title="Get an offset from the last query. Depending on the last query, this could be an Offset from a variet...">LastQueryResultsOffset</a>()).Y;</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">return</span> Distance;</div>
@@ -376,6 +376,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:39 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

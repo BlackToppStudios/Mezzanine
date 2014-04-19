@@ -153,7 +153,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            Clear();</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">bool</span> Packet::VerifySize(<span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; Bytes)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8" title="Generally acts a single bit, true or false. ">Boole</a> Packet::VerifySize(<span class="keyword">const</span> <span class="keywordtype">size_t</span>&amp; Bytes)<span class="keyword"> const</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">        </span>{</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">return</span> RawData.size() &gt;= (ReadPos+Bytes);</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
@@ -177,7 +177,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordflow">return</span> RawData.size();</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">bool</span> Packet::EndOfPacket()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8" title="Generally acts a single bit, true or false. ">Boole</a> Packet::EndOfPacket()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">        </span>{</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">return</span> (ReadPos &gt;= RawData.size());</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
@@ -187,7 +187,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">return</span> RawData;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        Packet&amp; <a class="code" href="interpolator_8h.html#ab67dacdcabf00eae90e25f8357d50ec3" title="Used to de-serialize an Mezzanine::LinearInterpolator from a stream. ">Packet::operator &gt;&gt;</a>(<span class="keywordtype">bool</span>&amp; Data)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        Packet&amp; <a class="code" href="interpolator_8h.html#ab67dacdcabf00eae90e25f8357d50ec3" title="Used to de-serialize an Mezzanine::LinearInterpolator from a stream. ">Packet::operator &gt;&gt;</a>(<a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8" title="Generally acts a single bit, true or false. ">Boole</a>&amp; Data)</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        {</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
@@ -350,7 +350,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">            return *this;</span></div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">        }*/</span></div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        Packet&amp; <a class="code" href="interpolator_8h.html#ad3e123a725f29fba920d3ec54b1c6383" title="Used to Serialize an Mezzanine::LinearInterpolator to a human readable stream. ">Packet::operator &lt;&lt;</a>(<span class="keywordtype">bool</span> Data)</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        Packet&amp; <a class="code" href="interpolator_8h.html#ad3e123a725f29fba920d3ec54b1c6383" title="Used to Serialize an Mezzanine::LinearInterpolator to a human readable stream. ">Packet::operator &lt;&lt;</a>(<a class="code" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8" title="Generally acts a single bit, true or false. ">Boole</a> Data)</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        {</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            *this &lt;&lt; static_cast&lt;UInt8&gt;(Data);</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
@@ -465,6 +465,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="preprocessor">#endif //MEZZNETWORK</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:41 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

@@ -700,7 +700,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00614"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#ac5babf56caf6f2a1bddfa461b9e999b2">  614</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#ac5babf56caf6f2a1bddfa461b9e999b2" title="This is the final step (of 6) in a frame. ">FrameScheduler::WaitUntilNextFrame</a>()</div>
 <div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;        {</div>
 <div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;            <a class="code" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#ad4d36e8edc6bb1a6a41fe7d8663648a8" title="Used to store a count of frames from the begining of game execution. ">FrameCount</a>++;</div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size. ">Whole</a> TargetFrameEnd;</div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="Whole is an unsigned integer, it will be at least 32bits in size. ">Whole</a> TargetFrameEnd=0;</div>
 <div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a7001be079381b43292fdcf1089fd81d7" title="The Maximum frame rate this algorithm should run at. ">TargetFrameLength</a>)</div>
 <div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;            {</div>
 <div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;                TargetFrameEnd = <a class="code" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a7001be079381b43292fdcf1089fd81d7" title="The Maximum frame rate this algorithm should run at. ">TargetFrameLength</a> + <a class="code" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a2c2540f09e443e7d9f8bd2ed48354f93" title="What time did the current Frame Start at. ">CurrentFrameStart</a>;</div>
@@ -751,7 +751,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;        {</div>
 <div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;            <a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html" title="A thread specific collection of double-buffered and algorithm specific resources. ...">Resource</a>* AlmostResults = <a class="code" href="classMezzanine_1_1Threading_1_1FrameScheduler.html#a78a749cb509260f38ea6612b89d97f1c" title="Get the Resource to go with a thread of a given ID. ">GetThreadResource</a>(ID);</div>
 <div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;            <span class="keywordflow">if</span>(AlmostResults)</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;                { <span class="keywordflow">return</span> &amp;AlmostResults-&gt;<a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html#a947c267feef339a148c215bdbf7692b8" title="Get the usable logger for this thread specific resource. ">GetUsableLogger</a>(); }</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;                { <span class="keywordflow">return</span> &amp;AlmostResults-&gt;<a class="code" href="classMezzanine_1_1Threading_1_1ThreadSpecificStorage.html#a68947bb49923bd685d8fba5ed79b2654" title="Get the usable logger for this thread specific resource. ">GetUsableLogger</a>(); }</div>
 <div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;            <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;        }</div>
 <div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;</div>
@@ -811,6 +811,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:42 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

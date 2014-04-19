@@ -18,7 +18,6 @@ var searchData=
   ['eventpublisher',['EventPublisher',['../classMezzanine_1_1EventPublisher.html',1,'Mezzanine']]],
   ['eventpumpworkunit',['EventPumpWorkUnit',['../classMezzanine_1_1EventPumpWorkUnit.html',1,'Mezzanine']]],
   ['eventquit',['EventQuit',['../classMezzanine_1_1EventQuit.html',1,'Mezzanine']]],
-  ['eventslotfunctordefinition',['EventSlotFunctorDefinition',['../classMezzanine_1_1EventSlotFunctorDefinition.html',1,'Mezzanine']]],
   ['eventsubscriber',['EventSubscriber',['../classMezzanine_1_1EventSubscriber.html',1,'Mezzanine']]],
   ['eventsubscriberslot',['EventSubscriberSlot',['../classMezzanine_1_1EventSubscriberSlot.html',1,'Mezzanine']]],
   ['eventuserinput',['EventUserInput',['../classMezzanine_1_1EventUserInput.html',1,'Mezzanine']]],

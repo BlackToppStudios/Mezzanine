@@ -312,7 +312,7 @@ delete&#160;</td><td class="memItemRight" valign="bottom"><b>ti</b></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This very specific semantics of this function are useless in most scripting so it is not included in Lua and other scripting languages. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>The newly incremented value. This is not always *VariableToChange+Value. If another thread attempted and atomic operation on this at the same time the result could be the new value pointed to by VariableToChange plus Value. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The value just before being incremented. This is not always *VariableToChange. If another thread attempted an atomic operation on this at the same time the result could be an unexpected value. </dd></dl>
 
 <p>Definition at line <a class="el" href="atomicoperations_8cpp_source.html#l00073">73</a> of file <a class="el" href="atomicoperations_8cpp_source.html">atomicoperations.cpp</a>.</p>
 
@@ -438,6 +438,6 @@ delete&#160;</td><td class="memItemRight" valign="bottom"><b>ti</b></td></tr>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

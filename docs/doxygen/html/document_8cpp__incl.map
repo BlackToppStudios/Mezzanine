@@ -1,23 +1,14 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/document.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/document.cpp">
-<area shape="rect" id="node3" href="$document_8h.html" title="The definition of the XML::Document Class. " alt="" coords="617,99,737,127"/>
-<area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="669,563,755,591"/>
-<area shape="rect" id="node41" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="228,486,388,514"/>
-<area shape="rect" id="node44" href="$parseresult_8h.html" title="XML/parseresult.h" alt="" coords="245,409,371,437"/>
-<area shape="rect" id="node48" href="$node_8h.html" title="This defines the Mezzanine::XML::Node one of the central XML classes. " alt="" coords="472,409,563,437"/>
-<area shape="rect" id="node58" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy. " alt="" coords="768,177,861,205"/>
-<area shape="rect" id="node73" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="905,409,1060,437"/>
-<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1331,641,1475,669"/>
-<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1165,641,1221,669"/>
-<area shape="rect" id="node52" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class. " alt="" coords="463,486,572,514"/>
-<area shape="rect" id="node55" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template. " alt="" coords="596,486,727,514"/>
-<area shape="rect" id="node61" href="$resource_8h_source.html" title="resource.h" alt="" coords="1472,254,1552,282"/>
-<area shape="rect" id="node63" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="1765,331,1981,359"/>
-<area shape="rect" id="node65" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="2005,331,2136,359"/>
-<area shape="rect" id="node67" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="2160,331,2280,359"/>
-<area shape="rect" id="node69" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="987,331,1139,359"/>
-<area shape="rect" id="node71" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="1163,331,1325,359"/>
-<area shape="rect" id="node81" href="$filestream_8h.html" title="Declaration of FileStream. " alt="" coords="1349,331,1493,359"/>
-<area shape="rect" id="node84" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="1324,486,1481,514"/>
-<area shape="rect" id="node88" href="$memorystream_8h.html" title="Declaration of MemoryStream. " alt="" coords="1517,331,1691,359"/>
-<area shape="rect" id="node76" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="852,486,945,514"/>
+<area shape="rect" id="node3" href="$document_8h.html" title="The definition of the XML::Document Class. " alt="" coords="740,99,860,127"/>
+<area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="749,409,835,437"/>
+<area shape="rect" id="node41" href="$xmlenumerations_8h.html" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="307,331,467,359"/>
+<area shape="rect" id="node44" href="$parseresult_8h.html" title="XML/parseresult.h" alt="" coords="324,254,449,282"/>
+<area shape="rect" id="node48" href="$node_8h.html" title="This defines the Mezzanine::XML::Node one of the central XML classes. " alt="" coords="644,254,735,282"/>
+<area shape="rect" id="node58" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy. " alt="" coords="796,177,889,205"/>
+<area shape="rect" id="node61" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="880,254,1035,282"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,486,149,514"/>
+<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1419,486,1475,514"/>
+<area shape="rect" id="node52" href="$attribute_8h.html" title="Contains the definition for the XML::Attribute class. " alt="" coords="491,331,600,359"/>
+<area shape="rect" id="node55" href="$objectrange_8h.html" title="Contains the implementation of the ObjectRange class template. " alt="" coords="624,331,755,359"/>
+<area shape="rect" id="node64" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="880,331,973,359"/>
 </map>

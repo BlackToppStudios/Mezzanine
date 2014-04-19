@@ -119,9 +119,9 @@ Public Member Functions</h2></td></tr>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptSubscriberSlot.html#ab9795201da3acf538d62df610c60370b">~ScriptSubscriberSlot</a> ()</td></tr>
 <tr class="memdesc:ab9795201da3acf538d62df610c60370b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr class="separator:ab9795201da3acf538d62df610c60370b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acba363494be6c649ab4a1ca22d6b3b48"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptSubscriberSlot.html#acba363494be6c649ab4a1ca22d6b3b48">_NotifyEvent</a> (const <a class="el" href="classMezzanine_1_1EventArguments.html">EventArguments</a> &amp;Args)</td></tr>
-<tr class="memdesc:acba363494be6c649ab4a1ca22d6b3b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies this subscriber of an event being fired.  <a href="#acba363494be6c649ab4a1ca22d6b3b48">More...</a><br/></td></tr>
-<tr class="separator:acba363494be6c649ab4a1ca22d6b3b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad716aedc24c309905f0d751e66aec8e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptSubscriberSlot.html#aad716aedc24c309905f0d751e66aec8e">_NotifyEvent</a> (<a class="el" href="namespaceMezzanine.html#ac30058406bd2c79074e72257868626eb">EventArgumentsPtr</a> Args)</td></tr>
+<tr class="memdesc:aad716aedc24c309905f0d751e66aec8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies this subscriber of an event being fired.  <a href="#aad716aedc24c309905f0d751e66aec8e">More...</a><br/></td></tr>
+<tr class="separator:aad716aedc24c309905f0d751e66aec8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f497f86e0cc64d9c54393286f899508"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.html">Scripting::iScript</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptSubscriberSlot.html#a3f497f86e0cc64d9c54393286f899508">GetScript</a> () const </td></tr>
 <tr class="memdesc:a3f497f86e0cc64d9c54393286f899508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a pointer to the function used by this subscriber slot.  <a href="#a3f497f86e0cc64d9c54393286f899508">More...</a><br/></td></tr>
 <tr class="separator:a3f497f86e0cc64d9c54393286f899508"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,7 +168,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is a subscriber slot class that triggers a provided script. </p>
 
-<p>Definition at line <a class="el" href="eventsubscriberslot_8h_source.html#l00225">225</a> of file <a class="el" href="eventsubscriberslot_8h_source.html">eventsubscriberslot.h</a>.</p>
+<p>Definition at line <a class="el" href="eventsubscriberslot_8h_source.html#l00231">231</a> of file <a class="el" href="eventsubscriberslot_8h_source.html">eventsubscriberslot.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afd29beb4590430df212e28867c845360"></a>
 <div class="memitem">
@@ -208,7 +208,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="acba363494be6c649ab4a1ca22d6b3b48"></a>
+<a class="anchor" id="aad716aedc24c309905f0d751e66aec8e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -218,7 +218,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void Mezzanine::ScriptSubscriberSlot::_NotifyEvent </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1EventArguments.html">EventArguments</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#ac30058406bd2c79074e72257868626eb">EventArgumentsPtr</a>&#160;</td>
           <td class="paramname"><em>Args</em>)</td><td></td>
           <td></td>
         </tr>
@@ -233,7 +233,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Notifies this subscriber of an event being fired. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>This needs to be implemented. </dd></dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1EventSubscriberSlot.html#acc27e8acc6de8c6a1df1578245a765ed">Mezzanine::EventSubscriberSlot</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1EventSubscriberSlot.html#a7cb9eab9a4fab9dd796541121ba644c6">Mezzanine::EventSubscriberSlot</a>.</p>
 
 <p>Definition at line <a class="el" href="eventsubscriberslot_8cpp_source.html#l00169">169</a> of file <a class="el" href="eventsubscriberslot_8cpp_source.html">eventsubscriberslot.cpp</a>.</p>
 
@@ -310,7 +310,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>A pointer to the script to be executed when the event is fired. </p>
 
-<p>Definition at line <a class="el" href="eventsubscriberslot_8h_source.html#l00230">230</a> of file <a class="el" href="eventsubscriberslot_8h_source.html">eventsubscriberslot.h</a>.</p>
+<p>Definition at line <a class="el" href="eventsubscriberslot_8h_source.html#l00236">236</a> of file <a class="el" href="eventsubscriberslot_8h_source.html">eventsubscriberslot.h</a>.</p>
 
 </div>
 </div>
@@ -320,6 +320,6 @@ Additional Inherited Members</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

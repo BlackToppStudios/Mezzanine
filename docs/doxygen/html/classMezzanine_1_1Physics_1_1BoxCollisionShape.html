@@ -139,9 +139,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:afacd17b78f954e49a5b11481d6cbd62c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.html#a985a918f81fe43d088cc1e39bbffc8ea">CollisionShape::ShapeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1BoxCollisionShape.html#afacd17b78f954e49a5b11481d6cbd62c">GetType</a> () const </td></tr>
 <tr class="memdesc:afacd17b78f954e49a5b11481d6cbd62c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of <a class="el" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world. ">Collision</a> shape this is.  <a href="#afacd17b78f954e49a5b11481d6cbd62c">More...</a><br/></td></tr>
 <tr class="separator:afacd17b78f954e49a5b11481d6cbd62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6f539a22b20bd3390ee3e302f9c0731"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1BoxCollisionShape.html#ac6f539a22b20bd3390ee3e302f9c0731">IsInside</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Tolerance) const </td></tr>
-<tr class="memdesc:ac6f539a22b20bd3390ee3e302f9c0731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a point in local space is inside this shape.  <a href="#ac6f539a22b20bd3390ee3e302f9c0731">More...</a><br/></td></tr>
-<tr class="separator:ac6f539a22b20bd3390ee3e302f9c0731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48a4e24d3a4b4127686eed0e478e36d4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1BoxCollisionShape.html#a48a4e24d3a4b4127686eed0e478e36d4">IsInside</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Tolerance) const </td></tr>
+<tr class="memdesc:a48a4e24d3a4b4127686eed0e478e36d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a point in local space is inside this shape.  <a href="#a48a4e24d3a4b4127686eed0e478e36d4">More...</a><br/></td></tr>
+<tr class="separator:a48a4e24d3a4b4127686eed0e478e36d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23e6c6f857569a7be91b4f7a467bf55b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1BoxCollisionShape.html#a23e6c6f857569a7be91b4f7a467bf55b">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
 <tr class="separator:a23e6c6f857569a7be91b4f7a467bf55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf1dd7734f7a0f3dc52c54d5984494bd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1BoxCollisionShape.html#acf1dd7734f7a0f3dc52c54d5984494bd">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot) const </td></tr>
@@ -246,7 +246,7 @@ btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <p>This is exactly what it sounds like. A primitive shape of a box that is constructed by it's half extents. Half extents can't be negative, but otherwise can be any value. The margin value is subtracted from the total size rather than added for this shape. </p>
 <dl class="section warning"><dt>Warning</dt><dd>This does not fully implement ProtoDeSerialize, this must be deserialized with the Appropriate Deserializer. </dd></dl>
 
-<p>Definition at line <a class="el" href="boxcollisionshape_8h_source.html#l00060">60</a> of file <a class="el" href="boxcollisionshape_8h_source.html">boxcollisionshape.h</a>.</p>
+<p>Definition at line <a class="el" href="boxcollisionshape_8h_source.html#l00062">62</a> of file <a class="el" href="boxcollisionshape_8h_source.html">boxcollisionshape.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a049424ff0bdeb3fb7d4bbe7fb540faf4"></a>
 <div class="memitem">
@@ -490,7 +490,7 @@ btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="
 
 </div>
 </div>
-<a class="anchor" id="ac6f539a22b20bd3390ee3e302f9c0731"></a>
+<a class="anchor" id="a48a4e24d3a4b4127686eed0e478e36d4"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -498,7 +498,7 @@ btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::Physics::BoxCollisionShape::IsInside </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::Physics::BoxCollisionShape::IsInside </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
           <td class="paramname"><em>Location</em>, </td>
@@ -523,7 +523,7 @@ btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </div><div class="memdoc">
 
 <p>Checks to see if a point in local space is inside this shape. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns a bool indicating whether or not the specified point is inside the shape. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a Boole indicating whether or not the specified point is inside the shape. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Location</td><td>The specified point to perform the check. </td></tr>
@@ -630,6 +630,6 @@ btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

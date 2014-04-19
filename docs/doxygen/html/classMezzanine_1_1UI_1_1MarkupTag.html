@@ -119,11 +119,11 @@ typedef <br class="typebreak"/>
 CharacterContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#a8e689e9c002be20f98baaa0aa71e9744">ConstCharacterIterator</a></td></tr>
 <tr class="memdesc:a8e689e9c002be20f98baaa0aa71e9744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for <a class="el" href="classMezzanine_1_1UI_1_1Character.html">Character</a> instances stored by this class. <br/></td></tr>
 <tr class="separator:a8e689e9c002be20f98baaa0aa71e9744"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc2371f0389ed3acd9ec6462d2408d02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc2371f0389ed3acd9ec6462d2408d02"></a>
-typedef std::pair&lt; Boolean, <br class="typebreak"/>
-<a class="el" href="classMezzanine_1_1UI_1_1Character.html">Character</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#adc2371f0389ed3acd9ec6462d2408d02">ProcessResult</a></td></tr>
-<tr class="memdesc:adc2371f0389ed3acd9ec6462d2408d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">An std::pair used to report the result of a <a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html" title="This is a base class for tags that implement the functionality of a markup language. ">MarkupTag</a> being processed any the character it may have generated. <br/></td></tr>
-<tr class="separator:adc2371f0389ed3acd9ec6462d2408d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c78740186f61c34a5b0fc730ad91db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0c78740186f61c34a5b0fc730ad91db"></a>
+typedef std::pair&lt; <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>, <br class="typebreak"/>
+<a class="el" href="classMezzanine_1_1UI_1_1Character.html">Character</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#ae0c78740186f61c34a5b0fc730ad91db">ProcessResult</a></td></tr>
+<tr class="memdesc:ae0c78740186f61c34a5b0fc730ad91db"><td class="mdescLeft">&#160;</td><td class="mdescRight">An std::pair used to report the result of a <a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html" title="This is a base class for tags that implement the functionality of a markup language. ">MarkupTag</a> being processed any the character it may have generated. <br/></td></tr>
+<tr class="separator:ae0c78740186f61c34a5b0fc730ad91db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -138,10 +138,10 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a838faec9c92203f3afa07fb4e248981a"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#a838faec9c92203f3afa07fb4e248981a">GetName</a> () const =0</td></tr>
 <tr class="memdesc:a838faec9c92203f3afa07fb4e248981a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of this tag.  <a href="#a838faec9c92203f3afa07fb4e248981a">More...</a><br/></td></tr>
 <tr class="separator:a838faec9c92203f3afa07fb4e248981a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af64ba077f41ac66c039be9982c4cb24e"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#af64ba077f41ac66c039be9982c4cb24e">IsRangeTag</a> () const =0</td></tr>
-<tr class="memdesc:af64ba077f41ac66c039be9982c4cb24e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this tag applies to a range of characters.  <a href="#af64ba077f41ac66c039be9982c4cb24e">More...</a><br/></td></tr>
-<tr class="separator:af64ba077f41ac66c039be9982c4cb24e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b34f685fb5c875c78262bf3bb0dfc24"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#adc2371f0389ed3acd9ec6462d2408d02">ProcessResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#a6b34f685fb5c875c78262bf3bb0dfc24">Process</a> (<a class="el" href="namespaceMezzanine.html#a171daeff3f8f6577a810baf6bb746626">NameValuePairMap</a> &amp;Params, <a class="el" href="classMezzanine_1_1UI_1_1CharacterTraits.html">CharacterTraits</a> &amp;Traits, <a class="el" href="classMezzanine_1_1UI_1_1TextLayer.html">TextLayer</a> *Layer) const =0</td></tr>
+<tr class="memitem:af35ba3f98865928058fd51afe6258736"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#af35ba3f98865928058fd51afe6258736">IsRangeTag</a> () const =0</td></tr>
+<tr class="memdesc:af35ba3f98865928058fd51afe6258736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this tag applies to a range of characters.  <a href="#af35ba3f98865928058fd51afe6258736">More...</a><br/></td></tr>
+<tr class="separator:af35ba3f98865928058fd51afe6258736"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b34f685fb5c875c78262bf3bb0dfc24"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#ae0c78740186f61c34a5b0fc730ad91db">ProcessResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#a6b34f685fb5c875c78262bf3bb0dfc24">Process</a> (<a class="el" href="namespaceMezzanine.html#a171daeff3f8f6577a810baf6bb746626">NameValuePairMap</a> &amp;Params, <a class="el" href="classMezzanine_1_1UI_1_1CharacterTraits.html">CharacterTraits</a> &amp;Traits, <a class="el" href="classMezzanine_1_1UI_1_1TextLayer.html">TextLayer</a> *Layer) const =0</td></tr>
 <tr class="memdesc:a6b34f685fb5c875c78262bf3bb0dfc24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes this tag.  <a href="#a6b34f685fb5c875c78262bf3bb0dfc24">More...</a><br/></td></tr>
 <tr class="separator:a6b34f685fb5c875c78262bf3bb0dfc24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -179,7 +179,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a class="anchor" id="af64ba077f41ac66c039be9982c4cb24e"></a>
+<a class="anchor" id="af35ba3f98865928058fd51afe6258736"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -187,7 +187,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual Boolean Mezzanine::UI::MarkupTag::IsRangeTag </td>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Mezzanine::UI::MarkupTag::IsRangeTag </td>
           <td>(</td>
           <td class="paramname">)</td><td></td>
           <td> const</td>
@@ -203,7 +203,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets whether or not this tag applies to a range of characters. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if this tag requires a closing tag to accompany to be valid, false otherwise. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1DefaultSpriteTag.html#a5804215980458e0e78b0975584692afa">Mezzanine::UI::DefaultSpriteTag</a>, <a class="el" href="classMezzanine_1_1UI_1_1DefaultFontTag.html#a3d3e325d29a97e0eaced8c8e8f800da4">Mezzanine::UI::DefaultFontTag</a>, and <a class="el" href="classMezzanine_1_1UI_1_1DefaultColourTag.html#aa2f709e0b9bb4bef21d89d0ff2fa727b">Mezzanine::UI::DefaultColourTag</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1DefaultSpriteTag.html#acc60d233a8c7fe3d56f3c3647961aa25">Mezzanine::UI::DefaultSpriteTag</a>, <a class="el" href="classMezzanine_1_1UI_1_1DefaultFontTag.html#aefafdfebd81b9b8d9c8636acc0c43966">Mezzanine::UI::DefaultFontTag</a>, and <a class="el" href="classMezzanine_1_1UI_1_1DefaultColourTag.html#aa261165ac80e14f6302028d32745768c">Mezzanine::UI::DefaultColourTag</a>.</p>
 
 </div>
 </div>
@@ -215,7 +215,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#adc2371f0389ed3acd9ec6462d2408d02">ProcessResult</a> Mezzanine::UI::MarkupTag::Process </td>
+          <td class="memname">virtual <a class="el" href="classMezzanine_1_1UI_1_1MarkupTag.html#ae0c78740186f61c34a5b0fc730ad91db">ProcessResult</a> Mezzanine::UI::MarkupTag::Process </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a171daeff3f8f6577a810baf6bb746626">NameValuePairMap</a> &amp;&#160;</td>
           <td class="paramname"><em>Params</em>, </td>
@@ -265,6 +265,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

@@ -108,14 +108,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Types</h2></td></tr>
 <tr class="memitem:a766b8377ba4b403c65e2e76f285a98bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a766b8377ba4b403c65e2e76f285a98bf"></a>
 typedef std::map&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>, <br class="typebreak"/>
-<a class="el" href="classMezzanine_1_1UI_1_1TextureAtlas.html">UI::TextureAtlas</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>AtlasContainer</b></td></tr>
+<a class="el" href="classMezzanine_1_1UI_1_1TextureAtlas.html">UI::TextureAtlas</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#a766b8377ba4b403c65e2e76f285a98bf">AtlasContainer</a></td></tr>
+<tr class="memdesc:a766b8377ba4b403c65e2e76f285a98bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container type for <a class="el" href="classMezzanine_1_1UI_1_1TextureAtlas.html">TextureAtlas</a> storage within this class. <br/></td></tr>
 <tr class="separator:a766b8377ba4b403c65e2e76f285a98bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5f2c4654ceb54b5e6db08413cf0b738"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5f2c4654ceb54b5e6db08413cf0b738"></a>
-typedef AtlasContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><b>AtlasIterator</b></td></tr>
+typedef AtlasContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#ab5f2c4654ceb54b5e6db08413cf0b738">AtlasIterator</a></td></tr>
+<tr class="memdesc:ab5f2c4654ceb54b5e6db08413cf0b738"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator type for TextureAtlases being stored within this class. <br/></td></tr>
 <tr class="separator:ab5f2c4654ceb54b5e6db08413cf0b738"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dad3fed9944dbce01261d2b72b695c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0dad3fed9944dbce01261d2b72b695c1"></a>
 typedef <br class="typebreak"/>
-AtlasContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>ConstAtlasIterator</b></td></tr>
+AtlasContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#a0dad3fed9944dbce01261d2b72b695c1">ConstAtlasIterator</a></td></tr>
+<tr class="memdesc:a0dad3fed9944dbce01261d2b72b695c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const Iterator type for TextureAtlases being stored within this class. <br/></td></tr>
 <tr class="separator:a0dad3fed9944dbce01261d2b72b695c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -128,24 +131,60 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#a2ad99af6afe95bb662a166d36056b81a">~TextureAtlasHandler</a> ()</td></tr>
 <tr class="memdesc:a2ad99af6afe95bb662a166d36056b81a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr class="separator:a2ad99af6afe95bb662a166d36056b81a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dcbd1ad935b24a3dcdf0c07daf11da0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0dcbd1ad935b24a3dcdf0c07daf11da0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#a0dcbd1ad935b24a3dcdf0c07daf11da0">DestroyAllAtlases</a> ()</td></tr>
+<tr class="memdesc:a0dcbd1ad935b24a3dcdf0c07daf11da0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all loaded texture atlases. <br/></td></tr>
+<tr class="separator:a0dcbd1ad935b24a3dcdf0c07daf11da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a390da4c7a6189f02be9821bd5218096c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#a390da4c7a6189f02be9821bd5218096c">DestroyAtlas</a> (<a class="el" href="classMezzanine_1_1UI_1_1TextureAtlas.html">TextureAtlas</a> *ToBeDestroyed)</td></tr>
+<tr class="memdesc:a390da4c7a6189f02be9821bd5218096c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a loaded texture atlas.  <a href="#a390da4c7a6189f02be9821bd5218096c">More...</a><br/></td></tr>
+<tr class="separator:a390da4c7a6189f02be9821bd5218096c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4cf0f3289a378dd1684885459ec0ee9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlas.html">UI::TextureAtlas</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#ac4cf0f3289a378dd1684885459ec0ee9">GetAtlas</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;AtlasName)</td></tr>
 <tr class="memdesc:ac4cf0f3289a378dd1684885459ec0ee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a loaded Atlas being stored in this manager.  <a href="#ac4cf0f3289a378dd1684885459ec0ee9">More...</a><br/></td></tr>
 <tr class="separator:ac4cf0f3289a378dd1684885459ec0ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace70c76eea41d5f1a7bdb879048609dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlas.html">UI::TextureAtlas</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#ace70c76eea41d5f1a7bdb879048609dd">GetAtlasExcept</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;AtlasName)</td></tr>
+<tr class="memdesc:ace70c76eea41d5f1a7bdb879048609dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a loaded Atlas being stored in this manager.  <a href="#ace70c76eea41d5f1a7bdb879048609dd">More...</a><br/></td></tr>
+<tr class="separator:ace70c76eea41d5f1a7bdb879048609dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55b8c962f39aaf6e6b7f5916e6ee5652"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#a55b8c962f39aaf6e6b7f5916e6ee5652">LoadAtlasFromFile</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Group=&quot;UI&quot;)</td></tr>
 <tr class="memdesc:a55b8c962f39aaf6e6b7f5916e6ee5652"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> Texture Atlas file for use with <a class="el" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&#39;s. It is responsible for storing and keeping track of al...">UI::Screen</a>'s.  <a href="#a55b8c962f39aaf6e6b7f5916e6ee5652">More...</a><br/></td></tr>
 <tr class="separator:a55b8c962f39aaf6e6b7f5916e6ee5652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:acb691c9294a902bcc372343399291b1e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb691c9294a902bcc372343399291b1e"></a>
-AtlasContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Atlases</b></td></tr>
+<tr class="memitem:acb691c9294a902bcc372343399291b1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#a766b8377ba4b403c65e2e76f285a98bf">AtlasContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#acb691c9294a902bcc372343399291b1e">Atlases</a></td></tr>
+<tr class="memdesc:acb691c9294a902bcc372343399291b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container storing all currently loaded texture atlases.  <a href="#acb691c9294a902bcc372343399291b1e">More...</a><br/></td></tr>
 <tr class="separator:acb691c9294a902bcc372343399291b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This handles the creation, storage and overall handling of Texture Atlases. </p>
 
-<p>Definition at line <a class="el" href="textureatlashandler_8h_source.html#l00056">56</a> of file <a class="el" href="textureatlashandler_8h_source.html">textureatlashandler.h</a>.</p>
+<p>Definition at line <a class="el" href="textureatlashandler_8h_source.html#l00054">54</a> of file <a class="el" href="textureatlashandler_8h_source.html">textureatlashandler.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a390da4c7a6189f02be9821bd5218096c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::TextureAtlasHandler::DestroyAtlas </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlas.html">TextureAtlas</a> *&#160;</td>
+          <td class="paramname"><em>ToBeDestroyed</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroys a loaded texture atlas. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ToBeDestroyed</td><td>A pointer to the texture atlas that will be destroyed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="textureatlashandler_8cpp_source.html#l00112">112</a> of file <a class="el" href="textureatlashandler_8cpp_source.html">textureatlashandler.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ac4cf0f3289a378dd1684885459ec0ee9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -169,7 +208,34 @@ AtlasContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Atlases</b>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the requested Atlas, or NULL if it doesn't exist. </dd></dl>
 
-<p>Definition at line <a class="el" href="textureatlashandler_8cpp_source.html#l00094">94</a> of file <a class="el" href="textureatlashandler_8cpp_source.html">textureatlashandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="textureatlashandler_8cpp_source.html#l00092">92</a> of file <a class="el" href="textureatlashandler_8cpp_source.html">textureatlashandler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ace70c76eea41d5f1a7bdb879048609dd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlas.html">UI::TextureAtlas</a> * Mezzanine::UI::TextureAtlasHandler::GetAtlasExcept </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>AtlasName</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a loaded Atlas being stored in this manager. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">AtlasName</td><td>The name of the Atlas, which is usually the name of the file without the extension. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the requested Atlas, or throws an exception if it doesn't exist. </dd></dl>
+
+<p>Definition at line <a class="el" href="textureatlashandler_8cpp_source.html#l00102">102</a> of file <a class="el" href="textureatlashandler_8cpp_source.html">textureatlashandler.cpp</a>.</p>
 
 </div>
 </div>
@@ -205,9 +271,34 @@ AtlasContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Atlases</b>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000129">Todo:</a></b></dt><dd>Fix this when we have a working resource system of our own. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000131">Todo:</a></b></dt><dd>Update after we have refactored the resource system if needed. </dd></dl>
 
-<p>Definition at line <a class="el" href="textureatlashandler_8cpp_source.html#l00065">65</a> of file <a class="el" href="textureatlashandler_8cpp_source.html">textureatlashandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="textureatlashandler_8cpp_source.html#l00063">63</a> of file <a class="el" href="textureatlashandler_8cpp_source.html">textureatlashandler.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="acb691c9294a902bcc372343399291b1e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1UI_1_1TextureAtlasHandler.html#a766b8377ba4b403c65e2e76f285a98bf">AtlasContainer</a> Mezzanine::UI::TextureAtlasHandler::Atlases</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Container storing all currently loaded texture atlases. </p>
+
+<p>Definition at line <a class="el" href="textureatlashandler_8h_source.html#l00066">66</a> of file <a class="el" href="textureatlashandler_8h_source.html">textureatlashandler.h</a>.</p>
 
 </div>
 </div>
@@ -217,6 +308,6 @@ AtlasContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Atlases</b>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

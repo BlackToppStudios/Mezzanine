@@ -2,7 +2,7 @@ var searchData=
 [
   ['lastqueryresultsobjectptr',['LastQueryResultsObjectPtr',['../classMezzanine_1_1RayQueryTool.html#abaf62ca797d7fcd0619da4f10c2f2776',1,'Mezzanine::RayQueryTool']]],
   ['lastqueryresultsoffset',['LastQueryResultsOffset',['../classMezzanine_1_1RayQueryTool.html#a9b051c71fd78e081e2f0b40e2db2b1c2',1,'Mezzanine::RayQueryTool']]],
-  ['lastqueryresultsvalid',['LastQueryResultsValid',['../classMezzanine_1_1RayQueryTool.html#a59d96694a9439d3592bc8fcffcabe4e3',1,'Mezzanine::RayQueryTool']]],
+  ['lastqueryresultsvalid',['LastQueryResultsValid',['../classMezzanine_1_1RayQueryTool.html#ab7997f86b758bde85957ee406d88d7a8',1,'Mezzanine::RayQueryTool']]],
   ['lavender',['Lavender',['../classMezzanine_1_1ColourValue.html#a1c25e35682e1936084ac695f3586b1c5',1,'Mezzanine::ColourValue']]],
   ['lavenderblush',['LavenderBlush',['../classMezzanine_1_1ColourValue.html#ab967fe28fc492b9556ab01e7508b73e1',1,'Mezzanine::ColourValue']]],
   ['lawngreen',['LawnGreen',['../classMezzanine_1_1ColourValue.html#afe3fe58f95366e7ced4eff85a29af8dc',1,'Mezzanine::ColourValue']]],
@@ -65,5 +65,6 @@ var searchData=
   ['logdependencies',['LogDependencies',['../classMezzanine_1_1Threading_1_1FrameScheduler.html#a8093de39b0ac9c0425ddd71deaf82140',1,'Mezzanine::Threading::FrameScheduler']]],
   ['logstring',['LogString',['../classMezzanine_1_1Entresol.html#ab42f6a9a7f43618625667b5d40b12681',1,'Mezzanine::Entresol']]],
   ['lookat',['LookAt',['../classMezzanine_1_1Graphics_1_1CameraProxy.html#a00ce059861b72265b7fe56934fad05ab',1,'Mezzanine::Graphics::CameraProxy']]],
-  ['loop',['Loop',['../classMezzanine_1_1Audio_1_1iSound.html#a4176e0c327796d44bf41cdf8f6e48433',1,'Mezzanine::Audio::iSound']]]
+  ['loop',['Loop',['../classMezzanine_1_1Audio_1_1iSound.html#ad2581d4ca01695c7555eec7e735c5403',1,'Mezzanine::Audio::iSound']]],
+  ['lowercasecopy',['LowerCaseCopy',['../namespaceMezzanine_1_1StringTools.html#a27120ce781c7cb099e1c9897ffe1669f',1,'Mezzanine::StringTools']]]
 ];

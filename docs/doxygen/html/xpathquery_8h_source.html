@@ -172,7 +172,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">        /// to XML::XPathQuery in the container. \n \n</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">        /// To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">        /// converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this,</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">        /// @ref XPathQuery::EvaluateBoolean(), @ref XPathQuery::EvaluateNumber() and @ref XPathQuery::EvaluateString() always return a result,</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">        /// @ref XPathQuery::EvaluateBoole(), @ref XPathQuery::EvaluateNumber() and @ref XPathQuery::EvaluateString() always return a result,</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">        /// but EvaluateNodeSet results in an error if the return type is not node set.</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno"><a class="code" href="classMezzanine_1_1XML_1_1XPathQuery.html">   91</a></span>&#160;<span class="comment"></span>        <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1XML_1_1XPathQuery.html" title="A compiled XPath query object. ">XPathQuery</a></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        {</div>
@@ -216,7 +216,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">                /// @return A bool result of evaluating the expression.</span></div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">                /// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.</span></div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">                /// @param n The XPathNode that will serve as the context for the query.</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment"></span>                <span class="keywordtype">bool</span> EvaluateBoolean(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1XPathNode.html" title="An XPath node which can store handles to a XML::Node or an XML::Attribute. ">XPathNode</a>&amp; n) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment"></span>                <span class="keywordtype">bool</span> EvaluateBoole(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1XPathNode.html" title="An XPath node which can store handles to a XML::Node or an XML::Attribute. ">XPathNode</a>&amp; n) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <span class="comment">// Evaluate expression as double Value in the specified context; performs Type conversion if necessary.</span><span class="comment"></span></div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">                /// @brief Evaluate expression as double value in the specified context; performs Type conversion if necessary.</span></div>
@@ -302,6 +302,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment"> */</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:44 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

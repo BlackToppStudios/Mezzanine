@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 111,-36 111,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Texture.html" target="_top" xlink:title="This class represents a texture loaded into memory. ">
+<a xlink:href="classMezzanine_1_1Graphics_1_1Technique.html" target="_top" xlink:title="This class represents a collection of passes an object has for it&#39;s rendering. ">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-32 105.5,-32 105.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
-<text text-anchor="middle" x="53" y="-7" font-family="FreeSans" font-size="10.00">::Texture</text>
+<text text-anchor="middle" x="53" y="-7" font-family="FreeSans" font-size="10.00">::Technique</text>
 </a>
 </g>
 </g>

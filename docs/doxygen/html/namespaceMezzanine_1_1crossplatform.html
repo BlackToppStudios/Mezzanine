@@ -104,9 +104,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a2feddd76b3247e7114b0dfeeca861895"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1crossplatform.html#a2feddd76b3247e7114b0dfeeca861895">GetTimeStampResolution</a> ()</td></tr>
 <tr class="memdesc:a2feddd76b3247e7114b0dfeeca861895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the resolution of the timestamp in microseconds.  <a href="#a2feddd76b3247e7114b0dfeeca861895">More...</a><br/></td></tr>
 <tr class="separator:a2feddd76b3247e7114b0dfeeca861895"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4c32d16a065bf894ca6450b0ebce48f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1crossplatform.html#ad4c32d16a065bf894ca6450b0ebce48f">SanitizeWindowedRes</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Width, const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Height, <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;ActualWidth, <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;ActualHeight)</td></tr>
-<tr class="memdesc:ad4c32d16a065bf894ca6450b0ebce48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets cleaned dimensions for a game window.  <a href="#ad4c32d16a065bf894ca6450b0ebce48f">More...</a><br/></td></tr>
-<tr class="separator:ad4c32d16a065bf894ca6450b0ebce48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>All functionality that needs different implemenations per platform will go in here. </p>
@@ -133,7 +130,7 @@ Functions</h2></td></tr>
 <p>This returns whatever your OS thinks is the count of CPUs. This could include Hyperthreading unit on Intel's chip, or it might not, it could include the threads from Niagra CPUs or it might not, it could return just about any value on a given piece of and should return a reasonable value for how many threads should be used. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Whole containing the amount of processors. </dd></dl>
 
-<p>Definition at line <a class="el" href="crossplatform_8cpp_source.html#l00111">111</a> of file <a class="el" href="crossplatform_8cpp_source.html">crossplatform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="crossplatform_8cpp_source.html#l00097">97</a> of file <a class="el" href="crossplatform_8cpp_source.html">crossplatform.cpp</a>.</p>
 
 </div>
 </div>
@@ -174,7 +171,7 @@ Functions</h2></td></tr>
 <dl class="section warning"><dt>Warning</dt><dd>On some platforms this requires a static initialization, an can cause undefined behavior if called before static initializations are complete </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The largest size integer containing a timestamp that can be compared to other timestamps, but hads no guarantees for external value. </dd></dl>
 
-<p>Definition at line <a class="el" href="crossplatform_8cpp_source.html#l00105">105</a> of file <a class="el" href="crossplatform_8cpp_source.html">crossplatform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="crossplatform_8cpp_source.html#l00091">91</a> of file <a class="el" href="crossplatform_8cpp_source.html">crossplatform.cpp</a>.</p>
 
 </div>
 </div>
@@ -194,63 +191,12 @@ Functions</h2></td></tr>
 <p>Get the resolution of the timestamp in microseconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Whole which returns in millionths of a second the smallest unit of time that GetTimeStamp can measure. </dd></dl>
 
-<p>Definition at line <a class="el" href="crossplatform_8cpp_source.html#l00108">108</a> of file <a class="el" href="crossplatform_8cpp_source.html">crossplatform.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad4c32d16a065bf894ca6450b0ebce48f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::crossplatform::SanitizeWindowedRes </td>
-          <td>(</td>
-          <td class="paramtype">const Whole &amp;&#160;</td>
-          <td class="paramname"><em>Width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Whole &amp;&#160;</td>
-          <td class="paramname"><em>Height</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Whole &amp;&#160;</td>
-          <td class="paramname"><em>ActualWidth</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Whole &amp;&#160;</td>
-          <td class="paramname"><em>ActualHeight</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets cleaned dimensions for a game window. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Width</td><td>The desired width of the window area. </td></tr>
-    <tr><td class="paramname">Height</td><td>The desired height of the window area. </td></tr>
-    <tr><td class="paramname">ActualWidth</td><td>The modified value of the rendering width, after window decorations have been taken into account. </td></tr>
-    <tr><td class="paramname">ActualHeight</td><td>The modified value of the rendering height, after window decorations have been taken into account. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="crossplatform_8cpp_source.html#l00091">91</a> of file <a class="el" href="crossplatform_8cpp_source.html">crossplatform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="crossplatform_8cpp_source.html#l00094">94</a> of file <a class="el" href="crossplatform_8cpp_source.html">crossplatform.cpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

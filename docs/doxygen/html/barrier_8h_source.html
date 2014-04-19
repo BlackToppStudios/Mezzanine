@@ -147,28 +147,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">                /// @brief The number of threads to have wait.</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Threading_1_1Barrier.html#a2ed5739bd75cebb82af5ed1258fcfb2b">   62</a></span>&#160;<span class="comment"></span>                <a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a> <a class="code" href="classMezzanine_1_1Threading_1_1Barrier.html#a2ed5739bd75cebb82af5ed1258fcfb2b" title="The number of threads to have wait. ">ThreadGoal</a>;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">                /// @brief The number of threads currently waiting.</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Threading_1_1Barrier.html#a50ceca76c119a21808ce92b3d5019785">   65</a></span>&#160;<span class="comment"></span>                <a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a> <a class="code" href="classMezzanine_1_1Threading_1_1Barrier.html#a50ceca76c119a21808ce92b3d5019785" title="The number of threads currently waiting. ">ThreadCurrent</a>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">                /// @brief Constructor</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">                /// @param SynchThreadCount The amount of threads that this should wait for. If 0 is passed all threads waiting advance.</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment"></span>                <a class="code" href="classMezzanine_1_1Threading_1_1Barrier.html" title="A synchronization primitive that causes a predefined number of threads to all wait before continuing...">Barrier</a> (<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a>&amp; SynchThreadCount);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">                /// @brief Wait until the specified number of threads reach this point.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">                /// @return The last thread to reach this point gets true, the others are returned false.</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>                <span class="keywordtype">bool</span> Wait ();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">                /// @brief Does calling wait on this barrier block at presemt</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">                /// @details 1 waits, and 0 does not any other value indicates a bug</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Threading_1_1Barrier.html#a7810f1f5e595fc331b1c4618814ea169">   66</a></span>&#160;<span class="comment"></span>                <a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a> <a class="code" href="classMezzanine_1_1Threading_1_1Barrier.html#a7810f1f5e595fc331b1c4618814ea169" title="Does calling wait on this barrier block at presemt. ">IsBlocking</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">                /// @brief The number of threads currently waiting.</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Threading_1_1Barrier.html#a50ceca76c119a21808ce92b3d5019785">   69</a></span>&#160;<span class="comment"></span>                <a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a> <a class="code" href="classMezzanine_1_1Threading_1_1Barrier.html#a50ceca76c119a21808ce92b3d5019785" title="The number of threads currently waiting. ">ThreadCurrent</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">                /// @brief Constructor</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">                /// @param SynchThreadCount The amount of threads that this should wait for. If 0 is passed all threads waiting advance.</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span>                <a class="code" href="classMezzanine_1_1Threading_1_1Barrier.html" title="A synchronization primitive that causes a predefined number of threads to all wait before continuing...">Barrier</a> (<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a>&amp; SynchThreadCount);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">                /// @brief Set the Thread count Atomically.</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">                /// @param NewCount The new amounf threads to sync.</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span>                <span class="keywordtype">void</span> SetThreadSyncCount(<a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a> NewCount);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        };<span class="comment">//Barrier</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }<span class="comment">//Threading</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}<span class="comment">//Mezzanine</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">                /// @brief Wait until the specified number of threads reach this point.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">                /// @return The last thread to reach this point gets true, the others are returned false.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment"></span>                <span class="keywordtype">bool</span> Wait();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">                /// @brief Set the Thread count Atomically.</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">                /// @param NewCount The new amounf threads to sync.</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"></span>                <span class="keywordtype">void</span> SetThreadSyncCount(<a class="code" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1" title="An 32-bit integer. ">Int32</a> NewCount);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        };<span class="comment">//Barrier</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }<span class="comment">//Threading</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}<span class="comment">//Mezzanine</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:42 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

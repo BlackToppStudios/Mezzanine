@@ -57,10 +57,10 @@ var sectionId = 'dynsection-0';
 <polygon fill="white" stroke="white" points="-4,5 -4,-282 1107,-282 1107,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="514.5,-233 514.5,-277 665.5,-277 665.5,-233 514.5,-233"/>
-<text text-anchor="start" x="522.5" y="-264" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
-<text text-anchor="start" x="522.5" y="-252" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
-<text text-anchor="middle" x="590" y="-240" font-family="FreeSans" font-size="10.00">/barrier.cpp</text>
+<polygon fill="#bfbfbf" stroke="black" points="547.5,-233 547.5,-277 698.5,-277 698.5,-233 547.5,-233"/>
+<text text-anchor="start" x="555.5" y="-264" font-family="FreeSans" font-size="10.00">/home/sqeaky/Code/Mezzanine</text>
+<text text-anchor="start" x="555.5" y="-252" font-family="FreeSans" font-size="10.00">/Mezzanine/src/Threading</text>
+<text text-anchor="middle" x="623" y="-240" font-family="FreeSans" font-size="10.00">/barrier.cpp</text>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
@@ -71,8 +71,18 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M590,-232.852C590,-224.051 590,-213.991 590,-205.374"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="593.5,-205.104 590,-195.104 586.5,-205.104 593.5,-205.104"/>
+<path fill="none" stroke="midnightblue" d="M612.559,-232.852C608.223,-223.655 603.24,-213.085 599.061,-204.221"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="602.193,-202.657 594.763,-195.104 595.862,-205.642 602.193,-202.657"/>
+</g>
+<!-- Node22 -->
+<g id="node44" class="node"><title>Node22</title>
+<polygon fill="white" stroke="#bfbfbf" points="632.5,-175 632.5,-195 679.5,-195 679.5,-175 632.5,-175"/>
+<text text-anchor="middle" x="656" y="-182" font-family="FreeSans" font-size="10.00">cassert</text>
+</g>
+<!-- Node1&#45;&gt;Node22 -->
+<g id="edge44" class="edge"><title>Node1&#45;&gt;Node22</title>
+<path fill="none" stroke="midnightblue" d="M633.441,-232.852C637.777,-223.655 642.76,-213.085 646.939,-204.221"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="650.138,-205.642 651.237,-195.104 643.807,-202.657 650.138,-205.642"/>
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>

@@ -1,17 +1,8 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.cpp" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.cpp">
-<area shape="rect" id="node3" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy. " alt="" coords="307,99,400,127"/>
-<area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="709,486,795,514"/>
-<area shape="rect" id="node41" href="$resource_8h_source.html" title="resource.h" alt="" coords="640,177,720,205"/>
-<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1331,563,1475,591"/>
-<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1251,563,1307,591"/>
-<area shape="rect" id="node43" href="$resourceenumerations_8h_source.html" title="Resource/resourceenumerations.h" alt="" coords="1193,254,1409,282"/>
-<area shape="rect" id="node45" href="$archive_8h_source.html" title="Resource/archive.h" alt="" coords="65,254,196,282"/>
-<area shape="rect" id="node47" href="$asset_8h_source.html" title="Resource/asset.h" alt="" coords="220,254,340,282"/>
-<area shape="rect" id="node49" href="$assetgroup_8h_source.html" title="Resource/assetgroup.h" alt="" coords="364,254,516,282"/>
-<area shape="rect" id="node51" href="$assethandler_8h_source.html" title="Resource/assethandler.h" alt="" coords="540,254,703,282"/>
-<area shape="rect" id="node53" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="717,331,872,359"/>
-<area shape="rect" id="node61" href="$filestream_8h.html" title="Declaration of FileStream. " alt="" coords="777,254,921,282"/>
-<area shape="rect" id="node64" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="1077,409,1235,437"/>
-<area shape="rect" id="node68" href="$memorystream_8h.html" title="Declaration of MemoryStream. " alt="" coords="945,254,1119,282"/>
-<area shape="rect" id="node56" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="789,409,883,437"/>
+<area shape="rect" id="node3" href="$writer_8h.html" title="The definitions for all of the XML::Writer inheritance hierarchy. " alt="" coords="756,99,849,127"/>
+<area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="749,331,835,359"/>
+<area shape="rect" id="node41" href="$datastream_8h.html" title="Declaration of DataStream. " alt="" coords="788,177,943,205"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,409,149,437"/>
+<area shape="rect" id="node39" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor. " alt="" coords="1419,409,1475,437"/>
+<area shape="rect" id="node44" href="$countedptr_8h.html" title="This file describes and implements a reference counted pointer that is NOT threadsafe. " alt="" coords="829,254,923,282"/>
 </map>

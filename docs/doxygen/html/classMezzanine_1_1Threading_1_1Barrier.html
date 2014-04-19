@@ -110,6 +110,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a7810f1f5e595fc331b1c4618814ea169"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1Barrier.html#a7810f1f5e595fc331b1c4618814ea169">IsBlocking</a></td></tr>
+<tr class="memdesc:a7810f1f5e595fc331b1c4618814ea169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does calling wait on this barrier block at presemt.  <a href="#a7810f1f5e595fc331b1c4618814ea169">More...</a><br/></td></tr>
+<tr class="separator:a7810f1f5e595fc331b1c4618814ea169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50ceca76c119a21808ce92b3d5019785"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50ceca76c119a21808ce92b3d5019785"></a>
 <a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Threading_1_1Barrier.html#a50ceca76c119a21808ce92b3d5019785">ThreadCurrent</a></td></tr>
 <tr class="memdesc:a50ceca76c119a21808ce92b3d5019785"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of threads currently waiting. <br/></td></tr>
@@ -146,7 +149,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="barrier_8cpp_source.html#l00053">53</a> of file <a class="el" href="barrier_8cpp_source.html">barrier.cpp</a>.</p>
+<p>Definition at line <a class="el" href="barrier_8cpp_source.html#l00055">55</a> of file <a class="el" href="barrier_8cpp_source.html">barrier.cpp</a>.</p>
 
 </div>
 </div>
@@ -173,7 +176,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="barrier_8cpp_source.html#l00070">70</a> of file <a class="el" href="barrier_8cpp_source.html">barrier.cpp</a>.</p>
+<p>Definition at line <a class="el" href="barrier_8cpp_source.html#l00084">84</a> of file <a class="el" href="barrier_8cpp_source.html">barrier.cpp</a>.</p>
 
 </div>
 </div>
@@ -193,7 +196,33 @@ Protected Attributes</h2></td></tr>
 <p>Wait until the specified number of threads reach this point. </p>
 <dl class="section return"><dt>Returns</dt><dd>The last thread to reach this point gets true, the others are returned false. </dd></dl>
 
-<p>Definition at line <a class="el" href="barrier_8cpp_source.html#l00055">55</a> of file <a class="el" href="barrier_8cpp_source.html">barrier.cpp</a>.</p>
+<p>Definition at line <a class="el" href="barrier_8cpp_source.html#l00061">61</a> of file <a class="el" href="barrier_8cpp_source.html">barrier.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a7810f1f5e595fc331b1c4618814ea169"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a590a2f3eb4a187e1b25209e546e540e1">Int32</a> Mezzanine::Threading::Barrier::IsBlocking</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Does calling wait on this barrier block at presemt. </p>
+<p>1 waits, and 0 does not any other value indicates a bug </p>
+
+<p>Definition at line <a class="el" href="barrier_8h_source.html#l00066">66</a> of file <a class="el" href="barrier_8h_source.html">barrier.h</a>.</p>
 
 </div>
 </div>
@@ -203,6 +232,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

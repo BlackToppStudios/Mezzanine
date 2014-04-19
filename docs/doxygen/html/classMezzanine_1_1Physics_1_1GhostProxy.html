@@ -109,7 +109,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Physics_1_1GhostProxy__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1Physics_1_1GhostProxy__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -117,6 +118,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac315ed5c315fe52259914d7783814e6d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html#ac315ed5c315fe52259914d7783814e6d">GhostProxy</a> (<a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html">PhysicsManager</a> *Creator)</td></tr>
 <tr class="memdesc:ac315ed5c315fe52259914d7783814e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#ac315ed5c315fe52259914d7783814e6d">More...</a><br/></td></tr>
 <tr class="separator:ac315ed5c315fe52259914d7783814e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dded54298fcdf5100e7213c50076004"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html#a7dded54298fcdf5100e7213c50076004">GhostProxy</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.html">CollisionShape</a> *Shape, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html">PhysicsManager</a> *Creator)</td></tr>
+<tr class="memdesc:a7dded54298fcdf5100e7213c50076004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shape constructor.  <a href="#a7dded54298fcdf5100e7213c50076004">More...</a><br/></td></tr>
+<tr class="separator:a7dded54298fcdf5100e7213c50076004"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36926efa602c8fecb90b1d5e8117622f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html#a36926efa602c8fecb90b1d5e8117622f">GhostProxy</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot, <a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html">PhysicsManager</a> *Creator)</td></tr>
 <tr class="memdesc:a36926efa602c8fecb90b1d5e8117622f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> constructor.  <a href="#a36926efa602c8fecb90b1d5e8117622f">More...</a><br/></td></tr>
 <tr class="separator:a36926efa602c8fecb90b1d5e8117622f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,9 +203,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a8b51c84bc4fe242497ae4eb2874113ab inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#adb602bffcbc8f1b381b2f529e9e364f6">Int16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a8b51c84bc4fe242497ae4eb2874113ab">GetCollisionMask</a> () const </td></tr>
 <tr class="memdesc:a8b51c84bc4fe242497ae4eb2874113ab inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the object's collision mask.  <a href="#a8b51c84bc4fe242497ae4eb2874113ab">More...</a><br/></td></tr>
 <tr class="separator:a8b51c84bc4fe242497ae4eb2874113ab inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25af92b159e3018314e7970f5d37f731 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a25af92b159e3018314e7970f5d37f731">GetCollisionResponse</a> () const </td></tr>
-<tr class="memdesc:a25af92b159e3018314e7970f5d37f731 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will this respond to 3d collisions.  <a href="#a25af92b159e3018314e7970f5d37f731">More...</a><br/></td></tr>
-<tr class="separator:a25af92b159e3018314e7970f5d37f731 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acde7f78109cffc27bfba4896024c3aef inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#acde7f78109cffc27bfba4896024c3aef">GetCollisionResponse</a> () const </td></tr>
+<tr class="memdesc:acde7f78109cffc27bfba4896024c3aef inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will this respond to 3d collisions.  <a href="#acde7f78109cffc27bfba4896024c3aef">More...</a><br/></td></tr>
+<tr class="separator:acde7f78109cffc27bfba4896024c3aef inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a998c64e916a9439d97482e7223c63d62 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a998c64e916a9439d97482e7223c63d62">GetCollisionShape</a> () const </td></tr>
 <tr class="memdesc:a998c64e916a9439d97482e7223c63d62 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the collision shape currently in use by this object.  <a href="#a998c64e916a9439d97482e7223c63d62">More...</a><br/></td></tr>
 <tr class="separator:a998c64e916a9439d97482e7223c63d62 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -229,36 +233,30 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:aa31bdb2168185c26bc2d0318a2c115f6 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#aa31bdb2168185c26bc2d0318a2c115f6">GetScale</a> () const </td></tr>
 <tr class="memdesc:aa31bdb2168185c26bc2d0318a2c115f6 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the scaling currently being applied to this object.  <a href="#aa31bdb2168185c26bc2d0318a2c115f6">More...</a><br/></td></tr>
 <tr class="separator:aa31bdb2168185c26bc2d0318a2c115f6 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad75b5780cc905b664f58a36fc5dd13c1 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#ad75b5780cc905b664f58a36fc5dd13c1">IsActive</a> () const </td></tr>
-<tr class="memdesc:ad75b5780cc905b664f58a36fc5dd13c1 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the object is active in the simulation.  <a href="#ad75b5780cc905b664f58a36fc5dd13c1">More...</a><br/></td></tr>
-<tr class="separator:ad75b5780cc905b664f58a36fc5dd13c1 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cbfa481581cc75f00b817f666378fcd inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a6cbfa481581cc75f00b817f666378fcd">IsAnisotropicFrictionModeSet</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mode) const </td></tr>
-<tr class="memdesc:a6cbfa481581cc75f00b817f666378fcd inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not anisotropic friction is being used in a specified mode.  <a href="#a6cbfa481581cc75f00b817f666378fcd">More...</a><br/></td></tr>
-<tr class="separator:a6cbfa481581cc75f00b817f666378fcd inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a00faa63e3ac73c586917b34f6126d4 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a6a00faa63e3ac73c586917b34f6126d4">IsInWorld</a> () const </td></tr>
-<tr class="memdesc:a6a00faa63e3ac73c586917b34f6126d4 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is inside of it's world.  <a href="#a6a00faa63e3ac73c586917b34f6126d4">More...</a><br/></td></tr>
-<tr class="separator:a6a00faa63e3ac73c586917b34f6126d4 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9031c97203455e44437b907f59b7733 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#ac9031c97203455e44437b907f59b7733">IsKinematic</a> () const </td></tr>
-<tr class="memdesc:ac9031c97203455e44437b907f59b7733 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the object kinematic.  <a href="#ac9031c97203455e44437b907f59b7733">More...</a><br/></td></tr>
-<tr class="separator:ac9031c97203455e44437b907f59b7733 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeec720e5b14b0d5feb04ec59aaa3ead1 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#aeec720e5b14b0d5feb04ec59aaa3ead1">IsStatic</a> () const </td></tr>
-<tr class="memdesc:aeec720e5b14b0d5feb04ec59aaa3ead1 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the object static.  <a href="#aeec720e5b14b0d5feb04ec59aaa3ead1">More...</a><br/></td></tr>
-<tr class="separator:aeec720e5b14b0d5feb04ec59aaa3ead1 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0eff039fe85dddb952dd6f3de6a6a24 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#ae0eff039fe85dddb952dd6f3de6a6a24">IsStaticOrKinematic</a> () const </td></tr>
-<tr class="memdesc:ae0eff039fe85dddb952dd6f3de6a6a24 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the object is either static or kinematic.  <a href="#ae0eff039fe85dddb952dd6f3de6a6a24">More...</a><br/></td></tr>
-<tr class="separator:ae0eff039fe85dddb952dd6f3de6a6a24 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8fef4e25aa0c23568dea283fe16085e inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#ab8fef4e25aa0c23568dea283fe16085e">IsActive</a> () const </td></tr>
+<tr class="memdesc:ab8fef4e25aa0c23568dea283fe16085e inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the object is active in the simulation.  <a href="#ab8fef4e25aa0c23568dea283fe16085e">More...</a><br/></td></tr>
+<tr class="separator:ab8fef4e25aa0c23568dea283fe16085e inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a611bd026d299d48dcd1a78cc27e27d9f inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a611bd026d299d48dcd1a78cc27e27d9f">IsAnisotropicFrictionModeSet</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mode) const </td></tr>
+<tr class="memdesc:a611bd026d299d48dcd1a78cc27e27d9f inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not anisotropic friction is being used in a specified mode.  <a href="#a611bd026d299d48dcd1a78cc27e27d9f">More...</a><br/></td></tr>
+<tr class="separator:a611bd026d299d48dcd1a78cc27e27d9f inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82ba104191b4f136fcfd87a4a3f8ee6a inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a82ba104191b4f136fcfd87a4a3f8ee6a">IsInWorld</a> () const </td></tr>
+<tr class="memdesc:a82ba104191b4f136fcfd87a4a3f8ee6a inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this object is inside of it's world.  <a href="#a82ba104191b4f136fcfd87a4a3f8ee6a">More...</a><br/></td></tr>
+<tr class="separator:a82ba104191b4f136fcfd87a4a3f8ee6a inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58738c96357f7130684e85638ab53a81 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a58738c96357f7130684e85638ab53a81">IsKinematic</a> () const </td></tr>
+<tr class="memdesc:a58738c96357f7130684e85638ab53a81 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the object kinematic.  <a href="#a58738c96357f7130684e85638ab53a81">More...</a><br/></td></tr>
+<tr class="separator:a58738c96357f7130684e85638ab53a81 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e360e171a5bbb73850a6c9f10bd63c inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#ac5e360e171a5bbb73850a6c9f10bd63c">IsStatic</a> () const </td></tr>
+<tr class="memdesc:ac5e360e171a5bbb73850a6c9f10bd63c inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the object static.  <a href="#ac5e360e171a5bbb73850a6c9f10bd63c">More...</a><br/></td></tr>
+<tr class="separator:ac5e360e171a5bbb73850a6c9f10bd63c inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0e9b16b3c2edd18e684dfca0e60c251 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#ae0e9b16b3c2edd18e684dfca0e60c251">IsStaticOrKinematic</a> () const </td></tr>
+<tr class="memdesc:ae0e9b16b3c2edd18e684dfca0e60c251 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the object is either static or kinematic.  <a href="#ae0e9b16b3c2edd18e684dfca0e60c251">More...</a><br/></td></tr>
+<tr class="separator:ae0e9b16b3c2edd18e684dfca0e60c251 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0832b08c75a6cea48f20db7f6e81a66 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#ab0832b08c75a6cea48f20db7f6e81a66">Pitch</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Angle)</td></tr>
 <tr class="memdesc:ab0832b08c75a6cea48f20db7f6e81a66 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotate the object around the X axis.  <a href="#ab0832b08c75a6cea48f20db7f6e81a66">More...</a><br/></td></tr>
 <tr class="separator:ab0832b08c75a6cea48f20db7f6e81a66 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ea76d83761b235ad9a6556fdf1aa9b2 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a0ea76d83761b235ad9a6556fdf1aa9b2">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
-<tr class="memdesc:a0ea76d83761b235ad9a6556fdf1aa9b2 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> <a class="el" href="classMezzanine_1_1Node.html">Node</a> and overwrite this object with it.  <a href="#a0ea76d83761b235ad9a6556fdf1aa9b2">More...</a><br/></td></tr>
-<tr class="separator:a0ea76d83761b235ad9a6556fdf1aa9b2 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68256f1cfe6628e61cdd20f979c6e2c5 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a68256f1cfe6628e61cdd20f979c6e2c5">ProtoDeSerializeShape</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
 <tr class="memdesc:a68256f1cfe6628e61cdd20f979c6e2c5 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> <a class="el" href="classMezzanine_1_1Node.html">Node</a> and overwrite the shape of this object with it.  <a href="#a68256f1cfe6628e61cdd20f979c6e2c5">More...</a><br/></td></tr>
 <tr class="separator:a68256f1cfe6628e61cdd20f979c6e2c5 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcff68dc9c425749eb5f3b4ebc791385 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#abcff68dc9c425749eb5f3b4ebc791385">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;ParentNode) const </td></tr>
-<tr class="memdesc:abcff68dc9c425749eb5f3b4ebc791385 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a> ready for serialization.  <a href="#abcff68dc9c425749eb5f3b4ebc791385">More...</a><br/></td></tr>
-<tr class="separator:abcff68dc9c425749eb5f3b4ebc791385 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1738b7203b8f4d64ab7e2ad773d128d7 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a1738b7203b8f4d64ab7e2ad773d128d7">ProtoSerializeShape</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot) const </td></tr>
 <tr class="memdesc:a1738b7203b8f4d64ab7e2ad773d128d7 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the shape of this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a> ready for serialization.  <a href="#a1738b7203b8f4d64ab7e2ad773d128d7">More...</a><br/></td></tr>
 <tr class="separator:a1738b7203b8f4d64ab7e2ad773d128d7 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -277,9 +275,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a341d438039c2d31a7dead0da6d669d76 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a341d438039c2d31a7dead0da6d669d76">Scale</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> X, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Y, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Z)</td></tr>
 <tr class="memdesc:a341d438039c2d31a7dead0da6d669d76 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the object from it's current size.  <a href="#a341d438039c2d31a7dead0da6d669d76">More...</a><br/></td></tr>
 <tr class="separator:a341d438039c2d31a7dead0da6d669d76 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cbfa3bd975aafae9ff39c1fdba2e77e inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a7cbfa3bd975aafae9ff39c1fdba2e77e">SetActivationState</a> (const <a class="el" href="namespaceMezzanine_1_1Physics.html#a17f518115a6221cce3619160261ca407">Physics::ActivationState</a> State, bool Force=false)</td></tr>
-<tr class="memdesc:a7cbfa3bd975aafae9ff39c1fdba2e77e inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the activation state of the world object.  <a href="#a7cbfa3bd975aafae9ff39c1fdba2e77e">More...</a><br/></td></tr>
-<tr class="separator:a7cbfa3bd975aafae9ff39c1fdba2e77e inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17e2b1f9cc1515433900ea65f228804e inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a17e2b1f9cc1515433900ea65f228804e">SetActivationState</a> (const <a class="el" href="namespaceMezzanine_1_1Physics.html#a17f518115a6221cce3619160261ca407">Physics::ActivationState</a> State, <a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Force=false)</td></tr>
+<tr class="memdesc:a17e2b1f9cc1515433900ea65f228804e inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the activation state of the world object.  <a href="#a17e2b1f9cc1515433900ea65f228804e">More...</a><br/></td></tr>
+<tr class="separator:a17e2b1f9cc1515433900ea65f228804e inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa90711308ea9464740db5d292a2ed4c5 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#aa90711308ea9464740db5d292a2ed4c5">SetAnisotropicFriction</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Friction, const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mode)</td></tr>
 <tr class="memdesc:aa90711308ea9464740db5d292a2ed4c5 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the anisotropic friction factor.  <a href="#aa90711308ea9464740db5d292a2ed4c5">More...</a><br/></td></tr>
 <tr class="separator:aa90711308ea9464740db5d292a2ed4c5 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -295,9 +293,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a138a739c79b9d116ea82cfc686f2a9ab inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a138a739c79b9d116ea82cfc686f2a9ab">SetCollisionMask</a> (const <a class="el" href="namespaceMezzanine.html#adb602bffcbc8f1b381b2f529e9e364f6">Int16</a> Mask)</td></tr>
 <tr class="memdesc:a138a739c79b9d116ea82cfc686f2a9ab inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the collision mask of this proxy, which determines which groups it will collide with.  <a href="#a138a739c79b9d116ea82cfc686f2a9ab">More...</a><br/></td></tr>
 <tr class="separator:a138a739c79b9d116ea82cfc686f2a9ab inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40b0f8c5e796df75be605d68e6fc83e3 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a40b0f8c5e796df75be605d68e6fc83e3">SetCollisionResponse</a> (bool Enable)</td></tr>
-<tr class="memdesc:a40b0f8c5e796df75be605d68e6fc83e3 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <a class="el" href="classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. ">World</a> Object to be able to collide with other objects in the world.  <a href="#a40b0f8c5e796df75be605d68e6fc83e3">More...</a><br/></td></tr>
-<tr class="separator:a40b0f8c5e796df75be605d68e6fc83e3 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae224bd8254669907c4b558cb4a29f698 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#ae224bd8254669907c4b558cb4a29f698">SetCollisionResponse</a> (<a class="el" href="namespaceMezzanine.html#a7d765759d1196aae20197055f00498f8">Boole</a> Enable)</td></tr>
+<tr class="memdesc:ae224bd8254669907c4b558cb4a29f698 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <a class="el" href="classMezzanine_1_1World.html" title="This class represents a world for objects to interact within. ">World</a> Object to be able to collide with other objects in the world.  <a href="#ae224bd8254669907c4b558cb4a29f698">More...</a><br/></td></tr>
+<tr class="separator:ae224bd8254669907c4b558cb4a29f698 inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b3a295c3602054f9a2908a67d4c75bd inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a8b3a295c3602054f9a2908a67d4c75bd">SetCollisionShape</a> (<a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.html">CollisionShape</a> *Shape)</td></tr>
 <tr class="memdesc:a8b3a295c3602054f9a2908a67d4c75bd inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the collision shape to be used.  <a href="#a8b3a295c3602054f9a2908a67d4c75bd">More...</a><br/></td></tr>
 <tr class="separator:a8b3a295c3602054f9a2908a67d4c75bd inherit pub_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -361,6 +359,12 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a98781f6b27dd4611404c0d6fb06535c9 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.html#a98781f6b27dd4611404c0d6fb06535c9">GetParentObject</a> () const </td></tr>
 <tr class="memdesc:a98781f6b27dd4611404c0d6fb06535c9 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a pointer to the parent object controlling this proxy.  <a href="#a98781f6b27dd4611404c0d6fb06535c9">More...</a><br/></td></tr>
 <tr class="separator:a98781f6b27dd4611404c0d6fb06535c9 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87977fc6c8717daf6f44020317e392f7 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.html#a87977fc6c8717daf6f44020317e392f7">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
+<tr class="memdesc:a87977fc6c8717daf6f44020317e392f7 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> <a class="el" href="classMezzanine_1_1Node.html">Node</a> and overwrite this object with it.  <a href="#a87977fc6c8717daf6f44020317e392f7">More...</a><br/></td></tr>
+<tr class="separator:a87977fc6c8717daf6f44020317e392f7 inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51399944618cc40f26fefb0859d56edf inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldProxy.html#a51399944618cc40f26fefb0859d56edf">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;ParentNode) const </td></tr>
+<tr class="memdesc:a51399944618cc40f26fefb0859d56edf inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree. ">XML::Node</a> ready for serialization.  <a href="#a51399944618cc40f26fefb0859d56edf">More...</a><br/></td></tr>
+<tr class="separator:a51399944618cc40f26fefb0859d56edf inherit pub_methods_classMezzanine_1_1WorldProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMezzanine_1_1TransformableObject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1TransformableObject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1TransformableObject.html">Mezzanine::TransformableObject</a></td></tr>
 <tr class="memitem:a2163fbf7d93278caddeba1ba454af54f inherit pub_methods_classMezzanine_1_1TransformableObject"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2163fbf7d93278caddeba1ba454af54f"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TransformableObject.html#a2163fbf7d93278caddeba1ba454af54f">~TransformableObject</a> ()</td></tr>
@@ -398,6 +402,13 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a3b31e7148f6349cde5dc64a23d668378"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1GhostProxy.html#a3b31e7148f6349cde5dc64a23d668378">CreateGhostObject</a> ()</td></tr>
 <tr class="memdesc:a3b31e7148f6349cde5dc64a23d668378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to create the physics representation of the ghost body.  <a href="#a3b31e7148f6349cde5dc64a23d668378">More...</a><br/></td></tr>
 <tr class="separator:a3b31e7148f6349cde5dc64a23d668378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMezzanine_1_1Physics_1_1CollidableProxy')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html">Mezzanine::Physics::CollidableProxy</a></td></tr>
+<tr class="memitem:ab6225944081bd63277471bcb542c5c22 inherit pro_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#ab6225944081bd63277471bcb542c5c22">ProtoDeSerializeImpl</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot)</td></tr>
+<tr class="memdesc:ab6225944081bd63277471bcb542c5c22 inherit pro_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation method for deseriailizing additional sets of data.  <a href="#ab6225944081bd63277471bcb542c5c22">More...</a><br/></td></tr>
+<tr class="separator:ab6225944081bd63277471bcb542c5c22 inherit pro_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d3bfc7b2e93b2157bce5368f670ee99 inherit pro_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a5d3bfc7b2e93b2157bce5368f670ee99">ProtoSerializeImpl</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;SelfRoot) const </td></tr>
+<tr class="memdesc:a5d3bfc7b2e93b2157bce5368f670ee99 inherit pro_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation method for serializing additional sets of data.  <a href="#a5d3bfc7b2e93b2157bce5368f670ee99">More...</a><br/></td></tr>
+<tr class="separator:a5d3bfc7b2e93b2157bce5368f670ee99 inherit pro_methods_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -415,7 +426,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a43689a4e58c02f20b55c6bc1461e8f3f inherit pro_attribs_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a pointer to the physics manager that created and owns this proxy.  <a href="#a43689a4e58c02f20b55c6bc1461e8f3f">More...</a><br/></td></tr>
 <tr class="separator:a43689a4e58c02f20b55c6bc1461e8f3f inherit pro_attribs_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae27fe542eb9c557478c8de663481cbc4 inherit pro_attribs_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#ae27fe542eb9c557478c8de663481cbc4">ProxyShape</a></td></tr>
-<tr class="memdesc:ae27fe542eb9c557478c8de663481cbc4 inherit pro_attribs_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">A vector3 storing the scaling applied to this body.  <a href="#ae27fe542eb9c557478c8de663481cbc4">More...</a><br/></td></tr>
+<tr class="memdesc:ae27fe542eb9c557478c8de663481cbc4 inherit pro_attribs_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">The physics shape of this proxy.  <a href="#ae27fe542eb9c557478c8de663481cbc4">More...</a><br/></td></tr>
 <tr class="separator:ae27fe542eb9c557478c8de663481cbc4 inherit pro_attribs_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b46e3486e0051bc399e4913c66be8c1 inherit pro_attribs_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="memItemLeft" align="right" valign="top">btCollisionShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a6b46e3486e0051bc399e4913c66be8c1">ScalerShape</a></td></tr>
 <tr class="memdesc:a6b46e3486e0051bc399e4913c66be8c1 inherit pro_attribs_classMezzanine_1_1Physics_1_1CollidableProxy"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an internal only shape that provides the ability for a collision shape to be scaled locally (to this object alone).  <a href="#a6b46e3486e0051bc399e4913c66be8c1">More...</a><br/></td></tr>
@@ -456,6 +467,43 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a7dded54298fcdf5100e7213c50076004"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mezzanine::Physics::GhostProxy::GhostProxy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.html">CollisionShape</a> *&#160;</td>
+          <td class="paramname"><em>Shape</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Physics_1_1PhysicsManager.html">PhysicsManager</a> *&#160;</td>
+          <td class="paramname"><em>Creator</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Shape constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Shape</td><td>A pointer to the collision shape that will be applied to this proxy. </td></tr>
+    <tr><td class="paramname">Creator</td><td>A pointer to the manager that created this proxy. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00064">64</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a36926efa602c8fecb90b1d5e8117622f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -489,7 +537,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00064">64</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00072">72</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -519,7 +567,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#aa8bbdab99a879f729840c772d3b46944">Mezzanine::Physics::CollidableProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00183">183</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00191">191</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -547,7 +595,7 @@ Protected Attributes</h2></td></tr>
 <p>Accessor for the internal ghost body physics proxy. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the internal proxy this proxy is based on. </dd></dl>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00180">180</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00188">188</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -576,7 +624,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a8281a8f96e7650b9f27a8fba4f2ccbd9">Mezzanine::Physics::CollidableProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00095">95</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00103">103</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -609,7 +657,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00080">80</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00088">88</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -645,7 +693,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the overlapping proxy at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00112">112</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00120">120</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -676,7 +724,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a2d4e73b179a740fe22a3a25f709f892b">Mezzanine::Physics::CollidableProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00171">171</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00179">179</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -704,7 +752,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the number of proxies overlapping with the AABB of this ghost. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of proxies overlapping with the AABB of this ghost. </dd></dl>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00118">118</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00126">126</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -732,7 +780,7 @@ Protected Attributes</h2></td></tr>
 <p>Gets the number of proxies overlapping with the actual collision shape of this ghost. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of proxies overlapping with the actual shape of this ghost. </dd></dl>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00156">156</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00164">164</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -762,7 +810,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1WorldProxy.html#a4190d75692d156d3b0c43ea92c90f338">Mezzanine::WorldProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00090">90</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00098">98</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -790,7 +838,7 @@ Protected Attributes</h2></td></tr>
 <p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="All tools for working with XML are located in this namespace. ">XML</a> tag the proxy class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing the name of this class. </dd></dl>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00174">174</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00182">182</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -828,7 +876,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the overlapping proxy at the specified index, or NULL if it is invalid. </dd></dl>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00123">123</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00131">131</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -864,7 +912,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a663029da5b8dc06c343f3199ea213be3">Mezzanine::Physics::CollidableProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00168">168</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00176">176</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -900,7 +948,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a6e861e1b0020c12b76e1d39b929b47cd">Mezzanine::Physics::CollidableProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00165">165</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00173">173</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -929,7 +977,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classMezzanine_1_1Physics_1_1CollidableProxy.html#a94c4cf018c3d2b18920fb82b8463f83b">Mezzanine::Physics::CollidableProxy</a>.</p>
 
-<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00102">102</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ghostproxy_8cpp_source.html#l00110">110</a> of file <a class="el" href="ghostproxy_8cpp_source.html">ghostproxy.cpp</a>.</p>
 
 </div>
 </div>
@@ -964,6 +1012,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

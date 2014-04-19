@@ -223,8 +223,34 @@ Step 6 - Wait for next frame.</h3>
 <h1><a class="anchor" id="dag_usage"></a>
 Using the DAG FrameScheduler</h1>
 <p>Still in progress. In the meantime please peruse the unit test source directory for examples. </p>
+<h1><a class="anchor" id="dag_maintanence"></a>
+Code Maintenance Tasks</h1>
+<h2><a class="anchor" id="dag_maintanence_codestandards"></a>
+Coding Standards Diverge from Mezzanine</h2>
+<p>There are some fundamental differences in the DAGFrameSchedulers coded when compared to the code in the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a>. <br/>
+ <br/>
+ The most obvious is the usage of exceptions. The DAGFrameScheduler does not use Exceptions in any way. There are a few reasons for this.</p>
+<ol type="1">
+<li>Exception Thread Safety.</li>
+<li>No need to copy Exception</li>
+<li>Performance. <br/>
+ <br/>
+ The team at BlackTopp Studios Inc will be some of the first to extol the virtues of exceptions and downplay their cost. In most situations the cost is negligible. The case of the tighest and innermost loop in a simulation seemed to us to be one of those situations where the cost matters. <br/>
+ <br/>
+ There is no use of a number of other <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> foundational classes. The CountedPtr is completely missing. For the same reasons as exceptions. Raw pointers using RAII and references are used instead. <br/>
+ <br/>
+ Most of the Datatypes that are used are in a trimmed down version of the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a>'s <a class="el" href="datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here...">datatypes.h</a>. </li>
+</ol>
+<h2><a class="anchor" id="dag_maintanence_merging"></a>
+Getting changes from the Mezzanine into DAGFrameScheduler</h2>
+<p>There are 3 directories with code that overlap in the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> and in the DAGFrameScheduler. Code That lies outside these directories is independent of the other project. The entire FrameScheduler library loosely correlates with the <a class="el" href="namespaceMezzanine_1_1Threading.html" title="This is where game specific threading algorithms and a minimalistic subset of the std threading libra...">Mezzanine::Threading</a> namespace. Then there is the tests and test framework source code. Presuming you have used git to clone both repositories to ~/Code/Mezzanine/UnitTests/src &lt;=&gt; ~/Code/DAGFrameScheduler/testframework <br/>
+ ~/Code/Mezzanine/Mezzanine/src/Threading &lt;=&gt; ~/Code/DAGFrameScheduler/src <br/>
+ ~/Code/Mezzanine/UnitTests/tests &lt;=&gt; ~/Code/DAGFrameScheduler/tests <br/>
+ <br/>
+ <br/>
+ For simplicity when BlackTopp Studios Inc merge changes a graphical merge tool capable of directory merges is used to manually move changes between corresponding directories. Winmerge and Meld (Quite possibly the prettiest merge tool ever created) are two great examples of tools for doing this. </p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

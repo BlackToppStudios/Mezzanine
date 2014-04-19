@@ -1,10 +1,11 @@
-<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/resourcemanager.h">
-<area shape="rect" id="node3" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="5,107,205,151"/>
-<area shape="rect" id="node7" href="$objectsettings_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/objectsettings.cpp" alt="" coords="229,107,443,151"/>
-<area shape="rect" id="node9" href="$resourcemanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/resourcemanager.cpp" alt="" coords="467,107,701,151"/>
-<area shape="rect" id="node11" href="$graphicsmanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/graphicsmanager.cpp" alt="" coords="725,99,925,159"/>
-<area shape="rect" id="node13" href="$collisionshapemanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collisionshapemanager.cpp" alt="" coords="949,107,1264,151"/>
-<area shape="rect" id="node15" href="$textureatlashandler_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/textureatlashandler.cpp" alt="" coords="1288,107,1549,151"/>
-<area shape="rect" id="node17" href="$uimanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/uimanager.cpp" alt="" coords="1573,107,1787,151"/>
-<area shape="rect" id="node5" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="5,209,205,253"/>
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/resourcemanager.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Resource/resourcemanager.h">
+<area shape="rect" id="node3" href="$resource_8h_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Resource\l/resource.h" alt="" coords="5,115,205,175"/>
+<area shape="rect" id="node9" href="$objectsettings_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/objectsettings.cpp" alt="" coords="229,123,443,167"/>
+<area shape="rect" id="node11" href="$graphicsmanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Graphics\l/graphicsmanager.cpp" alt="" coords="467,115,667,175"/>
+<area shape="rect" id="node13" href="$collisionshapemanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Physics/collisionshapemanager.cpp" alt="" coords="691,123,1005,167"/>
+<area shape="rect" id="node15" href="$resourcemanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/Resource\l/resourcemanager.cpp" alt="" coords="1029,115,1229,175"/>
+<area shape="rect" id="node17" href="$textureatlashandler_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/textureatlashandler.cpp" alt="" coords="1253,123,1515,167"/>
+<area shape="rect" id="node19" href="$uimanager_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/UI/uimanager.cpp" alt="" coords="1539,123,1752,167"/>
+<area shape="rect" id="node5" href="$mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine. " alt="" coords="5,225,205,269"/>
+<area shape="rect" id="node7" href="$entresol_8cpp_source.html" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/entresol.cpp" alt="" coords="5,318,205,362"/>
 </map>

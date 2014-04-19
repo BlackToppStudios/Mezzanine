@@ -1,7 +1,7 @@
 <map id="Mezzanine::IntrusiveRefCount" name="Mezzanine::IntrusiveRefCount">
 <area shape="rect" id="node3" href="$classMezzanine_1_1Scripting_1_1iScriptArgument.html" title="The interface for a script argument. " alt="" coords="247,245,385,289"/>
 <area shape="rect" id="node5" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric.html" title="A generic implementation of a ScriptArgument that is suitable for primitive types in most situations..." alt="" coords="436,5,628,49"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Boolean_01_4.html" title="A Bool implementation of a ScriptArgument that is suitable for primitive types in most situations..." alt="" coords="451,71,613,131"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Boole_01_4.html" title="A Bool implementation of a ScriptArgument that is suitable for primitive types in most situations..." alt="" coords="451,71,613,131"/>
 <area shape="rect" id="node9" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Integer_01_4.html" title="A Integer implementation of a ScriptArgument that is suitable for primitive types in most situations..." alt="" coords="451,154,613,214"/>
 <area shape="rect" id="node11" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01NullArgument_01_4.html" title="A Null implementation of a ScriptArgument that is suitable for primitive types in most situations..." alt="" coords="451,237,613,297"/>
 <area shape="rect" id="node13" href="$classMezzanine_1_1Scripting_1_1ScriptArgumentGeneric_3_01Real_01_4.html" title="A Real number implementation of a ScriptArgument that is suitable for primitive types in most situati..." alt="" coords="451,319,613,379"/>

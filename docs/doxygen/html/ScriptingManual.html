@@ -70,20 +70,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 </div><!-- top -->
 <div class="contents">
-<div class="textblock"><p>The scripting system is included the <a class="el" href="namespaceMezzanine_1_1Scripting.html" title="This namespace is for all the classes belonging to the Scripting Subsystem. ">Mezzanine::Scripting</a> namespace. It is primarily composed of four interface classes, four abstract classes. An implementation of a scripting system should implement these four classes in a sub-namespacef</p>
+<div class="textblock"><p>Many scripting languages suitable for being embedded in games have a number of similar traits. All have some kind of runtime that must be initialized, this runtime accepts strings of script source and performs the steps the source desribe. Some keep internal track of the source, others expect the the caller to do so. Most allow passing arguments into scripts and accepting return values. Some allow the script to be compiled to a bytecode and others do not. A scripting manager is a generic interface to this functionality and is expected to be the primary interface for game developers who want to use a given scripting language. <br/>
+ <br/>
+ Almost every language makes a point of interoperating with C. Some provide a special Application Prorammer Interface (API - intended for mostly programmers use) for C to call on like Ruby, Lua and AngelScript. Some take advantage of the reliable and unchanging C Application Binary Interface (ABI - primarily for direct executable to executable integration), such as Java, C#, Ruby when using FFI. <br/>
+ <br/>
+ In addition to these kinds of complexities, there are different reasons to use a scripting language. The uses cases fall on a spectrum of "Writing a game in
+a Scripting language with just performance sensitive pieces in C/C++" to the other extreme of "The bulk of the code in C/C++ with the ability to run
+scripts for flexibilty". The are reasons for both of these use cases and they do not meaningfully conflict. Presumably any extra code written in the more performant C and C++ will benefit all, with the primary reason to not do so being time and technical skill required to do it. If something is already written this way, then why not take advantage of it. <br/>
+ <br/>
+ The Interface of the scripting system was an attempt to allow enough flexibility to accomodate most scripting and managed languages, for the purpose of this discussion I mean any language with its own bytecode. <br/>
+ <br/>
+</p>
+<p>The scripting system is included the <a class="el" href="namespaceMezzanine_1_1Scripting.html" title="This namespace is for all the classes belonging to the Scripting Subsystem. ">Mezzanine::Scripting</a> namespace. It is primarily composed of four interface classes, four abstract classes. An implementation of a scripting system should implement these four classes in a sub-namespace:</p>
 <ul>
 <li><a class="el" href="classMezzanine_1_1Scripting_1_1iScript.html" title="The interface for a script. ">Mezzanine::Scripting::iScript</a></li>
 <li><a class="el" href="classMezzanine_1_1Scripting_1_1iScriptArgument.html" title="The interface for a script argument. ">Mezzanine::Scripting::iScriptArgument</a></li>
 <li><a class="el" href="classMezzanine_1_1Scripting_1_1iScriptingManager.html" title="What a scripting manager should look like. ">Mezzanine::Scripting::iScriptingManager</a></li>
 <li><a class="el" href="classMezzanine_1_1Scripting_1_1iScriptWorkUnit.html" title="The interface for a container of script that can be executed each frame. ">Mezzanine::Scripting::iScriptWorkUnit</a></li>
 </ul>
-<p>Many scripting languages suitable for being embedded in games have a number of similar traits. All have some kind of runtime that mustbe initialized, this runtime accepts strings of script source and performs the steps the source desribe. Some keep internal track of the source other expect the the caller to do so. Most allow passing arguments into scripts and accepting return values. Some allow the script to be compiled to a byte and others do not. A scripting manager is <br/>
+<p><br/>
  <br/>
- Whether or not this is updated each build can be controlled by the Mezz_SWIG CMake Flag. When this flag is enabled a SWIG_Mezzanine build target is added to the project. To satisfy build systems this target/project compiles <a class="el" href="blank_8cpp_source.html">src/blank.cpp</a> as the only files. During the build steps in that target it attempt to Swig from the command line. <br/>
+ SWIG ( <a href="http://swig.org">http://swig.org</a> ) is a tool that generates code in either C or the target language. It gets the information required to do this byreading the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> source code directly. It support a variety of languages but is currently</p>
+<p>Whether or not the is updated each build can be controlled by the Mezz_SWIG CMake Flag. When this flag is enabled a SWIG_Mezzanine build target is added to the project. To satisfy build systems this target/project compiles <a class="el" href="blank_8cpp_source.html">src/blank.cpp</a> as the only files. During the build steps in that target it attempt to Swig from the command line. <br/>
  <br/>
  This can be run manually by invoking that target specifically. For example: </p>
-<div class="fragment"><div class="line">$make SWIG_Mezzanine</div>
-<div class="line">ninja SWIG_Mezzanine</div>
+<div class="fragment"><div class="line">$ make SWIG_Mezzanine</div>
+<div class="line">$ ninja SWIG_Mezzanine</div>
 </div><!-- fragment --> <h1><a class="anchor" id="CppApiToLua"></a>
 How the C++ API converts to Lua</h1>
 <p>The Documentation for the C++ API is also the canonical documentation for the Lua scripting system. The are some differences those that are not and these detailed on the functions that are different are generalized here. </p>
@@ -92,7 +104,10 @@ Lua Modules are Related to Namespaces</h2>
 <p>Major namespaces become modules in Lua. You can check on the Lua51ScriptingEngine if there is a function for loading a specific namespace. For example if you want a script to use classes and functions in the <a class="el" href="namespaceMezzanine_1_1Threading.html" title="This is where game specific threading algorithms and a minimalistic subset of the std threading libra...">Mezzanine::Threading</a> namespace then you will need to load either the safe or the unlimited threading libraries in Lua. This can be done either by passing the right flags to the constructor of the Lua51ScriptingEngine or by calling Lua51ScriptingEngine::OpenMezzanineThreadingLibrary() or Lua51ScriptingEngine::OpenMezzanineThreadingSafeLibrary() . Each Module in Lua stores all of its members in a table of the module's name, and a reference to the table is stored in the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace. ">Mezzanine</a> table. This is preferred way to call Lua functionality from modules, and calling the table directly may be removed in the future. Here is an example of using a class in the Threading and another in the root namespace: </p>
 <div class="fragment"><div class="line">bar = MezzanineSafe.Threading.Barrier(4)</div>
 <div class="line">vec = MezzanineSafe.Vector3(1,1,1)</div>
-</div><!-- fragment --> <h2><a class="anchor" id="CApiLuaNamespacesFlattened"></a>
+</div><!-- fragment --><p> <br/>
+ <br/>
+ </p>
+<h2><a class="anchor" id="CApiLuaNamespacesFlattened"></a>
 Other Namespaces Are Flattened</h2>
 <p>Namespaces are flattened into the Lua module they are included n: C++ code: </p>
 <div class="fragment"><div class="line"><a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space. ">Mezzanine::Vector3</a> Vec = <a class="code" href="namespaceMezzanine_1_1StringTools.html#a406345c88068aeae0bf081d9718a2ffe" title="Convert three numbers in a string into a Vector3. ">Mezzanine::StringTools::ConvertToVector3</a>(<span class="stringliteral">&quot;3 4 6&quot;</span>)</div>
@@ -100,8 +115,26 @@ Other Namespaces Are Flattened</h2>
  <br/>
  Lua Code: </p>
 <div class="fragment"><div class="line">Vec=MezzanineSafe.ConvertToVector3(<span class="stringliteral">&quot;3 4 6&quot;</span>)</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- fragment --><p> <br/>
+ <br/>
+ </p>
+<h2><a class="anchor" id="CApiLuaEnumsFlattened"></a>
+Enums Are Flattened</h2>
+<p>In C++ enumerations might hold values useful in the scope of class. For example the <a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions. ">Mezzanine::Exception</a> holds ExceptionCodes that are useful categorizing types of errors. Because each C++ class is represented in Lua as a function that returns a class instance, the syntax "MezzanineSafe.Exception.IO_EXCEPTION" could not work. Enums that are part of a class are instead defined in the same table as the class function and have the class name concatenated to theirs. <br/>
+ This is different than enums A few example can explain better: C++ code: </p>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> x = <a class="code" href="classMezzanine_1_1Exception.html#a4ee7e60ac53783c4975240c57071d420adbce825510a297fc244e97d65a84760b" title="When used a instance of IOException is thrown. Thrown when there was an issue with IO but very little...">Mezzanine::Exception::IO_EXCEPTION</a> <span class="comment">// An enum value on a class</span></div>
+<div class="line"><span class="keywordtype">int</span> y = <a class="code" href="namespaceMezzanine_1_1Threading.html#a1a21883adf1ed757a3926c29a5486a8eabbce5705b2c11ab3749cd3081e760233" title="Task is not yet started this frame, this can change without notice. ">Mezzanine::Threading::NotStarted</a> <span class="comment">// An enum value in the Threading namespace</span></div>
+</div><!-- fragment --><p> <br/>
+ <br/>
+ Lua Code: </p>
+<div class="fragment"><div class="line">x = MezzanineSafe.Exception_IO_EXCEPTION -- flattened to the MezzanineSafe Table/Module</div>
+<div class="line">y = MezzanineSafe.Threading.NotStarted -- In the Threading table/Module</div>
+</div><!-- fragment --><p> <br/>
+ <br/>
+</p>
+<p>Need to say something about modules in lua datatypes, singleton, vector3, quaternion, and the proxies are likely to be duplicate in multiple places </p>
+</div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>

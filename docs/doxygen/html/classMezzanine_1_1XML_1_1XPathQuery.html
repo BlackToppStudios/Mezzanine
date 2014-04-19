@@ -104,9 +104,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html#aeba65550dc7e24372f32781b1809584e">~XPathQuery</a> ()</td></tr>
 <tr class="memdesc:aeba65550dc7e24372f32781b1809584e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
 <tr class="separator:aeba65550dc7e24372f32781b1809584e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae078a3dac447c436879f646ba29afdd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html#aae078a3dac447c436879f646ba29afdd">EvaluateBoolean</a> (const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
-<tr class="memdesc:aae078a3dac447c436879f646ba29afdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate expression as boolean value in the specified context; performs Type conversion if necessary.  <a href="#aae078a3dac447c436879f646ba29afdd">More...</a><br/></td></tr>
-<tr class="separator:aae078a3dac447c436879f646ba29afdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2396a82df0774dc15cf1f1c35329ad31"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html#a2396a82df0774dc15cf1f1c35329ad31">EvaluateBoole</a> (const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
+<tr class="memdesc:a2396a82df0774dc15cf1f1c35329ad31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate expression as boolean value in the specified context; performs Type conversion if necessary.  <a href="#a2396a82df0774dc15cf1f1c35329ad31">More...</a><br/></td></tr>
+<tr class="separator:a2396a82df0774dc15cf1f1c35329ad31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a194972f7d30c092b05fc8a7e136313"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.html">XPathNodeSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html#a2a194972f7d30c092b05fc8a7e136313">EvaluateNodeSet</a> (const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
 <tr class="memdesc:a2a194972f7d30c092b05fc8a7e136313"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluate expression as node set in the specified context.  <a href="#a2a194972f7d30c092b05fc8a7e136313">More...</a><br/></td></tr>
 <tr class="separator:a2a194972f7d30c092b05fc8a7e136313"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,7 +145,7 @@ Public Member Functions</h2></td></tr>
  <br/>
  Query objects correspond to <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html">XML::XPathQuery</a> type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html" title="A compiled XPath query object. ">XML::XPathQuery</a> in the container. <br/>
  <br/>
- To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html#aae078a3dac447c436879f646ba29afdd">XPathQuery::EvaluateBoolean()</a>, <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html#a745a0a9f898c1a727bcdf05385b3e447">XPathQuery::EvaluateNumber()</a> and <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html#ac565378e493693276a23ab59f1007c2c">XPathQuery::EvaluateString()</a> always return a result, but EvaluateNodeSet results in an error if the return type is not node set. </li>
+ To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html#a2396a82df0774dc15cf1f1c35329ad31">XPathQuery::EvaluateBoole()</a>, <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html#a745a0a9f898c1a727bcdf05385b3e447">XPathQuery::EvaluateNumber()</a> and <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.html#ac565378e493693276a23ab59f1007c2c">XPathQuery::EvaluateString()</a> always return a result, but EvaluateNodeSet results in an error if the return type is not node set. </li>
 </ul>
 
 <p>Definition at line <a class="el" href="xpathquery_8h_source.html#l00091">91</a> of file <a class="el" href="xpathquery_8h_source.html">xpathquery.h</a>.</p>
@@ -200,12 +200,12 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aae078a3dac447c436879f646ba29afdd"></a>
+<a class="anchor" id="a2396a82df0774dc15cf1f1c35329ad31"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Mezzanine::XML::XPathQuery::EvaluateBoolean </td>
+          <td class="memname">bool Mezzanine::XML::XPathQuery::EvaluateBoole </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.html">XPathNode</a> &amp;&#160;</td>
           <td class="paramname"><em>n</em>)</td><td></td>
@@ -444,6 +444,6 @@ Public Member Functions</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2014 16:21:58 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
+Generated on Sat Apr 19 2014 14:01:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4</small></address>
 </body>
 </html>
