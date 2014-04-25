@@ -72,32 +72,32 @@ namespace Mezzanine
     void CameraController::CheckAngleRollover(Real Angle)
     {
         Real Pi = MathTools::GetPi();
-        if(Angle > Pi)
-        {
+        if(Angle > Pi) {
             Angle = -Pi + (Angle - Pi);
-        }
-        else if(Angle < -Pi)
-        {
+        }else if(Angle < -Pi) {
             Angle = Pi + (Angle + Pi);
         }
     }
 
     void CameraController::CheckAngleLimits()
     {
-        if(this->YawLimits)
-        {
-            if(YawRad > this->YawLimits->Upper) YawRad = this->YawLimits->Upper;
-            if(YawRad < this->YawLimits->Lower) YawRad = this->YawLimits->Lower;
+        if(this->YawLimits) {
+            if(YawRad > this->YawLimits->Upper)
+                YawRad = this->YawLimits->Upper;
+            if(YawRad < this->YawLimits->Lower)
+                YawRad = this->YawLimits->Lower;
         }
-        if(this->PitchLimits)
-        {
-            if(PitchRad > this->PitchLimits->Upper) PitchRad = this->PitchLimits->Upper;
-            if(PitchRad < this->PitchLimits->Lower) PitchRad = this->PitchLimits->Lower;
+        if(this->PitchLimits) {
+            if(PitchRad > this->PitchLimits->Upper)
+                PitchRad = this->PitchLimits->Upper;
+            if(PitchRad < this->PitchLimits->Lower)
+                PitchRad = this->PitchLimits->Lower;
         }
-        if(this->YawLimits)
-        {
-            if(RollRad > this->RollLimits->Upper) RollRad = this->RollLimits->Upper;
-            if(RollRad < this->RollLimits->Lower) RollRad = this->RollLimits->Lower;
+        if(this->YawLimits) {
+            if(RollRad > this->RollLimits->Upper)
+                RollRad = this->RollLimits->Upper;
+            if(RollRad < this->RollLimits->Lower)
+                RollRad = this->RollLimits->Lower;
         }
     }
 
@@ -113,7 +113,7 @@ namespace Mezzanine
     {
         Vector3 Loc(this->Controlled->GetLocation());
         Real Dist = this->FindDistanceToGround();
-        if(0==Dist)
+        if( 0 == Dist )
             return;
         Real DeltaDist = Dist - this->HoverHeight;
         Loc.Y -= DeltaDist;
@@ -126,7 +126,7 @@ namespace Mezzanine
         Vector3 Dest(Loc + Vector3(0,-2000,0));
         Ray GroundRay(Loc,Dest);
         UInt32 flags = Mezzanine::WO_MeshTerrain | Mezzanine::WO_HeightfieldTerrain | Mezzanine::WO_VectorFieldTerrain | Mezzanine::WO_VoxelTerrain;
-        if(!RayCaster.GetFirstObjectOnRayByPolygon(GroundRay,flags))
+        if( !RayCaster.GetFirstObjectOnRayByPolygon(GroundRay,flags) )
             { return 0; }
         Real Distance = Loc.Y - (RayCaster.LastQueryResultsObjectPtr()->GetLocation() + RayCaster.LastQueryResultsOffset()).Y;
         return Distance;
@@ -136,32 +136,22 @@ namespace Mezzanine
     // Utility
 
     Graphics::CameraProxy* CameraController::GetControlledCamera() const
-    {
-        return this->Controlled;
-    }
+        { return this->Controlled; }
 
     ///////////////////////////////////////////////////////////////////////////////
     // CameraController Properties
 
     void CameraController::SetMovementMode(const CameraController::MovementMode& MoveMode)
-    {
-        this->CurrentMMode = MoveMode;
-    }
+        { this->CurrentMMode = MoveMode; }
 
     CameraController::MovementMode CameraController::GetMovementMode() const
-    {
-        return this->CurrentMMode;
-    }
+        { return this->CurrentMMode; }
 
     void CameraController::SetHoverHeight(const Real& Hover)
-    {
-        this->HoverHeight = Hover;
-    }
+        { this->HoverHeight = Hover; }
 
     Real CameraController::GetHoverHeight() const
-    {
-        return this->HoverHeight;
-    }
+        { return this->HoverHeight; }
 
     void CameraController::SetYawLimits(const Real& UpperLimit, const Real& LowerLimit)
     {
@@ -173,8 +163,7 @@ namespace Mezzanine
 
     void CameraController::RemoveYawLimits()
     {
-        if(this->YawLimits)
-        {
+        if(this->YawLimits) {
             delete this->YawLimits;
             this->YawLimits = NULL;
         }
@@ -190,8 +179,7 @@ namespace Mezzanine
 
     void CameraController::RemovePitchLimits()
     {
-        if(this->PitchLimits)
-        {
+        if(this->PitchLimits) {
             delete this->PitchLimits;
             this->PitchLimits = NULL;
         }
@@ -207,8 +195,7 @@ namespace Mezzanine
 
     void CameraController::RemoveRollLimits()
     {
-        if(this->RollLimits)
-        {
+        if(this->RollLimits) {
             delete this->RollLimits;
             this->RollLimits = NULL;
         }
@@ -220,7 +207,7 @@ namespace Mezzanine
     void CameraController::MoveForward(Real Units)
     {
         Vector3 Move(0,0,-Units);
-        this->Controlled->Translate(Move);
+        this->Controlled->MoveRelative(Move);
         if(CCM_Walk == this->CurrentMMode)
             this->CheckHeight();
     }
@@ -228,7 +215,7 @@ namespace Mezzanine
     void CameraController::MoveBackward(Real Units)
     {
         Vector3 Move(0,0,Units);
-        this->Controlled->Translate(Move);
+        this->Controlled->MoveRelative(Move);
         if(CCM_Walk == this->CurrentMMode)
             this->CheckHeight();
     }
@@ -236,7 +223,7 @@ namespace Mezzanine
     void CameraController::StrafeLeft(Real Units)
     {
         Vector3 Move(-Units,0,0);
-        Controlled->Translate(Move);
+        this->Controlled->MoveRelative(Move);
         if(CCM_Walk == CurrentMMode)
             CheckHeight();
     }
@@ -244,7 +231,7 @@ namespace Mezzanine
     void CameraController::StrafeRight(Real Units)
     {
         Vector3 Move(Units,0,0);
-        this->Controlled->Translate(Move);
+        this->Controlled->MoveRelative(Move);
         if(CCM_Walk == this->CurrentMMode)
             this->CheckHeight();
     }

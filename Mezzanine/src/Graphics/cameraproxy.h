@@ -132,6 +132,9 @@ namespace Mezzanine
             /// @brief Sets the direction the camera faces based on a 3D point.
             /// @param TargetLoc The location in the world to look at.
             virtual void LookAt(const Vector3& TargetLoc);
+            /// @brief Moves the camera through local space.
+            /// @param ToMove The local space vector to move the camera by.
+            virtual void MoveRelative(const Vector3& ToMove);
             /// @brief Sets the direction the light will be emitted from this source.
             /// @note The direction is not used if this is a point light.
             /// @param Dir A Vector3 representing the direction the light will travel from this source.
